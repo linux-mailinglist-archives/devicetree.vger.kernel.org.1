@@ -1,266 +1,260 @@
-Return-Path: <devicetree+bounces-321688-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-321690-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id NlG6Mo1+TGohlQEAu9opvQ
-	(envelope-from <devicetree+bounces-321688-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 06:20:29 +0200
+	id KlF0HKSATGqolQEAu9opvQ
+	(envelope-from <devicetree+bounces-321690-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 06:29:24 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23D1671734C
-	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 06:20:29 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B01057173E1
+	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 06:29:23 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=XIT3aAoE;
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-321688-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-321688-lists+devicetree=lfdr.de@vger.kernel.org";
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
+	dkim=pass header.d=chromium.org header.s=google header.b=S52CYQCo;
+	dmarc=pass (policy=none) header.from=chromium.org;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-321690-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-321690-lists+devicetree=lfdr.de@vger.kernel.org";
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E3D74302BA57
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jul 2026 04:20:27 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 732183030291
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jul 2026 04:29:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 823D8280A58;
-	Tue,  7 Jul 2026 04:20:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3B95369D67;
+	Tue,  7 Jul 2026 04:29:18 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yx1-f44.google.com (mail-yx1-f44.google.com [74.125.224.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A58B70836
-	for <devicetree@vger.kernel.org>; Tue,  7 Jul 2026 04:20:26 +0000 (UTC)
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783398027; cv=none; b=nBInwbn9aGKYCXHUeQZZDw8tMMHPKuCP/9U07VsdEGqlXS10M1D5+l6xMAi607tvHSuD658lwmPVz4uVXsnnhye/9NnCtDvrfz29NadBJ+jKu+LaT5q5LnZzKAROH471I7fSmSXXWtT+Qpmgst3LTXDyVjU21jtjC8bm/zgCZbM=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783398027; c=relaxed/simple;
-	bh=RdJkfp7ZqWwPqpw5jCtsnRlnZRTvbYWb7asCtqibhSU=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=iuV0bHWKbgrL/bxOu8f6yI5b20uAJGCOFH11CIDCk/HJtG8tnMNCEio+WqT2aX9vu6d4B5nbRYAbV66n2vL4PPZEvlwL9hZHK/KSBml0mS9MGtjJyXz79mSwUQ+claOhRdrtAgQeRZIxuzn9m7KnOb9a3KwD4/5TbO+oDSIZkYc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XIT3aAoE; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C42141F000E9;
-	Tue,  7 Jul 2026 04:20:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783398026;
-	bh=5Wu4fL6JghK54swZJEkEZ06xtYGdhIdVwbBxVKsB3tA=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=XIT3aAoEUyjHpy2gFpUTfMcntszycai8uZcOJWDAmQ74fb/UzITr8CKxLlSIKfINn
-	 tj4aG6kKMzSIKSWhV7ptXdvIBud/B+WfRr+Ae0fJiizcrTQK7YMhyDbp7mx2yPisWa
-	 Y11eMXMRVTnfbEIs1WvSL3Z3r2UzrwMaI+vOcWvtGk1cSoT8367eGda33TG4CHLRsL
-	 ++0BrxY9OOg48n9ACpCnC5ozJz/kAz9hBQdT9KZOLHH1qePS9JU7+78HeNRMWmxyRE
-	 qOaYlfGg+YslzZTASVsIhpkk9w1avKdksTfW3vHz7i89ZGYTAqhEa7fRPhf0KFm0zn
-	 HeBDJAON3h6pA==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v6 5/5] drm/bridge: analogix_dp: Add support for
- optional data-lanes mapping
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Damon Ding" <damon.ding@rock-chips.com>
-Cc: dri-devel@lists.freedesktop.org, robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20260707040613.1992841-6-damon.ding@rock-chips.com>
-References: <20260707040613.1992841-1-damon.ding@rock-chips.com>
- <20260707040613.1992841-6-damon.ding@rock-chips.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Tue, 07 Jul 2026 04:20:25 +0000
-Message-Id: <20260707042025.C42141F000E9@smtp.kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B676346E56
+	for <devicetree@vger.kernel.org>; Tue,  7 Jul 2026 04:29:17 +0000 (UTC)
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1783398558; cv=pass; b=YKckn2rqjP+J3L+KYUbpzp/tEQ29MeMVlGEKfJiKurxHYDLJOJqSoSfl/F+g8ne1vK4toMOSxIf9aNYRFjclaghzucjFZ+DcMLZ7WP/9+e/o2Xy+XDRkkargBFRTWGc7d9TrB5wYiLIz8B8Q871IYBxmCqgTTtlLQMcmuSXanhY=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1783398558; c=relaxed/simple;
+	bh=PSqME/IPugtczex5NRAm1XmhU5y/+03GI6oS0AsEg0c=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Tgkfs2m94W2qpyxhpIVA7lm3N9ifpJgNLm/Q1Kk75tCZewv5sqywbtmuhwZuLNbz9USddX+CMaIs6b2ZFyGwpeKt3fhBprJevt+4K1g5nD92bX/QA5EY4pJ+LaqRlelHwUw+XqwJsky/aZ+p8jL+i0ZjvhOeLRrL0jxhkOqBsX0=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=S52CYQCo; arc=pass smtp.client-ip=74.125.224.44
+Received: by mail-yx1-f44.google.com with SMTP id 956f58d0204a3-664c6304683so3596300d50.2
+        for <devicetree@vger.kernel.org>; Mon, 06 Jul 2026 21:29:17 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1783398556; cv=none;
+        d=google.com; s=arc-20260327;
+        b=W0sE/bNIRKHvSsQOMecSB5N67ToV2H9yM+fdoly78DwxNCdfkuPVMUJny+tOViR9/5
+         qpezG+O2vwcQnPS13LiRqyLvaa2MT0hdwAnzcNcirnw2zNNWbfWrD3tmfcgDMrNFqgPV
+         N+xmVL66WoavGI3AGddn52DogFN6A223/4A2NHsdehS9LJVQNUtCM2JfQts3IAOZf+3l
+         kt4IeztAOfXl5vq7lf3yMzW8E1KupvdlLTEAiMQdthZXr+DBsscW2nMvKAciTF+/wT9Q
+         qoIaWiAwDHfopaBIVDkAFms3UqX0AdVWWMS95HMIKUBIKlAelV41zI3szES6v4Ik+mRB
+         c+lA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=1bHz8pIdj5qCHMVmE3ZgrvqBvuIVwQ8F/DhCqlx20Pk=;
+        fh=77mV70v5Ddv0yfsU0C+TOhxucn7hz7DX/WKUp50x9Rk=;
+        b=Xxt4cOaCweqlvvHX+Rgi7BtsvCUwG1Ern1z/mySZOoevEr6gWM1aMYq+aSBEIOr8hG
+         kJcm6N0UwgV/FpRhgv+osPmI+TqnhZs5hS7odZbAcewrKXJcTK2jXioWgFCWFJQdgji4
+         aSTInJsaYzm3DnIkUNOPjaeR+ZNOma4I07bhGzGe12zI73iAkbogrEq6nMEdPaOBi0qx
+         MTgDHPK2wdbZr7KFAYdcvIRAZhjMbx8P1I3DFd0oLAihvObqyCM7RVCbniOWWeMCV0Pj
+         GgBPn31J5u04OcSgx7os0ttLLgRIt9vH7bwmBJIigJlvGSWj3K9Qh2kILY3D0HNcMS3X
+         Qz3A==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1783398556; x=1784003356; darn=vger.kernel.org;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=1bHz8pIdj5qCHMVmE3ZgrvqBvuIVwQ8F/DhCqlx20Pk=;
+        b=S52CYQCotEH8dw3N4wHAkEvIGgiFgLyj8Ojw0yloH6rv4EsRH1/NXDuhCfIZEpAiQC
+         ZRYNEp+gcPgEJMfIdlVEIu9mqaDJk7q0OIhMYpdFIXVGCSlfBkfekpao1lwjYzmcipib
+         J35lfe6nc1sAxtwhNAT9CNHR1/iO9PltWiY1A=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1783398556; x=1784003356;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=1bHz8pIdj5qCHMVmE3ZgrvqBvuIVwQ8F/DhCqlx20Pk=;
+        b=dcP/KnWnZWA6Vlc9kQJukZH+2zrHs3ehG67hguruY8KbrvkNWSMNWfKvoy6ozENfCR
+         4B/0k/+L3qVMy49uLMhFwu/CNPei5Gpj++0Ik8IrKPAIsH3WMVCs/y3dv7WqrWmq6jW1
+         dYhdBYcBlHSUL0o5GqECItIGRjtmb5ZU1AlG5WgNi9GANan33vU7HxvGg2D0on+/tew4
+         3NFjQymmfCEBuuiG6zjWnJv5livwOyq8VMNBdIj3kxoaCUGR0okyJX0P/wqXTaeoNFs6
+         3cU2+XOPHWm9YbWLkvFaupw6avGj9l+GgnyaxXFY10EEKwZ+XgJ4+PGwIQHJ1SHkE5h+
+         oY2g==
+X-Forwarded-Encrypted: i=1; AHgh+RplVxmJUyBLbUcYMJvu7fjOcFifGsXc+zLs9YkX1dvRsAj4z0JeMpx53vA1OwK2lio7KBkMckTE174t@vger.kernel.org
+X-Gm-Message-State: AOJu0YxD8BuP2NZavpxwFdOUvKXRY/QhAG4YVSBxUgVJy27X9WqUbviu
+	IvUrJEtITIunJi8YeRFJokRYgDr3AvTrK7AjkkFsoZNrK9GUIdX3L2VPTn+368JusjIOZTG/bD3
+	ToHc3/Z+C9vvKXhclTMel9+7ovsLXuXh9cOw3C6pR
+X-Gm-Gg: AfdE7clpEQgvs05+p7F3YfL3RILKa2WIdKiTTFRklR9xKYcgIMmuNfzgN0LJ3FO21tY
+	HV2ExjyFyrBXejfPPQH1vW67IzU5bEAPR8ukunsuTjskucNSzKTos/SX0OE05KPgg7AT5v+jiW3
+	vhjsUedSlO1JTPh9HbbB1DE4HE+X/G13nT2cqDYDwDzsVo8AN/CmGneR4gvSgcusI6ygp1siA3V
+	XJ/66QgGIZTPjtu3Eb9hkDIgVHU4dTiInqqktqf+lfVCI33enSh7+yvjtdJSiv/68NmsBWIBK3Q
+	ZSXXyRFPJgKlPWoEHKEjDBSUV5eE4GNlr/jsKw==
+X-Received: by 2002:a05:690e:4549:10b0:662:b6fc:ab84 with SMTP id
+ 956f58d0204a3-6677fa2ea7bmr2174279d50.17.1783398556262; Mon, 06 Jul 2026
+ 21:29:16 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+References: <20260703110317.1283411-1-wenst@chromium.org> <20260703110317.1283411-7-wenst@chromium.org>
+ <ake09vk4fEv1D9QC@ashevche-desk.local> <CAGXv+5GNucSXrhL=YxarSJHD2ezzYDK3EovFu-zy012KgZ+ZBg@mail.gmail.com>
+ <ake6FNy83LLtCs3b@ashevche-desk.local> <CAGXv+5EgpizA3Pc8ScNuChPhvFKWd5F6dxB-wT4-7EwabE-9dQ@mail.gmail.com>
+ <akvRMcGnUPxE3sxR@ashevche-desk.local>
+In-Reply-To: <akvRMcGnUPxE3sxR@ashevche-desk.local>
+From: Chen-Yu Tsai <wenst@chromium.org>
+Date: Tue, 7 Jul 2026 12:29:05 +0800
+X-Gm-Features: AVVi8CeDQS-P0cN7_fGlNwSI_p7eUQN2BPzLo_iMICLRCJ8sboVGUDAVuWI9R6g
+Message-ID: <CAGXv+5EqsDbzTg9eDMGK3Ph6Pe3_uDoSrjVL4q23cy6jZCk2tw@mail.gmail.com>
+Subject: Re: [PATCH v3 06/13] usb: hub: Pass |struct usb_port*| to usb_port_is_power_on()
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: Bartosz Golaszewski <brgl@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Daniel Scally <djrscally@gmail.com>, Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
+	Sakari Ailus <sakari.ailus@linux.intel.com>, "Rafael J. Wysocki" <rafael@kernel.org>, 
+	Danilo Krummrich <dakr@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, linux-acpi@vger.kernel.org, 
+	driver-core@lists.linux.dev, linux-pm@vger.kernel.org, 
+	linux-usb@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-mediatek@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, Manivannan Sadhasivam <mani@kernel.org>, 
+	Alan Stern <stern@rowland.harvard.edu>, 
+	Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[chromium.org,none];
+	R_DKIM_ALLOW(-0.20)[chromium.org:s=google];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:andriy.shevchenko@linux.intel.com,m:brgl@kernel.org,m:gregkh@linuxfoundation.org,m:djrscally@gmail.com,m:heikki.krogerus@linux.intel.com,m:sakari.ailus@linux.intel.com,m:rafael@kernel.org,m:dakr@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:matthias.bgg@gmail.com,m:angelogioacchino.delregno@collabora.com,m:linux-acpi@vger.kernel.org,m:driver-core@lists.linux.dev,m:linux-pm@vger.kernel.org,m:linux-usb@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-mediatek@lists.infradead.org,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:mani@kernel.org,m:stern@rowland.harvard.edu,m:bartosz.golaszewski@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,m:matthiasbgg@gmail.com,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-321690-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	TAGGED_FROM(0.00)[bounces-321688-lists,devicetree=lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,vger.kernel.org:from_smtp,lists.linux.dev:replyto,smtp.kernel.org:mid,rock-chips.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:damon.ding@rock-chips.com,m:dri-devel@lists.freedesktop.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER(0.00)[wenst@chromium.org,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[24];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
 	FORWARDED(0.00)[lists@lfdr.de];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[chromium.org:+];
+	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCPT_COUNT_FIVE(0.00)[5];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FROM_NO_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[wenst@chromium.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[kernel.org,linuxfoundation.org,gmail.com,linux.intel.com,collabora.com,vger.kernel.org,lists.linux.dev,lists.infradead.org,rowland.harvard.edu,oss.qualcomm.com];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,intel.com:email,mail.gmail.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,chromium.org:from_mime,chromium.org:dkim]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 23D1671734C
+X-Rspamd-Queue-Id: B01057173E1
 
-Thank you for your contribution! Sashiko AI review found 3 potential issue(=
-s) to consider:
-- [High] The `data-lanes` array is interpreted backwards when configuring t=
-he `ANALOGIX_DP_LANE_MAP` register, applying the inverse of the intended ha=
-rdware lane mapping.
-- [High] The external PHY's analog configuration (voltage and pre-emphasis)=
- ignores the logical-to-physical lane mapping.
-- [Medium] Mismatched endpoint specifiers are used when counting data lanes=
- versus reading the `data-lanes` property, which could lead to parsing the =
-wrong endpoint.
---
+On Tue, Jul 7, 2026 at 12:01=E2=80=AFAM Andy Shevchenko
+<andriy.shevchenko@linux.intel.com> wrote:
+>
+> On Mon, Jul 06, 2026 at 07:08:07PM +0800, Chen-Yu Tsai wrote:
+> > On Fri, Jul 3, 2026 at 9:33=E2=80=AFPM Andy Shevchenko
+> > <andriy.shevchenko@linux.intel.com> wrote:
+> > > On Fri, Jul 03, 2026 at 09:17:16PM +0800, Chen-Yu Tsai wrote:
+> > > > On Fri, Jul 3, 2026 at 9:11=E2=80=AFPM Andy Shevchenko
+> > > > <andriy.shevchenko@linux.intel.com> wrote:
+> > > > > On Fri, Jul 03, 2026 at 07:03:07PM +0800, Chen-Yu Tsai wrote:
+>
+> ...
+>
+> > > > > At a brief look this will be the only function that takes usb_por=
+t
+> > > > > instead of usb_hub in the entire hub.h (I don't count container_o=
+f()
+> > > > > as a function). With that being said I would rather see it to be =
+moved
+> > > > > to port.c altogether (yes, it's more invasive change, but looks m=
+ore
+> > > > > consistent).  I would even dare to move struct usb_port (and cont=
+ainer_of()
+> > > > > accompanied with that) and this function to port.h. This might re=
+quire
+> > > > > a separate patch, though.
+> > > >
+> > > > I agree with the reasoning, especially given the function name. How=
+ever
+> > > > I wonder if it would cause problems given the linking order. I'll g=
+ive
+> > > > it a try nevertheless and report back.
+> > >
+> > > Thanks!
+> > >
+> > > In case it won't fly (but I still think it's better to split), can yo=
+u at least
+> > > group usb_port APIs and struct? Means moving the proto closer to that=
+ struct
+> > > usb_port followed by container_of().
+> >
+> > Looks like it works out fine. port.o is linked in after hub.o, so movin=
+g
+> > the function from the latter to the former doesn't cause issues. One mi=
+ght
+> > even say that it is the correct thing to do.
+>
+> That's what I say! :-)
+>
+> > > > > Perhaps something like: 1) "move struct usb_port and associated A=
+PIs to port.h";
+> > > > > 2) "...this patch...".
+> >
+> > There are still some left in hub.c:
+> >
+> > static void usb_lock_port(struct usb_port *port_dev)
+> > static void usb_unlock_port(struct usb_port *port_dev)
 
---- Patch [5]: [PATCH v6 5/5] drm/bridge: analogix_dp: Add support for opti=
-onal data-lanes mapping ---
-commit 99a86aa8f074546e71df9c8b7f51f7d473ef6dac
-Author: Damon Ding <damon.ding@rock-chips.com>
+These are only used internally in hub.c as a wrapper for the port mutex.
 
-drm/bridge: analogix_dp: Add support for optional data-lanes mapping
-   =20
-Parse the optional data-lanes device tree property to support custom physic=
-al
-lane mapping configuration. If no valid configuration is found, fall back to
-the default lane map automatically.
+> > static void port_over_current_notify(struct usb_port *port_dev)
 
-> diff --git a/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c b/drivers=
-/gpu/drm/bridge/analogix/analogix_dp_core.c
-> index b69743837092b..5c5cb6148cf6c 100644
-> --- a/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c
-> +++ b/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c
-[ ... ]
-> @@ -1234,6 +1234,59 @@ static const struct drm_bridge_funcs analogix_dp_b=
-ridge_funcs =3D {
->  static int analogix_dp_dt_parse_lanes_map(struct analogix_dp_device *dp)
->  {
->  	struct video_info *video_info =3D &dp->video_info;
->  	struct device_node *endpoint;
->  	u32 tmp[LANE_COUNT4];
->  	u32 map[LANE_COUNT4] =3D {0, 1, 2, 3};
->  	bool used[LANE_COUNT4] =3D {false};
->  	int num_lanes;
->  	int ret, i;
-> =20
->  	memcpy(video_info->lane_map, map, sizeof(map));
-> =20
->  	num_lanes =3D drm_of_get_data_lanes_count_ep(dp->dev->of_node, 1, 0, 1,
->  						   video_info->max_lane_count);
->  	if (num_lanes < 0)
->  		return -EINVAL;
-> =20
->  	endpoint =3D of_graph_get_endpoint_by_regs(dp->dev->of_node, 1, -1);
+This is only used by the hub's overcurrent event handler.
 
-[Severity: Medium]
-Will this return the correct endpoint if there are multiple endpoints on
-port 1?
+> > static void hub_usb3_port_prepare_disable(struct usb_hub *hub,
+> >                                           struct usb_port *port_dev)
+>
+> This one takes hub as well.
+>
+> > These are used only in hub.c and moving them probably makes things
+> > messier?
+>
+> Perhaps better naming to each (kinda moving to usb hub namespace)?
+>
+> > OOTH, the following bits are in port.c but declared in hub.h:
+> >
+> > int usb_hub_create_port_device(struct usb_hub *hub,
+> >          int port1);
+> > void usb_hub_remove_port_device(struct usb_hub *hub,
+> >          int port1);
+> >
+> > Any preferences for these while we're reorganizing the code?
+>
+> These ones would be good to be in hub.c if there is no circular dependenc=
+ies or
+> alike.
 
-When counting the data lanes, drm_of_get_data_lanes_count_ep() is called wi=
-th
-reg =3D 0. However, of_graph_get_endpoint_by_regs() uses reg =3D -1 (wildca=
-rd),
-which returns the first available endpoint.
+Those two, along with all the static functions they call, ends up being
+half of port.c. That doesn't help the size of hub.c, which is already
+over 6000 lines. I think I'll leave this one as is.
 
-If the device tree has multiple endpoints, could this result in counting la=
-nes
-on one endpoint but reading the data-lanes property from a different one?
+Both this part and the remaining bits in hub.c I mentioned above are
+outside the scope of this series. We can discuss whether they really
+need to be moved or renamed.
 
->  	if (!endpoint)
->  		return -EINVAL;
-> =20
->  	ret =3D of_property_read_u32_array(endpoint, "data-lanes", tmp, num_lan=
-es);
->  	of_node_put(endpoint);
->  	if (ret)
->  		return -EINVAL;
-> =20
->  	for (i =3D 0; i < num_lanes; i++) {
->  		if (tmp[i] >=3D LANE_COUNT4) {
->  			dev_dbg(dp->dev, "data-lanes[%d] =3D %u is out of range\n", i, tmp[i]=
-);
->  			return -EINVAL;
->  		}
-> =20
->  		if (used[tmp[i]]) {
->  			dev_dbg(dp->dev, "data-lanes[%d] =3D %u is duplicate\n", i, tmp[i]);
->  			return -EINVAL;
->  		}
-> =20
->  		used[tmp[i]] =3D true;
->  		map[i] =3D tmp[i];
 
-[Severity: High]
-Does analogix_dp_set_lane_link_training() need to be updated to use this la=
-ne
-map?
-
-This parsing logic creates a logical-to-physical mapping. However, looking =
-at
-analogix_dp_set_lane_link_training(), it appears to still use the logical l=
-ane
-index to populate the physical PHY configuration structure:
-
-	for (lane =3D 0; lane < lane_count; lane++) {
-		...
-		phy_cfg.dp.voltage[lane] =3D vs;
-		phy_cfg.dp.pre[lane] =3D pe;
-	...
-
-Will this cause the external PHY to apply the analog settings to the wrong
-physical lanes when an asymmetric mapping is used?
-
->  	}
-> =20
->  	for (i =3D 0; i < LANE_COUNT4 && num_lanes < LANE_COUNT4; i++) {
->  		if (!used[i])
->  			map[num_lanes++] =3D i;
->  	}
-[ ... ]
-> diff --git a/drivers/gpu/drm/bridge/analogix/analogix_dp_reg.c b/drivers/=
-gpu/drm/bridge/analogix/analogix_dp_reg.c
-> index 38fd8d5014d29..45c7652645a13 100644
-> --- a/drivers/gpu/drm/bridge/analogix/analogix_dp_reg.c
-> +++ b/drivers/gpu/drm/bridge/analogix/analogix_dp_reg.c
-[ ... ]
-> @@ -48,16 +48,15 @@ void analogix_dp_stop_video(struct analogix_dp_device=
- *dp)
->  void analogix_dp_lane_mapping(struct analogix_dp_device *dp)
->  {
-> +	u32 *lane_map =3D dp->video_info.lane_map;
->  	u32 reg;
-> =20
-> -	if (enable)
-> -		reg =3D LANE3_MAP_LOGIC_LANE_0 | LANE2_MAP_LOGIC_LANE_1 |
-> -		      LANE1_MAP_LOGIC_LANE_2 | LANE0_MAP_LOGIC_LANE_3;
-> -	else
-> -		reg =3D LANE3_MAP_LOGIC_LANE_3 | LANE2_MAP_LOGIC_LANE_2 |
-> -		      LANE1_MAP_LOGIC_LANE_1 | LANE0_MAP_LOGIC_LANE_0;
-> +	reg =3D lane_map[0] << LANE0_MAP_SHIFT;
-> +	reg |=3D lane_map[1] << LANE1_MAP_SHIFT;
-> +	reg |=3D lane_map[2] << LANE2_MAP_SHIFT;
-> +	reg |=3D lane_map[3] << LANE3_MAP_SHIFT;
-
-[Severity: High]
-Does this logic configure the lane mapping backwards?
-
-The lane map parsed from the device tree establishes lane_map[logical] =3D
-physical. However, this register assignment shifts the physical lane index
-(lane_map[i]) by the shift for the physical lane's register field
-(LANEi_MAP_SHIFT).
-
-Because the hardware register expects the logical lane number to be written
-to the physical lane's bitfield, won't this write the physical lane number
-into the physical lane's field instead? This effectively applies the inverse
-permutation and could break output for any asymmetric lane mappings.
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260707040613.1992=
-841-1-damon.ding@rock-chips.com?part=3D5
+Thanks
+ChenYu
 
