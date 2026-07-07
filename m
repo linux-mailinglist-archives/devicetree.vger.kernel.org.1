@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-322089-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-322088-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id aG3bNKcITWqjtwEAu9opvQ
-	(envelope-from <devicetree+bounces-322089-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 16:09:43 +0200
+	id XnnTMUkITWqItwEAu9opvQ
+	(envelope-from <devicetree+bounces-322088-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 16:08:09 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44BD771C5B6
-	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 16:09:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 67F9571C574
+	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 16:08:09 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b="cxm4+/OS";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=ncZwAu75;
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322089-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-322089-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322088-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-322088-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 437C730B0B5C
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jul 2026 14:03:00 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 8BC9B3095F3F
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jul 2026 14:02:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A612E3246F4;
-	Tue,  7 Jul 2026 14:02:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44B5733030F;
+	Tue,  7 Jul 2026 14:02:40 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 252A4175A60
-	for <devicetree@vger.kernel.org>; Tue,  7 Jul 2026 14:02:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA5A9313E29
+	for <devicetree@vger.kernel.org>; Tue,  7 Jul 2026 14:02:38 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783432978; cv=none; b=PIVI5kstmydQAhH2h++GY83MU4mTrylGHWGoSHeCKoTX/0VzNVcF+T4hGFqVRbJlLBoKetFiXuTP27mMaeYBkoL4W5iI8L8HHqOz6g7Mt6F45pIYzYFLlvRlMH+fd3RbsSrSvy+tSyYwUdB2XeFOWWAKb7/1R62s4e5U7dXXY68=
+	t=1783432960; cv=none; b=Fu/f1IY/4LwOsOqrAfCgBcjGiaXg1sm/oa5YHkC7YXqBLic+5nma/R4/lvNj5cc6v6APxN+nHO5sM4j2VG4/qJYxkLs3NV2EQAGRpLyi8SbVotZl6/TQkC0kn2LxC2AiHzPlXkMjrbEQ0ocSVlIlcD8zzTNkiR0mI8NzF9FWYGg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783432978; c=relaxed/simple;
+	s=arc-20240116; t=1783432960; c=relaxed/simple;
 	bh=T7XOeMmDi5PEuS29Icsd6gEKz1v4I9eNID1RE8K+gjc=;
 	h=From:In-Reply-To:MIME-Version:References:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=uI6PPbKLB3YLcjBglz7t6RMIDwWP7qwFgTSyJ70/VOJDgxVH3m2FuTmwDx6NME5KBUYaE2lzl5JuG3Al9J1TdvYNFTiPNrQk+BPgbZehYmMPD+gq+nRrI/iL+cTzhr897+LP/vYf14GaeF6GuGIJZ5kimJJggA5Kb2490SALxRs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cxm4+/OS; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E78A61F00ACF
-	for <devicetree@vger.kernel.org>; Tue,  7 Jul 2026 14:02:56 +0000 (UTC)
+	 To:Cc:Content-Type; b=i9Xd0EaCiR84YLPzX/ryLgnxx4XOxV7Sxwtc0qtVhT3xqKEHA6CCFvddyYuvcgdOKoJb1FqOPuTq9MghPhXkasckX9/6OnqxOOpixqBBF1U5GYiK3SY0fHcXSS1EATwsVdhp0mxmfZc/3Lzpgr0bReSV5mOwdMKn9dIasMM6P50=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ncZwAu75; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 816511F00ADE
+	for <devicetree@vger.kernel.org>; Tue,  7 Jul 2026 14:02:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783432976;
+	s=k20260515; t=1783432958;
 	bh=3G29P2M20+AzJKzYQgpzohO583/nH/Yg8BUiARXkN/c=;
 	h=From:In-Reply-To:References:Date:Subject:To:Cc;
-	b=cxm4+/OS1ODHBX0JTN7bL3jUG8mH6KSqj/FVyALKPUiwDG5hewvozny1Vd/Z6gqT8
-	 pyaDpzfmoVd8faRN6QhmrTLfJEqo8k0OOXyQT1xy/Zm7I2hPqTVcIkRn05I9/RWOvL
-	 /CzpbfH8vIsLfeYsXNBYw3jgJ+qNpGwg6FEuGynacf/f3UcTFd9nrqDBhiav25xHue
-	 SynZrWgl6ot7TXsic4tZQkVNNa2NeOB2WF+CZ/rZTse31ZrBx5dEmjI4l4bvREg1yc
-	 XvoOlJBucKNVECIExKrmPoGlwJ54goUYVsDTjHB44NbMn2iJogvE2mkHux9MIjVpNK
-	 R3NmC3QgIaz9A==
-Received: by mail-pj1-f47.google.com with SMTP id 98e67ed59e1d1-384c94c9414so2411715a91.3
-        for <devicetree@vger.kernel.org>; Tue, 07 Jul 2026 07:02:56 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AHgh+RqrRiS4sVZ4v/h99qAdjYmpNs2/xUl+GGfU1YLsQsUR/Nd3wWJltGpQaTWMLaqDz2N1bnU2svUD7ujh@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz9bW185751bXxwE5k20CdcGbAw28GVPFuO0D+nJYIW0cWjeF7r
-	gkTY1J3FsLSoLcffc8xBVTGepFY9fJHNiRPMSxtwG9frAlkgkgmGBZjPxp5atxBLjnDBKj90YtZ
-	RPVn+ITnPPQn4WdjZw/mHDz8mjt/gGoXmhU210L+YQw==
-X-Received: by 2002:a17:90b:3dc5:b0:381:2811:e8ad with SMTP id
- 98e67ed59e1d1-387574a8b14mr5358372a91.23.1783432976460; Tue, 07 Jul 2026
- 07:02:56 -0700 (PDT)
+	b=ncZwAu75yHlsPWm+aquFCt4VPef4k5QUBnLMPBsv3b+eaHl+ePR8yhewHYi0qBbP8
+	 J+81xoTGGAzZLpnRAStRdZqAvPknqoV02XF5854WdH/UGseOJjNWi35EaeA2eu+3yL
+	 QWDeaR9bJt6E2b2UmI/a2pn7DM2elLmq0PSEpciAH60jQOjKJoOiDm4wMEInWKWHWL
+	 XBMarxYcEcqPZHQCQZMAEqV33+r27vdIQKQweLwVl5uNplF4UoMaoo/4ongABKgJz/
+	 Um1am1/MALxX7qlCBoPs8UadtvJ1hwH7PGY40PFG8M2FbDnkOT+CZPgBJAQPanYGM1
+	 +xIPyCYc7DD9w==
+Received: by mail-lj1-f172.google.com with SMTP id 38308e7fff4ca-39b27812c96so35572291fa.0
+        for <devicetree@vger.kernel.org>; Tue, 07 Jul 2026 07:02:38 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AHgh+RrW3GitT/9mZiLK4JJjxgHVUzCgaSx9qePJBZ6QsWpa3sX5QyugZGqIb0NXQZZKdsLiourKLRg/mOII@vger.kernel.org
+X-Gm-Message-State: AOJu0YwMt7tfdl1lcU8grXIHGWBEQz37vMrEpOY/WJuQvnTFNw0CPMIA
+	ZVWjbmNYiEy1WYP8cqnitgRdlRAfMyozUID0govtlidY9bP3lYR8TnxPdhI3jp0mQYwS3+PEmUa
+	KP4F6AJqN/T3pm6aoDDj4ouSuaxhwDIFjTMPJRYzhJw==
+X-Received: by 2002:a05:651c:f:b0:39b:bc9:90ac with SMTP id
+ 38308e7fff4ca-39c60035948mr8638371fa.30.1783432957101; Tue, 07 Jul 2026
+ 07:02:37 -0700 (PDT)
 Received: from 969154062570 named unknown by gmailapi.google.com with
  HTTPREST; Tue, 7 Jul 2026 07:02:35 -0700
 Received: from 969154062570 named unknown by gmailapi.google.com with
@@ -78,7 +78,7 @@ References: <20260702-monza-wireless-v2-0-7b56e2a6a6d4@oss.qualcomm.com>
  <CAFEp6-0AA-hTy=3KaRNEJ+kF0otGLTGTujvWJqhT2dHDj94E4w@mail.gmail.com> <b4myznfs5kkochdhzm2ypcfiolk2l2a7nvjbhkkcqueumkyvpe@nyvvhhcslk7e>
 Date: Tue, 7 Jul 2026 07:02:35 -0700
 X-Gmail-Original-Message-ID: <CAMRc=Mf6q5s6UgSRCOeHq=9CKeO_91k59T8Yr3kZ8N7OifyBRw@mail.gmail.com>
-X-Gm-Features: AVVi8Cc6E3UUqhw5QJ9lUwxNpG8IO8rtASIItE8p1iMgeeZGtn6ObvLJcizoSBo
+X-Gm-Features: AVVi8CdomZKaOaY4QiMrsZCCt-GUEYJD7tlypMd4eAMjuWUCA-oEYhkx6wXXzs8
 Message-ID: <CAMRc=Mf6q5s6UgSRCOeHq=9CKeO_91k59T8Yr3kZ8N7OifyBRw@mail.gmail.com>
 Subject: Re: [PATCH v2 3/4] Bluetooth: hci_qca: Support QCA2066 on M.2
  connector via pwrseq
@@ -106,7 +106,7 @@ X-Spamd-Result: default: False [-5.16 / 15.00];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-322089-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-322088-lists,devicetree=lfdr.de];
 	RCPT_COUNT_TWELVE(0.00)[18];
 	RCVD_TLS_LAST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
@@ -130,7 +130,7 @@ X-Spamd-Result: default: False [-5.16 / 15.00];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 44BD771C5B6
+X-Rspamd-Queue-Id: 67F9571C574
 
 On Tue, 7 Jul 2026 14:56:14 +0200, Manivannan Sadhasivam <mani@kernel.org> =
 said:
