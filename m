@@ -1,788 +1,574 @@
-Return-Path: <devicetree+bounces-321971-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-321973-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id sSJSO2HjTGpXrgEAu9opvQ
-	(envelope-from <devicetree+bounces-321971-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 13:30:41 +0200
+	id DTHgDXnlTGrYrgEAu9opvQ
+	(envelope-from <devicetree+bounces-321973-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 13:39:37 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id C819771AF35
-	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 13:30:41 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9254671B051
+	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 13:39:36 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=cxLVowFi;
-	dmarc=pass (policy=none) header.from=gmail.com;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-321971-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-321971-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b="IWQbv/gb";
+	dkim=pass header.d=oss.qualcomm.com header.s=google header.b="M3RbKHk/";
+	dmarc=pass (policy=reject) header.from=qualcomm.com;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-321973-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-321973-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 0233A303E4E6
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jul 2026 11:27:34 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 752B8301FD62
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jul 2026 11:32:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 490CF3F6C29;
-	Tue,  7 Jul 2026 11:27:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63EF93F8717;
+	Tue,  7 Jul 2026 11:32:01 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f175.google.com (mail-lj1-f175.google.com [209.85.208.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F7093C10BA
-	for <devicetree@vger.kernel.org>; Tue,  7 Jul 2026 11:27:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28D953F8886
+	for <devicetree@vger.kernel.org>; Tue,  7 Jul 2026 11:31:59 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783423649; cv=none; b=A3jrlpigNfOJiabVfPDQYnWMDdfYOfagp+DKgxD8GmU7AY8C4Q/If+VMQhJDDpkDj5gayowcipUJkZoVYDQr4VP4x/Wqv/6iqF68pArBkLM+SYnQZIVOFLb3zrt6kWICX/VBOCR8eZBk0pJUHnJEJBMbLIc8cwcMuOl1HZr2w9A=
+	t=1783423921; cv=none; b=pl2PK9q/3I3Nt8WGiajk8RhBJvAZO/J3gq6vZQUzrRKbVgELNJxsk5GQ0SsLaAK2tJ/YAHxSFxp59RZNvgKaAMFlYcwbkqiYebJarAG7AdB0ZkjLQAIy2Mtz86fYg2kaWWL+BR7aixUG4mNLkxWsKjToPmN3MMjnnZV5y+eogrM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783423649; c=relaxed/simple;
-	bh=drC/Pjoy3necJ0IfcN9z8qtvC1gjHWvahpv5Y8updA0=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=QC8kXzzReo6MzI2qEM8erfOjCF4pvEGs3lxr/mAf4TIvzP8puvTk7XCL4PJgDKLGIY7Zc1yJd5q5KGgilZ4rXR6ay3R4+sn7UXJ4IkzKUe9awiXwq7csm079XEqa9GvT2fAtcI3jeH2vU6gXChgNGCR+WOhOBkNJ0otw70CHVS8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=cxLVowFi; arc=none smtp.client-ip=209.85.208.175
-Received: by mail-lj1-f175.google.com with SMTP id 38308e7fff4ca-39b0c6488e6so44670821fa.3
-        for <devicetree@vger.kernel.org>; Tue, 07 Jul 2026 04:27:24 -0700 (PDT)
+	s=arc-20240116; t=1783423921; c=relaxed/simple;
+	bh=m/onrcO2JktgwIb8sRDnfeQXFjAPv93f8lW4aCB6WM8=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=h5hfQG9cpeczbKJahilnbe2EmlK4NKZe3ElIv4UiNfW/JX7F9JqjpPf+yeSANtxR2c/TWP9zDygnU+Ax/n8JHtWjBCwM+Mtuv6qy5WRVaDbPLKgReuj9BVZl1M2X0FAiIzcOmJ7b4lvllAn3iuxMuknOjc4m/aktJQUhWz0ig2M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=IWQbv/gb; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=M3RbKHk/; arc=none smtp.client-ip=205.220.168.131
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 667A75A13471473
+	for <devicetree@vger.kernel.org>; Tue, 7 Jul 2026 11:31:58 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=GIxhDTqzrhHQT3ofktLEnc
+	eII+Wnr1xn2q83uEuwRtE=; b=IWQbv/gbe78Wz7AduDnCgz9EJg0jxv1Ixeacpl
+	ccHI11MfEqZlg2tp03NK0Q+w12xB06QMUeMh5fH0j4dbxyUZO3MuhdxDrsQ/wkHy
+	d9BbXVm8y8TTqJPcwM2+VHt/kBixFH2XrCK+sQlS2/5h1Hlk9SCC2bDYcZz/6LNj
+	EE8Hewh+YRv4u/2gfgsN3wT+45m87KnqkbgQNaa/uZ772TP3JltoGH7Tncv5yvVf
+	O11Hxw0VVWBI/ECQ64BcB5kbB8kbU5SfDNGZCJs8+ojsHomiQdCpGeaDZjD9N23y
+	o2VlxqtvQmX7cDdQ3YssbrIwoyGy/znh1louck6Xkc8bKJZg==
+Received: from mail-pj1-f71.google.com (mail-pj1-f71.google.com [209.85.216.71])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4f8ye0gag3-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 07 Jul 2026 11:31:58 +0000 (GMT)
+Received: by mail-pj1-f71.google.com with SMTP id 98e67ed59e1d1-37e5ef8299fso4284739a91.2
+        for <devicetree@vger.kernel.org>; Tue, 07 Jul 2026 04:31:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1783423643; x=1784028443; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=nmp6qI3D/M2HnrfNjgIUzg8GQs4IkrRTs170Fb1aH7g=;
-        b=cxLVowFiUYQ/wurZsCX8PfJ0bzUVnHbYnk7522eVidIDku43QDVdcO+hS5Vk1DHjmc
-         WxaZUyvIh++tw4+DlwaayG73dvxRGrHrOL8/ni8mjkJm6nYlvhRFfS6TbP9trjUWLwAp
-         U7XRuGNkgDd7GeWm5CS22r+EhOP1Kd/3m/F3V1rc6mlQKW9f2Gz24oe7sl6v6S9Rc3zX
-         yunajGYGFvxK/Di5TarlnNZB+zvonesKFPxsAxS7iZp2vkUCjavtChQftKA9cYItLDbz
-         uZtW6Suj/og7Z9wubywzPYFqcSI7ROwEG+Apn1rnkz9DHJmByg1vojumkD1mwXU7TDR2
-         n9Uw==
+        d=oss.qualcomm.com; s=google; t=1783423918; x=1784028718; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:content-type
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+         :reply-to:content-type;
+        bh=GIxhDTqzrhHQT3ofktLEnceII+Wnr1xn2q83uEuwRtE=;
+        b=M3RbKHk/dsp/84vblanCYcZD+gtjENVZZ7twhfOHHLjvhPNvpGputpI4fYegq/zhxM
+         yI0Wf/F52qqotW6t40YXPxf2+EgFIm7RG4Fc0YAAWt41Nex1ZFImBnBhlcw5dyqsxggB
+         TZWkxkV6f2+MdDhUTXzdfH1tr5vcvLcCrgIto2u8SbSv9gwpRHzh59yTTpZ2x/+lTXdZ
+         LqoTDS2VKeJYHQhgrI7+UjIk7BD+EMBJnQZ/TwRcpDQpXaw37SjFJ0s3OiEUNsKvThg2
+         +64OeqElbSd0j/U6r6QCri0/eVmdS8PYIG/u3Y6dolwT5aOH0EXlkV480TYjJe1u1uco
+         5emw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783423643; x=1784028443;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=nmp6qI3D/M2HnrfNjgIUzg8GQs4IkrRTs170Fb1aH7g=;
-        b=ZNWBo6TSQQcAqRSbF14WwdEnhg+ti/KEzFtTypn63JD5QLxTBbR8AM02oQkb6DpdhB
-         Fth7QzLj5QwWeQ5X1aWRN6xsabAGEQD3SWvt4D6Y9r9E5LGT2AR1CZnyly8nb2s92ZnB
-         btZFYmTfsypA4YJHiFiqO0TfR9W88/w3hHd3ivjrOHTFPkv5hzmBx0kwpI5KGg6fiAgr
-         ei/BSyE68mYiLl1kfNIiRki6IPXpOg0tfTqhr6VXL4lFkQA+VvlUOdd40Eo2RQtIKzYy
-         Gdat7ULj23znZvrNydAiTXt1iQ4Q63DyT4s9hX1rucvlCS4G4RJM5HfgnF6WRLGACSac
-         ErEg==
-X-Forwarded-Encrypted: i=1; AHgh+Ro/7UH0DNJS5OTSC2o5hlp13Y7K/f2x2H1yejUgu/nQGptaRMJIGBrc+spzix+YQKcejl53WoBUTYOB@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz4uUAxKJbbgBOoGVv6xC8j0mvwBUTZuyE3nkO5dZWCyV6oFOqp
-	iBj1Tl2pqpi9YaUVsyR35MZdBuwIqCOUPwwjy7V3v4X8SqLXGvLab/UY
-X-Gm-Gg: AfdE7cn/Ncp5LFt56wf+puKHcX87HuALc/FvUI7+iJZTiM6Y/ju2mHhU3cJor7Jc90H
-	jvUsTUm0ooWEJZ1kk0M8GxWrV84ZWgWkuLQ4g6Y23t/5SFflG64A8QjvcmHsZrIn5+9Rm673dJG
-	ipKn+HIn86ZCCTv4EU6xhWhdqqhPXoQkWYZwxTcQVIzhMW89/xWOK1gF91MCe26cOMfMPO+h+TQ
-	DbO5frVvLWF/CstzG6RlYgGGFEANL7Sf1wA4ops2Ly6NFlLabCBWqwqMajNm94SlVaP/O6QE5E1
-	21PIn8LVmjXJdXjvBBJ5nqOmuAmLEKhxsVMZOPIQVzaFpy4YvY0gkTCmMKqGQIxWQrSSM+eTMU5
-	ww2vGlcmBKb0GoPVFHNQrD5VCQsVpdTLsyGNrHJO7Oztr6z/AOkTYtoZQtQsLQlVkS/IF4++ByA
-	KqusYqSVMXXkcFkn3NIzXPqvlZiHHTgg70bdauqxQwLntMgg==
-X-Received: by 2002:a05:6512:60b:b0:5ae:aeea:c60a with SMTP id 2adb3069b0e04-5b007b6eb9emr774509e87.11.1783423640713;
-        Tue, 07 Jul 2026 04:27:20 -0700 (PDT)
-Received: from Shofiq.home (87-92-251-137.rev.dnainternet.fi. [87.92.251.137])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-39b4ad1890asm23602331fa.3.2026.07.07.04.27.19
+        d=1e100.net; s=20251104; t=1783423918; x=1784028718;
+        h=cc:to:message-id:content-transfer-encoding:content-type
+         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to:content-type;
+        bh=GIxhDTqzrhHQT3ofktLEnceII+Wnr1xn2q83uEuwRtE=;
+        b=YOL99gl8q1OMsWIEhX7GvGK5F0w9MfgIAkEkh9pX+9PR3I9/3eJfGAUkwzOfIiaODd
+         r0Y+lecvxHgRRcw/as1lafCzv+CTzDPTmRfFxjdgOKI5R8LjeDAlbn6TLIn2gCBDBBRN
+         sATdZ2ffp41lEN0CLubR4Z4zhQFQBED9N76sykd4NZ/9vXTHywaoezVJugiTiO27+ZPH
+         bce9iIwSf1qkUbgAxWRTBHGlqIUxqh1vSpF0vlTomk9wD/UpgrvpivCmjJbA4GU9vYYQ
+         mFch06TxUtmIwf4am8R+Olh16de+2Z7Sz/d5rE5dpCRTzl5FhZzJR0Lwvr3FRGDSPf31
+         KGww==
+X-Forwarded-Encrypted: i=1; AHgh+RpJBAatxYlefzcs7c9khFUXe/vgx+MDDqSCGwdmIAUQIqjlLC/Zm1+3ptJKe6RQaqRTyqSsvZaoZMku@vger.kernel.org
+X-Gm-Message-State: AOJu0YyOyoMpLmU7rZo4zY3PNVlNfSNQ6a+8SDqhattAzBsadFnmgpsO
+	0YgpMb+qfMzg5w2fau0wUM33JFCx2q4JxsLPAIO4iE+xW6x79NNqq3xhLMRXSlbDfsjtdl4EInN
+	MMV3X07QZSDRnWUpDN3H+CDedidD9u+hoDumrGVyWs7f3TGEZRk/cD2azbLAFe3G/
+X-Gm-Gg: AfdE7cl96WiReLz6+80x+6VfiIxNyEW9sFN1E1lfxMSlDGGGIjV2Tay9aVRYMh3sPZN
+	E26mcHXJ/1gyPYTBZnn0MnawwT5rSrBomZkqSZ58/aL5TGU6bBkJvnGonghZllioG8iWLGHlmdA
+	N/8kxq3+sd1iUBsU3zDRhb9vpnzqlUTOWXdJSCUPo4RC2vJ0O19YK01DncYTm31Ruma3vVBIKM9
+	UafhLCf5C8LGHjgok9wkYA781cHHb/7DdnUyPdfxIIITx8ysMRYRYp2VRzoAPJJiDnTX9+WzMEN
+	YJ+x7uoLfpzav33oNkVO7XHxp9G8dvNkNrUkXs6L88k2SvDLqr0veOQYYL7G/PzDSj0VaqddpYS
+	oY7C2olkubN0DLepoK56yrcHTVjPikwVe+/aqehlSyzAmMg==
+X-Received: by 2002:a17:90a:e703:b0:387:e0db:bc2f with SMTP id 98e67ed59e1d1-387e0dbbd95mr2321732a91.37.1783423917552;
+        Tue, 07 Jul 2026 04:31:57 -0700 (PDT)
+X-Received: by 2002:a17:90a:e703:b0:387:e0db:bc2f with SMTP id 98e67ed59e1d1-387e0dbbd95mr2321683a91.37.1783423916916;
+        Tue, 07 Jul 2026 04:31:56 -0700 (PDT)
+Received: from hu-krichai-hyd.qualcomm.com ([202.46.23.25])
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-311748394acsm8035430eec.8.2026.07.07.04.31.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Jul 2026 04:27:20 -0700 (PDT)
-From: Md Shofiqul Islam <shofiqtest@gmail.com>
-To: linux-iio@vger.kernel.org
-Cc: jic23@kernel.org,
-	devicetree@vger.kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	andriy.shevchenko@intel.com,
-	u.kleine-koenig@baylibre.com,
-	joshua.crofts1@gmail.com
-Subject: [PATCH v9 2/2] iio: health: add MAX86150 ECG and PPG biosensor driver
-Date: Tue,  7 Jul 2026 14:27:14 +0300
-Message-ID: <20260707112714.2261727-3-shofiqtest@gmail.com>
-X-Mailer: git-send-email 2.51.1
+        Tue, 07 Jul 2026 04:31:56 -0700 (PDT)
+From: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+Date: Tue, 07 Jul 2026 17:01:43 +0530
+Subject: [PATCH v12] PCI: Add support for PCIe WAKE# interrupt
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20260707-wakeirq_support-v12-1-b4453f5bcc97@oss.qualcomm.com>
+X-B4-Tracking: v=1; b=H4sIAJ7jTGoC/3XQbWvDIBAA4L9S/DzLnfF1n/Y/xhhqdJWtTaptt
+ lHy32cKJYMkHAh34HMvN1JCTqGQ592N5DCkkrpTTZA97Yg/2NNHoKmtBcKACUTg9Nt+hpTP7+X
+ a912+0Ci4585a1F6Q+qvPIaafO/n6VvNDKpcu/947DGKqPiy1sAZBgXLJA6rIPAP/0pWyP1/tl
+ ++Ox319yEQO8h/DVhhZGQlRaIyGMxAbjHowEhjqJaMqAy2X2ugGGKgNRs9Mg82S0dNS2oJV08D
+ abjBmZjisMKYy6F3wsXFCt1vTIMxOPc/SwboU9Qg2Gm+C01tHRpwhyfgKhLQGg+iiDS4IswKN4
+ /gHkke/hGQCAAA=
+X-Change-ID: 20251104-wakeirq_support-f54c4baa18c5
+To: "Rafael J. Wysocki" <rafael@kernel.org>, Len Brown <lenb@kernel.org>,
+        Pavel Machek <pavel@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Danilo Krummrich <dakr@kernel.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Bartosz Golaszewski <brgl@bgdev.pl>, Linus Walleij <linusw@kernel.org>,
+        Bartosz Golaszewski <brgl@kernel.org>, Rob Herring <robh@kernel.org>,
+        Saravana Kannan <saravanak@kernel.org>,
+        Linus Walleij <linusw@kernel.org>
+Cc: linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pci@vger.kernel.org, linux-gpio@vger.kernel.org,
+        quic_vbadigan@quicinc.com, sherry.sun@nxp.com,
+        driver-core@lists.linux.dev, devicetree@vger.kernel.org,
+        Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1783423909; l=14634;
+ i=krishna.chundru@oss.qualcomm.com; s=20230907; h=from:subject:message-id;
+ bh=m/onrcO2JktgwIb8sRDnfeQXFjAPv93f8lW4aCB6WM8=;
+ b=UNzRBDOKL2wQlCuf08MUirEYxl5WPXme8PjUe/P5v5nuFnrpF6GrKFCnbD/ozCYA0/8iuvlzL
+ dgzk0KwpU00CJ1pFk2/gxIIZbeQwX0pxOBkbwt1Vp+8Hwf9v76xLaWV
+X-Developer-Key: i=krishna.chundru@oss.qualcomm.com; a=ed25519;
+ pk=10CL2pdAKFyzyOHbfSWHCD0X0my7CXxj8gJScmn1FAg=
+X-Proofpoint-ORIG-GUID: rpZU6vRQFlUbQx5hj5iwRreU6P4W999T
+X-Proofpoint-Spam-Info: AW1haW4tMjYwNzA3MDExMCBTYWx0ZWRfX4fzMmTj2GHva
+ O2JCHUzxl14QUuAHh0NDdk0orB1Wr4z9jvBp2sK8bQUT7tyYOoMlyXC6FBTz5T/tivQ/qyvf3c0
+ 2tMQNsYxEOtjm1aLYbnxdLoWxc5KloE=
+X-Authority-Analysis: v=2.4 cv=SZfHsPRu c=1 sm=1 tr=0 ts=6a4ce3ae cx=c_pps
+ a=UNFcQwm+pnOIJct1K4W+Mw==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
+ a=IkcTkHD0fZMA:10 a=RAioF0-LDSMA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=eoimf2acIAo5FJnRuUoq:22
+ a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=NEAV23lmAAAA:8 a=Ikd4Dj_1AAAA:8
+ a=s8YR1HE3AAAA:8 a=bC-a23v3AAAA:8 a=KKAkSRfTAAAA:8 a=1XWaLZrsAAAA:8
+ a=ovJVH9vcvDALE3_RPqAA:9 a=QEXdDO2ut3YA:10 a=uKXjsCUrEbL0IQVhDsJ9:22
+ a=jGH_LyMDp9YhSvY-UuyI:22 a=FO4_E8m0qiDe52t0p3_H:22 a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-GUID: rpZU6vRQFlUbQx5hj5iwRreU6P4W999T
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNzA3MDExMCBTYWx0ZWRfX3G3xi8gAja7Z
+ JA0pxrKhopNLmeTMG++JOFSXsgseoGa6Uer+bwndaVvReuZwIGJAdSLmoGX6KC2+xlfVPpfedgY
+ vZzKaIgB8g6kpIBJzolyG1gROzmbjw/FHKmK74LxdOV52P5mcUxgy/+UH/tpt/dIli+ca9s3Rwg
+ C1mjCu7jKz1y1G16WcRtooYKRjtsTqyBzhHH1As3PmHoUjSpjyZU0HG7BH7wT2YFWFdkITg3YHW
+ OelgGqdwwPB7GnQD35yhQHcUMdthuwoYchjN91i4nCstdV+tNkx73grfgiC5L3TqQg91iLXqdV1
+ f6EUsoNo/7I4Znm3XkVKFFmnXArbwyl+1wVpRGGZ6VkNLgI5PCBbu+HcRCro08n/x/dF16YYt6b
+ vqBG3ph8R8DfZ2caK/w6sv/p7kzF+uCFUeZMSARqqejYkXF0rG/RSEjEDYIS5R7sN9g/pmiJJnJ
+ +ITpteE6BDLzXZCIJnA==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.134,FMLib:17.12.100.49
+ definitions=2026-07-07_02,2026-07-06_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 impostorscore=0 malwarescore=0 bulkscore=0 spamscore=0
+ adultscore=0 lowpriorityscore=0 phishscore=0 clxscore=1015 suspectscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2606150000 definitions=main-2607070110
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.84 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-321971-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FORGED_SENDER(0.00)[shofiqtest@gmail.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[kernel.org,vger.kernel.org,intel.com,baylibre.com,gmail.com];
+	TAGGED_FROM(0.00)[bounces-321973-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[23];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS(0.00)[m:linux-iio@vger.kernel.org,m:jic23@kernel.org,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:andriy.shevchenko@intel.com,m:u.kleine-koenig@baylibre.com,m:joshua.crofts1@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:joshuacrofts1@gmail.com,s:lists@lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:rafael@kernel.org,m:lenb@kernel.org,m:pavel@kernel.org,m:gregkh@linuxfoundation.org,m:dakr@kernel.org,m:bhelgaas@google.com,m:brgl@bgdev.pl,m:linusw@kernel.org,m:brgl@kernel.org,m:robh@kernel.org,m:saravanak@kernel.org,m:linux-pm@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-pci@vger.kernel.org,m:linux-gpio@vger.kernel.org,m:quic_vbadigan@quicinc.com,m:sherry.sun@nxp.com,m:driver-core@lists.linux.dev,m:devicetree@vger.kernel.org,m:bartosz.golaszewski@oss.qualcomm.com,m:mani@kernel.org,m:krishna.chundru@oss.qualcomm.com,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[shofiqtest@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	TO_DN_NONE(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_SENDER(0.00)[krishna.chundru@oss.qualcomm.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,analog.com:url]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krishna.chundru@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ALIAS_RESOLVED(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree];
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: C819771AF35
+X-Rspamd-Queue-Id: 9254671B051
 
-Add a new IIO driver for the Analog Devices MAX86150 integrated
-biosensor, which combines two PPG optical channels (Red/IR LED) and
-one ECG biopotential channel in a single I2C device.
+According to the PCI Express specification (PCIe r7.0, Section 5.3.3.2),
+two link wakeup mechanisms are defined: Beacon and WAKE#. Beacon is a
+hardware-only mechanism and is invisible to software (PCIe r7.0,
+Section 4.2.7.8.1). This change adds support for the WAKE# mechanism
+in the PCI core.
 
-The device has a 32-entry hardware FIFO with a configurable almost-full
-interrupt.  Because all samples arrive via the FIFO, the driver uses a
-kfifo buffer (like the sibling MAX30100 and MAX30102 drivers) rather
-than the triggered-buffer framework.  The interrupt handler drains the
-FIFO on each A_FULL event and timestamps samples back-calculated from
-the interrupt arrival time by one sample_period_ns per step.
+According to the PCIe specification, multiple WAKE# signals can exist in
+a system or each component in the hierarchy could share a single WAKE#
+signal. In configurations involving a PCIe switch, each downstream port
+(DSP) of the switch may be connected to a separate WAKE# line, allowing
+each endpoint to signal WAKE# independently. From figure 5.4 in sec
+5.3.3.2, WAKE# can also be terminated at the switch itself. Such topologies
+are typically not described in Device Tree, therefore it is out of scope
+for this series.
 
-Key implementation details:
-- FIFO draining via iio_buffer_setup_ops postenable/predisable
-- DMA-safe FIFO read buffer aligned to IIO_DMA_MINALIGN
-- IIO_DECLARE_BUFFER_WITH_TS for the push buffer
-- 24-bit FIFO words decoded via get_unaligned_be24()
-- regmap_set_bits() / regmap_clear_bits() for single-direction writes
-- Overflow drops all samples; timestamps are unreliable after overflow
-- Device remains in shutdown between captures to suppress LED current
-- vdd and vled regulators required per datasheet; vref is not a supply
-- synchronize_irq() in predisable ensures threaded handler completes
-  before the IIO core clears active_scan_mask
-- INT_STATUS1 cleared before polling PPG_RDY to avoid stale flag
-- A_FULL status bit used to detect FIFO exactly full (wr_ptr == rd_ptr
-  with OVF_COUNTER == 0) so valid samples are not silently dropped
+To support this, the WAKE# should be described in the device tree node of
+the endpoint/bridge. If all endpoints share a single WAKE# line, then each
+endpoint node shall describe the same WAKE# signal or a single WAKE# in
+the Root Port node.
 
-Signed-off-by: Md Shofiqul Islam <shofiqtest@gmail.com>
+In pci_device_add(), PCI framework will search for the WAKE# in device
+node. Once found, register for the wake IRQ through
+dev_pm_set_dedicated_wake_irq() associates a wakeup IRQ with a device
+and requests it, but the PM core keeps the IRQ disabled by default. The
+IRQ is enabled by the PM core, only when the device is permitted to wake
+the system, i.e. during system suspend and after runtime suspend, and
+only when device wakeup is enabled.
+
+If the same WAKE# GPIO is described in multiple device tree nodes, only the
+first device that successfully registers the wake IRQ will succeed, while
+subsequent registrations may fail. This limitation does not affect
+functional correctness, since WAKE# is only used to bring the link to D0,
+and endpoint-specific wakeup handling is resolved later through
+PME detection (PME_EN is set in suspend path by PCI core by default).
+
+When the wake IRQ fires, the wakeirq handler invokes pm_runtime_resume() to
+bring the device back to an active power state, such as transitioning from
+D3cold to D0. Once the device is active and the link is usable, the
+endpoint may generate a PME, which is then handled by the PCI core through
+PME polling or the PCIe PME service driver to complete the wakeup of the
+endpoint.
+
+WAKE# is added in dts schema and merged based on below links.
+
+Link: https://lore.kernel.org/all/20250515090517.3506772-1-krishna.chundru@oss.qualcomm.com/
+Link: https://github.com/devicetree-org/dt-schema/pull/170
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+Reviewed-by: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
+Acked-by: Manivannan Sadhasivam <mani@kernel.org>
+Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
 ---
- MAINTAINERS                   |   1 +
- drivers/iio/health/Kconfig    |  17 ++
- drivers/iio/health/Makefile   |   1 +
- drivers/iio/health/max86150.c | 560 ++++++++++++++++++++++++++++++++++
- 4 files changed, 579 insertions(+)
- create mode 100644 drivers/iio/health/max86150.c
+PCIe WAKE# interrupt is needed for bringing back PCIe device state from
+D3cold to D0.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index e9b9fd619bd86..361a7c8b99ead 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -15868,6 +15868,7 @@ M:	Md Shofiqul Islam <shofiqtest@gmail.com>
- L:	linux-iio@vger.kernel.org
- S:	Maintained
- F:	Documentation/devicetree/bindings/iio/health/adi,max86150.yaml
-+F:	drivers/iio/health/max86150.c
+This is pending from long time, there was two attempts done previously to
+add WAKE# support[1], [2]. Those series tried to add support for legacy
+interrupts along with WAKE#. Legacy interrupts are already available in
+the latest kernel and we can ignore them. For the wake IRQ the series is
+trying to use interrupts property define in the device tree.
+
+WAKE# is added in dts schema and merged based on this patch.
+https://lore.kernel.org/all/20250515090517.3506772-1-krishna.chundru@oss.qualcomm.com/
+
+[1]: https://lore.kernel.org/all/b2b91240-95fe-145d-502c-d52225497a34@nvidia.com/T/
+[2]: https://lore.kernel.org/all/20171226023646.17722-1-jeffy.chen@rock-chips.com/
+---
+Changes in v12:
+- move platform_pci_configure_wake() before device_add() (sashiko).
+- set irq type based on the wake-gpios property (Sashiko).
+- Link to v11: https://patch.msgid.link/20260624-wakeirq_support-v11-1-120fbfaebe59@oss.qualcomm.com
+
+Changes in v11:
+- Add device_init_wakeup() as client driver is not expected to enable
+  bridge dev wakeup capability.
+- Link to v10: https://patch.msgid.link/20260511-wakeirq_support-v10-0-c10af9c9eb8c@oss.qualcomm.com
+
+Changes in v10:
+- As sashiko pointed, shared irq has plenty of race conditions.
+- So we are moving away from the shared IRQ patch and registering with
+  dedicated wake irq only, as part of wake irq the link will come to D0
+  as the parent controller driver will be runtime resume first and then
+  pme service will kick in wake up correct endpoint driver.
+- Removed device_init_wakeup() since it enabling wakeup explicitly,
+  which is not intended as this should be set by endpoint driver only.
+- Link to v9: https://lore.kernel.org/r/20260403-wakeirq_support-v9-0-1cbecf3b58d7@oss.qualcomm.com
+
+Changes in v9:
+- Call device_init_wakeup() only if
+  dev_pm_set_dedicated_shared_wake_irq() succeeds (Mani).
+- Change the IRQ_TYPE from IRQ_TYPE_EDGE_FALLING to IRQ_TYPE_LEVEL_LOW (Mani).
+- Link to v8: https://lore.kernel.org/r/20260313-wakeirq_support-v8-0-48a0a702518a@oss.qualcomm.com
+
+Changes in v8:
+- Moved the stub functions under CONFIG_OF_IRQ(mani).
+- Added the description of how dev_pm_set_dedicated_shared_wake_irq()
+  works.
+- Link to v7: https://lore.kernel.org/r/20260218-wakeirq_support-v7-0-0d4689830207@oss.qualcomm.com
+
+Changes in v7:
+- Updated the commit text (Mani).
+- Couple of nits like using pci_err instead of dev_err,
+  use platform_pci_configure_wake(), platform_pci_remove_wake() instead
+  of calling directly calling pci_configure_of_wake_gpio() & pci_remove_of_wake_gpio() etc (Mani).
+- Add a new fwnode_gpiod_get() API that wraps fwnode_gpiod_get_index(..0..), similar to
+  devm_fwnode_gpiod_get() (Mani).
+- Link to v6: https://lore.kernel.org/r/20251127-wakeirq_support-v6-0-60f581f94205@oss.qualcomm.com
+
+Changes in v6:
+- Change the name to dev_pm_set_dedicated_shared_wake_irq() and make the
+  changes pointed by (Rafael). 
+- Link to v5: https://lore.kernel.org/r/20251107-wakeirq_support-v5-0-464e17f2c20c@oss.qualcomm.com
+
+Changes in v5:
+- Enable WAKE# irq only when there is wake -gpios defined in its device
+  tree node (Bjorn).
+- For legacy bindings for direct atach check in root port if we haven't
+  find the wake in the endpoint node.
+- Instead of hooking wake in driver bound case, do it in the framework
+  irrespective of the driver state (Bjorn).
+- Link to v4: https://lore.kernel.org/r/20250801-wake_irq_support-v4-0-6b6639013a1a@oss.qualcomm.com
+
+Changes in v4:
+- Move wake from portdrv to core framework to endpoint (Bjorn).
+- Added support for multiple WAKE# case (Bjorn). But traverse from
+  endpoint upstream port to root port till you get WAKE#. And use
+  IRQF_SHARED flag for requesting interrupts.
+- Link to v3: https://lore.kernel.org/r/20250605-wake_irq_support-v3-0-7ba56dc909a5@oss.qualcomm.com
+
+Changes in v3:
+- Update the commit messages, function names etc as suggested by Mani.
+- return wake_irq if returns error (Neil).
+- Link to v2: https://lore.kernel.org/r/20250419-wake_irq_support-v2-0-06baed9a87a1@oss.qualcomm.com
+
+Changes in v2:
+- Move the wake irq teardown after pcie_port_device_remove
+  and move of_pci_setup_wake_irq before pcie_link_rcec (Lukas)
+- teardown wake irq in shutdown also.
+- Link to v1: https://lore.kernel.org/r/20250401-wake_irq_support-v1-0-d2e22f4a0efd@oss.qualcomm.com
+
+To: Bjorn Helgaas <bhelgaas@google.com>
+To: Rob Herring <robh@kernel.org>
+To: Saravana Kannan <saravanak@kernel.org>
+Cc: linux-pci@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+---
+ drivers/pci/of.c       | 78 ++++++++++++++++++++++++++++++++++++++++++++++++++
+ drivers/pci/pci.c      | 11 +++++++
+ drivers/pci/pci.h      |  2 ++
+ drivers/pci/probe.c    |  2 ++
+ drivers/pci/remove.c   |  1 +
+ include/linux/of_pci.h |  6 ++++
+ include/linux/pci.h    |  2 ++
+ 7 files changed, 102 insertions(+)
+
+diff --git a/drivers/pci/of.c b/drivers/pci/of.c
+index 8b18c4ba845c..5df6b11cdf9f 100644
+--- a/drivers/pci/of.c
++++ b/drivers/pci/of.c
+@@ -7,6 +7,7 @@
+ #define pr_fmt(fmt)	"PCI: OF: " fmt
  
- MAXIM MUIC CHARGER DRIVERS FOR EXYNOS BASED BOARDS
- M:	Krzysztof Kozlowski <krzk@kernel.org>
-diff --git a/drivers/iio/health/Kconfig b/drivers/iio/health/Kconfig
-index a89f3abf11f4a..c18d41d5044fa 100644
---- a/drivers/iio/health/Kconfig
-+++ b/drivers/iio/health/Kconfig
-@@ -62,4 +62,21 @@ config MAX30102
+ #include <linux/cleanup.h>
++#include <linux/gpio/consumer.h>
+ #include <linux/irqdomain.h>
+ #include <linux/kernel.h>
+ #include <linux/pci.h>
+@@ -15,6 +16,7 @@
+ #include <linux/of_address.h>
+ #include <linux/of_pci.h>
+ #include <linux/platform_device.h>
++#include <linux/pm_wakeirq.h>
+ #include "pci.h"
  
- endmenu
- 
-+config MAX86150
-+	tristate "MAX86150 ECG and PPG biosensor"
-+	depends on I2C
-+	select IIO_BUFFER
-+	select IIO_KFIFO_BUF
-+	select REGMAP_I2C
-+	help
-+	  Say Y here to enable support for the Maxim MAX86150 combined
-+	  ECG and photoplethysmography (PPG) biosensor.
+ #ifdef CONFIG_PCI
+@@ -586,6 +588,82 @@ int of_irq_parse_and_map_pci(const struct pci_dev *dev, u8 slot, u8 pin)
+ 	return irq_create_of_mapping(&oirq);
+ }
+ EXPORT_SYMBOL_GPL(of_irq_parse_and_map_pci);
 +
-+	  The driver exposes three IIO channels: two PPG optical channels
-+	  (Red and IR LED) for heart rate and SpO2 monitoring, and one
-+	  ECG channel for biopotential recording.
-+
-+	  This driver can also be built as a module. If so, the module
-+	  will be called max86150.
-+
- endmenu
-diff --git a/drivers/iio/health/Makefile b/drivers/iio/health/Makefile
-index 9108171122588..04fc73c584449 100644
---- a/drivers/iio/health/Makefile
-+++ b/drivers/iio/health/Makefile
-@@ -9,3 +9,4 @@ obj-$(CONFIG_AFE4403)		+= afe4403.o
- obj-$(CONFIG_AFE4404)		+= afe4404.o
- obj-$(CONFIG_MAX30100)		+= max30100.o
- obj-$(CONFIG_MAX30102)		+= max30102.o
-+obj-$(CONFIG_MAX86150)		+= max86150.o
-diff --git a/drivers/iio/health/max86150.c b/drivers/iio/health/max86150.c
-new file mode 100644
-index 0000000000000..e8394031f3acb
---- /dev/null
-+++ b/drivers/iio/health/max86150.c
-@@ -0,0 +1,560 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * MAX86150 combined ECG and PPG biosensor driver
-+ *
-+ * Copyright (C) 2026 Md Shofiqul Islam <shofiqtest@gmail.com>
-+ *
-+ * The MAX86150 integrates two PPG optical channels (Red/IR LED) and one
-+ * ECG biopotential channel in a single I2C device.  Data is captured
-+ * through a 32-entry hardware FIFO with a configurable almost-full
-+ * interrupt, making it well-suited for continuous monitoring with a
-+ * low-power host.
-+ *
-+ * Datasheet:
-+ *   https://www.analog.com/media/en/technical-documentation/data-sheets/MAX86150.pdf
-+ */
-+
-+#include <linux/bitfield.h>
-+#include <linux/bitops.h>
-+#include <linux/delay.h>
-+#include <linux/i2c.h>
-+#include <linux/interrupt.h>
-+#include <linux/irq.h>
-+#include <linux/module.h>
-+#include <linux/regmap.h>
-+#include <linux/regulator/consumer.h>
-+#include <linux/timekeeping.h>
-+#include <linux/unaligned.h>
-+#include <linux/iio/buffer.h>
-+#include <linux/iio/iio.h>
-+#include <linux/iio/kfifo_buf.h>
-+
-+/* Register addresses */
-+#define MAX86150_REG_INT_STATUS1	0x00
-+#define MAX86150_REG_INT_STATUS2	0x01
-+#define MAX86150_REG_INT_ENABLE1	0x02
-+#define MAX86150_REG_INT_ENABLE2	0x03
-+#define MAX86150_REG_FIFO_WR_PTR	0x04
-+#define MAX86150_REG_OVF_COUNTER	0x05
-+#define MAX86150_REG_FIFO_RD_PTR	0x06
-+#define MAX86150_REG_FIFO_DATA		0x07
-+#define MAX86150_REG_FIFO_CONFIG	0x08
-+#define MAX86150_REG_FIFO_DCTRL1	0x09
-+#define MAX86150_REG_FIFO_DCTRL2	0x0A
-+#define MAX86150_REG_SYS_CTRL		0x0D
-+#define MAX86150_REG_PPG_CONFIG1	0x10
-+#define MAX86150_REG_PPG_CONFIG2	0x11
-+#define MAX86150_REG_LED1_PA		0x14
-+#define MAX86150_REG_LED2_PA		0x15
-+#define MAX86150_REG_ECG_CONFIG1	0x3C
-+#define MAX86150_REG_ECG_CONFIG3	0x3E
-+#define MAX86150_REG_PART_ID		0xFF
-+
-+#define MAX86150_PART_ID_VAL		0x1E
-+
-+/* INT_STATUS1 / INT_ENABLE1 */
-+#define MAX86150_INT_A_FULL		BIT(7)
-+#define MAX86150_INT_PPG_RDY		BIT(6)
-+
-+/* SYS_CTRL */
-+#define MAX86150_SYS_CTRL_SHDN		BIT(1)
-+#define MAX86150_SYS_CTRL_RESET		BIT(0)
-+
-+/* FIFO_CONFIG */
-+#define MAX86150_FIFO_CONFIG_SMP_AVE_MASK	GENMASK(7, 5)
-+#define MAX86150_FIFO_CONFIG_ROLLOVER_EN	BIT(4)
-+#define MAX86150_FIFO_CONFIG_A_FULL_MASK	GENMASK(3, 0)
-+
-+/* FIFO slot data-type codes */
-+#define MAX86150_FD_NONE		0x0
-+#define MAX86150_FD_LED1		0x1
-+#define MAX86150_FD_LED2		0x2
-+#define MAX86150_FD_ECG			0x9
-+
-+/* FIFO_DCTRL1 / FIFO_DCTRL2 */
-+#define MAX86150_FIFO_DCTRL_FD_LO_MASK	GENMASK(3, 0)
-+#define MAX86150_FIFO_DCTRL_FD_HI_MASK	GENMASK(7, 4)
-+
-+/* PPG_CONFIG1 */
-+#define MAX86150_PPG_CONFIG1_ADC_RGE_MASK	GENMASK(7, 6)
-+#define MAX86150_PPG_CONFIG1_SR_MASK		GENMASK(5, 1)
-+
-+#define MAX86150_FIFO_DEPTH		32
-+#define MAX86150_BYTES_PER_SLOT		3
-+#define MAX86150_NUM_SLOTS		3
-+#define MAX86150_SAMPLE_BYTES		(MAX86150_NUM_SLOTS * MAX86150_BYTES_PER_SLOT)
-+
-+/* Fire A_FULL when 17 slots are available (32 - 15 = 17) */
-+#define MAX86150_FIFO_A_FULL_VAL	15
-+
-+#define MAX86150_LED_PA_50MA		0x3F
-+#define MAX86150_PPG_SR_100HZ		4
-+#define MAX86150_PPG_ADC_RGE_16384	2
-+
-+enum max86150_scan_idx {
-+	MAX86150_IDX_PPG_RED,
-+	MAX86150_IDX_PPG_IR,
-+	MAX86150_IDX_ECG,
-+	MAX86150_IDX_TS,
-+};
-+
-+struct max86150_data {
-+	struct regmap *regmap;
-+	int irq;
-+	u32 sample_period_ns;
-+	u8 fifo_raw[ALIGN(MAX86150_SAMPLE_BYTES, IIO_DMA_MINALIGN)]
-+		__aligned(IIO_DMA_MINALIGN);
-+	IIO_DECLARE_BUFFER_WITH_TS(s32, buf, 3);
-+};
-+
-+static const struct iio_chan_spec max86150_channels[] = {
-+	{
-+		.type               = IIO_INTENSITY,
-+		.modified           = 1,
-+		.channel2           = IIO_MOD_LIGHT_RED,
-+		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW),
-+		.scan_index         = MAX86150_IDX_PPG_RED,
-+		.scan_type = {
-+			.sign        = 'u',
-+			.realbits    = 19,
-+			.storagebits = 32,
-+			.endianness  = IIO_CPU,
-+		},
-+	},
-+	{
-+		.type               = IIO_INTENSITY,
-+		.modified           = 1,
-+		.channel2           = IIO_MOD_LIGHT_IR,
-+		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW),
-+		.scan_index         = MAX86150_IDX_PPG_IR,
-+		.scan_type = {
-+			.sign        = 'u',
-+			.realbits    = 19,
-+			.storagebits = 32,
-+			.endianness  = IIO_CPU,
-+		},
-+	},
-+	{
-+		.type               = IIO_VOLTAGE,
-+		.channel            = 0,
-+		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW),
-+		.scan_index         = MAX86150_IDX_ECG,
-+		.scan_type = {
-+			.sign        = 's',
-+			.realbits    = 18,
-+			.storagebits = 32,
-+			.endianness  = IIO_CPU,
-+		},
-+	},
-+	IIO_CHAN_SOFT_TIMESTAMP(MAX86150_IDX_TS),
-+};
-+
-+static const struct regmap_config max86150_regmap_config = {
-+	.reg_bits     = 8,
-+	.val_bits     = 8,
-+	.max_register = MAX86150_REG_PART_ID,
-+};
-+
-+static int max86150_read_one_sample(struct max86150_data *data,
-+				    u32 *ppg_red, u32 *ppg_ir, s32 *ecg)
++static void pci_configure_wake_irq(struct pci_dev *pdev, struct gpio_desc *wake)
 +{
-+	int ret;
++	int ret, wake_irq, irq_type;
 +
-+	ret = regmap_noinc_read(data->regmap, MAX86150_REG_FIFO_DATA,
-+				data->fifo_raw, MAX86150_SAMPLE_BYTES);
-+	if (ret)
-+		return ret;
-+
-+	*ppg_red = get_unaligned_be24(&data->fifo_raw[0]) & GENMASK(18, 0);
-+	*ppg_ir  = get_unaligned_be24(&data->fifo_raw[3]) & GENMASK(18, 0);
-+	*ecg = sign_extend32(get_unaligned_be24(&data->fifo_raw[6]) &
-+			     GENMASK(17, 0), 17);
-+
-+	return 0;
-+}
-+
-+static int max86150_read_raw(struct iio_dev *indio_dev,
-+			     struct iio_chan_spec const *chan,
-+			     int *val, int *val2, long mask)
-+{
-+	struct max86150_data *data = iio_priv(indio_dev);
-+	unsigned int ppg_rdy_status;
-+	u32 ppg_red, ppg_ir;
-+	s32 ecg;
-+	int ret;
-+
-+	switch (mask) {
-+	case IIO_CHAN_INFO_RAW:
-+		if (!iio_device_claim_direct(indio_dev))
-+			return -EBUSY;
-+
-+		ret = regmap_clear_bits(data->regmap, MAX86150_REG_SYS_CTRL,
-+					MAX86150_SYS_CTRL_SHDN);
-+		if (ret)
-+			goto out_shutdown;
-+
-+		ret = regmap_write(data->regmap, MAX86150_REG_FIFO_WR_PTR, 0);
-+		if (ret)
-+			goto out_shutdown;
-+		ret = regmap_write(data->regmap, MAX86150_REG_OVF_COUNTER, 0);
-+		if (ret)
-+			goto out_shutdown;
-+		ret = regmap_write(data->regmap, MAX86150_REG_FIFO_RD_PTR, 0);
-+		if (ret)
-+			goto out_shutdown;
-+
-+		/*
-+		 * Clear stale PPG_RDY from a previous session; reading
-+		 * INT_STATUS1 de-asserts any pending flags so the poll
-+		 * below waits for a genuinely new sample.
-+		 */
-+		regmap_read(data->regmap, MAX86150_REG_INT_STATUS1,
-+			    &ppg_rdy_status);
-+
-+		/*
-+		 * Poll PPG_RDY rather than sleeping a fixed interval -- the
-+		 * internal oscillator may start slower than nominal, leaving
-+		 * the FIFO empty if we read too early.
-+		 */
-+		ret = regmap_read_poll_timeout(data->regmap,
-+					       MAX86150_REG_INT_STATUS1,
-+					       ppg_rdy_status,
-+					       ppg_rdy_status & MAX86150_INT_PPG_RDY,
-+					       1000, 25000);
-+		if (ret)
-+			goto out_shutdown;
-+
-+		ret = max86150_read_one_sample(data, &ppg_red, &ppg_ir, &ecg);
-+
-+out_shutdown:
-+		regmap_set_bits(data->regmap, MAX86150_REG_SYS_CTRL,
-+				MAX86150_SYS_CTRL_SHDN);
-+		iio_device_release_direct(indio_dev);
-+
-+		if (ret)
-+			return ret;
-+
-+		switch (chan->scan_index) {
-+		case MAX86150_IDX_PPG_RED:
-+			*val = ppg_red;
-+			break;
-+		case MAX86150_IDX_PPG_IR:
-+			*val = ppg_ir;
-+			break;
-+		case MAX86150_IDX_ECG:
-+			*val = ecg;
-+			break;
-+		default:
-+			return -EINVAL;
-+		}
-+		return IIO_VAL_INT;
-+
-+	default:
-+		return -EINVAL;
++	wake_irq = gpiod_to_irq(wake);
++	if (wake_irq < 0) {
++		pci_err(pdev, "Failed to get wake irq: %d\n", wake_irq);
++		return;
 +	}
-+}
-+
-+static const struct iio_info max86150_iio_info = {
-+	.read_raw = max86150_read_raw,
-+};
-+
-+static int max86150_buffer_postenable(struct iio_dev *indio_dev)
-+{
-+	struct max86150_data *data = iio_priv(indio_dev);
-+	int ret;
-+
-+	ret = regmap_clear_bits(data->regmap, MAX86150_REG_SYS_CTRL,
-+				MAX86150_SYS_CTRL_SHDN);
-+	if (ret)
-+		return ret;
-+
-+	ret = regmap_write(data->regmap, MAX86150_REG_FIFO_WR_PTR, 0);
-+	if (ret)
-+		goto err_shutdown;
-+	ret = regmap_write(data->regmap, MAX86150_REG_OVF_COUNTER, 0);
-+	if (ret)
-+		goto err_shutdown;
-+	ret = regmap_write(data->regmap, MAX86150_REG_FIFO_RD_PTR, 0);
-+	if (ret)
-+		goto err_shutdown;
-+	ret = regmap_write(data->regmap, MAX86150_REG_INT_ENABLE1,
-+			   MAX86150_INT_A_FULL);
-+	if (ret)
-+		goto err_shutdown;
-+	return 0;
-+
-+err_shutdown:
-+	regmap_set_bits(data->regmap, MAX86150_REG_SYS_CTRL,
-+			MAX86150_SYS_CTRL_SHDN);
-+	return ret;
-+}
-+
-+static int max86150_buffer_predisable(struct iio_dev *indio_dev)
-+{
-+	struct max86150_data *data = iio_priv(indio_dev);
-+
-+	regmap_write(data->regmap, MAX86150_REG_INT_ENABLE1, 0);
-+	regmap_set_bits(data->regmap, MAX86150_REG_SYS_CTRL,
-+			MAX86150_SYS_CTRL_SHDN);
-+	/*
-+	 * Mask the hardware interrupt first, then synchronize to ensure any
-+	 * threaded handler already in flight completes before the IIO core
-+	 * clears active_scan_mask; without this a delayed handler would
-+	 * dereference a NULL active_scan_mask.
-+	 */
-+	synchronize_irq(data->irq);
-+	return 0;
-+}
-+
-+static const struct iio_buffer_setup_ops max86150_buffer_setup_ops = {
-+	.postenable = max86150_buffer_postenable,
-+	.predisable = max86150_buffer_predisable,
-+};
-+
-+static irqreturn_t max86150_interrupt_handler(int irq, void *private)
-+{
-+	struct iio_dev *indio_dev = private;
-+	struct max86150_data *data = iio_priv(indio_dev);
-+	unsigned int status, wr_ptr, rd_ptr, ovf, n_avail;
-+	u32 ppg_red, ppg_ir;
-+	s32 ecg;
-+	s64 ts;
-+	unsigned int i, j;
-+	int ret;
-+
-+	ret = regmap_read(data->regmap, MAX86150_REG_INT_STATUS1, &status);
-+	if (ret)
-+		return IRQ_HANDLED;
-+
-+	if (!(status & MAX86150_INT_A_FULL))
-+		return IRQ_NONE;
-+
-+	ret = regmap_read(data->regmap, MAX86150_REG_OVF_COUNTER, &ovf);
-+	if (ret)
-+		return IRQ_HANDLED;
-+
-+	if (ovf > 0) {
-+		/* FIFO overflowed; timestamps are unreliable - flush and discard */
-+		regmap_write(data->regmap, MAX86150_REG_FIFO_WR_PTR, 0);
-+		regmap_write(data->regmap, MAX86150_REG_OVF_COUNTER, 0);
-+		regmap_write(data->regmap, MAX86150_REG_FIFO_RD_PTR, 0);
-+		return IRQ_HANDLED;
-+	}
-+
-+	ret = regmap_read(data->regmap, MAX86150_REG_FIFO_WR_PTR, &wr_ptr);
-+	if (ret)
-+		return IRQ_HANDLED;
-+	ret = regmap_read(data->regmap, MAX86150_REG_FIFO_RD_PTR, &rd_ptr);
-+	if (ret)
-+		return IRQ_HANDLED;
-+
-+	n_avail = (wr_ptr - rd_ptr) & (MAX86150_FIFO_DEPTH - 1);
-+	/*
-+	 * When the FIFO holds exactly MAX86150_FIFO_DEPTH samples the
-+	 * write pointer wraps around to equal the read pointer even though
-+	 * OVF_COUNTER is still zero.  The A_FULL status bit disambiguates
-+	 * this wrap-around from a genuinely empty FIFO.
-+	 */
-+	if (!n_avail && (status & MAX86150_INT_A_FULL))
-+		n_avail = MAX86150_FIFO_DEPTH;
-+	if (!n_avail)
-+		return IRQ_HANDLED;
 +
 +	/*
-+	 * Anchor timestamps to the interrupt time: sample (n_avail - 1) is
-+	 * the newest and corresponds to ts; earlier samples are back-calculated
-+	 * by one sample_period_ns per step.
++	 * dev_pm_set_dedicated_wake_irq() associates a wakeup IRQ with the
++	 * device and requests it, but the PM core keeps it disabled by default.
++	 * The IRQ is enabled only when the device is allowed to wake the system
++	 * (during system suspend and after runtime suspend), and only if device
++	 * wakeup is enabled.
++	 *
++	 * When the wake IRQ fires, the wakeirq handler invokes pm_runtime_resume()
++	 * to bring the device back to an active power state (e.g. from D3cold to D0).
++	 * Once the device is active and the link is usable, the endpoint may signal
++	 * a PME, which is then handled by the PCI core (either via PME polling or the
++	 * PCIe PME service driver) to wakeup particular endpoint.
 +	 */
-+	ts = ktime_get_ns();
-+
-+	for (i = 0; i < n_avail; i++) {
-+		s64 sample_ts = ts -
-+			(s64)(n_avail - 1 - i) * data->sample_period_ns;
-+
-+		ret = max86150_read_one_sample(data, &ppg_red, &ppg_ir, &ecg);
-+		if (ret)
-+			break;
-+
-+		j = 0;
-+		if (test_bit(MAX86150_IDX_PPG_RED, indio_dev->active_scan_mask))
-+			data->buf[j++] = ppg_red;
-+		if (test_bit(MAX86150_IDX_PPG_IR, indio_dev->active_scan_mask))
-+			data->buf[j++] = ppg_ir;
-+		if (test_bit(MAX86150_IDX_ECG, indio_dev->active_scan_mask))
-+			data->buf[j++] = ecg;
-+
-+		iio_push_to_buffers_with_ts(indio_dev, data->buf,
-+					    sizeof(data->buf), sample_ts);
++	ret = dev_pm_set_dedicated_wake_irq(&pdev->dev, wake_irq);
++	if (ret < 0) {
++		pci_err(pdev, "Failed to set WAKE# IRQ: %d\n", ret);
++		return;
 +	}
 +
-+	return IRQ_HANDLED;
-+}
-+
-+static void max86150_powerdown(void *arg)
-+{
-+	struct max86150_data *data = arg;
-+
-+	regmap_write(data->regmap, MAX86150_REG_INT_ENABLE1, 0);
-+	regmap_set_bits(data->regmap, MAX86150_REG_SYS_CTRL,
-+			MAX86150_SYS_CTRL_SHDN);
-+}
-+
-+static int max86150_chip_init(struct max86150_data *data)
-+{
-+	int ret;
-+
-+	/* Software reset; the bit self-clears within 1 ms */
-+	ret = regmap_write(data->regmap, MAX86150_REG_SYS_CTRL,
-+			   MAX86150_SYS_CTRL_RESET);
-+	if (ret)
-+		return ret;
-+	fsleep(1000);
-+
-+	ret = regmap_write(data->regmap, MAX86150_REG_FIFO_CONFIG,
-+			   MAX86150_FIFO_CONFIG_ROLLOVER_EN |
-+			   FIELD_PREP(MAX86150_FIFO_CONFIG_A_FULL_MASK,
-+				      MAX86150_FIFO_A_FULL_VAL));
-+	if (ret)
-+		return ret;
-+
-+	/* Slot 1 = PPG Red (LED1), Slot 2 = PPG IR (LED2) */
-+	ret = regmap_write(data->regmap, MAX86150_REG_FIFO_DCTRL1,
-+			   FIELD_PREP(MAX86150_FIFO_DCTRL_FD_LO_MASK,
-+				      MAX86150_FD_LED1) |
-+			   FIELD_PREP(MAX86150_FIFO_DCTRL_FD_HI_MASK,
-+				      MAX86150_FD_LED2));
-+	if (ret)
-+		return ret;
-+
-+	/* Slot 3 = ECG, Slot 4 = disabled */
-+	ret = regmap_write(data->regmap, MAX86150_REG_FIFO_DCTRL2,
-+			   FIELD_PREP(MAX86150_FIFO_DCTRL_FD_LO_MASK,
-+				      MAX86150_FD_ECG) |
-+			   FIELD_PREP(MAX86150_FIFO_DCTRL_FD_HI_MASK,
-+				      MAX86150_FD_NONE));
-+	if (ret)
-+		return ret;
-+
-+	/* PPG: 100 Hz sample rate, 16384 nA ADC full-scale range */
-+	ret = regmap_write(data->regmap, MAX86150_REG_PPG_CONFIG1,
-+			   FIELD_PREP(MAX86150_PPG_CONFIG1_ADC_RGE_MASK,
-+				      MAX86150_PPG_ADC_RGE_16384) |
-+			   FIELD_PREP(MAX86150_PPG_CONFIG1_SR_MASK,
-+				      MAX86150_PPG_SR_100HZ));
-+	if (ret)
-+		return ret;
-+
-+	ret = regmap_write(data->regmap, MAX86150_REG_LED1_PA, MAX86150_LED_PA_50MA);
-+	if (ret)
-+		return ret;
-+
-+	ret = regmap_write(data->regmap, MAX86150_REG_LED2_PA, MAX86150_LED_PA_50MA);
-+	if (ret)
-+		return ret;
-+
-+	data->sample_period_ns = 10 * NSEC_PER_MSEC;
-+
-+	return regmap_write(data->regmap, MAX86150_REG_SYS_CTRL,
-+			    MAX86150_SYS_CTRL_SHDN);
-+}
-+
-+static int max86150_probe(struct i2c_client *client)
-+{
-+	struct device *dev = &client->dev;
-+	struct iio_dev *indio_dev;
-+	struct max86150_data *data;
-+	unsigned int part_id;
-+	int ret;
-+
-+	indio_dev = devm_iio_device_alloc(dev, sizeof(*data));
-+	if (!indio_dev)
-+		return -ENOMEM;
-+
-+	data = iio_priv(indio_dev);
-+	data->irq = client->irq;
-+
-+	ret = devm_regulator_get_enable(dev, "vdd");
-+	if (ret)
-+		return dev_err_probe(dev, ret,
-+				     "Failed to get/enable vdd supply\n");
-+
-+	ret = devm_regulator_get_enable(dev, "vled");
-+	if (ret)
-+		return dev_err_probe(dev, ret,
-+				     "Failed to get/enable vled supply\n");
-+
-+	data->regmap = devm_regmap_init_i2c(client, &max86150_regmap_config);
-+	if (IS_ERR(data->regmap))
-+		return dev_err_probe(dev, PTR_ERR(data->regmap),
-+				     "Failed to initialise regmap\n");
-+
-+	ret = regmap_read(data->regmap, MAX86150_REG_PART_ID, &part_id);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Cannot read part ID\n");
-+
-+	if (part_id != MAX86150_PART_ID_VAL)
-+		dev_warn(dev, "Unexpected part ID 0x%02x (expected 0x%02x)\n",
-+			 part_id, MAX86150_PART_ID_VAL);
-+
-+	ret = max86150_chip_init(data);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Chip initialisation failed\n");
-+
-+	ret = devm_add_action_or_reset(dev, max86150_powerdown, data);
-+	if (ret)
-+		return ret;
-+
-+	indio_dev->name = "max86150";
-+	indio_dev->channels = max86150_channels;
-+	indio_dev->num_channels = ARRAY_SIZE(max86150_channels);
-+	indio_dev->info = &max86150_iio_info;
-+	indio_dev->modes = INDIO_DIRECT_MODE;
-+
-+	if (client->irq > 0) {
-+		unsigned long irq_trig = irq_get_trigger_type(client->irq);
-+
-+		ret = devm_iio_kfifo_buffer_setup(dev, indio_dev,
-+						  &max86150_buffer_setup_ops);
-+		if (ret)
-+			return dev_err_probe(dev, ret,
-+					     "Cannot setup kfifo buffer\n");
-+
-+		ret = devm_request_threaded_irq(dev, client->irq,
-+						NULL,
-+						max86150_interrupt_handler,
-+						irq_trig | IRQF_ONESHOT,
-+						"max86150", indio_dev);
-+		if (ret)
-+			return dev_err_probe(dev, ret,
-+					     "Cannot request IRQ %d\n",
-+					     client->irq);
++	irq_type = gpiod_is_active_low(wake) ? IRQ_TYPE_LEVEL_LOW :
++						IRQ_TYPE_LEVEL_HIGH;
++	ret = irq_set_irq_type(wake_irq, irq_type);
++	if (ret < 0) {
++		dev_pm_clear_wake_irq(&pdev->dev);
++		pci_err(pdev, "Failed to set irq_type: %d\n", ret);
++		return;
 +	}
 +
-+	return devm_iio_device_register(dev, indio_dev);
++	device_init_wakeup(&pdev->dev, true);
 +}
 +
-+static const struct i2c_device_id max86150_id[] = {
-+	{ .name = "max86150" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(i2c, max86150_id);
++void pci_configure_of_wake_gpio(struct pci_dev *dev)
++{
++	struct device_node *dn = pci_device_to_OF_node(dev);
++	struct gpio_desc *gpio;
 +
-+static const struct of_device_id max86150_of_match[] = {
-+	{ .compatible = "adi,max86150" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, max86150_of_match);
++	if (!dn && !dev->wake)
++		return;
++	/*
++	 * fwnode_gpiod_get() may fail with -EBUSY (e.g. shared WAKE#), but the
++	 * actual WAKE# trigger from the device would still work and the host
++	 * controller driver will enable power to the topology.
++	 *
++	 * -EPROBE_DEFER cannot be propagated here since pci_device_add() has no
++	 *  retry mechanism.
++	 */
++	gpio = fwnode_gpiod_get(of_fwnode_handle(dn), "wake", GPIOD_IN, NULL);
++	if (!IS_ERR(gpio)) {
++		dev->wake = gpio;
++		pci_configure_wake_irq(dev, gpio);
++	}
++}
 +
-+static struct i2c_driver max86150_driver = {
-+	.driver = {
-+		.name = "max86150",
-+		.of_match_table = max86150_of_match,
-+	},
-+	.probe = max86150_probe,
-+	.id_table = max86150_id,
-+};
-+module_i2c_driver(max86150_driver);
++void pci_remove_of_wake_gpio(struct pci_dev *dev)
++{
++	struct device_node *dn = pci_device_to_OF_node(dev);
 +
-+MODULE_AUTHOR("Md Shofiqul Islam <shofiqtest@gmail.com>");
-+MODULE_DESCRIPTION("MAX86150 ECG and PPG biosensor driver");
-+MODULE_LICENSE("GPL");
--- 
-2.51.1
++	if (!dn)
++		return;
++
++	device_init_wakeup(&dev->dev, false);
++	dev_pm_clear_wake_irq(&dev->dev);
++	gpiod_put(dev->wake);
++	dev->wake = NULL;
++}
+ #endif	/* CONFIG_OF_IRQ */
+ 
+ static int pci_parse_request_of_pci_ranges(struct device *dev,
+diff --git a/drivers/pci/pci.c b/drivers/pci/pci.c
+index 77b17b13ee61..14ec6c064cf1 100644
+--- a/drivers/pci/pci.c
++++ b/drivers/pci/pci.c
+@@ -17,6 +17,7 @@
+ #include <linux/lockdep.h>
+ #include <linux/msi.h>
+ #include <linux/of.h>
++#include <linux/of_pci.h>
+ #include <linux/pci.h>
+ #include <linux/pm.h>
+ #include <linux/slab.h>
+@@ -1114,6 +1115,16 @@ static inline bool platform_pci_bridge_d3(struct pci_dev *dev)
+ 	return acpi_pci_bridge_d3(dev);
+ }
+ 
++void platform_pci_configure_wake(struct pci_dev *dev)
++{
++	pci_configure_of_wake_gpio(dev);
++}
++
++void platform_pci_remove_wake(struct pci_dev *dev)
++{
++	pci_remove_of_wake_gpio(dev);
++}
++
+ /**
+  * pci_update_current_state - Read power state of given device and cache it
+  * @dev: PCI device to handle.
+diff --git a/drivers/pci/pci.h b/drivers/pci/pci.h
+index 4469e1a77f3c..17d392dfda51 100644
+--- a/drivers/pci/pci.h
++++ b/drivers/pci/pci.h
+@@ -285,6 +285,8 @@ void pci_msix_init(struct pci_dev *dev);
+ bool pci_bridge_d3_possible(struct pci_dev *dev);
+ void pci_bridge_d3_update(struct pci_dev *dev);
+ int pci_bridge_wait_for_secondary_bus(struct pci_dev *dev, char *reset_type);
++void platform_pci_configure_wake(struct pci_dev *dev);
++void platform_pci_remove_wake(struct pci_dev *dev);
+ 
+ static inline bool pci_bus_rrs_vendor_id(u32 l)
+ {
+diff --git a/drivers/pci/probe.c b/drivers/pci/probe.c
+index dd0abbc63e18..27008e2ea5af 100644
+--- a/drivers/pci/probe.c
++++ b/drivers/pci/probe.c
+@@ -2749,6 +2749,8 @@ void pci_device_add(struct pci_dev *dev, struct pci_bus *bus)
+ 
+ 	pci_init_capabilities(dev);
+ 
++	platform_pci_configure_wake(dev);
++
+ 	/*
+ 	 * Add the device to our list of discovered devices
+ 	 * and the bus list for fixup functions, etc.
+diff --git a/drivers/pci/remove.c b/drivers/pci/remove.c
+index d8bffa21498a..e711ac1d4e38 100644
+--- a/drivers/pci/remove.c
++++ b/drivers/pci/remove.c
+@@ -34,6 +34,7 @@ static void pci_destroy_dev(struct pci_dev *dev)
+ 	if (pci_dev_test_and_set_removed(dev))
+ 		return;
+ 
++	platform_pci_remove_wake(dev);
+ 	pci_doe_sysfs_teardown(dev);
+ 	pci_npem_remove(dev);
+ 
+diff --git a/include/linux/of_pci.h b/include/linux/of_pci.h
+index 29658c0ee71f..649fe8eafcfa 100644
+--- a/include/linux/of_pci.h
++++ b/include/linux/of_pci.h
+@@ -30,12 +30,18 @@ static inline void of_pci_check_probe_only(void) { }
+ 
+ #if IS_ENABLED(CONFIG_OF_IRQ)
+ int of_irq_parse_and_map_pci(const struct pci_dev *dev, u8 slot, u8 pin);
++void pci_configure_of_wake_gpio(struct pci_dev *dev);
++void pci_remove_of_wake_gpio(struct pci_dev *dev);
+ #else
+ static inline int
+ of_irq_parse_and_map_pci(const struct pci_dev *dev, u8 slot, u8 pin)
+ {
+ 	return 0;
+ }
++
++static inline void pci_configure_of_wake_gpio(struct pci_dev *dev) { }
++
++static inline void pci_remove_of_wake_gpio(struct pci_dev *dev) { }
+ #endif
+ 
+ #endif
+diff --git a/include/linux/pci.h b/include/linux/pci.h
+index 64b308b6e61c..09134d0a559f 100644
+--- a/include/linux/pci.h
++++ b/include/linux/pci.h
+@@ -587,6 +587,8 @@ struct pci_dev {
+ 	/* These methods index pci_reset_fn_methods[] */
+ 	u8 reset_methods[PCI_NUM_RESET_METHODS]; /* In priority order */
+ 
++	struct gpio_desc *wake; /* Holds WAKE# gpio */
++
+ #ifdef CONFIG_PCIE_TPH
+ 	u16		tph_cap;	/* TPH capability offset */
+ 	u8		tph_mode;	/* TPH mode */
+
+---
+base-commit: 0e35b9b6ec0ffcc5e23cbdec09f5c622ad532b53
+change-id: 20251104-wakeirq_support-f54c4baa18c5
+
+Best regards,
+--  
+Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
 
 
