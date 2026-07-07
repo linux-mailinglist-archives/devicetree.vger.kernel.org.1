@@ -1,202 +1,136 @@
-Return-Path: <devicetree+bounces-322026-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-322027-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id sxJPF476TGqzswEAu9opvQ
-	(envelope-from <devicetree+bounces-322026-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 15:09:34 +0200
+	id GeoeLvD6TGrHswEAu9opvQ
+	(envelope-from <devicetree+bounces-322027-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 15:11:12 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6D2B71BB2C
-	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 15:09:33 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 16EB171BB66
+	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 15:11:12 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=QOGn9bR9;
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322026-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-322026-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=intel.com header.s=Intel header.b=VMgy7Mpm;
+	dmarc=pass (policy=none) header.from=intel.com;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322027-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-322027-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 611D4301C400
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jul 2026 13:09:33 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 40ED53024E87
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jul 2026 13:10:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5F363F99ED;
-	Tue,  7 Jul 2026 13:09:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B0E341611D;
+	Tue,  7 Jul 2026 13:10:29 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9EE0B3DD867
-	for <devicetree@vger.kernel.org>; Tue,  7 Jul 2026 13:09:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4198A414A11;
+	Tue,  7 Jul 2026 13:10:26 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783429771; cv=none; b=OInSK+gbKsTG9OUHBfiPmJ+Zv6oS+PFlFNEhlAV5KVfef6fVimyRQVTk+waCRHhaDy28LhgqOA4lF6RI+GVhOURhWgVCPKlcizCs54LyiX5LclQ/wil5JrnNL8CKw+ldkI1qfsJhp2o27IgQP2gXCLeWxc668DsKmd4DhtOuhek=
+	t=1783429829; cv=none; b=L47ZSYunigfl0Sv1lxkfoX/l3UHGeDDYWCb20BjKamwpXJtfWwhvcGG/IWzHiWdz+Mfjte6JdEU8KcU9BeRAn0vMaFnI0uFvbkA0lfNlHBTqkHPmek0CwlLTBmqAyaOqvgQ35ztVjsteHqwu9+jcoQZ2RD+OG57p4zZKpSeBEFw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783429771; c=relaxed/simple;
-	bh=COTHQ/fLA75npUdzOnR9vrdCV2AUC4ozcVIcyNs77UQ=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=MZVdJik5Ac6xVvw3G+URJpWKblDsCPpb7uztLw53SV5u5REm3U4EZ6UG1GTLNZSitYxJUbWQ2EYIMUQOV6IZD7QuedILxEEuZKFAtvsC7kpl5tnivnqb73Ervfca3Xxcu9HjlD2z2911lbAkz573jw5Vd48CbGLerz9U2Q3UwWg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QOGn9bR9; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E85091F000E9;
-	Tue,  7 Jul 2026 13:09:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783429770;
-	bh=HXThLHOQBHQwIlMvgnvFRGJZ5prpBSaI8kRxS5A0xUo=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=QOGn9bR9YUcDR3uPxS9xcrujYzK841ffM1eN1UZNpcWXs0St7qbpDsu9ZI4cmASbS
-	 Bo7OJeMLMn2j6629+DXJS2/jU0RTuuKAIilaCyK1Z5xDbiwaZA2skFP/rUNMsQlgyK
-	 C2nuyz0JZGkBHOPq1A9LmE9B4zVR15XeoOVaDwe03bFakXdS6iuyq8jOYRCW2FXmie
-	 571glkMhLo00ML20hnoueNd1GBJAjIVO1Q0JRwaLGYh2qWO2zRXEetzHgEgBTZBwTr
-	 qvvNg91iCSvPPyJnCBkiVp6Ugzh32ifPMHy4Un8AIlLqpnwNvm90wJ9XYOp5kK2LPR
-	 YydU955ZTPvdw==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v16 3/4] crypto: spacc - Add SPAcc AUTODETECT Support
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Pavitrakumar Managutte" <pavitrakumarm@vayavyalabs.com>
-Cc: devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org
-In-Reply-To: <20260707125311.2398031-4-pavitrakumarm@vayavyalabs.com>
-References: <20260707125311.2398031-1-pavitrakumarm@vayavyalabs.com>
- <20260707125311.2398031-4-pavitrakumarm@vayavyalabs.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Tue, 07 Jul 2026 13:09:29 +0000
-Message-Id: <20260707130929.E85091F000E9@smtp.kernel.org>
+	s=arc-20240116; t=1783429829; c=relaxed/simple;
+	bh=DWgZDWbB9020CtvFIZA3KlQkx6d0EeJL43ywPpDG4Tg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=GF5efP8dt4FG6aST4wEheRZn4wJ5TSMTft9bemOAbsJZzQV+DRdA/ifdIRZULhNSTMBQA+G8yCuPzq1mcKLhE2TwK4JQWuYTW60xS1QJpILI/Dtr0ZhaJpv+oUsER25CW+IdHfqjcZdnD+XXHUvPHwjY0jB0hr1qWBl5oJUx/5o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=VMgy7Mpm; arc=none smtp.client-ip=198.175.65.16
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1783429828; x=1814965828;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=DWgZDWbB9020CtvFIZA3KlQkx6d0EeJL43ywPpDG4Tg=;
+  b=VMgy7Mpm2SkuOcl+RmYz5sKX+fKIjGpHIxKDZj/6hh7M68ZjXd0Tmoha
+   clJsBMCA2dWqCRvSDmAqRsJGOL4Vm5YmwVr6n+q7Er0IFNPMmEEfqiTeL
+   XXYJXLddAxMVJEdhxlwO8hTyZmOl62X5u5pvZKDMYuwBOssTKkI/A43S7
+   ouDkvndEgN9+F+h1mrmFXGKugN92l7pcOxI2UPvxO+pplrRjKDzCrmMht
+   MfLqvWR9Yv5Vn+vz7EX4QyX4gt9Cv/im5E7v/Izrussjc0cy15y2ErBH5
+   lr9LPAvgkKsshV+8hwpuEKNMxsgaKHeheiZFfgm8fKfhIfuTg8XoAZcC0
+   w==;
+X-CSE-ConnectionGUID: GOWt4qwcS/yr4VeBJuCmQw==
+X-CSE-MsgGUID: YpoUuyxpRneZGId6qLDOVg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11840"; a="84265240"
+X-IronPort-AV: E=Sophos;i="6.25,153,1779174000"; 
+   d="scan'208";a="84265240"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Jul 2026 06:10:27 -0700
+X-CSE-ConnectionGUID: GCopX8O1Tuu3aSyZ10aj6Q==
+X-CSE-MsgGUID: k55CGH2+Q3WHtLZVrkOiJg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,153,1779174000"; 
+   d="scan'208";a="284099537"
+Received: from slindbla-desk.ger.corp.intel.com (HELO localhost) ([10.245.245.36])
+  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Jul 2026 06:10:23 -0700
+Date: Tue, 7 Jul 2026 16:10:20 +0300
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Md Shofiqul Islam <shofiqtest@gmail.com>
+Cc: linux-iio@vger.kernel.org, jic23@kernel.org, nuno.sa@analog.com,
+	Michael.Hennerich@analog.com, dlechner@baylibre.com,
+	andy@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, devicetree@vger.kernel.org, linux@analog.com,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v8 0/2] iio: health: add MAX86150 ECG and PPG biosensor
+ driver
+Message-ID: <akz6i9yq8ENt-0FP@ashevche-desk.local>
+References: <20260707104234.1957104-1-shofiqtest@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260707104234.1957104-1-shofiqtest@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [-3.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[intel.com:d:+,kernel.org:s:+];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-322027-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-322026-lists,devicetree=lfdr.de];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FREEMAIL_TO(0.00)[gmail.com];
+	FORGED_RECIPIENTS(0.00)[m:shofiqtest@gmail.com,m:linux-iio@vger.kernel.org,m:jic23@kernel.org,m:nuno.sa@analog.com,m:Michael.Hennerich@analog.com,m:dlechner@baylibre.com,m:andy@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:linux@analog.com,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	HAS_ORG_HEADER(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:pavitrakumarm@vayavyalabs.com,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	RCPT_COUNT_THREE(0.00)[4];
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.linux.dev:replyto,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,vger.kernel.org:from_smtp,smtp.kernel.org:mid,sashiko.dev:url,vayavyalabs.com:email]
+	ALIAS_RESOLVED(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,vger.kernel.org:from_smtp,ashevche-desk.local:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: E6D2B71BB2C
+X-Rspamd-Queue-Id: 16EB171BB66
 
-Thank you for your contribution! Sashiko AI review found 3 potential issue(=
-s) to consider:
-- [Critical] Missing hardware job cancellation on timeout or interrupt duri=
-ng SPAcc autodetect causes DMA use-after-free, stack use-after-free, and da=
-ta corruption.
-- [High] Abandoned jobs from autodetect cause `spacc_pop_packets_ex` to abo=
-rt, hanging the STAT FIFO and blocking subsequent jobs.
-- [Medium] Autodetect test vector failures do not fully clear the 'hash fla=
-g' or override specific ciphers, causing broken algorithms to be falsely re=
-gistered.
---
+On Tue, Jul 07, 2026 at 01:42:32PM +0300, Md Shofiqul Islam wrote:
+> Changes in v8:
+> - Fold MAINTAINERS entry into the driver patch; no separate patch
 
---- Patch [3]: [PATCH v16 3/4] crypto: spacc - Add SPAcc AUTODETECT Support=
- ---
-commit ecbce57497637f8381b32aed9f07d6c23e608ed7
-Author: Pavitrakumar Managutte <pavitrakumarm@vayavyalabs.com>
-crypto: spacc - Add SPAcc AUTODETECT Support
+All three emails were sent as standalone and not in a properly chained series.
 
-This commit introduces an autodetect configuration mode for the SPAcc
-crypto driver to dynamically discover supported algorithms.
+-- 
+With Best Regards,
+Andy Shevchenko
 
-> diff --git a/drivers/crypto/dwc-spacc/spacc_core.c b/drivers/crypto/dwc-s=
-pacc/spacc_core.c
-> --- a/drivers/crypto/dwc-spacc/spacc_core.c
-> +++ b/drivers/crypto/dwc-spacc/spacc_core.c
 
-[ ... ]
-
-> +	if (err =3D=3D 0) {
-> +		long ret;
-> +
-> +		ret =3D wait_event_interruptible_timeout(job->waitq,
-> +				job->job_done,
-> +				msecs_to_jiffies(SPACC_AUTODETECT_TIMEOUT_MS));
-> +		if (ret =3D=3D 0) {
-> +			/* no response; caller disables the whole mode */
-> +			spacc_close(spacc, rc);
-> +			return -ETIMEDOUT;
-
-[Severity: High]
-When a job times out, it is abandoned and spacc_close() marks its slot as
-SPACC_JOB_IDX_UNUSED. If the hardware eventually completes this abandoned j=
-ob
-and the STAT IRQ fires, will spacc_pop_packets_ex() encounter this unused
-slot, execute goto ERR, and skip processing the rest of the completed jobs
-in the STAT FIFO? Could this cause remaining jobs to get permanently stuck?
-
-> +		} else if (ret =3D=3D -ERESTARTSYS) {
-> +			/* load interrupted; caller aborts and fails probe */
-> +			spacc_close(spacc, rc);
-> +			return -EINTR;
-
-[Severity: Critical]
-If the wait is interrupted (e.g. via a signal) or times out, the software
-state is closed and the DMA buffers are immediately freed by the caller in
-spacc_autodetect().
-
-Because the hardware crypto engine is not explicitly instructed to abort
-the job during spacc_close(), will it continue executing and asynchronously
-write its result to the newly freed DMA memory?
-
-> +		}
-> +
-> +		job->job_done =3D 0;
-> +		err =3D job->job_err;
-> +	}
-> +
-> +	output_zero_len =3D !testdata[algo_mode].test[keysz_idx].outlen;
-> +	output_mismatch =3D memcmp(testdata[algo_mode].test[keysz_idx].data, vi=
-rt,
-> +			testdata[algo_mode].test[keysz_idx].outlen);
-> +
-> +	if (err !=3D 0 || output_zero_len || output_mismatch)
-> +		spacc->config.modes[algo_mode] &=3D ~(1 << keysz_idx);
-
-[Severity: Medium]
-When an autodetect test fails, this bitwise operation only clears the
-specific keysize bits (0-6). Does this leave bit 7 (the hash flag, 128)
-set?
-
-If bit 7 remains set, or if the algorithm uses a hardcoded check like
-CRYPTO_MODE_AES_XTS, will spacc_is_mode_keysize_supported() bypass this
-failure and falsely register algorithms that the hardware does not support?
-
-> +
-> +	spacc_close(spacc, rc);
-> +
-> +	return 0;
-> +}
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260707125311.2398=
-031-1-pavitrakumarm@vayavyalabs.com?part=3D3
 
