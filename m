@@ -1,106 +1,105 @@
-Return-Path: <devicetree+bounces-322069-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-322071-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id CEBnLucCTWrgtQEAu9opvQ
-	(envelope-from <devicetree+bounces-322069-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 15:45:11 +0200
+	id d8g3JvcCTWrjtQEAu9opvQ
+	(envelope-from <devicetree+bounces-322071-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 15:45:27 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F68F71C13F
-	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 15:45:11 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3469F71C14D
+	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 15:45:27 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=YW+u6zyh;
-	dkim=pass header.d=oss.qualcomm.com header.s=google header.b=PO4VHMMZ;
+	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=eOUjFhc+;
+	dkim=pass header.d=oss.qualcomm.com header.s=google header.b=CxAFv3c+;
 	dmarc=pass (policy=reject) header.from=qualcomm.com;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322069-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-322069-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322071-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-322071-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5A900309E590
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jul 2026 13:36:42 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 0A2A630C1FFC
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jul 2026 13:36:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B40CB41F7DE;
-	Tue,  7 Jul 2026 13:36:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35BFE420E93;
+	Tue,  7 Jul 2026 13:36:28 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A44C141D4EE
-	for <devicetree@vger.kernel.org>; Tue,  7 Jul 2026 13:36:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E38D41F7CB
+	for <devicetree@vger.kernel.org>; Tue,  7 Jul 2026 13:36:25 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783431384; cv=none; b=QwDGA7zotJXKwOEj/2C5KcEXQTihJXU7PH2WiiLEt01YCmj986kckfYgTNwJGhe9PeKHYfdaOKv90a+hkKCD45XWCZ8CzQYPjz3owtPjLm9S9ACIugWjQOhkXiGEZ6xBm1UvR/Nmd/Xxn1cm0C7VKacAyGPoaTdbDl4AUMIJjs8=
+	t=1783431388; cv=none; b=saV47d9BsX70akCywAOyYhJluWm0DS6Sc8QEg3bAuf/mF0JuCvsGFkb1MQ7ujUdwLXFvu2+GkaISgW9rHjR0psRtkgYi3Av/qrPPhc2V3OGXl6Y64PwxVrpWsUI7sj1qX+5x2DOtxUYvRkbl/IUgHJVDNniyjfE78r2tJX8UBpA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783431384; c=relaxed/simple;
-	bh=LBYnKLNV6DLfCXsjJVNhlhUDruSjToXTcPI2Df9FIBg=;
+	s=arc-20240116; t=1783431388; c=relaxed/simple;
+	bh=XQKaEmXy+IkQvNCpt68fGOLoSj/EmDQxgixJ3SA/H+M=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Qsk/rg1Od5RxFv4M59PSmDqwQvZasBRNR3+UXFv/w1ICmoHHdOMCorqd73qXevEwYt6RTqVG2Vw0xwEA8YmnmjzwHVs0nWxouO0a/fgTX+8LnMfoW+E6AKug++XXyAIy2JQnNr2b42TBdo8+K0qhfxDBFH47xkaZK7W3EV/ucYA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=YW+u6zyh; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=PO4VHMMZ; arc=none smtp.client-ip=205.220.180.131
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 667C9LtZ3740877
-	for <devicetree@vger.kernel.org>; Tue, 7 Jul 2026 13:36:20 GMT
+	 In-Reply-To:To:Cc; b=drGAwSYh/GLvFpv+qqRSK9TBi+WUbAQxA8cs0IpVrc1HIl54QBw4Kb6J5uVFwEVPPYxVNPTz79Iah/4bn4DWIn/rw2M+C2ctgCby6qwB0xjmc98kf9xsy+jgt5NNIjeIVa73nLFlRoyZ3kfd9MtUNaQTHueBRcpKBKz+RMAs5tg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=eOUjFhc+; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=CxAFv3c+; arc=none smtp.client-ip=205.220.180.131
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 667C8p5J3749154
+	for <devicetree@vger.kernel.org>; Tue, 7 Jul 2026 13:36:24 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	EfPCKJCX9Psi/X+8S1LP/ndB3e89+jWH97ope0ZUE88=; b=YW+u6zyhTz0zSFHy
-	t+CYxd4mXuvLPukcZHfJMqNH6hDZUSRtgdeJlinwamW0oPtSJOrvV8i8poaJC5gz
-	PulKv2yRvSNMvlewhozbp4Zaa9OvZixVWwx0k8hZab95KIyU6PRkKjK894ePanKg
-	itfa7CKVfh++bWXlW/P67M4pTsG2LnSgkgGy8FIrfXEbYXAF7Z5mpzatNf3HymhX
-	xhzhXMquRUHi4W3vCC3fuahoPUaPXx8YWvEYp7FIoMl86F2rHCFbaeYsM4ACxMDk
-	dAvROyvfukZdzV3aHmXqb5aH+Mn8dSgMhdr6XaT42zmglwV+dcoo+Mm4/NNLaCya
-	3ntK3Q==
-Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4f8v9a9pm7-1
+	8S1EgtHaaxWnA0b5bvyvYYEoM6PzdfJqkWhdR0zWP3M=; b=eOUjFhc+cvhpNz7d
+	D6L/mofikMZrjEJmFzPY355TJ0ora6WLsGjVxHS8UHYJRV7DndX2kRzmoksn004Z
+	0i27orBiv6MfpYdkMGfAgBxWnHWwZjX0eYl/4h018bY4WViT8+rjkKcfk7vHJFWP
+	dSf+9GHQ2Ke9RMK+E5nIoJ57H7heETruyVZxaKsapAGpjgGqf4sbayaH/9umyRaF
+	5EZRykWwdfpYTYp8KyxSHjeDA/RC38M4Oka8tbHSmSZ1DoaSC3h6qf+PQ3ENOT65
+	1QFFr/SDLiG+wXiujBv1I7efj1qXCddjzQn7PBgFBNDJhCgYj/VL2pdvFcM7XchG
+	5rPRNQ==
+Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4f8vdj9na6-1
 	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 07 Jul 2026 13:36:20 +0000 (GMT)
-Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-51c21c01cf3so90908041cf.2
-        for <devicetree@vger.kernel.org>; Tue, 07 Jul 2026 06:36:20 -0700 (PDT)
+	for <devicetree@vger.kernel.org>; Tue, 07 Jul 2026 13:36:24 +0000 (GMT)
+Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-51c0199faafso48381701cf.3
+        for <devicetree@vger.kernel.org>; Tue, 07 Jul 2026 06:36:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1783431380; x=1784036180; darn=vger.kernel.org;
+        d=oss.qualcomm.com; s=google; t=1783431384; x=1784036184; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :content-type:mime-version:subject:date:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=EfPCKJCX9Psi/X+8S1LP/ndB3e89+jWH97ope0ZUE88=;
-        b=PO4VHMMZ2DZSZJ0SYhASmU0l9LMlcGCQd0nruAxPmgPTF9CNamtkgH0hWRGy8serus
-         TB46Mtn+uZxtkRuQRZqgzs6xpjVN5VRWeqMRyGoiycC6L3ElADTE7iJe0/wupEZcWaGj
-         Aq4rwJIQD2u/KDdD0jHA3SU/pCQKjz6mear7/sXvGBcoLQiWsEiwsaLlD3pQUkXQjdmB
-         2hXHIiMPT8B+gyxco8AiCsgJDiwxpYzpvxaHYMaI9PuExsrVxnRobRlpfYnrh7L5l0WI
-         +D7m6HaFhl2mARVGFYlmXE206EwZG3yD+h9Alu/1Jb+pGrFjykjt0HKh6PB+5d9dgbEk
-         9SFQ==
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=8S1EgtHaaxWnA0b5bvyvYYEoM6PzdfJqkWhdR0zWP3M=;
+        b=CxAFv3c+OedGipyOheZB1TKNmepyP+Z3gatjzF54u26n3BaaWaIspFjECBdVwIzAMY
+         fKGGPxa29elaudV9RbjeHF3WELrnAqxCPjKghA/XxJq5pS/pUw4ttuEZdVV2d6cYGTW0
+         M1YGbYresGbqecnDXJKTnGWswtAjmmuBYbTP6svFQTMnkOPfz6Ph1Lajguxs+e+jebUF
+         F8oM4OzZtEtEoo3wiyQ9bUnEoVnaNoSkh+4r5hKfgQuMiVMwmuyZi+H2XLFmHyD6DsKM
+         sjNDJWadbeMysnLIPyEmFkU3P9tkWp6k6tztMJH+TQAEkCEdXtih2er5WpOsYY1uorHG
+         Dz9w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783431380; x=1784036180;
+        d=1e100.net; s=20251104; t=1783431384; x=1784036184;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :content-type:mime-version:subject:date:from:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=EfPCKJCX9Psi/X+8S1LP/ndB3e89+jWH97ope0ZUE88=;
-        b=pTjYFKA7qB4YGdnHHoviYrZkvt04/SyptQtRChE39yvvKC24GKHc5DUVYbLJWfzEWp
-         wNtqs4N5NFuBadUqOqZTW1+Pn6SsYTuITcyr7J8LBEwY+TAQEZREV8K06mNKNG+A+rMw
-         f6nzsVYsgDvybVpXMsJFZZ3ublPW7aeTRCPCeUYEu+rgqayDQpsWttjYqj4tKAjZi72K
-         /fZN/0eOSRTDvmJiMUdFzQ1Amxl1XtztMa9AxCmuxOI0pxjDw/FDxAkDLdxK18x7ol5q
-         LMEMS7HYcFuUjpvLqAsX1TvidkAjFWHHVb14paca/15kjQ2QkJmVgBk/Kj8TaDIbP6F+
-         shWw==
-X-Forwarded-Encrypted: i=1; AHgh+Rq354tenmTXXYhh+2T2SFpPoDr8L5kvhV76cZkwrlNtM4fy9GXNawWsiY8yrZFsYHMyMgvg0zogIvqi@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxd+bFN06YVbHuhx71uLBfMgfbXodXuv6GBRsBzwYbhfqrjcF/C
-	T/jKEdRcCPVXX4S+rgXBPWKrUOKihsMSa4fN3ZjqMb6PYvBeIZAklSDTstL9GX7iutg5BPl+aBB
-	LNerDf+/IUvN0S5mAUotvf3rvEo34EVVmLxUu4jrLi2zISJ8GJXMOe7xuD7cxipzw
-X-Gm-Gg: AfdE7cmVLFApKv3BkLU7RLT5+WVwY/N5Q3WV4p5qLajdy7Lzscjms7r3WXFbbt4LtT3
-	ntcK3cZv4VkpbYwR+e6+3X5WU7aIWoOfgo9ROKFRWY0b71LGeBDw0IrV0zXg1jl1+uc49MJw5Ol
-	+omnkXnYLe+yOVdgyFPcs5jHw5kc8TsiYSdfax0643fDkxADKWkeeZBtZpaBjHGIFfjLP1A7P3g
-	ajOaWqvJfo95DdRiYuPaZtvFzgA4Pqr2/N/VNflAmx/JhUJ+hz8ror6i000vb65gK1QEZF9Dv17
-	CImDxgHrfX41fZRwzdM08sehXDeK2wF7QIcmTr7dB2bKWSi7X31mDbWO9KrnWhNyBd1vM02k4y8
-	3uLl3Vq2HQiEmYZ9+FM3w3b+rFXhWwr8kCzc=
-X-Received: by 2002:ac8:5e46:0:b0:51c:147d:9bec with SMTP id d75a77b69052e-51c747be073mr54621611cf.6.1783431379689;
-        Tue, 07 Jul 2026 06:36:19 -0700 (PDT)
-X-Received: by 2002:ac8:5e46:0:b0:51c:147d:9bec with SMTP id d75a77b69052e-51c747be073mr54621331cf.6.1783431379194;
-        Tue, 07 Jul 2026 06:36:19 -0700 (PDT)
+         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=8S1EgtHaaxWnA0b5bvyvYYEoM6PzdfJqkWhdR0zWP3M=;
+        b=dWLW9eznB1W4ywQWFEO0UgwxW6gNu2Ys7Zvf4sZ1F29ZwTqoAIrNJiqr0WFUDKDv5k
+         SfO6Z2OXkqEMl7apcOe2g8i3WxSq+FZL8s7Wtjksqtcy8J+SEGBoqF8Q/pupYpAQGk8R
+         9ES0OZg+tlfc21ww1mWX+E8R2UtOf68vcV+AWofQkV0MpAiBM6SJWMNHF8/FJ4VBUvsn
+         /rBV/e85tAHmNw9GPCT+0rNVC/fn/bT43UT7fHOqbbdiA7eyB2vTjejbos7kFX9/c97d
+         SU91tQb0GEt4sAWpAYy8H0ffDtONuZnNwebOrSQmopzNIHsqyqhaIUqfOUWSPHNi0q4P
+         wm6A==
+X-Forwarded-Encrypted: i=1; AHgh+Rr0pYsmlHB+lRPYOu0Bw5QAZvSAoOknRmjqmdTonSg+rhgQ9d6Rrbpw+ZOy6V9olXUTLAGcPjmKAf8e@vger.kernel.org
+X-Gm-Message-State: AOJu0YxDtVPS72wm2BFYglFqDMg/GNKvHcSMH9nfcM4T6vIjRwWd2J+5
+	GJXlsJNzAv2wjTi8ZyKdQ6+PCP4I4JPUkpas+QGL/Bxj52scus2WZbQjBp/wnkzs3wndrHob4ar
+	ybinXJl9EFhD9wO2UxSE3uwL8ColNf3vXNRCO0G+S4M5v2WqX3jjNMTIkr6ghdm+2
+X-Gm-Gg: AfdE7cmmVcYegl8/LgiCITBojGcvRJJbXeRoTxXqyn3zma9t4R+p7AZ+88RyPY+76dL
+	UgTc0TwqpHSOcDhGDZmsfuPHjKDYEe3zFWXtDiGFQ5wxs+/WU+vo5feqiCxOmgqkAxE/KFh65xd
+	BXuiuO8JaQ+DeDI+iR+g8Kjm4XepD0h7n2rgMjjDHYOQgRhgX7bqjxD2Yk9OfKQQBAjq6uWQrOw
+	XXihqoUImkbOS5NrKnvT6exbipwXfAIh0kCRQBsR3jn5eIbDB1PEI7A5nrnhnn80Arri6cAW2f6
+	aubDutVuvxfthuk3wAxpKRdMWTNFz3Au/DVTrNAftJGtGYf0cK7znW/ziS/qhFyOg2m05PM0GBj
+	PSp5kQIeVkVPXuVaSkLfJEs6uFz1RXNtri4E=
+X-Received: by 2002:ac8:5806:0:b0:51b:efbb:fbc with SMTP id d75a77b69052e-51c74829b78mr51640071cf.33.1783431381829;
+        Tue, 07 Jul 2026 06:36:21 -0700 (PDT)
+X-Received: by 2002:ac8:5806:0:b0:51b:efbb:fbc with SMTP id d75a77b69052e-51c74829b78mr51639541cf.33.1783431381212;
+        Tue, 07 Jul 2026 06:36:21 -0700 (PDT)
 Received: from [127.0.1.1] ([178.197.223.174])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-47aa039b0cesm34258187f8f.22.2026.07.07.06.36.17
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-47aa039b0cesm34258187f8f.22.2026.07.07.06.36.19
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Jul 2026 06:36:17 -0700 (PDT)
+        Tue, 07 Jul 2026 06:36:20 -0700 (PDT)
 From: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-Date: Tue, 07 Jul 2026 15:36:00 +0200
-Subject: [PATCH v2 2/4] dt-bindings: arm: qcom-soc: Document more of
- existing legacy style compatibles
+Date: Tue, 07 Jul 2026 15:36:01 +0200
+Subject: [PATCH v2 3/4] dt-bindings: arm: qcom-soc: Validate nodes with
+ fallbacks
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -109,7 +108,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260707-dt-bindings-qcom-soc-naming-v2-2-1b7d695be2e1@oss.qualcomm.com>
+Message-Id: <20260707-dt-bindings-qcom-soc-naming-v2-3-1b7d695be2e1@oss.qualcomm.com>
 References: <20260707-dt-bindings-qcom-soc-naming-v2-0-1b7d695be2e1@oss.qualcomm.com>
 In-Reply-To: <20260707-dt-bindings-qcom-soc-naming-v2-0-1b7d695be2e1@oss.qualcomm.com>
 To: Bjorn Andersson <andersson@kernel.org>,
@@ -120,55 +119,55 @@ Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3190;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=10555;
  i=krzysztof.kozlowski@oss.qualcomm.com; h=from:subject:message-id;
- bh=LBYnKLNV6DLfCXsjJVNhlhUDruSjToXTcPI2Df9FIBg=;
- b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBqTQDJhsSScj7W+3/2MZECzUJYRXNZCl6MFzC3K
- ayYFHdRZ9GJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCak0AyQAKCRDBN2bmhouD
- 11JwD/4xhS1F45tuEfqYnXN/zwejXXePnPIdnwnDpSPlz4rRqFJ/ALIwjX/cxhJUquGTJm6RrDc
- vSfgr9qohFVpwqVmMUgE3OTInC3SLByHs12ZGTq17QXqyjwl02VkhhK2KVP9Ps0OqzZoIJvUOb2
- aTb1QOI0h6kqqbk2diqvDVZf4SkwBb+6t7XopnPdgG8dM5qz2nwkQ9B48PzP3ys+06zItTrF9bK
- qlYHve2dqb7mQHyqy2VB/zgimcawBxGbbVThvo/bOKTrjkQDz7Unj47/Bn+hUxQ/vHbpmO7MCgI
- Ld10jid7pKQVw1jwlJwUA1wt1vQcMhjuvBo7bgv7xIqwpD6Vzyk81POrp0I6ilmGyABVBxpfADx
- +682HnwtBnvRlID2lBWzQTEXsqN/zazX9WCdtlmYBKTBPcRH7Lac6pIDu8ytkjqocI7pPYRpSpI
- Q0plpeTg4dSv1+gVvPWhAJ74H4dNkgK2AVaWudHMOKRnIshm5/hl7SeQd6rIsxFN9pxYZ2dl9M4
- gBAjrWRmW/1A2Cx5VOFIVm6CoUjkGunlBGrbJbxxh+W46aYm9cdEpjOsYS5LMrIu8DpCjzJ+dfd
- f+BDXCDvaqBNvW77V9IAQBIQef9m7h8+g14wfyD7q7PtUmy4WzDuHM5WlkxQM5XYtPg7sol/jsy
- zdyQAtLbwIYA6WA==
+ bh=XQKaEmXy+IkQvNCpt68fGOLoSj/EmDQxgixJ3SA/H+M=;
+ b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBqTQDJkPs7S2N7YzThoHU5gWfvzN7jntYz8DT+F
+ RaU1hGVoiGJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCak0AyQAKCRDBN2bmhouD
+ 1/AuD/4wFiKzwwu+rdd6PQUIuFOlV7kwafJTtWZi2xVPvF9tZ6+xdIY+fbeVFaLvOowjaRs4pmr
+ aP3wEKRGahHe1ftanfEteW8wUelMQryFXx10a1K2YayM7FtATwDewntJ1AvKZZRQH//9hzfJSCY
+ y2ZaQKLxxd1ZhL0/xzFsfDtCY6JBHT12vOOst0Ml8zoNXxqXa8rbvFn+Tz93C/pHZFr+Cw9fvPv
+ 91KY9R8AAT6jAZ3dYv3rbUBOhDHnTo84DcTpeyp2urf3sOFEH6eODsSwEMzSn7Yhl3Wv4/2Kmpd
+ PnqMKooLZAsUOdIehW9bOaNHIBPQWDi4V9gFhXvxA9e0Hdg8PrD5O7pDniI+34NHR2+9rKRJZ54
+ 0C4Z/LAxM3Jj4uBidNc/3VI/F2LcCDvK8K5B+HGum8IWC/bt/v7BjROCxZ7gKQTIghcgudxu7Ct
+ 77uqDYVt74SPsnC1iIuNa42NuJs2y4+WuNN8OgEb6qhh+fgVedZq6v9odo9ODTByaNP4oSW0VmV
+ U/lP/4KCElXEovsX+n7XTFh3mfQonPzrBXZDAu6eDeyUFppnpdo9/TckT5GHoQHwYJ8CwTeKNS6
+ Ib71bGsu0moOBf099KW/zF3JiHDY/iL121e2jI8fc2PYV3NRbv8foCrYR/eLObcXjaHE7/GNys0
+ SsiA9eTnyyegElQ==
 X-Developer-Key: i=krzysztof.kozlowski@oss.qualcomm.com; a=openpgp;
  fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
-X-Proofpoint-GUID: rgi5ZOqBfAVozkIMmJu_U_9rQes5UXDx
-X-Proofpoint-ORIG-GUID: rgi5ZOqBfAVozkIMmJu_U_9rQes5UXDx
-X-Proofpoint-Spam-Info: AW1haW4tMjYwNzA3MDEzMiBTYWx0ZWRfX02i8+oKbR+3H
- d1+eUzP9ZN/vi6bQnVc/jYqMcz4GUz5mHj/jpJiATcXOvvs4L6C4Pfx4Si1qyKOTQSdJ9PbIdHp
- z8MJbDkaIzP1xcswbU+W9jHttZZTDyw=
-X-Authority-Analysis: v=2.4 cv=b9yCJNGx c=1 sm=1 tr=0 ts=6a4d00d4 cx=c_pps
- a=EVbN6Ke/fEF3bsl7X48z0g==:117 a=N6niishs+lR9UBL1FN3Qrw==:17
+X-Authority-Analysis: v=2.4 cv=R7cz39RX c=1 sm=1 tr=0 ts=6a4d00d8 cx=c_pps
+ a=JbAStetqSzwMeJznSMzCyw==:117 a=N6niishs+lR9UBL1FN3Qrw==:17
  a=IkcTkHD0fZMA:10 a=RAioF0-LDSMA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=ZpdpYltYx_vBUK5n70dp:22
- a=EUspDBNiAAAA:8 a=zJ_s7DmfhzOieU7mWMIA:9 a=QEXdDO2ut3YA:10
- a=a_PwQJl-kcHnX1M80qC6:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNzA3MDEzMiBTYWx0ZWRfXzqeQPGrsHhcG
- fjS9ovuEDDLFPDjKiAxM+G6OrfGObVpPfkmz3Bd79VUi+LUPJrKxaHwbHnOf+NtoL0BJGYESHgZ
- Pow20FJHjZFwIhAMTjOgnQwYMnlYx08m8yHQPfk/tI59smlhOYe5rlctiUNvWbvzIHXC08Urwu5
- pdwIIsqIBlOqNxg7bkYnQ4hirJr0BY1ns33/59/nnqXtM94ZV8i7NobyVbiK+Vrt/wWUMGGFZ4C
- Mpsa1gwI1VQXCXpYLGiunenV/Xnm92cXN1BHzOWb4HkzflnJRXICGMrR0T+2zGyZAJparR3w5fU
- UU1v7Q2kxgfsrOMaAP0GGspTndVPfld5Q+0gT58xBUXqMpmHuiNJ/blpdS37AIFZG4xPnTcGa2e
- lYK37Gb4wshOrb9WPqqv8Q8SuNTYFmD1dSRcJZ+OpTlin+eO+iyrjXV+iIptEl5mlG3oANCig9y
- zNqKJ5ot0VMt/KkkkoQ==
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=3WHJM1ZQz_JShphwDgj5:22
+ a=EUspDBNiAAAA:8 a=lNdm6IUHfFykFOeWzTwA:9 a=QEXdDO2ut3YA:10
+ a=uxP6HrT_eTzRwkO_Te1X:22
+X-Proofpoint-GUID: c6KDlH4EqQaBIHeGcKD7xwakmGX-Uw1C
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNzA3MDEzMiBTYWx0ZWRfX/ebF50zyC9Hd
+ UPvdq4VFw78oA3HebjcZpfquptWnhhLbEQE/sIUE9hAH6MA11jQpezs6xbQVlWpifb8ncVvraa3
+ duINxC/uxRG3jMXxUxA9yXlz4ICKlkJNF4QXvgupyFd/H333hSRpWYKZOHz8duMtnKlSti6oYO2
+ 1iMGg/8N1UJoJukX3aQIxbpknmIXd0BW8xVhEoHTF33BWj+4hzq1jqUwVMK0QEiq873OOIJYUCf
+ ASZw8l9tjlveDGabz3Uu2TfTzRBKSGuyGeUKAAQf2ivhPsIbDF0yM+ZNRuS7oC26QMflQ9V9ONC
+ HtLe+BAT+VEDoyX2nQdcnerbAKbaZth7Olhgl4KUzOQtbULybXTcK1G55XRILhkI+GnQNeINm0d
+ pcUoPQepFNef3k0V+rLk37XKDRoFGc5gSTpZWmojhyZCmtsSHguLpNc9ulEuBTWFSXO5hSNUGN0
+ XcDi9EshGaW0VrJ922A==
+X-Proofpoint-ORIG-GUID: c6KDlH4EqQaBIHeGcKD7xwakmGX-Uw1C
+X-Proofpoint-Spam-Info: AW1haW4tMjYwNzA3MDEzMiBTYWx0ZWRfX72wavPSh9+7w
+ dTyy9JgwJPJkO6e79aaUhvM+lJNjIyVpsl6CstWHpDo1WidYE1ddmVWWpTcWl8RUOrnLiS9h2Qg
+ 9dcXlYjHMbTc+39sgnD79nwXoietNrs=
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.134,FMLib:17.12.100.49
  definitions=2026-07-07_03,2026-07-06_02,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 suspectscore=0 priorityscore=1501 adultscore=0 malwarescore=0
- bulkscore=0 spamscore=0 lowpriorityscore=0 phishscore=0 clxscore=1015
+ adultscore=0 lowpriorityscore=0 impostorscore=0 clxscore=1015 malwarescore=0
+ bulkscore=0 spamscore=0 priorityscore=1501 phishscore=0 suspectscore=0
  classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
  reason=mlx scancount=1 engine=8.22.0-2606150000 definitions=main-2607070132
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
@@ -176,20 +175,20 @@ X-Spamd-Result: default: False [-2.16 / 15.00];
 	MIME_TRACE(0.00)[0:+];
 	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
 	FORWARDED(0.00)[lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-322069-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-322071-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_SENDER(0.00)[krzysztof.kozlowski@oss.qualcomm.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS(0.00)[m:andersson@kernel.org,m:konradybcio@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzysztof.kozlowski@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp,oss.qualcomm.com:from_mime,oss.qualcomm.com:dkim,oss.qualcomm.com:mid,qualcomm.com:email,qualcomm.com:dkim];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,oss.qualcomm.com:from_mime,oss.qualcomm.com:dkim,oss.qualcomm.com:mid,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,qualcomm.com:email,qualcomm.com:dkim];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzysztof.kozlowski@oss.qualcomm.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	ALIAS_RESOLVED(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCPT_COUNT_SEVEN(0.00)[9];
@@ -197,73 +196,258 @@ X-Spamd-Result: default: False [-2.16 / 15.00];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 1F68F71C13F
+X-Rspamd-Queue-Id: 3469F71C14D
 
-The schema misses several old style compatibles with SoC component
-trailing in the compatible (qcom,IP-SoC):
- - qcom,apss-wdt-x1e80100
- - qcom,apss-wdt-xxx and qcom,scm-xxx for SoC with code names
- - qcom,kpss-gcc-xxx
- - qcom,rpmcc-xxx
- - qcom,tcsr-xxx
- - qcom,usb-hs-phy-xxx
+The schema checking for expected naming patterns for SoC IP block nodes
+was really incomplete and was checking only nodes with single
+compatible.  Fixing this and applying schema for nodes with fallbacks is
+not trivial, because obvious solution like:
 
-It also missed qcom,ipq806x-ahci.
+  minItems: 1
+  items:
+    - oneOf:
+        - pattern: ...
+        - pattern: ...
+    - {}
+    - {}
 
-None of these were flagged by schema, because they were used with
-fallbacks and the schema checks only for single compatibles.
-Nevertheless document them for complete picture and for future change,
-which will apply the schema to fallbacks as well.
+is not allowed by dtschema.  The binding should also skip root nodes,
+which have SoC-based fallback, but completely random front compatibles.
+
+Solve this all by:
+1. Extending the select pattern to match all nodes except root node.
+2. Apply schema to all items of "compatible" property, which means it
+   will be evaluating also all sorts of generic compatibles like
+   "syscon".  List them all and let's hope that fallback list will not
+   grow too much, because generic compatible fallbacks are discouraged.
+
+The benefit is that this schema is finally very specific and evaluates
+all nodes for desired naming.
+
+Diff is a bit obfuscated, due to indentation change so briefly
+explaining:
+1. None of the patterns are changed (neither in "Preferred naming style"
+   group nor in "Legacy namings").
+2. None of the enums with "Legacy namings" and "Legacy compatibles with
+   wild-cards" are changed.
+3. Add pattern for sound cards.
+4. Add enum with qcom,hamoa-crd-ec, because it is used as fallback to
+   SoC-codename (Glymur).
+5. Add list with all used generic fallbacks.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 ---
- Documentation/devicetree/bindings/arm/qcom-soc.yaml | 17 ++++++++++++++---
- 1 file changed, 14 insertions(+), 3 deletions(-)
+ .../devicetree/bindings/arm/qcom-soc.yaml          | 190 ++++++++++++++++-----
+ 1 file changed, 143 insertions(+), 47 deletions(-)
 
 diff --git a/Documentation/devicetree/bindings/arm/qcom-soc.yaml b/Documentation/devicetree/bindings/arm/qcom-soc.yaml
-index 1f9e52d9968d..d934afd59df1 100644
+index d934afd59df1..ffdaff073c92 100644
 --- a/Documentation/devicetree/bindings/arm/qcom-soc.yaml
 +++ b/Documentation/devicetree/bindings/arm/qcom-soc.yaml
-@@ -40,12 +40,20 @@ properties:
+@@ -22,60 +22,156 @@ description: |
  
-       # Legacy namings - variations of existing patterns/compatibles are OK,
-       # but do not add completely new entries to these:
--      - pattern: "^qcom,[ak]pss-wdt-(apq|ipq|mdm|msm|qcm|qcs|q[dr]u|sa|sc|sd[amx]|sm)[0-9]+.*$"
-+      - pattern: "^qcom,[ak]pss-wdt-(apq|ipq|mdm|msm|qcm|qcs|q[dr]u|sa|sc|sd[amx]|sm|x1[ep])[0-9]+.*$"
-+        # qcom,apss-wdt with codenames
-+      - pattern: "^qcom,apss-wdt-[a-z]+$"
-+      - pattern: "^qcom,kpss-gcc-(apq|ipq|mdm|msm)[0-9]+.*$"
-       - pattern: "^qcom,gcc-(apq|ipq|mdm|msm|qcm|qcs|q[dr]u|sa|sc|sd[amx]|sm)[0-9]+.*$"
-       - pattern: "^qcom,mmcc-(apq|ipq|mdm|msm|qcm|qcs|q[dr]u|sa|sc|sd[amx]|sm)[0-9]+.*$"
-       - pattern: "^qcom,pcie-(apq|ipq|mdm|msm|qcm|qcs|q[dr]u|sa|sc|sd[amx]|sm|x1[ep])[0-9]+.*$"
-       - pattern: "^qcom,rpm-(apq|ipq|mdm|msm|qcm|qcs|q[dr]u|sa|sc|sd[amx]|sm)[0-9]+.*$"
--      - pattern: "^qcom,scm-(apq|ipq|mdm|msm|qcm|qcs|q[dr]u|sa|sc|sd[amx]|sm|x1[ep])[0-9]+.*$"
-+      - pattern: "^qcom,rpmcc-(apq|ipq|mdm|msm|qcm|qcs|q[dr]u|sa|sc|sd[amx]|sm)[0-9]+.*$"
-+      - pattern: "^qcom,scm-(apq|ipq|mdm|msm|qcm|qcs|q[dr]u|sar?|sc|sd[amx]|sm|x1[ep])[0-9]+.*$"
-+        # qcom,scm with codenames
-+      - pattern: "^qcom,scm-[a-z]+$"
-+      - pattern: "^qcom,tcsr-(apq|ipq|mdm|msm)[0-9]+.*$"
-+      - pattern: "^qcom,usb-hs-phy-(apq|ipq|mdm|msm|qcm|qcs|q[dr]u|sa|sc|sd[amx]|sm|x1[ep])[0-9]+.*$"
-       - enum:
-           - qcom,dsi-ctrl-6g-qcm2290
-           - qcom,gpucc-sdm630
-@@ -55,12 +63,15 @@ properties:
-           - qcom,lcc-mdm9615
-           - qcom,lcc-msm8960
-           - qcom,lpass-cpu-apq8016
+ select:
+   properties:
++    # Select all nodes which have SoC-based compatibles, but not the root
++    # "/" node, because its front compatibles do not follow any SoC patterns
++    $nodename:
++      pattern: "[^/]"
+     compatible:
+-      oneOf:
+-        - pattern: "^qcom,.*(apq|ipq|mdm|msm|qcm|qcs|q[dr]u|sa|sar|sc|sd[amx]|sm|x1[ep])[0-9]+.*$"
+-        - pattern: "^qcom,.*(eliza|kaanapali|glymur|hawi|mahua|maili|milos|nord|shikra).*$"
++      contains:
++        oneOf:
++          - pattern: "^qcom,.*(apq|ipq|mdm|msm|qcm|qcs|q[dr]u|sa|sar|sc|sd[amx]|sm|x1[ep])[0-9]+.*$"
++          - pattern: "^qcom,.*(eliza|kaanapali|glymur|hawi|mahua|maili|milos|nord|shikra).*$"
+   required:
+     - compatible
+ 
+ properties:
+   compatible:
+-    oneOf:
+-      # Preferred naming style for compatibles of SoC components:
+-      - pattern: "^qcom,(apq|ipq|mdm|msm|qcm|qcs|q[dr]u|sa|sc|sd[amx]|sm|x1[ep])[0-9]+(pro)?-.*$"
+-      - pattern: "^qcom,sar[0-9]+[a-z]?-.*$"
+-      - pattern: "^qcom,(sa|sc)8[0-9]+[a-z][a-z]?-.*$"
+-      - pattern: "^qcom,(eliza|kaanapali|glymur|hawi|mahua|maili|milos|nord|shikra)-.*$"
++    # SoC specific compatibles can appear alone or be followed by another SoC
++    # specific compatible or generic fallbacks, therefore check for compatible
++    # should use ideally:
++    #
++    #   minItems: 1
++    #   items:
++    #     - oneOf:
++    #         - pattern: ...
++    #         - pattern: ...
++    #     - {}
++    #     - {}
++    #
++    # but that is not allowed by dtschema ("oneOf" cannot be used as an item
++    # for a compatible).  Work around this by defining schema for all items,
++    # but drawback is that we need also to list all known generic fallbacks
++    # like "syscon" etc.
++    minItems: 1
++    maxItems: 4
++    items:
++      # Use anyOf, because soundcards will match few patterns
++      anyOf:
++        # Preferred naming style for compatibles of SoC components:
++        - pattern: "^qcom,(apq|ipq|mdm|msm|qcm|qcs|q[dr]u|sa|sc|sd[amx]|sm|x1[ep])[0-9]+(pro)?-.*$"
++        - pattern: "^qcom,sar[0-9]+[a-z]?-.*$"
++        - pattern: "^qcom,(sa|sc)8[0-9]+[a-z][a-z]?-.*$"
++        - pattern: "^qcom,(eliza|kaanapali|glymur|hawi|mahua|maili|milos|nord|shikra)-.*$"
++        # SoC codenames used for non-SoC components:
++        - enum:
++            - qcom,hamoa-crd-ec
+ 
+-      # Legacy namings - variations of existing patterns/compatibles are OK,
+-      # but do not add completely new entries to these:
+-      - pattern: "^qcom,[ak]pss-wdt-(apq|ipq|mdm|msm|qcm|qcs|q[dr]u|sa|sc|sd[amx]|sm|x1[ep])[0-9]+.*$"
+-        # qcom,apss-wdt with codenames
+-      - pattern: "^qcom,apss-wdt-[a-z]+$"
+-      - pattern: "^qcom,kpss-gcc-(apq|ipq|mdm|msm)[0-9]+.*$"
+-      - pattern: "^qcom,gcc-(apq|ipq|mdm|msm|qcm|qcs|q[dr]u|sa|sc|sd[amx]|sm)[0-9]+.*$"
+-      - pattern: "^qcom,mmcc-(apq|ipq|mdm|msm|qcm|qcs|q[dr]u|sa|sc|sd[amx]|sm)[0-9]+.*$"
+-      - pattern: "^qcom,pcie-(apq|ipq|mdm|msm|qcm|qcs|q[dr]u|sa|sc|sd[amx]|sm|x1[ep])[0-9]+.*$"
+-      - pattern: "^qcom,rpm-(apq|ipq|mdm|msm|qcm|qcs|q[dr]u|sa|sc|sd[amx]|sm)[0-9]+.*$"
+-      - pattern: "^qcom,rpmcc-(apq|ipq|mdm|msm|qcm|qcs|q[dr]u|sa|sc|sd[amx]|sm)[0-9]+.*$"
+-      - pattern: "^qcom,scm-(apq|ipq|mdm|msm|qcm|qcs|q[dr]u|sar?|sc|sd[amx]|sm|x1[ep])[0-9]+.*$"
+-        # qcom,scm with codenames
+-      - pattern: "^qcom,scm-[a-z]+$"
+-      - pattern: "^qcom,tcsr-(apq|ipq|mdm|msm)[0-9]+.*$"
+-      - pattern: "^qcom,usb-hs-phy-(apq|ipq|mdm|msm|qcm|qcs|q[dr]u|sa|sc|sd[amx]|sm|x1[ep])[0-9]+.*$"
+-      - enum:
+-          - qcom,dsi-ctrl-6g-qcm2290
+-          - qcom,gpucc-sdm630
+-          - qcom,gpucc-sdm660
+-          - qcom,lcc-apq8064
+-          - qcom,lcc-ipq8064
+-          - qcom,lcc-mdm9615
+-          - qcom,lcc-msm8960
+-          - qcom,lpass-cpu-apq8016
+-          - qcom,usb-hs-ipq4019-phy
+-          - qcom,usb-hsic-phy-mdm9615
+-          - qcom,usb-hsic-phy-msm8974
 -          - qcom,usb-ss-ipq4019-phy
-           - qcom,usb-hs-ipq4019-phy
-+          - qcom,usb-hsic-phy-mdm9615
-+          - qcom,usb-hsic-phy-msm8974
-+          - qcom,usb-ss-ipq4019-phy
-           - qcom,vqmmc-ipq4019-regulator
+-          - qcom,vqmmc-ipq4019-regulator
++        # Legacy namings - variations of existing patterns/compatibles are OK,
++        # but do not add completely new entries to these:
++        - pattern: "^qcom,[ak]pss-wdt-(apq|ipq|mdm|msm|qcm|qcs|q[dr]u|sa|sc|sd[amx]|sm|x1[ep])[0-9]+.*$"
++          # qcom,apss-wdt with codenames
++        - pattern: "^qcom,apss-wdt-[a-z]+$"
++        - pattern: "^qcom,kpss-gcc-(apq|ipq|mdm|msm)[0-9]+.*$"
++        - pattern: "^qcom,gcc-(apq|ipq|mdm|msm|qcm|qcs|q[dr]u|sa|sc|sd[amx]|sm)[0-9]+.*$"
++        - pattern: "^qcom,mmcc-(apq|ipq|mdm|msm|qcm|qcs|q[dr]u|sa|sc|sd[amx]|sm)[0-9]+.*$"
++        - pattern: "^qcom,pcie-(apq|ipq|mdm|msm|qcm|qcs|q[dr]u|sa|sc|sd[amx]|sm|x1[ep])[0-9]+.*$"
++        - pattern: "^qcom,rpm-(apq|ipq|mdm|msm|qcm|qcs|q[dr]u|sa|sc|sd[amx]|sm)[0-9]+.*$"
++        - pattern: "^qcom,rpmcc-(apq|ipq|mdm|msm|qcm|qcs|q[dr]u|sa|sc|sd[amx]|sm)[0-9]+.*$"
++        - pattern: "^qcom,scm-(apq|ipq|mdm|msm|qcm|qcs|q[dr]u|sar?|sc|sd[amx]|sm|x1[ep])[0-9]+.*$"
++          # qcom,scm with codenames
++        - pattern: "^qcom,scm-[a-z]+$"
++        - pattern: "^qcom,tcsr-(apq|ipq|mdm|msm)[0-9]+.*$"
++        - pattern: "^qcom,usb-hs-phy-(apq|ipq|mdm|msm|qcm|qcs|q[dr]u|sa|sc|sd[amx]|sm|x1[ep])[0-9]+.*$"
  
-       # Legacy compatibles with wild-cards - list cannot grow with new bindings:
-       - enum:
-+          - qcom,ipq806x-ahci
-           - qcom,ipq806x-gmac
-           - qcom,ipq806x-nand
-           - qcom,ipq806x-sata-phy
+-      # Legacy compatibles with wild-cards - list cannot grow with new bindings:
+-      - enum:
+-          - qcom,ipq806x-ahci
+-          - qcom,ipq806x-gmac
+-          - qcom,ipq806x-nand
+-          - qcom,ipq806x-sata-phy
+-          - qcom,ipq806x-usb-phy-ss
+-          - qcom,ipq806x-usb-phy-hs
++        - enum:
++            - qcom,dsi-ctrl-6g-qcm2290
++            - qcom,gpucc-sdm630
++            - qcom,gpucc-sdm660
++            - qcom,lcc-apq8064
++            - qcom,lcc-ipq8064
++            - qcom,lcc-mdm9615
++            - qcom,lcc-msm8960
++            - qcom,lpass-cpu-apq8016
++            - qcom,usb-hs-ipq4019-phy
++            - qcom,usb-hsic-phy-mdm9615
++            - qcom,usb-hsic-phy-msm8974
++            - qcom,usb-ss-ipq4019-phy
++            - qcom,vqmmc-ipq4019-regulator
++
++        # Legacy compatibles with wild-cards - list cannot grow with new bindings:
++        - enum:
++            - qcom,ipq806x-ahci
++            - qcom,ipq806x-gmac
++            - qcom,ipq806x-nand
++            - qcom,ipq806x-sata-phy
++            - qcom,ipq806x-usb-phy-ss
++            - qcom,ipq806x-usb-phy-hs
++
++        # Schema matches also sound card nodes and its front compatibles can be anything
++        - pattern: "^.*,.*sndcard$"
++
++        # List all used generic fallbacks. The list can grow, but in practice
++        # it is not expected, because specific compatibles are preferred for
++        # fallbacks as well.
++        - enum:
++            - arm,gic-v3
++            - arm,mmu-500
++            - generic-ahci
++            - jedec,ufs-2.0
++            - mmio-sram
++            - qcom,adreno-smmu
++            - qcom,aoss-qmp
++            - qcom,cpr
++            - qcom,cpufreq-epss
++            - qcom,cpufreq-hw
++            - qcom,dcc
++            - qcom,dwc3
++            - qcom,epss-l3
++            - qcom,eud
++            - qcom,glink-smd-rpm
++            - qcom,inline-crypto-engine
++            - qcom,ipcc
++            - qcom,kpss-gcc
++            - qcom,kpss-timer
++            - qcom,kpss-wdt
++            - qcom,mdp5
++            - qcom,mdss-dsi-ctrl
++            - qcom,msm-iommu-v1
++            - qcom,msm-iommu-v2
++            - qcom,msm-timer
++            - qcom,osm-l3
++            - qcom,pcie2-phy
++            - qcom,pdc
++            - qcom,pmic-glink
++            - qcom,qce
++            - qcom,qfprom
++            - qcom,qspi-v1
++            - qcom,qusb2-v2-phy
++            - qcom,rpm-proc
++            - qcom,rpmh-rsc
++            - qcom,rpmcc
++            - qcom,saw2
++            - qcom,scm
++            - qcom,sdhci-msm-v4
++            - qcom,sdhci-msm-v5
++            - qcom,sec-qfprom
++            - qcom,smd-rpm
++            - qcom,smmu-500
++            - qcom,smmu-v2
++            - qcom,snps-dwc3
++            - qcom,ssc-block-bus
++            - qcom,tcsr-mutex
++            - qcom,trng
++            - qcom,tsens-v0_1
++            - qcom,tsens-v1
++            - qcom,tsens-v2
++            - qcom,ufshc
++            - qcom,usb-hs-phy
++            - qcom,usb-hsic-phy
++            - qcom,usb-snps-hs-5nm-phy
++            - qcom,usb-snps-hs-7nm-phy
++            - simple-mfd
++            - snps,dwmac
++            - syscon
+ 
+ additionalProperties: true
 
 -- 
 2.53.0
