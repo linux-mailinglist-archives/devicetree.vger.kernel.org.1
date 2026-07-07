@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-322138-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-322139-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id I4rBDJENTWofuQEAu9opvQ
-	(envelope-from <devicetree+bounces-322138-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 16:30:41 +0200
+	id HwabLLAVTWpGuwEAu9opvQ
+	(envelope-from <devicetree+bounces-322139-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 17:05:20 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 92F0171CA38
-	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 16:30:40 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2644A71CFDC
+	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 17:05:20 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=CtTgMoTi;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=DqCm9TTS;
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322138-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-322138-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322139-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-322139-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 4224B3015C28
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jul 2026 14:29:09 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B1735326617F
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jul 2026 14:31:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF90842A171;
-	Tue,  7 Jul 2026 14:28:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C6DF4252A2;
+	Tue,  7 Jul 2026 14:31:43 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F8CE42F71A
-	for <devicetree@vger.kernel.org>; Tue,  7 Jul 2026 14:28:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18C70425CC6
+	for <devicetree@vger.kernel.org>; Tue,  7 Jul 2026 14:31:41 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783434499; cv=none; b=X0vCDk9pjXjDPaWOuzaEL7gMjTj1JimaWI6DuGLiDmFSKmDezI6P81pbxIWnC93uEdF3+KLJETCx1fudOC5ED7Ur8cx2Wktv1CxDOGrsZA6yEWVhVPbc/i9zuvguEhVyHWrO0NfrSkm5uVuOHmtrL2zSYjw7vXg/fnAisdtrH/I=
+	t=1783434703; cv=none; b=N16KHnaM7v81aqCSFPKsjmGxEqIoz6rpOT2gEAJvO6yHDYwv9d3q09P2yOUS71ELlCMhGhV5yI9RN82s+s3B0uzQL0E50sMTmUWtGF5LMPHsWDBYhKetSVtudXNwHZ67weHZoipMsHyiryNKXNthV519Jf7yJ0Z9UabECCSGf+s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783434499; c=relaxed/simple;
-	bh=RnBO8GvLZWBzSRhkDfw0A3UiNTRSY545Ssz20vNwOgE=;
+	s=arc-20240116; t=1783434703; c=relaxed/simple;
+	bh=Y4vQaZRdXzI/UDHQiKLzKNCubRb8wrWT4BH1FFCDyD0=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=nyJUKIMLWcWOOTkh8kVw3ZK0Wp+rx0SO/23FYWgc4UEPsfXTVvwbpJSg57SN5UYomUOGqatASG/vvMhp6HaQOXBDHmZQ+tfY3YdGx6pZ0f1OAhMMa2IwWQaQObjU0nba33cCHiT+aTeCO2jjG06McBEjE4c/rE6UAsOFgQb0f6Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CtTgMoTi; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 695821F00A3A;
-	Tue,  7 Jul 2026 14:28:16 +0000 (UTC)
+	 Message-Id; b=aGsTqeqqR9SJ9/FaUfKlyBTg50af6YXKqyr6B6tIMW7NYETRACfcKyQDrw5SZz6Ej1ljhyewuzyqoJM72tfOzJVscXtQAXRHK2Che8DDyvwUvSs1R5sIPoLUTwEGrllfxerfBAeQ80b9II9TUB2r3CkqaPhPSAashtxVlsbwrb0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DqCm9TTS; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BED6D1F000E9;
+	Tue,  7 Jul 2026 14:31:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783434496;
-	bh=Nms9/XZgwR9douNdc28TyXxyzdrvEOBewOrL1S/fLgI=;
+	s=k20260515; t=1783434701;
+	bh=sXLtoFh+CUx/tyfknuCX6sDSL7lW5AVQhCz46fBe5Z8=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=CtTgMoTiDmUKRF+AunWWAqJT/IJh/zgOfsCeWoSL4Jewbx9slF4TKppyZR2uLVgy6
-	 skc3zofrZAZFq0AOuw/LermFiV38jHg2emZIjUMvkOFKN2rxwh0+ah/fAGcLCvSfFe
-	 ntubjONyryzm1SZc8LnHpfT7+V53KcMyo8wSUaWfyKASRsa+aj5dyfnGiqCDfYUmJf
-	 bO6mbBIe5puaJ+GNxtEyI3N4WHTsr5x2KZK3lAZbwasii0J1NSPQlZ5+fkh2LMOIXM
-	 OEEC/7i++JSaSfLdkzv1nUIY0rQ7mT9wUvH0z3ToH5aIiPPwWF35FP/pSzkzGCbPZ/
-	 eTpi/hPtTjyxQ==
+	b=DqCm9TTSRnjxgTDqvZLTzlbf+jBcUzL1dbxvpHlLC55R01QgjDSm6re/6WyQYSbY8
+	 7sPl7sjWOOCqHzNdvZJPl3QKzuwSu0G6dz4O3HFu9U4q0U8H2A8SLra8KN2ETroNVE
+	 sGKhiGuDnb9yW3K5QoDoiykk7uS2lQi5XPIMAqHzCBhPh5gHkbfZst050xznKivXIe
+	 /fOZSsJGtEmw/7AJpyESlVekLUhO2L9UeBdzHZgPY2jPUAd2HUj5DbdT+mgfw5gdlG
+	 CiICXWYkdyeW8KznU8TW4P0HI0sLp0Xh0LFrn0TwDgpKg1I1srqpOpAzRhDSMzVEZa
+	 rwC7hqPxbTMnQ==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v2 09/12] phy: phy-mtk-dp: Rewrite and document default
- driving param macros
+Subject: Re: [PATCH v2 08/12] phy: phy-mtk-dp: Add support for digital and
+ analog calibration
 Reply-To: sashiko-reviews@lists.linux.dev
 To: "AngeloGioacchino Del Regno" <angelogioacchino.delregno@collabora.com>
-Cc: dri-devel@lists.freedesktop.org, vkoul@kernel.org, olteanv@gmail.com, neil.armstrong@linaro.org, linux-phy@lists.infradead.org, conor+dt@kernel.org, robh@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20260707141931.191172-10-angelogioacchino.delregno@collabora.com>
+Cc: dri-devel@lists.freedesktop.org, linux-phy@lists.infradead.org, vkoul@kernel.org, robh@kernel.org, conor+dt@kernel.org, neil.armstrong@linaro.org, olteanv@gmail.com, devicetree@vger.kernel.org
+In-Reply-To: <20260707141931.191172-9-angelogioacchino.delregno@collabora.com>
 References: <20260707141931.191172-1-angelogioacchino.delregno@collabora.com>
- <20260707141931.191172-10-angelogioacchino.delregno@collabora.com>
+ <20260707141931.191172-9-angelogioacchino.delregno@collabora.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Tue, 07 Jul 2026 14:28:15 +0000
-Message-Id: <20260707142816.695821F00A3A@smtp.kernel.org>
+Date: Tue, 07 Jul 2026 14:31:40 +0000
+Message-Id: <20260707143140.BED6D1F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,26 +72,26 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	TAGGED_FROM(0.00)[bounces-322138-lists,devicetree=lfdr.de];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-322139-lists,devicetree=lfdr.de];
 	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:angelogioacchino.delregno@collabora.com,m:dri-devel@lists.freedesktop.org,m:vkoul@kernel.org,m:olteanv@gmail.com,m:neil.armstrong@linaro.org,m:linux-phy@lists.infradead.org,m:conor+dt@kernel.org,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:angelogioacchino.delregno@collabora.com,m:dri-devel@lists.freedesktop.org,m:linux-phy@lists.infradead.org,m:vkoul@kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:neil.armstrong@linaro.org,m:olteanv@gmail.com,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FREEMAIL_CC(0.00)[lists.freedesktop.org,kernel.org,gmail.com,linaro.org,lists.infradead.org,vger.kernel.org];
+	FREEMAIL_CC(0.00)[lists.freedesktop.org,lists.infradead.org,kernel.org,linaro.org,gmail.com,vger.kernel.org];
 	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
 	RCPT_COUNT_SEVEN(0.00)[9];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
@@ -100,59 +100,116 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FROM_NO_DN(0.00)[];
 	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,smtp.kernel.org:mid,collabora.com:email,lists.linux.dev:replyto,vger.kernel.org:from_smtp]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,smtp.kernel.org:mid,sashiko.dev:url,collabora.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 92F0171CA38
+X-Rspamd-Queue-Id: 2644A71CFDC
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+Thank you for your contribution! Sashiko AI review found 3 potential issue(=
 s) to consider:
-- [Low] The patch uses `FIELD_PREP_CONST` (and earlier patches in the serie=
-s use `FIELD_PREP`) without explicitly including `<linux/bitfield.h>`.
+
+New issues:
+- [High] The DP PHY is published and exposed to concurrent consumers before=
+ its calibration data is initialized in the legacy probe path.
+- [Medium] Unconditional `dev_err` logs an error for missing optional NVMEM=
+ cells and probe deferrals in `mtk_dp_phy_get_one_cal_para`.
+
+Pre-existing issues:
+- [High] Dereferencing `dev->platform_data` without checking for NULL in `m=
+tk_dp_phy_legacy_probe`.
 --
 
---- Patch [9]: [PATCH v2 09/12] phy: phy-mtk-dp: Rewrite and document defau=
-lt driving param macros ---
-commit e682fc4989b37eaa003ac03d4d2a9a69b306a63b
+--- Patch [8]: [PATCH v2 08/12] phy: phy-mtk-dp: Add support for digital an=
+d analog calibration ---
+commit 0db0b57c522a5f7eb7d179aeee49708015901046
 Author: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-phy: phy-mtk-dp: Rewrite and document default driving param macros
+phy: phy-mtk-dp: Add support for digital and analog calibration
 
-This commit rewrites the default driving parameters for the PHY using
-FIELD_PREP_CONST. It also adds definitions and comments to explain what
-these parameters are supposed to set.
+This commit adds support for reading DP PHY calibration values from eFuse
+via nvmem. If the values are present, they are applied; otherwise, the
+driver relies on default calibration data. Analog calibration writing
+support is also introduced.
 
 > diff --git a/drivers/phy/mediatek/phy-mtk-dp.c b/drivers/phy/mediatek/phy=
 -mtk-dp.c
-> index d0ef8e8f6670c..9a800d6b91c3f 100644
 > --- a/drivers/phy/mediatek/phy-mtk-dp.c
 > +++ b/drivers/phy/mediatek/phy-mtk-dp.c
-> @@ -85,51 +85,47 @@
 
 [ ... ]
 
-> +#define XTP_LN_TX_LCTXC_SW2_PRE1	GENMASK(5, 0)
-> +#define XTP_LN_TX_LCTXC_SW3_PRE0	GENMASK(13, 8)
+> +static int mtk_dp_phy_get_one_cal_para(struct device *dev, const char *n=
+ame, u8 max_val)
+> +{
+> +	u8 buf_byte;
+> +	u16 buf;
+> +	int ret;
 > +
-> +#define BUILD_DRIVING_PARAM_0(sw0_pre0, sw0_pre1, sw0_pre2, sw0_pre3) (	\
-> +	FIELD_PREP_CONST(XTP_LN_TX_LCTXC_SW0_PRE0, sw0_pre0) |		\
+> +	/*
+> +	 * All of the calibrations are always max 8 bits long, but some may
+> +	 * be split between two different 8-bits cells: handle this corner
+> +	 * case by retrying reading as u16.
+> +	 */
+> +	ret =3D nvmem_cell_read_u8(dev, name, &buf_byte);
+> +	if (ret)
+> +		ret =3D nvmem_cell_read_u16(dev, name, &buf);
+> +	else
+> +		buf =3D buf_byte;
+> +
+> +	if (ret) {
+> +		dev_err(dev, "Cannot get calibration data for %s: %d\n", name, ret);
+> +		return ret;
+> +	};
 
-[Severity: Low]
-This isn't a bug, but should linux/bitfield.h be explicitly included since
-this code now uses FIELD_PREP_CONST?=20
+[Severity: Medium]
+Will this unconditionally log a hard error if the NVMEM cells are absent
+or if the provider returns -EPROBE_DEFER?
 
-Relying on implicit inclusions can cause build breakages in the future if a
-header like linux/phy/phy.h or linux/regmap.h stops including it.
+Since nvmem_cell_read_u8() returns -ENOENT when optional cells are missing
+in the device tree, could this cause spurious error messages in the kernel
+log on normal boots? It might also spam the logs during standard probe
+deferrals.
 
-> +	FIELD_PREP_CONST(XTP_LN_TX_LCTXC_SW0_PRE1, sw0_pre1) |		\
-> +	FIELD_PREP_CONST(XTP_LN_TX_LCTXC_SW0_PRE2, sw0_pre2) |		\
-> +	FIELD_PREP_CONST(XTP_LN_TX_LCTXC_SW0_PRE3, sw0_pre3)		\
-> +)
+[ ... ]
+
+> @@ -444,6 +671,8 @@ static int mtk_dp_phy_legacy_probe(struct platform_de=
+vice *pdev, struct mtk_dp_p
+>  	if (ret)
+>  		return ret;
+> =20
+> +	mtk_dp_phy_get_default_cal_data(dp_phy);
+> +
+>  	return 0;
+>  }
+
+[Severity: High]
+Is it safe to publish the PHY to consumers before the calibration defaults
+are initialized?=20
+
+Earlier in mtk_dp_phy_legacy_probe(), phy_create_lookup() exposes the PHY.
+If a consumer driver probes concurrently and acquires the PHY right after
+that lookup registration, could it call phy_init() while the analog
+parameter registers are still zero-initialized by devm_kzalloc(), rather
+than having these defaults?
+
+[Severity: High]
+This is a pre-existing issue, but can dev->platform_data be NULL earlier
+in mtk_dp_phy_legacy_probe()?
+
+Looking at the start of the function:
+
+	dp_phy->regmap =3D *(struct regmap **)dev->platform_data;
+	if (!dp_phy->regmap)
+		return dev_err_probe(dev, -EINVAL, "No platform data available\n");
+
+If the driver is bound to a device without platform data (e.g. manually
+via sysfs bind), it looks like dereferencing dev->platform_data to read
+the regmap will cause a kernel panic before it reaches the NULL check.
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260707141931.1911=
-72-1-angelogioacchino.delregno@collabora.com?part=3D9
+72-1-angelogioacchino.delregno@collabora.com?part=3D8
 
