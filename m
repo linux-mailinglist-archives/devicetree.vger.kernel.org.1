@@ -1,105 +1,103 @@
-Return-Path: <devicetree+bounces-321799-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-321796-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 2IMYKSCzTGp4oQEAu9opvQ
-	(envelope-from <devicetree+bounces-321799-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 10:04:48 +0200
+	id 7lNsF+eyTGpjoQEAu9opvQ
+	(envelope-from <devicetree+bounces-321796-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 10:03:51 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2CE66718DCB
-	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 10:04:48 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id BC797718D8F
+	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 10:03:50 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=bootlin.com header.s=dkim header.b="0UtLoTM/";
-	dmarc=pass (policy=reject) header.from=bootlin.com;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-321799-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-321799-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=ideasonboard.com header.s=mail header.b=m3GFBy4Q;
+	dmarc=pass (policy=none) header.from=ideasonboard.com;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-321796-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-321796-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id B509F3034A15
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jul 2026 08:02:24 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 0DF4630548D0
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jul 2026 08:02:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4084A3126CA;
-	Tue,  7 Jul 2026 08:02:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6505B30BF6D;
+	Tue,  7 Jul 2026 08:01:58 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AACAB3081BE;
-	Tue,  7 Jul 2026 08:02:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11854301719;
+	Tue,  7 Jul 2026 08:01:54 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783411323; cv=none; b=ozvwTzJBl7usqxteQew6uZXEnKiIbvZkEgigZI6D3kSCYG51zsuRmR1JK3K9JrSbEZF9f+gioxolf0WdI+Bk8cvoY3MO72Po6K+guJlXmcVKIyKMtAaURMl+XhgnShrCdpzMo5MDu4B8jgClwxoLO6kRiT3RTm3JYTj2XN1+/jQ=
+	t=1783411318; cv=none; b=KA4uH/J63OybBcORe9MRUoATIwmKXQM5MoJahv/TpJIIV1+ug2/sOAYyzifPGuEwIYEwSQ0t7F3sZKA5tSDDSz0WsM7AG5AC7tfXRn1kTrWNP0HFnnZzCqsOi/BEWAYWLQb5hD0M/LdDs5VKVNZG4kt/H+lu4enRqcv3L/XrT4E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783411323; c=relaxed/simple;
-	bh=6i34TXrX+kdA/DTu0ZpuhXXOwCmx5MrrCS/cnXo0kDw=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=KRgvyIslj3VOri+O48+UOcOK6ppOiK9vTtDfvPOV7L+SL67QUJ3NfESvTuRu8kmdvGYgvOi5gI7rxfJCHUZOvkLxESRwkVAMTJMAz88Q3+je9fSTnYWDy0/EROBS7HOAcQ1UpUtSy/nyvGDP6PSb4s+BEC8ML1FsxaxPTays9oE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=0UtLoTM/; arc=none smtp.client-ip=185.246.85.4
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id 89A694E40CCE;
-	Tue,  7 Jul 2026 08:01:59 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 5C38D601A3;
-	Tue,  7 Jul 2026 08:01:59 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 824C711BC0D35;
-	Tue,  7 Jul 2026 10:01:56 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1783411318; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=qWeUXwh4eP/aMY5SZXD4udzhGkVd9AVtMmR7lbeVwms=;
-	b=0UtLoTM/aZQGLSLzJJRsAYEDGam5o1c+KGS5WqJt6bbDtiHmiWvXRZ6JSp6myn+GyMfMkc
-	6FLsh2EaGNzIHFWf0wEAh8r6yCp4sn5Ghrpxh4wbiyi2amGhlYiIRRFg6+2sFPlJv8PHJw
-	sPahOmLN7FtOeG/BWKu0nPQPbSnF2y6OyKiOBovsWV764cuVzs/IT1ZpVUg8O4GYvncOkR
-	hAGixD/RKwR90/R7uBLTcR4NkfLwHJ3Z5HqJUDxJjCm8LpbFNRBVlBsI2fhdvKzmo7ls8m
-	EQ7p/n5xkrNkRE1wZk0Qm7QnOkkVdS6wAs+uFULJUGbnO74uK4V4qCqnIy4K5g==
-From: "Thomas Perrot (Schneider Electric)" <thomas.perrot@bootlin.com>
-Date: Tue, 07 Jul 2026 10:01:31 +0200
-Subject: [PATCH v7 5/5] watchdog: aaeon: Add watchdog driver for SRG-IMX8P
- MCU
+	s=arc-20240116; t=1783411318; c=relaxed/simple;
+	bh=Jy6VEj+exfpQ5Jr3ONfz1THEC2FaVazd21uV8fIYlGo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=c/SFFy9hGa9QFMZrEtnSQuYmnVx7Ukzo/O8VcDxZWE2y/xOQW1o4GKMP6M2eKmgXPRoFSGlsCCpqld8NunnVVJUtgAfSJUAVKMSYhCsyTk+B9jgxLb0gB1wjV5aKdR9johVYTdsHAn8KFHMsw46miWebMyE33ioahGmsX3zJ/50=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=m3GFBy4Q; arc=none smtp.client-ip=213.167.242.64
+Received: from killaraus.ideasonboard.com (2001-14ba-70f3-e800--a06.rev.dnainternet.fi [IPv6:2001:14ba:70f3:e800::a06])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 279051CD9;
+	Tue,  7 Jul 2026 10:00:56 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1783411256;
+	bh=Jy6VEj+exfpQ5Jr3ONfz1THEC2FaVazd21uV8fIYlGo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=m3GFBy4QJxuQ4EFtg/AbdowEo1m9E5rwNHHj0J6TK7C8/mMrdzPGbtc67JECqzg7A
+	 erI+kVaXuJD1ucSBoOy9a7Mx0Mj2ClsuYpiqXAUOKh7D8fGFOoHroBUfbcaY9rWavR
+	 k9jWa1gwekRMhMCvod2wUjPi2kGUEZmB615L987I=
+Date: Tue, 7 Jul 2026 11:01:43 +0300
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Maxime Ripard <mripard@kernel.org>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+	Thuan Nguyen <thuan.nguyen-hong@banvien.com.vn>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Andrzej Hajda <andrzej.hajda@intel.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Robert Foss <rfoss@kernel.org>, Jonas Karlman <jonas@kwiboo.se>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH 1/4] dt-bindings: display: vga-connector: Allow
+ hardcoding EDID
+Message-ID: <20260707080143.GA211515@killaraus.ideasonboard.com>
+References: <20260705213542.28987-1-laurent.pinchart+renesas@ideasonboard.com>
+ <20260705213542.28987-2-laurent.pinchart+renesas@ideasonboard.com>
+ <20260706-capable-beaver-of-excellence-a3cf10@houat>
+ <20260706094522.GA42740@killaraus.ideasonboard.com>
+ <20260706-fancy-perch-of-satiation-0c220e@houat>
+ <20260706160243.GB106045@killaraus.ideasonboard.com>
+ <20260707-meaty-chocolate-lemming-fa9ead@houat>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20260707-dev-b4-aaeon-mcu-driver-v7-5-ca6c59abd672@bootlin.com>
-References: <20260707-dev-b4-aaeon-mcu-driver-v7-0-ca6c59abd672@bootlin.com>
-In-Reply-To: <20260707-dev-b4-aaeon-mcu-driver-v7-0-ca6c59abd672@bootlin.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Linus Walleij <linusw@kernel.org>, 
- Bartosz Golaszewski <brgl@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
- Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>, 
- =?utf-8?q?J=C3=A9r=C3=A9mie_Dautheribes?= <jeremie.dautheribes@bootlin.com>, 
- Wim Van Sebroeck <wim@linux-watchdog.org>, 
- Guenter Roeck <linux@roeck-us.net>, Lee Jones <lee@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-gpio@vger.kernel.org, imx@lists.linux.dev, 
- linux-arm-kernel@lists.infradead.org, linux-watchdog@vger.kernel.org, 
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- Miquel Raynal <miquel.raynal@bootlin.com>, 
- "Thomas Perrot (Schneider Electric)" <thomas.perrot@bootlin.com>
-X-Mailer: b4 0.14.3
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20260707-meaty-chocolate-lemming-fa9ead@houat>
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
-	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	DMARC_POLICY_ALLOW(-0.50)[ideasonboard.com,none];
+	R_DKIM_ALLOW(-0.20)[ideasonboard.com:s=mail];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-321799-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FREEMAIL_TO(0.00)[kernel.org,pengutronix.de,gmail.com,bootlin.com,linux-watchdog.org,roeck-us.net];
-	FORGED_SENDER(0.00)[thomas.perrot@bootlin.com,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[22];
-	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linusw@kernel.org,m:brgl@kernel.org,m:shawnguo@kernel.org,m:s.hauer@pengutronix.de,m:kernel@pengutronix.de,m:festevam@gmail.com,m:jeremie.dautheribes@bootlin.com,m:wim@linux-watchdog.org,m:linux@roeck-us.net,m:lee@kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-gpio@vger.kernel.org,m:imx@lists.linux.dev,m:linux-arm-kernel@lists.infradead.org,m:linux-watchdog@vger.kernel.org,m:thomas.petazzoni@bootlin.com,m:miquel.raynal@bootlin.com,m:thomas.perrot@bootlin.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-321796-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:mripard@kernel.org,m:dri-devel@lists.freedesktop.org,m:devicetree@vger.kernel.org,m:thuan.nguyen-hong@banvien.com.vn,m:maarten.lankhorst@linux.intel.com,m:tzimmermann@suse.de,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:geert+renesas@glider.be,m:magnus.damm@gmail.com,m:andrzej.hajda@intel.com,m:neil.armstrong@linaro.org,m:rfoss@kernel.org,m:jonas@kwiboo.se,m:jernej.skrabec@gmail.com,m:luca.ceresoli@bootlin.com,m:linux-renesas-soc@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,m:geert@glider.be,m:magnusdamm@gmail.com,m:jernejskrabec@gmail.com,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER(0.00)[laurent.pinchart@ideasonboard.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	FREEMAIL_CC(0.00)[lists.freedesktop.org,vger.kernel.org,banvien.com.vn,linux.intel.com,suse.de,kernel.org,glider.be,gmail.com,intel.com,linaro.org,kwiboo.se,bootlin.com];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
@@ -107,261 +105,108 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[thomas.perrot@bootlin.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[bootlin.com:+];
 	ALIAS_RESOLVED(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	MID_RHS_MATCH_FROM(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[laurent.pinchart@ideasonboard.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[ideasonboard.com:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:from_mime,bootlin.com:email,bootlin.com:mid,bootlin.com:dkim,roeck-us.net:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:url,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,vger.kernel.org:from_smtp,ideasonboard.com:from_mime,ideasonboard.com:email,ideasonboard.com:dkim,killaraus.ideasonboard.com:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 2CE66718DCB
+X-Rspamd-Queue-Id: BC797718D8F
 
-Add watchdog driver for the Aaeon SRG-IMX8P embedded controller.
-This driver provides system monitoring and recovery capabilities
-through the MCU's watchdog timer.
+On Tue, Jul 07, 2026 at 09:46:52AM +0200, Maxime Ripard wrote:
+> On Mon, Jul 06, 2026 at 07:02:43PM +0300, Laurent Pinchart wrote:
+> > On Mon, Jul 06, 2026 at 05:40:30PM +0200, Maxime Ripard wrote:
+> > > On Mon, Jul 06, 2026 at 12:45:22PM +0300, Laurent Pinchart wrote:
+> > > > On Mon, Jul 06, 2026 at 10:52:32AM +0200, Maxime Ripard wrote:
+> > > > > On Mon, Jul 06, 2026 at 12:35:39AM +0300, Laurent Pinchart wrote:
+> > > > > > Since DDC version 2, introduced in 1996, VGA monitors have exposed EDID
+> > > > > > data over an I2C bus. The bus is also used to detect the presence of a
+> > > > > > connected monitor by trying to read the EDID data.
+> > > > > > 
+> > > > > > Some devices where the VGA display is integrated in the device and
+> > > > > > always connected do not connect the DDC pins. Some development boards,
+> > > > > > such as the Renesas M3N Salvator-XS, also do not connect the DDC pins.
+> > > > > > 
+> > > > > > To support those, add the ability to provide hardcoded EDID data in the
+> > > > > > device tree. This is mutually exclusive with specifying a DDC bus, and
+> > > > > > can only be done when the VGA display is guaranteed to be always
+> > > > > > connected.
+> > > > > > 
+> > > > > > Signed-off-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+> > > > > 
+> > > > > This feels redundant with the EDID firmware loading mechanism we have in
+> > > > > KMS already. It should at least be mentioned why we would need to set it
+> > > > > in the device tree at all.
+> > > > 
+> > > > Very good question.
+> > > > 
+> > > > I assume you're talking about CONFIG_DRM_LOAD_EDID_FIRMWARE, as the
+> > > > debugfs override_edid feature isn't meant for production. If there are
+> > > > other relevant mechanisms I'm not aware of, please let me know.
+> > > 
+> > > No, that's indeed what I meant.
+> > > 
+> > > > In the use case at hand, the VGA display is an integral part of the
+> > > > device, the same way an LVDS or DSI panel would be. Using
+> > > > CONFIG_DRM_LOAD_EDID_FIRMWARE, the manufacturer would need to set the
+> > > > drm.edid_firmware command line parameter, and provide EDID as a file in
+> > > > /lib/firmware/ (possibly in an initramfs). Beside the complexity, and
+> > > > the fact it won't be very friendly to people who run a different
+> > > > userspace on the device, I think EDID counts in this case as system
+> > > > description, the same way we support specifying panel timings in device
+> > > > tree.
+> > > 
+> > > It's *some* hardware description, but you have no idea whether it's
+> > > actually the hardware you're running from. What would be in that EDID
+> > > anyway?
+> > 
+> > It would be the EDID corresponding to the connected display :-) I see it
+> > as identical to how a user of the simple panel driver is responsible for
+> > listing the timings corresponding to the hardware in the device tree.
+> 
+> What's the expected user-experience for someone with that board
+> unplugging a display and plugging another then? Update the device tree,
+> rebuild it, rebuild the firmware and / or resign it and reboot?
 
-The watchdog supports start, stop, and ping operations with a maximum
-hardware heartbeat of 25 seconds and a default timeout of 240 seconds.
-The software timeout can be changed via the WDIOC_SETTIMEOUT ioctl,
-the DT timeout-sec property, or the watchdog_timeout kernel boot
-parameter.
+The whole point is that they can't easily unplug the display. This patch
+series is meant to support devices where the display is an integral part
+of the device. The user experience is expected to be the same as for a
+user who will take a phone, remove the display panel, and plug a
+different one. It's certainly possible, and they would have to update
+the DT indeed.
 
-Co-developed-by: Jérémie Dautheribes (Schneider Electric) <jeremie.dautheribes@bootlin.com>
-Signed-off-by: Jérémie Dautheribes (Schneider Electric) <jeremie.dautheribes@bootlin.com>
-Signed-off-by: Thomas Perrot (Schneider Electric) <thomas.perrot@bootlin.com>
-Acked-by: Guenter Roeck <linux@roeck-us.net>
----
- MAINTAINERS                      |   1 +
- drivers/watchdog/Kconfig         |  10 +++
- drivers/watchdog/Makefile        |   1 +
- drivers/watchdog/aaeon_mcu_wdt.c | 167 +++++++++++++++++++++++++++++++++++++++
- 4 files changed, 179 insertions(+)
+> That doesn't sound very practical, and even impossible in some cases.
+> 
+> > > There's another alternative we've used several times already, in
+> > > simple-bridge for example: just register any VESA mode up to a given
+> > > resolution:
+> > > https://elixir.bootlin.com/linux/v7.1.2/source/drivers/gpu/drm/bridge/simple-bridge.c#L66
+> > 
+> > I don't see how that would help. The goal is to provide the kernel with
+> > the data corresponding to the display integrated in the device.
+> 
+> How is that not helping? Your problem is that you have a display you
+> can't get the supported resolutions from. What I'm suggesting allows you
+> to create all the possible resolutions for that display, allowing the
+> user to use the display, which is what we did for multiple drivers with
+> the same problem.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 2538f8c4bc14..7b92af42c9fd 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -193,6 +193,7 @@ S:	Maintained
- F:	Documentation/devicetree/bindings/mfd/aaeon,srg-imx8p-mcu.yaml
- F:	drivers/gpio/gpio-aaeon-mcu.c
- F:	drivers/mfd/aaeon-mcu.c
-+F:	drivers/watchdog/aaeon_mcu_wdt.c
- F:	include/linux/mfd/aaeon-mcu.h
- 
- AAEON UPBOARD FPGA MFD DRIVER
-diff --git a/drivers/watchdog/Kconfig b/drivers/watchdog/Kconfig
-index d3b9df7d466b..f67a0b453316 100644
---- a/drivers/watchdog/Kconfig
-+++ b/drivers/watchdog/Kconfig
-@@ -420,6 +420,16 @@ config SL28CPLD_WATCHDOG
- 
- # ARM Architecture
- 
-+config AAEON_MCU_WATCHDOG
-+	tristate "Aaeon MCU Watchdog"
-+	depends on MFD_AAEON_MCU
-+	select WATCHDOG_CORE
-+	help
-+	  Select this option to enable watchdog timer support for the Aaeon
-+	  SRG-IMX8P onboard microcontroller (MCU). This driver provides
-+	  watchdog functionality through the MCU, allowing system monitoring
-+	  and automatic recovery from system hangs.
-+
- config AIROHA_WATCHDOG
- 	tristate "Airoha EN7581 Watchdog"
- 	depends on ARCH_AIROHA || COMPILE_TEST
-diff --git a/drivers/watchdog/Makefile b/drivers/watchdog/Makefile
-index ba52099b1253..2deec425d3ea 100644
---- a/drivers/watchdog/Makefile
-+++ b/drivers/watchdog/Makefile
-@@ -37,6 +37,7 @@ obj-$(CONFIG_USBPCWATCHDOG) += pcwd_usb.o
- # ALPHA Architecture
- 
- # ARM Architecture
-+obj-$(CONFIG_AAEON_MCU_WATCHDOG) += aaeon_mcu_wdt.o
- obj-$(CONFIG_ARM_SP805_WATCHDOG) += sp805_wdt.o
- obj-$(CONFIG_ARM_SBSA_WATCHDOG) += sbsa_gwdt.o
- obj-$(CONFIG_ARMADA_37XX_WATCHDOG) += armada_37xx_wdt.o
-diff --git a/drivers/watchdog/aaeon_mcu_wdt.c b/drivers/watchdog/aaeon_mcu_wdt.c
-new file mode 100644
-index 000000000000..9ff559a69fd7
---- /dev/null
-+++ b/drivers/watchdog/aaeon_mcu_wdt.c
-@@ -0,0 +1,167 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+/*
-+ * Aaeon MCU Watchdog driver
-+ *
-+ * Copyright (C) 2026 Bootlin
-+ * Author: Jérémie Dautheribes <jeremie.dautheribes@bootlin.com>
-+ * Author: Thomas Perrot <thomas.perrot@bootlin.com>
-+ */
-+
-+#include <linux/mfd/aaeon-mcu.h>
-+#include <linux/module.h>
-+#include <linux/platform_device.h>
-+#include <linux/regmap.h>
-+#include <linux/watchdog.h>
-+
-+#define AAEON_MCU_PING_WDT	0x73
-+
-+#define AAEON_MCU_WDT_TIMEOUT         240
-+#define AAEON_MCU_WDT_HEARTBEAT_MS    25000
-+#define AAEON_MCU_WDT_MIN_TIMEOUT     1
-+
-+static unsigned int timeout;
-+module_param(timeout, uint, 0);
-+MODULE_PARM_DESC(timeout, "Watchdog timeout in seconds");
-+
-+struct aaeon_mcu_wdt {
-+	struct watchdog_device wdt;
-+	struct regmap *regmap;
-+};
-+
-+static int aaeon_mcu_wdt_cmd(struct aaeon_mcu_wdt *data, u8 opcode, u8 arg)
-+{
-+	return regmap_write(data->regmap, AAEON_MCU_REG(opcode, arg), 0);
-+}
-+
-+static int aaeon_mcu_wdt_start(struct watchdog_device *wdt)
-+{
-+	struct aaeon_mcu_wdt *data = watchdog_get_drvdata(wdt);
-+
-+	return aaeon_mcu_wdt_cmd(data, AAEON_MCU_CONTROL_WDT_OPCODE, 0x01);
-+}
-+
-+static int aaeon_mcu_wdt_status(struct watchdog_device *wdt, bool *enabled)
-+{
-+	struct aaeon_mcu_wdt *data = watchdog_get_drvdata(wdt);
-+	unsigned int rsp;
-+	int ret;
-+
-+	ret = regmap_read(data->regmap,
-+			  AAEON_MCU_REG(AAEON_MCU_CONTROL_WDT_OPCODE, 0x02),
-+			  &rsp);
-+	if (ret)
-+		return ret;
-+
-+	*enabled = rsp == 0x01;
-+	return 0;
-+}
-+
-+static int aaeon_mcu_wdt_stop(struct watchdog_device *wdt)
-+{
-+	struct aaeon_mcu_wdt *data = watchdog_get_drvdata(wdt);
-+
-+	return aaeon_mcu_wdt_cmd(data, AAEON_MCU_CONTROL_WDT_OPCODE, 0x00);
-+}
-+
-+static int aaeon_mcu_wdt_ping(struct watchdog_device *wdt)
-+{
-+	struct aaeon_mcu_wdt *data = watchdog_get_drvdata(wdt);
-+
-+	return aaeon_mcu_wdt_cmd(data, AAEON_MCU_PING_WDT, 0x00);
-+}
-+
-+static const struct watchdog_info aaeon_mcu_wdt_info = {
-+	.identity	= "Aaeon MCU Watchdog",
-+	.options	= WDIOF_KEEPALIVEPING | WDIOF_MAGICCLOSE | WDIOF_SETTIMEOUT
-+};
-+
-+static const struct watchdog_ops aaeon_mcu_wdt_ops = {
-+	.owner		= THIS_MODULE,
-+	.start		= aaeon_mcu_wdt_start,
-+	.stop		= aaeon_mcu_wdt_stop,
-+	.ping		= aaeon_mcu_wdt_ping,
-+};
-+
-+static int aaeon_mcu_wdt_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct watchdog_device *wdt;
-+	struct aaeon_mcu_wdt *data;
-+	bool enabled;
-+	int ret;
-+
-+	data = devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
-+	if (!data)
-+		return -ENOMEM;
-+
-+	data->regmap = dev_get_regmap(dev->parent, NULL);
-+	if (!data->regmap)
-+		return -ENODEV;
-+
-+	wdt = &data->wdt;
-+	wdt->parent = dev;
-+	wdt->info = &aaeon_mcu_wdt_info;
-+	wdt->ops = &aaeon_mcu_wdt_ops;
-+	/*
-+	 * The MCU firmware has a fixed hardware timeout of 25 seconds that
-+	 * cannot be changed. The watchdog core handles automatic pinging to
-+	 * support software timeouts longer than the hardware limit. The default
-+	 * software timeout of 240 seconds can be overridden via the DT
-+	 * timeout-sec property or the watchdog_timeout kernel boot parameter.
-+	 */
-+	wdt->timeout = AAEON_MCU_WDT_TIMEOUT;
-+	wdt->min_timeout = AAEON_MCU_WDT_MIN_TIMEOUT;
-+	wdt->max_hw_heartbeat_ms = AAEON_MCU_WDT_HEARTBEAT_MS;
-+	watchdog_init_timeout(wdt, timeout, dev->parent);
-+
-+	watchdog_set_drvdata(wdt, data);
-+	watchdog_stop_on_reboot(wdt);
-+	dev_set_drvdata(dev, wdt);
-+
-+	ret = aaeon_mcu_wdt_status(wdt, &enabled);
-+	if (ret)
-+		return ret;
-+
-+	if (enabled)
-+		set_bit(WDOG_HW_RUNNING, &wdt->status);
-+
-+	return devm_watchdog_register_device(dev, wdt);
-+}
-+
-+static int aaeon_mcu_wdt_suspend(struct device *dev)
-+{
-+	struct watchdog_device *wdt = dev_get_drvdata(dev);
-+
-+	if (watchdog_active(wdt))
-+		return aaeon_mcu_wdt_stop(wdt);
-+
-+	return 0;
-+}
-+
-+static int aaeon_mcu_wdt_resume(struct device *dev)
-+{
-+	struct watchdog_device *wdt = dev_get_drvdata(dev);
-+
-+	if (watchdog_active(wdt))
-+		return aaeon_mcu_wdt_start(wdt);
-+
-+	return 0;
-+}
-+
-+static DEFINE_SIMPLE_DEV_PM_OPS(aaeon_mcu_wdt_pm_ops,
-+				aaeon_mcu_wdt_suspend, aaeon_mcu_wdt_resume);
-+
-+static struct platform_driver aaeon_mcu_wdt_driver = {
-+	.driver		= {
-+		.name	= "aaeon-mcu-wdt",
-+		.pm	= pm_sleep_ptr(&aaeon_mcu_wdt_pm_ops),
-+	},
-+	.probe		= aaeon_mcu_wdt_probe,
-+};
-+
-+module_platform_driver(aaeon_mcu_wdt_driver);
-+
-+MODULE_ALIAS("platform:aaeon-mcu-wdt");
-+MODULE_DESCRIPTION("Aaeon MCU Watchdog Driver");
-+MODULE_AUTHOR("Jérémie Dautheribes <jeremie.dautheribes@bootlin.com>");
-+MODULE_LICENSE("GPL");
+How would the possible resolutions be provided to the kernel ? Isn't it
+the whole point of EDID ?
+
+> You seem to be set on providing the EDID to the kernel, but it's a
+> terrible idea to begin with, so I'd rather discuss alternatives.
+
+Could you elaborate on why it is a terrible idea ?
 
 -- 
-2.55.0
+Regards,
 
+Laurent Pinchart
 
