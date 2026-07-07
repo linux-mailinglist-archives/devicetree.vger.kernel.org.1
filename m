@@ -1,165 +1,168 @@
-Return-Path: <devicetree+bounces-321864-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-321866-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id aBDvOULFTGrapQEAu9opvQ
-	(envelope-from <devicetree+bounces-321864-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 11:22:10 +0200
+	id 5mE1Im/FTGrmpQEAu9opvQ
+	(envelope-from <devicetree+bounces-321866-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 11:22:55 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26DEF719ADF
-	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 11:22:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 00D73719B18
+	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 11:22:54 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=bootlin.com header.s=dkim header.b=gzY7nslo;
-	dmarc=pass (policy=reject) header.from=bootlin.com;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-321864-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-321864-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=huawei.com header.s=dkim header.b=dCEr1IrE;
+	dmarc=fail reason="SPF not aligned (relaxed), DKIM not aligned (relaxed)" header.from=hisilicon.com (policy=quarantine);
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-321866-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-321866-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 38ABD319E29B
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jul 2026 09:12:21 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id F165B31AF67C
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jul 2026 09:13:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 076F1390C85;
-	Tue,  7 Jul 2026 09:11:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82F7F392C2F;
+	Tue,  7 Jul 2026 09:12:51 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
+Received: from canpmsgout02.his.huawei.com (canpmsgout02.his.huawei.com [113.46.200.217])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D30C38F251;
-	Tue,  7 Jul 2026 09:11:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA06C390C84;
+	Tue,  7 Jul 2026 09:12:46 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783415511; cv=none; b=q/8NrW8j6qJGoa3azFyQMLbLveK7paf9f0uu9sHZzzLbHs7jGzJ0N0hHpJq3WpXQVFmXBFmrzzdGbzsZ0T5wgK+EU1/Y9ooCAGMjEf7nugw7piePPn84rJUQkjrIGhWVsxIKkwv8N31DrPz8oaoVg8GpgI4KBE6OgxAMdyGFTFQ=
+	t=1783415571; cv=none; b=a4XV2Cou5tXdTYzrNEyceuRUB+2n/MZm2Q2j7+y7CA8s+GT4QuGSvqZTSHvyuBbCQemVruesIc8nT2QvY01XtEZkXG0sEUbji6lFHVD0AlZkQorxbwO36Y4rJ5CkOZwrUowLuDYYsS0RZSEQ2zdxQtcx8cAbMaR0B5TKk4KvfkY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783415511; c=relaxed/simple;
-	bh=5f6GIDZMQrqFo+6gJIgZVFJCjUOoumzFzJERSA/umEg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Dx+KN5BAmgFvD4VIY6dg186qpArRVa72E7MOKGfB1dM+5pkF77aFgMjKDG9zJ3hJMyujX/UJdV6A+3PGVxVR89ifBKNxeIf3W2XaCop1cemIFHUMSn42jSmX9tSmk33KnTY6N/m+UYjWzhAGfMbpIUJquiTLr4/m3/cPQ6a/qO8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=gzY7nslo; arc=none smtp.client-ip=185.246.84.56
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id 05C2B1A0EB6;
-	Tue,  7 Jul 2026 09:11:48 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id CC71C601A3;
-	Tue,  7 Jul 2026 09:11:47 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id D6EE511BC1165;
-	Tue,  7 Jul 2026 11:11:40 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1783415506; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:content-language:in-reply-to:references;
-	bh=4aiFVPWk7NAYVKW9uB8OzYhAIo5EOwzD2w2pJLKQ5fQ=;
-	b=gzY7nslondsKNUqkWe+5CudiAGehplbtGDU7t1nUKgS4SwOgk1WCNvrrKIg1Iec1drudT5
-	6itqVQiujEd+9aD+6JbqeILOWmYIXK4o49E8D4+ZrCU1cus1GhCSWFBOWnqbc6j0Q/XEMN
-	OvKNAPxNmFDOxkNhyFvvkO7kuhuRrahqmS5phjEl5iZU3KlWmDQm3sHovgRkBwCLEoluce
-	5NpRtB0Rz0EUGkDMDBmbfa9SJP5Lgrv6pB7r8udDvEpjyKoLcW38wABzCVRRQtzGpnzIwW
-	ePpOSMpVM+rhze0G3AvSCz1de3DqOc4zmSp3173TTCLro0iB6kqnS9zgTJW3mg==
-Message-ID: <2a421449-01eb-4066-8c19-d554ff8e4f6e@bootlin.com>
-Date: Tue, 7 Jul 2026 11:11:39 +0200
+	s=arc-20240116; t=1783415571; c=relaxed/simple;
+	bh=d6xUVhdl9Yc1Ig8QnEf4pI4GJ5y5m437TgylJ9F7094=;
+	h=Message-ID:Date:From:MIME-Version:To:Subject:References:
+	 In-Reply-To:Content-Type; b=t0JbH3I3fize4cmiQoOjSDTriTiQDH96ef0vG+XniPxqGslk2kA/hye0o39dFfEB4W8mmNvySuiISKjgfPHZm49xFAW+hqSfrgGuTlu6hL9CLeA1o8aZQH1iO7vScxY6MEpGuZobCerXPtfQ2/iluUV3rThfRlv+AfhJB2ab40s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=hisilicon.com; spf=pass smtp.mailfrom=huawei.com; dkim=pass (1024-bit key) header.d=huawei.com header.i=@huawei.com header.b=dCEr1IrE; arc=none smtp.client-ip=113.46.200.217
+dkim-signature: v=1; a=rsa-sha256; d=huawei.com; s=dkim;
+	c=relaxed/relaxed; q=dns/txt;
+	h=From;
+	bh=SvRq5CdKRK+cXuPIl01vwgEHpAzifmdPRhufpqKIi68=;
+	b=dCEr1IrECrVxXkkww71i9eXle7zGxMWVmIeugpng72TeD4oJpSaX53iRVOsawEEzVpdRNkpiB
+	EEjQkTHpJnuV3+PTt2SjX0qAcoYnZGLK6mZmpWcFVIdeP/EJBv+N6rm9S9zWHuIpsv4CZYQZM8c
+	rpLLp3fo/zqlgxG2d2uoQDo=
+Received: from mail.maildlp.com (unknown [172.19.162.144])
+	by canpmsgout02.his.huawei.com (SkyGuard) with ESMTPS id 4gvZyg4qhZzcb3P;
+	Tue,  7 Jul 2026 17:03:39 +0800 (CST)
+Received: from dggemv712-chm.china.huawei.com (unknown [10.1.198.32])
+	by mail.maildlp.com (Postfix) with ESMTPS id 082D240538;
+	Tue,  7 Jul 2026 17:12:41 +0800 (CST)
+Received: from kwepemq100003.china.huawei.com (7.202.195.72) by
+ dggemv712-chm.china.huawei.com (10.1.198.32) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.11; Tue, 7 Jul 2026 17:12:40 +0800
+Received: from [10.67.113.213] (10.67.113.213) by
+ kwepemq100003.china.huawei.com (7.202.195.72) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.11; Tue, 7 Jul 2026 17:12:40 +0800
+Message-ID: <6A4CC307.5000606@hisilicon.com>
+Date: Tue, 7 Jul 2026 17:12:39 +0800
+From: Wei Xu <xuwei5@hisilicon.com>
+User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64; rv:24.0) Gecko/20100101 Thunderbird/24.2.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next 5/6] net: stmmac: mediatek: add support for TX
- deallocation adjustment feature
-To: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>,
- Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
- <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Richard Cochran <richardcochran@gmail.com>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Biao Huang <biao.huang@mediatek.com>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>
-Cc: rmk+kernel@armlinux.org.uk, kernel@collabora.com, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- linux-stm32@st-md-mailman.stormreply.com
-References: <20260707-dwmac-mediatek-mt8189-v1-0-17f345eaaca3@collabora.com>
- <20260707-dwmac-mediatek-mt8189-v1-5-17f345eaaca3@collabora.com>
-From: Maxime Chevallier <maxime.chevallier@bootlin.com>
-Content-Language: en-US
-In-Reply-To: <20260707-dwmac-mediatek-mt8189-v1-5-17f345eaaca3@collabora.com>
-Content-Type: text/plain; charset=UTF-8
+To: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>, Rob Herring
+	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<xuwei5@hisilicon.com>
+Subject: Re: [PATCH] arm64: dts: hisilicon: hi3798cv200: Drop unused clock-names
+ and reset-names
+References: <20260625091335.106951-2-krzysztof.kozlowski@oss.qualcomm.com>
+In-Reply-To: <20260625091335.106951-2-krzysztof.kozlowski@oss.qualcomm.com>
+Content-Type: text/plain; charset="ISO-8859-1"
 Content-Transfer-Encoding: 7bit
-X-Last-TLS-Session-Version: TLSv1.3
+X-ClientProxiedBy: kwepems100001.china.huawei.com (7.221.188.238) To
+ kwepemq100003.china.huawei.com (7.202.195.72)
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [1.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	DMARC_POLICY_QUARANTINE(1.50)[hisilicon.com : SPF not aligned (relaxed), DKIM not aligned (relaxed),quarantine];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
-	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
+	R_DKIM_ALLOW(-0.20)[huawei.com:s=dkim];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-321864-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[huawei.com:+];
+	TAGGED_FROM(0.00)[bounces-321866-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FREEMAIL_TO(0.00)[collabora.com,lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gmail.com,mediatek.com,foss.st.com];
-	FORGED_SENDER(0.00)[maxime.chevallier@bootlin.com,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[23];
-	FORGED_RECIPIENTS(0.00)[m:louisalexis.eyraud@collabora.com,m:andrew+netdev@lunn.ch,m:davem@davemloft.net,m:edumazet@google.com,m:kuba@kernel.org,m:pabeni@redhat.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:richardcochran@gmail.com,m:matthias.bgg@gmail.com,m:angelogioacchino.delregno@collabora.com,m:biao.huang@mediatek.com,m:mcoquelin.stm32@gmail.com,m:alexandre.torgue@foss.st.com,m:rmk+kernel@armlinux.org.uk,m:kernel@collabora.com,m:netdev@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-mediatek@lists.infradead.org,m:linux-stm32@st-md-mailman.stormreply.com,m:andrew@lunn.ch,m:krzk@kernel.org,m:conor@kernel.org,m:matthiasbgg@gmail.com,m:mcoquelinstm32@gmail.com,m:rmk@armlinux.org.uk,s:lists@lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,huawei.com:dkim,vger.kernel.org:from_smtp,qualcomm.com:email];
+	FORGED_SENDER(0.00)[xuwei5@hisilicon.com,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:krzysztof.kozlowski@oss.qualcomm.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-arm-kernel@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:xuwei5@hisilicon.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[maxime.chevallier@bootlin.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[bootlin.com:+];
-	ALIAS_RESOLVED(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[xuwei5@hisilicon.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	ALIAS_RESOLVED(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt,kernel];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp,collabora.com:email,bootlin.com:from_mime,bootlin.com:dkim,bootlin.com:mid]
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 26DEF719ADF
+X-Rspamd-Queue-Id: 00D73719B18
 
-Hi,
+Hi Krzysztof, 
 
-On 7/7/26 10:21, Louis-Alexis Eyraud wrote:
-> The MT8189 SoC has in the Ethernet control 0 register from the
-> peripheral configuration (pericfg) additional bits to adjust the TX
-> deallocation.
+On 2026/6/25 17:13, Krzysztof Kozlowski wrote:
+> Neither Linux drivers nor DT bindings ever described or used clock-names
+> and reset-names for this SoC.  The binding allows clock-names only for
+> atmel,at91sam9g45-ehci and atmel,at91rm9200-ohci, but not for HiSilicon.
+> reset-names were never allowed.
 > 
-> In preparation of MT8189 SoC support, add its definition, use in the
-> set_delay_v2 callback, and a support flag in the platform data.
-
-Can you elaborate a bit on this ? I don't quite get what you mean by
-"tx deallocation", this seems to have to do with RGMII timings from
-the register access pattern, but the local boolean flag for the feature
-is named "use_stage_fine", I'm failing to connect all the dots here
-with the different terminology in use :(
-
+> Drop them from DTS to fix dtbs_check warnings:
 > 
-> Signed-off-by: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
+>   hi3798cv200-poplar.dtb: usb@9880000 (generic-ohci): False schema does not allow ['bus', 'clk12', 'clk48']
+>   hi3798cv200-poplar.dtb: usb@9880000 (generic-ohci): Unevaluated properties are not allowed ('reset-names' was unexpected)
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 > ---
->  .../net/ethernet/stmicro/stmmac/dwmac-mediatek.c   | 25 ++++++++++++++++------
->  1 file changed, 19 insertions(+), 6 deletions(-)
+>  arch/arm64/boot/dts/hisilicon/hi3798cv200.dtsi | 4 ----
+>  1 file changed, 4 deletions(-)
 > 
-> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-mediatek.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-mediatek.c
-> index bcc0baef3f71..6b0a42b5839f 100644
-> --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-mediatek.c
-> +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-mediatek.c
-> @@ -37,7 +37,8 @@
->  #define ETH_FINE_DLY_RXC	BIT(0)
->  
->  /* Peri Configuration register for mt8189 */
-> -#define MT8189_CTRL0_TXC_OUT_OP		BIT(20)
-> +#define MT8189_CTRL0_TXC_OUT_OP			BIT(20)
+> diff --git a/arch/arm64/boot/dts/hisilicon/hi3798cv200.dtsi b/arch/arm64/boot/dts/hisilicon/hi3798cv200.dtsi
+> index 2f4ad5da5e33..e5010c9d4c39 100644
+> --- a/arch/arm64/boot/dts/hisilicon/hi3798cv200.dtsi
+> +++ b/arch/arm64/boot/dts/hisilicon/hi3798cv200.dtsi
+> @@ -633,9 +633,7 @@ ohci: usb@9880000 {
+>  			clocks = <&crg HISTB_USB2_BUS_CLK>,
+>  				 <&crg HISTB_USB2_12M_CLK>,
+>  				 <&crg HISTB_USB2_48M_CLK>;
+> -			clock-names = "bus", "clk12", "clk48";
+>  			resets = <&crg 0xb8 12>;
+> -			reset-names = "bus";
+>  			phys = <&usb2_phy1_port0>;
+>  			phy-names = "usb";
+>  			status = "disabled";
+> @@ -648,11 +646,9 @@ ehci: usb@9890000 {
+>  			clocks = <&crg HISTB_USB2_BUS_CLK>,
+>  				 <&crg HISTB_USB2_PHY_CLK>,
+>  				 <&crg HISTB_USB2_UTMI_CLK>;
+> -			clock-names = "bus", "phy", "utmi";
+>  			resets = <&crg 0xb8 12>,
+>  				 <&crg 0xb8 16>,
+>  				 <&crg 0xb8 13>;
+> -			reset-names = "bus", "phy", "utmi";
+>  			phys = <&usb2_phy1_port0>;
+>  			phy-names = "usb";
+>  			status = "disabled";
+> 
 
-Extra whitespace inserted here :)
 
-Thanks,
+Applied to the HiSilicon arm64 dt tree.
+Thanks!
 
-Maxime
+Best Regards,
+Wei
 
