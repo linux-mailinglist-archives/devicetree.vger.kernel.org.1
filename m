@@ -1,177 +1,175 @@
-Return-Path: <devicetree+bounces-322072-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-322073-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id meUTDOwDTWoVtgEAu9opvQ
-	(envelope-from <devicetree+bounces-322072-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 15:49:32 +0200
+	id VyLkEH8DTWoFtgEAu9opvQ
+	(envelope-from <devicetree+bounces-322073-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 15:47:43 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7896371C1D4
-	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 15:49:31 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id A8FF771C19B
+	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 15:47:42 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=kUwTJQX7;
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322072-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-322072-lists+devicetree=lfdr.de@vger.kernel.org";
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=UAaPlxUA;
+	dmarc=pass (policy=none) header.from=gmail.com;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322073-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-322073-lists+devicetree=lfdr.de@vger.kernel.org";
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E68D131C98AF
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jul 2026 13:38:14 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 896103156936
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jul 2026 13:38:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5B7F41F7DF;
-	Tue,  7 Jul 2026 13:37:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8120D420E96;
+	Tue,  7 Jul 2026 13:37:38 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yx1-f48.google.com (mail-yx1-f48.google.com [74.125.224.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D39DD41D4D7;
-	Tue,  7 Jul 2026 13:37:00 +0000 (UTC)
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783431421; cv=none; b=cUleUffoT4AoOE+8hpEQr2PcEkqfXoOkCRxz/N33/F7jRCaC/XUL7dQVpyMw/+vnaRiGtVfOTUdEpqIqkOM4RrbzAHQ+aFaNUCEuqQ+Htkqvrpzn5uX+zjwN1ym4U7MQORTubgGwuMftUlx3BXg1Dd2Et6mlm0C2+rd0exbRF0M=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783431421; c=relaxed/simple;
-	bh=sYwS8ou9VYhfx6gHtvvSKZH1Q3kUx/7HfTO2JFgLyTY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=V3bYOGU/Wg2FZYzmK8UOEOSgGjEmyD3gEE8wUQyNm8LWKQKm1MnJbhLKPAVQlbS8eClr2Ju0KGdJMnBAvmZufDAKapMTrOzBE1skqxxX8ym/lYFYYhxGQOfu5ofutDlp81/cl5pBgUyz9HdtDYThkyweTZPjvtl2BUf1N/2GLGg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kUwTJQX7; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B9E271F00A3A;
-	Tue,  7 Jul 2026 13:36:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783431420;
-	bh=vTs7v8zsu7whrsyWYprIzwZsShGkshSeH1mdnWeQhDk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=kUwTJQX71bILcSB7SmskFWmkhK3TGF8YHFkyzQY17WlEUAM8I+JqGhzvo55X7PZDi
-	 oNje6D+myo2INszEVM2+lfsi+C0YTOUvQd8LQ6wAhpcKtd1hSyiihaQKnBkeNV4GNZ
-	 5/3ulew7PLDZljlcalvW+jw7W3SqxgElQzYMRTnDAV7mG6O1GMwabMWgRGCkympsPW
-	 1RpMFJA/eH96zKbocqhlAzgaIjPRn+rPf4mrjkia4fALw+u63xKvDyGhiNKwawd808
-	 fZfwtvsYxWNpieAutJUVIs8936x82mFXpOxy8SGgRrCjLSRSD8AtbD3lO570OfQ5nP
-	 hhaRyoXYh5eFQ==
-Date: Tue, 7 Jul 2026 16:36:41 +0300
-From: Mike Rapoport <rppt@kernel.org>
-To: Robin Murphy <robin.murphy@arm.com>
-Cc: Will Deacon <will@kernel.org>,
-	Thierry Reding <thierry.reding@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Hunter <jonathanh@nvidia.com>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Sowjanya Komatineni <skomatineni@nvidia.com>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Mikko Perttunen <mperttunen@nvidia.com>,
-	Yury Norov <yury.norov@gmail.com>,
-	Rasmus Villemoes <linux@rasmusvillemoes.dk>,
-	Russell King <linux@armlinux.org.uk>,
-	Alexander Gordeev <agordeev@linux.ibm.com>,
-	Gerald Schaefer <gerald.schaefer@linux.ibm.com>,
-	Heiko Carstens <hca@linux.ibm.com>,
-	Vasily Gorbik <gor@linux.ibm.com>,
-	Christian Borntraeger <borntraeger@linux.ibm.com>,
-	Sven Schnelle <svens@linux.ibm.com>,
-	Andrew Morton <akpm@linux-foundation.org>,
-	David Hildenbrand <david@kernel.org>,
-	Lorenzo Stoakes <ljs@kernel.org>,
-	"Liam R. Howlett" <liam@infradead.org>,
-	Vlastimil Babka <vbabka@kernel.org>,
-	Suren Baghdasaryan <surenb@google.com>,
-	Michal Hocko <mhocko@suse.com>,
-	Marek Szyprowski <m.szyprowski@samsung.com>,
-	Sumit Semwal <sumit.semwal@linaro.org>,
-	Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-	Brian Starkey <Brian.Starkey@arm.com>,
-	John Stultz <jstultz@google.com>,
-	"T.J. Mercier" <tjmercier@google.com>,
-	Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
-	Steven Rostedt <rostedt@goodmis.org>,
-	Masami Hiramatsu <mhiramat@kernel.org>,
-	Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
-	linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-	linux-media@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-s390@vger.kernel.org, linux-mm@kvack.org,
-	iommu@lists.linux.dev, linaro-mm-sig@lists.linaro.org,
-	linux-trace-kernel@vger.kernel.org,
-	Thierry Reding <treding@nvidia.com>, Chun Ng <chunn@nvidia.com>
-Subject: Re: [PATCH v3 04/11] arm64/mm: Add set_memory_device() and
- set_memory_normal()
-Message-ID: <ak0A6eLp0Pw8iKK0@kernel.org>
-References: <20260701-tegra-vpr-v3-0-d80f7b871bb4@nvidia.com>
- <20260701-tegra-vpr-v3-4-d80f7b871bb4@nvidia.com>
- <akYs91INHMXMTI-t@willie-the-truck>
- <akZkuwktaXFTrASP@orome>
- <akaSJ5D98w2cHqb6@orome>
- <akftuw9NyRy36fXA@willie-the-truck>
- <akuvyu1Pq0ZVMZV0@orome>
- <akzikTrmhMsvkNVY@willie-the-truck>
- <b0a1bdd7-46ab-4025-8775-c9273892444e@arm.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18D2541DEF2
+	for <devicetree@vger.kernel.org>; Tue,  7 Jul 2026 13:37:36 +0000 (UTC)
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1783431458; cv=pass; b=emc27lhw057RiqFIRfEMg24JTkZm0VX8bXuTgDJENHEcLFhQx4FdY4Cea1DGS75f1D0czEh9p5gWIS9G/mXXADisuhfjABh05g6XV7Zdo4Qp1ZhlfsC0KjWdVOCjdEuM/RLoEg0g273Mcuuqh2RJySXhwKMVk91814oB+70iA+s=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1783431458; c=relaxed/simple;
+	bh=YxxW/DgyJ8n8X4s2Jk8Sgjq3BzhWt1t3dn+FQ+NVOBM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=EIAW867UF/nR2FcqhIpN0YFjpL9ZaSqDvVUNS8E/O3xliRCAfI6i1nlfXaw6HL0NHTdcUSyEXaAlIpyu+fsD+x1S3xBdDKasamccDQJqyGZll0gYHRjEMAW+SREcZz4D/hT3mjhYPiLz7YAeotZxW5QhzO3EsXlhlBBPzLlwovo=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UAaPlxUA; arc=pass smtp.client-ip=74.125.224.48
+Received: by mail-yx1-f48.google.com with SMTP id 956f58d0204a3-664b05d408bso3435510d50.1
+        for <devicetree@vger.kernel.org>; Tue, 07 Jul 2026 06:37:36 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1783431456; cv=none;
+        d=google.com; s=arc-20260327;
+        b=jcXdILHExHC+rxZC6kJloqfkP1F1MvksMG9KHwiwGB4vbvh0JHqfunoU8patcoYb2t
+         wsmM3xG6WLP+mfvZjA5v6avtLG8Dmc71h5A4eZEx+9w6A5wHI25n85uHW69bPQvBuZry
+         0JilXdRq9Q8/tS7uxMW9XDBpYqCtsYBMI4MAKnpqIDz8R778wdVVGyHJQljs9b21eVms
+         zSF6nnCNVXdSOvOOZDH6Sx3lCO6PAeDYkW1LW7gtlH/YEgV5GZqSgLPmjdlqjHrnTNvJ
+         t5J5+dQMktcs44PW3UCBKMdniif1hgh/Txpy4JNp17ukJsZJdZe4FrPWlnos77T+F6Gk
+         445g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=YxxW/DgyJ8n8X4s2Jk8Sgjq3BzhWt1t3dn+FQ+NVOBM=;
+        fh=8o+mrCU+nIdqgYhx/29MgNlNZCg3tVGYNLD+1Khb088=;
+        b=LG0ZMc5xBzEH+xHjohASI72INKf47mT8bcMePvb94FyCm5iqZBWYSxFfn6jz7qf8vM
+         csdn03ftm2z+bSvAb0I1Utk44q2JmG2dA65AeLKY4e/dOB23VTvUvgHRSAmUypQikmpG
+         6x5eBSFxH+XSVTWgQMBm/uG1C5AuEdbiWlOCIBtVrrJG4RSaik53Vgi1/tQ9tPKayMYD
+         5BpQBrsQFsM4VKyL54RpV2KnX5nRlINaTI/D2t6EjDIbduCX7NK5w2e4+AV8xjf5mBMK
+         zyvUe5+YFcNbxEqay0a7oLNky+3A4hH9n/0JkUcojBGJx47uYIGmjYuui0JW0NjfdQJo
+         mIVg==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1783431456; x=1784036256; darn=vger.kernel.org;
+        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
+         :references:mime-version:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=YxxW/DgyJ8n8X4s2Jk8Sgjq3BzhWt1t3dn+FQ+NVOBM=;
+        b=UAaPlxUAFFrxu0oHiKSjwLu1QY/PnDxAteQHIRK52RKfSroz8xttLIJ6JCID45rFHh
+         KkoQg5COgA6IDztr3LxajFXnsqLA0ppsmMWW114ap9+5ysuIayD5ljctIy8EdeVShzWB
+         SXNO8+/4YGK5YF25AdMRKtq7qDEWpT2diI3ViSCKK1AiOHx0Oejmihhecc5AUeNaIgvd
+         16CWcAVqttHrrim+ADoD4lBhps4B0boFAMRqFNUT6B89/gc9Ui+FoxJW/jWzPAdfzBXp
+         yszAb0bLCmRpBT6UNvfK7PuJ7HowvVJX/GLPV4mZtY75bDlQy4OtQvjt3kXekKRs/zQP
+         AhyA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1783431456; x=1784036256;
+        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
+         :references:mime-version:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to:content-type;
+        bh=YxxW/DgyJ8n8X4s2Jk8Sgjq3BzhWt1t3dn+FQ+NVOBM=;
+        b=szdZrgmT5UP5SGMtoRO38ftWzLMxzjswJH3L5tk6yWcuiSjnY0mhoOTtZzJ5Uh6q1W
+         rpBL3U3nW5Mq3wy1QhQ+IqLmLme/4YQec6IgYSEtvq2WNoArD00337HqlexzdWEI3PVg
+         zmMcKQprya4Xpmt81i03RjOi1a82l3R6COcwYM1zUiiG8/MKd/VsTWbCsXWNUBpBh0bd
+         R8W4dO0BwGL/kXN09omeyeqn85Sb0FJ1f2WPq/f18r7xhybXid5KCgmuzy+5T45NkOZD
+         wJD3FVe2KeGssPfW0voSgD32jcLAT4YnXRl5OiAF/p0pnoYsfdhjphkP59HR8RqvSMLZ
+         rLFQ==
+X-Forwarded-Encrypted: i=1; AHgh+Rp7CnJM/sKnn7Wo8VT8KpK5vfADSRRWp+6L91ySck/Yc0AgZgBp7FlMCdQzEbpGl81W3COzuVGwWamR@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxyya/5k55h2GzcajyAXp0QmgVNtLBI0u78HFnagmiy5xVoo/jK
+	LeZdbvvEeIy3R0hze33F611Xn+gI5YUrUc90u1QN0bdj6vlEhg4UzKK2dRl1foRzXfHhQjioEoC
+	AGxlvnfT7RijEBVPMmD1/1FOSCYcvW/og444d2dA=
+X-Gm-Gg: AfdE7cm39ntBVUx6GWPyZaVgF5cQf1GcgoLoFSordug3cmjczb0L5tXwtvXBUF0Lrbg
+	zSUaNjKVXXvAPeJm47N0HXX4eDFvrz8W20pBU0fKJf/5+K2DBGS/1YsmLfiu2nWJawcg9oO/Och
+	qJ+XFKX7hRHHus4QdCttX7JEnVH6AVWlTyUbX0B2JgrxwGvNaCjOsKUj5zOWhxn3/R3kntYE6v/
+	iIZRTlITxnRjjhj/fXb3blNimca+lsBT7TPiiBeFCwY8Sqkb57FZFs83PZ6oGJRsja2OxEZ7KGK
+	XsHxcUbR+e41EJbNZEtii8ryd9ZXACH12pIakne4kskC2uhf3Dd5CES4+opbzw==
+X-Received: by 2002:a05:690e:440f:b0:664:ae6a:ef6 with SMTP id
+ 956f58d0204a3-6677fe09239mr3207984d50.84.1783431455985; Tue, 07 Jul 2026
+ 06:37:35 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <b0a1bdd7-46ab-4025-8775-c9273892444e@arm.com>
+References: <20260630-apple-mtp-keyboard-final-v1-0-506d936a1707@gmail.com>
+ <20260630-apple-mtp-keyboard-final-v1-8-506d936a1707@gmail.com> <a0cee001-7bca-438a-943b-da28528e7df7@gmail.com>
+In-Reply-To: <a0cee001-7bca-438a-943b-da28528e7df7@gmail.com>
+From: Michael Reeves <michael.reeves077@gmail.com>
+Date: Tue, 7 Jul 2026 23:37:24 +1000
+X-Gm-Features: AVVi8Cc2ZFlYzV97xsPmmL_XYaVoOo2UdWECw6a41ntBKVYGFTDcsFEpeCIlldE
+Message-ID: <CANpmGNusmx8NQEu2x07rX-yd33XA9TJR_ZogFVXexAmw+7qq9A@mail.gmail.com>
+Subject: Re: [PATCH 08/10] HID: apple: Add DockChannel HID transport driver
+To: Julian Braha <julianbraha@gmail.com>
+Cc: Sven Peter <sven@kernel.org>, Janne Grunau <j@jannau.net>, Neal Gompa <neal@gompa.dev>, 
+	Jassi Brar <jassisinghbrar@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Hector Martin <marcan@marcan.st>, "Joerg Roedel (AMD)" <joro@8bytes.org>, Will Deacon <will@kernel.org>, 
+	Robin Murphy <robin.murphy@arm.com>, Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
+	Jiri Kosina <jikos@kernel.org>, Benjamin Tissoires <bentiss@kernel.org>, asahi@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, iommu@lists.linux.dev, 
+	linux-input@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-322072-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:robin.murphy@arm.com,m:will@kernel.org,m:thierry.reding@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:jonathanh@nvidia.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:skomatineni@nvidia.com,m:luca.ceresoli@bootlin.com,m:mperttunen@nvidia.com,m:yury.norov@gmail.com,m:linux@rasmusvillemoes.dk,m:linux@armlinux.org.uk,m:agordeev@linux.ibm.com,m:gerald.schaefer@linux.ibm.com,m:hca@linux.ibm.com,m:gor@linux.ibm.com,m:borntraeger@linux.ibm.com,m:svens@linux.ibm.com,m:akpm@linux-foundation.org,m:david@kernel.org,m:ljs@kernel.org,m:liam@infradead.org,m:vbabka@kernel.org,m:surenb@google.com,m:mhocko@suse.com,m:m.szyprowski@samsung.com,m:sumit.semwal@linaro.org,m:benjamin.gaignard@collabora.com,m:Brian.Starkey@arm.com,m:jstultz@google.com,m:tjmercier@google.com,m:christian.koenig@amd.com,m:rostedt@goodmis.org,m:mhiramat@kernel.org,m:mathieu.desnoyers@efficios.com,m:c
- atalin.marinas@arm.com,m:thierry.reding@gmail.com,m:devicetree@vger.kernel.org,m:linux-tegra@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:dri-devel@lists.freedesktop.org,m:linux-media@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-s390@vger.kernel.org,m:linux-mm@kvack.org,m:iommu@lists.linux.dev,m:linaro-mm-sig@lists.linaro.org,m:linux-trace-kernel@vger.kernel.org,m:treding@nvidia.com,m:chunn@nvidia.com,m:krzk@kernel.org,m:conor@kernel.org,m:yurynorov@gmail.com,m:thierryreding@gmail.com,s:lists@lfdr.de];
-	FREEMAIL_CC(0.00)[kernel.org,nvidia.com,gmail.com,ffwll.ch,linux.intel.com,suse.de,bootlin.com,rasmusvillemoes.dk,armlinux.org.uk,linux.ibm.com,linux-foundation.org,infradead.org,google.com,suse.com,samsung.com,linaro.org,collabora.com,arm.com,amd.com,goodmis.org,efficios.com,vger.kernel.org,lists.freedesktop.org,lists.infradead.org,kvack.org,lists.linux.dev,lists.linaro.org];
-	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[gmail.com];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[rppt@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS(0.00)[m:julianbraha@gmail.com,m:sven@kernel.org,m:j@jannau.net,m:neal@gompa.dev,m:jassisinghbrar@gmail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:marcan@marcan.st,m:joro@8bytes.org,m:will@kernel.org,m:robin.murphy@arm.com,m:dmitry.torokhov@gmail.com,m:jikos@kernel.org,m:bentiss@kernel.org,m:asahi@lists.linux.dev,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:iommu@lists.linux.dev,m:linux-input@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,m:dmitrytorokhov@gmail.com,s:lists@lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER(0.00)[michaelreeves077@gmail.com,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	TAGGED_FROM(0.00)[bounces-322073-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[21];
+	FORWARDED(0.00)[lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_GT_50(0.00)[56];
-	ALIAS_RESOLVED(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[rppt@kernel.org,devicetree@vger.kernel.org];
-	PRECEDENCE_BULK(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[michaelreeves077@gmail.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[kernel.org,jannau.net,gompa.dev,gmail.com,marcan.st,8bytes.org,arm.com,lists.linux.dev,lists.infradead.org,vger.kernel.org];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 7896371C1D4
+X-Rspamd-Queue-Id: A8FF771C19B
 
-On Tue, Jul 07, 2026 at 02:17:29PM +0100, Robin Murphy wrote:
-> 
-> Given the precedent of memblock_mark_nomap(), as long as the reusable
-> reserved-memory regions also get split into distinct memblocks, then it
-> seems like in principle we ought to be able to give them a new
-> MEMBLOCK_PTEMAP (or whatever) flag which could then be picked up in
-> map_mem() without needing to override force_pte_mapping() globally?
+Hi Julian,
 
-Please don't. _nomap() caused enough pain.
- 
-> Cheers,
-> Robin.
+[...]
+> APPLE_DOCKCHANNEL_HID has a duplicate dependency on HID,
+> since you put the import for this file inside of 'if HID..endif',
+> and then also gave it a 'depends on HID'.
+>
 
--- 
-Sincerely yours,
-Mike.
+Thank you for picking it up and letting me know!
+
+I will correct it in v2, which I am planning on sending later this week, or
+potentially on the weekend if I get busy.
+
+Thanks again,
+Michael
 
