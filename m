@@ -1,42 +1,42 @@
-Return-Path: <devicetree+bounces-321895-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-321734-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id g4RIE+3LTGqOpwEAu9opvQ
-	(envelope-from <devicetree+bounces-321895-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 11:50:37 +0200
+	id lj48Ov2cTGpKnAEAu9opvQ
+	(envelope-from <devicetree+bounces-321734-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 08:30:21 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D975C719F76
-	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 11:50:36 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F115717F64
+	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 08:30:21 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=rock-chips.com header.s=default header.b=JwntmWVE;
+	dkim=pass header.d=rock-chips.com header.s=default header.b=ILl0ECcr;
 	dmarc=pass (policy=none) header.from=rock-chips.com;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-321895-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-321895-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-321734-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-321734-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 1EB7C3000889
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jul 2026 09:50:29 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 25B203034DF0
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jul 2026 06:29:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E72843D8128;
-	Tue,  7 Jul 2026 09:50:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8DCF39FCD8;
+	Tue,  7 Jul 2026 06:29:58 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m19731101.qiye.163.com (mail-m19731101.qiye.163.com [220.197.31.101])
+Received: from mail-m49238.qiye.163.com (mail-m49238.qiye.163.com [45.254.49.238])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2CB938E8BE;
-	Tue,  7 Jul 2026 09:50:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C74163A1690;
+	Tue,  7 Jul 2026 06:29:55 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783417826; cv=none; b=ViT5eT/orgTDv+QHyHjQCgv9Nvgrz3LSzc8aSBdfBXThg0Ypjwv5fPff+YtmI52BYcHpZv6xDuFmIjC7/EY9mFSvKsOhf4ZLqwJw7xt7OfTggnGIiF38szztwBA43w5qak7eCrvMPvoozL/8Pb2j3kWDFyRIk8n18PfXV8U4SSg=
+	t=1783405798; cv=none; b=G7r3HvBVPe3juwvOTInXxX7A5Euu15eDeHxcI6ycF2yCgUj5X6VPvFyZaXFbodYgEVr92Na+8a+lwiwafzqk+ShN32szorINPV9YSYhBLuCUb8yv09vIV+VIwdTIHx6N34hQOQtAHY/UOtMA73teyAxEpbpsY479MOFcDc07ooM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783417826; c=relaxed/simple;
-	bh=fZY2VfwpUrOebJigA2IRc7ysHmsW/LOXngQD4fE5axk=;
+	s=arc-20240116; t=1783405798; c=relaxed/simple;
+	bh=9id+XpesmnYEmRYPc0YJnDB+nlt3n+xMzgs1ZP0Lfi0=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=bYFLXgQPLjO1V78iLVLmnT4R7wK68ps81UHCX67ozTcShXmIWwoYSjEtqPH2Kq8UPOwDr/42ntFu6eZKlSpRuSkGhV8ewVNk9RI2qWsMxDcmxqAc9scIAfLoLqkq6LfnhMSJR5eFwuuG0zszQKDnOD8nNlBDBaztBe1C2FV/d58=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=JwntmWVE; arc=none smtp.client-ip=220.197.31.101
+	 MIME-Version; b=lpdp3eE+JPzUdxTsCZtvfWeEGezz/tE+R2Xq01YO8E5jmbBPsT9Pa/agHWzjvJwlDzzxMjA7HPD4ah22tCuZnEDnm1LRj8aV/exKKf21s7BlHIcYPE36yBrticRF11dTb8oPRaqkDp1I+GWlo3IphJY0M84vBO32/xhEKJa4JGQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=ILl0ECcr; arc=none smtp.client-ip=45.254.49.238
 Received: from zyb-HP-ProDesk-680-G2-MT.. (unknown [61.154.14.86])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 452ef5835;
-	Tue, 7 Jul 2026 12:07:21 +0800 (GMT+08:00)
+	by smtp.qiye.163.com (Hmail) with ESMTP id 452ef5837;
+	Tue, 7 Jul 2026 12:07:22 +0800 (GMT+08:00)
 From: Damon Ding <damon.ding@rock-chips.com>
 To: Andrzej Hajda <andrzej.hajda@intel.com>,
 	Neil Armstrong <neil.armstrong@linaro.org>,
@@ -65,9 +65,9 @@ Cc: Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
 	linux-rockchip@lists.infradead.org,
 	linux-arm-kernel@lists.infradead.org,
 	Damon Ding <damon.ding@rock-chips.com>
-Subject: [PATCH v6 4/5] drm/bridge: analogix_dp: Add validation for samsung,lane-count property
-Date: Tue,  7 Jul 2026 12:06:12 +0800
-Message-Id: <20260707040613.1992841-5-damon.ding@rock-chips.com>
+Subject: [PATCH v6 5/5] drm/bridge: analogix_dp: Add support for optional data-lanes mapping
+Date: Tue,  7 Jul 2026 12:06:13 +0800
+Message-Id: <20260707040613.1992841-6-damon.ding@rock-chips.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260707040613.1992841-1-damon.ding@rock-chips.com>
 References: <20260707040613.1992841-1-damon.ding@rock-chips.com>
@@ -78,15 +78,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-HM-Tid: 0a9f3ac252f803a8kunme8126cdf5bc93
+X-HM-Tid: 0a9f3ac2583003a8kunme8126cdf5bca9
 X-HM-MType: 1
 X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVkZShgdVkpNGB1CTR9PGk4eGlYVFA
-	kWGhdVEwETFhoSFyQUDg9ZV1kYEgtZQVlNSlVKTk9VSk9VQ01ZV1kWGg8SFR0UWUFZT0tIVUpLSU
-	9PT0hVSktLVUpCS0tZBg++
+	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVlDS0gfVk4fQ05JSR1DQxhIT1YVFA
+	kWGhdVEwETFhoSFyQUDg9ZV1kYEgtZQVlNSlVKTk9VSk9VQ01ZV1kWGg8SFR0UWUFZT0tIVUpLSE
+	pKQk1VSktLVUpCWQY+
 DKIM-Signature: a=rsa-sha256;
-	b=JwntmWVEzE0km0fKlwwuBXTmVIBySdS3xIweWHDatGW3zFxSisx9q3RR9d0aAUe+rIQ6X86CzuuI5XqIqGNUhK4ajBncMUH7Hpqc9Ye9ZogsdLUQp674NmB0yNBBRImiiEJx5buqKGkraIyyJ058paMbUdtJOnFz/uP+gNkMXaQ=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
-	bh=mLPv+VMsVdg/2ajzDFl3mJXUyg4DWZyAqc2dUZvsmmw=;
+	b=ILl0ECcrpWEFv1LXq31KBWim++8n4Y69ssakNKEpOXsZ5KrjWDU64uHUW/SmxpAdNlTt1eLDPERWhcOCd5PyZeGeccmG00ILSJwNkikd528ORCb+lBEASiJ/9Do/U9l8zSTb7XvkaVaUjw104YtsSlNpv1GPJQWBMqGXumyv+bU=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
+	bh=8eBGNav5lu0gnfs7uLdqPVCFuhUH9Cn2qp2rVhaC6O0=;
 	h=date:mime-version:subject:message-id:from;
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [0.84 / 15.00];
@@ -96,7 +96,7 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[rock-chips.com,none];
 	R_DKIM_ALLOW(-0.20)[rock-chips.com:s=default];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
@@ -109,7 +109,7 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	RCVD_TLS_LAST(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[27];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-321895-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-321734-lists,devicetree=lfdr.de];
 	FREEMAIL_CC(0.00)[ideasonboard.com,kwiboo.se,gmail.com,bootlin.com,oss.qualcomm.com,samsung.com,collabora.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org,rock-chips.com];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
@@ -117,47 +117,192 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	DKIM_TRACE(0.00)[rock-chips.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[damon.ding@rock-chips.com,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,bootlin.com:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,rock-chips.com:from_mime,rock-chips.com:email,rock-chips.com:mid,rock-chips.com:dkim]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: D975C719F76
+X-Rspamd-Queue-Id: 3F115717F64
 
-Add validity check for samsung,lane-count to ensure DT-provided
-lane count values are specification-compliant.
+Parse the optional 'data-lanes' device tree property to support
+custom physical lane mapping configuration.
 
-Suggested-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
+If no valid configuration is found, fall back to the default
+lane map (0, 1, 2, 3) automatically and keep the driver running.
+
+Lane mapping is mainly used for below scenarios:
+1. Correct PCB lane swap and differential line routing crossover
+   without hardware changes;
+2. Adapt mismatched lane pin definitions between SoC and eDP panel;
+3. Support multiple panel hardware variants on the same board
+   by configuring data-lanes in device tree only.
+
+Reviewed-by: Sebastian Reichel <sebastian.reichel@collabora.com>
 Signed-off-by: Damon Ding <damon.ding@rock-chips.com>
 
 ---
 
-Changes in v5:
-- Apply DRM DP helper API to check the validity of DP lane count.
+Changes in v2:
+- Add lane mapping application scenarios in commit message.
 
-Changes in v6:
-- Rebase after the new commit for restoring mandatory properties
-  samsung,link-rate and samsung,lane-count.
+Changes in v5:
+- Add Reviewed-by tag.
 ---
- drivers/gpu/drm/bridge/analogix/analogix_dp_core.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ .../drm/bridge/analogix/analogix_dp_core.c    | 56 +++++++++++++++++++
+ .../drm/bridge/analogix/analogix_dp_core.h    |  4 +-
+ .../gpu/drm/bridge/analogix/analogix_dp_reg.c | 15 +++--
+ .../gpu/drm/bridge/analogix/analogix_dp_reg.h |  4 ++
+ 4 files changed, 70 insertions(+), 9 deletions(-)
 
 diff --git a/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c b/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c
-index 5240efcd3861..039e076d2b8a 100644
+index 039e076d2b8a..cb06347196ce 100644
 --- a/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c
 +++ b/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c
-@@ -1270,7 +1270,8 @@ static int analogix_dp_dt_parse_pdata(struct analogix_dp_device *dp)
- 			return dev_err_probe(dp->dev, -EINVAL,
- 					     "Failed to get samsung,link-rate\n");
- 		video_info->max_link_rate = val;
--		if (of_property_read_u32(dp_node, "samsung,lane-count", &val))
-+		if (of_property_read_u32(dp_node, "samsung,lane-count", &val) ||
-+		    !drm_dp_lane_count_is_valid(val))
- 			return dev_err_probe(dp->dev, -EINVAL,
- 					     "Failed to get samsung,lane-count\n");
- 		video_info->max_lane_count = val;
+@@ -1240,6 +1240,59 @@ static const struct drm_bridge_funcs analogix_dp_bridge_funcs = {
+ 	.detect = analogix_dp_bridge_detect,
+ };
+ 
++static int analogix_dp_dt_parse_lanes_map(struct analogix_dp_device *dp)
++{
++	struct video_info *video_info = &dp->video_info;
++	struct device_node *endpoint;
++	u32 tmp[LANE_COUNT4];
++	u32 map[LANE_COUNT4] = {0, 1, 2, 3};
++	bool used[LANE_COUNT4] = {false};
++	int num_lanes;
++	int ret, i;
++
++	memcpy(video_info->lane_map, map, sizeof(map));
++
++	num_lanes = drm_of_get_data_lanes_count_ep(dp->dev->of_node, 1, 0, 1,
++						   video_info->max_lane_count);
++	if (num_lanes < 0)
++		return -EINVAL;
++
++	endpoint = of_graph_get_endpoint_by_regs(dp->dev->of_node, 1, -1);
++	if (!endpoint)
++		return -EINVAL;
++
++	ret = of_property_read_u32_array(endpoint, "data-lanes", tmp, num_lanes);
++	of_node_put(endpoint);
++	if (ret)
++		return -EINVAL;
++
++	for (i = 0; i < num_lanes; i++) {
++		if (tmp[i] >= LANE_COUNT4) {
++			dev_dbg(dp->dev, "data-lanes[%d] = %u is out of range\n", i, tmp[i]);
++			return -EINVAL;
++		}
++
++		if (used[tmp[i]]) {
++			dev_dbg(dp->dev, "data-lanes[%d] = %u is duplicate\n", i, tmp[i]);
++			return -EINVAL;
++		}
++
++		used[tmp[i]] = true;
++		map[i] = tmp[i];
++	}
++
++	for (i = 0; i < LANE_COUNT4 && num_lanes < LANE_COUNT4; i++) {
++		if (!used[i])
++			map[num_lanes++] = i;
++	}
++
++	dev_dbg(dp->dev, "Using parsed lane map: <%u %u %u %u>\n", map[0], map[1], map[2], map[3]);
++
++	memcpy(video_info->lane_map, map, sizeof(map));
++
++	return 0;
++}
++
+ static int analogix_dp_dt_parse_pdata(struct analogix_dp_device *dp)
+ {
+ 	struct device_node *dp_node = dp->dev->of_node;
+@@ -1278,6 +1331,9 @@ static int analogix_dp_dt_parse_pdata(struct analogix_dp_device *dp)
+ 		break;
+ 	}
+ 
++	if (analogix_dp_dt_parse_lanes_map(dp))
++		dev_dbg(dp->dev, "No valid data-lanes found, using default lane map\n");
++
+ 	return 0;
+ }
+ 
+diff --git a/drivers/gpu/drm/bridge/analogix/analogix_dp_core.h b/drivers/gpu/drm/bridge/analogix/analogix_dp_core.h
+index c7997677a286..4560597604ad 100644
+--- a/drivers/gpu/drm/bridge/analogix/analogix_dp_core.h
++++ b/drivers/gpu/drm/bridge/analogix/analogix_dp_core.h
+@@ -137,6 +137,8 @@ struct video_info {
+ 
+ 	int max_link_rate;
+ 	enum link_lane_count_type max_lane_count;
++
++	u32 lane_map[LANE_COUNT4];
+ };
+ 
+ struct link_train {
+@@ -177,7 +179,7 @@ struct analogix_dp_device {
+ /* analogix_dp_reg.c */
+ void analogix_dp_enable_video_mute(struct analogix_dp_device *dp, bool enable);
+ void analogix_dp_stop_video(struct analogix_dp_device *dp);
+-void analogix_dp_lane_swap(struct analogix_dp_device *dp, bool enable);
++void analogix_dp_lane_mapping(struct analogix_dp_device *dp);
+ void analogix_dp_init_analog_param(struct analogix_dp_device *dp);
+ void analogix_dp_init_interrupt(struct analogix_dp_device *dp);
+ void analogix_dp_reset(struct analogix_dp_device *dp);
+diff --git a/drivers/gpu/drm/bridge/analogix/analogix_dp_reg.c b/drivers/gpu/drm/bridge/analogix/analogix_dp_reg.c
+index ea8401293a23..c1344a3f013a 100644
+--- a/drivers/gpu/drm/bridge/analogix/analogix_dp_reg.c
++++ b/drivers/gpu/drm/bridge/analogix/analogix_dp_reg.c
+@@ -48,16 +48,15 @@ void analogix_dp_stop_video(struct analogix_dp_device *dp)
+ 	writel(reg, dp->reg_base + ANALOGIX_DP_VIDEO_CTL_1);
+ }
+ 
+-void analogix_dp_lane_swap(struct analogix_dp_device *dp, bool enable)
++void analogix_dp_lane_mapping(struct analogix_dp_device *dp)
+ {
++	u32 *lane_map = dp->video_info.lane_map;
+ 	u32 reg;
+ 
+-	if (enable)
+-		reg = LANE3_MAP_LOGIC_LANE_0 | LANE2_MAP_LOGIC_LANE_1 |
+-		      LANE1_MAP_LOGIC_LANE_2 | LANE0_MAP_LOGIC_LANE_3;
+-	else
+-		reg = LANE3_MAP_LOGIC_LANE_3 | LANE2_MAP_LOGIC_LANE_2 |
+-		      LANE1_MAP_LOGIC_LANE_1 | LANE0_MAP_LOGIC_LANE_0;
++	reg = lane_map[0] << LANE0_MAP_SHIFT;
++	reg |= lane_map[1] << LANE1_MAP_SHIFT;
++	reg |= lane_map[2] << LANE2_MAP_SHIFT;
++	reg |= lane_map[3] << LANE3_MAP_SHIFT;
+ 
+ 	writel(reg, dp->reg_base + ANALOGIX_DP_LANE_MAP);
+ }
+@@ -140,7 +139,7 @@ void analogix_dp_reset(struct analogix_dp_device *dp)
+ 
+ 	usleep_range(20, 30);
+ 
+-	analogix_dp_lane_swap(dp, 0);
++	analogix_dp_lane_mapping(dp);
+ 
+ 	writel(0x0, dp->reg_base + ANALOGIX_DP_SYS_CTL_1);
+ 	writel(0x40, dp->reg_base + ANALOGIX_DP_SYS_CTL_2);
+diff --git a/drivers/gpu/drm/bridge/analogix/analogix_dp_reg.h b/drivers/gpu/drm/bridge/analogix/analogix_dp_reg.h
+index 12735139046c..ac914e37089b 100644
+--- a/drivers/gpu/drm/bridge/analogix/analogix_dp_reg.h
++++ b/drivers/gpu/drm/bridge/analogix/analogix_dp_reg.h
+@@ -209,6 +209,10 @@
+ #define LANE0_MAP_LOGIC_LANE_1			(0x1 << 0)
+ #define LANE0_MAP_LOGIC_LANE_2			(0x2 << 0)
+ #define LANE0_MAP_LOGIC_LANE_3			(0x3 << 0)
++#define LANE3_MAP_SHIFT				(6)
++#define LANE2_MAP_SHIFT				(4)
++#define LANE1_MAP_SHIFT				(2)
++#define LANE0_MAP_SHIFT				(0)
+ 
+ /* ANALOGIX_DP_ANALOG_CTL_1 */
+ #define TX_TERMINAL_CTRL_50_OHM			(0x1 << 4)
 -- 
 2.34.1
 
