@@ -1,63 +1,64 @@
-Return-Path: <devicetree+bounces-322136-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-322137-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id JChLGEUQTWrXuQEAu9opvQ
-	(envelope-from <devicetree+bounces-322136-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 16:42:13 +0200
+	id +wxbNZ8QTWoAugEAu9opvQ
+	(envelope-from <devicetree+bounces-322137-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 16:43:43 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id C001971CC15
-	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 16:42:12 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B9D271CC6B
+	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 16:43:43 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=TCgWZAal;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=BosXBH9r;
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322136-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-322136-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322137-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-322137-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 01DC6315E4A8
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jul 2026 14:25:06 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 0B24430607B9
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jul 2026 14:27:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7CBF42A163;
-	Tue,  7 Jul 2026 14:24:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA023426406;
+	Tue,  7 Jul 2026 14:27:18 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACBCC426D32
-	for <devicetree@vger.kernel.org>; Tue,  7 Jul 2026 14:24:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 492523B2D0D
+	for <devicetree@vger.kernel.org>; Tue,  7 Jul 2026 14:27:14 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783434271; cv=none; b=MbLnqne0LA87xl/ym+mlzLGI3scRUMMpRPbju3FDVi4lDVVz/jC0BAK3dbUD/5vujsYinWkVJQ7enb18HdKDVJqubDcI/aDlEUXuiShJshpuXAPPr/Ua89bWGHtScMWGar/cplvO+tHj4DSD7/6uP0BxlHJs5oNhSQHoBVjrnZw=
+	t=1783434438; cv=none; b=WdoAkEEq69i99SqsGF6SX8lkh95peHI3Wals0IU4ElqElW80L4hcyL4sRhsFu9jljEBX6V0m1CbsxeO2bjoYzX8XbHv+MffiQihcCl87HLlIG7AeMakYEbHIT9trcEMwajp0gEeZBBWlgVCvB4IQKAvrTAiXOnif2z+3lerxuzw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783434271; c=relaxed/simple;
-	bh=6YFhjv7vLYAoBXzQkvmxe77fD3wp3Nf8viS7SYuohOU=;
+	s=arc-20240116; t=1783434438; c=relaxed/simple;
+	bh=rj2QpPqN7ySx5bLcwkgexTZWvVT8kHzevHavuTot/MU=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=gJA+Sj19vwcaUbq1VGjjCnBwQTesEJI3omfB3FHii8LPeffTQe7FOmt49giMlc1MLY4sQCeM9beGgYijyTh8HRb6ncI8kf9TelcXxhZ9iHCtVfM5SEAO+oEWwrwSLSRgMUraHZrM81EtnWHg4acllSFmvW39OQwKT8kuXSYF8Ks=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TCgWZAal; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 62C8B1F000E9;
-	Tue,  7 Jul 2026 14:24:27 +0000 (UTC)
+	 Message-Id; b=UCPnaJ/igHKuSaHRCEny7X7P2Wf8Hev5LKi5Vr/sSLhOjmOZFpcrt7DPHDygD/Zy7TRqWBKamlWgqcIopJ4BLUTVuSmi5cQN3meR0JvzfjtDa3B8ifbyWXWim19DPk/1JkgevKnQH6JvtNYVWZa12txFiHeJmkyCent3aDq0YCI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BosXBH9r; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D03021F00AC4;
+	Tue,  7 Jul 2026 14:27:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783434267;
-	bh=rRIp9AR0wU+e7TOtRmjPUmCS2deZ8M8R0/yeMVdBN7E=;
+	s=k20260515; t=1783434434;
+	bh=9ejetAl8MzDSoFJYgSbHLvtbPxpoS6PlRJW41QuvIVs=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=TCgWZAaltGRG95IatswSmhnPi+qudUu5pWsGQiT2/U8j2tWWJIQKw+0q7QFDH1kfc
-	 LGi4iH3u44BJvWDqGXQhM2/SZ3vDj982j03j1TIn/RliJlH6tPiqW09RpCXvtdNL8Z
-	 btlB0gPXzpeWO3HRN0QK7j3azUMogdIiTxJHyAyvpPQa/zeKdiM5xr6N5ysEWp1XLS
-	 ebNOoksvserBxWbUHVctTNyWB4O65D41J/o3vaSksXN0yOKA1RSGqWedIpqCzRJq+O
-	 Erl8OfL1pmnbXrGh+1fLNsquzubj/OLW3cgS30CdyEUHRKM+AvMTSh/kbp9NeNRlbJ
-	 4I6ldZZchzy4Q==
+	b=BosXBH9rxDr4wDdzAsIV/yyFwkLkT8dXAnXvl3sUysQ1HPPsxjVNQOsIuvaunYhQF
+	 j5FYwA/BVxVTU9wn3cmScF4NKsbDF/VG09DmkdhmnikWggql1pv8XBSXhLxzewdkYD
+	 OQ5MMrq1t9zeATktAKdhwFdB/6nPRfJHOYYqE+SEqS9mVJ0cVPgQdZEPECZFG6toSS
+	 MYWaNf6n1SeAUYfSSKfEIGKAB+qVFR9SDmvaCws1KpNBtBzwQIlTcMD1L+ewrHw79F
+	 nIxjSQsLRfv1l1OqA6yBL0OHiDNVLIvb3g/HErKa6p8ZkmCz/SpfSx41db8XSvolgV
+	 RtZfq7lTtOyGw==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v7 04/17] iio: add IIO_FREQUENCY channel type
+Subject: Re: [PATCH v2 02/12] phy: phy-mtk-dp: Rename regs to regmap in
+ struct mtk_dp_phy
 Reply-To: sashiko-reviews@lists.linux.dev
-To: "Rodrigo Alencar" <rodrigo.alencar@analog.com>
-Cc: devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org
-In-Reply-To: <20260707-ad9910-iio-driver-v7-4-a4ec30f63700@analog.com>
-References: <20260707-ad9910-iio-driver-v7-0-a4ec30f63700@analog.com>
- <20260707-ad9910-iio-driver-v7-4-a4ec30f63700@analog.com>
+To: "AngeloGioacchino Del Regno" <angelogioacchino.delregno@collabora.com>
+Cc: conor+dt@kernel.org, vkoul@kernel.org, devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org, linux-phy@lists.infradead.org, olteanv@gmail.com, neil.armstrong@linaro.org, robh@kernel.org
+In-Reply-To: <20260707141931.191172-3-angelogioacchino.delregno@collabora.com>
+References: <20260707141931.191172-1-angelogioacchino.delregno@collabora.com>
+ <20260707141931.191172-3-angelogioacchino.delregno@collabora.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Tue, 07 Jul 2026 14:24:26 +0000
-Message-Id: <20260707142427.62C8B1F000E9@smtp.kernel.org>
+Date: Tue, 07 Jul 2026 14:27:13 +0000
+Message-Id: <20260707142713.D03021F00AC4@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,24 +72,25 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-322136-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:rodrigo.alencar@analog.com,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-322137-lists,devicetree=lfdr.de];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:angelogioacchino.delregno@collabora.com,m:conor+dt@kernel.org,m:vkoul@kernel.org,m:devicetree@vger.kernel.org,m:dri-devel@lists.freedesktop.org,m:linux-phy@lists.infradead.org,m:olteanv@gmail.com,m:neil.armstrong@linaro.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[kernel.org,vger.kernel.org,lists.freedesktop.org,lists.infradead.org,gmail.com,linaro.org];
 	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
+	RCPT_COUNT_SEVEN(0.00)[9];
 	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	ALIAS_RESOLVED(0.00)[];
@@ -98,55 +100,71 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FROM_NO_DN(0.00)[];
 	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	RCPT_COUNT_THREE(0.00)[4];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[smtp.kernel.org:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,sashiko.dev:url,lists.linux.dev:replyto,vger.kernel.org:from_smtp,analog.com:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,sashiko.dev:url,lists.linux.dev:replyto,vger.kernel.org:from_smtp,smtp.kernel.org:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: C001971CC15
+X-Rspamd-Queue-Id: 3B9D271CC6B
 
 Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-- [Low] The newly added IIO_FREQUENCY channel type lacks sysfs ABI document=
-ation for its standard base attributes (e.g., `in_frequencyY_raw` or `out_f=
-requencyY_raw`).
+
+Pre-existing issues:
+- [High] Missing NULL check for `dev->platform_data` before dereferencing i=
+t in `mtk_dp_phy_probe`.
 --
 
---- Patch [4]: [PATCH v7 04/17] iio: add IIO_FREQUENCY channel type ---
-commit 7195506587746d2a02e7173a31fe7aaf67096665
-Author: Rodrigo Alencar <rodrigo.alencar@analog.com>
+--- Patch [2]: [PATCH v2 02/12] phy: phy-mtk-dp: Rename regs to regmap in s=
+truct mtk_dp_phy ---
+commit b41d4072a9780ff4f56cf8b17085088b1f2777ae
+Author: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-iio: add IIO_FREQUENCY channel type
+phy: phy-mtk-dp: Rename regs to regmap in struct mtk_dp_phy
 
-This commit adds the IIO_FREQUENCY channel type to the IIO framework to
-support Direct Digital Synthesizer (DDS) devices. It updates the channel
-type name specifications and event monitoring tools accordingly.
+This commit renames the regs member of struct mtk_dp_phy to regmap to
+improve readability and align with common kernel driver naming conventions.
 
-> diff --git a/drivers/iio/industrialio-core.c b/drivers/iio/industrialio-c=
-ore.c
-> index bdf3d4c063317..a45277bc5d994 100644
-> --- a/drivers/iio/industrialio-core.c
-> +++ b/drivers/iio/industrialio-core.c
-> @@ -99,6 +99,7 @@ static const char * const iio_chan_type_name_spec[] =3D=
- {
->  	[IIO_ATTENTION] =3D "attention",
->  	[IIO_ALTCURRENT] =3D "altcurrent",
->  	[IIO_COVERAGE] =3D "coverage",
-> +	[IIO_FREQUENCY] =3D "frequency",
->  };
+> diff --git a/drivers/phy/mediatek/phy-mtk-dp.c b/drivers/phy/mediatek/phy=
+-mtk-dp.c
+> index d7024a1443358..bf7b3a95e72d2 100644
+> --- a/drivers/phy/mediatek/phy-mtk-dp.c
+> +++ b/drivers/phy/mediatek/phy-mtk-dp.c
 
-[Severity: Low]
-Does Documentation/ABI/testing/sysfs-bus-iio need to be updated to document
-this new channel type?
+[ ... ]
 
-The IIO_FREQUENCY channel type appears to lack sysfs ABI documentation for =
-its
-standard base attributes (e.g., in_frequencyY_raw or out_frequencyY_raw),
-which leaves the expected base units (e.g., Hz) and precise sysfs naming
-conventions undefined.
+> @@ -176,7 +176,7 @@ static int mtk_dp_phy_probe(struct platform_device *p=
+dev)
+
+[Severity: High]
+This is a pre-existing issue, but does mtk_dp_phy_probe() lack a NULL check=
+=20
+for dev->platform_data before dereferencing it?
+
+If the platform device is probed without platform_data (for example, if=20
+manually bound via the sysfs bind interface to a generic platform device=20
+lacking this data), dev->platform_data will be NULL.
+
+Looking at the code in mtk_dp_phy_probe():
+
+    regs =3D *(struct regmap **)dev->platform_data;
+    if (!regs)
+        return dev_err_probe(dev, -EINVAL, ...
+
+Dereferencing dev->platform_data to assign regs before checking if=20
+platform_data itself is valid will cause a kernel oops.
+
+>  	if (!dp_phy)
+>  		return -ENOMEM;
+> =20
+> -	dp_phy->regs =3D regs;
+> +	dp_phy->regmap =3D regs;
+>  	phy =3D devm_phy_create(dev, NULL, &mtk_dp_phy_dev_ops);
+>  	if (IS_ERR(phy))
+>  		return dev_err_probe(dev, PTR_ERR(phy),
 
 --=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260707-ad9910-iio=
--driver-v7-0-a4ec30f63700@analog.com?part=3D4
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260707141931.1911=
+72-1-angelogioacchino.delregno@collabora.com?part=3D2
 
