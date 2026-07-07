@@ -1,171 +1,167 @@
-Return-Path: <devicetree+bounces-322113-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-322116-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id h6llDLgJTWr3twEAu9opvQ
-	(envelope-from <devicetree+bounces-322113-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 16:14:16 +0200
+	id 00K9KswRTWpLugEAu9opvQ
+	(envelope-from <devicetree+bounces-322116-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 16:48:44 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id B326471C6B4
-	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 16:14:15 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id EEA1E71CD42
+	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 16:48:43 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=mEFfCV8p;
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322113-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-322113-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=arm.com header.s=foss header.b=LyOTCEzl;
+	dmarc=pass (policy=none) header.from=arm.com;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322116-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-322116-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 5A75E3044C13
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jul 2026 14:11:45 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 3C18330BEF39
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jul 2026 14:15:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10583313E2B;
-	Tue,  7 Jul 2026 14:11:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6212242254D;
+	Tue,  7 Jul 2026 14:15:37 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD7CE3246F4;
-	Tue,  7 Jul 2026 14:11:41 +0000 (UTC)
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6F1D41F7CE;
+	Tue,  7 Jul 2026 14:15:35 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783433503; cv=none; b=UwVc8Gwxfi6vlvelHzIac/Px6f+yBlqStMbsBO2QFFGf/YlYdUnT3J3sqniITMTZC4ZnNeh70yCUiHYFFvt4dYvqekg9zhx+/u+y+bL+x8vtTh4f6M1XqZBcy+zaVum47Ed9J3D2fom8Ttj/1z5rWeOmKkGuaAYky7dVjcjRT3Q=
+	t=1783433737; cv=none; b=u+lIZn2Z6RUXqPYg3CPR8tXhP43YtTTe8TjYesfMxKuB8e6iaavg/k6YwDPBS8A6MkZsJGvJAs91hMVmfwOsURru/xVf9eP3s+4WvHY6vGXIyM/ijQVq6UzkfZ3XwP2FSOO59AauvifxxqlUTLLOl1gGhhEPUTzt7BbQdsxVo5U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783433503; c=relaxed/simple;
-	bh=zT8Y3SjC2nqXNS/CG/GpMNUJVHow+swr01D5EcTbkdQ=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=JxO/bVhR7B3sT9yv1DVAcpNeUFrr5BcPy0JDgy865eoAe/B9h+deV52ZT7vITYox4v0v5DNmo8nOnvBWHJAQssl0u3DX2U8crArw7z1xpnjy3S81+P4LGSSwAVWvNEqw7XgQdpYleqXn+7TzbkIcVNIIZxpGE3n0V+thtLVtRSE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mEFfCV8p; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CA8C11F000E9;
-	Tue,  7 Jul 2026 14:11:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783433501;
-	bh=cJaCu3Jw52AiZ+LxMPFERxVwD1Nes7fUxaczBwh3T6s=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=mEFfCV8plDwefkSgToR9MrKDDNLnMPJFSrntnFY54/pwPAgoVIHUA54P4xMazqHqL
-	 GrZzFzDALdf3oQnX0cZF2w01B4UvkfWga+5bS/kCdIwWw3n+l5Uw93Gq/Y21w6zxLN
-	 3hXbHqZJeu0gp7640gZhay46cbj5zyWjMjuvGlxnI+MMcbUBGcObSLmVQhJG1BWJVY
-	 oqC6Tzg419k08v/VC4vbm8kxt5/j4bSpR8gKvT1u3Dn4EWjZT9PZuiScgWHjfsgpmX
-	 qcoPppoIii8VsSraIIy9xbIbeFc54EVDU9Fhh8vJ/sZVkaOUuECkhYNaPCCFid3ajg
-	 O5PkbJ6fnEQMw==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH net-next v12 7/7] net: stmmac: qcom-ethqos: add support
- for sa8255p
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Bartosz Golaszewski" <bartosz.golaszewski@oss.qualcomm.com>
-Cc: Frank.Li@kernel.org, conor+dt@kernel.org, imx@lists.linux.dev, wsa+renesas@sang-engineering.com, robh@kernel.org, devicetree@vger.kernel.org, linux-sunxi@lists.linux.dev, neil.armstrong@linaro.org, linux-amlogic@lists.infradead.org
-In-Reply-To: <20260706-qcom-sa8255p-emac-v12-7-e3ab1ecf2901@oss.qualcomm.com>
-References: <20260706-qcom-sa8255p-emac-v12-0-e3ab1ecf2901@oss.qualcomm.com>
- <20260706-qcom-sa8255p-emac-v12-7-e3ab1ecf2901@oss.qualcomm.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Tue, 07 Jul 2026 14:11:40 +0000
-Message-Id: <20260707141140.CA8C11F000E9@smtp.kernel.org>
+	s=arc-20240116; t=1783433737; c=relaxed/simple;
+	bh=IinY0qicpix8YaJZbueQ0ZMS6TH6C9aVow2ztmvUxgU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ioumIPLVU1uo+/oi0Lub/8dIB6GHb1+LKNE7jZgiP7FizxMU53y51zu7vpIzeOfp12CS8/v1uyphhsTlx6STteRSeWBuR5OgJ/yKhdvdrlIwxpgcLbPVAjjEK6R3cq62gabxZdGJDVda6SWpP/pD1Wk0N2z0oJihx8X5yznJjn0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.b=LyOTCEzl; arc=none smtp.client-ip=217.140.110.172
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id E45351BB0;
+	Tue,  7 Jul 2026 07:15:30 -0700 (PDT)
+Received: from [10.2.212.23] (e121345-lin.cambridge.arm.com [10.2.212.23])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 5BEF93F7B4;
+	Tue,  7 Jul 2026 07:15:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
+	t=1783433735; bh=IinY0qicpix8YaJZbueQ0ZMS6TH6C9aVow2ztmvUxgU=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=LyOTCEzl2lnONxDyc5YgaBVzkQQTQt8ZMCnf0rfSax4/Wh4a3/jy5UcOfHKZmIpCd
+	 0JK0/K1vtUPTZHNaeJXMR1zwsZF41NYv8fSGFE5DnXecvjNTDzStlfxEvHuMh4fFmB
+	 7HXVfvV6cUYysmr155+Ry6uasnPzrKLfjL2xY65Y=
+Message-ID: <f6e8b4d4-8b50-4cc7-b264-ae39929c619a@arm.com>
+Date: Tue, 7 Jul 2026 15:15:24 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 04/11] arm64/mm: Add set_memory_device() and
+ set_memory_normal()
+To: Mike Rapoport <rppt@kernel.org>
+Cc: Will Deacon <will@kernel.org>, Thierry Reding
+ <thierry.reding@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Jonathan Hunter <jonathanh@nvidia.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Sowjanya Komatineni <skomatineni@nvidia.com>,
+ Luca Ceresoli <luca.ceresoli@bootlin.com>,
+ Mikko Perttunen <mperttunen@nvidia.com>, Yury Norov <yury.norov@gmail.com>,
+ Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+ Russell King <linux@armlinux.org.uk>,
+ Alexander Gordeev <agordeev@linux.ibm.com>,
+ Gerald Schaefer <gerald.schaefer@linux.ibm.com>,
+ Heiko Carstens <hca@linux.ibm.com>, Vasily Gorbik <gor@linux.ibm.com>,
+ Christian Borntraeger <borntraeger@linux.ibm.com>,
+ Sven Schnelle <svens@linux.ibm.com>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ David Hildenbrand <david@kernel.org>, Lorenzo Stoakes <ljs@kernel.org>,
+ "Liam R. Howlett" <liam@infradead.org>, Vlastimil Babka <vbabka@kernel.org>,
+ Suren Baghdasaryan <surenb@google.com>, Michal Hocko <mhocko@suse.com>,
+ Marek Szyprowski <m.szyprowski@samsung.com>,
+ Sumit Semwal <sumit.semwal@linaro.org>,
+ Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+ Brian Starkey <Brian.Starkey@arm.com>, John Stultz <jstultz@google.com>,
+ "T.J. Mercier" <tjmercier@google.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ Steven Rostedt <rostedt@goodmis.org>, Masami Hiramatsu
+ <mhiramat@kernel.org>, Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
+ Catalin Marinas <catalin.marinas@arm.com>,
+ Thierry Reding <thierry.reding@gmail.com>, devicetree@vger.kernel.org,
+ linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linux-media@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-s390@vger.kernel.org,
+ linux-mm@kvack.org, iommu@lists.linux.dev, linaro-mm-sig@lists.linaro.org,
+ linux-trace-kernel@vger.kernel.org, Thierry Reding <treding@nvidia.com>,
+ Chun Ng <chunn@nvidia.com>
+References: <20260701-tegra-vpr-v3-0-d80f7b871bb4@nvidia.com>
+ <20260701-tegra-vpr-v3-4-d80f7b871bb4@nvidia.com>
+ <akYs91INHMXMTI-t@willie-the-truck> <akZkuwktaXFTrASP@orome>
+ <akaSJ5D98w2cHqb6@orome> <akftuw9NyRy36fXA@willie-the-truck>
+ <akuvyu1Pq0ZVMZV0@orome> <akzikTrmhMsvkNVY@willie-the-truck>
+ <b0a1bdd7-46ab-4025-8775-c9273892444e@arm.com> <ak0A6eLp0Pw8iKK0@kernel.org>
+From: Robin Murphy <robin.murphy@arm.com>
+Content-Language: en-GB
+In-Reply-To: <ak0A6eLp0Pw8iKK0@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	DMARC_POLICY_ALLOW(-0.50)[arm.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[arm.com:s=foss];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-322113-lists,devicetree=lfdr.de];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:bartosz.golaszewski@oss.qualcomm.com,m:Frank.Li@kernel.org,m:conor+dt@kernel.org,m:imx@lists.linux.dev,m:wsa+renesas@sang-engineering.com,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:linux-sunxi@lists.linux.dev,m:neil.armstrong@linaro.org,m:linux-amlogic@lists.infradead.org,m:conor@kernel.org,m:wsa@sang-engineering.com,s:lists@lfdr.de];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FREEMAIL_CC(0.00)[kernel.org,nvidia.com,gmail.com,ffwll.ch,linux.intel.com,suse.de,bootlin.com,rasmusvillemoes.dk,armlinux.org.uk,linux.ibm.com,linux-foundation.org,infradead.org,google.com,suse.com,samsung.com,linaro.org,collabora.com,arm.com,amd.com,goodmis.org,efficios.com,vger.kernel.org,lists.freedesktop.org,lists.infradead.org,kvack.org,lists.linux.dev,lists.linaro.org];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	TAGGED_FROM(0.00)[bounces-322116-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER(0.00)[robin.murphy@arm.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS(0.00)[m:rppt@kernel.org,m:will@kernel.org,m:thierry.reding@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:jonathanh@nvidia.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:skomatineni@nvidia.com,m:luca.ceresoli@bootlin.com,m:mperttunen@nvidia.com,m:yury.norov@gmail.com,m:linux@rasmusvillemoes.dk,m:linux@armlinux.org.uk,m:agordeev@linux.ibm.com,m:gerald.schaefer@linux.ibm.com,m:hca@linux.ibm.com,m:gor@linux.ibm.com,m:borntraeger@linux.ibm.com,m:svens@linux.ibm.com,m:akpm@linux-foundation.org,m:david@kernel.org,m:ljs@kernel.org,m:liam@infradead.org,m:vbabka@kernel.org,m:surenb@google.com,m:mhocko@suse.com,m:m.szyprowski@samsung.com,m:sumit.semwal@linaro.org,m:benjamin.gaignard@collabora.com,m:Brian.Starkey@arm.com,m:jstultz@google.com,m:tjmercier@google.com,m:christian.koenig@amd.com,m:rostedt@goodmis.org,m:mhiramat@kernel.org,m:mathieu.desnoyers@efficios.com,m:catali
+ n.marinas@arm.com,m:thierry.reding@gmail.com,m:devicetree@vger.kernel.org,m:linux-tegra@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:dri-devel@lists.freedesktop.org,m:linux-media@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-s390@vger.kernel.org,m:linux-mm@kvack.org,m:iommu@lists.linux.dev,m:linaro-mm-sig@lists.linaro.org,m:linux-trace-kernel@vger.kernel.org,m:treding@nvidia.com,m:chunn@nvidia.com,m:krzk@kernel.org,m:conor@kernel.org,m:yurynorov@gmail.com,m:thierryreding@gmail.com,s:lists@lfdr.de];
+	DKIM_TRACE(0.00)[arm.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[robin.murphy@arm.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCPT_COUNT_GT_50(0.00)[56];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FROM_NO_DN(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,lists.linux.dev:replyto,smtp.kernel.org:mid,qualcomm.com:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,arm.com:from_mime,arm.com:dkim,arm.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: B326471C6B4
+X-Rspamd-Queue-Id: EEA1E71CD42
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [Medium] Missing rejection of unsupported RGMII PHY modes in ethqos_scmi_=
-setup()
---
+On 07/07/2026 2:36 pm, Mike Rapoport wrote:
+> On Tue, Jul 07, 2026 at 02:17:29PM +0100, Robin Murphy wrote:
+>>
+>> Given the precedent of memblock_mark_nomap(), as long as the reusable
+>> reserved-memory regions also get split into distinct memblocks, then it
+>> seems like in principle we ought to be able to give them a new
+>> MEMBLOCK_PTEMAP (or whatever) flag which could then be picked up in
+>> map_mem() without needing to override force_pte_mapping() globally?
+> 
+> Please don't. _nomap() caused enough pain.
 
-commit c343cb8d359e16483f354f89b27f2cd9e3505850
-Author: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
+Indeed I was there for pretty much the whole pfn_valid() saga :)
 
-net: stmmac: qcom-ethqos: add support for sa8255p
+Bad example maybe - in this case the only actual similarity to nomap 
+would be the fact that it would also be set by the of_reserved_mem code 
+based on what it finds in DT; in all other aspects it should be 
+functionally closer to something like MEMBLOCK_RSRV_NOINIT, i.e. just 
+carrying information through the mm init phase, then ceasing to matter 
+at all once the linear mapping is done.
 
-This commit extends the qcom-ethqos driver to support the sa8255p model,
-which handles power management in firmware over SCMI. It adds a new emac
-data variant and a separate setup callback.
-
-> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c b/dr=
-ivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
-> index f379570f80680..47175670a3263 100644
-> --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
-> +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
-[ ... ]
-> @@ -749,6 +775,62 @@ static int ethqos_hlos_setup(struct qcom_ethqos *eth=
-qos,
->  	return 0;
->  }
-> =20
-> +static const char *const ethqos_scmi_pd_names[] =3D { "core", "mdio" };
-> +
-> +static int ethqos_scmi_setup(struct qcom_ethqos *ethqos,
-> +			     struct plat_stmmacenet_data *plat_dat)
-> +{
-[ ... ]
-> +	switch (ethqos->phy_mode) {
-> +	case PHY_INTERFACE_MODE_2500BASEX:
-> +	case PHY_INTERFACE_MODE_SGMII:
-> +		plat_dat->fix_mac_speed =3D ethqos_fix_mac_speed_sgmii;
-> +		break;
-> +	default:
-> +		break;
-
-[Severity: Medium]
-Will this silently ignore RGMII and other unsupported PHY modes without
-returning an error?
-
-If a misconfigured device tree specifies an unsupported mode like RGMII for=
- an
-SCMI-based variant, qcom_ethqos_probe() allows it globally, but this setup
-function in dwmac-qcom-ethqos.c will silently fall through the default case
-without configuring plat_dat->fix_mac_speed or returning -EINVAL.
-
-Could this leave the interface in a broken state that is difficult to debug,
-rather than failing probe explicitly?
-
-> +	}
-> +
-> +	return 0;
-> +}
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260706-qcom-sa825=
-5p-emac-v12-0-e3ab1ecf2901@oss.qualcomm.com?part=3D7
+Cheers,
+Robin.
 
