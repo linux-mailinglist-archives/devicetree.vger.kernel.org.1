@@ -1,172 +1,177 @@
-Return-Path: <devicetree+bounces-322159-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-322162-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id iJlnEPsWTWqRuwEAu9opvQ
-	(envelope-from <devicetree+bounces-322159-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 17:10:51 +0200
+	id z1CmINYVTWpOuwEAu9opvQ
+	(envelope-from <devicetree+bounces-322162-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 17:05:58 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8913371D0BF
-	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 17:10:50 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 843AF71CFFA
+	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 17:05:57 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=pzoVenk0;
-	dmarc=pass (policy=none) header.from=gmail.com;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322159-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-322159-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=FuJlaxFr;
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322162-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-322162-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 8FDB5322D894
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jul 2026 14:52:03 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 5BF0C301562F
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jul 2026 14:53:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A98733E314F;
-	Tue,  7 Jul 2026 14:51:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BAEBF36A360;
+	Tue,  7 Jul 2026 14:53:10 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1BB5350A10
-	for <devicetree@vger.kernel.org>; Tue,  7 Jul 2026 14:51:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C2BC322C6D
+	for <devicetree@vger.kernel.org>; Tue,  7 Jul 2026 14:53:09 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783435908; cv=none; b=fmZ1j+bVmFTpulfPgVrEvGGC5HA+BmRNNFqOX7JThNbpT18RtdqVUeRfI8Ba9CnuHSgCU6ZklwR/wobngqEkgXJl+QymMa7L1s9z1hHixNZ2MP+aT+wK7abjP/tJAQS6Y/z7Gk6lXDtFjIkbQYP6dZigxocQgQSxMa/Alnk/ACg=
+	t=1783435990; cv=none; b=KrX4kvNbHXCftDz+Q0GLCcO+1dFdQF5YuiNRBkucBLJdGKdfCqjGdhQI/4kpVmBsWaPC7VHLr3y8S8Ui/BGqknG8eRLGmNrad7tgzgPcGsbDF0gO+AB0u/ED9qQA2oQ+pBauoZgYGqAba4GhwSkmdxJ9nGiabLJL15lwHnMPgE4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783435908; c=relaxed/simple;
-	bh=jyzSsJfeTLInPlFKvtpG1kf+z+8k62GDWsQ8d3uU84c=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=opj+uMyfj8fruwDHnaZ90KqfI3q3DeH9TkSQYmL/sTgfna7XYKn+ASJC+AEA7Ol48qF9YWZClQsWHQ5+lXetfznJbSmgGGvn3xxnqZho6MK5Y/S6EG3YLqq9qcTWAyBhf+z0LXFxUpsnkgUJafGt4Q2tKbFsFBqh4svnaiOR6lk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=pzoVenk0; arc=none smtp.client-ip=209.85.128.52
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-493d92b7db3so26769945e9.2
-        for <devicetree@vger.kernel.org>; Tue, 07 Jul 2026 07:51:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1783435902; x=1784040702; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=VNFZAwQbfAY/X4R2S4dzYzrJFeb4tyhIADKaKXHVALE=;
-        b=pzoVenk0oa0/O8df7bqT0jvivDUWsyQ0WqCmmDbn9uZ1oB2HwCvHm2oZgPumD4Q7dn
-         ItHCqMK7wkVFpUNqoveKRqNDhn5HjLHCn9bKT6vqZH02loVVmB/0SnaSEf44heMftcoJ
-         eDRxidmkK8/nbzqbC57ZV3LOEnw9ECBlzEGX6H4mHhYZ6N8wAQsuCjukzHfErN0lI076
-         Se1fELoZmIvS/pxVWKKuBQ+qGMsumzPginJigZtMggEvQvyd4/p9vb0/xHJlYmqJFpze
-         8Iuq3H21BJuKxNXd1s2lEQNO/qFe6LRAeVXINDaj+zFsQGzChr4Y4z2oBL64BgGAqa74
-         q6pg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783435902; x=1784040702;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=VNFZAwQbfAY/X4R2S4dzYzrJFeb4tyhIADKaKXHVALE=;
-        b=QMU+6Hnza4iuNWB8QlCB2UQWzBftAyOjGZqxBE8T1bxwJVpT+5Eis9bh15GwZ932G7
-         QQCOvPvV4ocuSSe4KoCv39v6Y72+L7k+xKyawL0ztFjHrAA2vNq+sqb/e+eaPClxuXUD
-         dEshW1OtxDUZ+FVPxe5KuoSZOUGAGLeQOuH7FzaAoPdDBAFdJX4FK9pxvTX+wRIu1Wje
-         VyZl9ZFvAbtFEtQxTOiwbk5Qaw664BMSFLfSSdy7vVOqa0d5R7er93c5D9Y4M6JXI8vC
-         8IvfOYeoC9atk2/efXsDyiapCMeX46fLPLV4jPqB0RSujIfrjp0RbmZt+heEbiaZ9n+u
-         euiQ==
-X-Forwarded-Encrypted: i=1; AHgh+Rq/ECUBxXcs1iGrS6dYqac+IzVkqJq5o5PRWsY/qrxNyDHVbw1MmiDxQFdW9leKS2tlPWQSArFNf7b7@vger.kernel.org
-X-Gm-Message-State: AOJu0YyQ2j0YbZZDyNb1wI+QraOXbQekyWpvOqpLitBthmQ0J+mD9OSH
-	fq09MO2ca0iNvBGOiVXFuCwhgiSDVHFbgU16niHXmA1f20slM6/beajj
-X-Gm-Gg: AfdE7cnX7hpny1A9cEq643kvFyG5oCciHK0RIc9Hmdu3eAJMpWokX+cQ+BENIN3Ab59
-	VSeAAHZNJ+OtKzRghVJDBDLwXjc9M7U62FcXdqsYUTI1nVKTcpwwTskbYkyU39oCvOz2D9sg9ff
-	bTP/Q9t040QderkC6BPeBU+TUNDCII1Vv5R6c2fjnZs5dlxAt9C4JVffDQXw4hdiQQkhx4NyYr9
-	SSbT8rz9/dkmkv3meELOQhCJa7v6rpuQ/vbBg5wtqtW27jPzTOwELMV9kAHZzJA+kBHaDszyPb3
-	GdjzZs6PCMn8r2TxGBgQxoGhA/7p+cez872+eRllT/Kjl6D0OSrtJkMDc+cJAsMfTbv1Y7dp++x
-	sF+V7T/DMTyoJebSFRwoox5QWd8Fh9yMdjXzIaq4TrPDUbkU5z/8MMZzXZSNMsOFhQ/2Yqhv3Yi
-	KLxR9/9RRdsJzjUxqaSglr10QZoaHcJn95zNeijEOiSt6FHz8+
-X-Received: by 2002:a05:600c:6096:b0:492:5bb6:6d4b with SMTP id 5b1f17b1804b1-493df0a0bdfmr67583005e9.34.1783435900503;
-        Tue, 07 Jul 2026 07:51:40 -0700 (PDT)
-Received: from localhost.localdomain ([2a00:23c4:a702:d301:a4ac:4e7f:194a:852e])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-493e0ec6e64sm105192695e9.0.2026.07.07.07.51.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Jul 2026 07:51:40 -0700 (PDT)
-From: Biju <biju.das.au@gmail.com>
-X-Google-Original-From: Biju <biju.das.jz@bp.renesas.com>
-To: Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Biju Das <biju.das.jz@bp.renesas.com>,
-	linux-renesas-soc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Biju Das <biju.das.au@gmail.com>
-Subject: [PATCH 3/3] arm64: dts: renesas: r9a08g046l48-smarc: Enable USB2.0 function support
-Date: Tue,  7 Jul 2026 15:51:32 +0100
-Message-ID: <20260707145135.247565-4-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260707145135.247565-1-biju.das.jz@bp.renesas.com>
-References: <20260707145135.247565-1-biju.das.jz@bp.renesas.com>
+	s=arc-20240116; t=1783435990; c=relaxed/simple;
+	bh=T4X2NAGrCeFoVRRirHbi6SM6KOt+HZaf6oZEoWmaKrE=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=HUNocYQmD+aYIGild6KLio4G6enUH5c61hrYdxZFxjyyB8AdsE9HJdWp/jFHaD+ZWfkiygsXbPR8D9imG6d0wsvc6mOIpgmUx/0IVE28uUBo35/c+GLFsK3LxVeH1WxuBsFHiVo8yI/71e6mDmWGUzpmnSq2iLXrHJ7tXFWY4XY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FuJlaxFr; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E8F841F000E9;
+	Tue,  7 Jul 2026 14:53:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1783435989;
+	bh=51GfxdPhD+h5Ljm1RStZ/V7dC/PLrmC6dLPBzRaX0vA=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=FuJlaxFrv1FLxe3DMshC4MyoLiuh3SxspG4Ei8142bX4mKVyct4xv78HZ3qcddQG4
+	 nGMqaNz2937/WfnqRWkf8lPoi3XfQQH8oHW6+L7sHXoGuyJS13ogFDKJxrrgBcThuT
+	 kAgMCPDuN0QNNLCjtPmznCSy/KuufwIorKYiQm7PGg8nACc0bMleV+vqSIucJYty3D
+	 6md+ZpIX5PrWyDgu5JjiJgg1EOqehTURTtAVi2r96wDTWjBSViocDyRZw/AVA7m6V/
+	 daED/tzAU1tSdqBZL9kFKbFiYe6PKddonDMh+NdR+Kr+IFrSZ3C54IgPrmMMtGpLj6
+	 RoxkTZ2bHSu8A==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v7 07/17] iio: test: add kunit tests for channel prefix
+ naming generation
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Rodrigo Alencar" <rodrigo.alencar@analog.com>
+Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, robh@kernel.org
+In-Reply-To: <20260707-ad9910-iio-driver-v7-7-a4ec30f63700@analog.com>
+References: <20260707-ad9910-iio-driver-v7-0-a4ec30f63700@analog.com>
+ <20260707-ad9910-iio-driver-v7-7-a4ec30f63700@analog.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Tue, 07 Jul 2026 14:53:08 +0000
+Message-Id: <20260707145308.E8F841F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-1.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-322159-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	TO_DN_SOME(0.00)[];
-	FREEMAIL_CC(0.00)[bp.renesas.com,vger.kernel.org,gmail.com];
-	FORGED_SENDER(0.00)[bijudasau@gmail.com,devicetree@vger.kernel.org];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:geert+renesas@glider.be,m:magnus.damm@gmail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:biju.das.jz@bp.renesas.com,m:linux-renesas-soc@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:prabhakar.mahadev-lad.rj@bp.renesas.com,m:biju.das.au@gmail.com,m:geert@glider.be,m:magnusdamm@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:bijudasau@gmail.com,s:lists@lfdr.de];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FREEMAIL_TO(0.00)[glider.be,gmail.com,kernel.org];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-322162-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:rodrigo.alencar@analog.com,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	FREEMAIL_FROM(0.00)[gmail.com];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[bijudasau@gmail.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	RCPT_COUNT_SEVEN(0.00)[11];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	RCPT_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[bp.renesas.com:mid,vger.kernel.org:from_smtp,renesas.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[smtp.kernel.org:mid,sashiko.dev:url,lists.linux.dev:replyto,vger.kernel.org:from_smtp,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 8913371D0BF
+X-Rspamd-Queue-Id: 843AF71CFFA
 
-From: Biju Das <biju.das.jz@bp.renesas.com>
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [Low] Building with CONFIG_IIO=3Dy and CONFIG_KUNIT=3Dm leads to an undef=
+ined reference linker error for KUnit symbols.
+--
 
-Enable the USB2.0 function controller on the RZ/G3L SMARC (r9a08g046l48)
-board.
+--- Patch [7]: [PATCH v7 07/17] iio: test: add kunit tests for channel pref=
+ix naming generation ---
+commit 4ac1b309df3245543c36117b12d35f78434a6e33
+Author: Rodrigo Alencar <rodrigo.alencar@analog.com>
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
----
- arch/arm64/boot/dts/renesas/r9a08g046l48-smarc.dts | 5 +++++
- 1 file changed, 5 insertions(+)
+iio: test: add kunit tests for channel prefix naming generation
 
-diff --git a/arch/arm64/boot/dts/renesas/r9a08g046l48-smarc.dts b/arch/arm64/boot/dts/renesas/r9a08g046l48-smarc.dts
-index b189ae8e808d..a3c491778aba 100644
---- a/arch/arm64/boot/dts/renesas/r9a08g046l48-smarc.dts
-+++ b/arch/arm64/boot/dts/renesas/r9a08g046l48-smarc.dts
-@@ -97,6 +97,11 @@ &ehci1 {
- 	status = "okay";
- };
- 
-+&hsusb0 {
-+	dr_mode = "otg";
-+	status = "okay";
-+};
-+
- &i2c2 {
- 	pinctrl-0 = <&i2c2_pins>;
- 	pinctrl-names = "default";
--- 
-2.43.0
+Add a KUnit test suite covering __iio_chan_prefix_emit(), the helper
+that builds IIO sysfs attribute name prefixes from an iio_chan_spec.
 
+> diff --git a/drivers/iio/industrialio-core.c b/drivers/iio/industrialio-c=
+ore.c
+> index ecc69adf61de8..78a3c27d17a1b 100644
+> --- a/drivers/iio/industrialio-core.c
+> +++ b/drivers/iio/industrialio-core.c
+[ ... ]
+> @@ -2232,6 +2232,10 @@ EXPORT_SYMBOL_GPL(iio_device_get_current_mode);
+>  subsys_initcall(iio_init);
+>  module_exit(iio_exit);
+> =20
+> +#if IS_ENABLED(CONFIG_IIO_CHANNEL_PREFIX_KUNIT_TEST)
+> +#include "test/iio-test-channel-prefix.c"
+> +#endif
+
+[Severity: Low]
+If CONFIG_IIO=3Dy and CONFIG_KUNIT=3Dm, this code compiles the test directl=
+y into
+the built-in industrialio-core.o object. Will this lead to an undefined
+reference linker error when the built-in code attempts to reference KUnit
+symbols exported by the loadable kunit.ko module?
+
+> +
+>  MODULE_AUTHOR("Jonathan Cameron <jic23@kernel.org>");
+>  MODULE_DESCRIPTION("Industrial I/O core");
+>  MODULE_LICENSE("GPL");
+> diff --git a/drivers/iio/test/Kconfig b/drivers/iio/test/Kconfig
+> index 4fc17dd0dcd77..c355b0abd5808 100644
+> --- a/drivers/iio/test/Kconfig
+> +++ b/drivers/iio/test/Kconfig
+> @@ -4,6 +4,20 @@
+>  #
+> =20
+>  # Keep in alphabetical order
+> +config IIO_CHANNEL_PREFIX_KUNIT_TEST
+> +	bool "Test IIO channel prefix" if !KUNIT_ALL_TESTS
+> +	depends on KUNIT && IIO
+
+[Severity: Low]
+Because IIO_CHANNEL_PREFIX_KUNIT_TEST is a bool, Kconfig allows it to be
+enabled (y) even when its dependency evaluates to m (which happens when
+KUNIT=3Dm and IIO=3Dy). Should this dependency be tightened to prevent the =
+test
+from being built-in while KUnit is a module?
+
+> +	default KUNIT_ALL_TESTS
+> +	help
+> +	  Build unit tests for __iio_chan_prefix_emit(), the helper that
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260707-ad9910-iio=
+-driver-v7-0-a4ec30f63700@analog.com?part=3D7
 
