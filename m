@@ -1,248 +1,477 @@
-Return-Path: <devicetree+bounces-321952-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-321953-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id LYNwB3HZTGphqwEAu9opvQ
-	(envelope-from <devicetree+bounces-321952-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 12:48:17 +0200
+	id RK6JGLHZTGpwqwEAu9opvQ
+	(envelope-from <devicetree+bounces-321953-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 12:49:21 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8453071A9BC
-	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 12:48:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B0DA771A9E3
+	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 12:49:20 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=chromium.org header.s=google header.b=Wsw0NbGn;
-	dmarc=pass (policy=none) header.from=chromium.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-321952-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-321952-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=hchZPLi2;
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-321953-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-321953-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 907F3302D5F0
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jul 2026 10:44:38 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id DAF0C30825C0
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jul 2026 10:45:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5D613EFFC7;
-	Tue,  7 Jul 2026 10:44:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC6B03EEAC7;
+	Tue,  7 Jul 2026 10:45:31 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f176.google.com (mail-pf1-f176.google.com [209.85.210.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0788B3EE1C9
-	for <devicetree@vger.kernel.org>; Tue,  7 Jul 2026 10:44:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2514F3EFFA1;
+	Tue,  7 Jul 2026 10:45:26 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783421077; cv=none; b=CnRYakhLf7kCnlMk5+9HPvUhiglV+ZcbZYgUNw7nO7iJQ+z4cF+SI7Bh66uaWJaWV0k+bF2oOrA50baPBcuvLHz6Y9BFcr+iTivqc3zWLf5E++eBw+DpLFOwMgT5rAwsqTBF6ZphCoUQk0dAidO/pYhGOmaup33ZzmXAOQ+AzdU=
+	t=1783421130; cv=none; b=HW9xrn9D4+hheD/fTygvyZt85MwSpbzdXalpOLjKLlnTLi2kZ+9ohyKpymVSwhGZ4qDhsih83qi9pED3IS8agfw/hi9tsAcs/lowKC3jvOMKffYybn7iSJ0V3VIruL6KQfsRo4MX6eAkWMV2xHHY6vnv7AihYEn0cZ99x0DzV6o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783421077; c=relaxed/simple;
-	bh=1bS25uAo5oAFey5ptpv3WHG4e4WNdVjeKvEPkBHnQIs=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=qtSWwCia0ZrmlJK5vvOrlMoleygGlc4Jc+CgoigBIeMFqdkSpzOMvQET6TcUacTPjiG+lWJ8IZvARhx9HtH7IEmvpRtC92kpQvKFD1H0Tz4gjFcXuENMlgVQx44FDJMyMp3JrXImQwyN60IbxoOKhkNxRPX9ylNR5RHcITh6kUU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=Wsw0NbGn; arc=none smtp.client-ip=209.85.210.176
-Received: by mail-pf1-f176.google.com with SMTP id d2e1a72fcca58-845ea8924fdso4467552b3a.0
-        for <devicetree@vger.kernel.org>; Tue, 07 Jul 2026 03:44:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1783421073; x=1784025873; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=Zgrh/mASxWOx6HSigXPKqA3nGSJPR3udlEHH4VDDYpM=;
-        b=Wsw0NbGn6QNqHRjjAVKJSxkd/v2gU24L8yXW7OFLEFc5LkUfb/j3DrtEEm7M9kCSTC
-         cQydzCvYbUPniCH2JyS7WF/5SHZ/2DVcZuiHorQ2ej0J2hNOGaJJ4ligRj0rRasuWsu8
-         LpDcoMs7qB2F3XUr4SyCtSg9gBCNv1+1es2WE=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783421073; x=1784025873;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Zgrh/mASxWOx6HSigXPKqA3nGSJPR3udlEHH4VDDYpM=;
-        b=oBhlbzRFzCaYeh0OWM6LT0xp0OtrABWRCeqHlZP2xZfuAMCzJZriCGoiFvCW/r4r8s
-         CFwSEw8NSwGHTdwCWy8UB8S+HWPXaKeVlvPlUYAfnE8uh/iTzLmil7csaZyIklTQFjAG
-         K9Tbxp9XFmJF9EyAyr24ajoZGkv3yOGepQD6a6/crPQYaBveam6q7o2D+jNw89lcvQiB
-         8PCWqnqkWuRWes5/HgfbBDOhPeMO77Fgds5pLoCCWnytZPpoUd2c1Roue7AamRXnmHfx
-         prb7cg5qK4hI2DUsbSjb4TARxoV76a4yJvWZa03nO3YtklYiLwEVkSYS7Hmx0Is7lZnV
-         cyQA==
-X-Forwarded-Encrypted: i=1; AHgh+RqZWxgrsl37wITXAZ6rLlh20kx8Nuv83O4EO5ERl9X9KLFRWC/J87Ea2PU+uxjAivEaD/UzIjgquySu@vger.kernel.org
-X-Gm-Message-State: AOJu0YzfPyVL9dEzKfyJsFNPG12VInYYTlzIuE8J5g37SWNkkuddcIr2
-	E+0/2Y8bGJO4NJRhdKGk3RdLOU7434AaqBB0Ybw+7eBbfCg25zuZ4lcBN/szWQBdCw==
-X-Gm-Gg: AfdE7cmHPV25YrxgoVnBtWW8tk7aBwDRMFuPOmBJgVDNgKD5xNZOkY2InYHrNlWpMwX
-	6Ud5/WwXT3FNA55f3fconU7s9QCdJa0Z6HlOoxvapySfDpzSM1DKBCGyfe+WMBhZW9F8G+EIbK0
-	q9DElRK36JYIjQ8yJedOvWIQWui7nykpuOlR3TKW7gjV2Wqx/9lkSdMDF8uydm6T+qQ8hi8joLc
-	oXyl8agljFuXQVQr2UiPsVjBl6m1411YQX5/D19kxL5SjVe3nO0X8OvzwNsAh/7IfOTRY/rnuy6
-	NK9Qw1xuqaV+tzEUcgiICJ4ZyRxeX1do3976jaEkQjWFXlfD+pWAezLlo5s8lKsuIMuhmqbvrgK
-	ZrdaeLMi9r00lGY0bPPOlRr7ekZjmR3qCBmHNTUMTcESlvgfDmiidytgnl6HvGrNRyHJA+trQqG
-	Hq2Wi55+nwDiLiceLUmPkXgTxQscK4dKFmqoOMk6LwiW1ol5qLa11C2ALejFvpBQZGUmUeIQ==
-X-Received: by 2002:a05:6a21:3204:b0:3c0:9c18:d5a7 with SMTP id adf61e73a8af0-3c09c18d6f0mr2745290637.68.1783421072707;
-        Tue, 07 Jul 2026 03:44:32 -0700 (PDT)
-Received: from wenstp920.tpe.corp.google.com ([2a00:79e0:201d:8:cfca:cfe0:c982:e981])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-ca5af7d5b95sm790980a12.3.2026.07.07.03.44.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Jul 2026 03:44:32 -0700 (PDT)
-From: Chen-Yu Tsai <wenst@chromium.org>
-To: Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: Chen-Yu Tsai <wenst@chromium.org>,
-	linux-mediatek@lists.infradead.org,
+	s=arc-20240116; t=1783421130; c=relaxed/simple;
+	bh=79iZhGA/eKoF7itCEDAEkbK5WX+rCydbBtRw25TyKYw=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=XpV92WycypYavuKed74ASXNNCP1tUB+NskspbKfXw5CpbHUKoO+iJmNFe5g5VSBP2quCFOf684oZ6zZikoEuQXRoCfHlyId1u3ejkeXSy/FrnTqdwa6DsBF/6PAIOeWMx4QLTJqn9hi7h9b24763Dn8DwCe4JUcKAMJqawEywJ4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hchZPLi2; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 92EFB1F000E9;
+	Tue,  7 Jul 2026 10:45:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1783421125;
+	bh=xvUTqsdEp5kjADSpZapUlN+uufG0dQMmtEnLN8nwO9s=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References;
+	b=hchZPLi2fSGJBNfWIPhNt6YH5ks4BUSoKyeJwLRINLlnm0ZpRELaiEhI+1vMPG/81
+	 FMCVSvCXL0N5cKLa3Nt45tSTAyHk5nBaFTh1t0DlYJykjgtaZimari5SHf8u7owl2S
+	 oJdIbpTg1flZNjxbrRMAEPc1qqiB3mkJ/JgQ8ze2Wh93Wk0j0M3yK/HrmXuT+0jLcy
+	 je4QWyIv4W5Mq2lE57vBgC/doZ5KAf/Knqqx4Shvk81i92e2xaO19ts0LMx4pn3V7B
+	 QcOdiPgzwi/6kQMDu+OyQDLk5zDylimSdQ6FoVgm7oj1Ob6muMC7dHoM1AK+znHBqn
+	 QBPeZDxlm4XCg==
+From: William Breathitt Gray <wbg@kernel.org>
+To: Wadim Mueller <wafgo01@gmail.com>
+Cc: William Breathitt Gray <wbg@kernel.org>,
+	krzk+dt@kernel.org,
+	robh@kernel.org,
+	conor+dt@kernel.org,
+	o.rempel@pengutronix.de,
+	linux-iio@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: mediatek: mt8188-geralt: Add MT6319 PMIC
-Date: Tue,  7 Jul 2026 18:44:25 +0800
-Message-ID: <20260707104427.3409290-1-wenst@chromium.org>
-X-Mailer: git-send-email 2.55.0.rc2.803.g1fd1e6609c-goog
+	linux-kernel@vger.kernel.org,
+	kernel@pengutronix.de
+Subject: Re: [PATCH v6 2/3] counter: add GPIO-based counter driver
+Date: Tue,  7 Jul 2026 19:44:58 +0900
+Message-ID: <20260707104501.977372-1-wbg@kernel.org>
+X-Mailer: git-send-email 2.54.0
+In-Reply-To: <20260628210241.119825-3-wafgo01@gmail.com>
+References: <20260628210241.119825-3-wafgo01@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=12889; i=wbg@kernel.org; h=from:subject; bh=79iZhGA/eKoF7itCEDAEkbK5WX+rCydbBtRw25TyKYw=; b=owGbwMvMwCW21SPs1D4hZW3G02pJDFk+N0Q6t5xfk333b/Kvz+qt/3mDuK9PfycQ/+VvosRTC 4GauvrIjlIWBjEuBlkxRZZe87N3H1xS1fjxYv42mDmsTCBDGLg4BWAixraMDCv8NxRISty7/T+y feW3OMOLxTcfvl+xxVl9nv3PCptvJ7UY/orENT64t/6KyOUpf16aiM8WdpTN2cwaGaJVUMZ9Pqi OlxMA
+X-Developer-Key: i=wbg@kernel.org; a=openpgp; fpr=8D37CDDDE0D22528F8E89FB6B54856CABE12232B
 Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.84 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-3.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
 	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[chromium.org,none];
-	R_DKIM_ALLOW(-0.20)[chromium.org:s=google];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:matthias.bgg@gmail.com,m:angelogioacchino.delregno@collabora.com,m:wenst@chromium.org,m:linux-mediatek@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:matthiasbgg@gmail.com,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[wenst@chromium.org,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-321953-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-321952-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[gmail.com,collabora.com];
-	DKIM_TRACE(0.00)[chromium.org:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:wafgo01@gmail.com,m:wbg@kernel.org,m:krzk+dt@kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:o.rempel@pengutronix.de,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:kernel@pengutronix.de,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[wbg@kernel.org,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FREEMAIL_TO(0.00)[gmail.com];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[wenst@chromium.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[wbg@kernel.org,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	RCPT_COUNT_SEVEN(0.00)[7];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,chromium.org:from_mime,chromium.org:email,chromium.org:mid,chromium.org:dkim]
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 8453071A9BC
+X-Rspamd-Queue-Id: B0DA771A9E3
 
-The Geralt design uses a MT6319 PMIC to power the big cores and LPDDR4X
-DRAM.
+On Sun, Jun 28, 2026 at 11:02:40PM +0200, Wadim Mueller wrote:
+> Add a platform driver that turns plain GPIOs into a counter device.
+> Edge interrupts on signal-a, signal-b (and optional index) are
+> decoded in software. Quadrature steps are validated with a 2-bit
+> Gray-code parity check; direction comes from the same identity.
+> 
+> The driver exposes two Counts on the same wires:
+> 
+>   "Count 1" - Synapses on A, B and optional Index 1. Supports
+>               QUADRATURE_X1_{A,B} / X2_{A,B} / X4, PULSE_DIRECTION,
+>               INCREASE and DECREASE.
+>   "Count 2" - Synapse on B and optional Index 2. Supports INCREASE
+>               and DECREASE only.
+> 
+> Per-Count state (value, ceiling, preset, enable, function, direction)
+> lives in struct gpio_counter_count_priv so new per-Count features
+> (e.g. floor) can be added without touching parallel arrays.
+> 
+> Sleepable GPIO providers (I2C/SPI expanders) are rejected at probe
+> since the ISRs run in hardirq context.
+> 
+> Signed-off-by: Wadim Mueller <wafgo01@gmail.com>
 
-Add a device node for it and hook up all the supplies.
+Hi Wadim,
 
-This change requires a firmware fix for the SPMI bus to read back
-correctly. The required firmware version is 15842.175.0. This is
-included in ChromeOS releases R150-16700.22.0 (available in Beta
-channel as of writing or stable channel in mid-July) or
-R151-16721.0.0 and later.
+I thought some more about the "enabled" race condition we discussed
+previously [^1]. I realized it's not a problem afterall because "enable"
+refers to the Count and not inherently the interrupt. In other words, an
+interrupt firing during a "disabled" state is okay as long as the Count
+is not affected. Because gpio_counter_a_isr and gpio_counter_b_isr only
+update the Counts when they are enabled, we should be fine.
 
-Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
----
- .../boot/dts/mediatek/mt8188-geralt.dtsi      | 66 +++++++++++++++++++
- 1 file changed, 66 insertions(+)
+It looks like we're almost there with this driver, so hopefully v7 will
+be our final revision. Some comments follow below.
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8188-geralt.dtsi b/arch/arm64/boot/dts/mediatek/mt8188-geralt.dtsi
-index f382f90c48f5..fea52c377d88 100644
---- a/arch/arm64/boot/dts/mediatek/mt8188-geralt.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8188-geralt.dtsi
-@@ -4,6 +4,8 @@
-  */
- /dts-v1/;
- #include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/spmi/spmi.h>
-+
- #include "mt8188.dtsi"
- #include "mt6359.dtsi"
- 
-@@ -241,6 +243,14 @@ &cpu5 {
- 	cpu-supply = <&mt6359_vcore_buck_reg>;
- };
- 
-+&cpu6 {
-+	cpu-supply = <&mt6319_buck1>;
-+};
-+
-+&cpu7 {
-+	cpu-supply = <&mt6319_buck1>;
-+};
-+
- /*
-  * Geralt is the reference design and doesn't have target TDP.
-  * Ciri is (currently) the only device following Geralt, and its
-@@ -1156,6 +1166,14 @@ pins-bus {
- 		};
- 	};
- 
-+	spmi_pins: spmi-pins {
-+		pins-bus {
-+			pinmux = <PINMUX_GPIO175__FUNC_B0_SPMI_M_SCL>,
-+				 <PINMUX_GPIO176__FUNC_B0_SPMI_M_SDA>;
-+			bias-disable;
-+		};
-+	};
-+
- 	uart0_pins: uart0-pins {
- 		pins-bus {
- 			pinmux = <PINMUX_GPIO31__FUNC_O_UTXD0>,
-@@ -1267,6 +1285,54 @@ &spi2 {
- 	status = "okay";
- };
- 
-+&spmi {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&spmi_pins>;
-+	#address-cells = <2>;
-+	#size-cells = <0>;
-+	status = "okay";
-+
-+	pmic@6 {
-+		compatible = "mediatek,mt6319-regulator", "mediatek,mt6315-regulator";
-+		reg = <0x6 SPMI_USID>;
-+		pvdd1-supply = <&pp4200_s5>;
-+		pvdd2-supply = <&pp4200_s5>;
-+		pvdd3-supply = <&pp4200_s5>;
-+		pvdd4-supply = <&pp4200_s5>;
-+
-+		regulators {
-+			mt6319_buck1: vbuck1 {
-+					regulator-name = "ppvar_dvdd_proc_bc";
-+					regulator-min-microvolt = <520000>;
-+					regulator-max-microvolt = <1155000>;
-+					regulator-enable-ramp-delay = <256>;
-+					regulator-allowed-modes = <0 1 2>;
-+					regulator-always-on;
-+			};
-+
-+			/* vbuck2 is ganged with vbuck1 */
-+
-+			mt6319_buck3: vbuck3 {
-+					regulator-name = "pp1125_emi_vdd2";
-+					regulator-min-microvolt = <1060000>;
-+					regulator-max-microvolt = <1170000>;
-+					regulator-enable-ramp-delay = <256>;
-+					regulator-allowed-modes = <0 1 2>;
-+					regulator-always-on;
-+			};
-+
-+			mt6319_buck4: vbuck4 {
-+					regulator-name = "pp0600_emi_vddq";
-+					regulator-min-microvolt = <570000>;
-+					regulator-max-microvolt = <650000>;
-+					regulator-enable-ramp-delay = <256>;
-+					regulator-allowed-modes = <0 1 2>;
-+					regulator-always-on;
-+			};
-+		};
-+	};
-+};
-+
- &uart0 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&uart0_pins>;
--- 
-2.55.0.rc2.803.g1fd1e6609c-goog
+> +enum gpio_counter_signal_id {
+> +	GPIO_COUNTER_SIGNAL_A = 0,
+> +	GPIO_COUNTER_SIGNAL_B,
+> +	GPIO_COUNTER_SIGNAL_INDEX1,
+> +	GPIO_COUNTER_SIGNAL_INDEX2,
+> +	GPIO_COUNTER_NUM_SIGNALS_MAX,
+> +};
+> +
+> +enum gpio_counter_count_id {
+> +	GPIO_COUNTER_COUNT_1 = 0,
+> +	GPIO_COUNTER_COUNT_2,
+> +	GPIO_COUNTER_NUM_COUNTS,
+> +};
 
+I'd rename this to GPIO_COUNTER_NUM_COUNTS_MAX for consistency with
+GPIO_COUNTER_NUM_SIGNALS_MAX. Albeit, this is nitpick so I don't mind
+keeping the name if you prefer it that way.
+
+> +
+> +#define GPIO_COUNTER_COUNT1_NUM_SYNAPSES	3	/* A, B, Index 1 */
+> +#define GPIO_COUNTER_COUNT2_NUM_SYNAPSES	2	/* B, Index 2 */
+> +#define GPIO_COUNTER_MAX_INDEX			2
+
+The theoretical index maximum would be the number of Counts, so you can
+set it to GPIO_COUNTER_NUM_COUNTS so it always matches in case we add
+new Counts in the future.
+
+> +struct gpio_counter_priv {
+> +	struct gpio_desc *gpio_a;
+> +	struct gpio_desc *gpio_b;
+> +	struct gpio_desc *gpio_idx[GPIO_COUNTER_MAX_INDEX];
+> +
+> +	int irq_a;
+> +	int irq_b;
+> +	int irq_idx[GPIO_COUNTER_MAX_INDEX];
+> +
+> +	int n_idx;
+> +
+> +	/* protects count state, prev_a, prev_b */
+> +	spinlock_t lock;
+> +
+> +	/* serialises enable_write() callers and b_irq_users */
+> +	struct mutex enable_lock;
+> +
+> +	/* irq_b is shared by Count 1 and Count 2 (under enable_lock) */
+> +	int b_irq_users;
+> +
+> +	int prev_a;
+> +	int prev_b;
+> +
+> +	struct gpio_counter_count_priv count_priv[GPIO_COUNTER_NUM_COUNTS];
+> +
+> +	struct counter_signal  signals[GPIO_COUNTER_NUM_SIGNALS_MAX];
+> +	struct counter_synapse synapses_count1[GPIO_COUNTER_COUNT1_NUM_SYNAPSES];
+> +	struct counter_synapse synapses_count2[GPIO_COUNTER_COUNT2_NUM_SYNAPSES];
+
+A future goal is to support pulse-direction mode for Count 2 which will
+require two GPIO lines similar to Count 1. So instead of synapses_count1
+and synapses_count2, I suggest a GPIO_COUNTER_COUNT_NUM_SYNAPSES set to 3
+and defining a single multi-dimensional array called
+synapses[GPIO_COUNTER_NUM_COUNTS][GPIO_COUNTER_COUNT_NUM_SYNAPSES].
+
+> +static irqreturn_t gpio_counter_a_isr(int irq, void *dev_id)
+> +{
+> +	struct counter_device *counter = dev_id;
+> +	struct gpio_counter_priv *priv = counter_priv(counter);
+> +	struct gpio_counter_count_priv *cp =
+> +		&priv->count_priv[GPIO_COUNTER_COUNT_1];
+> +	unsigned long flags;
+> +	bool enabled;
+> +	int a, b;
+> +
+> +	/* !! drops negative gpiod_get_value() errors. */
+> +	a = !!gpiod_get_value(priv->gpio_a);
+> +	b = !!gpiod_get_value(priv->gpio_b);
+> +
+> +	spin_lock_irqsave(&priv->lock, flags);
+> +
+> +	enabled = cp->enabled;
+> +	if (!enabled)
+> +		goto out;
+
+Shouldn't the enable state check occur before we get the current values
+of A and B? If we are in a disabled state, we exit early and thus have
+no need for the A and B values.
+
+> +static irqreturn_t gpio_counter_b_isr(int irq, void *dev_id)
+> +{
+> +	struct counter_device *counter = dev_id;
+> +	struct gpio_counter_priv *priv = counter_priv(counter);
+> +	struct gpio_counter_count_priv *c1 =
+> +		&priv->count_priv[GPIO_COUNTER_COUNT_1];
+> +	struct gpio_counter_count_priv *c2 =
+> +		&priv->count_priv[GPIO_COUNTER_COUNT_2];
+> +	bool c1_enabled, c2_enabled;
+> +	unsigned long flags;
+> +	int a, b;
+> +
+> +	a = !!gpiod_get_value(priv->gpio_a);
+> +	b = !!gpiod_get_value(priv->gpio_b);
+
+Same comment as in gpio_counter_a_isr().
+
+> +static void gpio_counter_index_pulse(struct counter_device *counter,
+> +				     enum gpio_counter_count_id count_id)
+> +{
+> +	struct gpio_counter_priv *priv = counter_priv(counter);
+> +	struct gpio_counter_count_priv *cp = &priv->count_priv[count_id];
+> +	unsigned long flags;
+> +
+> +	spin_lock_irqsave(&priv->lock, flags);
+> +	if (cp->preset_enabled) {
+> +		cp->value = cp->preset;
+> +		if (cp->value > cp->ceiling)
+> +			cp->value = cp->ceiling;
+
+This is just an assignment so a ternary may communicate the intent more
+succinctly:
+
+	if (cp->preset_enabled)
+		cp->value = (cp->preset > cp->ceiling) ? cp->ceiling : cp->preset;
+
+> +static int gpio_counter_count_read(struct counter_device *counter,
+> +				   struct counter_count *count, u64 *val)
+> +{
+> +	struct gpio_counter_priv *priv = counter_priv(counter);
+> +	struct gpio_counter_count_priv *cp = &priv->count_priv[count->id];
+> +	unsigned long flags;
+> +
+> +	spin_lock_irqsave(&priv->lock, flags);
+> +	*val = cp->value;
+> +	spin_unlock_irqrestore(&priv->lock, flags);
+
+This is a single read operation so the lock is unnecessary here.
+
+> +static int gpio_counter_function_read(struct counter_device *counter,
+> +				      struct counter_count *count,
+> +				      enum counter_function *function)
+> +{
+> +	struct gpio_counter_priv *priv = counter_priv(counter);
+> +	struct gpio_counter_count_priv *cp = &priv->count_priv[count->id];
+> +	unsigned long flags;
+> +
+> +	spin_lock_irqsave(&priv->lock, flags);
+> +	*function = cp->function;
+> +	spin_unlock_irqrestore(&priv->lock, flags);
+
+Same comment as in the count_read() callback.
+
+> +static int gpio_counter_ceiling_read(struct counter_device *counter,
+> +				     struct counter_count *count, u64 *val)
+> +{
+> +	struct gpio_counter_priv *priv = counter_priv(counter);
+> +	struct gpio_counter_count_priv *cp = &priv->count_priv[count->id];
+> +	unsigned long flags;
+> +
+> +	spin_lock_irqsave(&priv->lock, flags);
+> +	*val = cp->ceiling;
+> +	spin_unlock_irqrestore(&priv->lock, flags);
+
+Same comment as in the count_read() callback.
+
+> +static int gpio_counter_enable_read(struct counter_device *counter,
+> +				    struct counter_count *count, u8 *enable)
+> +{
+> +	struct gpio_counter_priv *priv = counter_priv(counter);
+> +	struct gpio_counter_count_priv *cp = &priv->count_priv[count->id];
+> +	unsigned long flags;
+> +
+> +	spin_lock_irqsave(&priv->lock, flags);
+> +	*enable = cp->enabled;
+> +	spin_unlock_irqrestore(&priv->lock, flags);
+
+Same comment as in the count_read() callback.
+
+> +/* enable_lock held */
+> +static void gpio_counter_enable_b(struct gpio_counter_priv *priv)
+> +{
+> +	if (priv->b_irq_users++ == 0)
+> +		enable_irq(priv->irq_b);
+> +}
+> +
+> +/* enable_lock held */
+> +static void gpio_counter_disable_b(struct gpio_counter_priv *priv)
+> +{
+> +	if (--priv->b_irq_users == 0)
+> +		disable_irq(priv->irq_b);
+> +}
+
+Conceptually, updating b_irq_users and checking for zero are two
+separate tasks, so dedicate each task to its own line.
+
+> +static int gpio_counter_enable_write(struct counter_device *counter,
+> +				     struct counter_count *count, u8 enable)
+> +{
+> +	struct gpio_counter_priv *priv = counter_priv(counter);
+> +	struct gpio_counter_count_priv *cp = &priv->count_priv[count->id];
+> +	unsigned long flags;
+> +	bool current_state;
+> +
+> +	guard(mutex)(&priv->enable_lock);
+> +
+> +	spin_lock_irqsave(&priv->lock, flags);
+> +	current_state = cp->enabled;
+> +	spin_unlock_irqrestore(&priv->lock, flags);
+
+Same comment as in the count_read() callback.
+
+> +
+> +	if (current_state == enable)
+
+The current_state variable is only used here so it can go away entirely
+if you replace it with cp->enabled directly.
+
+> +		return 0;
+> +
+> +	/* disable_irq() may sleep, so it can not run under the spinlock. */
+> +	if (enable) {
+> +		spin_lock_irqsave(&priv->lock, flags);
+> +		priv->prev_a = !!gpiod_get_value(priv->gpio_a);
+> +		priv->prev_b = !!gpiod_get_value(priv->gpio_b);
+> +		cp->enabled = true;
+> +		spin_unlock_irqrestore(&priv->lock, flags);
+> +		gpio_counter_enable_irqs(priv, count->id);
+
+To ensures everything is ready to go before we start updating the
+Counts, should the IRQs be enabled first before setting cp->enabled to
+true?
+
+> +	} else {
+> +		spin_lock_irqsave(&priv->lock, flags);
+> +		cp->enabled = false;
+> +		spin_unlock_irqrestore(&priv->lock, flags);
+> +		gpio_counter_disable_irqs(priv, count->id);
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int gpio_counter_direction_read(struct counter_device *counter,
+> +				       struct counter_count *count,
+> +				       u32 *direction)
+> +{
+> +	struct gpio_counter_priv *priv = counter_priv(counter);
+> +	struct gpio_counter_count_priv *cp = &priv->count_priv[count->id];
+> +	unsigned long flags;
+> +
+> +	spin_lock_irqsave(&priv->lock, flags);
+> +	*direction = cp->direction;
+> +	spin_unlock_irqrestore(&priv->lock, flags);
+
+Same comment as in the count_read() callback.
+
+> +static int gpio_counter_preset_read(struct counter_device *counter,
+> +				    struct counter_count *count, u64 *val)
+> +{
+> +	struct gpio_counter_priv *priv = counter_priv(counter);
+> +	struct gpio_counter_count_priv *cp = &priv->count_priv[count->id];
+> +	unsigned long flags;
+> +
+> +	spin_lock_irqsave(&priv->lock, flags);
+> +	*val = cp->preset;
+> +	spin_unlock_irqrestore(&priv->lock, flags);
+
+Same comment as in the count_read() callback.
+
+> +static int gpio_counter_preset_enable_read(struct counter_device *counter,
+> +					   struct counter_count *count,
+> +					   u8 *val)
+> +{
+> +	struct gpio_counter_priv *priv = counter_priv(counter);
+> +	struct gpio_counter_count_priv *cp = &priv->count_priv[count->id];
+> +	unsigned long flags;
+> +
+> +	spin_lock_irqsave(&priv->lock, flags);
+> +	*val = cp->preset_enabled;
+> +	spin_unlock_irqrestore(&priv->lock, flags);
+
+Same comment as in the count_read() callback.
+
+> +static int gpio_counter_get_index_gpios(struct device *dev,
+> +					struct gpio_counter_priv *priv)
+> +{
+> +	struct gpio_descs *descs;
+> +	int i;
+> +
+> +	descs = devm_gpiod_get_array_optional(dev, "index", GPIOD_IN);
+> +	if (IS_ERR(descs))
+> +		return dev_err_probe(dev, PTR_ERR(descs),
+> +				     "failed to get index GPIOs\n");
+> +	if (!descs) {
+> +		priv->n_idx = 0;
+> +		return 0;
+> +	}
+> +
+> +	if (descs->ndescs < 1 || descs->ndescs > GPIO_COUNTER_MAX_INDEX)
+> +		return dev_err_probe(dev, -EINVAL,
+> +				     "index-gpios: expected 1..%d entries, got %u\n",
+> +				     GPIO_COUNTER_MAX_INDEX, descs->ndescs);
+> +
+> +	for (i = 0; i < descs->ndescs; i++)
+> +		priv->gpio_idx[i] = descs->desc[i];
+> +	priv->n_idx = descs->ndescs;
+> +
+> +	return 0;
+> +}
+
+Initially, I thought it would be fine to let the index-gpios DT entries
+map sequentially to the Counts, but now I noticed two problems with this
+approach.
+
+First, the code around n_idx is much harder to grok. For example, in
+gpio_counter_enable_irqs() the n_idx value is used as an indirect way of
+determining whether an index IRQ should be enabled for a Count. The more
+natural approach would be a dedicated index variable on each Count, that
+way each Count knows its own index IRQ if it has one.
+
+The second problem is that we now require Count 1 to have an index line
+even if we only care about Count 2. The would be a problem if the user
+has only three GPIO lines available.
+
+As such, we need a different approach in the DT entries that allows
+users to directly specify which index lines are for which Counts. That
+way, you can store this information in gpio_counter_count_priv and know
+easily whether a particular Count has an index IRQ and what it is.
+
+William Breathitt Gray
+
+[^1]: https://lore.kernel.org/all/20260623053800.120909-1-wbg@kernel.org/
 
