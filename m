@@ -1,266 +1,173 @@
-Return-Path: <devicetree+bounces-322130-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-322132-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 5MrtKT8PTWqJuQEAu9opvQ
-	(envelope-from <devicetree+bounces-322130-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 16:37:51 +0200
+	id 4OZuJF4PTWqQuQEAu9opvQ
+	(envelope-from <devicetree+bounces-322132-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 16:38:22 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E395A71CB72
-	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 16:37:50 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 674E471CB86
+	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 16:38:21 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=collabora.com header.s=mail header.b=KcoMWmF4;
-	dmarc=pass (policy=none) header.from=collabora.com;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322130-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-322130-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=linutronix.de header.s=2020 header.b=TWiX4y63;
+	dkim=pass header.d=linutronix.de header.s=2020e header.b=DWNyPLoP;
+	dmarc=pass (policy=none) header.from=linutronix.de;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322132-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-322132-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 05B9231AFC37
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jul 2026 14:22:28 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 1AA6D3018606
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jul 2026 14:23:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0C2C435AA0;
-	Tue,  7 Jul 2026 14:19:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61E9342CAF9;
+	Tue,  7 Jul 2026 14:21:02 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26D1D434E33;
-	Tue,  7 Jul 2026 14:19:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C32A042CAED;
+	Tue,  7 Jul 2026 14:21:00 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783433994; cv=none; b=n6GC62UFIqYU73bvM6C2NXtkD78u8VY9/CuxIMpwSp9n3AiSy5ciLftDdAtrZI1J28e1uKSzqMDfB9/eAPf9TPZEDYNu6yJG9VbmocqoxUlbwckCiV1yiwStxS9uRFC/9w/HoIxpF3mkfUPYs1Fiv52XZIpWwa8yNKKwP8evT/0=
+	t=1783434062; cv=none; b=hsShSJBudgiZeWfg5lav6TaMu82odbapishf5plaKEFrw0P1PEWA0mEjo+zNoff/fT+HA9GrSUHkjrVLteICPIdoxOi0L7bX/EF9hOxCUafwBadIIMAnL7rE9LJNcVeEB5K7aCNUaEt5+CNWezvLP55eVhVt73DC9xwSiADzuLA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783433994; c=relaxed/simple;
-	bh=eEMuTOF44PUBx6MlzjnKfxwVyJPuxTBMZ92VOVk+KkA=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=EYpI1NfNudjnGTiXuWuC/qtCxoI9BHo2oHAdW2RyHF0JpP7qPODxfKB+cqkqjrxZeG9eb55KdWget2f6yX1sHr0SGwLSW2hItfUWzFBvON+tvhy5iLQ5QJn6SRZ+g3gJyrHo34wLaa3e4dS6ijsU1ulq4PMZ/uuxX08YfCbfhp0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=KcoMWmF4; arc=none smtp.client-ip=148.251.105.195
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1783433991;
-	bh=eEMuTOF44PUBx6MlzjnKfxwVyJPuxTBMZ92VOVk+KkA=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=KcoMWmF4xmGl87DEVTHvrrPw3gZQHpOIEPrL7oglPFtomr3cYRqB0VzKjgNsJPdQP
-	 FmwICiAjFITk3GNtcbcAP57CIMlBNVGG7zHpaYFzkdBMMTLXSdmCd3kzJxWMwsuGWa
-	 qAHkNwRt2iGt9oDBt33ytA0NEavwScH39y5Fk3gPHC5F0GJZoTQsjovegt3Zu/KoqW
-	 8qGAmKzd0z8OSBRgM0f6tRonu41Yp3+N8kvJDrbO3xsbkGWh+QGGFZ+eEPN2ohJLxD
-	 5rF2wJbedKaR3FGkJOvhktIwarhD7Nre+NNlFg/U7t/EIsG93n15z2USZeZr3uzLk1
-	 SlPfJI8KldZqA==
-Received: from IcarusMOD.eternityproject.eu (unknown [100.64.1.21])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 03B9517E0FD0;
-	Tue, 07 Jul 2026 16:19:50 +0200 (CEST)
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-To: chunfeng.yun@mediatek.com
-Cc: vkoul@kernel.org,
-	neil.armstrong@linaro.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	matthias.bgg@gmail.com,
-	angelogioacchino.delregno@collabora.com,
-	chunkuang.hu@kernel.org,
-	p.zabel@pengutronix.de,
-	justin.yeh@mediatek.com,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	linux-phy@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	dri-devel@lists.freedesktop.org,
-	kernel@collabora.com
-Subject: [PATCH v2 12/12] phy: phy-mtk-dp: Add support for MT8196 eDP PHY
-Date: Tue,  7 Jul 2026 16:19:31 +0200
-Message-ID: <20260707141931.191172-13-angelogioacchino.delregno@collabora.com>
-X-Mailer: git-send-email 2.54.0
-In-Reply-To: <20260707141931.191172-1-angelogioacchino.delregno@collabora.com>
-References: <20260707141931.191172-1-angelogioacchino.delregno@collabora.com>
+	s=arc-20240116; t=1783434062; c=relaxed/simple;
+	bh=vQZW0BtvgCjvpoZIDnlMyeKdpdnD//8TJzvJD8ETpjE=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Pr0n77XmyknhX3qiEWuCuGG1sInYo4bPXKq6hESZeV12Jsy+DbC6J1X/2kI28hHCvem1ILYOhxz6BPxxBK0vDADW5/E9zG+lEImlnNQH6jM6rahLw9Z09hfLZ+3zrKhlTpvO+tNsV+kvBoyssme/SeFyRULKHYsIB5n8JCySMjo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=TWiX4y63; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=DWNyPLoP; arc=none smtp.client-ip=193.142.43.55
+From: Gregor Herburger <gregor.herburger@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020; t=1783434059;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=SiJF/LaxE7u8kl1QUtYHqEBKfLUiFz6zaObGXEuJ/0I=;
+	b=TWiX4y63STDjst3X2KHTyXTuiYZJKsF7dxC212O3kIa6K0Eb5lbR0pmQDSeJNh04QEvJHv
+	BNn4fhjwd0cdHB/4I55JwbDMiOnNNcNGlXu92ANpGFhY3lgqxFI4SSKzMyt7T4rmtcBM7c
+	QI9MPoe7SoTH3SwHvQ+PubAhzTQpNlPcyNINw4jZuXC3tVt4s2jJEkhu+2ik3rgBoavOhA
+	T8+If1NKwOFlrNwT5ndIjlApB7FZe1qIXvT99yfcJLGKIX3u8prS252by0lXwUzfoi66Ru
+	2tKuQAJWeilGYgtUrkZQQvpLhl3C7PQFpzk2MoyrhiZ74PGVJsbSiNgtmiz40g==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020e; t=1783434059;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=SiJF/LaxE7u8kl1QUtYHqEBKfLUiFz6zaObGXEuJ/0I=;
+	b=DWNyPLoPMl7JzwPK68SBpwpBNe/uWfD4Wx2w7/kOLXmuBXQwqvBkRxZVQBRIoN0m7oj34I
+	c17xGSoio7KXRNBw==
+Subject: [PATCH v3 0/4] firmware: raspberrypi: Add support for the tryboot
+ mode
+Date: Tue, 07 Jul 2026 16:20:53 +0200
+Message-Id: <20260707-rpi-tryboot-v3-0-fda82fe7ed76@linutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAEULTWoC/12N0Q6CIBhGX6VxHQ1/GURXvUfrQhDzbw0coNM53
+ z20tWWXZ/vO+WYSbUAbyeUwk2AHjOhdhvJ4IKat3MNSrDMTYCCYgJKGDmkKk/Y+UQ4KjALNJEi
+ SjS7YBsetdrt/OPb6aU1aE+uixZh8mLa7oVh337LYlYeCMsoV04XhhivJri90fQre4XiqLVnrA
+ /z4Jdv7kP1GnGuojagqkP/+sixvWMhJPvwAAAA=
+X-Change-ID: 20260623-rpi-tryboot-4292c92b0727
+To: Florian Fainelli <florian.fainelli@broadcom.com>, 
+ Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
+ Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Eric Anholt <eric@anholt.net>, 
+ Stefan Wahren <wahrenst@gmx.net>
+Cc: linux-rpi-kernel@lists.infradead.org, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, 
+ Gregor Herburger <gregor.herburger@linutronix.de>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1783434058; l=1871;
+ i=gregor.herburger@linutronix.de; s=20260226; h=from:subject:message-id;
+ bh=vQZW0BtvgCjvpoZIDnlMyeKdpdnD//8TJzvJD8ETpjE=;
+ b=j6IxqAqE0/8UXWRMcWV+NAxn8dbFDEh/GPQoSzRNjSJxrACGkP0uVD3BtRJSQHF+tiOmLSL4C
+ 3rUbqWAfyA3BaBKPtGf4sUDmEJh7Yw7sWguLYzxpAyX985yCbH4E8/+
+X-Developer-Key: i=gregor.herburger@linutronix.de; a=ed25519;
+ pk=u72Lv7+/lS5CC1hmSrb17lv/6CK7HBh4Lvz77PHA5LM=
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
-	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[linutronix.de,none];
+	R_DKIM_ALLOW(-0.20)[linutronix.de:s=2020,linutronix.de:s=2020e];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[kernel.org,linaro.org,gmail.com,collabora.com,pengutronix.de,mediatek.com,lists.infradead.org,vger.kernel.org,lists.freedesktop.org];
-	TAGGED_FROM(0.00)[bounces-322130-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:florian.fainelli@broadcom.com,m:bcm-kernel-feedback-list@broadcom.com,m:rjui@broadcom.com,m:sbranden@broadcom.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:eric@anholt.net,m:wahrenst@gmx.net,m:linux-rpi-kernel@lists.infradead.org,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:gregor.herburger@linutronix.de,m:krzysztof.kozlowski@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-322132-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_TO(0.00)[broadcom.com,kernel.org,anholt.net,gmx.net];
+	FORGED_SENDER(0.00)[gregor.herburger@linutronix.de,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	RCVD_COUNT_THREE(0.00)[3];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[angelogioacchino.delregno@collabora.com,devicetree@vger.kernel.org];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:chunfeng.yun@mediatek.com,m:vkoul@kernel.org,m:neil.armstrong@linaro.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:matthias.bgg@gmail.com,m:angelogioacchino.delregno@collabora.com,m:chunkuang.hu@kernel.org,m:p.zabel@pengutronix.de,m:justin.yeh@mediatek.com,m:linux-arm-kernel@lists.infradead.org,m:linux-mediatek@lists.infradead.org,m:linux-phy@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:dri-devel@lists.freedesktop.org,m:kernel@collabora.com,m:krzk@kernel.org,m:conor@kernel.org,m:matthiasbgg@gmail.com,s:lists@lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[angelogioacchino.delregno@collabora.com,devicetree@vger.kernel.org];
+	FORWARDED(0.00)[lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[collabora.com:+];
-	TO_DN_NONE(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[gregor.herburger@linutronix.de,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[linutronix.de:+];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,collabora.com:from_mime,collabora.com:email,collabora.com:mid,collabora.com:dkim]
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: E395A71CB72
+X-Rspamd-Queue-Id: 674E471CB86
 
-The MT8196 SoC features an updated PHY IP compared to the older
-ones, and there is one that is specific to Embedded DisplayPort.
+This adds support for the tryboot mode on Raspberry Pis. As there is no
+documentation other than the downstream implementation [0] the
+implementation is based on this.
 
-Add support for the eDP PHY found in the MediaTek MT8196 SoC and
-all of its variants.
+I tested this on Raspberry Pi 5 and therefore I only added the
+properties to this devicetree. But afaik this should work on all
+Raspberry Pis. I will add it to the correspondings dts if I get some
+hardware to test it.
 
-Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+[0] https://github.com/raspberrypi/linux/commit/eb56da0c1925c07e8929ce4c9fe8aeafa7cb8c7b
+
 ---
- drivers/phy/mediatek/phy-mtk-dp.c | 66 ++++++++++++++++++++++++++++++-
- 1 file changed, 65 insertions(+), 1 deletion(-)
+Changes in v3:
+- fix use-after-free error by using devm_add_action_or_reset
+- ensure endianness of magic byte
+- refactor reboot mode registration into separate function
+- Link to v2: https://patch.msgid.link/20260630-rpi-tryboot-v2-0-f68d2dc6aa27@linutronix.de
 
-diff --git a/drivers/phy/mediatek/phy-mtk-dp.c b/drivers/phy/mediatek/phy-mtk-dp.c
-index 64bdfda5394f..06337a546c21 100644
---- a/drivers/phy/mediatek/phy-mtk-dp.c
-+++ b/drivers/phy/mediatek/phy-mtk-dp.c
-@@ -5,7 +5,7 @@
-  * Copyright (c) 2022, BayLibre Inc.
-  * Copyright (c) 2022, MediaTek Inc.
-  *
-- * Major refactoring
-+ * Major refactoring and new SoCs support
-  * Copyright (c) 2026, Collabora Ltd.
-  *                     AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-  */
-@@ -41,6 +41,7 @@
- #define TPLL_SSC_EN			BIT(3)
- 
- /* DP_PHYD_BIT_RATE */
-+#define PHYD_DIG_RG_BIT_RATE_V2		GENMASK(3, 0)
- #define PHYD_DIG_RG_BIT_RATE		GENMASK(1, 0)
- 
- /* DP_PHYD_SW_RST */
-@@ -57,6 +58,7 @@
- 
- /* DP_PHYD_TX_CTL_0 */
- #define PHYD_TX_LN_EN			GENMASK(7, 4)
-+#define PHYD_TX_LN_EN_V2		GENMASK(3, 0)
- 
- /* DP_PHYD_DRIVING_FORCE */
- #define PHYD_DP_TX_FORCE_VOLT_SWING_EN	BIT(0)
-@@ -123,6 +125,16 @@
- #define MT8195_DRIVING_PARAM_7_DEFAULT	BUILD_DRIVING_PARAM_12(0, 6, 12, 0)
- #define MT8195_DRIVING_PARAM_8_DEFAULT	BUILD_DRIVING_PARAM_23(8, 0)
- 
-+/* MT8196/MT6991: Logic State Change Point (LC TX C) */
-+#define MT8196_DRIVING_PARAM_3_DEFAULT	BUILD_DRIVING_PARAM_0( 10, 12, 14, 17)
-+#define MT8196_DRIVING_PARAM_4_DEFAULT	BUILD_DRIVING_PARAM_12(14, 17, 18, 18)
-+#define MT8196_DRIVING_PARAM_5_DEFAULT	BUILD_DRIVING_PARAM_23(21, 24)
-+
-+/* MT8196/MT6991: Positive Edge (LC TX CP) */
-+#define MT8196_DRIVING_PARAM_6_DEFAULT	BUILD_DRIVING_PARAM_0( 0, 2, 4, 7)
-+#define MT8196_DRIVING_PARAM_7_DEFAULT	BUILD_DRIVING_PARAM_12(0, 3, 6, 0)
-+#define MT8196_DRIVING_PARAM_8_DEFAULT	BUILD_DRIVING_PARAM_23(3, 0)
-+
- enum mtk_dp_phya_ana_glb_regidx {
- 	DP_PHYA_GLB_BIAS_GEN_0,
- 	DP_PHYA_GLB_BIAS_GEN_1,
-@@ -178,6 +190,11 @@ static const u8 mt8195_phy_dig_lane_regs[DP_PHYD_LAN_MAX] = {
- 	[DP_PHYD_LAN_DRIVING_PARAM_0] = 0x2c,
- };
- 
-+static const u8 mt8196_phy_dig_lane_regs[DP_PHYD_LAN_MAX] = {
-+	[DP_PHYD_LAN_DRIVING_FORCE] = 0x30,
-+	[DP_PHYD_LAN_DRIVING_PARAM_0] = 0x34,
-+};
-+
- static const u8 mt8195_phy_dig_glb_regs[DP_PHYD_GLOBAL_MAX] = {
- 	[DP_PHYD_PLL_CTL_0] = 0x10,
- 	[DP_PHYD_PLL_CTL_1] = 0x14,
-@@ -187,6 +204,15 @@ static const u8 mt8195_phy_dig_glb_regs[DP_PHYD_GLOBAL_MAX] = {
- 	[DP_PHYD_TX_CTL_0] = 0x44,
- };
- 
-+static const u8 mt8196_phy_dig_glb_regs[DP_PHYD_GLOBAL_MAX] = {
-+	[DP_PHYD_PLL_CTL_0] = 0x10,
-+	[DP_PHYD_PLL_CTL_1] = 0x14,
-+	[DP_PHYD_SW_RST] = 0x38,
-+	[DP_PHYD_BIT_RATE] = 0x3c,
-+	[DP_PHYD_AUX_RX_CTL] = 0x40,
-+	[DP_PHYD_TX_CTL_0] = 0x74,
-+};
-+
- static const u8 mt8195_phy_dig_bitrate_val[DP_PHYD_BIT_RATE_MAX] = {
- 	[DP_PHYD_BIT_RATE_RBR] = 0,
- 	[DP_PHYD_BIT_RATE_HBR] = 1,
-@@ -194,6 +220,13 @@ static const u8 mt8195_phy_dig_bitrate_val[DP_PHYD_BIT_RATE_MAX] = {
- 	[DP_PHYD_BIT_RATE_HBR3] = 3
- };
- 
-+static const u8 mt8196_edp_phy_dig_bitrate_val[DP_PHYD_BIT_RATE_MAX] = {
-+	[DP_PHYD_BIT_RATE_RBR] = 1,
-+	[DP_PHYD_BIT_RATE_HBR] = 4,
-+	[DP_PHYD_BIT_RATE_HBR2] = 7,
-+	[DP_PHYD_BIT_RATE_HBR3] = 9
-+};
-+
- /**
-  * struct mtk_dp_phya_imp_sel - Per-Lane Impedance Selection
-  * @pmos: Impedance selection for P-Channel MOSFET
-@@ -786,8 +819,39 @@ static const struct mtk_dp_phy_pdata mt8195_dp_phy_data = {
- 	},
- };
- 
-+static const struct mtk_dp_phy_pdata mt8196_edp_phy_data = {
-+	.off_ana_glb = 0x400,
-+	.off_ana_lane = (const u16[]) { 0x0, 0x100, 0x200, 0x300 },
-+	.off_dig_glb = 0x1400,
-+	.off_dig_lane = (const u16[]) { 0x1000, 0x1100, 0x1200, 0x1300 },
-+	.regs_ana_glb = mt8195_phy_ana_glb_regs,
-+	.regs_ana_lane = mt8195_phy_ana_lane_regs,
-+	.regs_dig_glb = mt8196_phy_dig_glb_regs,
-+	.regs_dig_lane = mt8196_phy_dig_lane_regs,
-+	.mask_dig_tx_ln = PHYD_TX_LN_EN_V2,
-+	.val_dig_bitrate = mt8196_edp_phy_dig_bitrate_val,
-+	.ana_bias_r = 15,
-+	.ana_cktx_imp = 8,
-+	.ana_lanes_imp = {
-+		.pmos = 8,
-+		.nmos = 8,
-+	},
-+	.driving_params = (const u32[]) {
-+		[0] = 0,
-+		[1] = 0,
-+		[2] = 0,
-+		[3] = MT8196_DRIVING_PARAM_3_DEFAULT,
-+		[4] = MT8196_DRIVING_PARAM_4_DEFAULT,
-+		[5] = MT8196_DRIVING_PARAM_5_DEFAULT,
-+		[6] = MT8196_DRIVING_PARAM_6_DEFAULT,
-+		[7] = MT8196_DRIVING_PARAM_7_DEFAULT,
-+		[8] = MT8196_DRIVING_PARAM_8_DEFAULT
-+	},
-+};
-+
- static const struct of_device_id mtk_dp_phy_of_match[] = {
- 	{ .compatible = "mediatek,mt8195-dp-phy", .data = &mt8195_dp_phy_data },
-+	{ .compatible = "mediatek,mt8196-edp-phy", .data = &mt8196_edp_phy_data },
- 	{ /* sentinel */ }
- };
- MODULE_DEVICE_TABLE(of, mtk_dp_phy_of_match);
--- 
-2.54.0
+Changes in v2:
+- Remove unnecessary reboot_mode_unregister().
+- dt-binding: restrict to mode-{normal,tryboot} and only allow 32bit value.
+- Link to v1: https://patch.msgid.link/20260626-rpi-tryboot-v1-0-490b1c4c4970@linutronix.de
+
+---
+Gregor Herburger (4):
+      firmware: raspberrypi: reorder rpi_firmware_property_tag enum
+      dt-bindings: raspberrypi,bcm2835-firmware: Include 'reboot-mode.yaml'
+      firmware: raspberrypi: Add reboot mode support
+      arm64: dts: broadcom: bcm2712: Add reboot modes to firmware node
+
+ .../arm/bcm/raspberrypi,bcm2835-firmware.yaml      |  9 +++++
+ .../boot/dts/broadcom/bcm2712-rpi-5-b-base.dtsi    |  2 ++
+ drivers/firmware/Kconfig                           |  2 ++
+ drivers/firmware/raspberrypi.c                     | 40 +++++++++++++++++++---
+ include/soc/bcm2835/raspberrypi-firmware.h         | 22 ++++++------
+ 5 files changed, 60 insertions(+), 15 deletions(-)
+---
+base-commit: 8cd9520d35a6c38db6567e97dd93b1f11f185dc6
+change-id: 20260623-rpi-tryboot-4292c92b0727
+
+Best regards,
+--  
+Gregor Herburger <gregor.herburger@linutronix.de>
 
 
