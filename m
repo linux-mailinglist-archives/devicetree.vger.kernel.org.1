@@ -1,361 +1,293 @@
-Return-Path: <devicetree+bounces-322669-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-322671-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id Eu07KGYdTmr/DQIAu9opvQ
-	(envelope-from <devicetree+bounces-322669-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 11:50:30 +0200
+	id t8LpI0AeTmpLDgIAu9opvQ
+	(envelope-from <devicetree+bounces-322671-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 11:54:08 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9BBA723E2E
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 11:50:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D8FE1723EC5
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 11:54:07 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=OMkURhD0;
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322669-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-322669-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=gmx.net header.s=s31663417 header.b=fHhKj1Lj;
+	dmarc=pass (policy=quarantine) header.from=gmx.net;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322671-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-322671-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A36D6300DDD6
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 09:50:28 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 41F5D302D513
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 09:53:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 420F03264FC;
-	Wed,  8 Jul 2026 09:50:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFD7D372045;
+	Wed,  8 Jul 2026 09:53:13 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA866292B54
-	for <devicetree@vger.kernel.org>; Wed,  8 Jul 2026 09:50:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF1993438B7;
+	Wed,  8 Jul 2026 09:53:11 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783504227; cv=none; b=KilwQRFlLcSnW86L8AfQEniEEQuRPd8qDypUtm6u9bc4RR7LXKSdISoSj0VmK7CjOik/mToeNGkPkVwfxWW0bGIsxEQyWt3v1l0A6hUDNOUudjG+Pf3ISqq+NfWfrspJ+peB0rv/3e1q9Gj4+jtKaz+AxjD3JWtTmuSATXQf+y0=
+	t=1783504393; cv=none; b=Jt7C2wSS0WjFsj7WRn8dDjR6Whd4C17QwAfDIsQjFMaMDA+MYaWH8IutsgyHkpjfH9D9VjXm7TJqDpZ6QEgygo7RRcrxspRKDUuBuRCdBpvO9DwbGp/uAmIzCeyXw0jmRQPnx7IT5FDq/it3JpA7BDPWo9HPPYHskzJkr+mNi/Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783504227; c=relaxed/simple;
-	bh=TpdSoNerB30F9aRs9bvfPBouB3bZKvq2EEHU2LfzN4A=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=cJ7oz0RSaIiDDpqYWkZNg/gxMLjs2QWk4QL/jOF4gCKjyux/DBDrj31/flJ0DkWxg8hPV8pD6kGrTkq0SJ/m217okomm7GtpdxXd89g/HrLXwcS9DaHLe9L17AlNahCVolxkO4jtwRRBVhywdUJuGS844zADIpUbSskAZAhiJ+c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OMkURhD0; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 53A781F000E9;
-	Wed,  8 Jul 2026 09:50:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783504225;
-	bh=EzgJBy5IXQd4k8taZFy5NeONzV05LFVWNFOOuh1bgec=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=OMkURhD0Lf6Bs/G9GTgBjZBWjgHIZl4vn022D2F9FmHGlst63V5eL9s1sdhapL0+Q
-	 ciofPYJG+cj0Lf0jZy4564XBf45FU+cF3TW9mR4M1Iqi4l9M0ImtM0rRtCWLW3pMWt
-	 cQhh2eZs+wN7Bcn0D2MHBxYqIpgpWG02qXpd9O8s4XROm2UAHTKTWQsyTnozmywPrl
-	 IvAgSWG4fQsh2AX0UDhhe00YCtodHcavsMMZnG8SVi0pDaU6Hc6+m24o5MnzaYisU2
-	 YggJEba287QlwbQbyluxjpYTDnj1nP7zNsea6kqYUqmG/gXFZLXV53of/atd8NTzSu
-	 lq/5RrmhhTVqQ==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v6 2/2] ASoC: codecs: nau8360: Add support for NAU83G60
- amplifier
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Neo Chang" <YLCHANG2@nuvoton.com>
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, robh@kernel.org
-In-Reply-To: <20260708093506.895481-3-YLCHANG2@nuvoton.com>
-References: <20260708093506.895481-1-YLCHANG2@nuvoton.com>
- <20260708093506.895481-3-YLCHANG2@nuvoton.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Wed, 08 Jul 2026 09:50:24 +0000
-Message-Id: <20260708095025.53A781F000E9@smtp.kernel.org>
+	s=arc-20240116; t=1783504393; c=relaxed/simple;
+	bh=on2lcVlpE6P+0LOFKNgEdykwJLshdckEPnrvLOgvfrE=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=F3OIicEbR8jyvmUTg1KQenOWLPl1AB+eELOeEl8Gr9AdGSbLv1ExUOGXwiIFlDFBE+Z4sIZcl0gyDsafu+xVDFsyhlA23IajC9B5k43lGgh6gj67ZVDT1MBWLy1ieQnYo6/Eq8jmzfA4Qp4x53yHJlpnUsG3hmEFLPNaM05owRM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=lukas.metz@gmx.net header.b=fHhKj1Lj; arc=none smtp.client-ip=212.227.15.18
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.net;
+	s=s31663417; t=1783504387; x=1784109187; i=lukas.metz@gmx.net;
+	bh=Lge+6YopaIY4N+z10CVSwBUFvLb5GJVm4hJbAPY/Z0g=;
+	h=X-UI-Sender-Class:From:Subject:Date:Message-Id:MIME-Version:
+	 Content-Type:Content-Transfer-Encoding:To:Cc:cc:
+	 content-transfer-encoding:content-type:date:from:message-id:
+	 mime-version:reply-to:subject:to;
+	b=fHhKj1Lj6dfZ8YQ0zJUga0J2arg15XWur6OZtZkdhHyo/tneBAMciaygM8IYy2bh
+	 P/0QL3vwooSJOLrp251g+vnpFdBL1XKEeZSu5evDl5ZHzjpAdHyieiYH4631Mq87R
+	 9AHe5H8BDixwXRZpoRdVPReH6W8uq40lZsGHv327V4YV3YuTRq577vnhhKEyxzWUi
+	 0gz4t/ldgVclC/hK3Xo/1AdaThTIEBkdmdMdEmxFPagP7WgiTfImXA92tKvqg6rR8
+	 5EjN19D19k/5Odregl+7x1/2mZIQhuPZg9z/3JuwL4rVgWAglSGUP/lO5gXAwSB7B
+	 NcyFmlThvNpNyA1kkw==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from client.hidden.invalid by mail.gmx.net (mrgmx004
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1Mz9Yv-1x3JXF42j5-0132R4; Wed, 08
+ Jul 2026 11:53:07 +0200
+From: Lukas Metz <lukas.metz@gmx.net>
+Subject: [PATCH v2 0/2] Add driver for DAC8163:
+Date: Wed, 08 Jul 2026 11:52:42 +0200
+Message-Id: <20260708-dac8163-work-v2-0-3acd1bf20182@gmx.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+X-B4-Tracking: v=1; b=H4sIAOodTmoC/13MQQ7CIBCF4as0sxbDgFDiynuYLrCl7cQIBhqsa
+ bi7WHcu/5e8b4PkIrkE52aD6DIlCr6GODTQz9ZPjtFQGwQXmp9QssH2BrVkrxDvTKA0tm3VTaG
+ CenlGN9K6c9eu9kxpCfG96xm/6w/S4g/KyDirDDeozGgtv0yP9ejdAl0p5QMEf/I3pgAAAA==
+X-Change-ID: 20260413-dac8163-work-2138a775b515
+To: Jonathan Cameron <jic23@kernel.org>, 
+ David Lechner <dlechner@baylibre.com>, 
+ =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
+ Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org, 
+ devicetree@vger.kernel.org, Lukas Metz <lukas.metz@gmx.net>
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1783504386; l=3766;
+ i=lukas.metz@gmx.net; s=20260616; h=from:subject:message-id;
+ bh=JVmgTGNGFylMd63WOYrYIYPTM+eSDJTXZtD41iRXrKc=;
+ b=U6OtJYok1cG2FpMLmpJkC0ptUWH2lwkDPGwlmZW8885B3xomcWuPS1iu0afBBTqdSqAKB8Hzo
+ o1j529j3SukC8OkhM+Z6XVoKl+qcmRAFimn6UWa4vcF5BOtaacc4Wph
+X-Developer-Key: i=lukas.metz@gmx.net; a=ed25519;
+ pk=ljkIqYPVyHd9CYN4/koqGKt7Mym5FTTB+ZzvvlfD4yM=
+X-Provags-ID: V03:K1:wND2e+fbTxGb5Gk8UnhR4NGhkjUo8qxOUtlG8gZFSrQoT3PDjG7
+ TvU1XyBXS/DyT0Ifyet3NCnf99jyGNS/B6B2NOrFxx2oQZeWch3berUPkfAR0I8XRPmkClx
+ zclsAqJnV0r3d0NrYeLKL9c5CxTu88wCiNS6fc6QvSRQWFvH+tITF7vQv1zQmbe5vc1L2jx
+ bROahK4E0RQQa3YQdmVeQ==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:xbO3qGGHgAM=;HL5ijB+z5VDRfS/CtJahngJQMAt
+ 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
+ G0Apf+Kl31nlZHDG+raMoqB9b7U=
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	DMARC_POLICY_ALLOW(-0.50)[gmx.net,quarantine];
+	R_DKIM_ALLOW(-0.20)[gmx.net:s=s31663417];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-322669-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	TAGGED_FROM(0.00)[bounces-322671-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:jic23@kernel.org,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:andy@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-kernel@vger.kernel.org,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:lukas.metz@gmx.net,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:YLCHANG2@nuvoton.com,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[lukas.metz@gmx.net,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	FREEMAIL_CC(0.00)[vger.kernel.org,gmx.net];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmx.net];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCPT_COUNT_THREE(0.00)[4];
+	FROM_NEQ_ENVFROM(0.00)[lukas.metz@gmx.net,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmx.net:+];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,lists.linux.dev:replyto,smtp.kernel.org:mid,sashiko.dev:url,nuvoton.com:email]
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[ti.com:url,vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,msgid.link:url]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: D9BBA723E2E
+X-Rspamd-Queue-Id: D8FE1723EC5
 
-Thank you for your contribution! Sashiko AI review found 10 potential issue=
-(s) to consider:
-- [High] Unsynchronized asynchronous firmware loading during repeated suspe=
-nd/resume cycles or component unbinding leads to a Use-After-Free of the de=
-vice struct.
-- [High] TDM TX channels are incorrectly enabled using function indices ins=
-tead of slot indices, breaking TDM routing.
-- [High] `nau8360_read_data_payload()` reads an extra fragment, consuming t=
-he trailing fragment and causing protocol desynchronization.
-- [High] Failure to check the return value of `regmap_read` leads to the us=
-e of uninitialized stack variables.
-- [High] 32-bit payload writes to DSP registers are silently rejected by th=
-e regmap core because the driver configures `val_bits =3D 16`.
-- [High] The custom `nau8360_reg_read` function uses a single 6-byte `i2c_r=
-ead_buf` for both the TX and RX phases of an I2C transfer, causing an unsaf=
-e DMA cacheline sharing violation.
-- [Medium] Missing bounds check on TDM slot indices read from Device Tree l=
-eads to undefined behavior via out-of-bounds shift.
-- [Medium] `nau8360_set_tdm_slot` lacks mutex protection on the fast path, =
-causing race conditions in concurrent TDM configurations.
-- [Medium] TOCTOU race in `nau8360_dac_mux_put_enum` allows changing the DA=
-C path during active playback.
-- [Low] Passing `int *` to `device_property_read_u32_array` causes an incom=
-patible pointer type warning.
---
+This series adds an IIO driver for the Texas Instruments DAC7562, DAC7563,
+DAC8162, DAC8163, DAC8562, and DAC8563 dual-channel voltage-output DACs.
 
---- Patch [2]: [PATCH v6 2/2] ASoC: codecs: nau8360: Add support for NAU83G=
-60 amplifier ---
-commit 5916928bdb6ee80342d7a909cc9a889626d92df0
-Author: Neo Chang <YLCHANG2@nuvoton.com>
+These devices are pin-compatible 12-, 14-, and 16-bit variants sharing the
+same 24-bit SPI command interface. Each device provides two independently
+addressable output channels and includes a 2.5 V, 4 ppm/=C2=B0C internal
+reference that can be enabled via device tree, or an external reference
+supplied through a regulator. The register and command structure differs
+from already existing drivers which makes adding a new driver a
+reasonable choice in my opinion.
 
-ASoC: codecs: nau8360: Add support for NAU83G60 amplifier
+The driver supports:
+ - All six device variants via a shared chip info table
+ - DAC updates in synchronous mode
+ - Configurable internal or external voltage reference
+ - Optional LDAC GPIO which has to be asserted permanently when using
+   synchronous updates.
+ - IIO_CHAN_INFO_RAW and IIO_CHAN_INFO_SCALE attributes per channel
 
-This commit adds support for the Nuvoton NAU83G60 audio codec. It features a
-stereo 30W+30W smart amplifier with an integrated low-latency Advanced Audio
-DSP.
+Datasheet (DAC8163):
+  https://www.ti.com/lit/gpn/dac8163
 
-> diff --git a/sound/soc/codecs/nau8360-dsp.c b/sound/soc/codecs/nau8360-ds=
-p.c
-> --- a/sound/soc/codecs/nau8360-dsp.c
-> +++ b/sound/soc/codecs/nau8360-dsp.c
+The driver was tested with a DAC8163 on a custom STM32MP157F board with
+external reference enabled.
 
-[ ... ]
+Signed-off-by: Lukas Metz <lukas.metz@gmx.net>
+=2D--
+Changes in v2:
+- add reg_defaults to initialize the output registers based on
+  the device (dacxxx2 resets to 0, dacxxx3 resets to mid-scale)
+- add variable gain to dac8163_state struct to report correct scale when
+  internal reference is used (the device sets the gain register to 2
+  when the internal reference is selected)
+- do a full reset of the device when probing to ensure we have a known
+  device state as pointed out by Jonathan Cameron
+- use devm* calls where possible and omit remove callback
+- make use of regmap and remove now unneeded things like manual locking
+  and caching of output register values (thanks to Andy Shevchenko,
+  David Lechner and others for the hint)
+- remove internal_reference property
+- add missing headers as suggested by Siratul Islam
+- remove debug print from dac8163_write_raw (per Andy Shevchenko and
+  David Lechner)
+- switch ldac-gpio polarity for consistency with datasheet (as per David
+  Lechner)
+- rename dt properties ti,loaddacs-gpios to ldac-gpios and vref-supply to
+  vrefin-supply
+- add required spi property spi-cpha to binding (the device only works
+  in spi mode 1 and 3)
+- add missing spi properties spi-max-frequency and spi-rx-bus-width to
+  binding
+- add avdd-supply to binding and enable it in the driver (thanks to
+  David Lechner)
+- add clr-gpios to binding although not yet supported by the driver
+- add nullptr check after calling spi_get_device_match_data (thanks to
+  Andy Shevchenko for pointing this out)
+- add comment for permanent ldac assertion
+- switch to GPL-2.0-or-later
+- return -ERANGE when raw write is out of range
+- use named structures instead of chip_info array
+- rename driver identifiers from dacxx6x to dac8163 and partly remove
+  vendor prefix as suggested by David Lechner and Siratul Islam
+- remove redundant call to gpiod_set_value
+- Link to v1: https://patch.msgid.link/20260623-dac8163-work-v1-0-5b508158=
+faa0@gmx.net
 
-> @@ -198,6 +198,8 @@ static int nau8360_message_to_dsp(struct snd_soc_comp=
-onent *cp,
->  		return ret;
-> =20
->  	/* sending preamble fragment */
-> +	payload =3D nau8360_pack_preamble(cmd_info->cmd_id, frag_len);
-> +	snd_soc_component_write(cp, dsp_addr, payload);
+=2D--
+Lukas Metz (2):
+      dt-bindings: iio: dac: Add DAC8163
+      iio: dac: dac8163: Add driver for DAC8163
 
-[Severity: High]
-The regmap configuration sets val_bits =3D 16, which caps the maximum allow=
-ed
-write value to 0xFFFF. In nau8360_message_to_dsp(), 32-bit payloads are
-written without checking the return value. Will the regmap framework silent=
-ly
-reject these 32-bit writes, preventing any DSP communication?
+ .../devicetree/bindings/iio/dac/ti,dac8163.yaml    |  85 +++++
+ MAINTAINERS                                        |   7 +
+ drivers/iio/dac/Kconfig                            |  15 +
+ drivers/iio/dac/Makefile                           |   1 +
+ drivers/iio/dac/ti-dac8163.c                       | 373 ++++++++++++++++=
++++++
+ 5 files changed, 481 insertions(+)
+=2D--
+base-commit: 76b6720279964612111352ca5d09f5bd61e41ce4
+change-id: 20260413-dac8163-work-2138a775b515
 
-[ ... ]
+Best regards,
+=2D- =20
+Lukas <lukas.metz@gmx.net>
 
-> @@ -308,6 +308,18 @@ static int nau8360_read_data_payload(struct snd_soc_=
-component *cp,
->  		if (*data_count >=3D NAU8360_DSP_DATA_BYTE) {
->  			*data_buf++ =3D payload;
->  			*data_count -=3D NAU8360_DSP_DATA_BYTE;
-> +		} else if (*data_count > 0) {
-> +			for (j =3D 0; j < *data_count; j++)
-> +				((u8 *)data_buf)[j] =3D (payload >> (j * 8)) & 0xff;
-> +
-> +			*data_count =3D 0;
-> +			break;
-> +		}
-> +	}
-
-[Severity: High]
-The loop executes frag_len - 1 times. When msg_param is true and data_size =
-is
-fully consumed, *data_count becomes 0 via the *data_count -=3D
-NAU8360_DSP_DATA_BYTE path, but the loop does not break. Will this execute
-the remaining iterations and mistakenly consume the trailing fragment,
-causing a protocol error when nau8360_validate_trailing() subsequently
-attempts to read it?
-
-[ ... ]
-
-> @@ -628,6 +628,15 @@ static int nau8360_dsp_chan_kcs_setup(struct snd_soc=
-_component *cp,
-> =20
->  	reinit_completion(&nau8360->fw_done[core_id]);
-> =20
-> +	ret =3D request_firmware_nowait(THIS_MODULE, true,
-> +		fw_name, dev, GFP_KERNEL, ctx, nau8360_dsp_fw_cb);
-
-[Severity: High]
-The function request_firmware_nowait() executes asynchronously and lacks a
-component remove callback to cancel it. In nau8360_i2c_remove(), we wait for
-the completion only once per core. If multiple callbacks were queued during
-repeated suspend and resume cycles, could the later callbacks execute after
-devres frees the device context, causing a use-after-free on the nau8360
-struct?
-
-> diff --git a/sound/soc/codecs/nau8360.c b/sound/soc/codecs/nau8360.c
-> --- a/sound/soc/codecs/nau8360.c
-> +++ b/sound/soc/codecs/nau8360.c
-
-[ ... ]
-
-> @@ -321,6 +321,11 @@ static int nau8360_get_tdm_chan_len(struct nau8360 *=
-nau8360)
->  {
->  	int val;
-> =20
-> +	regmap_read(nau8360->regmap, NAU8360_R0C_I2S_PCM_CTRL2, &val);
-> +	val =3D (val & NAU8360_TDM_CLEN_MASK) >> NAU8360_TDM_CLEN_SFT;
-
-[Severity: High]
-The return value of regmap_read() is not checked before val is used. If the
-I2C transfer fails, could this result in operating on uninitialized stack
-memory and configuring corrupted channel lengths?
-
-[ ... ]
-
-> @@ -557,6 +557,17 @@ static int nau8360_validate_tdm_slots(struct device =
-*dev, unsigned int mask,
->  			continue;
->  		}
-> =20
-> +		if (!(mask & BIT(func_slot))) {
-> +			dev_warn(dev, "%s %s mapped to slot %d, but disabled by mask!",
-> +				dir, func_names[i], func_slot);
-> +			continue;
-> +		}
-> +
-> +		if (*slot_used & BIT(func_slot)) {
-> +			dev_err(dev, "%s %s slot %d collision!",
-> +				dir, func_names[i], func_slot);
-> +			return -EINVAL;
-> +		}
-
-[Severity: Medium]
-The func_slot values are read from the device tree and directly passed to t=
-he
-BIT(func_slot) macro. If a device tree specifies a slot index of 32 or
-greater, does this lead to an out-of-bounds shift and undefined behavior?
-
-[ ... ]
-
-> @@ -587,6 +587,14 @@ static void nau8360_enable_tdm_channels(struct snd_s=
-oc_component *cp,
->  	int i;
->  	unsigned int val =3D 0;
-> =20
-> +	for (i =3D 0; i < NAU8360_TDM_TXN; i++)
-> +		nau8360_set_tdm_tx_func(cp, i, tx_slot_used & BIT(i));
-
-[Severity: High]
-The tx_slot_used variable represents a bitmask of active slot IDs. Here, the
-loop iterates over the function index i. Is it intentional to perform a
-bitwise AND against the function index instead of the slot ID? This appears
-to enable a function only if its assigned slot ID happens to match its
-function ID.
-
-[ ... ]
-
-> @@ -614,6 +614,10 @@ static int nau8360_set_tdm_slot(struct snd_soc_dai *=
-dai, unsigned int tx_mask,
->  	unsigned int tx_slot_used =3D 0, rx_slot_used =3D 0;
->  	int ret =3D 0;
-> =20
-> +	if (!slots || !slot_width) {
-> +		nau8360_enable_tdm_channels(cp, 0, 0);
-> +		return 0;
-> +	}
-
-[Severity: Medium]
-The fast path for empty slots or slot_width bypasses the internal lock. If a
-concurrent thread configures TDM from another audio stream, could this
-lockless path interleave hardware updates and corrupt the shared hardware
-state?
-
-[ ... ]
-
-> @@ -865,6 +865,11 @@ static int nau8360_dac_mux_put_enum(struct snd_kcont=
-rol *kcontrol,
->  	unsigned int *item =3D ucontrol->value.enumerated.item;
->  	int ret =3D 0;
-> =20
-> +	if (snd_soc_dapm_get_bias_level(dapm) > SND_SOC_BIAS_STANDBY) {
-> +		dev_warn(nau8360->dev, "changing path is not allowed during playback");
-> +		return ret;
-> +	}
-> +
-> +	ret =3D snd_soc_dapm_put_enum_double(kcontrol, ucontrol);
-
-[Severity: Medium]
-The snd_soc_dapm_get_bias_level() check is performed before calling
-snd_soc_dapm_put_enum_double(), which acquires the DAPM mutex. Could a
-concurrent playback stream acquire the lock and start playback in between
-these calls, resulting in the hardware path being changed during active
-playback?
-
-[ ... ]
-
-> @@ -1659,6 +1659,10 @@ static int nau8360_read_device_properties(struct n=
-au8360 *nau8360)
->  	const char *firmware_names[NAU8360_DSP_FW_NUM];
->  	int i, ret;
-> =20
-> +	ret =3D device_property_read_u32_array(dev, "nuvoton,dsp-tx-slot-mappin=
-g",
-> +		nau8360->tdm_tx_func_slot, NAU8360_TDM_TXN);
-
-[Severity: Low]
-The arrays nau8360->tdm_tx_func_slot and tdm_rx_func_slot are declared as
-arrays of int. Does passing them to device_property_read_u32_array(), which
-expects a u32 pointer, cause a compiler warning about incompatible pointer
-types?
-
-[ ... ]
-
-> @@ -1987,6 +1987,14 @@ static int nau8360_reg_read(void *context, unsigne=
-d int reg, unsigned int *value
->  	struct i2c_msg xfer[2];
->  	int ret;
-> =20
-> +	nau8360->i2c_read_buf[0] =3D (reg >> 8) & 0xff;
-> +	nau8360->i2c_read_buf[1] =3D reg & 0xff;
-> +	xfer[0].addr =3D client->addr;
-> +	xfer[0].len =3D 2;
-> +	xfer[0].buf =3D nau8360->i2c_read_buf;
-> +	xfer[0].flags =3D 0;
-> +
-> +	xfer[1].addr =3D client->addr;
-> +	xfer[1].len =3D (NAU8360_IS_DSP_REG(reg)) ? 4 : 2;
-> +	xfer[1].buf =3D nau8360->i2c_read_buf + 2;
-> +	xfer[1].flags =3D I2C_M_RD;
-> +
-> +	ret =3D i2c_transfer(client->adapter, xfer, ARRAY_SIZE(xfer));
-
-[Severity: High]
-The buffer i2c_read_buf is used for both the transmit and receive phases of
-the I2C transfer within the same i2c_transfer() call. Since the buffer is
-only 6 bytes, both point into the exact same cache line. On architectures
-with non-coherent DMA, could concurrent cache invalidations for the receive
-buffer destroy the transmit data?
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260708093506.8954=
-81-1-YLCHANG2@nuvoton.com?part=3D2
 
