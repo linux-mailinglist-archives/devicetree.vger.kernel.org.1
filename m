@@ -1,462 +1,219 @@
-Return-Path: <devicetree+bounces-323185-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-323191-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id JHTXH2zHTmqJTwIAu9opvQ
-	(envelope-from <devicetree+bounces-323185-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 23:55:56 +0200
+	id EmcJCeXHTmq3TwIAu9opvQ
+	(envelope-from <devicetree+bounces-323191-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 23:57:57 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 150D372AAF8
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 23:55:56 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id B410972AB57
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 23:57:56 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b="T4pVv/DP";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-323185-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-323185-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=collabora.com header.s=mail header.b=VZQ4OvD6;
+	dmarc=pass (policy=none) header.from=collabora.com;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-323191-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-323191-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 61F263011378
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 21:55:55 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 3334C301BBB5
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 21:57:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C6063F1ACC;
-	Wed,  8 Jul 2026 21:55:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87D773FB7C0;
+	Wed,  8 Jul 2026 21:57:54 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D394D3A6B81;
-	Wed,  8 Jul 2026 21:55:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E201E3E8357;
+	Wed,  8 Jul 2026 21:57:52 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783547754; cv=none; b=Uz5n9jS9UyY5T6ZWD6Wwwsf05EYtF17pH8A7C932GML2oSgdmfpIHoZSO8LURCEm8Tv60w7uUha1NU9cYb+i6C+DGHS6p2oOJeWeGXo+hPIBadzj/I8EIaVDJyez9fUq+UNxnZiOzXygE8ynUu1GJiup+fBUKh4KTmOzVAPjcnw=
+	t=1783547874; cv=none; b=YFzHp8wHZcI44Fcy1bygj4rBqZn1Xr6CiywCnp/up/3ANpJmOA+6QhA3AO3MwRa0diBshhooPmKUBcchCSOvtf8UoA1tfvfdanrMcauDJiCiQmyZTp6SCrhgD4BTP47oi2HZwSmY4C96zcpzqn2sKF6DknHVESBUNo84LbhSdN0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783547754; c=relaxed/simple;
-	bh=mQONm8E+JkVSZWfARwyuTio0dPnEF5IwNfcfzS9UkFw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=g+MX9qOe+WS2nDAKsaBPO0y/tj3F+fcYsIQ3jPZhulvn2t/gtmzhS7ag1ebTUTINykJ/MhUuxFkaEPogYGyBx5hefjMz45eOwEJikAloAkP0xW6+NrnExyagF9dNBGrzGdAz7vQPOaYwwjdlJ5xjdKJELx8J7TxwYpjEIUItThI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=T4pVv/DP; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E81091F000E9;
-	Wed,  8 Jul 2026 21:55:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783547752;
-	bh=18M0o3bms/FWqXkbeCx1DIT7uNO8cNtKfuRe5v9zuL4=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To;
-	b=T4pVv/DPQZeN1DflmRgh80MUtzF9ZIXol+CG7beLlbMqWe2yB0eeM23vHt6LrhzUP
-	 Kw2eAK9UensxbWIL3lmtHLMQaM+CgXE6N5jQsCwx4FcvBzJTqXzQglWYFJDAjXV8bD
-	 nnq/ckAfCDP50jZiHUcpG/Mzvupi+1WXoEYmPLEVWgBclB4GLDg/WkxJ7dagh8gIoj
-	 pcI8MdPYvWTJcPKC8NuNJRtynSVzH7MDXmIV2N6Bg9ktXYCJE5co0CMjyEMsrC8U7b
-	 aICTMh5iAcwZn2IJ73teHp1ATvjqvWmY9we+rhZpTgEHReWJEkNEupbSEytVjQ6cfg
-	 uRg1qhZhatayA==
-Message-ID: <3ab676ac-919b-4a80-8dd6-71dd7f6fe06c@kernel.org>
-Date: Wed, 8 Jul 2026 22:55:48 +0100
+	s=arc-20240116; t=1783547874; c=relaxed/simple;
+	bh=k8K2SHz6AQFatWz++NWmyPhT7s4wTOLAwEAvCEwc65U=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=SVZ0BvQ5f0iT1uGZ1FQFgzppAX5W5tUXHL5WU1m9MvytB9Iha/jAMYvvTT/QB6b02BVI07FM733t8+4GajjJq6lXWtENQua8i5vyiDMKIdaTwpgDGxVBY0LUv4w4eZ50LxImm6EDC+HlJtkGLWmQhEKHVRQGGibtzqAPKoNDTrQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=VZQ4OvD6; arc=none smtp.client-ip=148.251.105.195
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1783547871;
+	bh=k8K2SHz6AQFatWz++NWmyPhT7s4wTOLAwEAvCEwc65U=;
+	h=From:Subject:Date:To:Cc:From;
+	b=VZQ4OvD6RY9DscEBO5xZc1rPkHQONTlq4V9q9uhhCH945NEuB+zSxWRhkwwLi94JR
+	 9txR43Pg2UiUDOk8W6OvBKGnqe3wN9jBdHH9Kd1s1SBa3cg7Fg8NjxjGhEC4AGRzX1
+	 tBVeqZ8JXAXHtvFREhItMHQXBe28yqStOqcBZ3Wz3imdOh59/CtypcnZxc60eJ48ij
+	 LFZR07Z6pYXJVntUYRXbdp5TKoSUS2DWRqmCsmT5EVMewx+lNsxwbD9d7NRnNV+g/3
+	 1ldTmjtdHCQoPuBBBOd1HQCMEsoptqyw3y4zIjz7iuL1ig4YuN0KdYQmX80fVmwcho
+	 Gm4lnEpdn7LGA==
+Received: from localhost (unknown [100.64.0.241])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange secp256r1 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: cristicc)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id EF19E17E013E;
+	Wed, 08 Jul 2026 23:57:50 +0200 (CEST)
+From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+Subject: [PATCH v3 00/14] Support 10-bit YUV422 and 8/10-bit YUV420 color
+ format on DW HDMI QP
+Date: Thu, 09 Jul 2026 00:57:22 +0300
+Message-Id: <20260709-dw-hdmi-qp-yuv-v3-0-a4a982a9f2e7@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 1/2] dt-bindings: phy: qcom: Add CSI2 C-PHY/DPHY schema
-To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>, Vinod Koul
- <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Neil Armstrong <neil.armstrong@linaro.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
- linux-media@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20260708-x1e-csi2-phy-v9-0-0210b90c04cf@linaro.org>
- <20260708-x1e-csi2-phy-v9-1-0210b90c04cf@linaro.org>
- <YSunV_lNJ8xW_y-Aa2psZavniF6mcHJlJipuj1RYWMB8Zb8yLC-gb7eEnk0XMjfwQOneMGsZM5foFKutCNhYqw==@protonmail.internalid>
- <b7baffda-b97c-4b83-8d9e-e381d0289682@linaro.org>
-From: Bryan O'Donoghue <bod@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=bod@kernel.org; keydata=
- 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
-In-Reply-To: <b7baffda-b97c-4b83-8d9e-e381d0289682@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/3XNQQ7CIBQE0Ks0rMUATUFdeQ/jgg/UYlqp0KJN0
+ 7sLdWGicTnJzJsZBeOtCehQzMibaIN1txTKTYFUI28Xg61OGTHCOOFUYP3Aje4svvd4GiNmQGo
+ BUIHcUZRGvTe1fa7g6fzOYYSrUUNWcqOxYXB+Wh8jzb2/eKSYYMl5pWpNuBb6qFzbSnBebpXrU
+ D6I7EMIwn8IlgjYUzBQltro+ptYluUFBIO5JQUBAAA=
+X-Change-ID: 20260617-dw-hdmi-qp-yuv-2b0f7bb5ba81
+To: Sandy Huang <hjc@rock-chips.com>, 
+ =?utf-8?q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, 
+ Andy Yan <andy.yan@rock-chips.com>, David Airlie <airlied@gmail.com>, 
+ Simona Vetter <simona@ffwll.ch>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
+ Andrzej Hajda <andrzej.hajda@intel.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Luca Ceresoli <luca.ceresoli@bootlin.com>
+Cc: kernel@collabora.com, Andy Yan <andyshrk@163.com>, 
+ dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>, 
+ Sashiko <sashiko-bot@kernel.org>
+X-Mailer: b4 0.15.2
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-5.16 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
+	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:hjc@rock-chips.com,m:heiko@sntech.de,m:andy.yan@rock-chips.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:p.zabel@pengutronix.de,m:andrzej.hajda@intel.com,m:neil.armstrong@linaro.org,m:rfoss@kernel.org,m:Laurent.pinchart@ideasonboard.com,m:jonas@kwiboo.se,m:jernej.skrabec@gmail.com,m:luca.ceresoli@bootlin.com,m:kernel@collabora.com,m:andyshrk@163.com,m:dri-devel@lists.freedesktop.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-rockchip@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:krzysztof.kozlowski@oss.qualcomm.com,m:sashiko-bot@kernel.org,m:krzk@kernel.org,m:conor@kernel.org,m:jernejskrabec@gmail.com,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:vladimir.zapolskiy@linaro.org,m:bryan.odonoghue@linaro.org,m:vkoul@kernel.org,m:kishon@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:neil.armstrong@linaro.org,m:linux-arm-msm@vger.kernel.org,m:linux-phy@lists.infradead.org,m:linux-media@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[bod@kernel.org,devicetree@vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	TAGGED_FROM(0.00)[bounces-323185-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[rock-chips.com,sntech.de,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,pengutronix.de,intel.com,linaro.org,ideasonboard.com,kwiboo.se,bootlin.com];
+	TAGGED_FROM(0.00)[bounces-323191-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[28];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[cristian.ciocaltea@collabora.com,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[collabora.com:+];
 	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[bod@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NEQ_ENVFROM(0.00)[cristian.ciocaltea@collabora.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[collabora.com,163.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org,oss.qualcomm.com,kernel.org];
 	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,vger.kernel.org:from_smtp,linaro.org:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,collabora.com:from_mime,collabora.com:email,collabora.com:mid,collabora.com:dkim]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 150D372AAF8
+X-Rspamd-Queue-Id: B410972AB57
 
-On 08/07/2026 08:44, Vladimir Zapolskiy wrote:
-> On 7/8/26 02:39, Bryan O'Donoghue wrote:
->> Add a base schema initially compatible with x1e80100 to describe MIPI CSI2
->> PHY devices.
->>
->> The hardware can support both CPHY, DPHY and a special split-mode DPHY.
->>
->> The schema here defines two ports with three endpoints:
->>
->> port@0: Sensor input.
->>             endpoint@0: primary sensor
->>             endpoint@1: optional second sensor, implies DPHY split-mode
->>
->> port@1: Controller output.
->>
->> The CSIPHY devices have their own pinouts on the SoC as well as their own
->> individual voltage rails.
->>
->> The need to model voltage rails on a per-PHY basis leads us to define
->> CSIPHY devices as individual nodes.
->>
->> Two nice outcomes in terms of schema and DT arise from this change.
->>
->> 1. The ability to define on a per-PHY basis voltage rails.
->> 2. The ability to require those voltage.
->>
->> We have had a complete bodge upstream for this where a single set of
->> voltage rail for all CSIPHYs has been buried inside of CAMSS.
->>
->> Much like the I2C bus which is dedicated to Camera sensors - the CCI bus in
->> CAMSS parlance, the CSIPHY devices should be individually modelled.
->>
->> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
->> ---
->>    .../bindings/phy/qcom,x1e80100-csi2-phy.yaml       | 202 +++++++++++++++++++++
->>    1 file changed, 202 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/phy/qcom,x1e80100-csi2-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,x1e80100-csi2-phy.yaml
->> new file mode 100644
->> index 0000000000000..a7fbf6804cd9e
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/phy/qcom,x1e80100-csi2-phy.yaml
->> @@ -0,0 +1,202 @@
->> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/phy/qcom,x1e80100-csi2-phy.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Qualcomm SoC CSI2 PHY
->> +
->> +maintainers:
->> +  - Bryan O'Donoghue <bod@kernel.org>
->> +
->> +description:
->> +  Qualcomm MIPI CSI2 C-PHY/D-PHY combination PHY. Connects MIPI CSI2 sensors
->> +  to Qualcomm's Camera CSI Decoder. The PHY supports both C-PHY and D-PHY
->> +  modes.
->> +
->> +properties:
->> +  compatible:
->> +    const: qcom,x1e80100-csi2-phy
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  "#phy-cells":
->> +    const: 1
->> +    description:
->> +      The single cell specifies the PHY operating mode.
-> 
-> Unfortunately my review comment given before was ignored before publishing
-> this version, thus I will repeat.
-> 
-> There is a clash between the proposed phy cells value and 'bus-type' property
-> of the media endpoint, the proposed value of phy cells brings no information,
-> and therefore the whole proposed '#phy-cells' prorperty shall be removed.
-> 
-> There shall be no third link introduced between CAMSS and CAMSS CSIPHYs.
+This series extends the output color format support of the Rockchip DW
+HDMI QP controller to cover 10-bit YUV 4:2:2 and 8/10-bit YUV 4:2:0.
 
-As explained in the cover letter: I'm following guidance from Rob on that.
+Please note this has a runtime dependency on the Rockchip Samsung HDPTX
+PHY driver bug fixes posted separately as [1].  While there is no build
+dependency, those fixes are required to address clock rate calculation
+and synchronization issues that arise when changing the color depth
+(bpc) while keeping the modeline constant.
 
-20260708-x1e-csi2-phy-v9-0-0210b90c04cf@linaro.org
+Patches 1, 7 & 14 improve VOP2 robustness on RK3588, helping recover from
+exceptions and preventing random display output glitches observed when
+switching modes that also change the color format, e.g. from RGB to YUV
+4:2:0 and vice versa.
 
-Old guidance granted, so let me see if I can get his attention to this 
-matter. Perhaps your suggestion is fine by him if so then fine, if not I 
-will stick to his original nudge, either way its up to him as the 
-original reviewer and senior schema maintainer to call this one.
->> +
->> +  clocks:
->> +    maxItems: 3
->> +
->> +  clock-names:
->> +    items:
->> +      - const: core
->> +      - const: timer
->> +      - const: ahb
->> +
->> +  interrupts:
->> +    maxItems: 1
->> +
->> +  operating-points-v2: true
->> +
->> +  power-domains:
->> +    items:
->> +      - description: Titan Top GDSC - Titan ISP Block, Global Distributed Switch Controller.
->> +      - description: MMCX voltage rail
->> +      - description: MXC or MXA voltage rail
->> +
->> +  power-domain-names:
->> +    items:
->> +      - const: top
->> +      - const: mmcx
->> +      - const: mx
-> 
-> None of the power domains finds its place in this device tree node, the
-> child device belongs to CAMSS, which already enables these power domains.
+Patch 8 avoids an incorrect DCLK source switch for 10-bit YUV 4:2:2 by
+forcing 8 bpc in the bandwidth check.
 
-Right, I think the whole subnode debate has run its course. Its a 
-problem for JPEG and a bit of a fake debate, there is no real "bus" here 
-so what is the point of mutating DT to look like a bus ? We are forever 
-lecturing people about "making fake DT stuff for convenience".
+Patches 2-6 address a few vop2 related issues reported by Sashiko, while
+9-11 are additional cleanups/improvements.
 
-Peer nodes with TITAN_TOP_GDSC will perfectly adequately describe this 
-hardware and the JPEG too.
+Patch 12 adds MEDIA_BUS_FMT_UYVY10_1X20 for 10-bit YUV 4:2:2 output,
+configuring the PHY with 8 bpc.  YUV 4:2:2 always transmits two 12-bit
+components per pixel regardless of color depth, so from a clock-rate
+perspective it is equivalent to three 8-bit RGB components.
 
-> 
->> +
->> +  vdda-0p8-supply:
->> +    description: Phandle to a 0.8V regulator supply to a PHY.
-> 
-> The property name shall be vdda-0p9-supply, the description shall be
-> changed accordingly
+Patch 13 advertises YUV 4:2:0 output, now that the bus-format and VOP2
+support are in place.
 
-Hmm what ? I'll have to look back through my notes, I thought the opposite.
+Tested on Radxa ROCK 5B (RK3588) and Radxa ROCK 4D (RK3576), up to
+4K@60Hz YUV 4:2:0 and 4K@30Hz RGB.
 
-Let me follow up in v10 after grepping for this again.
+[1] https://lore.kernel.org/all/20260612-hdptx-clk-fixes-v4-0-ce5e1d456cda@collabora.com/
 
-> 
->> +
->> +  vdda-1p2-supply:
->> +    description: Phandle to 1.2V regulator supply to a PHY.
->> +
->> +  ports:
->> +    $ref: /schemas/graph.yaml#/properties/ports
->> +
->> +    properties:
->> +      port@0:
->> +        $ref: /schemas/graph.yaml#/$defs/port-base
->> +        description:
->> +          Sensor input. Always present. A single sensor is described by a
->> +          single endpoint with one to four data lanes. DPHY split mode,
->> +          where two independent sensors share the same PHY, is described
->> +          by two endpoints; endpoint@0 with exactly two-data lanes and
->> +          endpoint@1 with exactly one data-lane.
->> +        unevaluatedProperties: false
->> +
->> +        patternProperties:
->> +          "^endpoint(@[0-9a-f]+)?$":
-> 
-> This is too wide regexp mask for one or two endpoints only.
+Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+---
+Changes in v3:
+- Updated patch 3 to skip any hardware programming in the callbacks
+  gated by drm_atomic_helper_commit_planes() after powering down VOP2 on
+  an atomic_enable() error (Sashiko)
+- Ensured VBLANK events are sent immediately when atomic_enable() fails,
+  hence preventing userspace processes waiting for the page flip
+  completion to hang indefinitely (new patch 4, Sashiko)
+- Rebased onto latest drm-misc-next
+- Link to v2: https://patch.msgid.link/20260706-dw-hdmi-qp-yuv-v2-0-b91beb33dedf@collabora.com
 
-Yeah you're right, this is just fluff.
+Changes in v2:
+- Collected R-b from Krzysztof on the binding patch, while also fixed
+  the property ordering in the example
+- Renamed vop2_clk_reset() to vop2_reset_assert_deassert() and used to
+  devm_reset_control_get_optional_exclusive() in patch 6 (Philipp Zabel)
+- Addressed several issues reported by Sashiko
+  * Reset AXI before detaching the IOMMU domain, to close a theoretical
+    window where stale or in-flight DMA transactions could fault or
+    access memory untranslated after the domain is detached (patch 6)
+  * Fixed resource leak on vop2_enable() error path (new patch 2)
+  * Balance state on atomic_enable error paths (new patch 3)
+  * Avoided division by zero when computing max_dclk (new path 4)
+  * Fixed VOP2_MAX_DCLK_RATE overflow on 32-bit (new patch 5)
+- Rebased onto latest drm-misc-next
+- Link to v1: https://patch.msgid.link/20260617-dw-hdmi-qp-yuv-v1-0-a665cfd06d7d@collabora.com
 
-> 
->> +            $ref: /schemas/media/video-interfaces.yaml#
->> +            unevaluatedProperties: false
->> +            properties:
->> +              data-lanes:
->> +                minItems: 1
->> +                maxItems: 4
->> +              remote-endpoint: true
->> +            required:
->> +              - data-lanes
->> +              - remote-endpoint
->> +
->> +        allOf:
->> +          - if:
->> +              required:
->> +                - endpoint@1
->> +            then:
->> +              properties:
->> +                endpoint@0:
->> +                  properties:
->> +                    data-lanes:
->> +                      minItems: 2
->> +                      maxItems: 2
->> +                endpoint@1:
->> +                  properties:
->> +                    data-lanes:
->> +                      maxItems: 1
->> +              required:
->> +                - endpoint@0
->> +
->> +      port@1:
->> +        $ref: /schemas/graph.yaml#/$defs/port-base
->> +        description: Output to the CAMSS CSID controller.
->> +        unevaluatedProperties: false
->> +
->> +        patternProperties:
->> +          "^endpoint(@[0-9a-f]+)?$":
->> +            $ref: /schemas/graph.yaml#/$defs/endpoint-base
->> +            unevaluatedProperties: false
->> +            properties:
->> +              remote-endpoint: true
->> +            required:
->> +              - remote-endpoint
->> +
->> +    required:
->> +      - port@0
->> +      - port@1
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - "#phy-cells"
->> +  - clocks
->> +  - clock-names
->> +  - interrupts
->> +  - operating-points-v2
->> +  - power-domains
->> +  - power-domain-names
->> +  - vdda-0p8-supply
->> +  - vdda-1p2-supply
->> +  - ports
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
->> +    #include <dt-bindings/clock/qcom,x1e80100-camcc.h>
->> +    #include <dt-bindings/clock/qcom,x1e80100-gcc.h>
->> +    #include <dt-bindings/power/qcom,rpmhpd.h>
->> +
->> +    phy@ace4000 {
->> +        compatible = "qcom,x1e80100-csi2-phy";
->> +        reg = <0x0ace4000 0x2000>;
->> +        #phy-cells = <1>;
->> +
->> +        clocks = <&camcc CAM_CC_CSIPHY0_CLK>,
->> +                 <&camcc CAM_CC_CSI0PHYTIMER_CLK>,
->> +                 <&camcc CAM_CC_CORE_AHB_CLK>;
->> +        clock-names = "core",
->> +                      "timer",
->> +                      "ahb";
->> +
->> +        interrupts = <GIC_SPI 477 IRQ_TYPE_EDGE_RISING>;
->> +
->> +        operating-points-v2 = <&csiphy_opp_table>;
->> +
->> +        power-domains = <&camcc CAM_CC_TITAN_TOP_GDSC>,
->> +                        <&rpmhpd RPMHPD_MMCX>,
->> +                        <&rpmhpd RPMHPD_MX>;
->> +        power-domain-names = "top",
->> +                             "mmcx",
->> +                             "mx";
->> +
->> +        vdda-0p8-supply = <&vreg_l2c_0p8>;
->> +        vdda-1p2-supply = <&vreg_l1c_1p2>;
->> +
->> +        ports {
->> +            #address-cells = <1>;
->> +            #size-cells = <0>;
->> +
->> +            port@0 {
->> +                reg = <0>;
->> +                csiphy0_in: endpoint {
->> +                    data-lanes = <0 1 2 3>;
-> 
-> The previously given review comment about numeration of lanes was
-> not implemented.
+---
+Cristian Ciocaltea (14):
+      dt-bindings: display: vop2: Add missing reset properties
+      drm/rockchip: vop2: Fix resource leak on vop2_enable() error path
+      drm/rockchip: vop2: Balance state on atomic_enable() error paths
+      drm/rockchip: vop2: Send pending event when atomic_enable() fails
+      drm/rockchip: vop2: Avoid division by zero when computing max_dclk
+      drm/rockchip: vop2: Fix VOP2_MAX_DCLK_RATE overflow on 32-bit
+      drm/rockchip: vop2: Reset AXI and DCLK to improve robustness
+      drm/rockchip: vop2: Avoid DCLK source switch for 10-bit YUV422 output
+      drm/rockchip: vop2: Consolidate HDMI PHY PLL clock parent switch
+      drm/rockchip: vop2: Switch to enum vop_csc_format
+      drm/bridge: dw-hdmi-qp: Log resolution and refresh rate in atomic_enable()
+      drm/rockchip: dw_hdmi_qp: Support 10-bit YUV422 output format
+      drm/rockchip: dw_hdmi_qp: Enable YUV420 output format
+      arm64: dts: rockchip: Add RK3588 VOP2 resets
 
-I understand your comment but as Nihal pointed out - CAMSS has an 
-established pattern for this - and I think his argument is convincing - 
-we should stick to that pattern.
-
-> 
->> +                    remote-endpoint = <&sensor_out>;
->> +                };
->> +            };
->> +
->> +            port@1 {
->> +                reg = <1>;
->> +                csiphy0_out: endpoint {
->> +                    remote-endpoint = <&csid_in>;
->> +                };
->> +            };
->> +        };
->> +    };
->> +
->> +    csiphy_opp_table: opp-table {
->> +        compatible = "operating-points-v2";
->> +
->> +        opp-300000000 {
->> +            opp-hz = /bits/ 64 <300000000>;
->> +            required-opps = <&rpmhpd_opp_low_svs_d1>,
->> +                            <&rpmhpd_opp_low_svs_d1>;
->> +        };
->> +    };
->>
-> 
-> --
-> Best wishes,
-> Vladimir
+ .../bindings/display/rockchip/rockchip-vop2.yaml   |  46 ++++-
+ arch/arm64/boot/dts/rockchip/rk3588-base.dtsi      |  12 ++
+ drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c       |  10 +-
+ drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c     |  13 +-
+ drivers/gpu/drm/rockchip/rockchip_drm_vop2.c       | 215 +++++++++++++++------
+ drivers/gpu/drm/rockchip/rockchip_drm_vop2.h       |  10 +
+ 6 files changed, 244 insertions(+), 62 deletions(-)
+---
+base-commit: 671b7825dbfe9ea6e3ad3001003aeee0df48d1b5
+change-id: 20260617-dw-hdmi-qp-yuv-2b0f7bb5ba81
 
 
