@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-322574-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-322576-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id SkhzH279TWonBQIAu9opvQ
-	(envelope-from <devicetree+bounces-322574-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 09:34:06 +0200
+	id MVY0GTr7TWqpBAIAu9opvQ
+	(envelope-from <devicetree+bounces-322576-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 09:24:42 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id C16DF722ABE
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 09:34:05 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1572C7229BA
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 09:24:42 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=OtHhwMRY;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=ZJ501pHL;
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322574-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-322574-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322576-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-322576-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5404A30AAE95
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 07:24:16 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id F0FC83009F6C
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 07:24:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD3623F0A9A;
-	Wed,  8 Jul 2026 07:23:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88B7E3EFFC4;
+	Wed,  8 Jul 2026 07:24:18 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64EE03F54C9
-	for <devicetree@vger.kernel.org>; Wed,  8 Jul 2026 07:23:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 005823F4131
+	for <devicetree@vger.kernel.org>; Wed,  8 Jul 2026 07:24:02 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783495437; cv=none; b=ZyixvHx9tVYoc32vfLnPlgIZU2RWMM9+OnwaNiDqESwzLtdpvClqsAbuO53w6deArlzADYhGPxWEIRpEi7lqZBOUIBMPm9I7Q2IZyOH3cQsPpfL0PBh0xMce3f9LfpKHbqfzmDUa3pzOhCUq+bur7Nil1hOqbPZ/tRh6GJQq6Wg=
+	t=1783495458; cv=none; b=SFxd/FpQcFSVHIxCWPz9pRKnO9Yc9XHOl6ajVxfC6L5MpUR5mQCDbAu8iOPOJMjEM1idBIX2oi8E1K/zGyWaMzFo8+VAZX5cKoOtWw+JMH4/ihnuAHPE3rU3FRYpgzAO45aHJZZG6umcQJBMmIl+DrPg1Cm1qS4oPDHa8h+7oP8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783495437; c=relaxed/simple;
-	bh=MQyVj1/YEyzdXCUs64ppkHreCxsY8/7HeF2R8vP80Ik=;
+	s=arc-20240116; t=1783495458; c=relaxed/simple;
+	bh=O0wv3Csryudk5GhD2uOIcu7qFp26Y8PyocwsCVr//iw=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=MBG4PW4WWGZVc4J20457qwTZ/93m8S0wijby6vM/vJAsnCLI3p5kL0MYWU9dUKMc8wlNUT935lZmJ/cMk+QsZQifXa0CBJSABrNIEsQSjz3Hm2fwkzbVGQGxd3ywCDjV4bhBhOPZFeXUHdQdZikZ9g4xa6+omoor2Jtk2FeQj50=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OtHhwMRY; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EEBBB1F00A3D;
-	Wed,  8 Jul 2026 07:23:48 +0000 (UTC)
+	 Message-Id; b=htVilajPQiOsfai93YXhkeY6QUhrjpKRmoNg3D67IXvsNDxRj/diQ+rzqj9dS5Gbiqbm7rN2f0GO6eoIzOYhR9TuCJkE0paWH9QtjWJihusqHoSlRo9KhKs1IILt2RNfrB917jld9vnbUuNeClWC5LtdQwT+I1FVV2CwIF27cag=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZJ501pHL; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B79BA1F00A3F;
+	Wed,  8 Jul 2026 07:23:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783495429;
-	bh=j9zCWPAJlkmvbnaKxcoZyn8rzwEGgc1ZEZo6ZMjrE5Q=;
+	s=k20260515; t=1783495440;
+	bh=dFZ+nm+si86bVhFwMtI+93Jd9gfH2aaNKDJTjOUU9Xo=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=OtHhwMRYowxku8t4r+QDnhK1+7AsiQTKfbfuradDNDY5nWRnLUmxfUFSnxhiizdxB
-	 jHUoeftB1goDg4BrcDwQGWvDs93KAMF3C7AusFp4GOZxDmkEHPMN20RsXI43RftFpb
-	 KK2sLrCmyASJCwtrkGaNMLO/OR+bhCSiDQQa70QkZ6o9zbGaxIcOXvW/5Btg0xwSOC
-	 RlRnCSk45clxfLOXYZlBMCZyF0IMqKAT9c89ZdGoBikFT01/0WS1SUYniMV43rQWL0
-	 rI4anQXE0GT3JqGFpIgNXG5WjbUtNbabYtDcgAasBPyggWJ9H0vWt86GJHrUJEqbk5
-	 g9jouWwqpzS3g==
+	b=ZJ501pHL/NSd/2UKzKL9OdZrNeF5bL+Dh2met/ZjYJJ/zu4/xh50QO/STa0/Tv0E8
+	 dNEwttgmjdAT7QuX1pHNo/IrG+BAkMxfWhe/Tma2iWraBudoAnkXGOMs0jdsWEZKRB
+	 Ju9Qp7ieBB2OXlriVfesxGkkMJy8ZzIGOtlVjl1fB2Ae6oeGvVTjweNRLVsk5BRaOW
+	 i2rpClYF7jhAloW8/v9/cx2ylUzdC6LF24wW6NAPHb+FCE0TbUpXO40Wedtt/ux8Ui
+	 r0juYbJBkuQYTb/AM3NWqI6T7ugiDOMl3kwkDOxCNb1LOeyjxVqwvZkYGpAWHgrzic
+	 cL8ammRKhzt8g==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v3 22/26] remoteproc: qcom: Move minidump data
- structures into its own header
+Subject: Re: [PATCH v3 16/26] kallsyms: Annotate static information into
+ meminspect
 Reply-To: sashiko-reviews@lists.linux.dev
 To: "Mukesh Ojha" <mukesh.ojha@oss.qualcomm.com>
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, robh@kernel.org
-In-Reply-To: <20260708-meminspect-v3-v3-22-7aa5a0a74d5c@oss.qualcomm.com>
+Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260708-meminspect-v3-v3-16-7aa5a0a74d5c@oss.qualcomm.com>
 References: <20260708-meminspect-v3-v3-0-7aa5a0a74d5c@oss.qualcomm.com>
- <20260708-meminspect-v3-v3-22-7aa5a0a74d5c@oss.qualcomm.com>
+ <20260708-meminspect-v3-v3-16-7aa5a0a74d5c@oss.qualcomm.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Wed, 08 Jul 2026 07:23:48 +0000
-Message-Id: <20260708072348.EEBBB1F00A3D@smtp.kernel.org>
+Date: Wed, 08 Jul 2026 07:23:59 +0000
+Message-Id: <20260708072359.B79BA1F00A3F@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,24 +72,24 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-322574-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-322576-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:mukesh.ojha@oss.qualcomm.com,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:mukesh.ojha@oss.qualcomm.com,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
 	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
 	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	ALIAS_RESOLVED(0.00)[];
@@ -99,72 +99,65 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FROM_NO_DN(0.00)[];
 	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	RCPT_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,smtp.kernel.org:mid,lists.linux.dev:replyto,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,smtp.kernel.org:mid,vger.kernel.org:from_smtp,lists.linux.dev:replyto]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: C16DF722ABE
+X-Rspamd-Queue-Id: 1572C7229BA
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-- [Low] The newly added header file `include/linux/soc/qcom/minidump.h` use=
-s types `__le32` and `__le64` but fails to include `<linux/types.h>`.
-- [Low] The highly generic macro `MAX_REGION_NAME_LENGTH` is exposed in a g=
-lobal header without a proper subsystem-specific prefix.
+- [Medium] The meminspect regions for kallsyms static arrays are exported w=
+ith a hardcoded size of `sizeof(void *)`, which severely truncates the expo=
+rted data.
 --
 
---- Patch [22]: [PATCH v3 22/26] remoteproc: qcom: Move minidump data struc=
-tures into its own header ---
-commit 2cd4dc20742b94f6ee105c751e369816b8d27d0f
+--- Patch [16]: [PATCH v3 16/26] kallsyms: Annotate static information into=
+ meminspect ---
+commit 06ced28af88b52acf5d6e8d844fee7f21cd5492c
 Author: Eugen Hristev <ehristev@kernel.org>
 
-remoteproc: qcom: Move minidump data structures into its own header
+kallsyms: Annotate static information into meminspect
 
-This commit moves Qualcomm minidump data structures from qcom_common.c to a
-new shared header file. This allows the structures to be reused by other
-drivers.
+This commit adds annotations for vital kallsyms static arrays into meminspe=
+ct.
+The information includes symbol numbers, offsets, names, and tokens, stored=
+ in
+a dedicated meminspect section.
 
-> diff --git a/include/linux/soc/qcom/minidump.h b/include/linux/soc/qcom/m=
-inidump.h
-> new file mode 100644
-> index 0000000000000..7449a04e6e158
-> --- /dev/null
-> +++ b/include/linux/soc/qcom/minidump.h
-> @@ -0,0 +1,67 @@
-[ ... ]
-> +#ifndef __QCOM_MINIDUMP_H__
-> +#define __QCOM_MINIDUMP_H__
-> +
+> diff --git a/kernel/kallsyms.c b/kernel/kallsyms.c
+> index aec2f06858afd..e71c085ec837c 100644
+> --- a/kernel/kallsyms.c
+> +++ b/kernel/kallsyms.c
+> @@ -31,9 +31,18 @@
+>  #include <linux/kernel.h>
+>  #include <linux/bsearch.h>
+>  #include <linux/btf_ids.h>
+> +#include <linux/meminspect.h>
+> =20
+>  #include "kallsyms_internal.h"
+> =20
+> +MEMINSPECT_SIMPLE_ENTRY(kallsyms_num_syms);
+> +MEMINSPECT_AREA_ENTRY(kallsyms_offsets, sizeof(void *));
+> +MEMINSPECT_AREA_ENTRY(kallsyms_names, sizeof(void *));
+> +MEMINSPECT_AREA_ENTRY(kallsyms_token_table, sizeof(void *));
+> +MEMINSPECT_AREA_ENTRY(kallsyms_token_index, sizeof(void *));
+> +MEMINSPECT_AREA_ENTRY(kallsyms_markers, sizeof(void *));
+> +MEMINSPECT_AREA_ENTRY(kallsyms_seqs_of_names, sizeof(void *));
 
-[Severity: Low]
-Does this new header need to include <linux/types.h>? It uses __le32 and
-__le64 types below in struct minidump_region, which might cause build
-failures if a driver includes this header without previously including the
-types header.
+[Severity: Medium]
+Does this hardcoded size truncate the exported data?
 
-> +#define MAX_REGION_NAME_LENGTH  16
+By specifying sizeof(void *) (which is 8 bytes on 64-bit systems) for the
+size of these arrays, it appears the vast majority of the kallsyms data
+will be omitted from the exported meminspect regions.
 
-[Severity: Low]
-This isn't a bug, but moving this macro to a global include directory
-exposes a very generic name to the global namespace. Could this cause macro
-redefinition collisions with other subsystems? It might be safer to give it
-a subsystem-specific prefix.
-
-> +#define SBL_MINIDUMP_SMEM_ID	602
-> +#define MINIDUMP_REGION_VALID		('V' << 24 | 'A' << 16 | 'L' << 8 | 'I' <=
-< 0)
-[ ... ]
-> +struct minidump_region {
-> +	char	name[MAX_REGION_NAME_LENGTH];
-> +	__le32	seq_num;
-> +	__le32	valid;
-> +	__le64	address;
-> +	__le64	size;
-> +};
+Should this use the actual size of the arrays instead so diagnostic tools
+can resolve symbols properly when reading the meminspect table?
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260708-meminspect=
--v3-v3-0-7aa5a0a74d5c@oss.qualcomm.com?part=3D22
+-v3-v3-0-7aa5a0a74d5c@oss.qualcomm.com?part=3D16
 
