@@ -1,230 +1,132 @@
-Return-Path: <devicetree+bounces-322519-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-322522-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id qX4lEGDyTWrYAQIAu9opvQ
-	(envelope-from <devicetree+bounces-322519-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 08:46:56 +0200
+	id 3ifpL5bxTWqvAQIAu9opvQ
+	(envelope-from <devicetree+bounces-322522-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 08:43:34 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB9577224D0
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 08:46:55 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 50B7972245E
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 08:43:34 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=TxzNfxkA;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=TSQxz878;
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322519-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-322519-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322522-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-322522-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 0437B310ED29
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 06:39:05 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 42EA9300751A
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 06:43:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DD403E00A9;
-	Wed,  8 Jul 2026 06:36:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C9513E0094;
+	Wed,  8 Jul 2026 06:43:29 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A2413CDBC3;
-	Wed,  8 Jul 2026 06:36:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B1D43DDDAC;
+	Wed,  8 Jul 2026 06:43:24 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783492610; cv=none; b=f3++WZjYaeaznCF/wAr7tik7PgDWOrpCSHzz6FtPygZIVmFzDv6VQPLYeO1qgVohb34ErM7GC5yL8uzfLu4M/AYJ9IkVd4DxVGm0+GXBnRY0jjNNNAv2D9xptKk8grsmh2KMoOVOKNzOPmqjIHuxNTbIcGRmM08JC4/QkyU3dLg=
+	t=1783493008; cv=none; b=k2pNoU3rzJ2iTzJpCYstH9OA5NrqGMZv6L6DtKDa6M+rsrcZxRBMEqnoPOR0RY/4eKv9zspEYQ9PVCfttY32HqMCcOIedZHrhW0/IdUXIuaLUZv8XLX1VkGgD16yF+WK/hb7+27a6jH6GkSPyLtx1TCQ246FWQnL3zGZtK7g1co=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783492610; c=relaxed/simple;
-	bh=0VAulgCnbgot4cpP8JKj1m59gLCXA5naUEjVGiur4yU=;
+	s=arc-20240116; t=1783493008; c=relaxed/simple;
+	bh=mxod81WZlXG0Ks6hlCt8zw/f+ohhcegHhlh34EUHhLo=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bdq4t8ctTKvPPK8EDrrrPfXhu4vIcvFvEgwleYkwY4COhcOyZ6PbPF6OghrdvZIYI7qKxS1wIUV+o9nRcveLpO7UGlfjdirMtPzrDJxeg9ovvwm84UoqyvdlMb4LEP6C4twIQePf8zCp99V/PahJbIutvBMOgXjnVI9f+Z55n0M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TxzNfxkA; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1EE831F000E9;
-	Wed,  8 Jul 2026 06:36:28 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=mFBKUsMSq7Z9UIvI7KLxn7VvD93RX9tTcHSFPv7FEZOgNMzUe2hmg6+2bRj9PMkmkkubz/aeBtAnjnp8N2rpi8PzfkKxzrm+AL5zzqO1Qdn5jiz/IRuo9fW9zXFqcOdrCInkZuks53s8emoSso5hrg7VeP33Z3z08lNeUDCAC4s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TSQxz878; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 352A01F000E9;
+	Wed,  8 Jul 2026 06:43:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783492605;
-	bh=s0HJkQVRyCuHBvyWHHR+93fIn2+uXye8kCTNUU3r60I=;
+	s=k20260515; t=1783493004;
+	bh=7aHm23lXrbH97XURWrW0M2toGMFFFiZSG339Fm6Mhjs=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=TxzNfxkAbGy4rqJIqCr89/xbSHEkX+rin+tyCSt7590zWJuMCw8dcQKrSCNVIiWoA
-	 ndOV/GgWovh0WUxdtvgi0EtOpL/TilvEb2DV/Haj7x+l+Y6wUpasj2HUpo6QNlgM2K
-	 FXdGWdWH5cn/DW+KWFvNGyKQiWhHS8hgb6rAvdnbskLQw7CGy/oixnnHzdKAsVfU8i
-	 Ckw1IGQsAI4HAECNOWyM3Pg5nt+m9bUKguiwdqud8b7wpl/lsMWQrtFW3E8+u/b4Vo
-	 qizUfCiYMop6IHGz5Ym885tLg6yCjh+X38Gv1RHOK0ly9wgNDvXOadV5LseTU5F1jP
-	 7eax4QVB5vPgw==
-Date: Wed, 8 Jul 2026 09:36:25 +0300
-From: Mike Rapoport <rppt@kernel.org>
-To: Will Deacon <will@kernel.org>
-Cc: Thierry Reding <thierry.reding@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Hunter <jonathanh@nvidia.com>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Sowjanya Komatineni <skomatineni@nvidia.com>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Mikko Perttunen <mperttunen@nvidia.com>,
-	Yury Norov <yury.norov@gmail.com>,
-	Rasmus Villemoes <linux@rasmusvillemoes.dk>,
-	Russell King <linux@armlinux.org.uk>,
-	Alexander Gordeev <agordeev@linux.ibm.com>,
-	Gerald Schaefer <gerald.schaefer@linux.ibm.com>,
-	Heiko Carstens <hca@linux.ibm.com>,
-	Vasily Gorbik <gor@linux.ibm.com>,
-	Christian Borntraeger <borntraeger@linux.ibm.com>,
-	Sven Schnelle <svens@linux.ibm.com>,
-	Andrew Morton <akpm@linux-foundation.org>,
-	David Hildenbrand <david@kernel.org>,
-	Lorenzo Stoakes <ljs@kernel.org>,
-	"Liam R. Howlett" <liam@infradead.org>,
-	Vlastimil Babka <vbabka@kernel.org>,
-	Suren Baghdasaryan <surenb@google.com>,
-	Michal Hocko <mhocko@suse.com>,
-	Marek Szyprowski <m.szyprowski@samsung.com>,
-	Robin Murphy <robin.murphy@arm.com>,
-	Sumit Semwal <sumit.semwal@linaro.org>,
-	Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-	Brian Starkey <Brian.Starkey@arm.com>,
-	John Stultz <jstultz@google.com>,
-	"T.J. Mercier" <tjmercier@google.com>,
-	Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
-	Steven Rostedt <rostedt@goodmis.org>,
-	Masami Hiramatsu <mhiramat@kernel.org>,
-	Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
-	linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-	linux-media@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-s390@vger.kernel.org, linux-mm@kvack.org,
-	iommu@lists.linux.dev, linaro-mm-sig@lists.linaro.org,
-	linux-trace-kernel@vger.kernel.org,
-	Thierry Reding <treding@nvidia.com>, Chun Ng <chunn@nvidia.com>,
-	Shyam Saini <shyamsaini@linux.microsoft.com>
-Subject: Reserving memory on ACPI systems (was: [PATCH v3 04/11] arm64/mm:
- Add set_memory_device() and set_memory_normal())
-Message-ID: <ak3v6dt_VIZTynT8@kernel.org>
-References: <20260701-tegra-vpr-v3-0-d80f7b871bb4@nvidia.com>
- <20260701-tegra-vpr-v3-4-d80f7b871bb4@nvidia.com>
- <akYs91INHMXMTI-t@willie-the-truck>
- <akZkuwktaXFTrASP@orome>
- <akaSJ5D98w2cHqb6@orome>
- <akftuw9NyRy36fXA@willie-the-truck>
+	b=TSQxz878ZiipJis2bWT3rGapIRrJnrmVb8Nug5l2DCieak0Cxkp8awu2PChpZ9lke
+	 idaVd8L6gHd9YoEMq4jGNBHMH8psfi4fDfweGJBvfE2TOxIg4N2kztxvJx76RqMsT1
+	 BLE4LHtmFVelsS777r69p+wxT/Hi5Mqzvv5TVak6YuDzLmX8xBvE2MWQ4zefnTnPiy
+	 6rw4Shr7swbw1i5NUAbv/roovw0O9f6nOl/jmj3U8fZhxyObYRHkPqO09Ty2S6IMEd
+	 dyyjnDMuzMw4N/Ju59j/LvuYV239W+PgtNff8iqlmT+cGlpr6lJZyaM5ZOq5BGAMLr
+	 Byy5zA1MtHBWA==
+Date: Wed, 8 Jul 2026 08:43:20 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Kuldeep Singh <kuldeep.singh@oss.qualcomm.com>
+Cc: Herbert Xu <herbert@gondor.apana.org.au>, 
+	"David S. Miller" <davem@davemloft.net>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Harshal Dev <harshal.dev@oss.qualcomm.com>, 
+	Vinod Koul <vkoul@kernel.org>, Bartosz Golaszewski <brgl@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Frank Li <Frank.Li@kernel.org>, Andy Gross <agross@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>, linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, dmaengine@vger.kernel.org
+Subject: Re: [PATCH v3 1/6] dt-bindings: crypto: qcom,inline-crypto-engine:
+ Fix legacy/new SoC strictness split
+Message-ID: <20260708-splendid-outrageous-saluki-aa52f5@quoll>
+References: <20260706-b4-shikra_crypto_changse-v3-0-23b4c2054227@oss.qualcomm.com>
+ <20260706-b4-shikra_crypto_changse-v3-1-23b4c2054227@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <akftuw9NyRy36fXA@willie-the-truck>
+In-Reply-To: <20260706-b4-shikra_crypto_changse-v3-1-23b4c2054227@oss.qualcomm.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.66 / 15.00];
+X-Spamd-Result: default: False [-3.16 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-322519-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:will@kernel.org,m:thierry.reding@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:jonathanh@nvidia.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:skomatineni@nvidia.com,m:luca.ceresoli@bootlin.com,m:mperttunen@nvidia.com,m:yury.norov@gmail.com,m:linux@rasmusvillemoes.dk,m:linux@armlinux.org.uk,m:agordeev@linux.ibm.com,m:gerald.schaefer@linux.ibm.com,m:hca@linux.ibm.com,m:gor@linux.ibm.com,m:borntraeger@linux.ibm.com,m:svens@linux.ibm.com,m:akpm@linux-foundation.org,m:david@kernel.org,m:ljs@kernel.org,m:liam@infradead.org,m:vbabka@kernel.org,m:surenb@google.com,m:mhocko@suse.com,m:m.szyprowski@samsung.com,m:robin.murphy@arm.com,m:sumit.semwal@linaro.org,m:benjamin.gaignard@collabora.com,m:Brian.Starkey@arm.com,m:jstultz@google.com,m:tjmercier@google.com,m:christian.koenig@amd.com,m:rostedt@goodmis.org,m:mhiramat@kernel.org,m:mathieu.desnoyers@efficios.com,m:c
- atalin.marinas@arm.com,m:thierry.reding@gmail.com,m:devicetree@vger.kernel.org,m:linux-tegra@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:dri-devel@lists.freedesktop.org,m:linux-media@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-s390@vger.kernel.org,m:linux-mm@kvack.org,m:iommu@lists.linux.dev,m:linaro-mm-sig@lists.linaro.org,m:linux-trace-kernel@vger.kernel.org,m:treding@nvidia.com,m:chunn@nvidia.com,m:shyamsaini@linux.microsoft.com,m:krzk@kernel.org,m:conor@kernel.org,m:yurynorov@gmail.com,s:lists@lfdr.de];
-	FREEMAIL_CC(0.00)[kernel.org,nvidia.com,gmail.com,ffwll.ch,linux.intel.com,suse.de,bootlin.com,rasmusvillemoes.dk,armlinux.org.uk,linux.ibm.com,linux-foundation.org,infradead.org,google.com,suse.com,samsung.com,arm.com,linaro.org,collabora.com,amd.com,goodmis.org,efficios.com,vger.kernel.org,lists.freedesktop.org,lists.infradead.org,kvack.org,lists.linux.dev,lists.linaro.org,linux.microsoft.com];
-	MIME_TRACE(0.00)[0:+];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[rppt@kernel.org,devicetree@vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_GT_50(0.00)[57];
-	ALIAS_RESOLVED(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[rppt@kernel.org,devicetree@vger.kernel.org];
-	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	FORGED_RECIPIENTS(0.00)[m:kuldeep.singh@oss.qualcomm.com,m:herbert@gondor.apana.org.au,m:davem@davemloft.net,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:andersson@kernel.org,m:harshal.dev@oss.qualcomm.com,m:vkoul@kernel.org,m:brgl@kernel.org,m:konradybcio@kernel.org,m:Frank.Li@kernel.org,m:agross@kernel.org,m:krzysztof.kozlowski@oss.qualcomm.com,m:linux-arm-msm@vger.kernel.org,m:linux-crypto@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:dmaengine@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-322522-lists,devicetree=lfdr.de];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[nvidia.com:email,vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,quoll:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: AB9577224D0
+X-Rspamd-Queue-Id: 50B7972245E
 
-On Fri, Jul 03, 2026 at 06:13:31PM +0100, Will Deacon wrote:
-> On Thu, Jul 02, 2026 at 06:41:23PM +0200, Thierry Reding wrote:
-> > On Thu, Jul 02, 2026 at 03:46:44PM +0200, Thierry Reding wrote:
-> > > On Thu, Jul 02, 2026 at 10:18:47AM +0100, Will Deacon wrote:
-> > > > On Wed, Jul 01, 2026 at 06:08:15PM +0200, Thierry Reding wrote:
-> > > > > From: Chun Ng <chunn@nvidia.com>
-> > > > > 
-> > > > > Add helpers to swap PROT_NORMAL and PROT_DEVICE_nGnRnE protection bits
-> > > > > on a kernel-linear-map range.
-> > > > 
-> > > > That sounds like a really terrible idea. Why is this necessary and how
-> > > > does it interact with things like load_unaligned_zeropad()?
-> > > 
-> > > This is necessary because once the memory controller has walled off the
-> > > new memory region the CPU must not access it under any circumstances or
-> > > it'll cause the CPU to lock up (I think technically it'll hit an SError
-> > > but in practice that just means it'll freeze, as far as I can tell).
-> > > 
-> > > Probably doesn't interact well at all with load_unaligned_zeropad().
-> > > 
-> > > > I think you should unmap the memory from the linear map and memremap()
-> > > > it instead.
-> > > 
-> > > Given that the memory can never be accessed by the CPU after the memory
-> > > controller locks it down, I don't think we'll even need memremap(). The
-> > > only thing we really need is the sg_table we hand out via the DMA BUFs
-> > > so that they can be used by device drivers to program their DMA engines
-> > > internally.
-> > > 
-> > > Looking through some of the architecture code around this, shouldn't we
-> > > simply be using set_memory_encrypted() and set_memory_decrypted() for
-> > > this? While they might've been created for slightly other use-cases,
-> > > they seem to be doing exactly what we want (i.e. remove the page range
-> > > from the linear mapping and flushing it, or restoring the valid bit and
-> > > standard permissions, respectively).
-> > 
-> > Ah... I guess we can't do it because we're not in a realm world and so
-> > the early checks in __set_memory_enc_dec() would return early and turn
-> > it into a no-op.
-> > 
-> > How about if I extract a common helper and provide set_memory_p() and
-> > set_memory_np() in terms of those. Those are available on x86 and
-> > PowerPC as well, so fairly standard. I suppose at that point we're
-> > closer to set_memory_valid().
+On Mon, Jul 06, 2026 at 05:01:29PM +0530, Kuldeep Singh wrote:
+> Couple of already merged SoCs(like sc7280, sm8750, kaanapali etc.)
+> describe ICE as single clock historically which are recently updated
+> with mandatory 2 clocks.
 > 
-> Why not just call set_direct_map_invalid_noflush() +
-> flush_tlb_kernel_range() for each page? We already have APIs for this.
+> Keep only the known legacy compatibles flexible, and make strict
+> validation default(of power-domains and 2 clocks) for all other Soc
+> compatibles.
 > 
-> The big challenge I see with any linear map manipulation, however, is
-> that it will rely on can_set_direct_map() which likely means you need to
-> give up some performance and/or security to make this work. Does memory
-> become inaccesible dynamically at runtime? If not, the best bet would
-> be to describe it as a carveout in the DT and mark it as "no-map" so
-> we avoid mapping it in the first place.
+> This ensures old DTs are valid while ensuring any new SoC (like hawi,
+> milos, eliza) must follow latest requirements by default.
 
-While I got your attention a bit off-topic but still related question.
+To re-iterate: You change the ABI for Hawi, this must be expressed and
+explained why. I do not see any change in commit msg (listing "new SoC"
+is not what I meant is not relevant here - it even suggests like
+everything is here done without impact).
 
-AFAIK a lot in arm64 drivers ecosystem relies on that ranges defined as
-"/reserved-memory" in DT are linked to devices that use that memory.
+Best regards,
+Krzysztof
 
-EFI/ACPI does not have a similar concept.
-
-Given that more and more systems are using EFI/ACPI rather than DT as their
-boot protocol we probably need some way to define such memory carveouts in
-the ACPI world.
- 
-> Will
-
--- 
-Sincerely yours,
-Mike.
 
