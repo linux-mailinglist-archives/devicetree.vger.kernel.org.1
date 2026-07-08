@@ -1,314 +1,347 @@
-Return-Path: <devicetree+bounces-322655-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-322657-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id J8COGwYYTmpADAIAu9opvQ
-	(envelope-from <devicetree+bounces-322655-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 11:27:34 +0200
+	id Q0x/IgwYTmpCDAIAu9opvQ
+	(envelope-from <devicetree+bounces-322657-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 11:27:40 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD23E723B42
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 11:27:33 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id D9000723B48
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 11:27:39 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=lenovo.com header.s=DKIM202306 header.b=sIS9X65i;
-	dmarc=pass (policy=reject) header.from=lenovo.com;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322655-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-322655-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=DrCqDosB;
+	dkim=pass header.d=oss.qualcomm.com header.s=google header.b="I/8rI/iN";
+	dmarc=pass (policy=reject) header.from=qualcomm.com;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322657-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-322657-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 38C4F314A3A6
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 09:21:03 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 9B547314DA65
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 09:21:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18F6140B6D9;
-	Wed,  8 Jul 2026 09:20:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C955940D597;
+	Wed,  8 Jul 2026 09:20:51 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-00823401.pphosted.com (mx0b-00823401.pphosted.com [148.163.152.46])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55BAA405C3B;
-	Wed,  8 Jul 2026 09:20:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44E3940D57B
+	for <devicetree@vger.kernel.org>; Wed,  8 Jul 2026 09:20:50 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783502435; cv=none; b=QeXP7oNyrO3gI4DFSDx58+t0hV932yAvjb8DHxyCTFk3y2YFQJwkLm+OHRL4dhvo8IO1JWbYBWAKIJBE20d3CD7umaZqMCpd71drqHceFMyYZopoUhApdsbAycFHbGg232JUjwqAyaCyqMc3FznWENmpZlTLOPn7Vb4aPUFCj3k=
+	t=1783502451; cv=none; b=NjKHYdvWhGEXLruTqJ4itAuDa3Otw8cud7YZ7JJ7NRB+51eJ18wjWphTr2LCMKryUTgrBZVFi+BVChBsS7EqHDNzPDOLHd4YhBDTFtkQzyKMtPYo1tRNimR17qzaW9v47QkNFLdX1mKUQ12uWEZgDtmCRAe9aPIj3PchZYQ8TTA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783502435; c=relaxed/simple;
-	bh=0nSZRTAZJuo52hzpC5qORlLVSRHx1wrWXzAt79pMrHI=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=MuI77VG/Efyp54l4jr9bYwiMyNgL8Vzxry0xwmGFF9NOhnrlWdDLecOQqzf/K4pUId/LE5i6+momX1fr4zoCTZ10qyXQ/dzQvuUWUI2Le/sNIue4nWLIh/iR0hWPjW3kV6fW2xVDeCS+sLOX1xljEozNfzTlSqvI9UPz59h+h+c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=lenovo.com; spf=pass smtp.mailfrom=lenovo.com; dkim=pass (2048-bit key) header.d=lenovo.com header.i=@lenovo.com header.b=sIS9X65i; arc=none smtp.client-ip=148.163.152.46
-Received: from pps.filterd (m0355090.ppops.net [127.0.0.1])
-	by m0355090.ppops.net (8.18.1.11/8.18.1.11) with ESMTP id 66888TkP2781480;
-	Wed, 8 Jul 2026 09:20:21 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=lenovo.com; h=cc
-	:content-transfer-encoding:date:from:in-reply-to:message-id
-	:mime-version:references:subject:to; s=DKIM202306; bh=3/4bZz9M0T
-	Ty+cPElNd3aueLTo/YXQaXJ9GByL/rK78=; b=sIS9X65icb3lvcqO/5DAyXBYy0
-	ek6wfph1GDDvWzIIKUrXg9ZjGnPnT2FspDHZ5znKOerzT95w7dlucrWixfwsW7kg
-	RVTdm/U13i62M96w71nN1dumlxr3Y0LfSsK0X8TwnvOH//1tTPP1kRpb2dn4y3nN
-	X+doNyjTABu2U/ss+ptB1yd0uyhL2u5HJbtVuB/TqIcWGTeCG46wo8YMTYYIXAd4
-	jdeb25nI1Xrl1XywUinD6fd6F/H0TApQPs6Nt8mE/+gyuAc6JygokO38EkJlKkDj
-	h8SrWWuD1nS934iskDwMfzmIZ33c5kFfcme/9gyoregiqdfvkuxLS1WooKMQ==
-Received: from hkglppfpool1.lenovo.com ([103.30.235.218])
-	by m0355090.ppops.net (PPS) with ESMTPS id 4f7dgsxgna-1
-	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
-	Wed, 08 Jul 2026 09:20:21 +0000 (GMT)
-Received: from hetlppfpool2.lenovo.com (unknown [10.196.132.72])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by hkglppfpool1.lenovo.com (Postfix) with ESMTPS id 4gwCHQ60TPz9vBT2;
-	Wed,  8 Jul 2026 09:20:18 +0000 (UTC)
-Received: from lenovo.com (unknown [10.119.171.213])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by hetlppfpool2.lenovo.com (Postfix) with ESMTPS id 4gwCHQ4sGHz18W7cL;
-	Wed,  8 Jul 2026 09:20:18 +0000 (UTC)
-From: Jiqi Li <lijq9@lenovo.com>
-To: linux-tegra@vger.kernel.org
-Cc: devicetree@vger.kernel.org, robh+dt@kernel.org, krzk+dt@kernel.org,
-        conor+dt@kernel.org, krzk@kernel.org, mperttunen@nvidia.com,
-        jonathanh@nvidia.com, thierry.reding@gmail.com,
-        mpearson-lenovo@squebb.ca, Jiqi Li <lijq9@lenovo.com>
-Subject: [PATCH v4 2/2] arm64: tegra: Add Lenovo ThinkEdge SE70 device tree
-Date: Wed,  8 Jul 2026 17:20:17 +0800
-Message-ID: <20260708092017.745545-3-lijq9@lenovo.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260708092017.745545-1-lijq9@lenovo.com>
-References: <20260708092017.745545-1-lijq9@lenovo.com>
+	s=arc-20240116; t=1783502451; c=relaxed/simple;
+	bh=Qe/rQGLvb8bcAyOxTvi6MXdbAotsqfoswULLVdrBmAE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=uCP6jhFwPQrXvZcTlivHk0Qq5j8zW2qBG3elDCIssFa3wR7gvjQbyD+LaOyYN3a97vP6XbyyfAFFe+Uopb8e+Q4AdhzzEtRZoBG16GCY5vuslDMjQuY/QkyJdLKbAsnrR5y8Tz1bFEKtBAw8vkTXh7JSfNMKONnqgZ4QK/KtbKE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=DrCqDosB; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=I/8rI/iN; arc=none smtp.client-ip=205.220.168.131
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 668895NC2070552
+	for <devicetree@vger.kernel.org>; Wed, 8 Jul 2026 09:20:49 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	7ODd6nTq05LunQoKoekRARiXEci4TIjKD6sRgNesJow=; b=DrCqDosBnt1tj9GV
+	/issVSE2yY5P108JA7+ddx/AUImgmA1J0Zi0ofAf9aCdFvmcYXvCUZ/NyAJKftF5
+	HsLkUf7ZPqy3OKKnUBf7Uqg4w0lvJ6BVrBqfwYlYTbzBsC6SINr25ObRm/WR1sDG
+	RQIZYxVnEF13PXyikWSKIO6fW1az8D3DP5G4Dp/mw8RIxeAORGTa4+NTl/SnLAi9
+	z+vGvdcrSdKfMELkk3i2KzR5tP51s5FGMNgODDmoriT10u/yAtGpSFRi8YXHjHTe
+	2eqJcl2Far2rArSjrUgY+cyj6xizTEUtN/13Qla2OWsoL25uVPTIceMbTwhvSprV
+	dynRaA==
+Received: from mail-pl1-f198.google.com (mail-pl1-f198.google.com [209.85.214.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4f9be59x9f-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 08 Jul 2026 09:20:49 +0000 (GMT)
+Received: by mail-pl1-f198.google.com with SMTP id d9443c01a7336-2cce14a21faso8463825ad.0
+        for <devicetree@vger.kernel.org>; Wed, 08 Jul 2026 02:20:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1783502449; x=1784107249; darn=vger.kernel.org;
+        h=content-transfer-encoding:content-type:in-reply-to:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=7ODd6nTq05LunQoKoekRARiXEci4TIjKD6sRgNesJow=;
+        b=I/8rI/iNYlkQR/tGjtBOOZT7tN3Eq7+FXxHVUJAtNN8Rgu7slVNJ8IgJtAa6gLLChZ
+         5g+fBmkN4j+3ZhTLTA5ztHBnwhXZgreAKHn64FIb62QbQI3XPKODatEuFXbm3NhuzHaM
+         mbbbkCRMO6JizLUsuhoSCkud47gH8RgzMjGohc1aNBk2VSvJNCOmeh1afTyWwyUKc+w7
+         4TvldjnEtCdBK+Mp4OunNA7VFnXlnrdXFVgU1DptVpBfvKrkhU6lD5uOIRSmhsh4yEaC
+         VFxh6CnN9IuuFCc1esRGRjeWJxL2WheGpNzGKoLIYGSp0zsVI9wamGn7wqKN6Z9Z7DiU
+         3KTw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1783502449; x=1784107249;
+        h=content-transfer-encoding:content-type:in-reply-to:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=7ODd6nTq05LunQoKoekRARiXEci4TIjKD6sRgNesJow=;
+        b=pIr86Rd2MOoCnV6Hlv3KGi7sJ4zGtg6jFkFwWkRTtfcppoh7kAeSfbrUwvRlfhUm+j
+         WQL6KOxU4AY6h9hnu/QXgd/BueofxC7apRDR7QFp+64DirFdTTw/1glKMULQPHI8unhz
+         TSMtmen2qCj7agw5WKzdlDzhjXzH4+klbTHqQ7bIe9dnMu1IG2zJ6H4OeKBDqIA6AmDf
+         fsgve0xXvRQrsoRFhuNm1KR5jmtss7JOV0ZcswRAjbEGnr3WS4RMxlZ1/sI95FJJJMQR
+         CBuQHFHSYShfdW//N+3PcOv2OhoOOtc+5hAwJVu0wTBJD5745W2pF6/vMLdYXEx+Htu/
+         mYew==
+X-Forwarded-Encrypted: i=1; AHgh+Rr12hWSnodx1tpx+vvvDR6PywUxw/lTqx+w06K7ubzjx1DcU/fhkI1Pp/1AKfv3oMUfmiGYMEhQ+wQ2@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy2QcMUEWGNPhds6W5lTOlkiQU8wH23w/3lDhLlrEME1HIP9U2I
+	uhPBohaaNI4Zz7nK4fBh5Jl+PTricFWz5l1mSTDRU/BoaXvSuqlJ0clGRB/YcsEb5agXa2w15dW
+	JyJ/bB5Me/TBl20TB0QWR85HA3Cc2kw7b2bZueTpu9px+1Lyl/JESeccl9+pJusHf
+X-Gm-Gg: AfdE7clHo3menzwTT0/rUQlhqx/QbUBzcLgAiAoaqaB3hOA0+UtIHuwdIR/C7Tg33ql
+	rKCau0WBiYseNLF23/z9I8+ziS2asyn8m86KMgX34uA8wf3jIJwCjU2Ydvo9ZeZ17MYX0Eo1kkx
+	PjqZIFoDLvaY99lHdJfD2lwRZ/uak6I0nNA3Y1Xd25tssllIcW16XwFV+GU+yLJoy9B4XiOBDuV
+	McziqTen77SKSxUlglLM5RjiJyQSoUhrkmVe79xAtjuxQC+JSSqsWfBX2RKZZiuhipf7fMr9cj3
+	IE7NMwmhC3QwmoyeviovE6j3RchkvZgjDl/e9oSOqqyjSNRzV6V/ZTvC1pyaMw6H/mObZeqNJs5
+	eyUrKrwAg8hbkam8g6KAIzYJdOth7cq1/OaWSMVWFPCUGLZKRwpbrQUBMoSqKkO1EJuHmYc5lcc
+	W9SrnQTdZNTdrr+Vd3/An1Cyc=
+X-Received: by 2002:a17:902:d2ce:b0:2c6:8d95:fd7e with SMTP id d9443c01a7336-2ccca8c82a9mr60853595ad.6.1783502448549;
+        Wed, 08 Jul 2026 02:20:48 -0700 (PDT)
+X-Received: by 2002:a17:902:d2ce:b0:2c6:8d95:fd7e with SMTP id d9443c01a7336-2ccca8c82a9mr60853265ad.6.1783502448001;
+        Wed, 08 Jul 2026 02:20:48 -0700 (PDT)
+Received: from [10.79.194.163] (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com. [103.229.18.19])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2ccc9bf8e9csm24995015ad.24.2026.07.08.02.20.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 08 Jul 2026 02:20:47 -0700 (PDT)
+Message-ID: <b4bd0d99-0537-4a3f-ba5d-7e9fc30f0996@oss.qualcomm.com>
+Date: Wed, 8 Jul 2026 14:50:44 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] arm64: dts: qcom: purwa-iot-evk: Add Embedded
+ controller node
+To: sashiko-reviews@lists.linux.dev
+Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
+References: <20260703-ec_support_for_purwa_evk-v2-0-c59aac5c6aac@oss.qualcomm.com>
+ <20260703-ec_support_for_purwa_evk-v2-2-c59aac5c6aac@oss.qualcomm.com>
+ <20260703100722.1FFF41F000E9@smtp.kernel.org>
+Content-Language: en-US
+From: Anvesh Jain P <anvesh.p@oss.qualcomm.com>
+In-Reply-To: <20260703100722.1FFF41F000E9@smtp.kernel.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Proofpoint-ORIG-GUID: RnkXPFOmXoLRPreqe2FLNTxNRExcatfA
-X-Proofpoint-Spam-Info: AW1haW4tMjYwNzA4MDA4OSBTYWx0ZWRfX6zYvUiNgE2jf
- ioUBPvZRrHsDNgzsUbeDbfj+yWJE9S7+ldVms5LBLt6jvNlsbrcRt76Yz57ntALNmHSrG+TZMgW
- tulehiifdFTtNOMh+p2aUlM9GxjVJw8=
-X-Proofpoint-GUID: RnkXPFOmXoLRPreqe2FLNTxNRExcatfA
-X-Authority-Analysis: v=2.4 cv=POw/P/qC c=1 sm=1 tr=0 ts=6a4e1655 cx=c_pps
- a=yIlUyoB/d3ZP/uZUHEUQoQ==:117 a=yIlUyoB/d3ZP/uZUHEUQoQ==:17
- a=RAioF0-LDSMA:10 a=VkNPw1HP01LnGYTKEx00:22 a=2RTuljz969oO5usasWGy:22
- a=ZyEuT479hi48zPIlagN0:22 a=8k6WQxmsAAAA:8 a=FWZGnvF00TTdqb7X-dAA:9
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNzA4MDA4OSBTYWx0ZWRfX1iAVq6nuGRoq
- g81gAZrbdacFsg8I2/955pOJA3uR6/DvXcGo7o5rXyAG7ru74Vc7HGoJ4JOjCJ8cPdD8FuXnEwY
- xdd7KMvGnRQ+gkImg8HDr5rk7T3ViuEKEfWUbt3ppgGN16fxGX12kEN/RvEcaZqsB1+WHu9UYY0
- mz6kFoh+wuAQm6T7LS5urLfqGBn5u2hh/LtolJaQrzlWVVb2X1hD9wt01q8dtDDGUeYDaJORSBI
- Oc7DktYqGEqOxY/W5SM7xvcmY2H5DxfN1Ia3xtmAcCK+90cZnOfueDZTF7CCjat0TULlGPPlVrK
- pGG3KUx3gkA3bKCgvlUbl8kX64XGxSL5lOUWGv7/ilvmCf+fa9mrgmzpNFFOQNa4bnJKXnrVxg8
- rRvGJmUIdWV20wLjWCpedJ8di9OnYIIh3iA7Wl1nU4GUdNndmiCrTF6pCmK58Mf4vbcOEnjX1TR
- A5NhwS83pevBS6vQXWQ==
+X-Authority-Analysis: v=2.4 cv=GJc41ONK c=1 sm=1 tr=0 ts=6a4e1671 cx=c_pps
+ a=MTSHoo12Qbhz2p7MsH1ifg==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17
+ a=IkcTkHD0fZMA:10 a=RAioF0-LDSMA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=YMgV9FUhrdKAYTUUvYB2:22
+ a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=6qqzTE0EYeF0Xcc8wggA:9 a=3ZKOabzyN94A:10
+ a=QEXdDO2ut3YA:10 a=GvdueXVYPmCkWapjIL-Q:22
+X-Proofpoint-Spam-Info: AW1haW4tMjYwNzA4MDA4OCBTYWx0ZWRfX1QbotEksn+M8
+ gavtNy2T16ew3ZjZLmmedAcfe95skR/wbn9Pbx8lPddDgN5WTk7edCjl/lub73O5IZ4dA9kn7Yd
+ LDenSZkKqypIOhH5JjPjxIzKXG3bmK0=
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNzA4MDA4OCBTYWx0ZWRfX7hO99q2egwMn
+ jIfqib6mdUTHGF7/pVjrDviLD61QW4pxwOTLSgPiU0nvXr11JieZcCtxgYfY95RM6cZcCEQ034I
+ GihsQhIbGTEoppKvDosewibLu94XJ/vbcbhtJ7ShjCVIvDzkkWT/x5r6fxKgskbWB+oT5y3wXpy
+ 8N1WSzcFJZzFKEOB9e+zM/N8dtfphJcn+R+e/2iJVms8Y54asZ+pIF0d/wmBRyitKcGSo/zkTwI
+ I4mn7Me06ARxi4u4F86iXpcurBuDaugnaGDx+yx/wakiv4gklEfwqF1KqPuZJIOckAgeqU0wJmH
+ BVb8AYilNvHN0LRaNqh/vYf3cYF3Hm3tXRYRn3103PoJ1OfAGWxKZgmkiGVQ9FLHvSj8lcn8hkw
+ Kx7q3qrvs9en6r1I8DYQKGR2ZcVG4muFL61RPDKvIELLww5qGqOPxEkUXdJ6/g8wrh1fjwqmBj1
+ ODtePTt+BawMvHUSoSQ==
+X-Proofpoint-ORIG-GUID: n1kO0amN7Gv96chZzEBVQdSWWxPo8TL1
+X-Proofpoint-GUID: n1kO0amN7Gv96chZzEBVQdSWWxPo8TL1
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.134,FMLib:17.12.100.49
  definitions=2026-07-08_01,2026-07-06_02,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 suspectscore=0 bulkscore=0 clxscore=1015 priorityscore=1501
- phishscore=0 malwarescore=0 lowpriorityscore=0 adultscore=0 spamscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=-20
- reason=mlx scancount=1 engine=8.22.0-2606150000 definitions=main-2607080089
+ phishscore=0 clxscore=1015 priorityscore=1501 malwarescore=0 impostorscore=0
+ adultscore=0 bulkscore=0 spamscore=0 lowpriorityscore=0 suspectscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2606150000 definitions=main-2607080088
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[lenovo.com,reject];
-	R_DKIM_ALLOW(-0.20)[lenovo.com:s=DKIM202306];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,nvidia.com,gmail.com,squebb.ca,lenovo.com];
-	FORWARDED(0.00)[lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-322655-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER(0.00)[lijq9@lenovo.com,devicetree@vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:linux-tegra@vger.kernel.org,m:devicetree@vger.kernel.org,m:robh+dt@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:krzk@kernel.org,m:mperttunen@nvidia.com,m:jonathanh@nvidia.com,m:thierry.reding@gmail.com,m:mpearson-lenovo@squebb.ca,m:lijq9@lenovo.com,m:robh@kernel.org,m:conor@kernel.org,m:thierryreding@gmail.com,s:lists@lfdr.de];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TAGGED_FROM(0.00)[bounces-322657-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:sashiko-reviews@lists.linux.dev,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORWARDED(0.00)[lists@lfdr.de];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[anvesh.p@oss.qualcomm.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_THREE(0.00)[4];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,qualcomm.com:dkim,oss.qualcomm.com:from_mime,oss.qualcomm.com:dkim,oss.qualcomm.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp];
+	MIME_TRACE(0.00)[0:+];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lijq9@lenovo.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[anvesh.p@oss.qualcomm.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[lenovo.com:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lenovo.com:from_mime,lenovo.com:email,lenovo.com:mid,lenovo.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TO_DN_NONE(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: BD23E723B42
+X-Rspamd-Queue-Id: D9000723B48
 
-Add initial device tree support for the Lenovo ThinkEdge SE70, an
-industrial edge gateway based on the NVIDIA Jetson Xavier NX module
-(P3668-0001) with a custom carrier board.
 
-This initial submission includes:
-- 40-pin expansion header pinmux configuration
-- External Micro SD card slot with dedicated 3.3V regulator
-- I2C bus for 40-pin header
 
-Static verification passed: dt_binding_check and dtbs compilation
-complete without errors.
+On 7/3/2026 3:37 PM, sashiko-bot@kernel.org wrote:
+> Thank you for your contribution! Sashiko AI review found 4 potential issue(s) to consider:
+> 
+> New issues:
+> - [High] Configuring the EC interrupt as IRQ_TYPE_EDGE_FALLING causes a stuck IRQ line and lost events.
+> 
+> Pre-existing issues:
+> - [High] The driver registers all cooling devices with cdev_id = 0, breaking multi-fan thermal device tree bindings.
+> - [High] Probe function fails to disable EC SCI events on error paths, leading to corrupted EC state and unhandled interrupts.
+> - [High] qcom_ec_read() ignores partial I2C block reads, causing callers to use uninitialized stack memory as hardware state.
+> --
+> 
+> commit 30f797509dd26f2c0981b525ba3d62d1173ae857
+> Author: Anvesh Jain P <anvesh.p@oss.qualcomm.com>
+> 
+> arm64: dts: qcom: purwa-iot-evk: Add Embedded controller node
+> 
+> This commit adds the embedded controller node for Purwa IOT EVK boards.
+> It configures fan control, temperature sensors, access to EC internal state
+> changes, and suspend notifications to the EC.
+> 
+>> diff --git a/arch/arm64/boot/dts/qcom/purwa-iot-evk.dts b/arch/arm64/boot/dts/qcom/purwa-iot-evk.dts
+>> index ad503beec1d3d..491ea7769cd71 100644
+>> --- a/arch/arm64/boot/dts/qcom/purwa-iot-evk.dts
+>> +++ b/arch/arm64/boot/dts/qcom/purwa-iot-evk.dts
+>> @@ -837,6 +837,16 @@ eusb6_repeater: redriver@4f {
+> [ ... ]
+>> +
+>> +	embedded-controller@76 {
+>> +		compatible = "qcom,purwa-iot-evk-ec", "qcom,hamoa-crd-ec";
+>> +		reg = <0x76>;
+>> +
+>> +		interrupts-extended = <&tlmm 66 IRQ_TYPE_EDGE_FALLING>;
+> 
+> [Severity: High]
+> Does configuring the EC interrupt as IRQ_TYPE_EDGE_FALLING cause a stuck
+> IRQ line and lost events?
+> 
+> The EC asserts an interrupt while multiple events are pending, but the driver's
+> interrupt handler reads exactly one event and returns without looping. 
+> 
+> Because the trigger is configured as edge-falling, the persistent low state
+> of the line does not trigger another interrupt, causing the line to stall
+> permanently.  Should this use level-triggered interrupts instead?
+>
 
-Signed-off-by: Jiqi Li <lijq9@lenovo.com>
----
-Changes in v2:
-- Remove unused input-related headers from baseboard DTSI
+I checked the EC firmware, events are delivered as a short active-low
+pulse per event on the interrupt GPIO — the line is idle-high and pulsed
+low once for each queued event. So IRQ_TYPE_EDGE_FALLING is correct,
+each event generates its own falling edge, and the handler is re-entered
+per event with no loss. There's no persistent-low state to stall on, and
+level-low would actually be wrong here since the pulse is very brief. No
+change needed.
 
-Changes in v3:
-- Merge baseboard content into main DTS, drop separate baseboard DTSI
-- Use stdout-path instead of bootargs in chosen node
+>> +
+>> +		pinctrl-0 = <&ec_int_n_default>;
+>> +		pinctrl-names = "default";
+>> +	};
+>>  };
+> 
+> 
+> While reviewing this patch, I also noticed a few pre-existing issues in
+> drivers/platform/arm64/qcom-hamoa-ec.c that handles this device tree node:
+> 
+> drivers/platform/arm64/qcom-hamoa-ec.c:qcom_ec_probe()
+> [ ... ]
+>> 	ret = qcom_ec_sci_evt_control(dev, true);
+>> 	if (ret < 0)
+>> 		return dev_err_probe(dev, ret, "Failed to enable SCI events\n");
+>>
+>> 	ret = qcom_ec_thermal_capabilities(dev);
+>> 	if (ret < 0)
+>> 		return dev_err_probe(dev, ret, "Failed to read thermal capabilities\n");
+> 
+> [Severity: High]
+> This is a pre-existing issue, but does the probe function fail to disable
+> EC SCI events on error paths?
+> 
+> If qcom_ec_thermal_capabilities() or the subsequent memory allocation fails,
+> probe returns an error. The previously enabled SCI events are never disabled
+> because no devm action was registered and remove() is not called.
+> 
+> The EC is left actively generating events, but the OS interrupt handler is
+> freed by devres. The EC will assert the IRQ line, which goes unhandled,
+> potentially stalling the EC and causing battery drain.
+>
 
-Changes in v4:
-- Rename regulator node from regulator-sd-3v3 to regulator-vdd-3v3-sd
-  to follow the naming convention (requested by Mikko).
-- Move regulator nodes to the bottom of the file and order
-  alphabetically.
-- Keep vdd_5v0_sys as it is referenced by USB and PMIC nodes in the
-  SoC and SOM layers (required for compilation).
----
- arch/arm64/boot/dts/nvidia/Makefile           |   1 +
- .../nvidia/tegra194-lenovo-thinkedge-se70.dts | 113 ++++++++++++++++++
- 2 files changed, 114 insertions(+)
- create mode 100644 arch/arm64/boot/dts/nvidia/tegra194-lenovo-thinkedge-se70.dts
+I'll review this and fix it in a separate series.
+> 
+> drivers/platform/arm64/qcom-hamoa-ec.c:qcom_ec_probe()
+> [ ... ]
+>> 	for (i = 0; i < ec->thermal_cap.fan_cnt; i++) {
+>> 		struct qcom_ec_cooling_dev *ec_cdev = &ec->ec_cdev[i];
+>> 		char name[EC_FAN_NAME_SIZE];
+>>
+>> 		scnprintf(name, sizeof(name), "qcom_ec_fan_%u", i);
+>> 		ec_cdev->fan_id = i + 1;
+>> 		ec_cdev->parent_dev = dev;
+>>
+>> 		ec_cdev->cdev = devm_thermal_of_cooling_device_register(dev, 0, NULL, ec_cdev,
+>> 									&qcom_ec_thermal_ops);
+> 
+> [Severity: High]
+> This isn't a bug introduced by this patch, but does hardcoding the cdev_id 
+> to 0 break multi-fan thermal device tree bindings?
+> 
+> By looping over fan_cnt and passing 0 for every fan instance rather than
+> the iteration index, the OF thermal core cannot distinguish between multiple
+> cooling devices under the same node.  
+> 
+> This breaks thermal zone mappings and can cause undefined behavior when
+> binding thermal states.
+>
 
-diff --git a/arch/arm64/boot/dts/nvidia/Makefile b/arch/arm64/boot/dts/nvidia/Makefile
-index 72c0cb5efa47..736a3f8a923f 100644
---- a/arch/arm64/boot/dts/nvidia/Makefile
-+++ b/arch/arm64/boot/dts/nvidia/Makefile
-@@ -29,6 +29,7 @@ dtb-$(CONFIG_ARCH_TEGRA_186_SOC) += tegra186-p3509-0000+p3636-0001.dtb
- dtb-$(CONFIG_ARCH_TEGRA_194_SOC) += tegra194-p2972-0000.dtb
- dtb-$(CONFIG_ARCH_TEGRA_194_SOC) += tegra194-p3509-0000+p3668-0000.dtb
- dtb-$(CONFIG_ARCH_TEGRA_194_SOC) += tegra194-p3509-0000+p3668-0001.dtb
-+dtb-$(CONFIG_ARCH_TEGRA_194_SOC) += tegra194-lenovo-thinkedge-se70.dtb
- dtb-$(CONFIG_ARCH_TEGRA_234_SOC) += tegra234-sim-vdk.dtb
- dtb-$(CONFIG_ARCH_TEGRA_234_SOC) += tegra234-p3737-0000+p3701-0000.dtb
- dtb-$(CONFIG_ARCH_TEGRA_234_SOC) += tegra234-p3737-0000+p3701-0008.dtb
-diff --git a/arch/arm64/boot/dts/nvidia/tegra194-lenovo-thinkedge-se70.dts b/arch/arm64/boot/dts/nvidia/tegra194-lenovo-thinkedge-se70.dts
-new file mode 100644
-index 000000000000..02ac645a7784
---- /dev/null
-+++ b/arch/arm64/boot/dts/nvidia/tegra194-lenovo-thinkedge-se70.dts
-@@ -0,0 +1,113 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/dts-v1/;
-+
-+#include "tegra194-p3668-0001.dtsi"
-+
-+#include <dt-bindings/gpio/tegra194-gpio.h>
-+
-+/ {
-+	model = "Lenovo ThinkEdge SE70";
-+	compatible = "lenovo,thinkedge-se70", "nvidia,p3668-0001", "nvidia,tegra194";
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	bus@0 {
-+		/* 40-pin expansion header custom pinmux configuration */
-+		pinmux@2430000 {
-+			status = "okay";
-+			pinctrl-names = "default";
-+			pinctrl-0 = <&pinmux_hdr40>;
-+
-+			pinmux_hdr40: pinmux-hdr40 {
-+				pin7 {
-+					nvidia,pins = "aud_mclk_ps4";
-+					nvidia,function = "aud";
-+					nvidia,pull = <TEGRA_PIN_PULL_NONE>;
-+					nvidia,tristate = <TEGRA_PIN_DISABLE>;
-+					nvidia,enable-input = <TEGRA_PIN_DISABLE>;
-+				};
-+				pin11 {
-+					nvidia,pins = "uart1_rts_pr4";
-+					nvidia,function = "uarta";
-+					nvidia,pull = <TEGRA_PIN_PULL_NONE>;
-+					nvidia,tristate = <TEGRA_PIN_DISABLE>;
-+					nvidia,enable-input = <TEGRA_PIN_DISABLE>;
-+				};
-+				pin12 {
-+					nvidia,pins = "dap5_sclk_pt5";
-+					nvidia,function = "i2s5";
-+					nvidia,pull = <TEGRA_PIN_PULL_DOWN>;
-+					nvidia,tristate = <TEGRA_PIN_DISABLE>;
-+					nvidia,enable-input = <TEGRA_PIN_ENABLE>;
-+				};
-+				pin35 {
-+					nvidia,pins = "dap5_fs_pu0";
-+					nvidia,function = "i2s5";
-+					nvidia,pull = <TEGRA_PIN_PULL_DOWN>;
-+					nvidia,tristate = <TEGRA_PIN_DISABLE>;
-+					nvidia,enable-input = <TEGRA_PIN_ENABLE>;
-+				};
-+				pin36 {
-+					nvidia,pins = "uart1_cts_pr5";
-+					nvidia,function = "uarta";
-+					nvidia,pull = <TEGRA_PIN_PULL_UP>;
-+					nvidia,tristate = <TEGRA_PIN_ENABLE>;
-+					nvidia,enable-input = <TEGRA_PIN_ENABLE>;
-+				};
-+				pin38 {
-+					nvidia,pins = "dap5_din_pt7";
-+					nvidia,function = "i2s5";
-+					nvidia,pull = <TEGRA_PIN_PULL_DOWN>;
-+					nvidia,tristate = <TEGRA_PIN_ENABLE>;
-+					nvidia,enable-input = <TEGRA_PIN_ENABLE>;
-+				};
-+				pin40 {
-+					nvidia,pins = "dap5_dout_pt6";
-+					nvidia,function = "i2s5";
-+					nvidia,pull = <TEGRA_PIN_PULL_DOWN>;
-+					nvidia,tristate = <TEGRA_PIN_DISABLE>;
-+					nvidia,enable-input = <TEGRA_PIN_DISABLE>;
-+				};
-+			};
-+		};
-+
-+		/* Configure i2c bus clock to 400kHz for carrier board peripherals */
-+		i2c@3160000 {
-+			clock-frequency = <400000>;
-+			status = "okay";
-+		};
-+
-+		/* SDMMC3: External Micro SD card slot */
-+		mmc@3440000 {
-+			bus-width = <4>;
-+			cd-gpios = <&gpio_aon TEGRA194_AON_GPIO(CC, 4) GPIO_ACTIVE_LOW>;
-+			disable-wp;
-+			no-1-8-v;
-+			vmmc-supply = <&vdd_3v3_sd>;
-+			status = "okay";
-+		};
-+	};
-+
-+	/* Fixed 3.3V power supply regulator for external Micro SD slot */
-+	vdd_3v3_sd: regulator-vdd-3v3-sd {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VDD_3V3_SD";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		gpio = <&gpio TEGRA194_MAIN_GPIO(Q, 5) GPIO_ACTIVE_HIGH>;
-+		regulator-boot-on;
-+		enable-active-high;
-+	};
-+
-+	/* System 5V main supply, referenced by SOM and USB nodes */
-+	vdd_5v0_sys: regulator-vdd-5v0-sys {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VDD_5V_SYS";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+};
+addressed by switching to
+devm_thermal_of_child_cooling_device_register() in latest tree, which
+binds each fan to its own child DT node rather than disambiguating by
+cdev_id, so multiple fans are individually addressable.
+
+> 
+> drivers/platform/arm64/qcom-hamoa-ec.c:qcom_ec_read()
+> [ ... ]
+>> static int qcom_ec_read(struct qcom_ec *ec, u8 cmd, u8 resp_len, u8 *resp)
+>> {
+>> 	int ret;
+>>
+>> 	ret = i2c_smbus_read_i2c_block_data(ec->client, cmd, resp_len, resp);
+>> 	if (ret < 0)
+>> 		return ret;
+>> 	else if (ret == 0 || ret == 0xff)
+>> 		return -EOPNOTSUPP;
+>>
+>> 	if (resp[0] >= resp_len)
+>> 		return -EINVAL;
+>>
+>> 	return 0;
+>> }
+> 
+> [Severity: High]
+> This isn't a bug introduced by this patch, but does qcom_ec_read() ignore
+> partial I2C block reads?
+> 
+> i2c_smbus_read_i2c_block_data() returns the number of bytes read. If a short
+> read occurs, this returns success (0) because it only checks if ret < 0,
+> ret == 0, or ret == 0xff. It does not verify if ret matches the expected
+> resp_len.
+> 
+> Callers are then exposed to using uninitialized stack memory as hardware
+> state for firmware version data, fan counts, or thermistor masks. This can
+> lead to out-of-bounds memory allocations if a bogus fan count is read.
+>
+
+I'll review this and fix it in a separate series. it's a pre-existing
+driver issue and doesn't block this DTS patch from merging.
+
 -- 
-2.43.0
+Best Regards,
+Anvesh
 
 
