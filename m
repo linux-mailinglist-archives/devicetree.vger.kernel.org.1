@@ -1,291 +1,211 @@
-Return-Path: <devicetree+bounces-323211-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-323212-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id J8kMFp/KTmrPUAIAu9opvQ
-	(envelope-from <devicetree+bounces-323211-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 00:09:35 +0200
+	id 5lHFL/DKTmrwUAIAu9opvQ
+	(envelope-from <devicetree+bounces-323212-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 00:10:56 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id BAE3972ACC6
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 00:09:34 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 131A272ACEA
+	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 00:10:56 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=NXP1.onmicrosoft.com header.s=selector1-NXP1-onmicrosoft-com header.b=d82Xug49;
-	dmarc=fail reason="SPF not aligned (relaxed), DKIM not aligned (relaxed)" header.from=nxp.com (policy=none);
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-323211-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-323211-lists+devicetree=lfdr.de@vger.kernel.org";
-	arc=reject ("cv is fail on i=2")
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=aoQKQUDE;
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-323212-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-323212-lists+devicetree=lfdr.de@vger.kernel.org";
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 32C683016247
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 22:09:33 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B3CD6301ABB9
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 22:10:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 433C538422F;
-	Wed,  8 Jul 2026 22:09:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 462F93AC0C2;
+	Wed,  8 Jul 2026 22:10:53 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from AS8PR04CU009.outbound.protection.outlook.com (mail-westeuropeazon11011036.outbound.protection.outlook.com [52.101.70.36])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3E6E233948;
-	Wed,  8 Jul 2026 22:09:27 +0000 (UTC)
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783548569; cv=fail; b=ATNTuYCNe3YDypo7sKXcfuHFgAWIGcKZ0AZmwCQXpqXrZJ1qtLbyLA/oWPnOtqq4RNlI1wuM+95Oz5SdUSGKydpjXqY0XG55+GifCB50XD+bPi22tfH04cb+fpX+Ejuonzpwx8vAuzF3Q4N8GYMxuqnk1Hven4VeiH4BNUrVQR0=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783548569; c=relaxed/simple;
-	bh=MzZor2lY3E839Y4E4xmpjp/TJykQtCY721a8HlMSQw4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=sXWjIWpF4giZMq1m7eC512oRz0vrcoF9mOowUH0nmBMEHuYcthJPDuRh6d1UsUhGM3CacPT5qheyrAJaQphy+0Dxv7IjCeJZOO0iKEwKflbA6BmRDf7OHooE3NbKjXjsfKF8w+SZh+NQZPPVQlOz6iD325LDk7zE1AHgHl0XEdw=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=d82Xug49; arc=fail smtp.client-ip=52.101.70.36
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=yvbR+VX+a+mpbz50YRbQuSnJxSUGde/Z1jD7CPnzuNjLY8T/o8/T9tQr6/8xKN8Myq+/U1V1jL01A2apzJ6oy3XubCCVb8DVY0rMv2ECVoVwj0Ei6R+ihituPmtHy1Ycv/CTCC0u3oLX3is6feDZsDKAXsSBBujPJgnoiDIU5bzEi2wIRaETq+S8gkznEZPG6vmRN31heAY0cU1F2JzMNJoSebEO32v2pAD3mKWkFmOCsTc72YxzjimH8IpwDBK4s1jHjHT/a0U760BUK4BRvw1tg2COVjMmceQrVc6i9YEA0XLC6UlCmXjlhN6SW4XfXeCM8q99uh7iSWZFn/jMLw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=6cIOpYdx8X/PnTHBqfGB60HrS3SqqQW5c2M8cng6bwM=;
- b=Z3t20ygGZj/O77HzJSKKwaRt8hAqALgkcCvCgOHGxHXCJPUjoY1bsA47K8EqT2+hquaO0JsRhs/1Oo2aKsonupH4+iJvm4K5l0NqfidDWUbYdNTVCHTYRZzDKkxIy3/ObvYlZhAoukArSRgVGjU/cEPLuLeZCO/BAKdl0pB/OIPjtJtu/KNSDGQYAXydjchGDA2YL0x+WWIRnrN6q2PDckaaZr6skkQa4D9OG6kcnx98pV1EPDpVVjCgekGfK9unC5kKqwZpP6s+blQZgOtDSkThK/6gXdmKD5dNAu20UYOu9Cxy5lO1H4q+MvXYZ1PYv2Y8b1fXIG7KyrWsDbO0EQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector1-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=6cIOpYdx8X/PnTHBqfGB60HrS3SqqQW5c2M8cng6bwM=;
- b=d82Xug49o+c3nAQUv5hIq2j3vcha498EHfg/2Id5KxLTcW6IXJj2Be8cI8vtFISP1vKA5UZ2b6DPZSoZ3OaGRyFILFjam5QQPJlRzWnWdAgLXik42oPfUpG50PWAVQR4xLhoXHTPq7/SeVXEuRFcVwFaJJedXs4aRrS0tHsKYyTLD+1zFY0LOvU6OcY0Xh5GtdcZEkGf/TRQL+6qmF0dPO2SS+m8IiLZbEItqGZmho+vjcuns4erBMr/I7dutOgpLrXn+O3DebrUtTVMbnBLNdEI/dpi70Q21VfdtucAM2OzEY+77UEzhkP+mFZQNLOHsmnGmvGeehPJY8xgTb8LZg==
-Received: from GV2PR04MB11799.eurprd04.prod.outlook.com (2603:10a6:150:2cf::9)
- by GVXPR04MB9880.eurprd04.prod.outlook.com (2603:10a6:150:119::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.15; Wed, 8 Jul
- 2026 22:09:21 +0000
-Received: from GV2PR04MB11799.eurprd04.prod.outlook.com
- ([fe80::2146:83a2:5329:b7c]) by GV2PR04MB11799.eurprd04.prod.outlook.com
- ([fe80::2146:83a2:5329:b7c%6]) with mapi id 15.21.0159.007; Wed, 8 Jul 2026
- 22:09:21 +0000
-Date: Wed, 8 Jul 2026 18:09:12 -0400
-From: Frank Li <Frank.li@oss.nxp.com>
-To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Robert Foss <rfoss@kernel.org>,
-	Todor Tomov <todor.too@gmail.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
-	Bryan O'Donoghue <bod@kernel.org>,
-	Loic Poulain <loic.poulain@oss.qualcomm.com>,
-	linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-media@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>
-Subject: Re: [PATCH v12 1/6] dt-bindings: media: qcom,x1e80100-camss: Add
- optional PHY handle definitions
-Message-ID: <ak7KiHpkQFghDZzj@lizhi-Precision-Tower-5810>
-References: <20260708-b4-linux-next-25-03-13-dtsi-x1e80100-camss-v12-0-f8588da41f16@linaro.org>
- <20260708-b4-linux-next-25-03-13-dtsi-x1e80100-camss-v12-1-f8588da41f16@linaro.org>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260708-b4-linux-next-25-03-13-dtsi-x1e80100-camss-v12-1-f8588da41f16@linaro.org>
-X-ClientProxiedBy: SA0PR11CA0171.namprd11.prod.outlook.com
- (2603:10b6:806:1bb::26) To GV2PR04MB11799.eurprd04.prod.outlook.com
- (2603:10a6:150:2cf::9)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 462C53F8ED3
+	for <devicetree@vger.kernel.org>; Wed,  8 Jul 2026 22:10:50 +0000 (UTC)
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1783548653; cv=none; b=RCwi8mVR85LUZcfKTA8IDiAZaA7MYn/fWZSIOIBjoyURFtwW74TB0s3hALckRwuM5RnZzN1jZsycGqlXQiokqI4h35rxCMimH755RKgZFPNl4F8kz+TgXaA74VLLBPPRNVkMlti0FWxoNzAhggaXoqb/I2XbwccZsxvTNUMvSjM=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1783548653; c=relaxed/simple;
+	bh=3K3ECPRS7DdIfCpnSoVB/bze4pm65lYZ8MEA4EQ6Bog=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=KEEGQCySr9ca+a0nJ6JxSV7TGGR5YgzWxL4ETSF43eifOc/c6mWb2i899Nh+5nZfT5LHWqPTrqR0i9gzhyT2lFv6bd/nHoR9rYvzLa2Z6IreOti7HfRIrdg1GXuRICif9gQyKqPIKAUDcGGrdnC+cW5MJSF9fpwIg8pv4sv5uqQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aoQKQUDE; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0A2161F000E9;
+	Wed,  8 Jul 2026 22:10:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1783548650;
+	bh=SWJ8sPmqHVbsLGhyEvK9o1+S/8Vl3p1/HlTYdnUF91o=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=aoQKQUDE/L+0HRikPp2Q86ZpPDeixAnlGLun0xnVvVFvEhVg1LzHTim1BjMyGr5go
+	 8b4jPAzeaBIHNvvVV+bCsyCxt0UByEgUuBxKKXd+SJec/r4GsDsj3P5Zm9P8ZSCKWC
+	 ClqG0jiD0ZUUua8sMTkOYjOdM11OFHOAULqJt8jJgZtl9tIcSLkxx8RK3KqYSMW6x9
+	 AMf09G1xTe1y1/5/q5D1GskEMuWId3jpUKzFS9rmMaZ6qunWKiO21sgRQ4HaHLVqZ7
+	 jziSuBzPV0lBuQqymefBSx15PYxNGq1VmHyKabrLan930ycsKEP8m/6FKLPuduD4/Y
+	 sJG5/y+1xGsEQ==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v3 07/14] drm/rockchip: vop2: Reset AXI and DCLK to
+ improve robustness
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Cristian Ciocaltea" <cristian.ciocaltea@collabora.com>
+Cc: dri-devel@lists.freedesktop.org, conor+dt@kernel.org, devicetree@vger.kernel.org, robh@kernel.org
+In-Reply-To: <20260709-dw-hdmi-qp-yuv-v3-7-a4a982a9f2e7@collabora.com>
+References: <20260709-dw-hdmi-qp-yuv-v3-0-a4a982a9f2e7@collabora.com>
+ <20260709-dw-hdmi-qp-yuv-v3-7-a4a982a9f2e7@collabora.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Wed, 08 Jul 2026 22:10:49 +0000
+Message-Id: <20260708221050.0A2161F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: GV2PR04MB11799:EE_|GVXPR04MB9880:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0785a38d-4b36-4d30-cf2b-08dedd3d8ff6
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|19092799006|376014|7416014|1800799024|366016|23010399003|11063799006|4143699003|56012099006|18002099003|22082099003|3023799007;
-X-Microsoft-Antispam-Message-Info:
-	neePIr/rCURo+4bROzLd7rS58BrcR4kshP4xksrYdZ5/ESWdBsyMBAOZca5ZrM3kS4AUPQDJZSWwehtzQAZ019dYYpnQS0hpuEixpI/UtdQNTJLWcQ3jSdWzLN7UyTJkmNlyZQacHtauTlgvHsoH6vouUyBx5WCMALmfwVep711L9R/blFNs/0hz3j1LPELKDoMG+B2UCM5ovKjBGt/HfYj8bnTcsXzwNMM3bobbmtjYO8VA0OFm9TlznW/KGTAQg28vZkmHZ0HUhJoIjHEuHw3ha3Cb6cMQkurVqC57ieyJKWqTia1MJ++pkL/VnovrrC+nrB0XNr+JKZjvh0HyzxFqi5h7mGZmbMrMsIIPc8mT9C5GIas6e+jsVtTKhQuaN+Rb0AX/hHmW0aT9lGHQbsfwW8E4szPsiawtAo08oTu68WcBYNuzQvSi9LUODUHQNBDM/Yok1Wxz/0eITckzuJjxrmdVx9qRhlR1s3PPn5udDqLnyuXkGo5khyYpcAHvp8At/XmtHHmsFAU6gGcWtMbkuXS3EqVQmRijmXLZuwEbRocTzq4P/VzVF09WJMXD8xlCgnma7fxYKrhi2NikSoJrY7Dved4/y0Y8Nf3l7HAEM1Z/LupzLYObTwbsJao8hKGOM9HcyO0lTmbmZBgJgjs3jXKwBanx6Te7WxV/Hsw=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:GV2PR04MB11799.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(376014)(7416014)(1800799024)(366016)(23010399003)(11063799006)(4143699003)(56012099006)(18002099003)(22082099003)(3023799007);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?VTg0noWchAaNuXv1m2THl8sYWf/v1THjxeGBDpFMRLQ1ZcsQ+xogng+xvCQ5?=
- =?us-ascii?Q?z3FVwHnC2I4rnwoEoRjSBAyuVjH3zRuXEncRUyUwrjahZP2Dz0jX4jkFd/+6?=
- =?us-ascii?Q?ykFuiMiKu6YOXqplld50prM1tws+rBTVvfJJpz8oiaxiMEPmvh2SAVsWIAa8?=
- =?us-ascii?Q?eWo3/9QejX4UEiNVUuUcMSLZK7IppqFra2JkztqOisD/pWr8bdeayh76zzwr?=
- =?us-ascii?Q?Rp1JkiRetOSAL5DqdIY8ll4IECepPl99xIn206Fy/H8Mg5PARXVy3twg3VyB?=
- =?us-ascii?Q?zNkzKmtv5Cn+9TXUjqoJk5Sv9wrbqVv2xOORJUFMfW1rFq8riVRbOCu1Mijg?=
- =?us-ascii?Q?Jz6SJ+98b5T6zGt96clt7imDBBCpo6yVuSSgyzHSXoK1q2GsBLDFKG14n2kA?=
- =?us-ascii?Q?yOGOybZ9GsHEl8XNSOkQ2IRs6XXbfkGi1MSGbQMVqo5EQS1hya+CYHcRDOZ1?=
- =?us-ascii?Q?LcbSlui0tpvVRbXMiojJ1QHiTyN5IJaXH4ztAFUDhkhDff/BThe484jDdZa1?=
- =?us-ascii?Q?/8Hb3VO4tXkHMsN733mqyaIGXdt1v65b37Agb++0SLPsu6guwtuSI+M3Rgl3?=
- =?us-ascii?Q?1FEax7cs9twmPNyFwrunZT0qiiNLWp0Xx52PntwHFgmClN8AdyLia/Yv/nC6?=
- =?us-ascii?Q?ATSWQE7q8bQtM94BNZghWlNms6twWFDmKKUIslRAtuU8RTx+Qcru5wXRTIKV?=
- =?us-ascii?Q?zH5j2QNytdb28BsmxnVeoWSWYxAo7k2ae7t+BBdCltqowHtyPGTfeaHQ8hE3?=
- =?us-ascii?Q?plMON5DYjsy63S92kaS35y3SWdYVhsE4dIrMA9uTU51nJzcj/bKEwxUMc4ke?=
- =?us-ascii?Q?3OnlDagRwVqRMVkvV1JRgBDVkkRcIWNNUm0p/z8z9dW0yT2X3jih3eyp9Bpk?=
- =?us-ascii?Q?TVRg7tg+0+zwjIdBiD1fbeOzGxArk/KfItW8PMhTDrY5jKgw249YDPeWtb6R?=
- =?us-ascii?Q?avX29nLb3C4lAuwMVkEs0yMK2OGhM236/QB+wfd69QgjdFnAFspbans5yIMi?=
- =?us-ascii?Q?X7jNrUrGsjUpoNdgn8B+XnJRpu+a3QtT1pR9FcgCfHES61rflhZjHMu69aBR?=
- =?us-ascii?Q?wLm9gxwuu0f2IFkThOAvZgH/hbJSDhaFPwnaDrm9rUL+joulwRTAPORBpGCu?=
- =?us-ascii?Q?Y2V4L+OwsIesR32cCV4ygG5tmQ94HIXSxCW0ekcIECuYkftPQzmuF57ArmbK?=
- =?us-ascii?Q?9jkCeT9+tlB1BUBlx0vpdc8wv7bgEhw9b5aYuTijIcVeWq04idmU9CJdZe7A?=
- =?us-ascii?Q?CEFvefRRmVVoZAt29nGA3uKWScAQpwnXH8fSyUr+cNBmJKTuO1n3JG/77jtH?=
- =?us-ascii?Q?0dz1G2o5fHRF8PF2oeRBwKQRMdP5YrvQqXvpaaMmY7VvvgICcUraua/AgOh1?=
- =?us-ascii?Q?Qd4V+KGWosX5k9JTfHR00LvReVC/z1U8FjXgv05k3WAB9PXqhnP1TaTiBxpK?=
- =?us-ascii?Q?dRAFlj0a+Sl6rmAHXuWy/cTTLZDGw/B+qnRhloVUJ8EEsMlPQqlA6hMkrRHR?=
- =?us-ascii?Q?Zx9mbS41kLZtHcih6HKuSnD9ZXVKtwYZIU05e/g6PxbSPpCgBodaIriyzDoc?=
- =?us-ascii?Q?727AkMrl/czVxy4nzwoA1N3o7X2QRdpBG2zsJcMapyZ1kWgOerlCgD7+Zhvs?=
- =?us-ascii?Q?nkVsutCnRb0NiGL4k3j22wKINdMu80SqoYTCNiCRoPOO7sC0htU+fS9fMnur?=
- =?us-ascii?Q?8adqTV7W3P3ecac1GDWKxsd8kAtFqxtGGUjoim3gVojd/AjBrMjZLBRZcD/G?=
- =?us-ascii?Q?GgWlTZSRR53iZT/B54eucUNK9DDx3SuUrfyg4oLuhG6L+L1nzU9C?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0785a38d-4b36-4d30-cf2b-08dedd3d8ff6
-X-MS-Exchange-CrossTenant-AuthSource: GV2PR04MB11799.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Jul 2026 22:09:21.5672
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: zZ8cCqZoavgtfQoP/wn29sbP93DAMpuqoDVRPxFcXnuyQgoc2+Bm9pM5+PPBNAxhJEuyNM725WDyIfoDLcUo3nvdzHCbKhryreuB1UZBUeu0OlW433U5zkKm5ehBd5f0
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GVXPR04MB9880
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [2.44 / 15.00];
+X-Spamd-Result: default: False [-1.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[NXP1.onmicrosoft.com:s=selector1-NXP1-onmicrosoft-com];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[nxp.com : SPF not aligned (relaxed), DKIM not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-323211-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[20];
-	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:bryan.odonoghue@linaro.org,m:andersson@kernel.org,m:mturquette@baylibre.com,m:sboyd@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:rfoss@kernel.org,m:todor.too@gmail.com,m:mchehab@kernel.org,m:konradybcio@kernel.org,m:vladimir.zapolskiy@linaro.org,m:bod@kernel.org,m:loic.poulain@oss.qualcomm.com,m:linux-arm-msm@vger.kernel.org,m:linux-clk@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-media@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,m:todortoo@gmail.com,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[Frank.li@oss.nxp.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[NXP1.onmicrosoft.com:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-323212-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:email,lists.linux.dev:replyto,smtp.kernel.org:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp,sashiko.dev:url];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[Frank.li@oss.nxp.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[kernel.org,baylibre.com,gmail.com,linaro.org,oss.qualcomm.com,vger.kernel.org];
-	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_RECIPIENTS(0.00)[m:cristian.ciocaltea@collabora.com,m:dri-devel@lists.freedesktop.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ALIAS_RESOLVED(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	PRECEDENCE_BULK(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,linaro.org:email,NXP1.onmicrosoft.com:dkim,lizhi-Precision-Tower-5810:mid,oss.nxp.com:from_mime]
+	FROM_NO_DN(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[5]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: BAE3972ACC6
+X-Rspamd-Queue-Id: 131A272ACEA
 
-On Wed, Jul 08, 2026 at 01:06:55AM +0100, Bryan O'Donoghue wrote:
-> Add optional PHY handle definitions. This will allow for supporting both
-> legacy PHY definitions as well as supporting the optional new handle based
-> approach.
->
-> Drop the legacy high-level 0p8 and 1p2 supplies as required, each PHY has
-> its own individual rails. The old binding is still valid but with
-> individual nodes we define the rails in the CSIPHY sub-nodes.
->
-> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> ---
->  .../bindings/media/qcom,x1e80100-camss.yaml        | 33 ++++++++++++++++++++--
->  1 file changed, 31 insertions(+), 2 deletions(-)
->
-> diff --git a/Documentation/devicetree/bindings/media/qcom,x1e80100-camss.yaml b/Documentation/devicetree/bindings/media/qcom,x1e80100-camss.yaml
-> index 2d1662ef522b7..c17b9757b2c86 100644
-> --- a/Documentation/devicetree/bindings/media/qcom,x1e80100-camss.yaml
-> +++ b/Documentation/devicetree/bindings/media/qcom,x1e80100-camss.yaml
-> @@ -39,6 +39,14 @@ properties:
->        - const: vfe_lite0
->        - const: vfe_lite1
->
-> +  '#address-cells':
-> +    const: 2
-> +
-> +  '#size-cells':
-> +    const: 2
-> +
-> +  ranges: true
-> +
->    clocks:
->      maxItems: 29
->
-> @@ -126,6 +134,16 @@ properties:
->      description:
->        1.2V supply to a PHY.
->
-> +  phys:
-> +    maxItems: 4
-> +
-> +  phy-names:
-> +    items:
-> +      - const: csiphy0
-> +      - const: csiphy1
-> +      - const: csiphy2
-> +      - const: csiphy4
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+
+Pre-existing issues:
+- [High] Using devm_* APIs in component bind callbacks causes memory leaks,=
+ duplicate resource registrations on unbind/rebind, and fatal bind failures=
+. The new patch exacerbates this by requesting exclusive reset controls.
+--
+
+--- Patch [7]: [PATCH v3 07/14] drm/rockchip: vop2: Reset AXI and DCLK to i=
+mprove robustness ---
+commit 9b374dfb00e64eeab45f2b86b059f7b28a55a177
+Author: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+
+drm/rockchip: vop2: Reset AXI and DCLK to improve robustness
+
+This patch adds assertions for the AXI reset in the CRTC disable path and t=
+he
+VP DCLK reset in the enable path. These optional resets are intended to lea=
+ve
+the hardware in a clean state and prevent random display output glitches on
+platforms like RK3588.
+
+> diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c b/drivers/gpu/d=
+rm/rockchip/rockchip_drm_vop2.c
+> --- a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
+> +++ b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
+
+[ ... ]
+
+> @@ -2596,6 +2621,12 @@ static int vop2_create_crtcs(struct vop2 *vop2)
+>  			return dev_err_probe(drm->dev, PTR_ERR(vp->dclk),
+>  					     "failed to get %s\n", dclk_name);
+> =20
+> +		vp->dclk_rst =3D devm_reset_control_get_optional_exclusive(vop2->dev,
+> +									 dclk_name);
+> +		if (IS_ERR(vp->dclk_rst))
+> +			return dev_err_probe(drm->dev, PTR_ERR(vp->dclk_rst),
+> +					     "failed to get %s reset\n", dclk_name);
 > +
 
-needn't "phy" for phy-names, just csi0|csi1 ...
+[Severity: High]
+This is a pre-existing issue, but will this exclusive reset control request
+fail with -EBUSY on component rebind?
 
->    ports:
->      $ref: /schemas/graph.yaml#/properties/ports
->
-> @@ -158,6 +176,14 @@ properties:
->              required:
->                - data-lanes
->
-> +patternProperties:
-> +  "^phy@[0-9a-f]+$":
+Because vop2_create_crtcs() is called from the component bind path in
+vop2_bind() in drivers/gpu/drm/rockchip/rockchip_drm_vop2.c, any resources
+allocated with devm_ functions tied to the platform device (vop2->dev) are
+not released when the component is unbound.=20
 
-Not sure why phy need be children node? does this phy is used by other
-controller?
+When the component is rebound, the previous exclusive reset control is still
+held. It appears this might cause devm_reset_control_get_optional_exclusive=
+()
+to deterministically fail with -EBUSY since the prior exclusive grab was
+never released.
 
-Frank
-> +    $ref: /schemas/phy/qcom,x1e80100-csi2-phy.yaml
-> +    unevaluatedProperties: false
+Should this use reset_control_get_optional_exclusive() instead and be
+manually released in the unbind path, or use a component-specific managed
+API?
+
+>  		np =3D of_graph_get_remote_node(dev->of_node, i, -1);
+>  		if (!np) {
+>  			drm_dbg(vop2->drm, "%s: No remote for vp%d\n", __func__, i);
+
+[ ... ]
+
+> @@ -2955,6 +2986,11 @@ static int vop2_bind(struct device *dev, struct de=
+vice *master, void *data)
+>  		return dev_err_probe(drm->dev, PTR_ERR(vop2->pll_hdmiphy1),
+>  				     "failed to get pll_hdmiphy1\n");
+> =20
+> +	vop2->axi_rst =3D devm_reset_control_get_optional_exclusive(vop2->dev, =
+"axi");
+> +	if (IS_ERR(vop2->axi_rst))
+> +		return dev_err_probe(drm->dev, PTR_ERR(vop2->axi_rst),
+> +				     "failed to get axi reset\n");
 > +
-> +  "^opp-table(-.*)?$":
-> +    type: object
-> +
->  required:
->    - compatible
->    - reg
-> @@ -171,8 +197,6 @@ required:
->    - iommus
->    - power-domains
->    - power-domain-names
-> -  - vdd-csiphy-0p8-supply
-> -  - vdd-csiphy-1p2-supply
->    - ports
->
->  additionalProperties: false
-> @@ -184,6 +208,7 @@ examples:
->      #include <dt-bindings/clock/qcom,x1e80100-camcc.h>
->      #include <dt-bindings/interconnect/qcom,icc.h>
->      #include <dt-bindings/interconnect/qcom,x1e80100-rpmh.h>
-> +    #include <dt-bindings/phy/phy.h>
->      #include <dt-bindings/power/qcom-rpmpd.h>
->
->      soc {
-> @@ -229,6 +254,10 @@ examples:
->                          "vfe_lite0",
->                          "vfe_lite1";
->
-> +            #address-cells = <2>;
-> +            #size-cells = <2>;
-> +            ranges;
-> +
->              clocks = <&camcc CAM_CC_CAMNOC_AXI_NRT_CLK>,
->                       <&camcc CAM_CC_CAMNOC_AXI_RT_CLK>,
->                       <&camcc CAM_CC_CORE_AHB_CLK>,
->
-> --
-> 2.54.0
->
+
+[Severity: High]
+This is also a pre-existing issue, but will requesting an exclusive reset
+control tied to the platform device here also cause a fatal -EBUSY error
+during a component rebind?
+
+Similar to the dclk_rst allocation, vop2->axi_rst is allocated in vop2_bind=
+()
+with the devm_ API. When the DRM component master is unbound and then rebou=
+nd,
+vop2_bind() executes again and attempts to grab the exclusive reset control.
+Since the previous devm_ allocation is tied to the persistent platform devi=
+ce
+and wasn't released during component unbind, will this fail immediately with
+-EBUSY?
+
+>  	vop2->irq =3D platform_get_irq(pdev, 0);
+>  	if (vop2->irq < 0)
+>  		return dev_err_probe(drm->dev, vop2->irq, "cannot find irq for vop2\n"=
+);
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260709-dw-hdmi-qp=
+-yuv-v3-0-a4a982a9f2e7@collabora.com?part=3D7
 
