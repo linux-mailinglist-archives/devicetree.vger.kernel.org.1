@@ -1,150 +1,201 @@
-Return-Path: <devicetree+bounces-323219-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-323220-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id SSXPLn/OTmruUQIAu9opvQ
-	(envelope-from <devicetree+bounces-323219-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 00:26:07 +0200
+	id l8qUBYPPTmo1UgIAu9opvQ
+	(envelope-from <devicetree+bounces-323220-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 00:30:27 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 235A672AE01
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 00:26:07 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0ADDB72AE1F
+	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 00:30:26 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=Ut0hY5DY;
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-323219-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-323219-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=linaro.org header.s=google header.b=Lqi1o7+w;
+	dmarc=pass (policy=none) header.from=linaro.org;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-323220-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-323220-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 5A67D303D372
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 22:25:20 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 14BEE300D557
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 22:30:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DADC63FE667;
-	Wed,  8 Jul 2026 22:25:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 866F23FE35D;
+	Wed,  8 Jul 2026 22:30:19 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B66A540242D;
-	Wed,  8 Jul 2026 22:25:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D65FF38331E
+	for <devicetree@vger.kernel.org>; Wed,  8 Jul 2026 22:30:17 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783549510; cv=none; b=Uk4G+jjIn5AfGvuw0lUHvdIwsT1dvyy6EYMUE3vCHhIf7Ia/LqbjlRbpXC86hXyUttkbv9hayGKZ6BB02pNnY1kwqzjiuS4HeRvl2g4FLcfDeRNrymXdCFLqf128uytUWIe+uwhpIuTgXTOgfWFXWyWVMbterzyvWWuONJXuJp4=
+	t=1783549819; cv=none; b=TXe8v1XYWREgXrA2VhqAcAaVRfmv9gc8i2jvtXMN/+YCrG28JIYmODk/pzUH9K9cqbbz+ACqChw7FSl9nNeLYq+bVYkO0+XHYTnwtQgJpuleB6w0NmoDp1pqv65UeEWthUrr6iBhIV+NLlC3n29z0lNbbfLeKHqnBGTse2Mw/Gk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783549510; c=relaxed/simple;
-	bh=t0dxFT0Qa4zqK/8traSJc+pUMOrfCQ5mFFMIt32sS8c=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=raQfkIiHxT1XcupP5LSxK71mW9N/FAI+FPUJ2EvFBLPPtKxk91w7OLPfEq4zPe3atK6riDVxS04bRsbOHTJf/uI22VVdgzdMZvpdyzI4RuGgXWTu9HY4sa7+MOIpq4cgFXq1OKYINQgUuo8LQQ49C0Bpu3RN085N5k57tVbxR0M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ut0hY5DY; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0EF971F000E9;
-	Wed,  8 Jul 2026 22:25:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783549509;
-	bh=oAE7KuHcbYdI24x5VMTp+PIHL311ilvREmVKh4uXwos=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc;
-	b=Ut0hY5DYQ2RIOniDc3GH7aZTRr7UMrVkXLH5pe6+yNYfwbzeOw9q3E+WpeSz3LqMP
-	 vZP8z5S2zpnGG6cIPL7xqR+FCupXI6FcobeDn1mIH4btMuPMcnjrUmMGi6xfqmk25G
-	 AmwyS2HlsKxtj1iuvlrf4z1T4VMAC8psTLadLOGipFCanlpMhQge4D2kgaU3R1jUE8
-	 AxRciLMKIemUNOBjNKXUQGE+xqK9SpC/M5epti+EOqD+G9cBezMLvzoaum3nlibCkB
-	 gfDj2qrIdNQFJLhw4eMAPhakZjs+odf+VwOTb4opM7bk2APxW21cSd6FoTOuuYD4Cu
-	 5bgMSo6+2nXmw==
-From: Linus Walleij <linusw@kernel.org>
-Date: Thu, 09 Jul 2026 00:24:57 +0200
-Subject: [PATCH 3/3] ARM: dts: ixp4xx: Drop the reg-offset hack
+	s=arc-20240116; t=1783549819; c=relaxed/simple;
+	bh=Ucy2b3MPSEnBCBhKVkHMWhghZFra35xFFNj5Qb50XsQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=RDWDmI3dvxVNhKYeSzo4ZcZzIbjP8uXznHRA4af4hhEk3paT5PwmP0xKFm9x0DPXHhJWc26O+bJtGAzNYNeBDGNBYM/i3dwE4VEXVX4IWUCMHttWKR+ptQS25Kl3WQlL7qSDpYXFrKE1C/b0Wy2gsNUCki8Som5X21yn6fJxvPE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Lqi1o7+w; arc=none smtp.client-ip=209.85.221.51
+Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-47640541585so663565f8f.1
+        for <devicetree@vger.kernel.org>; Wed, 08 Jul 2026 15:30:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1783549816; x=1784154616; darn=vger.kernel.org;
+        h=content-transfer-encoding:content-type:in-reply-to:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=90IOI9EUyLOw2eSiEVVHF1LKd1Sg9MHQdR1C6WQNJ10=;
+        b=Lqi1o7+wVIWB3ifqgsn6xdp6t1KqFZUP2XjUycj/9SQqPoQyi7tZLKo+a9JxKQ8nE9
+         116s3PnM7+hBDGuQBggD3Wl5NUaISy++kYlfeg7TysKuENF+6gJMh6m6lzX3EDRsdkc1
+         g2NPTSLcja1Y4bA7pJytWr0d0g3AZdDecJl5fHZDSNkwMmLdHWJeSoPs6u8UFtrsz+yW
+         zaspY21tFQdqgD0nZG1vAJRNcYuQodKA+jTPqkLfISKsK2EVgM22nOHD//qvP0wuR20O
+         nE4ymz1SMwv37kJdeWZQ9Fw9ArOvqMfFAVoZgHAbOnPUxwDpBffAUxKO53V2zSKjmiH5
+         o6BA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1783549816; x=1784154616;
+        h=content-transfer-encoding:content-type:in-reply-to:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=90IOI9EUyLOw2eSiEVVHF1LKd1Sg9MHQdR1C6WQNJ10=;
+        b=GSsKWf9vyoip2wwoDvuNIq9+dgH/dxzRWA/j4mNVnV2Y99GqqgcYEJGS1UpS1L3UP5
+         dm6plhO6TftHn3qJE+THfukK+OnZvG2ctLBCU/NCl26/azs+ko2D11mfOJNHYvf8tERL
+         9lbIjMqQZhk98ZKEwn3CVjUx01bA2mj2E1v1X8HX1cPBLTkAoSONR6tVaDSgbVy3hpy+
+         TPE2xwEojYcIkigVyvlfHw8PLfQFEGoXpKfZhRnhD+QUkdhIFCo8HORhm9PmQRNnlSf6
+         bypydq815vgfyiiZNcTMZoOoqI3gXq+oAUHEc1tla5nZ9/uZhs6DxsNl5f2t668rWRbP
+         grEg==
+X-Forwarded-Encrypted: i=1; AHgh+RpejHVAxjHt9CNzKIFbtyldF5HktVAU2bwAKadJuAcgoOr0Ux+Bvyun1V8IFA888ToYIix2lxykkVHS@vger.kernel.org
+X-Gm-Message-State: AOJu0YwRslSGAeRFQiJp6Mry1JEGcozwRIcqorVyUo1LyDB9OVDbZbiC
+	SY/NZIkNkA36Y0Jlg1DzftkP0wMbgBG0cIoaP/LcK6GRuXh6hAU6BY2evK3+9PA2Gjs=
+X-Gm-Gg: AfdE7cmsjvQiSFmFM6kq+wZPcav8JU6fhTBdTjmC3NYlzCSJ436+FdtG0/1MXuJVzFz
+	ibAaYaFlN4kS/guBYG+6bOQynbzyIxnN6mGyizcXfjq/fWxWch721Syh7RIHyZT2q3vq7MJ+54W
+	Vf8kcg/LShnT2Tubh0Mf+O9asXF95Jj2xyFd2QfoCg/zCCgbHw6AEMpLKGQdyiEmq5VCebdqtuU
+	fGd8YJrx+Xj99FY465HDDBUjJWoo2eGLCObgJBdIoxmcRQqLcAFf3EDUYSeVulEVK3xLLx48jB1
+	fJvhHxY+VJ7K66XlmdrHKdnf2S0NQpQgXssYxiH1PYaTCQrOtOKc5FFMYVzFIwwIeOdS9JBYeLh
+	im+Cxm4rYIrYxHYp4vZatBtw5o4xr8SPFueVJW5zL8gEch1L6UdVlVAj54/fvfafQ+zW5aWgUOb
+	AdUoteMZ09soTkEOcuY2VxfLX3rHOgn84vU1rRCg==
+X-Received: by 2002:a05:6000:2013:b0:46e:624e:3c2f with SMTP id ffacd0b85a97d-47df077b2e6mr4491121f8f.47.1783549816190;
+        Wed, 08 Jul 2026 15:30:16 -0700 (PDT)
+Received: from [192.168.0.101] ([109.76.204.255])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-47aa0960634sm46711271f8f.26.2026.07.08.15.30.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 08 Jul 2026 15:30:14 -0700 (PDT)
+Message-ID: <d579ffd2-b99e-4e8d-b2b7-e7e896b2d71d@linaro.org>
+Date: Wed, 8 Jul 2026 23:30:12 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 1/5] media: qcom: camss: Populate CAMSS child devices
+ via DT
+To: Atanas Filipov <atanas.filipov@oss.qualcomm.com>,
+ linux-media@vger.kernel.org
+Cc: vladimir.zapolskiy@linaro.org, loic.poulain@oss.qualcomm.com,
+ mchehab@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, andersson@kernel.org, konradybcio@kernel.org,
+ linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20260706071113.383215-1-atanas.filipov@oss.qualcomm.com>
+ <20260706071113.383215-2-atanas.filipov@oss.qualcomm.com>
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Content-Language: en-US
+In-Reply-To: <20260706071113.383215-2-atanas.filipov@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260709-ixp4xx-little-endian-v1-3-e9622d0ba9e4@kernel.org>
-References: <20260709-ixp4xx-little-endian-v1-0-e9622d0ba9e4@kernel.org>
-In-Reply-To: <20260709-ixp4xx-little-endian-v1-0-e9622d0ba9e4@kernel.org>
-To: Russell King <linux@armlinux.org.uk>, Imre Kaloz <kaloz@openwrt.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>
-Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, Linus Walleij <linusw@kernel.org>
-X-Mailer: b4 0.15.2
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-323219-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-323220-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS(0.00)[m:linux@armlinux.org.uk,m:kaloz@openwrt.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:arnd@arndb.de,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:linusw@kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[linusw@kernel.org,devicetree@vger.kernel.org];
+	RCVD_TLS_LAST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:atanas.filipov@oss.qualcomm.com,m:linux-media@vger.kernel.org,m:vladimir.zapolskiy@linaro.org,m:loic.poulain@oss.qualcomm.com,m:mchehab@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:andersson@kernel.org,m:konradybcio@kernel.org,m:linux-arm-msm@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[bryan.odonoghue@linaro.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[linaro.org:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[linusw@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[bryan.odonoghue@linaro.org,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	ALIAS_RESOLVED(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,qualcomm.com:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,linaro.org:from_mime,linaro.org:email,linaro.org:mid,linaro.org:dkim]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 235A672AE01
+X-Rspamd-Queue-Id: 0ADDB72AE1F
 
-The reg-offset hack only works when the IXP4xx platform is
-running in big endian mode, and it is there to byte-offset
-the byte where the serial registers appear in the BE config.
+On 06/07/2026 08:11, Atanas Filipov wrote:
+> From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> 
+> Use devm_of_platform_populate() so that child nodes declared under the
+> CAMSS device tree node (e.g. OPE) are automatically instantiated as
+> platform devices. This is required now that CAMSS is modelled as a
+> simple-bus and ISP blocks such as OPE are described as child nodes.
+> 
+> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> Reviewed-by: Loic Poulain <loic.poulain@oss.qualcomm.com>
+> Signed-off-by: Atanas Filipov <atanas.filipov@oss.qualcomm.com>
 
-This is clearly wrong, workarounds need to be in the
-drivers. Drop the reg-offset.
+Looking at my commit logs I see this isn't my commit message ..
 
-Signed-off-by: Linus Walleij <linusw@kernel.org>
+Anyway.
+
+> ---
+>   drivers/media/platform/qcom/camss/camss.c | 3 +++
+>   1 file changed, 3 insertions(+)
+> 
+> diff --git a/drivers/media/platform/qcom/camss/camss.c b/drivers/media/platform/qcom/camss/camss.c
+> index 2123f6388e3d..95e655a8b6aa 100644
+> --- a/drivers/media/platform/qcom/camss/camss.c
+> +++ b/drivers/media/platform/qcom/camss/camss.c
+> @@ -16,6 +16,7 @@
+>   #include <linux/of.h>
+>   #include <linux/of_device.h>
+>   #include <linux/of_graph.h>
+> +#include <linux/of_platform.h>
+>   #include <linux/pm_runtime.h>
+>   #include <linux/pm_domain.h>
+>   #include <linux/slab.h>
+> @@ -5362,6 +5363,8 @@ static int camss_probe(struct platform_device *pdev)
+>   	if (!camss)
+>   		return -ENOMEM;
+>   
+> +	devm_of_platform_populate(dev);
+> +
+>   	camss->res = of_device_get_match_data(dev);
+>   
+>   	atomic_set(&camss->ref_count, 0);
+
+Just drop this patch entirely and model JPEG as a peer of CAMSS. I'll do 
+the same with the CSIPHY and Loic the OPE.
+
+Modelling for subnodes is nice if you have the idea the camera block 
+should be a bus.
+
+But for what reason ? As you pointed out it should be possible to both 
+compile and run JPEG without the compat=camss node on sm8250.
+
+Making the camera block a bus is a nice idea for "reasons" as this 
+thread has shown, its a problem to implement with an upside we struggle 
+to define.
+
+When the facts change, I change my mind.
+
+You were right to argue to have this as a peer node. Lets do that.
+
 ---
- arch/arm/boot/dts/intel/ixp/intel-ixp4xx.dtsi | 10 ----------
- 1 file changed, 10 deletions(-)
-
-diff --git a/arch/arm/boot/dts/intel/ixp/intel-ixp4xx.dtsi b/arch/arm/boot/dts/intel/ixp/intel-ixp4xx.dtsi
-index 0adeccabd4fe..b0f98da8def4 100644
---- a/arch/arm/boot/dts/intel/ixp/intel-ixp4xx.dtsi
-+++ b/arch/arm/boot/dts/intel/ixp/intel-ixp4xx.dtsi
-@@ -84,11 +84,6 @@ pci@c0000000 {
- 		uart0: serial@c8000000 {
- 			compatible = "intel,xscale-uart";
- 			reg = <0xc8000000 0x1000>;
--			/*
--			 * The reg-offset and reg-shift is a side effect
--			 * of running the platform in big endian mode.
--			 */
--			reg-offset = <3>;
- 			reg-shift = <2>;
- 			interrupts = <15 IRQ_TYPE_LEVEL_HIGH>;
- 			clock-frequency = <14745600>;
-@@ -98,11 +93,6 @@ uart0: serial@c8000000 {
- 		uart1: serial@c8001000 {
- 			compatible = "intel,xscale-uart";
- 			reg = <0xc8001000 0x1000>;
--			/*
--			 * The reg-offset and reg-shift is a side effect
--			 * of running the platform in big endian mode.
--			 */
--			reg-offset = <3>;
- 			reg-shift = <2>;
- 			interrupts = <13 IRQ_TYPE_LEVEL_HIGH>;
- 			clock-frequency = <14745600>;
-
--- 
-2.55.0
-
+bod
 
