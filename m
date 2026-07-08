@@ -1,214 +1,185 @@
-Return-Path: <devicetree+bounces-322596-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-322597-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id MnjkGvoATmohBgIAu9opvQ
-	(envelope-from <devicetree+bounces-322596-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 09:49:14 +0200
+	id fNVzHy0CTmpQBgIAu9opvQ
+	(envelope-from <devicetree+bounces-322597-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 09:54:21 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 89AAD722D1F
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 09:49:13 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E3000722D8A
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 09:54:20 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=WDC2wZR4;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=eea4Ujqz;
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322596-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-322596-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322597-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-322597-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id B0A1E303CEE2
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 07:46:43 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id DD3DC301027F
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 07:47:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE22A3F411E;
-	Wed,  8 Jul 2026 07:46:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B510F3F410E;
+	Wed,  8 Jul 2026 07:47:14 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83E2D3EB7FB
-	for <devicetree@vger.kernel.org>; Wed,  8 Jul 2026 07:46:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E06E83DF00E;
+	Wed,  8 Jul 2026 07:46:57 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783496778; cv=none; b=tlD5HhKBjXoH1aW4qQwL1wSutFTvqKt+2x+Mft0Drholjp/Z6OXC9QZda5IiQMYYAluz6PFSlQ77Bj5OF/tqzfvw4/89f3Y/tme62uV26nmB0juvXWHyYdRhuveTchGAiuWy8n/6AZVNYZ4AmQO5ZXXO1rIpEtgjhnmtsZiE89k=
+	t=1783496832; cv=none; b=toBMjHzzlp4VwW+zFoqeZVS35I6hBmCl4Y3U14xMlppyylyiLJHYMKyBE/zWPyTOWLhetVjiSdUiG6KmIyCI1/vQ87B3sx2unvz0oOi4tf+iNNZLJFyqVA0IbmZy40uxT3mmsc6gq1bjbp1x3JleLqlJjPoP4vvsa1vOeFmrA4A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783496778; c=relaxed/simple;
-	bh=6AIR5h2TkroJ+Ka1Td8LPQc5yeyxixWnx1KCtoxHlX0=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=NLcINIKCNpxrPZ+YRczWKBSsg6IwPEdVRyHkVkvGmkdo7jXWGmtimCKxTVRW+NPntMwdqi5vkp3TFqRnkiCo+yO9KJxLcvnYZzOIVlY6qS0P/0e7eY3cJ80deeh3bIvGPF/nktZI5O+X6wf7uFdg9s4TN3plIpUpNicmbSvIVVU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WDC2wZR4; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B867A1F000E9;
-	Wed,  8 Jul 2026 07:46:09 +0000 (UTC)
+	s=arc-20240116; t=1783496832; c=relaxed/simple;
+	bh=K9Q7SJnCDiRxFjGAjd6hdK0ca30lSYi1RwfNS4/WVXg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=qZj0TuDjS8Tc6AjYehPoEI601cxAAWzNGrxEUzR2aC4bzd7A9ymjT2jOWWVW6JWLVy0L0ylUqJAHYm842m6JfmB531qTvyhsGtZt4R3hFyZKzuNmQw+bQhR+64uPo0oY5zoqWjLh6Aan36oPfDsagguHa0/IzY0VFVXn4+9pWHE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eea4Ujqz; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C66DD1F000E9;
+	Wed,  8 Jul 2026 07:46:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783496770;
-	bh=j3BdqeuSEtjSzyh4YHCsbzj6UbeaNzancPx0+E+tb0Q=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=WDC2wZR4DmkV7b/54lG9rS08dhKzrg9peqs50lpzmINSdfAiEM8cjFMR8QpyE760T
-	 zsE/CWCXBQg5j1VGu/8rqIJCR5buKlTMmD4b+1Cj+ngUJu6+RBAkLQSFJGio2uaIrS
-	 ykEBzHbKxTZ+BUBRwv8Z4ATtpxt7X3IWGZKVgwydBn/S0nkjIaN4mHb3kFKmwkKoH2
-	 wuZ2EXAqvd5aNkeRPv3gBt0zq742hQIiM2Hin7u2sZfanKTDcVOU6nmxnYbcL8OM1g
-	 5BeAIx0Qf88g9bN6rieK4FC7eGFrstWxXPAQs+pwfYnjI4wFF0hkY2Db3NASnErcLY
-	 hrAk7QzVvP2Mw==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH RFC 5/6] firmware/psci: Add EFI runtime conduit
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Sven Peter" <sven@kernel.org>
-Cc: devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org
-In-Reply-To: <20260708-efi-psci-v1-5-9efb3abf0e4c@kernel.org>
-References: <20260708-efi-psci-v1-0-9efb3abf0e4c@kernel.org>
- <20260708-efi-psci-v1-5-9efb3abf0e4c@kernel.org>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Wed, 08 Jul 2026 07:46:09 +0000
-Message-Id: <20260708074609.B867A1F000E9@smtp.kernel.org>
+	s=k20260515; t=1783496811;
+	bh=neDS02cfQQVbwWO1slKZu1V0NB0VTVrZbXTSCvVa/Kc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=eea4Ujqz62FT0vySYF9NSerT3eNneByUh/zKAeLpIGg4Giepjmq9LwSzCfe6pI7qg
+	 t5/s4JlSgEOLi80un2HKW38j+1E+FgpoT47E6KaSAvGc7r9e4vHqNxZbgSTmc3N9sv
+	 sXNxZJfRXPJf0JKot1UJgMa2c8WHnIFd7vunEKRf3bzpMJdv/SIbyJSivwKrY8aoEi
+	 xrNOfxWTWt0lUjB7a0L0lNUYbQbCwmZ1X1oTyPSB+uXLQDnLmaWgTreYIxFc2SCY4r
+	 e2hp8QV9mvBJMcf5MtCZjcWi1nO5gDjdz7/sXDF9dh9/gTutMr7owKEG5uAhHVcWYN
+	 l4nN4l3c5wWkA==
+Date: Wed, 8 Jul 2026 08:46:30 +0100
+From: Lorenzo Stoakes <ljs@kernel.org>
+To: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
+Cc: Jonathan Corbet <corbet@lwn.net>, 
+	Shuah Khan <skhan@linuxfoundation.org>, Eugen Hristev <ehristev@kernel.org>, 
+	Arnd Bergmann <arnd@arndb.de>, Dennis Zhou <dennis@kernel.org>, Tejun Heo <tj@kernel.org>, 
+	Christoph Lameter <cl@gentwo.org>, Andrew Morton <akpm@linux-foundation.org>, 
+	Thomas Gleixner <tglx@kernel.org>, Peter Zijlstra <peterz@infradead.org>, 
+	Anna-Maria Behnsen <anna-maria@linutronix.de>, Frederic Weisbecker <frederic@kernel.org>, 
+	John Stultz <jstultz@google.com>, Stephen Boyd <sboyd@kernel.org>, Kees Cook <kees@kernel.org>, 
+	Ingo Molnar <mingo@redhat.com>, Juri Lelli <juri.lelli@redhat.com>, 
+	Vincent Guittot <vincent.guittot@linaro.org>, Dietmar Eggemann <dietmar.eggemann@arm.com>, 
+	Steven Rostedt <rostedt@goodmis.org>, Ben Segall <bsegall@google.com>, Mel Gorman <mgorman@suse.de>, 
+	Valentin Schneider <vschneid@redhat.com>, K Prateek Nayak <kprateek.nayak@amd.com>, 
+	David Hildenbrand <david@kernel.org>, "Liam R. Howlett" <liam@infradead.org>, 
+	Vlastimil Babka <vbabka@kernel.org>, Mike Rapoport <rppt@kernel.org>, 
+	Suren Baghdasaryan <surenb@google.com>, Michal Hocko <mhocko@suse.com>, 
+	Brendan Jackman <jackmanb@google.com>, Johannes Weiner <hannes@cmpxchg.org>, Zi Yan <ziy@nvidia.com>, 
+	Chris Li <chrisl@kernel.org>, Kairui Song <kasong@tencent.com>, 
+	Kemeng Shi <shikemeng@huaweicloud.com>, Nhat Pham <nphamcs@gmail.com>, Baoquan He <baoquan.he@linux.dev>, 
+	Barry Song <baohua@kernel.org>, Youngjun Park <youngjun.park@lge.com>, 
+	Petr Mladek <pmladek@suse.com>, John Ogness <john.ogness@linutronix.de>, 
+	Sergey Senozhatsky <senozhatsky@chromium.org>, Bjorn Andersson <andersson@kernel.org>, 
+	Mathieu Poirier <mathieu.poirier@linaro.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Saravana Kannan <saravanak@kernel.org>, 
+	workflows@vger.kernel.org, linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arch@vger.kernel.org, linux-mm@kvack.org, linux-arm-msm@vger.kernel.org, 
+	linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 05/26] genirq/irqdesc: Annotate static information
+ into meminspect
+Message-ID: <ak3_cfHe8fkNfyud@lucifer>
+References: <20260708-meminspect-v3-v3-0-7aa5a0a74d5c@oss.qualcomm.com>
+ <20260708-meminspect-v3-v3-5-7aa5a0a74d5c@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260708-meminspect-v3-v3-5-7aa5a0a74d5c@oss.qualcomm.com>
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-3.16 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TO_DN_SOME(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-322596-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:sven@kernel.org,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-322597-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:mukesh.ojha@oss.qualcomm.com,m:corbet@lwn.net,m:skhan@linuxfoundation.org,m:ehristev@kernel.org,m:arnd@arndb.de,m:dennis@kernel.org,m:tj@kernel.org,m:cl@gentwo.org,m:akpm@linux-foundation.org,m:tglx@kernel.org,m:peterz@infradead.org,m:anna-maria@linutronix.de,m:frederic@kernel.org,m:jstultz@google.com,m:sboyd@kernel.org,m:kees@kernel.org,m:mingo@redhat.com,m:juri.lelli@redhat.com,m:vincent.guittot@linaro.org,m:dietmar.eggemann@arm.com,m:rostedt@goodmis.org,m:bsegall@google.com,m:mgorman@suse.de,m:vschneid@redhat.com,m:kprateek.nayak@amd.com,m:david@kernel.org,m:liam@infradead.org,m:vbabka@kernel.org,m:rppt@kernel.org,m:surenb@google.com,m:mhocko@suse.com,m:jackmanb@google.com,m:hannes@cmpxchg.org,m:ziy@nvidia.com,m:chrisl@kernel.org,m:kasong@tencent.com,m:shikemeng@huaweicloud.com,m:nphamcs@gmail.com,m:baoquan.he@linux.dev,m:baohua@kernel.org,m:youngjun.park@lge.com,m:pmladek@suse.com,m:john.ogness@linutronix.de,m:senozhatsky@chromium.org,m:andersson@kernel
+ .org,m:mathieu.poirier@linaro.org,m:konradybcio@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:saravanak@kernel.org,m:workflows@vger.kernel.org,m:linux-doc@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arch@vger.kernel.org,m:linux-mm@kvack.org,m:linux-arm-msm@vger.kernel.org,m:linux-remoteproc@vger.kernel.org,m:devicetree@vger.kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[ljs@kernel.org,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORWARDED(0.00)[lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
+	FREEMAIL_CC(0.00)[lwn.net,linuxfoundation.org,kernel.org,arndb.de,gentwo.org,linux-foundation.org,infradead.org,linutronix.de,google.com,redhat.com,linaro.org,arm.com,goodmis.org,suse.de,amd.com,suse.com,cmpxchg.org,nvidia.com,tencent.com,huaweicloud.com,gmail.com,linux.dev,lge.com,chromium.org,vger.kernel.org,kvack.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	RCPT_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCPT_COUNT_GT_50(0.00)[59];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[ljs@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ALIAS_RESOLVED(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,vger.kernel.org:from_smtp,lists.linux.dev:replyto,smtp.kernel.org:mid]
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,lucifer:mid,linaro.org:email,qualcomm.com:email,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 89AAD722D1F
+X-Rspamd-Queue-Id: E3000722D8A
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
-s) to consider:
-- [Critical] State leak and memory corruption during CPU suspend in the EFI=
- PSCI conduit
-- [High] Early PSCI call to set OSI mode fails and triggers WARN_ON_ONCE
---
+On Wed, Jul 08, 2026 at 11:01:44AM +0530, Mukesh Ojha wrote:
+> From: Eugen Hristev <ehristev@kernel.org>
+>
+> Annotate vital static information into inspection table:
+>  - total_nr_irqs
+>
+> Information on these annotated variables is stored in a dedicated
+> meminspect section.
+>
+> Signed-off-by: Eugen Hristev <eugen.hristev@linaro.org>
+> Signed-off-by: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
+> ---
+>  kernel/irq/irqdesc.c | 2 ++
+>  1 file changed, 2 insertions(+)
+>
+> diff --git a/kernel/irq/irqdesc.c b/kernel/irq/irqdesc.c
+> index 80ef4e27dcf4..4e58e7f5fc6c 100644
+> --- a/kernel/irq/irqdesc.c
+> +++ b/kernel/irq/irqdesc.c
+> @@ -16,6 +16,7 @@
+>  #include <linux/irqdomain.h>
+>  #include <linux/sysfs.h>
+>  #include <linux/string_choices.h>
+> +#include <linux/meminspect.h>
+>
+>  #include "internals.h"
+>
+> @@ -142,6 +143,7 @@ static void desc_set_defaults(unsigned int irq, struct irq_desc *desc, int node,
+>  }
+>
+>  unsigned int total_nr_irqs __read_mostly = NR_IRQS;
+> +MEMINSPECT_SIMPLE_ENTRY(total_nr_irqs);
 
---- Patch [5]: [PATCH RFC 5/6] firmware/psci: Add EFI runtime conduit ---
-commit faf63cfc78f9ee926dc0d221e33d99624e0fb74d
-Author: Sven Peter <sven@kernel.org>
+Err... this is effectively exporting this unexported variable to drivers?
 
-firmware/psci: Add EFI runtime conduit
+This is massively open to abuse no? A driver could now manipulate this value if
+it wanted to?
 
-This patch adds a new "efi" conduit for PSCI firmware calls, routing them
-through an EFI runtime service. This is needed for Apple Silicon where the
-kernel shares the highest exception level with the firmware. Early CPU
-bring-up queries are answered directly from a firmware-provided table before
-EFI runtime services are available.
+Why would we want internal state like this exposed to drivers/firmware? This
+isn't something you can even do right now without kernel debug symbols.
 
-> diff --git a/drivers/firmware/psci/psci.c b/drivers/firmware/psci/psci.c
-> index e73bae6cb23a3..af022bf2cb9f2 100644
-> --- a/drivers/firmware/psci/psci.c
-> +++ b/drivers/firmware/psci/psci.c
-> @@ -131,6 +133,63 @@ __invoke_psci_fn_smc(unsigned long function_id,
-[ ... ]
-> +static unsigned long __invoke_psci_fn_efi(unsigned long function_id,
-> +					  unsigned long arg0,
-> +					  unsigned long arg1,
-> +					  unsigned long arg2)
-> +{
-> +	u32 fn;
-> +
-> +	/* These are called before EFI runtime services are available */
-> +	switch (function_id) {
-> +	case PSCI_0_2_FN_PSCI_VERSION:
-> +		return efi_psci.version;
-> +	case PSCI_0_2_FN_MIGRATE_INFO_TYPE:
-> +		return PSCI_0_2_TOS_MP;
-> +	case PSCI_1_0_FN_PSCI_FEATURES:
-> +		if (!efi_psci_fn_valid(arg0))
-> +			return PSCI_RET_NOT_SUPPORTED;
-> +		fn =3D arg0 & 0xff;
-> +		if (fn >=3D efi_psci.num_features || fn >=3D EFI_PSCI_MAX_FN)
-> +			return PSCI_RET_NOT_SUPPORTED;
-> +		return efi_psci.features[fn];
-> +	}
-> +
-> +	if (!efi_psci_fn_valid(function_id))
-> +		return PSCI_RET_NOT_SUPPORTED;
-> +
-> +	if (WARN_ON_ONCE(!efi_psci.psci_handler))
-> +		return PSCI_RET_NOT_SUPPORTED;
-> +	if (WARN_ON_ONCE(!efi_enabled(EFI_RUNTIME_SERVICES)))
-> +		return PSCI_RET_NOT_SUPPORTED;
+I am getting ever more convinced that this resembles a backdoor EXPORT_SYMBOLS()
+but now much worse because you get a VA and a PA and more information...!
 
-[Severity: High]
-Does this early call switch statement need to handle
-PSCI_1_0_FN_SET_SUSPEND_MODE?
+>
+>  /**
+>   * irq_get_nr_irqs() - Number of interrupts supported by the system.
+>
+> --
+> 2.53.0
+>
 
-During early boot, psci_1_0_init() can invoke psci_set_osi_mode(false), whi=
-ch
-calls PSCI_1_0_FN_SET_SUSPEND_MODE:
-
-setup_arch() -> psci_dt_init() -> psci_1_0_init()
-    psci_set_osi_mode(false);
-
-Since this happens before efi_enabled(EFI_RUNTIME_SERVICES) is true, will t=
-his
-fall through and trigger the WARN_ON_ONCE above, failing to set the suspend
-mode?
-
-> +
-> +	return arm64_efi_psci_call(function_id, arg0, arg1, arg2);
-> +}
-
-[Severity: Critical]
-Is it safe to call arm64_efi_psci_call() during CPU suspend?
-
-When cpu_suspend() is called to enter a deep sleep state, it eventually inv=
-okes
-arm64_efi_psci_call(), which modifies thread_info state:
-
-arch/arm64/kernel/efi.c:arm64_efi_psci_call() {
-	...
-	efi_virtmap_load();
-	uaccess_ttbr0_enable();
-	post_ttbr_update_workaround();
-
-	ret =3D efi_psci.psci_handler(function_id, arg0, arg1, arg2);
-	...
-}
-
-If the CPU powers down, execution doesn't return directly from the EFI hand=
-ler.
-Instead, it resumes at the hardware reset vector, calls cpu_resume(), resto=
-res
-context, and returns to the caller of cpu_suspend().
-
-Because this bypasses the cleanup in arm64_efi_psci_call() (like
-efi_virtmap_unload()), could this leak the preempt_count increment and leave
-thread_info->ttbr0 pointing to the EFI runtime page tables when returning to
-userspace?
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260708-efi-psci-v=
-1-0-9efb3abf0e4c@kernel.org?part=3D5
+Thanks, Lorenzo
 
