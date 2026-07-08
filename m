@@ -1,86 +1,86 @@
-Return-Path: <devicetree+bounces-322436-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-322440-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id DYE7DiCeTWrc2wEAu9opvQ
-	(envelope-from <devicetree+bounces-322436-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 02:47:28 +0200
+	id QKAWGamdTWrK2wEAu9opvQ
+	(envelope-from <devicetree+bounces-322440-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 02:45:29 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB6CD720B1D
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 02:47:27 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id D651B720AE6
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 02:45:28 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=linaro.org header.s=google header.b=zVMSwW51;
+	dkim=pass header.d=linaro.org header.s=google header.b=OEJl86Gw;
 	dmarc=pass (policy=none) header.from=linaro.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322436-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-322436-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322440-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-322440-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C95D53089E68
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 00:44:36 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id B9717303D351
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 00:44:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9AE1A368D43;
-	Wed,  8 Jul 2026 00:44:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A39036920F;
+	Wed,  8 Jul 2026 00:44:43 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9371369D42
-	for <devicetree@vger.kernel.org>; Wed,  8 Jul 2026 00:44:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0EAFA36D9F9
+	for <devicetree@vger.kernel.org>; Wed,  8 Jul 2026 00:44:33 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783471476; cv=none; b=g2bCFPLKNd6zZafjCLpotoHrakamNsFNqbKBum2Qmt1mDnswDrk/htl0jXU/quqkHwlzNRt2JMpprhpDctWZKvBH44JJ9XcZoHDfnMP0e7ZnMDh7WPsKnw3GT5JHNy0ii3RMni2oNeYRp/2WrvrQfJjNl22UAm0regVID1A4XDg=
+	t=1783471483; cv=none; b=iQ6Y+1e88lOErjbfZADYorx85iTF9ypJALUjlCe3fsIOjyqZtIO/ZCGhPhVYSE7piz0QWmpKdlDir3iFd9jcyqQCpJoi+c+FrP0PrnbX6d86jSRHTyAQUrkGwp4/CwefNgQXHv8Zz6y+PCG/JpZGGEX0ExCrikD9V8vN06BD3fE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783471476; c=relaxed/simple;
-	bh=3nogGGrXBxCDLwqT1oTOKrWJjZFhISOK5ofoQzb8Ums=;
+	s=arc-20240116; t=1783471483; c=relaxed/simple;
+	bh=DaFrKuVYLeTZ90L4aHjimFDoXaOk4B0/5sh9EcwRuPU=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Ri48CEa/Z0n8iszLPlFB9/gmGpoQqJQixsZwLI1tUeM5yy3XyhjZoCPmjhHfTWTMC0xRi9cKhVwpiZdDSYVTjnHCejzKOVSE98ibC9RtcqsG277LHk6kv/0OtZpfKYNh9NccM1vADdJ4LjNVdggUa91ScCj/P0uTqX5QtATg1+8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=zVMSwW51; arc=none smtp.client-ip=209.85.128.46
-Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-493b77b150aso580905e9.2
-        for <devicetree@vger.kernel.org>; Tue, 07 Jul 2026 17:44:31 -0700 (PDT)
+	 In-Reply-To:To:Cc; b=rhOhwzpUaajzegjwJtCCF5LxynAs+Uk8mn5LyXNce5QUlHracYAOaFsG//6xPWKvP0xPZMvBprWqXcqFkFPL1E1da+ppuPHyu75Fmmy+gxXpl2c3SF12Y18T3YL5fuVGJEVaGzhdWoAc3bDnEqpj1lmLdzzRcLbLhZP72anNjQk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=OEJl86Gw; arc=none smtp.client-ip=209.85.221.53
+Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-47c6e9a694bso56690f8f.1
+        for <devicetree@vger.kernel.org>; Tue, 07 Jul 2026 17:44:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1783471470; x=1784076270; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1783471472; x=1784076272; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=JXuluUeSrIOh59TquJfEnMrNfJnCfonDeL5RxJtL298=;
-        b=zVMSwW51pC3ZhMSSPEYrmPZ3Liuw3RIZS/6JCB4J2rU9xpJIBEZDDZu+pyU+Rujiub
-         rbKjuCBVo6wp+6QUp/Ul8MXpOFVnEOMQqaUWzzfO3bwOjGfUD1aqaya810q9/wpY5aHs
-         OYF3vNOUyNh+4iLrR8iBWtimYvBkZWaKgVLfjN+BOxzxQpRI2Y6mkRkp6BOdCZR/PThF
-         Qpmi/BKYVmYpemsbDAV8zHJCtUEr5+nHYVKuyFTWV2tIVuR+4TwuIP0RfOlrCyIHqot7
-         QD4nSUt93d3VYlJeSq5VWUuHMYc+CRvFUANECdhlpGvr2SiHhXGQQIlIRKQpcL9Gv1PG
-         28Ng==
+        bh=4ewU3w7kavvWMe5j3eglerWWyjL7M+ZhO82+OFZFUnU=;
+        b=OEJl86GwB3lWKqJHIR6zIxdkHFXx67/BcSK0LEaYBbubkep27+AQ9OoWH6cbtlBaTG
+         rnb+5hHiDxoV+1219uSgIYOLIpcuRdl3DlOLum7g/6k0Uqps/tEk6PQg7uLKtXE3z57C
+         ih2DqWJSFUop3+Xxt545mfygN8GmvDuf3JulICw9o8vccOw2xXo525fVJwyu51z6DON1
+         1rsTyC3pV7/Ou+0Vry/em5fRAz0lXNWSUd9nX0dPaC4noGAH5FQUjXeXTwC0WEJV4WJg
+         kCEOC2vdFEgfc+EQM1zwdQtBeNpCfM2BorKrSyD6gtLOIyoqBNlxsZ4CJicgCDTsNx/F
+         xOuw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783471470; x=1784076270;
+        d=1e100.net; s=20251104; t=1783471472; x=1784076272;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=JXuluUeSrIOh59TquJfEnMrNfJnCfonDeL5RxJtL298=;
-        b=N/cBK//K4dF3pFXdVwPi1aa64BqiDdKXdkSqQgeazgXW36mlTkBhziFwdeIiyugMX6
-         XM2kTofwEHLu8DAiZPLNZXqUKZIUHeRChsEfIOUsQ7vvwTpxk2IWcKdhWlSf9a+7GBp3
-         Qgx/5chbSoVxlzfWqNRwrJ8EEUPoxxuFL0v2P6FSpaCF3McsdPOt1ZLjaPQHCrBrLfv2
-         abJk1vCurmBUFsw9izSD+JRatTHjMsCaFtKAuHCWFLxe1pINcxj6/VjEHbR9/GdvWbrq
-         P/ltyHaCF9wxvbpMsZOJ1aaM0uWQT8WiY2ni8H05GtaLfLaD1o9W8Bqdat1nxMa8jR5D
-         NvcQ==
-X-Forwarded-Encrypted: i=1; AHgh+Rrc6qm/T1E6rtEdbJoogdU6o68zPZEpiOUPK5yEzJ0glBFkBG6SrW3jXxR3CfF3H6grUpEy1yYOHRLW@vger.kernel.org
-X-Gm-Message-State: AOJu0YyfPfg3eZk/FwZqWC2pRRqDOU/R7CXYpwNYFAomRxtTHqkraAbY
-	jidFrnEs/VKiVWduz7bSanUI16+8Vne1GuTcLsnxKmHIET0NDlaUPZxkDqXZ5SCQDeQ=
-X-Gm-Gg: AfdE7cniA4oxjnb3cX7Kye7qVKhMT8tuKnYXCfZYzfFEBZPx2hCeTvlCvAQhogzEyBO
-	8CEJ40Q+WcB0UWXDvSSkk3WDpLvFZmFw7WfYISVCc9k+cfUqosmGE7dPFydXvo5r/BpneTDeL0t
-	bDnRmKmbgcCjlia5Dj9RZ8D1F3l5/2oWRw7tsAgKtNdKaVS9MGTzNWjyfs9NNQFtnb3Jr28eBJy
-	QBzoRu7n0oNvYnBCg+zxYZfR/oYGimkuSszBPWSHlNtezjVgqdo3VMzGQV0BGh63W0tnrmDcY+P
-	61cVE2vLn+47OD0NTPPP5m23PwUx9ZpSWkzct0IcyVaYSwMni1caU1WPskM2hfR2hAYttiG6Quf
-	RgTaAU+ECry3ChfPbD7KBQRQGWUzPXfQF4s5Vwx9Q8/N+pl53CzsgZo7tbOiOXLRbWbem4HcvxB
-	lXgi414cSyYN3g7Szu9wMmOTks2unNTa1NqA==
-X-Received: by 2002:a05:600c:c8a:b0:493:c3f9:65a2 with SMTP id 5b1f17b1804b1-493e688cf81mr1630345e9.5.1783471470092;
-        Tue, 07 Jul 2026 17:44:30 -0700 (PDT)
+        bh=4ewU3w7kavvWMe5j3eglerWWyjL7M+ZhO82+OFZFUnU=;
+        b=eKHNa6/2OO3pVf5/Vhp9xYkinJBbSpwkl0rb5txjqm7/Dw2aIjzlLwPOyJA70mBkEr
+         hcur+wVfaBhYbs16VZjClUYYLoctAwQkMpcssCB9Hz/nnTV1lAx1vSiVsM5buQ84keoV
+         n0ZAIiyAflBL0kAQXLAjQSJwd87yrsLlOwF7a3+TqM6JFi203OdvgZmGl+W4bcsgOdon
+         YLpzmtFpvWHd00sJeNPtCR5NmSp2n2tOEJi1XU5vkmiSUAVtzRtxM/OHC6bAwa00C1qF
+         zZtUVmWz5CBp40d0+MHOltJqHz6mGkHjY4LugH0Jf06uXFasKFyUmz3c48+GRIBvcmlr
+         rFMQ==
+X-Forwarded-Encrypted: i=1; AHgh+RpY1bDgyMBboTitExIq+8cLh7LqaDFjVhXusxje4ffnapsal8CYtDKEFwAHH2dzIyybKgDNoEVSftlm@vger.kernel.org
+X-Gm-Message-State: AOJu0YwrMXAdppp6Bj2hPQTHowGfP61L1YOBlKnFoidOaqxwpcHruZLv
+	dBWuBj3zBSQtM1snKAhFcIGgKMF9ZdYFwcHAsV9bQwgqGJmbHkD6k/gbBtuiP7iTZHE=
+X-Gm-Gg: AfdE7cnaKt3kOLWj4SjMc8c9Pb/5Rr6CN/2+/vnGWHUoO9Hk6FNkERS/93Zn1rBkcDI
+	HOxWDS6L8Sukub+SCOCXG+ILy0jIGwrhWKbVfXxuFr1NSCAAvVPUC3U/AgC4ZcCBcC+e9mFsh7A
+	Yh5AqUu8jRcBYTKbADyGV4IL/iOODUO2USsKecyeBiLu8PiHBm1RRGuT9Gk0zU5O397DOYCk9k8
+	z7SNpVgKga+SE+KioGBV661qYzoaI9gfmh20yMjhvCkqx72G0JWtPfZHCcc45Ryiy8uD5VRb+hl
+	SIRXSgk3DqbNIqIJzqfjnD5ejxmZ8k0ZT95z2JWouaYk9aHYURiheOe/rWIeipJbF1odLT7b1va
+	6tNX7BR2YkUvtmvitbuy6l+aPY931UIa/PS/HLLAfRPb9Yx4RfE3QdF7UBJ9FYMbI4SPVLJkVD2
+	ekD3kMrH80lOU3WEujuMTlvdM=
+X-Received: by 2002:a05:600c:8217:b0:492:1eed:3e67 with SMTP id 5b1f17b1804b1-493e6899b71mr1701135e9.26.1783471471767;
+        Tue, 07 Jul 2026 17:44:31 -0700 (PDT)
 Received: from [192.168.0.35] ([109.77.92.41])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-493e0fc1348sm99727985e9.14.2026.07.07.17.44.29
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-493e0fc1348sm99727985e9.14.2026.07.07.17.44.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Jul 2026 17:44:29 -0700 (PDT)
+        Tue, 07 Jul 2026 17:44:31 -0700 (PDT)
 From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Date: Wed, 08 Jul 2026 01:44:14 +0100
-Subject: [PATCH v4 07/11] arm64: dts: qcom: x1e80100-t14s: Add on ov02c10
- RGB sensor on CSIPHY4
+Date: Wed, 08 Jul 2026 01:44:15 +0100
+Subject: [PATCH v4 08/11] arm64: dts: qcom: x1e80100-lenovo-yoga-slim7x:
+ Add pm8010 camera PMIC with voltage levels for IR and RGB camera
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -89,7 +89,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260708-x1e-camss-csi2-phy-dtsi-v4-7-572348ad1b2a@linaro.org>
+Message-Id: <20260708-x1e-camss-csi2-phy-dtsi-v4-8-572348ad1b2a@linaro.org>
 References: <20260708-x1e-camss-csi2-phy-dtsi-v4-0-572348ad1b2a@linaro.org>
 In-Reply-To: <20260708-x1e-camss-csi2-phy-dtsi-v4-0-572348ad1b2a@linaro.org>
 To: Bjorn Andersson <andersson@kernel.org>, 
@@ -99,28 +99,28 @@ To: Bjorn Andersson <andersson@kernel.org>,
 Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
  linux-kernel@vger.kernel.org, Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2936;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2225;
  i=bryan.odonoghue@linaro.org; h=from:subject:message-id;
- bh=3nogGGrXBxCDLwqT1oTOKrWJjZFhISOK5ofoQzb8Ums=;
- b=owEBbQKS/ZANAwAKASJxO7Ohjcg6AcsmYgBqTZ1dPNoG6MAh/VrvPGtPZb3t/6dMtULpdp/5H
- i8/M4ZKwkCJAjMEAAEKAB0WIQTmk/sqq6Nt4Rerb7QicTuzoY3IOgUCak2dXQAKCRAicTuzoY3I
- OktzEACZuE6zpAkWqjjd4PvoPB0eE/dUAVl8Q0tKn+nBtvhPu55S6i5juwLs6uX0cvy8C+PBnNR
- BNzOs+BeWAa1iTB8E2KVIUmfKFgNmVizY83TE9otWTK6k6bg9fXQGTaTXYLG/qkoHIGE+aHYntv
- kwb53Lvf/yDyHMRmmo6+QPQioyJnYF02oiSvdTAU/kFzw4nvO0GZgZS6cM6RSkvTa80inpvQPrw
- Z200k70UgDHmGHxh5tZdUmZyQmAcVyRRwBXSHsG2GrOQgvzaLW3SN8V+uON6I3+3I/MX0KLMkVG
- hu2159g6DtOQEbTkOowBZOOuVVbJDPL8johOPyE3+Id+O02M2aaQ9xgNXDtkBXHHG9bJGy3AS/i
- ARRHuFt7HOP4AzOoboR4mfgwbEJhKsYSZs+V9sCXMZybyz3MT/Tbx4tvW/qIzyiEOAVUZn5qaJW
- 47kV4wItnTVusMW9G126OmnOKuEL76FMQBXyuiedXKqCVGA/V7dOVlf4u3xRRmoopfgpH2/c2Bv
- /FUt4wd72YiKvKYSeOfFh+QcHSjiqAik5fFvZY85VJMkk+gcoYK76+xXvLOY7ss6DrbQU1QYGHD
- YiuWzDwsP8viP+bqaXT+3eaIqIg4egmOC4ZkqmcDP/DiUNNpUQlCmN2vPMhlbRg6bHDn3iw0dKL
- 2vSBzz5dfTm3C+Q==
+ bh=DaFrKuVYLeTZ90L4aHjimFDoXaOk4B0/5sh9EcwRuPU=;
+ b=owEBbQKS/ZANAwAKASJxO7Ohjcg6AcsmYgBqTZ1exr++LCv1GrmaAn9ijiOPb21l2ezSBx2/a
+ zM1+lXID/iJAjMEAAEKAB0WIQTmk/sqq6Nt4Rerb7QicTuzoY3IOgUCak2dXgAKCRAicTuzoY3I
+ OgLxEACeaM2HCHavnAn+PH6R/6l0W26KCxfIe9pMqZsb81DWTgieLvsdFzwgH7G0u7I2PcXqnbj
+ n4YB1NY9Y+X3wHtoJLoU5C2f7Qrgs8HxcbzPHwvL0TrXSvgeaZE6XGyYgnIE87OW26AB3Rz794B
+ TBBIDdqVB2ut7fDEhGX4NMypO7AEghOb8d2Pf+OMji9rsYn1h0vz6AmMcnsntKbqs3tWzZQUqNS
+ i8e36fXTWk0Q/OItSTF7fm6SCWz4s5EXiAgMCWpFFAlx23BNPnp31SDZhEqCaVoQcWpVUEUxvT8
+ mHlBEpKeTltpc6/Yxe3X8pIOc8/TiST7bU1qXuM40wbWqOJSO4xsdXI57P/zewta+mTY5ITSLWy
+ jvVtA2xq6Ji8P3ltAw8UX54lWSdpNGhXY+aYSmtfhWmcAB7jNKGKBbTf/xPWk4Yllj9Lxn06Xnm
+ PXy1nyYGzuK0C1KA4tXPKvi14P1d6g05sen5MA0Bi670YAKzk5mMQK/GelgkvbF5cqE5wsZc8dR
+ 5pwqgF6MF23Dp8jMgrqmaYZ+BODeHQWfspcsBtWeTpoXCdGiRstCO/qSelN0rgEX+2zjKAmLtKG
+ Dj+4sK+Cg7Vr1zvk1vQ052YiClSehLsR+75PaP3yGLtfnD5uheNsFcDGzfjMdbqU/SgNl8uHUTt
+ OxDhmcMgWLl86pA==
 X-Developer-Key: i=bryan.odonoghue@linaro.org; a=openpgp;
  fpr=E693FB2AABA36DE117AB6FB422713BB3A18DC83A
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
@@ -128,7 +128,7 @@ X-Spamd-Result: default: False [-2.16 / 15.00];
 	MIME_TRACE(0.00)[0:+];
 	DKIM_TRACE(0.00)[linaro.org:+];
 	FORWARDED(0.00)[lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-322436-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-322440-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_SENDER(0.00)[bryan.odonoghue@linaro.org,devicetree@vger.kernel.org];
@@ -141,147 +141,88 @@ X-Spamd-Result: default: False [-2.16 / 15.00];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[bryan.odonoghue@linaro.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	ALIAS_RESOLVED(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCPT_COUNT_SEVEN(0.00)[9];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,linaro.org:from_mime,linaro.org:email,linaro.org:mid,linaro.org:dkim,vger.kernel.org:from_smtp]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,linaro.org:from_mime,linaro.org:email,linaro.org:mid,linaro.org:dkim,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: CB6CD720B1D
+X-Rspamd-Queue-Id: D651B720AE6
 
-Switch on the ov02c10 RGB sensor on CSIPHY4.
+Add voltage regulators-8 for Camera on slim7x including:
+
+- vreg_l1m_1p2
+- vreg_l3m_1p8
 
 Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 ---
- .../dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi    | 99 ++++++++++++++++++++++
- 1 file changed, 99 insertions(+)
+ .../boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts  | 51 ++++++++++++++++++++++
+ 1 file changed, 51 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi b/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi
-index 70e50ccf67677..c5c7bf722a45e 100644
---- a/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi
-+++ b/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi
-@@ -9,6 +9,7 @@
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/input/gpio-keys.h>
- #include <dt-bindings/input/input.h>
-+#include <dt-bindings/phy/phy.h>
- #include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
- #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
- 
-@@ -866,6 +867,88 @@ vreg_l7m_2p8: ldo7 {
- 
+diff --git a/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts b/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts
+index beb1475d7fa0c..0a8275d501f85 100644
+--- a/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts
++++ b/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts
+@@ -795,6 +795,57 @@ vreg_l3j_0p8: ldo3 {
+ 			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+ 		};
+ 	};
++
++	regulators-8 {
++		compatible = "qcom,pm8010-rpmh-regulators";
++		qcom,pmic-id = "m";
++
++		vdd-l1-l2-supply = <&vreg_s5j_1p2>;
++		vdd-l3-l4-supply = <&vreg_s4c_1p8>;
++		vdd-l7-supply = <&vreg_bob1>;
++
++		vreg_l1m_1p2: ldo1 {
++			regulator-name = "vreg_l1m_1p2";
++			regulator-min-microvolt = <1200000>;
++			regulator-max-microvolt = <1260000>;
++			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
++		};
++
++		vreg_l2m_1p2: ldo2 {
++			regulator-name = "vreg_l2m_1p2";
++			regulator-min-microvolt = <1200000>;
++			regulator-max-microvolt = <1260000>;
++			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
++		};
++
++		vreg_l3m_1p8: ldo3 {
++			regulator-name = "vreg_l3m_1p8";
++			regulator-min-microvolt = <1800000>;
++			regulator-max-microvolt = <1900000>;
++			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
++		};
++
++		vreg_l4m_1p8: ldo4 {
++			regulator-name = "vreg_l4m_1p8";
++			regulator-min-microvolt = <1800000>;
++			regulator-max-microvolt = <1900000>;
++			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
++		};
++
++		vreg_l5m_2p8: ldo5 {
++			regulator-name = "vreg_l5m_2p8";
++			regulator-min-microvolt = <2800000>;
++			regulator-max-microvolt = <3072000>;
++			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
++		};
++
++		vreg_l7m_2p8: ldo7 {
++			regulator-name = "vreg_l7m_2p8";
++			regulator-min-microvolt = <2800000>;
++			regulator-max-microvolt = <3072000>;
++			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
++		};
++	};
  };
  
-+&camss {
-+	status = "okay";
-+
-+	ports {
-+		/*
-+		 * port0 => csiphy0
-+		 * port1 => csiphy1
-+		 * port2 => csiphy2
-+		 * port3 => csiphy4
-+		 */
-+		port@3 {
-+			camss_csiphy4_inep: endpoint@0 {
-+				data-lanes = <0 1>;
-+				remote-endpoint = <&csiphy4_out_ep>;
-+			};
-+		};
-+	};
-+};
-+
-+&cci1 {
-+	status = "okay";
-+};
-+
-+&cci1_i2c1 {
-+	camera@36 {
-+		compatible = "ovti,ov02c10";
-+		reg = <0x36>;
-+
-+		reset-gpios = <&tlmm 237 GPIO_ACTIVE_LOW>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&cam_rgb_default>;
-+
-+		clocks = <&camcc CAM_CC_MCLK4_CLK>;
-+		assigned-clocks = <&camcc CAM_CC_MCLK4_CLK>;
-+		assigned-clock-rates = <19200000>;
-+
-+		orientation = <0>; /* front facing */
-+
-+		avdd-supply = <&vreg_l7m_2p8>;
-+		dvdd-supply = <&vreg_l2m_1p2>;
-+		dovdd-supply = <&vreg_l4m_1p8>;
-+
-+		port {
-+			ov02c10_ep: endpoint {
-+				data-lanes = <1 2>;
-+				link-frequencies = /bits/ 64 <400000000>;
-+				remote-endpoint = <&csiphy4_in_ep>;
-+			};
-+		};
-+	};
-+};
-+
-+&csiphy4 {
-+	vdda-0p8-supply = <&vreg_l2c_0p8>;
-+	vdda-1p2-supply = <&vreg_l1c_1p2>;
-+
-+	status = "okay";
-+
-+	ports {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		port@0 {
-+			reg = <0>;
-+
-+			csiphy4_in_ep: endpoint {
-+				data-lanes = <0 1>;
-+				clock-lanes = <7>;
-+				remote-endpoint = <&ov02c10_ep>;
-+			};
-+		};
-+
-+		port@1 {
-+			reg = <1>;
-+
-+			csiphy4_out_ep: endpoint {
-+				remote-endpoint = <&camss_csiphy4_inep>;
-+			};
-+		};
-+	};
-+};
-+
  &gpu {
- 	status = "okay";
- };
-@@ -1447,6 +1530,22 @@ &tlmm {
- 			       <72 2>, /* Secure EC I2C connection (?) */
- 			       <238 1>; /* UFS Reset */
- 
-+	cam_rgb_default: cam-rgb-default-state {
-+		mclk-pins {
-+			pins = "gpio100";
-+			function = "cam_aon";
-+			drive-strength = <16>;
-+			bias-disable;
-+		};
-+
-+		reset-n-pins {
-+			pins = "gpio237";
-+			function = "gpio";
-+			drive-strength = <2>;
-+			bias-disable;
-+		};
-+	};
-+
- 	ec_int_n_default: ec-int-n-state {
- 		pins = "gpio66";
- 		function = "gpio";
 
 -- 
 2.54.0
