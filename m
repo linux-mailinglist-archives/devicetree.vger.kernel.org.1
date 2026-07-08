@@ -1,58 +1,57 @@
-Return-Path: <devicetree+bounces-322551-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-322555-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id Uk5QOZP6TWpwBAIAu9opvQ
-	(envelope-from <devicetree+bounces-322551-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 09:21:55 +0200
+	id GC1JL8L6TWp/BAIAu9opvQ
+	(envelope-from <devicetree+bounces-322555-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 09:22:42 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA74672293F
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 09:21:54 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 59BCB72296D
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 09:22:42 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20201202 header.b=EkA2XLCe;
+	dkim=pass header.d=kernel.org header.s=k20201202 header.b=cUXRdBJD;
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322551-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-322551-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322555-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-322555-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 66E52303FFE5
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 07:16:06 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id F3AF7304DFC5
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 07:16:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31C413F786F;
-	Wed,  8 Jul 2026 07:16:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74D583F6C5E;
+	Wed,  8 Jul 2026 07:16:09 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D72503F54DD;
-	Wed,  8 Jul 2026 07:16:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A02633F6C26;
+	Wed,  8 Jul 2026 07:16:02 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783494962; cv=none; b=a28Y2uNbxZy6QRNh3ch9JLZZiNw+UmIXif0iN31+JajZnUodDmp+mWpqR2IQPRG9ZvxNBl7Ywu96eAHiM0juXRfWOTUSyGDmvSAKPmM5zD/hNu4+euenESuoks1ZqogdHz5KucIlaBLvHnIv5ic1l1pXJl6GCVG/Y2AKefk5tw8=
+	t=1783494962; cv=none; b=Fhl1l4VxpWF3jZLKND8c+bmcVtXCz6cw8jngSPCfs8bL1wsVvgGE0CG8cfmvnt8cwyzpmNKCUA8Na9U3KqL0n1rNO9UVpEQTdf7BJw5vB6zBOYos3YJLBjdZ84ClsdWeqXGtc4oBJSDWbXUS/yg7q8oClHnZFI3PXci7mr6cf6o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1783494962; c=relaxed/simple;
-	bh=/ejZ9kEPzd3EuCno7ps+9xBx6LGHpjeL3VowrnL2/78=;
+	bh=Inmjc7fy2KHCPtWNbqaEGcDOCoTWrKNk24udNuAiX/Q=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=uBKJroeev+azTK3qnGYKBVwZJ8R0PLVo3Sutew7za+QCDWbXPjMIo1HiPBFJwutcTKq4ItMJ6L1gLFwG7nuQwDjuuV24EEktkJCMYK3cXGdoh2h0cmuA9/0wjCHr7lhgwjSSFvdMDzzzHRgy7G+XrzY4PiCpqql16yXd+Z+NPKE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EkA2XLCe; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id CD0BFC2BCFB;
+	 In-Reply-To:To:Cc; b=k8bFLlgiu+hYNhru631npiD0NsybvBd0t0VUz4L/+iDrpct0gY7HjkRlH2fEQKSqUDZmORtvq7Z/yzngyibd+TEg1nutAZYFhBw3KkBDMZuSDwdlJ9mIu+NE3WCzEeJJI0RmTKs6dUSCzMFZPZi1AYlAAWkXIN7/CxprbrTFSPQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cUXRdBJD; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id D83AAC2BD00;
 	Wed,  8 Jul 2026 07:16:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1783494960;
-	bh=/ejZ9kEPzd3EuCno7ps+9xBx6LGHpjeL3VowrnL2/78=;
+	bh=Inmjc7fy2KHCPtWNbqaEGcDOCoTWrKNk24udNuAiX/Q=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=EkA2XLCetEn+0X3MLOpEK0EDgDo4DCBZKaerH//y9NGxL+gOzpZ5yDGvIqJY40geb
-	 QIStN89D9V9eiOsbg8lhNBXoMcB/vmzUi3vH3IKoJp1G1duTUiFEm4lYkvIRNzJoXA
-	 +9cXElE6H+m339LtH8vm0Xp8FdoF43kGu5UVaUkofZ9mSQYO44YcRxOsGB9gtwrS05
-	 6yInfa0rxgwvXSvyXJIVI8s0eioZ5l6jTjpXpAooxRjmJOwNBhIa8lamZdtHJm5IqV
-	 UHUorOMEs5ZInv4vgyu65aw7g90+h+FKDi058XukEXNhIAF3dzM8Gr2nqJSzBrT0EG
-	 gBbUM7aG6pOdg==
+	b=cUXRdBJDI0E/Xw2KvOlJn6fUGNMuJCUeq+AGhCs64w5A2fjSeelXSGeh9vK4qbS8Y
+	 5bMuFOFH9IcXkDYjTWvMOvFPUaVSpMQfAFtKTl4dittqQO3tQeCZLWcB2PENb90bpe
+	 P6t3+me4dtrkb6DkEZCcZY889nqoYBDOpgwIEdX3heC2jvava5SWZh24siX+kRO2rI
+	 22Pv24C18XVq+5ifp7zKeZ5n7NQJn3cO10ibAUpEDOk0T6oht7wzlhKiy9MB1faFU8
+	 kE27B0BYcFmAiDUjIiMGVJMSvjgwzxFl9RL2iTukV4g4C9c7DB3rNN6TeEqdsglFe7
+	 n6z95XxnP5b6Q==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B616BC44503;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C6F06C43458;
 	Wed,  8 Jul 2026 07:16:00 +0000 (UTC)
 From: Sven Peter <sven@kernel.org>
-Date: Wed, 08 Jul 2026 09:15:40 +0200
-Subject: [PATCH RFC 4/6] arm64/efi: Honor EFI_MEMORY_ISA_MASK for
- Device-nGnRnE vs -nGnRE
+Date: Wed, 08 Jul 2026 09:15:41 +0200
+Subject: [PATCH RFC 5/6] firmware/psci: Add EFI runtime conduit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,7 +60,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260708-efi-psci-v1-4-9efb3abf0e4c@kernel.org>
+Message-Id: <20260708-efi-psci-v1-5-9efb3abf0e4c@kernel.org>
 References: <20260708-efi-psci-v1-0-9efb3abf0e4c@kernel.org>
 In-Reply-To: <20260708-efi-psci-v1-0-9efb3abf0e4c@kernel.org>
 To: Mark Rutland <mark.rutland@arm.com>, 
@@ -76,13 +75,13 @@ Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org, linux-efi@vger.kernel.org, 
  asahi@lists.linux.dev, Sven Peter <sven@kernel.org>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1905; i=sven@kernel.org;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=4276; i=sven@kernel.org;
  h=from:subject:message-id;
- bh=/ejZ9kEPzd3EuCno7ps+9xBx6LGHpjeL3VowrnL2/78=;
- b=owGbwMvMwCXmIlirolUq95LxtFoSQ5bvT20VobN/mkSjXybcUAyb9+Z88s/JF8WfOJrfK1Ge9
- T/5kZhWRykLgxgXg6yYIsv2/famTx6+EVy66dJ7mDmsTCBDGLg4BWAiR68wMsw/Pqu0ZI/KjOyn
- DLbql2JYL5V908i9WRd1+mWnzWJHcUlGhqttB8R9OEyec165K7C9z9xZ4uftR93tR4XKbs1h4mX
- 6wQ4A
+ bh=Inmjc7fy2KHCPtWNbqaEGcDOCoTWrKNk24udNuAiX/Q=;
+ b=owGbwMvMwCXmIlirolUq95LxtFoSQ5bvT23luh6jNRmec1i/zfwgLh37Z3XochFpTrvb7ybPi
+ f/qH7Ggo5SFQYyLQVZMkWX7fnvTJw/fCC7ddOk9zBxWJpAhDFycAjARbx+G/5UnObc9rFeO2jJR
+ LuD0u3VzzCY1Of3eHFblG+C9UbP0wk1Ghna5/cuSDr+zmtEQMcVq4jaHp98DlQXLDh5mrt+22+Y
+ TLzsA
 X-Developer-Key: i=sven@kernel.org; a=openpgp;
  fpr=A1E3E34A2B3C820DBC4955E5993B08092F131F93
 X-Endpoint-Received: by B4 Relay for sven@kernel.org/default with
@@ -94,12 +93,12 @@ X-Spamd-Result: default: False [-3.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-322551-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-322555-lists,devicetree=lfdr.de];
 	RCPT_COUNT_TWELVE(0.00)[18];
 	FORGED_SENDER(0.00)[sven@kernel.org,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
@@ -117,72 +116,146 @@ X-Spamd-Result: default: False [-3.66 / 15.00];
 	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: DA74672293F
+X-Rspamd-Queue-Id: 59BCB72296D
 
-On Apple Silicon, access to MMIO requires Device-nGnRnE while Device-nGnRE
-results in SErrors. UEFI defines the EFI_MEMORY_ISA_MASK for cases like
-that which just contains the MAIR attribute bits. We cannot support any
-other Device- types without changing MAIR so just warn and fall back to
-the previous default, Device-nGnRE, if we encounter anything else.
+Apple Silicon machines run the kernel at the highest available exception
+level, leaving no higher level to trap into for PSCI firmware calls. The
+firmware implementing PSCI therefore shares that level with the kernel and
+is exposed as an EFI runtime service instead of being reached through an
+SMC or HVC trap.
+
+Add a new "efi" conduit that routes PSCI calls to the handler extracted
+from the custom EFI configuration table.
+
+PSCI_VERSION, MIGRATE_INFO_TYPE and PSCI_FEATURES are queried during early
+CPU bring-up before EFI runtime services are available and have to be
+answered directly from the firmware-provided table.
 
 Signed-off-by: Sven Peter <sven@kernel.org>
 ---
- arch/arm64/kernel/efi.c | 24 +++++++++++++++++++++++-
- 1 file changed, 23 insertions(+), 1 deletion(-)
+ drivers/firmware/psci/psci.c | 64 ++++++++++++++++++++++++++++++++++++++++++++
+ include/linux/arm-smccc.h    |  1 +
+ 2 files changed, 65 insertions(+)
 
-diff --git a/arch/arm64/kernel/efi.c b/arch/arm64/kernel/efi.c
-index e40885567f9e..50ba8e9112fc 100644
---- a/arch/arm64/kernel/efi.c
-+++ b/arch/arm64/kernel/efi.c
-@@ -7,6 +7,7 @@
-  * Copyright (C) 2013, 2014 Linaro Ltd.
-  */
+diff --git a/drivers/firmware/psci/psci.c b/drivers/firmware/psci/psci.c
+index e73bae6cb23a..af022bf2cb9f 100644
+--- a/drivers/firmware/psci/psci.c
++++ b/drivers/firmware/psci/psci.c
+@@ -10,6 +10,7 @@
+ #include <linux/arm-smccc.h>
+ #include <linux/cpuidle.h>
+ #include <linux/debugfs.h>
++#include <linux/efi.h>
+ #include <linux/errno.h>
+ #include <linux/linkage.h>
+ #include <linux/of.h>
+@@ -24,6 +25,7 @@
  
-+#include <linux/bitfield.h>
- #include <linux/efi.h>
- #include <linux/init.h>
- #include <linux/kmemleak.h>
-@@ -16,6 +17,7 @@
+ #include <asm/cpuidle.h>
+ #include <asm/cputype.h>
++#include <asm/efi.h>
+ #include <asm/hypervisor.h>
+ #include <asm/system_misc.h>
+ #include <asm/smp_plat.h>
+@@ -131,6 +133,63 @@ __invoke_psci_fn_smc(unsigned long function_id,
+ 	return res.a0;
+ }
  
- #include <asm/efi.h>
- #include <asm/stacktrace.h>
-+#include <asm/sysreg.h>
- #include <asm/vmap_stack.h>
- 
- 
-@@ -38,7 +40,27 @@ static __init ptval_t create_mapping_protection(efi_memory_desc_t *md)
- 	u32 type = md->type;
- 
- 	if (type == EFI_MEMORY_MAPPED_IO) {
--		pgprot_t prot = __pgprot(PROT_DEVICE_nGnRE);
-+		pgprot_t prot;
++#if IS_ENABLED(CONFIG_EFI) && IS_ENABLED(CONFIG_ARM64)
++static bool efi_psci_fn_valid(unsigned long function_id)
++{
++	if (function_id >= PSCI_0_2_FN_BASE &&
++	    function_id <= PSCI_0_2_FN(EFI_PSCI_MAX_FN))
++		return true;
 +
-+		if (attr & EFI_MEMORY_ISA_VALID) {
-+			u8 mair = FIELD_GET(EFI_MEMORY_ISA_MASK, attr);
++	if (function_id >= PSCI_0_2_FN64_BASE &&
++	    function_id <= PSCI_0_2_FN64(EFI_PSCI_MAX_FN))
++		return true;
 +
-+			switch (mair) {
-+			case MAIR_ATTR_DEVICE_nGnRnE:
-+				prot = __pgprot(PROT_DEVICE_nGnRnE);
-+				break;
-+			case MAIR_ATTR_DEVICE_nGnRE:
-+				prot = __pgprot(PROT_DEVICE_nGnRE);
-+				break;
-+			default:
-+				prot = __pgprot(PROT_DEVICE_nGnRE);
-+				pr_warn("unsupported MAIR attribute %#x for EFI MMIO region at 0x%llx, using Device-nGnRE\n",
-+					mair, md->phys_addr);
-+				break;
-+			}
-+		} else {
-+			prot = __pgprot(PROT_DEVICE_nGnRE);
-+		}
++	return false;
++}
++
++static unsigned long __invoke_psci_fn_efi(unsigned long function_id,
++					  unsigned long arg0,
++					  unsigned long arg1,
++					  unsigned long arg2)
++{
++	u32 fn;
++
++	/* These are called before EFI runtime services are available */
++	switch (function_id) {
++	case PSCI_0_2_FN_PSCI_VERSION:
++		return efi_psci.version;
++	case PSCI_0_2_FN_MIGRATE_INFO_TYPE:
++		return PSCI_0_2_TOS_MP;
++	case PSCI_1_0_FN_PSCI_FEATURES:
++		if (!efi_psci_fn_valid(arg0))
++			return PSCI_RET_NOT_SUPPORTED;
++		fn = arg0 & 0xff;
++		if (fn >= efi_psci.num_features || fn >= EFI_PSCI_MAX_FN)
++			return PSCI_RET_NOT_SUPPORTED;
++		return efi_psci.features[fn];
++	}
++
++	if (!efi_psci_fn_valid(function_id))
++		return PSCI_RET_NOT_SUPPORTED;
++
++	if (WARN_ON_ONCE(!efi_psci.psci_handler))
++		return PSCI_RET_NOT_SUPPORTED;
++	if (WARN_ON_ONCE(!efi_enabled(EFI_RUNTIME_SERVICES)))
++		return PSCI_RET_NOT_SUPPORTED;
++
++	return arm64_efi_psci_call(function_id, arg0, arg1, arg2);
++}
++#else
++static unsigned long __invoke_psci_fn_efi(unsigned long function_id,
++					  unsigned long arg0,
++					  unsigned long arg1,
++					  unsigned long arg2)
++{
++	WARN(1, "EFI PSCI conduit invoked but kernel has not EFI support");
++	return PSCI_RET_NOT_SUPPORTED;
++}
++#endif
++
+ static __always_inline int psci_to_linux_errno(int errno)
+ {
+ 	switch (errno) {
+@@ -277,6 +336,9 @@ static void set_conduit(enum arm_smccc_conduit conduit)
+ 	case SMCCC_CONDUIT_SMC:
+ 		invoke_psci_fn = __invoke_psci_fn_smc;
+ 		break;
++	case SMCCC_CONDUIT_EFI:
++		invoke_psci_fn = __invoke_psci_fn_efi;
++		break;
+ 	default:
+ 		WARN(1, "Unexpected PSCI conduit %d\n", conduit);
+ 	}
+@@ -299,6 +361,8 @@ static int get_set_conduit_method(const struct device_node *np)
+ 		set_conduit(SMCCC_CONDUIT_HVC);
+ 	} else if (!strcmp("smc", method)) {
+ 		set_conduit(SMCCC_CONDUIT_SMC);
++	} else if (!strcmp("efi", method)) {
++		set_conduit(SMCCC_CONDUIT_EFI);
+ 	} else {
+ 		pr_warn("invalid \"method\" property: %s\n", method);
+ 		return -EINVAL;
+diff --git a/include/linux/arm-smccc.h b/include/linux/arm-smccc.h
+index 4de81848fe2e..7328e1e222ca 100644
+--- a/include/linux/arm-smccc.h
++++ b/include/linux/arm-smccc.h
+@@ -322,6 +322,7 @@ enum arm_smccc_conduit {
+ 	SMCCC_CONDUIT_NONE,
+ 	SMCCC_CONDUIT_SMC,
+ 	SMCCC_CONDUIT_HVC,
++	SMCCC_CONDUIT_EFI,
+ };
  
- 		if (arm64_is_protected_mmio(md->phys_addr,
- 					    md->num_pages << EFI_PAGE_SHIFT))
+ /**
 
 -- 
 2.55.0
