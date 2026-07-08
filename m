@@ -1,71 +1,95 @@
-Return-Path: <devicetree+bounces-322716-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-322717-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id kWs2AXgnTmrhEAIAu9opvQ
-	(envelope-from <devicetree+bounces-322716-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 12:33:28 +0200
+	id yFDJAnomTmqkEAIAu9opvQ
+	(envelope-from <devicetree+bounces-322717-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 12:29:14 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 908D47245D3
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 12:33:27 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 67E24724545
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 12:29:13 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=MBkuwrWC;
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322716-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-322716-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=LLGupYB7;
+	dmarc=pass (policy=none) header.from=gmail.com;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322717-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-322717-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 687FC3026754
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 10:21:27 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 5D176300B3F8
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 10:21:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFC04393DE2;
-	Wed,  8 Jul 2026 10:21:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5AED438C2DE;
+	Wed,  8 Jul 2026 10:21:39 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f45.google.com (mail-pj1-f45.google.com [209.85.216.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AA4138B123;
-	Wed,  8 Jul 2026 10:21:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07C55305687
+	for <devicetree@vger.kernel.org>; Wed,  8 Jul 2026 10:21:37 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783506086; cv=none; b=CRNYPkjLS/LhZwHAbcxDUohS3pCOBJw8ixz5LxreWlAJ2wpS8bFpjSWNNTib8vrE1g7BeqMxMKrBnlW2tujN1zakwA88JHmZNEayPJOL6epNmLcQr8+1vdptRbjlx5oGplGE/9TKWwYKySIyou+WovPuqp5/aIxXNEh00WUHqus=
+	t=1783506099; cv=none; b=k11HWokOQvIYGa2o6g1JyB/+WOoy8+ayyvg519ZZan+MZy5ViWnxsJE73b6FVCbCsomPZAKaZfLCxyWaFYUCLXEhYht95pEexZ/6dkLxrH7CL8+rcZdNH1sltmaQ39WBNaZtmOaq12fCH9XAkbaqtupL7G1hAcSkuUEpdNnmTeI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783506086; c=relaxed/simple;
-	bh=gCcoQRbLE3sC22yjHQgD83mY5XUQM9RM71SgIV7Io2Q=;
+	s=arc-20240116; t=1783506099; c=relaxed/simple;
+	bh=Sla61CzghEsS2r7bRwBRJKRLgZ7yBqxi2Vzh6G/Mn2s=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RbTL/GC5v15C46G/dZOhvafZY6Xz6VqPMTbT7qO/R/ymjV/vpZLsjDsSa7d9YXNrYz89g+l5GxM//Q+9h3tOdYeJlDZ6vu80qo8sMvRzbUbYQzrbYa5TXDF7ciyU1/Yrgtxb0zL1Rv5V8TTLSmhn0YVmLurn6fxFTatF2ULBszE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MBkuwrWC; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 39D871F000E9;
-	Wed,  8 Jul 2026 10:21:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783506084;
-	bh=iMLpjqBMiG0QAJnu6K5ue6Z2J4hOxDdx42FnKNEaR8k=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=MBkuwrWCZFsty1/oywDMtDpA8qd84gYEqc/DFTNGxQbi2mAm0VybN8dy17H8JMyH+
-	 OFe+bHPTwQMP6fANHKHXIKeQLu3bARuqoUtKfTxI4V6abtP8KWiwB5GAJzBPa0DkPn
-	 QF5PrQoiCH+800R0aXSo1KEzHSR1Lp5r5Az7lwWIwQX+Aufg1oaWVVBvmHu7NO7yaK
-	 QGUWpbQ2bB67bZ/CPRLNVIoXC+UQbr1jIOnotaeOuZ7L3/qhD/OcIoZXI5kvwUEylJ
-	 Bdsw8zoR9abq7So9pJF0pRFbFpdMezLlLw2SSbq7Oh/+ab4eEkiWcIO71KpjBKP47X
-	 qd3kZgtuse+OA==
-Date: Wed, 8 Jul 2026 11:21:18 +0100
-From: Lee Jones <lee@kernel.org>
-To: Linus Walleij <linusw@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Ulf Hansson <ulfh@kernel.org>,
-	Mark Brown <broonie@kernel.org>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Vinod Koul <vkoul@kernel.org>, Frank Li <Frank.Li@kernel.org>,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-pm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-	dmaengine@vger.kernel.org
-Subject: Re: [PATCH 09/11] regulator: db8500-prcmu: Remove EPOD regulators
-Message-ID: <20260708102118.GG2108533@google.com>
-References: <20260618-ux500-power-domains-v7-1-v1-0-eb5e50b1a588@kernel.org>
- <20260618-ux500-power-domains-v7-1-v1-9-eb5e50b1a588@kernel.org>
- <20260702155113.GW2108533@google.com>
- <CAD++jLnEDzkinxjv6Ce7JRCLy1A5BSHLTBp2KpQ5sOvKUygCtw@mail.gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=N5/l21ektNmEr+lMx8211SH04yVRcVZrEHSzGYVapypLUze+Eo7VqgQqHMcVsVMM2fmDokwxvxJodi0ruhtXgIdRK8daev8OaqgHBLxQa6VCXDwk9+Uf7MASNzr9yh7YEuoBjN9+/OaMAmp79ZuHlz7ZSxglzMQ5Koa5mbaj2xM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LLGupYB7; arc=none smtp.client-ip=209.85.216.45
+Received: by mail-pj1-f45.google.com with SMTP id 98e67ed59e1d1-37ff8e0ad0fso618654a91.2
+        for <devicetree@vger.kernel.org>; Wed, 08 Jul 2026 03:21:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1783506097; x=1784110897; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :content-type:mime-version:references:message-id:subject:cc:to:from
+         :date:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=93EN29IqJ6bd5F8a4d6goWGreJMuVVomREVtrVg8Odk=;
+        b=LLGupYB7hD/HpE54wIuAjwSOXirqJG+O5vU4YBecYt3O1DuJT4+XfQCwIQDNMDGFUG
+         MRwB642ZSas1fHLfaVfjiZSZr2dcOJd5Si1DHd9iQ1953PIXEs1yYzvesFChdIPe+Xp4
+         /P23Hyk42ifvS1t2bncZHNf0GhTlF4VTmkZ4UUkq+Tl7qtoGS4Nl1aas1ttrlJBuLt8g
+         USBHfijZycEjW3OgcJE2gzZHCAJrtzToVSxtTYcnTshAPpoLzpOsvHzfGrBK5AP6WQSy
+         aPPY7cx3z3BUWumhof9ftVWkHI9H+yprWrmF3raOmmj88R1k8R/PKfNftxLv4Y3CVDGp
+         CPcQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1783506097; x=1784110897;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :content-type:mime-version:references:message-id:subject:cc:to:from
+         :date:x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to:content-type;
+        bh=93EN29IqJ6bd5F8a4d6goWGreJMuVVomREVtrVg8Odk=;
+        b=NJ6TwvtPWzcygHVVp/a82Vv1kBXdX4ufjqbMCB1NANE01RCqiBHJvVOPVsf8N1eM6Y
+         eskbkSOB4vz9Mra68SCThvzRcv33bwQCyuI29iQadCpxVWUCob5Udv1KLlNaKrGAvGat
+         gZKL/HvyCKKHg/jvcdbJXVFHsXfiP68dPjDaNf99Z/rxnYU/laFppl7utexzYYI352pG
+         AuWU1m38lOsdX9J0PY2PCRObieGuvBX3aBPMb/RX/oI8CNahEqOeILssIEgk3hpGCYjr
+         PL0PYm0zZJIYR3smR4GeZapSi7iDyV6s4cuIWs4zkYVXr2WGV+UEhPeylubH4jrIuhVq
+         E4fA==
+X-Forwarded-Encrypted: i=1; AHgh+Rqiojns1QtSWVLSIuk2CEuyExtZGcJNNFECUPLpdjP/ZbRbyFqpUeucKlSGgc0gFWpXGpJDkY9fEDdO@vger.kernel.org
+X-Gm-Message-State: AOJu0YzMQlLF+1uSlqOHQ/DAurvtkXWMjRLpmgyUcbs3o4h/U92SSgie
+	o1jHZDEYbg19iwvp96rSN3Os4e37oXGGF9LY7Ygnwzj1CKvYHNwtITx+
+X-Gm-Gg: AfdE7cnKXOgW652SABJ3b2cWaiU6Yy0B0x/+ps7fC/5dPPAFiOyyXSRfB2HK1x00BOF
+	9OAYixazf6UR9FUgRU0BEIAi45zvzkghXeEM7sxD4SkMzR6b954LQB2jGAJfufzvMtTCobg+uwy
+	1wKkvFEsuFC/lLfl9xrNXnRiFHrYCqlBQGqBvnMtPuE4siX6XQ+yH4WdhBqbXZ/eLuaTlCxkZbg
+	QG+mhcyZ+9ghKCZOcRGhXuijL80HnzdkpN07ug+Uika9JCNoBKeEDuu0myjBp+6VOI1zHKQztCM
+	eW7j5ZnxN66Rt8TxecGPGROenaGqtAAd5zuiJKaUXHcNQ3rYp+w3kN88P2fE/QO08WN3KIzVAGO
+	M3ll/toPLqKp7P/PHITu3ehggKA9jGWr/VSpmL1I5ltSlWoCpm24T6xGiVUzdcAi+VlFb6x8CE6
+	Bi0O3fcpFfTJHaXMwugmzSFGChYKpwhA==
+X-Received: by 2002:a17:90b:3b43:b0:381:3b5d:30f4 with SMTP id 98e67ed59e1d1-38941102113mr1927534a91.1.1783506097233;
+        Wed, 08 Jul 2026 03:21:37 -0700 (PDT)
+Received: from i386.168.1.127 ([2402:a00:163:2ce9:9c6f:e28:3da8:7980])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-387d3a65609sm2512387a91.14.2026.07.08.03.21.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 08 Jul 2026 03:21:36 -0700 (PDT)
+Date: Wed, 8 Jul 2026 15:51:30 +0530
+From: Hrushiraj Gandhi <hrushirajg23@gmail.com>
+To: Heiko Stuebner <heiko@sntech.de>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v7 0/2] arm64: dts: rockchip: add Vicharak Axon board
+ support
+Message-ID: <kzl6ykopmcj7nl6jnf4uav75cdn2znd3jb4vjlrde364homti6@2y2zfyvwni4x>
+References: <20260608060940.52549-1-hrushirajg23@gmail.com>
+ <178301901903.3838694.3276523670393868229.b4-ty@sntech.de>
+ <20260707160354.GB3176120-robh@kernel.org>
+ <14045151.uLZWGnKmhe@phil>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -75,76 +99,114 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAD++jLnEDzkinxjv6Ce7JRCLy1A5BSHLTBp2KpQ5sOvKUygCtw@mail.gmail.com>
+In-Reply-To: <14045151.uLZWGnKmhe@phil>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-322716-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:linusw@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:ulfh@kernel.org,m:broonie@kernel.org,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:vkoul@kernel.org,m:Frank.Li@kernel.org,m:linux-arm-kernel@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-pm@vger.kernel.org,m:dri-devel@lists.freedesktop.org,m:dmaengine@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	FORWARDED(0.00)[lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[lee@kernel.org,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-322717-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FORGED_SENDER(0.00)[hrushirajg23@gmail.com,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lee@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[kernel.org,linux.intel.com,suse.de,gmail.com,ffwll.ch,lists.infradead.org,vger.kernel.org,lists.freedesktop.org];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_RECIPIENTS(0.00)[m:heiko@sntech.de,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-rockchip@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[hrushirajg23@gmail.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 908D47245D3
+X-Rspamd-Queue-Id: 67E24724545
 
-On Fri, 03 Jul 2026, Linus Walleij wrote:
-
-> On Thu, Jul 2, 2026 at 5:51 PM Lee Jones <lee@kernel.org> wrote:
-> > On Thu, 18 Jun 2026, Linus Walleij wrote:
-> >
-> > > Remove the obsolete DB8500 PRCMU regulator drivers.
-> > >
-> > > Drop the regulator build hooks now that EPODs are power domains.
-> > >
-> > > Keep the MFD cell around because a later patch reuses it for a
-> > > small compatibility regulator driver.
-> > >
-> > > Assisted-by: Codex:gpt-5-5
-> > > Signed-off-by: Linus Walleij <linusw@kernel.org>
-> > > ---
-> > >  drivers/mfd/db8500-prcmu.c             | 239 +---------------
-> > >  drivers/regulator/Kconfig              |  12 -
-> > >  drivers/regulator/Makefile             |   2 -
-> > >  drivers/regulator/db8500-prcmu.c       | 501 ---------------------------------
-> > >  drivers/regulator/dbx500-prcmu.c       | 155 ----------
-> > >  drivers/regulator/dbx500-prcmu.h       |  55 ----
-> > >  include/linux/regulator/db8500-prcmu.h |  38 ---
-> > >  7 files changed, 1 insertion(+), 1001 deletions(-)
-> >
-> > Any deps?
+On Tue, Jul 07, 2026 at 08:23:47PM +0200, Heiko Stuebner wrote:
+> Am Dienstag, 7. Juli 2026, 18:03:54 Mitteleuropäische Sommerzeit schrieb Rob Herring:
+> > On Thu, Jul 02, 2026 at 09:04:55PM +0200, Heiko Stuebner wrote:
+> > > 
+> > > On Mon, 08 Jun 2026 11:39:38 +0530, Hrushiraj Gandhi wrote:
+> > > > This series adds initial device tree support for the Vicharak Axon
+> > > > single-board computer, which is based on the Rockchip RK3588 SoC.
+> > > > 
+> > > > The Vicharak Axon is a feature-rich SBC targeting developer and embedded
+> > > > use cases. It ships with:
+> > > > 
+> > > >   - Rockchip RK3588 (4x Cortex-A76 + 4x Cortex-A55)
+> > > >   - RK806 PMIC providing all SoC power domains
+> > > >   - eMMC 5.1 (on-board) and microSD slot
+> > > >   - Gigabit Ethernet via RGMII (RTL8211F)
+> > > >   - Dual HDMI 2.1 output and one HDMI 2.0 input (receiver)
+> > > >   - PCIe 3.0 x4 and two PCIe 2.0 slots
+> > > >   - SATA 3.0
+> > > >   - USB 2.0 host ports (EHCI/OHCI)
+> > > >   - NXP PCA9554 I/O expander for status LEDs
+> > > >   - Haoyu HYM8563 RTC
+> > > > 
+> > > > [...]
+> > > 
+> > > Applied, thanks!
+> > > 
+> > > [1/2] dt-bindings: arm: rockchip: add Vicharak Axon board
+> > >       commit: e0008b108aaf8c5aa22930b2ceadf8f894562acb
+> > > [2/2] arm64: dts: rockchip: add Vicharak Axon board
+> > >       commit: e08c3389c78dbefd31a57df8807cf57ef6f3c9b1
+> > 
+> > Both have issues and should be dropped.
 > 
-> Not really, was planning to split off the stuff that can go
-> directly to MFD and resend it with all the ACKs.
+> I've dropped both the Axon as well as the Vaaman2 board from the
+> same vendor now.
+> 
+> The whole thing is confusing.
+> 
+> I should've caught the pinctrl issue, and do remember running a dtbscheck
+> on at least one Vcharak board - but that must have been the Vaaman2 board
+> because there the pmic fullfills the binding (and general setup of other
+> rk3588 boards).
+> 
+> The vendor-prefix is missing indeed. I found earlier versions of the
+> version-avalanche had it, up until v6 [0] . Though I haven't figured out
+> yet why it was lost.
 
-Sounds good.
+Regarding the missing vendor prefix 'vicharak' that was noted: the prefix 
+was already submitted separately upstream by my team in a different patch [1]. 
+Because it was already submitted, Krzysztof asked us to drop it from our 
+own series to avoid duplicates [2]. 
 
--- 
-Lee Jones
+[1] https://lkml.org/lkml/2026/6/24/929
+[2] https://lore.kernel.org/linux-rockchip/96c9b1eb-9f8e-430d-9c38-eb4d489d7d24@kernel.org/
+
+> 
+> Hence I dropped both boards.
+> 
+> 
+> Hrushiraj: please start anew with both boards.
+> 
+> But include all the tags you received in previous versions.
+> 
+> 
+> Heiko
+> 
+> 
+> [0] https://lore.kernel.org/linux-rockchip/20260601162143.170030-2-hrushirajg23@gmail.com/
+> 
+> 
+
+Hrushiraj 
 
