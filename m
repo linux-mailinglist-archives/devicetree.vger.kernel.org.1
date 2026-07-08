@@ -1,179 +1,135 @@
-Return-Path: <devicetree+bounces-322726-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-322727-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id qdYgBFIqTmp/EQIAu9opvQ
-	(envelope-from <devicetree+bounces-322726-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 12:45:38 +0200
+	id 2YlxCGErTmrjEQIAu9opvQ
+	(envelope-from <devicetree+bounces-322727-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 12:50:09 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49ECD724736
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 12:45:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6FB117247F2
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 12:50:08 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=YpwX0MYs;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=kdJXPi86;
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322726-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-322726-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322727-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-322727-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A0F29302BA67
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 10:39:34 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 4F80530A9169
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 10:43:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6E814218A1;
-	Wed,  8 Jul 2026 10:39:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5AF2D426423;
+	Wed,  8 Jul 2026 10:43:30 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CBCE3D4138
-	for <devicetree@vger.kernel.org>; Wed,  8 Jul 2026 10:39:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACE97423A6D;
+	Wed,  8 Jul 2026 10:43:18 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783507171; cv=none; b=ZX6KJtxT7gYElCcqoGl8i8dioDcBc+DZ02uvW7OhC4Z8oSt3zjyiX8KmckVPhAKx/fSZVMO7zCfTMe7Y4Tkv6TiNvhuqxvbw+ZnyQUTjywIG22UGm9QWhisq9jTydFqpAYvnp0JZh6AzS+QIeuAFRjFlpTinYlzkuYRI+t/YwPk=
+	t=1783507408; cv=none; b=XwQUOWD8Vq/Fco0LIvC1l8tVy2RRiMnzpnnw4g/9T06mBYyzXbRWokLIunvV9aVwDmsThXDoSAx9Uy7Pautr2FK+NFiKD5uR/ZaA9dZwKPnNWn1uFdck9wu/aWR2wTr3lp+yGQTajW3UrR0xHV9pLfcmTeI1dp3qUw+vS/oXnkg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783507171; c=relaxed/simple;
-	bh=XIzQxUjLoYr3fymLCCO7a7aBWHY5Crs1n4x4wtH45/A=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=L0EHvu2wzOQErV7YrYrD7wUukmSd+9DNNP65BFgffX/KtvWHLyDH7plaTUKum+elL/eMWVV1gHg6EPMiTqAKFODbdy7k8i/JRh8j209zHV1ZDRnUJ3vQCZwza94QfSsyNa/kQBB35SbZM7hI9b1U65TXYurY02B+w/uH1aCFVVo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YpwX0MYs; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 470351F000E9;
-	Wed,  8 Jul 2026 10:39:11 +0000 (UTC)
+	s=arc-20240116; t=1783507408; c=relaxed/simple;
+	bh=groLJiBtITBZaafYb4py+DXcwhfa0gaynPiaHzseltw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=O+2lhRI4uf3WpXEXBNMj0fO1xI+ye8WWzsvUGpu3Mv8Ge7oIpe51L/ew8tgb4SP4661O9tpXPhbitqENdXRvuY3IRhHEakKMvWB5cC/G6nHBuAGlwpnb5lEBGlLmKqfZT7Zl6OH0X5K4btnPiIyu6i5G3smx60y7HwVGXwusrIE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kdJXPi86; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 54D4F1F00A3E;
+	Wed,  8 Jul 2026 10:43:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783507151;
-	bh=TMOaDHhXOvJrWAOQG/myrYkoDv0qxtulznjZCE3SuZU=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=YpwX0MYs9I1RBX8esrG74pRtC7tmVmamx3kDGwj6hI0eJfxX0eglHBSmkJnCoMilt
-	 6zXncNGjGo6RVZBsx5su5DevWt/uc0q6PjkMsNLSxmLcqH1s1ACfK3ApMtvUHIL/cV
-	 utAYg9+D1ZxsPwFnr7Ux5vNB2X+hTRgHv4XzBZyG0LFfKoCcQIQZxlOHw3n4BET5yi
-	 zkzUyD7Kd4wJjIElKqWky+q+3zkjGz05RqtmFkCAu3l33zC6ncvROSkyJrUsSaG77v
-	 F4tav6zw22CL8GSHeoSDdadId4Ni20H7ZvUurQyeOyazd/Qlwr6ncZgAHGKIZnWZ12
-	 A1u78qQHYf8Fw==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v8 5/7] clk: qcom: tcsrcc-glymur: Add Mahua QREF
- regulator support
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Qiang Yu" <qiang.yu@oss.qualcomm.com>
-Cc: devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org
-In-Reply-To: <20260708-tcsr_qref_0708-v8-5-62c42b5fa269@oss.qualcomm.com>
-References: <20260708-tcsr_qref_0708-v8-0-62c42b5fa269@oss.qualcomm.com>
- <20260708-tcsr_qref_0708-v8-5-62c42b5fa269@oss.qualcomm.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Wed, 08 Jul 2026 10:39:10 +0000
-Message-Id: <20260708103911.470351F000E9@smtp.kernel.org>
+	s=k20260515; t=1783507395;
+	bh=xgb9L3ybC7vZlTqAiwZqqpWmp0VP5DqNRODliRYFC7Y=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=kdJXPi861onpNxYXSyu/H82im8bgzEy/Tq1sP9Lqc+RqRUYgK/1J0qwa1BMi2v6AK
+	 9Fm0GqOMgkpiKA9wiiPsTH9E1cuppYXbVDGXjOdRBfDJG+rOW+QnTQmUD1eub805Af
+	 e/+XSu4L1Qwy58BFX/n1VaDP8RyVtAe3Q9VOspJyQY1KO3G3YvHZECiy2V6mYfJ1wF
+	 fTxccpAww2s22SxBgSKtpAg5BAikZY6dp+wDFEcnq9EU0rg8+DfvJ6i4E9uCMTmtuL
+	 k75cyJOKHKKGvrC66is34b0REAKTCsUYvGgfruiHA4XWWRZhGE8JBWFw3a2WYfc/tX
+	 EyexGgaV8pSdw==
+Date: Wed, 8 Jul 2026 12:43:11 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Jorijn van der Graaf <jorijnvdgraaf@catcrafts.net>
+Cc: Mark Brown <broonie@kernel.org>, 
+	Srinivas Kandagatla <srini@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Luca Weiss <luca.weiss@fairphone.com>, Conor Dooley <conor+dt@kernel.org>, 
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
+	Mohammad Rafi Shaik <mohammad.rafi.shaik@oss.qualcomm.com>, linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/3] ASoC: dt-bindings: qcom,wcd93xx-common: don't
+ require micbias4
+Message-ID: <20260708-gregarious-elite-dinosaur-537d56@quoll>
+References: <20260706192229.144137-1-jorijnvdgraaf@catcrafts.net>
+ <20260706192229.144137-2-jorijnvdgraaf@catcrafts.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20260706192229.144137-2-jorijnvdgraaf@catcrafts.net>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
+X-Spamd-Result: default: False [-3.16 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	MID_RHS_NOT_FQDN(0.50)[];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-322726-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:qiang.yu@oss.qualcomm.com,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:jorijnvdgraaf@catcrafts.net,m:broonie@kernel.org,m:srini@kernel.org,m:lgirdwood@gmail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:luca.weiss@fairphone.com,m:conor+dt@kernel.org,m:perex@perex.cz,m:tiwai@suse.com,m:mohammad.rafi.shaik@oss.qualcomm.com,m:linux-sound@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-arm-msm@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-322727-lists,devicetree=lfdr.de];
+	FORGED_SENDER(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCPT_COUNT_THREE(0.00)[4];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,fairphone.com,perex.cz,suse.com,oss.qualcomm.com,vger.kernel.org];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp,qualcomm.com:email]
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,catcrafts.net:email,quoll:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 49ECD724736
+X-Rspamd-Queue-Id: 6FB117247F2
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [High] Missing QREF regulators for TCSR_USB4_1_CLKREF_EN clock in Mahua d=
-escriptor table.
---
+On Mon, Jul 06, 2026 at 09:22:27PM +0200, Jorijn van der Graaf wrote:
+> The WCD9370/9375, WCD9380/9385 and WCD9390/9395 codecs all have four
+> mic bias supplies, but the upcoming WCD9378 only has three, so it
+> cannot reference the common schema while qcom,micbias4-microvolt is
+> required there. Move that requirement out of the common schema into
+> each of the current users; no binding is relaxed by this.
+> 
+> Assisted-by: Claude:claude-fable-5
+> Signed-off-by: Jorijn van der Graaf <jorijnvdgraaf@catcrafts.net>
+> ---
+>  Documentation/devicetree/bindings/sound/qcom,wcd937x.yaml        | 1 +
+>  Documentation/devicetree/bindings/sound/qcom,wcd938x.yaml        | 1 +
+>  Documentation/devicetree/bindings/sound/qcom,wcd939x.yaml        | 1 +
+>  Documentation/devicetree/bindings/sound/qcom,wcd93xx-common.yaml | 1 -
+>  4 files changed, 3 insertions(+), 1 deletion(-)
+> 
 
---- Patch [5]: [PATCH v8 5/7] clk: qcom: tcsrcc-glymur: Add Mahua QREF regu=
-lator support ---
-commit 1a2cccf8fe12339a5d989a6a9c397fb34f4adf6c
-Author: Qiang Yu <qiang.yu@oss.qualcomm.com>
+This should be rather squashed with the next one, as wcd9378 is the
+reason of doing this.
 
-clk: qcom: tcsrcc-glymur: Add Mahua QREF regulator support
+Best regards,
+Krzysztof
 
-Mahua is based on Glymur but uses a different QREF topology, requiring
-distinct regulator lists and clock descriptors for its PCIe clock
-references. Add mahua-specific regulator arrays and clk descriptor table,
-and use match_data to select the correct descriptor table per compatible
-string at probe time.
-
-> diff --git a/drivers/clk/qcom/tcsrcc-glymur.c b/drivers/clk/qcom/tcsrcc-g=
-lymur.c
-> index e0b545258ba4c..1791e23739ed4 100644
-> --- a/drivers/clk/qcom/tcsrcc-glymur.c
-> +++ b/drivers/clk/qcom/tcsrcc-glymur.c
-
-[ ... ]
-
-> +static const struct qcom_clk_ref_desc * const tcsr_cc_mahua_clk_descs[] =
-=3D {
-
-[ ... ]
-
-> +	[TCSR_USB3_1_CLKREF_EN] =3D &(const struct qcom_clk_ref_desc) {
-> +		.name =3D "tcsr_usb3_1_clkref_en",
-> +		.offset =3D 0x68,
-> +		.regulator_names =3D mahua_tcsr_tx1_rpt345_rx3_regulators,
-> +		.num_regulators =3D ARRAY_SIZE(mahua_tcsr_tx1_rpt345_rx3_regulators),
-> +	},
-> +	[TCSR_USB4_1_CLKREF_EN] =3D &(const struct qcom_clk_ref_desc) {
-> +		.name =3D "tcsr_usb4_1_clkref_en",
-> +		.offset =3D 0x44,
-> +	},
-
-[Severity: High]
-Are regulators intentionally omitted for TCSR_USB4_1_CLKREF_EN in the Mahua
-descriptor table?
-
-If the USB PHY driver requests and enables this clock, the clock framework
-will skip regulator voting because .num_regulators is 0. The clock enable
-register bit will toggle, but the underlying QREF PHY block will remain
-unpowered. On Qualcomm platforms, accessing unpowered PHY blocks typically
-causes synchronous external aborts leading to a kernel panic.
-
-In the Glymur configuration, this clock shared the tx0_rx5 regulators with
-TCSR_PCIE_1_CLKREF_EN. In Mahua, PCIE_1 was removed but USB4_1 remains
-without regulators. Should this include the appropriate regulator names and
-num_regulators?
-
-> +	[TCSR_USB4_2_CLKREF_EN] =3D &(const struct qcom_clk_ref_desc) {
-> +		.name =3D "tcsr_usb4_2_clkref_en",
-> +		.offset =3D 0x5c,
-> +		.regulator_names =3D mahua_tcsr_tx1_rpt01_rx1_regulators,
-> +		.num_regulators =3D ARRAY_SIZE(mahua_tcsr_tx1_rpt01_rx1_regulators),
-> +	},
-> +};
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260708-tcsr_qref_=
-0708-v8-0-62c42b5fa269@oss.qualcomm.com?part=3D5
 
