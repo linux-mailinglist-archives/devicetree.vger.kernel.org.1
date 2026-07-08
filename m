@@ -1,205 +1,174 @@
-Return-Path: <devicetree+bounces-323084-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-323086-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id HSD0CcSHTmrOOgIAu9opvQ
-	(envelope-from <devicetree+bounces-323084-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 19:24:20 +0200
+	id kpD7OKKHTmrBOgIAu9opvQ
+	(envelope-from <devicetree+bounces-323086-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 19:23:46 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87D2B729273
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 19:24:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 71C71729258
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 19:23:46 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20201202 header.b=IYPtHZOU;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=UK5Dbcaf;
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-323084-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-323084-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-323086-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-323086-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 152AE3088B00
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 17:13:10 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id A264030B1B38
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 17:15:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4A8C4CA271;
-	Wed,  8 Jul 2026 17:12:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFD904C9011;
+	Wed,  8 Jul 2026 17:13:29 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94A0B4C955C;
-	Wed,  8 Jul 2026 17:12:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C22D74C900E
+	for <devicetree@vger.kernel.org>; Wed,  8 Jul 2026 17:13:28 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783530757; cv=none; b=cLSeQWE4hwzNlyOU54Q/pHglhKmt7POFhwGrdrE9rhVexYrPX8Ea7T0wTXG/nT8w0Ei9gSKebPYjees87LwtTogSJKfvlOl+O+hzdDTk35286W6mpnzsSX9hryfvSq95OOqqoJcCodCXIrlECrdcRniO5ShkJTOxnUWt580YN90=
+	t=1783530809; cv=none; b=GZpvaFxGELMQ9jX+Ke7xvYBy0PSTpEv+AvLyFVOx9gKUFQh4b15srVCVyDXP6+WnaaiFkwTp9FCiQn4ru+b/Wo4wCkc58RpweHofk+zaIBLd8Wkbc6bPMnykn4tbb385icklrYuGYx0UIG5i/xUmrHaYPJ2eQlZ1xzXBRqPtRUM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783530757; c=relaxed/simple;
-	bh=tO65MYkXi3aUKw0XR3bn0/mIiIMrnwfj1GuESNTstxw=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=hGXc4AtJKpeHUd5Rzf0Ca1Edxb+HaoszZyN9KtEZe74B62xJ+XdR45NEpStezTI1CMMG1OVevWkgkMw4G6Vgg+jx/YJx2MUYiCsfkp5AzcmehDGV5yx3FfXjCyYgsgaLiGwiPiHBCet7x6qML8x1yjAOQgH6m5ISKk65hg+Sark=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IYPtHZOU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 6A453C2BCFB;
-	Wed,  8 Jul 2026 17:12:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1783530757;
-	bh=tO65MYkXi3aUKw0XR3bn0/mIiIMrnwfj1GuESNTstxw=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=IYPtHZOUIn9NsZ8kB9eWUu4fjXeGRcJBpNS9RNz35q3dB/B0+hgCKFzgHlkhORo8Z
-	 6x+2MG7iLkBlPSzgZrsLO6aHe0JLbg8BOcBUXp+SllHnigGtJEc5YdgO0X1tMzda3K
-	 Ti9q4WFkYcZsMPIZQ56lWbShAf7e5L8CL8PMt/mcw+x7z9nk1Qb2OeGFCHCrKfVpNc
-	 E9ejq+trpEqy4qQflnPnCNnz8sehOGwpnM2ceB+b657x67nXMXFiOMsdZw9YgTNf4Y
-	 LPl0oBmBF4yxmslUw+y5ysH/ZVa3/9F62qk+OYiCkvks5SydVaSiutp//QWncptIiQ
-	 zQmz5C+MVARTg==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 50A3CC44507;
-	Wed,  8 Jul 2026 17:12:37 +0000 (UTC)
-From: Selvamani Rajagopal via B4 Relay <devnull+Selvamani.Rajagopal.onsemi.com@kernel.org>
-Date: Wed, 08 Jul 2026 10:12:45 -0700
-Subject: [PATCH net-next v7 15/15] onsemi: s2500: Added selftest support to
- onsemi's S2500 driver
+	s=arc-20240116; t=1783530809; c=relaxed/simple;
+	bh=/9zNIs4s/EQ8BDFyH1iwF0Ow9OjtkuQmShPbbxgOvdE=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=fnKVOvTLLPqbmpj+o4yzi0UG6YAoC88MjPxj6yeoaXPCi2elQdcueMiTfXrBUP9oZw47Kj8o+xa6Fyty4S33b/6S4bLbWTcyKp+SH+nbjH4lgHOn4QffRZqh/thIXdfobutWkLD1CfpAo6KbzkAwMgNaqq5ZvID/JoJpLxSwu04=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UK5Dbcaf; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 164201F000E9;
+	Wed,  8 Jul 2026 17:13:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1783530808;
+	bh=vElUncsm8Cy6/OeArv5sZHi+C/RMXLXggPDYaHAk+O0=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=UK5DbcafltRgRe1j8Ke2rgQn/wQl3emD/MvrbGxA60Kwih1XOe6Aum6X2v0O6D0BV
+	 PBQDqwSSpucQo19Z6cvwbEil2vw2ugFHXAsGWZ+QGOimpbEhuDAdzvW5EcYKEcKLWp
+	 mE3136WhLQWEAwe+qPGSsQ8iA4fm0rYMRiloMa5sS6sHRqM/G9qaLnVsXCtoA+8mYC
+	 IhzQWRLZO2hE0zt/RrSJmj4PzS3SiT8nXAj4GmxrV3qSrv2Aa037s+IlhUWmX88gr7
+	 nel8xBt9P3WC+m3Q2JxtnGKpBcn8DM4u8TdjuPOZJR93SiBAp8p1VND8eAeNUhSUGX
+	 NniUn2TN6LS8Q==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v8 4/4] arm64: dts: nuvoton: npcm845-evb: Add peripheral
+ nodes
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Tomer Maimon" <tmaimon77@gmail.com>
+Cc: devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org
+In-Reply-To: <20260708165929.2233934-5-tmaimon77@gmail.com>
+References: <20260708165929.2233934-1-tmaimon77@gmail.com>
+ <20260708165929.2233934-5-tmaimon77@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Wed, 08 Jul 2026 17:13:27 +0000
+Message-Id: <20260708171328.164201F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260708-s2500-mac-phy-support-v7-15-478c877aa1a9@onsemi.com>
-References: <20260708-s2500-mac-phy-support-v7-0-478c877aa1a9@onsemi.com>
-In-Reply-To: <20260708-s2500-mac-phy-support-v7-0-478c877aa1a9@onsemi.com>
-To: Andrew Lunn <andrew@lunn.ch>, 
- Piergiorgio Beruto <pier.beruto@onsemi.com>, 
- Heiner Kallweit <hkallweit1@gmail.com>, 
- Russell King <linux@armlinux.org.uk>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
- Andrew Lunn <andrew+netdev@lunn.ch>, 
- Parthiban Veerasooran <parthiban.veerasooran@microchip.com>, 
- Selva Rajagopal <selvamani.rajagopal@onsemi.com>, 
- Richard Cochran <richardcochran@gmail.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Simon Horman <horms@kernel.org>, 
- Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>
-Cc: netdev@vger.kernel.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-doc@vger.kernel.org, 
- Jerry Ray <jerry.ray@microchip.com>, 
- Selvamani Rajagopal <Selvamani.Rajagopal@onsemi.com>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1783530757; l=1904;
- i=Selvamani.Rajagopal@onsemi.com; s=20260531; h=from:subject:message-id;
- bh=2F0qNA75xdPACjyZAhDG2bEj0CghDHnrBQqxbAXox/w=;
- b=34FcZ5aLfX7qa4rp2Rj7EI5IE2MOkVn3CLe9AGFEiu0AdYthBE2JsX0rGbVm51XqFZj7DjrRM
- HSlw9tT8Q9uDmIA0gwJ7qEceF6yA9l8DUtGztD3Fb8uqChXPSjcwlcq
-X-Developer-Key: i=Selvamani.Rajagopal@onsemi.com; a=ed25519;
- pk=5QRdM0HS/LGWWcUZZ9hVfZ+qbPQGZCumcTXOiN7Fyug=
-X-Endpoint-Received: by B4 Relay for
- Selvamani.Rajagopal@onsemi.com/20260531 with auth_id=803
-X-Original-From: Selvamani Rajagopal <Selvamani.Rajagopal@onsemi.com>
-Reply-To: Selvamani.Rajagopal@onsemi.com
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.66 / 15.00];
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-323084-lists,devicetree=lfdr.de,Selvamani.Rajagopal.onsemi.com];
-	FORGED_RECIPIENTS(0.00)[m:andrew@lunn.ch,m:pier.beruto@onsemi.com,m:hkallweit1@gmail.com,m:linux@armlinux.org.uk,m:davem@davemloft.net,m:edumazet@google.com,m:kuba@kernel.org,m:pabeni@redhat.com,m:andrew+netdev@lunn.ch,m:parthiban.veerasooran@microchip.com,m:selvamani.rajagopal@onsemi.com,m:richardcochran@gmail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:horms@kernel.org,m:corbet@lwn.net,m:skhan@linuxfoundation.org,m:netdev@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-doc@vger.kernel.org,m:jerry.ray@microchip.com,m:Selvamani.Rajagopal@onsemi.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FREEMAIL_TO(0.00)[lunn.ch,onsemi.com,gmail.com,armlinux.org.uk,davemloft.net,google.com,kernel.org,redhat.com,microchip.com,lwn.net,linuxfoundation.org];
-	FORGED_SENDER(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
-	FORWARDED(0.00)[lists@lfdr.de];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[24];
-	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	HAS_REPLYTO(0.00)[Selvamani.Rajagopal@onsemi.com];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-323086-lists,devicetree=lfdr.de];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[gmail.com];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:tmaimon77@gmail.com,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ALIAS_RESOLVED(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NO_DN(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,onsemi.com:replyto,onsemi.com:mid,onsemi.com:email]
+	RCPT_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,lists.linux.dev:replyto,vger.kernel.org:from_smtp,smtp.kernel.org:mid,sashiko.dev:url]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 87D2B729273
+X-Rspamd-Queue-Id: 71C71729258
 
-From: Selvamani Rajagopal <Selvamani.Rajagopal@onsemi.com>
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [Medium] The device tree aliases for the SPI FIU controllers `fiu1` and `=
+fiu3` are incorrectly swapped.
+--
 
-Adds selftest support for onsemi S2500 MAC-PHY. Added as a separate
-patch for the ease of review.
+--- Patch [4]: [PATCH v8 4/4] arm64: dts: nuvoton: npcm845-evb: Add periphe=
+ral nodes ---
+commit 58cedbdc9355efee860c7d605886caa4e600ea8c
+Author: Tomer Maimon <tmaimon77@gmail.com>
 
-Signed-off-by: Selvamani Rajagopal <Selvamani.Rajagopal@onsemi.com>
+arm64: dts: nuvoton: npcm845-evb: Add peripheral nodes
 
----
-changes in v7
-  - No change
-changes in v6
-  - Moved the signed off information to the correct place.
-changes in v5
-  - No change
-changes in v4:
-  - Added a selftest as a separate patch
-  - First patch
----
- drivers/net/ethernet/onsemi/s2500/Kconfig         | 1 +
- drivers/net/ethernet/onsemi/s2500/s2500_ethtool.c | 6 ++++++
- 2 files changed, 7 insertions(+)
+Enable peripheral support for the NPCM845 evaluation board by wiring up
+the SoC controller nodes to the board design. Add board aliases, GPIO-backed
+MDIO buses, flash partitions, and enable various peripheral interfaces.
 
-diff --git a/drivers/net/ethernet/onsemi/s2500/Kconfig b/drivers/net/ethernet/onsemi/s2500/Kconfig
-index 7786f702d6ec..141fbaf1b641 100644
---- a/drivers/net/ethernet/onsemi/s2500/Kconfig
-+++ b/drivers/net/ethernet/onsemi/s2500/Kconfig
-@@ -6,6 +6,7 @@
- config S2500_MACPHY
- 	tristate "S2500 support"
- 	depends on SPI
-+	imply NET_SELFTESTS
- 	select NCN26000_PHY
- 	select OA_TC6
- 	help
-diff --git a/drivers/net/ethernet/onsemi/s2500/s2500_ethtool.c b/drivers/net/ethernet/onsemi/s2500/s2500_ethtool.c
-index 7e96d9ad563f..0b7ef490d7ca 100644
---- a/drivers/net/ethernet/onsemi/s2500/s2500_ethtool.c
-+++ b/drivers/net/ethernet/onsemi/s2500/s2500_ethtool.c
-@@ -5,6 +5,7 @@
-  */
- 
- #include <linux/ethtool.h>
-+#include <net/selftests.h>
- #include <linux/phy.h>
- 
- #include "s2500_hw_def.h"
-@@ -229,6 +230,8 @@ static int s2500_get_sset_count(struct net_device *ndev, int sset)
- 	switch (sset) {
- 	case ETH_SS_STATS:
- 		return S2500_MAC_STATS_LEN;
-+	case ETH_SS_TEST:
-+		return net_selftest_get_count();
- 	default:
- 		return -EOPNOTSUPP;
- 	}
-@@ -242,6 +245,9 @@ static void s2500_get_strings(struct net_device *ndev, u32 stringset,
- 		memcpy(buf, s2500_mac_stat_strings,
- 		       S2500_MAC_STATS_LEN * ETH_GSTRING_LEN);
- 		break;
-+	case ETH_SS_TEST:
-+		net_selftest_get_strings(buf);
-+		break;
- 	}
- }
- 
+> diff --git a/arch/arm64/boot/dts/nuvoton/nuvoton-npcm845-evb.dts b/arch/a=
+rm64/boot/dts/nuvoton/nuvoton-npcm845-evb.dts
+> index 5edf5d13342da..7717c3a8f76d2 100644
+> --- a/arch/arm64/boot/dts/nuvoton/nuvoton-npcm845-evb.dts
+> +++ b/arch/arm64/boot/dts/nuvoton/nuvoton-npcm845-evb.dts
+> @@ -10,6 +10,42 @@ / {
+> =20
+>  	aliases {
+>  		serial0 =3D &serial0;
+> +		ethernet1 =3D &gmac1;
+> +		ethernet2 =3D &gmac2;
+> +		ethernet3 =3D &gmac3;
+> +		mdio-gpio0 =3D &mdio0;
+> +		mdio-gpio1 =3D &mdio1;
+> +		fiu0 =3D &fiu0;
+> +		fiu1 =3D &fiu3;
+> +		fiu2 =3D &fiux;
+> +		fiu3 =3D &fiu1;
 
--- 
-2.43.0
+[Severity: Medium]
+Are the aliases for the SPI FIU controllers intentionally swapped here?
 
+Mapping fiu1 to &fiu3 and fiu3 to &fiu1 assigns logical SPI bus spi1 to the
+&fiu3 hardware controller and spi3 to the &fiu1 hardware controller.
 
+This contradicts the partition labels defined further down in this patch for
+these nodes, which expect spi1 to be fiu1 and spi3 to be fiu3:
+
+&fiu1 {
+        ...
+        partition@0 {
+                label =3D "spi1-system1";
+
+&fiu3 {
+        ...
+        partition@0 {
+                label =3D "spi3-system1";
+
+Could this mismatch break userspace and boot scripts relying on the logical
+device IDs to find system partitions?
+
+[ ... ]
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260708165929.2233=
+934-1-tmaimon77@gmail.com?part=3D4
 
