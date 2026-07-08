@@ -1,163 +1,189 @@
-Return-Path: <devicetree+bounces-322796-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-322797-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id P6FVDfZCTmpkJwIAu9opvQ
-	(envelope-from <devicetree+bounces-322796-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 14:30:46 +0200
+	id A5nTFZ9CTmpVJwIAu9opvQ
+	(envelope-from <devicetree+bounces-322797-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 14:29:19 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63B0C726512
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 14:30:45 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B9BC7264FD
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 14:29:18 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=D45Ua00P;
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322796-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-322796-lists+devicetree=lfdr.de@vger.kernel.org";
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
+	dkim=pass header.d=collabora.com header.s=zohomail header.b=h6bRTRdC;
+	dmarc=pass (policy=none) header.from=collabora.com;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322797-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-322797-lists+devicetree=lfdr.de@vger.kernel.org";
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 1D533303B6CE
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 12:26:55 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 56F8D3002532
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 12:29:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7498A43DA50;
-	Wed,  8 Jul 2026 12:26:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 965BE43E4B0;
+	Wed,  8 Jul 2026 12:29:13 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5096D3F4DC8
-	for <devicetree@vger.kernel.org>; Wed,  8 Jul 2026 12:26:53 +0000 (UTC)
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783513614; cv=none; b=EkOpc4hW2bYiv9sRX450QbZutOqq5RMUMOeaHzQeM1LqgZpU7udhlHJ3zICDkj/Ae5V89anwknyBQlP7rdordBSyxi7ETTLy2+qbpY8uh9wNE1RqQUxnWeN0EhvZToeLQwfgO7wvhKmF3MofGILMet1tQut9cDSyWSXra3bwc10=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783513614; c=relaxed/simple;
-	bh=tfndFENNcNmvPnzCIn+ql05RqMPs4d9sIuuI3NdqoQk=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=eAmKcwTLYGwU+bQFUrYoT4QgSAHohv0kden4g8cPf4PJDprxSP0CF0O2feDtGbwMCoTcCUxQOVvLT2jMKrZrAEPiauYdMCaXPeN783OlcgY2wN9XHvTysbex/UIVjmJZZtQb6TZNrjyoAutdMDIvIq5WhcJK1LXV4BhvYYLGK3M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=D45Ua00P; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8CB6F1F00A3D;
-	Wed,  8 Jul 2026 12:26:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783513613;
-	bh=lmRsPf9VEqFuwdGL0N01ygoQ0sNBqVgckzefpy6MbHg=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=D45Ua00PVrHaWvDFhewpeQ207QIm9Bgqf/DgwlOcV2fzIUYdkizGPqLCtEv3/z0ye
-	 dzZqItSfuaZkfwWygiA9ZtpCLteCeSFtxPp1zxg51wqptLHEiwv86kKSydCoSznyOX
-	 /ikOlMwEqPBPCA26NbZzWKjKjf77XJ3H0KukpA+LrtZCKSUGfeYMJ4Fmnz7sQShtu+
-	 G9NL6Tvz/NM6s5A55jQd5ChSMncv4xB8jXXSPJBfA+w2SQnNTdeYv09/cXDL1vK/u+
-	 owxSOPCSTLvBB8xu7FcY5YDjVyM5uJsHlIQor4RAgwqDxqMw381j8RtOoLHO4qwm9j
-	 LDrHmiz413GSQ==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v7 5/5] arm64: dts: qcom: Add Shikra EVK boards
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Komal Bajaj" <komal.bajaj@oss.qualcomm.com>
-Cc: neil.armstrong@linaro.org, robh@kernel.org, devicetree@vger.kernel.org, olteanv@gmail.com, vkoul@kernel.org, linux-phy@lists.infradead.org, conor+dt@kernel.org
-In-Reply-To: <20260708-shikra-dt-v7-5-977b65a300c1@oss.qualcomm.com>
-References: <20260708-shikra-dt-v7-0-977b65a300c1@oss.qualcomm.com>
- <20260708-shikra-dt-v7-5-977b65a300c1@oss.qualcomm.com>
-Content-Type: text/plain; charset=utf-8
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29A7443E492;
+	Wed,  8 Jul 2026 12:29:11 +0000 (UTC)
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1783513753; cv=pass; b=ONGvUjXaRu5OvqxO+mPDZcJ3bMzR6l00BNPR+j2TF4kmgHJAus86If2b7M0civ1cMG46CQmQ1y8xeOGLa0GmL2OHcb3ZAJubsVHqyC9neiK8wgm4oC4kslWPVwvtQyEJ/r7jzhZroN+L8w/myy3iT2ibjgX8GTkfYgCrSvBUHDw=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1783513753; c=relaxed/simple;
+	bh=hNxi3I7/AjHCOFwddBwrPLCzilKwHtStVx43u1/rLDU=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=B6GJNT0p95tBMNxy6Mwk/yI/l9DM4cm35P3X2SoGuZSfp6+QGM32VCmzcwB7VEc3lESA9xVOfAROvPItJMLyjVHAlzp1mOz8gN4fs2rl+rxapyXJKE24qhrE7JH3q3SFEG59ZSTgE7YyIWlkSbnSAUUhRN2ogZOcxxL3PL3TP3A=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=louisalexis.eyraud@collabora.com header.b=h6bRTRdC; arc=pass smtp.client-ip=136.143.188.112
+ARC-Seal: i=1; a=rsa-sha256; t=1783513718; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=dmk5QtOSqylrvj1O3kiWrYo5jOBHtMdHnLgwpkgK/OeYJcaygEFc908bdEjJcwFL8duOUKfqaBXGOC+SRZSCHufdPYaYi9PLGNM8bRxhcFLFnofEyRbsoTBNyULAcUmy14ns31kQof4IQPKzXk0XT8RQSPfV+HzfwpBImuFSjoI=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1783513718; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=QCvu92owlqFigfn30SNdUxyYgy9yaDdYJCfmb5B8+hA=; 
+	b=TUVE5cAWvaUKOL/7VkXKNsheZFAnqsjFihWOVi5E8/Lf3tOGzoa/GO+f4zkq6Tnoe+IopkOelUVU/gUR72HtIh4Cuvzg1DGca0jE5//B0m0MTT5dIGFCJ1yRRuscfQIB3dWcW5Zc8zDQl5E1y6DCGRw/JiBf04r8cl6BSbEceZo=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=louisalexis.eyraud@collabora.com;
+	dmarc=pass header.from=<louisalexis.eyraud@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1783513718;
+	s=zohomail; d=collabora.com; i=louisalexis.eyraud@collabora.com;
+	h=Message-ID:Subject:Subject:From:From:To:To:Cc:Cc:Date:Date:In-Reply-To:References:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To;
+	bh=QCvu92owlqFigfn30SNdUxyYgy9yaDdYJCfmb5B8+hA=;
+	b=h6bRTRdCEfGpTsXUdZushp4txBmx8lAJ2sgujTR/sAo9JJSBSlceJfhV4vZkaYkY
+	rtrySVIeuYT8F3dzrFdpWNZza1RcYhMupJRR8ITAYN7hBDSSyKEo6vz8FjpFDY09sUP
+	Nkn2iZd7+RFWywEK1Pwpr2rr8GIUn8Cc/b1GUQZQ=
+Received: by mx.zohomail.com with SMTPS id 1783513715946883.1743690151607;
+	Wed, 8 Jul 2026 05:28:35 -0700 (PDT)
+Message-ID: <e390664dc439043a43b6ded3c50c9a2bb5bbd2f6.camel@collabora.com>
+Subject: Re: [PATCH net-next 5/6] net: stmmac: mediatek: add support for TX
+ deallocation adjustment feature
+From: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
+To: Maxime Chevallier <maxime.chevallier@bootlin.com>, Andrew Lunn	
+ <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, Eric
+ Dumazet	 <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo
+ Abeni	 <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski	 <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Richard Cochran	 <richardcochran@gmail.com>, Matthias Brugger
+ <matthias.bgg@gmail.com>,  AngeloGioacchino Del Regno
+ <angelogioacchino.delregno@collabora.com>, Biao Huang
+ <biao.huang@mediatek.com>, Maxime Coquelin	 <mcoquelin.stm32@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>
+Cc: rmk+kernel@armlinux.org.uk, kernel@collabora.com,
+ netdev@vger.kernel.org, 	devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, 	linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org, 
+	linux-stm32@st-md-mailman.stormreply.com
+Date: Wed, 08 Jul 2026 14:28:30 +0200
+In-Reply-To: <2a421449-01eb-4066-8c19-d554ff8e4f6e@bootlin.com>
+References: <20260707-dwmac-mediatek-mt8189-v1-0-17f345eaaca3@collabora.com>
+	 <20260707-dwmac-mediatek-mt8189-v1-5-17f345eaaca3@collabora.com>
+	 <2a421449-01eb-4066-8c19-d554ff8e4f6e@bootlin.com>
+Organization: Collabora Ltd
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Date: Wed, 08 Jul 2026 12:26:52 +0000
-Message-Id: <20260708122652.8CB6F1F00A3D@smtp.kernel.org>
+User-Agent: Evolution 3.60.2 (3.60.2-1.fc44) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+X-ZohoMailClient: External
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
+	R_DKIM_ALLOW(-0.20)[collabora.com:s=zohomail];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-322797-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:maxime.chevallier@bootlin.com,m:andrew+netdev@lunn.ch,m:davem@davemloft.net,m:edumazet@google.com,m:kuba@kernel.org,m:pabeni@redhat.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:richardcochran@gmail.com,m:matthias.bgg@gmail.com,m:angelogioacchino.delregno@collabora.com,m:biao.huang@mediatek.com,m:mcoquelin.stm32@gmail.com,m:alexandre.torgue@foss.st.com,m:rmk+kernel@armlinux.org.uk,m:kernel@collabora.com,m:netdev@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-mediatek@lists.infradead.org,m:linux-stm32@st-md-mailman.stormreply.com,m:andrew@lunn.ch,m:krzk@kernel.org,m:conor@kernel.org,m:matthiasbgg@gmail.com,m:mcoquelinstm32@gmail.com,m:rmk@armlinux.org.uk,s:lists@lfdr.de];
+	FREEMAIL_TO(0.00)[bootlin.com,lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gmail.com,collabora.com,mediatek.com,foss.st.com];
+	FORGED_SENDER(0.00)[louisalexis.eyraud@collabora.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[23];
 	RCVD_COUNT_THREE(0.00)[4];
-	TAGGED_FROM(0.00)[bounces-322796-lists,devicetree=lfdr.de];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:komal.bajaj@oss.qualcomm.com,m:neil.armstrong@linaro.org,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:olteanv@gmail.com,m:vkoul@kernel.org,m:linux-phy@lists.infradead.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	HAS_ORG_HEADER(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FREEMAIL_CC(0.00)[linaro.org,kernel.org,vger.kernel.org,gmail.com,lists.infradead.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ALIAS_RESOLVED(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[louisalexis.eyraud@collabora.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[collabora.com:+];
+	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,sashiko.dev:url,qualcomm.com:email,lists.linux.dev:replyto,smtp.kernel.org:mid]
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt,kernel];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,collabora.com:from_mime,collabora.com:email,collabora.com:mid,collabora.com:dkim,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 63B0C726512
+X-Rspamd-Queue-Id: 4B9BC7264FD
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [Low] The CQS EVK board incorrectly includes the SoM device tree for the =
-CQM variant, logically coupling a modem-less platform to a modem-equipped p=
-latform.
---
+Hi Maxime,
 
---- Patch [5]: [PATCH v7 5/5] arm64: dts: qcom: Add Shikra EVK boards ---
-commit 4fcaf27e44972f2edd1677d38c5edd3906fd3d1a
-Author: Komal Bajaj <komal.bajaj@oss.qualcomm.com>
+On Tue, 2026-07-07 at 11:11 +0200, Maxime Chevallier wrote:
+> Hi,
+>=20
+> On 7/7/26 10:21, Louis-Alexis Eyraud wrote:
+> > The MT8189 SoC has in the Ethernet control 0 register from the
+> > peripheral configuration (pericfg) additional bits to adjust the TX
+> > deallocation.
+> >=20
+> > In preparation of MT8189 SoC support, add its definition, use in
+> > the
+> > set_delay_v2 callback, and a support flag in the platform data.
+>=20
+> Can you elaborate a bit on this ? I don't quite get what you mean by
+> "tx deallocation", this seems to have to do with RGMII timings from
+> the register access pattern, but the local boolean flag for the
+> feature
+> is named "use_stage_fine", I'm failing to connect all the dots here
+> with the different terminology in use :(
+>=20
+The data sheets I have, don't have info regarding this register, so
+I'll try to get more and improve commit and/or code description.
 
-arm64: dts: qcom: Add Shikra EVK boards
+I'll also check if the register definition name is consistent
+(downstream driver and upstream u-boot use this stage fine term).
 
-This commit adds device trees for the Shikra EVK platform, covering the
-CQ2390M, CQ2390S, and IQ2390S SoM variants. It also introduces a common
-carrier-board configuration shared across all variants.
+The use_stage_fine feature flag could be renamed anyway to match what
+it does.
 
-> diff --git a/arch/arm64/boot/dts/qcom/shikra-cqs-evk.dts b/arch/arm64/boo=
-t/dts/qcom/shikra-cqs-evk.dts
-> new file mode 100644
-> index 0000000000000..b3f19a64d7aed
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/shikra-cqs-evk.dts
-> @@ -0,0 +1,40 @@
-> +// SPDX-License-Identifier: BSD-3-Clause
-> +/*
-> + * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "shikra-cqm-som.dtsi"
+> >=20
+> > Signed-off-by: Louis-Alexis Eyraud
+> > <louisalexis.eyraud@collabora.com>
+> > ---
+> > =C2=A0.../net/ethernet/stmicro/stmmac/dwmac-mediatek.c=C2=A0=C2=A0 | 25
+> > ++++++++++++++++------
+> > =C2=A01 file changed, 19 insertions(+), 6 deletions(-)
+> >=20
+> > diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-mediatek.c
+> > b/drivers/net/ethernet/stmicro/stmmac/dwmac-mediatek.c
+> > index bcc0baef3f71..6b0a42b5839f 100644
+> > --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-mediatek.c
+> > +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-mediatek.c
+> > @@ -37,7 +37,8 @@
+> > =C2=A0#define ETH_FINE_DLY_RXC	BIT(0)
+> > =C2=A0
+> > =C2=A0/* Peri Configuration register for mt8189 */
+> > -#define MT8189_CTRL0_TXC_OUT_OP		BIT(20)
+> > +#define MT8189_CTRL0_TXC_OUT_OP			BIT(20)
+>=20
+> Extra whitespace inserted here :)
+>=20
+Oops, to be fixed in v2
 
-[Severity: Low]
-Is this the intended SoM include for the CQS EVK board?
+Regards,
+Louis-Alexis
 
-This file appears to include the device tree for the CQM (with modem)
-variant instead of the CQS variant. While it might currently only define sh=
-ared
-configurations, future CQM-specific additions could inadvertently propagate=
- to
-the CQS platform.
-
-Should this include a CQS-specific or shared base .dtsi instead?
-
-> +#include "shikra-evk.dtsi"
-> +
-> +/ {
-> +	model =3D "Qualcomm Technologies, Inc. Shikra CQS EVK";
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260708-shikra-dt-=
-v7-0-977b65a300c1@oss.qualcomm.com?part=3D5
+> Thanks,
+>=20
+> Maxime
 
