@@ -1,81 +1,81 @@
-Return-Path: <devicetree+bounces-323062-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-323063-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id HBBRLGWDTmoEOQIAu9opvQ
-	(envelope-from <devicetree+bounces-323062-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 19:05:41 +0200
+	id nPc4JWGCTmqZOAIAu9opvQ
+	(envelope-from <devicetree+bounces-323063-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 19:01:21 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0CE9472900A
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 19:05:41 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 934E6728FA0
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 19:01:20 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=qeRMhRVo;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=OZrUJi8j;
 	dmarc=pass (policy=none) header.from=gmail.com;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-323062-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-323062-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-323063-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-323063-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 33E3F3044A4C
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 16:59:50 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id E4B1E300E170
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 16:59:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF9434611C4;
-	Wed,  8 Jul 2026 16:59:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9169547D955;
+	Wed,  8 Jul 2026 16:59:49 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8410647ECDD
-	for <devicetree@vger.kernel.org>; Wed,  8 Jul 2026 16:59:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD05A47CC69
+	for <devicetree@vger.kernel.org>; Wed,  8 Jul 2026 16:59:45 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783529986; cv=none; b=S0Ha5u3zVhKTEh1b4+0ou5j2nUMsPWRyJgpkgaw3fOWDsx7wwb7aW+PqdVb+ae4lwxJeY8Av1jekdrEIsyd2rwHIRcai3WBE5x27jg5G5DNBH9h8y1k7FSxIirkJK8+htnMl2sjzAvdazPSCl0Pl6bezR51dJE0l9KrBPznrXU4=
+	t=1783529989; cv=none; b=pH1GgjkduDBZ2poAwRX874EZ7vaV7xzcBILw3bC+ea1dijIcTyFTlKlwBMhOLIqxTLffcHDxTavGJqM95y+ZPX6B+UPZnMQuGBbdGCr920CPfeqR7J1QPX2obQSkF/05B4afHziA4eQFMroE/CJXGbbQW6ZGyPBpJ4kkIO4ZeXk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783529986; c=relaxed/simple;
-	bh=S31RcA/iT73E2rlScRcBB8K94r3tzTju+wWFc1ueh9E=;
+	s=arc-20240116; t=1783529989; c=relaxed/simple;
+	bh=b/8+8Brx9IhRa7AiwFOwyoRcde8N1Kp/KHSVRoPhoNg=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=K48KciMHhlbcwZuM+iM/kFGRz8hC2MFFUareFu9p9gSGOCqoKk5s6doIObVFcJCfZ7lXWAUa+WFjG5iYgOmI79OfoIqIbA0q47/fO6MMCREIk3Yi3Yde0+SDcvV1ByLBEuWMdgpve+uSypS2v+hUJVio3Wk0lK2BNEQyfFfVhy0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=qeRMhRVo; arc=none smtp.client-ip=209.85.128.41
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-493c55d5c7aso9554655e9.1
-        for <devicetree@vger.kernel.org>; Wed, 08 Jul 2026 09:59:43 -0700 (PDT)
+	 MIME-Version; b=NO/j9kx50mV1KyJCswyhD4PsBwTG/ZlkOAWoEN2vdTwAKmDJKJzK6Bo6qwy5liMOW9P8Q45HoFc6r0De5MV0S/gqGj9YOwT4Noo381wOwmSw/yWBrmOHg/frQ07/Mq5pHoA50ypF6Ra2O2/+4/Bw1CnNBo3GV+3KPNjga6SObPA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OZrUJi8j; arc=none smtp.client-ip=209.85.128.54
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-493c83474ddso8340295e9.3
+        for <devicetree@vger.kernel.org>; Wed, 08 Jul 2026 09:59:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1783529981; x=1784134781; darn=vger.kernel.org;
+        d=gmail.com; s=20251104; t=1783529984; x=1784134784; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=k9A30rq3ztTZA8NjaSTuX8appAKxji9QAPEQZArsTJ4=;
-        b=qeRMhRVo/teoJeqqjn37JVi+LfmACCEoj1BtW/6RROk3XzRy4TiJk/yNa9JogEcvAg
-         3BnuMMwT0VmiGlJmntVDpq1E7ur7Es2J4IBaTPDicE71CUySufRlL/7Q29VJ/UnI8Obg
-         mjNV7xKirEBavU+zjcr3mDLr2bnNqrPgC5vqGi9P4vRzvyeZVs7d5LViH5b108KfQ2jR
-         rg3/7Zs5Rs5B0lxyNeXIVT0HTK1QtWkdz8sePQpgxPP5wDR7mxp+ARIy3Y0ZzJQIHuHx
-         Lb8dL1fQgm6ZRTB7HwViV7joaJKTIlCZz2+qSsofXvLRxveSuo8gkcxl6bj2GabiG7mQ
-         98pA==
+        bh=4ogB6BpMOolwSssmz7Py02Mc3pnlrio/s7I0rvFiSHw=;
+        b=OZrUJi8jDBur1wJuJ0Wv94jkDjiSsJyaU2k7F/Fk+l9pVJcStS9ynTY6mxViFGCnm3
+         gl2f3JFQviPQ/nzpRzbs+hvKrVabeaiNfcOzqSsSqhYguzWnnDjkDp29dowa/4UuCxg7
+         DwuP8wFoxYofcCrPFFmE+sEcNS1SDl3QksLJMpFuwzu2Gse2JjnTCvfEtwQjUVzY37wK
+         DKscp7+yhPK0Khz3JM3eJ2it/cNkqxCbzENMhe7QRgfYGSIegX1kR1ZAqK23PZ0HhiQ+
+         DSzTOqDqDuhRlq+ZCiHV3Uy7B53/n3DIInTiI8jTI3Zhazsb/TcneTZMxPc5PPuU/HZk
+         h2JQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783529981; x=1784134781;
+        d=1e100.net; s=20251104; t=1783529984; x=1784134784;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=k9A30rq3ztTZA8NjaSTuX8appAKxji9QAPEQZArsTJ4=;
-        b=YMeoswL7sPNhKPbENXKWbbe/PJMlWMPqSIz8lkfPzVNqiOtGEa/xQbBOm3JnCq6QMc
-         1E5P6hhS5SgAJL4gSHlqU8+xCy0F+Vn6eG/1jTF6QYA6ok8GxUGqybXqZ5TR+gK/mNkn
-         z541N2ZYphwpgMtWBGLN+y3ARjeGEEBuQNiJrjcIo8L9NHox9OpqPis20ZHIHwW8CWPa
-         vDzxQXHPL0e+g/5tp4WPV50tkHDfWxWjER0VoSqHoUAdQmGhQENsv4Q6BpQO8YclBRqV
-         Me1wRxs9ynK2ccqyixvpejJr2W4BtN++EoEGfvgDosp1Y2PzlEABJ46b+UDfLqsmTnCl
-         yKcA==
-X-Forwarded-Encrypted: i=1; AHgh+RoKlt7FAn1fE96Mz5KgM5PAqi3tgCs7WMKBeWS2dPXLAp4hFrFjiUgYnLhpA9IlJs/xebhSgqD8VgiA@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz9LJZcCL9MjwMQODhS8nEJTmKprjxBzw7ix9GGuJaJt+3M5WIA
-	ld53VBVllv/rrp4KQ2GUDnD1H4nW6o5qOJmipwj77xQY1mmUZPnPAMUn
-X-Gm-Gg: AfdE7cn6EiiKKjFHpeYwzbd1lgqw4uqiAUXxXL5G0vJ1G2H2F1bEJjjmkhdwL0GGaes
-	mOePjXA95YDYmPnU/yZRIXQUP7+fKq7Qe7qrjF7Sn8XmlzAKXTUpOJIcu1KDP4fkyLD3eDcjkhN
-	FoCk3FcUsXcOrDQtBjvEOGmKljCcMIW+haO4uGLqF6Ou6RF1xPnshkG7qZUMb76qSwzm0VuXHA9
-	8ZReoZLCWjWnYeaeOJVHmzpq+NffehINhIqj7VBN/Qy5Fsp7nDbTQwEH5X+xEm+yJeTbA0ZAb+E
-	xERfKtcg8Go7yOySM24F1hhiGLWJY1tmK6jUuzETlI5YDDSUzaht9wcl/Bpzbw7byArhCXDU9jI
-	fKb/1KaG1nvO0aw47XVu8PQJd4uqF54Ct1mjWtCKbG2TnrVvcjvn9wS1XHaaFpvO7RH/yD75WJJ
-	SweHeJ1DkoI920leJdjKMGdsco6zpsVkXB1w==
-X-Received: by 2002:a05:600c:c1c8:10b0:493:c3c9:218c with SMTP id 5b1f17b1804b1-493e68cebf6mr29135245e9.30.1783529981380;
-        Wed, 08 Jul 2026 09:59:41 -0700 (PDT)
+        bh=4ogB6BpMOolwSssmz7Py02Mc3pnlrio/s7I0rvFiSHw=;
+        b=eVGVJbx2DPZrQC1byxcq8nLuDepdbxiJGs2U6D3+qWOiuNxCwnn8u9kXF/XbFqGLZR
+         jYDWqmO6Avq38MsEFraiSDwqaqLAO7H6f9VRvlu468gcRrP0wVWqJUFMgRansgpua6an
+         uhsNIdJt/cmUo8LyTwPBbAA8swfjMXHUm7FetAmXh/IecYIOuhnZj8V8w+bwTvZAu8/v
+         9pxg+qI8IDBkyox6HKVZ86fJXaza2b41Bk0EWlqzPnzLZ32q05A5Gvpweq7PK5vk2eRO
+         EfFGwwjkcoKUfV5SvbMjAeW8pWAUiY11qLoY2nHAR0qwirkxYCnNsxq6tdGm0Pc3kIWm
+         i2bw==
+X-Forwarded-Encrypted: i=1; AHgh+Rpz+UYtVT1cMXeiI+Skj+by6C3+eEn3LJVWfmVFSz/4XPyNyWIKoSI5xSYSBS76ttU5wsSM+7ZCM7EN@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw1efD7w83nJsIKSsTDhp7BN/5N886xLsAcerVMyGGZs/T5YW45
+	Bi8H371NMx9jceH325IVuBwUDAAQDkGpEM5WsO2aI4MT519NWeVGdZq0
+X-Gm-Gg: AfdE7cnvUGXB2tfTLr9aZsReXLJeXBLroZrP3cn2pxOHyGNL7M4Qub1fPe7rOWI9XaV
+	G8+ZCZxAQ1qqj/J8t7YWNY8MfIGbC2H4e4OWCc4qnTAoV5jkdold4y73bZ/knbfYz3gL6pQRbsj
+	mku2g1+jVmCb6L80iYdtud5DjysW8djAr8x3LTGdot6UNpW8NtGab39A/3UAYuWcGfY2/nyHoZG
+	yXXlbc5rwUXWGVSIftNStE4ZPHuGQ5FAl0lsa4wmokRFbEHX5+LH0nSWk5AFwBr11r/busmVJoJ
+	w6DnvVZ+RbD/4XLVDLEKcG7tC8GS1cWofcIMUYSYmM1n8skXy3AoJWbS3gaNzddqaJyCP90qM2v
+	9LJvwWaYOEcqr71B/dchtq/LjLHGX2lFgIbh9k0vTanCD4+UqxqIb6YCBGAhT3Caos1g2CR9RnU
+	cirG/jcrnFO2MNJwkkxDBzE6o=
+X-Received: by 2002:a05:600c:3491:b0:493:c59c:94f1 with SMTP id 5b1f17b1804b1-493e7e82e10mr28566825e9.2.1783529983903;
+        Wed, 08 Jul 2026 09:59:43 -0700 (PDT)
 Received: from taln60.nuvoton.co.il ([212.199.177.18])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-493e0faed92sm141201035e9.9.2026.07.08.09.59.39
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-493e0faed92sm141201035e9.9.2026.07.08.09.59.42
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Jul 2026 09:59:40 -0700 (PDT)
+        Wed, 08 Jul 2026 09:59:43 -0700 (PDT)
 From: Tomer Maimon <tmaimon77@gmail.com>
 To: andrew@codeconstruct.com.au,
 	robh@kernel.org,
@@ -90,9 +90,9 @@ Cc: openbmc@lists.ozlabs.org,
 	venture@google.com,
 	yuenn@google.com,
 	benjaminfair@google.com
-Subject: [PATCH v8 1/4] arm64: dts: nuvoton: npcm845: Drop redundant timer clock-names
-Date: Wed,  8 Jul 2026 19:59:26 +0300
-Message-Id: <20260708165929.2233934-2-tmaimon77@gmail.com>
+Subject: [PATCH v8 2/4] arm64: dts: nuvoton: npcm845: Reorder timer0 and PECI nodes
+Date: Wed,  8 Jul 2026 19:59:27 +0300
+Message-Id: <20260708165929.2233934-3-tmaimon77@gmail.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260708165929.2233934-1-tmaimon77@gmail.com>
 References: <20260708165929.2233934-1-tmaimon77@gmail.com>
@@ -111,7 +111,7 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
@@ -120,11 +120,11 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	RCPT_COUNT_TWELVE(0.00)[13];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-323062-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-323063-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS(0.00)[m:andrew@codeconstruct.com.au,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:openbmc@lists.ozlabs.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:avifishman70@gmail.com,m:tmaimon77@gmail.com,m:tali.perry1@gmail.com,m:venture@google.com,m:yuenn@google.com,m:benjaminfair@google.com,m:krzk@kernel.org,m:conor@kernel.org,m:taliperry1@gmail.com,s:lists@lfdr.de];
 	FORWARDED(0.00)[lists@lfdr.de];
 	FORGED_SENDER(0.00)[tmaimon77@gmail.com,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
@@ -138,31 +138,75 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	ALIAS_RESOLVED(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 0CE9472900A
+X-Rspamd-Queue-Id: 934E6728FA0
 
-The NPCM845 timer0 node references a single clock, but its
-clock-names property is not described by the timer binding. Drop the
-undocumented name so the DTS matches the binding.
+Move the timer0 and PECI nodes so the APB children are ordered by
+ascending unit address.
 
 Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
 ---
- arch/arm64/boot/dts/nuvoton/nuvoton-common-npcm8xx.dtsi | 1 -
- 1 file changed, 1 deletion(-)
+ .../dts/nuvoton/nuvoton-common-npcm8xx.dtsi   | 32 +++++++++----------
+ 1 file changed, 16 insertions(+), 16 deletions(-)
 
 diff --git a/arch/arm64/boot/dts/nuvoton/nuvoton-common-npcm8xx.dtsi b/arch/arm64/boot/dts/nuvoton/nuvoton-common-npcm8xx.dtsi
-index c781190b4..9e4fa2669 100644
+index 9e4fa2669..545034ac1 100644
 --- a/arch/arm64/boot/dts/nuvoton/nuvoton-common-npcm8xx.dtsi
 +++ b/arch/arm64/boot/dts/nuvoton/nuvoton-common-npcm8xx.dtsi
-@@ -73,7 +73,6 @@ timer0: timer@8000 {
- 				interrupts = <GIC_SPI 32 IRQ_TYPE_LEVEL_HIGH>;
- 				reg = <0x8000 0x1C>;
- 				clocks = <&refclk>;
--				clock-names = "refclk";
+@@ -59,22 +59,6 @@ apb {
+ 			ranges = <0x0 0x0 0xf0000000 0x00300000>,
+ 				<0xfff00000 0x0 0xfff00000 0x00016000>;
+ 
+-			peci: peci-controller@100000 {
+-				compatible = "nuvoton,npcm845-peci";
+-				reg = <0x100000 0x1000>;
+-				interrupts = <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>;
+-				clocks = <&clk NPCM8XX_CLK_APB3>;
+-				cmd-timeout-ms = <1000>;
+-				status = "disabled";
+-			};
+-
+-			timer0: timer@8000 {
+-				compatible = "nuvoton,npcm845-timer";
+-				interrupts = <GIC_SPI 32 IRQ_TYPE_LEVEL_HIGH>;
+-				reg = <0x8000 0x1C>;
+-				clocks = <&refclk>;
+-			};
+-
+ 			serial0: serial@0 {
+ 				compatible = "nuvoton,npcm845-uart", "nuvoton,npcm750-uart";
+ 				reg = <0x0 0x1000>;
+@@ -138,6 +122,13 @@ serial6: serial@6000 {
+ 				status = "disabled";
  			};
  
- 			serial0: serial@0 {
++			timer0: timer@8000 {
++				compatible = "nuvoton,npcm845-timer";
++				interrupts = <GIC_SPI 32 IRQ_TYPE_LEVEL_HIGH>;
++				reg = <0x8000 0x1C>;
++				clocks = <&refclk>;
++			};
++
+ 			watchdog0: watchdog@801c {
+ 				compatible = "nuvoton,npcm845-wdt", "nuvoton,npcm750-wdt";
+ 				interrupts = <GIC_SPI 47 IRQ_TYPE_LEVEL_HIGH>;
+@@ -161,6 +152,15 @@ watchdog2: watchdog@a01c {
+ 				status = "disabled";
+ 				clocks = <&refclk>;
+ 			};
++
++			peci: peci-controller@100000 {
++				compatible = "nuvoton,npcm845-peci";
++				reg = <0x100000 0x1000>;
++				interrupts = <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>;
++				clocks = <&clk NPCM8XX_CLK_APB3>;
++				cmd-timeout-ms = <1000>;
++				status = "disabled";
++			};
+ 		};
+ 	};
+ 
 -- 
 2.34.1
 
