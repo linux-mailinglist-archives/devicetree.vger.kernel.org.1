@@ -1,199 +1,190 @@
-Return-Path: <devicetree+bounces-323052-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-323054-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id Qo9ENHGBTmpKOAIAu9opvQ
-	(envelope-from <devicetree+bounces-323052-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 18:57:21 +0200
+	id AESrLyuCTmqCOAIAu9opvQ
+	(envelope-from <devicetree+bounces-323054-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 19:00:27 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20064728F43
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 18:57:21 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 35048728F8A
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 19:00:27 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=TmhTV2Yk;
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-323052-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-323052-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=sartura.hr header.s=sartura header.b=B0uYomjy;
+	dmarc=pass (policy=reject) header.from=sartura.hr;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-323054-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-323054-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 48F113008769
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 16:49:58 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 43CA03033AC7
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 16:52:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2C3A43079C;
-	Wed,  8 Jul 2026 16:49:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA3E043D50D;
+	Wed,  8 Jul 2026 16:52:21 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66DAD43713B
-	for <devicetree@vger.kernel.org>; Wed,  8 Jul 2026 16:49:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44175437113
+	for <devicetree@vger.kernel.org>; Wed,  8 Jul 2026 16:52:16 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783529397; cv=none; b=WhrvQQi1tCJoFBQkjxi4pb89C01TXuyZMjv1AX98AXc/QC5NHkMoyQu1Xsl0M3TDI19F+/ufReSeJPcjMNNcxKWAyREVH7bf9w2I/GyPik+Mhag8A87w54yBq9SEg04uIWMjzLwvTFyKIH/8kOknj1kpMriqQa8u5c2mrkPoF1U=
+	t=1783529539; cv=none; b=o5Wih5EkVUhz9WJj7Q65NCkKmMhhUeDgufOcKtLy+I2hM6+sBTxRCqKoRsLG8nzQ+AQYgQOwOW3b7rDBt7JvrmheGPI5VfegnIktF0YFzMwp3GrWfYneBvjIfgFQGSLCLYqVJCBB0vWPaS1WXSBNY3qxp1+HOr81VVD69BisODE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783529397; c=relaxed/simple;
-	bh=4yIuYm0sF3Y4hVsI3nq7nbqwG3SXp4KTQ/9LpTR1erc=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=AAfY0k1tLiOGtGBNhZnf2wQT4JJ9nTEgKsfpj77gbMogGEyZEbRDaTw2NUCF2JXpcowi4DRv/n747BTsBCaamFkSobrDAbFQH2CP78hDr6XqkSFrHgXVwlTPb+CLSkUG1iw7l+VJrAAgKF5IlhAgTuCNXwYyc4/1ZaTDcUSYEpU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TmhTV2Yk; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 806331F000E9;
-	Wed,  8 Jul 2026 16:49:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783529395;
-	bh=PweMsGz6aPYGsFryeW5fByl4FxC1SJwg7JewtfiPETg=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=TmhTV2Ykc3EVvJlW2jPi/sdMEVVfYcCvV5NV6dYM2WNf/hJrW8hGql0QDU1NrcMrn
-	 IQd8l0BEU/WHM19rv7TEo/9Dlo45eSLvU64KHpRR1dV34uW7Um3AHnH6u74UggRdiI
-	 ueL4WHVCEH60R2pZm8PJVuMGwWdIcAp8WppoDnWWfOukvH3gDJH2ZjEZu0EdsLtpxW
-	 IUBTa/MD/BDYD4ioE7slZ/k9n33WyzDv9/FT4wwEMB/ZRojXmqSTEvM/YlN9wc0XYb
-	 d73Y0z2v4BMaks7bomTQ2p27QbhHQZzXCR2BzKuHo9DX++onbc+tyqf+514BRqnt6e
-	 sMqr6LN7ZaFgQ==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v2 1/2] arm64: dts: renesas: r9a09g057: Add PCIe nodes
-Reply-To: sashiko-reviews@lists.linux.dev
-To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: robh@kernel.org, devicetree@vger.kernel.org, wsa+renesas@sang-engineering.com, conor+dt@kernel.org
-In-Reply-To: <20260708163311.222176-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20260708163311.222176-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20260708163311.222176-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Wed, 08 Jul 2026 16:49:55 +0000
-Message-Id: <20260708164955.806331F000E9@smtp.kernel.org>
+	s=arc-20240116; t=1783529539; c=relaxed/simple;
+	bh=Bc+3nUd8JHXptnb6yT5c8317T5N2BuIDDaHFmOya5rY=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=LcjbkuVV3M6oTiRDbTYiL/Kv27ClsH5zLNRwZDjgBuE2w0ACPiUdLhAIeq1RbBQCUuoaO2l0vgl3zwzyuvtfWBYHMlc6JXuZK54CJ+/lnqZRS5Y/5MJ4kiW9O2tymHalQpgymQi90D2r2EEfAJ8cL9JPzDPgoXMhzAeVWQ5s8v0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sartura.hr; spf=pass smtp.mailfrom=sartura.hr; dkim=pass (2048-bit key) header.d=sartura.hr header.i=@sartura.hr header.b=B0uYomjy; arc=none smtp.client-ip=209.85.128.51
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-493b27c7451so972785e9.0
+        for <devicetree@vger.kernel.org>; Wed, 08 Jul 2026 09:52:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sartura.hr; s=sartura; t=1783529532; x=1784134332; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=OGtUrkx/TpXSV9KyMxarboRJ5bR8WEDJ79N5wF/Lel0=;
+        b=B0uYomjyYNyyPLdEztNUPv0rgDrrApbm6+oZygAZ+S9LmB78b5PPKygfcvVhMoXBlO
+         9WImw+huXYMibOG1p8emHJVMmBEG7iAjwigJGPk0Ms4biNJhNg8+ERGOSGbKNdKdKZGh
+         Pp8GJG14GvH9EsCOW2VemYhvoAUffV9dfzfBycHOQtsXusxmtWrUh16Bht7TFTyvB3+1
+         awh6FolbKAnRt9Fj+H26RsZh8b8j07CK2oZGEcYU4+xWIsUrxlPiUuLrGv/iJU+X68g0
+         aO6ypvVBJn5tururPsc+lvWy0VsbIwcqMmTkzoEiZ4gBzqc064ipnerQPf7i/igtw/Ag
+         3zuQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1783529532; x=1784134332;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=OGtUrkx/TpXSV9KyMxarboRJ5bR8WEDJ79N5wF/Lel0=;
+        b=laV9d/VQLlVt09thbs8HuF5WDEgRGI9yiBj1aHtF3Tp2riyuK6ttKI/C+85V+H92/0
+         rqvZ6C2xjTwVlHD3jHwmBOKv5lE8RD16awLnYSUnCFR7pvIlkkndiaP/deUtMKcZIgDm
+         L+hTk8xGrcqqQfry+zd9ejAyGMgiX97OPw2m6ymQxaQDbzWCmJ9NN+D2j3ScwByFptiz
+         KZpRJAQh0ZHffbqku6hOBja72Bu/S4R99xjXZmX2ViIVkikUSd8hfrCi/hMa967BX0d2
+         RrCxNGc1OnusLh3ND48QMRqKzpcgKoQ1BMw39NsPiwfeurhgY+R2swHL6CrQs3LQ7QWS
+         JItA==
+X-Forwarded-Encrypted: i=1; AHgh+RpZIKeFbl3Kio/Q7aep7tPZKqh/3eXOyO81ujwAUU4yt9NIQnFDHVsTFHgfcLOwKY/+txqGz30Ud2X1@vger.kernel.org
+X-Gm-Message-State: AOJu0YzqYr+AqkXLmSZ5s8+ithQfv5MoCOmJ3U4WN65fpV1fxS6834TB
+	z8jC3xdPjMA7RRJDEla+VNbSTvhukBYLPr5ujrUfQ+cYZELQfT7dK+a9N3Eoox6UOhs=
+X-Gm-Gg: AfdE7cljGzEUOOisBQzxdeZHItwW6CbXuaBLsDlREgsQRiKPnTVKEQaIkY836ILupQZ
+	I/uffUcJ7JsmJq+08AOkAq2m9JnYYrhYktecRnHL/SERyrvK1M8pcyH7NHPHbTo6XSAMY20PGl4
+	ebzk+fhuqH5EP0S8B9/TmIZShhyxAMlLV20CLVDUrxk3AqPmndEoxCRBg9urk6lASenK+wcCP77
+	SqWMDNfntH1ctmiQ6JbBs2qOXqO5/EVQkdTh0q/bd+7GwmzfbyXz3iTferjDWMvcN6rahvF66Ub
+	wRVJXDI1alU8OIKBvPuyM3Jk4hiyWnul3nXTy6MV/SDSv0sYDkkbnEb7NE4qGW1X2uckimpCguZ
+	B1lI9cZUkorNAXIKzCpytHpKujpaf7TYh5cwVS7OyfrTys6CbelJ/ss14FQsdOqW1jjKbCruGsQ
+	zVTb9IG4RmUmjrqJePL5JE48n4wQSrdE6j2V+UewwBYSIoFO9dqQRiZWZb18HSUwZ96MP4kpefO
+	aRKxs38magSOXxHDrOaNexM19j70oilK6rZAj/mljo=
+X-Received: by 2002:a5d:5885:0:b0:46f:8561:fe60 with SMTP id ffacd0b85a97d-47de9a0e419mr9448965f8f.17.1783529531534;
+        Wed, 08 Jul 2026 09:52:11 -0700 (PDT)
+Received: from threadripper-fedora-workstation (dh207-15-57.xnet.hr. [88.207.15.57])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-47aa0f214d2sm42902679f8f.33.2026.07.08.09.52.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 08 Jul 2026 09:52:10 -0700 (PDT)
+From: Robert Marko <robert.marko@sartura.hr>
+To: conor@kernel.org,
+	nicolas.ferre@microchip.com,
+	claudiu.beznea@tuxon.dev,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	broonie@kernel.org,
+	alexandre.belloni@bootlin.com,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	daniel.machon@microchip.com
+Cc: luka.perkov@sartura.hr,
+	Robert Marko <robert.marko@sartura.hr>
+Subject: [PATCH 1/4] spi: atmel-quadspi: add controller init callback
+Date: Wed,  8 Jul 2026 18:51:08 +0200
+Message-ID: <20260708165201.624271-1-robert.marko@sartura.hr>
+X-Mailer: git-send-email 2.55.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.16 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [0.84 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[sartura.hr,reject];
+	R_DKIM_ALLOW(-0.20)[sartura.hr:s=sartura];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:prabhakar.csengg@gmail.com,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:wsa+renesas@sang-engineering.com,m:conor+dt@kernel.org,m:prabhakarcsengg@gmail.com,m:wsa@sang-engineering.com,m:conor@kernel.org,s:lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-323052-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,renesas.com:email,sashiko.dev:url,vger.kernel.org:from_smtp,smtp.kernel.org:mid,lists.linux.dev:replyto];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[robert.marko@sartura.hr,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	TAGGED_FROM(0.00)[bounces-323054-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:conor@kernel.org,m:nicolas.ferre@microchip.com,m:claudiu.beznea@tuxon.dev,m:robh@kernel.org,m:krzk+dt@kernel.org,m:broonie@kernel.org,m:alexandre.belloni@bootlin.com,m:linux-arm-kernel@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:daniel.machon@microchip.com,m:luka.perkov@sartura.hr,m:robert.marko@sartura.hr,m:krzk@kernel.org,s:lists@lfdr.de];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ALIAS_RESOLVED(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	PRECEDENCE_BULK(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FROM_NO_DN(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[robert.marko@sartura.hr,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[sartura.hr:+];
+	RCVD_COUNT_FIVE(0.00)[5];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5]
+	TO_DN_SOME(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sartura.hr:from_mime,sartura.hr:email,sartura.hr:mid,sartura.hr:dkim,vger.kernel.org:from_smtp,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 20064728F43
+X-Rspamd-Queue-Id: 35048728F8A
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
-s) to consider:
-- [High] The pcie1 node incorrectly re-uses the exact same clocks and reset=
-s properties as pcie0, causing a hardware resource conflict.
-- [Medium] The `renesas,sysc` property passes an argument to a phandle, but=
- the target `sys` node lacks a `#cells` property.
---
+Allow controller variants to provide a custom initialization callback
+through their capability data.
 
---- Patch [1]: [PATCH v2 1/2] arm64: dts: renesas: r9a09g057: Add PCIe node=
-s ---
-commit 146b102b21fdb6341d75564293e25310c00c5056
-Author: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+This prepares the driver for variants which require a different hardware
+initialization sequence without adding SoC checks to the common path.
 
-arm64: dts: renesas: r9a09g057: Add PCIe nodes
-   =20
-Add PCIe nodes to Renesas RZ/V2H(P) ("R9A09G057") SoC DTSI.
+Signed-off-by: Robert Marko <robert.marko@sartura.hr>
+---
+ drivers/spi/atmel-quadspi.c | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
-> diff --git a/arch/arm64/boot/dts/renesas/r9a09g057.dtsi b/arch/arm64/boot=
-/dts/renesas/r9a09g057.dtsi
-> index 9581af58024ed..f3199c32423e5 100644
-> --- a/arch/arm64/boot/dts/renesas/r9a09g057.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/r9a09g057.dtsi
-> @@ -1024,6 +1024,146 @@ rsci9: serial@12803000 {
-[ ... ]
-> +		pcie0: pcie@13400000 {
-> +			compatible =3D "renesas,r9a09g057-pcie";
-[ ... ]
-> +			#size-cells =3D <2>;
-> +			num-lanes =3D <2>;
-> +			renesas,sysc =3D <&sys 0>;
-                        ^^^^
+diff --git a/drivers/spi/atmel-quadspi.c b/drivers/spi/atmel-quadspi.c
+index aaf7f4c46b22..62ea84d234d0 100644
+--- a/drivers/spi/atmel-quadspi.c
++++ b/drivers/spi/atmel-quadspi.c
+@@ -256,8 +256,11 @@ static const struct atmel_qspi_pcal pcal[ATMEL_QSPI_PCAL_ARRAY_SIZE] = {
+ 	{200000000, 7},
+ };
+ 
++struct atmel_qspi;
++
+ struct atmel_qspi_caps {
+ 	u32 max_speed_hz;
++	int (*init)(struct atmel_qspi *aq);
+ 	bool has_qspick;
+ 	bool has_gclk;
+ 	bool has_ricr;
+@@ -1156,6 +1159,9 @@ static int atmel_qspi_sama7g5_setup(struct spi_device *spi)
+ 	/* The controller can communicate with a single peripheral device (target). */
+ 	aq->target_max_speed_hz = spi->max_speed_hz;
+ 
++	if (aq->caps->init)
++		return aq->caps->init(aq);
++
+ 	return atmel_qspi_sama7g5_init(aq);
+ }
+ 
+@@ -1570,6 +1576,9 @@ static int __maybe_unused atmel_qspi_resume(struct device *dev)
+ 		return ret;
+ 	}
+ 
++	if (aq->caps->init)
++		return aq->caps->init(aq);
++
+ 	if (aq->caps->has_gclk)
+ 		return atmel_qspi_sama7g5_init(aq);
+ 
+-- 
+2.55.0
 
-[Severity: Medium]
-Does the target sys node have a #sysc-cells property defined?
-
-If the driver relies on standard of_parse_phandle_with_args() to read the
-controller ID (0), the parsing will fail at runtime because the target
-node lacks #sysc-cells. If the driver uses of_parse_phandle(), the
-argument is simply ignored.
-
-> +			status =3D "disabled";
-> +
-> +			pcie_port0: pcie@0,0 {
-[ ... ]
-> +		pcie1: pcie@13410000 {
-> +			compatible =3D "renesas,r9a09g057-pcie";
-[ ... ]
-> +			interrupt-map =3D <0 0 0 1 &pcie1 0 0 0 0>, /* INTA */
-> +					<0 0 0 2 &pcie1 0 0 0 1>, /* INTB */
-> +					<0 0 0 3 &pcie1 0 0 0 2>, /* INTC */
-> +					<0 0 0 4 &pcie1 0 0 0 3>; /* INTD */
-> +			clocks =3D <&cpg CPG_MOD 0xc4>, <&cpg CPG_MOD 0xc5>;
-> +			clock-names =3D "aclk", "pmu";
-> +			resets =3D <&cpg 0xb2>;
-                        ^^^^
-
-[Severity: High]
-Are these the correct clocks and resets for pcie1?
-
-The pcie1 node re-uses the exact same indices (0xc4, 0xc5, and 0xb2) as
-pcie0. The CPG driver (drivers/clk/renesas/r9a09g057-cpg.c) explicitly maps
-these to pcie_0_aclk, pcie_0_clk_pmu, and PCIE_0_ARESETN.
-
-Probing pcie1 will request the exact same exclusive reset and clock lines as
-pcie0. This will cause the pcie1 probe to fail with -EBUSY due to exclusive
-reset acquisition. Alternatively, if the reset is handled as shared, assert=
-ing
-the reset during pcie1 initialization will unexpectedly reset the active
-pcie0 hardware, dropping any attached devices.
-
-> +			reset-names =3D "aresetn";
-> +			power-domains =3D <&cpg>;
-> +			device_type =3D "pci";
-> +			#address-cells =3D <3>;
-> +			#size-cells =3D <2>;
-> +			num-lanes =3D <2>;
-> +			renesas,sysc =3D <&sys 1>;
-                        ^^^^
-
-[Severity: Medium]
-Does the target sys node have a #sysc-cells property defined?
-
-Similar to pcie0, if the target node lacks #sysc-cells, parsing this
-property with of_parse_phandle_with_args() will fail at runtime.
-
-> +			status =3D "disabled";
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260708163311.2221=
-76-1-prabhakar.mahadev-lad.rj@bp.renesas.com?part=3D1
 
