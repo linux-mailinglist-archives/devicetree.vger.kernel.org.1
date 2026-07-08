@@ -1,86 +1,87 @@
-Return-Path: <devicetree+bounces-322923-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-322925-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id EV5YCntkTmpPLwIAu9opvQ
-	(envelope-from <devicetree+bounces-322923-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 16:53:47 +0200
+	id zqMIKYRkTmpSLwIAu9opvQ
+	(envelope-from <devicetree+bounces-322925-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 16:53:56 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE5297279FA
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 16:53:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C4E0727A07
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 16:53:56 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=raspberrypi.com header.s=google header.b=YkGmpBhN;
+	dkim=pass header.d=raspberrypi.com header.s=google header.b=Trmf1Cql;
 	dmarc=pass (policy=reject) header.from=raspberrypi.com;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322923-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-322923-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322925-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-322925-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 19F633077CCC
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 14:50:37 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id E3A52307A2E9
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 14:50:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01FE04C77BB;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C86154C8FF3;
 	Wed,  8 Jul 2026 14:49:36 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9793B47B43A
-	for <devicetree@vger.kernel.org>; Wed,  8 Jul 2026 14:49:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0806347CC85
+	for <devicetree@vger.kernel.org>; Wed,  8 Jul 2026 14:49:28 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783522174; cv=none; b=WNG+lIv/6/wYcQ5rZEweCCYMxNzRZt9i7Zl3xWcTTlP39iMoZIVG4HXLkWsx32U+hNrdr9FfMtjZmD1OCffozo74DZXEYieRAmlJQclWXiNBx3+fz/lE4+ujW39koEvySbil7VQr+ih8bbRNWrKlv2vwbkO19DsxjE7mlKOuaHY=
+	t=1783522175; cv=none; b=P+z1yC38tkJo4Qli9vbEBdhsnwCO77sN5s2qhpx2LCCzPiMOEQXPV1VmEEgDx7TJL23byEErMOCFPtBCoIORZiSc/jtKmsALXoUGty9TRkaOPI456T5pXB+AG+g+0sX/p47shUe93yqO3lwLC69C2v8ZaSqm0/+us4J4I3M2iGA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783522174; c=relaxed/simple;
-	bh=/BY0FHV2ekurjGQiSyljfjnh/9DiTeGY5gSJ9RVi5Zg=;
+	s=arc-20240116; t=1783522175; c=relaxed/simple;
+	bh=xUTMOWk5+CT994jr6gP3kud/mZi2SFkhl+KumJEc/R0=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=BRgISh9j4/OwOh4EJ5bsbY81YVLpC1z6GUCe3eb1xTEcjtiSkJoFl7kg6NwtC/+NZj8hVeNtbiqq+UIYb6SW+GoPbMOwLZK6Zhmi9CxEGC1U/31CNi+2FGWai5gbSVddN5Nr88GoEvyKsq1MkBLDc1cj6/EaIiHuqmPyJRCZVVw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=raspberrypi.com; spf=pass smtp.mailfrom=raspberrypi.com; dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b=YkGmpBhN; arc=none smtp.client-ip=209.85.128.52
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-493c19bad03so7511555e9.2
-        for <devicetree@vger.kernel.org>; Wed, 08 Jul 2026 07:49:27 -0700 (PDT)
+	 In-Reply-To:To:Cc; b=Dr2WGXB2YgEBTzx+8+DH+f6tXHRh2qIVKIcf9U6i6ESKuuqlxsMB3b0HvQCG9IN5f2ez+uHWvMBPWpcgtKpGEW5nndD7/nniEtE/mMuRg3nIcd4KuCQ2wc41lr9YCnzgXBF3lpBRwudA9ZkG1eceX4IFQRj0Wwgkv3IYkfK1IFU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=raspberrypi.com; spf=pass smtp.mailfrom=raspberrypi.com; dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b=Trmf1Cql; arc=none smtp.client-ip=209.85.128.45
+Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-493e497643fso4226015e9.0
+        for <devicetree@vger.kernel.org>; Wed, 08 Jul 2026 07:49:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=raspberrypi.com; s=google; t=1783522162; x=1784126962; darn=vger.kernel.org;
+        d=raspberrypi.com; s=google; t=1783522163; x=1784126963; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=RoCc9OCGhP/RSTGfuXTy0/7DUKmkFEmhCqI4hwhY0I8=;
-        b=YkGmpBhN6IJeythTPL5aH3mvCVX920WvMz+wAig3kDJO1SePBZsjgeo44saR6gWdPX
-         zgBOVYUkBoPH03FjRx5hbTy+w7fAc8QtNSrtSYq2/HHVDnaByENOFUf3fEoEETdFV+a1
-         d+5y53qZD0PZjBVkpvFO9YIQjIVWPb/x+RcvefjUsIkzURPytNr+aRbxV2Sxtbdb9f9R
-         qkrWh7PjpGI3oXI4uNbChTlLHiOzjaMOZ4+eihwg67Rp+HRInn3BvsZLybKNYNstHmZk
-         FINoY2fyJIJzp/5uta1RijvQ+aLkL1WCcUhKmSxzoXCgZK7DbTL2JyD7jDQgUdTuc38r
-         R+kw==
+        bh=+RDtHzsl2KamU1JjxV3tuy+ogtFxRgmslfEKzaLXknw=;
+        b=Trmf1CqlJ5VYl+Z+eiBpe5HnWwJnkkqPcrm5SZxNWKFIq9nyc3yc+hH+geEQuXe2XE
+         ZZ00FPkC0YipD2EyhljZ9dQkM/tgKprNMOr31ZhgQ8TxyxdvBuJFrMihL6HTJ3+iWtQt
+         u4OWN2LGzHuNtAptjN7kXg4iTBq3if5sU8syD1vwaMD63/579MPHTzt1+rGA6BXIm9bX
+         oaa39TUDtC2txQ0uPnFRt5n1dTjjC3XQmeiFiUOYuXxWsKcW7vJHirJJWh2WvqGR0F8c
+         cU9ClBLxZWp6Vw8tuSXmUzbmv0ra9PLcmkyh+LRYSMH0xSiU0h81K6F6y8uR3WNQUn4g
+         4hPQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783522162; x=1784126962;
+        d=1e100.net; s=20251104; t=1783522163; x=1784126963;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=RoCc9OCGhP/RSTGfuXTy0/7DUKmkFEmhCqI4hwhY0I8=;
-        b=oh/qE8mbX4VnQvcnOPjsx2/hqbVtHKcd0QwfWZovofzLS2iPNu6jrmL6Dw2jzyYMFb
-         vssJ+xETOlTRXVizSmAsSIhRirVbpclRx7QHGBBc1iGvxGQm7AMwLWqwI/rGbh59yPUh
-         bLRBOY8v4XJF3Bez0pLzbnxsZ5y+9jHrp+s1L7VacWY0CZNIvLhADFfeBBRRaBMlFAUo
-         Bxi87mTZmAyvwDyz3MkM7z5GeeCs6pzU+ZQ0QXpap+FpBBz7hqhw1DyAtEty3J1R37Md
-         fhhJN+Q1EfS7OWlFtk732MxVAGUvKZkWTkyJYMAI3IYMNozKbQ7RNcRYgD4ZaKPPPEmf
-         qKfw==
-X-Forwarded-Encrypted: i=1; AHgh+Rqi326e69z0kW+kLTSyLICexxm4/mWigkmEcHoxHtYbVmwjPSdn5VKb3tl9Nl0KUle5Ud9ngJ4aQCHZ@vger.kernel.org
-X-Gm-Message-State: AOJu0Yydwv8RQngDaP0qK0DtdJiF4hu0rw+/B0DIlAZV0YYGiqrkDXRU
-	NtGwPuS2o1wIDDGF+m0SE+1KnZDPIFxylKLz6DWBGnbUDLaigTQGtwwJOduv4qPDyPg=
-X-Gm-Gg: AfdE7cnXYALV+q1rPtpUpk5YSQX0us8p+ZqBO8THwqK0cgD42B6cOHaQxjh8OJvCg/z
-	nuPsgbp5A23qri0EmgjovG3X1YUGmRcNmn/TslS+JddNiiaqGGHUA2Cwdt6YEMOcT/IK4cX6A1w
-	G37iQ0nw9GoyjGf001AXvjKnS1u0m5kxxtr9pEFp95bM4ZKxzZc3IrdlYLH2abFqh9Biq4vosRi
-	330WpS6liUPSPU5FAmUgi/VcVEfZHSCBA9/HkD98N632iQAoL3cQUeuF3s1ckgcG5KPCqcoNMA3
-	ZDg1OEtlJkTTtTC8PtMSA+/EdqtWwQxz90Ab7PnxbfjcyXtXuR8ne10Xyuw11gUAnnEoVUlTYXo
-	L2YkxtYaEe4sqCij+njvQ43/MhF7Mh/E1B20yuC1TbZ9CWEJqSaCEYiSxmFxo3TpozBl5UXQWqw
-	2qh2aI2rcWg/WWyZ7s1hNW4flG4lgyOmtzRtQimiDzfHpHng9YZ9x5/Vzrh6he0svC
-X-Received: by 2002:a05:600c:4594:b0:493:bc4a:d5f5 with SMTP id 5b1f17b1804b1-493e68809aamr27570285e9.39.1783522162156;
+        bh=+RDtHzsl2KamU1JjxV3tuy+ogtFxRgmslfEKzaLXknw=;
+        b=YCcPIkBdXUrNSzfg8QHCzkz3mvo2xw8S5vMwsgmW0HWBmpfIve/NJe6D/msHpR2o/w
+         dvctOl/wntQ2H8bVZWoWoyzz2wGelQzqcvnUWTF5vzpOtmqjn0Zr/l+dEcRxxC6AEcR6
+         NdLyXqqsffYmx4H22BDyVFe2WmA0DmR+um0QKWDhB5pyuj8yxrcV+nJXFkag5zwKmLvU
+         jOPGT7QkLu0kOl2C+Fmm1xEo3rTnZbNIu4/Rrj3WTTVLtUqHyXdOtcvAxSW5MwVaii7S
+         7T0nZplzNH+Pt3Os9eLFft0PBktW/SpTJWgSbzUd9OYfi5OqskrgI7+6wZ0kfE2ThUod
+         r1oQ==
+X-Forwarded-Encrypted: i=1; AHgh+RoHZatgIjT85gJiax8UzNO74H9UK73tKulrEQoP8iqnvNnjtMexearIsOPESGwlCgWtlzK1bMdljOBz@vger.kernel.org
+X-Gm-Message-State: AOJu0YybX/PL7kvCCur3ZcetTCS6H3tTVlsCaIMbObCM9Z3kCfGhtCyw
+	Tnn5PPYaOOsUJ+2cgH20zHBwDoosBnbqbiP7CvcxVBaj8c5N8+YMoho1a1GmSmLDGVg=
+X-Gm-Gg: AfdE7cn5gvg9JZp4P+Ji65mrySn5ZwaQsT77N89mERvXwGGHePcfG33mUXAAn36O05Y
+	aw6udw46mRFVOkI4Ofw++2u12CcOx8BurjdtBdz4CxlOEdGuZmalGW/q7BFUnFp0/L5GPL/NCii
+	5IsdQoiJtMw1HTtZsgvhFECXpLmK1x7GjDWJbiUa6MHc6UKUIoQqCzfF5NaLTsS7r1tHq+uXdRW
+	HteijrQCL2DfSWJligMFSPTayfE1aEyYIlWzjD920DgRo28rpnvMa25iPoPvdejdxOBkpyPiloV
+	Wqu6lUv8TkX3HSzrpYpJ3BvROngSRf8vGRbVaUoYFzI2j30o0WtB51xBGJ5thKOS6xENVLdCiSr
+	AoC6QOiabkNmgcwiE535aq1pit3BJ7civACAAtPHWG6Wpc+g82bEdpLMEOmDPAcoLvCHi4I/WRP
+	zzLsce91mPkxyyoj5o7sqB1wfUZL0dks8JWS1R+IM05mkSA0KMTtUWR7dwLmrpMrlFqg3ls51oR
+	DA=
+X-Received: by 2002:a05:600c:4709:b0:490:b7e6:bd1d with SMTP id 5b1f17b1804b1-493e689c16dmr28929185e9.16.1783522162862;
         Wed, 08 Jul 2026 07:49:22 -0700 (PDT)
 Received: from [127.0.1.1] ([2a00:1098:3142:e::8])
-        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-493e0fbd355sm135363315e9.13.2026.07.08.07.49.21
+        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-493e0fbd355sm135363315e9.13.2026.07.08.07.49.22
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Jul 2026 07:49:21 -0700 (PDT)
+        Wed, 08 Jul 2026 07:49:22 -0700 (PDT)
 From: Dave Stevenson <dave.stevenson@raspberrypi.com>
-Date: Wed, 08 Jul 2026 15:48:52 +0100
-Subject: [PATCH v3 16/20] media: imx355: Use NULL ctrl_ops for HBLANK as it
- is a read-only control
+Date: Wed, 08 Jul 2026 15:48:53 +0100
+Subject: [PATCH v3 17/20] media: imx355: Compute link frequency from PLL
+ setup
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -89,7 +90,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260708-media-imx355-v3-16-9df386a623d7@raspberrypi.com>
+Message-Id: <20260708-media-imx355-v3-17-9df386a623d7@raspberrypi.com>
 References: <20260708-media-imx355-v3-0-9df386a623d7@raspberrypi.com>
 In-Reply-To: <20260708-media-imx355-v3-0-9df386a623d7@raspberrypi.com>
 To: Sakari Ailus <sakari.ailus@linux.intel.com>, 
@@ -113,7 +114,7 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-322923-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-322925-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[12];
 	FORWARDED(0.00)[lists@lfdr.de];
@@ -135,35 +136,149 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,raspberrypi.com:from_mime,raspberrypi.com:email,raspberrypi.com:mid,raspberrypi.com:dkim,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,raspberrypi.com:from_mime,raspberrypi.com:email,raspberrypi.com:mid,raspberrypi.com:dkim,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: AE5297279FA
+X-Rspamd-Queue-Id: 7C4E0727A07
 
-This avoids the set_ctrl handler being called under any
-circumstances, as it will return an error for the unhandled
-ctrl.
+In preparation for additional options in the PLL setup, compute
+the link frequency rather than using a hardcoded value.
 
 Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
 ---
- drivers/media/i2c/imx355.c | 5 ++---
- 1 file changed, 2 insertions(+), 3 deletions(-)
+ drivers/media/i2c/imx355.c | 39 +++++++++++++++++----------------------
+ 1 file changed, 17 insertions(+), 22 deletions(-)
 
 diff --git a/drivers/media/i2c/imx355.c b/drivers/media/i2c/imx355.c
-index 3b86bd2e2e5e..6a779d700a4b 100644
+index 6a779d700a4b..e45d60d665a1 100644
 --- a/drivers/media/i2c/imx355.c
 +++ b/drivers/media/i2c/imx355.c
-@@ -1123,9 +1123,8 @@ static int imx355_init_controls(struct imx355 *imx355)
- 					   1, vblank_def);
+@@ -29,7 +29,11 @@
  
- 	hblank = mode->llp - mode->width;
--	imx355->hblank = v4l2_ctrl_new_std(ctrl_hdlr, &imx355_ctrl_ops,
--					   V4L2_CID_HBLANK, hblank, hblank,
--					   1, hblank);
-+	imx355->hblank = v4l2_ctrl_new_std(ctrl_hdlr, NULL, V4L2_CID_HBLANK,
-+					   hblank, hblank, 1, hblank);
- 	if (imx355->hblank)
- 		imx355->hblank->flags |= V4L2_CTRL_FLAG_READ_ONLY;
+ /* PLL registers that depend on the external clock frequency */
+ #define IMX355_REG_EXTCLK_FREQ		CCI_REG16(0x0136)
++#define IMX355_REG_PLL_OP_PREDIV	CCI_REG8(0x030d)
+ #define IMX355_REG_PLL_OP_MUL		CCI_REG16(0x030e)
++#define IMX355_REG_PLL_IVT_PCK_DIV	CCI_REG8(0x0301)
++#define IMX355_PLL_OP_PREDIV		2
++#define IMX355_PLL_IVT_PCK_DIV		5
  
+ /* V_TIMING internal */
+ #define IMX355_REG_FLL			CCI_REG16(0x0340)
+@@ -83,9 +87,6 @@
+ /* Flip Control */
+ #define IMX355_REG_ORIENTATION		CCI_REG8(0x0101)
+ 
+-/* default link frequency and external clock */
+-#define IMX355_LINK_FREQ_DEFAULT	360000000LL
+-
+ /* number of data lanes */
+ #define IMX355_DATA_LANES		4
+ 
+@@ -141,6 +142,7 @@ static const struct imx355_clk_params imx355_clk_params[] = {
+ };
+ 
+ struct imx355_hwcfg {
++	s64 link_freq_menu;
+ 	unsigned long link_freq_bitmap;
+ };
+ 
+@@ -238,13 +240,13 @@ static const struct cci_reg_sequence imx355_global_regs[] = {
+ 	{ CCI_REG8(0x0112), 0x0a },
+ 	{ CCI_REG8(0x0113), 0x0a },
+ 	{ CCI_REG8(0x0114), 0x03 },
+-	{ CCI_REG8(0x0301), 0x05 },
++	{ IMX355_REG_PLL_IVT_PCK_DIV, IMX355_PLL_IVT_PCK_DIV },
+ 	{ CCI_REG8(0x0303), 0x01 },
+ 	{ CCI_REG8(0x0305), 0x02 },
+ 	{ CCI_REG8(0x0306), 0x00 },
+ 	{ CCI_REG8(0x0307), 0x78 },
+ 	{ CCI_REG8(0x030b), 0x01 },
+-	{ CCI_REG8(0x030d), 0x02 },
++	{ IMX355_REG_PLL_OP_PREDIV, IMX355_PLL_OP_PREDIV },
+ 	{ CCI_REG8(0x0310), 0x00 },
+ 	{ CCI_REG8(0x0220), 0x00 },
+ 	{ CCI_REG8(0x0222), 0x01 },
+@@ -338,14 +340,6 @@ static const char * const imx355_test_pattern_menu[] = {
+ 	"Pseudorandom Sequence (PN9)",
+ };
+ 
+-/*
+- * When adding more than the one below, make sure the disallowed ones will
+- * actually be disabled in the LINK_FREQ control.
+- */
+-static const s64 link_freq_menu_items[] = {
+-	IMX355_LINK_FREQ_DEFAULT,
+-};
+-
+ /* Mode configs */
+ static const struct imx355_mode supported_modes[] = {
+ 	{
+@@ -1091,7 +1085,6 @@ static int imx355_init_controls(struct imx355 *imx355)
+ 	s64 hblank;
+ 	u64 pixel_rate;
+ 	const struct imx355_mode *mode;
+-	u32 max;
+ 	int ret;
+ 
+ 	ctrl_hdlr = &imx355->ctrl_handler;
+@@ -1100,15 +1093,14 @@ static int imx355_init_controls(struct imx355 *imx355)
+ 		return ret;
+ 
+ 	ctrl_hdlr->lock = &imx355->mutex;
+-	max = ARRAY_SIZE(link_freq_menu_items) - 1;
+ 	imx355->link_freq = v4l2_ctrl_new_int_menu(ctrl_hdlr, &imx355_ctrl_ops,
+-						   V4L2_CID_LINK_FREQ, max, 0,
+-						   link_freq_menu_items);
++						   V4L2_CID_LINK_FREQ, 0, 0,
++						   &imx355->hwcfg->link_freq_menu);
+ 	if (imx355->link_freq)
+ 		imx355->link_freq->flags |= V4L2_CTRL_FLAG_READ_ONLY;
+ 
+ 	/* pixel_rate = link_freq * 2 * nr_of_lanes / bits_per_sample */
+-	pixel_rate = IMX355_LINK_FREQ_DEFAULT * 2 * 4;
++	pixel_rate = imx355->hwcfg->link_freq_menu * 2 * 4;
+ 	do_div(pixel_rate, 10);
+ 	/* By default, PIXEL_RATE is read only */
+ 	v4l2_ctrl_new_std(ctrl_hdlr, &imx355_ctrl_ops, V4L2_CID_PIXEL_RATE,
+@@ -1183,12 +1175,14 @@ static int imx355_init_controls(struct imx355 *imx355)
+ 	return ret;
+ }
+ 
+-static struct imx355_hwcfg *imx355_get_hwcfg(struct device *dev)
++static struct imx355_hwcfg *imx355_get_hwcfg(struct imx355 *imx355)
+ {
++	struct device *dev = imx355->dev;
+ 	struct imx355_hwcfg *cfg;
+ 	struct v4l2_fwnode_endpoint bus_cfg = {
+ 		.bus_type = V4L2_MBUS_CSI2_DPHY
+ 	};
++	const struct imx355_clk_params *clk = imx355->clk_params;
+ 	struct fwnode_handle *ep;
+ 	struct fwnode_handle *fwnode = dev_fwnode(dev);
+ 	int ret;
+@@ -1211,10 +1205,11 @@ static struct imx355_hwcfg *imx355_get_hwcfg(struct device *dev)
+ 	if (bus_cfg.bus.mipi_csi2.num_data_lanes != IMX355_DATA_LANES)
+ 		goto out_err;
+ 
++	cfg->link_freq_menu = (clk->ext_clk * clk->pll_op_mpy) /
++			      (IMX355_PLL_OP_PREDIV * 2);
+ 	ret = v4l2_link_freq_to_bitmap(dev, bus_cfg.link_frequencies,
+ 				       bus_cfg.nr_of_link_frequencies,
+-				       link_freq_menu_items,
+-				       ARRAY_SIZE(link_freq_menu_items),
++				       &cfg->link_freq_menu, 1,
+ 				       &cfg->link_freq_bitmap);
+ 	if (ret)
+ 		goto out_err;
+@@ -1285,7 +1280,7 @@ static int imx355_probe(struct i2c_client *client)
+ 	/* Initialize subdev */
+ 	v4l2_i2c_subdev_init(&imx355->sd, client, &imx355_subdev_ops);
+ 
+-	imx355->hwcfg = imx355_get_hwcfg(imx355->dev);
++	imx355->hwcfg = imx355_get_hwcfg(imx355);
+ 	if (!imx355->hwcfg) {
+ 		dev_err(imx355->dev, "failed to get hwcfg");
+ 		ret = -ENODEV;
 
 -- 
 2.34.1
