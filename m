@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-323199-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-323201-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 1Z6sEnDJTmp8UAIAu9opvQ
-	(envelope-from <devicetree+bounces-323199-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 00:04:32 +0200
+	id BrYJHSHITmrYTwIAu9opvQ
+	(envelope-from <devicetree+bounces-323201-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 23:58:57 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1DEE72AC47
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 00:04:31 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0CDD172ABB7
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 23:58:57 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=collabora.com header.s=mail header.b=XqfHnrrK;
+	dkim=pass header.d=collabora.com header.s=mail header.b=Dkm+G7IM;
 	dmarc=pass (policy=none) header.from=collabora.com;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-323199-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-323199-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-323201-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-323201-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id CF0B63197882
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 21:58:25 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 42339302497C
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 21:58:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7736C401492;
-	Wed,  8 Jul 2026 21:58:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A429E403AEA;
+	Wed,  8 Jul 2026 21:58:02 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5AD73FF8B4;
-	Wed,  8 Jul 2026 21:57:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 387653FF1AD;
+	Wed,  8 Jul 2026 21:57:58 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783547881; cv=none; b=tZVjlyQ4bkEqIH8w7Wgd6/vu3IZynMiL2oUgYs8V/yM//uiferxbVO+4M34uLTuhpHIu9a/njxnObwTuMiYLeN/rH+F/sUOamcqjlh+zc3EWsbajviW1/BRHI0ffPLoXSd9lwqQzw2XMwvztrz/wBHSkr3UdGOedzfbjILmWMeQ=
+	t=1783547882; cv=none; b=Qu2Y7nLndg7HbLrRvzcnZozoHYdZ31vVBfgNGpps3L/6He4wwoHyROx2GIBMF5GpzwprmOSfo7GMU1dNy99pGzbvorPZtZNXvMyPIZfKo42ZJ1hyOLFhFc6+wbeKg6GjhZTT5O8u72Oz4hKUdHUWJDYWNxjfiTgSR5uXvJ1c3Q4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783547881; c=relaxed/simple;
-	bh=Ux9JXRFq9ZIgTcJ9AL9bQIKbKW6ZLn++vU4tGoOlq3g=;
+	s=arc-20240116; t=1783547882; c=relaxed/simple;
+	bh=yqFiEUUjt1Aw5G9X9iVe12aG8sAEEd88WqAS4khKXaY=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=q/EA5zFEOYDKOJnsqyeIgmFPRj/u2QOzA5Sg9TZmSk693UExIMTVQ6efIW7e0nof5Ki9r35yO41xWF9EUJAOtJSgslsHPdtSSVi7L0P9VbjZ1WRHPvgKcCpPsnCemAgXV+AJwiG7nXJ/7nfmGfpqsz2dQ8wfUQljvhhVBpgRXdY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=XqfHnrrK; arc=none smtp.client-ip=148.251.105.195
+	 In-Reply-To:To:Cc; b=UieTqoG71IgIic8lyKuHo7eX9KWtjxugUgQmPFb7Hwdz3hnxQAONZOJks2QiTFMWicKDF7w1nsUvAaqItX3skGfuMVp1oomnkCUj+5ja40nP1FlP+VAdRzCffYb4eQbu9y9QQPAfAZm8ipTrKRhRBPRyLmJxEY2krqPNBwEXDMI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=Dkm+G7IM; arc=none smtp.client-ip=148.251.105.195
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
 	s=mail; t=1783547876;
-	bh=Ux9JXRFq9ZIgTcJ9AL9bQIKbKW6ZLn++vU4tGoOlq3g=;
+	bh=yqFiEUUjt1Aw5G9X9iVe12aG8sAEEd88WqAS4khKXaY=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=XqfHnrrKNCn9TqMVDCL1yIbS/V9pJpqv7cikJPbEg7SkLjdOpzTRK7YDUpdIDgRI3
-	 dAbEVutK94JMecpyxwpjV0LVgVCAJzz+XOQDi8mFJLi7zsW5XEQ1QGE+JqcoMVjymD
-	 IwGRZC9UDt8HdhZLflmWSi8ddAsnEWiz0ybx+uXw5uH0sn608wq/etYRZ5h482DKPM
-	 s+tohUzKKLDw8oknse9itQGBSr4r4TVm/yJehnAKSSlLhwNJ869Z6gYKNw7UVN3jJY
-	 jZg/hCp6gxUvnxMp+Or3Lt4958sW6eww0x7WdygCVA9KxfEfNSEndBWuv9uxnscHvs
-	 JryMhDcH7O2Yw==
+	b=Dkm+G7IMr5Ocqvrta4aVFmcb2oPcQ/MElrv8JElZVHOccclujYkTi9xyes9oenll0
+	 MXATwZiD3J9IgROMqTeTzoij3Jur2VwBUzMx0fu/oV9Y4eKbXqGhSHDklgkQEKMMUN
+	 Yq969+H61C53QYlcZ+4msMAtzvD48gRvRFc0sejQkFHWaJn3AmFpRVGxuX6oUHer3y
+	 4zWbbQ9Eoyp3R9r2/eAYIMpz47FQsC4dyp45IUFW6bchGKYY4Evv9gxOrTYVIGEDn/
+	 CJXtMnEb1jOE/nKCamYBeIAVFfDnsXSMxJKsTDMrowIQLOU1kYSPXiB0p+Vp7ap6I0
+	 KovWNyGtU5+SA==
 Received: from localhost (unknown [100.64.0.241])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange secp256r1 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
 	(Authenticated sender: cristicc)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 046EA17E0D53;
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id B827617E0DFF;
 	Wed, 08 Jul 2026 23:57:56 +0200 (CEST)
 From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-Date: Thu, 09 Jul 2026 00:57:29 +0300
-Subject: [PATCH v3 07/14] drm/rockchip: vop2: Reset AXI and DCLK to improve
- robustness
+Date: Thu, 09 Jul 2026 00:57:30 +0300
+Subject: [PATCH v3 08/14] drm/rockchip: vop2: Avoid DCLK source switch for
+ 10-bit YUV422 output
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,7 +63,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260709-dw-hdmi-qp-yuv-v3-7-a4a982a9f2e7@collabora.com>
+Message-Id: <20260709-dw-hdmi-qp-yuv-v3-8-a4a982a9f2e7@collabora.com>
 References: <20260709-dw-hdmi-qp-yuv-v3-0-a4a982a9f2e7@collabora.com>
 In-Reply-To: <20260709-dw-hdmi-qp-yuv-v3-0-a4a982a9f2e7@collabora.com>
 To: Sandy Huang <hjc@rock-chips.com>, 
@@ -90,7 +90,7 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
 	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
@@ -98,7 +98,7 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS(0.00)[m:hjc@rock-chips.com,m:heiko@sntech.de,m:andy.yan@rock-chips.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:p.zabel@pengutronix.de,m:andrzej.hajda@intel.com,m:neil.armstrong@linaro.org,m:rfoss@kernel.org,m:Laurent.pinchart@ideasonboard.com,m:jonas@kwiboo.se,m:jernej.skrabec@gmail.com,m:luca.ceresoli@bootlin.com,m:kernel@collabora.com,m:andyshrk@163.com,m:dri-devel@lists.freedesktop.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-rockchip@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,m:jernejskrabec@gmail.com,s:lists@lfdr.de];
 	FREEMAIL_TO(0.00)[rock-chips.com,sntech.de,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,pengutronix.de,intel.com,linaro.org,ideasonboard.com,kwiboo.se,bootlin.com];
-	TAGGED_FROM(0.00)[bounces-323199-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-323201-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	RCPT_COUNT_TWELVE(0.00)[26];
 	RECEIVED_HELO_LOCALHOST(0.00)[];
@@ -117,143 +117,69 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[rock-chips.com:email,vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,collabora.com:from_mime,collabora.com:email,collabora.com:mid,collabora.com:dkim]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,collabora.com:from_mime,collabora.com:email,collabora.com:mid,collabora.com:dkim]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: C1DEE72AC47
+X-Rspamd-Queue-Id: 0CDD172ABB7
 
-Assert the AXI reset in the CRTC disable path, and the VP DCLK reset in
-the enable path.
+Currently the color depth is always factored into the DCLK source
+decision for HDMI output, which can break certain modes when operating
+with depths greater than 8 bpc.
 
-These resets are intended to leave the hardware in a clean state for the
-next use, helping recover from exceptions such as IOMMU page faults, as
-well as to prevent random display output glitches, such as a blank
-image, observed when switching modes that also change the color format,
-e.g. from RGB to YUV420 and vice versa.
+When the required transmission rate exceeds the 600 MHz limit of the
+HDMI PHY PLL, e.g. for 4K@60Hz 10-bit RGB output, VOP2 will normally
+fall back to using the less accurate system CRU as a DCLK source,
+assuming HDMI 2.1 FRL is supported by the pipeline, otherwise the mode
+will be rejected.  For YUV420 output format this never happens, as it
+uses half of the RGB bandwidth, hence the rate remains within the PHY
+PLL limits.
 
-For now this seems to affect only the RK3588, hence the resets are
-optional and will be provided in the device tree for this SoC only.
+On the other hand, YUV422 always transmits two 12-bit components per
+clock cycle, regardless of the color depth, which from a clock-rate
+perspective is equivalent to three 8-bit RGB components.  For example,
+4K@60Hz 10-bit YUV422 requires the same bandwidth as 4K@60Hz 8-bit RGB,
+typically 594 MHz.  However, VOP2 wrongly assumes it needs 742.5 MHz
+(594 * 10 / 8) and ends up switching the DCLK source.
 
-Co-developed-by: Andy Yan <andy.yan@rock-chips.com>
-Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
+As a consequence, the modes requiring uncommon pixel clocks, such as
+those corresponding to fractional refresh rates, will fail.  An example
+is 3840x2160@59.94Hz, which would likely rely on the 593.407 MHz clock
+rate unsupported by the system CRU.
+
+Note this only affects YUV422 with color depths greater than 8 bpc; for
+8-bit YUV422 the 8/bpc factor is unity and the bandwidth check is
+already correct.
+
+Prevent the incorrect switches of DCLK source to system CRU for YUV422
+output format by forcing 8 bpc when checking the bandwidth.
+
 Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
 ---
- drivers/gpu/drm/rockchip/rockchip_drm_vop2.c | 36 ++++++++++++++++++++++++++++
- drivers/gpu/drm/rockchip/rockchip_drm_vop2.h |  4 ++++
- 2 files changed, 40 insertions(+)
+ drivers/gpu/drm/rockchip/rockchip_drm_vop2.c | 10 +++++++++-
+ 1 file changed, 9 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
-index 2cd04bedaa2c..8f0f4aa05fac 100644
+index 8f0f4aa05fac..aa81b3b01fbd 100644
 --- a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
 +++ b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
-@@ -17,6 +17,7 @@
- #include <linux/platform_device.h>
- #include <linux/pm_runtime.h>
- #include <linux/regmap.h>
-+#include <linux/reset.h>
- #include <linux/swab.h>
+@@ -1954,7 +1954,15 @@ static void vop2_crtc_atomic_enable(struct drm_crtc *crtc,
+ 	 * to 4K@60Hz, if available, otherwise keep using the system CRU.
+ 	 */
+ 	if (vop2->pll_hdmiphy0 || vop2->pll_hdmiphy1) {
+-		unsigned int bpc = vcstate->output_bpc ?: 8;
++		/*
++		 * YUV422 always transmits two 12-bit components per clock
++		 * cycle, regardless of the color depth, which from a rate
++		 * perspective is equivalent to three 8-bit RGB components.
++		 * Force 8 bpc here so the bandwidth check reflects the actual
++		 * TMDS rate and avoids an unnecessary DCLK source switch.
++		 */
++		unsigned int bpc = vcstate->output_mode == ROCKCHIP_OUT_MODE_YUV422 ?
++					8 : (vcstate->output_bpc ?: 8);
+ 		unsigned long max_dclk = DIV_ROUND_CLOSEST_ULL(VOP2_MAX_DCLK_RATE * 8, bpc);
  
- #include <drm/drm.h>
-@@ -867,6 +868,26 @@ static void vop2_core_clks_disable_unprepare(struct vop2 *vop2)
- 	clk_disable_unprepare(vop2->hclk);
- }
- 
-+static void vop2_reset_assert_deassert(struct vop2 *vop2, struct reset_control *rstc)
-+{
-+	int ret;
-+
-+	if (!rstc)
-+		return;
-+
-+	ret = reset_control_assert(rstc);
-+	if (ret < 0) {
-+		drm_warn(vop2->drm, "failed to assert reset: %d\n", ret);
-+		return;
-+	}
-+
-+	udelay(10);
-+
-+	ret = reset_control_deassert(rstc);
-+	if (ret < 0)
-+		drm_err(vop2->drm, "failed to deassert reset: %d\n", ret);
-+}
-+
- static void rk3588_vop2_power_domain_enable_all(struct vop2 *vop2)
- {
- 	u32 pd;
-@@ -953,6 +974,8 @@ static int vop2_enable(struct vop2 *vop2)
- 
- static void vop2_disable(struct vop2 *vop2)
- {
-+	vop2_reset_assert_deassert(vop2, vop2->axi_rst);
-+
- 	rockchip_drm_dma_detach_device(vop2->drm, vop2->dev);
- 
- 	pm_runtime_put_sync(vop2->dev);
-@@ -1981,6 +2004,8 @@ static void vop2_crtc_atomic_enable(struct drm_crtc *crtc,
- 
- 	vop2_crtc_atomic_try_set_gamma(vop2, vp, crtc, crtc_state);
- 
-+	vop2_reset_assert_deassert(vop2, vp->dclk_rst);
-+
- 	drm_crtc_vblank_on(crtc);
- 
- 	vp->enabled = true;
-@@ -2596,6 +2621,12 @@ static int vop2_create_crtcs(struct vop2 *vop2)
- 			return dev_err_probe(drm->dev, PTR_ERR(vp->dclk),
- 					     "failed to get %s\n", dclk_name);
- 
-+		vp->dclk_rst = devm_reset_control_get_optional_exclusive(vop2->dev,
-+									 dclk_name);
-+		if (IS_ERR(vp->dclk_rst))
-+			return dev_err_probe(drm->dev, PTR_ERR(vp->dclk_rst),
-+					     "failed to get %s reset\n", dclk_name);
-+
- 		np = of_graph_get_remote_node(dev->of_node, i, -1);
- 		if (!np) {
- 			drm_dbg(vop2->drm, "%s: No remote for vp%d\n", __func__, i);
-@@ -2955,6 +2986,11 @@ static int vop2_bind(struct device *dev, struct device *master, void *data)
- 		return dev_err_probe(drm->dev, PTR_ERR(vop2->pll_hdmiphy1),
- 				     "failed to get pll_hdmiphy1\n");
- 
-+	vop2->axi_rst = devm_reset_control_get_optional_exclusive(vop2->dev, "axi");
-+	if (IS_ERR(vop2->axi_rst))
-+		return dev_err_probe(drm->dev, PTR_ERR(vop2->axi_rst),
-+				     "failed to get axi reset\n");
-+
- 	vop2->irq = platform_get_irq(pdev, 0);
- 	if (vop2->irq < 0)
- 		return dev_err_probe(drm->dev, vop2->irq, "cannot find irq for vop2\n");
-diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.h b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.h
-index b209b2d5b96d..1c2d7d97a6c2 100644
---- a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.h
-+++ b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.h
-@@ -165,6 +165,8 @@ enum vop2_win_regs {
- 	VOP2_WIN_MAX_REG,
- };
- 
-+struct reset_control;
-+
- struct vop2_regs_dump {
- 	const char *name;
- 	u32 base;
-@@ -238,6 +240,7 @@ struct vop2_video_port {
- 	struct vop2 *vop2;
- 	struct clk *dclk;
- 	struct clk *dclk_src;
-+	struct reset_control *dclk_rst;
- 	unsigned int id;
- 	const struct vop2_video_port_data *data;
- 
-@@ -335,6 +338,7 @@ struct vop2 {
- 	struct clk *pclk;
- 	struct clk *pll_hdmiphy0;
- 	struct clk *pll_hdmiphy1;
-+	struct reset_control *axi_rst;
- 
- 	/* optional internal rgb encoder */
- 	struct rockchip_rgb *rgb;
+ 		if (clock <= max_dclk) {
 
 -- 
 2.54.0
