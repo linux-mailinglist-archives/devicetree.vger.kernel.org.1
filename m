@@ -1,135 +1,193 @@
-Return-Path: <devicetree+bounces-322573-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-322575-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id ivQcKZr8TWrzBAIAu9opvQ
-	(envelope-from <devicetree+bounces-322573-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 09:30:34 +0200
+	id 9tEmOIL9TWouBQIAu9opvQ
+	(envelope-from <devicetree+bounces-322575-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 09:34:26 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id D78AE722A32
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 09:30:33 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D3AA722ACD
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 09:34:26 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=XrP7tFnP;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=B0kYsrRo;
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322573-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-322573-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322575-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-322575-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C7FCA30A65E8
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 07:24:11 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 908E230BAC72
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 07:24:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FCD13F6C48;
-	Wed,  8 Jul 2026 07:23:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD9193EB809;
+	Wed,  8 Jul 2026 07:24:11 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 619383F077F;
-	Wed,  8 Jul 2026 07:23:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 061B13E51F0
+	for <devicetree@vger.kernel.org>; Wed,  8 Jul 2026 07:23:51 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783495435; cv=none; b=N7JJuaO3LqSjGPInN0i55aPPm8asZr7ZYaY/qSVYznFXZbTbFSyO4SyDTaIVppO4WhJs1Zvn4mra2jjJR+LSCSgdFOxtNTxP4jlQVegQ5Imw2Vt/tf36fGylIfD/3BaeJR9wC8y1ofeH9yO0Z3FidmuOQIf9mixQMXQcXd9DJwE=
+	t=1783495445; cv=none; b=cYti1CseJAgbB97jZZpjwfvfdZy0VkM3tC6YI1uU71pPoQvW5iQWAx6CR5cDrTTO+7xcEWtdKekQIAcOa6jT26kX86N2XQrMCZpYJQCvrNkyj/oY3i1huCo6EdyNtDh+vsX9xmZgn3Sh9EUHVAyYtQxgHT1UuDV3qhA4JX+2l7c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783495435; c=relaxed/simple;
-	bh=h+XxSiGVSg9hEIBd227KOiUzOcWry9yMrFCd2J1bc78=;
-	h=Date:From:To:cc:Subject:In-Reply-To:Message-ID:References:
-	 MIME-Version:Content-Type; b=e48mMBv+LNzHCeZ1zU4s8MHM58k/9UeBiWXaFisBWs1mKje8BCkr68LKyf87gzxl9cdTIlEUYEynp+iswikzbo8W7IhSUNTFoBHfA7esEPaV5fpFtHetHAo1vDAlKczs4oR/4o5f6RtW/Hr/pV4QE03oIRsDC6egJrnqDCO7lRA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XrP7tFnP; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0E6121F000E9;
-	Wed,  8 Jul 2026 07:23:43 +0000 (UTC)
+	s=arc-20240116; t=1783495445; c=relaxed/simple;
+	bh=vrheQ5KEfurzPJ4CLgKZxOzpyjoIR8hl0Jk630UDJow=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=dXja/mhJ+AXEBhb1o+KbBLyPsxpU0nln7pZEcrAhy3cbXz/pwl+KmYMLevXC0TSKG6BuURKTwiLGUvmsFVEB3SAq9EARCEUZWSY7a3wTZq6Bg4QWgzSLgWUs15ztE55lgRBg31tbEyH/pP96Ktr5eCPG66NgHLxkXbLVUeiDIqc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=B0kYsrRo; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ED88D1F00A3A;
+	Wed,  8 Jul 2026 07:23:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783495424;
-	bh=17F/Jr3rKociTFUmjiT8hNoe4yR6eIdvM2BSmhwTG1A=;
-	h=Date:From:To:cc:Subject:In-Reply-To:References;
-	b=XrP7tFnPcV4SbOo3PP0s7VRX7iFL46u8xxpncivYDlLIvx2GyNbLhxqf0Iv31POkb
-	 0gjM89TK3iJBQJeTZm4arCQ/dFQAOoLpHPoluFZDCq55Ql5HOLgkoMA8NTk15w4SB1
-	 p/xTOiDyswU8uSBVuaBVNgsp6wZ1DGCfRRxXmrm5GWBl0LTf87KS+lmq3erZQEUEFa
-	 drx4y6FWzPhwg/d3FAL8PMi9CSpIPk8PEu02/oAY7d5C/37JBL6S4PzGnAbfT3rGUY
-	 8oKZ74Vu7SCNXdeAdobJdo+/dJXGkgYZzMJf7jBbU0kd+TmQFtcJ6SyAVMJFaynxph
-	 K9/7SN+vdBLEg==
-Date: Wed, 8 Jul 2026 01:23:42 -0600 (MDT)
-From: Paul Walmsley <pjw@kernel.org>
-To: Guodong Xu <docular.xu@gmail.com>
-cc: Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>, 
-    Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, 
-    Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, 
-    Zong Li <zong.li@sifive.com>, Deepak Gupta <debug@rivosinc.com>, 
-    Anup Patel <anup@brainfault.org>, Atish Patra <atish.patra@linux.dev>, 
-    Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-    Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@kernel.org>, 
-    Chen Wang <unicorn_wang@outlook.com>, Inochi Amaoto <inochiama@gmail.com>, 
-    Chen Wang <chen.wang@linux.dev>, linux-doc@vger.kernel.org, 
-    linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org, 
-    kvm@vger.kernel.org, kvm-riscv@lists.infradead.org, 
-    Paul Walmsley <paul.walmsley@sifive.com>, Conor Dooley <conor@kernel.org>, 
-    Jesse Taube <jtaubepe@redhat.com>, 
-    Charlie Jenkins <thecharlesjenkins@gmail.com>, 
-    Andrew Jones <andrew.jones@oss.qualcomm.com>, devicetree@vger.kernel.org, 
-    spacemit@lists.linux.dev, sophgo@lists.linux.dev, 
-    linux-kselftest@vger.kernel.org
-Subject: Re: [PATCH v5 03/17] riscv: hwprobe.rst: Document EXT_ZICFISS and
- EXT_ZICFILP
-In-Reply-To: <20260701-rva23u64-hwprobe-v2-v5-3-2c61f94a695a@gmail.com>
-Message-ID: <e9d78a59-12d8-8969-37bb-583a1a6951c9@kernel.org>
-References: <20260701-rva23u64-hwprobe-v2-v5-0-2c61f94a695a@gmail.com> <20260701-rva23u64-hwprobe-v2-v5-3-2c61f94a695a@gmail.com>
+	s=k20260515; t=1783495428;
+	bh=K3kZDG5BjJFAsx0W2/gO5tCKHvKcwJba+1L9wbqcKxw=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=B0kYsrRon4nM1Aafkw6l2bFesLO0/Bg9zLD7y1S884Bv1X1XVEGXnaK4h0H4T3x1B
+	 Q4xQPoXIshUpnzEufFU37dgwQ0+QAqdJrUZmMzLHVKV2FxzrW9Qj2OOX8pqVYZDK9+
+	 CiksJQcDnkUWnlGArRMpDxeae03IphOU5gJIeJBpQpcsZbpUCatSRLy5JWsq8cYto6
+	 YEeLxhBVGusLjadX189M/QoETM4zzXOVE0BiVqfU0VDhgp4IJZ/GWyggvr8QtCo0Hj
+	 0CZCztBao6ynF2HVapJsAhaP1DCEfbGcyrFKsBJzwxgZTtbXAhgc2AC0x20vCILZy+
+	 JEqzSUKtbfJcA==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v3 14/26] mm/init-mm: Annotate static information into
+ meminspect
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Mukesh Ojha" <mukesh.ojha@oss.qualcomm.com>
+Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260708-meminspect-v3-v3-14-7aa5a0a74d5c@oss.qualcomm.com>
+References: <20260708-meminspect-v3-v3-0-7aa5a0a74d5c@oss.qualcomm.com>
+ <20260708-meminspect-v3-v3-14-7aa5a0a74d5c@oss.qualcomm.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Wed, 08 Jul 2026 07:23:47 +0000
+Message-Id: <20260708072347.ED88D1F00A3A@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.66 / 15.00];
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	TAGGED_FROM(0.00)[bounces-322573-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[32];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:docular.xu@gmail.com,m:corbet@lwn.net,m:skhan@linuxfoundation.org,m:pjw@kernel.org,m:palmer@dabbelt.com,m:aou@eecs.berkeley.edu,m:alex@ghiti.fr,m:zong.li@sifive.com,m:debug@rivosinc.com,m:anup@brainfault.org,m:atish.patra@linux.dev,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:dlan@kernel.org,m:unicorn_wang@outlook.com,m:inochiama@gmail.com,m:chen.wang@linux.dev,m:linux-doc@vger.kernel.org,m:linux-riscv@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:kvm@vger.kernel.org,m:kvm-riscv@lists.infradead.org,m:paul.walmsley@sifive.com,m:conor@kernel.org,m:jtaubepe@redhat.com,m:thecharlesjenkins@gmail.com,m:andrew.jones@oss.qualcomm.com,m:devicetree@vger.kernel.org,m:spacemit@lists.linux.dev,m:sophgo@lists.linux.dev,m:linux-kselftest@vger.kernel.org,m:docularxu@gmail.com,m:krzk@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[pjw@kernel.org,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TO_DN_SOME(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[pjw@kernel.org,devicetree@vger.kernel.org];
-	PRECEDENCE_BULK(0.00)[];
-	FREEMAIL_CC(0.00)[lwn.net,linuxfoundation.org,kernel.org,dabbelt.com,eecs.berkeley.edu,ghiti.fr,sifive.com,rivosinc.com,brainfault.org,linux.dev,outlook.com,gmail.com,vger.kernel.org,lists.infradead.org,redhat.com,oss.qualcomm.com,lists.linux.dev];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-322575-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:mukesh.ojha@oss.qualcomm.com,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	ALIAS_RESOLVED(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCPT_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,smtp.kernel.org:mid,lists.linux.dev:replyto,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: D78AE722A32
+X-Rspamd-Queue-Id: 3D3AA722ACD
 
-On Wed, 1 Jul 2026, Guodong Xu wrote:
+Thank you for your contribution! Sashiko AI review found 3 potential issue(=
+s) to consider:
+- [High] Registering `swapper_pg_dir` with a size of `sizeof(void *)` restr=
+icts the generated crash dump to only the first 8 bytes of the root page di=
+rectory.
+- [Medium] Linker boundaries (`_text`, `_sinittext`, etc.) are registered w=
+ith an arbitrary 8-byte size, which incorrectly dumps tiny fragments of exe=
+cutable code rather than exporting the symbol addresses.
+- [Low] Taking the address of `swapper_pg_dir` causes a fatal compilation e=
+rror on architectures where it is defined as an rvalue macro.
+--
 
-> RISCV_HWPROBE_EXT_ZICFISS and RISCV_HWPROBE_EXT_ZICFILP are defined in
-> the hwprobe uAPI but are not documented in
-> Documentation/arch/riscv/hwprobe.rst.  Add documentation for them.
-> 
-> Link: https://github.com/riscv/riscv-cfi/commit/302a2d45c2435940d9a63571c66bc038adc74133
-> Reviewed-by: Andrew Jones <andrew.jones@oss.qualcomm.com>
-> Signed-off-by: Guodong Xu <docular.xu@gmail.com>
+--- Patch [14]: [PATCH v3 14/26] mm/init-mm: Annotate static information in=
+to meminspect ---
+commit a168e74f97589c651c261ad981c839eec643f005
+Author: Eugen Hristev <ehristev@kernel.org>
 
-Thanks, queued for v7.2-rc.
+mm/init-mm: Annotate static information into meminspect
 
+This commit annotates vital static information such as init_mm, swapper_pg_=
+dir,
+and various linker boundary symbols into the meminspect inspection table. T=
+he
+information is stored in a dedicated section for inspection.
 
-- Paul
+> diff --git a/mm/init-mm.c b/mm/init-mm.c
+> index 3e792aad76261..cf53058410b17 100644
+> --- a/mm/init-mm.c
+> +++ b/mm/init-mm.c
+[ ... ]
+> @@ -19,6 +21,13 @@
+> =20
+>  const struct vm_operations_struct vma_dummy_vm_ops;
+> =20
+> +MEMINSPECT_AREA_ENTRY(_sinittext, sizeof(void *));
+> +MEMINSPECT_AREA_ENTRY(_einittext, sizeof(void *));
+> +MEMINSPECT_AREA_ENTRY(_end, sizeof(void *));
+> +MEMINSPECT_AREA_ENTRY(_text, sizeof(void *));
+> +MEMINSPECT_AREA_ENTRY(_stext, sizeof(void *));
+> +MEMINSPECT_AREA_ENTRY(_etext, sizeof(void *));
+
+[Severity: Medium]
+Are linker boundaries like _text intended to be registered as 8-byte
+memory areas?
+
+By registering these linker boundary addresses (e.g., _text) as memory areas
+of size sizeof(void *), the kernel will include arbitrary 8-byte chunks of
+memory from these addresses as PT_LOAD segments in the crash dump. This was=
+tes
+space and creates nonsensical micro-segments.
+
+[ ... ]
+> @@ -50,6 +59,9 @@ struct mm_struct init_mm =3D {
+>  	INIT_MM_CONTEXT(init_mm)
+>  };
+> =20
+> +MEMINSPECT_SIMPLE_ENTRY(init_mm);
+> +MEMINSPECT_AREA_ENTRY(swapper_pg_dir, sizeof(void *));
+
+[Severity: High]
+Does registering swapper_pg_dir with a size of sizeof(void *) restrict the
+generated crash dump to only the first 8 bytes of the root page directory?
+
+By passing sizeof(void *) instead of the actual page directory size (e.g.,
+PAGE_SIZE or PTRS_PER_PGD * sizeof(pgd_t)), the dump will only contain the
+first entry of the root page table. This breaks virtual-to-physical address
+translation for vmalloc or kernel modules in post-mortem analysis tools like
+crash.
+
+[Severity: Low]
+Will this break the build on architectures where swapper_pg_dir is defined
+as an rvalue macro?
+
+The MEMINSPECT_AREA_ENTRY macro takes the address of the provided symbol us=
+ing
+&(sym). On several noMMU architectures, swapper_pg_dir is defined as an rva=
+lue
+macro (e.g., ((pgd_t *) 0) or NULL). Taking the address of an rvalue results
+in a compiler error.
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260708-meminspect=
+-v3-v3-0-7aa5a0a74d5c@oss.qualcomm.com?part=3D14
 
