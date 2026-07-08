@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-323207-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-323208-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id TTpPCDLKTmqsUAIAu9opvQ
-	(envelope-from <devicetree+bounces-323207-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 00:07:46 +0200
+	id 7gc8MxnKTmqmUAIAu9opvQ
+	(envelope-from <devicetree+bounces-323208-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 00:07:21 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8362472AC7F
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 00:07:45 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF06672AC70
+	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 00:07:20 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b="JOVleI/Q";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=DqM1Ion3;
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-323207-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-323207-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-323208-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-323208-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id EE62A30374BB
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 22:06:57 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id EA39A3006803
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 22:07:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98A692E4257;
-	Wed,  8 Jul 2026 22:06:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A341B2E4257;
+	Wed,  8 Jul 2026 22:07:15 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78AD8233929
-	for <devicetree@vger.kernel.org>; Wed,  8 Jul 2026 22:06:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3448830B517
+	for <devicetree@vger.kernel.org>; Wed,  8 Jul 2026 22:07:13 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783548417; cv=none; b=BcrXNCjxuuQKK5yp92aiNRFL2YokHq74S7aDRRN8QzOiSsREuN4biBnLNyFuzBdPN87gYKe4KdpHqEeuxYQxmyGhWiGAo01zl/G2VnCbMG/Ny6OhF0Z/gBwjKhlWmQMjv+iCq9tSw2uP1Zmdw7YxmQk+H1WkOtIgvOSaPjHMBD4=
+	t=1783548435; cv=none; b=FkHRyLn0vgG5i1k1uZHClPJaSknQuaCqtC/chdHbG1YEmIgLsDMx8yrf5uqPCw9gkE3+HfUNuinmJgtUgoBjrkx0/7Ks+CLtIaab44dDWZ3gdmRXynUi/+dbB50gfZ4ebPzy/RHHoU8+Pvk4cGrNkeX3xenfDf2i9gEE0xDneto=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783548417; c=relaxed/simple;
-	bh=ZiLu5hdy52NPXW4RSTl+YfYDFrvNzUhu4QwCe4aNsvc=;
+	s=arc-20240116; t=1783548435; c=relaxed/simple;
+	bh=Uy6BIeE2RxKRuBmhiJA6UyFIOEgixTaVS0XwhGP5jfU=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=MecKpZfByfuvbRdo050rE7t9kfHw7gIqgQryTKuWd+73mO+l6vMyCbxoBfpK5ogol7qKnRLFiH2QhuaeoGP9mQGEVBffcvGa0wyyd6go1K4yf4V0iSr5d4vaMrpyQYgltqvwJ9J09VxaS3APnywgO+l6U5uHvsVPl81HRUJPmI0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JOVleI/Q; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B323E1F000E9;
-	Wed,  8 Jul 2026 22:06:55 +0000 (UTC)
+	 Message-Id; b=CcoVDLtd/z6fPdw6kbExVCof93XUU+qc/IOkC7AUycbKWHTu62jGSzQN4+9WiGHh1BATF8Eg1qFZrFfW08/MrmGbmWDf0bOrdiIq4cHshysFQlfniJbEdialO1UwA9jBjNVI4JH3bWxoeLcJChQveW31ibmT15bz7ajiol681DU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DqM1Ion3; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3CF3D1F000E9;
+	Wed,  8 Jul 2026 22:07:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783548416;
-	bh=WwwQNL4FDTzLpQnrRMiXnMvqOgpuNzzaDKuvB3TpRKE=;
+	s=k20260515; t=1783548433;
+	bh=cx7sCC72Rb5ZKhm5QhYr0VJzve760uPVVRldcv4QzG8=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=JOVleI/QhrbOPXzWWzQ3q8yKPPonhsIIZCaWZlBJ32UoSSFICbqpq4EEhk9e7oxNi
-	 5jUf+TUJjEPUr5AlJIuu5ZY46M3PDLvv6eM0aEzXzU2xOHjNLaggN2thq3CPt3PaRB
-	 Z8JgBBf9qBaSuwkTZyPeFjLBsNY88KRCYoDaqIK1tZ50SdKi76Zm7E90a6Jid/lYBR
-	 A6hGb74qxIlp97SXKv395UXuAMj5SGMI0gqMNlGiE+BT+WhwhhW3XSPZXBk/Ob4P56
-	 KuiOe0oPTmGY9MFnl0yumRV8RBxw99WSPqDErB5Z4W/DNJOickm46CP/SrEP9H+HYe
-	 MOMeGTX3bpQRA==
+	b=DqM1Ion30QKok/H+f7ErmpqQwYmnlAntEvmRhnSWOLpIL6bdHBkWGucLXTK52Jakf
+	 vOXrT96Ws0uzmCWVgOhRvQ+UAJ7oxV+LJf/RqxNCWi06EZSX+MCSb224lCeXxwkBhY
+	 XJyHV81sCdy9tVW783oEOzTNXpk6WaEAV55OJGVF1OStVAyAKFwdHpLPnzuphfYUmN
+	 22KfEhEy7+cOhSnyr8AvVQp+S9kK6DW/CC9qOPiXvY7J7QU+oZXJuVMpjkC/tLOXx7
+	 vMLpWPdii4N2TZ7+nkQF9ADTSeiGOg7j3pAM5AbXA7j6Fqa0Sqo97e7a+O3CQ80X2s
+	 YSy7+wrIFRy6Q==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v3 06/14] drm/rockchip: vop2: Fix VOP2_MAX_DCLK_RATE
- overflow on 32-bit
+Subject: Re: [PATCH v3 02/14] drm/rockchip: vop2: Fix resource leak on
+ vop2_enable() error path
 Reply-To: sashiko-reviews@lists.linux.dev
 To: "Cristian Ciocaltea" <cristian.ciocaltea@collabora.com>
-Cc: conor+dt@kernel.org, dri-devel@lists.freedesktop.org, robh@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20260709-dw-hdmi-qp-yuv-v3-6-a4a982a9f2e7@collabora.com>
+Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org, robh@kernel.org
+In-Reply-To: <20260709-dw-hdmi-qp-yuv-v3-2-a4a982a9f2e7@collabora.com>
 References: <20260709-dw-hdmi-qp-yuv-v3-0-a4a982a9f2e7@collabora.com>
- <20260709-dw-hdmi-qp-yuv-v3-6-a4a982a9f2e7@collabora.com>
+ <20260709-dw-hdmi-qp-yuv-v3-2-a4a982a9f2e7@collabora.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Wed, 08 Jul 2026 22:06:55 +0000
-Message-Id: <20260708220655.B323E1F000E9@smtp.kernel.org>
+Date: Wed, 08 Jul 2026 22:07:12 +0000
+Message-Id: <20260708220713.3CF3D1F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,18 +72,18 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	TAGGED_FROM(0.00)[bounces-323207-lists,devicetree=lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,lists.linux.dev:replyto,smtp.kernel.org:mid,collabora.com:email,sashiko.dev:url];
+	TAGGED_FROM(0.00)[bounces-323208-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[smtp.kernel.org:mid,lists.linux.dev:replyto,collabora.com:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,sashiko.dev:url];
 	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:cristian.ciocaltea@collabora.com,m:conor+dt@kernel.org,m:dri-devel@lists.freedesktop.org,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:cristian.ciocaltea@collabora.com,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:dri-devel@lists.freedesktop.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
@@ -97,7 +97,7 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	PRECEDENCE_BULK(0.00)[];
 	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
@@ -105,75 +105,101 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	RCPT_COUNT_FIVE(0.00)[5]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 8362472AC7F
+X-Rspamd-Queue-Id: AF06672AC70
 
 Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-
-Pre-existing issues:
-- [High] The driver calls multiple sleeping functions from CRTC atomic enab=
-le, disable, and flush callbacks, violating DRM atomic context rules.
+- [High] The patch modifies `vop2_enable()` to return an error code and cle=
+anly unwind resources on failure, but fails to update its caller `vop2_crtc=
+_atomic_enable()` to check this return value. This converts a resource leak=
+ into a critical double-free and system crash.
 --
 
---- Patch [6]: [PATCH v3 06/14] drm/rockchip: vop2: Fix VOP2_MAX_DCLK_RATE =
-overflow on 32-bit ---
-commit 4edf4257240708c6864fcd134b29f53d0456d685
+--- Patch [2]: [PATCH v3 02/14] drm/rockchip: vop2: Fix resource leak on vo=
+p2_enable() error path ---
+commit d8725e1d1e43785d7a93679c9bc6634b3ebd7fab
 Author: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
 
-drm/rockchip: vop2: Fix VOP2_MAX_DCLK_RATE overflow on 32-bit
+drm/rockchip: vop2: Fix resource leak on vop2_enable() error path
 
-VOP2_MAX_DCLK_RATE is defined as an unsigned long and is used scaled by
-the color-depth ratio. On 32-bit architectures, this can overflow when
-multiplied. This patch changes the constant to unsigned long long to ensure
-64-bit arithmetic is used.
+vop2_enable() returns void, so callers cannot tell whether powering up
+the VOP2 succeeded.
 
-Link: https://lore.kernel.org/all/20260623203310.9F8C81F000E9@smtp.kernel.o=
+Additionally, if rockchip_drm_dma_attach_device() fails, vop2_enable()
+returns without disabling the core clocks or dropping the runtime PM
+reference taken earlier, leaking both.
+
+Make vop2_enable() return int and unwind all resources on every failure
+path.  As disabling the core clocks is also needed in vop2_disable(),
+factor it out into a local helper used by both.
+
+Link: https://lore.kernel.org/all/20260623202043.8BFE21F000E9@smtp.kernel.o=
 rg/
 
 > diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c b/drivers/gpu/d=
 rm/rockchip/rockchip_drm_vop2.c
-> index e9f5d015b6458..2cd04bedaa2c0 100644
+> index 4cce3e336f5b3..e11dc8c7f78ba 100644
 > --- a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
 > +++ b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
-> @@ -102,7 +102,7 @@ enum vop2_afbc_format {
->  	VOP2_AFBC_FMT_INVALID =3D -1,
->  };
+
+[ ... ]
+
+> @@ -871,7 +878,7 @@ static void rk3588_vop2_power_domain_enable_all(struc=
+t vop2 *vop2)
+>  	vop2_writel(vop2, RK3588_SYS_PD_CTRL, pd);
+>  }
 > =20
-> -#define VOP2_MAX_DCLK_RATE		600000000UL
-> +#define VOP2_MAX_DCLK_RATE		600000000ULL
+> -static void vop2_enable(struct vop2 *vop2)
+> +static int vop2_enable(struct vop2 *vop2)
+>  {
+>  	int ret;
+>  	u32 version;
+
+[ ... ]
+
+> @@ -932,6 +938,17 @@ static void vop2_enable(struct vop2 *vop2)
+>  		    VOP2_INT_BUS_ERRPR << 16 | VOP2_INT_BUS_ERRPR);
+>  	vop2_writel(vop2, RK3568_SYS1_INT_EN,
+>  		    VOP2_INT_BUS_ERRPR << 16 | VOP2_INT_BUS_ERRPR);
+> +
+> +	return 0;
+> +
+> +err_detach_dma:
+> +	rockchip_drm_dma_detach_device(vop2->drm, vop2->dev);
+> +err_disable_clks:
+> +	vop2_core_clks_disable_unprepare(vop2);
+> +err_put_pm:
+> +	pm_runtime_put_sync(vop2->dev);
+> +
+> +	return ret;
+>  }
 
 [Severity: High]
-This is a pre-existing issue, but I noticed some potential atomic context
-violations in this file.
+Does this code leave vop2_crtc_atomic_enable() vulnerable to a crash if
+vop2_enable() fails?
 
-During non-blocking commits, the DRM core invokes CRTC callbacks like
-vop2_crtc_atomic_enable(), vop2_crtc_atomic_disable(), and
-vop2_crtc_atomic_flush(). These run in an atomic context where sleeping is
-strictly forbidden.
+The newly added error path in vop2_enable() unwinds resources (power and
+clocks), invalidating the assumption that the hardware is active.
 
-However, the driver appears to invoke sleeping functions on these paths.
-For example, in vop2_crtc_atomic_enable():
+However, the caller vop2_crtc_atomic_enable() still ignores the return
+value:
 
-    vop2_lock(vop2);
-   =20
-    ...
-   =20
-    ret =3D clk_prepare_enable(vp->dclk);
+	if (!vop2->enable_count)
+		vop2_enable(vop2);
 
-Similarly, in vop2_crtc_atomic_disable():
+	vop2->enable_count++;
 
-    vop2_lock(vop2);
+If vop2_enable() fails (e.g., due to DMA attach failure), it disables the
+core clocks and puts the PM runtime.
 
-And in the flush path via vop2_crtc_atomic_try_set_gamma_locked():
+Because vop2_crtc_atomic_enable() ignores the error, it unconditionally
+increments enable_count and proceeds to access VOP2 MMIO registers.
 
-    vop2_lock(vop2);
-
-Because vop2_lock() acquires a mutex and clk_prepare_enable() can sleep,
-does this violate the atomic context requirement and potentially cause syst=
-em
-instability or deadlocks during display state updates?
+Can this result in a system crash (Synchronous External Abort) due to MMIO
+access to unpowered/unclocked hardware, followed by a double-free of PM
+runtime and clock resources on teardown?
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260709-dw-hdmi-qp=
--yuv-v3-0-a4a982a9f2e7@collabora.com?part=3D6
+-yuv-v3-0-a4a982a9f2e7@collabora.com?part=3D2
 
