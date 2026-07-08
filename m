@@ -1,63 +1,62 @@
-Return-Path: <devicetree+bounces-322805-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-322806-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id U6ohKLVETmq2JwIAu9opvQ
-	(envelope-from <devicetree+bounces-322805-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 14:38:13 +0200
+	id SPKUAf9ETmrCJwIAu9opvQ
+	(envelope-from <devicetree+bounces-322806-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 14:39:27 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 916887265C3
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 14:38:12 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4885B7265EB
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 14:39:26 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=JKGqwLn2;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=RQXi2ruZ;
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322805-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-322805-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322806-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-322806-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 0F628300D78E
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 12:37:48 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id B0DD0301A76F
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 12:38:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2EC744E044;
-	Wed,  8 Jul 2026 12:37:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE9C144D021;
+	Wed,  8 Jul 2026 12:38:02 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BBFD44D01D;
-	Wed,  8 Jul 2026 12:37:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCDAD44CF2E;
+	Wed,  8 Jul 2026 12:38:01 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783514260; cv=none; b=sIB7cW3EMf+McuMn3pccrOrrytyMwgabLbugHoRAidQM31heI3nVinDhbte86zvkHTeqWrYcflQ3PeXXZ3+H+jltSyTtoCzyqMve6J8kXNiLmV6s2EEjCF8D5EupfThUfWxETt1xptN/TjaQqJC9+y89Yq4/xfbhgM+vZDmjmVo=
+	t=1783514282; cv=none; b=uzcKF2Wbxt/0EF0D3mOk3ptpYGn2ZiAO/Tpv6SC8uF8Vrs/IhhkQqBTiwdoGOzYQeX2/iDvfQ+AW7NJF6VA7WB71HIJEdFXr3y0KbyF1v/HBVfPwpXkg63RPYeDi1PLG+RegxV371DClVAM8q3WCgj864KaP0poSarLqP0RsYU4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783514260; c=relaxed/simple;
-	bh=D4V20yvTx7Bt9X5jiU4Rk/UjjvQ8zoTI5A4kW9wqm8g=;
+	s=arc-20240116; t=1783514282; c=relaxed/simple;
+	bh=svy8XFgDNcBuMvUvY97ctkog14H4k8CMmzHtynY+NPQ=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=lGRphevSu/gtMzBfScxINQ9TiLba47VMGWE4tsbKGj23MGxTqcRaOewJRnMH8P3bfnQ3O8lzX2GylZUdwskYj/4zn5oRGsWQfOoFPbTyYr3PHJhjrwuR99c1uuzL4kc6pS4aPovnACVuIWz9g6U2y7Bo6rcZl6yE2+qdHnTZ+mw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JKGqwLn2; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 289401F000E9;
-	Wed,  8 Jul 2026 12:37:38 +0000 (UTC)
+	 Message-Id; b=dq4ARgeK8sOidb8jw6os5n+GGEp0dJ9HPbALaCIkHgLRaHPfP72KorFdVWUaYeRXZKPArId734LIi2VGlgRLru8yL5eAHY38CvhnPl7CAoEGVgd9zrPe0d7dDY/oPhrD2p90OyEfKFli4pWWxDYuSF2UZo0ggVI+hJ/9Bz6FVwg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RQXi2ruZ; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 073191F000E9;
+	Wed,  8 Jul 2026 12:38:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783514258;
-	bh=8fUFQDzaUf36uu7CDdNF60MWQnD0G9Nnv1PIm09s/RI=;
+	s=k20260515; t=1783514281;
+	bh=svy8XFgDNcBuMvUvY97ctkog14H4k8CMmzHtynY+NPQ=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=JKGqwLn2f/56m8y6eAKhEWCzCiLcujvPhOW8iqtGW/ro+U+zcpe3AtaBSqJp9H/aU
-	 T24PuOjJBjRVdIuXQo9QQ7+MXUChvLqSni4oQpKrGAs0kEhbKaLXGZHIQ3CT1EQepJ
-	 Dhv+z0mZxU5YG2K7cMIrClE5dMWYzEospHINkLs8X+ku10cvBxL80NQBE1MfKjIw77
-	 0KKRDiuGssYKAOoMfSqHMwVO3mcpiwYHd01U1iQrN/PDjZELtE4B/6sX63Vjm6vfT4
-	 V8dKfxr5J4fQfD+KepmlrHFTZJG7MVfLBE88/QX5caGAjQV3U/mc+cbvxv2QXqvwse
-	 lpa2shIiPbB/g==
+	b=RQXi2ruZRz3VWxdl96dvhKEQn9Lbkhflo7thSvTkmVX6XT2jnFkASs9PfxQlpYqGB
+	 w8JO83whEoK8bjwRFTYTjZpirIl/l3PTk+WlBF8XG8oGGMd8gNPOIi47wblxPuMhmv
+	 7Kjqi6lnrOt3/12/93SfQo+rEiJHrD72FP9RRDDdTJt/OyHQQf07PCkrvrac+FJEh+
+	 MusRPnZrxlofeaRa950ZDzsjSqvYHDD5RHeNxLV16szE7r7W7KdcgpXBsNkfIquX7l
+	 oj6UhC0blqp49Sx73Q1uGaCAx6s74AVGfsDsO2dGYvktCJxMv+Sj+17Hl2rAizsTPv
+	 cO+DCCq57ivNA==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH] dt-bindings: leds: backlight: Convert TPS65217 to DT
- schema
+Subject: Re: [PATCH] dt-bindings: mfd: Convert OMAP USB TLL to DT schema
 Reply-To: sashiko-reviews@lists.linux.dev
 To: "Eduard Bostina" <egbostina@gmail.com>
-Cc: lee@kernel.org, devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org, robh@kernel.org, linux-leds@vger.kernel.org, conor+dt@kernel.org
-In-Reply-To: <20260708123317.1768641-1-egbostina@gmail.com>
-References: <20260708123317.1768641-1-egbostina@gmail.com>
+Cc: conor+dt@kernel.org, mfd@lists.linux.dev, lee@kernel.org, robh@kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260708123328.1768794-1-egbostina@gmail.com>
+References: <20260708123328.1768794-1-egbostina@gmail.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Wed, 08 Jul 2026 12:37:37 +0000
-Message-Id: <20260708123738.289401F000E9@smtp.kernel.org>
+Date: Wed, 08 Jul 2026 12:38:00 +0000
+Message-Id: <20260708123801.073191F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,62 +70,54 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-322806-lists,devicetree=lfdr.de];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-322805-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:egbostina@gmail.com,m:lee@kernel.org,m:devicetree@vger.kernel.org,m:dri-devel@lists.freedesktop.org,m:robh@kernel.org,m:linux-leds@vger.kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:egbostina@gmail.com,m:conor+dt@kernel.org,m:mfd@lists.linux.dev,m:lee@kernel.org,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[lists@lfdr.de];
 	FREEMAIL_TO(0.00)[gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
 	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,vger.kernel.org:from_smtp,lists.linux.dev:replyto,smtp.kernel.org:mid];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[7];
+	ALIAS_RESOLVED(0.00)[];
 	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	PRECEDENCE_BULK(0.00)[];
 	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FROM_NO_DN(0.00)[];
 	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,vger.kernel.org:from_smtp,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,lists.linux.dev:replyto,smtp.kernel.org:mid]
+	RCPT_COUNT_FIVE(0.00)[6]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 916887265C3
+X-Rspamd-Queue-Id: 4885B7265EB
 
-> Convert the Texas Instruments TPS65217 PMIC bindings to DT schema.
+> Convert the OMAP HS USB Host TLL bindings to DT schema.
 >=20
-> During the conversion, the following updates were made:
-> - Make the 'backlight' node optional to resolve dtbs_check warnings.
->   Some boards declare a bare TPS65217 node without implementing the
->   backlight configuration.
-> - Document the 'isink-en' property in the backlight subnode to resolve
->   dtbs_check warnings. This property is used (am335x-guardian.dts)
->   to manage the backlight current sinks. It was missing from the old
->   txt binding.
-> - 'additionalProperties: true' is at the top level because the
->   TPS65217 node is documented across multiple independent schemas
->   matching the same compatible string.
+> During the conversion, ti,hwmods has been made optional to resolve
+> dtbs_check warnings. Modern OMAP platforms do not require this
+> property, but it is still required for older platforms.
 >=20
 > Signed-off-by: Eduard Bostina <egbostina@gmail.com>
 
 Sashiko has reviewed this patch and found no issues. It looks great!
 
 --=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260708123317.1768=
-641-1-egbostina@gmail.com?part=3D1
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260708123328.1768=
+794-1-egbostina@gmail.com?part=3D1
 
 
