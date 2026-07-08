@@ -1,68 +1,69 @@
-Return-Path: <devicetree+bounces-322974-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-322975-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id hjRsNCZqTmrzMAIAu9opvQ
-	(envelope-from <devicetree+bounces-322974-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 17:17:58 +0200
+	id LJqkGjtqTmr8MAIAu9opvQ
+	(envelope-from <devicetree+bounces-322975-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 17:18:19 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 483F1727E0C
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 17:17:58 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 10EDD727E21
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 17:18:19 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=n86my4xW;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=XMriGhP8;
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322974-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-322974-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322975-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-322975-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id C6D38319699F
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 15:05:34 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 39C8431A18ED
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 15:06:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6836F43440C;
-	Wed,  8 Jul 2026 14:57:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6AC15435EF2;
+	Wed,  8 Jul 2026 14:57:55 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5AE3A4343F1;
-	Wed,  8 Jul 2026 14:57:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D83D435EC7;
+	Wed,  8 Jul 2026 14:57:54 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783522673; cv=none; b=rWXOM8SlnRdywP8b11gqUt/Huze85SOy/HwjkJLSpJG4ENyBqL5rjSEdYyfIzDVjETvZ/F31KTDTsQnvSnhnUzqPQ6UxxlazBP8HOgEELhE421Rg989f6ohnTFJT+DKJxiSZ64/dy4p7oJjnGAUrdGs0Lky6wOkvyWN6SBnHAIk=
+	t=1783522675; cv=none; b=nGemE/+xgwaUQYpztAHlByXetvA3q1sAZhAsQIX/8PbsizTcOuUB+sh0z4n9ALfIcTVfSpaSB/0Z7UQZPj2mjEtgzNQ+SP9rZDcymwzxtEavuKWOZtLMGn5LpwkhYSNkR4WM706CWz6ACsyerT+B3iyxFQRj5oC74Jp/bAjvYM0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783522673; c=relaxed/simple;
-	bh=U5S/YiRi/3tgNM9x6G2f69v+REfmpT1uYoIgUerDaDQ=;
+	s=arc-20240116; t=1783522675; c=relaxed/simple;
+	bh=uuMSw6Dk4iYoG20x2JY3IpRhdtK5oRn6nHPTzzAdjRM=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Si+YOVDXJMLaI6uPACTK9WrFKtYoygW9lWat7YwdW2Twey+4Onv/EWgfTzF4b28QVzyBRcHIc0IpA78HKJAk9E0dJr7saIWIeEAtF0TvSeq9sziQfgtj0lvaUmOwXGDfUOF/qhC6diuVEBOCbEuGtv/+UMtTlpdwSZcImnaO4Tg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=n86my4xW; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 43E941F00A3D;
-	Wed,  8 Jul 2026 14:57:51 +0000 (UTC)
+	 MIME-Version:Content-Type; b=d43vKOg6oTie8C+kxQ8Ho+lBVn8wZhfCbt+DXgVLR29XXOIjXUhjlSBqna6PFdupVaE6T6fq5NmsJ7MCTvX3DgWdUSLxwYNY/srm5CqgUTU/PNskktUWI0ZRr18Z4LYVroNgTZeQgNIH1boAFgQiSTy18xYqDDEk7YDo09amYzw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XMriGhP8; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 69FD91F00A3D;
+	Wed,  8 Jul 2026 14:57:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783522672;
-	bh=pDk7JZvek6Wa8+duF9L5o3h5GoZgz6SZRsJfOait/4E=;
+	s=k20260515; t=1783522674;
+	bh=vyfyghuXYCD3LhgDfkXl0FNzl+5sEqekPde3hzUTV1w=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=n86my4xWY0oRxgZyGlufudhBAr4UqIq0TmjaaLX2vUFDopfZ9m9rrPXhvRFLpoB+E
-	 0M1yCEh7NCgE2wgTioVRmtFN6zMMwfENZPbp4dEJCscCLmoG4Hd2V/jj//eMIKjDhP
-	 DCQ25hVnvRStPQ5iFbFmwS00ETe8a542cUZpIyILt8g3Gpc56egQFBKEvndlqsDpbt
-	 eFlOdrE6/EI3yVP95McTzWn5oU+RVv4spWkcciovBip7sMjMailpCZwmG9EOzfiRa5
-	 Xd7K2VtCKK4VH9dZzZ9Pf4tcEXts0QfG8afrlaAKlI+hFh5GjCmaR7J48YchjlhL/7
-	 EkAWvlkagUNKQ==
+	b=XMriGhP8oDWf5DLwqlbyhz7vY2SzRaxFJa9zhXsVxYWySGErP7O+Zwpv/4QJP0nbC
+	 dTI+nPylrtwI6VyzLrC+PxxVMnJP/59TUlmbc0QTXnr9+91blHN2bLBF9IBOIPrJ2B
+	 vN3JAMuqhf4OHwqTbu7XALdYxPpXzn8pWAy1+WMRBMNzgKMn14NiHcsoW1Tje5M7AV
+	 adT7e1G7bpCRZ0E152jpl1J7wRBv7iZdg6gO16PhsffVXm2sgA1OhkIbhKF+2kUBaU
+	 0lTj8wLrYNOYmXWRxmq/1rrTohzMbmcCivINxS+w8MqQpBkiYbEf9szb7WHf69uCkd
+	 AO4MznzyWstcw==
 From: Bjorn Andersson <andersson@kernel.org>
 To: Konrad Dybcio <konradybcio@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>
-Cc: linux-arm-msm@vger.kernel.org,
+	Vinayak Katoch <vinayak.katoch@oss.qualcomm.com>
+Cc: Bharath Kumar <bkumar@qti.qualcomm.com>,
+	Chenna Kesava Raju <chennak@qti.qualcomm.com>,
+	Ekansh Gupta <ekansh.gupta@oss.qualcomm.com>,
+	linux-arm-msm@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-Subject: Re: [PATCH v3 0/3] arm64: qcom: sm8650: misc enhancements
-Date: Wed,  8 Jul 2026 09:56:52 -0500
-Message-ID: <178352261621.2235436.10047342474988179608.b4-ty@kernel.org>
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: qcom: sm8250: Add memory-region for audio PD
+Date: Wed,  8 Jul 2026 09:56:55 -0500
+Message-ID: <178352261636.2235436.10420459601272958947.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260615-topic-sm8650-upstream-cpu-props-v3-0-eeb6e9fa7581@linaro.org>
-References: <20260615-topic-sm8650-upstream-cpu-props-v3-0-eeb6e9fa7581@linaro.org>
+In-Reply-To: <20260619-sm8250-audio-v1-1-8a76e033e209@oss.qualcomm.com>
+References: <20260619-sm8250-audio-v1-1-8a76e033e209@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,14 +77,14 @@ X-Spamd-Result: default: False [-5.16 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-322974-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:konradybcio@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:neil.armstrong@linaro.org,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:konrad.dybcio@oss.qualcomm.com,m:krzysztof.kozlowski@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-322975-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:konradybcio@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:vinayak.katoch@oss.qualcomm.com,m:bkumar@qti.qualcomm.com,m:chennak@qti.qualcomm.com,m:ekansh.gupta@oss.qualcomm.com,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER(0.00)[andersson@kernel.org,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
@@ -98,32 +99,27 @@ X-Spamd-Result: default: False [-5.16 / 15.00];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[andersson@kernel.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[10];
+	RCPT_COUNT_SEVEN(0.00)[11];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 483F1727E0C
+X-Rspamd-Queue-Id: 10EDD727E21
 
 
-On Mon, 15 Jun 2026 18:48:55 +0200, Neil Armstrong wrote:
-> Misc enhancements for the SM8650 platform:
-> - update the cpus capacity-dmips-mhz
-> - add the CPU cache sizes
-> - correct the soundwire ports
+On Fri, 19 Jun 2026 15:20:08 +0530, Vinayak Katoch wrote:
+> Reserve memory region for audio PD dynamic loading and remote heap
+> requirements. Add the required VMID list for memory ownership
+> transfers.
 > 
 > 
 
 Applied, thanks!
 
-[1/3] arm64: dts: qcom: sm8650: update the cpus capacity-dmips-mhz
-      commit: bb016ddb9061a89c72448f4dbe356350f5cac0ea
-[2/3] arm64: dts: qcom: sm8650: add CPU cache size properties
-      commit: 884ff1172a70f47697c5033701b4c86f23abdb57
-[3/3] arm64: dts: qcom: sm8650: fix soundwire ports properties
-      commit: c0bec4b58b8e740236d9ac338821f78dbf784546
+[1/1] arm64: dts: qcom: sm8250: Add memory-region for audio PD
+      commit: 531ce288b6dd43c1ce90e0b501c209783f0e0ab2
 
 Best regards,
 -- 
