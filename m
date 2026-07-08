@@ -1,176 +1,161 @@
-Return-Path: <devicetree+bounces-323190-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-322827-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id keAtKGjITmoBUAIAu9opvQ
-	(envelope-from <devicetree+bounces-323190-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 00:00:08 +0200
+	id Uip8JVpNTmrSKQIAu9opvQ
+	(envelope-from <devicetree+bounces-322827-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 15:15:06 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 414E772ABF1
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 00:00:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CAE75726B19
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 15:15:05 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=mailbox.org header.s=mail20150812 header.b=wqwYngLV;
-	dkim=pass header.d=mailbox.org header.s=mail20150812 header.b=sw8ZGUcl;
-	dmarc=pass (policy=reject) header.from=mailbox.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-323190-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-323190-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=CaqN0B7q;
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322827-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-322827-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id DF674316728B
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 21:56:13 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 883053010B81
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 13:08:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 254CB3FC5A1;
-	Wed,  8 Jul 2026 21:56:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B276D23EAAF;
+	Wed,  8 Jul 2026 13:08:49 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [80.241.56.151])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 887443FBB7E;
-	Wed,  8 Jul 2026 21:56:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8EC5E21ABB1
+	for <devicetree@vger.kernel.org>; Wed,  8 Jul 2026 13:08:48 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783547773; cv=none; b=godVnrYlRiWSS/8K1nMV8felnxB0cm9aF3+9JhhuZUmwBRyaCbpuM76dSyvQb7YcVF78T/0vkwzDl8QHc85HDKpKnSHjrTourVFASXRE36/3XkenGITCX10vessXEpKDNy9Y3QglJqKaEom89o1JB97hQT14TBunFk8sUeLlmkI=
+	t=1783516129; cv=none; b=BkF9dps5agxUsks8+FPQ7coTUqHzclFaeKeZigODRjguKdqIV2XwIyK7gMU+TRh7rdaEOSTkatATjFNI07xJjxHMYJtqsJEbMU0+22GxnruUIRVlQ5R4MGeaWi29owACCQtWw+X2sjXD7sTC4cZ9QoEiMCXm1cEkkq4jTkBkH/M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783547773; c=relaxed/simple;
-	bh=L/V0i+tBTm3xM5Y3CascIjVDxfqTLbMhc/kcakfbtN4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=mOMDK/MFZlgwsbQVvtmaLi0Kfrh3bnVpblzQz2Ue1wplQOJ2lUBpaDiStBM+5u+jDVWlEz3ntQ2Z9v+pDUjY9isPnGI9xrKygWw6vorpPrnPiOQyPTeCStKJuAvzEXP+vr19r3xXbCzPBHxttU3bHjHDnqwVieloLqJG40yMGLs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=wqwYngLV; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=sw8ZGUcl; arc=none smtp.client-ip=80.241.56.151
-Received: from smtp102.mailbox.org (smtp102.mailbox.org [10.196.197.102])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA512)
-	(No client certificate requested)
-	by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4gwX3R5DgLz8v4b;
-	Wed, 08 Jul 2026 23:56:03 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1783547763;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=HzvBEeJ5wdYXClPXLrmc2/W46aJenc8FFAfoLDxjZi4=;
-	b=wqwYngLVVmMeY2bpMaFiVTrMKc0ovlIcK8JL1hGtGzfUSV70WkKp/hXAbjWxZ6DkFeT/uE
-	TIAJJo1tnFC2PRxiTS8pLkKE1WtkMJfxlUzq+ia1VCZlExZKdplL0hXNS8nMU7H48UJV/+
-	HoRgnSl5sjTmb7NF2SvcKZIuriTMp1jLqyoFwcedzh9hQtoAiopJNYLTXOgmHHsFmkzl5z
-	96QcIcFixt+GgFGyNaOZOm+3s5y1MvXjP3wUEVlOXluRQOyJQPOsXrZC1DFKPKUmvw5lja
-	KZQIXaz6b5nXc1BuqrOlUgbsxKoOetg2J/QL1NhCGLa0D4y8YOECYVxmPBjU1w==
-Message-ID: <59725f93-5269-4b0e-8633-48821219877f@mailbox.org>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1783547762;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=HzvBEeJ5wdYXClPXLrmc2/W46aJenc8FFAfoLDxjZi4=;
-	b=sw8ZGUcl5e3xihbCg2aT+g6H4ko5yZcdtxzrqesfKSBURVIqY2cbMnr0FBZFggidxEcvdJ
-	ZD8Mzyx+0bIiJJAbfzzGOwrQyfNfC+cXf1iOb+8Jywj5V3QOfZJDgQK/LI/7XqZMQmi/5X
-	jIV2qZPAtS6ptTEls1CFj0bjOuKp2Eryyq27A9MKDCuE3f5OIntcrejoH21iyn/hFi4UMb
-	aPIRlYzabNymh/vQeRfijsiwJ8cwhm4geK8NdZMEL1FaNi5uk75OwBc2mPklr3QBL+fM84
-	Lx8tLm+rDlVsVGhyrAIrFq4DsK4P9EJ9NP28hA1+yHs/betaDEHzC9wgRSpuIA==
-Date: Wed, 8 Jul 2026 15:07:30 +0200
+	s=arc-20240116; t=1783516129; c=relaxed/simple;
+	bh=iL/Df4BlicZs9gAnf8+JN79hb/3d4cLM4BTD7ciRUpQ=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=ONWfOu6ytiuIz+Dy/0GN/f+93sVBwwM8VGEswsdjZ4TG5wbuNl4Bw9ygYt9Q/DN1GOgSpOzvdY4FLYhlandeFsRswoTWx8orwEY9uI5zKHYA6fuuMQViezjjDQr2YGMuxXcuO7JCLnMPx0qEXyBvV9QJJyqhDJCKJNwzOSmZpq4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CaqN0B7q; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F34321F000E9;
+	Wed,  8 Jul 2026 13:08:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1783516128;
+	bh=IvKwzBqWKAH97HLs0fWSL/Tk/hv5a3n7vd3AKriVrPE=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=CaqN0B7qE87NBGOnrcnjiHIGUqGxCylHNgUQf7ctCBY3P0v0DBVBID4prIiF3xlwT
+	 ppo94Dr6TL3GLsmJ7I0hAGsfKpukT1xgXaz1n/4+ODIurRSUD09KLoxmw8q50m1D4K
+	 IpGwrSzF7Zd4DT77IDFpX69KFiS5F71EdHFzoN/3CTqqjvhjMzqlR//nOLfsc6R5lm
+	 /1wpd3OT1A0JVpvYsI0KruC6rpfHVTQguSOfA8KlaBCB+UH7OVHvmtharXFha8haTN
+	 zmJWt/3VYYqJG5Fr255gZDHr22IEBiS5FwZvNg5pFjlOT2MjuOG3aX4MrJlszx/p7t
+	 5d04fbiI5ot6w==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v7 4/4] arm64: dts: nuvoton: npcm845-evb: Add peripheral
+ nodes
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Tomer Maimon" <tmaimon77@gmail.com>
+Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, robh@kernel.org
+In-Reply-To: <20260708125352.1915040-5-tmaimon77@gmail.com>
+References: <20260708125352.1915040-1-tmaimon77@gmail.com>
+ <20260708125352.1915040-5-tmaimon77@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Wed, 08 Jul 2026 13:08:47 +0000
+Message-Id: <20260708130847.F34321F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Subject: Re: [PATCH v2 6/6] arm64: dts: renesas: r8a78000: Add MDLC nodes
-To: Geert Uytterhoeven <geert+renesas@glider.be>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Brian Masney <bmasney@redhat.com>,
- Ulf Hansson <ulfh@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
- Wolfram Sang <wsa+renesas@sang-engineering.com>,
- Marek Vasut <marek.vasut+renesas@mailbox.org>,
- Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-Cc: devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
- linux-pm@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <cover.1783505142.git.geert+renesas@glider.be>
- <dca2c4940ba38b897f04b6fb67591de9835900e1.1783505142.git.geert+renesas@glider.be>
-Content-Language: en-US
-From: Marek Vasut <marek.vasut@mailbox.org>
-In-Reply-To: <dca2c4940ba38b897f04b6fb67591de9835900e1.1783505142.git.geert+renesas@glider.be>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-MBO-RS-META: ox9kdwr3htbuf418b9dpqo5cy4n7x8wj
-X-MBO-RS-ID: 08bf7c3d4b9e58172e1
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-1.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[mailbox.org,reject];
-	R_DKIM_ALLOW(-0.20)[mailbox.org:s=mail20150812];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-323190-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:geert+renesas@glider.be,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:mturquette@baylibre.com,m:sboyd@kernel.org,m:bmasney@redhat.com,m:ulfh@kernel.org,m:p.zabel@pengutronix.de,m:wsa+renesas@sang-engineering.com,m:marek.vasut+renesas@mailbox.org,m:kuninori.morimoto.gx@renesas.com,m:devicetree@vger.kernel.org,m:linux-clk@vger.kernel.org,m:linux-pm@vger.kernel.org,m:linux-renesas-soc@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:geert@glider.be,m:krzk@kernel.org,m:conor@kernel.org,m:wsa@sang-engineering.com,m:marek.vasut@mailbox.org,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[marek.vasut@mailbox.org,devicetree@vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-322827-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:tmaimon77@gmail.com,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[marek.vasut@mailbox.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[mailbox.org:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NO_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCPT_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,mailbox.org:from_mime,mailbox.org:email,mailbox.org:mid,mailbox.org:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,glider.be:email]
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 414E772ABF1
+X-Rspamd-Queue-Id: CAE75726B19
 
-On 7/8/26 12:15 PM, Geert Uytterhoeven wrote:
-> Add device nodes for the Module Control (MDLC) blocks on the R-Car X5H
-> (R8A78000) SoC.
-> 
-> Complete hardware desciption of all (H)SCIF serial ports, by linking
-> them to an MDLC for power domains and resets.
-> 
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [Medium] The device tree aliases for fiu1 and fiu3 are swapped, causing m=
+ismatched physical interfaces and partition labels.
+--
 
-[...]
+--- Patch [4]: [PATCH v7 4/4] arm64: dts: nuvoton: npcm845-evb: Add periphe=
+ral nodes ---
+commit addb487f93312d5fc6f3c9be5cafae0cfda32949
+Author: Tomer Maimon <tmaimon77@gmail.com>
 
-> +		mdlc_ddr7: system-controller@e8380000 {
-> +			compatible = "renesas,r8a78000-mdlc";
-> +			reg = <0 0xe8380000 0 0x1000>;
-> +			#power-domain-cells = <2>;
-> +			#reset-cells = <1>;
-> +			bootph-all;
-> +		};
-> +
-> +		mdlc_hscn: system-controller@c9c90000 {
-> +			compatible = "renesas,r8a78000-mdlc";
-> +			reg = <0 0xc9c90000 0 0x1000>;
-> +			#power-domain-cells = <2>;
-> +			#reset-cells = <1>;
-> +			bootph-all;
-> +		};
-> +
-> +		mdlc_rt: system-controller@19440000 {
+arm64: dts: nuvoton: npcm845-evb: Add peripheral nodes
 
-Please keep the list sorted (0x19440000 should be before 0xc9c90000).
+This commit enables peripheral support for the NPCM845 evaluation board by
+wiring up the SoC controller nodes to the board design. It adds board alias=
+es,
+MDIO buses, reserved memory, flash partitions, and enables various controll=
+ers.
 
-> +			compatible = "renesas,r8a78000-mdlc";
-> +			reg = <0 0x19440000 0 0x1000>;
-> +			#power-domain-cells = <2>;
-> +			#reset-cells = <1>;
-> +			bootph-all;
-> +		};
-With that fixed:
+> diff --git a/arch/arm64/boot/dts/nuvoton/nuvoton-npcm845-evb.dts b/arch/a=
+rm64/boot/dts/nuvoton/nuvoton-npcm845-evb.dts
+> index 5edf5d13342da..7717c3a8f76d2 100644
+> --- a/arch/arm64/boot/dts/nuvoton/nuvoton-npcm845-evb.dts
+> +++ b/arch/arm64/boot/dts/nuvoton/nuvoton-npcm845-evb.dts
+> @@ -10,6 +10,42 @@ / {
+> =20
+>  	aliases {
+>  		serial0 =3D &serial0;
+> +		ethernet1 =3D &gmac1;
+> +		ethernet2 =3D &gmac2;
+> +		ethernet3 =3D &gmac3;
+> +		mdio-gpio0 =3D &mdio0;
+> +		mdio-gpio1 =3D &mdio1;
+> +		fiu0 =3D &fiu0;
+> +		fiu1 =3D &fiu3;
+> +		fiu2 =3D &fiux;
+> +		fiu3 =3D &fiu1;
 
-Reviewed-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
+[Severity: Medium]
+Are the aliases for fiu1 and fiu3 swapped here?
 
-Thank you !
+The underlying node for &fiu1 is labeled "spi1-system1" and &fiu3 is labeled
+"spi3-system1" later in the device tree. Could this cross-wiring cause
+userspace scripts or tools that rely on fixed controller IDs to write to or
+read from the wrong SPI flash partition?
+
+[ ... ]
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260708125352.1915=
+040-1-tmaimon77@gmail.com?part=3D4
 
