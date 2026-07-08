@@ -1,84 +1,86 @@
-Return-Path: <devicetree+bounces-322748-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-322750-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id lvYBIdg0Tmq6HgIAu9opvQ
-	(envelope-from <devicetree+bounces-322748-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 13:30:32 +0200
+	id whbUBjg1TmpMIAIAu9opvQ
+	(envelope-from <devicetree+bounces-322750-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 13:32:08 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01AA3725484
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 13:30:32 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0DA70725959
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 13:32:07 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=baylibre.com header.s=google header.b=gIY5LnJk;
+	dkim=pass header.d=baylibre.com header.s=google header.b="n1/LvCF4";
 	dmarc=none;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322748-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-322748-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322750-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-322750-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id EBCF930A8EB9
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 11:21:35 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id C6E8A30462BE
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 11:21:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51A4543901B;
-	Wed,  8 Jul 2026 11:18:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36579430CD7;
+	Wed,  8 Jul 2026 11:18:06 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFBD6436353
-	for <devicetree@vger.kernel.org>; Wed,  8 Jul 2026 11:18:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0D0D43784E
+	for <devicetree@vger.kernel.org>; Wed,  8 Jul 2026 11:18:01 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783509483; cv=none; b=kmDRI9X0J2izXqxGMbvFmpEwK9zoWRvCWhYWLE7eqIE9/ka/KztYR32JW3vo43HA8d4L6bZ0AnA7kPjcPCbBQFb7pw6o5BGWI59RCSPDYN0JKTkcgDlB64aKpp3wCapyTEVlm6WVHfGBh56JYy4rgh7m3trzbzcBmq59vguLcjI=
+	t=1783509485; cv=none; b=KlVxUi6iMmUl7LuuYsdD8ce2f8oXFTlCAJO14fAl/5cAViRk/GurXEn9C5LaPkj0CaxjxkRlYge/bNnei+cNrkAtDRwR+rjih7T1UsZ2mfFQJi9H6tb4FEurT7sB65UaGXuCa8cgfYlDARvLdjD2nVOuRaC6IHEnmfzjyWJOObQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783509483; c=relaxed/simple;
-	bh=blyxwiZySzwrx12mnku2kqP86fYz3Uplh4R1YjG+QQU=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=BqWJSL1hT6oa0deEv/qARcbE3mnyKrIHCY6aMp8s6oW+76BVwcqUw7a4c7tssqsBX0f7+LItNX5xvjw5LVk+Ow+HV7v1qrvQMxB2HiFyLkd2oC3oV9Z50dszY/t4FQh50HUdnWLN8mFLSCWnsDaSChE5U2HhPwKKE4Oh0pJWMLk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.b=gIY5LnJk; arc=none smtp.client-ip=209.85.128.43
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-493c7902f47so3896785e9.1
-        for <devicetree@vger.kernel.org>; Wed, 08 Jul 2026 04:18:00 -0700 (PDT)
+	s=arc-20240116; t=1783509485; c=relaxed/simple;
+	bh=OHh53Z+dDBZ93A60zd+H0Xey0RUcchyzj1Bze3fWvW8=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=DZkrmjoZcW4KoCGsvKwIPffGsgFD/mtDZwjyIqgPlDxQIj9atgTZKNIlU05RNNI1pGjb27ihkrSb+grRamtqaRvOaH/g65ZEShQytSDGBfxU6NafI4wR6qO+pAb0I9GvcJJtaWByiOr71DQ550YNhY7WIE21tltV51ZWeofh4is=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.b=n1/LvCF4; arc=none smtp.client-ip=209.85.221.52
+Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-474560436c3so514995f8f.0
+        for <devicetree@vger.kernel.org>; Wed, 08 Jul 2026 04:18:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre.com; s=google; t=1783509479; x=1784114279; darn=vger.kernel.org;
-        h=cc:to:content-transfer-encoding:content-type:mime-version
-         :message-id:date:subject:from:from:to:cc:subject:date:message-id
-         :reply-to:content-type;
-        bh=dg8dUhD3q+CJyCSEW+eoODBKi7tHbn/E8jcu9sHuzyo=;
-        b=gIY5LnJk7b3Jyc6mFEhlSYAUIEf9PJoDu49X5JyMx6PoKFkMkPJALVPHluCvWXyAFy
-         3xLUBZe4aNcbQYfenct7HYa01GRtq6IzCCkI0Gg2rVf67Imxw3Zh92MAkkv9SezYgyX/
-         WYelZyvMv9Y5NKLHfWxOpFfj8kajLQrjnIOLAMP0uO0ERAEKL7QYnOHL6BtiY+o+r2g7
-         T0WZTsRLtyu7C/IJfosv9RQfpT0txQ5SyR8sz4QrzPFjzRzgAFL6AZ7jt/NgHBnLKfrf
-         yMBrRA0o2WWLxBp/mcwOvW9pGxW+EYhIGndPpHTbjrVJpu9H4QVufvsmF59inBGXFh16
-         ydSg==
+        d=baylibre.com; s=google; t=1783509480; x=1784114280; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :content-type:mime-version:subject:date:from:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=egpcAQdW/SLTTZ7EKezQRyQCSwkm0Zu7f8FvgmBPrNw=;
+        b=n1/LvCF4CflI9e+UmMNlcQSqwlFPSaJ2neypRr7cVdHQlD3477uAZ+pKQrDYiZtHQo
+         XzDdaF7pb/4Zb7j/COu9BW5cIofbl/2ryb9zXDzyxQpoM62ZiVYxxy6PdzeOXlVpHKV3
+         8AM//E8yfaYr4qkVwOT74PxNv0/nS1hwT+j1PP87JUE8SMC3Q80LI7x1GJG7xLk2ND6d
+         mAuO3b9yk4q8KIevQv7F29r8K60nN/BulvWgR7lcPraaHsVxQvqxYTlIlWYOEmsXos1O
+         610rEgAvs7K7q8TSGmc9DcAUYaMhnSrUHLwe7kEW9t/m3jN9oybL/1MRkrffKkzizpiE
+         C/zw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783509479; x=1784114279;
-        h=cc:to:content-transfer-encoding:content-type:mime-version
-         :message-id:date:subject:from:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to:content-type;
-        bh=dg8dUhD3q+CJyCSEW+eoODBKi7tHbn/E8jcu9sHuzyo=;
-        b=Pwso727NI15/dg52aiy4+iKDYFUYOm2ADi3G+LOXZ0SDKrYZReBFbazYPdjFmfSgXz
-         mJxP9H7j2w5Xo3PFWaDnqld4aNGxQ/bffQi8uHBt45o/TByYAZuTajn74Ewt4JI13YJy
-         XR6wY6ZDNLR4YytDxP/hnEwaTu2mSqPVHVskycZy4NHbDE3YL+vonCIdkTvrX+ElzS4P
-         G8bwBlMs34Tpy4i3UtdexfSQaPauyBj/0RiYUIujRJ830X5aveAWtHrT3eOOYg934jn6
-         /irZPYpY2xbE/xQHlo0+NX6+7fdmed2q+QPKgcsWaL5U7nUoI6XWp/hynpEoVV6Sow44
-         lUcA==
-X-Gm-Message-State: AOJu0Ywiov1CRYLM1iWMkAGkNpz8DxRzNPOWGzFxgCXizjNZJfA4xYp2
-	7jjBNn4PAP8j03E3N7HFe4mR6+AC5g3ctTtAzjaZTxzCyV0oKb+D8YXRJdU+MWUQ5HE=
-X-Gm-Gg: AfdE7cnLRhEgQ5aXRYl5ZsnuZ+sabZHOmp+8EtRyaihV7M8jTlnt59titrdbbtDkG4J
-	nhQDNu1kVAqYHxZz9HKhNzBAmUpRxuIBy0GcHwvulsYx9VuTIWguSHmuyzq/MtNfKo3WHlDcZpD
-	2E6A7UlxJ5GZb8MoSvM976QoI44hFa6gfmv19snzrkjTfvr0gkmoqgQyep5IQfRsJcNti7yS5Pm
-	0y0PMKSf9Yk+HsMkPIVUlSR+CqRjyAOykMIPMvVqiX/KXNvmTUVCvTuuA3G5LxARPp+jiE8AhaR
-	eakI4t+lyBfS/0cq6lL8sedlPdjU4JzqA3H6G6HcRA2QQdv74oB6XsGMZJMeFoMG0eigsv0jAHQ
-	z5ZKNEn3B+DxvEFPcyy/ewRazT1yEl6FLx8PJt74FnnDVSqG19Q9l3MA9yj9kgrilQ6iz+FTg3W
-	u0QWdn88EayWsp3GO34nDLWMfIfSgl8hfz9rLBrRaZrn+MvdNlwpq4xzkzcKVuCec4kNVeq3TvE
-	Wjl/Wgpfvs102Gy4A==
-X-Received: by 2002:a05:600c:548f:b0:493:df44:2342 with SMTP id 5b1f17b1804b1-493e6831661mr22461155e9.5.1783509479276;
-        Wed, 08 Jul 2026 04:17:59 -0700 (PDT)
+        d=1e100.net; s=20251104; t=1783509480; x=1784114280;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :content-type:mime-version:subject:date:from:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=egpcAQdW/SLTTZ7EKezQRyQCSwkm0Zu7f8FvgmBPrNw=;
+        b=brO3ip9ZQQ2aXwXmgG8yAuc1aWm8IqrtnCucM8+GgdU2PipB026EZiiMcznvxRARHo
+         RhDsfMZR6SzpWH+g+32G8x4iORt7B5hfhQNROaQEyKAhftkLvjzW76mVtoTFcjcF+How
+         3NdLqJsqEYbVGkWsKEFBXSZ7ksOcdR7sL19JZ89ZzUcyZRPrqnqILOrvB6ZbuXD7N377
+         0341cevNhURtR83G9EiMCDPoL3NJfSerp0JtX53YX/xZNlj2JtIjMLADhTJG8pmCI2dH
+         xT+43ScRqQRnmvMW4SSOF69iBNjhVcvaMt/RmLFH8ApUOZYKvUbHDeV3xh4+GDrXbQbG
+         wVMw==
+X-Gm-Message-State: AOJu0YwWpkRt22I6b6OSbtssYB+eXpjf7Wbs+SsplBUhtfHKDe3iykAP
+	MGO1Tm43+WSTUyI+svb7WLsTujUYZfCdG8PSc4e/B3QH32dyRpk6hk4v4ozcslOdOmY=
+X-Gm-Gg: AfdE7claYBBHkooWOrVsfZO3B05zKhQTQN+nofI17HMpvjKczu65tdpL0guIVMMG2+b
+	Wq6TCtkzhFZmiPDE29MK9tYX6FFpwDiZHmKD8XQwinZL0YoEVMo8Waa3odLDyvR5qR0e413xNg/
+	HWpiBmnDyvB1pa9F0vmfs/C1HcFylc49Bkp4jeBDi8Or8QHP7wmkCy2MONLcZwJXYlJqe3qNSut
+	pIBy+490t9TOI9Dy/OULRvDeTWLq5zFmT4CsWT+bvhUKpWeaCxb7SZR9r8U6CcDDzYoqmbZLOhl
+	/ZzKVIK6mM5ZT+31fkI6jOfpFxhi7Lkh0v7PlDrNCFZcEaAhgYk/USnIZ2hgOjGX1rA6TsNvn6r
+	5XnhMR+lJJzrBkBKZs6Ro7SL6jy3H5PJNjGetNPXJROK0INwSls3PVHQ+wZvCqQJEj0Br7VtkdA
+	jgudrsOEIbp2knmeVJWv8WyZ6yhjvD83vBvNHuGBJ3vwJMbQeKgvsJ3sY+WLJ8rdiBMUwWox9pT
+	vUUf3VX9pyvnOPNnA==
+X-Received: by 2002:a05:6000:290f:b0:473:c18:f2cb with SMTP id ffacd0b85a97d-47df075637dmr2204598f8f.18.1783509480468;
+        Wed, 08 Jul 2026 04:18:00 -0700 (PDT)
 Received: from 1.0.0.127.in-addr.arpa (host-79-16-115-126.retail.telecomitalia.it. [79.16.115.126])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-47aa0a55be4sm37867694f8f.31.2026.07.08.04.17.58
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-47aa0a55be4sm37867694f8f.31.2026.07.08.04.17.59
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Jul 2026 04:17:58 -0700 (PDT)
+        Wed, 08 Jul 2026 04:17:59 -0700 (PDT)
 From: Carlo Caione <ccaione@baylibre.com>
-Subject: [PATCH 0/2] Stabilize serial line numbers on MediaTek Genio boards
-Date: Wed, 08 Jul 2026 13:17:39 +0200
-Message-Id: <20260708-ccaione-genio-serial-aliases-v1-0-bf22229e9383@baylibre.com>
+Date: Wed, 08 Jul 2026 13:17:40 +0200
+Subject: [PATCH 1/2] arm64: dts: mediatek: alias all enabled serial ports
+ on Genio boards
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -87,10 +89,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/yXMUQrCQAyE4auUPBtYF1qLVxEf0jhbI2UrGytC6
- d3d6uMPM99KjmJwOjcrFbzNbc41joeG9C55BNutNsUQu3AKPatKnYBHZJt5f8vEMpk4nNGmqLE
- f2pQ6qsSzINnnx1+u//ZleEBfu0nb9gVf1o/ngAAAAA==
-X-Change-ID: 20260708-ccaione-genio-serial-aliases-e5f2c28b5ff6
+Message-Id: <20260708-ccaione-genio-serial-aliases-v1-1-bf22229e9383@baylibre.com>
+References: <20260708-ccaione-genio-serial-aliases-v1-0-bf22229e9383@baylibre.com>
+In-Reply-To: <20260708-ccaione-genio-serial-aliases-v1-0-bf22229e9383@baylibre.com>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, 
  Matthias Brugger <matthias.bgg@gmail.com>, 
@@ -107,7 +108,7 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	R_DKIM_ALLOW(-0.20)[baylibre.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
@@ -120,9 +121,9 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	FREEMAIL_TO(0.00)[kernel.org,gmail.com,collabora.com,linuxfoundation.org];
 	DMARC_NA(0.00)[baylibre.com];
 	FORGED_SENDER(0.00)[ccaione@baylibre.com,devicetree@vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-322748-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-322750-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
@@ -135,53 +136,77 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,baylibre.com:from_mime,baylibre.com:email,baylibre.com:mid,baylibre.com:dkim,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,vger.kernel.org:from_smtp,baylibre.com:from_mime,baylibre.com:email,baylibre.com:mid,baylibre.com:dkim]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 01AA3725484
+X-Rspamd-Queue-Id: 0DA70725959
 
-On the MediaTek Genio boards only serial0 is aliased in DT, so every
-other enabled UART gets a first-free ttyS line number from the 8250
-core at probe time. Line numbers are handed out in probe order, and
-probe order is not deterministic once a UART defers on its clocks, so
-the console UART can lose ttyS0 to another port.
-
-This was observed on the Genio 700 EVK running the Ubuntu 26.04 generic
-kernel: uart0 (the debug console) deferred waiting for its clocks while
-uart1 probed first and claimed ttyS0. With console=ttyS0 on the kernel
-command line the console then pointed at the wrong UART, and the boot
-looked like it had hung on the serial console. The failure is
-intermittent and depends purely on probe timing.
-
-Pin the line numbers explicitly instead:
-
- - Patch 1 aliases every enabled UART on the affected Genio boards
-   (mt8365-evk, the mt8390 and mt8395 Genio commons, and the Grinn
-   Genio SBC), so DT expresses the intended serial<N> -> ttyS<N>
-   mapping.
-
- - Patch 2 makes the 8250_mtk driver read that alias with
-   of_alias_get_id() and seed uart.port.line before registering the
-   port, so the 8250 core reserves the requested ttyS slot instead of
-   falling back to first-free.
+Only serial0 is aliased, so the remaining enabled uarts get first-free
+line numbers. When the console uart defers on its clocks, another uart
+can win line 0: console=ttyS0 then ends up on the wrong connector and
+the boot looks like a hang on the serial console, depending on probe
+order. Alias every enabled uart so line numbers are stable.
 
 Signed-off-by: Carlo Caione <ccaione@baylibre.com>
 ---
-Carlo Caione (2):
-      arm64: dts: mediatek: alias all enabled serial ports on Genio boards
-      serial: 8250_mtk: honor DT serial aliases
-
  arch/arm64/boot/dts/mediatek/mt8365-evk.dts              | 2 ++
  arch/arm64/boot/dts/mediatek/mt8390-genio-common.dtsi    | 2 ++
  arch/arm64/boot/dts/mediatek/mt8390-grinn-genio-sbc.dtsi | 2 ++
  arch/arm64/boot/dts/mediatek/mt8395-genio-common.dtsi    | 1 +
- drivers/tty/serial/8250/8250_mtk.c                       | 7 ++++++-
- 5 files changed, 13 insertions(+), 1 deletion(-)
----
-base-commit: 0e35b9b6ec0ffcc5e23cbdec09f5c622ad532b53
-change-id: 20260708-ccaione-genio-serial-aliases-e5f2c28b5ff6
+ 4 files changed, 7 insertions(+)
 
-Best regards,
---  
-Carlo Caione <ccaione@baylibre.com>
+diff --git a/arch/arm64/boot/dts/mediatek/mt8365-evk.dts b/arch/arm64/boot/dts/mediatek/mt8365-evk.dts
+index a30ee523b0b5..c535de34dfac 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8365-evk.dts
++++ b/arch/arm64/boot/dts/mediatek/mt8365-evk.dts
+@@ -24,6 +24,8 @@ aliases {
+ 		mmc0 = &mmc0;
+ 		mmc1 = &mmc1;
+ 		serial0 = &uart0;
++		serial1 = &uart1;
++		serial2 = &uart2;
+ 	};
+ 
+ 	chosen {
+diff --git a/arch/arm64/boot/dts/mediatek/mt8390-genio-common.dtsi b/arch/arm64/boot/dts/mediatek/mt8390-genio-common.dtsi
+index b0c97930a0e6..26e24431d467 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8390-genio-common.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8390-genio-common.dtsi
+@@ -33,6 +33,8 @@ aliases {
+ 		mmc0 = &mmc0;
+ 		mmc1 = &mmc1;
+ 		serial0 = &uart0;
++		serial1 = &uart1;
++		serial2 = &uart2;
+ 	};
+ 
+ 	backlight_lcm1: backlight-lcm1 {
+diff --git a/arch/arm64/boot/dts/mediatek/mt8390-grinn-genio-sbc.dtsi b/arch/arm64/boot/dts/mediatek/mt8390-grinn-genio-sbc.dtsi
+index 888248a75e93..51f12328a1d6 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8390-grinn-genio-sbc.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8390-grinn-genio-sbc.dtsi
+@@ -17,6 +17,8 @@ aliases {
+ 		i2c5 = &i2c5;
+ 		i2c6 = &i2c6;
+ 		serial0 = &uart0;
++		serial1 = &uart1;
++		serial2 = &uart2;
+ 	};
+ 
+ 	chosen {
+diff --git a/arch/arm64/boot/dts/mediatek/mt8395-genio-common.dtsi b/arch/arm64/boot/dts/mediatek/mt8395-genio-common.dtsi
+index edc5539bebde..86e487fb1832 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8395-genio-common.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8395-genio-common.dtsi
+@@ -22,6 +22,7 @@ aliases {
+ 		mmc0 = &mmc0;
+ 		mmc1 = &mmc1;
+ 		serial0 = &uart0;
++		serial1 = &uart1;
+ 	};
+ 
+ 	chosen {
+
+-- 
+2.55.0
 
 
