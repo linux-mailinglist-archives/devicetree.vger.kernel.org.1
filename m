@@ -1,63 +1,65 @@
-Return-Path: <devicetree+bounces-322730-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-322731-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 90TnN7MrTmoJEgIAu9opvQ
-	(envelope-from <devicetree+bounces-322730-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 12:51:31 +0200
+	id iFK4BxMtTmp7EgIAu9opvQ
+	(envelope-from <devicetree+bounces-322731-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 12:57:23 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F995724845
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 12:51:31 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C21A724936
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 12:57:22 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=KFGEJMBq;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=cl3NmNog;
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322730-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-322730-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322731-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-322731-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id BD1333020E26
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 10:50:23 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id CE4853022EA3
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 10:51:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BF4A432BD4;
-	Wed,  8 Jul 2026 10:48:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3678A43C074;
+	Wed,  8 Jul 2026 10:48:46 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3857432BD6;
-	Wed,  8 Jul 2026 10:48:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6F2738E8AB;
+	Wed,  8 Jul 2026 10:48:38 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783507695; cv=none; b=HXuud7bmGfHE41GuRE3mJXlmRCb8i/Y7Px+gV6iSiUcuuFPO7zGJy5pejJwdeZpUpl+r0Rip8gCo9cDC3zGHm6tnYFNuDayciuk3EFweoMxrwIViX4sGxmuTAYrLz63C4zZfUgYkffEgoC8xD7W+XY+VY1UCaaZsxxFiQm6kl94=
+	t=1783507724; cv=none; b=myteRj7A/De9KHKZxeNPJnWCMUILZ4Ru56TMSU/GZY7PBZIbTVK0AvqcrtjDV2Nzr/MBU4iJrEhJkhTKaVJXhOv9vRunrSZ8fwe/57QsGW8bPTWzWA8OP2Pde5lFbPciHYrWB2jMgdQ5yqS2NJbhHMdV5w6ipzJmBvUfeGdFEyY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783507695; c=relaxed/simple;
-	bh=kcB9ft0VwEspbtyxrte6AcFl4onLeRTJa1eN8Urg6S8=;
+	s=arc-20240116; t=1783507724; c=relaxed/simple;
+	bh=sSxrXHIiol6K68Kynd8VbnDP+DqRF2ZOla/iSySA6Fs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HOltVItw8k5qre4ElOTFOnqbTXPAPHAXfk262IOhBaEJ34qXQM2ObfXxOE1bZTdM6ThWyfv/czumIx99te9MtlytssczfUEG+D5LrzC40E3niMv/e3RQTUbKmdba3vV3o3Bg4L8fRNoCLK9QkEcecgv97kE1mqfxUr8za5K1oo8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KFGEJMBq; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C2E1D1F000E9;
-	Wed,  8 Jul 2026 10:48:02 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=G/erYM+FabPAElD0oOJz7qnAt4vXnKXGSDNrlP7BiKrb1hnIL5XiKXS75PSpqqPCOXQGjB7VEHWHcpwSxEfYPPzMHzQ/vzya1ne8crX7wSJJmWNXLgtt5OZCJYyIXzMWstF4vXHNKKg8gCTkuWHl1/07IhbkSYpQP4KXXpDJCV8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cl3NmNog; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C1C6C1F000E9;
+	Wed,  8 Jul 2026 10:48:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783507683;
-	bh=UnkgHBD26F/8kXqiFVoT59yFz6TX2aNaiI+Qen/RktQ=;
+	s=k20260515; t=1783507717;
+	bh=f2CSTVwFVH+AbaV85YH+CkKOMTVwojvRW+8+KKtv958=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=KFGEJMBqQe+PjrBWqjLmjnWV/JsYzB172brSP6VwoHXDx7xS1ZcLCbVgtMXZufrTW
-	 9fYrMj6at+MD4WpHch8E9OcjYOFKZ00/LVyYUTTTys/2rkXqJcTS2PcI1Ne6swd7qY
-	 XNDdlddJfFCUqjhGtq2n+UD/JstJBmUye+lM3MRgmXIsdbq91QM8rf86qAEwofPVjy
-	 eKBOhffTbvdrIWmxVU0k77Artkj8kd3ORRo48Kl1pjc2tlIV1E9kmYiVm1XWu0iU/I
-	 XoynEpx7w6VlPa0M62hCCsbaGJV13MAAkYsuolH6YW85A2jqKW0L8p3/MNuBMeImir
-	 i+4N+Uy/hIMXQ==
-Date: Wed, 8 Jul 2026 12:48:00 +0200
+	b=cl3NmNogNa6gT/AcDhyziTmEC3tg5A7FkXgcZ5JcMXdrrJyQNEpK8R3LCGEKn4fQZ
+	 QZLiLkV28fWQ1Eklmpdnia+dsD4Fmx+JGIlMFo1KbZsk7S6QjTLgXhdn2SWv59rVRC
+	 O/eVHIVdWzMYhUytFW3DSt/Zu/c/vd6mfXyt1KG/qOeXZM8MgfcAMvh8ry6Wzc/Oaw
+	 OwEMifL64Pf6NtGgjZQwcPQco87jycaqhNGAfNhkkRD6QNl2VV7RebXwcyl/IjkRUv
+	 i5eC2WoTOVID+cJCImRveQcBgJzGGfbvfQzwVh6R1DlzrxYWPubR5p8sACWA2SHg/B
+	 +7PiWS+OUK5hQ==
+Date: Wed, 8 Jul 2026 12:48:33 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Ryan Chen <ryan_chen@aspeedtech.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, 
-	Andrew Jeffery <andrew@codeconstruct.com.au>, linux-aspeed@lists.ozlabs.org, openbmc@lists.ozlabs.org, 
-	linux-usb@vger.kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+To: Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Brian Masney <bmasney@redhat.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
 	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: usb: Add Aspeed AST2700 DWC3 controller
-Message-ID: <20260708-crafty-copperhead-of-whirlwind-1d89e9@quoll>
-References: <20260707-xhci-v1-1-b202b9b3274e@aspeedtech.com>
+Subject: Re: [PATCH 1/2] dt-bindings: clock: qcom: Add IPQ9650 REFGEN clock
+ IDs
+Message-ID: <20260708-private-sensible-oxpecker-faa31c@quoll>
+References: <20260707-b4-ipq9650_refgen_clocks-v1-0-e070624d03d2@oss.qualcomm.com>
+ <20260707-b4-ipq9650_refgen_clocks-v1-1-e070624d03d2@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,7 +68,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260707-xhci-v1-1-b202b9b3274e@aspeedtech.com>
+In-Reply-To: <20260707-b4-ipq9650_refgen_clocks-v1-1-e070624d03d2@oss.qualcomm.com>
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-3.16 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
@@ -74,7 +76,7 @@ X-Spamd-Result: default: False [-3.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
@@ -83,12 +85,12 @@ X-Spamd-Result: default: False [-3.16 / 15.00];
 	RCVD_COUNT_THREE(0.00)[4];
 	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	FORGED_RECIPIENTS(0.00)[m:ryan_chen@aspeedtech.com,m:gregkh@linuxfoundation.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:joel@jms.id.au,m:andrew@codeconstruct.com.au,m:linux-aspeed@lists.ozlabs.org,m:openbmc@lists.ozlabs.org,m:linux-usb@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	FORGED_RECIPIENTS(0.00)[m:kathiravan.thirumoorthy@oss.qualcomm.com,m:andersson@kernel.org,m:mturquette@baylibre.com,m:sboyd@kernel.org,m:bmasney@redhat.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-arm-msm@vger.kernel.org,m:linux-clk@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-322730-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-322731-lists,devicetree=lfdr.de];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
@@ -100,27 +102,22 @@ X-Spamd-Result: default: False [-3.16 / 15.00];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[quoll:mid,vger.kernel.org:from_smtp,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,aspeedtech.com:email]
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,qualcomm.com:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,quoll:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 8F995724845
+X-Rspamd-Queue-Id: 2C21A724936
 
-On Tue, Jul 07, 2026 at 02:12:04PM +0800, Ryan Chen wrote:
-> The Aspeed AST2700 SoC integrates the Synopsys DesignWare USB3 core with
-> no vendor glue logic: it is functionally compatible with snps,dwc3, uses
-> the standard DWC3 clocks, and the only SoC-specific part is a USB3 PHY
-> that is handled by a separate driver.
+On Tue, Jul 07, 2026 at 12:25:23PM +0530, Kathiravan Thirumoorthy wrote:
+> Add the REFGEN clock IDs for the IPQ9650 SoC. These clocks are used
+> to enable the REFGEN block, which provides the reference current to
+> the PHYs in the SoC.
 > 
-> Add a dedicated binding document rather than adding the compatible and a
-> conditional to snps,dwc3.yaml. This follows the established per-vendor DWC3
-> convention (apple,dwc3.yaml, socionext,uniphier-dwc3.yaml, ...) and keeps
-> the AST2700-specific constraints - notably the mandatory USB3 PHY - out of
-> the generic schema.
-> 
-> Signed-off-by: Ryan Chen <ryan_chen@aspeedtech.com>
+> Signed-off-by: Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>
 > ---
+>  include/dt-bindings/clock/qcom,ipq9650-gcc.h | 5 +++++
+>  1 file changed, 5 insertions(+)
 
-Why are clocks unconstrained?
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
 Best regards,
 Krzysztof
