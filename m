@@ -1,52 +1,52 @@
-Return-Path: <devicetree+bounces-323037-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-323038-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id dYIeBVN+TmpcNwIAu9opvQ
-	(envelope-from <devicetree+bounces-323037-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 18:44:03 +0200
+	id OcQ3LXl+TmppNwIAu9opvQ
+	(envelope-from <devicetree+bounces-323038-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 18:44:41 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 569E3728D5B
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 18:44:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E6BC728D79
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 18:44:41 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b="IAth/HBe";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=nIQlqFOj;
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-323037-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-323037-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-323038-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-323038-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2D1A5310189D
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 16:25:45 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 5B8F2303C414
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 16:27:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 914B0430793;
-	Wed,  8 Jul 2026 16:25:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BB8C430790;
+	Wed,  8 Jul 2026 16:27:27 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6BA023E92A9;
-	Wed,  8 Jul 2026 16:25:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82332370ACF;
+	Wed,  8 Jul 2026 16:27:26 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783527944; cv=none; b=SgLIqqHyqyr/qRpXbMTyPzoDV64bpDjBKLvfkKEZdtKpMFtWfmEXnWBpET/v1w1DvsBmez0S2xyFVf2/Vg8x7MnUm1qqvfjRvp4dPvHTQkgdzJqPpYWS7arV22HdXaaeXh5je8Ynp2BjiTTQbP61acX+kHMGdKY6+0HruCN0M5c=
+	t=1783528047; cv=none; b=aLGDpwTBH3t5sC3jfMxOW4JPXIgGgYFXp/uM/x5lEKLdLd3bslzr2D9ZzJHuA/70/3hgXd9eRbJDSaumsnAsplfdbsQ0RiJDuRhu2p0PmKO5oNgrsv1OlqAaoUhrxrQv0j+zNUrrXSjwpwZhguXMKQKAyZATw9TqFP8JgL9UmFA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783527944; c=relaxed/simple;
-	bh=a2tNkFRfD0KlQKBP31jaMgHQUa/TYY9ui16VFcmcGKU=;
+	s=arc-20240116; t=1783528047; c=relaxed/simple;
+	bh=/UC42KlcxRxupJ6ZTabjmHOdGc55gI1N/DSvttml9Xs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lWTTko6fdykghw0YzCyznvkjHan1W0u/zMedQq+ROfta8LFpx5ydoJ5RP7UVfNv2HweZzNo6wcAb2yETGoXJExmvjj3ovtrRArU+J1ObyXRmVs8zJuqVDlTC6WBG9hxY1vmPEhrkHTQJfpUHAohNRq6rpwiOnu06kQrGwzHRGxM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IAth/HBe; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 891761F000E9;
-	Wed,  8 Jul 2026 16:25:40 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=QcXQhFm3w4yt1lBUpUQLVRXBHxFoUMiBJ5vBEQFMx9C1bfRVlnRTSAvgNFgeMMci1S8AEvBPygu5rcLxTCB+KIIqgnD2/qxmUIFAwQWReBQtPgXb+WIzpBAq0ozDVVPZ+iTr0Fcj28a5Lzz4AohmbZmUwBQJyVghAeyu1jZG6bI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nIQlqFOj; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 995FB1F000E9;
+	Wed,  8 Jul 2026 16:27:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783527943;
-	bh=a2tNkFRfD0KlQKBP31jaMgHQUa/TYY9ui16VFcmcGKU=;
+	s=k20260515; t=1783528046;
+	bh=/UC42KlcxRxupJ6ZTabjmHOdGc55gI1N/DSvttml9Xs=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=IAth/HBeVSUG7lIoaOaB/S7hVURtBX+sGQ6L0bwXWYFnocOwfuxfdqGsUBOxOva/I
-	 RTV9hEczbD2oh3B8b6W9GHwE70eHXRbGh5aFVoSZbnbipVo9Xvq2eYbKSjntEqysF8
-	 pqs1MF2+RmJnwisM/iCpD5SDzz86YM1f+hVYXuRtMaqhvgrjIFCklIx28HMv0OSHZ6
-	 fWyUWq6YOYkzdZUEE1NsiFzRqshoP2ym0rlKyxzOjBAPwxGD1zzcQjOEVbBHkTe3KA
-	 apdV24OMlVr3/c1sGJ1QY0He3hBrA3kgDR3TRN1h429EwPyApv82QryYwmtIqVTxHB
-	 Ewd/B6g78Jqew==
-Date: Wed, 8 Jul 2026 17:25:38 +0100
+	b=nIQlqFOj1L4Cr3S5n3/FguglHaBkVsztyyC7Ov0fABAnwOGR5VPtp5ZW4jt+Olzr9
+	 8kGxEcaJ4shFiufyPn9pUS/0kMcyJXd/YKUdEF/VGrCNpmkUbOU0+MGgoWkpTBgvdp
+	 C59FwbB2XWltyAIezLDgnRkthI4P4gtNM+Od/JPsHYdnK5BmRkxfHZcfQAcwjCs3hD
+	 k2Q7J1q+Bks6T+w4qm4I3ZEPSDyeNTtCbLa9jqX0G7H9EMxtnZ+AN7aFFrPp5KJvqq
+	 GCt3OVhygSCqKr/gF7M6llZSRma1e/tIIQz95ujyjAVH9+TO9BYh9kX9pMs+ve/fYY
+	 RzldpYgxr++uA==
+Date: Wed, 8 Jul 2026 17:27:21 +0100
 From: Conor Dooley <conor@kernel.org>
 To: Loic Poulain <loic.poulain@oss.qualcomm.com>
 Cc: Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>,
@@ -58,11 +58,11 @@ Cc: Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>,
 	Konrad Dybcio <konradybcio@kernel.org>, linux-leds@vger.kernel.org,
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
 	linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH v4 1/4] dt-bindings: leds: nxp,pca963x: fix reg maximum
- for pca9635
-Message-ID: <20260708-partner-carpenter-7e7e09e3b2f6@spud>
+Subject: Re: [PATCH v4 2/4] dt-bindings: leds: nxp,pca963x: add multicolor
+ LED support
+Message-ID: <20260708-blot-subscript-3e888026eaf5@spud>
 References: <20260708-monza-leds-v4-0-a7acfc524c0b@oss.qualcomm.com>
- <20260708-monza-leds-v4-1-a7acfc524c0b@oss.qualcomm.com>
+ <20260708-monza-leds-v4-2-a7acfc524c0b@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,9 +70,9 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="DJMf1EmhaTk75qxo"
+	protocol="application/pgp-signature"; boundary="vV3EJa3h+RjQFYCt"
 Content-Disposition: inline
-In-Reply-To: <20260708-monza-leds-v4-1-a7acfc524c0b@oss.qualcomm.com>
+In-Reply-To: <20260708-monza-leds-v4-2-a7acfc524c0b@oss.qualcomm.com>
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-5.26 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
@@ -95,7 +95,7 @@ X-Spamd-Result: default: False [-5.26 / 15.00];
 	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-323037-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-323038-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
@@ -108,27 +108,27 @@ X-Spamd-Result: default: False [-5.26 / 15.00];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,microchip.com:email,spud:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,microchip.com:email,spud:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 569E3728D5B
+X-Rspamd-Queue-Id: 0E6BC728D79
 
---DJMf1EmhaTk75qxo
+--vV3EJa3h+RjQFYCt
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 
 Acked-by: Conor Dooley <conor.dooley@microchip.com>
 pw-bot: not-applicable
 
---DJMf1EmhaTk75qxo
+--vV3EJa3h+RjQFYCt
 Content-Type: application/pgp-signature; name=signature.asc
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCak55/gAKCRB4tDGHoIJi
-0l7SAQCnafjiqROG8RStS4qX9PjmQMJAK3KQE78tBf9be2/cYQEAkejsF+lMEnUV
-1x2/2luy/CAqsFF+pFGjKE6jk9S2sQ0=
-=Lkhl
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCak56aQAKCRB4tDGHoIJi
+0pvJAQC7lvE07B++zlLBK2i2xHXPG4xHsJlJW69LHEAlsWd0NQEAyWvRjJw7ouUW
+4CiyIn2iPEO1F/kWigS77TlXfx7ELQ0=
+=wB09
 -----END PGP SIGNATURE-----
 
---DJMf1EmhaTk75qxo--
+--vV3EJa3h+RjQFYCt--
 
