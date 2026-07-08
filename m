@@ -1,333 +1,196 @@
-Return-Path: <devicetree+bounces-322927-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-322929-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id cnfgCS1nTmopMAIAu9opvQ
-	(envelope-from <devicetree+bounces-322927-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 17:05:17 +0200
+	id Xlt1CdNnTmpMMAIAu9opvQ
+	(envelope-from <devicetree+bounces-322929-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 17:08:03 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8E33727BD9
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 17:05:16 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 82592727C29
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 17:08:02 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=raspberrypi.com header.s=google header.b=gDL1S+W+;
-	dmarc=pass (policy=reject) header.from=raspberrypi.com;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322927-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-322927-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=XBVfqp86;
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322929-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-322929-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 860FD30AD8F7
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 14:51:06 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id B86A730C3EF8
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 14:53:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC4CD4C957E;
-	Wed,  8 Jul 2026 14:49:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8E6A492185;
+	Wed,  8 Jul 2026 14:50:07 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66AA548BD57
-	for <devicetree@vger.kernel.org>; Wed,  8 Jul 2026 14:49:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D133478869
+	for <devicetree@vger.kernel.org>; Wed,  8 Jul 2026 14:50:05 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783522177; cv=none; b=cp2Z0OZP2CilwaFERgpi7R9DP15Dr9kqtROAVRIxZ1YOkhHKIxbyO81/n3DN4TFRyeah+Zpq667Ft7VPI/626mIDhM5aK8qz6MoX3vnFqiFSO0TaZzXNgSxWicbCIaZIfZbQ61i66Bfwt2qZVf4XdXXrSaRjc3XRME9uPDT5mWM=
+	t=1783522207; cv=none; b=BjAxTbWy5eDUui1kgtPvteTz7L2vYlwvGwVp33mMRkrMBvao5ndYCS4hHSX/RTnOXskRBl1PMJcsp79hq2QeH6TGaa8kpGe0DGCL8ITOr9CWjB+OnCoKjeREsinOwub6hD7aWiXKv7sam6ruuRZSy2ofmLo2A4isnJzej3Sg0tQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783522177; c=relaxed/simple;
-	bh=V7cfXfus1wMTH8uUlTulTCFw9RvrshHM+7AA6flR5yk=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=LFjPxoL03eEUQPpiltgcGw0qE41bzDfv/OWqq5Y9CBjO60gpVxIXlWlE4+Kwk5HPObO3O4yQPcPbBrmmog8K74FJjiaFOK/KJb7nzLmhxX4RIT/fgTy3lWshN2ZvV+SLMePShNCdAKkja3y9bGXoDCJlyZhHlQQqZARl9ucERdM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=raspberrypi.com; spf=pass smtp.mailfrom=raspberrypi.com; dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b=gDL1S+W+; arc=none smtp.client-ip=209.85.128.43
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-493ae59eca6so4455655e9.1
-        for <devicetree@vger.kernel.org>; Wed, 08 Jul 2026 07:49:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=raspberrypi.com; s=google; t=1783522165; x=1784126965; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :content-type:mime-version:subject:date:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=zYXkUhjNUNGBxpm6qSdNLGjTwbO67Pooqx5qDG7FHec=;
-        b=gDL1S+W+kVZMt3oTlU+dVDmIvstHM4u+kj3XUL9GiMAqnNuSfHGNeOUsowcuH4nUvB
-         3Qb2vo9O/tLB9WtI2wSPqZSNJofa5SAQYUyENOTtyAx/3H9KJbZv2s3ejkFyAtfQ94Jb
-         h54JjGNeJ+ZBSkLT69OBnWp/rJ7v3zm+UBFLkmwpcg1M5PrLQ0/VGxL7TwZZ/HeAe8l4
-         wycXegyet3wbNh116hnEJyWtXV7eYeeMObNMUaHWtuRtWWurgj/ZWwaZVwJ1wxaPu6c6
-         q6KzFQf29p5SfDWiWYMrBso6qx1gX76aVujBCR+q4LkTqtyq868sb/jw9xUI8ag48wrj
-         aJAg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783522165; x=1784126965;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :content-type:mime-version:subject:date:from:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=zYXkUhjNUNGBxpm6qSdNLGjTwbO67Pooqx5qDG7FHec=;
-        b=SBeUSRI0D/9EovtDFI0Dq4r2I128i4GDq5+HWscH278si1uZhmY1NjknDesvd0QyPy
-         FhsgS8LyppHT1v/WXjMLYecG7ad5ccYriegy2uTxjh/3zSZezMSx1dRXUhwiJjyWFXBi
-         RO4ZBrn2Bv8Ylt4bvW4b9o/pcKbya7/3XFre7DUzlxliPx2gNz5wuoc3TfpyfQgl3s0E
-         GSmVqgFHhNCqvjlHysS5TNpTiMWvEM9UlLMiAGeZvCUwUXPfRAuyg/VAVaBBGklZy+ag
-         lATTN7syzr63R9479mtWXDd5lWX8YkPgz2eQgNASi3U0o5zMyzV4FpsfVr3TO4piCOCZ
-         FgIA==
-X-Forwarded-Encrypted: i=1; AHgh+RrfeHRI9Zkt42wL2Z7z3ODsuIihCM2BI00NwAFLZlkgbp2ctqjZZ+6ZSBR2Pac+69cAjnL7F8sff6C+@vger.kernel.org
-X-Gm-Message-State: AOJu0YyiG+4OxmcP/L/MNrnvwSXsIwlHvvJyjhTK3idTFTQiNr/JPTAR
-	znUsQtxbfDsCnxQSH9dygIHzzoKLvb1/TCPJV1h7JieXkFKfLi9N8sVjIKcpxREVjiC7spXsqSA
-	VXgPZ
-X-Gm-Gg: AfdE7clf+nAbfRbG7kp+9Nx4/i6XSIkoBtCzGzM0BPknNRxPS3n6Pv7FZCw8ufy+Qu4
-	/V+vdMIWMRVQDz+IgiaDvLzaRGyAlgMlQCw8TUDWgsepwdtO+7RUJBAV3LAJy4zaEFvaL2wKF6e
-	WDM1/hVtOc3Xylbl6Djos7xq+FJG4yZERIxiyjJy/6xR/cLY8OMBPuRn+Mgy1YHWwv36lj1Z+ZK
-	bmZre10AJGO/K/musokUWy5GwufAETHPEid2a2wE61lGLOr30T2rR6r48yE24OSftI6VDRcG4tj
-	WOtuPQ/Hv7gQb4BnqQgwrfT3FvioxPJxpwD2qB+AFmfcpmm+9aSGh8GkBCmcx02Z8dfHatd8oBy
-	6dNnlaNap/UEoCkf3us2LZIapdqp0pACJQhT4lcpnWNM41/t5xYB+fy2EhdNXs82QHo23Uxe22B
-	eVRJkZm+F3cPAvnjCRi5VwYtAR+s3NWbxPnL8P/SYO6VkhJWDNcud/kq4g9tPdN3DZ
-X-Received: by 2002:a05:600c:528c:b0:493:d21f:8f98 with SMTP id 5b1f17b1804b1-493e68de964mr30032775e9.36.1783522165093;
-        Wed, 08 Jul 2026 07:49:25 -0700 (PDT)
-Received: from [127.0.1.1] ([2a00:1098:3142:e::8])
-        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-493e0fbd355sm135363315e9.13.2026.07.08.07.49.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Jul 2026 07:49:24 -0700 (PDT)
-From: Dave Stevenson <dave.stevenson@raspberrypi.com>
-Date: Wed, 08 Jul 2026 15:48:56 +0100
-Subject: [PATCH v3 20/20] media: imx355: Remove storing cur_mode in the
- state
+	s=arc-20240116; t=1783522207; c=relaxed/simple;
+	bh=tKikO0bSg47/jitw94DYQrY/Cn1s5w/tqQg0dlL9mRU=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=dcWORvk2YofN1dysyomGJAywidj2shGmeTV5k/v55ZuUk1hb/OC3jx4Hn29EJ7CupUYt+M/PTaR82BVfOWlKaFkrcsaCIj8raVHZvNatgKKO/yCXK3+fXpauaSU3EWOqkcF5KZvKTDpHrFKfTKajsTKbtB7dWC0rB5kK3CvpmI0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XBVfqp86; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5B69A1F000E9;
+	Wed,  8 Jul 2026 14:50:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1783522205;
+	bh=bG3yXgiC4pqNteP1dm3BJT74ixUUew1YH/EhTXISUyw=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=XBVfqp86G/zbAgwoc/XnfbfxRBIilOZzUz7GqY5T+n4WNoNejABa/45U5QS14PT0i
+	 E3DwJYtUIR8Se0bjB7jK4eFYkcnnkZ/v6NvfB/giNDby35dF3dfdtHWsGofu0J9lfu
+	 /TvnzmIXOIe4TS22IByBfDcHi3li5Dxe/Zh3f2mefmxOzlAT8lQqIv+2Rviahe7x1d
+	 e6alUAcB3XlANQopzl4oeaHTF4zqVLBMMDsiCeHyUDNS1RyPtzxEXrxJC3/qXOUQPC
+	 Uu4xdIBooHSlEFBGTvDWTcVLHoxy0eiBABqWliEx3uLbqd7WwZWjBJWNeW4qKlVjRv
+	 4t83KZN95uJxA==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v4 2/7] dtc: dt-check-style: Allow space-aligning
+ indentation in DTS
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Krzysztof Kozlowski" <krzysztof.kozlowski@oss.qualcomm.com>
+Cc: devicetree@vger.kernel.org, conor+dt@kernel.org, robh@kernel.org
+In-Reply-To: <20260708-dts-style-checker-v4-2-c175e6401150@oss.qualcomm.com>
+References: <20260708-dts-style-checker-v4-0-c175e6401150@oss.qualcomm.com>
+ <20260708-dts-style-checker-v4-2-c175e6401150@oss.qualcomm.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Wed, 08 Jul 2026 14:50:04 +0000
+Message-Id: <20260708145005.5B69A1F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260708-media-imx355-v3-20-9df386a623d7@raspberrypi.com>
-References: <20260708-media-imx355-v3-0-9df386a623d7@raspberrypi.com>
-In-Reply-To: <20260708-media-imx355-v3-0-9df386a623d7@raspberrypi.com>
-To: Sakari Ailus <sakari.ailus@linux.intel.com>, 
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Richard Acayan <mailingradian@gmail.com>
-Cc: linux-media@vger.kernel.org, linux-kernel@vger.kernel.org, 
- David Heidelberg <david@ixit.cz>, 
- Jacopo Mondi <jacopo.mondi@ideasonboard.com>, devicetree@vger.kernel.org, 
- Dave Stevenson <dave.stevenson@raspberrypi.com>
-X-Mailer: b4 0.14.1
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-1.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[raspberrypi.com,reject];
-	R_DKIM_ALLOW(-0.20)[raspberrypi.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-322927-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FREEMAIL_TO(0.00)[linux.intel.com,kernel.org,gmail.com];
-	FORGED_RECIPIENTS(0.00)[m:sakari.ailus@linux.intel.com,m:mchehab@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:mailingradian@gmail.com,m:linux-media@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:david@ixit.cz,m:jacopo.mondi@ideasonboard.com,m:devicetree@vger.kernel.org,m:dave.stevenson@raspberrypi.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[dave.stevenson@raspberrypi.com,devicetree@vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-322929-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dave.stevenson@raspberrypi.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[raspberrypi.com:+];
-	ALIAS_RESOLVED(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	TO_DN_SOME(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:krzysztof.kozlowski@oss.qualcomm.com,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,raspberrypi.com:from_mime,raspberrypi.com:email,raspberrypi.com:mid,raspberrypi.com:dkim,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+	ALIAS_RESOLVED(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	RCPT_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,lists.linux.dev:replyto,smtp.kernel.org:mid,sashiko.dev:url,qualcomm.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: B8E33727BD9
+X-Rspamd-Queue-Id: 82592727C29
 
-All the information for the mode is now stored within
-the subdev state, so configure the sensor based on that.
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [Medium] The `check_mixed_indent_chars` rule silently bypasses property c=
+ontinuation lines, rendering its newly added space-limit validation ineffec=
+tive for list properties and undermining the patch's stated goal.
+--
 
-Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
----
- drivers/media/i2c/imx355.c | 66 ++++++++++++++++++++++------------------------
- 1 file changed, 32 insertions(+), 34 deletions(-)
+--- Patch [2]: [PATCH v4 2/7] dtc: dt-check-style: Allow space-aligning ind=
+entation in DTS ---
+commit 7913e7da3c58b0a74f8737f725c2117139d9183f
+Author: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
-diff --git a/drivers/media/i2c/imx355.c b/drivers/media/i2c/imx355.c
-index ee012efe25bf..8e5eb5998591 100644
---- a/drivers/media/i2c/imx355.c
-+++ b/drivers/media/i2c/imx355.c
-@@ -173,9 +173,6 @@ struct imx355 {
- 	struct v4l2_ctrl *vflip;
- 	struct v4l2_ctrl *hflip;
- 
--	/* Current mode */
--	const struct imx355_mode *cur_mode;
--
- 	struct imx355_hwcfg *hwcfg;
- 	const struct imx355_clk_params *clk_params;
- 
-@@ -607,7 +604,7 @@ static int imx355_set_ctrl(struct v4l2_ctrl *ctrl)
- 	switch (ctrl->id) {
- 	case V4L2_CID_VBLANK:
- 		/* Update max exposure while meeting expected vblanking */
--		max = imx355->cur_mode->height + ctrl->val - IMX355_EXPOSURE_OFFSET;
-+		max = format->height + ctrl->val - IMX355_EXPOSURE_OFFSET;
- 		__v4l2_ctrl_modify_range(imx355->exposure,
- 					 imx355->exposure->minimum,
- 					 max, imx355->exposure->step, max);
-@@ -638,7 +635,7 @@ static int imx355_set_ctrl(struct v4l2_ctrl *ctrl)
- 	case V4L2_CID_VBLANK:
- 		/* Update FLL that meets expected vertical blanking */
- 		ret = cci_write(imx355->regmap, IMX355_REG_FLL,
--				imx355->cur_mode->height + ctrl->val, NULL);
-+				format->height + ctrl->val, NULL);
- 		break;
- 	case V4L2_CID_TEST_PATTERN:
- 		ret = cci_write(imx355->regmap, IMX355_REG_TEST_PATTERN,
-@@ -724,9 +721,7 @@ imx355_set_pad_format(struct v4l2_subdev *sd,
- 	const struct imx355_mode *mode;
- 	struct v4l2_mbus_framefmt *framefmt;
- 	struct v4l2_rect *crop;
--	s32 vblank_def;
- 	s64 h_blank;
--	u32 height;
- 
- 	/*
- 	 * Only one bayer order is supported.
-@@ -750,16 +745,14 @@ imx355_set_pad_format(struct v4l2_subdev *sd,
- 	crop->top = mode->crop.top;
- 
- 	if (fmt->which == V4L2_SUBDEV_FORMAT_ACTIVE) {
--		imx355->cur_mode = mode;
- 		/* Update limits and set FPS to default */
--		height = imx355->cur_mode->height;
--		vblank_def = imx355->cur_mode->fll_def - height;
--		height = IMX355_FLL_MAX - height;
- 		__v4l2_ctrl_modify_range(imx355->vblank, IMX355_VBLANK_MIN,
--					 height, 1, vblank_def);
--		__v4l2_ctrl_s_ctrl(imx355->vblank, vblank_def);
-+					 IMX355_FLL_MAX - mode->height, 1,
-+					 mode->fll_def - mode->height);
-+		__v4l2_ctrl_s_ctrl(imx355->vblank, mode->fll_def - mode->height);
-+
-+		h_blank = mode->llp - mode->width;
- 
--		h_blank = mode->llp - imx355->cur_mode->width;
- 		/*
- 		 * Currently hblank is not changeable.
- 		 * So FPS control is done only by vblank.
-@@ -811,9 +804,11 @@ static int imx355_entity_init_state(struct v4l2_subdev *subdev,
- /* Start streaming */
- static int imx355_start_streaming(struct imx355 *imx355)
- {
--	const struct imx355_reg_list *reg_list;
-+	const struct v4l2_mbus_framefmt *fmt;
-+	struct v4l2_subdev_state *state;
- 	const struct imx355_mode *mode;
- 	int lane_idx = imx355->hwcfg->num_lanes == 4 ? 0 : 1;
-+	struct v4l2_rect *crop;
- 	u64 link_bitrate;
- 	u8 binning_mode;
- 	int ret = 0;
-@@ -822,25 +817,29 @@ static int imx355_start_streaming(struct imx355 *imx355)
- 	cci_multi_reg_write(imx355->regmap, imx355_global_regs,
- 			    ARRAY_SIZE(imx355_global_regs), &ret);
- 
--	/* Apply default values of current mode */
--	mode = imx355->cur_mode;
--	reg_list = &mode->reg_list;
--	cci_multi_reg_write(imx355->regmap, reg_list->regs,
--			    reg_list->num_of_regs, &ret);
-+	/* Apply values of current mode */
-+	state = v4l2_subdev_get_locked_active_state(&imx355->sd);
-+	fmt = v4l2_subdev_state_get_format(state, 0);
-+	crop = v4l2_subdev_state_get_crop(state, 0);
-+	mode = v4l2_find_nearest_size(supported_modes,
-+				      ARRAY_SIZE(supported_modes),
-+				      width, height, fmt->width, fmt->height);
-+	cci_multi_reg_write(imx355->regmap, mode->reg_list.regs,
-+			    mode->reg_list.num_of_regs, &ret);
- 
- 	/* Set readout crop and size registers  */
--	cci_write(imx355->regmap, IMX355_REG_X_ADD_START, mode->crop.left,
-+	cci_write(imx355->regmap, IMX355_REG_X_ADD_START, crop->left,
- 		  &ret);
--	cci_write(imx355->regmap, IMX355_REG_Y_ADD_START, mode->crop.top, &ret);
-+	cci_write(imx355->regmap, IMX355_REG_Y_ADD_START, crop->top, &ret);
- 	cci_write(imx355->regmap, IMX355_REG_X_ADD_END,
--		  mode->crop.width + mode->crop.left - 1, &ret);
-+		  crop->width + crop->left - 1, &ret);
- 	cci_write(imx355->regmap, IMX355_REG_Y_ADD_END,
--		  mode->crop.height + mode->crop.top - 1, &ret);
--	cci_write(imx355->regmap, IMX355_REG_X_OUT_SIZE, mode->width, &ret);
--	cci_write(imx355->regmap, IMX355_REG_Y_OUT_SIZE, mode->height, &ret);
-+		  crop->height + crop->top - 1, &ret);
-+	cci_write(imx355->regmap, IMX355_REG_X_OUT_SIZE, fmt->width, &ret);
-+	cci_write(imx355->regmap, IMX355_REG_Y_OUT_SIZE, fmt->height, &ret);
- 
--	binning_mode = ((mode->crop.width / mode->width) << 4) |
--			(mode->crop.height / mode->height);
-+	binning_mode = ((crop->width / fmt->width) << 4) |
-+			(crop->height / fmt->height);
- 	cci_write(imx355->regmap, IMX355_REG_BINNING_MODE,
- 		  binning_mode == 0x11 ? 0x00 : 0x01, &ret);
- 	cci_write(imx355->regmap, IMX355_REG_BINNING_TYPE, binning_mode, &ret);
-@@ -871,7 +870,7 @@ static int imx355_start_streaming(struct imx355 *imx355)
- 
- 	/* set line length */
- 	cci_write(imx355->regmap, IMX355_REG_LLP,
--		  imx355->hblank->val + imx355->cur_mode->width, &ret);
-+		  imx355->hblank->val + fmt->width, &ret);
- 
- 	/* Apply customized values from user */
- 	if (!ret)
-@@ -893,6 +892,7 @@ static int imx355_stop_streaming(struct imx355 *imx355)
- static int imx355_set_stream(struct v4l2_subdev *sd, int enable)
- {
- 	struct imx355 *imx355 = to_imx355(sd);
-+	struct v4l2_subdev_state *state;
- 	int ret = 0;
- 
- 	if (enable) {
-@@ -904,7 +904,9 @@ static int imx355_set_stream(struct v4l2_subdev *sd, int enable)
- 		 * Apply default & customized values
- 		 * and then start streaming.
- 		 */
-+		state = v4l2_subdev_lock_and_get_active_state(sd);
- 		ret = imx355_start_streaming(imx355);
-+		v4l2_subdev_unlock_state(state);
- 		if (ret)
- 			goto err_rpm_put;
- 	} else {
-@@ -1024,11 +1026,11 @@ static int imx355_init_controls(struct imx355 *imx355)
- {
- 	struct v4l2_fwnode_device_properties props;
- 	struct v4l2_ctrl_handler *ctrl_hdlr;
-+	const struct imx355_mode *mode = &supported_modes[0];
- 	s64 exposure_max;
- 	s64 vblank_def;
- 	s64 hblank;
- 	u64 pixel_rate;
--	const struct imx355_mode *mode;
- 	int ret;
- 
- 	ctrl_hdlr = &imx355->ctrl_handler;
-@@ -1050,7 +1052,6 @@ static int imx355_init_controls(struct imx355 *imx355)
- 			  pixel_rate, pixel_rate, 1, pixel_rate);
- 
- 	/* Initialize vblank/hblank/exposure parameters based on current mode */
--	mode = imx355->cur_mode;
- 	vblank_def = mode->fll_def - mode->height;
- 	imx355->vblank = v4l2_ctrl_new_std(ctrl_hdlr, &imx355_ctrl_ops,
- 					   V4L2_CID_VBLANK, IMX355_VBLANK_MIN,
-@@ -1243,9 +1244,6 @@ static int imx355_probe(struct i2c_client *client)
- 		goto error_power_off;
- 	}
- 
--	/* Set default mode to max resolution */
--	imx355->cur_mode = &supported_modes[0];
--
- 	ret = imx355_init_controls(imx355);
- 	if (ret) {
- 		dev_err(imx355->dev, "failed to init controls: %d", ret);
+dtc: dt-check-style: Allow space-aligning indentation in DTS
 
--- 
-2.34.1
+This commit relaxes the mixed indent check in dt-check-style to allow=20
+space-aligning indentation in DTS files for comments or continued lines.=20
+It replaces the strict mixed-indent rule with checks for space-followed-by-=
+tab=20
+and excessive space counts (more than 7).
 
+v2: https://lore.kernel.org/r/20260706102421.343639-4-krzysztof.kozlowski@o=
+ss.qualcomm.com/
+v1: https://lore.kernel.org/r/20260706071446.87669-2-krzysztof.kozlowski@os=
+s.qualcomm.com/
+
+> diff --git a/scripts/dtc/dt-check-style b/scripts/dtc/dt-check-style
+> index 29b25ecf15c66..5d7765f35ecbc 100755
+> --- a/scripts/dtc/dt-check-style
+> +++ b/scripts/dtc/dt-check-style
+> @@ -359,14 +359,17 @@ def check_tab_in_yaml_example(ctx):
+> =20
+> =20
+>  def check_mixed_indent_chars(ctx):
+> -    """Indent must be all-spaces or all-tabs, never mixed on one line."""
+> +    """Indent must be all-tabs, except for aligning indentation (comments
+> +    or continued lines)."""
+>      for dl in ctx.lines:
+
+[Severity: Medium]
+Does this loop miss checking property continuation lines?
+
+By iterating only over ctx.lines, it appears to skip evaluating=20
+dl.continuations where property continuations are stored. This prevents the=
+=20
+newly added space-limit validation from executing for list properties, whic=
+h=20
+the rule explicitly claims to check in the docstring.
+
+>          if not dl.indent_str:
+>              continue
+>          if dl.linetype =3D=3D LineType.PREPROCESSOR:
+>              continue
+> -        if ' ' in dl.indent_str and '\t' in dl.indent_str:
+> +        if re.search(r' \t', dl.indent_str):
+>              yield (dl.lineno, 'mixed tabs and spaces in indent')
+> +        if dl.indent_str.count(' ') > 7:
+> +            yield (dl.lineno, 'too many space characters in indent (more=
+ than 7)')
+
+[ ... ]
+
+> diff --git a/scripts/dtc/dt-style-selftest/bad/dts-mixed-indent.dts b/scr=
+ipts/dtc/dt-style-selftest/bad/dts-mixed-indent.dts
+> new file mode 100644
+> index 0000000000000..f0e40cfc910c7
+> --- /dev/null
+> +++ b/scripts/dtc/dt-style-selftest/bad/dts-mixed-indent.dts
+> @@ -0,0 +1,20 @@
+
+[ ... ]
+
+> +		clocks =3D <1>,
+> +			 <2>,
+> +		         <3>;
+
+[Severity: Medium]
+As a consequence of skipping continuations above, does this line evade the
+"more than 7 spaces" check?
+
+This line contains 9 spaces of indentation before the `<3>;`, but because i=
+t=20
+is a property continuation, the tool does not yield the expected warning.
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260708-dts-style-=
+checker-v4-0-c175e6401150@oss.qualcomm.com?part=3D2
 
