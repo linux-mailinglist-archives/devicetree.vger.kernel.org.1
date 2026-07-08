@@ -1,155 +1,444 @@
-Return-Path: <devicetree+bounces-323119-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-323120-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id AsEQDAKiTmp3RAIAu9opvQ
-	(envelope-from <devicetree+bounces-323119-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 21:16:18 +0200
+	id sAYWGQ2jTmq0RAIAu9opvQ
+	(envelope-from <devicetree+bounces-323120-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 21:20:45 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 735F8729D30
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 21:16:17 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id BF068729D73
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 21:20:44 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=WBwiNzL4;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=W3yczfXk;
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-323119-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-323119-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-323120-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-323120-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id BE1EC303B7EF
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 19:12:03 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id CAC943020117
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 19:20:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0032D3D4121;
-	Wed,  8 Jul 2026 19:12:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC1FB353EF3;
+	Wed,  8 Jul 2026 19:20:41 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4EDCD3D47AB;
-	Wed,  8 Jul 2026 19:12:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 483D2282F00;
+	Wed,  8 Jul 2026 19:20:40 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783537922; cv=none; b=dqbauk1GjPmXpCriXDQkBfBQqccovHplaxYl6espiZq16TurWcO/+7uhRTOOOMlyVJz2JlFT6uVqnDrggZHUWXbKltieeTYSC093QOWtc/3wypPNClNIGg0YOQboZnxHN2YqqRzLjwsnLejIYOF16yjGbdoyQ/CwWnAVdmQ+uqo=
+	t=1783538441; cv=none; b=gDuw1BTS62UzAw07a1YRiiDzExOO4JFPVjYThMLX1dAOcfZt/hTgeVgslf/wxGxg05CNnoZMgpu5KGEfEZBAlS12fmzgQMwMvLrktVi4wz+RlrAao39OccALJMACnTG5korp4etGXcNQsdvstJ29QIXPPVZDLWohsD7Ud8uNJ50=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783537922; c=relaxed/simple;
-	bh=AHJGdgLVcs9+b0U+hYJ2REpkRPctlOTm/9KrFAqcN68=;
+	s=arc-20240116; t=1783538441; c=relaxed/simple;
+	bh=9WxLBVUsNENxqGWKTgePVEabN+I9UDvbV5HuAixjYmw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PSqFeKU7cgmUOhrHOOe5yDGpLRET0eJvdMboeMyoGrfD7Zdwmpn2y4iuz7P8YygT7FPwB3wP9e3LMbi1CSZ2V1A70v5HcGi+tsc21x4oG5K7keU/fvfoEfLZobnj8zmeO5+B/29ad6nzZSXHCZspkkJuJQmq1tuejH01Gap1dI0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WBwiNzL4; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7A93B1F000E9;
-	Wed,  8 Jul 2026 19:11:57 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=hwAv7o2CxvnMYQs3Y7IAe2o6XZnUGdwcTxR7ID5eIajZcAqyqcl1YmTKH5WFCEOmF6Lt2Ihbqt8GWfWECycvtmaGaXN64COJZ4Tpf0fAuJYshME+vlxVkSyZ9FGPssCRcC+rHkNyHjxJgrdLYdaJNRfeUnavzaHLfD407O9gFIA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=W3yczfXk; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F23BC1F00A3A;
+	Wed,  8 Jul 2026 19:20:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783537919;
-	bh=7gW1UZYVyjQ2M2NqvU0zYgWO0SDITcTPS+KqhiirHDw=;
+	s=k20260515; t=1783538439;
+	bh=WtZLSIkFmSLvTlm24bk8TSSq390aG97/FwHCvCIM1Cc=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=WBwiNzL4xrokL7T6ob4BOeOInvFa/3JXuUp/Xmg5auqvTnW+OTnSwRnomvag3+hZt
-	 pqUITBKMczmaxOkLdKrOzYftsH607vkqxh/DOCJ25dj1wj4PMpk8zYxMIugOLDPOW9
-	 WtzOdKYikSBiOALBdDnP6zXbI68jSQJ4lv4e+bUWUzDvzMM+zdiABhYB6POxLnsxvq
-	 Y68fYLjR0WV74q18eBlETPd7GIuh7MMb7arGVhIgKQtP9JUg0LC22HiMkOmLmvcrnD
-	 UlQ6387nPXsLF3rP8GJg+XwDEyfNSJdzDUfB/7wA/iMNhzFf6ixzFZpZ9v7w7hqd9j
-	 K+IufqGu3daPQ==
-Date: Wed, 8 Jul 2026 20:11:54 +0100
-From: Mark Brown <broonie@kernel.org>
-To: Neo Chang <YLCHANG2@nuvoton.com>
-Cc: lgirdwood@gmail.com, perex@perex.cz, robh@kernel.org,
-	krzk+dt@kernel.org, linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
-	neo.chang70@gmail.com, kchsu0@nuvoton.com, sjlin0@nuvoton.com
-Subject: Re: [PATCH v6 2/2] ASoC: codecs: nau8360: Add support for NAU83G60
- amplifier
-Message-ID: <a5139285-2017-4c94-92f2-f87fbef6fa6a@sirena.org.uk>
-References: <20260708093506.895481-1-YLCHANG2@nuvoton.com>
- <20260708093506.895481-3-YLCHANG2@nuvoton.com>
+	b=W3yczfXkGpl62KWn9y3V22RLLiWax4xmtHQnaMerOvTc6rftWNpSR1EGTEpxtZZHd
+	 QMa26hYMytCpz+5VdkjFaBinuJf844d9FD1EHuXfYtVqeyOBRCy+ThNx7onbPvdMGy
+	 7fMn5ppi+obO87b0RXzbKwduMEcSLV2tYWACCDtTk2Iiw2S0V7OikqsD4Ym/KFx/Mt
+	 x3TfaPVXf/pcbD2U83imYQ+Wp9PnI9L7Cip15ORh7sh+nZN/ExW1uIm9Q7bBrVTLhE
+	 lnFh2n14zYXL20rqaLRq3t4WISZhigAkVfNq9ep5eLC0WqKKON1/B4d/8k0V2/QF7S
+	 Srjm4kYR0DO4Q==
+Date: Wed, 8 Jul 2026 20:20:34 +0100
+From: Lee Jones <lee@kernel.org>
+To: Lakshay Piplani <lakshay.piplani@nxp.com>
+Cc: linux-kernel@vger.kernel.org, linux-i3c@lists.infradead.org,
+	alexandre.belloni@bootlin.com, krzk+dt@kernel.org, robh@kernel.org,
+	conor+dt@kernel.org, devicetree@vger.kernel.org, broonie@kernel.org,
+	Frank.Li@nxp.com, lgirdwood@gmail.com, vikash.bansal@nxp.com,
+	priyanka.jain@nxp.com, aman.kumarpandey@nxp.com
+Subject: Re: [PATCH v13 3/7] mfd: p3h2x4x: Add driver for NXP P3H2x4x i3c hub
+ and on-die regulator
+Message-ID: <20260708192034.GA1727174@google.com>
+References: <20260701065755.2067793-1-lakshay.piplani@nxp.com>
+ <20260701065755.2067793-4-lakshay.piplani@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="bPb+sFRLKRrMY7hN"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260708093506.895481-3-YLCHANG2@nuvoton.com>
-X-Cookie: The other line moves faster.
+In-Reply-To: <20260701065755.2067793-4-lakshay.piplani@nxp.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-5.76 / 15.00];
+X-Spamd-Result: default: False [-3.66 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-323119-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:YLCHANG2@nuvoton.com,m:lgirdwood@gmail.com,m:perex@perex.cz,m:robh@kernel.org,m:krzk+dt@kernel.org,m:linux-sound@vger.kernel.org,m:devicetree@vger.kernel.org,m:alsa-devel@alsa-project.org,m:neo.chang70@gmail.com,m:kchsu0@nuvoton.com,m:sjlin0@nuvoton.com,m:krzk@kernel.org,m:neochang70@gmail.com,s:lists@lfdr.de];
-	FREEMAIL_CC(0.00)[gmail.com,perex.cz,kernel.org,vger.kernel.org,alsa-project.org,nuvoton.com];
-	FORWARDED(0.00)[lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-323120-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER(0.00)[lee@kernel.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS(0.00)[m:lakshay.piplani@nxp.com,m:linux-kernel@vger.kernel.org,m:linux-i3c@lists.infradead.org,m:alexandre.belloni@bootlin.com,m:krzk+dt@kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:broonie@kernel.org,m:Frank.Li@nxp.com,m:lgirdwood@gmail.com,m:vikash.bansal@nxp.com,m:priyanka.jain@nxp.com,m:aman.kumarpandey@nxp.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,bootlin.com,kernel.org,nxp.com,gmail.com];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[lee@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	TO_DN_SOME(0.00)[]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 735F8729D30
+X-Rspamd-Queue-Id: BF068729D73
 
+On Wed, 01 Jul 2026, Lakshay Piplani wrote:
 
---bPb+sFRLKRrMY7hN
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+> From: Aman Kumar Pandey <aman.kumarpandey@nxp.com>
+> 
+> Add core MFD support for the NXP P3H2x4x (P3H2440/P3H2441/P3H2840/P3H2841)
+> family of multiport I3C hub devices. These devices connect to a host via
+> I3C/I2C/SMBus and expose multiple downstream target ports.
+> 
+> Signed-off-by: Aman Kumar Pandey <aman.kumarpandey@nxp.com>
+> Signed-off-by: Vikash Bansal <vikash.bansal@nxp.com>
+> Signed-off-by: Lakshay Piplani <lakshay.piplani@nxp.com>
+> Reviewed-by: Frank Li <Frank.Li@nxp.com>
+> 
+> ---
+> Changes in v13:
+>  - Use i3c_device helpers (i3cdev_to_dev()) instead of direct struct access
+>    to maintain API abstraction
+>  - Avoid including internal I3C headers and use public device headers instead
+>  - Ensure proper device matching by relying on manufacturer ID checks in probe
+> 
+> Changes in v12:
+>  - No change, added Reviewed-By tag
+> 
+> Changes in v11:
+>  - Use MFD_CELL_NAME() for child device registration
+>  - Rename local variables for consistency
+>  - Rename driver names to follow subsystem conventions:
+>    - Use '-' instead of '_' in driver names
+>    - Drop the "_drv" suffix from driver names
+> 
+> Changes in v10:
+>  - Drop redundant is_p3h2x4x_in_i3c flag
+> 
+> Changes in v9:
+>  - Renamed macros to follow consistent uppercase naming conventions
+>  - Made REGMAP selects in the P3H2X4X MFD Kconfig conditional,
+>    to avoid I3C/I2C dependency issues
+> 
+> Changes in v8:
+>  - No change
+> 
+> Changes in v7:
+>  - Use new config I3C_OR_I2C
+> 
+> Changes in v6:
+>  - No change
+> 
+> Changes in v5:
+>  - Corrected the ordering in the Makefile and Kconfig for MFD_P3H2X4X
+>  - Updated dev_err_probe() for regmap_init failure.
+>  - Updated module description
+> 
+> Changes in v4:
+>  - Split the driver into three separate patches(mfd, regulator and I3C hub)
+>  - Added support for NXP P3H2x4x MFD functionality
+> ---
+> ---
+>  MAINTAINERS                 |   2 +
+>  drivers/mfd/Kconfig         |  13 ++++
+>  drivers/mfd/Makefile        |   1 +
+>  drivers/mfd/p3h2840.c       | 126 ++++++++++++++++++++++++++++++++++++
+>  include/linux/i3c/device.h  |   1 +
+>  include/linux/mfd/p3h2840.h |  28 ++++++++
+>  6 files changed, 171 insertions(+)
+>  create mode 100644 drivers/mfd/p3h2840.c
+>  create mode 100644 include/linux/mfd/p3h2840.h
+> 
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index ba65ae5a008b..3420701a75c5 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -19311,6 +19311,8 @@ L:	linux-kernel@vger.kernel.org
+>  L:	linux-i3c@lists.infradead.org
+>  S:	Maintained
+>  F:	Documentation/devicetree/bindings/i3c/nxp,p3h2840.yaml
+> +F:	drivers/mfd/p3h2840.c
+> +F:	include/linux/mfd/p3h2840.h
+>  
+>  NXP PF5300/PF5301/PF5302 PMIC REGULATOR DEVICE DRIVER
+>  M:	Woodrow Douglass <wdouglass@carnegierobotics.com>
+> diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
+> index 7192c9d1d268..405b50c3c77b 100644
+> --- a/drivers/mfd/Kconfig
+> +++ b/drivers/mfd/Kconfig
+> @@ -617,6 +617,19 @@ config MFD_MX25_TSADC
+>  	  i.MX25 processors. They consist of a conversion queue for general
+>  	  purpose ADC and a queue for Touchscreens.
+>  
+> +config MFD_P3H2X4X
+> +	tristate "NXP P3H2X4X I3C Hub Device"
+> +	depends on I3C_OR_I2C
+> +	select MFD_CORE
+> +	select REGMAP_I3C if I3C
+> +	select REGMAP_I2C if I2C
+> +	help
+> +	  Enable Support for NXP P3H244x/P3H284x I3C HUB device using I3C/I2C
+> +	  communication interface.
+> +
+> +	  This driver provides support for I3C hub and regulator, each subdriver
+> +	  can be enabled independently depending on the required functionality.
+> +
+>  config MFD_PF1550
+>  	tristate "NXP PF1550 PMIC Support"
+>  	depends on I2C=y && OF
+> diff --git a/drivers/mfd/Makefile b/drivers/mfd/Makefile
+> index e75e8045c28a..a284b22c7b13 100644
+> --- a/drivers/mfd/Makefile
+> +++ b/drivers/mfd/Makefile
+> @@ -122,6 +122,7 @@ obj-$(CONFIG_MFD_MC13XXX)	+= mc13xxx-core.o
+>  obj-$(CONFIG_MFD_MC13XXX_SPI)	+= mc13xxx-spi.o
+>  obj-$(CONFIG_MFD_MC13XXX_I2C)	+= mc13xxx-i2c.o
+>  
+> +obj-$(CONFIG_MFD_P3H2X4X)	+= p3h2840.o
+>  obj-$(CONFIG_MFD_PF1550)	+= pf1550.o
+>  
+>  obj-$(CONFIG_MFD_NCT6694)	+= nct6694.o
+> diff --git a/drivers/mfd/p3h2840.c b/drivers/mfd/p3h2840.c
+> new file mode 100644
+> index 000000000000..89a97f0449c4
+> --- /dev/null
+> +++ b/drivers/mfd/p3h2840.c
+> @@ -0,0 +1,126 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright 2025-2026 NXP
 
-On Wed, Jul 08, 2026 at 05:35:06PM +0800, Neo Chang wrote:
-> Add support for the Nuvoton NAU83G60 audio codec. The NAU83G60 is a
-> stereo 30W+30W smart amplifier with an integrated low-latency
-> Advanced Audio DSP.
+Nit: '\n' here.
 
-> +static int nau8360_dsp_chan_kcs_setup(struct snd_soc_component *cp,
-> +       const char *fw_name, int dsp_addr)
+> + * P3H2X4X i3c hub and regulator device.
 
-> +       ret = request_firmware_nowait(THIS_MODULE, true,
-> +               fw_name, dev, GFP_KERNEL, ctx, nau8360_dsp_fw_cb);
+Those describe the children, not this device.
 
-This gets run every resume but there's no cleanup so if for some reason
-we get suspend/resumes running back to back and the firmware load
-doesn't complete, or the driver gets removed while the firmware loads
-are pending during normal probe, nothing cancels the firmware loads and
-they might end up completing.  Both suspend and remove should clean up
-anything that's pending.
+No Author: ?
 
-There's a bunch of issues reported by Sashiko:
+> + */
+> +
+> +#include <linux/i2c.h>
+> +#include <linux/i3c/device.h>
+> +#include <linux/mfd/core.h>
+> +#include <linux/mfd/p3h2840.h>
+> +#include <linux/regmap.h>
+> +
+> +static const struct mfd_cell p3h2x4x_devs[] = {
+> +		MFD_CELL_NAME("p3h2x4x-regulator"),
+> +		MFD_CELL_NAME("p3h2x4x-i3c-hub"),
 
-   https://sashiko.dev/#/patchset/20260708093506.895481-1-YLCHANG2%40nuvoton.com
+Too many tabs.
 
-some of which looked valid.
+> +};
+> +
+> +static const struct regmap_config p3h2x4x_regmap_config = {
+> +	.reg_bits = P3H2X4X_REG_BITS,
+> +	.val_bits = P3H2X4X_VAL_BITS,
+> +	.max_register = 0xFF,
+> +};
+> +
+> +static int p3h2x4x_device_probe_i3c(struct i3c_device *i3cdev)
 
---bPb+sFRLKRrMY7hN
-Content-Type: application/pgp-signature; name="signature.asc"
+How many of these are comming down the pipe?
 
------BEGIN PGP SIGNATURE-----
+Might be worth expanding drivers/mfd/simple-mfd-i2c.c instead?
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmpOoPoACgkQJNaLcl1U
-h9ApFgf/XITbLpbuaEsOktfRrg4vKBaYvkVaUPW5mhT7anTKrSX69Ce+SEnRWo8V
-cmTotB0Z8zn8ziV3QYo+zt+q/ecmEkEHCSWVmdUPNDhdRwriNMB7u1JZ1R9Wo/ho
-BIIARxALZI4I06wE0gJii1sY9oh9kIFJOHzcIWDjEHdDQXXdZI6JLTivh4etD4Ac
-9sK4KQ3XKuphSCu07zP1Y/+lcGjss7+N5VyY2OpSKZ1oVKLzqXsLsJI7pYUw1L90
-+kZRHM5Ea1CzQ2cnY17SYQeDmKz2aNVLs3F+dzjBceIPshYqI2FW4fPlcZPFPU20
-mtZD0lC4x+xcMc/1ePCj0er3ucfZCA==
-=wcRd
------END PGP SIGNATURE-----
+> +{
+> +	struct device *dev = i3cdev_to_dev(i3cdev);
+> +	struct i3c_device_info info;
 
---bPb+sFRLKRrMY7hN--
+devinfo is more consistent.
+
+> +	struct p3h2x4x_dev *ddata;
+
+Drop the _dev part.
+
+> +	int ret;
+> +
+> +	i3c_device_get_info(i3cdev, &info);
+> +
+> +	if (I3C_PID_MANUF_ID(info.pid) != I3C_MANUF_ID_NXP)
+> +		return -ENODEV;
+> +
+> +	ddata = devm_kzalloc(dev, sizeof(*ddata), GFP_KERNEL);
+> +	if (!ddata)
+> +		return -ENOMEM;
+> +
+> +	i3cdev_set_drvdata(i3cdev, ddata);
+> +
+> +	ddata->regmap = devm_regmap_init_i3c(i3cdev, &p3h2x4x_regmap_config);
+> +	if (IS_ERR(ddata->regmap))
+> +		return dev_err_probe(dev, PTR_ERR(ddata->regmap),
+> +				     "Failed to register HUB regmap\n");
+> +
+> +	// The hub child driver retrieves information from i3cdev
+
+C++ comments?
+
+> +	ddata->i3cdev = i3cdev;
+> +
+> +	ret = devm_mfd_add_devices(dev, PLATFORM_DEVID_AUTO,
+> +				   p3h2x4x_devs, ARRAY_SIZE(p3h2x4x_devs),
+> +				   NULL, 0, NULL);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "Failed to add sub devices\n");
+> +
+> +	return 0;
+> +}
+> +
+> +static int p3h2x4x_device_probe_i2c(struct i2c_client *client)
+> +{
+> +	struct p3h2x4x_dev *ddata;
+> +	int ret;
+> +
+> +	ddata = devm_kzalloc(&client->dev, sizeof(*ddata), GFP_KERNEL);
+> +	if (!ddata)
+> +		return -ENOMEM;
+> +
+> +	i2c_set_clientdata(client, ddata);
+> +
+> +	ddata->regmap = devm_regmap_init_i2c(client, &p3h2x4x_regmap_config);
+> +	if (IS_ERR(ddata->regmap))
+> +		return dev_err_probe(&client->dev, PTR_ERR(ddata->regmap),
+> +				     "Failed to register HUB regmap\n");
+> +
+> +	ddata->i3cdev = NULL;
+> +
+> +	ret = devm_mfd_add_devices(&client->dev, PLATFORM_DEVID_AUTO,
+> +				   p3h2x4x_devs, ARRAY_SIZE(p3h2x4x_devs),
+> +				   NULL, 0, NULL);
+> +	if (ret)
+> +		return dev_err_probe(&client->dev, ret, "Failed to add sub devices\n");
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct i3c_device_id p3h2x4x_i3c_ids[] = {
+> +	I3C_CLASS(I3C_DCR_HUB, NULL),
+> +	{ /* sentinel */ },
+> +};
+> +MODULE_DEVICE_TABLE(i3c, p3h2x4x_i3c_ids);
+> +
+> +static const struct i2c_device_id p3h2x4x_i2c_id_table[] = {
+> +	{ "nxp-i3c-hub" },
+> +	{ /* sentinel */ }
+> +};
+> +MODULE_DEVICE_TABLE(i2c, p3h2x4x_i2c_id_table);
+> +
+> +static const struct of_device_id p3h2x4x_i2c_of_match[] = {
+> +	{ .compatible = "nxp,p3h2840", },
+> +	{ /* sentinel */ }
+> +};
+> +MODULE_DEVICE_TABLE(of, p3h2x4x_i2c_of_match);
+> +
+> +static struct i3c_driver p3h2x4x_i3c = {
+> +	.driver = {
+> +		.name = "p3h2x4x-i3c",
+> +	},
+> +	.probe = p3h2x4x_device_probe_i3c,
+> +	.id_table = p3h2x4x_i3c_ids,
+> +};
+> +
+> +static struct i2c_driver p3h2x4x_i2c = {
+> +	.driver = {
+> +		.name = "p3h2x4x-i2c",
+> +		.of_match_table = p3h2x4x_i2c_of_match,
+> +	},
+> +	.probe =  p3h2x4x_device_probe_i2c,
+
+Is there an accidental double space before 'p3h2x4x_device_probe_i2c'?
+
+> +	.id_table = p3h2x4x_i2c_id_table,
+> +};
+> +module_i3c_i2c_driver(p3h2x4x_i3c, &p3h2x4x_i2c);
+> +
+> +MODULE_AUTHOR("Aman Kumar Pandey <aman.kumarpandey@nxp.com>");
+> +MODULE_AUTHOR("Vikash Bansal <vikash.bansal@nxp.com>");
+> +MODULE_AUTHOR("Lakshay Piplani <lakshay.piplani@nxp.com>");
+> +MODULE_DESCRIPTION("NXP P3H2X4X I3C HUB multi function driver");
+> +MODULE_LICENSE("GPL");
+> diff --git a/include/linux/i3c/device.h b/include/linux/i3c/device.h
+> index 971d53349b6f..6188082599dd 100644
+> --- a/include/linux/i3c/device.h
+> +++ b/include/linux/i3c/device.h
+> @@ -85,6 +85,7 @@ struct i3c_xfer {
+>   */
+>  enum i3c_dcr {
+>  	I3C_DCR_GENERIC_DEVICE = 0,
+> +	I3C_DCR_HUB = 194,
+
+What is this value?
+
+>  };
+>  
+>  #define I3C_PID_MANUF_ID(pid)		(((pid) & GENMASK_ULL(47, 33)) >> 33)
+> diff --git a/include/linux/mfd/p3h2840.h b/include/linux/mfd/p3h2840.h
+> new file mode 100644
+> index 000000000000..0f0d5b442bef
+> --- /dev/null
+> +++ b/include/linux/mfd/p3h2840.h
+> @@ -0,0 +1,28 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+> +/*
+> + * Copyright 2025-2026 NXP
+> + * This header file contains register definitions and bit masks for the P3H2X4X.
+
+This comment is superfluous .
+
+> + */
+> +
+> +#ifndef _LINUX_MFD_P3H2840_H
+> +#define _LINUX_MFD_P3H2840_H
+> +
+> +#include <linux/types.h>
+> +
+> +/* Device Configuration Registers */
+> +#define P3H2X4X_DEV_REG_PROTECTION_CODE				0x10
+> +#define P3H2X4X_REGISTERS_LOCK_CODE				0x00
+> +#define P3H2X4X_REGISTERS_UNLOCK_CODE				0x69
+> +#define P3H2X4X_CP1_REGISTERS_UNLOCK_CODE			0x6a
+> +
+> +/* Reg config for Regmap */
+> +#define P3H2X4X_REG_BITS					8
+> +#define P3H2X4X_VAL_BITS					8
+
+It's not common to define these values.
+
+> +#define I3C_MANUF_ID_NXP					0x011b
+> +
+> +struct p3h2x4x_dev {
+> +	struct i3c_device *i3cdev;
+> +	struct regmap *regmap;
+> +};
+> +#endif /* _LINUX_MFD_P3H2840_H */
+> -- 
+> 2.25.1
+> 
+
+-- 
+Lee Jones
 
