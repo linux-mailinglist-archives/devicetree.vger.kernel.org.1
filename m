@@ -1,132 +1,173 @@
-Return-Path: <devicetree+bounces-322522-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-322520-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 3ifpL5bxTWqvAQIAu9opvQ
-	(envelope-from <devicetree+bounces-322522-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 08:43:34 +0200
+	id g9dVEBfyTWrCAQIAu9opvQ
+	(envelope-from <devicetree+bounces-322520-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 08:45:43 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50B7972245E
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 08:43:34 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3573C722496
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 08:45:42 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=TSQxz878;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=gk6xRoAg;
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322522-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-322522-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322520-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-322520-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 42EA9300751A
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 06:43:33 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 4B90D3007A42
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 06:43:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C9513E0094;
-	Wed,  8 Jul 2026 06:43:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 280CE3DDB0E;
+	Wed,  8 Jul 2026 06:43:27 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B1D43DDDAC;
-	Wed,  8 Jul 2026 06:43:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C3463D9695
+	for <devicetree@vger.kernel.org>; Wed,  8 Jul 2026 06:43:24 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783493008; cv=none; b=k2pNoU3rzJ2iTzJpCYstH9OA5NrqGMZv6L6DtKDa6M+rsrcZxRBMEqnoPOR0RY/4eKv9zspEYQ9PVCfttY32HqMCcOIedZHrhW0/IdUXIuaLUZv8XLX1VkGgD16yF+WK/hb7+27a6jH6GkSPyLtx1TCQ246FWQnL3zGZtK7g1co=
+	t=1783493006; cv=none; b=dSuSXq0zJBQOP1VVt4Z6VJUQdOnZ5zNC3WZ4u5YHLw8QI1el1MKsaEGGsKgbsMMjpuB2xvkixgqrgTGYg48Y8fNY7wZ4xZs6kPOQnxaMImg6rn5mB+h3PhM572t37djAfN+0MYde9otANTEn1VdbS54n7g2tNvc2e9Frhp5qUc8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783493008; c=relaxed/simple;
-	bh=mxod81WZlXG0Ks6hlCt8zw/f+ohhcegHhlh34EUHhLo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mFBKUsMSq7Z9UIvI7KLxn7VvD93RX9tTcHSFPv7FEZOgNMzUe2hmg6+2bRj9PMkmkkubz/aeBtAnjnp8N2rpi8PzfkKxzrm+AL5zzqO1Qdn5jiz/IRuo9fW9zXFqcOdrCInkZuks53s8emoSso5hrg7VeP33Z3z08lNeUDCAC4s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TSQxz878; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 352A01F000E9;
+	s=arc-20240116; t=1783493006; c=relaxed/simple;
+	bh=za4/XoQPjNURV71y+gKtOYeMJDAyZk+EnYp336xgbp4=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=YZ/zOnpO149P3T1M1Hv6NQCs8Pq9tzhEFBy/tGase6PNVcashK5sYVYIuhuw9M4qTSuvm8hwrfLnSOuL/IVHh10tii5+B24e5toL8RR99OEtYyyFe32yY30kpK8RwYH1FO3Uvry/QI3t0ALK6JwvkE93QXVwGOEeKUOSMCi9Y5Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gk6xRoAg; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 73A661F00A3A;
 	Wed,  8 Jul 2026 06:43:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783493004;
-	bh=7aHm23lXrbH97XURWrW0M2toGMFFFiZSG339Fm6Mhjs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=TSQxz878ZiipJis2bWT3rGapIRrJnrmVb8Nug5l2DCieak0Cxkp8awu2PChpZ9lke
-	 idaVd8L6gHd9YoEMq4jGNBHMH8psfi4fDfweGJBvfE2TOxIg4N2kztxvJx76RqMsT1
-	 BLE4LHtmFVelsS777r69p+wxT/Hi5Mqzvv5TVak6YuDzLmX8xBvE2MWQ4zefnTnPiy
-	 6rw4Shr7swbw1i5NUAbv/roovw0O9f6nOl/jmj3U8fZhxyObYRHkPqO09Ty2S6IMEd
-	 dyyjnDMuzMw4N/Ju59j/LvuYV239W+PgtNff8iqlmT+cGlpr6lJZyaM5ZOq5BGAMLr
-	 Byy5zA1MtHBWA==
-Date: Wed, 8 Jul 2026 08:43:20 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Kuldeep Singh <kuldeep.singh@oss.qualcomm.com>
-Cc: Herbert Xu <herbert@gondor.apana.org.au>, 
-	"David S. Miller" <davem@davemloft.net>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Harshal Dev <harshal.dev@oss.qualcomm.com>, 
-	Vinod Koul <vkoul@kernel.org>, Bartosz Golaszewski <brgl@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Frank Li <Frank.Li@kernel.org>, Andy Gross <agross@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>, linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, dmaengine@vger.kernel.org
-Subject: Re: [PATCH v3 1/6] dt-bindings: crypto: qcom,inline-crypto-engine:
- Fix legacy/new SoC strictness split
-Message-ID: <20260708-splendid-outrageous-saluki-aa52f5@quoll>
-References: <20260706-b4-shikra_crypto_changse-v3-0-23b4c2054227@oss.qualcomm.com>
- <20260706-b4-shikra_crypto_changse-v3-1-23b4c2054227@oss.qualcomm.com>
+	s=k20260515; t=1783493003;
+	bh=WZ7nblhfyF573k+uxYzwqqyJQUKiVzBuwPiQ2pOlUsc=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=gk6xRoAgti7IdRVn2pYkTEqvOthR5XJFi8mE6ECcQMjD25ggCQ6+I9PVZZdeNpWKQ
+	 FQaqsfFr/jrplDcrhVVluijFE8IumelE06aOJ2XBr25x/7IXpJzYOM+NUhUJSHV3w/
+	 HuYbJhIg75uA58CrxK/1S6MCAQ+pAeEe3w54xAm3NKT3Ii5+LWZ4pcHbBuc9t2TZ6U
+	 M/9n/XQz6u6m1aurkTkK8SKtcG2nd6YIS3E5MI56qZcYI0KCckrYGMEFf6EQsqxSTc
+	 0TLvo8tqxnhCAv5xBJ/VlcIfphHqyU5wR23MqQ62QwTlli6qvTCrJ3tkvt4f77ZNTm
+	 VrjN2kzS2G0MA==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH net-next v10 1/4] dt-bindings: ethernet: eswin: relax
+ internal delay model to range-based constraints
+Reply-To: sashiko-reviews@lists.linux.dev
+To: lizhi2@eswincomputing.com
+Cc: devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org
+In-Reply-To: <20260707064131.1282-1-lizhi2@eswincomputing.com>
+References: <20260707064033.1265-1-lizhi2@eswincomputing.com>
+ <20260707064131.1282-1-lizhi2@eswincomputing.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Wed, 08 Jul 2026 06:43:22 +0000
+Message-Id: <20260708064323.73A661F00A3A@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20260706-b4-shikra_crypto_changse-v3-1-23b4c2054227@oss.qualcomm.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.16 / 15.00];
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	FORGED_RECIPIENTS(0.00)[m:kuldeep.singh@oss.qualcomm.com,m:herbert@gondor.apana.org.au,m:davem@davemloft.net,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:andersson@kernel.org,m:harshal.dev@oss.qualcomm.com,m:vkoul@kernel.org,m:brgl@kernel.org,m:konradybcio@kernel.org,m:Frank.Li@kernel.org,m:agross@kernel.org,m:krzysztof.kozlowski@oss.qualcomm.com,m:linux-arm-msm@vger.kernel.org,m:linux-crypto@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:dmaengine@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-322522-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[kernel.org:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-322520-lists,devicetree=lfdr.de];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS(0.00)[m:lizhi2@eswincomputing.com,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	RCPT_COUNT_THREE(0.00)[4];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TO_DN_NONE(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,quoll:mid]
+	FROM_NO_DN(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,smtp.kernel.org:mid,vger.kernel.org:from_smtp,lists.linux.dev:replyto,sashiko.dev:url]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 50B7972245E
+X-Rspamd-Queue-Id: 3573C722496
 
-On Mon, Jul 06, 2026 at 05:01:29PM +0530, Kuldeep Singh wrote:
-> Couple of already merged SoCs(like sc7280, sm8750, kaanapali etc.)
-> describe ICE as single clock historically which are recently updated
-> with mandatory 2 clocks.
-> 
-> Keep only the known legacy compatibles flexible, and make strict
-> validation default(of power-domains and 2 clocks) for all other Soc
-> compatibles.
-> 
-> This ensures old DTs are valid while ensuring any new SoC (like hawi,
-> milos, eliza) must follow latest requirements by default.
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [High] DT Binding and Driver mismatch: relaxed delay properties cause pro=
+be failure.
+--
 
-To re-iterate: You change the ABI for Hawi, this must be expressed and
-explained why. I do not see any change in commit msg (listing "new SoC"
-is not what I meant is not relevant here - it even suggests like
-everything is here done without impact).
+--- Patch [1]: [PATCH net-next v10 1/4] dt-bindings: ethernet: eswin: relax=
+ internal delay model to range-based constraints ---
+commit 3dceaf931915c24887e11e00c0d85cb45cef4d39
+Author: Zhi Li <lizhi2@eswincomputing.com>
 
-Best regards,
-Krzysztof
+dt-bindings: ethernet: eswin: relax internal delay model to range-based con=
+straints
 
+This commit relaxes internal delay constraints for the EIC7700 Ethernet
+binding, replacing fixed enumerations with range-based definitions. It also
+makes the rx-internal-delay-ps and tx-internal-delay-ps properties optional.
+
+> diff --git a/Documentation/devicetree/bindings/net/eswin,eic7700-eth.yaml=
+ b/Documentation/devicetree/bindings/net/eswin,eic7700-eth.yaml
+> index 65882ff79d8d7..4e02fedae5c67 100644
+> --- a/Documentation/devicetree/bindings/net/eswin,eic7700-eth.yaml
+> +++ b/Documentation/devicetree/bindings/net/eswin,eic7700-eth.yaml
+[ ... ]
+> @@ -105,8 +109,6 @@ required:
+>    - phy-mode
+>    - resets
+>    - reset-names
+> -  - rx-internal-delay-ps
+> -  - tx-internal-delay-ps
+
+[Severity: High]
+With this change, the DT schema makes these properties optional. However, d=
+oes
+the eic7700-qos-eth driver still require them?
+
+Looking at eic7700_dwmac_probe(), it appears to return an error if these
+properties are missing:
+
+drivers/net/ethernet/stmicro/stmmac/dwmac-eic7700.c:eic7700_dwmac_probe() {
+    ...
+	} else {
+		return dev_err_probe(&pdev->dev, -EINVAL,
+			"missing required property rx-internal-delay-ps\n");
+	}
+    ...
+	} else {
+		return dev_err_probe(&pdev->dev, -EINVAL,
+			"missing required property tx-internal-delay-ps\n");
+	}
+    ...
+}
+
+Will this cause the probe to fail if a device tree omits these properties,
+as permitted by the updated schema?
+
+>    - eswin,hsp-sp-csr
+> =20
+>  unevaluatedProperties: false
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260707064033.1265=
+-1-lizhi2@eswincomputing.com?part=3D1
 
