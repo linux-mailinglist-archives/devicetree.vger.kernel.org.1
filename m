@@ -1,204 +1,172 @@
-Return-Path: <devicetree+bounces-322646-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-322654-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id rkPvBysYTmpODAIAu9opvQ
-	(envelope-from <devicetree+bounces-322646-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 11:28:11 +0200
+	id 6lquFR8XTmrQCwIAu9opvQ
+	(envelope-from <devicetree+bounces-322654-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 11:23:43 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A180723B66
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 11:28:10 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E301E723A6F
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 11:23:42 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=k+bNX10K;
-	dmarc=pass (policy=none) header.from=gmail.com;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322646-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-322646-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=lenovo.com header.s=DKIM202306 header.b=S79pkMRh;
+	dmarc=pass (policy=reject) header.from=lenovo.com;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322654-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-322654-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id CAEC8306625A
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 09:19:24 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 0653C307A2E8
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 09:21:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB99840A929;
-	Wed,  8 Jul 2026 09:18:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1003740A93D;
+	Wed,  8 Jul 2026 09:20:35 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-00823401.pphosted.com (mx0b-00823401.pphosted.com [148.163.152.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16B20416CF9
-	for <devicetree@vger.kernel.org>; Wed,  8 Jul 2026 09:18:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55C47407CC7;
+	Wed,  8 Jul 2026 09:20:33 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783502335; cv=none; b=df46SzjyirIhMN+ktUc8M7ei11v7frpfLtxMIlSVx5Ulv22nOEtwPxbRrQo2Zity8LUi7Hco/M9CQmK6eV7UMbImOYBxT5rbr2uZCVoUtaG8QOdebp19la9uM74FDNGJhhPLoCUDdpOispvolDPPHuT33or8A3PlWYek/xiFSeY=
+	t=1783502435; cv=none; b=fA6rz5ISaedeVCWfwnDgXvZ0LkG4TuieODP1ut2a7O5J/GceefkaCKDvT63R3nGFnFsY5joagO8UkLWOht3sWN8sEJ75aMFf+aLzRfpb05dSdhEJnktFqYJcThfz0J2kwCeCNpg2FUg4WSnqn/T8NmB2BVojYdSp6kywnB5/Apw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783502335; c=relaxed/simple;
-	bh=eDH2tYdoi0b0ofvijaNMD2HtX1hICdbEb+w0OEWQndg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=H/PFIq3xkQPkVzB5gHLRYaqYyS39/Ydhf9wI6+u/osLfoYSkaiS/ULKB6JxKBCyVY4CG3kwYS5fnzU5GMdvlsrqzucaM64ZiPo35vQRURVNPWpZBQjuPjCgE1zK2nnISBZWWdnCHjnGbKI2nSDKjZsVoD4rUJOIbGY7oEZQ0cdk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=k+bNX10K; arc=none smtp.client-ip=209.85.128.44
-Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-493b1710405so2619875e9.2
-        for <devicetree@vger.kernel.org>; Wed, 08 Jul 2026 02:18:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1783502332; x=1784107132; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=hgts3cXxi3OIQen+lK5BRu5vo0eVsiVEbfqLXX+In5o=;
-        b=k+bNX10KjZ/1dgKXum247MaFfweyajH+w9g3kTaBKJ3xL4ZYaApM86CMGuUa8RSYx9
-         AuNpbtIhdVfnESR1O8cGUxlcxYxgXqbie/YXsMyVdNwk207dtUy2GGelMizr+e98Uvt8
-         QUmXIF3ChFqDbS/bf1OxXpRqsjQZABWARZmN6EzEYCS1XTFHZS9Ck6zd/oUhliyS3kPH
-         fWRrtBXcWK2HIJ322ZKk8oJrY8+lKaUW5hobvg17qDs/bGZErEo+PcJXlB7XYLncWl/1
-         kDnLVaXTDweMTlIQTUb6/69sAjO9ZEfjh3K5fV5FDxjPJ804AmqWhzLZRf5uhaK1Df9k
-         xorg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783502332; x=1784107132;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=hgts3cXxi3OIQen+lK5BRu5vo0eVsiVEbfqLXX+In5o=;
-        b=Cc0MRhw1kBXA64CaJ7WgmPO+SUbF5oWgIAMO6udDHmQsl0HMCfRf+0AogCb0HW5tJ0
-         MxQHE21yES89589WD+z5VD8LD0PxAxOm+BOIvGlD2UTMuP+dViT5rB8I7QuK+YWBTUjD
-         2w0ennSSDpoU2A88xYSwmANqza0Kew9xW2fX3umm3wByyTwpKgHjHp5C8Q2pYkK/oX5j
-         znBCXKffZDgQl4jVRrqabc95YM4AJkkC69lPTnembXvhtbCJbuiiJQz5j95ByQiUXprS
-         PEYlkly76fQVDFjcAnBSI2NPCOMFhmvZ5YIVdBads+DlnZixUsQEEzpdxN31HTmd/1Ey
-         AcPw==
-X-Forwarded-Encrypted: i=1; AHgh+Ro7Q7TgcJJqEw9T3qPhh3X2LNNUotGKSZO8U31rJoO/0EBCiXG94CWpNvam7VUft3OMpU3O5bpuyNdd@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw+7KWee05yWikURyTR0Xjzyf6NObuU2RtQcLpuw0FNAb7PZ+So
-	QSDBlwmNxDbj+d1EneYnC4DpHUNO0Oe2ivIcMqbvqsc84aiNJjGs7Ak9
-X-Gm-Gg: AfdE7clJgCedG4WBvlPo56ZZL0thoCcjPYQ5jN0qGmeXnaB4PltgTsIjywkpq1d/OrR
-	wXEiy7SgWWzwCeZQtlnzrFOTcl9JtNvM+mlm6JWwUKb/l2IVaA99Xd/QIZfy7iRWkMWyWUDpFvN
-	uMdrmw0WFtEUyBbUIfwUSSp1Z3cYCRcc5Qk0xY8CpDKOOgGTn6nZpf45VTpXZflRi68UUSMFPky
-	422PYPRibPGRuFFwRL6KsHN94t4USKu9+/skPkv3kRhM3MMEIGcvuJdcXZfF1ndwDHMoqZxhZE1
-	6YkN1X6YbPlf5sPW/XM1l9DtH21ksqQny+XKx+rGH+bWZfeTM9lB75Nwuc2/Ix6s9uaostLNTsB
-	4DiaLaHqrs69UIYfK2gDrz9zN67E6ZpyiBCu/imuLKssTQAPoffIto+xpGjcRTL6/xBtgGUel1L
-	Yw0df+
-X-Received: by 2002:a05:600c:8b54:b0:493:bc4a:9547 with SMTP id 5b1f17b1804b1-493e68815bemr16151505e9.39.1783502332232;
-        Wed, 08 Jul 2026 02:18:52 -0700 (PDT)
-Received: from nsa ([148.63.225.166])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-493e0f40912sm118117685e9.4.2026.07.08.02.18.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Jul 2026 02:18:51 -0700 (PDT)
-Date: Wed, 8 Jul 2026 10:19:56 +0100
-From: Nuno =?utf-8?B?U8Oh?= <noname.nuno@gmail.com>
-To: Guenter Roeck <linux@roeck-us.net>
-Cc: Fred Chen <fredchen.openbmc@gmail.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>, 
-	Jonathan Cameron <Jonathan.Cameron@huawei.com>, Wensheng Wang <wenswang@yeah.net>, Frank Li <Frank.Li@nxp.com>, 
-	Brian Chiang <chiang.brian@inventec.com>, Cosmo Chou <chou.cosmo@gmail.com>, 
-	Dixit Parmar <dixitparmar19@gmail.com>, Eddie James <eajames@linux.ibm.com>, 
-	Antoni Pokusinski <apokusinski01@gmail.com>, Thorsten Blum <thorsten.blum@linux.dev>, 
-	Ashish Yadav <ashish.yadav@infineon.com>, Alexis Czezar Torreno <alexisczezar.torreno@analog.com>, 
-	Syed Arif <arif.syed@hpe.com>, ChiShih Tsai <tomtsai764@gmail.com>, 
-	Abdurrahman Hussain <abdurrahman@nexthop.ai>, Kim Seer Paller <kimseer.paller@analog.com>, 
-	Colin Huang <u8813345@gmail.com>, Yuxi Wang <Yuxi.Wang@monolithicpower.com>, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org, 
-	linux-doc@vger.kernel.org
-Subject: Re: [PATCH 2/2] hwmon: (pmbus) Add driver for Analog Devices
- MAX20912 and MAX20916
-Message-ID: <ak4QO9uhKOt68dl1@nsa>
-References: <20260707122701.751878-1-fredchen.openbmc@gmail.com>
- <20260707122701.751878-3-fredchen.openbmc@gmail.com>
- <f9e32dd1-7c2c-4055-83fa-94683777e30b@roeck-us.net>
+	s=arc-20240116; t=1783502435; c=relaxed/simple;
+	bh=c9AgtkNavzZZ8qkzuCtUIsyqaU8piuUpRM/uY2JQwPw=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=EjJfB5Ub1DG3cxOQnFQnEaBu5unqbCZlMgt2NDW0zbrqLoljy5a2Ll2Yyl6ZiFTy/nVeErAJ01fzgW/42yhnvtjAhL4OcJIV6l6C3+zt+myJzevoVXydLrQ5KGkzcPzGB+FCV3BpbpPmFzUuQO9uHoPSFGPwPPiaDJ5fX4A8KgE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=lenovo.com; spf=pass smtp.mailfrom=lenovo.com; dkim=pass (2048-bit key) header.d=lenovo.com header.i=@lenovo.com header.b=S79pkMRh; arc=none smtp.client-ip=148.163.152.46
+Received: from pps.filterd (m0355090.ppops.net [127.0.0.1])
+	by m0355090.ppops.net (8.18.1.11/8.18.1.11) with ESMTP id 66888UgF2781490;
+	Wed, 8 Jul 2026 09:20:20 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=lenovo.com; h=cc
+	:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=DKIM202306; bh=QYQs7bMjCq3AxrNO0NEiBAj7S6qssf53o0
+	77myy4Ol0=; b=S79pkMRh2RInBSuU0dBIKxjFYagzT203u9JBkBgdXuTzPPy1aL
+	ag25QNbRuK1iZ1WxPH77v7jwbeffq2GZJzYCczSBut0cIWOTd48X9AM4LnpVIyzq
+	mjnLdcIcVuSg7ZB7CcxR4eiUMh6twv6uq7yZ9TKXSZPUkYJ8nOJT8xfIIzkWUtnt
+	iYddnjej1xZTKqw7UMuQsodftFcQOBOOfY3YthBsDMdt32/BKCcrB+12nmyZoeX0
+	QVtEQp7fUvUnd+kJQNgzMJriYwnMKjKlFDiPv0mxAwpgRdkmOEXCciNFRTyIMPrf
+	7tR+ER2axz0ow8+STEGaXYl/lgQ0oA/LkStw==
+Received: from hkglppfpool2.lenovo.com ([103.30.235.219])
+	by m0355090.ppops.net (PPS) with ESMTPS id 4f7dgsxgn8-1
+	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
+	Wed, 08 Jul 2026 09:20:20 +0000 (GMT)
+Received: from hetlppfpool2.lenovo.com (unknown [10.196.132.72])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by hkglppfpool2.lenovo.com (Postfix) with ESMTPS id 4gwCGc2l0lz1yfclj;
+	Wed,  8 Jul 2026 09:19:36 +0000 (UTC)
+Received: from lenovo.com (unknown [10.119.171.213])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by hetlppfpool2.lenovo.com (Postfix) with ESMTPS id 4gwCHQ1CQWz18W90N;
+	Wed,  8 Jul 2026 09:20:18 +0000 (UTC)
+From: Jiqi Li <lijq9@lenovo.com>
+To: linux-tegra@vger.kernel.org
+Cc: devicetree@vger.kernel.org, robh+dt@kernel.org, krzk+dt@kernel.org,
+        conor+dt@kernel.org, krzk@kernel.org, mperttunen@nvidia.com,
+        jonathanh@nvidia.com, thierry.reding@gmail.com,
+        mpearson-lenovo@squebb.ca, Jiqi Li <lijq9@lenovo.com>
+Subject: [PATCH v4 0/2] Add Lenovo ThinkEdge SE70 carrier board support
+Date: Wed,  8 Jul 2026 17:20:15 +0800
+Message-ID: <20260708092017.745545-1-lijq9@lenovo.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <f9e32dd1-7c2c-4055-83fa-94683777e30b@roeck-us.net>
+X-Proofpoint-ORIG-GUID: JaNXiMPxxRKFA7FTwamNcHbiPgAFZAru
+X-Proofpoint-Spam-Info: AW1haW4tMjYwNzA4MDA4OSBTYWx0ZWRfX5IRIe+N0nSpo
+ IY+iow4uWc4ggzlZmTC/yBkfbIQfX7AaWCzgJ0Gnkctd0B7pxck9rbS7MMB1e+gQYfz69UFsRcC
+ Wya2CWPapHeHKwGEpJbmv598MSwT0z4=
+X-Proofpoint-GUID: JaNXiMPxxRKFA7FTwamNcHbiPgAFZAru
+X-Authority-Analysis: v=2.4 cv=POw/P/qC c=1 sm=1 tr=0 ts=6a4e1654 cx=c_pps
+ a=Z3w50ro9cqVPZ6U0/1IFzw==:117 a=Z3w50ro9cqVPZ6U0/1IFzw==:17
+ a=RAioF0-LDSMA:10 a=VkNPw1HP01LnGYTKEx00:22 a=2RTuljz969oO5usasWGy:22
+ a=ZyEuT479hi48zPIlagN0:22 a=1HKclyIHpsRocwtzyY4A:9
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNzA4MDA4OSBTYWx0ZWRfXxfvRdnbml4k1
+ vv/jJvB63h4B1u4zoBQ70kVTEbXnMm+OJgTGjyLwT5/pY6ce1pRfuK2Z+8eYeoqQUnfLhvoKW1N
+ YigUqfZIANWd9dGTEAUnLamXq9NAl3HmuzdFLuTjXEY64PxP+k05zCN14iCltYfLQWjY5GLq8HM
+ MA23fbzoYoOYT0WyP4zGGgWUJzM1YRMrbLGWQtwx8ySzUUgDcnvjx6fQhawqjqD0onFIOhQoYgZ
+ uokgaqetokndxNsAb55ZNreepDSKj/riB1adh5k21AkxVCmXwDYZ8Rrw4psIWyGjiaYVQyGwTTu
+ WnleZaznx9WQx2D+xYa1LBZOh/sD5sT7u0bxvs7wANoATIUSC17ouQEtW934ehGd2uYRNvcWGH6
+ IMFaOUVArG7xlP+EijUPTU3lftPQyZKe+HBRAdcEaUn53FWUMq4ueLkxHNFJxm0SCNt4QKRm/Zg
+ gT50WFjT4EPY7w8VY/A==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.134,FMLib:17.12.100.49
+ definitions=2026-07-08_01,2026-07-06_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 suspectscore=0 bulkscore=0 clxscore=1015 priorityscore=1501
+ phishscore=0 malwarescore=0 lowpriorityscore=0 adultscore=0 spamscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=-20
+ reason=mlx scancount=1 engine=8.22.0-2606150000 definitions=main-2607080089
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[lenovo.com,reject];
+	R_DKIM_ALLOW(-0.20)[lenovo.com:s=DKIM202306];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-322646-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[nonamenuno@gmail.com,devicetree@vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FORGED_RECIPIENTS(0.00)[m:linux@roeck-us.net,m:fredchen.openbmc@gmail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:corbet@lwn.net,m:skhan@linuxfoundation.org,m:Jonathan.Cameron@huawei.com,m:wenswang@yeah.net,m:Frank.Li@nxp.com,m:chiang.brian@inventec.com,m:chou.cosmo@gmail.com,m:dixitparmar19@gmail.com,m:eajames@linux.ibm.com,m:apokusinski01@gmail.com,m:thorsten.blum@linux.dev,m:ashish.yadav@infineon.com,m:alexisczezar.torreno@analog.com,m:arif.syed@hpe.com,m:tomtsai764@gmail.com,m:abdurrahman@nexthop.ai,m:kimseer.paller@analog.com,m:u8813345@gmail.com,m:Yuxi.Wang@monolithicpower.com,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-hwmon@vger.kernel.org,m:linux-doc@vger.kernel.org,m:fredchenopenbmc@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:choucosmo@gmail.com,s:lists@lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[28];
-	FORWARDED(0.00)[lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[gmail.com,kernel.org,lwn.net,linuxfoundation.org,huawei.com,yeah.net,nxp.com,inventec.com,linux.ibm.com,linux.dev,infineon.com,analog.com,hpe.com,nexthop.ai,monolithicpower.com,vger.kernel.org];
+	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,nvidia.com,gmail.com,squebb.ca,lenovo.com];
+	FORWARDED(0.00)[lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-322654-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER(0.00)[lijq9@lenovo.com,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:linux-tegra@vger.kernel.org,m:devicetree@vger.kernel.org,m:robh+dt@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:krzk@kernel.org,m:mperttunen@nvidia.com,m:jonathanh@nvidia.com,m:thierry.reding@gmail.com,m:mpearson-lenovo@squebb.ca,m:lijq9@lenovo.com,m:robh@kernel.org,m:conor@kernel.org,m:thierryreding@gmail.com,s:lists@lfdr.de];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[nonamenuno@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[lijq9@lenovo.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[lenovo.com:+];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,lenovo.com:from_mime,lenovo.com:dkim,lenovo.com:mid];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	TO_DN_SOME(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,analog.com:url,nsa:mid]
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 8A180723B66
+X-Rspamd-Queue-Id: E301E723A6F
 
-On Tue, Jul 07, 2026 at 06:52:48AM -0700, Guenter Roeck wrote:
-> On 7/7/26 05:26, Fred Chen wrote:
-> > Add support for the Analog Devices MAX20912 and MAX20916 dual-output
-> > multiphase voltage regulators with PMBus interfaces.
-> > 
-> > Signed-off-by: Fred Chen <fredchen.openbmc@gmail.com>
-> 
-> Please provide evidence that those chips actually exist.
-> Internet search comes up blank. I'll need confirmation
-> from someone at Analog.
+This patch set introduces device tree binding and standalone DTS file
+for Lenovo ThinkEdge SE70, a fanless industrial edge gateway powered by
+the NVIDIA Jetson Xavier NX module (P3668-0001) on a custom carrier board.
 
-Hi Guenter,
+Patch 1 updates tegra.yaml bindings to add the three-stage compatible
+string matching board + SOM + SoC, following the existing Tegra
+carrier board convention.
 
-Well, in fact I'm in the middle of preparing a series that adds support
-for:
+Patch 2 adds the complete carrier board device tree, including:
+- 40-pin expansion header pinmux configuration
+- External Micro SD card slot with dedicated 3.3V regulator
+- I2C bus for 40-pin header
 
-"max20826"
-"max20855b"
-"max20908"
-"max20912"
-"max20916"
+All static device tree checks pass: dtbs compile and dt_binding_check
+complete without errors.
 
-All the above parts have the datasheet under NDA. But before we had a
-one page "datasheet" in analog.com but I guess that is gone! For context
-I mainly did the base (core) driver for max20826 and then Alexis added
-the other ones.
+Jiqi Li (2):
+  dt-bindings: arm: tegra: Add lenovo,thinkedge-se70 compatible string
+  arm64: tegra: Add Lenovo ThinkEdge SE70 device tree
 
-Not sure how to proceed... I can wait and then work on top of what Fred
-has but this patch is very minimal when compared with what we have.
-Like:
+ .../devicetree/bindings/arm/tegra.yaml        |   5 +
+ arch/arm64/boot/dts/nvidia/Makefile           |   1 +
+ .../nvidia/tegra194-lenovo-thinkedge-se70.dts | 113 ++++++++++++++++++
+ 3 files changed, 119 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/nvidia/tegra194-lenovo-thinkedge-se70.dts
 
-* No regulator support;
-* No direct mode. The chip has two ways to access registers (paging and
-* direct mode).
-* No way to count how many phases we have or if RAIL_B (func[1]) is being used at
-all.
+-- 
+2.43.0
 
-
-Some other things more intriguing is that these chips, as far as I'm
-aware (at least for max20826), always have bit 2 set in ON_OFF_CONFIG so
-a gpio vout. Also we needed some special handling to read phase current
-which I'm not seeing in the driver. So I would like to understand how
-the chip was tested?
-
-Anyways, if Fred is ok with it I can just finish what I'm doing and send
-the patches. It would make sense to have something more complete on
-submission but I don't want to just "steal" the work already done.
-
-- Nuno Sá
-
-> 
-> Thanks,
-> Guenter
-> 
 
