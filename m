@@ -1,58 +1,57 @@
-Return-Path: <devicetree+bounces-322554-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-322550-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 0inlJ5v6TWpzBAIAu9opvQ
-	(envelope-from <devicetree+bounces-322554-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 09:22:03 +0200
+	id hcmpK5X6TWpxBAIAu9opvQ
+	(envelope-from <devicetree+bounces-322550-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 09:21:57 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5DCD722948
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 09:22:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 28560722942
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 09:21:57 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20201202 header.b="p/YeNzAS";
+	dkim=pass header.d=kernel.org header.s=k20201202 header.b=HYDWuUEd;
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322554-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-322554-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322550-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-322550-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 1065B3043525
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 07:16:09 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D91D83041782
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 07:16:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE56A3F7AB4;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31B303F786A;
 	Wed,  8 Jul 2026 07:16:03 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D71303F54C4;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D16C93E172F;
 	Wed,  8 Jul 2026 07:16:01 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783494962; cv=none; b=Vtx6Rgd8SCkzqnv0SivpwltmT477aufID9OJGJG/fhTggG4Bg09tB6cJCj5jMmYeJJxhd7qoXA0gC4dGd9S7Vf2kbukyr9I/7gshviuL0RaXqQ1+XehKdwOcK52x28ylE28E7Eht/DQNQ2AT5CXilIxpLrqXPxniY9wLiNqLQ+o=
+	t=1783494962; cv=none; b=iPFaMr8PHAQWIVRwxi2BaA5PDk4ArpClrQTv3RcLSW3dOnCMOXaHPALR9PbLmiRWAt1L6QLigUckC6xwGKOFQUv/W5XarmIov8WMAsaPRSw9qz/tTIOWL4tEvZlHv+OQ9Prja+p+CoPi0mz4jI38rJtO+6vuDwLZQZF//jwW0Sc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1783494962; c=relaxed/simple;
-	bh=ByYtCtKpL5zN/yGVXFT5sli8OKOR0P5NbnNTzjELoN0=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=ROIOSrstwd/IkuPB5F1fN2IZLabuGqpvRfTbSCuqU8OEZ/4fVdu+E9zKacuFFSbxI+PE0DI3nghbnqU7Dw13IFxZ1fYE7jee9z+QKH4hwduvwC62/E9kTKDFRhQ87zu+FNufYrLKOERqO1QiGiv+HkFmsLsA77O+jlwOL1r3dvQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=p/YeNzAS; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 9D888C2BCC7;
+	bh=VWmWh6pzki/ShXejJu251uuQUSOrl8ApE+ih5NcCoSk=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=ft7tamZ4AjWYzboe7LrDx/w0YiKWyMcJyFNSNP2gCcluY2aGDvYVuIRbm71/cs71QS16dsZb3Ne8znNcz97bZWUXTUqSnI5KqTWw0Zj1ZO2oT6q8w+a/EHzrgE04ZKS7K0WeX4yOu0BXcJTzVoArPZk8RmRE8PEjKCDdKYQdvc4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HYDWuUEd; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id A6EDFC2BCF4;
 	Wed,  8 Jul 2026 07:16:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1783494960;
-	bh=ByYtCtKpL5zN/yGVXFT5sli8OKOR0P5NbnNTzjELoN0=;
-	h=From:Subject:Date:To:Cc:From;
-	b=p/YeNzASzq7aKDoVCUOwMCQGWEmGoLWaJrvVKLx52HyRj4Yu5JiKi9fQOx6DXhZyB
-	 QGJBHD5zp4Ieszp6nXteQrutvrpRs8PygkVn4R6gATRImzBptL6UdsG+1xme48aA57
-	 jn+ENfboaCcgy1NRu1HbrC0fF1TXk0mMbieJGGn1SjiENljtjlOqW8XGnBGuM7nA2S
-	 3UXKW6eC6C+Qrh4kZlDJdPFvqdOBW5yx3ZGtHTqtnlmPr4SDy04yOiLPlaF4y+P13a
-	 ZuIfvme1Y2Z8DKkixa8XQZwl1RSck6AgDGsn++CR+5TkPsfsrhpppk8V5m5oykQmRd
-	 Z0jhlXDw4Dxvw==
+	bh=VWmWh6pzki/ShXejJu251uuQUSOrl8ApE+ih5NcCoSk=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
+	b=HYDWuUEd+swZZpJ5jxAfUsBbCQmJs9mkezhp4PvoaTS5uFeidGbF9ovIrS1N2XKiM
+	 EkHAacBP5AOykWFH1bizsQnkn7NZUa06lj6Qb6bAvsNuvds1AaP3oNT/MbiPV6BGxm
+	 R8lGD+trNsNhfOfmRFfYW3eSF4qVhiAWNACZwx6Hi9ab0Ufj8pRyHpR2RbOYX6GlPr
+	 vh1ZYuv5uzpmPNngcEUIFtuWVcnB+qbS+uCQsT4xtxfCJtXWJWQ06mS9k5Qf1NjuoY
+	 iUWH9MvQ6E+mKBRF9Nxgfjjxi6mLcYxYfCcVXbd78mbXYC99MW+vwZTU91M4rORMUm
+	 4W+zCTsYGGjTQ==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 77E14C43458;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 87E65C43602;
 	Wed,  8 Jul 2026 07:16:00 +0000 (UTC)
 From: Sven Peter <sven@kernel.org>
-Subject: [PATCH RFC 0/6] PSCI-via-EFI to support firmware and kernel
- sharing EL2 for Apple Silicon
-Date: Wed, 08 Jul 2026 09:15:36 +0200
-Message-Id: <20260708-efi-psci-v1-0-9efb3abf0e4c@kernel.org>
+Date: Wed, 08 Jul 2026 09:15:37 +0200
+Subject: [PATCH RFC 1/6] dt-bindings: arm: psci: Add EFI conduit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,10 +60,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
- vPSU3UzU4B8JSMDIzMDMyNT3dS0TN2C4uRM3UTLJDPzpDSzNEMTUyWg8oIioFQF2KhopSA3Z6X
- Y2loAT/7/NF8AAAA=
-X-Change-ID: 20260625-efi-psci-a9b67bf6f145
+Message-Id: <20260708-efi-psci-v1-1-9efb3abf0e4c@kernel.org>
+References: <20260708-efi-psci-v1-0-9efb3abf0e4c@kernel.org>
+In-Reply-To: <20260708-efi-psci-v1-0-9efb3abf0e4c@kernel.org>
 To: Mark Rutland <mark.rutland@arm.com>, 
  Lorenzo Pieralisi <lpieralisi@kernel.org>, Rob Herring <robh@kernel.org>, 
  Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -77,13 +75,13 @@ Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org, linux-efi@vger.kernel.org, 
  asahi@lists.linux.dev, Sven Peter <sven@kernel.org>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3357; i=sven@kernel.org;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1948; i=sven@kernel.org;
  h=from:subject:message-id;
- bh=ByYtCtKpL5zN/yGVXFT5sli8OKOR0P5NbnNTzjELoN0=;
- b=owGbwMvMwCXmIlirolUq95LxtFoSQ5bvT5WlF8I4rk6Sn5nG6cMjrV3d2vA75pVuJfeDjve1K
- 1ZrnrPqKGVhEONikBVTZNm+3970ycM3gks3XXoPM4eVCWQIAxenAExkrSEjw2P1OXzND6zaJ9/+
- pXRxV4RW6oRK9u44du2vsQZlq27XbWb4KzDz0GxmlsYNH4rEWN7utj4oLCNjHflwftn5nWtOMvs
- msQIA
+ bh=VWmWh6pzki/ShXejJu251uuQUSOrl8ApE+ih5NcCoSk=;
+ b=owGbwMvMwCXmIlirolUq95LxtFoSQ5bvT40an+LrNSsz3ou+eHBk0ZXtj533ymnX23xwvt15x
+ YdfqJ65o5SFQYyLQVZMkWX7fnvTJw/fCC7ddOk9zBxWJpAhDFycAjCRg5qMDCvvckRZqXWc3Cb2
+ W/IGc2WwDau3kNEPx6YTR8vSMlbsDGdkuPHeUvnjNHez9BTjI6zrxY8f0638FyfOeFRiqa7irW9
+ LOAE=
 X-Developer-Key: i=sven@kernel.org; a=openpgp;
  fpr=A1E3E34A2B3C820DBC4955E5993B08092F131F93
 X-Endpoint-Received: by B4 Relay for sven@kernel.org/default with
@@ -100,7 +98,7 @@ X-Spamd-Result: default: False [-3.66 / 15.00];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-322554-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-322550-lists,devicetree=lfdr.de];
 	RCPT_COUNT_TWELVE(0.00)[18];
 	FORGED_SENDER(0.00)[sven@kernel.org,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
@@ -120,81 +118,54 @@ X-Spamd-Result: default: False [-3.66 / 15.00];
 	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,arm.com:url]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: E5DCD722948
+X-Rspamd-Queue-Id: 28560722942
 
-Hi,
-
-Usually, idle and sleep state are implemented in firmware running in
-e.g. EL3 with the kernel trapping into that from EL2. Unfortunately,
-there's no EL3 on Apple Silicon machines and we'd rather not run the
-kernel in EL1 since this would result in losing KVM support.
-
-While the shallower states could be implemented inside a custom cpuidle
-driver (like we do downstream, see [1]) the deeper states result in a
-complete loss of state and require bootstraping the cores again which is
-quite involved. So instead we need some way to call back into our
-open-source firmware to be able to handle that. This is even more
-important for M4+ which don't even support the architectural wfi anymore
-and always lose state when that instruction is executed.
-
-Luckily, EFI runtime services provide much of scaffolding we need,
-namely a way to keep some code and data mapped and the ability to jump
-into there from inside the kernel.
-
-This series adds a custom EFI table that points to a PSCI entry point
-(plus some other stuff that has to be available before EFI runtime
-services are set up) and adds support for this new conduit to the psci
-code. We can't directly use the normal EFI runtime path because that one
-takes a sleeping lock and we need to be able to call into PSCI from
-atomic context during e.g. cpu bringup or during idle.
-It also adds support for specifying the specific MAIR attributes for EFI
-runtime mappings as defined in the latest UEFI spec since Apple Silicon
-is rather allergic to using Device-nGnRnE vs. Device-nGnRE for its MMIO.
-
-This all results in a surprisingly small diffstat. I believe this
-approach was originally suggested in some IRC discussion years ago,
-possibly by Ard, but I can't find the old logs anymore.
-Happy to add a Suggested-by tag though if anyone remembers.
-
-The firmware implementation I used for testing can be found at [2] and
-the full kernel tree with this series applied at [3].
-
-Best,
-
-Sven
-
-[1] https://github.com/AsahiLinux/linux/blob/asahi/drivers/cpuidle/cpuidle-apple.c
-[2] https://github.com/AsahiLinux/m1n1/tree/psci-via-efi
-[3] https://git.kernel.org/pub/scm/linux/kernel/git/sven/linux.git/log/?h=efi-psci
+Apple Silicon machines run the kernel in the highest available exception
+level and can't trap to anything higher for PSCI calls. Instead, we will
+add support for a conduit based on EFI runtime services to be able to
+share the same level with the kernel itself.
+Add the conduit to the bindings.
 
 Signed-off-by: Sven Peter <sven@kernel.org>
 ---
-Sven Peter (6):
-      dt-bindings: arm: psci: Add EFI conduit
-      arm64/efi: Add and parse custom PSCI EFI configuration table
-      efi: Add EFI_MEMORY_ISA_{MASK,VALID}
-      arm64/efi: Honor EFI_MEMORY_ISA_MASK for Device-nGnRnE vs -nGnRE
-      firmware/psci: Add EFI runtime conduit
-      arm64: dts: apple: t8103: Add PSCI and CPU idle states
+ Documentation/devicetree/bindings/arm/psci.yaml | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
 
- Documentation/devicetree/bindings/arm/psci.yaml | 12 ++++
- arch/arm64/boot/dts/apple/t8103.dtsi            | 51 ++++++++++++---
- arch/arm64/include/asm/efi.h                    | 56 +++++++++++++++++
- arch/arm64/kernel/efi.c                         | 82 ++++++++++++++++++++++++-
- arch/arm64/kernel/setup.c                       |  2 +-
- drivers/firmware/psci/psci.c                    | 64 +++++++++++++++++++
- include/linux/arm-smccc.h                       |  1 +
- include/linux/efi.h                             |  3 +
- 8 files changed, 261 insertions(+), 10 deletions(-)
----
-base-commit: dc59e4fea9d83f03bad6bddf3fa2e52491777482
-change-id: 20260625-efi-psci-a9b67bf6f145
+diff --git a/Documentation/devicetree/bindings/arm/psci.yaml b/Documentation/devicetree/bindings/arm/psci.yaml
+index 6e2e0c551841..f9d607e1a213 100644
+--- a/Documentation/devicetree/bindings/arm/psci.yaml
++++ b/Documentation/devicetree/bindings/arm/psci.yaml
+@@ -28,6 +28,14 @@ description: |+
+   Note that the immediate field of the trapping instruction must be set
+   to #0.
+ 
++  Alternatively, when the "efi" method is used, the PSCI functions are not
++  invoked by trapping to a higher privilege level. Instead, they are backed
++  by EFI runtime services: the firmware exposes a PSCI handler that the OS
++  invokes through an EFI runtime call. This method is intended for platforms
++  where the kernel runs at the highest privilege level, leaving no higher level
++  to trap into; the firmware shares that same level and is instead reached
++  through EFI runtime services.
++
+   [2] Power State Coordination Interface (PSCI) specification
+     http://infocenter.arm.com/help/topic/com.arm.doc.den0022c/DEN0022C_Power_State_Coordination_Interface.pdf
+ 
+@@ -69,6 +77,10 @@ properties:
+       - smc
+       # HVC #0, with the register assignments specified in this binding.
+       - hvc
++      # The PSCI functions are implemented by EFI runtime services, and are
++      # invoked through a runtime call into the firmware rather than via an
++      # SMC or HVC trap.
++      - efi
+ 
+   cpu_suspend:
+     $ref: /schemas/types.yaml#/definitions/uint32
 
-Best regards,
 -- 
-Sven Peter <sven@kernel.org>
+2.55.0
 
 
 
