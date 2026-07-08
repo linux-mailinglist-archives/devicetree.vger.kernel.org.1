@@ -1,57 +1,58 @@
-Return-Path: <devicetree+bounces-322553-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-322551-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id V1zCK0X5TWoMBAIAu9opvQ
-	(envelope-from <devicetree+bounces-322553-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 09:16:21 +0200
+	id Uk5QOZP6TWpwBAIAu9opvQ
+	(envelope-from <devicetree+bounces-322551-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 09:21:55 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 402737228A7
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 09:16:21 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id DA74672293F
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 09:21:54 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20201202 header.b=K6moxY77;
+	dkim=pass header.d=kernel.org header.s=k20201202 header.b=EkA2XLCe;
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322553-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-322553-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322551-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-322551-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id EDA403002881
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 07:16:14 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 66E52303FFE5
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 07:16:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3DA83F8233;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31C413F786F;
 	Wed,  8 Jul 2026 07:16:03 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6FBD3F485D;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D72503F54DD;
 	Wed,  8 Jul 2026 07:16:01 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783494962; cv=none; b=DRrHKCJO6U5sBsZp4Jt653nZ/2waO8e32IgJ+gFxYiYfGrkMlKZe1ibAfgKsFbKASeM7wSeH0sfnCNxTH0rM5xHJwZSdNW/suPUYv7vKSO7JQ7N5gS5fr6BEaXNh/F1EjZBpiAGlj0tE4fOSMyg7TdgYJaPq+RL4F2iTGFqEaaA=
+	t=1783494962; cv=none; b=a28Y2uNbxZy6QRNh3ch9JLZZiNw+UmIXif0iN31+JajZnUodDmp+mWpqR2IQPRG9ZvxNBl7Ywu96eAHiM0juXRfWOTUSyGDmvSAKPmM5zD/hNu4+euenESuoks1ZqogdHz5KucIlaBLvHnIv5ic1l1pXJl6GCVG/Y2AKefk5tw8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1783494962; c=relaxed/simple;
-	bh=DVNTXLHX1vUyS9zVAhAFUGx9k5ZtrHeeZURle9eN7LM=;
+	bh=/ejZ9kEPzd3EuCno7ps+9xBx6LGHpjeL3VowrnL2/78=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=rAHIsQm9Hxi3KerG1KnloQm4BAFnSM/aFEsC4Lk9hpf36jcE+6letkH1UH06oF6qu7g7Gb2NYanFJnERV5Gqyzxnxj2K7oqFKcWuRH387lXyKex5UAZTlHsCiwyrYUqiStZ9eRVQfZ86yesOOnPT1uslAPeqFc1LRXgoUjcaBPA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=K6moxY77; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id C54F8C2BCFD;
+	 In-Reply-To:To:Cc; b=uBKJroeev+azTK3qnGYKBVwZJ8R0PLVo3Sutew7za+QCDWbXPjMIo1HiPBFJwutcTKq4ItMJ6L1gLFwG7nuQwDjuuV24EEktkJCMYK3cXGdoh2h0cmuA9/0wjCHr7lhgwjSSFvdMDzzzHRgy7G+XrzY4PiCpqql16yXd+Z+NPKE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EkA2XLCe; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id CD0BFC2BCFB;
 	Wed,  8 Jul 2026 07:16:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1783494960;
-	bh=DVNTXLHX1vUyS9zVAhAFUGx9k5ZtrHeeZURle9eN7LM=;
+	bh=/ejZ9kEPzd3EuCno7ps+9xBx6LGHpjeL3VowrnL2/78=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=K6moxY77vczyPzFrIUnAW4/pRuMeYgxE5OdSAsfVjmRH0ZjW0Mf94lvGcjDKd9EIG
-	 rcZb3ldeK3HE9kmeSiiqLlHUhRUSEZ6+gGZmSTbqL3FBv72yCZkrRaDNjkZWzDyB2J
-	 Hoh3mWE7RKk7131oR06NlLxs+tP591p/2wSxDsOowR3rWjpv0ZzdIgszNjcqpqWDPH
-	 cHuL6rq3/fxQR2XZFJlp6cpR93x6eQQDBlUsx5750peUighYmYEbJCxg+7+l/F1Vxh
-	 GSnJptvx7K3XFpXgrmT1WFYbAczbm3pMKU3phQqiMyDGUwlWlm/LRU3UcNf3ld/jQQ
-	 oG/A7KWzW5MHg==
+	b=EkA2XLCetEn+0X3MLOpEK0EDgDo4DCBZKaerH//y9NGxL+gOzpZ5yDGvIqJY40geb
+	 QIStN89D9V9eiOsbg8lhNBXoMcB/vmzUi3vH3IKoJp1G1duTUiFEm4lYkvIRNzJoXA
+	 +9cXElE6H+m339LtH8vm0Xp8FdoF43kGu5UVaUkofZ9mSQYO44YcRxOsGB9gtwrS05
+	 6yInfa0rxgwvXSvyXJIVI8s0eioZ5l6jTjpXpAooxRjmJOwNBhIa8lamZdtHJm5IqV
+	 UHUorOMEs5ZInv4vgyu65aw7g90+h+FKDi058XukEXNhIAF3dzM8Gr2nqJSzBrT0EG
+	 gBbUM7aG6pOdg==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A66B6C44506;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B616BC44503;
 	Wed,  8 Jul 2026 07:16:00 +0000 (UTC)
 From: Sven Peter <sven@kernel.org>
-Date: Wed, 08 Jul 2026 09:15:39 +0200
-Subject: [PATCH RFC 3/6] efi: Add EFI_MEMORY_ISA_{MASK,VALID}
+Date: Wed, 08 Jul 2026 09:15:40 +0200
+Subject: [PATCH RFC 4/6] arm64/efi: Honor EFI_MEMORY_ISA_MASK for
+ Device-nGnRnE vs -nGnRE
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,7 +61,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260708-efi-psci-v1-3-9efb3abf0e4c@kernel.org>
+Message-Id: <20260708-efi-psci-v1-4-9efb3abf0e4c@kernel.org>
 References: <20260708-efi-psci-v1-0-9efb3abf0e4c@kernel.org>
 In-Reply-To: <20260708-efi-psci-v1-0-9efb3abf0e4c@kernel.org>
 To: Mark Rutland <mark.rutland@arm.com>, 
@@ -75,13 +76,13 @@ Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org, linux-efi@vger.kernel.org, 
  asahi@lists.linux.dev, Sven Peter <sven@kernel.org>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1258; i=sven@kernel.org;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1905; i=sven@kernel.org;
  h=from:subject:message-id;
- bh=DVNTXLHX1vUyS9zVAhAFUGx9k5ZtrHeeZURle9eN7LM=;
- b=owGbwMvMwCXmIlirolUq95LxtFoSQ5bvTy0vk+B109JP9a57cmSRU0FFcPODuGU3op9wlAkc+
- nx7XpBbRykLgxgXg6yYIsv2/famTx6+EVy66dJ7mDmsTCBDGLg4BWAif68x/GbZ4Jnx49vsfcE3
- NN9sZJhYGCWrrJd+kHFfid3xT0137qowMmxtkvNz41gZJ5MVUrrBNO7Mvf2MfosFnrH/6tz5QmC
- NLxsA
+ bh=/ejZ9kEPzd3EuCno7ps+9xBx6LGHpjeL3VowrnL2/78=;
+ b=owGbwMvMwCXmIlirolUq95LxtFoSQ5bvT20VobN/mkSjXybcUAyb9+Z88s/JF8WfOJrfK1Ge9
+ T/5kZhWRykLgxgXg6yYIsv2/famTx6+EVy66dJ7mDmsTCBDGLg4BWAiR68wMsw/Pqu0ZI/KjOyn
+ DLbql2JYL5V908i9WRd1+mWnzWJHcUlGhqttB8R9OEyec165K7C9z9xZ4uftR93tR4XKbs1h4mX
+ 6wQ4A
 X-Developer-Key: i=sven@kernel.org; a=openpgp;
  fpr=A1E3E34A2B3C820DBC4955E5993B08092F131F93
 X-Endpoint-Received: by B4 Relay for sven@kernel.org/default with
@@ -93,12 +94,12 @@ X-Spamd-Result: default: False [-3.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-322553-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-322551-lists,devicetree=lfdr.de];
 	RCPT_COUNT_TWELVE(0.00)[18];
 	FORGED_SENDER(0.00)[sven@kernel.org,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
@@ -116,38 +117,72 @@ X-Spamd-Result: default: False [-3.66 / 15.00];
 	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 402737228A7
+X-Rspamd-Queue-Id: DA74672293F
 
-As defined in UEFI 2.10, Section 7.2.3 [1], if EFI_MEMORY_ISA_VALID is
-set the memory region is to be mapped using ISA-specific cacheability
-attributes found in EFI_MEMORY_ISA_MASK. On AArch64, these bits are e.g.
-defined as the attributes stored in MAIR [2].
-
-[1] https://uefi.org/specs/UEFI/2.10/07_Services_Boot_Services.html#efi-boot-services-getmemorymap
-[2] https://uefi.org/specs/UEFI/2.10/02_Overview.html#memory-types
+On Apple Silicon, access to MMIO requires Device-nGnRnE while Device-nGnRE
+results in SErrors. UEFI defines the EFI_MEMORY_ISA_MASK for cases like
+that which just contains the MAIR attribute bits. We cannot support any
+other Device- types without changing MAIR so just warn and fall back to
+the previous default, Device-nGnRE, if we encounter anything else.
 
 Signed-off-by: Sven Peter <sven@kernel.org>
 ---
- include/linux/efi.h | 2 ++
- 1 file changed, 2 insertions(+)
+ arch/arm64/kernel/efi.c | 24 +++++++++++++++++++++++-
+ 1 file changed, 23 insertions(+), 1 deletion(-)
 
-diff --git a/include/linux/efi.h b/include/linux/efi.h
-index f3db3a18b540..882148114068 100644
---- a/include/linux/efi.h
-+++ b/include/linux/efi.h
-@@ -128,6 +128,8 @@ typedef	struct {
- #define EFI_MEMORY_SP			BIT_ULL(18)	/* soft reserved */
- #define EFI_MEMORY_CPU_CRYPTO		BIT_ULL(19)	/* supports encryption */
- #define EFI_MEMORY_HOT_PLUGGABLE	BIT_ULL(20)	/* supports unplugging at runtime */
-+#define EFI_MEMORY_ISA_MASK		GENMASK_ULL(59, 44)	/* ISA-specific attributes */
-+#define EFI_MEMORY_ISA_VALID		BIT_ULL(62)	/* EFI_MEMORY_ISA_MASK bits are valid */
- #define EFI_MEMORY_RUNTIME		BIT_ULL(63)	/* range requires runtime mapping */
+diff --git a/arch/arm64/kernel/efi.c b/arch/arm64/kernel/efi.c
+index e40885567f9e..50ba8e9112fc 100644
+--- a/arch/arm64/kernel/efi.c
++++ b/arch/arm64/kernel/efi.c
+@@ -7,6 +7,7 @@
+  * Copyright (C) 2013, 2014 Linaro Ltd.
+  */
  
- #define EFI_MEMORY_DESCRIPTOR_VERSION	1
++#include <linux/bitfield.h>
+ #include <linux/efi.h>
+ #include <linux/init.h>
+ #include <linux/kmemleak.h>
+@@ -16,6 +17,7 @@
+ 
+ #include <asm/efi.h>
+ #include <asm/stacktrace.h>
++#include <asm/sysreg.h>
+ #include <asm/vmap_stack.h>
+ 
+ 
+@@ -38,7 +40,27 @@ static __init ptval_t create_mapping_protection(efi_memory_desc_t *md)
+ 	u32 type = md->type;
+ 
+ 	if (type == EFI_MEMORY_MAPPED_IO) {
+-		pgprot_t prot = __pgprot(PROT_DEVICE_nGnRE);
++		pgprot_t prot;
++
++		if (attr & EFI_MEMORY_ISA_VALID) {
++			u8 mair = FIELD_GET(EFI_MEMORY_ISA_MASK, attr);
++
++			switch (mair) {
++			case MAIR_ATTR_DEVICE_nGnRnE:
++				prot = __pgprot(PROT_DEVICE_nGnRnE);
++				break;
++			case MAIR_ATTR_DEVICE_nGnRE:
++				prot = __pgprot(PROT_DEVICE_nGnRE);
++				break;
++			default:
++				prot = __pgprot(PROT_DEVICE_nGnRE);
++				pr_warn("unsupported MAIR attribute %#x for EFI MMIO region at 0x%llx, using Device-nGnRE\n",
++					mair, md->phys_addr);
++				break;
++			}
++		} else {
++			prot = __pgprot(PROT_DEVICE_nGnRE);
++		}
+ 
+ 		if (arm64_is_protected_mmio(md->phys_addr,
+ 					    md->num_pages << EFI_PAGE_SHIFT))
 
 -- 
 2.55.0
