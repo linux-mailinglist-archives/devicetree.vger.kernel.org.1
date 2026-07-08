@@ -1,176 +1,326 @@
-Return-Path: <devicetree+bounces-322606-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-322609-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 6g1rL8gDTmq5BgIAu9opvQ
-	(envelope-from <devicetree+bounces-322606-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 10:01:12 +0200
+	id mQOTHqAHTmrFBwIAu9opvQ
+	(envelope-from <devicetree+bounces-322609-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 10:17:36 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06EDD722E52
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 10:01:07 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id CED077230F6
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 10:17:35 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=iLqV6ggh;
-	dmarc=pass (policy=none) header.from=intel.com;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322606-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-322606-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=collabora.com header.s=mail header.b=fvSf4Ece;
+	dmarc=pass (policy=none) header.from=collabora.com;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322609-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-322609-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id B3E6E30086AB
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 08:00:31 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 2E1F1300363A
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 08:12:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D515B3FADFD;
-	Wed,  8 Jul 2026 08:00:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB01F3EB801;
+	Wed,  8 Jul 2026 08:11:59 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DC9A3E0C4C;
-	Wed,  8 Jul 2026 08:00:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6F6C3D6662;
+	Wed,  8 Jul 2026 08:11:57 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783497624; cv=none; b=Q0vTaCBdT5AgQAe93hYL94gqOus/vq53JdB3S4wo+dxVH9ZVOptzWdnaMnA+b3DQfzrvDK0MuY0azUvQdYzYlEm5dFsrJze+ySBfF3yEQjRB4/Cjw5ystpW7ttwWDAcX2kytqAR/afP8PpIN4ec8RshwAlt3PrSmbS+zWx/9Tqw=
+	t=1783498319; cv=none; b=UeyxjEZpmcIeFvWgNFW21KSIfTFKP0ym/VTk7koBJnq7AzCIkgs3fSpHnAwoKz6fe5w0kDZ/Y4c589xFUmMkcHh6l2qnu8yh2TfJAklyAjeLqXl5SUiZZogEblw52x6jF4R19HUfG9gxRwT45woikvv7uB6dvoc56D/CzYLTrWs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783497624; c=relaxed/simple;
-	bh=nRGza4Sc0YOcCy4AzAZup761YMetwR27gyX3jxhc7M4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BgZWAihHc5NZIbHOBydQWQZirWGBqiLOymb0f38RZ2EOcTq5hHOwXExu/NlOmoj2wp+gN5Dg5fZEnTqhjafou7euZuIYifTm1Hs7fhBz9xBE2CzPodW4BDRvQ9kasOjym7CMeyQu3XaRiRltnURnPoqKVq6v+1L5VjKyL152HnU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=iLqV6ggh; arc=none smtp.client-ip=198.175.65.20
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1783497617; x=1815033617;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=nRGza4Sc0YOcCy4AzAZup761YMetwR27gyX3jxhc7M4=;
-  b=iLqV6gghxrn3qLuUfJ9iFA0KSimvdrNiewEGuIIAhDoXKOksQtbztVh6
-   zKPB8raDYrLxl5L67qQycdiwonYS4Kn5WLKLrFv0wpMr2X4NNc4YhXTlL
-   pI4ZriX9lVHdL3pWyeS10TJz/XV9epoQyoiV3qiqUL9j6WFm/GG9GptO/
-   QMQOMmGFk+k5O3WSecMl6VCS60Adri0DD8XDPLjnZo0Uy76tgZdRYySGW
-   hNoaWRo8j96IGv+YIXKYePOvIaZB8gkD9SO3obSUMqC/O+7QIVQDVb1Jp
-   1jDLnwyQT68plvyW9YfGsezLXa7KCtLQej2mHT0EpIM+dVGET9ERc4K58
-   w==;
-X-CSE-ConnectionGUID: WD2wmYoGSBGc7STh8Zmmtw==
-X-CSE-MsgGUID: ono5PSxrTtil1H21HUix1Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11840"; a="83931656"
-X-IronPort-AV: E=Sophos;i="6.25,153,1779174000"; 
-   d="scan'208";a="83931656"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
-  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Jul 2026 01:00:09 -0700
-X-CSE-ConnectionGUID: VcILiA6VQJSQf3hMPwqW1g==
-X-CSE-MsgGUID: +iEUHChsTC2crytZtIPzXQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,153,1779174000"; 
-   d="scan'208";a="253726411"
-Received: from kniemiec-mobl1.ger.corp.intel.com (HELO kekkonen.fi.intel.com) ([10.245.245.120])
-  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Jul 2026 00:59:58 -0700
-Received: from kekkonen.localdomain (localhost [IPv6:::1])
-	by kekkonen.fi.intel.com (Postfix) with ESMTP id 122D211FB4A;
-	Wed, 08 Jul 2026 10:59:58 +0300 (EEST)
-Date: Wed, 8 Jul 2026 10:59:58 +0300
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6 krs, Bertel Jungin Aukio 5, 02600 Espoo
-From: Sakari Ailus <sakari.ailus@linux.intel.com>
-To: Ramshouriesh R <rshouriesh@gmail.com>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Hans Verkuil <hverkuil+cisco@kernel.org>,
-	Bryan O'Donoghue <bod@kernel.org>,
-	Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 2/2] media: i2c: hm1092: add Himax HM1092 mono NIR
- sensor driver
-Message-ID: <ak4DfkbDlIvsGY_u@kekkonen.localdomain>
-References: <20260702-hm1092-driver-v3-0-85faa7ff4fec@gmail.com>
- <20260702-hm1092-driver-v3-2-85faa7ff4fec@gmail.com>
- <akkRRCaZMRyoWDt7@kekkonen.localdomain>
- <CAJTcUFQ3CJQhEv_N7L22FmQSJsGpfMvKO1F5wiEarNca5VmV5g@mail.gmail.com>
+	s=arc-20240116; t=1783498319; c=relaxed/simple;
+	bh=6SacSufpVpDq43snOtzdOhTZJyjAGxTn7OtrG/N9JA4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=V72kKVobx4KamMKUE90EQkKsGP/eELeFEh7MI7LswvL1Rph8BNkM91Fm+QwfKiO5BrZ7+G3NuvcT651od8XQXg4UWB+fi01tJPFzfumoh6EFf5lbeC0mFq0t6gCDJEUnJOLGonI6TTEtvvl6XtqIaolVhEjhZ9z2h8ti2ssLkNc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=fvSf4Ece; arc=none smtp.client-ip=148.251.105.195
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1783497728;
+	bh=6SacSufpVpDq43snOtzdOhTZJyjAGxTn7OtrG/N9JA4=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=fvSf4EceAV1JX2ABzXTKVhzWJnVOHW6Z2/8An0qkkMYTIKQDuKOV21NYvL9t7KLxf
+	 ftr9hff/dPR+EDnQWjXlrafW1c4BrychuLULkN6CaxTBhQaq+ajPiKXrsApVFQ43jQ
+	 TF9rfCjG8rlkQQLFUCr8g4CYNZxMIbO45Pjlum+jl79IJzQ2KCTFk2BGd6yqOpMRnA
+	 7VjJnJPDDj1BGC3rrRslRWLb6WkNqotXfyfoo/Br40uov9pTSICNSjcbtGD/Us1iWV
+	 ZVOCfVFlNPPG4sfr2Ik1HhSC0jLljbWzJ4fBfMMkF4jpjzYm5jjfLOHWyYFqaD6THE
+	 S8oZuS7Fhx/vA==
+Received: from [100.64.1.21] (unknown [100.64.1.21])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange x25519)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id A4F8417E05D3;
+	Wed, 08 Jul 2026 10:02:07 +0200 (CEST)
+Message-ID: <2834aca4-916f-4d3e-afb4-cd2425b035ef@collabora.com>
+Date: Wed, 8 Jul 2026 10:02:07 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: mediatek: mt8188-geralt: Add MT6319 PMIC
+To: Chen-Yu Tsai <wenst@chromium.org>
+Cc: Matthias Brugger <matthias.bgg@gmail.com>,
+ linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20260707104427.3409290-1-wenst@chromium.org>
+ <176dd24c-c3cf-4ab9-8497-594ed65d10ec@collabora.com>
+ <CAGXv+5F86JU9+LPSy8PtuCPrdhBnvcA=PX1d++Yh3u7mK_Jxmw@mail.gmail.com>
+ <94c10212-9c27-4875-8a88-78bfb67fb382@collabora.com>
+ <CAGXv+5EsWVbLtUP6b75fvkDVSqUDoAOA1t3hPO4cA9sAA02=WA@mail.gmail.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <CAGXv+5EsWVbLtUP6b75fvkDVSqUDoAOA1t3hPO4cA9sAA02=WA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAJTcUFQ3CJQhEv_N7L22FmQSJsGpfMvKO1F5wiEarNca5VmV5g@mail.gmail.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[intel.com:d:+,kernel.org:s:+];
-	INTRODUCTION(2.00)[];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_TO(0.00)[gmail.com];
+	TAGGED_FROM(0.00)[bounces-322609-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-322606-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER(0.00)[angelogioacchino.delregno@collabora.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[gmail.com,lists.infradead.org,vger.kernel.org];
 	TO_DN_SOME(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:wenst@chromium.org,m:matthias.bgg@gmail.com,m:linux-mediatek@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:matthiasbgg@gmail.com,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	HAS_ORG_HEADER(0.00)[];
-	FORGED_SENDER(0.00)[sakari.ailus@linux.intel.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS(0.00)[m:rshouriesh@gmail.com,m:mchehab@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:hverkuil+cisco@kernel.org,m:bod@kernel.org,m:vladimir.zapolskiy@linaro.org,m:linux-media@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,m:hverkuil@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	ALIAS_RESOLVED(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[6];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sakari.ailus@linux.intel.com,devicetree@vger.kernel.org];
+	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	RCPT_COUNT_SEVEN(0.00)[11];
+	FROM_NEQ_ENVFROM(0.00)[angelogioacchino.delregno@collabora.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[collabora.com:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	RBL_SEM_IPV6_FAIL(0.00)[2600:3c15:e001:75::12fc:5321:query timed out];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt,cisco];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,vger.kernel.org:from_smtp,kekkonen.localdomain:mid]
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[chromium.org:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 06EDD722E52
+X-Rspamd-Queue-Id: CED077230F6
 
-Hi Ramshouriesh,
-
-On Sun, Jul 05, 2026 at 01:01:13AM +0530, Ramshouriesh R wrote:
-> Hi Sakari,
+On 7/8/26 06:25, Chen-Yu Tsai wrote:
+> On Tue, Jul 7, 2026 at 7:24 PM AngeloGioacchino Del Regno
+> <angelogioacchino.delregno@collabora.com> wrote:
+>>
+>> On 7/7/26 13:08, Chen-Yu Tsai wrote:
+>>> On Tue, Jul 7, 2026 at 7:05 PM AngeloGioacchino Del Regno
+>>> <angelogioacchino.delregno@collabora.com> wrote:
+>>>>
+>>>> On 7/7/26 12:44, Chen-Yu Tsai wrote:
+>>>>> The Geralt design uses a MT6319 PMIC to power the big cores and LPDDR4X
+>>>>> DRAM.
+>>>>>
+>>>>> Add a device node for it and hook up all the supplies.
+>>>>>
+>>>>> This change requires a firmware fix for the SPMI bus to read back
+>>>>> correctly. The required firmware version is 15842.175.0. This is
+>>>>> included in ChromeOS releases R150-16700.22.0 (available in Beta
+>>>>> channel as of writing or stable channel in mid-July) or
+>>>>> R151-16721.0.0 and later.
+>>>>>
+>>>>> Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
+>>>>
+>>>> This is a big problem then.
+>>>>
+>>>> I take it as if the firmware fix is not in place, probing the CPU power supplies
+>>>> will fail, with all the consequences.
+>>>
+>>> That's right.
+>>>
+>>>> This means that with this, we're breaking all Geralt machines with older firmware,
+>>>> which is not acceptable...
+>>>>
+>>>> ...so this needs a different solution, or strong reasons to make me understand that
+>>>> I'm wrong, if I'm wrong.
+>>>
+>>> We can drop the CPU supplies (they don't matter since cpufreq is hardware
+>>> driven) and just add the regulators. How does that sound? If the firmware
+>>> isn't updated, the PMIC will fail to probe, but since nothing is using it,
+>>> the system will continue to work (with some annoying error messages).
+>>>
+>>
+>> That'd be wrong, but less wrong than not having anything described...
 > 
-> Small correction: my name is Ramshouriesh. You can address me as Ram.
+> Yeah. As I said, it doesn't affect usability.
+> 
+>> ...I wonder if, at this point, you could set the SPMI node to status = "fail" and
+>> have the *new* firmware override that to "ok".
+>>
+>> That's the only reasonable way to go forward, IMO.
+> 
+> I'm afraid it is unlikely to get a firmware release to fix a non-critical
+> issue. We were fortunate that there was an actual critical issue being
+> fixed that allowed me to merge the small fix for the SPMI controller.
+> 
 
-My apologies for that, there apparently were quite a few letters missing. I
-hope that wasn't the case with the review.
+Yeah, I know how it is regarding firmware updates... but you know, I *must* try to
+get OEMs/ODMs to do the right thing when hacky things get in front of me, and I am
+fully aware that many of them largely underestimate such issues, and even close the
+possibility to fix those, which is even worst.
+
+On the other hand, I know you, and I know that you always try to do the same
+whenever you can, so please, be aware that I'm not complaining about you.
+
+> I think it would be great if everyone could update their OS and firmware,
+> but I understand that some devices never get updates, such as those in
+> board farms that never boot into ChromeOS.
+
+Unfortunately, this is not just a ChromeOS problem but way larger...
+
+Anyway, I'll stop here to prevent myself from going OT too much and being grumpier
+than I already am :-P
+
+I guess then just add the SPMI PMIC and add a big comment that clearly states
+something like
+
+/*
+  * The mt6319_buck1 is the cpu-supply for CPU6 and CPU7.
+  *
+  * However, this device ships with a broken firmware which needs to be updated to
+  * at version XXXXXXX or newer in order to workaround a bug that (describe bug).
+  *
+  * [blahblah text so that's why the cpu supply was not assigned to cpu6/7].
+  */
+
+...so that everyone reading the DT is fully aware of what's going on and can act
+accordingly if they wish.
+
+How does that sound?
+
+Cheers,
+Angelo
 
 > 
-> Thanks for the review. I’ll address the comments in the next revision.
 > 
-> However regarding the mode names, there is no proper datasheet for
-> this sensor released publicly.
-> I will add the proper mode names based on what the camera does in each mode.
+> ChenYu
 > 
-> And regarding the driver supporting single data lane, I will make
-> data-lanes optional and
-> will initialize the endpoint parser with a default of one data lane
-> and configurations
-> explicitly specifying anything other than one lane will be rejected.
-> The binding will retain an optional constraint permitting only <1>, so
-> an explicit invalid
-> value will be caught by schema validation, but data-lanes will be
-> omitted from the example.
+>> Of course, avoid having the firmware adding the CPU supplies, because that would
+>> be rather sketchy then. Just "if spmi status fail found, change to ok".
+>>
+>> Cheers,
+>> Angelo
+>>
+>>>
+>>> ChenYu
+>>>
+>>>> Cheers,
+>>>> Angelo
+>>>>
+>>>>> ---
+>>>>>     .../boot/dts/mediatek/mt8188-geralt.dtsi      | 66 +++++++++++++++++++
+>>>>>     1 file changed, 66 insertions(+)
+>>>>>
+>>>>> diff --git a/arch/arm64/boot/dts/mediatek/mt8188-geralt.dtsi b/arch/arm64/boot/dts/mediatek/mt8188-geralt.dtsi
+>>>>> index f382f90c48f5..fea52c377d88 100644
+>>>>> --- a/arch/arm64/boot/dts/mediatek/mt8188-geralt.dtsi
+>>>>> +++ b/arch/arm64/boot/dts/mediatek/mt8188-geralt.dtsi
+>>>>> @@ -4,6 +4,8 @@
+>>>>>      */
+>>>>>     /dts-v1/;
+>>>>>     #include <dt-bindings/gpio/gpio.h>
+>>>>> +#include <dt-bindings/spmi/spmi.h>
+>>>>> +
+>>>>>     #include "mt8188.dtsi"
+>>>>>     #include "mt6359.dtsi"
+>>>>>
+>>>>> @@ -241,6 +243,14 @@ &cpu5 {
+>>>>>         cpu-supply = <&mt6359_vcore_buck_reg>;
+>>>>>     };
+>>>>>
+>>>>> +&cpu6 {
+>>>>> +     cpu-supply = <&mt6319_buck1>;
+>>>>> +};
+>>>>> +
+>>>>> +&cpu7 {
+>>>>> +     cpu-supply = <&mt6319_buck1>;
+>>>>> +};
+>>>>> +
+>>>>>     /*
+>>>>>      * Geralt is the reference design and doesn't have target TDP.
+>>>>>      * Ciri is (currently) the only device following Geralt, and its
+>>>>> @@ -1156,6 +1166,14 @@ pins-bus {
+>>>>>                 };
+>>>>>         };
+>>>>>
+>>>>> +     spmi_pins: spmi-pins {
+>>>>> +             pins-bus {
+>>>>> +                     pinmux = <PINMUX_GPIO175__FUNC_B0_SPMI_M_SCL>,
+>>>>> +                              <PINMUX_GPIO176__FUNC_B0_SPMI_M_SDA>;
+>>>>> +                     bias-disable;
+>>>>> +             };
+>>>>> +     };
+>>>>> +
+>>>>>         uart0_pins: uart0-pins {
+>>>>>                 pins-bus {
+>>>>>                         pinmux = <PINMUX_GPIO31__FUNC_O_UTXD0>,
+>>>>> @@ -1267,6 +1285,54 @@ &spi2 {
+>>>>>         status = "okay";
+>>>>>     };
+>>>>>
+>>>>> +&spmi {
+>>>>> +     pinctrl-names = "default";
+>>>>> +     pinctrl-0 = <&spmi_pins>;
+>>>>> +     #address-cells = <2>;
+>>>>> +     #size-cells = <0>;
+>>>>> +     status = "okay";
+>>>>> +
+>>>>> +     pmic@6 {
+>>>>> +             compatible = "mediatek,mt6319-regulator", "mediatek,mt6315-regulator";
+>>>>> +             reg = <0x6 SPMI_USID>;
+>>>>> +             pvdd1-supply = <&pp4200_s5>;
+>>>>> +             pvdd2-supply = <&pp4200_s5>;
+>>>>> +             pvdd3-supply = <&pp4200_s5>;
+>>>>> +             pvdd4-supply = <&pp4200_s5>;
+>>>>> +
+>>>>> +             regulators {
+>>>>> +                     mt6319_buck1: vbuck1 {
+>>>>> +                                     regulator-name = "ppvar_dvdd_proc_bc";
+>>>>> +                                     regulator-min-microvolt = <520000>;
+>>>>> +                                     regulator-max-microvolt = <1155000>;
+>>>>> +                                     regulator-enable-ramp-delay = <256>;
+>>>>> +                                     regulator-allowed-modes = <0 1 2>;
+>>>>> +                                     regulator-always-on;
+>>>>> +                     };
+>>>>> +
+>>>>> +                     /* vbuck2 is ganged with vbuck1 */
+>>>>> +
+>>>>> +                     mt6319_buck3: vbuck3 {
+>>>>> +                                     regulator-name = "pp1125_emi_vdd2";
+>>>>> +                                     regulator-min-microvolt = <1060000>;
+>>>>> +                                     regulator-max-microvolt = <1170000>;
+>>>>> +                                     regulator-enable-ramp-delay = <256>;
+>>>>> +                                     regulator-allowed-modes = <0 1 2>;
+>>>>> +                                     regulator-always-on;
+>>>>> +                     };
+>>>>> +
+>>>>> +                     mt6319_buck4: vbuck4 {
+>>>>> +                                     regulator-name = "pp0600_emi_vddq";
+>>>>> +                                     regulator-min-microvolt = <570000>;
+>>>>> +                                     regulator-max-microvolt = <650000>;
+>>>>> +                                     regulator-enable-ramp-delay = <256>;
+>>>>> +                                     regulator-allowed-modes = <0 1 2>;
+>>>>> +                                     regulator-always-on;
+>>>>> +                     };
+>>>>> +             };
+>>>>> +     };
+>>>>> +};
+>>>>> +
+>>>>>     &uart0 {
+>>>>>         pinctrl-names = "default";
+>>>>>         pinctrl-0 = <&uart0_pins>;
+>>>>
 
-Please just drop the data-lanes property altogether: the DT is intended to
-convey the board, generally what's not discoverable or otherwise known, to
-software, and there's nothing to configure here.
-
-And one more thing. Could you add the selection rectangles and possibly
-other API elements required by libcamera
-<URL:https://docs.libcamera.org/master/sensor_driver_requirements.html>?
-
--- 
-Kind regards,
-
-Sakari Ailus
 
