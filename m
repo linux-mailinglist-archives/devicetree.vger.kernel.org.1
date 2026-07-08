@@ -1,164 +1,176 @@
-Return-Path: <devicetree+bounces-322823-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-322824-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id QkyBH2RLTmpWKQIAu9opvQ
-	(envelope-from <devicetree+bounces-322823-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 15:06:44 +0200
+	id 7/I0Bz9KTmoZKQIAu9opvQ
+	(envelope-from <devicetree+bounces-322824-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 15:01:51 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C95037269BD
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 15:06:43 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id E3FF87268F5
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 15:01:45 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=baylibre.com header.s=google header.b=P3VKXxdd;
-	dmarc=none;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322823-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-322823-lists+devicetree=lfdr.de@vger.kernel.org";
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=2")
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=j2RnwX+p;
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322824-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-322824-lists+devicetree=lfdr.de@vger.kernel.org";
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A663231020AC
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 12:58:28 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 15837301EF4E
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 12:59:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53984472797;
-	Wed,  8 Jul 2026 12:58:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7ACBC4508F7;
+	Wed,  8 Jul 2026 12:59:39 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f180.google.com (mail-oi1-f180.google.com [209.85.167.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE0F846AF05
-	for <devicetree@vger.kernel.org>; Wed,  8 Jul 2026 12:58:12 +0000 (UTC)
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783515494; cv=pass; b=D6vEQMJHnHRZ332Dqr7/qRZV1lB7wHeZyJ7L9J1zgjgRWfDg/1jdmR9LXYumJYFgHgNhKEbmXi9p4nmRTtx8x0EmqWQUMebVUnaTGvamx84s5G4ouaEQ/kA7TLo2iB5RKnb7R5KrUe3+NlcTGfu8/QUJu9SVTWKMDSHD6+YERic=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783515494; c=relaxed/simple;
-	bh=g3jhdMOgt2auKeqJZC2qsgnXeW6Etk1FtxDSQv7KpuI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=HStEUPqhXiz9xQIZIPmmlCHD//y7Scy5Hken4lYtyCXykJ4A4NRUexH8M7Gfm0FBo1mgYssLazt38lN8bqfxV5wZ7gd1riEdpH/fG/j9mPjaUpVaCgTJrulf73DSpysZaSw9NA8HuMqyhv890wqKpW0Zb9S9a5KQuHSyeWkbFIc=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.b=P3VKXxdd; arc=pass smtp.client-ip=209.85.167.180
-Received: by mail-oi1-f180.google.com with SMTP id 5614622812f47-49fa951b2c6so456608b6e.1
-        for <devicetree@vger.kernel.org>; Wed, 08 Jul 2026 05:58:12 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1783515492; cv=none;
-        d=google.com; s=arc-20260327;
-        b=aO7ojL5iRAHLt3/Sc4MQibg3JGeT+QqCd1Il1PwiHjxa9QnnSoMgQzSMMpOUyzX+qn
-         c8uaRVqkNiMCno356JsbXGcH7ukV/EgRf6UdM7qacXRT4LNOogZSiWJkK7o03N6uD/qT
-         DqlAFVaoL61Qy8QzW/8d5cMYkfRfSSosK4NbCKhzRwT57rGaqDLb0VfVXOREBV5P9+Ex
-         n3jJ/xkHFLlkWZVvTrMvdHA0X8/rGMxGldbKo8CRlTCUdfHlQnHmzC1sihil6ua8wglm
-         4l5sTAAqNiKLuJXj9+c9+7d9aAavaUl141uCr+VQfaPxoXVsHEaFYTPYQ8ougkTwEmTn
-         nBlg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=g3jhdMOgt2auKeqJZC2qsgnXeW6Etk1FtxDSQv7KpuI=;
-        fh=+Kn94FVzl6rE7mDhn4pFvEHlRshbQ57dQ5o19v04Oyg=;
-        b=YX+jQRc0Nr4ZGyuNQuAIBwaGdqGrQxGB1MAH5i8wH+BjCt/nbCJubgarshkcxh1X+Z
-         XETy8l53rrOcUNtv6OLvqk5cPLhoSTwKC+ZT19nNbF0cUokeauQEJKhYZQJJukfTFp4r
-         wJ8pxJEj9QC767PvovYP4WiGG/IIAyC8m/OQUNbM58xskztpU2XCRqQpYWDxzk/Akd1p
-         2o0rMIWdwVQoc6nCwWTSppZ9AD8MB+OSmR1GQo9tT0zELquGMi0Fc/5sozY0Z8xUuUXx
-         mv2cgdv7eySDNJop/N9jHd7tVCxJ7z91rE1TXWh1jHxbZpdaq5obAPXIhI9b7Q+LHlWe
-         ODPQ==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre.com; s=google; t=1783515492; x=1784120292; darn=vger.kernel.org;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=g3jhdMOgt2auKeqJZC2qsgnXeW6Etk1FtxDSQv7KpuI=;
-        b=P3VKXxdd2rrTlsS3gqc/6LEP4JEZoMfYL81iRZPA9+4uwxIG70hvZc+YilgZFIM1MO
-         nxzMAnUK9/VtQFgWxycFCPYj6E5cEms+13ayeed7ihEQ0137lyBJLdnefjR6xq42dHVu
-         cQKXqBvlFHXx96x4KsCg8e9OGu/sFsvYbuNK2dBMnHOrJI/Vn+pDWYvED7au9k3M8bUj
-         T13Nqemmna4r0O9rJ6Ybsd/0IAvqKypMS50Qyn3DvVwPXQ8bx1fHQZUtyePqzKpbnFCZ
-         StIXAqf8WDCG4UwoxOkRqBJ02PBU8UNdIARwqQf5TMqnFVwD3mGskL0EBz/W+GOAn4B1
-         Ol9Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783515492; x=1784120292;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=g3jhdMOgt2auKeqJZC2qsgnXeW6Etk1FtxDSQv7KpuI=;
-        b=iAsiCmF/eW7R5aRahojFohUepxCMV4OzwfqdwjUmVFk9U7/GvFF924kneGdwTQ2twT
-         3dbOyahPNqFMkU4Dnv+mLTxloOXMYuU/MMYb1+Aa/39jNE7/sQaC5gUQF76jYB+SjkBo
-         oI+/c7nOdqb+NbfhQ8lx2irfXT1ZyjX9cCFVMlfOT7gAc4s5AHD/GKNKx/veIqHRQ05V
-         FqjEjzTgeqp8R4RC7WaHX5Y1fu3LQVbUrFA/SMu+3b+Ysj7o4xp60rJlMXcq4oXbNcXB
-         QwA2h/yGXRGI/GeRy5CQx0WJSFq0MsUwGY0n0+1+tKD43VbneMFj4w2bFXSkmWIu063m
-         S0CQ==
-X-Gm-Message-State: AOJu0Yxv/gIsqJ374zb/8ZZLdR/4i2psI04/XrgRviT4UFsHT1h+HbnI
-	8aRcnvm/2E4PNmQK8D/tG6eskOPGgfRz6cXBdiBB3uEy5A28O/rZsrL6m1jED8CvRheZ9dfY76x
-	HiZ3n1T1+/G5upk81BzVLDDQfMyYWlGX4F+dDwNgdHg==
-X-Gm-Gg: AfdE7clrgh5+40JZ2rz7C2fDcezmbaTq6xRuSL8gvLPiMqEX0YjQsp+qIsWORXK1MkK
-	qbOTy8LZqW47g3pvMcr1b+7E0l5rtzxXg3uW9Jh4NiHJ6pgmS/VQownMPMZmkySgZqKuq5uTGbM
-	puDMoeRhJZUPE/mGe0pMoeGH7todPvo/SEBM+XowGGJhaAoQq7H9CyXYQuCW+lAbowwt3kHCFR8
-	/9wPz8SyPqKCSzl6WtRVenv9Io4p0bu+1eSVxkYPcfcfXbyqtD/HpK+21yWdGI0jAZ6Tsi2
-X-Received: by 2002:a05:6808:221d:b0:487:61da:70fb with SMTP id
- 5614622812f47-4a2021033dcmr2098773b6e.10.1783515491810; Wed, 08 Jul 2026
- 05:58:11 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D2FF4657C4
+	for <devicetree@vger.kernel.org>; Wed,  8 Jul 2026 12:59:38 +0000 (UTC)
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1783515579; cv=none; b=saHHKza7mI4kKTS/I5OWVJ9sAv5+jRV+BwRB67A5pGJTcU16TqiPvCpiL4G6/fNyK+pBwZ0wfJVP/oFaqs4gyVW75Tos0/djR522MQf4TTqpDTH/7YyJ+cSVg3JZFp8sfB3Mxy53F5g3lgTo3fq/5rpb190iL56stulgplXsP6c=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1783515579; c=relaxed/simple;
+	bh=cvqYhYnXXEQoboO0Ocq29k/BhX5X44SyjDDeciQY8lI=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=oP4Lc5IB7YNSAjjnDBv8P7sD/yVEOZpyM3+YQSB1M+5IGLpXoid4FTq/XVqNIx1PRy8q3rsIMTy0hkaSAbBkULcfqiPmwq2ts03slHFJNLz3XAhECOh7GGFuLcrBmd3seKEun2yEaPAIcfH9W8o+BtOorKH1IxSHhst724svaUc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=j2RnwX+p; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EEC651F000E9;
+	Wed,  8 Jul 2026 12:59:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1783515578;
+	bh=v53hsJE6JBpbf12RNy18nOj0XAfLdlhflf4sWeCndiY=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=j2RnwX+pOKrwhzYHnzt0plaoLGQE7KZn8KjsdsCIpRxA2pT+OWtmBf0O1HYEhFHKf
+	 Ly0b/2pXMFsPp7W/hhz/x8SqHZtJ5g6qh7qla3qmbRwETKHA9ARpcPy6Dud3KQh44g
+	 Q3XHuGk1rWCs6kcA7PcEol763jtErYZpY68fiNgFxKjyI7aG1b3bBG1mdeziGShCCe
+	 1NWDGEn1XRDA73Ng7GishZPVHvTor587SUhVALJUh0iXevnx6zeo/pkkPMTNRqteHd
+	 ERzkcY1grbv8utD9pp5Vh56s3BkWMvL0pG5tLD7VgXcrjLD4GIcurC9y4B5GZXFuJv
+	 kM5D4ioEEG1Ew==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v7 2/4] arm64: dts: nuvoton: npcm845: Reorder timer0 and
+ PECI nodes
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Tomer Maimon" <tmaimon77@gmail.com>
+Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260708125352.1915040-3-tmaimon77@gmail.com>
+References: <20260708125352.1915040-1-tmaimon77@gmail.com>
+ <20260708125352.1915040-3-tmaimon77@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Wed, 08 Jul 2026 12:59:37 +0000
+Message-Id: <20260708125937.EEC651F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-References: <20260708-ccaione-genio-serial-aliases-v1-0-bf22229e9383@baylibre.com>
- <20260708-ccaione-genio-serial-aliases-v1-1-bf22229e9383@baylibre.com> <20260708112728.B36141F00A3A@smtp.kernel.org>
-In-Reply-To: <20260708112728.B36141F00A3A@smtp.kernel.org>
-From: Carlo Caione <ccaione@baylibre.com>
-Date: Wed, 8 Jul 2026 14:58:01 +0200
-X-Gm-Features: AUfX_my6OBZKWFOlZuKLzFJWZl41nIBGecHHeWzeLn71mq8QPAB-_oeroes61x8
-Message-ID: <CADh8LscJzRdYOKER6=zS4f_0Sa7YhcU2sTTDswwdGMZe9LNERw@mail.gmail.com>
-Subject: Re: [PATCH 1/2] arm64: dts: mediatek: alias all enabled serial ports
- on Genio boards
-To: sashiko-reviews@lists.linux.dev
-Cc: devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-1.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	R_DKIM_ALLOW(-0.20)[baylibre.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-322823-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:sashiko-reviews@lists.linux.dev,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[ccaione@baylibre.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-322824-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	DMARC_NA(0.00)[baylibre.com];
-	DKIM_TRACE(0.00)[baylibre.com:+];
-	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:tmaimon77@gmail.com,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_TO(0.00)[gmail.com];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ccaione@baylibre.com,devicetree@vger.kernel.org];
-	RCPT_COUNT_THREE(0.00)[4];
-	TO_DN_NONE(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RSPAMD_URIBL_FAIL(0.00)[sashiko.dev:query timed out];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TO_DN_SOME(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MIME_TRACE(0.00)[0:+]
+	ALIAS_RESOLVED(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NO_DN(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	RCPT_COUNT_THREE(0.00)[4];
+	RSPAMD_EMAILBL_FAIL(0.00)[devicetree@vger.kernel.org:query timed out,sashiko-reviews.lists.linux.dev:query timed out];
+	MISSING_XM_UA(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: C95037269BD
+X-Rspamd-Queue-Id: E3FF87268F5
 
-On Wed, Jul 8, 2026 at 1:27=E2=80=AFPM <sashiko-bot@kernel.org> wrote:
->
-> Thank you for your contribution! Sashiko AI review found 1 potential issu=
-e(s) to consider:
->
-> Pre-existing issues:
-> - [High] Incomplete fix: mt8390-tungsten-smarc.dtsi leaves multiple enabl=
-ed UARTs without aliases, remaining vulnerable to the console probe-deferra=
-l race condition.
-> --
-
-Alright, let me double check if I missed any board. I'll eventually submit =
-a V2.
-
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [Low] The patch duplicates the `timer0` node instead of moving it, result=
+ing in a duplicate node and label definition that will cause a Device Tree =
+Compiler (DTC) error.
 --
-Carlo Caione
+
+--- Patch [2]: [PATCH v7 2/4] arm64: dts: nuvoton: npcm845: Reorder timer0 =
+and PECI nodes ---
+commit 1450734310ae6f4872b7fb3d37cc7db1efd0ebca
+Author: Tomer Maimon <tmaimon77@gmail.com>
+
+arm64: dts: nuvoton: npcm845: Reorder timer0 and PECI nodes
+
+Move the timer0 and PECI nodes so the APB children are ordered by
+ascending unit address.
+
+> diff --git a/arch/arm64/boot/dts/nuvoton/nuvoton-common-npcm8xx.dtsi b/ar=
+ch/arm64/boot/dts/nuvoton/nuvoton-common-npcm8xx.dtsi
+> --- a/arch/arm64/boot/dts/nuvoton/nuvoton-common-npcm8xx.dtsi
+> +++ b/arch/arm64/boot/dts/nuvoton/nuvoton-common-npcm8xx.dtsi
+> @@ -59,15 +59,6 @@ apb {
+>  			ranges =3D <0x0 0x0 0xf0000000 0x00300000>,
+>  				<0xfff00000 0x0 0xfff00000 0x00016000>;
+> =20
+> -			peci: peci-controller@100000 {
+> -				compatible =3D "nuvoton,npcm845-peci";
+> -				reg =3D <0x100000 0x1000>;
+> -				interrupts =3D <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>;
+> -				clocks =3D <&clk NPCM8XX_CLK_APB3>;
+> -				cmd-timeout-ms =3D <1000>;
+> -				status =3D "disabled";
+> -			};
+> -
+>  			timer0: timer@8000 {
+>  				compatible =3D "nuvoton,npcm845-timer";
+>  				interrupts =3D <GIC_SPI 32 IRQ_TYPE_LEVEL_HIGH>;
+
+[ ... ]
+
+> @@ -138,6 +129,13 @@ serial6: serial@6000 {
+>  				status =3D "disabled";
+>  			};
+> =20
+> +			timer0: timer@8000 {
+> +				compatible =3D "nuvoton,npcm845-timer";
+> +				interrupts =3D <GIC_SPI 32 IRQ_TYPE_LEVEL_HIGH>;
+> +				reg =3D <0x8000 0x1C>;
+> +				clocks =3D <&refclk>;
+> +			};
+> +
+
+[Severity: Low]
+Will this result in a duplicate node and label definition during dtbs
+compilation?
+
+It appears this patch adds timer0 to its new sorted location but misses
+removing the original timer0 node from the top of the apb bus. This typical=
+ly
+causes a duplicate label error from the Device Tree Compiler.
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260708125352.1915=
+040-1-tmaimon77@gmail.com?part=3D2
 
