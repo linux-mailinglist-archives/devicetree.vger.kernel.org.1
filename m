@@ -1,178 +1,250 @@
-Return-Path: <devicetree+bounces-322930-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-322932-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id d7gfJ71lTmqvLwIAu9opvQ
-	(envelope-from <devicetree+bounces-322930-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 16:59:09 +0200
+	id 6nonKcFlTmq0LwIAu9opvQ
+	(envelope-from <devicetree+bounces-322932-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 16:59:13 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 082C1727B01
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 16:59:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 281BD727B0E
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 16:59:13 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=TqqYD7qm;
-	dmarc=pass (policy=none) header.from=intel.com;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322930-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-322930-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b="I/6K8tSV";
+	dkim=pass header.d=oss.qualcomm.com header.s=google header.b=F6Q3VhtO;
+	dmarc=pass (policy=reject) header.from=qualcomm.com;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322932-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-322932-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 8C9BA30CBBDF
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 14:54:01 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 6E9B930432F7
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 14:54:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5AAB23AD505;
-	Wed,  8 Jul 2026 14:52:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9399C49690B;
+	Wed,  8 Jul 2026 14:52:12 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE27543C7D2;
-	Wed,  8 Jul 2026 14:52:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43F9848C405
+	for <devicetree@vger.kernel.org>; Wed,  8 Jul 2026 14:52:11 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783522326; cv=none; b=re0bq7vR1O3MEqoR5YBs2tSLoEdJIEdjIA91Z0fkQBNOJifljuvMrASLIMndBa8Y0bhGpMupOk14cM8X6fjhjTO5MpVewx/QhQXryH4wLczcNSsNi++mf4i+30I7BVTyYhAvGHTqaPzGIRzE1pi4Z+YKEobk2Tg3y1dBZpVvbls=
+	t=1783522332; cv=none; b=MiomcGt3atCRDfnTEJ0Wh9nJGlEm8+6NWcb+xDYCbi8uVZwFc3xUzdcKSm7n6tVIvcNpAXumZcH4Tz+b595SpajOgrFfTjCfk4Rt38B0c5HJ2xn58VXgToTBS/UmNaDXxlcv2iwec+O4b0gYjFfLXKNAQAxehZSxSCyULJXt9yI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783522326; c=relaxed/simple;
-	bh=+RfC/xqi5foyvk7ovWqVRKrPk/rOuEWPd2u/U/fXfac=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=r0zLm4pAktMvOT/tMwYFOGPfe8b9TMaGh7Ol1E697iCpwyOsvEp1ds0hXpK82ZOIkCFNp6n3RwuoREcnm2Q2FtZtQs+zPPbSS7tUC17u2e1Pb07R5Z1qH6smsxQ+q76A2xHghdc86kA8l3nL0oGjidaXY7YxVLFOBlAM5RYjzSY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=TqqYD7qm; arc=none smtp.client-ip=192.198.163.11
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1783522325; x=1815058325;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=+RfC/xqi5foyvk7ovWqVRKrPk/rOuEWPd2u/U/fXfac=;
-  b=TqqYD7qmAbuerlI/NtDfBEhs5+65G/seNtE2uoMqTTtO8XKe4Big9A2A
-   DZV9nY2MlRrnVs0VBpf3Oac8LBBKu90psFVwDGahXgRL4RG97AwatOJfq
-   c3xVCNHIEn3NvVbcnc+NnmKnxv/QDo3Y0JbexAAEJfq220wWU4ejwi5GP
-   1PilbpvEw1sF1PonW3S5KIuaFe8XBo8M5UyBdZXBsMmcEtUdr/l3BDBFy
-   BuDTfCNlNSGWQil5GIa0tjJBEh+JpvEKEoU1WBo9rbAmw5qlXOW/dLuXO
-   G739TcsxTgWmWbbOv+APj0z+xaHSyM1KeWb/BEv09kZ0MJUBBqnR972gO
-   Q==;
-X-CSE-ConnectionGUID: hrrOEuO4T4WO7fvieciQ+w==
-X-CSE-MsgGUID: qajyCrQqRFGSYSO9Rhx7ig==
-X-IronPort-AV: E=McAfee;i="6800,10657,11841"; a="94791446"
-X-IronPort-AV: E=Sophos;i="6.25,153,1779174000"; 
-   d="scan'208";a="94791446"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
-  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Jul 2026 07:52:00 -0700
-X-CSE-ConnectionGUID: pe2I5EhiQv6m3EpzdylWeQ==
-X-CSE-MsgGUID: 899EseynSvCfbO5YFHPVYA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,153,1779174000"; 
-   d="scan'208";a="292497405"
-Received: from klitkey1-mobl1.ger.corp.intel.com (HELO localhost) ([10.245.245.100])
-  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Jul 2026 07:51:57 -0700
-Date: Wed, 8 Jul 2026 17:51:54 +0300
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Md Shofiqul Islam <shofiqtest@gmail.com>
-Cc: Joshua Crofts <joshua.crofts1@gmail.com>, linux-iio@vger.kernel.org,
-	jic23@kernel.org, devicetree@vger.kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org,
-	u.kleine-koenig@baylibre.com
-Subject: Re: [PATCH v9 2/2] iio: health: add MAX86150 ECG and PPG biosensor
- driver
-Message-ID: <ak5kCs3BkB_Trr2f@ashevche-desk.local>
-References: <20260707112714.2261727-3-shofiqtest@gmail.com>
- <20260707140545.0000029a@gmail.com>
- <ak0X8yrg5ujz8r5L@ashevche-desk.local>
- <CAOTCDVth36hE1JqAi3vJ3hKuqhs_yyjV0ZZx5mZotiJYzNDATg@mail.gmail.com>
+	s=arc-20240116; t=1783522332; c=relaxed/simple;
+	bh=RoFMDCUUj62w2tWbiccAzqrlHIyKF0aRDZB8FP8cyts=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ZuWjRVncZ6ObleuRyHyS1CQtJaO/+PyCuSL/FvpekaOlMmDnlQIBQx+sXn4zDgDga0Ol/OZY5do53EktdWFJjt2tJ33HDa/Mc6wsVWUHGtef3IBMXQVE1/lAgGEsNgxOJUAn6t8r2iro78V2IrLZ4c7PQH1qjSL9iqNs5tczSO0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=I/6K8tSV; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=F6Q3VhtO; arc=none smtp.client-ip=205.220.168.131
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 668C3AFc2736272
+	for <devicetree@vger.kernel.org>; Wed, 8 Jul 2026 14:52:10 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	hO6xcDIc0zi6w0QwroXm/ugLcJogfcgAT7RlRKexx38=; b=I/6K8tSV8Tog1rSx
+	QxTgfuz3V4KJuTrPPMd8xzxm2aaI6LUUSzIanf1NQbBAEsalbCXUwg382Rnv3p/a
+	jlD5XnZYGzgz8Uq63XhVbDtel8TCA0glGeJp7uDS2/7jzS24G+OzLfripjdAvyUs
+	FLlAFqO7Fr/02nlVXF7J7d7Yc//8R67dC1D06wli2yKvt05bnScaZi+H8ZaqYGwp
+	W4BNxGV2GnQmaAUIBS9iFVnWhFsGQKOGoAs7QJFDxEy3zArlMLhqu81mxr2WIh49
+	rrlcQ5TANwq1woAas9TIzX7YWOK0hKx1eMAwxXKKzh/eZDTNfg6thRCZ+7owT9yy
+	0rAePg==
+Received: from mail-oo1-f72.google.com (mail-oo1-f72.google.com [209.85.161.72])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4f9hnv1wbt-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 08 Jul 2026 14:52:10 +0000 (GMT)
+Received: by mail-oo1-f72.google.com with SMTP id 006d021491bc7-6a374304efbso528233eaf.3
+        for <devicetree@vger.kernel.org>; Wed, 08 Jul 2026 07:52:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1783522330; x=1784127130; darn=vger.kernel.org;
+        h=content-transfer-encoding:content-type:in-reply-to:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=hO6xcDIc0zi6w0QwroXm/ugLcJogfcgAT7RlRKexx38=;
+        b=F6Q3VhtOmkjcmy1GAszQ9vNuarpUoEE/zrOdrS/6lNHRWdj+rsv78HkHppN1+wU/Jj
+         MK2KaGK0pQ5Lf6Vvc5+/V8tKrx46r1+erln+MHTMI8+mS2mXBJoFGhDR6/sPzttc9pCM
+         dkl7RyH+PWUlvYt1UL9T0JTHQVHfBXJb5Dvm89Z1Vwj0f0YQtu2edJkCyaSKiEbTW7cD
+         gTufOEGv53XE68K3qe1L2Wr/W/I3APeR+ATpxXjTZ259L0otL1bhhtG1iH+CSknIFFJm
+         KPZKKrbNR1VQ/J1ndNMA5BqNTWbzyhs9YC+Vu9mwpW6l4tPnihOxXkGfATwUF869jvgk
+         oPbA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1783522330; x=1784127130;
+        h=content-transfer-encoding:content-type:in-reply-to:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=hO6xcDIc0zi6w0QwroXm/ugLcJogfcgAT7RlRKexx38=;
+        b=mYARjWg6u/BabXDP6iMPRiMgVLKpKrIxSVFKvJ6AktViVG+vQq3Sm/5/yRuqtdYXD+
+         y5OWPcwARFZCbivzV8hb/twlWQ6tXQpkfzRP30WJY4AT3I/l/xaFY4qq+YqThK6t8i1V
+         McCpWANomCCtoFsOy8ZRd3p2IRJDSTJ9CUtoCkyj7zLRLwuOKjwkwV1t+JzIJ6H3Owc2
+         UsYojLu4SdxG8G7EXeaCsJ6AfAy1aVgHWYJRQnMAUomCI9Lzq5CLuj1iFJxcJFKQQnJH
+         BhLfRKw7Zl41BdX3lDQkudkIWYV01c3txWeVoxaXrgsIItqmdwanOEkUzSmfAkf4Kq2W
+         2gpQ==
+X-Forwarded-Encrypted: i=1; AFNElJ+mj7QQhmhHseD430apo27xKnIgxkUFSQyMRG/p8UKOoO0/splOkugMNOKceL1nsC60bQztRDQcGP+c@vger.kernel.org
+X-Gm-Message-State: AOJu0YzO16j2d4tw+I5OZLRELBiVrsJScyaCMJsRpr627c7ldWYivBmh
+	OULT1XMXQpW0m8jo9rRrejL3moZxL/awPGqfREOkbHOOmnj/asCP23MQlG0N2TOPYM3NjgEA2kd
+	339E7HwHtjX3/vjL5zHQNZk+GtURviNL9WfhQuTGcOOg2aXb6R+msMD7xy7mTN1OY
+X-Gm-Gg: AfdE7ck3C/Lnu+I2XIIPfnAJqKWu2xrYxCGr68BSxj0ClYdDgcBtq3XhfsW9+gramMN
+	tunqpfLbJ2I/U+OOFZUCL2f4y7QMAKwr6CPQmtV2UmAg6Yrdjr7ZW8KwfdkGQdCGKL45GMKlEc8
+	p/aIW8Q4X3m9YcC3qs3ZkUmRRfD3eNHOPKdDppHqrjQgRsfOLWX9BCbVxAq/y908tUkj+V1qdZd
+	q/w9mNLVuGUCN1eyROfdv9EcgPh4DWlKCzWlI0gkjHxzolqSd5OcrEZYSGsfmvT8/XymNHgjFtN
+	54Qwks0uqS8Yg9EaxzIkcnHOBjSi7ZWIDdqY7aSGccINhizP7tDqbomvJ6IQODvYmLaDeFXMIvX
+	8QoqKDul2CzKaGJ1px0j861D0j3SUOUyGURgR7tw=
+X-Received: by 2002:a05:6820:20e:b0:6a3:21bb:17b with SMTP id 006d021491bc7-6a36da17682mr1672828eaf.58.1783522329626;
+        Wed, 08 Jul 2026 07:52:09 -0700 (PDT)
+X-Received: by 2002:a05:6820:20e:b0:6a3:21bb:17b with SMTP id 006d021491bc7-6a36da17682mr1672782eaf.58.1783522328951;
+        Wed, 08 Jul 2026 07:52:08 -0700 (PDT)
+Received: from [10.219.56.198] ([202.46.23.19])
+        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-44cfb13d624sm16831050fac.1.2026.07.08.07.52.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 08 Jul 2026 07:52:08 -0700 (PDT)
+Message-ID: <4e266d45-ee88-42f8-91da-6253927686ae@oss.qualcomm.com>
+Date: Wed, 8 Jul 2026 20:22:00 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAOTCDVth36hE1JqAi3vJ3hKuqhs_yyjV0ZZx5mZotiJYzNDATg@mail.gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/6] dt-bindings: iommu: arm,smmu: Document
+ interconnects property
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
+        Joerg Roedel <joro@8bytes.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Rob Clark <robin.clark@oss.qualcomm.com>,
+        linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+References: <20260706-smmu_interconnect_addition-v3-0-afdca0125a65@oss.qualcomm.com>
+ <20260706-smmu_interconnect_addition-v3-1-afdca0125a65@oss.qualcomm.com>
+ <nrht4irqtvt2vk3lrqvljonarc4kanht2nrwjt7pppsfhozffv@o4xei47l6gcj>
+ <e8b247d9-d60d-497f-a831-a9772d27481a@oss.qualcomm.com>
+ <phlk6zsxr7szdadsvgoecf7ewcqjkuaj5aeqmfqa4uvvvvnsmj@57u2pofxewuh>
+Content-Language: en-US
+From: Bibek Kumar Patro <bibek.patro@oss.qualcomm.com>
+In-Reply-To: <phlk6zsxr7szdadsvgoecf7ewcqjkuaj5aeqmfqa4uvvvvnsmj@57u2pofxewuh>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Authority-Analysis: v=2.4 cv=KNNqylFo c=1 sm=1 tr=0 ts=6a4e641a cx=c_pps
+ a=wURt19dY5n+H4uQbQt9s7g==:117 a=j4ogTh8yFefVWWEFDRgCtg==:17
+ a=IkcTkHD0fZMA:10 a=RAioF0-LDSMA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=eoimf2acIAo5FJnRuUoq:22
+ a=EUspDBNiAAAA:8 a=6nhsP2hVHzjk3Kom7RcA:9 a=QEXdDO2ut3YA:10
+ a=-UhsvdU3ccFDOXFxFb4l:22
+X-Proofpoint-Spam-Info: AW1haW4tMjYwNzA4MDE0NiBTYWx0ZWRfX1nEVCWMp2BSq
+ bVxJoOeAB7S/LjGLWMZSe0G1syuj8kNPTRv3eoNE7n1Kl0oJ/WHvVQG3OOJkxO1HDHWbaGxxN22
+ DlmylsHyzRfsWPgEAEWm5hHHac6+XQU=
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNzA4MDE0NiBTYWx0ZWRfX9Xi19aZUX5TP
+ CApdw9/BZR1+IVg7UTBcw2H/FWMgYiBLh8abjPUdvHK8ZSvTMVl2Lcn8VxiMWpVIuNP6LjxyoHD
+ iwe8jrluVM7ViBdZqEh7BMbJ94NWbE7bntucz2JiGiPSJFRmBWeTZR+JmXCEhMAvVSh6fssUxvG
+ 2AD0WBAN3J90YePdDaCWZeQRybSXsj+bBCTLEcHOGtDeX42JA/k/BxBEwL1kDLepZQL2HKoiVnx
+ q+jmnNhBkzEBXOwCgV5pGcLU/M4Ub6bvD6YHRThxB5vTptXlpfKNAcZSb9wlQ2Mor6UwLHW7uyo
+ lfU2WQBfv9jm1c59gKgwNNxXdssY1B/2l/T1MZ0OFjvvU+f3zySBPs3MruSvSgk/m3DZvE95tSZ
+ F+NlY9jKe/mis5bLkOaGt8TPAmXehRRCjNQLDx7LCDRllqPIo8YyCG7Jtv4EZGhSjkDK0WBMJOf
+ egyJnuJqM+BIN1Q+kdw==
+X-Proofpoint-ORIG-GUID: SjpHmkwePqNtft1jU_HPgDPUjlfN4CYh
+X-Proofpoint-GUID: SjpHmkwePqNtft1jU_HPgDPUjlfN4CYh
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.134,FMLib:17.12.100.49
+ definitions=2026-07-08_02,2026-07-08_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ lowpriorityscore=0 bulkscore=0 impostorscore=0 suspectscore=0 spamscore=0
+ malwarescore=0 phishscore=0 clxscore=1015 priorityscore=1501 adultscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2606150000 definitions=main-2607080146
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-5.16 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[intel.com:d:+,kernel.org:s:+];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-322932-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-322930-lists,devicetree=lfdr.de];
-	TO_DN_SOME(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FREEMAIL_TO(0.00)[gmail.com];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,qualcomm.com:email,qualcomm.com:dkim,oss.qualcomm.com:from_mime,oss.qualcomm.com:dkim,oss.qualcomm.com:mid,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns];
+	FORGED_SENDER(0.00)[bibek.patro@oss.qualcomm.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	FORGED_RECIPIENTS(0.00)[m:dmitry.baryshkov@oss.qualcomm.com,m:will@kernel.org,m:robin.murphy@arm.com,m:joro@8bytes.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:andersson@kernel.org,m:konradybcio@kernel.org,m:robin.clark@oss.qualcomm.com,m:linux-arm-kernel@lists.infradead.org,m:iommu@lists.linux.dev,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-msm@vger.kernel.org,m:krzysztof.kozlowski@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	HAS_ORG_HEADER(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:shofiqtest@gmail.com,m:joshua.crofts1@gmail.com,m:linux-iio@vger.kernel.org,m:jic23@kernel.org,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:u.kleine-koenig@baylibre.com,m:joshuacrofts1@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[gmail.com,vger.kernel.org,kernel.org,baylibre.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[bibek.patro@oss.qualcomm.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[intel.com:+];
 	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,ashevche-desk.local:mid,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,intel.com:from_mime,intel.com:email,intel.com:dkim]
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 082C1727B01
+X-Rspamd-Queue-Id: 281BD727B0E
 
-On Wed, Jul 08, 2026 at 03:54:19PM +0300, Md Shofiqul Islam wrote:
-> Hi Andy,
+
+
+On 7/7/2026 10:12 PM, Dmitry Baryshkov wrote:
+> On Tue, Jul 07, 2026 at 06:06:59PM +0530, Bibek Kumar Patro wrote:
+>>
+>>
+>> On 7/6/2026 11:09 PM, Dmitry Baryshkov wrote:
+>>> On Mon, Jul 06, 2026 at 10:26:34PM +0530, Bibek Kumar Patro wrote:
+>>>> Some SoC implementations require a bandwidth vote on an interconnect
+>>>> path before the SMMU register space is accessible. Add the optional
+>>>
+>>> Why is it limited only to those SoCs? Is it also applicable to other
+>>> Qualcomm SoCs?
+>>>
+>>
+>> I was hoping to keep this series focused on the core infrastructure
+>> changes: the bindings, base ICC bandwidth-voting support, and DT
+>> interconnect properties for the platforms currently supported on
+>> Qualcomm Linux and have been validated so far.
+>>
+>> The additional targets have not been tested yet, so I'd prefer
+>> to add their support in a separate follow-up series once validation
+>> is complete, rather than growing this series further. WDYT?
 > 
-> I want to address your concern directly and honestly.
+> Then it should be a part of the commit message. All SoCs since SDM12345
+> need to vote on the interconnect (and then, in the cover letter mention
+> that you convert only a few of the SoCs). We possibly can help with
+> testing on other platforms.
 > 
-> I did use AI tools during this development, primarily to understand
-> kernel conventions and check my code against subsystem patterns. The
-> implementation decisions and the responsibility for what I submitted
-> are mine. I should have disclosed this from the start, and I did not.
-> I apologize for that.
 
-Yes, we have a tag for that Assisted-by.
+Ack, sounds reasonable.
+I'll add the first platform onwards which interconnect voting is 
+required in commit description.
+And update the cover letter to clarify that this series adds
+support for the Qualcomm Linux-supported targets available today, and
+the list will be expanded in follow-up series as additional platforms
+are enabled.
 
-> Regarding types.h: Your feedback was not ignored. As a new contributor
-> managing feedback from multiple reviewers across nine versions in
-> overlapping threads, I lost track of your comment from v4. When
-> Sashiko flagged HIGH severity issues, I panicked and sent new versions
-> too quickly without properly reading all outstanding comments. That
-> was a mistake in my process and entirely my responsibility.
+Thanks & regards,
+Bibek
+
+>>>> 'interconnects' property to the binding to allow platform DT nodes
+>>>> to describe this path.
+>>>>
+>>>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+>>>> Signed-off-by: Bibek Kumar Patro <bibek.patro@oss.qualcomm.com>
+>>>> ---
+>>>>    .../devicetree/bindings/iommu/arm,smmu.yaml        | 27 ++++++++++++++++++++++
+>>>>    1 file changed, 27 insertions(+)
+>>>>
 > 
-> I am committed to contributing properly to this community. All
-> outstanding comments, including types.h, array_size.h, and err.h, are
-> addressed in v10. I will not send another version until I've read and
-> addressed every open comment from every reviewer.
-> 
-> Thank you for the direct feedback. I understand why you raised it.
-
-Thank you for following the suggestions!
-
-P.S. Please, do not top-post.
-
-> On Tue, Jul 7, 2026 at 6:15 PM Andy Shevchenko
-> <andriy.shevchenko@intel.com> wrote:
-> > On Tue, Jul 07, 2026 at 02:05:45PM +0200, Joshua Crofts wrote:
-> > > On Tue,  7 Jul 2026 14:27:14 +0300
-> > > Md Shofiqul Islam <shofiqtest@gmail.com> wrote:
-
-...
-
-> > > You're missing array_size.h, err.h, types.h
-> >
-> > My comment against types.h was ignored. I think that this contribution is
-> > heavily assisted by AI (which has to be mentioned), otherwise I can not
-> > explain such an ignorance and mistakes from a human.
-
--- 
-With Best Regards,
-Andy Shevchenko
-
 
 
