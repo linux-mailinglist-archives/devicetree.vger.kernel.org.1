@@ -1,68 +1,72 @@
-Return-Path: <devicetree+bounces-322969-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-322970-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id QsZMIKZtTmo6MgIAu9opvQ
-	(envelope-from <devicetree+bounces-322969-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 17:32:54 +0200
+	id 8eFnLwdqTmrnMAIAu9opvQ
+	(envelope-from <devicetree+bounces-322970-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 17:17:27 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 92168728143
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 17:32:53 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A7B3727DDF
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 17:17:27 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b="cloZf7/H";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b="IYrV58/Z";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322969-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-322969-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322970-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-322970-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 9CF93304705B
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 15:04:30 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 432833283DF4
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 15:04:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6CC242DA2E;
-	Wed,  8 Jul 2026 14:57:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 780B841CB30;
+	Wed,  8 Jul 2026 14:57:48 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADC273F12C9;
-	Wed,  8 Jul 2026 14:57:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 547EF42DA43;
+	Wed,  8 Jul 2026 14:57:47 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783522666; cv=none; b=ZwE06bM5b0eCKzmfAD9eYyaX7eWroe+903IVHUczmM245KUiAon5Csvq9FPcr9AjhjVbbkxgdU+e5Xd7aLx7/JrXHEknyTzY+DedqEraB67RECW4LRzJdSbVo/31VtC/SnQA0kv2eF4erX+lKStkSJktlNHGmE/OzVMc5kUVNoI=
+	t=1783522668; cv=none; b=UqviTgkuyr6Cv/SYekX0YInTskdG6dUfqOyhtpCTrEUxWMk8q/+hLc4n3nkh3emVXj03zfQhIaup50jIci/6aeOSWZEybuYXjCfPMDdlhDuuQfh2xJYTjyS3Ok2lNUWm8Pe+w8Oa145bNejKXtoNHV2pCvF2oXdeyvp/OVfvkwc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783522666; c=relaxed/simple;
-	bh=kU4xSznuFl8uM+V/D740o0dwPvvezhGu5J/RYfPw6EI=;
+	s=arc-20240116; t=1783522668; c=relaxed/simple;
+	bh=5R39CovJ9VJOOuCwDmySNs1kpkYaDqDuDZ4HIS5V/A4=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=V5QYv5r21rA/KncY15SmxDr1Uy485oFQso1EJ6WhBVDFL4Yb0Zorm6wAxbOH77avnD4oFQ1hWvnhrgA+9smMlWAS7XjNmcfsmwhsz9XlJmyI3FdssozPoSDDSlISf537h6x0iwmK8QiZFxrL6DBavNnTYa1rQgd8eQmtTGc0BEE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cloZf7/H; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AD43C1F00ADB;
-	Wed,  8 Jul 2026 14:57:44 +0000 (UTC)
+	 MIME-Version:Content-Type; b=eRHkNMj/ZOJOz3wBHXVsEvDu1so2MoreGO9RRpFjqK00cGhiDtiwpg7EUMXtMxIEVDQx4d85OiJiJUZWhMX8/Bwb4BL5XxiQNIc0hs/Wv1X7bf0sbNtft0LWyII5T6gYPnMLg5Nl8sDD8VEwiQnOPet2Td4KQfi1mLxEwHLBHcg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IYrV58/Z; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3CC831F000E9;
+	Wed,  8 Jul 2026 14:57:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783522665;
-	bh=8ch4yZqPCBcSimke4UhZ/cKB24eMRKtvV+Ug9A6IshU=;
+	s=k20260515; t=1783522667;
+	bh=xZFYNX3SqAzPnn6TOYTyXtXeZIqIPQPKInlUbDu5KJk=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=cloZf7/H3zxW0nNpvL+VD5qbqwPCIP53w8HydPYGRqe/0zb1Fe3Jk1YZL3XnhCEsx
-	 C3Dl5cmtK55Kt8ZBuF9wk5UUtfZlI0WWuQ0u15iakHk+4n6cwcUi8W1CeefIxhZ5Gr
-	 VC9dWfVlLKZXld72QYQUaaXnzrByXTiirA/ntgNRCfiSSdJfJRtXP9xf5d+4AF8vtg
-	 hLji6D0luCssMWofC12YUArhEPMib14A7kPVN3JWsVOu7eo5dhXF5CL1Dcyart99Nw
-	 TPhUQ0teY6Z08ORW/9Pm4FKVRsdTstBdLn8yKo4RJDu6dtDxsNuD2nQyKe2XnChwhJ
-	 08bYz2fMY4/fg==
+	b=IYrV58/ZJJvu8n/I5Bd+p6RLvEVTlhtZ+IF1Rs3NsVgVglLbv6LDqdL/ajoaRNhw8
+	 J37JjbGXfLMC9vWLtf01Ar7xosNxsfuu1cqO/6PTLYyp7YPoqJ+g+GpGj7++5CcQkY
+	 4tnNppZ3NLW5ZxOB429K5Vn8K1rJGJSYO+rNRrM750NJyB/4wpf0sdk/9BUPDnuEzA
+	 n6Ly75g1smqTrR/yL6PVFuA/ph8hTwclvdDLDNenEK/JA0egPKmVT/WCtsmT1Rw1Q3
+	 FFFbXgyqy6W47hRKg5MjFoBNCyw/C1Sky2WMTCcI2MXEB4Ns8r+yrM3GwzcQvm6SjY
+	 VUeWbiUo9+/fA==
 From: Bjorn Andersson <andersson@kernel.org>
-To: Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-	Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
-	Pengyu Luo <mitltlatltl@gmail.com>
+To: konradybcio@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	monish.chunara@oss.qualcomm.com
 Cc: linux-arm-msm@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 0/3] arm64: dts: qcom: sc8280xp: fix and improve pinctrl
-Date: Wed,  8 Jul 2026 09:56:46 -0500
-Message-ID: <178352261645.2235436.7506953794540668934.b4-ty@kernel.org>
+	linux-kernel@vger.kernel.org,
+	linux-mmc@vger.kernel.org,
+	nitin.rawat@oss.qualcomm.com,
+	pradeep.pragallapati@oss.qualcomm.com,
+	komal.bajaj@oss.qualcomm.com,
+	jsodhapa@qti.qualcomm.com,
+	Ulf Hansson <ulfh@kernel.org>
+Subject: Re: [PATCH] arm64: dts: qcom: qcs615-ride: fix sdhc_2 vqmmc-supply for UHS-I mode
+Date: Wed,  8 Jul 2026 09:56:48 -0500
+Message-ID: <178352261626.2235436.9462453754580041321.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260629065905.15651-1-mitltlatltl@gmail.com>
-References: <20260629065905.15651-1-mitltlatltl@gmail.com>
+In-Reply-To: <20260522105020.3588377-1-mchunara@oss.qualcomm.com>
+References: <20260522105020.3588377-1-mchunara@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,54 +80,52 @@ X-Spamd-Result: default: False [-5.16 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS(0.00)[m:konradybcio@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:monish.chunara@oss.qualcomm.com,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-mmc@vger.kernel.org,m:nitin.rawat@oss.qualcomm.com,m:pradeep.pragallapati@oss.qualcomm.com,m:komal.bajaj@oss.qualcomm.com,m:jsodhapa@qti.qualcomm.com,m:ulfh@kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:konradybcio@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:bryan.odonoghue@linaro.org,m:vladimir.zapolskiy@linaro.org,m:mitltlatltl@gmail.com,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[kernel.org,linaro.org,gmail.com];
-	FORWARDED(0.00)[lists@lfdr.de];
 	FORGED_SENDER(0.00)[andersson@kernel.org,devicetree@vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-322969-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	TAGGED_FROM(0.00)[bounces-322970-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[andersson@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,qualcomm.com:email,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 92168728143
+X-Rspamd-Queue-Id: 0A7B3727DDF
 
 
-On Mon, 29 Jun 2026 14:59:02 +0800, Pengyu Luo wrote:
-> Add camera mclk pinctrl definitions to sc8280xp.dtsi and drop local
-> and duplicated definitions, as this is common for sc8280xp based
-> devices. Since the correct drive-strength is 6, fix it too.
+On Fri, 22 May 2026 16:20:20 +0530, monish.chunara@oss.qualcomm.com wrote:
+> SD card is detected as SDHS instead of UHS-I because sdhc_2 was
+> configured with vreg_s4a as vqmmc-supply, which cannot switch
+> between 1.8V and 3.3V.
 > 
+> Switch vqmmc-supply to vreg_l2a and update its voltage range to
+> 1800000-2960000 uV to enable proper UHS-I signaling.
 > 
+> [...]
 
 Applied, thanks!
 
-[1/3] arm64: dts: qcom: sc8280xp-x13s: Fix the drive-strength of mclk pin
-      commit: 06f07e693cc33d5d9695652f679c6321a751020e
-[2/3] arm64: dts: qcom: sc8280xp: Add camera MCLK pinctrl
-      commit: 6e2f2454640b21db48d1f1bc8a068a8862d6cf1f
-[3/3] arm64: dts: qcom: sc8280xp-x13s: Use predefined MCLK pinctrl
-      commit: fbe4faae9869fcb03884c078187f985db693298c
+[1/1] arm64: dts: qcom: qcs615-ride: fix sdhc_2 vqmmc-supply for UHS-I mode
+      commit: 4614628bea862cbad0ec3323200900a1f34e98c5
 
 Best regards,
 -- 
