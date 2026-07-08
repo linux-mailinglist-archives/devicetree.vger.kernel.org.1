@@ -1,254 +1,179 @@
-Return-Path: <devicetree+bounces-322723-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-322726-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id frd2ClUpTmpLEQIAu9opvQ
-	(envelope-from <devicetree+bounces-322723-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 12:41:25 +0200
+	id qdYgBFIqTmp/EQIAu9opvQ
+	(envelope-from <devicetree+bounces-322726-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 12:45:38 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1DFC87246CD
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 12:41:24 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 49ECD724736
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 12:45:37 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=ayuIc0YP;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=YpwX0MYs;
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322723-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-322723-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322726-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-322726-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 4D0D2301AB42
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 10:36:31 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A0F29302BA67
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 10:39:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C492839A04A;
-	Wed,  8 Jul 2026 10:36:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6E814218A1;
+	Wed,  8 Jul 2026 10:39:31 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8692B3AFCE9
-	for <devicetree@vger.kernel.org>; Wed,  8 Jul 2026 10:36:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CBCE3D4138
+	for <devicetree@vger.kernel.org>; Wed,  8 Jul 2026 10:39:14 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783506988; cv=none; b=KSJF4UQJ2Z/vLeHsUQA0pUb3Ts6tAhVwlydmuet+tyGMExsYIfiq/+DGeQaUroOF0sSw3lrzxqHzhQe8t+sqj3jnDRusirOjXrWM/ZP4Pjdy3PlkOvROSNJr3luZZBDvjON1WzTV2ZM4pUkGFMLT3GMSIUcYSJpfvMhK1Zv0n9c=
+	t=1783507171; cv=none; b=ZX6KJtxT7gYElCcqoGl8i8dioDcBc+DZ02uvW7OhC4Z8oSt3zjyiX8KmckVPhAKx/fSZVMO7zCfTMe7Y4Tkv6TiNvhuqxvbw+ZnyQUTjywIG22UGm9QWhisq9jTydFqpAYvnp0JZh6AzS+QIeuAFRjFlpTinYlzkuYRI+t/YwPk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783506988; c=relaxed/simple;
-	bh=cdOvmLrcn9CVXUeuBsgvFIIIwnlyL+QX713gyvsz5/s=;
+	s=arc-20240116; t=1783507171; c=relaxed/simple;
+	bh=XIzQxUjLoYr3fymLCCO7a7aBWHY5Crs1n4x4wtH45/A=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=Gw3K0PtzMmhHS8NGkgljb6QRMfXWwACDJGioPrPaHg/I+HSVpvxgCFmA9U9djz2xQSfkmlpwOmuhshbob10sXkbqcNeOiaff5AxKctNUm/uhZrANoA7BuMzof9UBdjlGDM3fvI7owTTvok0qaeAMJchMog51zZOnC/Kmf2SWmSw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ayuIc0YP; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4A28F1F000E9;
-	Wed,  8 Jul 2026 10:36:13 +0000 (UTC)
+	 Message-Id; b=L0EHvu2wzOQErV7YrYrD7wUukmSd+9DNNP65BFgffX/KtvWHLyDH7plaTUKum+elL/eMWVV1gHg6EPMiTqAKFODbdy7k8i/JRh8j209zHV1ZDRnUJ3vQCZwza94QfSsyNa/kQBB35SbZM7hI9b1U65TXYurY02B+w/uH1aCFVVo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YpwX0MYs; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 470351F000E9;
+	Wed,  8 Jul 2026 10:39:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783506973;
-	bh=nvsFnVElO38aLAcm2uqG5RTBpfu6YI5xeI7nDcTyF1I=;
+	s=k20260515; t=1783507151;
+	bh=TMOaDHhXOvJrWAOQG/myrYkoDv0qxtulznjZCE3SuZU=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=ayuIc0YP/0k4KCxCKx5tQflMHmlUoQtFvoXIjACqs5K47HJ2/texhYTcn9iDlE5Ss
-	 B5LGsr8lUaIetscnWbSz6xhjRlSSMDxZDSsGniEgkJF2WQFOsbQ4ziKSJ1jNyUWq8J
-	 GkIDC+Pv8kKvEOLStOv2DKQ6czFHlVJOCm5p/z8BiZK6sxMzwng1gJVF9vNpL69GdM
-	 6hvE78i28f25Li7THpuuF+PT11C5qNffa9B5RuV8O2npTrAMWTtBi+Pd68RDgsZ5EU
-	 aGenSkdYVmahiUuGDtoYeXIyyhoq93KVdJiWDvXmel7kGrheENeMsa3ngFQx3BoNRG
-	 bm/zi8yG5juMA==
+	b=YpwX0MYs9I1RBX8esrG74pRtC7tmVmamx3kDGwj6hI0eJfxX0eglHBSmkJnCoMilt
+	 6zXncNGjGo6RVZBsx5su5DevWt/uc0q6PjkMsNLSxmLcqH1s1ACfK3ApMtvUHIL/cV
+	 utAYg9+D1ZxsPwFnr7Ux5vNB2X+hTRgHv4XzBZyG0LFfKoCcQIQZxlOHw3n4BET5yi
+	 zkzUyD7Kd4wJjIElKqWky+q+3zkjGz05RqtmFkCAu3l33zC6ncvROSkyJrUsSaG77v
+	 F4tav6zw22CL8GSHeoSDdadId4Ni20H7ZvUurQyeOyazd/Qlwr6ncZgAHGKIZnWZ12
+	 A1u78qQHYf8Fw==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v2 4/6] pmdomain: renesas: Add R-Car X5H MDLC driver
+Subject: Re: [PATCH v8 5/7] clk: qcom: tcsrcc-glymur: Add Mahua QREF
+ regulator support
 Reply-To: sashiko-reviews@lists.linux.dev
-To: "Geert Uytterhoeven" <geert+renesas@glider.be>
-Cc: wsa+renesas@sang-engineering.com, conor+dt@kernel.org, robh@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <23f979b0903ca11513ac339ab8b6dd40435603c5.1783505142.git.geert+renesas@glider.be>
-References: <cover.1783505142.git.geert+renesas@glider.be>
- <23f979b0903ca11513ac339ab8b6dd40435603c5.1783505142.git.geert+renesas@glider.be>
+To: "Qiang Yu" <qiang.yu@oss.qualcomm.com>
+Cc: devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org
+In-Reply-To: <20260708-tcsr_qref_0708-v8-5-62c42b5fa269@oss.qualcomm.com>
+References: <20260708-tcsr_qref_0708-v8-0-62c42b5fa269@oss.qualcomm.com>
+ <20260708-tcsr_qref_0708-v8-5-62c42b5fa269@oss.qualcomm.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Wed, 08 Jul 2026 10:36:12 +0000
-Message-Id: <20260708103613.4A28F1F000E9@smtp.kernel.org>
+Date: Wed, 08 Jul 2026 10:39:10 +0000
+Message-Id: <20260708103911.470351F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.16 / 15.00];
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
 	MISSING_MIME_VERSION(2.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-322723-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.linux.dev:replyto,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,smtp.kernel.org:mid,glider.be:email,vger.kernel.org:from_smtp,sashiko.dev:url,pd_spec.np:url];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-322726-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:geert+renesas@glider.be,m:wsa+renesas@sang-engineering.com,m:conor+dt@kernel.org,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:geert@glider.be,m:wsa@sang-engineering.com,m:conor@kernel.org,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:qiang.yu@oss.qualcomm.com,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ALIAS_RESOLVED(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
 	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	PRECEDENCE_BULK(0.00)[];
 	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ALIAS_RESOLVED(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
 	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCPT_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5]
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp,qualcomm.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 1DFC87246CD
+X-Rspamd-Queue-Id: 49ECD724736
 
-Thank you for your contribution! Sashiko AI review found 4 potential issue(=
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-- [High] Hardcoded index `0` in `of_parse_phandle_with_args()` breaks consu=
-mer devices attached to multiple power domains.
-- [High] Use-After-Free of `priv` due to premature release of `r8a78000_mdl=
-c_lock`.
-- [High] AB-BA deadlock (lockdep splat) between `r8a78000_mdlc_lock` and th=
-e global `gpd_list_lock`.
-- [Medium] Missing dummy clocks despite claims in the commit message.
+- [High] Missing QREF regulators for TCSR_USB4_1_CLKREF_EN clock in Mahua d=
+escriptor table.
 --
 
---- Patch [4]: [PATCH v2 4/6] pmdomain: renesas: Add R-Car X5H MDLC driver =
----
-commit 1970ea51b8c9b00b6533ff3db2920ecb99d83f17
-Author: Geert Uytterhoeven <geert+renesas@glider.be>
+--- Patch [5]: [PATCH v8 5/7] clk: qcom: tcsrcc-glymur: Add Mahua QREF regu=
+lator support ---
+commit 1a2cccf8fe12339a5d989a6a9c397fb34f4adf6c
+Author: Qiang Yu <qiang.yu@oss.qualcomm.com>
 
-pmdomain: renesas: Add R-Car X5H MDLC driver
+clk: qcom: tcsrcc-glymur: Add Mahua QREF regulator support
 
-This adds a minimal Module Controller driver for the R-Car X5H (R8A78000)
-SoC. It provides support for always-on power domains and dummy resets for
-the serial console.
+Mahua is based on Glymur but uses a different QREF topology, requiring
+distinct regulator lists and clock descriptors for its PCIe clock
+references. Add mahua-specific regulator arrays and clk descriptor table,
+and use match_data to select the correct descriptor table per compatible
+string at probe time.
 
-> For now this just supports the always-on power domains, and dummy clocks
-> and resets for the serial console (which is enabled by the boot loader).
+> diff --git a/drivers/clk/qcom/tcsrcc-glymur.c b/drivers/clk/qcom/tcsrcc-g=
+lymur.c
+> index e0b545258ba4c..1791e23739ed4 100644
+> --- a/drivers/clk/qcom/tcsrcc-glymur.c
+> +++ b/drivers/clk/qcom/tcsrcc-glymur.c
 
-[Severity: Medium]
-The commit message mentions adding dummy clocks, but looking at
-r8a78000_mdlc_probe(), it appears only the genpd and reset controller
-providers are registered. Will consumers defer indefinitely if they
-attempt to use this driver as a clock provider?
-
-> diff --git a/drivers/pmdomain/renesas/r8a78000-mdlc.c b/drivers/pmdomain/=
-renesas/r8a78000-mdlc.c
-> new file mode 100644
-> index 0000000000000..ed367e921a334
-> --- /dev/null
-> +++ b/drivers/pmdomain/renesas/r8a78000-mdlc.c
 [ ... ]
-> +static int r8a78000_mdlc_attach_dev(struct generic_pm_domain *domain,
-> +				    struct device *dev)
-> +{
-> +	struct device_node *np =3D dev->of_node;
-> +	struct r8a78000_mdlc_priv *priv;
-> +	struct of_phandle_args pd_spec;
-> +	const struct mod_map *map;
-> +	unsigned int id;
-> +	int ret;
-> +
-> +	ret =3D of_parse_phandle_with_args(np, "power-domains",
-> +					 "#power-domain-cells", 0, &pd_spec);
 
-[Severity: High]
-Is it possible for a consumer device to have multiple power domains
-configured in its device tree (e.g., <&sysc 1>, <&mdlc 2>)? If the
-MDLC domain is not the first one in the property, won't this hardcoded
-index of 0 fail to find the correct provider and cause the consumer
-probe to fail with -ENODEV?
+> +static const struct qcom_clk_ref_desc * const tcsr_cc_mahua_clk_descs[] =
+=3D {
 
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	if (pd_spec.args_count !=3D 2) {
-> +		of_node_put(pd_spec.np);
-> +		return -EINVAL;
-> +	}
-> +
-> +	scoped_guard(mutex, &r8a78000_mdlc_lock) {
-> +		hlist_for_each_entry(priv, &r8a78000_mdlc_list, link) {
-> +			if (priv->np =3D=3D pd_spec.np)
-> +				break;
-> +		}
-> +	}
-> +
-> +	if (!priv) {
-> +		dev_err(dev, "%s: MDLC %pOF not found\n", __func__, pd_spec.np);
-> +		of_node_put(pd_spec.np);
-> +		return -ENODEV;
-> +	}
-> +
-> +	id =3D pd_spec.args[1];
-> +	of_node_put(pd_spec.np);
-> +
-> +	map =3D mod_map_find(priv->mod_map, id);
-
-[Severity: High]
-Could priv be freed before we dereference it here? The lock protecting
-the r8a78000_mdlc_list is released at the end of the scoped_guard() block
-above.
-
-If the provider's probe fails or the driver is unbound concurrently,
-r8a78000_mdlc_unlink() will acquire the lock, remove priv from the list,
-and free the memory. Since we access priv->mod_map here without holding
-the lock, does this introduce a use-after-free window?
-
-> +	if (!map) {
-> +		dev_err(dev, "Unknown module 0x%x\n", id);
-> +		return -ENOENT;
-> +	}
 [ ... ]
-> +static int r8a78000_genpd_always_on_singleton(struct device *dev)
-> +{
-> +	struct generic_pm_domain *genpd;
-> +	int ret;
-> +
-> +	guard(mutex)(&r8a78000_mdlc_lock);
-> +
-> +	if (r8a78000_genpd_always_on)
-> +		return 0;
-> +
-> +	genpd =3D kzalloc_obj(*genpd);
-> +	if (!genpd)
-> +		return -ENOMEM;
-> +
-> +	genpd->name =3D "always-on";
-> +	genpd->attach_dev =3D r8a78000_mdlc_attach_dev;
-> +
-> +	ret =3D pm_genpd_init(genpd, &pm_domain_always_on_gov, false);
+
+> +	[TCSR_USB3_1_CLKREF_EN] =3D &(const struct qcom_clk_ref_desc) {
+> +		.name =3D "tcsr_usb3_1_clkref_en",
+> +		.offset =3D 0x68,
+> +		.regulator_names =3D mahua_tcsr_tx1_rpt345_rx3_regulators,
+> +		.num_regulators =3D ARRAY_SIZE(mahua_tcsr_tx1_rpt345_rx3_regulators),
+> +	},
+> +	[TCSR_USB4_1_CLKREF_EN] =3D &(const struct qcom_clk_ref_desc) {
+> +		.name =3D "tcsr_usb4_1_clkref_en",
+> +		.offset =3D 0x44,
+> +	},
 
 [Severity: High]
-Will this sequence trigger a lockdep splat?
+Are regulators intentionally omitted for TCSR_USB4_1_CLKREF_EN in the Mahua
+descriptor table?
 
-During this first probe, r8a78000_genpd_always_on_singleton() acquires
-r8a78000_mdlc_lock and calls pm_genpd_init(), which acquires the global
-gpd_list_lock. This establishes r8a78000_mdlc_lock -> gpd_list_lock.
+If the USB PHY driver requests and enables this clock, the clock framework
+will skip regulator voting because .num_regulators is 0. The clock enable
+register bit will toggle, but the underlying QREF PHY block will remain
+unpowered. On Qualcomm platforms, accessing unpowered PHY blocks typically
+causes synchronous external aborts leading to a kernel panic.
 
-Later, when a consumer device attaches, the PM domain core calls
-r8a78000_mdlc_attach_dev() with gpd_list_lock held. That function then
-acquires r8a78000_mdlc_lock via the scoped_guard() block, completing an
-inverse lock order.
+In the Glymur configuration, this clock shared the tx0_rx5 regulators with
+TCSR_PCIE_1_CLKREF_EN. In Mahua, PCIE_1 was removed but USB4_1 remains
+without regulators. Should this include the appropriate regulator names and
+num_regulators?
 
-Should pm_genpd_init() be called outside the r8a78000_mdlc_lock critical
-section to avoid this?
-
-> +	if (ret) {
-> +		kfree(genpd);
-> +		return dev_err_probe(dev, ret,
-> +				     "Failed to create always-on domain\n");
-> +	}
-> +
-> +	r8a78000_genpd_always_on =3D genpd;
-> +	return 0;
-> +}
+> +	[TCSR_USB4_2_CLKREF_EN] =3D &(const struct qcom_clk_ref_desc) {
+> +		.name =3D "tcsr_usb4_2_clkref_en",
+> +		.offset =3D 0x5c,
+> +		.regulator_names =3D mahua_tcsr_tx1_rpt01_rx1_regulators,
+> +		.num_regulators =3D ARRAY_SIZE(mahua_tcsr_tx1_rpt01_rx1_regulators),
+> +	},
+> +};
 
 --=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/cover.1783505142.gi=
-t.geert+renesas@glider.be?part=3D4
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260708-tcsr_qref_=
+0708-v8-0-62c42b5fa269@oss.qualcomm.com?part=3D5
 
