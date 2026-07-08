@@ -1,481 +1,424 @@
-Return-Path: <devicetree+bounces-322608-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-322610-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id WpN7Jz8FTmonBwIAu9opvQ
-	(envelope-from <devicetree+bounces-322608-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 10:07:27 +0200
+	id 1cYLJCsHTmqbBwIAu9opvQ
+	(envelope-from <devicetree+bounces-322610-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 10:15:39 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 245F2722F91
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 10:07:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 299C7723098
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 10:15:39 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=flVw3qAh;
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322608-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-322608-lists+devicetree=lfdr.de@vger.kernel.org";
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
+	dkim=pass header.d=chromium.org header.s=google header.b=nvezsvl7;
+	dmarc=pass (policy=none) header.from=chromium.org;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322610-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-322610-lists+devicetree=lfdr.de@vger.kernel.org";
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 8D0863003811
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 08:07:26 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id D7098300B470
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 08:15:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52B0A3FC5BE;
-	Wed,  8 Jul 2026 08:07:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24FB03FFFA1;
+	Wed,  8 Jul 2026 08:15:36 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yx1-f53.google.com (mail-yx1-f53.google.com [74.125.224.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B736837B413;
-	Wed,  8 Jul 2026 08:07:20 +0000 (UTC)
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783498044; cv=none; b=Llvv7loApgy8L55bcmtjAo+gZS5kn77vFBPw5l0fQZD2cuct1Em2FuC8bFQUMWG+xJheJzqZ5yFaAEyD9ug967OThlOqKBkDsE6UBYB8e6QbWo7tVh7rU4tbqeVK52LssOuBdmpWxxCU7fVNaCtUOds6MKG72Ns4wB6Yr/sw1VA=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783498044; c=relaxed/simple;
-	bh=X2l21CxO40liE0vtBuCa34UuYtJiZaNbW2I/DA4lTfo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WXESFzOWFVIrg4p/ENKOavBRkeW0ERvgaslpZNletDviPI2N7CtxMSCHT2d++vcLJww/UN8u9GdsTJIfIo34UQ7EwvUvQ4fe4lEzc0nGxPa7aGjCXnaW/PNmS+Km/CrCBA4VGnto299vRqRvvqywbD196EK/XlDU9KaABEq9uA8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=flVw3qAh; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B9B7C1F000E9;
-	Wed,  8 Jul 2026 08:07:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783498039;
-	bh=eey33vCwR2TDg/L/7ImDVaFgtxdBYVYOOW3e0Hzed1c=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=flVw3qAh6hNuSMs/jQ8WX9sgUiBwvxP3Ah3MtOh+v89sSULzfJkDqVDC424Q0Y5jh
-	 P3kK3AKqV6dUJvPIGHbGPjmZjI0mR4s0cuOFp63O9iNuB7pNgxb8/NvkAP/qeyXH6l
-	 0nmHlEgYdvyDtwSKmbDMsA9JAkFppmUGrLvd5SnrAa2d4aaiXGWhWH+y1RZ16LRQlO
-	 mCgx8xerhgXKUC6O6KR1rj3CrfX2UTR0bHeBtFPC9TMI3v6cN64oP3iau+gOLlIg+j
-	 VcoPp+Cqei0kj2IbhK3HLvMiczZxO2AaGvEjL094Q9kcLHOeU4Ib0hbRjAk1sR5Kxz
-	 wLNu+X43UaeHw==
-Date: Wed, 8 Jul 2026 09:06:52 +0100
-From: Lorenzo Stoakes <ljs@kernel.org>
-To: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
-Cc: akpm@linux-foundation.org, anna-maria@linutronix.de, arnd@arndb.de, 
-	andersson@kernel.org, chrisl@kernel.org, cl@gentwo.org, conor+dt@kernel.org, 
-	david@kernel.org, dennis@kernel.org, devicetree@vger.kernel.org, 
-	ehristev@kernel.org, frederic@kernel.org, mingo@redhat.com, jstultz@google.com, 
-	corbet@lwn.net, juri.lelli@redhat.com, kasong@tencent.com, kees@kernel.org, 
-	konradybcio@kernel.org, krzk+dt@kernel.org, linux-arch@vger.kernel.org, 
-	linux-arm-msm@vger.kernel.org, linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-mm@kvack.org, linux-remoteproc@vger.kernel.org, mathieu.poirier@linaro.org, 
-	peterz@infradead.org, pmladek@suse.com, robh@kernel.org, saravanak@kernel.org, 
-	tj@kernel.org, tglx@kernel.org, vincent.guittot@linaro.org, 
-	workflows@vger.kernel.org, atomlin@atomlin.com, ast@kernel.org, aliceryhl@google.com, 
-	linux.amoon@gmail.com, ardb@kernel.org, baoquan.he@linux.dev, baohua@kernel.org, 
-	bsegall@google.com, jackmanb@google.com, leitao@debian.org, brauner@kernel.org, 
-	coxu@redhat.com, dietmar.eggemann@arm.com, dianders@chromium.org, 
-	ebiggers@kernel.org, feng.tang@linux.alibaba.com, yangfeng@kylinos.cn, 
-	gary@garyguo.net, guohanjun@huawei.com, jack@suse.cz, wangjinchao600@gmail.com, 
-	joel.granados@kernel.org, hannes@cmpxchg.org, john.ogness@linutronix.de, 
-	jpoimboe@kernel.org, shikemeng@huaweicloud.com, kas@kernel.org, 
-	kprateek.nayak@amd.com, liam@infradead.org, elver@google.com, mgorman@suse.de, 
-	mhocko@suse.com, ojeda@kernel.org, rppt@kernel.org, namcao@linutronix.de, 
-	nathan@kernel.org, nphamcs@gmail.com, n.schier@fritz.com, pasha.tatashin@soleen.com, 
-	petr.pavlu@suse.com, pnina.feder@mobileye.com, rdunlap@infradead.org, 
-	rioo.tsukatsukii@gmail.com, senozhatsky@chromium.org, skhan@linuxfoundation.org, 
-	sboyd@kernel.org, rostedt@goodmis.org, surenb@google.com, 
-	thomas.weissschuh@linutronix.de, vschneid@redhat.com, vbabka@kernel.org, youngjun.park@lge.com, 
-	zhengyejian@huaweicloud.com, ziy@nvidia.com, Eugen Hristev <eugen.hristev@linaro.org>
-Subject: Re: [PATCH v3 26/26] meminspect: Add debug kinfo compatible driver
-Message-ID: <ak4DqBta0boElPak@lucifer>
-References: <20260708-meminspect-v3-v3-0-7aa5a0a74d5c@oss.qualcomm.com>
- <20260708070809.2660886-1-mukesh.ojha@oss.qualcomm.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 230003FF893
+	for <devicetree@vger.kernel.org>; Wed,  8 Jul 2026 08:15:33 +0000 (UTC)
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1783498535; cv=pass; b=lOU/AKOVokSSlBXY3AauBWu0GPScuMSocfnR/rRKPEPMxN82JHJg5niey5MUQryaeiCr+Anurzr2YIPxfhlSF6w7z5tjmjzoyDQdms8h7pXR9CD3J9/XEd9R72PWJjqNaRfLQIP70zMQYFCKyOwMtttLqd9TWjMwDYDgHRvD9eE=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1783498535; c=relaxed/simple;
+	bh=SBdP80+qg9PHllpVhiMYEuOeQwxwegXT4UjgSLiThb0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=X27qm/6DJNvJZUfomyHQzzFsgZJbYjUeKU7+nImAfgFcbrZVzCO5qYIRgK8LwUQ17tElCjikpRrnvsoU9st8BLqbOO3eSKRtDVuYpPhKKrgGu62xGS283tL4aqnMmao0cYSiS9N8z+Kl9cJmVNZSUtQYZreyYmI/JhkHeSmfKUk=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=nvezsvl7; arc=pass smtp.client-ip=74.125.224.53
+Received: by mail-yx1-f53.google.com with SMTP id 956f58d0204a3-664a09bc459so557707d50.1
+        for <devicetree@vger.kernel.org>; Wed, 08 Jul 2026 01:15:33 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1783498533; cv=none;
+        d=google.com; s=arc-20260327;
+        b=GpzLUj+y/OtQZpecmEtG+m3nwuKSJ103Rn3fle96sWmJjtm6L6bcTL+mIQgzd5N+CU
+         AHBAikwe8knPy+o7gdaCdFk8g0fk4feaUnYAP2yi8Dvxg8PgJJSNrlhT//nZCDygcNNl
+         CQ5C9pyDwW49GGqZB2S5DhzKj/eAoBAE7/vNa8ICeiRV5o2hNK5DivWdmXYb2HE/qlYL
+         a4GBc+7yyljM7x28ePFvzhACfBcY6R/t2K7I83luHrr9Avh7gwIGJP5eaPRzNYelVb8n
+         cjNPAwadsotw/QAbRsY2l9IXPQG1sLGsVAkRSsCTVDfLFvyN8GcecjjDu9+kv5cgmOxo
+         eJFQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=SXXv+6sXHuG3kLi8r5M/4A6sQ9dakJtPq27Tv/WBH0s=;
+        fh=f+yIq8H1bRJ41IwmNa9BHV7hJPRlKUstkri2VAn3QYE=;
+        b=GGBbZHKq4MaUtkKoiyCmhPlj1bBdkPW11RbBVkqMts1QI2DIiJRs87S+eRi9fCypEB
+         reWGTBlvhcbWIIMfz8yLz3B/FmaHNnokSVsgXP5/crMSTMJLwa2ZsfsLEXNcCnJjo6nL
+         FwGg7rUhY1PNfi2r5MMf28IIeSPrEFuQiA8Vje7xbsO05POK1NgZqc7U2f9l78LATE6q
+         OlyERFbYOZalOIlbpQ8H+IL/b8ZO0IgH+jknjbXKOHjJG6G2YqEm9aaLvOiRDpGu5axj
+         j0O35RfFXmOnvowvrRPoMsVCnqRhRclSkzKhsYzXVqomBZ52oLX9mP08px5RFAjP1GZi
+         M9hg==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1783498533; x=1784103333; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=SXXv+6sXHuG3kLi8r5M/4A6sQ9dakJtPq27Tv/WBH0s=;
+        b=nvezsvl7K4ktz17rvgq994ieTvqD1c1DbCQacMjVrrwNqDAZSjIkz0IsA3s4Pr4gPK
+         s3C5Dqjye3uNAi4r+G8F9qPmBDDgYUOemEIADaBBbKdsVa02dQHdLsM0rtzoxHZFoEcI
+         pd73O6qUCFpVShmmrYP75gD/dhdjDBMu+eUnE=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1783498533; x=1784103333;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=SXXv+6sXHuG3kLi8r5M/4A6sQ9dakJtPq27Tv/WBH0s=;
+        b=V9AH3746pDdFswT7S2UOml+F6thiwKPnemloH9/cQYyWpGiKs5vt4/AtOlqkJUqhkz
+         LTx0qupT6NaRCKG+IxOk/rBBLSFYAuvubiIGX7wI7I2C49nI4y+9koR0ppNmeyqZaHcc
+         pFKrHqXLvnauLHa5Tr3OkCmie2tw9dWZ80oZ6Vx0Ccw4YXX5SB5C2UeBFK6d3eUGj/uX
+         3RZKOOZA04Mjz+3HEl1g9HfQi5gemXc+Q7Cxc6HngmoAFrrKY3c9eFIhoFKf7ij5tkb9
+         wiFxmnIAXrRdY8Vw5lduzdjSFjr1phfC38fDBlyp6cgz7lil+u6DfTSBaLUWjeRAx4Az
+         8zGQ==
+X-Forwarded-Encrypted: i=1; AHgh+RrG3HV0N6rOjr7LjCs8BNF+TYvsX82dvi2MplOQMkqwfql+AFOoY5tqiBHgK0Njl4g/zNNrnF4TCg8H@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz2PJWWl9wgzGOsmPF9CMi4kr2Dsw/KDQ+3F5v9umZr5QJxq7ny
+	JKZrbyOYinWySJuYubYWa41vJhy3bxkr1A54gUzgsa5YgsD4hydfymj5n75hWV112VA0OiUAVWt
+	hXl/PYiWCcKtDjF1j6PIEUvXn1ITX5JPKU+axpXzejN4fp2G6mouCPQ==
+X-Gm-Gg: AfdE7clA8KNImmhwbzGXMAcPQOvV3iuwHOGg3I5BiH4CCHphdbY1WD3neqUXSajSPii
+	20Qspz1LgnR4I57Zvx3endV/gIU784rAzcSelJKCqoQCfRygLpnigKa+CziszxD9AEDNsX57Gmo
+	IVMFFsiiVBWmioy5OsaS8VbAoYldYX3PHukef/2yy1o0XUwDupH1PdX9kymJ/Wpe1rvo41nzAcC
+	+54nRiC3n2QiY24UCONJVGCtUCo90/TzILjt660GeYNP/1/D7d044g0Dc65hbTXU1JcTxBmuFdK
+	WSHIT5detJi892yrr6j4EZrHaqI=
+X-Received: by 2002:a05:690e:438d:b0:664:ae6b:b48e with SMTP id
+ 956f58d0204a3-6679f1bd123mr838906d50.67.1783498533057; Wed, 08 Jul 2026
+ 01:15:33 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260708070809.2660886-1-mukesh.ojha@oss.qualcomm.com>
+References: <20260707104427.3409290-1-wenst@chromium.org> <176dd24c-c3cf-4ab9-8497-594ed65d10ec@collabora.com>
+ <CAGXv+5F86JU9+LPSy8PtuCPrdhBnvcA=PX1d++Yh3u7mK_Jxmw@mail.gmail.com>
+ <94c10212-9c27-4875-8a88-78bfb67fb382@collabora.com> <CAGXv+5EsWVbLtUP6b75fvkDVSqUDoAOA1t3hPO4cA9sAA02=WA@mail.gmail.com>
+ <2834aca4-916f-4d3e-afb4-cd2425b035ef@collabora.com>
+In-Reply-To: <2834aca4-916f-4d3e-afb4-cd2425b035ef@collabora.com>
+From: Chen-Yu Tsai <wenst@chromium.org>
+Date: Wed, 8 Jul 2026 16:15:22 +0800
+X-Gm-Features: AVVi8CeOUHa5MdrVz6aDKyiGOSJ6AaGRjTGNLqqbDw6HCk8vEuopNlJIo0CvBmo
+Message-ID: <CAGXv+5F1JJ0q_7yuGbTLbbi11E5q0SJvLAX7n=P7UjFLyJjBoA@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: mediatek: mt8188-geralt: Add MT6319 PMIC
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: Matthias Brugger <matthias.bgg@gmail.com>, linux-mediatek@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.16 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+X-Spamd-Result: default: False [-2.16 / 15.00];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[chromium.org,none];
+	R_DKIM_ALLOW(-0.20)[chromium.org:s=google];
 	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	FORGED_RECIPIENTS(0.00)[m:angelogioacchino.delregno@collabora.com,m:matthias.bgg@gmail.com,m:linux-mediatek@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:matthiasbgg@gmail.com,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-322610-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-322608-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:mukesh.ojha@oss.qualcomm.com,m:akpm@linux-foundation.org,m:anna-maria@linutronix.de,m:arnd@arndb.de,m:andersson@kernel.org,m:chrisl@kernel.org,m:cl@gentwo.org,m:conor+dt@kernel.org,m:david@kernel.org,m:dennis@kernel.org,m:devicetree@vger.kernel.org,m:ehristev@kernel.org,m:frederic@kernel.org,m:mingo@redhat.com,m:jstultz@google.com,m:corbet@lwn.net,m:juri.lelli@redhat.com,m:kasong@tencent.com,m:kees@kernel.org,m:konradybcio@kernel.org,m:krzk+dt@kernel.org,m:linux-arch@vger.kernel.org,m:linux-arm-msm@vger.kernel.org,m:linux-doc@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-mm@kvack.org,m:linux-remoteproc@vger.kernel.org,m:mathieu.poirier@linaro.org,m:peterz@infradead.org,m:pmladek@suse.com,m:robh@kernel.org,m:saravanak@kernel.org,m:tj@kernel.org,m:tglx@kernel.org,m:vincent.guittot@linaro.org,m:workflows@vger.kernel.org,m:atomlin@atomlin.com,m:ast@kernel.org,m:aliceryhl@google.com,m:linux.amoon@gmail.com,m:ardb@kernel.org,m:baoquan.he@linux.dev,m:baoh
- ua@kernel.org,m:bsegall@google.com,m:jackmanb@google.com,m:leitao@debian.org,m:brauner@kernel.org,m:coxu@redhat.com,m:dietmar.eggemann@arm.com,m:dianders@chromium.org,m:ebiggers@kernel.org,m:feng.tang@linux.alibaba.com,m:yangfeng@kylinos.cn,m:gary@garyguo.net,m:guohanjun@huawei.com,m:jack@suse.cz,m:wangjinchao600@gmail.com,m:joel.granados@kernel.org,m:hannes@cmpxchg.org,m:john.ogness@linutronix.de,m:jpoimboe@kernel.org,m:shikemeng@huaweicloud.com,m:kas@kernel.org,m:kprateek.nayak@amd.com,m:liam@infradead.org,m:elver@google.com,m:mgorman@suse.de,m:mhocko@suse.com,m:ojeda@kernel.org,m:rppt@kernel.org,m:namcao@linutronix.de,m:nathan@kernel.org,m:nphamcs@gmail.com,m:n.schier@fritz.com,m:pasha.tatashin@soleen.com,m:petr.pavlu@suse.com,m:pnina.feder@mobileye.com,m:rdunlap@infradead.org,m:rioo.tsukatsukii@gmail.com,m:senozhatsky@chromium.org,m:skhan@linuxfoundation.org,m:sboyd@kernel.org,m:rostedt@goodmis.org,m:surenb@google.com,m:thomas.weissschuh@linutronix.de,m:vschneid@redhat.com,m:vba
- bka@kernel.org,m:youngjun.park@lge.com,m:zhengyejian@huaweicloud.com,m:ziy@nvidia.com,m:eugen.hristev@linaro.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[ljs@kernel.org,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[wenst@chromium.org,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[linux-foundation.org,linutronix.de,arndb.de,kernel.org,gentwo.org,vger.kernel.org,redhat.com,google.com,lwn.net,tencent.com,kvack.org,linaro.org,infradead.org,suse.com,atomlin.com,gmail.com,linux.dev,debian.org,arm.com,chromium.org,linux.alibaba.com,kylinos.cn,garyguo.net,huawei.com,suse.cz,cmpxchg.org,huaweicloud.com,amd.com,suse.de,fritz.com,soleen.com,mobileye.com,linuxfoundation.org,goodmis.org,lge.com,nvidia.com];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FREEMAIL_CC(0.00)[gmail.com,lists.infradead.org,vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[6];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	RCPT_COUNT_GT_50(0.00)[91];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ljs@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NEQ_ENVFROM(0.00)[wenst@chromium.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[chromium.org:+];
 	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lucifer:mid,qualcomm.com:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,vger.kernel.org:from_smtp,linaro.org:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,mail.gmail.com:mid,chromium.org:from_mime,chromium.org:email,chromium.org:dkim]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 245F2722F91
+X-Rspamd-Queue-Id: 299C7723098
 
-On Wed, Jul 08, 2026 at 12:38:09PM +0530, Mukesh Ojha wrote:
-> From: Eugen Hristev <eugen.hristev@linaro.org>
+On Wed, Jul 8, 2026 at 4:02=E2=80=AFPM AngeloGioacchino Del Regno
+<angelogioacchino.delregno@collabora.com> wrote:
 >
-> With this driver, the registered regions are copied to a shared memory
-> zone at register time. The shared memory zone is supplied via OF. This
-> driver will select only regions that are of interest, and keep only
-> addresses. The format of the list is Kinfo compatible, with devices like
-> Google Pixel phone. The firmware is only interested in some symbols'
-> addresses.
+> On 7/8/26 06:25, Chen-Yu Tsai wrote:
+> > On Tue, Jul 7, 2026 at 7:24=E2=80=AFPM AngeloGioacchino Del Regno
+> > <angelogioacchino.delregno@collabora.com> wrote:
+> >>
+> >> On 7/7/26 13:08, Chen-Yu Tsai wrote:
+> >>> On Tue, Jul 7, 2026 at 7:05=E2=80=AFPM AngeloGioacchino Del Regno
+> >>> <angelogioacchino.delregno@collabora.com> wrote:
+> >>>>
+> >>>> On 7/7/26 12:44, Chen-Yu Tsai wrote:
+> >>>>> The Geralt design uses a MT6319 PMIC to power the big cores and LPD=
+DR4X
+> >>>>> DRAM.
+> >>>>>
+> >>>>> Add a device node for it and hook up all the supplies.
+> >>>>>
+> >>>>> This change requires a firmware fix for the SPMI bus to read back
+> >>>>> correctly. The required firmware version is 15842.175.0. This is
+> >>>>> included in ChromeOS releases R150-16700.22.0 (available in Beta
+> >>>>> channel as of writing or stable channel in mid-July) or
+> >>>>> R151-16721.0.0 and later.
+> >>>>>
+> >>>>> Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
+> >>>>
+> >>>> This is a big problem then.
+> >>>>
+> >>>> I take it as if the firmware fix is not in place, probing the CPU po=
+wer supplies
+> >>>> will fail, with all the consequences.
+> >>>
+> >>> That's right.
+> >>>
+> >>>> This means that with this, we're breaking all Geralt machines with o=
+lder firmware,
+> >>>> which is not acceptable...
+> >>>>
+> >>>> ...so this needs a different solution, or strong reasons to make me =
+understand that
+> >>>> I'm wrong, if I'm wrong.
+> >>>
+> >>> We can drop the CPU supplies (they don't matter since cpufreq is hard=
+ware
+> >>> driven) and just add the regulators. How does that sound? If the firm=
+ware
+> >>> isn't updated, the PMIC will fail to probe, but since nothing is usin=
+g it,
+> >>> the system will continue to work (with some annoying error messages).
+> >>>
+> >>
+> >> That'd be wrong, but less wrong than not having anything described...
+> >
+> > Yeah. As I said, it doesn't affect usability.
+> >
+> >> ...I wonder if, at this point, you could set the SPMI node to status =
+=3D "fail" and
+> >> have the *new* firmware override that to "ok".
+> >>
+> >> That's the only reasonable way to go forward, IMO.
+> >
+> > I'm afraid it is unlikely to get a firmware release to fix a non-critic=
+al
+> > issue. We were fortunate that there was an actual critical issue being
+> > fixed that allowed me to merge the small fix for the SPMI controller.
+> >
 >
-> Signed-off-by: Eugen Hristev <eugen.hristev@linaro.org>
-> Signed-off-by: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
+> Yeah, I know how it is regarding firmware updates... but you know, I *mus=
+t* try to
+> get OEMs/ODMs to do the right thing when hacky things get in front of me,=
+ and I am
+> fully aware that many of them largely underestimate such issues, and even=
+ close the
+> possibility to fix those, which is even worst.
 
-Hang on, this is a driver that exposes internal kernel symbol information in a
-shared memory region for anybody who wants to access it?
+Well, it is at least possible to land a fix into our tree, but it's not
+going to go through the qualification process for a firmware release
+because of resource (cost) reasons.
 
-This doesn't really seem sane?
+I think (?) the firmware builds are public, but that doesn't really help
+the average user.
 
-Looking through the code it seems you are only exposing things that are already
-otherwise exposed, so maybe it's not so bad, but it seems as if a registered
-meminfo driver could in any case get access to things they shouldn't?
+> On the other hand, I know you, and I know that you always try to do the s=
+ame
+> whenever you can, so please, be aware that I'm not complaining about you.
 
-> ---
->  MAINTAINERS                |   1 +
->  drivers/of/platform.c      |   1 +
->  kernel/meminspect/Kconfig  |  11 ++
->  kernel/meminspect/Makefile |   1 +
->  kernel/meminspect/kinfo.c  | 257 +++++++++++++++++++++++++++++++++++++
->  5 files changed, 271 insertions(+)
->  create mode 100644 kernel/meminspect/kinfo.c
+I understand what you are asking and why, and I would ask the same if
+possible.
+
+> > I think it would be great if everyone could update their OS and firmwar=
+e,
+> > but I understand that some devices never get updates, such as those in
+> > board farms that never boot into ChromeOS.
 >
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 2d816d783024..d805ff9fedac 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -16906,6 +16906,7 @@ M:	Eugen Hristev <eugen.hristev@linaro.org>
->  M:	Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
->  S:	Maintained
->  F:	Documentation/devicetree/bindings/reserved-memory/google,debug-kinfo.yaml
-> +F:	kernel/meminspect/kinfo.c
+> Unfortunately, this is not just a ChromeOS problem but way larger...
 >
->  MEMBLOCK AND MEMORY MANAGEMENT INITIALIZATION
->  M:	Mike Rapoport <rppt@kernel.org>
-> diff --git a/drivers/of/platform.c b/drivers/of/platform.c
-> index 53bca8c6f781..f80bd25fc481 100644
-> --- a/drivers/of/platform.c
-> +++ b/drivers/of/platform.c
-> @@ -494,6 +494,7 @@ static const struct of_device_id reserved_mem_matches[] = {
->  	{ .compatible = "qcom,smem" },
->  	{ .compatible = "ramoops" },
->  	{ .compatible = "nvmem-rmem" },
-> +	{ .compatible = "google,debug-kinfo" },
->  	{ .compatible = "google,open-dice" },
->  	{}
->  };
-> diff --git a/kernel/meminspect/Kconfig b/kernel/meminspect/Kconfig
-> index 18ff511ad4cf..7f6436c3344b 100644
-> --- a/kernel/meminspect/Kconfig
-> +++ b/kernel/meminspect/Kconfig
-> @@ -16,3 +16,14 @@ config MEMINSPECT
+> Anyway, I'll stop here to prevent myself from going OT too much and being=
+ grumpier
+> than I already am :-P
 >
->  	  Note that modules using this feature must be rebuilt if this
->  	  option changes.
-> +
-> +config MEMINSPECT_KINFO
-> +	tristate "Shared memory KInfo compatible driver"
-> +	depends on MEMINSPECT
-> +	help
-> +	  Say y here to enable the Shared memory KInfo compatible driver.
-> +	  With this driver, the registered regions are copied to a shared
-> +	  memory zone at register time.
-> +	  The shared memory zone is supplied via OF.
-> +	  This driver will select only regions that are of interest,
-> +	  and keep only addresses. The format of the list is Kinfo compatible.
-> diff --git a/kernel/meminspect/Makefile b/kernel/meminspect/Makefile
-> index 09fd55e6d9cf..283604d892e5 100644
-> --- a/kernel/meminspect/Makefile
-> +++ b/kernel/meminspect/Makefile
-> @@ -1,3 +1,4 @@
->  # SPDX-License-Identifier: GPL-2.0
+> I guess then just add the SPMI PMIC and add a big comment that clearly st=
+ates
+> something like
 >
->  obj-$(CONFIG_MEMINSPECT) += meminspect.o
-> +obj-$(CONFIG_MEMINSPECT_KINFO) += kinfo.o
-> diff --git a/kernel/meminspect/kinfo.c b/kernel/meminspect/kinfo.c
-> new file mode 100644
-> index 000000000000..7451c13bc316
-> --- /dev/null
-> +++ b/kernel/meminspect/kinfo.c
-> @@ -0,0 +1,257 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + *
-> + * Copyright 2002 Rusty Russell <rusty@rustcorp.com.au> IBM Corporation
-> + * Copyright 2021 Google LLC
-> + * Copyright 2025 Linaro Ltd. Eugen Hristev <eugen.hristev@linaro.org>
-> + */
-> +#include <linux/container_of.h>
-> +#include <linux/kallsyms.h>
-> +#include <linux/meminspect.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/of_reserved_mem.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/utsname.h>
-> +
-> +#define BUILD_INFO_LEN		256
-> +#define DEBUG_KINFO_MAGIC	0xcceeddff
-> +
-> +/*
-> + * Header structure must be byte-packed, since the table is provided to
-> + * bootloader.
-> + */
-> +struct kernel_info {
-> +	/* For kallsyms */
-> +	u8 enabled_all;
-> +	u8 enabled_base_relative;
-> +	u8 enabled_absolute_percpu;
-> +	u8 enabled_cfi_clang;
-> +	u32 num_syms;
-> +	u16 name_len;
-> +	u16 bit_per_long;
-> +	u16 module_name_len;
-> +	u16 symbol_len;
-> +	u64 _relative_pa;
-> +	u64 _text_pa;
-> +	u64 _stext_pa;
-> +	u64 _etext_pa;
-> +	u64 _sinittext_pa;
-> +	u64 _einittext_pa;
-> +	u64 _end_pa;
-> +	u64 _offsets_pa;
-> +	u64 _names_pa;
-> +	u64 _token_table_pa;
-> +	u64 _token_index_pa;
-> +	u64 _markers_pa;
-> +	u64 _seqs_of_names_pa;
-> +
-> +	/* For frame pointer */
-> +	u32 thread_size;
-> +
-> +	/* For virt_to_phys */
-> +	u64 swapper_pg_dir_pa;
-> +
-> +	/* For linux banner */
-> +	u8 last_uts_release[__NEW_UTS_LEN];
-> +
-> +	/* For module kallsyms */
-> +	u32 enabled_modules_tree_lookup;
-> +	u32 mod_mem_offset;
-> +	u32 mod_kallsyms_offset;
-> +} __packed;
-> +
-> +struct kernel_all_info {
-> +	u32 magic_number;
-> +	u32 combined_checksum;
-> +	struct kernel_info info;
-> +} __packed;
-> +
-> +struct debug_kinfo {
-> +	struct device *dev;
-> +	void *all_info_addr;
-> +	size_t all_info_size;
-> +	struct notifier_block nb;
-> +};
-> +
-> +static void update_kernel_all_info(struct kernel_all_info *all_info)
-> +{
-> +	struct kernel_info *info;
-> +	u32 *checksum_info;
-> +	int index;
-> +
-> +	all_info->magic_number = DEBUG_KINFO_MAGIC;
-> +	all_info->combined_checksum = 0;
-> +
-> +	info = &all_info->info;
-> +	checksum_info = (u32 *)info;
-> +	for (index = 0; index < sizeof(*info) / sizeof(u32); index++)
-> +		all_info->combined_checksum ^= checksum_info[index];
-> +}
-> +
-> +static void __maybe_unused register_kinfo_region(void *priv,
-> +						 const struct inspect_entry *e)
-> +{
-> +	struct debug_kinfo *kinfo = priv;
-> +	struct kernel_all_info *all_info = kinfo->all_info_addr;
-> +	struct kernel_info *info = &all_info->info;
-> +	struct uts_namespace *uts;
-> +	u64 paddr;
-> +
-> +	if (e->pa)
-> +		paddr = e->pa;
-> +	else
-> +		paddr = __pa(e->va);
-> +
-> +	switch (e->id) {
-> +	case MEMINSPECT_ID__sinittext:
-> +		info->_sinittext_pa = paddr;
-> +		break;
-> +	case MEMINSPECT_ID__einittext:
-> +		info->_einittext_pa = paddr;
-> +		break;
-> +	case MEMINSPECT_ID__end:
-> +		info->_end_pa = paddr;
-> +		break;
-> +	case MEMINSPECT_ID__text:
-> +		info->_text_pa = paddr;
-> +		break;
-> +	case MEMINSPECT_ID__stext:
-> +		info->_stext_pa = paddr;
-> +		break;
-> +	case MEMINSPECT_ID__etext:
-> +		info->_etext_pa = paddr;
-> +		break;
-> +	case MEMINSPECT_ID_kallsyms_num_syms:
-> +		info->num_syms = *(__u32 *)e->va;
-> +		break;
-> +	case MEMINSPECT_ID_kallsyms_offsets:
-> +		info->_offsets_pa = paddr;
-> +		break;
-> +	case MEMINSPECT_ID_kallsyms_names:
-> +		info->_names_pa = paddr;
-> +		break;
-> +	case MEMINSPECT_ID_kallsyms_token_table:
-> +		info->_token_table_pa = paddr;
-> +		break;
-> +	case MEMINSPECT_ID_kallsyms_token_index:
-> +		info->_token_index_pa = paddr;
-> +		break;
-> +	case MEMINSPECT_ID_kallsyms_markers:
-> +		info->_markers_pa = paddr;
-> +		break;
-> +	case MEMINSPECT_ID_kallsyms_seqs_of_names:
-> +		info->_seqs_of_names_pa = paddr;
-> +		break;
-> +	case MEMINSPECT_ID_swapper_pg_dir:
-> +		info->swapper_pg_dir_pa = paddr;
-> +		break;
-> +	case MEMINSPECT_ID_init_uts_ns:
-> +		if (!e->va)
-> +			return;
-> +		uts = e->va;
-> +		strscpy(info->last_uts_release, uts->name.release, __NEW_UTS_LEN);
-> +		break;
-> +	default:
-> +		break;
-> +	};
-> +
-> +	update_kernel_all_info(all_info);
-> +}
-> +
-> +static int kinfo_notifier_cb(struct notifier_block *nb,
-> +			     unsigned long code, void *entry)
-> +{
-> +	struct debug_kinfo *kinfo = container_of(nb, struct debug_kinfo, nb);
-> +
-> +	if (code == MEMINSPECT_NOTIFIER_ADD)
-> +		register_kinfo_region(kinfo, entry);
-> +
-> +	return NOTIFY_DONE;
-> +}
-> +
-> +static int debug_kinfo_probe(struct platform_device *pdev)
-> +{
-> +	struct kernel_all_info *all_info;
-> +	struct device *dev = &pdev->dev;
-> +	struct reserved_mem *rmem;
-> +	struct debug_kinfo *kinfo;
-> +	struct kernel_info *info;
-> +
-> +	rmem = of_reserved_mem_lookup(dev->of_node);
-> +	if (!rmem)
-> +		return dev_err_probe(dev, -ENODEV, "no such reserved mem of node name %s\n",
-> +			      dev->of_node->name);
-> +
-> +	/* Need to wait for reserved memory to be mapped */
-> +	if (!rmem->priv)
-> +		return -EPROBE_DEFER;
-> +
-> +	if (!rmem->base || !rmem->size)
-> +		dev_err_probe(dev, -EINVAL, "unexpected reserved memory\n");
-> +
-> +	if (rmem->size < sizeof(struct kernel_all_info))
-> +		dev_err_probe(dev, -EINVAL, "reserved memory size too small\n");
-> +
-> +	kinfo = devm_kzalloc(dev, sizeof(*kinfo), GFP_KERNEL);
-> +	if (!kinfo)
-> +		return -ENOMEM;
-> +
-> +	platform_set_drvdata(pdev, kinfo);
-> +
-> +	kinfo->dev = dev;
-> +	kinfo->all_info_addr = rmem->priv;
-> +	kinfo->all_info_size = rmem->size;
-> +
-> +	all_info = kinfo->all_info_addr;
-> +
-> +	memset(all_info, 0, sizeof(struct kernel_all_info));
-> +	info = &all_info->info;
-> +	info->enabled_all = IS_ENABLED(CONFIG_KALLSYMS_ALL);
-> +	info->enabled_absolute_percpu = IS_ENABLED(CONFIG_KALLSYMS_ABSOLUTE_PERCPU);
-> +	info->enabled_base_relative = IS_ENABLED(CONFIG_KALLSYMS_BASE_RELATIVE);
-> +	info->enabled_cfi_clang = IS_ENABLED(CONFIG_CFI_CLANG);
-> +	info->name_len = KSYM_NAME_LEN;
-> +	info->bit_per_long = BITS_PER_LONG;
-> +	info->module_name_len = MODULE_NAME_LEN;
-> +	info->symbol_len = KSYM_SYMBOL_LEN;
-> +	info->thread_size = THREAD_SIZE;
-> +	info->enabled_modules_tree_lookup = IS_ENABLED(CONFIG_MODULES_TREE_LOOKUP);
-> +	info->mod_mem_offset = offsetof(struct module, mem);
-> +	info->mod_kallsyms_offset = offsetof(struct module, kallsyms);
-> +
-> +	kinfo->nb.notifier_call = kinfo_notifier_cb;
-> +
-> +	meminspect_notifier_register(&kinfo->nb);
-> +	meminspect_lock_traverse(kinfo, register_kinfo_region);
-> +
-> +	return 0;
-> +}
-> +
-> +static void debug_kinfo_remove(struct platform_device *pdev)
-> +{
-> +	struct debug_kinfo *kinfo = platform_get_drvdata(pdev);
-> +
-> +	meminspect_notifier_unregister(&kinfo->nb);
-> +}
-> +
-> +static const struct of_device_id debug_kinfo_of_match[] = {
-> +	{ .compatible	= "google,debug-kinfo" },
-> +	{},
-> +};
-> +MODULE_DEVICE_TABLE(of, debug_kinfo_of_match);
-> +
-> +static struct platform_driver debug_kinfo_driver = {
-> +	.probe = debug_kinfo_probe,
-> +	.remove = debug_kinfo_remove,
-> +	.driver = {
-> +		.name = "debug-kinfo",
-> +		.of_match_table = debug_kinfo_of_match,
-> +	},
-> +};
-> +module_platform_driver(debug_kinfo_driver);
-> +
-> +MODULE_AUTHOR("Eugen Hristev <eugen.hristev@linaro.org>");
-> +MODULE_AUTHOR("Jone Chou <jonechou@google.com>");
-> +MODULE_DESCRIPTION("meminspect Kinfo Driver");
-> +MODULE_LICENSE("GPL");
-> --
-> 2.53.0
+> /*
+>   * The mt6319_buck1 is the cpu-supply for CPU6 and CPU7.
+>   *
+>   * However, this device ships with a broken firmware which needs to be u=
+pdated to
+>   * at version XXXXXXX or newer in order to workaround a bug that (descri=
+be bug).
+>   *
+>   * [blahblah text so that's why the cpu supply was not assigned to cpu6/=
+7].
+>   */
+>
+> ...so that everyone reading the DT is fully aware of what's going on and =
+can act
+> accordingly if they wish.
+>
+> How does that sound?
+
+Works for me. I'll send a revised patch.
+
+
+Thanks
+ChenYu
+
+> Cheers,
+> Angelo
+>
+> >
+> >
+> > ChenYu
+> >
+> >> Of course, avoid having the firmware adding the CPU supplies, because =
+that would
+> >> be rather sketchy then. Just "if spmi status fail found, change to ok"=
+.
+> >>
+> >> Cheers,
+> >> Angelo
+> >>
+> >>>
+> >>> ChenYu
+> >>>
+> >>>> Cheers,
+> >>>> Angelo
+> >>>>
+> >>>>> ---
+> >>>>>     .../boot/dts/mediatek/mt8188-geralt.dtsi      | 66 ++++++++++++=
++++++++
+> >>>>>     1 file changed, 66 insertions(+)
+> >>>>>
+> >>>>> diff --git a/arch/arm64/boot/dts/mediatek/mt8188-geralt.dtsi b/arch=
+/arm64/boot/dts/mediatek/mt8188-geralt.dtsi
+> >>>>> index f382f90c48f5..fea52c377d88 100644
+> >>>>> --- a/arch/arm64/boot/dts/mediatek/mt8188-geralt.dtsi
+> >>>>> +++ b/arch/arm64/boot/dts/mediatek/mt8188-geralt.dtsi
+> >>>>> @@ -4,6 +4,8 @@
+> >>>>>      */
+> >>>>>     /dts-v1/;
+> >>>>>     #include <dt-bindings/gpio/gpio.h>
+> >>>>> +#include <dt-bindings/spmi/spmi.h>
+> >>>>> +
+> >>>>>     #include "mt8188.dtsi"
+> >>>>>     #include "mt6359.dtsi"
+> >>>>>
+> >>>>> @@ -241,6 +243,14 @@ &cpu5 {
+> >>>>>         cpu-supply =3D <&mt6359_vcore_buck_reg>;
+> >>>>>     };
+> >>>>>
+> >>>>> +&cpu6 {
+> >>>>> +     cpu-supply =3D <&mt6319_buck1>;
+> >>>>> +};
+> >>>>> +
+> >>>>> +&cpu7 {
+> >>>>> +     cpu-supply =3D <&mt6319_buck1>;
+> >>>>> +};
+> >>>>> +
+> >>>>>     /*
+> >>>>>      * Geralt is the reference design and doesn't have target TDP.
+> >>>>>      * Ciri is (currently) the only device following Geralt, and it=
+s
+> >>>>> @@ -1156,6 +1166,14 @@ pins-bus {
+> >>>>>                 };
+> >>>>>         };
+> >>>>>
+> >>>>> +     spmi_pins: spmi-pins {
+> >>>>> +             pins-bus {
+> >>>>> +                     pinmux =3D <PINMUX_GPIO175__FUNC_B0_SPMI_M_SC=
+L>,
+> >>>>> +                              <PINMUX_GPIO176__FUNC_B0_SPMI_M_SDA>=
+;
+> >>>>> +                     bias-disable;
+> >>>>> +             };
+> >>>>> +     };
+> >>>>> +
+> >>>>>         uart0_pins: uart0-pins {
+> >>>>>                 pins-bus {
+> >>>>>                         pinmux =3D <PINMUX_GPIO31__FUNC_O_UTXD0>,
+> >>>>> @@ -1267,6 +1285,54 @@ &spi2 {
+> >>>>>         status =3D "okay";
+> >>>>>     };
+> >>>>>
+> >>>>> +&spmi {
+> >>>>> +     pinctrl-names =3D "default";
+> >>>>> +     pinctrl-0 =3D <&spmi_pins>;
+> >>>>> +     #address-cells =3D <2>;
+> >>>>> +     #size-cells =3D <0>;
+> >>>>> +     status =3D "okay";
+> >>>>> +
+> >>>>> +     pmic@6 {
+> >>>>> +             compatible =3D "mediatek,mt6319-regulator", "mediatek=
+,mt6315-regulator";
+> >>>>> +             reg =3D <0x6 SPMI_USID>;
+> >>>>> +             pvdd1-supply =3D <&pp4200_s5>;
+> >>>>> +             pvdd2-supply =3D <&pp4200_s5>;
+> >>>>> +             pvdd3-supply =3D <&pp4200_s5>;
+> >>>>> +             pvdd4-supply =3D <&pp4200_s5>;
+> >>>>> +
+> >>>>> +             regulators {
+> >>>>> +                     mt6319_buck1: vbuck1 {
+> >>>>> +                                     regulator-name =3D "ppvar_dvd=
+d_proc_bc";
+> >>>>> +                                     regulator-min-microvolt =3D <=
+520000>;
+> >>>>> +                                     regulator-max-microvolt =3D <=
+1155000>;
+> >>>>> +                                     regulator-enable-ramp-delay =
+=3D <256>;
+> >>>>> +                                     regulator-allowed-modes =3D <=
+0 1 2>;
+> >>>>> +                                     regulator-always-on;
+> >>>>> +                     };
+> >>>>> +
+> >>>>> +                     /* vbuck2 is ganged with vbuck1 */
+> >>>>> +
+> >>>>> +                     mt6319_buck3: vbuck3 {
+> >>>>> +                                     regulator-name =3D "pp1125_em=
+i_vdd2";
+> >>>>> +                                     regulator-min-microvolt =3D <=
+1060000>;
+> >>>>> +                                     regulator-max-microvolt =3D <=
+1170000>;
+> >>>>> +                                     regulator-enable-ramp-delay =
+=3D <256>;
+> >>>>> +                                     regulator-allowed-modes =3D <=
+0 1 2>;
+> >>>>> +                                     regulator-always-on;
+> >>>>> +                     };
+> >>>>> +
+> >>>>> +                     mt6319_buck4: vbuck4 {
+> >>>>> +                                     regulator-name =3D "pp0600_em=
+i_vddq";
+> >>>>> +                                     regulator-min-microvolt =3D <=
+570000>;
+> >>>>> +                                     regulator-max-microvolt =3D <=
+650000>;
+> >>>>> +                                     regulator-enable-ramp-delay =
+=3D <256>;
+> >>>>> +                                     regulator-allowed-modes =3D <=
+0 1 2>;
+> >>>>> +                                     regulator-always-on;
+> >>>>> +                     };
+> >>>>> +             };
+> >>>>> +     };
+> >>>>> +};
+> >>>>> +
+> >>>>>     &uart0 {
+> >>>>>         pinctrl-names =3D "default";
+> >>>>>         pinctrl-0 =3D <&uart0_pins>;
+> >>>>
 >
 
