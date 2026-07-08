@@ -1,123 +1,191 @@
-Return-Path: <devicetree+bounces-323046-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-323047-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 3bG9IhiATmrWNwIAu9opvQ
-	(envelope-from <devicetree+bounces-323046-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 18:51:36 +0200
+	id wVNJIZR+TmptNwIAu9opvQ
+	(envelope-from <devicetree+bounces-323047-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 18:45:08 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD2C6728E60
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 18:51:35 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id ED189728D7E
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 18:45:07 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=lunn.ch header.s=20171124 header.b=Wkgdns+7;
-	dmarc=pass (policy=none) header.from=lunn.ch;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-323046-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-323046-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=mAKVPYvL;
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-323047-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-323047-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 20D24304D5FB
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 16:38:57 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 2A1A73007657
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 16:39:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2CD3F423760;
-	Wed,  8 Jul 2026 16:38:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 539E3435EE1;
+	Wed,  8 Jul 2026 16:39:42 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8831E1C84A6;
-	Wed,  8 Jul 2026 16:38:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E04F435EEC;
+	Wed,  8 Jul 2026 16:39:39 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783528736; cv=none; b=GvT3yWceg2KLyBPs1vR6BGnx/8iS747u6HK8+zrb6MxNZ3dEBKhq2gFhA4Q27fVsw8RpSDGAjR5f9gQfdiXGGe3dPdFCrOq2ObEk6sD2w1+WKpqXX85Xpig5VNBTrhVCXh7sYO4nqvgWiVCKhsCme+OvCognmvOPyMfwqXoJaSU=
+	t=1783528782; cv=none; b=MFhytex/9CyqEjU7RX7MyNm/tYa0xKMXWFFa1rUi+p39pzUpfn17k6JIBOUDYuVMe7WwhoDdJGv6E0+PMUxZVom5JpHztLgu0sNGImJ5vUL8kRPlPBJFD6yY4/H3Eu6kWXzeBLzL2eefvgHvuOTJl9BIGcnHB1eH5YC2Y9JFEbg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783528736; c=relaxed/simple;
-	bh=F44/8vBktdR3VEbpkib/ziyPuQyylRJwZNPzkTCUFug=;
+	s=arc-20240116; t=1783528782; c=relaxed/simple;
+	bh=VXPzWa5LujKUUxkyvvHEPmwRqAn44lKYZ+904oWZfNg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EpLXVGepYIB5qZMDoLICe0SoRvi4FoQ3JFrA9rBT+PCOW5SM86eNm+zbWQhFYNnUqbFTBozZTWS4odxMUWpWPMgUsBGj6GV8tR+b6ou8Ne2pwG/xpf+s2m7b4O9rEjGJDBRNc2ZGcXSizeMz81Wi1872qmrmkLJAiT789KrHfqQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=Wkgdns+7; arc=none smtp.client-ip=156.67.10.101
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=2E/foWG+GBw4iT2amZe5GTPBRmywetPiSoahCrwoJo4=; b=Wkgdns+7FKN/7OvfARMas0Wy62
-	BvrLXWVMBmU0pX3RgmMx+CIrySrPxjAhlJTpjKvRqN4VqxaZ3pSqJrpWE+SdXHb+WWjovvCKlZ5m6
-	po+/T3o6oV75Xw7XRrhHUev+RcQV0bIi7A3fAkBrlT2yLT5kr5ZLS2yfr5yVyG6tx5cg=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1whVHq-00BLyX-N9; Wed, 08 Jul 2026 18:38:14 +0200
-Date: Wed, 8 Jul 2026 18:38:14 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: =?iso-8859-1?Q?Gr=E9goire?= Layet <gregoire.layet@9elements.com>
-Cc: joel@jms.id.au, andrew@codeconstruct.com.au, lkundrak@v3.sk,
-	devicetree@vger.kernel.org, gregkh@linuxfoundation.org,
-	jirislaby@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, jacky_chou@aspeedtech.com,
-	yh_chung@aspeedtech.com, ninad@linux.ibm.com,
-	anirudhsriniv@gmail.com, linux-serial@vger.kernel.org,
-	linux-aspeed@lists.ozlabs.org, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 1/7] dt-bindings: serial: 8250: aspeed: add compatible
- string for ast2600
-Message-ID: <8eb54ff0-b8ce-44e6-8251-c19e0b6773cc@lunn.ch>
-References: <cover.1783524645.git.gregoire.layet@9elements.com>
- <cbe59dfba231dcd55fa86233dc076b017d67463a.1783524645.git.gregoire.layet@9elements.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=YqAvlhaRTAuRPVqq70y2yPVK3PDrxt4fET1pQkEXT3WFcpKPYwB2tSvjkmLEcHcEqCyDo+LS1b8N3EEP5iNXhvxwWKmFRN3HKkB30c//hCSrqGkn9IOogkIZOuuceb42pZqYe03B0bvis6+7f9ly+Bm6TyClNhIVGKV4oeqnHRY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mAKVPYvL; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DFF5F1F000E9;
+	Wed,  8 Jul 2026 16:39:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1783528779;
+	bh=0vXeI+uCXnMRTRUaf8HMNBKTFOd8TopxxzIUG1swgmA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=mAKVPYvLfywT4c/A7TNfSBbuW0PmTrerhJVp61IvBtaET8sHc8VIztbtUWBp0UqZx
+	 /tz6XVc2uJoqaZHv2oc1kjKDqoeVdSEdTShBIqdsu/34W4tgFke/gOmjTBF3GdsbRy
+	 J+oupoeLzOALtt+soh9dr19rB9cFk8RZQi49pW+CqpW9uh5I8YABFIhjk5yOXl9r/z
+	 VHFGAO5p3YlYiiwIBuK0zwmxsvrtn8uaeuM8nMWIMvdDsycG7QQcyCUrGVdji/Ola9
+	 ZYfWXCrtrmiFHq46lv+JVjhr78iuQ1O4B0fqMWvX22K5dqJCWoxagqwjTdabI1MPux
+	 1M9rxYeT7hlqQ==
+Date: Wed, 8 Jul 2026 17:39:34 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Gokul Praveen <g-praveen@ti.com>
+Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, krzk+dt@kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-phy@lists.infradead.org, neil.armstrong@linaro.org, nm@ti.com,
+	robh@kernel.org, sjakhade@cadence.com, kristo@kernel.org,
+	vigneshr@ti.com, vkoul@kernel.org, yamonkar@cadence.com
+Subject: Re: [PATCH v5 net-next 1/2] dt-bindings: phy: cadence-torrent:
+ Update property values to support multilink SERDES configuration
+Message-ID: <20260708-purifier-subside-667f32244c09@spud>
+References: <20260708083725.66777-1-g-praveen@ti.com>
+ <20260708083725.66777-2-g-praveen@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="SevP7+UOVskAfqSk"
 Content-Disposition: inline
-In-Reply-To: <cbe59dfba231dcd55fa86233dc076b017d67463a.1783524645.git.gregoire.layet@9elements.com>
+In-Reply-To: <20260708083725.66777-2-g-praveen@ti.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-6.76 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	SIGNED_PGP(-2.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[lunn.ch,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[lunn.ch:s=20171124];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-323046-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER(0.00)[andrew@lunn.ch,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	FORGED_RECIPIENTS(0.00)[m:gregoire.layet@9elements.com,m:joel@jms.id.au,m:andrew@codeconstruct.com.au,m:lkundrak@v3.sk,m:devicetree@vger.kernel.org,m:gregkh@linuxfoundation.org,m:jirislaby@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:jacky_chou@aspeedtech.com,m:yh_chung@aspeedtech.com,m:ninad@linux.ibm.com,m:anirudhsriniv@gmail.com,m:linux-serial@vger.kernel.org,m:linux-aspeed@lists.ozlabs.org,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	FORGED_RECIPIENTS(0.00)[m:g-praveen@ti.com,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:krzk+dt@kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:linux-phy@lists.infradead.org,m:neil.armstrong@linaro.org,m:nm@ti.com,m:robh@kernel.org,m:sjakhade@cadence.com,m:kristo@kernel.org,m:vigneshr@ti.com,m:vkoul@kernel.org,m:yamonkar@cadence.com,m:conor@kernel.org,m:krzk@kernel.org,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FREEMAIL_CC(0.00)[jms.id.au,codeconstruct.com.au,v3.sk,vger.kernel.org,linuxfoundation.org,kernel.org,aspeedtech.com,linux.ibm.com,gmail.com,lists.ozlabs.org,lists.infradead.org];
+	TAGGED_FROM(0.00)[bounces-323047-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andrew@lunn.ch,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[lunn.ch:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp,lunn.ch:from_mime,lunn.ch:dkim,lunn.ch:mid]
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,ti.com:email,vger.kernel.org:from_smtp,spud:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: CD2C6728E60
+X-Rspamd-Queue-Id: ED189728D7E
 
-> -      polarity (IRQ_TYPE_LEVEL_LOW or IRQ_TYPE_LEVEL_HIGH).  Only
-> -      applicable to aspeed,ast2500-vuart.
-> +      polarity (IRQ_TYPE_LEVEL_LOW or IRQ_TYPE_LEVEL_HIGH). Only
-> +      applicable to aspeed,ast2500-vuart and aspeed,ast2600-vuart.
+--SevP7+UOVskAfqSk
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-nitpick, if you need to respin. Don't change to two spaces to
-one.
+On Wed, Jul 08, 2026 at 02:07:24PM +0530, Gokul Praveen wrote:
+> Update the maxItems value of clocks parameter as 3 clocks
+> (refclk,pll1_refclk,phy_en_refclk) are supported.
+>=20
+> Update the clock-names parameter to support mutilink SERDES configuration
+> as the existing enum configuration of the clock-names parameter does not
+> allow both pll1_refclk and phy_en_refclk to be used at the same time,
+> hence preventing the support for the configuration  (refclk,pll1_refclk,
+> phy_en_refclk), which is neeed for multilink SERDES usecases.
+>=20
+> For multilink SERDES configurations where the links require different
+> clock speeds, all 3 clocks(refclk, pll1_refclk and phy_en_refclk)
+> are needed.
+>=20
+> For example,considering the USXGMII+SGMII multilink SERDES configuration
+> usecase, having only 1 reference clock(refclk) fails because USXGMII
+> requires a clock speed of 156.25 Mhz and SGMII protocol requires an
+> clock speed of 100 Mhz.
+>=20
+> Since one reference clock(refclk) alone cannot cater to the 2
+> different clock speed requirements of these protocols, the second
+> input reference clock(pll1_refclk) along with phy_en_refclk
+> is also needed.
 
-Whitespace changes distract from real changes. So it is normal to put
-them in a patch of their own. In this case, i don't think it needs to
-change at all. Two spaces after a . is a common style.
+This binding supports 2 devices and the generic compatible. Do all these
+devices have the new refclk?
 
-      Andrew
+Thanks,
+Conor.
+
+>=20
+> Signed-off-by: Gokul Praveen <g-praveen@ti.com>
+> ---
+>  Documentation/devicetree/bindings/phy/phy-cadence-torrent.yaml | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/phy/phy-cadence-torrent.ya=
+ml b/Documentation/devicetree/bindings/phy/phy-cadence-torrent.yaml
+> index 9af39b33646a..ac0f625cd76d 100644
+> --- a/Documentation/devicetree/bindings/phy/phy-cadence-torrent.yaml
+> +++ b/Documentation/devicetree/bindings/phy/phy-cadence-torrent.yaml
+> @@ -34,7 +34,7 @@ properties:
+> =20
+>    clocks:
+>      minItems: 1
+> -    maxItems: 2
+> +    maxItems: 3
+>      description:
+>        PHY input reference clocks - refclk (for PLL0) & pll1_refclk (for =
+PLL1).
+>        pll1_refclk is optional and used for multi-protocol configurations=
+ requiring
+> @@ -48,6 +48,7 @@ properties:
+>      items:
+>        - const: refclk
+>        - enum: [ pll1_refclk, phy_en_refclk ]
+> +      - const: phy_en_refclk
+> =20
+>    reg:
+>      minItems: 1
+> --=20
+> 2.34.1
+>=20
+
+--SevP7+UOVskAfqSk
+Content-Type: application/pgp-signature; name=signature.asc
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCak59RgAKCRB4tDGHoIJi
+0jCnAQDwtt/OwP4pRnpx2Cyg3NCRTTNs5l3WIiTgazMbaX9XagD+KZWxE6E1LGe+
+AxAPK0PIAm6SzsOvq7pGRtKDUpY01gg=
+=70nt
+-----END PGP SIGNATURE-----
+
+--SevP7+UOVskAfqSk--
 
