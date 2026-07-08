@@ -1,92 +1,91 @@
-Return-Path: <devicetree+bounces-322587-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-322588-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id qXZSE+z+TWqABQIAu9opvQ
-	(envelope-from <devicetree+bounces-322587-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 09:40:28 +0200
+	id 6fmqEU39TWoZBQIAu9opvQ
+	(envelope-from <devicetree+bounces-322588-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 09:33:33 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8633722B9A
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 09:40:27 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id A49D3722A96
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 09:33:32 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=Dkj+4CKR;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b="fcw3YMi/";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322587-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-322587-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322588-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-322588-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A628A3043FD1
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 07:32:28 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 487B23003508
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 07:33:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A4093845AE;
-	Wed,  8 Jul 2026 07:32:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85B693C4163;
+	Wed,  8 Jul 2026 07:33:23 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B0DB3EFD02
-	for <devicetree@vger.kernel.org>; Wed,  8 Jul 2026 07:32:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44A083890F1
+	for <devicetree@vger.kernel.org>; Wed,  8 Jul 2026 07:33:15 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783495944; cv=none; b=uScMltRhb4/uyMIAbAuHbYRRkEUVE/D6J9ENItOz4F5UySDw3K+OKIH2mWbyEsmsoQNpXnhy0+PgvyJ7E2/Qh915Db5yCiS8Pw76Xmo924DO6qe9u4qF+wTlT1cZPKblwLVfkQOmL2y5y9vAthGgm1GO1uSYVH8DTX/2fh68RYw=
+	t=1783496001; cv=none; b=aGAe3jUr0WNV7uROQSHX2/xA9B/2R8/ibWgs4WpmzYQ7ZnSK6ITZh87R2fYws8sFUEov1B5ffVdslbdqDPnc3yNtqZ5q404YjyR+8Ws3fxit6/Vool6af/nVC9PDL0O28Ahe4ILCsmFHeBGtMwqV17booH1Bc+yl53h9XINm6Zw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783495944; c=relaxed/simple;
-	bh=02vlmr9IDbm+tfq2tfRg5j4kU89eZ/++9MU4DFMtgJg=;
+	s=arc-20240116; t=1783496001; c=relaxed/simple;
+	bh=hkQ5r0SU39ya/Nelx6WpFiW0lygcFU7gc8UT/k1h9nQ=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=CH27+PYnGiJLUeY0Yqo6gYKrLCtFpxtSiYMgVGi4B8VK8SQ3dVILJtJCvCKi2owFvKysXZpZuJrdBIePqR70V0bizhOZ3qnmWfsyGwqmuBGFf02hUyQtTvLFJCXQWzDdLi1WsIA8rVFOr0ZjSXjHDf6St/TzwJwEXW1LXDT6GCM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Dkj+4CKR; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5B8151F000E9;
-	Wed,  8 Jul 2026 07:32:06 +0000 (UTC)
+	 Message-Id; b=eC7OXSImm28/5oU36bwyXrUEwWDJn4qSV1sghap2QHsizz5qRPaSuFq2799AKmCL1I8Gqy2NLWFHsp7Ztt96X0sKOVg4CQiSA04f7TCAbKmPp2cPCFZ4NpRnco+DQiQZaaFZ/vPZkw8pgosLyIifTkFub2bF8ie41B5mNvtczAw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fcw3YMi/; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 10E191F00A3A;
+	Wed,  8 Jul 2026 07:33:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783495926;
-	bh=hEazPiUp91CQLQuj8cgfPmyQmuLgNJTwgOEgAilU3yA=;
+	s=k20260515; t=1783495990;
+	bh=kX5u2JXWQa6pcWiC4HuTw3lhvRFUma58bKNInJcdeok=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=Dkj+4CKRhAXt/ZXyTd57kaz0mB6K0P1ezXulzgef3sR7e5/WzHlNKaPxcN7Uk5xuc
-	 zggFTTTt5jKm6s63mhfc2lM/gK0tow1et/T+MqTqyGmPSwc/bK4mAhdY7ShrPkUNGR
-	 20op78J5IWUzcf7XDEo5/KcgMxPvi5uvL3cmvpDtfO2+UUy0XD1BthcmQpK17gALYN
-	 KP1ddIkXzgVWpL8cHVCI1PKN9tNktQR2/9nJ6OEdOOVDhAzQv8DaEinxERUf8jFI+2
-	 rQ4VRPE+sWiKQb45I/oR2dqEPVV8lJ2iD5SJwgk/drNTsm7pa2/pcpYV1G084uapuR
-	 sPiMxo1GDfA9g==
+	b=fcw3YMi/eooAdUlgDSwqlETt5tS5MNKKrGyr8KcKMuFgPHo5wscmkNQ+MQ+eztdB1
+	 HuBmfEEB9g1b4nVTqDcWa5sNEFDAcz1ihO9hJ41Wye9u5jVaJw4Ht6C/KhtlQub9mX
+	 G2qamh3lL2eY1TLb2J+CCqeOiK4QnSiArbBtJQBfG5vvDvuDYMAIxxf09T83pv9e//
+	 v50oTiQa3Kp7gNbYNjevM0sRYF3PesdXHev/ABSEEIYZF5HIc0ix69DS4euFSzCE4Z
+	 T62VzwzBEHVYeFIDNGRtOssOT3unaRw+6H05cgtcZUyOet3EoZjYPYR1eWBpcgw0LI
+	 /ixj5zftv6SoA==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v4 2/5] dt-bindings: clock: versal-clk: Fix mio_clk
- index range in clock-names pattern
+Subject: Re: [PATCH RFC 4/6] arm64/efi: Honor EFI_MEMORY_ISA_MASK for
+ Device-nGnRnE vs -nGnRE
 Reply-To: sashiko-reviews@lists.linux.dev
-To: "Michal Simek" <michal.simek@amd.com>
+To: "Sven Peter" <sven@kernel.org>
 Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <f0ef921cf0a5762c0530d0f5c4fe252ab35854f4.1783495122.git.michal.simek@amd.com>
-References: <cover.1783495122.git.michal.simek@amd.com>
- <f0ef921cf0a5762c0530d0f5c4fe252ab35854f4.1783495122.git.michal.simek@amd.com>
+In-Reply-To: <20260708-efi-psci-v1-4-9efb3abf0e4c@kernel.org>
+References: <20260708-efi-psci-v1-0-9efb3abf0e4c@kernel.org>
+ <20260708-efi-psci-v1-4-9efb3abf0e4c@kernel.org>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Wed, 08 Jul 2026 07:32:05 +0000
-Message-Id: <20260708073206.5B8151F000E9@smtp.kernel.org>
+Date: Wed, 08 Jul 2026 07:33:09 +0000
+Message-Id: <20260708073310.10E191F00A3A@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
+X-Spamd-Result: default: False [-3.16 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
 	MISSING_MIME_VERSION(2.00)[];
-	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TO_DN_SOME(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-322587-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	TAGGED_FROM(0.00)[bounces-322588-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:michal.simek@amd.com,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS(0.00)[m:sven@kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
@@ -99,107 +98,91 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FROM_NO_DN(0.00)[];
 	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	RCPT_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,smtp.kernel.org:mid,vger.kernel.org:from_smtp,microchip.com:email,sashiko.dev:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,lists.linux.dev:replyto]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,smtp.kernel.org:mid,lists.linux.dev:replyto,vger.kernel.org:from_smtp,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: B8633722B9A
+X-Rspamd-Queue-Id: A49D3722A96
 
 Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-
-Pre-existing issues:
-- [High] The `xlnx,versal-net-clk` compatible string matches multiple contr=
-adictory `if` blocks, making valid device tree nodes mathematically impossi=
-ble to validate.
+- [Medium] Silent truncation of the 16-bit EFI_MEMORY_ISA_MASK field into a=
+ u8 variable, bypassing validation and printing misleading warnings.
 --
 
---- Patch [2]: [PATCH v4 2/5] dt-bindings: clock: versal-clk: Fix mio_clk i=
-ndex range in clock-names pattern ---
-commit bbeb0fbfb689e023d79c16fd79850f4f854a36ee
-Author: Michal Simek <michal.simek@amd.com>
+--- Patch [4]: [PATCH RFC 4/6] arm64/efi: Honor EFI_MEMORY_ISA_MASK for Dev=
+ice-nGnRnE vs -nGnRE ---
+commit 6b01988498665d7f9d353c79435cf09a3768a624
+Author: Sven Peter <sven@kernel.org>
 
-    dt-bindings: clock: versal-clk: Fix mio_clk index range in clock-names =
-pattern
-   =20
-    The clock-names pattern "^mio_clk[00-77]+.*$" was intended to constrain
-    the MIO index to the valid range 00..77 (ZynqMP has 78 MIO pins),
-    but a regex character class cannot express a multi-digit decimal range.
-    Replace the bogus character class with an explicit alternation that
-    enumerates the two-digit decimal values 00..77.
-   =20
-    Fixes: 03d4a1004053 ("dt-bindings: clock: versal: Convert the xlnx,zynq=
-mp-clk.txt to yaml")
-    Signed-off-by: Michal Simek <michal.simek@amd.com>
-    Acked-by: Conor Dooley <conor.dooley@microchip.com>
+arm64/efi: Honor EFI_MEMORY_ISA_MASK for Device-nGnRnE vs -nGnRE
 
-> diff --git a/Documentation/devicetree/bindings/clock/xlnx,versal-clk.yaml=
- b/Documentation/devicetree/bindings/clock/xlnx,versal-clk.yaml
-> index bef109d163a82..b1623c2ab0f69 100644
-> --- a/Documentation/devicetree/bindings/clock/xlnx,versal-clk.yaml
-> +++ b/Documentation/devicetree/bindings/clock/xlnx,versal-clk.yaml
-> @@ -116,7 +116,7 @@ allOf:
->              - const: pss_alt_ref_clk
->              - const: aux_ref_clk
->              - const: gt_crx_ref_clk
-> -            - pattern: "^mio_clk[00-77]+.*$"
-> +            - pattern: "^mio_clk([0-6][0-9]|7[0-7])+.*$"
->              - pattern: "gem[0-3]+_emio_clk.*$"
->              - pattern: "swdt[0-1]+_ext_clk.*$"
+This patch updates the mapping protection for EFI MMIO regions to honor the
+MAIR attributes provided in EFI_MEMORY_ISA_MASK if EFI_MEMORY_ISA_VALID is
+set. It defaults to Device-nGnRE for unsupported values or when the valid b=
+it
+is absent.
 
-[Severity: High]
-This is a pre-existing issue and was not introduced by the patch under revi=
-ew,
-but does the current allOf schema make it impossible to validate
-xlnx,versal-net-clk nodes?
+> diff --git a/arch/arm64/kernel/efi.c b/arch/arm64/kernel/efi.c
+> index e40885567f9e9..50ba8e9112fc8 100644
+> --- a/arch/arm64/kernel/efi.c
+> +++ b/arch/arm64/kernel/efi.c
 
-Since xlnx,versal-net-clk uses xlnx,versal-clk as a fallback string, this
-first conditional in Documentation/devicetree/bindings/clock/xlnx,versal-cl=
-k.yaml
-will match:
+[ ... ]
 
-  allOf:
-    - if:
-        properties:
-          compatible:
-            contains:
-              enum:
-                - xlnx,versal-clk
-      then:
-        properties:
-          clocks:
-            items:
-              - description: reference clock
-              - description: alternate reference clock for programmable log=
-ic
+> @@ -38,7 +40,27 @@ static __init ptval_t create_mapping_protection(efi_me=
+mory_desc_t *md)
+>  	u32 type =3D md->type;
+> =20
+>  	if (type =3D=3D EFI_MEMORY_MAPPED_IO) {
+> -		pgprot_t prot =3D __pgprot(PROT_DEVICE_nGnRE);
+> +		pgprot_t prot;
+> +
+> +		if (attr & EFI_MEMORY_ISA_VALID) {
+> +			u8 mair =3D FIELD_GET(EFI_MEMORY_ISA_MASK, attr);
 
-This restricts the node to exactly 2 clocks. However, because both conditio=
-ns
-are processed, the following conditional for xlnx,versal-net-clk also match=
-es:
+[Severity: Medium]
+Will this silently truncate the extracted field?
 
-    - if:
-        properties:
-          compatible:
-            contains:
-              enum:
-                - xlnx,versal-net-clk
-      then:
-        properties:
-          clocks:
-            items:
-              - description: reference clock
-              - description: alternate reference clock for programmable log=
-ic
-              - description: alternate reference clock
+EFI_MEMORY_ISA_MASK covers 16 bits (bits 44-59). If the firmware provides an
+attribute with non-zero bits in the upper 8 bits of this mask (like 0x0100),
+assigning the result of FIELD_GET to a u8 will truncate it to 0x00.
 
-This applies a 3-item length constraint. Could this cause the schema to
-unconditionally reject valid xlnx,versal-net-clk nodes since it forces the
-node to have exactly 2 and exactly 3 clocks simultaneously?
+This would cause the switch statement below to incorrectly match
+MAIR_ATTR_DEVICE_nGnRnE (0x00) instead of falling through to the default
+case. Should mair be a u16 or u32 instead?
+
+> +
+> +			switch (mair) {
+> +			case MAIR_ATTR_DEVICE_nGnRnE:
+> +				prot =3D __pgprot(PROT_DEVICE_nGnRnE);
+> +				break;
+> +			case MAIR_ATTR_DEVICE_nGnRE:
+> +				prot =3D __pgprot(PROT_DEVICE_nGnRE);
+> +				break;
+> +			default:
+> +				prot =3D __pgprot(PROT_DEVICE_nGnRE);
+> +				pr_warn("unsupported MAIR attribute %#x for EFI MMIO region at 0x%ll=
+x, using Device-nGnRE\n",
+> +					mair, md->phys_addr);
+
+[Severity: Medium]
+If truncation occurs above, will this warning print a misleading value?
+
+Because mair is a u8, any unsupported attributes in the upper 8 bits of the
+ISA mask will be stripped out before being printed here, obscuring the actu=
+al
+unsupported bits provided by the firmware.
+
+> +				break;
+> +			}
+> +		} else {
+> +			prot =3D __pgprot(PROT_DEVICE_nGnRE);
+> +		}
 
 --=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/cover.1783495122.gi=
-t.michal.simek@amd.com?part=3D2
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260708-efi-psci-v=
+1-0-9efb3abf0e4c@kernel.org?part=3D4
 
