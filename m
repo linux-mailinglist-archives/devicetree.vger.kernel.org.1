@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-323179-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-323180-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 3T3dHK7ETmrYTgIAu9opvQ
-	(envelope-from <devicetree+bounces-323179-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 23:44:14 +0200
+	id ZXB+B73ETmrjTgIAu9opvQ
+	(envelope-from <devicetree+bounces-323180-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 23:44:29 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07AD172A9F1
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 23:44:14 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 899F272AA0A
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 23:44:28 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=savoirfairelinux.com header.s=DFC430D2-D198-11EC-948E-34200CB392D2 header.b=swGEO5t0;
+	dkim=pass header.d=savoirfairelinux.com header.s=DFC430D2-D198-11EC-948E-34200CB392D2 header.b=EN8ACZrD;
 	dmarc=pass (policy=none) header.from=savoirfairelinux.com;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-323179-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-323179-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-323180-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-323180-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 224DD301CD25
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 21:44:13 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 4BC5130120EC
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 21:44:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67C5A3E8C6F;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B3B73F7885;
 	Wed,  8 Jul 2026 21:44:11 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail.savoirfairelinux.com (mail.savoirfairelinux.com [208.88.110.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22D073A6B65;
-	Wed,  8 Jul 2026 21:44:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22B97370D5C;
+	Wed,  8 Jul 2026 21:44:09 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783547051; cv=none; b=eq9AWWE0z2DzTYGvUbeDRfm8NU/bUpO9pZmfF9pQoTtn7FdEWDoPl6+d7gGNWy6e1rd0qFHe4zDfUdNQxbXnPF7h5fN/jeOPnrQFUtQyZsdoLo+O/t0g20LTc+hNsKJh7zxG7ODkZyq23oQh0Qwh3RcFJP1rbWGyoKidgpFI6hQ=
+	t=1783547051; cv=none; b=Wh53lSYjQoCgnO5xA+BCHPCG/TrYypvIzbYUHJCG/SwqF4I8t5/zAN1hXWLvBKw7fAo7kK5l7auESFTuhp24CPNTlN5fYCD3aYMHjDX3xEPLvN3PiY/RLmtCBZ38b+7EvLTzgExpJO2w8V6sCjXyffwQd0PuKLkvRFvom35Rnkw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1783547051; c=relaxed/simple;
-	bh=z47/3k14FrOSF5XpFgkpzNryDkJoBrPIRL9v+63pmJc=;
+	bh=P5w6nBLIfSgoG42byLNNWj64oy4ggmzq0k5iMbqaByc=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=IVlKQSKnCXqzoJbWNWU4itBbogdAFGDZTLhfZhfTvDPklYoGjw296eGgS2Ru3vZ3wz+fvd0OYqD42D4YS9NiZZ4rgJdpeZXAhVmwR99BJEnN8kPA9SQ3khyMeNDxQU4Nugj9LKw3f+6RicMgsuuFKKso+tW4SKMD0AVvxKYZUVQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=savoirfairelinux.com; spf=none smtp.mailfrom=mail.savoirfairelinux.com; dkim=pass (2048-bit key) header.d=savoirfairelinux.com header.i=@savoirfairelinux.com header.b=swGEO5t0; arc=none smtp.client-ip=208.88.110.44
+	 MIME-Version; b=lQ1/b6szdouiqk1uNFYt8dRu2JRdHAjqyetJ41SXtGo3oPcAx0w4+yWvYCivD+pP3raXdd/Ca59RZ2LbFFOFuPmybBTkALpU+52uMXMGX7j2vk0YqW0B5JQ/SwHEw1xuoAiTDvNDVCp01egCBRoasOdDH8Jrsmz1yLbo3SDwP7Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=savoirfairelinux.com; spf=none smtp.mailfrom=mail.savoirfairelinux.com; dkim=pass (2048-bit key) header.d=savoirfairelinux.com header.i=@savoirfairelinux.com header.b=EN8ACZrD; arc=none smtp.client-ip=208.88.110.44
 Received: from localhost (localhost [127.0.0.1])
-	by mail.savoirfairelinux.com (Postfix) with ESMTP id C575E3D81904;
+	by mail.savoirfairelinux.com (Postfix) with ESMTP id DA2683D81926;
 	Wed,  8 Jul 2026 17:35:02 -0400 (EDT)
 Received: from mail.savoirfairelinux.com ([127.0.0.1])
  by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavis, port 10032)
- with ESMTP id NpfzsZBPhFkS; Wed,  8 Jul 2026 17:35:02 -0400 (EDT)
+ with ESMTP id PRHTeE2vnNiS; Wed,  8 Jul 2026 17:35:02 -0400 (EDT)
 Received: from localhost (localhost [127.0.0.1])
-	by mail.savoirfairelinux.com (Postfix) with ESMTP id E6CD43D8171F;
-	Wed,  8 Jul 2026 17:35:01 -0400 (EDT)
-DKIM-Filter: OpenDKIM Filter v2.10.3 mail.savoirfairelinux.com E6CD43D8171F
+	by mail.savoirfairelinux.com (Postfix) with ESMTP id 13B983D818E6;
+	Wed,  8 Jul 2026 17:35:02 -0400 (EDT)
+DKIM-Filter: OpenDKIM Filter v2.10.3 mail.savoirfairelinux.com 13B983D818E6
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=savoirfairelinux.com; s=DFC430D2-D198-11EC-948E-34200CB392D2;
-	t=1783546501; bh=4wrXRylHGc2qd8KGLuqk0LTwojaBpYvkUm9IKn1s0XI=;
+	t=1783546502; bh=n2HT/0Cc8bpQ6Vc5tj0jzjyw+BSNOfjpKWFBjNjy9UQ=;
 	h=From:To:Date:Message-Id:MIME-Version;
-	b=swGEO5t0Qq5CqcaBE2MtHfwoLnmYn3DrVApSUXjFBZhHre5G91EWemSBvPnr08ZsQ
-	 +8cWGGAcjs6thMHsMirnVr/jqYIa+kpKLCpQEZJDxzstyfCTAeIRgn/1XOB4hAvmAj
-	 hzkLxgdcH+rqwT2baxGYYPtG2Ys/EOMxyrdpmkrAL/p22NPnffuS6cUS9MQNOcp1pL
-	 BraawzFwEoJHmuCF7Wh4FaG3YtnFVEGlww9VSuZUzaa0vWSUSrhEJVmRmPMYmQ/fZs
-	 HTxhzSl8G0sK71IhwezOFgLEf28wmZ8D05p7Tgt9Z6oL2G9W3KthG+sbzMiBic9RfR
-	 mB0QIOOlK1HQA==
+	b=EN8ACZrDUpLbuhJiK40D+WaWTHIPO1CywDXBZ/lcL471g4GSglc1MTa/vjRsOu0cc
+	 pE13EgwGxIlf1AfnlMcAANvjJiJB82LBlZdAgPk1GIZ5D1ycXXwrS1FaxzNFTJuWQU
+	 qVcqt4RnIjvc71k8wSvMwXM6kzzx46/4tMPLLouirKJCprvHAS2184F64jCfIKWqoL
+	 e94M2nR0hYbnh7K9ck1F4esnC0y/ldV02UuwJ6nH1YuRKEUdspA3RHO0npDOUDz0hM
+	 CdrCHOslPqG8ddNqLpWr6z6YungAedrUOEpz00U38LqVrVOeJsSRNXGrsWoon8G6XY
+	 v9jBfvDRNqctQ==
 X-Virus-Scanned: amavis at mail.savoirfairelinux.com
 Received: from mail.savoirfairelinux.com ([127.0.0.1])
  by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavis, port 10026)
- with ESMTP id lBcIyIKPO6YU; Wed,  8 Jul 2026 17:35:01 -0400 (EDT)
+ with ESMTP id nNxDuQhANAyk; Wed,  8 Jul 2026 17:35:01 -0400 (EDT)
 Received: from localhost (unknown [192.168.51.254])
-	by mail.savoirfairelinux.com (Postfix) with ESMTPSA id A7A723D818E6;
+	by mail.savoirfairelinux.com (Postfix) with ESMTPSA id D30BA3D81902;
 	Wed,  8 Jul 2026 17:35:01 -0400 (EDT)
 From: Marc-Olivier Champagne <marc-olivier.champagne@savoirfairelinux.com>
 To: Jagan Teki <jagan@edgeble.ai>,
@@ -81,9 +81,9 @@ Cc: Hugo Villeneuve <hvilleneuve@dimonoff.com>,
 	Jerome Oufella <jerome.oufella@savoirfairelinux.com>,
 	Felix Boucher <felix.boucher@savoirfairelinux.com>,
 	Quentin Lehoux <quentin.lehoux@savoirfairelinux.com>
-Subject: [PATCH 3/5] dt-bindings: vendor-prefixes: Add DCLTEK
-Date: Wed,  8 Jul 2026 17:34:58 -0400
-Message-Id: <20260708213500.1867092-4-marc-olivier.champagne@savoirfairelinux.com>
+Subject: [PATCH 4/5] dt-bindings: display: panel: add compatible for DCLTek 300250 9.35in panel
+Date: Wed,  8 Jul 2026 17:34:59 -0400
+Message-Id: <20260708213500.1867092-5-marc-olivier.champagne@savoirfairelinux.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260708213500.1867092-1-marc-olivier.champagne@savoirfairelinux.com>
 References: <20260708213500.1867092-1-marc-olivier.champagne@savoirfairelinux.com>
@@ -101,20 +101,20 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[savoirfairelinux.com,none];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	R_DKIM_ALLOW(-0.20)[savoirfairelinux.com:s=DFC430D2-D198-11EC-948E-34200CB392D2];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[edgeble.ai,linaro.org,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de];
-	TAGGED_FROM(0.00)[bounces-323179-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[19];
 	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-323180-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[edgeble.ai,linaro.org,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de];
 	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:jagan@edgeble.ai,m:neil.armstrong@linaro.org,m:jesszhan0024@gmail.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:hvilleneuve@dimonoff.com,m:marc-olivier.champagne@savoirfairelinux.com,m:dri-devel@lists.freedesktop.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:jerome.oufella@savoirfairelinux.com,m:felix.boucher@savoirfairelinux.com,m:quentin.lehoux@savoirfairelinux.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:jagan@edgeble.ai,m:neil.armstrong@linaro.org,m:jesszhan0024@gmail.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:hvilleneuve@dimonoff.com,m:marc-olivier.champagne@savoirfairelinux.com,m:dri-devel@lists.freedesktop.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:jerome.oufella@savoirfairelinux.com,m:felix.boucher@savoirfairelinux.com,m:quentin.lehoux@savoirfairelinux.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER(0.00)[marc-olivier.champagne@savoirfairelinux.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
@@ -123,41 +123,42 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	FROM_NEQ_ENVFROM(0.00)[marc-olivier.champagne@savoirfairelinux.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[savoirfairelinux.com:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[savoirfairelinux.com:from_mime,savoirfairelinux.com:email,savoirfairelinux.com:mid,savoirfairelinux.com:dkim,vger.kernel.org:from_smtp,dcltek.com:url];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,savoirfairelinux.com:from_mime,savoirfairelinux.com:email,savoirfairelinux.com:mid,savoirfairelinux.com:dkim,vger.kernel.org:from_smtp,dimonoff.com:email];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	ALIAS_RESOLVED(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	RCVD_COUNT_SEVEN(0.00)[8]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 07AD172A9F1
+X-Rspamd-Queue-Id: 899F272AA0A
 
-Add DCL Technologies Inc. (DCLTEK) to the devicetree vendor prefixes
-registry.
+The DCLTek dt300250 is a panel using the jadard-jd9365da controller.
+Add a new compatible for it.
 
-Link: https://www.dcltek.com/
-
+Suggested-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
 Signed-off-by: Marc-Olivier Champagne <marc-olivier.champagne@savoirfaire=
 linux.com>
 ---
- Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+ .../devicetree/bindings/display/panel/jadard,jd9365da-h3.yaml    | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Doc=
-umentation/devicetree/bindings/vendor-prefixes.yaml
-index 396044f368e7..1e7af6de2afe 100644
---- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-+++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-@@ -407,6 +407,8 @@ patternProperties:
-     description: DataImage, Inc.
-   "^davicom,.*":
-     description: DAVICOM Semiconductor, Inc.
-+  "^dcltek,.*":
-+    description: DCL Technologies Inc.
-   "^deepcomputing,.*":
-     description: DeepComputing (HK) Limited
-   "^dell,.*":
+diff --git a/Documentation/devicetree/bindings/display/panel/jadard,jd936=
+5da-h3.yaml b/Documentation/devicetree/bindings/display/panel/jadard,jd93=
+65da-h3.yaml
+index 4eae802de9fd..9e20e2faf82f 100644
+--- a/Documentation/devicetree/bindings/display/panel/jadard,jd9365da-h3.=
+yaml
++++ b/Documentation/devicetree/bindings/display/panel/jadard,jd9365da-h3.=
+yaml
+@@ -19,6 +19,7 @@ properties:
+           - anbernic,rg-ds-display-bottom
+           - anbernic,rg-ds-display-top
+           - chongzhou,cz101b4001
++          - dcltek,dt300250
+           - kingdisplay,kd101ne3-40ti
+           - melfas,lmfbx101117480
+           - radxa,display-10hd-ad001
 --=20
 2.34.1
 
