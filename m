@@ -1,363 +1,227 @@
-Return-Path: <devicetree+bounces-323177-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-323183-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id rqa9MTbETmq4TgIAu9opvQ
-	(envelope-from <devicetree+bounces-323177-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 23:42:14 +0200
+	id pkFlIAHHTmpzTwIAu9opvQ
+	(envelope-from <devicetree+bounces-323183-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 23:54:09 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2235972A9A9
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 23:42:14 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 83A7E72AADB
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 23:54:08 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=proton.me header.s=protonmail header.b=JBsx2lPo;
-	dmarc=pass (policy=quarantine) header.from=proton.me;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-323177-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-323177-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=DmSHMXzh;
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-323183-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-323183-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5DCF830D0FE6
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 21:36:02 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 73F62300BEB2
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 21:54:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 324D63F6C41;
-	Wed,  8 Jul 2026 21:36:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1E803A6B81;
+	Wed,  8 Jul 2026 21:54:02 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-43100.protonmail.ch (mail-43100.protonmail.ch [185.70.43.100])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92E5B3AB29E;
-	Wed,  8 Jul 2026 21:35:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88B6B28150F
+	for <devicetree@vger.kernel.org>; Wed,  8 Jul 2026 21:54:01 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783546562; cv=none; b=M/TXcV+wiobSm4ZjkLNfLu/mSU7XgTpLnY4+VTi4W+xqRhUNUn6TEH0icJNAYLxWoaxjPqtZRmiGx8Nqr/dj5OTLbT7g316Gb402K8VC5K9c7H3y1ydmTtfkL41CWtU5gmn//9MMlWo7ZsCqem4+Eh65mFY0do+sTgV5/PMCRtw=
+	t=1783547642; cv=none; b=L/FGDsaeZdzcM6K0U96wr1YAc2ZCbuBNpuCCfjgBs0k/ZXd62mLLrYk+PzgQf1b1YeW98u9QEo4zcTcBZrLmB6vuxehR++L/YAP1DdlkoNc69gx7/mlTaN/ITdSx+PFxgTFU5+dz9K3pNQKzD8Dy5KIt+6hSuGGdIb6wxPzzDj0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783546562; c=relaxed/simple;
-	bh=uW3KpuuRhONSI4WnwH7ciiMe9KKhWTDUZaNxZJWu9ts=;
-	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=sahbDzFs2ltRZ0UX1ZRsMgOzfi5jZKYfpszlYdcOgRQSmVn26XemfUalXCCoITp4CGSwvZj2AvtkGH9FKqZzhkFlqCa3hsauGIkUI1wD1/7eCysqQPAEYTSV+FiVGqrEd4xLI3i7m3Qy7Xbmmdo4EOYp5PKYYAtAecMTKpLHwPg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=proton.me; spf=pass smtp.mailfrom=proton.me; dkim=pass (2048-bit key) header.d=proton.me header.i=@proton.me header.b=JBsx2lPo; arc=none smtp.client-ip=185.70.43.100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=proton.me;
-	s=protonmail; t=1783546555; x=1783805755;
-	bh=OaFK8xchxZpdcSqUAlwbyjWiLLlhU4uj9zauzAG6mTM=;
-	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
-	 Message-ID:BIMI-Selector;
-	b=JBsx2lPoXe0XnnsfV7iz1fLtcAxOvIzUT5rz3EklYgZFTRxMnULH/axoylwiMmuzg
-	 XtnV7eewtqFFQHPhsmaNTZlvXu9NQWs7abX7HNm27R7HTphTiq/Rvi71d2F3wtQUpV
-	 d8/CIBPtzp42Ec9ZswoC0mLOKZ98GLY6Tong1397mTKCNqqUJxUCQROqG2K/bvZ1jo
-	 EJWqCTpvW1fdx43LrFuGkN9gyNKukcIgeo5BZR0nGYygvqyisQySJZdz/8q5+/UbmV
-	 Vo5riulTp/uK8YF2/lWlnJSJPlgUQK6t3ni1HldwTZ7TNTmG4Q44EKKI1rH3ZvvSyQ
-	 X7gEegdqacWfg==
-Date: Wed, 08 Jul 2026 21:35:51 +0000
-To: Alex Elder <elder@ieee.org>, Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Alex Elder <elder@kernel.org>
-From: Esteban Urrutia <esteuwu@proton.me>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, netdev@vger.kernel.org
-Subject: Re: [PATCH 3/3] net: ipa: Add IPA v5.1 data
-Message-ID: <e89985ff-adf2-4014-95c1-27fc32f774dc@proton.me>
-In-Reply-To: <b810c574-0f60-4d3d-ad5a-4205a119fe00@ieee.org>
-References: <20260622-sm8450-ipa-v1-0-532f0299f96e@proton.me> <20260622-sm8450-ipa-v1-3-532f0299f96e@proton.me> <b810c574-0f60-4d3d-ad5a-4205a119fe00@ieee.org>
-Feedback-ID: 147889766:user:proton
-X-Pm-Message-ID: 7c235c73f6aaaa99f540929f35efc5c8c9a7c78d
+	s=arc-20240116; t=1783547642; c=relaxed/simple;
+	bh=BtEo97daQ1NkZ1Q9Ncx/C+ux1mtySgn5qhN/+4QLWWo=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=lOhOKJLLCLQuGWFkt45tTjMYGvwqSJLmf43p+60PQjySlH8IAO0/eTOgrrOSaMIhYrH5DnJ656oSTjPV7tVUyHaUH2ZUGNi1BozacKylD4RJjYVvDU8VvuX0VVv663ibGgD0+Q58+tF5Hokw3ue9Dlv9tIqyORzhKwanQ+6UdPM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DmSHMXzh; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EB23A1F00A3A;
+	Wed,  8 Jul 2026 21:53:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1783547641;
+	bh=+DbcHoKhTH0+WI7MX38Y6OlMCbwZgwmtaM7cp/TesrE=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=DmSHMXzh+gxzlrNlTvyPA4N6SMltw05B9OMaaf0kewkzy2/YGvHhFuilNrpxqmsXY
+	 /7uEQGgOkebweOl/BWODY4U0ek4Hndw2y7hKHRbOBb6cEiAmneG4QRd6csJQhCtMfv
+	 Oo02V8b0ju3JFRpGkAdyKbwsIwL9+DyU2T+Dn56TrF+etA1rXKaVcumuYaNsjgSnVb
+	 onB8n6E4FEZ5RpNUlvmrXzR02EQmjVnuqfA+re6G34vskTDMDdO/7+4dezcNqEvBQN
+	 l06B+0doJfRNlJOyE6v/736ajatpMb84H/Kck4yUJ0x/CUJ4iRmrFF0pFqtKLEfkR6
+	 o2S2/lYXujE9g==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH 2/5] drm: panel: jd9365da: Add prepare_prev_first flag
+ to drm_panel
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Marc-Olivier Champagne" <marc-olivier.champagne@savoirfairelinux.com>
+Cc: devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org, dri-devel@lists.freedesktop.org
+In-Reply-To: <20260708213500.1867092-3-marc-olivier.champagne@savoirfairelinux.com>
+References: <20260708213500.1867092-1-marc-olivier.champagne@savoirfairelinux.com>
+ <20260708213500.1867092-3-marc-olivier.champagne@savoirfairelinux.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Wed, 08 Jul 2026 21:53:59 +0000
+Message-Id: <20260708215359.EB23A1F00A3A@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-1.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[proton.me,quarantine];
-	R_DKIM_ALLOW(-0.20)[proton.me:s=protonmail];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-323177-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:elder@ieee.org,m:andersson@kernel.org,m:konradybcio@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:andrew+netdev@lunn.ch,m:davem@davemloft.net,m:edumazet@google.com,m:kuba@kernel.org,m:pabeni@redhat.com,m:elder@kernel.org,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:netdev@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,m:andrew@lunn.ch,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[esteuwu@proton.me,devicetree@vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	RCVD_COUNT_THREE(0.00)[3];
-	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-323183-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,savoirfairelinux.com:email,smtp.kernel.org:mid,vger.kernel.org:from_smtp,lists.linux.dev:replyto];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:marc-olivier.champagne@savoirfairelinux.com,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:dri-devel@lists.freedesktop.org,m:conor@kernel.org,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	ALIAS_RESOLVED(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[esteuwu@proton.me,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[proton.me:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,netdev];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp,codelinaro.org:url,proton.me:from_mime,proton.me:dkim,proton.me:mid]
+	FROM_NO_DN(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[5]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 2235972A9A9
+X-Rspamd-Queue-Id: 83A7E72AADB
 
-On 7/8/26 4:06 PM, Alex Elder wrote:
-> I think the DDR values might be wrong, but it's difficult to be
-> sure.  In some cases, in arrays like this in the downstream code,
-> if there is no entry found in an array, the *earlier* version
-> values should be used.  (Unless someone better informed states
-> that this is wrong, I think it's fine as-is.)
->=20
-> This information is found in the ipa3_qmb_outstanding[IPA_5_1][]
-> array in the downstream code.  However there is no entry for that
-> version.  Given that, all zeroes (as you have it) makes sense.
-> But it's possible this applies instead:
->=20
->          [IPA_5_0][IPA_QMB_INSTANCE_DDR]         =3D {12, 12, 0},
->          [IPA_5_0][IPA_QMB_INSTANCE_PCIE]        =3D {0, 0, 0},
->=20
-> I have no way of knowing; perhaps someone from Qualcomm can
-> get confirmation that all zeroes is correct.
->=20
-> (Note the order of values presented in the downstream code
-> differs from upstream.)
+Thank you for your contribution! Sashiko AI review found 3 potential issue(=
+s) to consider:
 
-In downstream ipa_utils.c there's a function called ipa3_cfg_qsb() which
-is in charge of reading these values from ipa3_qmb_outstanding.
-Since these values are not present for IPA v5.1, one would assume
-they're not set and that, since this is the first time such behavior is
-found, additional changes would need to be made to the IPA driver.
-However, looking at this function, which I'll leave as a snippet below
-given its shortness:
+New issues:
+- [Low] Redundant duplicate assignment of `prepare_prev_first` flag.
 
-static void ipa3_cfg_qsb(void)
-{
-=09u8 hw_type_idx;
-=09const struct ipa_qmb_outstanding *qmb_ot;
-=09struct ipahal_reg_qsb_max_reads max_reads =3D { 0 };
-=09struct ipahal_reg_qsb_max_writes max_writes =3D { 0 };
+Pre-existing issues:
+- [High] Missing cleanup in the error paths of `jadard_prepare()` causes a =
+permanent leak of the regulator enable counts.
+- [High] Premature publication of the panel in `jadard_dsi_probe()` allows =
+a race condition leading to a NULL pointer dereference.
+--
 
-=09hw_type_idx =3D ipa3_ctx->hw_type_index;
+--- Patch [2]: [PATCH 2/5] drm: panel: jd9365da: Add prepare_prev_first fla=
+g to drm_panel ---
+commit 1a793dbc7476444fc7003da84dbce8a3bff9ad98
+Author: Marc-Olivier Champagne <marc-olivier.champagne@savoirfairelinux.com>
 
-=09/*
-=09 * Read the register values before writing to them to ensure
-=09 * other values are not overwritten
-=09 */
-=09ipahal_read_reg_fields(IPA_QSB_MAX_WRITES, &max_writes);
-=09ipahal_read_reg_fields(IPA_QSB_MAX_READS, &max_reads);
+drm: panel: jd9365da: Add prepare_prev_first flag to drm_panel
 
-=09qmb_ot =3D &(ipa3_qmb_outstanding[hw_type_idx][IPA_QMB_INSTANCE_DDR]);
-=09max_reads.qmb_0_max_reads =3D qmb_ot->ot_reads;
-=09max_writes.qmb_0_max_writes =3D qmb_ot->ot_writes;
-=09max_reads.qmb_0_max_read_beats =3D qmb_ot->ot_read_beats;
+The DSI host must be enabled for the panel to be initialized in
+prepare(). Set the prepare_prev_first flag to guarantee this.
+This fixes the panel operation on Renesas RZ/G2LC SoC DSI host.
 
-=09qmb_ot =3D &(ipa3_qmb_outstanding[hw_type_idx][IPA_QMB_INSTANCE_PCIE]);
-=09max_reads.qmb_1_max_reads =3D qmb_ot->ot_reads;
-=09max_writes.qmb_1_max_writes =3D qmb_ot->ot_writes;
+> diff --git a/drivers/gpu/drm/panel/panel-jadard-jd9365da-h3.c b/drivers/g=
+pu/drm/panel/panel-jadard-jd9365da-h3.c
+> index 1ef0c937863a2..a79dc8f8d5af9 100644
+> --- a/drivers/gpu/drm/panel/panel-jadard-jd9365da-h3.c
+> +++ b/drivers/gpu/drm/panel/panel-jadard-jd9365da-h3.c
+> @@ -2993,6 +2993,8 @@ static int jadard_dsi_probe(struct mipi_dsi_device =
+*dsi)
+>  		return dev_err_probe(&dsi->dev, PTR_ERR(jadard->vccio),
+>  				"failed to get vccio regulator\n");
+> =20
+> +	jadard->panel.prepare_prev_first =3D true;
+> +
 
-=09ipahal_write_reg_fields(IPA_QSB_MAX_WRITES, &max_writes);
-=09ipahal_write_reg_fields(IPA_QSB_MAX_READS, &max_reads);
+[Severity: Low]
+Does this introduce a redundant assignment?
+
+Looking further down in jadard_dsi_probe(), the exact same flag appears to =
+be
+set again just before panel registration:
+
+jadard_dsi_probe() {
+	...
+	jadard->panel.prepare_prev_first =3D true;
+
+	drm_panel_add(&jadard->panel);
+	...
 }
 
-There are no conditions for writing ot_reads, ot_writes and
-ot_read_beats, which would correspond to max_reads, max_writes and
-max_reads_beats in upstream.
-Since hw_type_idx is set to IPA_5_1, this should give a null pointer.
-With this info, there are two possibilities:
+Can we remove one of these duplicate assignments?
 
-1. Null pointer dereference, resulting in a kernel oops downstream.
-2. qmb_ot is set with all values to 0.
+[Severity: High]
+This is a pre-existing issue, but does jadard_prepare() leak regulator
+reference counts on error paths?
 
-I have never seen a null pointer dereference downstream, so I'm more
-inclined to believe option 2 is what's actually happening.
-IPA v5.0 also zeroes these values, but I wasn't able to actually confirm
-this.
-This because in downstream, IPA versions are split into subversions,
-which are:
+If regulator_enable(jadard->vccio) succeeds, but a subsequent step fails:
 
-1. Normal IPA (IPA_X_Y)
-2. MHI IPA (IPA_X_Y_MHI)
-3. APQ IPA (IPA_X_Y_APQ)
+jadard_prepare() {
+	...
+	ret =3D regulator_enable(jadard->vccio);
+	...
+	ret =3D regulator_enable(jadard->vdd);
+	if (ret)
+		return ret;
 
-Data for IPA v5.0 seems to be of the MHI type, since it's only used in
-the SDX65 SoC, which I believe is mostly used in 5G modems.
-I realized this while cross-checking since some values didn't really
-match, so I had to cross-check with different ipa_data-vX.Y.c files
-because of this.
+and later with mipi_dsi_dcs_nop():
 
-> And although ipa_gsi_ep_config is not defined in this code
-> base, here is what it looks like:
->=20
-> struct ipa_gsi_ep_config {
->          int ipa_ep_num;
->          int ipa_gsi_chan_num;
->          int ipa_if_tlv;
->          int ipa_if_aos;
->          int ee;
->          enum gsi_prefetch_mode prefetch_mode;
->          uint8_t prefetch_threshold;
-> };
->=20
-> This might not be current; I'm using code found here:
->    https://git.codelinaro.org/clo/la/kernel/msm-5.15.git
+	ret =3D mipi_dsi_dcs_nop(jadard->dsi);
+	if (ret)
+		return ret;
+}
 
-Many thanks for providing the declaration for this struct.
+The function returns without disabling the previously enabled regulators.
+Because the panel prepare fails, the DRM core won't mark it as prepared, and
+jadard_unprepare() will never be called to clean up.
+   =20
+Can this prevent the system from entering low-power states or re-initializi=
+ng
+the display properly?
 
-> In the downstream code--confusingly--ipa_gsi_setup_channel()
-> doubles the desc_fifo_sz value (for GSI, versus the older BAM
-> interface).  So the ring size becomes 4096 bytes, and that
-> works out to 256 16-byte GSI TRE entries.  I'm not sure why
-> 512 is used for IPA v3.5.1, but it probably just means it's
-> bigger than it needs to be.
->=20
-> The event_count should be the same as the tre_count.  Again
-> I no longer know why that's not the case for IPA v3.5.1.
+[Severity: High]
+This isn't a bug introduced by this patch, but is there a race condition wi=
+th
+premature panel publication in jadard_dsi_probe()?
 
-For the record (since this is off-topic). I tried to get the modem up in
-a device whose SoC was using IPA v3.5.1 and I was experimenting weird
-behavior, such as IPA crashing the SoC when removing the module or when
-it automatically loaded at boot.
-The reason I mention this is because a warning similar to "channel 4
-limited to 256 TREs" appeared whenever IPA was loaded. That may be the
-reason I was experimenting those issues.
+The panel is added to the global list before its required internal pointers
+are initialized:
 
->> +static const struct ipa_mem ipa_mem_local_data[] =3D {
->=20
-> IPA has local memory that is partitioned as defined by this
-> array.  The regions are used by IPA/GSI firmware and/or
-> hardware.  The configuration defined here is sent to
-> the modem in an ipa_init_modem_driver_req QMI message
-> so both the modem and AP have a consistent view of
-> how the memory is used.
->=20
-> Many memory regions are preceded by 0-2 "canaries", which
-> are 32-byte values initialized to IPA_MEM_CANARY_VAL.
->=20
-> In the downstream code there is structure ipa3_mem_partition
-> that defines these things, and structures of this type are
-> defined in "ipa_utils.c".  For IPA v5.1, ipa_5_1_mem_part
-> defines them all.  The mapping between downstream and
-> upstream is not trivial and direct, but it should be
-> obvious how they get translated.
->=20
->=20
-> With two exceptions, what I see here looks like you
-> correctly transferred everything.  (The two exceptions
-> are entries that from what I can tell, should not be
-> present.)
+jadard_dsi_probe() {
+	...
+	drm_panel_add(&jadard->panel);
 
-[...]
+	mipi_dsi_set_drvdata(dsi, jadard);
+	jadard->dsi =3D dsi;
+	jadard->desc =3D desc;
+}
 
-> The next two entries look wrong to me.  Can you explain where
-> you got these offsets and sizes?  Is it from "ipa_data-v5.0.c"?
->=20
-> Here are the relevant entries I see in ipa_5_1_mem_part
-> in the downstream code:
->          .stats_flt_v4_ofst =3D 0,
->          .stats_flt_v4_size =3D 0,
->          .stats_flt_v6_ofst =3D 0,
->          .stats_flt_v6_size =3D 0,
->          .stats_rt_v4_ofst =3D 0,
->          .stats_rt_v4_size =3D 0,
->          .stats_rt_v6_ofst =3D 0,
->          .stats_rt_v6_size =3D 0,
-> (Since their size is zero, their entries can be omitted.)
->=20
->> +=09{
->> +=09=09.id=09=09=3D IPA_MEM_AP_V4_FILTER,
->> +=09=09.offset=09=09=3D 0x29b8,
->> +=09=09.size=09=09=3D 0x0188,
->> +=09=09.canary_count=09=3D 2,
->> +=09},
->> +=09{
->> +=09=09.id=09=09=3D IPA_MEM_AP_V6_FILTER,
->> +=09=09.offset=09=09=3D 0x2b40,
->> +=09=09.size=09=09=3D 0x0228,
->> +=09=09.canary_count=09=3D 0,
->> +=09},
->=20
-> The remaining entries (below) look good.
+If a display controller finds the panel concurrently (e.g., via probe defer=
+ral
+resolution) and calls drm_panel_prepare(), jadard_prepare() could execute
+before jadard_dsi_probe() finishes:
 
-While cross-referencing IPA data files upstream, I found these two
-regions to be present in data for IPA v5.5, even though they aren't
-defined in ipa_5_5_mem_part. At the start I assumed these were correct
-since they were present upstream, but I took a closer look at that file
-and I believe data for this version was directly added without going
-through a proper review process.
+jadard_prepare() {
+	...
+	if (jadard->desc->vcioo_to_lp11_delay_ms)
+	...
+}
 
-The reason why I used IPA v5.5 memory regions in IPA v5.1 is because
-their memory partitions are identical.
+Can this dereference a NULL jadard->desc pointer? Should drm_panel_add() be
+moved to the very end of the probe function?
 
-Now, with this information, I would like to ask whether both of these
-memory regions are correct for both IPA v5.1 and v5.5 data files.
-
->> +/* Memory configuration data for an SoC having IPA v5.1 */
->> +static const struct ipa_mem_data ipa_mem_data =3D {
->> +=09.local_count=09=3D ARRAY_SIZE(ipa_mem_local_data),
->> +=09.local=09=09=3D ipa_mem_local_data,
->> +=09.imem_addr=09=3D 0x146a8000,
->=20
-> I think I needed to look up the imem offset value
-> in Qualcomm documentation I no longer have access
-> to.  Perhaps someone from there could confirm you
-> are using the right values here.
-
-After cross-checking I believe this may be the qcom,additional-mapping
-property downstream, which specifies the IMEM starting address and size.
-I'll leave (2) and (3) for reference.
-(2) corresponds to SM8450, while (3) corresponds to SM8475.
-
->=20
->> +=09.imem_size=09=3D 0x00002000,
->> +=09/*
->> +=09 * While this value is 0xb000 on SM8450 and 0x9000 on SM8475,
->> +=09 * it has been left set to 0x9000 for compatibility with SM8475
->> +=09 */
->=20
-> As I said earlier, I'm not completely sure this will still
-> work on the SM8450.  Someone should confirm this, and it
-> really ought to be tested somehow.
-
-I have clarified this in my previous email (4), so I'll skip this part.
-
->=20
->> +=09.smem_size=09=3D 0x00009000,
->> +};
->> +
->> +/* Interconnect rates are in 1000 byte/second units */
->> +static const struct ipa_interconnect_data ipa_interconnect_data[] =3D {
->> +=09{
->> +=09=09.name=09=09=09=3D "memory",
->> +=09=09.peak_bandwidth=09=09=3D 1900000,=09/* 1.9 GBps */
->> +=09=09.average_bandwidth=09=3D 590000,=09/* 590 MBps */
->=20
-> I no longer recall where to get these bandwidth values
-> for the interconnects.  Perhaps someone from Qualcomm
-> can find this out/confirm what you have.
-
-This was a tricky part. These seem to come from the qcom,svs2 property
-which seems to be mapped to the interconnects specified downstream.
-Since the IPA interconnects declared in device trees are different in
-both downstream and upstream I had to make some adjustments, such as
-using the minimum value between both ipa_to_llcc and llcc_to_ebi1
-interconnects.
-An example of this can be seen in (5), which corresponds to the SM8350
-SoC using IPA v4.9.
-
-Again, thanks for taking the time to properly explain things.
-
-(1) https://github.com/LineageOS/android_kernel_qcom_sm8450-modules/blob/li=
-neage-20/qcom/opensource/dataipa/drivers/platform/msm/ipa/ipa_v3/ipa_utils.=
-c#L7881
-https://github.com/LineageOS/android_kernel_qcom_sm8450-devicetrees/blob/li=
-neage-20/qcom/waipio.dtsi#L3404
-https://github.com/LineageOS/android_kernel_qcom_sm8450-devicetrees/blob/li=
-neage-20/qcom/cape.dtsi#L2723
-(4) https://lore.kernel.org/all/3e70d77e-6bec-4e16-ae88-a4f5161f182e@proton=
-.me/
-(5) https://github.com/LineageOS/android_kernel_motorola_sm7325/blob/lineag=
-e-23.2/arch/arm64/boot/dts/vendor/qcom/lahaina.dtsi#L4683
-
-Regards,
-Esteban
-
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260708213500.1867=
+092-1-marc-olivier.champagne@savoirfairelinux.com?part=3D2
 
