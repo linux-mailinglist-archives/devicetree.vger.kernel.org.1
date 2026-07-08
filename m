@@ -1,213 +1,136 @@
-Return-Path: <devicetree+bounces-322459-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-322460-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id +o6vAUPLTWoX+QEAu9opvQ
-	(envelope-from <devicetree+bounces-322459-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 06:00:03 +0200
+	id GB2VM5bOTWqe+QEAu9opvQ
+	(envelope-from <devicetree+bounces-322460-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 06:14:14 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5331A72185E
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 06:00:02 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 27C897218E4
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 06:14:14 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=kU50F+pV;
-	dkim=pass header.d=oss.qualcomm.com header.s=google header.b=Oa3PkDNe;
-	dmarc=pass (policy=reject) header.from=qualcomm.com;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322459-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-322459-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=O5sL1WJR;
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322460-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-322460-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 46C413044A78
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 03:59:04 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6698F303D131
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 04:13:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C064837AA77;
-	Wed,  8 Jul 2026 03:59:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFCA63803C8;
+	Wed,  8 Jul 2026 04:13:14 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 36D7C38236E
-	for <devicetree@vger.kernel.org>; Wed,  8 Jul 2026 03:59:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FE212750ED
+	for <devicetree@vger.kernel.org>; Wed,  8 Jul 2026 04:13:13 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783483143; cv=none; b=HHOOCPYt/xXqoeKBoht4dEpa4rjXEvyndXldjayGew0n4j8qyjRQKJAhrcxPY9IKOuN2h6Z4zTIwut+r/XvEoYy5MnigOKjL46RjLEFy+X84OXrjThR3Mg0YWJW1uCGGj6gWdRH9aDKMs1AfvkxfANhzIab2Qpo0Zvj7dRP50aQ=
+	t=1783483994; cv=none; b=OvfxdyHFzujDRyYWSCTZeY97yh1sFDIZuQCRcZtGJGLDbMF2CnH7q4hsRMD4YMKeOk2zJJUZacQ+7YZxPXYLlStLSREQTJoZZoubipdYUtuxQsWBpjawg9KdTE7SkosnNP5GeZBKT0fAkEAZmA/j4knaZ9VG0Si2Jw5gShq2BGM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783483143; c=relaxed/simple;
-	bh=E1UlleUpatfwJfXD7CvEFNe2U0LGFAfWDhnzotj82/o=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=hA4tVkbqA3rFVd83uG2FiCkslBvztt4ykj/SPdfm/zNGd7ok8E9OdWAvqIMISDYRpqk7pCTVU9JkI4B1V98IvFOmD4NgIdmMTcUO4VCmWppig/B/mlcuI0UpkT1umANQSy0E/YWQKhuP9mK6rUrCxt6KJPgP6yW5vLUJwSa922w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=kU50F+pV; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=Oa3PkDNe; arc=none smtp.client-ip=205.220.168.131
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 667Mcu26963813
-	for <devicetree@vger.kernel.org>; Wed, 8 Jul 2026 03:59:01 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	FaiG/eJTya26hN8ZkkimAahZgkkyWSyTo5eeeXV0qN8=; b=kU50F+pVW7duPG1j
-	nguPI7KgKlvCv8FZO/yiiROpFLdzH7MlwlqUXra65hFEtHxzizT4k2NbBEeqdecc
-	ZEgnUcD/9JiIDo1n7rX7pBjTThjbNWCdA8SMJ0SsCeXP0AR+mqNgdJdTCzb7SXV5
-	bWV2Q2n64zKJzT4QvnFRxjfnEM1my56AwtcJ7aaFOJLZLua6cf8hQOtm1FkeSOyf
-	qYqjn7SVAlF2Cgfe9H8uLS7Jqu0zk92ADQi3zRslEpdJeRbhOMS2nPyTE2MhaWQV
-	P0dgQQ6fLYsEbw5A+ioY4CqN78Kd0dNfMbdDsBdp7ldtWqG9cy5bi0CqlydMkkDy
-	TKwCvg==
-Received: from mail-pl1-f198.google.com (mail-pl1-f198.google.com [209.85.214.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4f8wep4jpt-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 08 Jul 2026 03:59:01 +0000 (GMT)
-Received: by mail-pl1-f198.google.com with SMTP id d9443c01a7336-2cce870a060so6608065ad.2
-        for <devicetree@vger.kernel.org>; Tue, 07 Jul 2026 20:59:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1783483141; x=1784087941; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :content-type:mime-version:subject:date:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=FaiG/eJTya26hN8ZkkimAahZgkkyWSyTo5eeeXV0qN8=;
-        b=Oa3PkDNeW0M4c8czwGTZX0rMuB9IG7FgzvDx0bu3jsJZHJgsqM30cg+rfrsZsEeM+N
-         NpECgoDdOGzfx38IFlkjT6iplX0CR3iE0OgbEBUgp9hHL3795u3Jyh4+ZuN3VBPlyYyC
-         LjBTf//L5YOAjcTNC4+DInj/rpxGSUo98BQajwzj3vgH144XX82GZaAQjN94NCYvvO0V
-         0/lNQfohqjfuPwcmSqfDPRmXNmsype/YQfJVQvg2B/1XdN5JwOZw4wer+mauHrZWoTlx
-         GvnSPyFmqCjwOQEPKRSdZAGQ/18eKMs1CNbJYZtL4QMRxeosRhFd0MW0bfUdViSHi3ue
-         DoVg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783483141; x=1784087941;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :content-type:mime-version:subject:date:from:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=FaiG/eJTya26hN8ZkkimAahZgkkyWSyTo5eeeXV0qN8=;
-        b=HE2vbgdcDWBleXFSei8cgET+UNKBZDjlUx1nczsAPk8C8yj+z5mJHWqWMGMVvEsysP
-         FT1oglvHpL4RtsbPnOVN9L7DDYh1v7Z4qpvcAVRhJq3btvxQGFnzHGli0r/WBjZ9OYk/
-         aC8eiJRDjYpjVXDN/K8CifI9qDmn4yNzFsVIQTU7tVewItsH/syW7GK5ofr6zvlwi2vH
-         uOExLtBjMZqMTdBYtgWWbcbV9Ahy+bE6yJcjjlz3lyC5TIXy13NbbRvwFW4lw4f2orTv
-         LsZsiCb7FYEzlPn3YUfhxfJkEQQC+cw680C7ZO9Izflothf3Pfh7bCq7QHRQWpYoXJtH
-         rB+A==
-X-Forwarded-Encrypted: i=1; AHgh+RpZu6pK7vT4kBOnsgzZ/Neg4ZuPaNLa/T0s8rO7teH2BgwzIMfNFIMDTwJKdnkcv/u7sSc6PqBo/1pA@vger.kernel.org
-X-Gm-Message-State: AOJu0YzbdQf02NPsCzWaeAS5OBHG6410I5tLQ0S9XFcOvZtcgSvMaSQO
-	js6Ujw7/IFnH8aVD9PPEG48WmRmSyvMTEJRUwNdqq/qHo/uw8yz49vqTnXw8YDZs+dAJxHGcyWf
-	cfgrSuXYg2x1gDVIN9B3uoBw1pEyMWj09QbLcudNVAlqmV/+MzFxk+GU7J0jyR7Nw
-X-Gm-Gg: AfdE7cmlXv6DEu+wH1fuqzXUHV/WstjTV7f8Oo1+Yfq791+tySzkh5ALMQWAYZpipD+
-	tDferfYlnWkUwa8qtcpBgiSu9JPNubiAoiQIay1tUVf65p5fhJVeze69qnFwJ0mTd7n949YeN8J
-	/APotkQJ3fHTuJvF/OMxCQTJEFRhXNgEoRTlyfsH0A/sc3FfWJhrMbeBeS7SFQao3rCbJPjRCng
-	MF+KOrtmGPmeLQLn0EuBzvNQfBB8+aiBLYarb3Mab/vbdZSsOl5FpgUJOimJ43o0Jn+i0m8mLRu
-	zTTLxT1ndt45r7isLGp0doHXctjE6qmxzDov/5GCdDb6oFqXK7vr35SK9LvkR85zyJv/VZaowed
-	mh0V6sJqruyPquV9rnSLnYVr2PJYycaCtVcS5phI+jVo8
-X-Received: by 2002:a05:6a21:62c8:b0:3bf:aa1a:d2ef with SMTP id adf61e73a8af0-3c0bd164cd0mr666211637.56.1783483140611;
-        Tue, 07 Jul 2026 20:59:00 -0700 (PDT)
-X-Received: by 2002:a05:6a21:62c8:b0:3bf:aa1a:d2ef with SMTP id adf61e73a8af0-3c0bd164cd0mr666186637.56.1783483140117;
-        Tue, 07 Jul 2026 20:59:00 -0700 (PDT)
-Received: from hu-vkatoch-hyd.qualcomm.com ([202.46.23.25])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-311747f7293sm14487136eec.3.2026.07.07.20.58.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Jul 2026 20:58:59 -0700 (PDT)
-From: Vinayak Katoch <vinayak.katoch@oss.qualcomm.com>
-Date: Wed, 08 Jul 2026 09:28:33 +0530
-Subject: [PATCH v2 2/2] misc: fastrpc: create duplicate sessions after all
- CB probing
+	s=arc-20240116; t=1783483994; c=relaxed/simple;
+	bh=t4OVzCvnNv4svQiRl8xI9Xc4AoAHcwd7Z+Dje6kV4ns=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=J0RKrUWSrJGdzJFAW2ChmCXhmHrAvP6fzuTCFDKHkfPsJgWNTffI0riMXAPWEwvMVIXTcjtSnFPxvtkj2ohwffad9ogI1pgWm/8krcwuocQ7m8TybnT1LV1a1YDbwqnKzqknhb4yQi/D6zwIILm5hu0kPawOZF67gMwKx+a51Zg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=O5sL1WJR; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ACF681F000E9;
+	Wed,  8 Jul 2026 04:13:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1783483993;
+	bh=SyyZkIPQhYS+aKTZk/Su+hotvAEGiru0HGu+EAyfvvw=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=O5sL1WJRVJKhaGO54+M19R2HwiYbMsv3OxA89bvCTRGXMXFCKoepIDqcW4kl0UOnE
+	 m8zQyMK+5GqQJfIZ0AmuVIP3tFqfj69gaQTfjQKe+K4iiurBI6H3McDxqC3t25GI59
+	 hMe2YwyKLe032qk7j0enjFwQV7SqG8r5bAY244h+JXJsXUVymd2waefbrk94t996DB
+	 tuyH71Kbdcn36q/h6xcb2xnmdIcU6Zb5yxVXtuQmLEAhmDtV0DQmWbJxW3YeyxFhgi
+	 PEmppCPZ3aHaYi70HhQ0pQjEMXPSqNM5MJ/KAQB94Au4Ip5i7KsAob9wsgDspmo9yo
+	 aNON8CE9VTZ/w==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v2 2/2] misc: fastrpc: create duplicate sessions after
+ all CB probing
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Vinayak Katoch" <vinayak.katoch@oss.qualcomm.com>
+Cc: dri-devel@lists.freedesktop.org, conor+dt@kernel.org, devicetree@vger.kernel.org, robh@kernel.org
+In-Reply-To: <20260708-dup-sessions-v2-2-da40f9c98a2b@oss.qualcomm.com>
+References: <20260708-dup-sessions-v2-0-da40f9c98a2b@oss.qualcomm.com>
+ <20260708-dup-sessions-v2-2-da40f9c98a2b@oss.qualcomm.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Wed, 08 Jul 2026 04:13:12 +0000
+Message-Id: <20260708041312.ACF681F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260708-dup-sessions-v2-2-da40f9c98a2b@oss.qualcomm.com>
-References: <20260708-dup-sessions-v2-0-da40f9c98a2b@oss.qualcomm.com>
-In-Reply-To: <20260708-dup-sessions-v2-0-da40f9c98a2b@oss.qualcomm.com>
-To: Srinivas Kandagatla <srini@kernel.org>,
-        Amol Maheshwari <amahesh@qti.qualcomm.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-kernel@vger.kernel.org, Bharath Kumar <bkumar@qti.qualcomm.com>,
-        Chenna Kesava Raju <chennak@qti.qualcomm.com>,
-        Ekansh Gupta <ekansh.gupta@oss.qualcomm.com>,
-        devicetree@vger.kernel.org,
-        Vinayak Katoch <vinayak.katoch@oss.qualcomm.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1783483125; l=3803;
- i=vinayak.katoch@oss.qualcomm.com; s=20260609; h=from:subject:message-id;
- bh=E1UlleUpatfwJfXD7CvEFNe2U0LGFAfWDhnzotj82/o=;
- b=vzZxLNd7liU/JhRSS81E494juiP4krazhNrpl1MhaEYQUKdt7OFLSrYc9HzaqlKyJUsaTdVEH
- eYM4q03WfjQAGUl8BUukX599/aTRK0Z40NuRBc4TAVEgbqe/Pw8XdGZ
-X-Developer-Key: i=vinayak.katoch@oss.qualcomm.com; a=ed25519;
- pk=UrGeKKxjIjpHZIjsbQKS/8rrVaP9KVGki69pFclCH08=
-X-Proofpoint-GUID: jhg2iPXr5pYxBTv1oT3cXjZt1KbrmtZ8
-X-Proofpoint-ORIG-GUID: jhg2iPXr5pYxBTv1oT3cXjZt1KbrmtZ8
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNzA4MDAzNSBTYWx0ZWRfX+0c8HAxkr1cQ
- ESFtpbY5+1sSsBn7HZrSRPKUHQoizAN4Yc/aeBJa7aqr/MNoyTbQiqbpuaaIHpy6Y4D8mqnfGHs
- sVs6ZxluHINgAvQJEn0y8jFdnrVnnrHmEbD/XnhfOpxpr1+/1QKmTRKpVlhyw55Pw3CfTsyOTwE
- DkSUV4/0kBiDv1DnOQpO4d+hKtjLLbgg8+xRE1blQUDycc0KhGXFr5M93X2ZJuukT6oPVNGpYWw
- Uv9zadfUmGAhydZbHJwmlsCRgOQrGgKZYFo1a2RIEabPtd1MWLGhpj9zgfP9FpLs4pKcnNJnAXA
- HCo5LYHRp8Lp3jgEkFnHonYmCu/zmkJyYZqGFdIGJZ3iTNf6VwNo9Ldww7U32L1jY/OZcaJ5u/D
- URPRupEC0rSsHx/U/btt3YZiNNTTJ9k8AKM6JsPhCC44rdtX+hK8bTZGz0CxU+CKYBWcET6b52e
- p9lYittpilWIDiDVpBw==
-X-Proofpoint-Spam-Info: AW1haW4tMjYwNzA4MDAzNSBTYWx0ZWRfX1OVHmcZ2h+W6
- IssdHAZOLJu3cjIgT5hp2z5pc0syBV4yGkYzwTz+4AE8dbk/LhFSJS92COJljzSrzWUsVEOODP7
- 4Wl+9QPUmK3cT0YzDCmWmJDVC3DSqTA=
-X-Authority-Analysis: v=2.4 cv=atSCzyZV c=1 sm=1 tr=0 ts=6a4dcb05 cx=c_pps
- a=MTSHoo12Qbhz2p7MsH1ifg==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
- a=IkcTkHD0fZMA:10 a=RAioF0-LDSMA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=yOCtJkima9RkubShWh1s:22
- a=EUspDBNiAAAA:8 a=_Cnv2d4ds2Bg63dH_xgA:9 a=QEXdDO2ut3YA:10
- a=GvdueXVYPmCkWapjIL-Q:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.134,FMLib:17.12.100.49
- definitions=2026-07-07_06,2026-07-06_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 phishscore=0 clxscore=1015 priorityscore=1501 spamscore=0
- suspectscore=0 lowpriorityscore=0 bulkscore=0 impostorscore=0 adultscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2606150000 definitions=main-2607080035
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-1.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-322459-lists,devicetree=lfdr.de];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,qualcomm.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp,oss.qualcomm.com:from_mime,oss.qualcomm.com:dkim,oss.qualcomm.com:mid];
-	FORGED_SENDER(0.00)[vinayak.katoch@oss.qualcomm.com,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	FORGED_RECIPIENTS(0.00)[m:srini@kernel.org,m:amahesh@qti.qualcomm.com,m:arnd@arndb.de,m:gregkh@linuxfoundation.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-arm-msm@vger.kernel.org,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:bkumar@qti.qualcomm.com,m:chennak@qti.qualcomm.com,m:ekansh.gupta@oss.qualcomm.com,m:devicetree@vger.kernel.org,m:vinayak.katoch@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-322460-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.linux.dev:replyto,sashiko.dev:url,qualcomm.com:email,smtp.kernel.org:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:vinayak.katoch@oss.qualcomm.com,m:dri-devel@lists.freedesktop.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[vinayak.katoch@oss.qualcomm.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	PRECEDENCE_BULK(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCPT_COUNT_FIVE(0.00)[5];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	FROM_NO_DN(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 5331A72185E
+X-Rspamd-Queue-Id: 27C897218E4
 
-For ADSP, only a limited number of FastRPC context banks (CBs) are
-available. Each CB supports a single session, which means only a few
-processes can run on ADSP simultaneously. If all sessions are consumed
-by fastrpc daemons, no session remains available when a user application
-starts, causing the application to fail.
+Thank you for your contribution! Sashiko AI review found 4 potential issue(=
+s) to consider:
 
-To address this limitation, a Device Tree change was used till now:
-  qcom,nsessions = <5>;
+New issues:
+- [High] Concurrent `open()` calls during the unprotected gap after child p=
+robing permanently leak duplicated sessions.
 
-However, feedback from the upstream community indicated that this change
-should not be made in the Device Tree. Instead, it was recommended to
-handle this as a driver-level change.
+Pre-existing issues:
+- [Critical] The misc device is exposed to userspace before crucial synchro=
+nization primitives and lists are initialized, leading to uninitialized spi=
+nlock usage and NULL pointer dereferences.
+- [High] Missing `of_platform_depopulate()` on the `of_platform_populate()`=
+ error path causes dangling child devices with freed drvdata.
+- [High] On the error path of `fastrpc_rpmsg_probe()`, `kfree(data)` uncond=
+itionally frees memory while a userspace file descriptor may hold a referen=
+ce.
+--
+
+--- Patch [2]: [PATCH v2 2/2] misc: fastrpc: create duplicate sessions afte=
+r all CB probing ---
+commit 56303754fdfc0beae4b68e60fa9dc54ca7e73396
+Author: Vinayak Katoch <vinayak.katoch@oss.qualcomm.com>
+
+misc: fastrpc: create duplicate sessions after all CB probing
 
 Instead of duplicating sessions inline during fastrpc_cb_probe() using
 the qcom,nsessions DT property, defer duplication until after
@@ -215,90 +138,103 @@ of_platform_populate() returns in fastrpc_rpmsg_probe(), at which point
 all compute-CB child nodes have been probed and the session array is
 fully populated.
 
-For the ADSP domain, append FASTRPC_DUP_SESSIONS (4) copies of the
-last probed session once of_platform_populate() succeeds. This keeps
-the per-CB probe path simple and ensures duplicates are always derived
-from a stable, fully-initialised session state.
+> diff --git a/drivers/misc/fastrpc.c b/drivers/misc/fastrpc.c
+> --- a/drivers/misc/fastrpc.c
+> +++ b/drivers/misc/fastrpc.c
+[ ... ]
+> @@ -2352,6 +2352,6 @@ static int fastrpc_rpmsg_probe(struct rpmsg_device =
+*rpdev)
+[ ... ]
+>  	switch (domain_id) {
+>  	case ADSP_DOMAIN_ID:
+>  	case MDSP_DOMAIN_ID:
+>  	case SDSP_DOMAIN_ID:
+>  		/* Unsigned PD offloading is only supported on CDSP and GDSP */
+>  		data->unsigned_support =3D false;
+>  		err =3D fastrpc_device_register(rdev, data, secure_dsp, domain);
 
-The qcom,nsessions DT property is no longer consumed by the driver; the
-binding and DT sources are left unchanged.
+[Severity: Critical]
+This isn't a bug introduced by this patch, but does registering the misc
+device here expose it to userspace before crucial synchronization primitives
+are initialized?
 
-Signed-off-by: Vinayak Katoch <vinayak.katoch@oss.qualcomm.com>
----
- drivers/misc/fastrpc.c | 30 +++++++++++++++++-------------
- 1 file changed, 17 insertions(+), 13 deletions(-)
+A concurrent userspace process could immediately call open(), which would
+attempt to use data->refcount and data->lock before they are initialized
+further down in this function.
 
-diff --git a/drivers/misc/fastrpc.c b/drivers/misc/fastrpc.c
-index 1080f9acf70a..8a3944f6c036 100644
---- a/drivers/misc/fastrpc.c
-+++ b/drivers/misc/fastrpc.c
-@@ -30,6 +30,7 @@
- #define CDSP_DOMAIN_ID (3)
- #define GDSP_DOMAIN_ID (4)
- #define FASTRPC_MAX_SESSIONS	14
-+#define FASTRPC_DUP_SESSIONS	4
- #define FASTRPC_MAX_VMIDS	16
- #define FASTRPC_ALIGN		128
- #define FASTRPC_MAX_FDLIST	16
-@@ -2195,7 +2196,6 @@ static int fastrpc_cb_probe(struct platform_device *pdev)
- 	struct fastrpc_channel_ctx *cctx;
- 	struct fastrpc_session_ctx *sess;
- 	struct device *dev = &pdev->dev;
--	int i, sessions = 0;
- 	unsigned long flags;
- 	int rc;
- 	u32 dma_bits;
-@@ -2204,8 +2204,6 @@ static int fastrpc_cb_probe(struct platform_device *pdev)
- 	if (!cctx)
- 		return -EINVAL;
- 
--	of_property_read_u32(dev->of_node, "qcom,nsessions", &sessions);
--
- 	spin_lock_irqsave(&cctx->lock, flags);
- 	if (cctx->sesscount >= FASTRPC_MAX_SESSIONS) {
- 		dev_err(&pdev->dev, "too many sessions\n");
-@@ -2225,16 +2223,6 @@ static int fastrpc_cb_probe(struct platform_device *pdev)
- 	if (of_property_read_u32(dev->of_node, "reg", &sess->sid))
- 		dev_info(dev, "FastRPC Session ID not specified in DT\n");
- 
--	if (sessions > 0) {
--		struct fastrpc_session_ctx *dup_sess;
--
--		for (i = 1; i < sessions; i++) {
--			if (cctx->sesscount >= FASTRPC_MAX_SESSIONS)
--				break;
--			dup_sess = &cctx->session[cctx->sesscount++];
--			memcpy(dup_sess, sess, sizeof(*dup_sess));
--		}
--	}
- 	spin_unlock_irqrestore(&cctx->lock, flags);
- 	rc = dma_set_mask(dev, DMA_BIT_MASK(dma_bits));
- 	if (rc) {
-@@ -2445,6 +2433,22 @@ static int fastrpc_rpmsg_probe(struct rpmsg_device *rpdev)
- 	if (err)
- 		goto err_deregister_fdev;
- 
-+	if (data->domain_id == ADSP_DOMAIN_ID && data->sesscount > 0) {
-+		struct fastrpc_session_ctx *last_sess;
-+		struct fastrpc_session_ctx *dup_sess;
-+		unsigned long flags;
-+
-+		spin_lock_irqsave(&data->lock, flags);
-+		last_sess = &data->session[data->sesscount - 1];
-+		for (i = 0; i < FASTRPC_DUP_SESSIONS; i++) {
-+			if (data->sesscount >= FASTRPC_MAX_SESSIONS)
-+				break;
-+			dup_sess = &data->session[data->sesscount++];
-+			memcpy(dup_sess, last_sess, sizeof(*dup_sess));
-+		}
-+		spin_unlock_irqrestore(&data->lock, flags);
-+	}
-+
- 	return 0;
- 
- err_deregister_fdev:
+>  		if (err)
+>  			goto err_free_data;
+>  		break;
+[ ... ]
+>  	spin_lock_init(&data->lock);
+>  	idr_init(&data->ctx_idr);
+>  	data->domain_id =3D domain_id;
+>  	data->rpdev =3D rpdev;
+>  	dev_set_drvdata(&rpdev->dev, data);
+> =20
+>  	err =3D of_platform_populate(rdev->of_node, NULL, NULL, rdev);
+>  	if (err)
+>  		goto err_deregister_fdev;
 
--- 
-2.34.1
+[Severity: High]
+This is a pre-existing issue, but if of_platform_populate() fails halfway
+through, does the error path miss a call to of_platform_depopulate()?
 
+Since the channel context data is freed on the error path, this could leave
+dangling child devices that might dereference freed drvdata when they are
+later unbound.
+
+> +	if (data->domain_id =3D=3D ADSP_DOMAIN_ID && data->sesscount > 0) {
+> +		struct fastrpc_session_ctx *last_sess;
+> +		struct fastrpc_session_ctx *dup_sess;
+> +		unsigned long flags;
+> +
+> +		spin_lock_irqsave(&data->lock, flags);
+> +		last_sess =3D &data->session[data->sesscount - 1];
+> +		for (i =3D 0; i < FASTRPC_DUP_SESSIONS; i++) {
+> +			if (data->sesscount >=3D FASTRPC_MAX_SESSIONS)
+> +				break;
+> +			dup_sess =3D &data->session[data->sesscount++];
+> +			memcpy(dup_sess, last_sess, sizeof(*dup_sess));
+
+[Severity: High]
+Can this loop permanently leak session capacity if userspace calls open()
+concurrently?
+
+Since the lock is dropped in fastrpc_cb_probe() long before we get here,
+could a concurrent open() claim last_sess and set its used flag to true?
+If so, this memcpy() would blindly duplicate the used=3Dtrue state into all
+new sessions, making them permanently unavailable to subsequent users.
+
+> +		}
+> +		spin_unlock_irqrestore(&data->lock, flags);
+> +	}
+> +
+>  	return 0;
+> =20
+>  err_deregister_fdev:
+>  	if (data->fdevice)
+>  		misc_deregister(&data->fdevice->miscdev);
+>  	if (data->secure_fdevice)
+>  		misc_deregister(&data->secure_fdevice->miscdev);
+> =20
+>  err_free_data:
+>  	kfree(data);
+
+[Severity: High]
+This is a pre-existing issue, but does calling kfree(data) here
+unconditionally cause a use-after-free if userspace has already opened
+the misc device?
+
+Because the misc device is registered earlier in this function, a userspace
+process might already hold an open file descriptor. If we free the channel
+context here upon a probe failure, any subsequent ioctls or close
+operations by that process will access freed memory.
+
+>  	return err;
+>  }
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260708-dup-sessio=
+ns-v2-0-da40f9c98a2b@oss.qualcomm.com?part=3D2
 
