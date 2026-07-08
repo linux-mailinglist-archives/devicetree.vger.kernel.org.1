@@ -1,188 +1,171 @@
-Return-Path: <devicetree+bounces-323011-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-323012-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id S914CmlvTmq1MgIAu9opvQ
-	(envelope-from <devicetree+bounces-323011-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 17:40:25 +0200
+	id cIR5NV91TmqrNAIAu9opvQ
+	(envelope-from <devicetree+bounces-323012-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 18:05:51 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF9A9728263
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 17:40:24 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F9D27286DE
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 18:05:51 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=9elements.com header.s=google header.b=X4rxrjy+;
-	dmarc=pass (policy=quarantine) header.from=9elements.com;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-323011-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-323011-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b="oKaLzm/l";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-323012-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-323012-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id E7AA4304AB50
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 15:39:30 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id EB25930BFD04
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 15:41:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC3AA42DA39;
-	Wed,  8 Jul 2026 15:38:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D1C53F12F1;
+	Wed,  8 Jul 2026 15:40:40 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23BC342DA25
-	for <devicetree@vger.kernel.org>; Wed,  8 Jul 2026 15:38:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2801E3F12F5
+	for <devicetree@vger.kernel.org>; Wed,  8 Jul 2026 15:40:38 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783525128; cv=none; b=DmkGKFF2JTdbFOPxXQcdKabaPxPjm4AEDwKCXKTl3tuQwojsQicIENupd59ySPQ7FMtKJa76UilBzTjiw0VM42SSGKS11s0qypOG6WHRo1Fo+OtW4B0MP4wD6g8ZSapkmYR+gJImGHeRJPz7eANyHCrrv69mdSZUxzlmKaIa2Zg=
+	t=1783525240; cv=none; b=hqsRgHd0dm8AkNmdfTsj7LPaTalqPoiHEwPCEpF51OHqzWCeY+02XX2G5s+kwtmSrJfx7hinUWL1UUs/J2mN+CYe/W6OE/p9u8e/wT7IjAYzE4sMObRhO45h/jQxdtprnIldvIyCnmM04RwAlewvLQKLJNhNpFR0OzqF8SyKtEU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783525128; c=relaxed/simple;
-	bh=WhuQpxIJsHfJelMhpqFK9UR04PUwBIxESY/bbTEtu84=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=CYDJMInvmvBhG7l+8nzdJDvsRLAxxzd7syD+8ulZ9xcYDNJSgos+fTaHesGQP/kGPNTYrS9lAZuAX9uSuQTinz+B7tNKCrq+SSZ4g4W3ehBKqXUaZ/LywzJKVcwPQX9RQddCWQfaniCgJZ1Ys4GrdQ7i85trNzQmxJvo/g6QBZA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=9elements.com; spf=pass smtp.mailfrom=9elements.com; dkim=pass (2048-bit key) header.d=9elements.com header.i=@9elements.com header.b=X4rxrjy+; arc=none smtp.client-ip=209.85.221.42
-Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-47dec32798aso860377f8f.1
-        for <devicetree@vger.kernel.org>; Wed, 08 Jul 2026 08:38:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=9elements.com; s=google; t=1783525125; x=1784129925; darn=vger.kernel.org;
-        h=content-transfer-encoding:content-type:mime-version:references
-         :in-reply-to:message-id:date:subject:cc:to:from:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=NnLAnFwCqMFlG/o/7EF1TFc96QCA+EgXe00U5MXSsXk=;
-        b=X4rxrjy+0uNQYD8BxKSXRIjdWs9ySfXvMHsg+u6UHx69Wk+UJGoVtVKdjaFKoCpf9p
-         r3u99/Y4OdLmN2PCxuXhJ898WvL2vHZF2zmcPyeWmXOYJ8R0hwAIwYgNVd+bOgsiNXyi
-         sKXqggCL0ojmvFobYe+CPQrP4Mshw7XxeoKueebr/K6kr3LTVve0/hftqK2CK3J5ymXx
-         o4s8PEMyHsCAki4C7di3xlGiFtwot9coVeXCUR2Gj3na1ETlQH72KC4Ff4oFTdWnU9Aq
-         Fd/ShzElkunyVGa5jJOy19O9dX/zE+0yagrVw7rtZJEMdG81RBTraZun3D4MsqAnt4D/
-         wz/g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783525125; x=1784129925;
-        h=content-transfer-encoding:content-type:mime-version:references
-         :in-reply-to:message-id:date:subject:cc:to:from:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=NnLAnFwCqMFlG/o/7EF1TFc96QCA+EgXe00U5MXSsXk=;
-        b=CF8c5sv2OLjB6Vnonojl9T9VWwrRWyi6bnQVYcXlneUuAK83+vPrAY0Cc6ZKZk5lZs
-         Ml54yOVcez9MlZ0IKMLHL93UJx2M5hG5eF2MRHpgU1dIEYTA43HtpfIk8BIJ0siNjRDz
-         3GfUpvWB6SET3rwBGzRnQ+aIxm+BhMbkBDcsN4cEDMtNOCzz4/+ZFw/1vh/gffuoCOia
-         Tn3iM9+y1l/RiUq8PHw3Soga3cYVnNisPRIlXxwOkjeXLHuRP0EFoD3gAVFJBnNcJIGh
-         5LB19BWMv9x/eVBw8GNlBNOF8Cglec4gQbLNi+X6xIFo692Plp/AyxXfRx9gfaX0wYo+
-         cVVw==
-X-Forwarded-Encrypted: i=1; AHgh+RqWzMWmF7a1OK6N3nrLyxp7MdjmvdlecDe8caxEk7OG+s8u9KLaAsaBRH+MfdM3c6NWLqgNPlhlUJlI@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy0mWtDips6ZEHZIPVp+NPIGYiWO0ph8yovyLq893vEntTsF3Mz
-	zIKvdmbasAunmplIpFf/fTxdqInKjcIVt7RW9oVYy1qTjoh85gtP2KdFL8XXfh2cUHI=
-X-Gm-Gg: AfdE7cnPXJgClSO3pjQMIif6PLwW+/MNghvyZqOVJQWAAvirNuq84Oc4YMrFxFGwKXa
-	QQTbDfQwAbEyNGV2XQw3+Bx1OgvmffSKjVSdug4QyN7qpOweZoqUWao3wHNlmQtIc4t0M3wQiTO
-	hp2T5Y4Ho6xwOJNQMjNDZIZyay3woI2XilWyIkwmqVQ4cIEXhMVk2BGeNvZm91KCIaq/k3egzqt
-	J4ZxFQ7nf7yyRGbclQ5iYdO2ebT03lljAec/P6cW36dR4Sw1R9PbFNg6WcD/G6y8XLrccAlrBc/
-	uH2nkcJ+5/egr8rK7hLKY9ot9DovcxGP5ZafaqgrI9Z0dDWYhQATj13PDILDmuALOzEIi4V9N51
-	rMeIP19q/eMfInAh+8CzOKtaIeUxTWIloyTVWjJawAj8xVrVMUwbvCkEVDaDCokMi2K43G90p0+
-	HlKYyllvZTN2oFnpEyQMVN20XCZT81WHNU19Dlh3T+eqzmVuTdlSvRBJaLuya9JbfZXVY4dSVOx
-	+cvC3FUJC+s9updwg8+ro3I7jfJKSsd2ZHH6h8=
-X-Received: by 2002:a05:6000:220c:b0:470:3edf:e28e with SMTP id ffacd0b85a97d-47df074e230mr4140001f8f.10.1783525125665;
-        Wed, 08 Jul 2026 08:38:45 -0700 (PDT)
-Received: from gregwork.sec.9e.network ([188.111.3.154])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-47a9e4d8410sm44254136f8f.15.2026.07.08.08.38.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Jul 2026 08:38:45 -0700 (PDT)
-From: =?UTF-8?q?Gr=C3=A9goire=20Layet?= <gregoire.layet@9elements.com>
-To: joel@jms.id.au,
-	andrew@codeconstruct.com.au,
-	lkundrak@v3.sk,
-	devicetree@vger.kernel.org,
-	gregkh@linuxfoundation.org,
-	jirislaby@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org
-Cc: andrew@lunn.ch,
-	jacky_chou@aspeedtech.com,
-	yh_chung@aspeedtech.com,
-	ninad@linux.ibm.com,
-	anirudhsriniv@gmail.com,
-	linux-serial@vger.kernel.org,
-	linux-aspeed@lists.ozlabs.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	=?UTF-8?q?Gr=C3=A9goire=20Layet?= <gregoire.layet@9elements.com>
-Subject: [PATCH v4 7/7] ARM: dts: aspeed: g6: add aspeed,vuart-over-pci prop to vuart3 and 4
-Date: Wed,  8 Jul 2026 15:35:59 +0000
-Message-ID: <39091b1d0c716da3502a691d0a0bdb7621693cf5.1783524645.git.gregoire.layet@9elements.com>
-X-Mailer: git-send-email 2.54.0
-In-Reply-To: <cover.1783524645.git.gregoire.layet@9elements.com>
-References: <cover.1783524645.git.gregoire.layet@9elements.com>
+	s=arc-20240116; t=1783525240; c=relaxed/simple;
+	bh=VOkCgBa7ANqO0eyWYpZNXNEVOAK7OwAmsmLJTn9y1xk=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=ETMv2puuetoBlvpvv91XZx8Z8KKgn3uO7X9S0nusF4tB1qQWy5TlZtytxuQC1XhPb5EZgdiW0kaOik19bfqKctlpZWVErkJhbaWHeMDtCHX0NxbPO2e1NSZqmk52fG0fw9j5FQgMUZj4dq9orZa/25jSBnMBEWTFHGKN2Ct5XwE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oKaLzm/l; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 860721F00A3A;
+	Wed,  8 Jul 2026 15:40:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1783525238;
+	bh=4+0E18KSS2mt00yIpJ1iZBSydtuf8yxnI/uI6+9LryM=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=oKaLzm/ll5+t5FKQKXWsYpxUsR4ie9uBcGvMNW4qZFs5i0yuGD0haCxxClxd38/bV
+	 67VhwnEE9LF7HTwLyjv5cqCo5wq+kO5c5JB4GL6t7A/qUVQY4tSoBZDaGfUlE711q5
+	 bDHjTYqel8EpqUPtIlwgV+uskGlWXLT0vCYzMobkeQRA1HpQT0M2jMDK6jZDYl6f1F
+	 LeMb2QAeQAWFeSyTQdmyd0BH72tRySpYOoL5h3ggwkLP+LAHEko7cAy85qyeg40HK9
+	 0O87tUL1+VBtWlz2QJLdnnJOE9FfBAUb4ImLl4DXjT4cjltH/lVnkBZy3B9D1MzA98
+	 Q36Arhzvd63wg==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH] arm64: dts: qcom: monaco-arduino-monza: Add GPIO line
+ names
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Loic Poulain" <loic.poulain@oss.qualcomm.com>
+Cc: robh@kernel.org, devicetree@vger.kernel.org, conor+dt@kernel.org
+In-Reply-To: <20260708-gpio-names-v1-1-9162105b9971@oss.qualcomm.com>
+References: <20260708-gpio-names-v1-1-9162105b9971@oss.qualcomm.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Wed, 08 Jul 2026 15:40:38 +0000
+Message-Id: <20260708154038.860721F00A3A@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.34 / 15.00];
+X-Spamd-Result: default: False [-1.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[9elements.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[9elements.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_CC(0.00)[lunn.ch,aspeedtech.com,linux.ibm.com,gmail.com,vger.kernel.org,lists.ozlabs.org,lists.infradead.org,9elements.com];
-	TAGGED_FROM(0.00)[bounces-323011-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:joel@jms.id.au,m:andrew@codeconstruct.com.au,m:lkundrak@v3.sk,m:devicetree@vger.kernel.org,m:gregkh@linuxfoundation.org,m:jirislaby@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:andrew@lunn.ch,m:jacky_chou@aspeedtech.com,m:yh_chung@aspeedtech.com,m:ninad@linux.ibm.com,m:anirudhsriniv@gmail.com,m:linux-serial@vger.kernel.org,m:linux-aspeed@lists.ozlabs.org,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:gregoire.layet@9elements.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	FORGED_SENDER(0.00)[gregoire.layet@9elements.com,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FROM_HAS_DN(0.00)[];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-323012-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[gregoire.layet@9elements.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[9elements.com:+];
-	ALIAS_RESOLVED(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:loic.poulain@oss.qualcomm.com,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	ALIAS_RESOLVED(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,9elements.com:from_mime,9elements.com:email,9elements.com:mid,9elements.com:dkim,vger.kernel.org:from_smtp]
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	RCPT_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,smtp.kernel.org:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,qualcomm.com:email,lists.linux.dev:replyto,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: CF9A9728263
+X-Rspamd-Queue-Id: 4F9D27286DE
 
-The VUART 3 and 4 are VUART over PCI.
-Set this flag to indicate this information.
-Also set the syscon phandle.
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [Medium] Multiple typographical errors in GPIO line names ('SDL' instead =
+of 'SCL', missing 'SPI' in CS name) and in the commit message.
+--
 
-Signed-off-by: Grégoire Layet <gregoire.layet@9elements.com>
----
- arch/arm/boot/dts/aspeed/aspeed-g6.dtsi | 4 ++++
- 1 file changed, 4 insertions(+)
+--- Patch [1]: [PATCH] arm64: dts: qcom: monaco-arduino-monza: Add GPIO lin=
+e names ---
+commit f90079e8b747e78feb067474d4b03223eaab361c
+Author: Loic Poulain <loic.poulain@oss.qualcomm.com>
 
-diff --git a/arch/arm/boot/dts/aspeed/aspeed-g6.dtsi b/arch/arm/boot/dts/aspeed/aspeed-g6.dtsi
-index 7c02633f2bd6..2b51749300f8 100644
---- a/arch/arm/boot/dts/aspeed/aspeed-g6.dtsi
-+++ b/arch/arm/boot/dts/aspeed/aspeed-g6.dtsi
-@@ -722,7 +722,9 @@ vuart3: serial@1e787800 {
- 				reg-shift = <2>;
- 				interrupts = <GIC_SPI 180 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&syscon ASPEED_CLK_APB2>;
-+				syscon = <&syscon>;
- 				no-loopback-test;
-+				aspeed,vuart-over-pci;
- 				status = "disabled";
- 			};
- 
-@@ -742,7 +744,9 @@ vuart4: serial@1e788800 {
- 				reg-shift = <2>;
- 				interrupts = <GIC_SPI 181 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&syscon ASPEED_CLK_APB2>;
-+				syscon = <&syscon>;
- 				no-loopback-test;
-+				aspeed,vuart-over-pci;
- 				status = "disabled";
- 			};
- 
--- 
-2.54.0
+arm64: dts: qcom: monaco-arduino-monza: Add GPIO line names
 
+This commit adds gpio-line-names to the tlmm node in the monaco-arduino-mon=
+za
+device tree. It documents the pin functions for various headers, flat conne=
+ctors,
+and the SoC-to-MCU interface on the VENTUNO Q board.
+
+>     Add gpio-line-names to the tlmm node to document the PIN functions on
+>     on the VENTUNO Q board. This covers the different headers (JMISC, JHA=
+T,
+
+[Severity: Medium]
+This isn't a bug, but there's a typo ("on on") in the commit message.
+
+> diff --git a/arch/arm64/boot/dts/qcom/monaco-arduino-monza.dts b/arch/arm=
+64/boot/dts/qcom/monaco-arduino-monza.dts
+> index 8b3ed73feb6ec..24d2704666745 100644
+> --- a/arch/arm64/boot/dts/qcom/monaco-arduino-monza.dts
+> +++ b/arch/arm64/boot/dts/qcom/monaco-arduino-monza.dts
+> @@ -426,6 +426,34 @@ &pcieport1 {
+>  };
+> =20
+>  &tlmm {
+> +	gpio-line-names =3D "", "", "", "", "",
+> +			  "", "", "", "", "",
+> +			  "JMISC_SPI_MISO", "JMISC_SPI_MOSI", "JMISC_SPI_SCK", "JMISC_SPI_CS0=
+", "JMISC_SPI_CS1",
+> +			  "JMISC_CS2", "", "JHAT_P03_I2C_SDA", "JHAT_P05_I2C_SCL", "JHAT_P27_=
+EEPROM_SDA",
+> +			  "JHAT_P28_EEPROM_SDL", "", "", "", "",
+
+[Severity: Medium]
+Should "JMISC_CS2" include the "SPI_" prefix to match the adjacent CS0 and =
+CS1
+lines?
+
+Is "JHAT_P28_EEPROM_SDL" a typo for "JHAT_P28_EEPROM_SCL"?
+
+> +			  "JHAT_P21_SPI_MISO", "JHAT_P19_SPI_MOSI", "JHAT_P23_SPI_SCLK", "JHA=
+T_P24_SPI_CE0", "",
+> +			  "", "MCU_I2C1_SDA", "MCU_I2C1_SDL", "", "",
+
+[Severity: Medium]
+Is "MCU_I2C1_SDL" also a typo for "MCU_I2C1_SCL"?
+
+[ ... ]
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260708-gpio-names=
+-v1-1-9162105b9971@oss.qualcomm.com?part=3D1
 
