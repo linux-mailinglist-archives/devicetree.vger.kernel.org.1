@@ -1,63 +1,64 @@
-Return-Path: <devicetree+bounces-322931-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-322933-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id c7eHFpVrTmpzMQIAu9opvQ
-	(envelope-from <devicetree+bounces-322931-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 17:24:05 +0200
+	id Rh5QBjloTmpmMAIAu9opvQ
+	(envelope-from <devicetree+bounces-322933-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 17:09:45 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8DA89727F43
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 17:24:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6EDEA727C7B
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 17:09:44 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=n2sXiy3n;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=dElyPSgT;
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322931-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-322931-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322933-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-322933-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 1AEAB31D3700
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 14:54:03 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 7EE4631F4887
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 14:55:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F06643C7D2;
-	Wed,  8 Jul 2026 14:52:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4EE73B71AA;
+	Wed,  8 Jul 2026 14:54:55 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C58EA3B776C
-	for <devicetree@vger.kernel.org>; Wed,  8 Jul 2026 14:52:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6E4F274FDF
+	for <devicetree@vger.kernel.org>; Wed,  8 Jul 2026 14:54:54 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783522329; cv=none; b=HhPhqaOefVxXdEcD2/RmlEX80J6lwYHTWNuulDBjk2Xc+zDaS+gy/HClwL6tcNdieC8W0vdgopLk0wQumh1M8hciX0VLQt4NQS7NcKqnZ69TrCdtBpHlnD5g50e/VpYIT7xttzoAzX9JCITGOcO82esPl+w6nUAqglofzY76NEI=
+	t=1783522495; cv=none; b=hh1OioBH5SIinOZBy7qW1knan2Ynfsk8t3kWd+q0zF0tOjHh+Yi7CMx8cGgaUCMFS4PPDZeQ4/RGUGGwAYO6EYl5W6OYeA69o4mHHsdXXpdkFf0QDZdrJpig4TedM35/F8VryuxgakmUgb7MdXKaaVuZb1wRtXg/WY9q3oG6vU8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783522329; c=relaxed/simple;
-	bh=e8u7hQQOGfzCek6z8hSNDt06rCYnVIfuSJwS0y7HFWk=;
+	s=arc-20240116; t=1783522495; c=relaxed/simple;
+	bh=kBOjahIJTBpdEWRT+hMOb62jMSWTPna0AkHUuw+iFuI=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=ZK9VzkJPxzwdysKSUzu8ZvmhwqRmkOC2eFZdMs+ErCRcRCjZ3rPMKVjgzM2sjOeWdwzoWk6h/XV8YpB1PMCMuCB5sGQuJVFZfx+cP5J5zJfoPL/9qr0O27mFBZ+nYydpGTpBKo4J7KXffaePMqqsElBQiUaxVoRNNIn2Fd8Tky4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=n2sXiy3n; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2E17F1F000E9;
-	Wed,  8 Jul 2026 14:52:08 +0000 (UTC)
+	 Message-Id; b=SBfg1xTORWu7fkJdCaUJK0COYQsPV9I7tLc9AuRHowBCIa4l1Ej67llpA34weqDesUR7h8saRCPzeKyg6DNDLUMpYz9a8Pc0p3Ex0eiGDB3iAtc0AOiqcfclpHpPwbvyP9bXORYxeasTH2IS+Od1iDmi70og7quv3TlP5wdzvVw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dElyPSgT; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E9AF91F000E9;
+	Wed,  8 Jul 2026 14:54:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783522328;
-	bh=N6i5LF+0LxyLYZkXfeMpN5/dS19ueJg4x87DdmebEXg=;
+	s=k20260515; t=1783522494;
+	bh=Vr6JW8bM74XdeYYaBKjyN13pudKMM2d3UPOhnULFxN8=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=n2sXiy3nnGAp5EGW2MylgAKBdq0oXWsIncy+CSz5J4nJF+kSWSdPjWkvUkFb4ChkT
-	 pla4yBUnMOaVflVj5gVRogDzZq4ak2hyH83oth1ScR7901ZPnRMtkjWuYAC8SxpZ5J
-	 2PXWq41JD1QRFr5XEtU5KN8XuI9Q4U+C1Zil1Ji17RfFJoWoVGa1ZVynphrXPGntiH
-	 3lgvI8dm6IQw5NIIg4tL1EOtrMOmi5M5/U4K37gXZCrpx8/mzdQVf8fxredG41AfCM
-	 4OI5Y5kmOHOTtauqs1R9vpckd18uAsmlLsYlwHda3ZQDfzbSD62T/UJ/yBvncQKOOP
-	 GZk/CqlCIebRA==
+	b=dElyPSgThvLGsntSvGUAYT99zOnyRbGZRD4VsnJiuhkyvPHQuDPIKVfZh3nudKQA3
+	 syomEKUgP/ev9Dm0ukSj3cOJyHTUy8q7PFsldj9hZnLvcVrzG3pMbucQV8t4NVUGWk
+	 5HVc+2nxIChD8d9xMIpwuLE3D0JEjIAAzm6DYX5XwegJDfAUvJ1ytOXk39aDwb7zyU
+	 xt+0CsT4eoBxosDmPWXZl9kBibwkQkh+Vvk4tMbL82i/uY80/iXQA9yhAfZDLwJxuC
+	 oJUInHt2WbNqkDqJ4HKhULbsQJ3QHsklkXrmwO0iMhrbygpQqc/I56DxQQ/0aQ9bJw
+	 JvpAwS304OdYA==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v4 4/7] dtc: dt-check-style: Expect first device_type
+Subject: Re: [PATCH v4 6/7] dtc: dt-check-style: Print proper line number of
+ indentation detection place
 Reply-To: sashiko-reviews@lists.linux.dev
 To: "Krzysztof Kozlowski" <krzysztof.kozlowski@oss.qualcomm.com>
-Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20260708-dts-style-checker-v4-4-c175e6401150@oss.qualcomm.com>
+Cc: conor+dt@kernel.org, robh@kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260708-dts-style-checker-v4-6-c175e6401150@oss.qualcomm.com>
 References: <20260708-dts-style-checker-v4-0-c175e6401150@oss.qualcomm.com>
- <20260708-dts-style-checker-v4-4-c175e6401150@oss.qualcomm.com>
+ <20260708-dts-style-checker-v4-6-c175e6401150@oss.qualcomm.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Wed, 08 Jul 2026 14:52:06 +0000
-Message-Id: <20260708145208.2E17F1F000E9@smtp.kernel.org>
+Date: Wed, 08 Jul 2026 14:54:52 +0000
+Message-Id: <20260708145452.E9AF91F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,11 +78,11 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-322931-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-322933-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:krzysztof.kozlowski@oss.qualcomm.com,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:krzysztof.kozlowski@oss.qualcomm.com,m:conor+dt@kernel.org,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
 	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
@@ -102,129 +103,69 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	RCPT_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,lists.linux.dev:replyto,vger.kernel.org:from_smtp,smtp.kernel.org:mid,qualcomm.com:email,sashiko.dev:url,devicetree.org:url]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,smtp.kernel.org:mid,lists.linux.dev:replyto,sashiko.dev:url]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 8DA89727F43
+X-Rspamd-Queue-Id: 6EDEA727C7B
 
-Thank you for your contribution! Sashiko AI review found 3 potential issue(=
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
 s) to consider:
-- [Low] The `compatible` string in the YAML example does not match the sche=
-ma constraint.
-- [Low] Copy-paste error in the comment of the 'good' test fixture.
-- [Low] The docstring for `_property_bucket` missed an update for the new `=
-device_type` fixed slot.
+- [Low] Outdated docstring for detect_indent_unit()
+- [Low] Unused variable `lineno` in `check_indent_consistent()`
 --
 
---- Patch [4]: [PATCH v4 4/7] dtc: dt-check-style: Expect first device_type=
- ---
-commit c078538281e29a1c935623ba80b1e47b07008331
+--- Patch [6]: [PATCH v4 6/7] dtc: dt-check-style: Print proper line number=
+ of indentation detection place ---
+commit 0faea90fe4385d4895b11cc94353072a1a5f9347
 Author: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
-dtc: dt-check-style: Expect first device_type
+dtc: dt-check-style: Print proper line number of indentation detection place
 
-Adjust the DTS coding style rules to expect the device_type property first
-and improve the dt-check-style script to handle this correctly, along with
-new test fixtures.
+Script judges the indentation however always suggests it is the first
+line which is wrong, e.g.:
+
+  sigmastar/mstar-infinity2m.dtsi:1: [indent-unit-dts] indent unit must be =
+1 tab in DTS, got '\t\t'
 
 > diff --git a/scripts/dtc/dt-check-style b/scripts/dtc/dt-check-style
-> index bb9ec5b82319e..23cdfe78b1890 100755
+> index 9a5263a30663f..df056e4d0a5b5 100755
 > --- a/scripts/dtc/dt-check-style
 > +++ b/scripts/dtc/dt-check-style
-> @@ -558,28 +558,31 @@ def check_child_name_order(ctx):
-> =20
->  def _property_bucket(name):
->      """Return the canonical bucket index for a property:
-> -       0 compatible
-> -       1 reg / reg-names
-> -       2 ranges
-> -       3 standard properties (no vendor comma in #-stripped name)
-> -       4 vendor-specific properties
-> -       5 status
-> +       0 device_type
-> +       1 compatible
-> +       2 reg / reg-names
-> +       3 ranges
-> +       4 standard properties (no vendor comma in #-stripped name)
-> +       5 vendor-specific properties
-> +       6 status
->      Plus a sub-key inside the bucket for fixed slots (compatible, reg,
->      reg-names, ranges, status). 'standard' and 'vendor' return None for
+> @@ -397,48 +397,48 @@ def detect_indent_unit(ctx):
+>          if not dl.indent_str:
+>              continue
+>          if dl.indent_str =3D=3D '\t':
+> -            return '\t'
+> +            return ('\t', dl.lineno)
 
 [Severity: Low]
-This isn't a bug, but should device_type be added to the list of fixed slots
-in this parenthetical?
+Is there a documentation regression here?
 
->      the sub-key, signalling that the within-bucket key is computed by
+Looking at the top of detect_indent_unit():
+    """Find the indent unit used at depth 1 in this block.
+
+    Returns one of: '  ' (2 spaces), '    ' (4 spaces), '\t' (tab),
+    or None if depth-1 is empty or ambiguous."""
+
+Since it now returns a 2-tuple instead, should the docstring be updated to
+reflect this change?
 
 [ ... ]
 
-> diff --git a/scripts/dtc/dt-style-selftest/bad/yaml-prop-order-device-typ=
-e.yaml b/scripts/dtc/dt-style-selftest/bad/yaml-prop-order-device-type.yaml
-> new file mode 100644
-> index 0000000000000..433afb731dded
-> --- /dev/null
-> +++ b/scripts/dtc/dt-style-selftest/bad/yaml-prop-order-device-type.yaml
-> @@ -0,0 +1,31 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/test-bad-prop-order.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Test fixture with device_type
-> +
-> +maintainers:
-> +  - Test User <test@example.com>
-> +
-> +properties:
-> +  compatible:
-> +    const: example,test-prop-order-device-type
-> +  reg:
-> +    maxItems: 1
-> +  device_type: true
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    device@1000 {
-> +        compatible =3D "example,test-prop-order";
+>  def check_indent_consistent(ctx):
+>      """All indented lines must be a multiple of the detected unit."""
+> -    unit =3D detect_indent_unit(ctx)
+> +    (unit, lineno) =3D detect_indent_unit(ctx)
+>      if unit is None:
+>          return
+>      if ctx.file_type =3D=3D 'yaml':
 
 [Severity: Low]
-The compatible string used here in the example doesn't match the const
-requirement defined in properties.compatible above. Will this cause the test
-fixture to fail standard dtschema validation if it's ever checked directly?
+Is there a minor regression here with an unused variable?
 
-> +        device_type =3D "cpu";
-> +        reg =3D <0x1000 0x100>;
-> +    };
-
-[ ... ]
-
-> diff --git a/scripts/dtc/dt-style-selftest/good/dts-property-order.dts b/=
-scripts/dtc/dt-style-selftest/good/dts-property-order.dts
-> new file mode 100644
-> index 0000000000000..0e183e3459cdf
-> --- /dev/null
-> +++ b/scripts/dtc/dt-style-selftest/good/dts-property-order.dts
-> @@ -0,0 +1,41 @@
-> +// SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +/*
-> + * Test fixture: Incorrect property order
-
-[Severity: Low]
-This isn't a bug, but since this is the "good" dts file, should this header
-comment be updated to indicate it is testing correct property order?
-
-> + */
-> +
-> +/dts-v1/;
+It appears lineno is unpacked from the tuple but never used anywhere in
+check_indent_consistent().
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260708-dts-style-=
-checker-v4-0-c175e6401150@oss.qualcomm.com?part=3D4
+checker-v4-0-c175e6401150@oss.qualcomm.com?part=3D6
 
