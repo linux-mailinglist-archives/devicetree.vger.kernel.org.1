@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-322581-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-322582-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 8lWcBwz+TWpZBQIAu9opvQ
-	(envelope-from <devicetree+bounces-322581-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 09:36:44 +0200
+	id BFWfFz3+TWphBQIAu9opvQ
+	(envelope-from <devicetree+bounces-322582-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 09:37:33 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 797D9722B27
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 09:36:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A0E22722B3D
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 09:37:32 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=F+vAL2BR;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=iUlNdHcr;
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322581-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-322581-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322582-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-322582-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A7E9C30B4FE4
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 07:27:26 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 3CF283059D5B
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 07:28:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2ACC13EFFC3;
-	Wed,  8 Jul 2026 07:27:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6AF543E7BA1;
+	Wed,  8 Jul 2026 07:28:05 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6BF373EA969
-	for <devicetree@vger.kernel.org>; Wed,  8 Jul 2026 07:27:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 824C33ECBD2
+	for <devicetree@vger.kernel.org>; Wed,  8 Jul 2026 07:27:50 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783495644; cv=none; b=pbY2IammMa/UWnpacCT0Er7vbSwnlHW/ZzkTk9ffTiwsljXEHSUMlkec84NR08gXEhTuPc7lo/V/Uy3dWy8t1T45pmC93DVvnc/E/UBzFCDV++WEbV+YRGby/m30KJLq2YFNIbJjgOmIoymtC/Gv0bW90/+5sZhJJPabJxLkO8I=
+	t=1783495679; cv=none; b=I+oi67vgujVafepFP0m9KTFS39Nvnxy/y/9yclUkYJE/ynFPC0RA6rsQSMp/4tzl6mSFgquajS85VS1Noa09SUJPYKADNk4MZ+UXGh3qfCfOEyGttolnKIs5aXjUIZz+ul18f/VjePUuAYyRw1PxiR/3qL7ZNegmWLEQCVGrku4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783495644; c=relaxed/simple;
-	bh=X+4ldqXjzT15XMm4SHOpHg9Pyu9wpCO6oUuJisIstrk=;
+	s=arc-20240116; t=1783495679; c=relaxed/simple;
+	bh=cOLdpiEAtzaSryV6o6FyAVatG0tXci1ipsiFtSqcmR4=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=h3wRNK8rLKd5j6pRx24G6rOoWu/e/JsJTi1cYzzgg/mcYlvjlOW94DG4Xtue+8jSNqoVKi8YkKWkP3iXsPD26AHJUfR4LNyGk12tz22q0Cw13wjYgD0RoFzW8BUy4GCldrZRVPslHZ6Unqp+UdZDWO99Ja0znzm6dXTbVIy4iso=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=F+vAL2BR; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7DB4A1F00A3A;
-	Wed,  8 Jul 2026 07:27:12 +0000 (UTC)
+	 Message-Id; b=QV/dSSxIo0qZiAcMP5CktvN8qVQVkb+IjkHuPC9uDHbx2rdd4a7vDw+GM8Y/OWtd+FChQr3iF/uew3N9WZpgFbHFc63RhspYknvvkub/Gu34d2oVqMedYHSTX353RfrsOTGW36ffvDmoeCfUeeq/41vStnPcAkB3zPE0eWSMYVo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iUlNdHcr; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9854A1F000E9;
+	Wed,  8 Jul 2026 07:27:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783495632;
-	bh=YZowCmXQ2dexLBD2nkq2ebYxTcgjFSdmUUG4FVajOXE=;
+	s=k20260515; t=1783495664;
+	bh=cOLdpiEAtzaSryV6o6FyAVatG0tXci1ipsiFtSqcmR4=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=F+vAL2BRe4hOfC8YO9xvlcreGeFwcm5xq8J7UGEHA+zJTasEdALal4B1JJbEv2Q0B
-	 CcwX/72xwoy1y57qpafqJR06u9GxxChymUrxqQPhTfuuHOqTLt1iCvVNxO+LskStEv
-	 ehP+gN11S//9heG1hx8M38lPlgXkTSuwTU/W3z7ZRxxV4c6LHmV4DfxLyFxOKykY8a
-	 Kaofw84YgMZ4L79Dj7rpi8rRiP+Nmz5UPxJ+8dWc8mwEQDZaMoYRU9c0IJvfLfUkr/
-	 ewYXrhYp3ZhBVnpYxmTqUaMfMiVfRTKSm++jW3Vud7Wlvjw24SPKjLDx86Q0DcKXHw
-	 ljbDt5UdgY2Bg==
+	b=iUlNdHcreiytk9Iz7jOApEy/oc2P63PgHYGb+12kLeJeN7fhWVI5oYphHkZpSuYNq
+	 QYRLe0LlFoDtV5mePLjONQPvaAbFl6Sk/8j8DGorAUfXhCBU1ebOfj2dFCcWBnu5W0
+	 lI4+Y7ICvxf+YZIB7h1oz/VrwmrwCZaOueWWgXZcUhBZFSHkcJGc0osMbNyklCHX/7
+	 +gMSTX6Is9eUt4WefXQoB9i8+23+yGxgMCVrdZSe5ZYMyWT6dedZ6tCQA9xUnKGkBo
+	 ae2Ig7q6zXlQ8uip9Y1vC6njg+fsGIPhS4dUF5XRaW4eiLM42dJHvkWgek/DCfRvGl
+	 m+Lnspxhq6EQA==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v3 20/26] mm/sparse: Register information into
- meminspect
+Subject: Re: [PATCH v4 1/5] dt-bindings: firmware: xilinx: Add missing
+ example for ZynqMP
 Reply-To: sashiko-reviews@lists.linux.dev
-To: "Mukesh Ojha" <mukesh.ojha@oss.qualcomm.com>
-Cc: robh@kernel.org, devicetree@vger.kernel.org, conor+dt@kernel.org
-In-Reply-To: <20260708-meminspect-v3-v3-20-7aa5a0a74d5c@oss.qualcomm.com>
-References: <20260708-meminspect-v3-v3-0-7aa5a0a74d5c@oss.qualcomm.com>
- <20260708-meminspect-v3-v3-20-7aa5a0a74d5c@oss.qualcomm.com>
+To: "Michal Simek" <michal.simek@amd.com>
+Cc: devicetree@vger.kernel.org, conor+dt@kernel.org, robh@kernel.org
+In-Reply-To: <09439b3fc9dcab12b930113e7a004e94653c970c.1783495122.git.michal.simek@amd.com>
+References: <cover.1783495122.git.michal.simek@amd.com>
+ <09439b3fc9dcab12b930113e7a004e94653c970c.1783495122.git.michal.simek@amd.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Wed, 08 Jul 2026 07:27:12 +0000
-Message-Id: <20260708072712.7DB4A1F00A3A@smtp.kernel.org>
+Date: Wed, 08 Jul 2026 07:27:44 +0000
+Message-Id: <20260708072744.9854A1F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,18 +78,18 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-322581-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-322582-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:mukesh.ojha@oss.qualcomm.com,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:michal.simek@amd.com,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
 	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
 	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	ALIAS_RESOLVED(0.00)[];
@@ -103,70 +103,38 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	RCPT_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,lists.linux.dev:replyto,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,smtp.kernel.org:mid,vger.kernel.org:from_smtp,qualcomm.com:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[smtp.kernel.org:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp,sashiko.dev:url,lists.linux.dev:replyto,amd.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 797D9722B27
+X-Rspamd-Queue-Id: A0E22722B3D
 
 Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-- [High] Missing meminspect registration for dynamically allocated mem_sect=
-ion leaf arrays in CONFIG_SPARSEMEM_EXTREME.
+- [Low] The commit message incorrectly references `xlnx,zynqmp-clk.yaml` in=
+stead of `xlnx,versal-clk.yaml`.
 --
 
---- Patch [20]: [PATCH v3 20/26] mm/sparse: Register information into memin=
-spect ---
-commit 0ac9689f8cff74569f53973955e06ebec50e2b81
-Author: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
+--- Patch [1]: [PATCH v4 1/5] dt-bindings: firmware: xilinx: Add missing ex=
+ample for ZynqMP ---
+commit f76bb0fabd5ddf2fd379360e863c083c04812eff
+Author: Michal Simek <michal.simek@amd.com>
 
-mm/sparse: Register information into meminspect
+dt-bindings: firmware: xilinx: Add missing example for ZynqMP
 
-Annotate vital static, dynamic information into meminspect for
-debugging:
- - mem_section (static)
- - section (dynamic)
+This commit adds the clock-controller to the zynqmp-firmware example in
+the device tree binding. This allows ZynqMP device trees to properly
+validate against the clock schema.
 
-meminspect uses a different API to annotate variables for inspection,
-and information about these variables is stored in the inspection table.
+> Document clock-controller under zynqmp-firmware in the binding example so
+> ZynqMP DTs validate against xlnx,zynqmp-clk.yaml (Versal example already =
+did).
 
-> diff --git a/mm/sparse.c b/mm/sparse.c
-> index 058ef93003672..9e890fb6c43e1 100644
-> --- a/mm/sparse.c
-> +++ b/mm/sparse.c
-[ ... ]
-> @@ -206,6 +208,7 @@ static void __init memblocks_present(void)
->  	size =3D sizeof(struct mem_section *) * NR_SECTION_ROOTS;
->  	align =3D 1 << (INTERNODE_CACHE_SHIFT);
->  	mem_section =3D memblock_alloc_or_panic(size, align);
-> +	meminspect_lock_register_va(mem_section, size);
->  #endif
-
-[Severity: High]
-The commit message mentions annotating "section (dynamic)", but this patch
-only registers the root array mem_section. Should the dynamically allocated
-leaf arrays in sparse_index_alloc() also be registered?
-
-When CONFIG_SPARSEMEM_EXTREME is enabled, sparse_index_alloc() allocates
-these leaf arrays:
-
-mm/sparse.c:sparse_index_alloc() {
-    ...
-	if (slab_is_available()) {
-		section =3D kzalloc_node(array_size, GFP_KERNEL, nid);
-	} else {
-		section =3D memblock_alloc_node(array_size, SMP_CACHE_BYTES,
-					      nid);
-		if (!section)
-			panic("%s: Failed to allocate %lu bytes nid=3D%d\n",
-			      __func__, array_size, nid);
-	}
-    ...
-}
-
-Without registering these leaf arrays, won't debug dumps relying on
-meminspect miss the memory section data? This could prevent crash tools
-from successfully mapping PFNs to struct page.
+[Severity: Low]
+This isn't a bug, but the commit message references xlnx,zynqmp-clk.yaml,
+which does not appear to exist in the repository. Should the message specify
+xlnx,versal-clk.yaml instead, since that is what the hardware actually
+validates against?
 
 --=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260708-meminspect=
--v3-v3-0-7aa5a0a74d5c@oss.qualcomm.com?part=3D20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/cover.1783495122.gi=
+t.michal.simek@amd.com?part=3D1
 
