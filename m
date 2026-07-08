@@ -1,191 +1,252 @@
-Return-Path: <devicetree+bounces-323003-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-323004-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 2UbIMklzTmoKNAIAu9opvQ
-	(envelope-from <devicetree+bounces-323003-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 17:56:57 +0200
+	id G8geIf9uTmqTMgIAu9opvQ
+	(envelope-from <devicetree+bounces-323004-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 17:38:39 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3DA4F72855E
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 17:56:57 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 21F6F7281FC
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 17:38:39 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=GFEfWq56;
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-323003-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-323003-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=9elements.com header.s=google header.b=E+pSZqPf;
+	dmarc=pass (policy=quarantine) header.from=9elements.com;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-323004-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-323004-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id B012B31782DD
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 15:35:25 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id CA804301C404
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 15:38:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 010D33F12EE;
-	Wed,  8 Jul 2026 15:35:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78D393F12FF;
+	Wed,  8 Jul 2026 15:38:28 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr2-f0.google.com (mail-wr2-f0.google.com [74.125.225.64])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98CAF3F12CA;
-	Wed,  8 Jul 2026 15:35:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04244313E36
+	for <devicetree@vger.kernel.org>; Wed,  8 Jul 2026 15:38:24 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783524912; cv=none; b=nf0EuHrrzATOVVAF6F5aJherS73SgvNgf4QSLBExKX8w8y7UNXUtl3yWZIsAR0SCdVi7ogA0rVC9Ws1XcwFKGRzcHHF8H+i7jZ46xywiaS4xGDotliLR/QLyeVA1HqfKwDUTMhdRThn6eihRwSyeNyhVqhqrupp5KbS/qBtC9D8=
+	t=1783525108; cv=none; b=eXE04mft6nZrpnQxt+8VHBWpLytpNfSjx6PKK0SugedtrjUSlXqh6C+WK8vPtr1IZjMWK2ycUZLczSqWr9991IefezGburVR8wz60rNOSqGMlqP1XOTaLGRjB4qm4KMroq3i67E3ZsO0/VQCuCMWY1tJots9Kxquj7qNkVRIc5Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783524912; c=relaxed/simple;
-	bh=F8FzxmDbQnJT3S3eLejXFlR+nREK0IwYMuvQdmG/i3A=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bpV4MHFTdZdHXBa6ML/Tvjg2wGuQodvaRTYAXdjhPf1/JBLSnWX6DOnLzNJPrXlE2a65KzZkBvKlGF/YuRJwnCRZrJIct2RIOdz5nt3UrA2hHkHqQpxlgkyn+yW3i7KfxN4S6ZwQ9kFu5xmKUJj831niDg7xOMCGLTkzQCs+v5A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GFEfWq56; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5568C1F000E9;
-	Wed,  8 Jul 2026 15:35:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783524911;
-	bh=TIhd5QGHHUH29LQnzEnCvrF+ZQHuAr9wGStJF7y8ltE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=GFEfWq56iIsrg049quekywIWXYbcbmVhtKMHr4wPLUG9XA4AEuR9c9v2tx+uce6Lu
-	 f2gEw9XMdbiYfZfIyO48tMp4gqnCU9MS8/VU99gdm+A18RUyAgx+T3WWf5k48ymWQE
-	 NmaQsvnMIuNMVp5Yunm5v552kngUVGxqyfZLABzaaChawmyKGKQv73NhlHTHyvMslY
-	 DsHcIbYlFxCfuMPI5u1+FtQkHZDtUubHA/CNPjaVTIkCR3Ptafslbh9IfGoudPBxd0
-	 neIlEUPOhNIw9ZcBw2JnOmtM/fFtypxT1cPNS8TRxAOOIMJG62jOPE0JsdOyD5B8ld
-	 0YsYLbiF90wQQ==
-Date: Wed, 8 Jul 2026 10:35:07 -0500
-From: Bjorn Andersson <andersson@kernel.org>
-To: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-Cc: Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Manivannan Sadhasivam <mani@kernel.org>, Bartosz Golaszewski <brgl@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-pci@vger.kernel.org, linux-pm@vger.kernel.org, 
-	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Subject: Re: [PATCH v2 0/2] arm64: dts: qcom: eliza-evk: Enable PCIe0 and
- PCIe1 with M.2 and TC9563 switch
-Message-ID: <ak5sfkmrhorCY6lf@baldur>
-References: <20260708-eliza_evk-v2-0-c599246ceba1@oss.qualcomm.com>
+	s=arc-20240116; t=1783525108; c=relaxed/simple;
+	bh=rZwb5msXLDO0ijxU1KD3LNPVM3/IbyHTEZVytr4lgfs=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=oyNTAMzFxxbWTVhPg9IlUTkRa7nFUqrRxPeVFmAvAIZ1O3T+GenPQGtq47YXcGt69Jh/zxLPOlJkfm7pfXLYvzuBRLrHG/kcrtiOkTZjeQrGKzkAUUN4/vD5t0PbUFq510WdaF9dQaEcTCEyqd6v+j7dPLLlSOx5gObnQ4h2z48=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=9elements.com; spf=pass smtp.mailfrom=9elements.com; dkim=pass (2048-bit key) header.d=9elements.com header.i=@9elements.com header.b=E+pSZqPf; arc=none smtp.client-ip=74.125.225.64
+Received: by mail-wr2-f0.google.com with SMTP id ffacd0b85a97d-47528970fbdso353135f8f.1
+        for <devicetree@vger.kernel.org>; Wed, 08 Jul 2026 08:38:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=9elements.com; s=google; t=1783525103; x=1784129903; darn=vger.kernel.org;
+        h=content-transfer-encoding:content-type:mime-version:message-id:date
+         :subject:cc:to:from:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=6E2M/OW82zq935Lg7IK8OFbhLBXo8GmRMpNDGq8g+oA=;
+        b=E+pSZqPfFqo8XnZPryNcXJ7Q92gGxst3VQISbHy9IwmCPfvjqZtHH0SULct7kGBLO3
+         893TNvNUZVN2Z7TsjZb7EU9PEKuk8RE2ojKVIrW8W+teuacZoANps2WBA+Y7BzycJs7X
+         XBRWwbOvuVj5z9/FwXa+ak01sBDAeOxeV96BZyTGgrs4V6IhZTkb4yrQ7pUuONQI3Xt9
+         tTsuiu4LXSBzR7Ofa71WOvQ4VxFCCEPooIZ72W0kyobKD5Rew2zHt1pHLXxq+xR0Z67g
+         ggFClrfdiN+/UbsSryEuZckMlnJZNxjoD+BG/esa5APiDI0/0PXC0XtxVMoIqFn5GVqB
+         EUPw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1783525103; x=1784129903;
+        h=content-transfer-encoding:content-type:mime-version:message-id:date
+         :subject:cc:to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=6E2M/OW82zq935Lg7IK8OFbhLBXo8GmRMpNDGq8g+oA=;
+        b=cLlbw3iH1lyHcu4bc9X1l4h6d2FrqfVrxUK8+CxES4iPouulikH+PTrg16jfPVA3b2
+         AqxoCEtkUNVJyJRyXz6s2t5AcXL9X6mZn7TiI7akxZnF+mEzo4J48iVyB7CGhtCwn3qZ
+         qM1aWiTrBO6SzG3HaCVvTT4kYRSKM6t8gQd69kV0hK1wk/Wt4Wqvchs0ld+UxupVhBhn
+         zaE6QX7FKD4IEDGh+SsbJvdhDSybAibqCKHmdkslROTSMrjOx9cT4HUiMTxZo7p+ulYJ
+         nr0Xezuwdna879m6qS9GQ3ytjmQtwJnwTmOBCXLZG6GjiRCJlS/GRNa6BKcCbKB0o9XJ
+         nNJQ==
+X-Forwarded-Encrypted: i=1; AHgh+RrH1YE58rnnR3pkG8T+L6+6ehtyfgLwiwSwQqZndK/dwo0yI8mkoUyREUAfyg+MdWS4pR3wjSlo2AbU@vger.kernel.org
+X-Gm-Message-State: AOJu0YxW/5OFtnvgjiJFFgg5FuLTfbW1lmWxvmb00b3X6gSAina3BV0i
+	SU5ymzLvs1XLukVOHQCgzkfRizYjlO4qrpTfAWtV2Naium3XR37DtkzXElDiknAFs1Y=
+X-Gm-Gg: AfdE7clBBo/t6kWWT7oQcItDtuRrcyuyKfZCK/SmklS+aEulkR1ym29+4Q0o6gIYaC9
+	jYyTRWI8M9fbnOaSMieooPjufPJaa7Kan8n1r1D+nABqOAtUlQfkME7BFDzsz5vfpQhBdJWQ90v
+	tirGPwPZDNsH4dimNl5jEUp+oW7/UzDPePj9bc80CnKMHSzJQ+GMPnSMlq7gkyKN2JLSaAIIubJ
+	n5jPVE95z6KbI7RAtws6N4FMEaNFa9WAStt7KmRKv5AAJtOkWN/6L3w73rGoxbjItX3mH4zKRcS
+	1jehmMcdgLwziYwypvXT09TB/L8ix0zlyRn6PD9I9wngPpSBndc6kqQgccQHiRhIZH0dJOUzk0M
+	tL+zNv3bzL1V/yKjT/HpUgi4/FTWZq5GqjhaXtQrtdKz5oov6x1PxruhxdzWxEWDpdjnlGm9lxp
+	DDOoWx/OTg5BXBU5kJwLbFELCeST4u1XIYtYPF487YGPQVt63wqrFDHr61wVhiFWcgi8fhFhEZM
+	9HnE6XxqTF2DHDvxB8RIiOxKymp
+X-Received: by 2002:a05:6000:1ac5:b0:45e:f302:95b with SMTP id ffacd0b85a97d-47df078ba55mr3258189f8f.37.1783525103272;
+        Wed, 08 Jul 2026 08:38:23 -0700 (PDT)
+Received: from gregwork.sec.9e.network ([188.111.3.154])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-47a9e4d8410sm44254136f8f.15.2026.07.08.08.38.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 08 Jul 2026 08:38:22 -0700 (PDT)
+From: =?UTF-8?q?Gr=C3=A9goire=20Layet?= <gregoire.layet@9elements.com>
+To: joel@jms.id.au,
+	andrew@codeconstruct.com.au,
+	lkundrak@v3.sk,
+	devicetree@vger.kernel.org,
+	gregkh@linuxfoundation.org,
+	jirislaby@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Cc: andrew@lunn.ch,
+	jacky_chou@aspeedtech.com,
+	yh_chung@aspeedtech.com,
+	ninad@linux.ibm.com,
+	anirudhsriniv@gmail.com,
+	linux-serial@vger.kernel.org,
+	linux-aspeed@lists.ozlabs.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	=?UTF-8?q?Gr=C3=A9goire=20Layet?= <gregoire.layet@9elements.com>
+Subject: [PATCH v4 0/7] soc: aspeed: Add BMC and host driver for PCIe BMC device
+Date: Wed,  8 Jul 2026 15:35:52 +0000
+Message-ID: <cover.1783524645.git.gregoire.layet@9elements.com>
+X-Mailer: git-send-email 2.54.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260708-eliza_evk-v2-0-c599246ceba1@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-4.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+X-Spamd-Result: default: False [0.34 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	DMARC_POLICY_ALLOW(-0.50)[9elements.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[9elements.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:krishna.chundru@oss.qualcomm.com,m:konradybcio@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:mani@kernel.org,m:brgl@kernel.org,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-pci@vger.kernel.org,m:linux-pm@vger.kernel.org,m:konrad.dybcio@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FROM_HAS_DN(0.00)[];
+	FREEMAIL_CC(0.00)[lunn.ch,aspeedtech.com,linux.ibm.com,gmail.com,vger.kernel.org,lists.ozlabs.org,lists.infradead.org,9elements.com];
+	TAGGED_FROM(0.00)[bounces-323004-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:joel@jms.id.au,m:andrew@codeconstruct.com.au,m:lkundrak@v3.sk,m:devicetree@vger.kernel.org,m:gregkh@linuxfoundation.org,m:jirislaby@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:andrew@lunn.ch,m:jacky_chou@aspeedtech.com,m:yh_chung@aspeedtech.com,m:ninad@linux.ibm.com,m:anirudhsriniv@gmail.com,m:linux-serial@vger.kernel.org,m:linux-aspeed@lists.ozlabs.org,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:gregoire.layet@9elements.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	FORGED_SENDER(0.00)[andersson@kernel.org,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	FORGED_SENDER(0.00)[gregoire.layet@9elements.com,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
 	FORWARDED(0.00)[lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-323003-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andersson@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[gregoire.layet@9elements.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[9elements.com:+];
+	ALIAS_RESOLVED(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[baldur:mid,vger.kernel.org:from_smtp,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,vger.kernel.org:from_smtp,9elements.com:from_mime,9elements.com:dkim,9elements.com:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 3DA4F72855E
+X-Rspamd-Queue-Id: 21F6F7281FC
 
-On Wed, Jul 08, 2026 at 11:47:15AM +0530, Krishna Chaitanya Chundru wrote:
-> This series enables PCIe for the Eliza EVK board (CQS SoM on EVK carrier).
-> 
-> The Eliza EVK exposes two PCIe ports:
-> 
-> - PCIe0 drives an M.2 E key connector. The 3.3V supply is GPIO-controlled
->   via a TCA9538 I/O expander on I2C4. The slot hosts a WLAN module
->   (connected over PCIe) and a Bluetooth device (connected over UART5),
->   modelled with the pcie-m2-e-connector binding.
-> 
-> - PCIe1 (8GT/s x2) connects to a Toshiba TC9563 PCIe switch, whose
->   management interface sits on I2C4 (address 0x77). The TC9563 RESX# and
->   PERST# lines are OR-ed internally; reset is driven via a TLMM GPIO on
->   the RESX# pin. The iommu-map covers all downstream switch ports
->   (SID range 0x1400-0x1408).
-> 
-> The M.2 WLAN module carries a Qualcomm QCC2072 Bluetooth chip. A device-ID
-> entry is added to the M.2 power sequencer so the serdev node for the BT
-> UART interface is created on PCI enumeration.
-> 
-> Bluetooth is enabled with this patch https://lore.kernel.org/all/20260529175822.3366535-1-yepuri.siddu@oss.qualcomm.com/
-> 
-> This seris Depends-on:
->   https://lore.kernel.org/all/20260610-eliza_dt-v1-1-7bb72b75fc5b@oss.qualcomm.com/
+This is a v4 for upstreaming the VUART over PCIe BMC device driver.
+The initial driver is from the ASPEED kernel SDK (master-v6.18) [1].
 
-Why send this patch, when this dependency is known bad - when would I
-ever be able to merge this patch?
+There are two drivers: a BMC-side driver and a host-side driver.
+Together they enable host<->BMC VUART communication via PCIe.
 
-And why are you sending separate series concurrently with dependencies
-between them!? It's one thing to send patches saying "I depend on
-someone else's completely unrelated work", but saying "here's a random
-bunch of tangled patches, good luck everyone!" is not okay.
+The virtual UART is an 8250-compatible register set.
+On the AST2600, two VUARTs can be exposed over PCI via the PCI BMC device.
 
-I expect all three patches to be rebased and send in one series that I
-can just click "Submit" on next time.
+The host cannot access the BMC's memory. Only the exposed features are
+accessible. These are the KCS4 channel and 2 VUARTs. There is also some
+mailbox register functionality for a communication between
+the host and the BMC. More information can be found here [2].
 
-Thanks,
-Bjorn
+The v3 and this v4 mainly modifies the BMC driver and focuses on VUART.
+The BMC driver is now incorporated into the '8250_aspeed_vuart' driver.
+A specific flag can be set to indicate that the VUART should be used
+over PCI. Several changes have been made to the 8250 device tree binding
+and the 'aspeed-g6.dtsi'.
 
->   https://lore.kernel.org/all/20260630-eliza-dts-qcs-evk-v4-3-18cbbdba6e7e@oss.qualcomm.com/
->   https://lore.kernel.org/all/20260630-dts-qcom-eliza-mtp-evk-add-pmics-v1-1-f4f320f7c88b@oss.qualcomm.com/
-> 
-> Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-> ---
-> Changes in v2:
-> - Drop patch 3, as this is already applied
-> - Rebase on top of https://lore.kernel.org/all/20260708055017.A90C91F000E9@smtp.kernel.org/
->   and remove pincntrl as pincntrl is added in the eliza.dtsi patch and also remove
->   pinctrl for resx as this is covered in pcie1_default_state as perst gpio.
-> - Link to v1: https://patch.msgid.link/20260703-eliza_evk-v1-0-7624440bd76d@oss.qualcomm.com
-> 
-> To: Bjorn Andersson <andersson@kernel.org>
-> To: Konrad Dybcio <konradybcio@kernel.org>
-> To: Rob Herring <robh@kernel.org>
-> To: Krzysztof Kozlowski <krzk+dt@kernel.org>
-> To: Conor Dooley <conor+dt@kernel.org>
-> Cc: linux-arm-msm@vger.kernel.org
-> Cc: devicetree@vger.kernel.org
-> Cc: linux-kernel@vger.kernel.org
-> 
-> ---
-> Krishna Chaitanya Chundru (2):
->       arm64: dts: qcom: eliza-evk: Add PCIe0 with M.2 E key connector
->       arm64: dts: qcom: eliza-evk: Add PCIe1 with TC9563 PCIe switch
-> 
->  arch/arm64/boot/dts/qcom/eliza-evk.dtsi | 228 ++++++++++++++++++++++++++++++++
->  arch/arm64/boot/dts/qcom/eliza.dtsi     |   2 +
->  2 files changed, 230 insertions(+)
-> ---
-> base-commit: dc59e4fea9d83f03bad6bddf3fa2e52491777482
-> change-id: 20260629-eliza_evk-6f30686b161f
-> prerequisite-message-id: <20260708-eliza_dt-v2-1-e6281da26408@oss.qualcomm.com>
-> prerequisite-patch-id: 7654ff4f899ac0094a2e791e7f208998fcc7d5fa
-> prerequisite-patch-id: 9e10dfbe360941cdac0300aaf163149755952f9f
-> prerequisite-patch-id: fecce0170351baf00cbe8f6b302d1def4d99bbfc
-> prerequisite-patch-id: 97cd6cb495fdd198f6de7fbe45ef32e4a638ec9c
-> prerequisite-message-id: <20260630-dts-qcom-eliza-mtp-evk-add-pmics-v1-1-f4f320f7c88b@oss.qualcomm.com>
-> prerequisite-patch-id: f3615b5c1e2222a2491f862a7fba3994058ecc53
-> 
-> Best regards,
-> --  
-> Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-> 
+This v4 serves as a resend of the v3 while applying Krzysztof's review.
+
+Changes since v3 [3]:
+- Add the aspeed,ast2600-vuart compatible entry to the '8250' DT binding
+- Add the aspeed,ast2600-vuart compatible property in 'aspeed-g6.dtsi'
+- Add the aspeed,vuart-over-pci boolean property to the '8250' DT binding,
+  only for the aspeed,ast2600-vuart
+- Add the syscon phandle property required for aspeed,vuart-over-pci.
+- Add the aspeed,vuart-over-pci flag and syscon phandle to the vuart3 and vuart4
+- Cleanup the VUART over PCI code in the '8250_aspeed_vuart' driver.
+- Further cleanup of the host side driver.
+
+The host-side driver is still in /soc/aspeed/, as it is very specific to
+this SoC for me. I didn't receive any feedback on where to put this
+driver. I can, of course, change this to the relevant location.
+
+It's important to consider that the host driver will do multiple
+functions. The AST2600 also supports LPC over PCI, with a specific KCS
+channel (KCS4). This driver should also be used to enable the IPMI
+automatically via this KCS channel. The UART and the IPMI will depend on
+the same PCI resource (BAR1), so this must be configured in one driver.
+
+As with v3, VUART data flow and MSI interrupts have been verified
+working on the test hardware.
+
+Tested on:
+BMC:
+- Asus IPMI Kommando Card R1.01, AST2600 A3.
+- OpenBMC
+Host:
+- Linux kernel v7.0.0
+
+This series only supports AST2600; the AST2700 is not supported.
+
+Same as v3, I would like to know whether I should add the 'lpc-io-reg' and
+'lpc-interrupt' values to the vuart3 and vuart4 nodes directly in the
+'aspeed-g6.dtsi'. The host driver is not capable of finding the vuart
+address on its own, so they are hardcoded to 0x3f8 and 0x2f8. It will
+not work with other addresses, so perhaps they should be in the .dtsi to
+ensure the correct configuration for the 2 vuart over PCI.
+
+For the interrupt number, my test is working with interrupt = 0
+for vuart3 and interrupt = 1 for vuart4. I don't fully understand how
+the silicon routes MSI numbers to the VUART but the following
+combination is working :
+       | host MSI idx | BMC lpc-interrupts |
+VUART3 |      16      |       0            |
+VUART4 |      17      |       1            |
+
+The original ASPEED driver used MSI index 15 for the VUART4.
+I tested every lpc-interrupts on the BMC from 0 to 15, but none of them
+worked with the host MSI index set to 15.
+
+For me, the silicon only routes the MSI index 16 to VUART3 and 17 to
+VUART4, and the lpc-interrupt needs to match the 4 least significant bits.
+I might be wrong on this explanation but the data path is working with
+those numbers. There is no explanation for any of this in the datasheet.
+
+[1]: https://github.com/AspeedTech-BMC/linux/tree/aspeed-master-v6.18/drivers/soc/aspeed
+[2]: https://lore.kernel.org/linux-aspeed/CAFi2wKYOAotiezepDqaR5PZDqDaPKKDfAEnpx5EHC0mL39hy6w@mail.gmail.com/
+[3]: https://lore.kernel.org/linux-aspeed/cover.1782224059.git.gregoire.layet@9elements.com/
+
+Grégoire Layet (7):
+  dt-bindings: serial: 8250: aspeed: add compatible string for ast2600
+  dt-bindings: serial: 8250: aspeed: add aspeed,vuart-over-pci bool prop
+  serial: 8250_aspeed_vuart: add aspeed,ast2600-vuart compatible string
+  serial: 8250_aspeed_vuart: add VUART over PCI
+  soc: aspeed: add host-side PCIe BMC device driver
+  ARM: dts: aspeed: g6: Change vuart compatible string for ast2600
+  ARM: dts: aspeed: g6: add aspeed,vuart-over-pci prop to vuart3 and 4
+
+ .../devicetree/bindings/serial/8250.yaml      |  46 ++++-
+ arch/arm/boot/dts/aspeed/aspeed-g6.dtsi       |  12 +-
+ drivers/soc/aspeed/Kconfig                    |  15 ++
+ drivers/soc/aspeed/Makefile                   |   1 +
+ drivers/soc/aspeed/aspeed-host-bmc-dev.c      | 174 ++++++++++++++++++
+ drivers/tty/serial/8250/8250_aspeed_vuart.c   |  87 +++++++++
+ 6 files changed, 323 insertions(+), 12 deletions(-)
+ create mode 100644 drivers/soc/aspeed/aspeed-host-bmc-dev.c
+
+
+base-commit: 564edaca14861ba9e58d4e646d272c677296d285
+--
+2.54.0
 
