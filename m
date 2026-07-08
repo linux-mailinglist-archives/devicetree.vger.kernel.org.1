@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-322981-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-322982-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id cnxjAh5oTmpgMAIAu9opvQ
-	(envelope-from <devicetree+bounces-322981-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 17:09:18 +0200
+	id x6iFGV1uTmpmMgIAu9opvQ
+	(envelope-from <devicetree+bounces-322982-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 17:35:57 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9EF10727C5E
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 17:09:17 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 52B8372819F
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 17:35:56 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=hPSv2IOy;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=epirE2Kg;
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322981-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-322981-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322982-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-322982-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 603713046F40
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 15:08:08 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 54BF3314D76F
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 15:08:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 044194C9011;
-	Wed,  8 Jul 2026 15:00:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C67094C8FE4;
+	Wed,  8 Jul 2026 15:01:06 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3BD44C9006
-	for <devicetree@vger.kernel.org>; Wed,  8 Jul 2026 15:00:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AAFE8480974
+	for <devicetree@vger.kernel.org>; Wed,  8 Jul 2026 15:01:05 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783522818; cv=none; b=Zloeh59Wt5DW1AqrLSzVUVpjX6DOQeQw8OBVvRMd1kL+9g19WhIyyczbi2DuAAaXC4c1sAxCIFIQKM0stjfyvwtk7LVPuu999VK1WQfc0Xs+/y8G7dWsmDZf8ZIfuTyIqCdAQK88Px++sCNlwYhWyXgfgWIJVkr1zBvCzgY7bAc=
+	t=1783522866; cv=none; b=fZLz9NycAC1q29hsoXSkkIxLYnG8YlFs/og6zxXvOKJUvMMIv8iyJnJD68RLYttNLXdJDejIVKoXFkaMMY+4eYAEiPz/nvrXAmRxvSADvRLt2bxVDfWjStMqJKbpTzgSmAR84QXuCKOKmOd6sNKXC27feGbrErRg+ZDkT6gYHuU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783522818; c=relaxed/simple;
-	bh=UOkz27SejflpcepUGYTfScN4p9BqQvyzMO6NtrHoBAk=;
+	s=arc-20240116; t=1783522866; c=relaxed/simple;
+	bh=6pPID5AnqBALfPzH9QQzHGTWJyhEQt5aH04rkd0kJhQ=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=QzTO+BQ/AyBuc7lGmg/ZJbrt4aU2ICHlFWxwfhYMoCxR2WKaSkkHwEuzj86nLSgXomohVsZjK3jAN+/3Yoe98UmZ9XCwBzbOysoqIhjcEf/Ee5bddvE1xeEn1XAXzfiJf/8Gwj9bHE9jhxSV3S52mTWH6RYoZiZpwPu+Jkg+2sA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hPSv2IOy; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3A1151F000E9;
-	Wed,  8 Jul 2026 15:00:17 +0000 (UTC)
+	 Message-Id; b=g5OALk7dOewGSv04P6ibZaE/7b5ZvqbOXZsAWdSPQ5U8x8sp586/5SEJnxscuQwswAr+aEjsh/mQ+5CsGNLVTQt8yRbU6efr9ZmVdDz1ZleBE+/Qt4zxkBuOmYLsF8+ZdbiwTOmX1QD4mKMhRdEIYX/keceEbTrkTwzRTy7WwqU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=epirE2Kg; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D626B1F000E9;
+	Wed,  8 Jul 2026 15:01:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783522817;
-	bh=GD4RXuNJUnP5h6+EQlzc5CyZODkSxBqu467rYxACtmo=;
+	s=k20260515; t=1783522865;
+	bh=QgofbTx4JFx7jIrAIeDkQGcOni6/kZHe7xXZRmErWQk=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=hPSv2IOyppasLDsBiEd+Vhlnf4+xBlNM+bX9skP3JBD/E5A/Y4A1n32K/WZsZdeFd
-	 hmVBpvRRbfdOi7VF2jSHgtRbHO9fY/c2ZbctNhCenumlJuzy9gxYRj2VWQsB0trtDS
-	 QM2s+RSdjt7cV0jd52qBfGfMFEFP4yZKzBV9WolU+G2P/DS46X9z0AHiFemtgTzXX1
-	 d6smGwf9xpt6AxaulgbFIorpfFSFTRYLFyOssfSZKxpXFyaEFAVxxnGbHEys6gH/01
-	 N1wVaQwb9CCfs9uBxLiOzhXtsrtdUMC0aSZul0VLageKPO65LrAWPrDYqw/NZEKhid
-	 3TO4yhyDquMQA==
+	b=epirE2KgyBTrwg2C46e7ym+orm40hlWRN3gs8uhI3WDHrD3JYLZ2ZZd2R/oMdHVoF
+	 TbM6RcrcVQxFzwE+/cZmhVbFqvM4YprLQ92SkHIH5YAor1hibhuD1MijekubNWTANM
+	 f/GeafJOS9H9i4Bqmy75hriDvn+aVb2sFE8NxCkZd3/NWfjNulqJ8v2XAqcVEpGDBT
+	 gNUZyt/PbcALSunGjjHF7ydvvhnPAiOupByecAObtN+StjCDGeeMLUBi+mMV8XL124
+	 RYIaihX4jWHSdlkF5SmeWzyZAXSnrWX3/TPQsgDCHXBdSzxPGfbmRUlVwz5pkHJEuM
+	 OO/PGmmRrJFsQ==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v3 03/20] media: imx355: Remove duplicated registers
- from the mode tables
+Subject: Re: [PATCH v3 14/20] media: imx355: Set the colorspace in the
+ format
 Reply-To: sashiko-reviews@lists.linux.dev
 To: "Dave Stevenson" <dave.stevenson@raspberrypi.com>
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, robh@kernel.org
-In-Reply-To: <20260708-media-imx355-v3-3-9df386a623d7@raspberrypi.com>
+Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260708-media-imx355-v3-14-9df386a623d7@raspberrypi.com>
 References: <20260708-media-imx355-v3-0-9df386a623d7@raspberrypi.com>
- <20260708-media-imx355-v3-3-9df386a623d7@raspberrypi.com>
+ <20260708-media-imx355-v3-14-9df386a623d7@raspberrypi.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Wed, 08 Jul 2026 15:00:16 +0000
-Message-Id: <20260708150017.3A1151F000E9@smtp.kernel.org>
+Date: Wed, 08 Jul 2026 15:01:03 +0000
+Message-Id: <20260708150104.D626B1F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,24 +72,24 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-322981-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-322982-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:dave.stevenson@raspberrypi.com,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:dave.stevenson@raspberrypi.com,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
 	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
 	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	ALIAS_RESOLVED(0.00)[];
@@ -99,80 +99,52 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FROM_NO_DN(0.00)[];
 	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	RCPT_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,lists.linux.dev:replyto,sashiko.dev:url,raspberrypi.com:email,smtp.kernel.org:mid,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,smtp.kernel.org:mid,lists.linux.dev:replyto,sashiko.dev:url,vger.kernel.org:from_smtp,raspberrypi.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 9EF10727C5E
+X-Rspamd-Queue-Id: 52B8372819F
 
 Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-
-Pre-existing issues:
-- [High] Runtime PM Double Power-Off on probe error path.
+- [Low] Accessing a non-existent `format` field on a `struct v4l2_mbus_fram=
+efmt` pointer leads to a build failure.
 --
 
---- Patch [3]: [PATCH v3 03/20] media: imx355: Remove duplicated registers =
-from the mode tables ---
-commit 149de34debabe64c5c7c327e825451e79b0feb6c
+--- Patch [14]: [PATCH v3 14/20] media: imx355: Set the colorspace in the f=
+ormat ---
+commit 7db2a6f63330856f1837e4b7a0ae932c8ac63b94
 Author: Dave Stevenson <dave.stevenson@raspberrypi.com>
 
-media: imx355: Remove duplicated registers from the mode tables
+media: imx355: Set the colorspace in the format
 
-A large number of registers are identical within all the modes.
-Move those to imx355_global_regs.
+This commit sets the colorspace fields appropriately for a raw image
+sensor in the imx355 driver.
 
 > diff --git a/drivers/media/i2c/imx355.c b/drivers/media/i2c/imx355.c
-> index ad9a9464175b1..4eaccd9e90f10 100644
+> index b27329143e481..2bf8da7469fe5 100644
 > --- a/drivers/media/i2c/imx355.c
 > +++ b/drivers/media/i2c/imx355.c
-[ ... ]
+> @@ -612,6 +612,10 @@ static int imx355_open(struct v4l2_subdev *sd, struc=
+t v4l2_subdev_fh *fh)
+>  	try_fmt->height =3D imx355->cur_mode->height;
+>  	try_fmt->code =3D imx355_get_format_code(imx355);
+>  	try_fmt->field =3D V4L2_FIELD_NONE;
+> +	try_fmt->format.colorspace =3D V4L2_COLORSPACE_RAW;
+> +	try_fmt->format.ycbcr_enc =3D V4L2_YCBCR_ENC_601;
+> +	try_fmt->format.quantization =3D V4L2_QUANTIZATION_FULL_RANGE;
+> +	try_fmt->format.xfer_func =3D V4L2_XFER_FUNC_NONE;
 
-[Severity: High]
-This is a pre-existing issue, but I noticed a potential problem in the
-error handling path of imx355_probe():
+[Severity: Low]
+Does this cause a build failure? try_fmt is a pointer to struct
+v4l2_mbus_framefmt, which doesn't contain a format member.
 
-drivers/media/i2c/imx355.c:imx355_probe() {
-    ...
-	pm_runtime_set_active(imx355->dev);
-	pm_runtime_enable(imx355->dev);
-	pm_runtime_idle(imx355->dev);
-
-	ret =3D v4l2_async_register_subdev_sensor(&imx355->sd);
-	if (ret < 0)
-		goto error_media_entity_runtime_pm;
-    ...
-error_media_entity_runtime_pm:
-	pm_runtime_disable(imx355->dev);
-	pm_runtime_set_suspended(imx355->dev);
-	media_entity_cleanup(&imx355->sd.entity);
-
-error_handler_free:
-	v4l2_ctrl_handler_free(imx355->sd.ctrl_handler);
-
-error_power_off:
-	imx355_power_off(imx355->dev);
-    ...
-}
-
-Does this code call imx355_power_off() a second time on the error path?
-
-If v4l2_async_register_subdev_sensor() fails, the code jumps to
-error_media_entity_runtime_pm. Earlier in the probe, pm_runtime_idle() was
-called, which synchronously suspends the device by invoking imx355_power_of=
-f().
-
-The error handler then disables runtime PM and falls through to error_power=
-_off,
-where it explicitly calls imx355_power_off() again.
-
-Could this double-disabling of regulators and clocks cause reference count
-underflows and trigger kernel WARNs (which might panic the system with
-panic_on_warn)?
+Should this access the fields directly via try_fmt->colorspace and so on,
+similar to how try_fmt->height is accessed just above this change?
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260708-media-imx3=
-55-v3-0-9df386a623d7@raspberrypi.com?part=3D3
+55-v3-0-9df386a623d7@raspberrypi.com?part=3D14
 
