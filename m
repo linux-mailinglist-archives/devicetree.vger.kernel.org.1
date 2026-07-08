@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-322985-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-322986-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id cV1fHfNtTmpIMgIAu9opvQ
-	(envelope-from <devicetree+bounces-322985-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 17:34:11 +0200
+	id LVdQNf9qTmpFMQIAu9opvQ
+	(envelope-from <devicetree+bounces-322986-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 17:21:35 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 005D7728167
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 17:34:10 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F848727EC3
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 17:21:35 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=Puq3jqpz;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=iRC4oKZp;
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322985-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-322985-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322986-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-322986-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 6718031033D9
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 15:10:12 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 31DE93232B57
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 15:10:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1165C430793;
-	Wed,  8 Jul 2026 15:05:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B16CB4307A4;
+	Wed,  8 Jul 2026 15:06:04 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1A8D3B6362
-	for <devicetree@vger.kernel.org>; Wed,  8 Jul 2026 15:05:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8AD3D42DA5A
+	for <devicetree@vger.kernel.org>; Wed,  8 Jul 2026 15:06:03 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783523149; cv=none; b=N/mslXQTEKZfaLIjeMMJ/Zo+jyBAMALWWlS02fU/QkTBdk81FjJI3W6gnEiEisXTa2s/shKHaVzkco+BGZlOR0yu7mGclW/tbrEd4DSwQFHB8Hl3zJGQM2xBnSW+Jpwu4bg/X0YpmrE6GnjaT5bQ06h6403JG6wpW8By9DaIIKM=
+	t=1783523164; cv=none; b=bhJghHku6hHn+vUgUd5fWX/rXLj45aM2G10NtueyVgWOQEOgUiJGWhUDSQVuV0k1XLmTgrDFuSCWiTOETtByKaoBZwrWGuG9mYd5G7+aZgaeZ09dvzAxdw1zWe8RiYV7kf7gGkAFqpsTfE2YeDo+7K2+suJST/2zIQuY25X7A/8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783523149; c=relaxed/simple;
-	bh=oXOzuwH5zL17K3Q+fNRhq/2lW6pn5k8SWfF10ofZRDc=;
+	s=arc-20240116; t=1783523164; c=relaxed/simple;
+	bh=Mfp3/umRbXDoAzwugI+XaLo9O5tOTt9K4xrXQKdo9HE=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=WodRXsNnbYYaVfBcaS0bRoTQZYKhzAMaJ93NeEsdXQ2mCOplNTe5XaT2PXBzuOEtQDqwXr6ft6qaWvGlywprBv9dKzwxWAGb8T2h5SY8j22LwI6EISOO5iT/aaZWxw2CfNXrJju+giwXpnILZqyc2LRxZeSyRJZA+soKrLAdEfQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Puq3jqpz; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 13A361F000E9;
-	Wed,  8 Jul 2026 15:05:47 +0000 (UTC)
+	 Message-Id; b=FjVJdWuChVBYVU9tL47m5yIU+C9lr8LaUF3rGnu/03xkhtE76jqaU57+dQfO+1airzaEa+SlBbXJigJoLCmeLjD6AdK+9H+3pAANo/ffDMPS0/gnaGL/vx3YJ7XNy1fxah8x9GoN7vSdENFkhkfIQXPMC4RKVLxAIaD6ZimYGaE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iRC4oKZp; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E58071F000E9;
+	Wed,  8 Jul 2026 15:06:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783523147;
-	bh=BxHydh36d4jcbqN8diW5hVG30qlFHT0ZuBALUp46cko=;
+	s=k20260515; t=1783523163;
+	bh=1QmN50MPWx49JAZv4ZKVx4NOPZcnUwPFqdX7g8iGSJo=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=Puq3jqpzj+d6zCsyXr0AZ9oIMN758nZv757b/RXJApOvc1YrcoYhL1BMry6tIXPnh
-	 MOVztvQtCaaHa5jcp1rsHLq3HMNjBLE6O0hHmT/zcBxTaRUXwgiSbdDu8umtSF0BQw
-	 jhh3wpl2zule5hAOmbqD3wFEjbGNZUUgHGm+vIdnjnyA6Y7b+IBQ4xGXly2qev/eHp
-	 PQnHbvVfTH3oth8k/mrU4/nQccpI1nDSmuw6b9l72L8tMmu5g+5fjkil5Yo9THnuoa
-	 1QSGUQgcLkextXkzFGa/P7+3AHYXZsVUQpZn2aocuyQ66a1CfOR6cW//F3iXmxX2a2
-	 ZfFwbp32SrN7w==
+	b=iRC4oKZp+pDdQA5yqZe3chS8wiemPcP2JaOBPsJ30zDytGrFhwWXZ0VoR+TluokrC
+	 iAcHXMUzNXeB5Io50g7nPZk1i+bIjFBziw0FNEpTC0zcyaRIL3FXAGYP5AAAA+T2QV
+	 YCCcsUe7OrTs+PKlRx5quUWl4L+G2SmaN8p82l+NC7CGyVhTIxBGOFwpqfrGX7XCAU
+	 BIT+VIAo9TmWWAe947hmE42PFLa5nW3dtiX+y5R232faBi86vcrrfD+gAV0Ukx90Sy
+	 Mrmg9bsUzOhyhE22KUpW2KHwDg+opk5faEfrmZ3SE+mXjCbaxX0y0Wc/vvOYZAwtY6
+	 hyiJeuA6hVkSQ==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v3 10/20] media: imx355: Remove redundant fll_min, and
- implement fixed offset
+Subject: Re: [PATCH v3 12/20] media: imx355: Use pm_runtime
+ autosuspend_delay
 Reply-To: sashiko-reviews@lists.linux.dev
 To: "Dave Stevenson" <dave.stevenson@raspberrypi.com>
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, robh@kernel.org
-In-Reply-To: <20260708-media-imx355-v3-10-9df386a623d7@raspberrypi.com>
+Cc: devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org
+In-Reply-To: <20260708-media-imx355-v3-12-9df386a623d7@raspberrypi.com>
 References: <20260708-media-imx355-v3-0-9df386a623d7@raspberrypi.com>
- <20260708-media-imx355-v3-10-9df386a623d7@raspberrypi.com>
+ <20260708-media-imx355-v3-12-9df386a623d7@raspberrypi.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Wed, 08 Jul 2026 15:05:46 +0000
-Message-Id: <20260708150547.13A361F000E9@smtp.kernel.org>
+Date: Wed, 08 Jul 2026 15:06:02 +0000
+Message-Id: <20260708150602.E58071F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,17 +72,17 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-322985-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-322986-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:dave.stevenson@raspberrypi.com,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:dave.stevenson@raspberrypi.com,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
 	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
@@ -99,78 +99,57 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FROM_NO_DN(0.00)[];
 	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	RCPT_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,smtp.kernel.org:mid,sashiko.dev:url,lists.linux.dev:replyto,vger.kernel.org:from_smtp,raspberrypi.com:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,lists.linux.dev:replyto,vger.kernel.org:from_smtp,raspberrypi.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,smtp.kernel.org:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 005D7728167
+X-Rspamd-Queue-Id: 4F848727EC3
 
 Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-
-Pre-existing issues:
-- [High] When changing the format via `imx355_set_pad_format()`, the driver=
- attempts to reset `vblank` to its default value using `__v4l2_ctrl_s_ctrl(=
-)`. It relies on this call to trigger the `s_ctrl` callback (`imx355_set_ct=
-rl()`), which updates the `exposure` control's maximum limit based on the n=
-ew format's height. However, the V4L2 control framework explicitly optimize=
-s out calls to `s_ctrl` if the new control value equals the current value. =
-If a user manually sets `vblank` to a value that matches the target format'=
-s `vblank_def` prior to a format switch, `s_ctrl` is skipped and the `expos=
-ure` bounds are not updated. This leaves the control completely out-of-sync=
- with the new format's Frame Length Lines (FLL).
+- [Medium] The autosuspend optimization is bypassed during driver probe bec=
+ause `pm_runtime_idle()` is called before autosuspend is enabled.
 --
 
---- Patch [10]: [PATCH v3 10/20] media: imx355: Remove redundant fll_min, a=
-nd implement fixed offset ---
-commit 3cb4d69cef75e79b15075f8e2c250b2bb53d96a4
+--- Patch [12]: [PATCH v3 12/20] media: imx355: Use pm_runtime autosuspend_=
+delay ---
+commit c848098f5125edf42a401c819297cfe0a783116c
 Author: Dave Stevenson <dave.stevenson@raspberrypi.com>
-Subject: media: imx355: Remove redundant fll_min, and implement fixed offset
 
-This commit removes the redundant fll_min field from the imx355 mode
-configurations, as it is always identical to fll_def. It also sets a fixed
-minimum vertical blanking (vblank) limit of 20 to improve the maximum frame
-rate achievable across all modes.
+media: imx355: Use pm_runtime autosuspend_delay
+
+This commit introduces pm_runtime autosuspend functionality to the imx355
+sensor driver. It configures a 1000ms autosuspend delay to prevent=20
+unnecessary power cycling between operations.
 
 > diff --git a/drivers/media/i2c/imx355.c b/drivers/media/i2c/imx355.c
-> index 2a97e076bff76..c6f27cf269b40 100644
+> index ee1f41a66a0b6..f01a1a5ae7c9a 100644
 > --- a/drivers/media/i2c/imx355.c
 > +++ b/drivers/media/i2c/imx355.c
+
 [ ... ]
-> @@ -889,10 +874,9 @@ imx355_set_pad_format(struct v4l2_subdev *sd,
->  		/* Update limits and set FPS to default */
->  		height =3D imx355->cur_mode->height;
->  		vblank_def =3D imx355->cur_mode->fll_def - height;
-> -		vblank_min =3D imx355->cur_mode->fll_min - height;
->  		height =3D IMX355_FLL_MAX - height;
-> -		__v4l2_ctrl_modify_range(imx355->vblank, vblank_min, height, 1,
-> -					 vblank_def);
-> +		__v4l2_ctrl_modify_range(imx355->vblank, IMX355_VBLANK_MIN,
-> +					 height, 1, vblank_def);
->  		__v4l2_ctrl_s_ctrl(imx355->vblank, vblank_def);
 
-[Severity: High]
-This is a pre-existing issue, but I noticed a potential problem in how
-exposure limits are updated during a format change in
-imx355_set_pad_format().
+> @@ -1436,6 +1436,8 @@ static int imx355_probe(struct i2c_client *client)
+>  	pm_runtime_set_active(imx355->dev);
+>  	pm_runtime_enable(imx355->dev);
+>  	pm_runtime_idle(imx355->dev);
+> +	pm_runtime_set_autosuspend_delay(imx355->dev, 1000);
+> +	pm_runtime_use_autosuspend(imx355->dev);
 
-The code relies on __v4l2_ctrl_s_ctrl() to reset the vblank value, expecting
-it to trigger the s_ctrl callback (imx355_set_ctrl) to update the exposure
-control limits.
+[Severity: Medium]
+Does this sequence cause the device to power off immediately during probe?
 
-However, the V4L2 control framework optimizes out calls to s_ctrl if the
-new control value matches the current value. If userspace manually sets
-vblank to a value that exactly equals the new format's vblank_def prior to
-the format switch, the s_ctrl callback will be skipped.
+Because pm_runtime_idle() is called before pm_runtime_use_autosuspend(), the
+device usage count is 0 and autosuspend is not yet enabled. This seems to=20
+trigger a synchronous suspend right away, bypassing the 1000ms delay=20
+optimization intended by this patch.
 
-Could this leave the exposure limits out of sync with the new format's Frame
-Length Lines (FLL), resulting in userspace seeing stale limits and potentia=
-lly
-setting an invalid exposure value?
+Would it be better to reorder these so the autosuspend properties are=20
+configured before triggering the idle check?
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260708-media-imx3=
-55-v3-0-9df386a623d7@raspberrypi.com?part=3D10
+55-v3-0-9df386a623d7@raspberrypi.com?part=3D12
 
