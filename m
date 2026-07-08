@@ -1,299 +1,280 @@
-Return-Path: <devicetree+bounces-322658-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-322660-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 1qefJfgZTmoIDQIAu9opvQ
-	(envelope-from <devicetree+bounces-322658-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 11:35:52 +0200
+	id 4TydAZoaTmpSDQIAu9opvQ
+	(envelope-from <devicetree+bounces-322660-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 11:38:34 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4C82723C9C
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 11:35:51 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8AA7E723D06
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 11:38:33 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=K2hn9CrK;
-	dkim=pass header.d=oss.qualcomm.com header.s=google header.b=IftStQ3+;
-	dmarc=pass (policy=reject) header.from=qualcomm.com;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322658-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-322658-lists+devicetree=lfdr.de@vger.kernel.org";
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
+	dkim=pass header.d=nuvoton.com header.s=selector1 header.b=ieRM3NRz;
+	dmarc=pass (policy=quarantine) header.from=nuvoton.com;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322660-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-322660-lists+devicetree=lfdr.de@vger.kernel.org";
+	arc=reject ("cv is fail on i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A3E99300277F
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 09:32:29 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id EC6DC302FB61
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 09:35:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA6DC40D569;
-	Wed,  8 Jul 2026 09:32:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC37B41A798;
+	Wed,  8 Jul 2026 09:35:24 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from SEYPR02CU001.outbound.protection.outlook.com (mail-koreacentralazon11013027.outbound.protection.outlook.com [40.107.44.27])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE76D3148D9
-	for <devicetree@vger.kernel.org>; Wed,  8 Jul 2026 09:32:23 +0000 (UTC)
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783503146; cv=none; b=I+nraGCdLECnTuH5gcN7eK4ZG2JHPC1P/B9arvO/K6hq2tGqnDa8/YjsdERunBfHs2fXF7gYLm7JbymlGfSDPhwDTc4zSjeisGjsDlU74xoFwaJm/zL/Chg2d+e6rHejVCzwWhvRZlf24g5tjGoUOqw1U4rccQStEhGoqukddMk=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783503146; c=relaxed/simple;
-	bh=HpvpQU54Un1Qaf41SoPs991kafvyRNbO+FyHycN/Xcc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=JPocAMO6hF7vmGPYI0k/nyU0Cnw0KsBrXaXFeufly3iU98M+OORlLRVaZuEeGBUF+IoUlWZuFklTo3GRfXL/t2pxgsLQTskl0TeGUQ9J0OVzC4W012LbcIKE8VHoBzZxXvM7onXzE1KLl2wNFLhW06beP5XTNQJ+872hIDhZlhc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=K2hn9CrK; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=IftStQ3+; arc=none smtp.client-ip=205.220.168.131
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 66888v4U2205068
-	for <devicetree@vger.kernel.org>; Wed, 8 Jul 2026 09:32:22 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	50cC+lOjwWBBzURdhgiGe83iDGJQETCnagLzadfseh4=; b=K2hn9CrKuH4OIFYN
-	Pw2po+0uWxDCmtVqJ6dRlKCw00jCXJKDE9Dhl7X4sAO0jXOf7xYAm7RBkNKp5pYJ
-	tltOANfZcoccFJN06FbE8AwEtiEzao3LrV7l5a/Rqn7b4XjgNyqz6zAfse+IZV3C
-	nqWyDygB3bJxdAp5J7xHX3LiXINDa1PKy67WE3cNyFgqXmzVCiFRiOnsFiIHKGHf
-	yIT7QLvISSINSYnKo6o137426tvANHwNoyJOBq7TLMk+iDCaBcmExkuujBPdjwpZ
-	6U8KkPniPm/TKDcMDSFbSscaNOOpsFypFSuJVinoYsieFYq85WdqPKHVYWSXoGJi
-	4VXxDg==
-Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4f9hnv0n2j-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 08 Jul 2026 09:32:21 +0000 (GMT)
-Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-51c0408254aso18382221cf.0
-        for <devicetree@vger.kernel.org>; Wed, 08 Jul 2026 02:32:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1783503141; x=1784107941; darn=vger.kernel.org;
-        h=content-transfer-encoding:content-type:in-reply-to:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=50cC+lOjwWBBzURdhgiGe83iDGJQETCnagLzadfseh4=;
-        b=IftStQ3+yoD+rlRMn598ZDbe8qaNTs2npF2C+yV4tOt1S9ipaHqASOVhj1SF0sHM37
-         QF8xUy5QuxsMqzaw+a9Q/xBC/6qrJYg7E8cNL8njcZstTg8s7iQEadS94V3LXtDFsg22
-         UONN0hTV5xS+nAa2zqYopPeYXO8j+sOSOi12wHcuNoyEu/57fDr99cR6Vbwx0VhsuxM/
-         DGqjvqqAbjCTuG+Ll7JbdEIKfs7n7hSU/zVFiEjw4/kLTwRA19UYWKomxKYN7gLgfhRP
-         GVPpfc+s/sO+7aSUiSEPxmO8xfhfcOJzRQG4Z6U/11I6K05m2TsUQ/h+5sMxnhw4ZtEj
-         xvPA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783503141; x=1784107941;
-        h=content-transfer-encoding:content-type:in-reply-to:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=50cC+lOjwWBBzURdhgiGe83iDGJQETCnagLzadfseh4=;
-        b=Qi8J9VVm+E5yVfaDmPiJf6Ht5gCJL+Wq9VN9cJOI0e3suUwCfKl3yIAzH/l+UkCrG8
-         I6DV3pkPkOTSAbqvzuFmzWO9lPrcPxHhKsciZCK2uCqWo4EI/4GrWl5/MaziiFX3Dn5I
-         yIOOuEaykX6QxRmOoG4Vbc/5k4nJrnSYH1thcQLsbQE6Q3n7mztyXjCVSa85ahxLmgSQ
-         REifF/flwqRPlbUHhWpZsIYBcNFunZ6rU/LFMhKcCPIvGzINvYFHNldz6v2pmn/cXO+i
-         l9FFJt4S2s4gxPsblTeTCQXX6vmqikyV2gDUSGbBVPAAkkx3Mv1VAA/pm4AKswUi300O
-         8f7g==
-X-Forwarded-Encrypted: i=1; AHgh+Rq9awNic65yW4PUhQK023FgnDo2GYmLYfJw8yR0om4ygLTg2Sf0gm6Jfh0A2z6qUPtw8Q0avLBT1XLn@vger.kernel.org
-X-Gm-Message-State: AOJu0Yydw1lRDxudsRq+PtWnuoSr9sCk298ZkyOr0PkcvLNA+qpnz+OR
-	NyvWafD5rC54UTvhN+cvRgCLprNK3KaV8H95nSBBCwxClj/F9gIG+7uBV9gnKnu+eXxYtCzAaS4
-	asm4CNFUBm104QGpClP7x9pWfS8zoIqXfDF0P9Zw9GSvKTxiO60m2rJCJHKCDStkU
-X-Gm-Gg: AfdE7cm7OD/IUN9kvJFXbJO9o6/dsXBfvTBEv5w15HgWTdtCYuX/vlg4aOunRGgBkRF
-	atxXwQDj6kzbuubsv4mgxvAF5AWQNOqKh7NfGmsFAsCZJttPapeX0VNR4NNe7IFYwetp7SW0+U4
-	/JLC4x45afxoWTZdDRDPZxozfKIGwOtQ4gLdK9anqFr3+9tzjQst62NeIFeM/jkfDFAfRS+TV9r
-	yZ02SQ/7QHwT4DFoi5ZNMQGvzuEFzhijH19pzbwVRLmDQbII3Iu31zKGGmiG4UNK8MbVPmaKU+n
-	mr7Z6XVa1HIuzwUk5ETDTu69P6MZ6sffw84klBn7ffDdBexGps10s3RtPg7ql/7LD8SHlCZqRPB
-	vvZR3SJ2EFs5ggDJXGTuZlMWDrB6M8CaFZaV11eNpseX+eAs0elWrx9+vcx/oZnH8X6aNVo6Kfk
-	t6MKCyKf3r
-X-Received: by 2002:a05:622a:5599:b0:51c:291:82eb with SMTP id d75a77b69052e-51c7a4a9933mr65537731cf.14.1783503140786;
-        Wed, 08 Jul 2026 02:32:20 -0700 (PDT)
-X-Received: by 2002:a05:622a:5599:b0:51c:291:82eb with SMTP id d75a77b69052e-51c7a4a9933mr65537311cf.14.1783503140245;
-        Wed, 08 Jul 2026 02:32:20 -0700 (PDT)
-Received: from [192.168.25.64] ([94.155.124.210])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-c15ce1b374asm82248066b.60.2026.07.08.02.32.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 08 Jul 2026 02:32:19 -0700 (PDT)
-Message-ID: <dd34b44d-396e-4267-b383-e4f8d20f8ef4@oss.qualcomm.com>
-Date: Wed, 8 Jul 2026 12:32:17 +0300
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17FC74071FE;
+	Wed,  8 Jul 2026 09:35:16 +0000 (UTC)
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1783503324; cv=fail; b=lNfnBacgGeG1eETu0AkmG80CTSPVhPLzhuD53M7kaKmj5caITm/TqZNy0ib5wnC3eudJ440ODBXU61k0SIW64qJWGqF/8L+6PEqRxKukWDsDIcs+HW3CVcuKsSG/is19UTaL9LkYXP+mT+XXuhTc+q/9oBw76MxNJbAwnVUqRSY=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1783503324; c=relaxed/simple;
+	bh=Vo7QavFbNi5asETs1rhmZFGp/a3gFbxD7P5gppkrO8s=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=jlWulO4QcFgsY4tvp6w8C6ielaUrIlFlAQ3qFKcZ0mKYEmElp1FK8X5Q3o+diXWcJchgt6QUdWqyydqTiZ13FqWM+sxe2NRR6tVNPSSTqOTgPURCo5bXUz9fnrEvI32VlxgY6W0awl6ann9tQR8NEFGgeP0Z6CvgWaq2i+nIezM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=nuvoton.com; spf=pass smtp.mailfrom=nuvoton.com; dkim=pass (2048-bit key) header.d=nuvoton.com header.i=@nuvoton.com header.b=ieRM3NRz; arc=fail smtp.client-ip=40.107.44.27
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Azry1GfjTROSSyas32VFz9IRzAB5iYeToPkN4QvtMf1fZXBiLGAKZRz/EGu/hWZUCovC721JbIQm2mbOvRRArsogESA/hkBKkFosw7oKVSpUs85WDq6oXmTGdRkHjd4EAPNsvyjuPcKMiF6amp2oqliVnxk4eRD0Md5EBKT1kCRWatlk0pZes/LifiHKn5p7UmQewUmui+jGRodQAFvKoe+nKT6+G1/exFiSqOiBA9RO/NOzXGokmpRCXBSb7/aaEFMVUqVZT5fZmv/yrYALi8zV3jQD+xaeqYQh52yubwdmjJRTeZkAAc0eyKydXfIDMhCO18glTn2I/18MO79n4w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=SZoYuLI3GQaWZ2UOk7osYzdBDatsZsxJir/TjlrntbA=;
+ b=esOKKXXYtlmA2r7fFH2IpgQBasAlk1NbEzKqyghOPOZv3LudFMHZo0DZoMDbQfwCMdzY1BCidsLsxEzjAreqTz0IXLl/RNiPH+ktOF4OfrQXVhD5a4BQ06/4rR6Bz100qxyodXAso4y8Vw7cUdMwyWPajpJI5boCp/T8dleP2j5ZzIgBLstTc6W+ESbK3VwQvAK8f7ZsenF70R+DxBKuhgL0VfLx5VaMmztJnYpiE5N6kILVx40CVz5MeAQzC2Qfuj17jeGrFGEFAX9OiZxs8h6RavahwQTmjccEvgRwCnY2TeakHtkIFII6Cv8Nwml17a90xvC9HUWeBUDwZvhuPw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 211.75.126.7) smtp.rcpttodomain=kernel.org smtp.mailfrom=nuvoton.com;
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=nuvoton.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nuvoton.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=SZoYuLI3GQaWZ2UOk7osYzdBDatsZsxJir/TjlrntbA=;
+ b=ieRM3NRzeCRUOx7g09Dfg1z6kmvxpsJ5GJpaHDysnImAHPfxKFnLSGCAtjFwAOhwakoRyk5+LOgO+7ChmelNXO/V91tjPR1RhWKNcJMlcVQrIyQO48eOICphPx0IsaembMMh4UJT2BUMk2KCHX9uPhlZjtIN1iEXFu68JDICUDMx8oB0qxD43WR7Bb07AnnOB3sjTFQRoYB7BguyrrQqnALwgxAEn851JUBmjov41AejhXcucYzmfz1VgGYcYBG23emBvLlDE8p04pnpQfu1v9yj1458ocJ9BeCAobugEOdyHBJPJWtxhUUlIoMqn21jyoGVtA+Lh4PtRULT5pq81A==
+Received: from PS2PR01CA0015.apcprd01.prod.exchangelabs.com
+ (2603:1096:300:2d::27) by SEZPR03MB8582.apcprd03.prod.outlook.com
+ (2603:1096:101:22c::11) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.11; Wed, 8 Jul
+ 2026 09:35:13 +0000
+Received: from TY2PEPF0000AB83.apcprd03.prod.outlook.com
+ (2603:1096:300:2d:cafe::a7) by PS2PR01CA0015.outlook.office365.com
+ (2603:1096:300:2d::27) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.202.9 via Frontend Transport; Wed, 8
+ Jul 2026 09:35:13 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 211.75.126.7)
+ smtp.mailfrom=nuvoton.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nuvoton.com;
+Received-SPF: Pass (protection.outlook.com: domain of nuvoton.com designates
+ 211.75.126.7 as permitted sender) receiver=protection.outlook.com;
+ client-ip=211.75.126.7; helo=NTHCCAS01.nuvoton.com; pr=C
+Received: from NTHCCAS01.nuvoton.com (211.75.126.7) by
+ TY2PEPF0000AB83.mail.protection.outlook.com (10.167.253.4) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.181.6 via Frontend Transport; Wed, 8 Jul 2026 09:35:12 +0000
+Received: from NTHCML01A.nuvoton.com (10.1.8.177) by NTHCCAS01.nuvoton.com
+ (10.1.8.28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.61; Wed, 8 Jul
+ 2026 17:35:11 +0800
+Received: from NTHCCAS01.nuvoton.com (10.1.8.28) by NTHCML01A.nuvoton.com
+ (10.1.8.177) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.61; Wed, 8 Jul
+ 2026 17:35:11 +0800
+Received: from localhost.localdomain (10.11.36.27) by NTHCCAS01.nuvoton.com
+ (10.1.8.28) with Microsoft SMTP Server id 15.1.2507.61 via Frontend
+ Transport; Wed, 8 Jul 2026 17:35:11 +0800
+From: Neo Chang <YLCHANG2@nuvoton.com>
+To: <broonie@kernel.org>
+CC: <lgirdwood@gmail.com>, <perex@perex.cz>, <robh@kernel.org>,
+	<krzk+dt@kernel.org>, <linux-sound@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <alsa-devel@alsa-project.org>,
+	<neo.chang70@gmail.com>, <kchsu0@nuvoton.com>, <sjlin0@nuvoton.com>, "Neo
+ Chang" <YLCHANG2@nuvoton.com>
+Subject: [PATCH v6 0/2] ASoC: codecs: Add Nuvoton NAU83G60 audio codec driver
+Date: Wed, 8 Jul 2026 17:35:04 +0800
+Message-ID: <20260708093506.895481-1-YLCHANG2@nuvoton.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 5/5] media: qcom: jpeg: Add Qualcomm JPEG V4L2 encoder
-To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
-        Atanas Filipov <atanas.filipov@oss.qualcomm.com>,
-        linux-media@vger.kernel.org
-Cc: bryan.odonoghue@linaro.org, loic.poulain@oss.qualcomm.com,
-        mchehab@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-        conor+dt@kernel.org, andersson@kernel.org, konradybcio@kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20260706071113.383215-1-atanas.filipov@oss.qualcomm.com>
- <20260706071113.383215-6-atanas.filipov@oss.qualcomm.com>
- <51a0abf2-2a72-4551-894b-2c2de91ba0c2@linaro.org>
- <74a5b549-987c-4dac-a1a0-ff81150cd6ab@oss.qualcomm.com>
- <56f1fd7e-42bc-4034-81dc-302cb7c22951@linaro.org>
-Content-Language: en-US
-From: "Gjorgji Rosikopulos (Consultant)"
- <gjorgji.rosikopulos@oss.qualcomm.com>
-In-Reply-To: <56f1fd7e-42bc-4034-81dc-302cb7c22951@linaro.org>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Authority-Analysis: v=2.4 cv=KNNqylFo c=1 sm=1 tr=0 ts=6a4e1925 cx=c_pps
- a=WeENfcodrlLV9YRTxbY/uA==:117 a=eGCDHFSXubCXFTSSGhjuOA==:17
- a=IkcTkHD0fZMA:10 a=RAioF0-LDSMA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=eoimf2acIAo5FJnRuUoq:22
- a=WedJO_QhFF0jeLZjxQ4A:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=kacYvNCVWA4VmyqE58fU:22
-X-Proofpoint-Spam-Info: AW1haW4tMjYwNzA4MDA5MSBTYWx0ZWRfX8Ey158QP7gTv
- PCRsUMLUYz/pycYsUAXHrC070g2Lx0J+wQipjtu04+ZA4qIon0N723M2PcOCbRCLo1pmqXfvrcC
- HG7Kl2uNjs5dtwGhYXW0ESTeRqaYYJY=
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNzA4MDA5MSBTYWx0ZWRfX65L9veG1ha92
- 1A478liiBTZmjnq8TrxhQYbMUBSop0Z0GaJXgg+OT3WtQxF2HSo3FL7YtTgpihZbX9zepK/GGfu
- 6kjXwxMMUpCP2pBzxRP/C4XaI8lwPY4/Co608g6gTCa2qM2cbCIXgZWDpnKYMMhgx7mQ6V3h1GR
- vvBm2mo9B2APk1lMG6Q9keHzXsB6V7RUfckmW8v6n9Qc4kdWSXO8sDfSR2n0qXkjPhwuy+/+h4a
- Kv2OdDNENNU8QwmBukSi874EyCmn5pHHEI1b25pvHqorM46mGO4/e/NeT9l2x/fWH/sVyKlpCF2
- iRumEQqPgoonuY6aLfSrq1UY/UJLwbrp4vD25PuvVq0o6PX+yrNaFmH4kPBsznb+rtIx1nXt0rL
- fZd0A5Ooe3qImz5ev/Ugp7kSRQXtwqpm4sGZvPHfVi1eb/3htqsvUkJjkdQ6aYID1uvc8XsM7BB
- ozJBWkSt3rSwsdINb+w==
-X-Proofpoint-ORIG-GUID: VbcR_eHUksNR52dinrEiQqGG6peJXVEq
-X-Proofpoint-GUID: VbcR_eHUksNR52dinrEiQqGG6peJXVEq
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.134,FMLib:17.12.100.49
- definitions=2026-07-08_01,2026-07-06_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0 bulkscore=0 impostorscore=0 suspectscore=0 spamscore=0
- malwarescore=0 phishscore=0 clxscore=1015 priorityscore=1501 adultscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2606150000 definitions=main-2607080091
+Content-Type: text/plain
+X-NotSetDelaration: True
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TY2PEPF0000AB83:EE_|SEZPR03MB8582:EE_
+X-MS-Office365-Filtering-Correlation-Id: 50ea5432-3cf2-4631-ed36-08dedcd43602
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|376014|1800799024|82310400026|23010399003|36860700016|30052699003|3023799007|18002099003|56012099006|11063799006|6133799003;
+X-Microsoft-Antispam-Message-Info:
+	Gohjs/EZ6hwNo07tBHah7p/9z2sNVY4+r2cp2W2AUstxU2NlZ13mPZEwwQRgcqoVe3v+jc8JKHO5JjaDdgW5H5FLdmzxW5b6EHbFkwIfeGMx6rUqTbgpACCQT/me3/IsQkElpDBPmvMoCASUdGyNHLx7SDV0jPIMtMusT1jAqTQGdwwLvKh1ykIo3WN1RqQTyFMpGoFbOK3j9WucCr4QRJ4pjWjtZsn124GA4kmUm8zzb3QMXNXStd5o6Ga+44xK5stHjpb1B0hYeYKDipAw3r1j43fqIhiCvfE35awL4QeS733WYJk8l3kdxHSP5rHGqhBGY/FrVvwqsWDVJIIK2DwgInsX8wW2+AqGq3M+3Vq9vqB6XONT3AssQOz5b4bG9HVORULtVmrGYduntDvSKy5uIbvhEwzwiQhtL7JAn8M3kys7b9LQJ1m9wNSMOkbsrY84J9jcSuIfoy0ZJvDH/GNZ08koZXQO+lx0tO0Il6r4VRm0okxL+NhhSBCOAJL2NrP/4RkHacx1cejz5B20eZis1MgK/UO65VIVePw5wc24vXzm8l0VgQGYX+bJcZCcrdvzgQ5ok9MX1mdQiIp/ou6D7BXWV5qbluyY/nLtW+5LGAf1dEIUNrqs/vibRmlwvQJKWe+FNfzCamoDmfGPmn/+VF54+kqrrTdiNdeb0wBV7dOKG2rEFCb+MbI7SiFKuWRfQaMhzsgYoalO0cBtww==
+X-Forefront-Antispam-Report:
+	CIP:211.75.126.7;CTRY:TW;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:NTHCCAS01.nuvoton.com;PTR:211-75-126-7.hinet-ip.hinet.net;CAT:NONE;SFS:(13230040)(376014)(1800799024)(82310400026)(23010399003)(36860700016)(30052699003)(3023799007)(18002099003)(56012099006)(11063799006)(6133799003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	plXzIknaWrv2wfWD8le+/q94CGN/RFI702tyOhM8cKBNVUnI9WVYN+iWVvaZJxpFEGMSulUD8fOYuJpMMcefkVs6XygJQoJaHncODs6/aCsaNd0IZJCQhoUZxi+Zl91iGymG9EiAI6CDejmfO7zGaAc/fVEecxWcws10HYYihxo+5u0B4/iQGUSqbXsPuIcEJIO0PR4WiGlBqJXnjvPd/oFMYEZCyTVp0gDRQ/GKSt2rFv+s2ZggfTXqbOKC0VbfZzx/snMxgo9Z5eK6quFkPRSqOc+YrDwTRjSNxgKZ3/qX+Armrlp4NZ+prqHCtEWttawBJqOY6YS5AQvUHNrOoCvVzGD0Gdp/k2OyC3Pe94Tbr4oxLYvH2stVEyDKEUUOiEftzii4EjGyAtdKboi/E0wZeu1wb6fsNIENdpokV9IwE2YJfRnJC20iyTKIxga/
+X-OriginatorOrg: nuvoton.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Jul 2026 09:35:12.9185
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 50ea5432-3cf2-4631-ed36-08dedcd43602
+X-MS-Exchange-CrossTenant-Id: a3f24931-d403-4b4a-94f1-7d83ac638e07
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=a3f24931-d403-4b4a-94f1-7d83ac638e07;Ip=[211.75.126.7];Helo=[NTHCCAS01.nuvoton.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	TY2PEPF0000AB83.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEZPR03MB8582
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.16 / 15.00];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+X-Spamd-Result: default: False [2.84 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[nuvoton.com,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[nuvoton.com:s=selector1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-322658-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[14];
 	MIME_TRACE(0.00)[0:+];
-	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:vladimir.zapolskiy@linaro.org,m:atanas.filipov@oss.qualcomm.com,m:linux-media@vger.kernel.org,m:bryan.odonoghue@linaro.org,m:loic.poulain@oss.qualcomm.com,m:mchehab@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:andersson@kernel.org,m:konradybcio@kernel.org,m:linux-arm-msm@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:broonie@kernel.org,m:lgirdwood@gmail.com,m:perex@perex.cz,m:robh@kernel.org,m:krzk+dt@kernel.org,m:linux-sound@vger.kernel.org,m:devicetree@vger.kernel.org,m:alsa-devel@alsa-project.org,m:neo.chang70@gmail.com,m:kchsu0@nuvoton.com,m:sjlin0@nuvoton.com,m:YLCHANG2@nuvoton.com,m:krzk@kernel.org,m:neochang70@gmail.com,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-322660-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[gjorgji.rosikopulos@oss.qualcomm.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	FORGED_SENDER(0.00)[YLCHANG2@nuvoton.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[gmail.com,perex.cz,kernel.org,vger.kernel.org,alsa-project.org,nuvoton.com];
+	DKIM_TRACE(0.00)[nuvoton.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp,qualcomm.com:dkim,oss.qualcomm.com:from_mime,oss.qualcomm.com:dkim,oss.qualcomm.com:mid];
-	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[gjorgji.rosikopulos@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[YLCHANG2@nuvoton.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	ALIAS_RESOLVED(0.00)[];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	RCVD_COUNT_SEVEN(0.00)[9]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: E4C82723C9C
+X-Rspamd-Queue-Id: 8AA7E723D06
 
-Hi Vlad,
+This patch series adds support for the Nuvoton NAU83G60 audio codec.
 
-On 7/8/2026 11:47 AM, Vladimir Zapolskiy wrote:
-> Hi Gjorgji.
-> 
-> On 7/7/26 16:24, Gjorgji Rosikopulos (Consultant) wrote:
->> Hi Vlad,
->>
->> On 7/6/2026 10:46 AM, Vladimir Zapolskiy wrote:
->> <snip>
->>>>
->>>> +            interconnects = <&gem_noc MASTER_AMPSS_M0
->>>> QCOM_ICC_TAG_ACTIVE_ONLY
->>>> +                             &config_noc SLAVE_CAMERA_CFG
->>>> QCOM_ICC_TAG_ACTIVE_ONLY>,
->>>> +                            <&mmss_noc MASTER_CAMNOC_HF
->>>> QCOM_ICC_TAG_ALWAYS
->>>> +                             &mc_virt SLAVE_EBI_CH0
->>>> QCOM_ICC_TAG_ALWAYS>,
->>>> +                            <&mmss_noc MASTER_CAMNOC_SF
->>>> QCOM_ICC_TAG_ALWAYS
->>>> +                             &mc_virt SLAVE_EBI_CH0
->>>> QCOM_ICC_TAG_ALWAYS>;
->>>> +            interconnect-names = "cpu-cfg",
->>>> +                                 "hf-mnoc",
->>>> +                                 "sf-mnoc";
->>>
->>> This is the topic, which may raise a disagreement, but I'll repeat my
->>> position about the need to remove all "CAMSS bus" specific resources from
->>> the device node, they are found and should be allocated on parent's side.
->>
->> The interconnect has functionality to handle bw requests from different
->> clients.
->>
->> Yes the best will be to have camss interconnect, so jpeg and other hw's
->> to vote
->>
->> on that (actually it is possible in icc framework) but what is the
->> benefit of moving
->>
->> those to camss? Is it not better to create camss icc. I understand
->> you want them to be on parent side. But how to vote on bw? Most of the
->> time it
-> 
-> Let's concentrate on hardware bindings description, no APIs, votes etc.
-> at this point of discussion.
-I agree but there should be an API for icc voting which Jpeg need to use,
-currently it is fixed to some values, but voting need to become dynamic
-at some point of time, because it depends on runtime parameters, resolution
-format etc.> 
-> There is SM8250 CAMSS device, which serves as a hierarchical parent (or
-> could be considered as a "bus" device) to this new JPEG encoder device
-> and probably to a number of future IPs under CAMSS. All CAMSS sub-devices
-> get hardware descriptions as children device tree nodes of CAMSS parent
-> device tree node naturally.
-I agree the device tree is best to represent real hw topology. > 
-> Copying of the same identical information about clocks, interconnects
-> and power domains from the hierarchical parent device to children devices
-> is not needed, and practically it only lowers signal-to-noise ratio.
-Here also i tend to agree.> 
-> Since information about the actual defect in hardware description is
-> reported, the problem can and should be avoided, the handling of a better
-> hardware description and dealing with any kind of complexity will be done
-> in the CAMSS and/or CAMSS children drivers.
-> 
-> If you need to get a bit more formal point of view on the matter, I'd
-> prefer to see descriptions of hardware properties organised in a tree
-> topology rather than in the originally proposed star topology. By doing
-> it the system complexity is reduced from N to 1.
+The NAU83G60 is a stereo Class-D amplifier with an integrated DSP and
+I/V-sense capabilities. The driver supports I2C register access through
+regmap, DAPM widgets and routes, TDM interface configuration, and DSP
+firmware loading.
 
-Maybe I'm missing the whole picture of your proposal, but I want to add my
-point of view on this matter.
+The series is structured as follows:
+- Patch 1: Adds the YAML device tree bindings documentation.
+- Patch 2: Adds the ASoC codec driver implementation.
 
-The JPEG encoder HW block has no dependency on the other processing HW
-blocks in the camera subsystem
+Changes in v6:
+[dt-bindings]
+- Removed '|' from descriptions.
+- Add firmware-name in required.
+- Add "nuvoton,dsp-tx-slot-mapping" and "nuvoton,dsp-rx-slot-mapping" properties.
 
-It shares resources like camnoc, clocks, GDSC, etc.,
-but does not share anything with the other HW processing blocks. For me, 
-the JPEG driver should not have SW architectural dependencies on CAMSS.
+[codec driver]
+- Fix Use-After-Free during device unbind by properly synchronizing asynchronous firmware loading.
+- Fallback to default firmware names if the "firmware-name" property is missing.
+- Parse "nuvoton,dsp-tx-slot-mapping" and "nuvoton,dsp-rx-slot-mapping" properties for static TDM routing.
+- Drop dynamic TDM slot mapping via ALSA kcontrols.
+- Replace cached tdm_chan_len with direct register reads via nau8360_get_tdm_chan_len().
 
-The shared resources within the camera subsystem are reference-counted,
-the only exception is clock rates, which are set based on the last set_rate
-call — but I think that could be handled by migrating the clocks to be
-represented as an icc-clk provider, to keep the higher clock and maintain
-the needed policy.
+Changes in v5:
+[dt-bindings]
+- Remove detailed datasheet information, keeping only the valid
+  I2C address enum.
+- Simplify the `firmware-name` items definition by removing redundant
+  minItems/maxItems
+  and moving channel descriptions directly into individual item entries.
 
-What I think would be best (just a proposal) is to introduce a new camera-icc
-provider that handles all these resources — camera operates on bandwidth
-anyway, and rate calculations should be done in icc, since the  infrastructure
-for that already exists in the icc framework. But I think this has already been
-discussed with Atanas, so maybe there's no need to go over it again.
+[codec driver]
+- Add FW_LOADER dependency to prevent silent probe failure.
+- Fix uninitialized return variables and add error checks for underlying
+  I2C reads.
+- Replace stack-allocated buffers in I2C transfers with heap-allocated
+  memory.
+- Eliminate potential Use-After-Free by synchronizing firmware loading.
+- Protect PEQ memory control operations with mutex locks to ensure
+  thread-safe register updates.
+- Resolve TDM slot configuration races using mutex protection.
+- Correct mathematically invalid TDM TX slot offsets during channel
+  length changes.
+- Ensure TDM streams are explicitly disabled when slots or slot_width
+  is zero.
+- Fix DSP protocol corruption due to missing locking in the DAPM
+  clock event handler.
+- Use FIELD_PREP() in protocol packing functions to replace manual
+  bit-shifting.
+- Replace deprecated of_property_count_strings() with
+  device_property_read_string().
+- Remove unnecessary CONFIG_ACPI ifdefs as struct acpi_device_id is
+  universally available.
+- Refactor repetitive DAPM event handlers (adacl/adacr/dacl/dacr).
+- Simplify code flow by removing redundant gotos, variables,
+  debug messages, and dev_get_platdata().
+- Standardize driver style using switch-cases, positive logic checks,
+  and reduced conditional nesting.
 
-I'm not sure how to move forward with the JPEG encoder changes.
+Changes in v4:
+[dt-bindings]
+- Refine the firmware-name description to clarify the loading order
+ (Left then Right) and the PBTL mode behavior.
+- Remove the "dsp bypass" option description.
+- Update the example node to follow devicetree coding styles.
 
-I see two different proposals:
-1. Independent sub-nodes (Bryan's direction) — I honestly like this one more.
-2. CAMSS handling the resources currently managed by the other frameworks.
-There are good arguments for this too.
+[codec driver]
+- Clean up unused DSP state flags (dsp_enable, dsp_created, dsp_fws_num).
+- Fixed the use of an uninitialized stack variable.
+- Fixed unhandled failures in nau8360_dsp_init() that caused duplicated
+  DAPM widgets to leak.
+- Add mutex protection for PEQ memory and TDM slot caches.
+- Restored the missing hardware memory access bit during suspend/resume
+  to prevent PEQ coefficients from being silently lost.
+- Handled regmap_read() failure in nau8360_vbat_level() to prevent
+  the usage of uninitialized stack memory.
+- Removed improper dynamic creation of DAPM widgets and routes within
+  ALSA kcontrol
+  `put` handlers, using proper static instantiation instead.
+- Moved RX enable logic to startup() for consistent stream state.
+- Replaced synchronous request_firmware() with request_firmware_nowait()
+  to prevent deadlocks and avoid blocking the kernel during firmware I/O.
+- Explicitly disable TDM RX/TX when slots or slot_width is zero.
 
-Bryan, as maintainer, can you say which direction to post next? :-)
+Changes in v2/v3:
+- v3: Resolved YAML build warnings, added Kconfig/Makefile entries,
+  fixed stack buffer overflows in DSP parsing, and refactored TDM slot
+  validation logic.
+- v2: Migrated software/runtime configurations from DT properties to
+  ALSA kcontrols, refactored TDM routing, and improved firmware path
+  handling.
 
-Apart from t
+Neo Chang (2):
+  ASoC: dt-bindings: nuvoton,nau8360: Add NAU83G60
+  ASoC: codecs: nau8360: Add support for NAU83G60 amplifier
 
+ .../bindings/sound/nuvoton,nau8360.yaml       |  113 +
+ sound/soc/codecs/Kconfig                      |   11 +
+ sound/soc/codecs/Makefile                     |    2 +
+ sound/soc/codecs/nau8360-dsp.c                |  665 +++++
+ sound/soc/codecs/nau8360-dsp.h                |  122 +
+ sound/soc/codecs/nau8360.c                    | 2241 +++++++++++++++++
+ sound/soc/codecs/nau8360.h                    |  913 +++++++
+ 7 files changed, 4067 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/sound/nuvoton,nau8360.yaml
+ create mode 100644 sound/soc/codecs/nau8360-dsp.c
+ create mode 100644 sound/soc/codecs/nau8360-dsp.h
+ create mode 100644 sound/soc/codecs/nau8360.c
+ create mode 100644 sound/soc/codecs/nau8360.h
 
-Regards,
-~Gjorgji
+-- 
+2.25.1
+
 
