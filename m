@@ -1,533 +1,254 @@
-Return-Path: <devicetree+bounces-322725-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-322723-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id ikixIRApTmo9EQIAu9opvQ
-	(envelope-from <devicetree+bounces-322725-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 12:40:16 +0200
+	id frd2ClUpTmpLEQIAu9opvQ
+	(envelope-from <devicetree+bounces-322723-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 12:41:25 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23AFD7246B0
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 12:40:16 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1DFC87246CD
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 12:41:24 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=sRzqLetd;
-	dmarc=pass (policy=none) header.from=gmail.com;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322725-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-322725-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=ayuIc0YP;
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322723-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-322723-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id CC7DF30792D8
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 10:36:49 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 4D0D2301AB42
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 10:36:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 320393BB9F3;
-	Wed,  8 Jul 2026 10:36:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C492839A04A;
+	Wed,  8 Jul 2026 10:36:30 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com [209.85.214.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B27AE39DBE4
-	for <devicetree@vger.kernel.org>; Wed,  8 Jul 2026 10:36:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8692B3AFCE9
+	for <devicetree@vger.kernel.org>; Wed,  8 Jul 2026 10:36:18 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783506997; cv=none; b=fPAMrwRFBRxanxOatGmzxA+jgor5uGS/VtteLhgCf8MXd8a4hcGndqBxscC7nAw3TnCJZR3xYslRAjSnT/J0jJOtg+mtKJb/+C5TVw5W1h9p3p+hGur6TRpsk90cxAPFEKVcG+KRdVF/ACU7GgVagT4O+VoUmndQvH2riy4oIx4=
+	t=1783506988; cv=none; b=KSJF4UQJ2Z/vLeHsUQA0pUb3Ts6tAhVwlydmuet+tyGMExsYIfiq/+DGeQaUroOF0sSw3lrzxqHzhQe8t+sqj3jnDRusirOjXrWM/ZP4Pjdy3PlkOvROSNJr3luZZBDvjON1WzTV2ZM4pUkGFMLT3GMSIUcYSJpfvMhK1Zv0n9c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783506997; c=relaxed/simple;
-	bh=ixq0qe+qa03uaS18g5RatvgiUeVNuBJDT6u3vRdGN1Q=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=qlML3y+fSlcaPnUvybdTRhOngdk2uC7wJMj4Ytt+2MFFADabeOT644CW1oslt6AlHl1m2ttroxUGZadwoVlg1VNr4Xs05n18igQWSMbGht/8vBs5DNv54M35+5/HvAwlgK4QvQyT4GOeDQOgYB9pty9ttFUkxhfrmVtFyKQZEjY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=sRzqLetd; arc=none smtp.client-ip=209.85.214.181
-Received: by mail-pl1-f181.google.com with SMTP id d9443c01a7336-2cce6a0c9c3so5814345ad.1
-        for <devicetree@vger.kernel.org>; Wed, 08 Jul 2026 03:36:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1783506983; x=1784111783; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=vOJ1lbawyfv+DPk+HeplAa6YKzv4oMDP/vd2OChHbqk=;
-        b=sRzqLetdLxG5GcGmXFWO0eWffZdpqBxGkxfs7Oycg1ZPQ/QgcDpflszFUDqTzU01az
-         N1c8iG3Rt1z8nxPbBmmz2bOuro/w6DqaJPWVr1+zmkSTVyoJW3QK6otrNsM0C/wA/cQH
-         DjD3h/MoHuWrh2h6pFSKD53izcYF4D1Yi52eLPvSeE7TwhauSOSjJ0JF0oefRpsD7md6
-         dWWBy65PRg66f9cYYHkJ9kr0gU0tveA8nrrde7gLNSUJdULq1riu7l7IavtzgvDzkMfW
-         i5nQnP9XGKNQPIfRj1FVWCAu0+tuPWxwxwzojvUuEMO+42GGiUisKsfzxC84nGqCOi0P
-         eISg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783506983; x=1784111783;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=vOJ1lbawyfv+DPk+HeplAa6YKzv4oMDP/vd2OChHbqk=;
-        b=EqJGU2VxTsgjpHANoEDrkm13srHhkJM43hqMN8u/o8quByj4RRjphNeOO+c83IoU3m
-         9ddfog2iGM4OCHOzqrAreLGxX/RJC5JMhJEb8aF5CTM87lqMAJEPf8mWoC7s4vjbUcdr
-         8NkestN3weDl9XA7wvN062WK8D5RVxsRgfiHz3jfccS4M4B9eOLGzgOUN7+qFsKRe1J5
-         gxlCmigiWBjKk6uYNGQ29N/f0e+oqkEQLzOoQV1kqqcbPUQAHg2cAAwpb26mOeJXQ8nK
-         lYoglK4WrTwd8+NMUB92oRpZksJPN6gAcoDAuQMCNTsEh2VWI9KWT/6dDkBGzzX0fNVh
-         o0Zw==
-X-Forwarded-Encrypted: i=1; AHgh+RrZkzxhFe3V6lfNPMguKOQ1yOaeJxP1el9iPJIEFmIoauOGT+7RYwAJZYrRO3DUTL2zxrWR7yOC6W5b@vger.kernel.org
-X-Gm-Message-State: AOJu0YyaMTfM9/qOrYtTeYhxFZnkeOKN2QCKe2K1AJGXOlTE9XygkN6M
-	w8sERbrG9M72DAAY2rECOq85XMS9wgA6Ah5yshZvfptYqVuot5LFhWcK
-X-Gm-Gg: AfdE7cldDpkhZuNsXwqwBR9JThk7Ck6g1pVCtacM/8dQrwIKZ8fPfBBQWod1CBN1vN7
-	UmOX6O9UvfxAGpAnWfSWH3nXksZEKPb7vsFgEcvnTD1D1I6Psi4p7P174f2Xs2hqCzo11JYblct
-	ufHjNFFvh+rYqwYMuCuHwHBAfE8Tw4XdlMaifR/aCPCxhy41mxKw+c7sv5w9DBf3Hn9wIf9Cogy
-	5TT/VF0hOMLIC4Qvc7eIUx/CkqCMG8iZwwTDE/bl5X/pV9qF1/Vj+cN+myc2LXUoa1WEsiMtYRp
-	o83dD7ieef/Y/xp+Jtx43cUneTPzXZAuqasUw7AKHpeHP+6SiFOkiX938P9PIMGDq1TcDujh6p0
-	KJ895kaIGndC+qMFk8DayUdbLeT9/KgWLKniGSutTb+WWE4vda/nF5C5pAeZSZOMzp6i4ZBQSrc
-	X4WIYu0oAOgIbY1spPELu6kn6qVHYekFFP/NvlCb0hdiI2kxU9vAhLjOZfZ+JI0PTCcU6UKTd15
-	sa7mL1acgwH
-X-Received: by 2002:a17:903:41cd:b0:2ca:bb7e:29a7 with SMTP id d9443c01a7336-2ccea58bee1mr21030585ad.41.1783506983211;
-        Wed, 08 Jul 2026 03:36:23 -0700 (PDT)
-Received: from localhost.localdomain (60-250-196-139.hinet-ip.hinet.net. [60.250.196.139])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2ccc9bdb9a3sm25987525ad.13.2026.07.08.03.36.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Jul 2026 03:36:22 -0700 (PDT)
-From: Joey Lu <a0987203069@gmail.com>
-To: Vinod Koul <vkoul@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Jacky Huang <ychuang3@nuvoton.com>,
-	Shan-Chun Hung <schung@nuvoton.com>,
-	Hui-Ping Chen <hpchen0nvt@gmail.com>,
-	Joey Lu <yclu4@nuvoton.com>,
-	linux-phy@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Joey Lu <a0987203069@gmail.com>
-Subject: [PATCH v3 3/3] phy: nuvoton: phy-ma35d1-usb2: extend to dual-port with OTG support
-Date: Wed,  8 Jul 2026 18:36:06 +0800
-Message-ID: <20260708103606.1462960-4-a0987203069@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260708103606.1462960-1-a0987203069@gmail.com>
-References: <20260708103606.1462960-1-a0987203069@gmail.com>
+	s=arc-20240116; t=1783506988; c=relaxed/simple;
+	bh=cdOvmLrcn9CVXUeuBsgvFIIIwnlyL+QX713gyvsz5/s=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=Gw3K0PtzMmhHS8NGkgljb6QRMfXWwACDJGioPrPaHg/I+HSVpvxgCFmA9U9djz2xQSfkmlpwOmuhshbob10sXkbqcNeOiaff5AxKctNUm/uhZrANoA7BuMzof9UBdjlGDM3fvI7owTTvok0qaeAMJchMog51zZOnC/Kmf2SWmSw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ayuIc0YP; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4A28F1F000E9;
+	Wed,  8 Jul 2026 10:36:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1783506973;
+	bh=nvsFnVElO38aLAcm2uqG5RTBpfu6YI5xeI7nDcTyF1I=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=ayuIc0YP/0k4KCxCKx5tQflMHmlUoQtFvoXIjACqs5K47HJ2/texhYTcn9iDlE5Ss
+	 B5LGsr8lUaIetscnWbSz6xhjRlSSMDxZDSsGniEgkJF2WQFOsbQ4ziKSJ1jNyUWq8J
+	 GkIDC+Pv8kKvEOLStOv2DKQ6czFHlVJOCm5p/z8BiZK6sxMzwng1gJVF9vNpL69GdM
+	 6hvE78i28f25Li7THpuuF+PT11C5qNffa9B5RuV8O2npTrAMWTtBi+Pd68RDgsZ5EU
+	 aGenSkdYVmahiUuGDtoYeXIyyhoq93KVdJiWDvXmel7kGrheENeMsa3ngFQx3BoNRG
+	 bm/zi8yG5juMA==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v2 4/6] pmdomain: renesas: Add R-Car X5H MDLC driver
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Geert Uytterhoeven" <geert+renesas@glider.be>
+Cc: wsa+renesas@sang-engineering.com, conor+dt@kernel.org, robh@kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <23f979b0903ca11513ac339ab8b6dd40435603c5.1783505142.git.geert+renesas@glider.be>
+References: <cover.1783505142.git.geert+renesas@glider.be>
+ <23f979b0903ca11513ac339ab8b6dd40435603c5.1783505142.git.geert+renesas@glider.be>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Wed, 08 Jul 2026 10:36:12 +0000
+Message-Id: <20260708103613.4A28F1F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.84 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-3.16 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-322725-lists,devicetree=lfdr.de];
-	FORGED_SENDER(0.00)[a0987203069@gmail.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[kernel.org,arndb.de,arm.com,nuvoton.com,gmail.com,lists.infradead.org,vger.kernel.org];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[16];
+	TAGGED_FROM(0.00)[bounces-322723-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:vkoul@kernel.org,m:neil.armstrong@linaro.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:arnd@arndb.de,m:catalin.marinas@arm.com,m:ychuang3@nuvoton.com,m:schung@nuvoton.com,m:hpchen0nvt@gmail.com,m:yclu4@nuvoton.com,m:linux-phy@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:a0987203069@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORWARDED(0.00)[lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.linux.dev:replyto,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,smtp.kernel.org:mid,glider.be:email,vger.kernel.org:from_smtp,sashiko.dev:url,pd_spec.np:url];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:geert+renesas@glider.be,m:wsa+renesas@sang-engineering.com,m:conor+dt@kernel.org,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:geert@glider.be,m:wsa@sang-engineering.com,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[a0987203069@gmail.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	ALIAS_RESOLVED(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	PRECEDENCE_BULK(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
+	MISSING_XM_UA(0.00)[];
+	FROM_NO_DN(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[5]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 23AFD7246B0
+X-Rspamd-Queue-Id: 1DFC87246CD
 
-PHY0 and PHY1 use the same power-on/reset sequence in USBPMISCR, with
-PHY1 control bits shifted 16 positions relative to PHY0.  A separate
-driver for PHY1 would duplicate this logic, so the existing driver is
-extended to manage both ports.
+Thank you for your contribution! Sashiko AI review found 4 potential issue(=
+s) to consider:
+- [High] Hardcoded index `0` in `of_parse_phandle_with_args()` breaks consu=
+mer devices attached to multiple power domains.
+- [High] Use-After-Free of `priv` due to premature release of `r8a78000_mdl=
+c_lock`.
+- [High] AB-BA deadlock (lockdep splat) between `r8a78000_mdlc_lock` and th=
+e global `gpd_list_lock`.
+- [Medium] Missing dummy clocks despite claims in the commit message.
+--
 
-The original driver polled only DEVCKSTB after releasing PHY0 from
-reset.  When USB0 operates in host mode (USB ID pin floating or tied
-high) only HSTCKSTB and CK12MSTB assert; DEVCKSTB never sets.  Polling
-exclusively for DEVCKSTB in host mode causes a 1 ms timeout on every
-phy_init() call from the EHCI driver.  The init callback is changed to
-accept either host-mode or device-mode clock stability, whichever
-asserts first.
-
-The power_on and power_off callbacks are replaced by a single init
-callback that handles PHY reset and clock-stable polling, because
-there is no PHY-specific clock gate on MA35D1; the PHY analog block
-derives its reference from the HXT crystal.
-
-A read-only USB role switch is registered for PHY0 to expose the USB0
-role to userspace via the standard role-switch sysfs interface.  The
-.set callback returns -EOPNOTSUPP because the hardware mux is fully
-automatic with no software override path.
-
-Signed-off-by: Joey Lu <a0987203069@gmail.com>
+--- Patch [4]: [PATCH v2 4/6] pmdomain: renesas: Add R-Car X5H MDLC driver =
 ---
- drivers/phy/nuvoton/phy-ma35d1-usb2.c | 279 +++++++++++++++++++-------
- 1 file changed, 205 insertions(+), 74 deletions(-)
+commit 1970ea51b8c9b00b6533ff3db2920ecb99d83f17
+Author: Geert Uytterhoeven <geert+renesas@glider.be>
 
-diff --git a/drivers/phy/nuvoton/phy-ma35d1-usb2.c b/drivers/phy/nuvoton/phy-ma35d1-usb2.c
-index 9a459b700ed4..e2eac4f8c5bf 100644
---- a/drivers/phy/nuvoton/phy-ma35d1-usb2.c
-+++ b/drivers/phy/nuvoton/phy-ma35d1-usb2.c
-@@ -1,11 +1,16 @@
- // SPDX-License-Identifier: GPL-2.0
- /*
-- * Copyright (C) 2024 Nuvoton Technology Corp.
-+ * Nuvoton MA35D1 USB 2.0 PHY driver
-+ *
-+ * Supports PHY0 (USB0 OTG port, shared between DWC2 gadget and EHCI0/OHCI0)
-+ * and PHY1 (USB1 host-only port, used by EHCI1/OHCI1). The hardware mux on
-+ * PHY0 switches automatically via the USB ID pin.
-+ *
-+ * Copyright (C) 2026 Nuvoton Technology Corp.
-  */
- #include <linux/bitfield.h>
- #include <linux/clk.h>
- #include <linux/delay.h>
--#include <linux/io.h>
- #include <linux/kernel.h>
- #include <linux/mfd/syscon.h>
- #include <linux/module.h>
-@@ -13,131 +18,257 @@
- #include <linux/phy/phy.h>
- #include <linux/platform_device.h>
- #include <linux/regmap.h>
-+#include <linux/usb/role.h>
- 
--/* USB PHY Miscellaneous Control Register */
--#define MA35_SYS_REG_USBPMISCR	0x60
--#define PHY0POR			BIT(0)  /* PHY Power-On Reset Control Bit */
--#define PHY0SUSPEND			BIT(1)  /* PHY Suspend; 0: suspend, 1: operaion */
--#define PHY0COMN			BIT(2)  /* PHY Common Block Power-Down Control */
--#define PHY0DEVCKSTB			BIT(10) /* PHY 60 MHz UTMI clock stable bit */
-+#define MA35_SYS_PWRONOTP		0x04
-+#define PWRONOTP_USBP0ID		BIT(16)
-+
-+#define MA35_SYS_USBPMISCR		0x60
-+#define USBPMISCR_PHY_POR(n)		BIT(0  + (n) * 16)
-+#define USBPMISCR_PHY_SUSPEND(n)	BIT(1  + (n) * 16)
-+#define USBPMISCR_PHY_COMN(n)		BIT(2  + (n) * 16)
-+#define USBPMISCR_PHY_HSTCKSTB(n)	BIT(8  + (n) * 16)
-+#define USBPMISCR_PHY_CK12MSTB(n)	BIT(9  + (n) * 16)
-+#define USBPMISCR_PHY_DEVCKSTB(n)	BIT(10 + (n) * 16)
-+/* Mask for control bits (POR, SUSPEND, COMN) */
-+#define USBPMISCR_PHY_CTL_MASK(n)	(0x7u << ((n) * 16))
-+/* Host-mode ready */
-+#define USBPMISCR_PHY_HOST_READY(n)	(USBPMISCR_PHY_SUSPEND(n)  | \
-+					 USBPMISCR_PHY_HSTCKSTB(n) | \
-+					 USBPMISCR_PHY_CK12MSTB(n))
-+/* Device-mode ready */
-+#define USBPMISCR_PHY_DEV_READY(n)	(USBPMISCR_PHY_SUSPEND(n)  | \
-+					 USBPMISCR_PHY_DEVCKSTB(n))
-+/* RCALCODE: 4-bit resistor trim */
-+#define USBPMISCR_RCAL_SHIFT(n)		(12 + (n) * 16)
-+#define USBPMISCR_RCAL_MASK(n)		GENMASK(USBPMISCR_RCAL_SHIFT(n) + 3, \
-+						USBPMISCR_RCAL_SHIFT(n))
-+
-+#define MA35_SYS_MISCFCR0		0x70
-+/* USB host over-current detect polarity (shared, both ports) */
-+#define MISCFCR0_UHOVRCURH		BIT(12)
-+
-+#define MA35_PHY_NUM			2
-+
-+struct ma35_phy_port {
-+	struct phy *phy;
-+	unsigned int idx;
-+};
- 
- struct ma35_usb_phy {
--	struct clk *clk;
- 	struct device *dev;
- 	struct regmap *sysreg;
-+	struct ma35_phy_port port[MA35_PHY_NUM];
-+	struct usb_role_switch *role_sw;
- };
- 
--static int ma35_usb_phy_power_on(struct phy *phy)
-+static int ma35_usb_phy_init(struct phy *phy)
- {
--	struct ma35_usb_phy *p_phy = phy_get_drvdata(phy);
-+	struct ma35_phy_port *port = phy_get_drvdata(phy);
-+	struct ma35_usb_phy *p = container_of(port - port->idx,
-+					      struct ma35_usb_phy, port[0]);
-+	unsigned int n = port->idx;
- 	unsigned int val;
- 	int ret;
- 
--	ret = clk_prepare_enable(p_phy->clk);
--	if (ret < 0) {
--		dev_err(p_phy->dev, "Failed to enable PHY clock: %d\n", ret);
--		return ret;
--	}
-+	regmap_read(p->sysreg, MA35_SYS_USBPMISCR, &val);
- 
--	regmap_read(p_phy->sysreg, MA35_SYS_REG_USBPMISCR, &val);
--	if (val & PHY0SUSPEND) {
--		/*
--		 * USB PHY0 is in operation mode already
--		 * make sure USB PHY 60 MHz UTMI Interface Clock ready
--		 */
--		ret = regmap_read_poll_timeout(p_phy->sysreg, MA35_SYS_REG_USBPMISCR, val,
--						val & PHY0DEVCKSTB, 10, 1000);
--		if (ret == 0)
--			return 0;
--	}
-+	if (val & USBPMISCR_PHY_SUSPEND(n))
-+		return 0;
- 
--	/*
--	 * reset USB PHY0.
--	 * wait until USB PHY0 60 MHz UTMI Interface Clock ready
--	 */
--	regmap_update_bits(p_phy->sysreg, MA35_SYS_REG_USBPMISCR, 0x7, (PHY0POR | PHY0SUSPEND));
-+	regmap_update_bits(p->sysreg, MA35_SYS_USBPMISCR,
-+			   USBPMISCR_PHY_CTL_MASK(n),
-+			   USBPMISCR_PHY_POR(n) | USBPMISCR_PHY_SUSPEND(n));
- 	udelay(20);
- 
--	/* make USB PHY0 enter operation mode */
--	regmap_update_bits(p_phy->sysreg, MA35_SYS_REG_USBPMISCR, 0x7, PHY0SUSPEND);
-+	regmap_update_bits(p->sysreg, MA35_SYS_USBPMISCR,
-+			   USBPMISCR_PHY_CTL_MASK(n),
-+			   USBPMISCR_PHY_SUSPEND(n));
- 
--	/* make sure USB PHY 60 MHz UTMI Interface Clock ready */
--	ret = regmap_read_poll_timeout(p_phy->sysreg, MA35_SYS_REG_USBPMISCR, val,
--					val & PHY0DEVCKSTB, 10, 1000);
--	if (ret == -ETIMEDOUT) {
--		dev_err(p_phy->dev, "Check PHY clock, Timeout: %d\n", ret);
--		clk_disable_unprepare(p_phy->clk);
-+	if (n == 0) {
-+		ret = regmap_read_poll_timeout(p->sysreg, MA35_SYS_USBPMISCR,
-+					       val,
-+					       ((val & USBPMISCR_PHY_HOST_READY(0)) ==
-+						USBPMISCR_PHY_HOST_READY(0)) ||
-+					       ((val & USBPMISCR_PHY_DEV_READY(0)) ==
-+						USBPMISCR_PHY_DEV_READY(0)),
-+					       10, 1000);
-+	} else {
-+		ret = regmap_read_poll_timeout(p->sysreg, MA35_SYS_USBPMISCR,
-+					       val,
-+					       (val & USBPMISCR_PHY_HOST_READY(n)) ==
-+					       USBPMISCR_PHY_HOST_READY(n),
-+					       10, 1000);
-+	}
-+
-+	if (ret) {
-+		dev_err(p->dev, "USB PHY%u clock not stable (USBPMISCR=0x%08x)\n",
-+			n, val);
- 		return ret;
- 	}
- 
- 	return 0;
- }
- 
--static int ma35_usb_phy_power_off(struct phy *phy)
-+static const struct phy_ops ma35_usb_phy_ops = {
-+	.init		= ma35_usb_phy_init,
-+	.owner		= THIS_MODULE,
-+};
-+
-+static int ma35_role_sw_set(struct usb_role_switch *sw, enum usb_role role)
-+{
-+	return -EOPNOTSUPP;
-+}
-+
-+static enum usb_role ma35_role_sw_get(struct usb_role_switch *sw)
- {
--	struct ma35_usb_phy *p_phy = phy_get_drvdata(phy);
-+	struct ma35_usb_phy *p = usb_role_switch_get_drvdata(sw);
-+	u32 val;
-+
-+	regmap_read(p->sysreg, MA35_SYS_PWRONOTP, &val);
-+
-+	return (val & PWRONOTP_USBP0ID) ? USB_ROLE_HOST : USB_ROLE_DEVICE;
-+}
-+
-+static int ma35_role_switch_init(struct platform_device *pdev,
-+				 struct ma35_usb_phy *p)
-+{
-+	struct usb_role_switch_desc sw_desc = {0};
-+
-+	sw_desc.set = ma35_role_sw_set;
-+	sw_desc.get = ma35_role_sw_get;
-+	sw_desc.allow_userspace_control = true;
-+	sw_desc.driver_data = p;
-+	sw_desc.fwnode = dev_fwnode(&pdev->dev);
-+
-+	p->role_sw = usb_role_switch_register(&pdev->dev, &sw_desc);
-+	if (IS_ERR(p->role_sw))
-+		return dev_err_probe(&pdev->dev, PTR_ERR(p->role_sw),
-+				     "failed to register role switch\n");
- 
--	clk_disable_unprepare(p_phy->clk);
- 	return 0;
- }
- 
--static const struct phy_ops ma35_usb_phy_ops = {
--	.power_on = ma35_usb_phy_power_on,
--	.power_off = ma35_usb_phy_power_off,
--	.owner = THIS_MODULE,
--};
-+static void ma35_role_switch_exit(struct ma35_usb_phy *p)
-+{
-+	if (p->role_sw) {
-+		usb_role_switch_unregister(p->role_sw);
-+		p->role_sw = NULL;
-+	}
-+}
-+
-+static struct phy *ma35_usb_phy_xlate(struct device *dev,
-+				      const struct of_phandle_args *args)
-+{
-+	struct ma35_usb_phy *p = dev_get_drvdata(dev);
-+	unsigned int idx;
-+
-+	if (args->args_count == 0)
-+		idx = 0;
-+	else
-+		idx = args->args[0];
-+
-+	if (idx >= MA35_PHY_NUM)
-+		return ERR_PTR(-EINVAL);
-+
-+	return p->port[idx].phy;
-+}
- 
- static int ma35_usb_phy_probe(struct platform_device *pdev)
- {
- 	struct phy_provider *provider;
--	struct ma35_usb_phy *p_phy;
--	struct phy *phy;
-+	struct ma35_usb_phy *p;
-+	struct clk *clk;
-+	int n, ret;
-+	u32 code;
- 
--	p_phy = devm_kzalloc(&pdev->dev, sizeof(*p_phy), GFP_KERNEL);
--	if (!p_phy)
-+	p = devm_kzalloc(&pdev->dev, sizeof(*p), GFP_KERNEL);
-+	if (!p)
- 		return -ENOMEM;
- 
--	p_phy->dev = &pdev->dev;
--	platform_set_drvdata(pdev, p_phy);
-+	p->dev = &pdev->dev;
-+	platform_set_drvdata(pdev, p);
-+
-+	p->sysreg = syscon_regmap_lookup_by_phandle(pdev->dev.of_node,
-+						     "nuvoton,sys");
-+	if (IS_ERR(p->sysreg))
-+		return dev_err_probe(&pdev->dev, PTR_ERR(p->sysreg),
-+				     "failed to get SYS regmap\n");
-+
-+	clk = devm_clk_get_enabled(&pdev->dev, NULL);
-+	if (IS_ERR(clk))
-+		return dev_err_probe(&pdev->dev, PTR_ERR(clk),
-+				     "failed to get clock\n");
- 
--	p_phy->sysreg = syscon_regmap_lookup_by_phandle(pdev->dev.of_node, "nuvoton,sys");
--	if (IS_ERR(p_phy->sysreg))
--		return dev_err_probe(&pdev->dev, PTR_ERR(p_phy->sysreg),
--				     "Failed to get SYS registers\n");
-+	for (n = 0; n < MA35_PHY_NUM; n++) {
-+		if (of_property_read_u32_index(pdev->dev.of_node,
-+					       "nuvoton,rcalcode", n, &code))
-+			continue;
- 
--	p_phy->clk = of_clk_get(pdev->dev.of_node, 0);
--	if (IS_ERR(p_phy->clk))
--		return dev_err_probe(&pdev->dev, PTR_ERR(p_phy->clk),
--				     "failed to find usb_phy clock\n");
-+		if (code > 15)
-+			return dev_err_probe(&pdev->dev, -EINVAL,
-+					     "rcalcode[%d] %u out of range (0-15)\n",
-+					     n, code);
- 
--	phy = devm_phy_create(&pdev->dev, NULL, &ma35_usb_phy_ops);
--	if (IS_ERR(phy))
--		return dev_err_probe(&pdev->dev, PTR_ERR(phy), "Failed to create PHY\n");
-+		regmap_update_bits(p->sysreg, MA35_SYS_USBPMISCR,
-+				   USBPMISCR_RCAL_MASK(n),
-+				   code << USBPMISCR_RCAL_SHIFT(n));
-+	}
-+
-+	if (of_property_read_bool(pdev->dev.of_node, "nuvoton,oc-active-high"))
-+		regmap_update_bits(p->sysreg, MA35_SYS_MISCFCR0,
-+				   MISCFCR0_UHOVRCURH, MISCFCR0_UHOVRCURH);
-+
-+	for (n = 0; n < MA35_PHY_NUM; n++) {
-+		p->port[n].idx = n;
-+
-+		p->port[n].phy = devm_phy_create(&pdev->dev, pdev->dev.of_node,
-+						 &ma35_usb_phy_ops);
-+		if (IS_ERR(p->port[n].phy))
-+			return dev_err_probe(&pdev->dev, PTR_ERR(p->port[n].phy),
-+					     "failed to create PHY%d\n", n);
- 
--	phy_set_drvdata(phy, p_phy);
-+		phy_set_drvdata(p->port[n].phy, &p->port[n]);
-+	}
-+
-+	ret = ma35_role_switch_init(pdev, p);
-+	if (ret)
-+		return ret;
- 
--	provider = devm_of_phy_provider_register(&pdev->dev, of_phy_simple_xlate);
--	if (IS_ERR(provider))
-+	provider = devm_of_phy_provider_register(&pdev->dev, ma35_usb_phy_xlate);
-+	if (IS_ERR(provider)) {
-+		ma35_role_switch_exit(p);
- 		return dev_err_probe(&pdev->dev, PTR_ERR(provider),
--				     "Failed to register PHY provider\n");
-+				     "failed to register PHY provider\n");
-+	}
-+
- 	return 0;
- }
- 
-+static void ma35_usb_phy_remove(struct platform_device *pdev)
-+{
-+	struct ma35_usb_phy *p = platform_get_drvdata(pdev);
-+
-+	ma35_role_switch_exit(p);
-+}
-+
- static const struct of_device_id ma35_usb_phy_of_match[] = {
--	{ .compatible = "nuvoton,ma35d1-usb2-phy", },
--	{ },
-+	{ .compatible = "nuvoton,ma35d1-usb2-phy" },
-+	{ /* sentinel */ }
- };
- MODULE_DEVICE_TABLE(of, ma35_usb_phy_of_match);
- 
- static struct platform_driver ma35_usb_phy_driver = {
- 	.probe		= ma35_usb_phy_probe,
--	.driver	= {
--		.name	= "ma35d1-usb2-phy",
--		.of_match_table = ma35_usb_phy_of_match,
-+	.remove		= ma35_usb_phy_remove,
-+	.driver		= {
-+		.name		= "ma35d1-usb2-phy",
-+		.of_match_table	= ma35_usb_phy_of_match,
- 	},
- };
- module_platform_driver(ma35_usb_phy_driver);
- 
- MODULE_DESCRIPTION("Nuvoton ma35d1 USB2.0 PHY driver");
- MODULE_AUTHOR("Hui-Ping Chen <hpchen0nvt@gmail.com>");
-+MODULE_AUTHOR("Joey Lu <a0987203069@gmail.com>");
- MODULE_LICENSE("GPL");
--- 
-2.43.0
+pmdomain: renesas: Add R-Car X5H MDLC driver
 
+This adds a minimal Module Controller driver for the R-Car X5H (R8A78000)
+SoC. It provides support for always-on power domains and dummy resets for
+the serial console.
+
+> For now this just supports the always-on power domains, and dummy clocks
+> and resets for the serial console (which is enabled by the boot loader).
+
+[Severity: Medium]
+The commit message mentions adding dummy clocks, but looking at
+r8a78000_mdlc_probe(), it appears only the genpd and reset controller
+providers are registered. Will consumers defer indefinitely if they
+attempt to use this driver as a clock provider?
+
+> diff --git a/drivers/pmdomain/renesas/r8a78000-mdlc.c b/drivers/pmdomain/=
+renesas/r8a78000-mdlc.c
+> new file mode 100644
+> index 0000000000000..ed367e921a334
+> --- /dev/null
+> +++ b/drivers/pmdomain/renesas/r8a78000-mdlc.c
+[ ... ]
+> +static int r8a78000_mdlc_attach_dev(struct generic_pm_domain *domain,
+> +				    struct device *dev)
+> +{
+> +	struct device_node *np =3D dev->of_node;
+> +	struct r8a78000_mdlc_priv *priv;
+> +	struct of_phandle_args pd_spec;
+> +	const struct mod_map *map;
+> +	unsigned int id;
+> +	int ret;
+> +
+> +	ret =3D of_parse_phandle_with_args(np, "power-domains",
+> +					 "#power-domain-cells", 0, &pd_spec);
+
+[Severity: High]
+Is it possible for a consumer device to have multiple power domains
+configured in its device tree (e.g., <&sysc 1>, <&mdlc 2>)? If the
+MDLC domain is not the first one in the property, won't this hardcoded
+index of 0 fail to find the correct provider and cause the consumer
+probe to fail with -ENODEV?
+
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	if (pd_spec.args_count !=3D 2) {
+> +		of_node_put(pd_spec.np);
+> +		return -EINVAL;
+> +	}
+> +
+> +	scoped_guard(mutex, &r8a78000_mdlc_lock) {
+> +		hlist_for_each_entry(priv, &r8a78000_mdlc_list, link) {
+> +			if (priv->np =3D=3D pd_spec.np)
+> +				break;
+> +		}
+> +	}
+> +
+> +	if (!priv) {
+> +		dev_err(dev, "%s: MDLC %pOF not found\n", __func__, pd_spec.np);
+> +		of_node_put(pd_spec.np);
+> +		return -ENODEV;
+> +	}
+> +
+> +	id =3D pd_spec.args[1];
+> +	of_node_put(pd_spec.np);
+> +
+> +	map =3D mod_map_find(priv->mod_map, id);
+
+[Severity: High]
+Could priv be freed before we dereference it here? The lock protecting
+the r8a78000_mdlc_list is released at the end of the scoped_guard() block
+above.
+
+If the provider's probe fails or the driver is unbound concurrently,
+r8a78000_mdlc_unlink() will acquire the lock, remove priv from the list,
+and free the memory. Since we access priv->mod_map here without holding
+the lock, does this introduce a use-after-free window?
+
+> +	if (!map) {
+> +		dev_err(dev, "Unknown module 0x%x\n", id);
+> +		return -ENOENT;
+> +	}
+[ ... ]
+> +static int r8a78000_genpd_always_on_singleton(struct device *dev)
+> +{
+> +	struct generic_pm_domain *genpd;
+> +	int ret;
+> +
+> +	guard(mutex)(&r8a78000_mdlc_lock);
+> +
+> +	if (r8a78000_genpd_always_on)
+> +		return 0;
+> +
+> +	genpd =3D kzalloc_obj(*genpd);
+> +	if (!genpd)
+> +		return -ENOMEM;
+> +
+> +	genpd->name =3D "always-on";
+> +	genpd->attach_dev =3D r8a78000_mdlc_attach_dev;
+> +
+> +	ret =3D pm_genpd_init(genpd, &pm_domain_always_on_gov, false);
+
+[Severity: High]
+Will this sequence trigger a lockdep splat?
+
+During this first probe, r8a78000_genpd_always_on_singleton() acquires
+r8a78000_mdlc_lock and calls pm_genpd_init(), which acquires the global
+gpd_list_lock. This establishes r8a78000_mdlc_lock -> gpd_list_lock.
+
+Later, when a consumer device attaches, the PM domain core calls
+r8a78000_mdlc_attach_dev() with gpd_list_lock held. That function then
+acquires r8a78000_mdlc_lock via the scoped_guard() block, completing an
+inverse lock order.
+
+Should pm_genpd_init() be called outside the r8a78000_mdlc_lock critical
+section to avoid this?
+
+> +	if (ret) {
+> +		kfree(genpd);
+> +		return dev_err_probe(dev, ret,
+> +				     "Failed to create always-on domain\n");
+> +	}
+> +
+> +	r8a78000_genpd_always_on =3D genpd;
+> +	return 0;
+> +}
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/cover.1783505142.gi=
+t.geert+renesas@glider.be?part=3D4
 
