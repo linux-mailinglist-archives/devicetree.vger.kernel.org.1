@@ -1,179 +1,155 @@
-Return-Path: <devicetree+bounces-322639-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-322640-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id o6qUCZATTmqJCgIAu9opvQ
-	(envelope-from <devicetree+bounces-322639-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 11:08:32 +0200
+	id F0G1AfQVTmo8CwIAu9opvQ
+	(envelope-from <devicetree+bounces-322640-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 11:18:44 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id E755C72377C
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 11:08:30 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C5AB723923
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 11:18:43 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=g0gssUXp;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=SuCt3G7y;
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322639-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-322639-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322640-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-322640-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id F14F73012CFC
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 09:06:06 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E9D8E300D6A8
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 09:11:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4782B4071CE;
-	Wed,  8 Jul 2026 09:06:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F02B0400DFC;
+	Wed,  8 Jul 2026 09:11:08 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 087AF3E63B7;
-	Wed,  8 Jul 2026 09:06:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D410A2BD02;
+	Wed,  8 Jul 2026 09:11:07 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783501564; cv=none; b=TXigLJcy8zxsaNHURBOHJz8ijqkesHpmO/YPFG1X1z9zshe8L07meFhPMwaHH36nb/MU/46tTwsjjplTono5STYJDXg7RIK0IiqsMZctySuF7jcxixwI8qbbMuDP+Xq0ZV+FJCSzhAFLJgHkPGmqSo0AMuiXmJ8WkSF+3gYBb1I=
+	t=1783501868; cv=none; b=BbDgmzUCbAFwRFKSv88KxlYf+e9vnovxjml8JX9BzhTN5ulhHWpUH7QIAwxxBf5aZS/AH2xDUQ1oN+GgO53oTjryc5xlkhjF4jC9VjpwgA8Ax/4psxpmK9259sVPqQaqLJau+PerUSFPbRycFmLGgLO6b8CfgK9eCc1ozRAFYfc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783501564; c=relaxed/simple;
-	bh=PoUJnzPX4dOmxMBSKZmCYJ6F3rHOxpsYaFkQlf3IC8A=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=UpNV0VVb2wCcVlpF2WCX905s7lR0cHVwwUpa75NqgInyobDcFAwpcXMUFV/KVo9+2H9YgBj2FNllGqI489S6kOvOhVllyKmxzutA2A/KK/YgIbDXVqRGLGo1yc6akweTssaRPdev0bfQCWH+irRHchuVG5xFa44YksaewdiC/nQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=g0gssUXp; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C23811F00A3A;
-	Wed,  8 Jul 2026 09:06:02 +0000 (UTC)
+	s=arc-20240116; t=1783501868; c=relaxed/simple;
+	bh=F7j7Z9dKGLN8GOTn+WnQgSGTt/ULQrejMAKGq+nNZ98=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=Rh1KyoYLJmpqCqUAbAa/umIiO8kS3/FaJtuwcL5zMTz6vheSWNGF4Tq9SvpBF7YGUW7BvZ1AE8s2tSahxg/HLr7YKzMlu9cRe2fD518/lDD8koFRumszh6zta/GYDM4gUGTUl8CYeikCcMZhaV5+lC6jaKZOxpO3RKJ5cdQuoP0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SuCt3G7y; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2A8821F000E9;
+	Wed,  8 Jul 2026 09:11:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783501562;
-	bh=X8nQPHPZF9ibSe2QeM2g0Ll1JIPfuYfJWJiXYgzvRV0=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject;
-	b=g0gssUXp7OyJJqvrtvPi4K+Z9iWCxIGmlPRlBsE+BlGzJEKnSLO2YNOpGTb9E5UZt
-	 6wEDiSxrXYjYpeFK+edzadnyt5XU07XyGOWBiayOatzAFKOjd7+hRrR0wyXOYXAqQJ
-	 eHlJAsexKCot+mTBw46/eGNT0bE4GEYUAGIGmebt+bXXuCnJ/lT6lJFjiDL+TojMGi
-	 qRg7nwhxaOeLPZALfaOKDw2hFvAVDM5H5jvLoNOnjdAub40crtxFoK820s5YmVpGMl
-	 G6HriwohKaO+vW4Pa8Df8fc+/CvYPIg2vI7Fc/Iy/HnHFFD1VaHzZz5pWVwfG2QGIf
-	 sITPE3MI8XTag==
-Date: Wed, 08 Jul 2026 04:06:02 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20260515; t=1783501867;
+	bh=Xa7O3iS2Ue65K4cXLANqX+1+nOCrkolQ7ve8ag0Rf5M=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=SuCt3G7yyWxLYXN8CEmZI8a0bJ5gw8X1MGNqi3d+K7WAq38rL872EfjlEwub4wX0V
+	 b1WR3pe8qPVojNXDQZIlUehYva27TY80vhC11fGU2y1f/ZUSc55Pg1+p4UaaLqkOWq
+	 qJyJ1ZrDYVP05p9hn9jl4Kez4HE5BZNxRvpoCYK1zHCGmqNxMRipOk4rij5w5p3X3i
+	 boRuvtUdx9B2EP+bceT3LYh3aYixm5dkr4EWpWv+DYGDAEsWtZwJqeGAyP1TMwpksK
+	 6lF2inZn8Lr3z2m/hR/YP/g5bwl7Ts+T5MDB3HMxa7CGD6XB+KE0ryDX6Ih3hsTHNU
+	 of2YqQO/bwZcA==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: PCI: mediatek: Add support for
+ optional perstout reset
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Christian Marangi" <ansuelsmth@gmail.com>
+Cc: robh@kernel.org, linux-pci@vger.kernel.org, devicetree@vger.kernel.org, conor+dt@kernel.org
+In-Reply-To: <20260708090533.19734-1-ansuelsmth@gmail.com>
+References: <20260708090533.19734-1-ansuelsmth@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Wed, 08 Jul 2026 09:11:06 +0000
+Message-Id: <20260708091107.2A8821F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Conor Dooley <conor.dooley@microchip.com>, monstr@monstr.eu, 
- linux-kernel@vger.kernel.org, Brian Masney <bmasney@redhat.com>, 
- "open list:COMMON CLK FRAMEWORK" <linux-clk@vger.kernel.org>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Conor Dooley <conor+dt@kernel.org>, 
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, 
- Stephen Boyd <sboyd@kernel.org>, 
- "moderated list:ARM/ZYNQ ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>, 
- kishore Manne <nava.kishore.manne@amd.com>, git@amd.com, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>
-To: Michal Simek <michal.simek@amd.com>
-In-Reply-To: <f6fc3f65475888cd5726e3f2795a110e9f7a79c3.1783495122.git.michal.simek@amd.com>
-References: <cover.1783495122.git.michal.simek@amd.com>
- <f6fc3f65475888cd5726e3f2795a110e9f7a79c3.1783495122.git.michal.simek@amd.com>
-Message-Id: <178350156210.1961721.11862849242704458553.robh@kernel.org>
-Subject: Re: [PATCH v4 3/5] dt-bindings: clock: Move xlnx,zynqmp-clk to its
- own schema
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.66 / 15.00];
+X-Spamd-Result: default: False [-3.16 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	SUSPICIOUS_RECIPS(1.50)[];
+	MISSING_MIME_VERSION(2.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-322639-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:ansuelsmth@gmail.com,m:robh@kernel.org,m:linux-pci@vger.kernel.org,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-322640-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:conor.dooley@microchip.com,m:monstr@monstr.eu,m:linux-kernel@vger.kernel.org,m:bmasney@redhat.com,m:linux-clk@vger.kernel.org,m:mturquette@baylibre.com,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:sboyd@kernel.org,m:linux-arm-kernel@lists.infradead.org,m:nava.kishore.manne@amd.com,m:git@amd.com,m:krzk+dt@kernel.org,m:michal.simek@amd.com,m:conor@kernel.org,m:krzk@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,sashiko.dev:url,lists.linux.dev:replyto,vger.kernel.org:from_smtp,smtp.kernel.org:mid];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ALIAS_RESOLVED(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	PRECEDENCE_BULK(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,amd.com:email,microchip.com:email]
+	FROM_NO_DN(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[5]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: E755C72377C
+X-Rspamd-Queue-Id: 6C5AB723923
 
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [Medium] The patch introduces a typo `resets-names:` instead of `reset-na=
+mes:` in the `airoha,an7583-pcie` conditional block.
+--
 
-On Wed, 08 Jul 2026 09:18:50 +0200, Michal Simek wrote:
-> The ZynqMP clock controller binding shares only #clock-cells with the
-> Versal bindings. Move it to a dedicated xlnx,zynqmp-clk.yaml schema.
-> Also remove "(Optional clock)" from clock description because it is visible
-> from schema itself.
-> 
-> Suggested-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Michal Simek <michal.simek@amd.com>
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> ---
-> 
-> Changes in v4:
-> - Update regex from previous patch
-> 
-> Changes in v3:
-> - Cover change in zynqmp-firmware.yaml
-> - Move clock-cells to be the last in the example
-> - Remove comment around (Optional clock) which is obvious from schema
->   itself
-> 
-> Changes in v2:
-> - New patch in series
-> - Split zynqmp-clk from versal-clk
-> 
->  .../bindings/clock/xlnx,versal-clk.yaml       | 50 +-------------
->  .../bindings/clock/xlnx,zynqmp-clk.yaml       | 68 +++++++++++++++++++
->  .../firmware/xilinx/xlnx,zynqmp-firmware.yaml |  7 +-
->  3 files changed, 76 insertions(+), 49 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/clock/xlnx,zynqmp-clk.yaml
-> 
+--- Patch [1]: [PATCH 1/2] dt-bindings: PCI: mediatek: Add support for opti=
+onal perstout reset ---
+commit 940c7b8d9eadf01ceca0b3e3526e890e946e92a5
+Author: Christian Marangi <ansuelsmth@gmail.com>
 
-My bot found errors running 'make dt_binding_check' on your patch:
+dt-bindings: PCI: mediatek: Add support for optional perstout reset
 
-yamllint warnings/errors:
+This commit adds optional schema support for a dedicated PCIe PERSTOUT reset
+on Airoha AN7583 devices. It bumps the maximum items for resets and
+reset-names, and adds specific name constraints in the conditional block.
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/clock/xlnx,versal-clk.example.dtb: zynqmp-firmware (xlnx,zynqmp-firmware): clock-controller:clock-names:0: 'pss_ref_clk' was expected
-	from schema $id: http://devicetree.org/schemas/firmware/xilinx/xlnx,zynqmp-firmware.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/clock/xlnx,versal-clk.example.dtb: zynqmp-firmware (xlnx,zynqmp-firmware): clock-controller:clock-names:1: 'video_clk' was expected
-	from schema $id: http://devicetree.org/schemas/firmware/xilinx/xlnx,zynqmp-firmware.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/clock/xlnx,versal-clk.example.dtb: zynqmp-firmware (xlnx,zynqmp-firmware): clock-controller:clock-names: ['ref', 'pl_alt_ref'] is too short
-	from schema $id: http://devicetree.org/schemas/firmware/xilinx/xlnx,zynqmp-firmware.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/clock/xlnx,versal-clk.example.dtb: zynqmp-firmware (xlnx,zynqmp-firmware): clock-controller:clocks: [[4294967295], [4294967295]] is too short
-	from schema $id: http://devicetree.org/schemas/firmware/xilinx/xlnx,zynqmp-firmware.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/clock/xlnx,versal-clk.example.dtb: zynqmp-firmware (xlnx,zynqmp-firmware): clock-controller:compatible:0: 'xlnx,zynqmp-clk' was expected
-	from schema $id: http://devicetree.org/schemas/firmware/xilinx/xlnx,zynqmp-firmware.yaml
+> diff --git a/Documentation/devicetree/bindings/pci/mediatek-pcie.yaml b/D=
+ocumentation/devicetree/bindings/pci/mediatek-pcie.yaml
+> --- a/Documentation/devicetree/bindings/pci/mediatek-pcie.yaml
+> +++ b/Documentation/devicetree/bindings/pci/mediatek-pcie.yaml
+[ ... ]
+> @@ -127,6 +129,12 @@ allOf:
+>          phy-names:
+>            const: pcie-phy1
+> =20
+> +        resets-names:
 
-doc reference errors (make refcheckdocs):
+[Severity: Medium]
+This isn't a runtime bug, but there appears to be a typo in this property
+name (resets-names instead of reset-names). Will this cause the DT binding
+schema validation to ignore these constraints and silently allow incorrectly
+ordered values for the reset-names property?
 
-See https://patchwork.kernel.org/project/devicetree/patch/f6fc3f65475888cd5726e3f2795a110e9f7a79c3.1783495122.git.michal.simek@amd.com
+> +          minItems: 1
+> +          items:
+> +            - const: pcie-rst1
+> +            - const: pcie-perstout1
+> +
+>          power-domain: false
+> =20
+>        required:
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260708090533.1973=
+4-1-ansuelsmth@gmail.com?part=3D1
 
