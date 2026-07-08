@@ -1,280 +1,193 @@
-Return-Path: <devicetree+bounces-322720-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-322722-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id Ey4dOyMoTmoKEQIAu9opvQ
-	(envelope-from <devicetree+bounces-322720-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 12:36:19 +0200
+	id mK99OlUpTmpPEQIAu9opvQ
+	(envelope-from <devicetree+bounces-322722-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 12:41:25 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F2B272463F
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 12:36:19 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F6F87246D2
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 12:41:25 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=linaro.org header.s=google header.b=yCd7Wac0;
-	dmarc=pass (policy=none) header.from=linaro.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322720-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-322720-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=fEoUTDKV;
+	dmarc=pass (policy=none) header.from=gmail.com;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322722-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-322722-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 2A3433016D15
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 10:28:58 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id F10E0300FC8A
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 10:36:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5260F3FBEC2;
-	Wed,  8 Jul 2026 10:28:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E37439DBE5;
+	Wed,  8 Jul 2026 10:36:32 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f176.google.com (mail-lj1-f176.google.com [209.85.208.176])
+Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com [209.85.214.176])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E4C1409610
-	for <devicetree@vger.kernel.org>; Wed,  8 Jul 2026 10:28:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22FC73B27FF
+	for <devicetree@vger.kernel.org>; Wed,  8 Jul 2026 10:36:17 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783506534; cv=none; b=fyPbyAW6Nn+/zy6zQmuwMhsR3WQJlzHSfe/saEzG4YL+x+9LA+K+TFnZMvmieWTnLFZdwJzxLi3D7dHUk3Zph0gCdX8ZBrdBdgoljL8AXP12ztt4gV1xXz+Rtnk1aUKtRiNFwlj8svZ6OZPmkWKXWdu8GOQE8XS8SZe5OvecL9I=
+	t=1783506987; cv=none; b=kdYe+f5zJBXMd+q9XCoyq7Tj5YU8AwwrjfoDEP753OSq29DSWL+g96IlI04I5R4somaG3HFUfEr8nm4dq2CVOQgNsikwSimyz5l0tpO7El3Hx7m9I+lQdNLxf4vjCb/ekrspTheELgrZvZCkXEkvQSATab/GaLe9a0S2B+huHdc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783506534; c=relaxed/simple;
-	bh=T+YudoEqU0gmjCwLQrrgsNuIsIATGlpgiIivT5AysPc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Ddk8aj98tr64X+sYq2KHUcQUQtZD8Kb6EsGEvzaL5R7qw+F2CRJ0gwaSor5yvj0vDSOjVG/VgkfkNBZMqKaociXvodFBO1BDIVl8vphw8aGdXDlDRE4iGZ+UEtHiEoSOITI4KltL2V+pAnByi057N7uWqHrrpQ4+bcyOD4bTWmw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=yCd7Wac0; arc=none smtp.client-ip=209.85.208.176
-Received: by mail-lj1-f176.google.com with SMTP id 38308e7fff4ca-399c1225f22so127071fa.1
-        for <devicetree@vger.kernel.org>; Wed, 08 Jul 2026 03:28:50 -0700 (PDT)
+	s=arc-20240116; t=1783506987; c=relaxed/simple;
+	bh=CFZQ4T2NuSY6b1uW22iyRht6jFkIPGjm2CRlUiEMznw=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=S4bfkOpEWAFeWVwz5xnTwJtUOP8NCC+SOdtX6odtqudp7WclKsE9SmvsJJkFAn2XHcrTH42iyJ0sHGXElZX3dtW4CR0svVfKdjb+4e93Z7c6nUpIgqY33WpI3kIWpaVmTFs6VKzQeReK5a8RPKKkyjoaG6d28CoZnBZhrUvp+p4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fEoUTDKV; arc=none smtp.client-ip=209.85.214.176
+Received: by mail-pl1-f176.google.com with SMTP id d9443c01a7336-2cc97653887so5866665ad.1
+        for <devicetree@vger.kernel.org>; Wed, 08 Jul 2026 03:36:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1783506528; x=1784111328; darn=vger.kernel.org;
-        h=content-transfer-encoding:content-type:in-reply-to:from:references
-         :cc:to:subject:user-agent:mime-version:date:message-id:from:to:cc
-         :subject:date:message-id:reply-to:content-type;
-        bh=xHPnRrFIoOTHJ0es5XHY5x8jGBMXqt/1gGu6E0UmX+s=;
-        b=yCd7Wac0Cg6Ji+PrbRua4XqGttMDamrIUcGwlNipvN9PayLsMGXI8VpbCgJUO4ygk0
-         oKO2aCWeNx4OeMIaGCyiO/hP0vQ5O5lkUL8iq8tOGwML5FMHyKR2Acc8uKV+5zqAS4Hn
-         0EyvFC9dU94vNbcteREPOITaZw97H1stdcK6j/QjtKh1zH1AQYKdPzs89dyHH8PpY5hR
-         xuXO5fzxENiHu3ABFM9RmMJ44CTMENRxbsEErXtkubnCPyGX5UOYszLW1eh86+qJsKlK
-         RtAkJeHwBuWbEd0r7vJcmYsdROiUoEnG9gO4oT61/7gdHCW/482goXiLnJYWhZHtO54x
-         wYQg==
+        d=gmail.com; s=20251104; t=1783506973; x=1784111773; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=EcTCzAOxZhd2+yZYHcQy1edub3AeT6RA/ghrUBqO+Sc=;
+        b=fEoUTDKVAsNXFPD6BTRpVN3wqRfQCBOPowo/Z4NyjxsRXa4fBS6xQZ5pH4h30pyZsR
+         99RC+JmHJQbrkFe28dg5GW1SRL4p25UAxQ52Am155idl7HL4/qQ0KnS6A8QjNIhNrIYW
+         9v/CDfLR8hHgI1b9T4bUZmH/sQm/usML09usFScW4HbB+iFoH2pmUjhelhZqt5qd8c3V
+         9Nx+ek++Kn49XHdQj0b6M76Tt0Cflz7BAmTmaDNZ2EzwxM28uayMxvGJwgUnLYEtRvi6
+         sWIa5d4XGx+R/57M7WJVE3ORWVusWQMQzcSU711jF6kl9w3pu8u3YF4FviWOY6BZFYdS
+         UD1g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783506528; x=1784111328;
-        h=content-transfer-encoding:content-type:in-reply-to:from:references
-         :cc:to:subject:user-agent:mime-version:date:message-id:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=xHPnRrFIoOTHJ0es5XHY5x8jGBMXqt/1gGu6E0UmX+s=;
-        b=juSoO8YyvTAkUwja71a8LY8FurJLgNrXOCEwZ8BN3iUpTnaGcHMx4E92I6xjyYOl48
-         UQOp12m4vhIlZ/cXYGrjaP8SKRnOx/aj9qqmIi183wTnGse5gwnP87D3xSJI2kysJOVS
-         F4jI5lu1TqVUn7EC4loaU5Nhjyum6J26eITvNjSUaKnKMUlTO95IPKv2qMFSogoYdifg
-         xo74TJitkdji/i92lKga0PxDBeK28US92UaM0UpBwME5ec5vrC17LZdbyxWb2mMcIxGY
-         +YLb2O+rRXyECTxSLWlxfeXyoxE3rnmMK1hvxq58ZiTobpdEh4PbhQcWUgFqDrgGlETH
-         bL8Q==
-X-Forwarded-Encrypted: i=1; AHgh+Rq7wWd14xs80xVzS6dzzHvh2uETuQR3sruz/YHCmn7/IN+UtLyVmfFZn++I0bw/Z4otHZJ6rHTVBBEk@vger.kernel.org
-X-Gm-Message-State: AOJu0YzVbdH51nLy87GnKMlq7a1sC05Q5nXQHWSAAYR1vyrRY4C61ICn
-	tNrfn6VfRSJ7ukUUqWLOV8kljdFCCuT6jFHvq+PioRQt2N8LlTKmKMInwm7YF/nIh4A=
-X-Gm-Gg: AfdE7ckZarKYVkkLLXRVASW6tCB9fOGVnEP8Mjgz9mzHF4FLs9CLEnUJdLEjeOpDX3z
-	y8PCvRiuspkqhfpJObMwuz1HbVpXcInvtEengautCQdFW9LpHp0fzTwtSOwDYcFQQweNuhLQb8L
-	2rcnlLEERBekYz9n83MtYt2Gbx/OPf5jLBFldUlSEKze0X6OHzXN/Bs9kqxlVcf0EHckguoEBzm
-	8p0eNoSHlCEXBPHgisAIZjSlByjISRvJ/NZ6Qv3x/EcEj8UUhdcaLLOTwWwvfDPJy8XoSb8uWVj
-	hZymPVJ2j4frNxlZj0af4+w9jfprH+dR96eoYVaGTlYrUVt4t42XZD/w/0kL0iuJsJG3dSNNLqw
-	pQvKKkaOmYn9UGpAdAjR3ucT5j8E47qlLK9iukXH7jLHTuT3Z5vTZGTZGc9b0cH2IoOz4K8g5s0
-	gMozHkcPR3d089Bzd7JZposdINdHRp79JCKIndgICB+l6jCLXMof3/b2uXHRadLsaBKLrCjyJtU
-	JtESg==
-X-Received: by 2002:a05:651c:1473:b0:39c:754f:eaf1 with SMTP id 38308e7fff4ca-39c796f1452mr2908571fa.2.1783506528197;
-        Wed, 08 Jul 2026 03:28:48 -0700 (PDT)
-Received: from [192.168.1.100] (91-159-24-186.elisa-laajakaista.fi. [91.159.24.186])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-39b4ad1bdbasm34252791fa.5.2026.07.08.03.28.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 08 Jul 2026 03:28:47 -0700 (PDT)
-Message-ID: <fffc51f1-9137-4951-b9b8-9f7f263c7878@linaro.org>
-Date: Wed, 8 Jul 2026 13:28:46 +0300
+        d=1e100.net; s=20251104; t=1783506973; x=1784111773;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=EcTCzAOxZhd2+yZYHcQy1edub3AeT6RA/ghrUBqO+Sc=;
+        b=LAo4aWNLjzoJHmO1x5+qkWdH7EBVXLo0OsZ9QUdta/g9NZMOqzlr4DvkVZ4CqMezO1
+         bpCaj32tukD7Mk8MQeUREva9R6jNbaMIDLJNoc/SeUuqTF6QBkwsfDlkX9FH0SaG2Btw
+         Rgeo3sjH8uAW/YpQiep76MyhKTB1FBpVkLawhsy+Ewgttu6i20gPROuqNYyyK8bvSN/u
+         RC8t0RQiz+4fXFBPnAM4unaEiWsm5H3sWMXwKIVq5a80Ar2uPrPhmtSWpiPn6OcrSINL
+         ZFBkv1SdfjxFp2XIP0pXwLFWvXmS4Vr5Aqxe2ssH6e//P6y37NxIUJviYl9SyRXl04JP
+         7xVw==
+X-Forwarded-Encrypted: i=1; AHgh+Roa7NFu3pr5njCx5e17T0eDnTYY5EmEf7/1pjj6H71EYzv5eO49HzNvhE7RVsJGWqeR7E4tWrlh4IBT@vger.kernel.org
+X-Gm-Message-State: AOJu0YzNCxw6rwVQDAWODE3+6oVKJIMkL6GnotoM/PwfXxS/fXihj/Kn
+	kbvoASKtMEjfR6ZjtWYktDgOQ6Io0C01jf3EWRG8jGHwlmzUwePyqmv4
+X-Gm-Gg: AfdE7ckUx/YrKbSo1IzvflfmMd7ObTN8q3MdVF/qqsBTpO9u8OMEZtndSaPuKWQ0lkH
+	K0NrGA3ZOfTUiaGI2LsNRBj5DqVUMbrmbo76v122OXRqEmWCu3QWWfNspLsJRG4eZz8s3hYv4av
+	ezs7fJlD0uvUK/4cY2pJfjhd8I3vUGuBnTM2mPi6NW28kKSCX5wWYy6BJklSt9mI41GV7OaNWBr
+	HRDKLu192NUBJQk5z1Lp4cD4Zq8N6q2q4tjm7U3FGx2LwmUkCxfFCPuS0BF+YNhQGNBuhvIX/st
+	XGHS/vJeZjKQwvajzfdk5Oh48po6CwvS4sLKAk1MKsU1IAXBdI2R5mprLx0wL8pYmx9MLcHochN
+	htuuq1f6m90llXdNvXTCtZX42BPPZEwHPyb5O+VW0x33Vn/XhsIKnnokYVvvQ++tOzZ/JEDZGJr
+	QpwqyjjcOsX5RsoVxbZV8HRtfMrwSLp/HHJ3HEEfIwK2FEbZMq/Y25wk+8+875zehiam/yJAyWt
+	w==
+X-Received: by 2002:a17:902:d487:b0:2cc:d807:369c with SMTP id d9443c01a7336-2ccea3e6988mr22070025ad.45.1783506973202;
+        Wed, 08 Jul 2026 03:36:13 -0700 (PDT)
+Received: from localhost.localdomain (60-250-196-139.hinet-ip.hinet.net. [60.250.196.139])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2ccc9bdb9a3sm25987525ad.13.2026.07.08.03.36.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 08 Jul 2026 03:36:12 -0700 (PDT)
+From: Joey Lu <a0987203069@gmail.com>
+To: Vinod Koul <vkoul@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Jacky Huang <ychuang3@nuvoton.com>,
+	Shan-Chun Hung <schung@nuvoton.com>,
+	Hui-Ping Chen <hpchen0nvt@gmail.com>,
+	Joey Lu <yclu4@nuvoton.com>,
+	linux-phy@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Joey Lu <a0987203069@gmail.com>
+Subject: [PATCH v3 0/3] phy: nuvoton: extend MA35D1 USB2 PHY driver for dual-port OTG support
+Date: Wed,  8 Jul 2026 18:36:03 +0800
+Message-ID: <20260708103606.1462960-1-a0987203069@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 5/5] media: qcom: jpeg: Add Qualcomm JPEG V4L2 encoder
-To: "Gjorgji Rosikopulos (Consultant)"
- <gjorgji.rosikopulos@oss.qualcomm.com>,
- Atanas Filipov <atanas.filipov@oss.qualcomm.com>, linux-media@vger.kernel.org
-Cc: bryan.odonoghue@linaro.org, loic.poulain@oss.qualcomm.com,
- mchehab@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, andersson@kernel.org, konradybcio@kernel.org,
- linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20260706071113.383215-1-atanas.filipov@oss.qualcomm.com>
- <20260706071113.383215-6-atanas.filipov@oss.qualcomm.com>
- <51a0abf2-2a72-4551-894b-2c2de91ba0c2@linaro.org>
- <74a5b549-987c-4dac-a1a0-ff81150cd6ab@oss.qualcomm.com>
- <56f1fd7e-42bc-4034-81dc-302cb7c22951@linaro.org>
- <dd34b44d-396e-4267-b383-e4f8d20f8ef4@oss.qualcomm.com>
-From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-In-Reply-To: <dd34b44d-396e-4267-b383-e4f8d20f8ef4@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [0.84 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-322720-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-322722-lists,devicetree=lfdr.de];
+	FORGED_SENDER(0.00)[a0987203069@gmail.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[kernel.org,arndb.de,arm.com,nuvoton.com,gmail.com,lists.infradead.org,vger.kernel.org];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[16];
 	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:vkoul@kernel.org,m:neil.armstrong@linaro.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:arnd@arndb.de,m:catalin.marinas@arm.com,m:ychuang3@nuvoton.com,m:schung@nuvoton.com,m:hpchen0nvt@gmail.com,m:yclu4@nuvoton.com,m:linux-phy@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:a0987203069@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:gjorgji.rosikopulos@oss.qualcomm.com,m:atanas.filipov@oss.qualcomm.com,m:linux-media@vger.kernel.org,m:bryan.odonoghue@linaro.org,m:loic.poulain@oss.qualcomm.com,m:mchehab@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:andersson@kernel.org,m:konradybcio@kernel.org,m:linux-arm-msm@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[vladimir.zapolskiy@linaro.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[linaro.org:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[vladimir.zapolskiy@linaro.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	ALIAS_RESOLVED(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[a0987203069@gmail.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	ALIAS_RESOLVED(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,vger.kernel.org:from_smtp,linaro.org:from_mime,linaro.org:dkim,linaro.org:mid]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 3F2B272463F
+X-Rspamd-Queue-Id: 3F6F87246D2
 
-Hi Gjorgji.
+The MA35D1 SoC has two USB PHY ports managed by a shared hardware block:
 
-On 7/8/26 12:32, Gjorgji Rosikopulos (Consultant) wrote:
-> Hi Vlad,
-> 
-> On 7/8/2026 11:47 AM, Vladimir Zapolskiy wrote:
->> Hi Gjorgji.
->>
->> On 7/7/26 16:24, Gjorgji Rosikopulos (Consultant) wrote:
->>> Hi Vlad,
->>>
->>> On 7/6/2026 10:46 AM, Vladimir Zapolskiy wrote:
->>> <snip>
->>>>>
->>>>> +            interconnects = <&gem_noc MASTER_AMPSS_M0
->>>>> QCOM_ICC_TAG_ACTIVE_ONLY
->>>>> +                             &config_noc SLAVE_CAMERA_CFG
->>>>> QCOM_ICC_TAG_ACTIVE_ONLY>,
->>>>> +                            <&mmss_noc MASTER_CAMNOC_HF
->>>>> QCOM_ICC_TAG_ALWAYS
->>>>> +                             &mc_virt SLAVE_EBI_CH0
->>>>> QCOM_ICC_TAG_ALWAYS>,
->>>>> +                            <&mmss_noc MASTER_CAMNOC_SF
->>>>> QCOM_ICC_TAG_ALWAYS
->>>>> +                             &mc_virt SLAVE_EBI_CH0
->>>>> QCOM_ICC_TAG_ALWAYS>;
->>>>> +            interconnect-names = "cpu-cfg",
->>>>> +                                 "hf-mnoc",
->>>>> +                                 "sf-mnoc";
->>>>
->>>> This is the topic, which may raise a disagreement, but I'll repeat my
->>>> position about the need to remove all "CAMSS bus" specific resources from
->>>> the device node, they are found and should be allocated on parent's side.
->>>
->>> The interconnect has functionality to handle bw requests from different
->>> clients.
->>>
->>> Yes the best will be to have camss interconnect, so jpeg and other hw's
->>> to vote
->>>
->>> on that (actually it is possible in icc framework) but what is the
->>> benefit of moving
->>>
->>> those to camss? Is it not better to create camss icc. I understand
->>> you want them to be on parent side. But how to vote on bw? Most of the
->>> time it
->>
->> Let's concentrate on hardware bindings description, no APIs, votes etc.
->> at this point of discussion.
-> I agree but there should be an API for icc voting which Jpeg need to use,
-> currently it is fixed to some values, but voting need to become dynamic
-> at some point of time, because it depends on runtime parameters, resolution
-> format etc.>
+  - PHY0 (USB0): OTG port shared between the DWC2 gadget controller and
+    the EHCI0/OHCI0 host controllers.  A hardware mux automatically routes
+    USB0 signals to the correct controller based on the USB ID pin state.
 
-Sure, but I believe it's quite clear that any software implementation
-should be discussed only when the hardware description is fixed.
+  - PHY1 (USB1): dedicated host-only port for EHCI1/OHCI1.
 
->> There is SM8250 CAMSS device, which serves as a hierarchical parent (or
->> could be considered as a "bus" device) to this new JPEG encoder device
->> and probably to a number of future IPs under CAMSS. All CAMSS sub-devices
->> get hardware descriptions as children device tree nodes of CAMSS parent
->> device tree node naturally.
-> I agree the device tree is best to represent real hw topology. >
+This series extends the existing phy-ma35d1-usb2.c driver and its binding
+to cover both ports and add OTG role-switch support, while keeping full
+backward compatibility with existing device trees.
 
-Well, it's not just the best, it's the only possible way.
+Changes since v2:
 
->> Copying of the same identical information about clocks, interconnects
->> and power domains from the hierarchical parent device to children devices
->> is not needed, and practically it only lowers signal-to-noise ratio.
-> Here also i tend to agree.>
->> Since information about the actual defect in hardware description is
->> reported, the problem can and should be avoided, the handling of a better
->> hardware description and dealing with any kind of complexity will be done
->> in the CAMSS and/or CAMSS children drivers.
->>
->> If you need to get a bit more formal point of view on the matter, I'd
->> prefer to see descriptions of hardware properties organised in a tree
->> topology rather than in the originally proposed star topology. By doing
->> it the system complexity is reduced from N to 1.
-> 
-> Maybe I'm missing the whole picture of your proposal, but I want to add my
-> point of view on this matter.
-> 
-> The JPEG encoder HW block has no dependency on the other processing HW
-> blocks in the camera subsystem
-> 
-> It shares resources like camnoc, clocks, GDSC, etc.,
-> but does not share anything with the other HW processing blocks. For me,
-> the JPEG driver should not have SW architectural dependencies on CAMSS.
+  - Dropped patch 1 (nuvoton,ma35d1-reset: add simple-mfd and child node
+    support) entirely.  That approach embedded usb-phy@60 as a child of the
+    syscon node with a reg property, which broke the established ABI for
+    out-of-tree MA35D1 board files.
 
-To move forward there should be a clear answer to a simple question,
-does Qualcomm JPEG encoder IP belong to CAMSS group of devices or not?
+  - The PHY remains a standalone top-level node as in the mainline binding.
+    The existing required properties (clocks, nuvoton,sys, #phy-cells) are
+    retained.  No reg property is added.
 
-If no, then JPEG encoder device tree node shall be located outside of
-CAMSS device tree node, all resources needed for JPEG encoder device
-operation get their descrition in this stand-alone device tree node.
+  - '#phy-cells' is now enum: [0, 1] instead of const: 1.  Boards using
+    '#phy-cells = <0>' continue to validate and work unchanged.
 
-If yes, then JPEG encoder device tree node is a child of CAMSS "bus"
-device tree node, and only resources specific to JPEG encoder device
-are described in its device tree node, because other resources are
-already described in the parent device tree node.
+  - The DTS usb_phy node is a sibling of sys (not its child), retaining
+    clocks and nuvoton,sys, matching the original binding structure.
 
-> The shared resources within the camera subsystem are reference-counted,
-> the only exception is clock rates, which are set based on the last set_rate
-> call — but I think that could be handled by migrating the clocks to be
-> represented as an icc-clk provider, to keep the higher clock and maintain
-> the needed policy.
-> 
-> What I think would be best (just a proposal) is to introduce a new camera-icc
-> provider that handles all these resources — camera operates on bandwidth
-> anyway, and rate calculations should be done in icc, since the  infrastructure
-> for that already exists in the icc framework. But I think this has already been
-> discussed with Atanas, so maybe there's no need to go over it again.
-> 
-> I'm not sure how to move forward with the JPEG encoder changes.
+Joey Lu (3):
+  dt-bindings: phy: nuvoton,ma35d1-usb2-phy: extend for dual-port and
+    OTG
+  arm64: dts: nuvoton: ma35d1: add USB controllers and dual-port PHY
+    node
+  phy: nuvoton: phy-ma35d1-usb2: extend to dual-port with OTG support
 
-First of all it should get a reviewed dt binding documentation, let's
-do it, and a software implementation will follow the agreement.
+ .../bindings/phy/nuvoton,ma35d1-usb2-phy.yaml |  45 ++-
+ .../boot/dts/nuvoton/ma35d1-iot-512m.dts      |  36 +++
+ .../boot/dts/nuvoton/ma35d1-som-256m.dts      |  36 +++
+ arch/arm64/boot/dts/nuvoton/ma35d1.dtsi       |  65 ++++
+ drivers/phy/nuvoton/phy-ma35d1-usb2.c         | 279 +++++++++++++-----
+ 5 files changed, 384 insertions(+), 77 deletions(-)
 
-> I see two different proposals:
-> 1. Independent sub-nodes (Bryan's direction) — I honestly like this one more.
-> 2. CAMSS handling the resources currently managed by the other frameworks.
-> There are good arguments for this too.
-> 
-> Bryan, as maintainer, can you say which direction to post next? :-)
-> 
 
-Here device tree bindings maintainers should share their view, if
-hardware properties should be literally repeated in each child device
-tree node and their parent device node (star topology, N copies one
-for each child), or not (tree topology, 1 copy in parent's node),
-this is a generic question.
-
+base-commit: dc59e4fea9d83f03bad6bddf3fa2e52491777482
 -- 
-Best wishes,
-Vladimir
+2.43.0
+
 
