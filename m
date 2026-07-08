@@ -1,439 +1,236 @@
-Return-Path: <devicetree+bounces-322693-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-322694-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id g7AHDxclTmobEAIAu9opvQ
-	(envelope-from <devicetree+bounces-322693-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 12:23:19 +0200
+	id JzQ8HYkmTmqqEAIAu9opvQ
+	(envelope-from <devicetree+bounces-322694-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 12:29:29 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F3B97243A7
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 12:23:18 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id BFBAA72454B
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 12:29:28 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=none;
-	dmarc=none;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322693-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-322693-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=bootlin.com header.s=dkim header.b=jlFd1uYn;
+	dmarc=pass (policy=reject) header.from=bootlin.com;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322694-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-322694-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 29E6930BD1DB
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 10:16:14 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B724A313C03F
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 10:16:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE6AC3A1E8C;
-	Wed,  8 Jul 2026 10:15:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4018D3A3E73;
+	Wed,  8 Jul 2026 10:15:51 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72EBB39A05C;
-	Wed,  8 Jul 2026 10:15:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6204397B12
+	for <devicetree@vger.kernel.org>; Wed,  8 Jul 2026 10:15:48 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783505744; cv=none; b=Jxz1VbSEO6Q5yrlLlaLK6s3nysKgpNmQpep9j9KHtYdUrgJV/sa4DTMhZFKxxE/c+y8Sj6TOeGYb4KRvvSXuMRYZhMe/bBPdaEdoIybRyXcOMWF7RzvIP/jiEEk7gVDOkpYzw+4x0q1K5bqR9UR6VwxA0xQ8Pp18IX8MnR2qtas=
+	t=1783505751; cv=none; b=Itt9Q6yufSiQfoRBwGxkQlsWRUBo+10q426fybFe1eUMSqvBg0HlfTbYjCtqKZR/DChN9yPwbtEmo51yqxvme3AtdmCpbwS7mEgPW+IcQ3Itugdpjj5WiMLfmjLmX5fwj/YZt228Vh7ymjfZeYTZl3A2NgL4ZM32zAPv5tFuEYE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783505744; c=relaxed/simple;
-	bh=lAgoIw5M85m3vwfGh3ElGRa4k7a1Fv0Q2YZHBqgV6lE=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=k0aI93UpwRnOzk0PsQF4GdVtbTJFoL2BE6y3qlpzN0WVZgO7n9IXGE024q7MUvGcyLZwmK3SnSP0WE3UOmtarcV9Vt6ysRsdjtaL/+VfQAm1Jt6F4bM/ZCMnhKm2OXtPxB5ri2lFVJJRHWrU8s3Zj9YSC/7Ygy/47VebImSH0qY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E8BC41F00A3A;
-	Wed,  8 Jul 2026 10:15:39 +0000 (UTC)
-From: Geert Uytterhoeven <geert+renesas@glider.be>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Brian Masney <bmasney@redhat.com>,
-	Ulf Hansson <ulfh@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Marek Vasut <marek.vasut+renesas@mailbox.org>,
-	Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-Cc: devicetree@vger.kernel.org,
-	linux-clk@vger.kernel.org,
-	linux-pm@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH v2 6/6] arm64: dts: renesas: r8a78000: Add MDLC nodes
-Date: Wed,  8 Jul 2026 12:15:11 +0200
-Message-ID: <dca2c4940ba38b897f04b6fb67591de9835900e1.1783505142.git.geert+renesas@glider.be>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <cover.1783505142.git.geert+renesas@glider.be>
-References: <cover.1783505142.git.geert+renesas@glider.be>
+	s=arc-20240116; t=1783505751; c=relaxed/simple;
+	bh=3mw24PdZ/MnLAdgaavO1HCjV8HURiuVJHNRuMIows9s=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=VwnaijsEjvTpKh//5sE6aVc20M7NxpLejvfXcwLQazuSgxNJMevzyB74A4DMfMSA1Yf17nWETtV+zXO7kkmxQsLiJIlF8JAq7+9a1ZNPDXMNGaUjvWZNkxtZlyKxbfZIk0bTrA8/LyXy7wM09CNWaxizji2gNMETddBb4sAD+lA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=jlFd1uYn; arc=none smtp.client-ip=185.246.84.56
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-02.galae.net (Postfix) with ESMTPS id 7B04B1A0EDC;
+	Wed,  8 Jul 2026 10:15:47 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 47BE760337;
+	Wed,  8 Jul 2026 10:15:47 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id EFF6711BC3422;
+	Wed,  8 Jul 2026 12:15:38 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1783505745; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding; bh=vAvPgJKH8E5PMa+rzxmboQbVEpCqkKMOdwuf26Tm0K8=;
+	b=jlFd1uYn2yV2CPBYgVByiNDZQVn+1Kpebd2p4SHFTj/6APevVxQac56sRg/ftHrvki0SEk
+	TPL0Vm8+WFLZJ/9LRiQcWKjwwV8MXGDrrN2uJUQzLeOXI4Sa2niDSKYsa04pTn5CIMUoD0
+	KyFhOHEOcIzvJK+2+p9NigRBDv1pMDuC/O1TZGyKiHWXyHtTD6+tj0tbCHWvdKY1dVXdNA
+	m5yfzIufseA2G4jO+M1T08/49wubZ37ZJtZY8uzqnSqGB1zKoxWCrpuVdxZJfCNcPYZKCc
+	bmOrBuoLbYuI+hGHHB6L8fgLDpLAyMR4uv1TYZg38DPmwPnTS+cHUQ3HBLm3pA==
+From: Paul Louvel <paul.louvel@bootlin.com>
+Subject: [PATCH v2 00/10] soc: fsl: qe: QE PIC improvement and add support
+ of IRQs to QUICC ENGINE GPIOs
+Date: Wed, 08 Jul 2026 12:15:13 +0200
+Message-Id: <20260708-qe-pic-gpios-v2-0-1972044cfbd1@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/23OQQ6CMBAF0KuYrq1pp9BWV97DuKBl0DFKkSLRG
+ O4uxY2iy5/M+3+eLGJLGNlm8WQt9hQp1GOA5YL5Y1EfkFM5ZgYCtMil4lfkDXl+aChELoxCsJm
+ WeaHYSJoWK7pPdbv9O8ebO6HvUke6OFLsQvuY9nqZ7t7VWsyqe8kFr5T1CJUAi9nWhdCdqV75c
+ ElNEzN/mfYKjdAIpvRfLP3Uw+dqNuOQ+LpwKKWtysz9cvXJ8xlXI7cCtZPOlA7UNx+G4QWo3SB
+ mcQEAAA==
+X-Change-ID: 20260513-qe-pic-gpios-073e284615a3
+To: Qiang Zhao <qiang.zhao@nxp.com>, 
+ "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>, 
+ Thomas Gleixner <tglx@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Linus Walleij <linusw@kernel.org>, 
+ Bartosz Golaszewski <brgl@kernel.org>, 
+ Madhavan Srinivasan <maddy@linux.ibm.com>, 
+ Michael Ellerman <mpe@ellerman.id.au>, Nicholas Piggin <npiggin@gmail.com>
+Cc: linuxppc-dev@lists.ozlabs.org, linux-arm-kernel@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-gpio@vger.kernel.org, Paul Louvel <paul.louvel@bootlin.com>, 
+ Herve Codina <herve.codina@bootlin.com>, stable@kernel.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>, 
+ Christophe Leroy <chleroy@kernel.org>
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1783505738; l=4530;
+ i=paul.louvel@bootlin.com; s=20260313; h=from:subject:message-id;
+ bh=3mw24PdZ/MnLAdgaavO1HCjV8HURiuVJHNRuMIows9s=;
+ b=pdrtt4GhhaY6xcboT+i0fyq42dyNHqHy5xcjYiq0zPAb3adp1yM5GcBdpgFU3U49Vj4rHUtvJ
+ kK9jcVgfRkGDRqsTyU6D3iVuO+6kFpBIrtSULIyzkr4pYqa6fna31Ta
+X-Developer-Key: i=paul.louvel@bootlin.com; a=ed25519;
+ pk=eLW50NT18UAvUT5cAcYf88zNbBCZDLFXuptpyLVhVIU=
+X-Last-TLS-Session-Version: TLSv1.3
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.54 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
+	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-322694-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[glider.be];
-	TAGGED_FROM(0.00)[bounces-322693-lists,devicetree=lfdr.de,renesas];
-	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:mturquette@baylibre.com,m:sboyd@kernel.org,m:bmasney@redhat.com,m:ulfh@kernel.org,m:p.zabel@pengutronix.de,m:wsa+renesas@sang-engineering.com,m:marek.vasut+renesas@mailbox.org,m:kuninori.morimoto.gx@renesas.com,m:devicetree@vger.kernel.org,m:linux-clk@vger.kernel.org,m:linux-pm@vger.kernel.org,m:linux-renesas-soc@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:geert+renesas@glider.be,m:krzk@kernel.org,m:conor@kernel.org,m:wsa@sang-engineering.com,m:marek.vasut@mailbox.org,m:geert@glider.be,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[geert@glider.be,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	RCVD_COUNT_THREE(0.00)[4];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	FREEMAIL_TO(0.00)[nxp.com,kernel.org,linux.ibm.com,ellerman.id.au,gmail.com];
+	FORGED_SENDER(0.00)[paul.louvel@bootlin.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[21];
+	FORGED_RECIPIENTS(0.00)[m:qiang.zhao@nxp.com,m:chleroy@kernel.org,m:tglx@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linusw@kernel.org,m:brgl@kernel.org,m:maddy@linux.ibm.com,m:mpe@ellerman.id.au,m:npiggin@gmail.com,m:linuxppc-dev@lists.ozlabs.org,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-gpio@vger.kernel.org,m:paul.louvel@bootlin.com,m:herve.codina@bootlin.com,m:stable@kernel.org,m:krzysztof.kozlowski@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[geert@glider.be,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[paul.louvel@bootlin.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[bootlin.com:+];
 	ALIAS_RESOLVED(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	MID_RHS_MATCH_FROM(0.00)[];
-	R_DKIM_NA(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,glider.be:from_mime,glider.be:email,glider.be:mid,vger.kernel.org:from_smtp]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:dkim,bootlin.com:mid,bootlin.com:from_mime,bootlin.com:url,bootlin.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 7F3B97243A7
+X-Rspamd-Queue-Id: BFBAA72454B
 
-Add device nodes for the Module Control (MDLC) blocks on the R-Car X5H
-(R8A78000) SoC.
+This series modernizes the QUICC Engine Port Interrupt Controller (QE
+PIC) driver and adds the ability for QE GPIO pins to generate interrupts
+through the QE PIC, completing Christophe Leroy's prior work [1].
 
-Complete hardware desciption of all (H)SCIF serial ports, by linking
-them to an MDLC for power domains and resets.
+Christophe's series was partially merged; patches 4, 6 and 7 did not
+make it to mainline.
 
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+The series is organized in three parts:
+
+1) Add missing chained_irq_{enter,exit}() calls
+
+   - In a chained handler, the parent controller need to mask and ack
+     the interrupt source.
+
+2) DT binding updates
+
+   - Update #interrupt-cells from 1 to 2 in the QE PIC binding so
+     consumers can encode the interrupt type (falling-edge or
+     both-edges).
+
+   - Convert the QE GPIO binding from freeform text to DT schema.
+
+   - Extend the QE GPIO binding with an interrupt-map (nexus node) that
+     maps GPIO lines to parent QE PIC interrupts.  This approach was
+     suggested by Rob Herring [2] as an alternative to using compatible
+     strings and driver data to specify which pins support interrupts in
+     a given bank.
+
+3) QE PIC driver refactoring
+
+   - The QE PIC is a perfect fit to use the generic irq framework
+     instead. Perform the necessary changes to the driver to convert it.
+
+   - Minor cleanups.
+
+4) QE GPIO interrupt support
+
+   - Add a to_irq() method to the QE GPIO driver that perform the
+     mapping of the GPIO pin to the parent interrupt domain, allowing
+     GPIO pins to be used as interrupt sources through the QE PIC via
+     gpio_to_irq().
+
+[1] https://lore.kernel.org/all/cover.1758212309.git.christophe.leroy@csgroup.eu/
+[2] https://lore.kernel.org/all/20250919152414.GB852815-robh@kernel.org/
+
+Signed-off-by: Paul Louvel <paul.louvel@bootlin.com>
+
 ---
-v2:
-  - Split in separate CPG and MDLC patches.
----
- arch/arm64/boot/dts/renesas/r8a78000.dtsi | 241 ++++++++++++++++++++++
- 1 file changed, 241 insertions(+)
+Changes in v2:
+- Applied Christophe two patches before this series [3] [4].
+- Fix a miscalculation in patch 6 when iterating over bits set in
+  CEPIER. Old ffs() is 1-indexed, but for_each_set_bit() is 0-indexed.
+- Add in patch 3 commit message more info about the changes introduced
+  by the conversion to DT schema.
+- In patch 4, keep the existing example without any IRQ supports, and
+  add only one new example. Also fix the DTS coding style that was wrong.
+- Add raw spinlock guard to mask and unmasking hook since multiple CPUs
+  can modify different IRQs concurrently. Also add it to set_type hook.
+- Drop usage of register offset in irq_chip_type. It requires additional
+  load instruction with no real benefit since irq_gc_* functions are not
+  used.
+- A race condition can occurs if an interrupt fires immediately after
+  the domain is initialised, because gc is NULL.
+  Instead, do not carry gc in the struct qepic_data. Add the domain in
+  the handler data, and retrieve gc with irq_data_get_irq_chip_data() in
+  hook functions.
+  Because of this modification, patch 10 and 11 are dropped.
+- Link to v1: https://patch.msgid.link/20260703-qe-pic-gpios-v1-0-6c3e706e27dc@bootlin.com
 
-diff --git a/arch/arm64/boot/dts/renesas/r8a78000.dtsi b/arch/arm64/boot/dts/renesas/r8a78000.dtsi
-index 1fe078c7822c01a5..c256d7cf22872bbc 100644
---- a/arch/arm64/boot/dts/renesas/r8a78000.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r8a78000.dtsi
-@@ -6,6 +6,7 @@
-  */
- 
- #include <dt-bindings/clock/renesas,r8a78000-cpg.h>
-+#include <dt-bindings/power/renesas,r8a78000-mdlc.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- 
- / {
-@@ -870,6 +871,8 @@ scif0: serial@c0700000 {
- 				 <&cpg R8A78000_CPG_SGASYNCD4_PERW_BUS>,
- 				 <&scif_clk>;
- 			clock-names = "fck", "brg_int", "scif_clk";
-+			power-domains = <&mdlc_perw R8A78000_MDLC_PD_APL 0x40>;
-+			resets = <&mdlc_perw 0x40>;
- 			status = "disabled";
- 		};
- 
-@@ -882,6 +885,8 @@ scif1: serial@c0704000 {
- 				 <&cpg R8A78000_CPG_SGASYNCD4_PERW_BUS>,
- 				 <&scif_clk>;
- 			clock-names = "fck", "brg_int", "scif_clk";
-+			power-domains = <&mdlc_perw R8A78000_MDLC_PD_APL 0x41>;
-+			resets = <&mdlc_perw 0x41>;
- 			status = "disabled";
- 		};
- 
-@@ -894,6 +899,8 @@ scif3: serial@c0708000 {
- 				 <&cpg R8A78000_CPG_SGASYNCD4_PERW_BUS>,
- 				 <&scif_clk>;
- 			clock-names = "fck", "brg_int", "scif_clk";
-+			power-domains = <&mdlc_perw R8A78000_MDLC_PD_APL 0x42>;
-+			resets = <&mdlc_perw 0x42>;
- 			status = "disabled";
- 		};
- 
-@@ -906,6 +913,8 @@ scif4: serial@c070c000 {
- 				 <&cpg R8A78000_CPG_SGASYNCD4_PERW_BUS>,
- 				 <&scif_clk>;
- 			clock-names = "fck", "brg_int", "scif_clk";
-+			power-domains = <&mdlc_perw R8A78000_MDLC_PD_APL 0x43>;
-+			resets = <&mdlc_perw 0x43>;
- 			status = "disabled";
- 		};
- 
-@@ -918,6 +927,8 @@ hscif0: serial@c0710000 {
- 				 <&cpg R8A78000_CPG_SGASYNCD4_PERW_BUS>,
- 				 <&scif_clk>;
- 			clock-names = "fck", "brg_int", "scif_clk";
-+			power-domains = <&mdlc_perw R8A78000_MDLC_PD_APL 0x54>;
-+			resets = <&mdlc_perw 0x54>;
- 			status = "disabled";
- 		};
- 
-@@ -930,6 +941,8 @@ hscif1: serial@c0714000 {
- 				 <&cpg R8A78000_CPG_SGASYNCD4_PERW_BUS>,
- 				 <&scif_clk>;
- 			clock-names = "fck", "brg_int", "scif_clk";
-+			power-domains = <&mdlc_perw R8A78000_MDLC_PD_APL 0x55>;
-+			resets = <&mdlc_perw 0x55>;
- 			status = "disabled";
- 		};
- 
-@@ -942,6 +955,8 @@ hscif2: serial@c0718000 {
- 				 <&cpg R8A78000_CPG_SGASYNCD4_PERW_BUS>,
- 				 <&scif_clk>;
- 			clock-names = "fck", "brg_int", "scif_clk";
-+			power-domains = <&mdlc_perw R8A78000_MDLC_PD_APL 0x56>;
-+			resets = <&mdlc_perw 0x56>;
- 			status = "disabled";
- 		};
- 
-@@ -954,6 +969,8 @@ hscif3: serial@c071c000 {
- 				 <&cpg R8A78000_CPG_SGASYNCD4_PERW_BUS>,
- 				 <&scif_clk>;
- 			clock-names = "fck", "brg_int", "scif_clk";
-+			power-domains = <&mdlc_perw R8A78000_MDLC_PD_APL 0x57>;
-+			resets = <&mdlc_perw 0x57>;
- 			status = "disabled";
- 		};
- 
-@@ -974,6 +991,230 @@ cpg: clock-controller@c1320000 {
- 			#clock-cells = <1>;
- 			bootph-all;
- 		};
-+
-+		mdlc_vipn: system-controller@c3060000 {
-+			compatible = "renesas,r8a78000-mdlc";
-+			reg = <0 0xc3060000 0 0x1000>;
-+			#power-domain-cells = <2>;
-+			#reset-cells = <1>;
-+			bootph-all;
-+		};
-+
-+		mdlc_vips: system-controller@c3460000 {
-+			compatible = "renesas,r8a78000-mdlc";
-+			reg = <0 0xc3460000 0 0x1000>;
-+			#power-domain-cells = <2>;
-+			#reset-cells = <1>;
-+			bootph-all;
-+		};
-+
-+		mdlc_vio: system-controller@c5000000 {
-+			compatible = "renesas,r8a78000-mdlc";
-+			reg = <0 0xc5000000 0 0x1000>;
-+			#power-domain-cells = <2>;
-+			#reset-cells = <1>;
-+			bootph-all;
-+		};
-+
-+		mdlc_pere: system-controller@c08f0000 {
-+			compatible = "renesas,r8a78000-mdlc";
-+			reg = <0 0xc08f0000 0 0x1000>;
-+			#power-domain-cells = <2>;
-+			#reset-cells = <1>;
-+			bootph-all;
-+		};
-+
-+		mdlc_perw: system-controller@c05d0000 {
-+			compatible = "renesas,r8a78000-mdlc";
-+			reg = <0 0xc05d0000 0 0x1000>;
-+			#power-domain-cells = <2>;
-+			#reset-cells = <1>;
-+			bootph-all;
-+		};
-+
-+		mdlc_ddr0: system-controller@e8000000 {
-+			compatible = "renesas,r8a78000-mdlc";
-+			reg = <0 0xe8000000 0 0x1000>;
-+			#power-domain-cells = <2>;
-+			#reset-cells = <1>;
-+			bootph-all;
-+		};
-+
-+		mdlc_ddr1: system-controller@e8080000 {
-+			compatible = "renesas,r8a78000-mdlc";
-+			reg = <0 0xe8080000 0 0x1000>;
-+			#power-domain-cells = <2>;
-+			#reset-cells = <1>;
-+			bootph-all;
-+		};
-+
-+		mdlc_ddr2: system-controller@e8100000 {
-+			compatible = "renesas,r8a78000-mdlc";
-+			reg = <0 0xe8100000 0 0x1000>;
-+			#power-domain-cells = <2>;
-+			#reset-cells = <1>;
-+			bootph-all;
-+		};
-+
-+		mdlc_ddr3: system-controller@e8180000 {
-+			compatible = "renesas,r8a78000-mdlc";
-+			reg = <0 0xe8180000 0 0x1000>;
-+			#power-domain-cells = <2>;
-+			#reset-cells = <1>;
-+			bootph-all;
-+		};
-+
-+		mdlc_ddr4: system-controller@e8200000 {
-+			compatible = "renesas,r8a78000-mdlc";
-+			reg = <0 0xe8200000 0 0x1000>;
-+			#power-domain-cells = <2>;
-+			#reset-cells = <1>;
-+			bootph-all;
-+		};
-+
-+		mdlc_ddr5: system-controller@e8280000 {
-+			compatible = "renesas,r8a78000-mdlc";
-+			reg = <0 0xe8280000 0 0x1000>;
-+			#power-domain-cells = <2>;
-+			#reset-cells = <1>;
-+			bootph-all;
-+		};
-+
-+		mdlc_ddr6: system-controller@e8300000 {
-+			compatible = "renesas,r8a78000-mdlc";
-+			reg = <0 0xe8300000 0 0x1000>;
-+			#power-domain-cells = <2>;
-+			#reset-cells = <1>;
-+			bootph-all;
-+		};
-+
-+		mdlc_ddr7: system-controller@e8380000 {
-+			compatible = "renesas,r8a78000-mdlc";
-+			reg = <0 0xe8380000 0 0x1000>;
-+			#power-domain-cells = <2>;
-+			#reset-cells = <1>;
-+			bootph-all;
-+		};
-+
-+		mdlc_hscn: system-controller@c9c90000 {
-+			compatible = "renesas,r8a78000-mdlc";
-+			reg = <0 0xc9c90000 0 0x1000>;
-+			#power-domain-cells = <2>;
-+			#reset-cells = <1>;
-+			bootph-all;
-+		};
-+
-+		mdlc_rt: system-controller@19440000 {
-+			compatible = "renesas,r8a78000-mdlc";
-+			reg = <0 0x19440000 0 0x1000>;
-+			#power-domain-cells = <2>;
-+			#reset-cells = <1>;
-+			bootph-all;
-+		};
-+
-+		mdlc_top: system-controller@c6480000 {
-+			compatible = "renesas,r8a78000-mdlc";
-+			reg = <0 0xc6480000 0 0x1000>;
-+			#power-domain-cells = <2>;
-+			#reset-cells = <1>;
-+			bootph-all;
-+		};
-+
-+		mdlc_hscs: system-controller@de200000 {
-+			compatible = "renesas,r8a78000-mdlc";
-+			reg = <0 0xde200000 0 0x1000>;
-+			#power-domain-cells = <2>;
-+			#reset-cells = <1>;
-+			bootph-all;
-+		};
-+
-+		mdlc_imn: system-controller@c1990000 {
-+			compatible = "renesas,r8a78000-mdlc";
-+			reg = <0 0xc1990000 0 0x1000>;
-+			#power-domain-cells = <2>;
-+			#reset-cells = <1>;
-+			bootph-all;
-+		};
-+
-+		mdlc_ims: system-controller@c1d90000 {
-+			compatible = "renesas,r8a78000-mdlc";
-+			reg = <0 0xc1d90000 0 0x1000>;
-+			#power-domain-cells = <2>;
-+			#reset-cells = <1>;
-+			bootph-all;
-+		};
-+
-+		mdlc_gpc: system-controller@cb510000 {
-+			compatible = "renesas,r8a78000-mdlc";
-+			reg = <0 0xcb510000 0 0x1000>;
-+			#power-domain-cells = <2>;
-+			#reset-cells = <1>;
-+			bootph-all;
-+		};
-+
-+		mdlc_dsp: system-controller@cbe90000 {
-+			compatible = "renesas,r8a78000-mdlc";
-+			reg = <0 0xcbe90000 0 0x1000>;
-+			#power-domain-cells = <2>;
-+			#reset-cells = <1>;
-+			bootph-all;
-+		};
-+
-+		mdlc_mm: system-controller@e9980000 {
-+			compatible = "renesas,r8a78000-mdlc";
-+			reg = <0 0xe9980000 0 0x1000>;
-+			#power-domain-cells = <2>;
-+			#reset-cells = <1>;
-+			bootph-all;
-+		};
-+
-+		mdlc_npu0: system-controller@d2c30000 {
-+			compatible = "renesas,r8a78000-mdlc";
-+			reg = <0 0xd2c30000 0 0x1000>;
-+			#power-domain-cells = <2>;
-+			#reset-cells = <1>;
-+			bootph-all;
-+		};
-+
-+		mdlc_npu1: system-controller@d6c30000 {
-+			compatible = "renesas,r8a78000-mdlc";
-+			reg = <0 0xd6c30000 0 0x1000>;
-+			#power-domain-cells = <2>;
-+			#reset-cells = <1>;
-+			bootph-all;
-+		};
-+
-+		mdlc_cmnn: system-controller@ca410000 {
-+			compatible = "renesas,r8a78000-mdlc";
-+			reg = <0 0xca410000 0 0x1000>;
-+			#power-domain-cells = <2>;
-+			#reset-cells = <1>;
-+			bootph-all;
-+		};
-+
-+		mdlc_cmns: system-controller@ca510000 {
-+			compatible = "renesas,r8a78000-mdlc";
-+			reg = <0 0xca510000 0 0x1000>;
-+			#power-domain-cells = <2>;
-+			#reset-cells = <1>;
-+			bootph-all;
-+		};
-+
-+		mdlc_scp: system-controller@c1330000 {
-+			compatible = "renesas,r8a78000-mdlc";
-+			reg = <0 0xc1330000 0 0x1000>;
-+			#power-domain-cells = <2>;
-+			#reset-cells = <1>;
-+			bootph-all;
-+		};
-+
-+		mdlc_aon: system-controller@c1338000 {
-+			compatible = "renesas,r8a78000-mdlc";
-+			reg = <0 0xc1338000 0 0x1000>;
-+			#power-domain-cells = <2>;
-+			#reset-cells = <1>;
-+			bootph-all;
-+		};
- 	};
- 
- 	timer {
--- 
-2.43.0
+[3] https://lore.kernel.org/all/b08f76c1d8ff864774246f1e2c2158c223c001be.1783435914.git.chleroy@kernel.org/
+[4] https://lore.kernel.org/all/cd46aec4b325745d38ac7992e4d3d5b4f4c4e95f.1783435914.git.chleroy@kernel.org/
+
+---
+Christophe Leroy (1):
+      dt-bindings: soc: fsl: qe: Convert QE GPIO to DT schema
+
+Paul Louvel (9):
+      soc: fsl: qe: Add chained_irq_{enter,exit}() calls in cascade handler
+      dt-bindings: soc: fsl: qe: Set #interrupt-cells to 2 to support interrupt type encoding
+      dt-bindings: soc: fsl: qe: Add support of IRQ in QE GPIO
+      soc: fsl: qe: Use generic_handle_domain_irq()
+      soc: fsl: qe: Iterate over all pending interrupts in cascade handler
+      soc: fsl: qe: Handle spurious interrupts
+      soc: fsl: qe: Convert to generic IRQ chip
+      soc: fsl: qe: Rename irq variable to parent_irq
+      soc: fsl: qe: Add support of IRQs in QE GPIO
+
+ .../bindings/gpio/fsl,mpc8323-qe-pario-bank.yaml   |  84 ++++++++++++
+ .../interrupt-controller/fsl,qe-ports-ic.yaml      |   4 +-
+ .../bindings/soc/fsl/cpm_qe/qe/par_io.txt          |  26 +---
+ drivers/soc/fsl/qe/Kconfig                         |   1 +
+ drivers/soc/fsl/qe/gpio.c                          |  28 +++-
+ drivers/soc/fsl/qe/qe_ports_ic.c                   | 145 +++++++++++++--------
+ 6 files changed, 208 insertions(+), 80 deletions(-)
+---
+base-commit: c34b47a17bc566c7113679e6ae095d5510b4f1c6
+change-id: 20260513-qe-pic-gpios-073e284615a3
+
+Best regards,
+--  
+Paul Louvel, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
 
