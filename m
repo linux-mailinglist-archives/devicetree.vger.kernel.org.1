@@ -1,59 +1,59 @@
-Return-Path: <devicetree+bounces-322670-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-322672-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id r9rYFSUeTmpEDgIAu9opvQ
-	(envelope-from <devicetree+bounces-322670-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 11:53:41 +0200
+	id 4LdPAWweTmpUDgIAu9opvQ
+	(envelope-from <devicetree+bounces-322672-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 11:54:52 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC36A723EB5
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 11:53:40 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B60B723ED2
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 11:54:51 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmx.net header.s=s31663417 header.b="Zv1Y/hzy";
+	dkim=pass header.d=gmx.net header.s=s31663417 header.b=oTftV+ts;
 	dmarc=pass (policy=quarantine) header.from=gmx.net;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322670-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-322670-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322672-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-322672-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C3197300E253
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 09:53:12 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 16C8230470EB
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jul 2026 09:53:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 895F333BBCB;
-	Wed,  8 Jul 2026 09:53:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A75FF3438B7;
+	Wed,  8 Jul 2026 09:53:19 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.15])
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49C581991CB;
-	Wed,  8 Jul 2026 09:53:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CB103403EB;
+	Wed,  8 Jul 2026 09:53:17 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783504391; cv=none; b=Cg7tf7dlo7wkkpr+HIRovhVgFDRs0/RA+Z6fEYeTrWAHBn0zPLKy/KktE9pMDAKg6rlvgSvCQ7NUCStZsXrqNCp2YIxv/pONXO74Mv0ZHFjLDC1SWgLcBNgWU+casJsXBzWpVOfB5I0fuXqqCsKr0bXS9hh3XtwzWoR7tEdmZsk=
+	t=1783504399; cv=none; b=qMCY9jiU1gJiHhY5+fQQReI5bUDH9VqgVbR0AF33wpQ/+V7Cd9cqm40RoXgb4xOk8iyzs/tWfk+B0lut6pKob9IMdC+iIGEFt5+HIEXR4xXMBCcwAX6hxQlZCrRGYDbebrxSc7rfOpti3RmbQeew76Py3uooUSCKSqIQuEaD8Mw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783504391; c=relaxed/simple;
-	bh=dXRXQbwZCN7hSFnczZa91tVae1Lx96jLs0UZZRMJYEI=;
+	s=arc-20240116; t=1783504399; c=relaxed/simple;
+	bh=Pb1+/jeHfYSyX7wqCpCccPt4eN9NUNsKvrVGf33ZD+0=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=JS8fM8YdVbBbYRlZ1FtA+/pbclB0k+D1+Qq4P5PUuhqhH33YlmHqkkIV1UvYZ8jGvUCtmbpepa/9kAcQ4zoRLcgTG7sc+FFDza5tU5EeDtZSszGCzNqbKrz+gxmqWxQGbAlCj4Nw/xyNBdcnMIIPi59zyyLB01WSJodp0QNOwzo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=lukas.metz@gmx.net header.b=Zv1Y/hzy; arc=none smtp.client-ip=212.227.15.15
+	 In-Reply-To:To:Cc; b=BhmDxicGCfUMzCfur9cKwGmhQXuGsALEUuxNQCRVKTd2hrrOUaG/i1OVC3LwDLKoP5ssCmB9mwZV0IAo3Jv9JcxOFpb1dGtW7/iTwFfk/wKVsDynvJGAey+DdtRfZgCZ/s8TwO6A++Dmn7qcyRbhrGFzkOZdnaJ0fzbPWFeFVgo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=lukas.metz@gmx.net header.b=oTftV+ts; arc=none smtp.client-ip=212.227.15.19
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.net;
-	s=s31663417; t=1783504387; x=1784109187; i=lukas.metz@gmx.net;
-	bh=E7lvMvc0gcCo4Ii4kk+RBfqf2Z39k4xchsmp7X13678=;
+	s=s31663417; t=1783504388; x=1784109188; i=lukas.metz@gmx.net;
+	bh=zlJ6gZtcHE78uHXdS+sdeVveBkhujP1/82HXfh0iyCE=;
 	h=X-UI-Sender-Class:From:Date:Subject:MIME-Version:Content-Type:
 	 Content-Transfer-Encoding:Message-Id:References:In-Reply-To:To:Cc:
 	 cc:content-transfer-encoding:content-type:date:from:message-id:
 	 mime-version:reply-to:subject:to;
-	b=Zv1Y/hzyZS4lbvtjrxqNLZTmoeuFbB9OuOUHCU6kXuPbvmFf27qtIUeLpyobtRSh
-	 qg39ddbQORZ+x5ms+mdX70E8i1MCgTB21+xe8XtL4nuYHsn4AfiJQDsEVez/wE2Vs
-	 LMp9gL0GoHq5YP4RUf3K8+Fitt/BOUJ3ObH6gFqQvK16NENvx8vEipMzNiBOHeEzg
-	 HHrY0KhN9bY27Q1brbvvmRKUeJG+BadZcwIhifn7f7Kvrr7QNYvt6tDVs2gschTAO
-	 NOzPmTXSfXFItn9GMoNkHgEQhChzAiV+MDlntWjeStO3v98JIrQKgr2+lcy2Cd7jH
-	 ZD2EUKwnsBvIjqZoPg==
+	b=oTftV+tsuq+OyLx7HGPLoychjSVH6hX3NyG25SsCd7XU/XH5okYVMpCds3O9ZOtm
+	 uwiUPDYpgUQdsVPrPaJdSHBZqvGhhw27zQIlG1k6EI8HwDqcKAtZ0Xjj7KQne1cSE
+	 1vihEnlPYZB/5+z8rW3usdSY0HPzv9JdLzfKlkUm4ofdzdOTsk4aNxKrq5SpcAhPP
+	 2PKjPN22HPy1j46FCo7S4AgOHo18F4mSJ1O7ds1mBuV/K5ZjScoOtvllQpOVNassG
+	 qBZyms6gip5qQkgVUL97pdqMiBQi/pQcmcR6HHPj9nIk/tkneZWWsTEG8RsxbJRju
+	 yUEpqlqGp5IFAwj0Tg==
 X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
 Received: from client.hidden.invalid by mail.gmx.net (mrgmx004
- [212.227.17.190]) with ESMTPSA (Nemesis) id 1M6Ue3-1wjqsU1btx-00AX8W; Wed, 08
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1MWRVh-1wabV23AE7-00IkKc; Wed, 08
  Jul 2026 11:53:07 +0200
 From: Lukas Metz <lukas.metz@gmx.net>
-Date: Wed, 08 Jul 2026 11:52:43 +0200
-Subject: [PATCH v2 1/2] dt-bindings: iio: dac: Add DAC8163
+Date: Wed, 08 Jul 2026 11:52:44 +0200
+Subject: [PATCH v2 2/2] iio: dac: dac8163: Add driver for DAC8163
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,7 +62,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
-Message-Id: <20260708-dac8163-work-v2-1-3acd1bf20182@gmx.net>
+Message-Id: <20260708-dac8163-work-v2-2-3acd1bf20182@gmx.net>
 References: <20260708-dac8163-work-v2-0-3acd1bf20182@gmx.net>
 In-Reply-To: <20260708-dac8163-work-v2-0-3acd1bf20182@gmx.net>
 To: Jonathan Cameron <jic23@kernel.org>, 
@@ -74,110 +74,110 @@ To: Jonathan Cameron <jic23@kernel.org>,
 Cc: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org, 
  devicetree@vger.kernel.org, Lukas Metz <lukas.metz@gmx.net>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1783504386; l=3284;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1783504386; l=11722;
  i=lukas.metz@gmx.net; s=20260616; h=from:subject:message-id;
- bh=NIBxnmA4CoRSyvC0HNjI1ITXhMA9w3nVE2U946bcSik=;
- b=pyN63UDs6w2IlGEKGSa24DWJFZqkFfaQn57bUknU+I3MewgRqKUphkt/5qNj5FmcaFhlBtHay
- ilBHS6lzH5pDXwP+nF8jHDYOA5d5kAoYBJSkBrIdyqpoTBtiqRqliwX
+ bh=zeCTRrFcnPY1I0H6pgkY9MHxA32oAoOjMlY5ZkZE+Nc=;
+ b=nJQ69llQLcLX9H1qqa0W0HV3duBiQGvgMjzA1fK+ouLNHyQn4IfPqpHUtMgrIIGRtdkOaNeDg
+ 3jO0lgsGB1gADRegvT948QtbFX0xSsj7KGr9XjSWLxh3s12mAjOElrA
 X-Developer-Key: i=lukas.metz@gmx.net; a=ed25519;
  pk=ljkIqYPVyHd9CYN4/koqGKt7Mym5FTTB+ZzvvlfD4yM=
-X-Provags-ID: V03:K1:wRgBukvRCQPfBMWWiIeE7LmLxfxeVSfeGkdXgFvcpjjwR0LloW7
- B1Xhsc9GZvPo3MwmLcKcQMFGfDZMaI8wFxKrcnyqnXUlp21KbGVFMFPAgozqmMpxZ4RYAWp
- cI6O53U+tZB88F2BXZR0WpWR9WbKLXAY3Ll78XJG21GeAUrqvb3n2LDMg0bvN1AOZA+yt4j
- DNokKk7MTVKZUMYJWKBAA==
+X-Provags-ID: V03:K1:pNxwkd20exTlydprgngTwETOHgbxa6J5jme7coaYUYB98jxHBkI
+ 3VnOJOP9+SnkitaTzypCcxr5tAAx8bv7PYXOTjqMI622eodhkXjaCrx0RMkNeVNU8RH9ogq
+ m7ZtFuOBtNmu+ygwG1cEAH3Ib10hyzhPQsvc3HmugSk5GEiZ+q86F5sdk+5CEdrP3Bxhd3x
+ XGEVQatd+kHYETsLhBO/A==
 X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:f8djs2F09n0=;A5DKqYGWpIFhtnrn3At1DH6mQWW
- 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
- BHYvuRKmPTx2fkxfq1lAABuc/M6Pvzl9bd5j07l
+UI-OutboundReport: notjunk:1;M01:P0:N15kBw65C5g=;304D1Uf5drrweS5k3kCqVoteJgl
+ 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
+ mOK8Byp72JmnUXjl9Xpl4cSaYN2cwvQYNdjjkFm
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[gmx.net,quarantine];
 	R_DKIM_ALLOW(-0.20)[gmx.net:s=s31663417];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-322670-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-322672-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS(0.00)[m:jic23@kernel.org,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:andy@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-kernel@vger.kernel.org,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:lukas.metz@gmx.net,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER(0.00)[lukas.metz@gmx.net,devicetree@vger.kernel.org];
@@ -198,135 +198,455 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ti.com:email,vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,devicetree.org:url]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[ti.com:url,ti.com:email,vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: AC36A723EB5
+X-Rspamd-Queue-Id: 5B60B723ED2
 
-Add device tree binding for the Texas Instruments DAC8163 family
-including the DAC7562, DAC7563, DAC8162, DAC8163, DAC8562 and DAC8563.
+The DAC756x, DAC816x, and DAC856x devices are low-power, voltage-output,
+dual-channel, 12-, 14-, and 16-bit digital-to-analog converters (DACs),
+respectively. These devices include a 2.5-V, 4-ppm/=C2=B0C internal
+reference, giving a full-scale output voltage range of 2.5 V or 5 V.
 
 Signed-off-by: Lukas Metz <lukas.metz@gmx.net>
 =2D--
- .../devicetree/bindings/iio/dac/ti,dac8163.yaml    | 85 +++++++++++++++++=
+ MAINTAINERS                  |   1 +
+ drivers/iio/dac/Kconfig      |  15 ++
+ drivers/iio/dac/Makefile     |   1 +
+ drivers/iio/dac/ti-dac8163.c | 373 ++++++++++++++++++++++++++++++++++++++=
 +++++
- MAINTAINERS                                        |  6 ++
- 2 files changed, 91 insertions(+)
+ 4 files changed, 390 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/iio/dac/ti,dac8163.yaml b/D=
-ocumentation/devicetree/bindings/iio/dac/ti,dac8163.yaml
-new file mode 100644
-index 000000000000..533cc7327c2b
-=2D-- /dev/null
-+++ b/Documentation/devicetree/bindings/iio/dac/ti,dac8163.yaml
-@@ -0,0 +1,85 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/iio/dac/ti,dac8163.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Texas Instruments DAC8163 family of DACs
-+
-+description:
-+  The DAC756x, DAC816x, and DAC856x devices are low-power, voltage-output=
-,
-+  dual-channel, 12-, 14-, and 16-bit digital-to-analog converters (DACs),
-+  respectively. These devices include a 2.5-V, 4-ppm/=C2=B0C internal
-+  reference, giving a full-scale output voltage range of 2.5 V or 5 V.
-+  The sync pin on the device acts as chip-select pin.
-+
-+maintainers:
-+  - Lukas Metz <lukas.metz@gmx.net>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - ti,dac7562
-+      - ti,dac7563
-+      - ti,dac8162
-+      - ti,dac8163
-+      - ti,dac8562
-+      - ti,dac8563
-+
-+  spi-rx-bus-width:
-+    items:
-+      - const: 0
-+
-+  spi-max-frequency:
-+    maximum: 50000000
-+
-+  spi-cpha: true
-+
-+  reg:
-+    maxItems: 1
-+
-+  avdd-supply: true
-+
-+  clr-gpios:
-+    description:
-+      The device registers are reset when this pin is asserted. The outpu=
-t is
-+      set to zero (xxx2 devices) or mid-scale (xxx3 devices).
-+    maxItems: 1
-+
-+  ldac-gpios:
-+    description:
-+      Pin needs to be asserted permanently when updating the DAC synchron=
-ously.
-+    maxItems: 1
-+
-+  vrefin-supply:
-+    description:
-+      External reference voltage supply for scaling. When no vrefin-suppl=
-y
-+      is present the internal voltage reference is used.
-+
-+required:
-+  - compatible
-+  - reg
-+  - spi-cpha
-+  - avdd-supply
-+
-+allOf:
-+  - $ref: /schemas/spi/spi-peripheral-props.yaml#
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+    spi {
-+        #address-cells =3D <1>;
-+        #size-cells =3D <0>;
-+
-+        dac@1 {
-+            compatible =3D "ti,dac8163";
-+            reg =3D <0x1>; /* CS1 */
-+            spi-cpha;
-+            ldac-gpios =3D <&gpiog 8 GPIO_ACTIVE_LOW>;
-+            avdd-supply =3D <&avdd_3v3>;
-+        };
-+    };
-+...
 diff --git a/MAINTAINERS b/MAINTAINERS
-index d238590a31f2..314f235332f5 100644
+index 314f235332f5..5512f5eaab44 100644
 =2D-- a/MAINTAINERS
 +++ b/MAINTAINERS
-@@ -26394,6 +26394,12 @@ S:	Odd Fixes
- F:	drivers/clk/ti/
- F:	include/linux/clk/ti.h
+@@ -26399,6 +26399,7 @@ M:	Lukas Metz <lukas.metz@gmx.net>
+ L:	linux-iio@vger.kernel.org
+ S:	Maintained
+ F:	Documentation/devicetree/bindings/iio/dac/ti,dac8163.yaml
++F:	drivers/iio/dac/ti-dac8163.c
 =20
-+TI DAC8163 DAC DRIVER
-+M:	Lukas Metz <lukas.metz@gmx.net>
-+L:	linux-iio@vger.kernel.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/iio/dac/ti,dac8163.yaml
-+
  TI DATA TRANSFORM AND HASHING ENGINE (DTHE) V2 CRYPTO DRIVER
  M:	T Pratham <t-pratham@ti.com>
- L:	linux-crypto@vger.kernel.org
+diff --git a/drivers/iio/dac/Kconfig b/drivers/iio/dac/Kconfig
+index db9f5c711b3d..de3b8fa5ffbf 100644
+=2D-- a/drivers/iio/dac/Kconfig
++++ b/drivers/iio/dac/Kconfig
+@@ -632,6 +632,21 @@ config TI_DAC7612
+=20
+ 	  If compiled as a module, it will be called ti-dac7612.
+=20
++config TI_DAC8163
++	tristate "Texas Instruments 12/14/16-bit 2-channel DAC driver"
++	depends on SPI_MASTER
++	help
++	  Driver for the Texas Instruments digital-to-analog converter
++	  family dacxx6x compatible with the following variants
++	  - DAC7562 (2 channels, 12 bits, resets to zero)
++	  - DAC7563 (2 channels, 12 bits, resets to mid-scale)
++	  - DAC8162 (2 channels, 14 bits, resets to zero)
++	  - DAC8163 (2 channels, 14 bits, resets to mid-scale)
++	  - DAC8562 (2 channels, 16 bits, resets to zero)
++	  - DAC8563 (2 channels, 16 bits, resets to mid-scale)
++
++	  If compiled as a module, it will be called ti-dac8163.
++
+ config VF610_DAC
+ 	tristate "Vybrid vf610 DAC driver"
+ 	depends on HAS_IOMEM
+diff --git a/drivers/iio/dac/Makefile b/drivers/iio/dac/Makefile
+index 2a80bbf4e80a..359cde446623 100644
+=2D-- a/drivers/iio/dac/Makefile
++++ b/drivers/iio/dac/Makefile
+@@ -62,4 +62,5 @@ obj-$(CONFIG_TI_DAC082S085) +=3D ti-dac082s085.o
+ obj-$(CONFIG_TI_DAC5571) +=3D ti-dac5571.o
+ obj-$(CONFIG_TI_DAC7311) +=3D ti-dac7311.o
+ obj-$(CONFIG_TI_DAC7612) +=3D ti-dac7612.o
++obj-$(CONFIG_TI_DAC8163) +=3D ti-dac8163.o
+ obj-$(CONFIG_VF610_DAC) +=3D vf610_dac.o
+diff --git a/drivers/iio/dac/ti-dac8163.c b/drivers/iio/dac/ti-dac8163.c
+new file mode 100644
+index 000000000000..6be0aac2e875
+=2D-- /dev/null
++++ b/drivers/iio/dac/ti-dac8163.c
+@@ -0,0 +1,373 @@
++// SPDX-License-Identifier: GPL-2.0-or-later
++/*
++ * DAC8163 IIO driver (SPI)
++ * https://www.ti.com/de/lit/gpn/dac8163
++ */
++
++#include <linux/array_size.h>
++#include <linux/bitfield.h>
++#include <linux/bits.h>
++#include <linux/err.h>
++#include <linux/errno.h>
++#include <linux/gpio/consumer.h>
++#include <linux/mod_devicetable.h>
++#include <linux/module.h>
++#include <linux/property.h>
++#include <linux/regmap.h>
++#include <linux/regulator/consumer.h>
++#include <linux/spi/spi.h>
++#include <linux/stddef.h>
++#include <linux/types.h>
++#include <linux/units.h>
++
++#include <linux/iio/iio.h>
++
++#define COMMAND_MASK GENMASK(6, 3)
++#define ADDRESS_MASK GENMASK(2, 0)
++
++#define CMD_SET(x, y) \
++	(FIELD_PREP(COMMAND_MASK, (x)) | FIELD_PREP(ADDRESS_MASK, (y)))
++
++#define CMD_WRITE_INPUT_REG	0x0
++#define CMD_UPDATE_DAC		0x1
++#define CMD_WRITE_UPDATE_ALL	0x2
++#define CMD_WRITE_UPDATE	0x3
++#define CMD_POWER_MODE		0x4
++#define CMD_SOFT_RST		0x5
++#define CMD_LDAC_MODE		0x6
++#define CMD_REF			0x7
++
++#define LDAC_CHANNEL_A_MASK BIT(0)
++#define LDAC_CHANNEL_B_MASK BIT(1)
++#define VREF_MASK BIT(0)
++
++#define DAC8163_INTERNAL_REF_mV 2500
++
++enum dac8163_reset_types {
++	OUTPUT_ONLY_RESET =3D 0,
++	FULL_RESET =3D 1,
++};
++
++enum dac8163_ldac_modes {
++	LDAC_ACTIVE =3D 0,
++	LDAC_INACTIVE =3D 1,
++};
++
++enum dac8163_voltage_reference {
++	VREF_EXTERNAL =3D 0,
++	VREF_INTERNAL =3D 1,
++};
++
++struct dac8163_state {
++	struct regmap *regmap;
++	struct regulator *vref;
++
++	int vref_mV;
++	int gain;
++};
++
++struct dac8163_chip_info {
++	const char *name;
++	const struct iio_chan_spec channels[2];
++	u16 default_output_reg;
++};
++
++#define DAC8163_CHAN(id, resolution)					\
++	{								\
++		.type =3D IIO_VOLTAGE,					\
++		.channel =3D (id),					\
++		.output =3D 1,						\
++		.indexed =3D 1,						\
++		.info_mask_separate =3D BIT(IIO_CHAN_INFO_RAW),		\
++		.info_mask_shared_by_type =3D BIT(IIO_CHAN_INFO_SCALE),	\
++		.scan_type =3D {						\
++			.realbits =3D (resolution),			\
++			.shift =3D 16 - (resolution)			\
++		},							\
++	}
++
++#define DAC8163_MID_SCALE(resolution) \
++	(BIT((resolution) - 1) << (16 - (resolution)))
++
++static const struct dac8163_chip_info dac7562_chip_info =3D {
++	.name =3D "dac7562",
++	.channels =3D {
++		DAC8163_CHAN(0, 12),
++		DAC8163_CHAN(1, 12),
++	},
++	.default_output_reg =3D 0,
++};
++
++static const struct dac8163_chip_info dac7563_chip_info =3D {
++	.name =3D "dac7563",
++	.channels =3D {
++		DAC8163_CHAN(0, 12),
++		DAC8163_CHAN(1, 12),
++	},
++	.default_output_reg =3D DAC8163_MID_SCALE(12),
++};
++
++static const struct dac8163_chip_info dac8162_chip_info =3D {
++	.name =3D "dac8162",
++	.channels =3D {
++		DAC8163_CHAN(0, 14),
++		DAC8163_CHAN(1, 14),
++	},
++	.default_output_reg =3D 0,
++};
++
++static const struct dac8163_chip_info dac8163_chip_info =3D {
++	.name =3D "dac8163",
++	.channels =3D {
++		DAC8163_CHAN(0, 14),
++		DAC8163_CHAN(1, 14),
++	},
++	.default_output_reg =3D DAC8163_MID_SCALE(14),
++};
++
++static const struct dac8163_chip_info dac8562_chip_info =3D {
++	.name =3D "dac8562",
++	.channels =3D {
++		DAC8163_CHAN(0, 16),
++		DAC8163_CHAN(1, 16),
++	},
++	.default_output_reg =3D 0,
++};
++
++static const struct dac8163_chip_info dac8563_chip_info =3D {
++	.name =3D "dac8563",
++	.channels =3D {
++		DAC8163_CHAN(0, 16),
++		DAC8163_CHAN(1, 16),
++	},
++	.default_output_reg =3D DAC8163_MID_SCALE(16),
++};
++
++static int dac8163_read_raw(struct iio_dev *indio_dev,
++			    struct iio_chan_spec const *chan, int *val,
++			    int *val2, long mask)
++{
++	struct dac8163_state *st =3D iio_priv(indio_dev);
++	int ret;
++
++	switch (mask) {
++	case IIO_CHAN_INFO_RAW:
++		ret =3D regmap_read(st->regmap,
++				  CMD_SET(CMD_WRITE_UPDATE, chan->channel),
++				  val);
++		if (ret)
++			return ret;
++		*val >>=3D chan->scan_type.shift;
++		return IIO_VAL_INT;
++	case IIO_CHAN_INFO_SCALE:
++		*val =3D st->vref_mV * st->gain;
++		*val2 =3D chan->scan_type.realbits;
++		return IIO_VAL_FRACTIONAL_LOG2;
++	default:
++		return -EINVAL;
++	}
++}
++
++static int dac8163_write_raw(struct iio_dev *indio_dev,
++			     struct iio_chan_spec const *chan,
++			     int val, int val2, long mask)
++{
++	struct dac8163_state *st =3D iio_priv(indio_dev);
++
++	switch (mask) {
++	case IIO_CHAN_INFO_RAW:
++		if (val2 !=3D 0)
++			return -EINVAL;
++
++		if (val < 0 || val >=3D BIT(chan->scan_type.realbits))
++			return -ERANGE;
++
++		return regmap_write(st->regmap,
++				    CMD_SET(CMD_WRITE_UPDATE, chan->channel),
++				    (u16)val << chan->scan_type.shift);
++
++	default:
++		return -EINVAL;
++	}
++}
++
++static const struct iio_info dac8163_iio_info =3D {
++	.write_raw =3D dac8163_write_raw,
++	.read_raw =3D dac8163_read_raw
++};
++
++static bool dac8163_reg_false(struct device *dev, unsigned int ref)
++{
++	return false;
++}
++
++static int dac8163_probe(struct spi_device *spi)
++{
++	const struct dac8163_chip_info *info;
++	struct gpio_desc *ldac_gpio;
++	struct iio_dev *indio_dev;
++	struct dac8163_state *st;
++	bool internal_reference;
++	int ret;
++
++	info =3D spi_get_device_match_data(spi);
++	if (!info)
++		return -ENODEV;
++
++	indio_dev =3D devm_iio_device_alloc(&spi->dev, sizeof(*st));
++	if (!indio_dev)
++		return -ENOMEM;
++
++	st =3D iio_priv(indio_dev);
++
++	indio_dev->name =3D info->name;
++	indio_dev->modes =3D INDIO_DIRECT_MODE;
++	indio_dev->info =3D &dac8163_iio_info;
++	indio_dev->channels =3D info->channels;
++	indio_dev->num_channels =3D ARRAY_SIZE(info->channels);
++
++	const struct reg_default reg_defaults[] =3D {
++		{
++			.reg =3D CMD_SET(CMD_WRITE_UPDATE, 0),
++			.def =3D info->default_output_reg,
++		},
++		{
++			.reg =3D CMD_SET(CMD_WRITE_UPDATE, 1),
++			.def =3D info->default_output_reg,
++		},
++	};
++
++	const struct regmap_config regmap_config =3D {
++		.reg_bits =3D 8,
++		.val_bits =3D 16,
++
++		.max_register =3D CMD_REF << 3,
++		.cache_type =3D REGCACHE_MAPLE,
++
++		.volatile_reg =3D dac8163_reg_false,
++
++		.reg_defaults =3D reg_defaults,
++		.num_reg_defaults =3D ARRAY_SIZE(reg_defaults),
++	};
++
++	st->regmap =3D devm_regmap_init_spi(spi, &regmap_config);
++	if (IS_ERR(st->regmap))
++		return PTR_ERR(st->regmap);
++
++	// for now we keep the ldac pin asserted permanently so that the output
++	// is updated immediately after a write to the channels raw attribute
++	ldac_gpio =3D devm_gpiod_get_optional(&spi->dev, "ldac",
++					    GPIOD_OUT_HIGH);
++	if (IS_ERR(ldac_gpio))
++		return PTR_ERR(ldac_gpio);
++
++	if (device_property_present(&spi->dev, "vrefin-supply")) {
++		ret =3D devm_regulator_get_enable_read_voltage(&spi->dev,
++							     "vrefin");
++		if (ret < 0)
++			return ret;
++
++		st->vref_mV =3D ret / (MICRO / MILLI);
++		internal_reference =3D false;
++		st->gain =3D 1;
++	} else {
++		st->vref_mV =3D DAC8163_INTERNAL_REF_mV;
++		internal_reference =3D true;
++		st->gain =3D 2;
++	}
++
++	ret =3D devm_regulator_get_enable(&spi->dev, "avdd");
++	if (ret < 0)
++		return ret;
++
++	ret =3D regmap_write(st->regmap, FIELD_PREP(COMMAND_MASK, CMD_SOFT_RST),
++			   FULL_RESET);
++
++	if (ret < 0)
++		return ret;
++
++	ret =3D regmap_write(st->regmap, FIELD_PREP(COMMAND_MASK, CMD_LDAC_MODE)=
+,
++			   FIELD_PREP(LDAC_CHANNEL_A_MASK, LDAC_INACTIVE) |
++			   FIELD_PREP(LDAC_CHANNEL_B_MASK, LDAC_INACTIVE));
++	if (ret < 0)
++		return ret;
++
++	ret =3D regmap_write(st->regmap, FIELD_PREP(COMMAND_MASK, CMD_REF),
++			   FIELD_PREP(VREF_MASK, internal_reference));
++	if (ret < 0)
++		return ret;
++
++	return devm_iio_device_register(&spi->dev, indio_dev);
++}
++
++static const struct of_device_id dac8163_of_match[] =3D {
++	{
++		.compatible =3D "ti,dac7562",
++		.data =3D &dac7562_chip_info,
++	},
++	{
++		.compatible =3D "ti,dac7563",
++		.data =3D &dac7563_chip_info,
++	},
++	{
++		.compatible =3D "ti,dac8162",
++		.data =3D &dac8162_chip_info,
++	},
++	{
++		.compatible =3D "ti,dac8163",
++		.data =3D &dac8163_chip_info,
++	},
++	{
++		.compatible =3D "ti,dac8562",
++		.data =3D &dac8562_chip_info,
++	},
++	{
++		.compatible =3D "ti,dac8563",
++		.data =3D &dac8563_chip_info,
++	},
++	{ }
++};
++MODULE_DEVICE_TABLE(of, dac8163_of_match);
++
++static const struct spi_device_id dac8163_id_table[] =3D {
++	{
++		.name =3D "dac7562",
++		.driver_data =3D (kernel_ulong_t)&dac7562_chip_info
++	},
++	{
++		.name =3D "dac7563",
++		.driver_data =3D (kernel_ulong_t)&dac7563_chip_info
++	},
++	{
++		.name =3D "dac8162",
++		.driver_data =3D (kernel_ulong_t)&dac8162_chip_info
++	},
++	{
++		.name =3D "dac8163",
++		.driver_data =3D (kernel_ulong_t)&dac8163_chip_info
++	},
++	{
++		.name =3D "dac8562",
++		.driver_data =3D (kernel_ulong_t)&dac8562_chip_info
++	},
++	{
++		.name =3D "dac8563",
++		.driver_data =3D (kernel_ulong_t)&dac8563_chip_info
++	},
++	{ }
++};
++MODULE_DEVICE_TABLE(spi, dac8163_id_table);
++
++static struct spi_driver dac8163_driver =3D {
++	.driver =3D {
++		.name =3D "dac8163",
++		.of_match_table =3D dac8163_of_match,
++	},
++	.probe =3D dac8163_probe,
++	.id_table =3D dac8163_id_table,
++};
++module_spi_driver(dac8163_driver);
++
++MODULE_AUTHOR("Lukas Metz <lukas.metz@gmx.net>");
++MODULE_DESCRIPTION("Texas Instruments 12/14/16-bit 2-channel DAC driver")=
+;
++MODULE_LICENSE("GPL");
 
 =2D-=20
 2.43.0
