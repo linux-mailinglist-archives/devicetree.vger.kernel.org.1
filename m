@@ -1,58 +1,61 @@
-Return-Path: <devicetree+bounces-324062-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-324063-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 9r+3OfP1T2qlrAIAu9opvQ
-	(envelope-from <devicetree+bounces-324062-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 21:26:43 +0200
+	id 2Dq0NPX0T2pkrAIAu9opvQ
+	(envelope-from <devicetree+bounces-324063-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 21:22:29 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50162734F11
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 21:26:43 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id DFCA5734E53
+	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 21:22:28 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=arm.com header.s=foss header.b="c/735BIY";
+	dkim=pass header.d=arm.com header.s=foss header.b=kman3rO8;
 	dmarc=pass (policy=none) header.from=arm.com;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324062-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-324062-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324063-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-324063-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C5CE93001B60
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2026 19:22:26 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 80F69301BA68
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2026 19:22:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14E163AFAF4;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3C813B2FFB;
 	Thu,  9 Jul 2026 19:22:26 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F007439BFFA;
-	Thu,  9 Jul 2026 19:22:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 950613AFD0B;
+	Thu,  9 Jul 2026 19:22:24 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783624946; cv=none; b=gFIi9SfOqKoqJWJmC8rUEQXOgkbGtmHQ38OkzVnvTpOCN2SRammPKiR1vbVi12LOfcZ/kefW97LklGg0abdDmudl/FRc7bdsmvodzHR8+OEweCC94/5uPjOISJhYK6hMmGfCk6d45iMLdXLnF8iRcVl6vBMP50nxKyZrh2J7zPQ=
+	t=1783624946; cv=none; b=KE9ZgPbS4aw4Iu73gxyJ2K3i32YIr+yDiewWPeQuMWcWZv1LML1qFUn41oPN+9d+dOCG8yYVtNysQkSSrS6ulx8KU+aOehht2oJXTZjCqS4WW7WHqk2vzd7eR6LBd86+qt8aOWG/GjenIGZo65gsKgun8p2gJweJhZrle/8ui80=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1783624946; c=relaxed/simple;
-	bh=6fbc1zMOckQ9tYF/nxEIPgsTtwm0FfeMsCMDNf7HVNQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=LMl6bhy/yTk0Rd8TjnAVKHQpqxXFlRTqZU/q8p0L6fOK0kVubgzJrauZ8sqL1K3yVJv/EWJsA8cLPDaIjVTLIBQNvbvMzkNbZOYf9tdJqdLpRG3zYFZWR4/2E1v/7epje233uIzs3CmR77ybVRoUjSpmipKgqMJEFXOH0mdCtzc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.b=c/735BIY; arc=none smtp.client-ip=217.140.110.172
+	bh=fA7WntxYo8pt73AeZhQw+cecHr8b/7c0M9AaviTUIYc=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=pRvmBkMCrVjQoRccuD0cJjjB4bCaAWkbE/3rdItM9n+cUahLDnoHFkTo8shBCU83PaKEiPeapphqrXSchws7qxM6TI4WFqb1xWpy16gjJMGvDERpuxsFRoa2Y69RYAt7RqyVIBffskJ2n6xTpGjn+Cb+KznhqKqOCtpTBosBIWA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.b=kman3rO8; arc=none smtp.client-ip=217.140.110.172
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id B60C524C0;
-	Thu,  9 Jul 2026 12:22:18 -0700 (PDT)
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id B563125DE;
+	Thu,  9 Jul 2026 12:22:19 -0700 (PDT)
 Received: from e121345-lin.cambridge.arm.com (e121345-lin.cambridge.arm.com [10.2.212.23])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 4DDE53FC81;
-	Thu,  9 Jul 2026 12:22:22 -0700 (PDT)
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 4E0D93FC81;
+	Thu,  9 Jul 2026 12:22:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1783624943; bh=6fbc1zMOckQ9tYF/nxEIPgsTtwm0FfeMsCMDNf7HVNQ=;
-	h=From:To:Cc:Subject:Date:From;
-	b=c/735BIYMdsOvnrBi/dVQA1f9+apLmvxS87xrc0TC4U/uhnRbqLX4+qC5j9yqYvRZ
-	 Rb8EBQQjhcR44x3qzVB9jBixy3PTNELAR2XqSEhSyVTqbs+u7xCLe4aZ6VyUl8IhGr
-	 io5B7ZRQlxgkrpWrWwdD9Yv5sqrFUj1Fk9vTVp7M=
+	t=1783624944; bh=fA7WntxYo8pt73AeZhQw+cecHr8b/7c0M9AaviTUIYc=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=kman3rO8JtbmNVM1EpGN0n19Kb/tZFz42FOWy+qWn0f4IfKLxD7reoDVz1YQw7oxz
+	 Ronm+csMtfiKYjD+eGgpkcjQgfZKm+RYaDaIAD+oEtJtoz0EONAhvZJhYgZ4cuoaGP
+	 ab3kmgorxj++oMrbtmCanfNguhahXWAvgHn8aJbQ=
 From: Robin Murphy <robin.murphy@arm.com>
 To: will@kernel.org,
 	mark.rutland@arm.com
 Cc: devicetree@vger.kernel.org,
 	linux-perf-users@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 0/2] perf: Support Arm Bus Monitor Unit
-Date: Thu,  9 Jul 2026 20:22:06 +0100
-Message-ID: <cover.1783439341.git.robin.murphy@arm.com>
+Subject: [PATCH 1/2] dt-bindings: perf: Add Arm Bus Monitor Unit
+Date: Thu,  9 Jul 2026 20:22:07 +0100
+Message-ID: <1cd17d9c07e9695e1dffdeaa5409f0a1db8ccb81.1783439341.git.robin.murphy@arm.com>
 X-Mailer: git-send-email 2.54.0.dirty
+In-Reply-To: <cover.1783439341.git.robin.murphy@arm.com>
+References: <cover.1783439341.git.robin.murphy@arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,13 +69,13 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[arm.com,none];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	R_DKIM_ALLOW(-0.20)[arm.com:s=foss];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	TAGGED_FROM(0.00)[bounces-324062-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-324063-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS(0.00)[m:will@kernel.org,m:mark.rutland@arm.com,m:devicetree@vger.kernel.org,m:linux-perf-users@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,s:lists@lfdr.de];
 	FORGED_SENDER(0.00)[robin.murphy@arm.com,devicetree@vger.kernel.org];
@@ -90,49 +93,64 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	RCPT_COUNT_FIVE(0.00)[5];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp,arm.com:from_mime,arm.com:url,arm.com:mid,arm.com:dkim]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,arm.com:from_mime,arm.com:email,arm.com:mid,arm.com:dkim]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 50162734F11
+X-Rspamd-Queue-Id: DFCA5734E53
 
-Hi all,
+Arm's Bus Monitor Unit is a low-level performance analysis tool for
+matching and counting transactions at interconnect interfaces. Typical
+platforms will have multiple BMUs each measuring multiple interfaces in
+various parts of the system, hence for the sake of usability we make it
+mandatory for the platform to label each instance such that the end user
+can correlate with platform documentation to know what's what.
 
-Here we have the delight of another new PMU driver. While not am Arm
-product in its own right, the BMU is found in the latest Neoverse
-Compute Subsystems, including the recently-announced AGI CPU.
-
-For now it is expected that BMU users will be ACPI-based (binding in
-the latest "ACPI for Arm Components" release[1]), so the token DT
-binding is more for completeness and maybe very early bringup hacking,
-but there is a chance it may end up being used by more embedded/client-
-focused subsystems in future.
-
-And yes, I did initially look at trying to factor out the PMU register
-accesses that functionally overlap the existing arm_cspmu code, but it
-very quickly became clear that that would end up far bigger and more
-complex. This is not a big driver, even with a few dozen lines of
-nominally-duplicate (but also simplified since the counter size etc.
-is fixed and known) code, so this way it went.
-
-Thanks,
-Robin.
-
-[1] https://developer.arm.com/documentation/den0093/latest/
-
-
-Robin Murphy (2):
-  dt-bindings: perf: Add Arm Bus Monitor Unit
-  perf: Add Arm Bus Monitor Unit driver
-
- .../bindings/perf/arm,bus-monitor-unit.yaml   |  33 ++
- drivers/perf/arm_cspmu/Kconfig                |   6 +
- drivers/perf/arm_cspmu/Makefile               |   2 +
- drivers/perf/arm_cspmu/arm-bmu.c              | 538 ++++++++++++++++++
- 4 files changed, 579 insertions(+)
+Signed-off-by: Robin Murphy <robin.murphy@arm.com>
+---
+ .../bindings/perf/arm,bus-monitor-unit.yaml   | 33 +++++++++++++++++++
+ 1 file changed, 33 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/perf/arm,bus-monitor-unit.yaml
- create mode 100644 drivers/perf/arm_cspmu/arm-bmu.c
 
+diff --git a/Documentation/devicetree/bindings/perf/arm,bus-monitor-unit.yaml b/Documentation/devicetree/bindings/perf/arm,bus-monitor-unit.yaml
+new file mode 100644
+index 000000000000..3cdc3a05b9a6
+--- /dev/null
++++ b/Documentation/devicetree/bindings/perf/arm,bus-monitor-unit.yaml
+@@ -0,0 +1,33 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/perf/arm,bus-monitor-unit.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Arm Bus Monitor Unit
++
++maintainers:
++  - Robin Murphy <robin.murphy@arm.com>
++
++properties:
++  compatible:
++    const: arm,bus-monitor-unit
++
++  reg:
++    items:
++      - description: Full BMU register space
++
++  interrupts:
++    items:
++      - description: PMU overflow interrupt
++
++  label:
++    description: BMU instance identifier (same as ACPI _UID), per the
++      platform optimisation guide
++
++required:
++  - compatible
++  - reg
++  - label
++
++additionalProperties: false
 -- 
 2.54.0.dirty
 
