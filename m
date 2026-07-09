@@ -1,236 +1,126 @@
-Return-Path: <devicetree+bounces-323637-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-323638-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id KQNJMYKFT2rYigIAu9opvQ
-	(envelope-from <devicetree+bounces-323637-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 13:26:58 +0200
+	id 5ywGIu6FT2r5igIAu9opvQ
+	(envelope-from <devicetree+bounces-323638-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 13:28:46 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 218C17304D9
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 13:26:58 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id E31FE730543
+	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 13:28:45 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=jb7a5A+e;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=YxhhCl7z;
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-323637-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-323637-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-323638-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-323638-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C2BAA314AAC7
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2026 11:00:26 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id F29C7315DA39
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2026 11:03:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CA9D351C02;
-	Thu,  9 Jul 2026 11:00:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75D003E0241;
+	Thu,  9 Jul 2026 11:03:29 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1EAC1403B07
-	for <devicetree@vger.kernel.org>; Thu,  9 Jul 2026 11:00:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6598730D3F5;
+	Thu,  9 Jul 2026 11:03:28 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783594826; cv=none; b=MjP61unlU4WQRCBU4I9M2iflhTEVFY4aUV19wo7EbwVGJr20BVQzoqnlpjQtejpiTr8JqjUKP6ue9YFgTiX8I5CE49Ae1j2MUQ8zclKOrBwImu10cBzgtO5iX2DngyjNUZUhmuXNLAJY+X86TtaJqUEjS5D2gqA/gJqfAZ0j920=
+	t=1783595009; cv=none; b=XkSplNyPN71Ccf5WfsR+t/KGccL9RllhTELsmjlNUoUw1dLkiqVL/sP+Mp0/HpT1rO3sELEES89b6a1AKy+50I0jPLg1z/DgGtvqs7/5RcDun1Sh6iE7GwPGTJt58nTI+nteVRqXayIWoxlYhjEdS5D/UIYQ12BUWrgyjvnsQNk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783594826; c=relaxed/simple;
-	bh=Zmsj946+ipXVic4zD8pqMdVq8xRtsz5OABeWOk9hon0=;
+	s=arc-20240116; t=1783595009; c=relaxed/simple;
+	bh=oxi1KYj1sDfy+abyp0oyC9W0JahVvUNVqoB+mIUwHd8=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=P/lz8TkYcy0aZg8re1kU4ApTl915cJHONrd4K2x/fMCULK7kPxFEs4rN5OsgrgZfbUytJNa4I0MVWDG2MSNhpDNlVdc2SMAOl+DHRimjGMF4ZPgZE3yJPfQsKar2vuka8UBHhCsmJgqEhdUd8IYr7p3wqSxRzpqfGzYpBA3c/7A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jb7a5A+e; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 69E531F00A3D;
-	Thu,  9 Jul 2026 11:00:24 +0000 (UTC)
+	 Message-Id; b=GHcE/tBo81PQR661feDAXGODvYQEcUA68mVsiO4dLbrNgEdnhQY4XGjqmLopYEuycg49SSBUze44CrjBaP0p3vq20ritcZ4bDhCDULDd4d1DpP+IAjQmBMo+CaLJFWs3tlX3dVEnTHh4J4O9PqmeW7Jxa6jCeeDLuzSyIAjxcaU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YxhhCl7z; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 890B21F000E9;
+	Thu,  9 Jul 2026 11:03:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783594824;
-	bh=l3AJhtJf5IIFGGz4akr9/ySUdr3gXIyyR9Me8CXFqNw=;
+	s=k20260515; t=1783595008;
+	bh=oxi1KYj1sDfy+abyp0oyC9W0JahVvUNVqoB+mIUwHd8=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=jb7a5A+eAUlMxx40fbfYQY6riO00CyPDRaaWOKS9XnkbCqoFPTVedRnp3CMsXeV33
-	 u8nNJD9W3cWx0Me/juZWYQb1WUBR+6Lwrv/0tLpvFj26Mn5Yj83jb0v278Q62tgQMo
-	 nCIldeeCCbCmsyp0ScrNVikJLy8q+Sg46TnT0NY8MYs6JgfZB2Srml8VXrScCW4Tqs
-	 wQK9g0xNyOY1MZnVUPmmmLV+kV1gaoTN3cnwKlRrwX6xKZ7l24nQd/rZ7IDwcBgCZ7
-	 ryv0D+ClyLYQvUSkdBNRU46FjhkwC3n2vAMb4gt7TwRFJaa+ftmbYz7ShBhv7RJv55
-	 oN3nUYM2JzFmA==
+	b=YxhhCl7zkONrsZTO0UHKvvA3OrL+DsGYG/ptgIFlcKcWNdwRrW6dcLc+qTb+b5NZ8
+	 FWUrXflMKafSoMoWcjpOz44heFFuz1iza9xI0BuTboRWQsX+MQT01M7wZ+/bQX2OQl
+	 uvwQkzyRu1hk2dz9qdkfnHjQz2gMjPVz08pwdJ1kw2zx3ApsgzKphSD1j17bGRlZOK
+	 MCBOctFfR5LdvxOf7qxdFumV+ME52fM9ZIaRZwWV03CeLJU0sJDS4/taBYKBwAcsUw
+	 bOFIAbLZq1Oa0k+wUkyx9vlhtcys3iaSVMUD2CNKVAe6WanQnXCZd6OwA9yXwfUICS
+	 7JZs7MixBUNNQ==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v3 06/11] drm/mediatek: mtk_dp: Use PHY API for PHY
- power sequences
+Subject: Re: [PATCH V5 4/4] arm64: dts: imx95-19x19-evk: Describe the PCIe
+ M.2 Key E connector
 Reply-To: sashiko-reviews@lists.linux.dev
-To: "AngeloGioacchino Del Regno" <angelogioacchino.delregno@collabora.com>
-Cc: conor+dt@kernel.org, robh@kernel.org, devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org
-In-Reply-To: <20260709103431.46616-7-angelogioacchino.delregno@collabora.com>
-References: <20260709103431.46616-1-angelogioacchino.delregno@collabora.com>
- <20260709103431.46616-7-angelogioacchino.delregno@collabora.com>
+To: =?utf-8?b?U2hlcnJ5IFN1biAoT1NTKQ==?= <sherry.sun@oss.nxp.com>
+Cc: robh@kernel.org, Frank.Li@kernel.org, conor+dt@kernel.org, linux-pci@vger.kernel.org, devicetree@vger.kernel.org, imx@lists.linux.dev
+In-Reply-To: <20260709101555.3034853-5-sherry.sun@oss.nxp.com>
+References: <20260709101555.3034853-1-sherry.sun@oss.nxp.com>
+ <20260709101555.3034853-5-sherry.sun@oss.nxp.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Thu, 09 Jul 2026 11:00:24 +0000
-Message-Id: <20260709110024.69E531F00A3D@smtp.kernel.org>
+Date: Thu, 09 Jul 2026 11:03:27 +0000
+Message-Id: <20260709110327.890B21F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
 	MISSING_MIME_VERSION(2.00)[];
+	TO_EXCESS_BASE64(1.50)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	TAGGED_FROM(0.00)[bounces-323637-lists,devicetree=lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp,sashiko.dev:url,smtp.kernel.org:mid,collabora.com:email,lists.linux.dev:replyto];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:angelogioacchino.delregno@collabora.com,m:conor+dt@kernel.org,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:dri-devel@lists.freedesktop.org,m:conor@kernel.org,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-323638-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS(0.00)[m:sherry.sun@oss.nxp.com,m:robh@kernel.org,m:Frank.Li@kernel.org,m:conor+dt@kernel.org,m:linux-pci@vger.kernel.org,m:devicetree@vger.kernel.org,m:imx@lists.linux.dev,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	PRECEDENCE_BULK(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
+	RCPT_COUNT_SEVEN(0.00)[7];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCPT_COUNT_FIVE(0.00)[5];
+	ALIAS_RESOLVED(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
 	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,smtp.kernel.org:mid,lists.linux.dev:replyto,sashiko.dev:url,nxp.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 218C17304D9
+X-Rspamd-Queue-Id: E31FE730543
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
-s) to consider:
-- [High] Double unregistration of the `mtk_dp->phy_dev` platform device on =
-the `devm_phy_get()` error path causes a use-after-free.
-- [Medium] The newly added `phy_power_on()`/`phy_power_off()` calls are dea=
-d code, and if reachable, they would violate the PHY API contract and leak =
-reference counts.
---
+> From: Sherry Sun <sherry.sun@nxp.com>
+>=20
+> The i.MX95-19x19-EVK has the PCIe M.2 Mechanical Key E connector to
+> connect wireless connectivity cards over PCIe and UART interfaces. Hence,
+> describe the connector node and link it with the PCIe 0 Root Port and
+> LPUART5 nodes through graph port/endpoint.
+>=20
+> Signed-off-by: Sherry Sun <sherry.sun@nxp.com>
 
---- Patch [6]: [PATCH v3 06/11] drm/mediatek: mtk_dp: Use PHY API for PHY p=
-ower sequences ---
-commit e6bfbadbdfc23b97fa303c95119a421df2604e0a
-Author: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-
-drm/mediatek: mtk_dp: Use PHY API for PHY power sequences
-
-The PHY driver has gained support for .power_on() and .power_off()
-callbacks: use the API provided phy_power_on(), phy_power_off()
-functions instead of writing into PHY registers from this driver.
-
-I noticed an issue in mtk_dp_register_phy() from patch 4 of this series:
-
-drivers/gpu/drm/mediatek/mtk_dp.c:mtk_dp_register_phy() {
-    ...
-	ret =3D devm_add_action_or_reset(dev, mtk_dp_unregister_pdevs, mtk_dp->phy=
-_dev);
-	if (ret)
-		return dev_err_probe(dev, ret,
-				     "Failed to add phy unregister devm action");
-    ...
-	mtk_dp->phy =3D devm_phy_get(&mtk_dp->phy_dev->dev, "dp");
-	if (IS_ERR(mtk_dp->phy)) {
-		platform_device_unregister(mtk_dp->phy_dev);
-		return dev_err_probe(dev, PTR_ERR(mtk_dp->phy), "Failed to get phy\n");
-	}
-    ...
-}
-
-[Severity: High]
-Does this explicit unregister conflict with the devm action registered earl=
-ier?
-
-If devm_phy_get() fails, platform_device_unregister() is called on
-mtk_dp->phy_dev, and then an error is returned. Returning an error triggers
-the devres cleanup, which executes the registered devm action and calls
-platform_device_unregister() on the exact same pointer a second time, causi=
-ng
-a double-free and use-after-free.
-
-> diff --git a/drivers/gpu/drm/mediatek/mtk_dp.c b/drivers/gpu/drm/mediatek=
-/mtk_dp.c
-> index 409d089550a90..b4cb1996a3314 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_dp.c
-> +++ b/drivers/gpu/drm/mediatek/mtk_dp.c
-> @@ -1414,20 +1416,35 @@ static void mtk_dp_power_enable(struct mtk_dp *mt=
-k_dp)
->  			   SW_RST_B_PHYD, SW_RST_B_PHYD);
->  	mtk_dp_update_bits(mtk_dp, MTK_DP_TOP_PWR_STATE,
->  			   DP_PWR_STATE_BANDGAP_TPLL, DP_PWR_STATE_MASK);
-> -	regmap_write(mtk_dp->regs, DP_PHY_AUX_RX_CTL,
-> -		     RG_DPAUX_RX_VALID_DEGLITCH_EN | RG_XTP_GLB_CKDET_EN |
-> -		     RG_DPAUX_RX_EN);
-> -	regmap_clear_bits(mtk_dp->regs, MTK_DP_0034, DA_CKM_CKTX0_EN_FORCE_EN);
-> +
-> +	if (mtk_dp->phy_dev) {
-
-[Severity: Medium]
-The commit message claims this patch replaces manual PHY register writes wi=
-th
-phy_power_on() and phy_power_off(). However, these API calls are placed in
-the else branch of if (mtk_dp->phy_dev).
-
-Because mtk_dp_register_phy() unconditionally registers the dummy platform
-device unless it fails (which would abort the probe), mtk_dp->phy_dev is
-always a valid pointer.
-
-This makes the if-condition always true, so the new phy_power_on() and
-phy_power_off() API calls are never reached, and the legacy manual writes
-continue to execute. Are these new calls unreachable dead code?
-
-Additionally, if this code were reachable (for example, for a future
-DT-provided PHY), does phy_power_on() get called during eDP probe before
-phy_init() is called, violating the PHY API contract?=20
-
-And if phy_power_on() fails, the failure is warned but not propagated, leav=
-ing
-the PHY power count un-incremented. This could cause a subsequent
-phy_power_off() to underflow the reference count.
-
-> +		regmap_write(mtk_dp->regs, DP_PHY_AUX_RX_CTL,
-> +			     RG_DPAUX_RX_VALID_DEGLITCH_EN | RG_XTP_GLB_CKDET_EN |
-> +			     RG_DPAUX_RX_EN);
-> +		regmap_clear_bits(mtk_dp->regs, MTK_DP_0034, DA_CKM_CKTX0_EN_FORCE_EN);
-> +	} else {
-> +		ret =3D phy_power_on(mtk_dp->phy);
-> +		if (ret)
-> +			dev_warn(mtk_dp->dev, "Could not power on PHY!\n");
-> +	}
->  }
-> =20
->  static void mtk_dp_power_disable(struct mtk_dp *mtk_dp)
->  {
-> +	int ret;
-> +
->  	mtk_dp_write(mtk_dp, MTK_DP_TOP_PWR_STATE, 0);
-> =20
-> -	regmap_set_bits(mtk_dp->regs, MTK_DP_0034, DA_CKM_CKTX0_EN_FORCE_EN);
-> +	if (unlikely(mtk_dp->phy_dev)) {
-> +		regmap_set_bits(mtk_dp->regs, MTK_DP_0034, DA_CKM_CKTX0_EN_FORCE_EN);
-> =20
-> -	/* Disable RX */
-> -	regmap_write(mtk_dp->regs, DP_PHY_AUX_RX_CTL, 0);
-> +		/* Disable RX */
-> +		regmap_write(mtk_dp->regs, DP_PHY_AUX_RX_CTL, 0);
-> +	} else {
-> +		ret =3D phy_power_off(mtk_dp->phy);
-> +		if (ret)
-> +			dev_warn(mtk_dp->dev, "Could not power off PHY!\n");
-> +	}
-> =20
->  	mtk_dp_write(mtk_dp, MTK_DP_TOP_MEM_PD,
->  		     0x550 | FUSE_SEL | MEM_ISO_EN);
+Sashiko has reviewed this patch and found no issues. It looks great!
 
 --=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260709103431.4661=
-6-1-angelogioacchino.delregno@collabora.com?part=3D6
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260709101555.3034=
+853-1-sherry.sun@oss.nxp.com?part=3D4
+
 
