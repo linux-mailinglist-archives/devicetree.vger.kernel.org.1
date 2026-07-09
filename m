@@ -1,220 +1,195 @@
-Return-Path: <devicetree+bounces-323614-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-323617-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 7ByAAWV8T2rUhwIAu9opvQ
-	(envelope-from <devicetree+bounces-323614-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 12:48:05 +0200
+	id cFb0EOmBT2p7iQIAu9opvQ
+	(envelope-from <devicetree+bounces-323617-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 13:11:37 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5375972FD90
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 12:48:04 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B691273012D
+	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 13:11:35 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=dsM4Ej0Q;
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-323614-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-323614-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=linux.dev header.s=key1 header.b=sU+3+KFh;
+	dmarc=pass (policy=none) header.from=linux.dev;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-323617-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-323617-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 46DF730E2467
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2026 10:42:35 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 0D37C3202459
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2026 10:45:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A36A3409DF0;
-	Thu,  9 Jul 2026 10:42:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89A07409DE0;
+	Thu,  9 Jul 2026 10:45:29 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from out-188.mta0.migadu.com (out-188.mta0.migadu.com [91.218.175.188])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28A943C062C
-	for <devicetree@vger.kernel.org>; Thu,  9 Jul 2026 10:42:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96AC436CDF8
+	for <devicetree@vger.kernel.org>; Thu,  9 Jul 2026 10:45:27 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783593752; cv=none; b=G7kCIcJS0hqjDlwLalz5UQpnBiSz2oi2OW5DVzCxnyK5NqsL8ok8fig9+STlGZMOFXvu3NeXXwU7Ej3+02qhVx93rj1V6Z5OrRHep0OheHMaGAMRwR9VFmjmXGSw8F82q6f4r/JLDV1Y3Biqvb2sempfgSGr1fyqmujj+QkzVuA=
+	t=1783593929; cv=none; b=jUbEjWAV+l1Qp37IgA6c+RWiHnrI3LksKcfJwaBvvlgiugr/hNu7axq4hxom49k0K4n9tfUBL2mWrTPJAUk0I+1nTaAMrjhWk252jRxd/lb52/iNeRhRPRvy76ja5MZ2SLYutDx3ueY7R4RB0TQgRAL9WsMKF00jH02iycBdf18=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783593752; c=relaxed/simple;
-	bh=ebhuN0NO6XXkb4uTi+U2xBkRovod9Mk+tL+SILWT/Y0=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=Ya2bqBdfLjMud1Ehr2IyBmc8YL/2RztFfPBBd1U57nmyPNjO+DM7wEkLuqCiZGAjhW7LILy6Vsj5RWEHvnxb8C2pMliCMuKscsH17w/K/B4B5JTIEh3KstvXqJYvvTTbhjhij/WKCnjS7VckBLzD6Glj9ZOHCUvxa0HPDWSILyY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dsM4Ej0Q; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 81F2C1F000E9;
-	Thu,  9 Jul 2026 10:42:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783593750;
-	bh=+dgR4rJQSnbnutQZ8qvfq9w6PhvECejCMiZqrfMb6no=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=dsM4Ej0Q8ceY+XID9zup4NKbc4ENvAZpuIvMaNpAnSC6dOdUwWtpa+af46t7H/sM1
-	 bhcxF3LkE4BlVxgIabXnnX7Er7VKwSdsJfVs7oARIrGXcYzaN6k4EbTYK3xbZGvs/4
-	 Wy/hwVdt1LVsWiVn4yQruHzKV9nf8aaFmoCXhOl+WYAww+E/ZIYMhbMBk8DfIE3FVk
-	 on6+afPbzOf+X3Dy7YpuXzBjBjccP3xm0N79StWB25xgZg8LWh9UWo9RPxuQQzvznP
-	 HjvkOej99/T7wljpSR63OmeY1GKUY2wPri4ZXuwBp/x3/9dRfYvMPyrxLqB16Fe1wr
-	 V29ORFbGe1Hzw==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v3 11/11] drm/mediatek: mtk_dp: Clarify XTAL freq and
- Debounce registers
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "AngeloGioacchino Del Regno" <angelogioacchino.delregno@collabora.com>
-Cc: robh@kernel.org, dri-devel@lists.freedesktop.org, conor+dt@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20260709103431.46616-12-angelogioacchino.delregno@collabora.com>
-References: <20260709103431.46616-1-angelogioacchino.delregno@collabora.com>
- <20260709103431.46616-12-angelogioacchino.delregno@collabora.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Thu, 09 Jul 2026 10:42:29 +0000
-Message-Id: <20260709104230.81F2C1F000E9@smtp.kernel.org>
+	s=arc-20240116; t=1783593929; c=relaxed/simple;
+	bh=v11CCaM2SO1sjN3FanFJterfJszpcdVADsPjT6gZ5+I=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=IlhQ4ET3lKksYv904CGe5jI8+PpV3F1hQPb7GfzgAYdACsHg6phuJta68XfqwyUg+P3WbnuK0O8hBmJZn9mWkHkxtVpWAfgngJPstJWWqn7GUQafh1Tr7Njym4KV9UkeLotRfsgVQhyAij+tiXCQvLrKPAG3xK68Td9A/G2V+bg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=sU+3+KFh; arc=none smtp.client-ip=91.218.175.188
+Message-ID: <4a847a6b-7837-4044-8a87-0ddac47725f8@linux.dev>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+	t=1783593915;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=U1zptSwNIN+3sFSND6E6Pez9u+xDKFIGwqm4Rxh1P9w=;
+	b=sU+3+KFhltGJBoRT0JuwZfDvcZOV2uNhnSWhxO46Qu1fcznF7EaE0UtRnGF8MZHXJW+0Qr
+	xX4xG560Pw/p4dDjnIz1Qd6csX1rxq3csMxLmYs2z7pFcAL8Cj2pvwEqJa16ioCC0BIgGZ
+	kmwtue0SRDHaoHwZuXeXxg0fy2i88Fw=
+Date: Thu, 9 Jul 2026 11:44:44 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Subject: Re: [PATCH net-next v7 08/15] net: ethernet: oa_tc6: Support for
+ hardware timestamp
+To: Selvamani.Rajagopal@onsemi.com, Andrew Lunn <andrew@lunn.ch>,
+ Piergiorgio Beruto <pier.beruto@onsemi.com>,
+ Heiner Kallweit <hkallweit1@gmail.com>, Russell King
+ <linux@armlinux.org.uk>, "David S. Miller" <davem@davemloft.net>,
+ Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Andrew Lunn <andrew+netdev@lunn.ch>,
+ Parthiban Veerasooran <parthiban.veerasooran@microchip.com>,
+ Richard Cochran <richardcochran@gmail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Simon Horman <horms@kernel.org>,
+ Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>
+Cc: netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
+ Jerry Ray <jerry.ray@microchip.com>
+References: <20260708-s2500-mac-phy-support-v7-0-478c877aa1a9@onsemi.com>
+ <20260708-s2500-mac-phy-support-v7-8-478c877aa1a9@onsemi.com>
+Content-Language: en-US
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Vadim Fedorenko <vadim.fedorenko@linux.dev>
+In-Reply-To: <20260708-s2500-mac-phy-support-v7-8-478c877aa1a9@onsemi.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Migadu-Flow: FLOW_OUT
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[linux.dev,none];
+	R_DKIM_ALLOW(-0.20)[linux.dev:s=key1];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
+	TAGGED_FROM(0.00)[bounces-323617-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	TAGGED_FROM(0.00)[bounces-323614-lists,devicetree=lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,vger.kernel.org:from_smtp,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,smtp.kernel.org:mid,lists.linux.dev:replyto,collabora.com:email];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:angelogioacchino.delregno@collabora.com,m:robh@kernel.org,m:dri-devel@lists.freedesktop.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FREEMAIL_TO(0.00)[onsemi.com,lunn.ch,gmail.com,armlinux.org.uk,davemloft.net,google.com,kernel.org,redhat.com,microchip.com,lwn.net,linuxfoundation.org];
+	FORGED_SENDER(0.00)[vadim.fedorenko@linux.dev,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[23];
+	FORGED_RECIPIENTS(0.00)[m:Selvamani.Rajagopal@onsemi.com,m:andrew@lunn.ch,m:pier.beruto@onsemi.com,m:hkallweit1@gmail.com,m:linux@armlinux.org.uk,m:davem@davemloft.net,m:edumazet@google.com,m:kuba@kernel.org,m:pabeni@redhat.com,m:andrew+netdev@lunn.ch,m:parthiban.veerasooran@microchip.com,m:richardcochran@gmail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:horms@kernel.org,m:corbet@lwn.net,m:skhan@linuxfoundation.org,m:netdev@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-doc@vger.kernel.org,m:jerry.ray@microchip.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	RCPT_COUNT_FIVE(0.00)[5];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FROM_NO_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[vadim.fedorenko@linux.dev,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[linux.dev:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linux.dev:from_mime,linux.dev:dkim,linux.dev:mid,onsemi.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 5375972FD90
+X-Rspamd-Queue-Id: B691273012D
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
-s) to consider:
-- [Medium] The patch silently fixes a register programming bug, changing th=
-e programmed HPD interrupt debounce thresholds, despite the commit message =
-claiming 'the only purpose of increasing human readability'.
-- [Low] Unused legacy macros were left in the header file after their usage=
- was removed.
---
+On 08/07/2026 18:12, Selvamani Rajagopal via B4 Relay wrote:
+> From: Selvamani Rajagopal <Selvamani.Rajagopal@onsemi.com>
+> 
+> PTP register/unregister calls are implemented in oa_tc6_ptp.c.
+> The APIs that work with the hardware for timestamp is provided
+> by vendor code as it may be vendor dependent.
+> 
+> Interface for ndo_hwtstamp_set/get, ioctl, control and status
+> callback for ethtool are provided to support hardware timestamp
+> feature.
+> 
+> Besides ioctl interface, hardware timestamp functions that handles
+> header and footer data are in oa_tc6.c. Helper functions are in
+> oa_tc6_tstamp.c.
+> 
+> Signed-off-by: Selvamani Rajagopal <Selvamani.Rajagopal@onsemi.com>
+> 
+> ---
+> changes in v7
+>    - Fixed the parameter name mismatch in function protoype and
+>      definition
+>    - CONFIG0 is set with 64 bit timestamp support by default.
+>    - Added information about return value for API documentation.
+> changes in v6
+>    - Fixed the issue of function parameter in oa_tc6_get_ts_stats
+>      not described in comments section for documentation.
+>    - Avoided typecasting __be32 as u32
+> changes in v5
+>    - As subtracting skb len by FCS size is considered bug, changes
+>      are removed. Will be fixed in stable branch (net repo)
+> changes in v4
+>    - Fixed the condition check for subtracting the FCS size
+>      from skb len.
+> changes in v3
+>    - Replaced warning printk with ratelimited printk
+>    - Checking the hardware register before enabling hardware
+>      timestamp
+> changes in v1
+>    - Added hardware timestamp support to the OA TC6 framework.
+> ---
+>   MAINTAINERS                                  |   1 +
+>   drivers/net/ethernet/oa_tc6/Makefile         |   2 +-
+>   drivers/net/ethernet/oa_tc6/oa_tc6.c         | 218 +++++++++++++++++++++++++--
+>   drivers/net/ethernet/oa_tc6/oa_tc6_ptp.c     |  70 +++++++++
+>   drivers/net/ethernet/oa_tc6/oa_tc6_std_def.h |  34 +++++
+>   drivers/net/ethernet/oa_tc6/oa_tc6_tstamp.c  | 205 +++++++++++++++++++++++++
+>   include/linux/oa_tc6.h                       |  12 ++
+>   7 files changed, 527 insertions(+), 15 deletions(-)
+> 
 
---- Patch [11]: [PATCH v3 11/11] drm/mediatek: mtk_dp: Clarify XTAL freq an=
-d Debounce registers ---
-commit a0d0ec4a08e7bb60a4d55891bd6e55ba3b2ab740
-Author: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+[...]
 
-drm/mediatek: mtk_dp: Clarify XTAL freq and Debounce registers
-
-This patch refactors the initialization of the crystal frequency and
-transmitter interrupt debounce registers in the MediaTek DP driver to
-use FIELD_PREP_CONST for better readability.
-
-> diff --git a/drivers/gpu/drm/mediatek/mtk_dp.c b/drivers/gpu/drm/mediatek=
-/mtk_dp.c
-> index 868d918a0b161..4403a25784d4e 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_dp.c
-> +++ b/drivers/gpu/drm/mediatek/mtk_dp.c
-
-[ ... ]
-
-> @@ -1260,28 +1266,29 @@ static void mtk_dp_initialize_aux_hpd_detect_sett=
-ings(struct mtk_dp *mtk_dp)
-> =20
->  static void mtk_dp_initialize_hpd_detect_settings(struct mtk_dp *mtk_dp)
->  {
-> -	u32 val;
-> -
->  	/* Mask AUX TOP interrupt, as this uses transmitter for HPD */
->  	mtk_dp_update_bits(mtk_dp, MTK_DP_TOP_IRQ_MASK,
->  			   AUX_TOP_IRQ_MSK, AUX_TOP_IRQ_MSK);
-> =20
-> -	/* Debounce threshold */
-> +	/* Set Hotplug debounce threshold time: xtal_period * deb_thd */
->  	mtk_dp_update_bits(mtk_dp, MTK_DP_TRANS_P0_3410,
->  			   8, HPD_DEB_THD_DP_TRANS_P0_MASK);
-> =20
-> -	val =3D (HPD_INT_THD_DP_TRANS_P0_LOWER_500US |
-> -	       HPD_INT_THD_DP_TRANS_P0_UPPER_1100US) << 4;
-> -	mtk_dp_update_bits(mtk_dp, MTK_DP_TRANS_P0_3410,
-> -			   val, HPD_INT_THD_DP_TRANS_P0_MASK);
-> -
->  	/*
-> -	 * Connect threshold 1.5ms + 5 x 0.1ms =3D 2ms
-> -	 * Disconnect threshold 1.5ms + 5 x 0.1ms =3D 2ms
-> +	 * Set interrupt debounce threshold time
-> +	 * VAL  |  0     1     2     3  INT_THD
-> +	 * Low  | 100   300   500   700 uS
-> +	 * High | 700   900  1100  1300 uS
->  	 */
-> -	val =3D (5 << 8) | (5 << 12);
->  	mtk_dp_update_bits(mtk_dp, MTK_DP_TRANS_P0_3410,
-> -			   val,
-> +			   FIELD_PREP_CONST(HPD_INT_LOW_THD_DP_TRANS_P0_MASK, 2) |
-> +			   FIELD_PREP_CONST(HPD_INT_HIGH_THD_DP_TRANS_P0_MASK, 2),
-> +			   HPD_INT_THD_DP_TRANS_P0_MASK);
-
-[Severity: Medium]
-The commit message states the patch has "the only purpose of increasing hum=
-an
-readability", but does this actually fix a bug in the old code?
-
-The original code calculated the values with an extra shift:
-
-val =3D (HPD_INT_THD_DP_TRANS_P0_LOWER_500US |
-       HPD_INT_THD_DP_TRANS_P0_UPPER_1100US) << 4;
-
-Since those macros were already shifted by 4 and 6, the extra shift by 4
-resulted in val =3D 0xA00. When updated with the 0xF0 mask, this effectively
-wrote 0 to the register. The new code correctly programs 0xA0.
-
-Could the commit message be updated to mention this functional change?
-
+> +/**
+> + * oa_tc6_ioctl - generic ioctl interface for MAC-PHY drivers.
+> + * @tc6: oa_tc6 struct.
+> + * @rq: request from socket interface
+> + * @cmd: value to set/get timestamp configuration
+> + *
+> + * Return: 0 on success otherwise failed.
+> + */
+> +int oa_tc6_ioctl(struct oa_tc6 *tc6, struct ifreq *rq, int cmd)
+> +{
+> +	if (!netif_running(tc6->netdev))
+> +		return -EINVAL;
 > +
-> +	/* Connection and Disconnection thresholds: 1.5ms + (5 x 0.1) ms =3D 2m=
-s */
-> +	mtk_dp_update_bits(mtk_dp, MTK_DP_TRANS_P0_3410,
+> +	if (cmd == SIOCSHWTSTAMP || cmd == SIOCGHWTSTAMP)
+> +		return oa_tc6_tstamp_ioctl(tc6, rq, cmd);
 
-[ ... ]
+ioctl interface for HW timestamp configuration is deprecated, kernel
+code was recently cleaned up to aviod these ioctl commands in favor of
+ndo_hwtstamp_get/ndo_hwtstamp_set callbacks. New drivers must not use
+deprecated ioctl commands.
 
-> diff --git a/drivers/gpu/drm/mediatek/mtk_dp_reg.h b/drivers/gpu/drm/medi=
-atek/mtk_dp_reg.h
-> index 9caf743f4fe61..ce47b99dddc43 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_dp_reg.h
-> +++ b/drivers/gpu/drm/mediatek/mtk_dp_reg.h
-> @@ -253,6 +253,8 @@
->  #define MTK_DP_TRANS_P0_3410				0x1410
->  #define HPD_DEB_THD_DP_TRANS_P0_MASK				GENMASK(3, 0)
->  #define HPD_INT_THD_DP_TRANS_P0_MASK				GENMASK(7, 4)
-> +#define HPD_INT_HIGH_THD_DP_TRANS_P0_MASK			GENMASK(7, 6)
-> +#define HPD_INT_LOW_THD_DP_TRANS_P0_MASK			GENMASK(5, 4)
->  #define HPD_INT_THD_DP_TRANS_P0_LOWER_500US			(2 << 4)
->  #define HPD_INT_THD_DP_TRANS_P0_UPPER_1100US			(2 << 6)
-
-[Severity: Low]
-This isn't a bug, but are these legacy macros still needed?
-
-The code no longer uses HPD_INT_THD_DP_TRANS_P0_LOWER_500US or
-HPD_INT_THD_DP_TRANS_P0_UPPER_1100US after this patch.
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260709103431.4661=
-6-1-angelogioacchino.delregno@collabora.com?part=3D11
+> +	else
+> +		return phy_do_ioctl_running(tc6->netdev, rq, cmd);
+> +}
+> +EXPORT_SYMBOL_GPL(oa_tc6_ioctl);
+> +
 
