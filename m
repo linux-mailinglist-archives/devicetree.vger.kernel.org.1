@@ -1,271 +1,178 @@
-Return-Path: <devicetree+bounces-323787-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-323789-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id YZ6yHAGjT2rilQIAu9opvQ
-	(envelope-from <devicetree+bounces-323787-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 15:32:49 +0200
+	id +4ipIQakT2oslgIAu9opvQ
+	(envelope-from <devicetree+bounces-323789-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 15:37:10 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE2657319A3
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 15:32:48 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E503E731A46
+	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 15:37:09 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=suse.com header.s=google header.b=Wzua9qWw;
-	dmarc=pass (policy=quarantine) header.from=suse.com;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-323787-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-323787-lists+devicetree=lfdr.de@vger.kernel.org";
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
+	dkim=pass header.d=linaro.org header.s=google header.b="LfM5cbj/";
+	dmarc=pass (policy=none) header.from=linaro.org;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-323789-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-323789-lists+devicetree=lfdr.de@vger.kernel.org";
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id F0F21304501A
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2026 13:25:01 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 889D930F93B9
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2026 13:29:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 40BF6283FD9;
-	Thu,  9 Jul 2026 13:25:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A4772C235E;
+	Thu,  9 Jul 2026 13:29:07 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
+Received: from mail-vk1-f177.google.com (mail-vk1-f177.google.com [209.85.221.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BAD228000F
-	for <devicetree@vger.kernel.org>; Thu,  9 Jul 2026 13:24:59 +0000 (UTC)
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783603501; cv=none; b=q1IC9wxisZ+mFur6F7mHQ8r3UnAOzzsiJrKvCyXhApiMe/rEd/EFPMuyvNWAWdo0dBmd1/sgPYRaPPDBdOywAYZlAz25TBZmulcD+G8vOjag+EpSdRCeENQ/GDVk35d/WQKs0EEjM4Ds2PVd8MJ2jiTZp4eAsCqJs93rhcMKm48=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783603501; c=relaxed/simple;
-	bh=7ISU5xPOy74bICjanRZFVU/MoFoShesRb4zQUg2TqBY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=C7wlv5qKFZG8jVXsi/TsgQKkGRrynHkxfWhS9hifVGuIgApNGq5CJ2OtZ8hl9wXElltqkDsnykZnz6/Jc7ETZQKFPC9rNMCds2dWbVudjUyzEBRLdM/hllfzI0nHacM4V68cMlQH6/VrQWFq3rfCBQKlOWXsTA9yVZShLX2pWEM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=Wzua9qWw; arc=none smtp.client-ip=209.85.221.41
-Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-4703bc0a99aso1122859f8f.3
-        for <devicetree@vger.kernel.org>; Thu, 09 Jul 2026 06:24:59 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCAF02C029D
+	for <devicetree@vger.kernel.org>; Thu,  9 Jul 2026 13:29:05 +0000 (UTC)
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1783603747; cv=pass; b=Xc17nIcdT6tNyTrjInQ+hc6CfHkko7Gmk2EjLqeOH/sJDCPvexfRrOhYalgvN1KX3bCNk+ThxzKVnDspfDvc3jjtp9JNnWdUU9GV+f8JxvrX+Cqyg++SRjLalxCXdjuxshu09pLN1EJflBF30cASf39W3/HugQmXNU322DmeC6E=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1783603747; c=relaxed/simple;
+	bh=fy4AU9FWUyaAiS8Jr4lYhNN0QnZMjnaBoIWT5Ykot6Y=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=aRYla5lO3QMZuYX1E5U67oVZmtrGwh3od4YrqdmqgNScsf4jzqV3NNuU8Zkg+qg2dwOV+YQrxnV5gIEyrRqGwqE6Nak/gc5hbsmGn1Zx43OCAjSf9umNXK7VphLwu/r1gn1UcX1KWfHfOwgA3VQHqriTRu7h8QZaNk63NK2giCw=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=LfM5cbj/; arc=pass smtp.client-ip=209.85.221.177
+Received: by mail-vk1-f177.google.com with SMTP id 71dfb90a1353d-5bc4a1130adso443819e0c.3
+        for <devicetree@vger.kernel.org>; Thu, 09 Jul 2026 06:29:05 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1783603745; cv=none;
+        d=google.com; s=arc-20260327;
+        b=m1CL5bXBlKepvnmHmTPKt40xu68Gn5fYXazPa3MCZHwA0W42aq4LswJGE3w8YXp4Dl
+         I0iJhc86wppuQttHBGoEMDKLiPncCbnxLEnzOkr4RdiRNi4MjhS1EHStdn0P9+gfFWcL
+         3nN949i0EQQbOKs0HsSlJtX2JEB3vHmfoKmg7m6MR0HmAVSd6W3XClAlTO1qBMgq2PJ4
+         ylRCG3ERvCq08V10drPt0NpVIy2keD4+QamqqLScBkbktbOKaW/xFYBsVfwLAviT4QqT
+         buKFtuCuZ9viF1uxBx5ajUXzZFSz28H671MVWsyVF8cZV6/HQTaflfnhMQQVf6Cp+QKw
+         /LOw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=sYnuvdL+MuprbAstUVA/KMXRVODde6kDTXIYHwY7dts=;
+        fh=8Yq+ui/HDW/MZUK/oQgB8w7JDVF6fiu4a7pNXZCmn+Y=;
+        b=URPqnvHEIm629KALW0l7osgdLC8ooAUZtEh0QHNz4D/22dvlUt/s0B++7cMtxcpZV2
+         YNFN3VtoyLZ6r9EnUpV9tqZNJ8BFYdWh9NCWiP0P2Lpq/11DT28mwD4P5diE+WGY4oUZ
+         ypeucnF2Qn5kQ8KMkWOsMagBzx3fk+iyktoBtowvH95kwITjtvbZtuMGNA6qyv/fkPWe
+         wWgFTrMf4W7Kr4yqOOAYa0mA05tiNhqpniLrANVmNXSkiMyxM8UluX2G1iqmzhRJXdrv
+         EkDAAiFj96+LY4iuyYKcqthBXKTsjqeb03wfTkWrjx13Xy0QIo1++vtfiK5wOaP40iyp
+         wmjQ==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=suse.com; s=google; t=1783603498; x=1784208298; darn=vger.kernel.org;
-        h=content-transfer-encoding:content-type:in-reply-to:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to
+        d=linaro.org; s=google; t=1783603745; x=1784208545; darn=vger.kernel.org;
+        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
+         :references:mime-version:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=X+2+l0R7RX9cCzxaoR4qreoVsEJbp9qB9SwPbos71OM=;
-        b=Wzua9qWwbN16wpcMUQD2HQzqjaIDt6s5Xiotl7GUM94PxCcWlXR4WcgNkvzvyR9DIw
-         hBSyh/HJq7PwgDGmo/yy/Mvfoty27OK7ID/UU+ZnthIiD5GWAFLBy08oRXOeiMiQPbJb
-         OSriVOtOJB6Aw/BO9ERxVhefDLYl2A0tXehA08EaZYT9NLREIBQQJMVQvm7f8ZqRf+jS
-         j0frJ8WDFLUS8d13Vov48HJF0Hvr8Bv/kx3hKo16I+L6ke/ZLQjcPCkicGV0JiKerxWL
-         hiVVKxlyudOBr2gcfKTV+72TpMSBrQdoSsTWD2fFF2O6oU+o9M11FoEpVIHzZ/aC8SoQ
-         4Sww==
+        bh=sYnuvdL+MuprbAstUVA/KMXRVODde6kDTXIYHwY7dts=;
+        b=LfM5cbj/42Hh5pnG5nNvBgVwwxQWg7QlTxmKcRO9WUlXc7FzzOagFfyjWgisQJHFj2
+         OZmzJyCpnLeFKMba40jkVd3p6DMynIZYmPZtrTVVn9fwMxAP0c0EnIBK1oVVUrJ2KUGc
+         6x6nXgq4M8b7nibDwxElAq6Jl5Knq6USMQzGm8svji8FhbUA7YCsJaXWkG7yDCIv/bPz
+         LYZmBn7OpBwRztnkLIfU/WARG6vtfpRRPum/2u+Rwo+VvFV8CQNMpU9M4tPCc0ZXRKOJ
+         wCwe7ML3KjlVfdcioLYNU0/h4LPwD/QM3eQmzp9hGq5xTo+cwP1xkV2BNGJfJSD+HSVH
+         /zMQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783603498; x=1784208298;
-        h=content-transfer-encoding:content-type:in-reply-to:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=X+2+l0R7RX9cCzxaoR4qreoVsEJbp9qB9SwPbos71OM=;
-        b=oAY1qq791lltKXl0ajyNdiT5CPPa7s9FILMK8Mw3QhnLHIH3/wnlhFaqG/ocdPO0ou
-         l0OgrQKJbJ4NOlh2JLvJUxscQftsu+cCevAqBHuMbBzUM2tLD/6+OwjSlg+iUdojkk+r
-         u54k78Euxg2Y2dNPAtgIVZyHWZGqMzo4yxG5su2z2Y+oX8Zd3xd5A+b6/XMqfz8LC6cy
-         o7GgRt6pqE8xu7FE03IprRwH4bh10oD7Wcrw4Hc6tc3TLm1J1OHMmlO+E0bXeQE6Fc9i
-         m48VWK8HJgPXV1t3dWK/fwkTxCs788w+AR8MlN1In29+95/tbbf4oYbALwUaFZBcI2b5
-         /qWw==
-X-Forwarded-Encrypted: i=1; AHgh+Rr+LO/cVWqfivMhMe9WaGm4yOdl3YKZBLcHava6ykDOuhOuGmFEawVPxDft0yWBfaWbtR7YFx47jyPV@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw6qZRHZUh37WRky28e+eOhyT/EI3SDohQattZnFNsLg8xr5sXa
-	bFWpANRE2ctkB19lWki5exyBdz3V+y+qScIOyP57JCAMaq/Di2V5SY8KNiYnWB0Jb/w=
-X-Gm-Gg: AfdE7clQit2VLZTal5I5R8n29j/rvn59h6ooq10PgruKYiuwcVAnhPUiKQeYj9J3Uwy
-	Ggl+ZZBwtFrz6eEs/BINjJJFL/GreijU2u1CyvSOo5sQXXi8jmNdGZfMEJk5dwCDU3nk9qGIr9i
-	+uSmYpshK5IbR6GI3o9zFFIBOd8hUyaFdFsW1BBDHBc9SEFcCq5wnQ6Jt2paxyztmhnIaHIpdob
-	iaZuama7m9+6OFtMKENHQ6+Tl3l+ulmOmMclvIrSKwAwAauxV5Jnnz0L5cjj+qZ7OmfCfQhDCPT
-	QFoeG7vh+ijxCoN9dRbnJJCXW7ySpOc9c/2y9kjXD3yoPZ04/K6WlW0tcAqZX5mRdvaNxuMLUa7
-	3fdHamgvoKBxMIwdzz85TUdC/BPAkRc+e/iQ+THyblBJvNhrLSUzHGcmrQJLUxYGKBU9yAHTsIz
-	gA+XCHQdd1iyfx6seNmsL4jolebQ/KG43qb9VJoBq79mKP
-X-Received: by 2002:a05:6000:2013:b0:46e:624e:3c2f with SMTP id ffacd0b85a97d-47df077b2e6mr7512557f8f.47.1783603497728;
-        Thu, 09 Jul 2026 06:24:57 -0700 (PDT)
-Received: from [192.168.42.79] (nat2.prg.suse.com. [195.250.132.146])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-47aa0a55be4sm47212857f8f.31.2026.07.09.06.24.54
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 09 Jul 2026 06:24:57 -0700 (PDT)
-Message-ID: <84ded2aa-397f-465b-b2e5-d2fa31fc807d@suse.com>
-Date: Thu, 9 Jul 2026 15:24:54 +0200
+        d=1e100.net; s=20251104; t=1783603745; x=1784208545;
+        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
+         :references:mime-version:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to:content-type;
+        bh=sYnuvdL+MuprbAstUVA/KMXRVODde6kDTXIYHwY7dts=;
+        b=ItYUrDH7/MbTiONnIfMpYAxkQs8EySb8QF7g9PGP3Ed4saCFI6KO4m7cqs9ibbFXNo
+         hHABG4riK9O0SvdOoq1oWf4Dzl/k+C3oM87QqXW/pFfGvXJjAjtLRR13IjxdfuKO2jg6
+         yjKsM4eiYct0fHj6UDRvYjBt/7VX/VQ1DMDnCZ62zFdAZ5SDly9NSSOmhdDS6FUwyu2R
+         xUjebpC8Xt5x/tfMHnlrw/W/dGX+zGOW3O0EcxvQuK58CekS2X6v41txx4IYaIzLQPHH
+         +4lqaqUnQdvVrSGfrNPb1rUZk4C1SevtP7PRBWZwW6j+nV84jepqzn2GUnKjL0ezFMOm
+         +BfQ==
+X-Forwarded-Encrypted: i=1; AHgh+RoC98mZIyLoMiynh/v8TQmXKo9OdWufrU4paenF3PwifXEt+gNowI4g/Rn6MXaARcxnQTauULwNwQl6@vger.kernel.org
+X-Gm-Message-State: AOJu0YzfkwOZJn/dfa1A0t1ItlZMe96MdH1+dM43Nb91uf1kvgE0JP3s
+	8c8vKSBGVpi3O3Je80HGTwuY3xfyf10Ov5FGVR9WoebVhOSq0Om24g3e+xYVLWk99MstkDeMDMs
+	VpI+R210oPNTtjtD4TX8MxyNdy1Y7Ca35s2hp2Ll/eA==
+X-Gm-Gg: AfdE7cmOWbecXffa2IklLSuwxMctKhuyB1j+Wy4Z6S9fM2mIONjdaFDkG0PpPMMKHQ/
+	lfBGu7JAq6BShy02ji19b3BMmQ8qoO7qZdvZOlZAj36eEb1Q686tbU9zaKMH3eAiGumNduInoz6
+	2X+4rYo8oXDu9sVqj31mSfzjaV/1lRA7qujKReK5cnHpryjPJD/DTqDT9BHu0CLzWUht3laK/DI
+	8TmoMOhKgWGzAZD1N8eBpMvTx1AGZTcGKbXpKb1rLVit/U+xKQHWcS9vpp+CfuWfFp8UeIakPKt
+	THXe0r2+CFkwaMuQZANAUuouCfKGCFE=
+X-Received: by 2002:a05:6122:3790:b0:5bd:ba0e:1d6e with SMTP id
+ 71dfb90a1353d-5bf75eab5e4mr3740101e0c.11.1783603744635; Thu, 09 Jul 2026
+ 06:29:04 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 26/26] meminspect: Add debug kinfo compatible driver
-To: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
-Cc: akpm@linux-foundation.org, anna-maria@linutronix.de, arnd@arndb.de,
- andersson@kernel.org, chrisl@kernel.org, cl@gentwo.org, conor+dt@kernel.org,
- david@kernel.org, dennis@kernel.org, devicetree@vger.kernel.org,
- ehristev@kernel.org, frederic@kernel.org, mingo@redhat.com,
- jstultz@google.com, corbet@lwn.net, juri.lelli@redhat.com,
- kasong@tencent.com, kees@kernel.org, konradybcio@kernel.org,
- krzk+dt@kernel.org, linux-arch@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, linux-doc@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-mm@kvack.org,
- linux-remoteproc@vger.kernel.org, mathieu.poirier@linaro.org,
- peterz@infradead.org, pmladek@suse.com, robh@kernel.org,
- saravanak@kernel.org, tj@kernel.org, tglx@kernel.org,
- vincent.guittot@linaro.org, workflows@vger.kernel.org, atomlin@atomlin.com,
- ast@kernel.org, aliceryhl@google.com, linux.amoon@gmail.com,
- ardb@kernel.org, baoquan.he@linux.dev, baohua@kernel.org,
- bsegall@google.com, jackmanb@google.com, leitao@debian.org,
- brauner@kernel.org, coxu@redhat.com, dietmar.eggemann@arm.com,
- dianders@chromium.org, ebiggers@kernel.org, feng.tang@linux.alibaba.com,
- yangfeng@kylinos.cn, gary@garyguo.net, guohanjun@huawei.com, jack@suse.cz,
- wangjinchao600@gmail.com, joel.granados@kernel.org, hannes@cmpxchg.org,
- john.ogness@linutronix.de, jpoimboe@kernel.org, shikemeng@huaweicloud.com,
- kas@kernel.org, kprateek.nayak@amd.com, liam@infradead.org, ljs@kernel.org,
- elver@google.com, mgorman@suse.de, mhocko@suse.com, ojeda@kernel.org,
- rppt@kernel.org, namcao@linutronix.de, nathan@kernel.org, nphamcs@gmail.com,
- n.schier@fritz.com, pasha.tatashin@soleen.com, pnina.feder@mobileye.com,
- rdunlap@infradead.org, rioo.tsukatsukii@gmail.com, senozhatsky@chromium.org,
- skhan@linuxfoundation.org, sboyd@kernel.org, rostedt@goodmis.org,
- surenb@google.com, thomas.weissschuh@linutronix.de, vschneid@redhat.com,
- vbabka@kernel.org, youngjun.park@lge.com, zhengyejian@huaweicloud.com,
- ziy@nvidia.com, Eugen Hristev <eugen.hristev@linaro.org>
-References: <20260708-meminspect-v3-v3-0-7aa5a0a74d5c@oss.qualcomm.com>
- <20260708070809.2660886-1-mukesh.ojha@oss.qualcomm.com>
-Content-Language: en-US
-From: Petr Pavlu <petr.pavlu@suse.com>
-In-Reply-To: <20260708070809.2660886-1-mukesh.ojha@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <CGME20260627165410epcas5p3567172b20a463006bcf3686b3771f212@epcas5p3.samsung.com>
+ <20260627171228.2687857-1-alim.akhtar@samsung.com> <20260627171228.2687857-3-alim.akhtar@samsung.com>
+In-Reply-To: <20260627171228.2687857-3-alim.akhtar@samsung.com>
+From: Peter Griffin <peter.griffin@linaro.org>
+Date: Thu, 9 Jul 2026 14:28:50 +0100
+X-Gm-Features: AUfX_mxnCWBF3-jtSm-4vtEit0N4j6s0qQ7pEzHoCtPwv8N5Ycj70d6sCmI8TM0
+Message-ID: <CADrjBPrR_N6SrCitTtWxa7JUM8816cCbTY1rae2qyqnRVWWd3Q@mail.gmail.com>
+Subject: Re: [PATCH v3 2/6] dt-binding: pinctrl: samsung: Add
+ exynos8855-pinctrl compatible
+To: Alim Akhtar <alim.akhtar@samsung.com>
+Cc: krzk@kernel.org, robh@kernel.org, conor+dt@kernel.org, linusw@kernel.org, 
+	linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org, 
+	hajun.sung@samsung.com
+Content-Type: text/plain; charset="UTF-8"
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[suse.com,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
-	R_DKIM_ALLOW(-0.20)[suse.com:s=google];
+X-Spamd-Result: default: False [-2.16 / 15.00];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FREEMAIL_CC(0.00)[linux-foundation.org,linutronix.de,arndb.de,kernel.org,gentwo.org,vger.kernel.org,redhat.com,google.com,lwn.net,tencent.com,kvack.org,linaro.org,infradead.org,suse.com,atomlin.com,gmail.com,linux.dev,debian.org,arm.com,chromium.org,linux.alibaba.com,kylinos.cn,garyguo.net,huawei.com,suse.cz,cmpxchg.org,huaweicloud.com,amd.com,suse.de,fritz.com,soleen.com,mobileye.com,linuxfoundation.org,goodmis.org,lge.com,nvidia.com];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-323787-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-323789-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER(0.00)[petr.pavlu@suse.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS(0.00)[m:mukesh.ojha@oss.qualcomm.com,m:akpm@linux-foundation.org,m:anna-maria@linutronix.de,m:arnd@arndb.de,m:andersson@kernel.org,m:chrisl@kernel.org,m:cl@gentwo.org,m:conor+dt@kernel.org,m:david@kernel.org,m:dennis@kernel.org,m:devicetree@vger.kernel.org,m:ehristev@kernel.org,m:frederic@kernel.org,m:mingo@redhat.com,m:jstultz@google.com,m:corbet@lwn.net,m:juri.lelli@redhat.com,m:kasong@tencent.com,m:kees@kernel.org,m:konradybcio@kernel.org,m:krzk+dt@kernel.org,m:linux-arch@vger.kernel.org,m:linux-arm-msm@vger.kernel.org,m:linux-doc@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-mm@kvack.org,m:linux-remoteproc@vger.kernel.org,m:mathieu.poirier@linaro.org,m:peterz@infradead.org,m:pmladek@suse.com,m:robh@kernel.org,m:saravanak@kernel.org,m:tj@kernel.org,m:tglx@kernel.org,m:vincent.guittot@linaro.org,m:workflows@vger.kernel.org,m:atomlin@atomlin.com,m:ast@kernel.org,m:aliceryhl@google.com,m:linux.amoon@gmail.com,m:ardb@kernel.org,m:baoquan.he@linux.dev,m:baoh
- ua@kernel.org,m:bsegall@google.com,m:jackmanb@google.com,m:leitao@debian.org,m:brauner@kernel.org,m:coxu@redhat.com,m:dietmar.eggemann@arm.com,m:dianders@chromium.org,m:ebiggers@kernel.org,m:feng.tang@linux.alibaba.com,m:yangfeng@kylinos.cn,m:gary@garyguo.net,m:guohanjun@huawei.com,m:jack@suse.cz,m:wangjinchao600@gmail.com,m:joel.granados@kernel.org,m:hannes@cmpxchg.org,m:john.ogness@linutronix.de,m:jpoimboe@kernel.org,m:shikemeng@huaweicloud.com,m:kas@kernel.org,m:kprateek.nayak@amd.com,m:liam@infradead.org,m:ljs@kernel.org,m:elver@google.com,m:mgorman@suse.de,m:mhocko@suse.com,m:ojeda@kernel.org,m:rppt@kernel.org,m:namcao@linutronix.de,m:nathan@kernel.org,m:nphamcs@gmail.com,m:n.schier@fritz.com,m:pasha.tatashin@soleen.com,m:pnina.feder@mobileye.com,m:rdunlap@infradead.org,m:rioo.tsukatsukii@gmail.com,m:senozhatsky@chromium.org,m:skhan@linuxfoundation.org,m:sboyd@kernel.org,m:rostedt@goodmis.org,m:surenb@google.com,m:thomas.weissschuh@linutronix.de,m:vschneid@redhat.com,m:vbabka@k
- ernel.org,m:youngjun.park@lge.com,m:zhengyejian@huaweicloud.com,m:ziy@nvidia.com,m:eugen.hristev@linaro.org,m:conor@kernel.org,s:lists@lfdr.de];
-	DKIM_TRACE(0.00)[suse.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER(0.00)[peter.griffin@linaro.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS(0.00)[m:alim.akhtar@samsung.com,m:krzk@kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:linusw@kernel.org,m:linux-samsung-soc@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-gpio@vger.kernel.org,m:hajun.sung@samsung.com,m:conor@kernel.org,s:lists@lfdr.de];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[linaro.org:+];
+	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[petr.pavlu@suse.com,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCPT_COUNT_GT_50(0.00)[91];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[peter.griffin@linaro.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,vger.kernel.org:from_smtp,googlesource.com:url,suse.com:from_mime,suse.com:dkim,suse.com:mid,rustcorp.com.au:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,linaro.org:email]
+	RCPT_COUNT_SEVEN(0.00)[10];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:from_mime,linaro.org:email,linaro.org:dkim,vger.kernel.org:from_smtp,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,mail.gmail.com:mid,samsung.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: BE2657319A3
+X-Rspamd-Queue-Id: E503E731A46
 
-On 7/8/26 9:08 AM, Mukesh Ojha wrote:
-> From: Eugen Hristev <eugen.hristev@linaro.org>
-> 
-> With this driver, the registered regions are copied to a shared memory
-> zone at register time. The shared memory zone is supplied via OF. This
-> driver will select only regions that are of interest, and keep only
-> addresses. The format of the list is Kinfo compatible, with devices like
-> Google Pixel phone. The firmware is only interested in some symbols'
-> addresses.
-> 
-> Signed-off-by: Eugen Hristev <eugen.hristev@linaro.org>
-> Signed-off-by: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
+On Sat, 27 Jun 2026 at 17:54, Alim Akhtar <alim.akhtar@samsung.com> wrote:
+>
+> Document pin controller support on Exynos8855 SoC.
+>
+> Signed-off-by: Alim Akhtar <alim.akhtar@samsung.com>
 > ---
-[...]
-> diff --git a/kernel/meminspect/kinfo.c b/kernel/meminspect/kinfo.c
-> new file mode 100644
-> index 000000000000..7451c13bc316
-> --- /dev/null
-> +++ b/kernel/meminspect/kinfo.c
-> @@ -0,0 +1,257 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + *
-> + * Copyright 2002 Rusty Russell <rusty@rustcorp.com.au> IBM Corporation
-> + * Copyright 2021 Google LLC
-> + * Copyright 2025 Linaro Ltd. Eugen Hristev <eugen.hristev@linaro.org>
-> + */
-> +#include <linux/container_of.h>
-> +#include <linux/kallsyms.h>
-> +#include <linux/meminspect.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/of_reserved_mem.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/utsname.h>
-> +
-> +#define BUILD_INFO_LEN		256
-> +#define DEBUG_KINFO_MAGIC	0xcceeddff
-> +
-> +/*
-> + * Header structure must be byte-packed, since the table is provided to
-> + * bootloader.
-> + */
-> +struct kernel_info {
-> +	/* For kallsyms */
-> +	u8 enabled_all;
-> +	u8 enabled_base_relative;
-> +	u8 enabled_absolute_percpu;
-> +	u8 enabled_cfi_clang;
-> +	u32 num_syms;
-> +	u16 name_len;
-> +	u16 bit_per_long;
-> +	u16 module_name_len;
-> +	u16 symbol_len;
-> +	u64 _relative_pa;
-> +	u64 _text_pa;
-> +	u64 _stext_pa;
-> +	u64 _etext_pa;
-> +	u64 _sinittext_pa;
-> +	u64 _einittext_pa;
-> +	u64 _end_pa;
-> +	u64 _offsets_pa;
-> +	u64 _names_pa;
-> +	u64 _token_table_pa;
-> +	u64 _token_index_pa;
-> +	u64 _markers_pa;
-> +	u64 _seqs_of_names_pa;
-> +
-> +	/* For frame pointer */
-> +	u32 thread_size;
-> +
-> +	/* For virt_to_phys */
-> +	u64 swapper_pg_dir_pa;
-> +
-> +	/* For linux banner */
-> +	u8 last_uts_release[__NEW_UTS_LEN];
-> +
-> +	/* For module kallsyms */
-> +	u32 enabled_modules_tree_lookup;
-> +	u32 mod_mem_offset;
-> +	u32 mod_kallsyms_offset;
-> +} __packed;
 
-Is this kinfo format documented anywhere? I was only able to find
-a reference to the equivalent downstream Android driver [1] in the cover
-letter. However, I don't quite understand what it is or what the
-associated bootloader component does with this information. In
-particular, I'm unclear about the purpose of the following
-module-related fields:
+Reviewed-by: Peter Griffin <peter.griffin@linaro.org>
 
-module_name_len
-enabled_modules_tree_lookup
-mod_mem_offset
-mod_kallsyms_offset
-
-These appear to be exposed for reading the internals of the module
-loader. Be aware that this data is not stable.
-
-[1] https://android.googlesource.com/kernel/common/+/refs/heads/android-mainline/drivers/android/debug_kinfo.c
-
--- 
-Thanks,
-Petr
+>  Documentation/devicetree/bindings/pinctrl/samsung,pinctrl.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+>
+> diff --git a/Documentation/devicetree/bindings/pinctrl/samsung,pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/samsung,pinctrl.yaml
+> index 7b006009ca0e..c4773701c92e 100644
+> --- a/Documentation/devicetree/bindings/pinctrl/samsung,pinctrl.yaml
+> +++ b/Documentation/devicetree/bindings/pinctrl/samsung,pinctrl.yaml
+> @@ -53,6 +53,7 @@ properties:
+>        - samsung,exynos7870-pinctrl
+>        - samsung,exynos7885-pinctrl
+>        - samsung,exynos850-pinctrl
+> +      - samsung,exynos8855-pinctrl
+>        - samsung,exynos8890-pinctrl
+>        - samsung,exynos8895-pinctrl
+>        - samsung,exynos9610-pinctrl
+> --
+> 2.34.1
+>
 
