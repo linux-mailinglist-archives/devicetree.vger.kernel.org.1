@@ -1,169 +1,133 @@
-Return-Path: <devicetree+bounces-323849-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-323850-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id nz70HdyvT2oLmwIAu9opvQ
-	(envelope-from <devicetree+bounces-323849-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 16:27:40 +0200
+	id E7bUJ96vT2oOmwIAu9opvQ
+	(envelope-from <devicetree+bounces-323850-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 16:27:42 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8BE273237D
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 16:27:39 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 101FC732388
+	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 16:27:42 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=gcu+oi0M;
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-323849-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-323849-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=collabora.com header.s=mail header.b=Y94DA6lA;
+	dmarc=pass (policy=none) header.from=collabora.com;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-323850-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-323850-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E5A1430C8DED
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2026 14:06:05 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 1BEA130CAF0C
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2026 14:06:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74DC74418CC;
-	Thu,  9 Jul 2026 14:00:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE83C328610;
+	Thu,  9 Jul 2026 14:01:50 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4EF4F4418DF
-	for <devicetree@vger.kernel.org>; Thu,  9 Jul 2026 14:00:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 593482C029D;
+	Thu,  9 Jul 2026 14:01:49 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783605616; cv=none; b=q7SomsC/JyCZkf9zZrB8j3/RBXBWjDDsxdCSpFHH9QMee06wJRmQfO1ZsAOIT5UTg2XBi5JftJ4UGXkJ9waIMyn+1N27GCAI2H1fTVP0gKKAMsbnniCRWxD0ncHqsA8UJbNtTRjHILYtUgJDyvZ85LedpAo3iqyZ73vMmGAKYek=
+	t=1783605710; cv=none; b=mra7oXZNRpeDcdeP5kTd8yQXiih29aYTx3ze7ZeEb9M14Re6cLL05HlUJvSSSq7hcEMHZVmxk9UOXL132gTMixHhKPvhE+5q7NG1EXVY0jbLjQfp9sQBdws62TuYNnVcFuje7L2LCSxGlT1xCSOIJLT/71adz77WC+trhE+RkXQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783605616; c=relaxed/simple;
-	bh=mE63ay4nSLPLfSnHSbkenKQSg9En6dp2o44ekKnlmWw=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=Xd+Z6ePkRskV6zKSjxl4ca8Y/DMKEdIcWFo960jVvVQF3Ee+UoFQpHIbWHgNwVcw8nm6wlWbiSbXeLeJE4SsN8I0V77RnlX/4xjCJvl0uxNTKCi6YaLhsxtlKzzotSEXE9CFPIz9Uq5dl2WKoc0FZCurZaOpL210p0LogDm5Cfo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gcu+oi0M; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A1D0F1F000E9;
-	Thu,  9 Jul 2026 14:00:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783605614;
-	bh=AXc+U2NTX+WfNCK3szRtITB4pG4K/eausIBZdvDkBZ8=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=gcu+oi0MkysS7sXP2vYUTb/VHOp2MptzsdAkXMTCHIPLASrbB2mwe6Re8xLzfTJCD
-	 s2HvdFb91XhDjQYd8qwcx9Kv5/IJeEXRdQoX/IsUs2EOEAHcYdfPOTklpOZYu1w1qX
-	 T6tSTDgxGwEoGt1uhwRkxqtTxmcqICVLUAAaFAXAUcOxuMOtZQPrTQhpSmpmaCwmSA
-	 qEZouCb0qT6eqZxnaFTobQ/4E34TMqaNN3kVhfZuqw13VHWW+a6YiA+fqlsVP4ohyt
-	 /Mezse8HEXtHiKH9KUxwJ4fsiANu/Vi5wRPH5CpYEL9yNE4XDdmMVhL8HikF7YuIx7
-	 qqn7U8MpDZkYQ==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v1 03/11] spi: dw: update SPI_CTRLR0 register
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Changhuang Liang" <changhuang.liang@starfivetech.com>
-Cc: robh@kernel.org, devicetree@vger.kernel.org, conor+dt@kernel.org
-In-Reply-To: <20260709055204.138168-4-changhuang.liang@starfivetech.com>
-References: <20260709055204.138168-1-changhuang.liang@starfivetech.com>
- <20260709055204.138168-4-changhuang.liang@starfivetech.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Thu, 09 Jul 2026 14:00:14 +0000
-Message-Id: <20260709140014.A1D0F1F000E9@smtp.kernel.org>
+	s=arc-20240116; t=1783605710; c=relaxed/simple;
+	bh=NsUUyYLiMvVkx3K07K1ak3fXf989M3aFmNYTZApMkJo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=WoDBap/tsRviMQsFNOudJcU4pg6DfR+5S4mN++opBWda7UF50pjCOKJVuJ2DVAgUyJn/JolEoWWxipPnJ34EOnfu06OI9ySPOp/eYjrAtNFxCGrwB5ukov/POyfA4Gv9mPmwMtoEOtx5EBuY6Jj+sAGhwtMaFQJGVLO1RGbTsyU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=Y94DA6lA; arc=none smtp.client-ip=148.251.105.195
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1783605707;
+	bh=NsUUyYLiMvVkx3K07K1ak3fXf989M3aFmNYTZApMkJo=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Y94DA6lABAfIWKm9mEjfNwpSSs1ze7b4zequXSUlSnjcYU2iBEoHE+09fA9x8+tlG
+	 gAMBhdkw+hXVTGiMKO8Qn4xoBLJ5DvM6+FXbkAgeZ+09RMDvYSFNRg0ZO/HH6VQ2mW
+	 keAfhg5Ijdh83U32b72/4p5kgV4EqhEUbIJ5Mym9Le39uNfQii6lXmcTd9/bg7CdLi
+	 U3Oyp80ASvEE+lkGxl1J1hPnPws/76oNSIJ/GYGx8NCgxZslQJowTiTT5sLNgOvLFK
+	 7iJFoG+Rus5j3gV8hCzX4L8BsscHKysfrGVm3aaofUahICkOnVyya9yqYiY2p+olKM
+	 p0xXvGGoXADSA==
+Received: from [100.64.1.21] (unknown [100.64.1.21])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id B847317E0D33;
+	Thu, 09 Jul 2026 16:01:46 +0200 (CEST)
+Message-ID: <122d78b9-7e22-449b-ad27-f456d807f9e5@collabora.com>
+Date: Thu, 9 Jul 2026 16:01:46 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 03/18] dt-bindings: clock: mediatek: Make
+ '#clock-cells' required for MT8195
+To: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Brian Masney <bmasney@redhat.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+ <matthias.bgg@gmail.com>, Chun-Jie Chen <chun-jie.chen@mediatek.com>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Edward-JW Yang <edward-jw.yang@mediatek.com>,
+ Richard Cochran <richardcochran@gmail.com>
+Cc: kernel@collabora.com, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ netdev@vger.kernel.org
+References: <20260709-mt8189-clocks-system-base-v2-0-2926da3db6cf@collabora.com>
+ <20260709-mt8189-clocks-system-base-v2-3-2926da3db6cf@collabora.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <20260709-mt8189-clocks-system-base-v2-3-2926da3db6cf@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
+	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-323849-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	TAGGED_FROM(0.00)[bounces-323850-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:changhuang.liang@starfivetech.com,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_TO(0.00)[collabora.com,baylibre.com,kernel.org,redhat.com,gmail.com,mediatek.com,pengutronix.de];
+	FORGED_SENDER(0.00)[angelogioacchino.delregno@collabora.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	FORGED_RECIPIENTS(0.00)[m:louisalexis.eyraud@collabora.com,m:mturquette@baylibre.com,m:sboyd@kernel.org,m:bmasney@redhat.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:matthias.bgg@gmail.com,m:chun-jie.chen@mediatek.com,m:p.zabel@pengutronix.de,m:edward-jw.yang@mediatek.com,m:richardcochran@gmail.com,m:kernel@collabora.com,m:linux-clk@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-mediatek@lists.infradead.org,m:netdev@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,m:matthiasbgg@gmail.com,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCPT_COUNT_THREE(0.00)[4];
+	FROM_NEQ_ENVFROM(0.00)[angelogioacchino.delregno@collabora.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[collabora.com:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.linux.dev:replyto,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,smtp.kernel.org:mid,sifive.com:email,sashiko.dev:url,vger.kernel.org:from_smtp]
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:from_mime,collabora.com:email,collabora.com:mid,collabora.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: C8BE273237D
+X-Rspamd-Queue-Id: 101FC732388
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [Medium] The newly introduced `enh_cfg` parameter in `dw_spi_update_confi=
-g()` is never populated or passed by any caller, rendering the enhanced mod=
-e configuration logic effectively dead code.
---
+On 7/9/26 15:42, Louis-Alexis Eyraud wrote:
+> Both MT8195 clock controllers dt-bindings (clock and sys-clock)
+> document the '#clock-cells' property but do not enforce it as required
+> property.
+> As clock provider nodes should define this property in devicetrees, add
+> it to the required property list in both its dt-bindings files.
+> 
+> Signed-off-by: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
 
---- Patch [3]: [PATCH v1 03/11] spi: dw: update SPI_CTRLR0 register ---
-commit b571b86cd59a7cddd50fbc1933264b4589cd6f16
-Author: Sudip Mukherjee <sudip.mukherjee@sifive.com>
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-spi: dw: update SPI_CTRLR0 register
-
-This commit updates the SPI DesignWare driver to configure the SPI_CTRLR0
-register for enhanced mode transfers. It introduces a new dw_spi_enh_cfg
-structure and passes it to dw_spi_update_config() to set up instruction=20
-lengths, address lengths, and wait cycles.
-
-> diff --git a/drivers/spi/spi-dw-core.c b/drivers/spi/spi-dw-core.c
-> index 8d4ad4035d7c9..6befe47929b4c 100644
-> --- a/drivers/spi/spi-dw-core.c
-> +++ b/drivers/spi/spi-dw-core.c
-[ ... ]
-> @@ -451,7 +460,7 @@ static int dw_spi_transfer_one(struct spi_controller =
-*ctlr,
-> =20
->  	dw_spi_enable_chip(dws, 0);
-> =20
-> -	dw_spi_update_config(dws, spi, &cfg);
-> +	dw_spi_update_config(dws, spi, &cfg, NULL);
-
-[Severity: Medium]
-Is this intended to always be NULL here? By passing NULL unconditionally,=20
-the new enhanced configuration block in dw_spi_update_config() will never=20
-execute for this path.
-
-[ ... ]
-> @@ -718,7 +727,7 @@ static int dw_spi_exec_mem_op(struct spi_mem *mem, co=
-nst struct spi_mem_op *op)
-> =20
->  	dw_spi_enable_chip(dws, 0);
-> =20
-> -	dw_spi_update_config(dws, mem->spi, &cfg);
-> +	dw_spi_update_config(dws, mem->spi, &cfg, NULL);
-
-[Severity: Medium]
-Similarly in dw_spi_exec_mem_op(), the enh_cfg parameter is also=20
-unconditionally passed as NULL. Is there a missing piece that was supposed=
-=20
-to extract the enhanced mode configurations from the memory operation and=20
-pass them along?=20
-
-Since all current callers provide NULL, the newly added SPI_CTRLR0 register=
-=20
-update logic inside dw_spi_update_config() appears to be permanently=20
-unreachable.
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260709055204.1381=
-68-1-changhuang.liang@starfivetech.com?part=3D3
 
