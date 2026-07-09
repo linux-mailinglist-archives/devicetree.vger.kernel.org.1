@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-324060-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-324061-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id DSDkG370T2pRrAIAu9opvQ
-	(envelope-from <devicetree+bounces-324060-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 21:20:30 +0200
+	id HLgnKN71T2qkrAIAu9opvQ
+	(envelope-from <devicetree+bounces-324061-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 21:26:22 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC200734E1A
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 21:20:29 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id D9543734F0C
+	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 21:26:21 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=AFqO4tOo;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b="JMkckb6/";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324060-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-324060-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324061-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-324061-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id CEDBF3028C99
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2026 19:20:09 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 22FAB301BF44
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2026 19:21:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA2F33AC0C9;
-	Thu,  9 Jul 2026 19:20:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BEBE63AFD0B;
+	Thu,  9 Jul 2026 19:21:27 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70AF13A9616
-	for <devicetree@vger.kernel.org>; Thu,  9 Jul 2026 19:20:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F6253AFAF4
+	for <devicetree@vger.kernel.org>; Thu,  9 Jul 2026 19:21:25 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783624807; cv=none; b=XbnvCzp5zkfJLdAHEzNnwF3j2ZxWjpHddt+BHquUVMfbQXwsvF3Q/V/R5GFdHenKF3kqYJpH9/AFVx6M1z4j926kuo/a6eTjY6UXf7c0snAOc43cxR+HI+7GgT3WxFY9sBCxHuFcVAg0R/yac7ZR3SKdSeQ2EF6kL9allyVoQ7c=
+	t=1783624887; cv=none; b=CRQZdJ40oqk46J22fEAzY6JqQ9gssOpbiT1Wr0Wy86yfI3zJLQQR7Wl39ThPrrIwz/EyzYOmDnFXsVOU1mG53gyYR7IZGf+CKMtN6gCE2Ijjz9ZIAxvcvQ4Mvu3Y7p56WVrkBKN1rMP9n9vqi0vzbkKCghHAM4D1M0WkkkPGXs8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783624807; c=relaxed/simple;
-	bh=7DpJGoxfweEZtBfvoj3pfeT6eTmnoLv34PG/QWLyypo=;
+	s=arc-20240116; t=1783624887; c=relaxed/simple;
+	bh=uGX6CTXfGlcrEjhdPRwZDWJw0v/HJ1cjCQzNxOjhUyY=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=pDuW8dAgVjDqzNHJKayStH2G4y8MM8pshaqp/gb4G+QHdKI3tny0AZqobhfgO1y9MFAnAVwHPXO7xehmarNke4sDngnC2V+wRr5ZXbzRM9te3ZJqyTFqXqErxiJElvhtwu+gWsYb1uUSf5GwGo4+96OtGwIKC24ZMwZKZnQ7IAY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AFqO4tOo; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9D36B1F000E9;
-	Thu,  9 Jul 2026 19:20:05 +0000 (UTC)
+	 Message-Id; b=DR54ajIRD3B10rsM3pfU9KA/P1BLNAAQ9cmehfABDAnOqwBd/537Oezoaag6z9FINag+GFsbgAyI/sqDR0xVoxAzCm+HO0U6SecQ6tTiiNEYKbYCZH5pssTIayKdB7h6xiwmwlt7UXQSdYRKyx4bDjhNvpm3GPBTHEwZ6220LF4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JMkckb6/; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 72CF61F000E9;
+	Thu,  9 Jul 2026 19:21:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783624806;
-	bh=JOoYQRRMp/4bQLfHT7UKwwFS3tOvWyyYjCNy0bIanP8=;
+	s=k20260515; t=1783624885;
+	bh=DNmTkwcBnzxTjrCC37k0A/W6iNdJ5fj0ljG7c/dbdOI=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=AFqO4tOoNNFAEoLYJmjyu/SQD3JyRwFaKveh1SXYhWsnL54mc4i5usBB7dSs3lGEc
-	 IJOQPitHiw3ugO/OuTLrMkF6AFNmiBW+Vi74v+DPCNE3309IkapjjQy22NBc0fylKM
-	 SgEGuYbm0mlnuaGAv1Fs3AbiG98ySluC+WdYPJ2iyk96K04lelrYlRizLHUfBpWjcQ
-	 /MVkPlY40+FQ6teToITEDFyWGAha+Ln1y9ajZ/CDqAn19jtzHeZaENYA6GxzTKMU1j
-	 vONODRn08j3PmYOjdRfhVKk4v5qtixPYaigf9D35RKPN4FkaRU3REjeGi2QmC1FLjT
-	 aTWzUpHHP+Zqg==
+	b=JMkckb6/JrcIauEbAPjA47PSq7j3Vl31AMiKfaKcZcVQf3a7+j8b/zLEq+DDpxoXT
+	 8EfI5kFv4vskHeWH7g1Ih9onaYLCKcc519gX/ZuwXIjMjbc1udo72t6X95x8Uyz+e4
+	 OMk5ZX9R7C2zN7v/854sKCjbqnh3kEcvqVI6L6x1iK2uayWbNkDpAUATLBjXwrQQkC
+	 Zj5vaQyHvxIF7KHiucZGdOeZbX9khtOcQSt8EL7HmXmnSLnS5JuG35p38k94M3q4Go
+	 6bAhCY1svDLQ/eje5BKEylN9gfaQo9UlV8eNU1+bMU68qlhy17zBs8r9es6Q0KKzKJ
+	 Ng6H25UTZITZQ==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v11 02/36] phy: rockchip: usbdp: Update mode_change
- after error handling
+Subject: Re: [PATCH v11 12/36] phy: rockchip: usbdp: Limit DP lane count to
+ muxed lanes
 Reply-To: sashiko-reviews@lists.linux.dev
 To: "Sebastian Reichel" <sebastian.reichel@collabora.com>
-Cc: olteanv@gmail.com, linux-phy@lists.infradead.org, devicetree@vger.kernel.org, conor+dt@kernel.org, robh@kernel.org, neil.armstrong@linaro.org, vkoul@kernel.org
-In-Reply-To: <20260709-rockchip-usbdp-cleanup-v11-2-a149ac60f76c@collabora.com>
+Cc: neil.armstrong@linaro.org, robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org, olteanv@gmail.com, linux-phy@lists.infradead.org, vkoul@kernel.org
+In-Reply-To: <20260709-rockchip-usbdp-cleanup-v11-12-a149ac60f76c@collabora.com>
 References: <20260709-rockchip-usbdp-cleanup-v11-0-a149ac60f76c@collabora.com>
- <20260709-rockchip-usbdp-cleanup-v11-2-a149ac60f76c@collabora.com>
+ <20260709-rockchip-usbdp-cleanup-v11-12-a149ac60f76c@collabora.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Thu, 09 Jul 2026 19:20:04 +0000
-Message-Id: <20260709192005.9D36B1F000E9@smtp.kernel.org>
+Date: Thu, 09 Jul 2026 19:21:25 +0000
+Message-Id: <20260709192125.72CF61F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,22 +72,22 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-324060-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-324061-lists,devicetree=lfdr.de];
 	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:sebastian.reichel@collabora.com,m:olteanv@gmail.com,m:linux-phy@lists.infradead.org,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:robh@kernel.org,m:neil.armstrong@linaro.org,m:vkoul@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:sebastian.reichel@collabora.com,m:neil.armstrong@linaro.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:olteanv@gmail.com,m:linux-phy@lists.infradead.org,m:vkoul@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FREEMAIL_CC(0.00)[gmail.com,lists.infradead.org,vger.kernel.org,kernel.org,linaro.org];
+	FREEMAIL_CC(0.00)[linaro.org,kernel.org,vger.kernel.org,gmail.com,lists.infradead.org];
 	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	RCPT_COUNT_SEVEN(0.00)[8];
@@ -100,135 +100,116 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FROM_NO_DN(0.00)[];
 	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:email,sashiko.dev:url,smtp.kernel.org:mid,lists.linux.dev:replyto,vger.kernel.org:from_smtp,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,sashiko.dev:url,vger.kernel.org:from_smtp,lists.linux.dev:replyto]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: CC200734E1A
+X-Rspamd-Queue-Id: D9543734F0C
 
-Thank you for your contribution! Sashiko AI review found 3 potential issue(=
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
 s) to consider:
 
 Pre-existing issues:
-- [High] When changing the PHY mode from DP-only to a state that includes U=
-SB (e.g., DP+USB), the U3 port remains permanently disabled, breaking USB 3=
-.0 functionality.
-- [High] The PHY is left permanently enabled and clocks leak due to flawed =
-mode-checking in the power off path during Type-C role switches.
-- [High] Re-initializing the PHY during a mode change while the USB control=
-ler is active disables PHY clocks without re-routing the DWC3 clock, leadin=
-g to a fatal SError on register access.
+- [High] The DP lane bounds check and PHY configuration execute without hol=
+ding the driver's mutex, creating a TOCTOU race condition with concurrent T=
+ype-C events.
+- [High] The newly added lane count check is bypassed during standalone DP =
+voltage updates, allowing the same USB3 register corruption the patch inten=
+ded to fix.
 --
 
---- Patch [2]: [PATCH v11 02/36] phy: rockchip: usbdp: Update mode_change a=
-fter error handling ---
-commit 1bc42e532da1064edae3f14df8f37ade40a0072d
+--- Patch [12]: [PATCH v11 12/36] phy: rockchip: usbdp: Limit DP lane count=
+ to muxed lanes ---
+commit 42fd02565f1c138c8faee25d5fd929ceb0f2e7e3
 Author: Sebastian Reichel <sebastian.reichel@collabora.com>
+Subject: phy: rockchip: usbdp: Limit DP lane count to muxed lanes
 
-phy: rockchip: usbdp: Update mode_change after error handling
+This patch adds a check to limit the DisplayPort lane count to the muxed
+lanes, preventing the DP controller from configuring 4 lanes when the PHY
+is restricted to 2 lanes. This aims to protect USB3 usage from being
+corrupted by incorrect voltage configurations.
 
-If rk_udphy_init() or rk_udphy_setup() fails, the reinit will not be
-tried again. Fix this by only updating the variable after all potential
-errors have been handled.
-
-Link: https://lore.kernel.org/linux-phy/20260612163835.8D5471F000E9@smtp.ke=
+Link: https://lore.kernel.org/linux-phy/20260612165546.98E1F1F000E9@smtp.ke=
 rnel.org/
 
 > diff --git a/drivers/phy/rockchip/phy-rockchip-usbdp.c b/drivers/phy/rock=
 chip/phy-rockchip-usbdp.c
-> index fba35510d88ce..a5ffdf7a6e76b 100644
+> index c4d62b234ea80..b172ce6a722ee 100644
 > --- a/drivers/phy/rockchip/phy-rockchip-usbdp.c
 > +++ b/drivers/phy/rockchip/phy-rockchip-usbdp.c
-> @@ -1000,15 +1000,14 @@ static int rk_udphy_power_on(struct rk_udphy *udp=
-hy, u8 mode)
->  	}
-> =20
->  	if (udphy->status =3D=3D UDPHY_MODE_NONE) {
-> -		udphy->mode_change =3D false;
->  		ret =3D rk_udphy_setup(udphy);
->  		if (ret)
->  			return ret;
-> =20
->  		if (udphy->mode & UDPHY_MODE_USB)
->  			rk_udphy_u3_port_disable(udphy, false);
-> -	} else if (udphy->mode_change) {
->  		udphy->mode_change =3D false;
-> +	} else if (udphy->mode_change) {
->  		udphy->status =3D UDPHY_MODE_NONE;
->  		if (udphy->mode =3D=3D UDPHY_MODE_DP)
->  			rk_udphy_u3_port_disable(udphy, true);
+> @@ -1099,6 +1099,9 @@ static int rk_udphy_dp_phy_verify_link_rate(struct =
+rk_udphy *udphy,
+>  static int rk_udphy_dp_phy_verify_lanes(struct rk_udphy *udphy,
+>  					struct phy_configure_opts_dp *dp)
+>  {
+> +	if (dp->lanes > udphy->dp_lanes)
+> +		return -EINVAL;
+> +
 
 [Severity: High]
-This isn't a bug introduced by this patch, but does this lead to a fatal
-SError when changing to a mode that includes USB?
+This is a pre-existing issue, but does this bounds check need to be
+protected by a lock?
 
-If a mode change to DP+USB triggers rk_udphy_power_on(), the code skips cal=
-ling
-rk_udphy_u3_port_disable(udphy, true). It then unconditionally calls
-rk_udphy_disable(udphy) below, which turns off the PHY clocks.
+If a Type-C event (like a cable flip reducing DP lanes from 4 to 2)
+occurs concurrently with a DP link training operation, could the bounds
+check pass while udphy->dp_lanes is 4?
 
-Because the USB3 port wasn't disabled to safely re-route the clock, and the
-DWC3 driver isn't notified via phy_notify_reset(), the active DWC3 controll=
-er
-could crash the system when it touches its registers.
+If a context switch allows the Type-C handler to reduce the lane count
+and change udphy->lane_mux_sel while holding udphy->mutex, when this
+thread resumes and proceeds to rk_udphy_dp_phy_configure() (which is
+called without holding udphy->mutex), could it overwrite hardware
+registers of physical lanes now assigned to USB3:
 
-> =20
->  		rk_udphy_disable(udphy);
->  		ret =3D rk_udphy_setup(udphy);
->  		if (ret)
->  			return ret;
-> +		udphy->mode_change =3D false;
->  	}
-
-[Severity: High]
-This isn't a bug introduced by this patch, but does this skip re-enabling t=
-he
-U3 port when the new mode requires USB?
-
-When changing the PHY mode from DP-only to a state that includes USB (e.g.,
-DP+USB), the U3 port remains permanently disabled. The mode change block
-fails to call rk_udphy_u3_port_disable(udphy, false) to re-enable it for the
-newly added USB 3.0 mode, leaving USB functionality broken until a power cy=
-cle.
-
-[Severity: High]
-This isn't a bug introduced by this patch, but can the PHY be left
-permanently enabled during Type-C role switches?
-
-When the Type-C mux changes mode from DP+USB to DP-only, udphy->mode loses
-the UDPHY_MODE_USB bit immediately.
-
-Later, when the USB core calls rk_udphy_usb3_phy_exit():
-
-drivers/phy/rockchip/phy-rockchip-usbdp.c:rk_udphy_usb3_phy_exit() {
-	...
-	/* DP only or high-speed */
-	if (!(udphy->mode & UDPHY_MODE_USB) || udphy->hs)
-		goto unlock;
-
-	rk_udphy_power_off(udphy, UDPHY_MODE_USB);
-	...
+rk_udphy_dp_phy_configure() {
+    ...
+    lane =3D udphy->dp_lane_sel[i];
+    ...
+    regmap_update_bits(udphy->pma_regmap,
+                       TRSV_ANA_TX_CLK_OFFSET_N(lane),
+                       LN_ANA_TX_SER_TXCLK_INV,
+                       FIELD_PREP(LN_ANA_TX_SER_TXCLK_INV,
+                       udphy->lane_mux_sel[lane]));
+    ...
 }
 
-It sees the new mode and skips calling rk_udphy_power_off(). Even if it
-were called, rk_udphy_power_off() also refuses to act if the requested
-mode is absent from udphy->mode:
+[Severity: High]
+This is also a pre-existing issue, but will this check be bypassed
+during standalone DP voltage updates?
 
-drivers/phy/rockchip/phy-rockchip-usbdp.c:rk_udphy_power_off() {
-	...
-	if (!(udphy->mode & mode)) {
-		dev_info(udphy->dev, "mode 0x%02x is not support\n", mode);
-		return;
-	}
-	...
+If a Type-C event asynchronously reduces udphy->dp_lanes (e.g., from
+4 down to 2), and the DP controller subsequently issues a standalone
+voltage update (where dp->set_voltages=3D1 and dp->set_lanes=3D0) prior to
+a full link retrain:
+
+rk_udphy_dp_phy_configure() {
+    ...
+    if (dp->set_lanes) {
+        ret =3D rk_udphy_dp_phy_verify_lanes(udphy, dp);
+        if (ret)
+            return ret;
+    }
+    ...
 }
 
-Consequently, udphy->status incorrectly retains the USB bit, preventing
-rk_udphy_disable() from ever powering down the PHY and leaking clocks.
+Would rk_udphy_dp_phy_verify_lanes() be bypassed entirely? This would
+allow the configuration loop to iterate up to the stale cached
+udphy->lanes limit:
+
+rk_udphy_dp_phy_configure() {
+    ...
+    for (i =3D 0; i < udphy->lanes; i++) {
+    ...
+
+and potentially cause the out-of-bounds writes to the USB3 hardware
+registers that this patch intends to prevent.
+
+>  	switch (dp->lanes) {
+>  	case 1:
+>  	case 2:
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260709-rockchip-u=
-sbdp-cleanup-v11-0-a149ac60f76c@collabora.com?part=3D2
+sbdp-cleanup-v11-0-a149ac60f76c@collabora.com?part=3D12
 
