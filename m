@@ -1,485 +1,228 @@
-Return-Path: <devicetree+bounces-323954-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-323956-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id YLjlE7DeT2repQIAu9opvQ
-	(envelope-from <devicetree+bounces-323954-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 19:47:28 +0200
+	id o3hHCrHfT2o8pgIAu9opvQ
+	(envelope-from <devicetree+bounces-323956-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 19:51:45 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F2A3733F44
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 19:47:27 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FBF3734020
+	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 19:51:44 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=UtlOx+2F;
-	dkim=pass header.d=oss.qualcomm.com header.s=google header.b=IZNDD4gz;
-	dmarc=pass (policy=reject) header.from=qualcomm.com;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-323954-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-323954-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=U8pqIKhb;
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-323956-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-323956-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id B7A9B310AD42
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2026 17:41:57 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 09ECC3008631
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2026 17:47:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9127B4195C4;
-	Thu,  9 Jul 2026 17:41:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA7EE40B6D9;
+	Thu,  9 Jul 2026 17:47:14 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B03D44195AC
-	for <devicetree@vger.kernel.org>; Thu,  9 Jul 2026 17:41:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86B4935B62C;
+	Thu,  9 Jul 2026 17:47:13 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783618917; cv=none; b=r54FtmdiYe4FL0lBzUSa7ML+bG84lQmcIaas/4PCJheNZh00LQ1l6CNki9247We29KpsqTwDeCQfRausTMTiXL2Nkmr5tcQYlb7bbbsQ6maUpHJWM4Bje0wYSjdnFdShgViKGWxTEBWGTfWty5C2Gg3oK7sDCUK0lpfnKWX+7mM=
+	t=1783619234; cv=none; b=PT27K4/t+ScZf7OFK80U3PWfzI51g0IL6YYJPDtbXv+WIR7S0yVLBrmpJMi/qLEWRX9LdNnOCL3ipyb1iibXgcefFKYwhGV/ZKCJj4ERkvdJ4TwhfiBI/Xhzq1RHN7QsAXmBnpUlzAQzL+we+Kk4a8NLkrYk46VVgr2/7h3bJvE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783618917; c=relaxed/simple;
-	bh=ZzYwHa+deDpA118pa8JLvznGNgQlLOdgQ29SOnIiH9g=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=eGEzaXN/N8bb51YqmLk1fwwDGYUG3itxHj44vD0/ElgQKVYfcRU9QvguxVgXpwe0WAEzZRGG55eYJ9RmdnFumOyN5HJTSaJsn2h+e+qfTDMxN2g8nRG2gOVtJLaq585yGyEVndJabpeB4gDvmz9lTy5nmNUlVyIjSOCxX8Xw4YE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=UtlOx+2F; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=IZNDD4gz; arc=none smtp.client-ip=205.220.180.131
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 669HXifL2474036
-	for <devicetree@vger.kernel.org>; Thu, 9 Jul 2026 17:41:50 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	f/ok5P/KJKTJ44/y6GUKUWw0HNP+CMc3yaavgWV34ow=; b=UtlOx+2F64QOCPI7
-	xxbwfOeEwRhDO3nAis6Z1Oyl8Pudwhcr5vfKL0b10Ad7Z2DXguYRO0WkyucRb0Pq
-	DIswWwUPW9o0RLdXpyg74AyKWmiiWm53pAwTT4HUV7hOvnzsVjex/ugkgmJwuRJI
-	B0rsFa0h6VxA6A+E4k8rcWSyQHRhgTtfHOp7NonKOYFkPGjuidnKou8LqlkE4YVy
-	aBllsXiMCQwGDxOBe2thcs5bAcP6JgJaWPl28Wj2fgRtJ9tR6evmkEW4NvTyB/fO
-	+QvZZSDbOMMsXqU48EdFG2TnR5oFE3iWNvBZIGkqXlWValxBbmwVLonyDRQxkie/
-	kCBhPw==
-Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4facqph8fq-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 09 Jul 2026 17:41:50 +0000 (GMT)
-Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-51c1e6f602cso446161cf.3
-        for <devicetree@vger.kernel.org>; Thu, 09 Jul 2026 10:41:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1783618910; x=1784223710; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :content-type:mime-version:subject:date:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=f/ok5P/KJKTJ44/y6GUKUWw0HNP+CMc3yaavgWV34ow=;
-        b=IZNDD4gzks2/9huWxvrg/SFXtvpSgabWaOlIR4Hiyz8eebTyUeFjhoK+zeMBAVR5/a
-         dNaPYtFTiKdP6XdMmOeY4ZHBMY54z/rOiwMuUgCQR2OEASoFAdY/2obxV9IIblL3G5vY
-         BueoZzvOyTHrF3pHLp+uSdU6gE1d1KKRcIur6j6H2ZjsipUauVu6TnLCQs3MkXbBOM9N
-         PT3uR8o4J7YuljgHJW2CHXjxfZ41uqENVAb5tdfmJFl04oFufU9GDXpo8F3c0AJ/KQ+e
-         ivToTVxN5OCmM6pX5/JA0UwEQXZEwlYFgUUa5Ws3srmbjqNOhQdfk0VUxRvb5AHgNOsy
-         rdrw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783618910; x=1784223710;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :content-type:mime-version:subject:date:from:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=f/ok5P/KJKTJ44/y6GUKUWw0HNP+CMc3yaavgWV34ow=;
-        b=mZchBUK7YOHdt/UNnvojqcmuujopu1HAy8jtP3AWKdcEC2YHq7n6Iin1KtjiYWO3WV
-         cQFNKa2qnCbFy3tQQ1dD0Tph8Er3JVpaP6LTDrZc+1xO+qtVROu//H+kTwDTLGDAhj2n
-         tZ+UizfcEoIpj9XECB0I9ml13lD0l5FOIpskDK2KS6YrY9I58SEzA+4FAcXln0kISQWB
-         B6uCJ+FQcr8OwRgHy4qfXoQRJw0fCuXO52oJYlueFAdQ4ZxNfwUl0TsYWicLSheWPmAT
-         /zJua0Ia04zonJUzpMGCZBy5LZ+1EC3lKezHm4sXmrbJ378zj/bu8IHw4pXpxjGV1hTu
-         avGg==
-X-Gm-Message-State: AOJu0YzLo4833v6fsMLDxVe1OFGCX9BggkQLYRLZiehnUOKg2A1XTALR
-	Kxw/BDTMVPuPBxIfYXqCm6GmvEyRbxm4KIPs5KrsNZQ6MT6QA+Kfks/n8HD8Xsssv1fG48PNSEx
-	HN25GNbKemZjsrQtLfLNi10SGHyiIuHZoFRYmW5tplzBKcyCBjpUqdilG5cHtpnSx
-X-Gm-Gg: AfdE7ckK/CV4Wz029pLfAofzYV6FIh5J0665AQtMH2pIDrY1v16YF+P1RZJKc8/uc1/
-	SY5LXu9TeKrwbk99cLRaUjha9y67mwlLDf1i8i7gdo/8eeXViUOSY84vpZKJhGXtG2CKiFm6RnO
-	RRUukIg34HvlcAtnScNS8mgnLLp0t89h35xhYKZcm+PSRUgtbQFrW9kHuaOMFfwxGL4Vz/YCODx
-	UV7FBvSZnFj8CQNw6OregruSxfAOI4FcixSoQob20R+cjE+kfKIFPe26BOQTh6G8aLCPzuC/3r9
-	AUdBvGQL7mTRG+fzod33o8x2NIg6o8rIlsfiuOVtTKTuOUatR7gk0l3RpOdxqDzwM7qe+WuIrWn
-	JpiOnNYtYo+aI9GCWbQMGbd4eTS7z7keZ
-X-Received: by 2002:a05:622a:1f0e:b0:51c:2149:52db with SMTP id d75a77b69052e-51c8b4ba4damr85948321cf.59.1783618910011;
-        Thu, 09 Jul 2026 10:41:50 -0700 (PDT)
-X-Received: by 2002:a05:622a:1f0e:b0:51c:2149:52db with SMTP id d75a77b69052e-51c8b4ba4damr85947841cf.59.1783618909379;
-        Thu, 09 Jul 2026 10:41:49 -0700 (PDT)
-Received: from [127.0.1.1] ([213.55.184.23])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-47aa039bcdasm55174048f8f.21.2026.07.09.10.41.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Jul 2026 10:41:47 -0700 (PDT)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-Date: Thu, 09 Jul 2026 19:41:35 +0200
-Subject: [PATCH v5 7/7] dtc: dt-check-style: Add more DTS test cases
+	s=arc-20240116; t=1783619234; c=relaxed/simple;
+	bh=06/2miBpG4NkdvXK3SV9mtPtKjNnTumjr9HgfBwJo8o=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=DWiq7LIx02Cc8ssywYn+dPC5T+AgSjboxIR56OIoMAlMMZNE6ewXmxaKVQG03li4V8jq+sLlg352lmSq9DXvDd04rhPWcdQqvtyi1eYdbxK6QNazbNmUz9deQBoGvgDVxLzaHc4e7ruF/YadMoqS7LADm7lQugv4MegUfSznFcU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=U8pqIKhb; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0799C1F000E9;
+	Thu,  9 Jul 2026 17:47:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1783619233;
+	bh=gCciP92ZI0EnoorGeU/orSgjZQNLlRaKdMjI/vAlnK0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=U8pqIKhbPDsdoeJpSjcgp87pmkIiG8SLSaM104p7/6Noev0pMwjI52LcII23HEWO1
+	 p/CnZobolGGhszhYg0rYZbytwvseUaLPkQz6owhgSknDUNqPSPdgMHoIGgFH5bGQ6a
+	 e2pXTexijUyOgmVBxenlQa9KnYrN4acDk2+pffZZ65o040KGZcRXrPWoD4O1koq6bn
+	 pj1jfu1y/BZVny4Z/+eOSXKrHLq8jWjHZ6vzmfEZP0PjuYPzpso0W0g9NNz6UIKe7J
+	 9ec4gwmG8oipma+65dC9mbfP66Tp9VohRD6gxX8fwFPysJuASgKIQgHH/Rn5Tvusy3
+	 FsDMqyk6X17TQ==
+Date: Thu, 9 Jul 2026 18:47:08 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Frank Li <Frank.li@oss.nxp.com>
+Cc: Haoning.CHENG@cn.bosch.com, "Rafael J. Wysocki" <rafael@kernel.org>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, linux-pm@vger.kernel.org,
+	devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: thermal: imx: Document calibration
+ offset property
+Message-ID: <20260709-send-mashed-bac8c44ead01@spud>
+References: <20260709-b4-symana21-11221-imx-thermal-support-upstream-6-18-v2-0-00ff72495e24@cn.bosch.com>
+ <20260709-b4-symana21-11221-imx-thermal-support-upstream-6-18-v2-1-00ff72495e24@cn.bosch.com>
+ <ak-5KdXFUldV2eTP@SMW015318>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260709-dts-style-checker-v5-7-fcc147cb697d@oss.qualcomm.com>
-References: <20260709-dts-style-checker-v5-0-fcc147cb697d@oss.qualcomm.com>
-In-Reply-To: <20260709-dts-style-checker-v5-0-fcc147cb697d@oss.qualcomm.com>
-To: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Test User <test@example.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Daniel Golle <daniel@makrotopia.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-X-Mailer: b4 0.15.2
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNzA5MDE3NCBTYWx0ZWRfX+JZbm3c+JM5R
- a54nW/+ifRAGCY+uXGLUqhOBabgcFkXR5g+wlvNyj6YH+qjBLkjxro9GCH2oImIVUr5CovDf2P9
- Ewi6J3Y+/GLKkh+FThD87yWqf5aKZQq9RfUvEe3zicwgYL/fqV8etE2CvCflykJsa4DBhSe4vDf
- K0zCSJ1IToiGEem3tTYr5ChQaxT+MtSuhDVeos234iVztMHxMKapQ+lnpjYd3tL9yQ7WMnWoJfd
- YFdVXeZXEGTYU8dBj5oxixwZUc44guce3AeiV4wSoXQLSyJhgh7s4YRdvRYxr0b0FIszfpIP9LA
- aV6BuAgwXdlxokbxUKt2Ph3h7kQ6Dcnt+zEfHvy2mfy4TjOYmINk7JT4+nnlC5S4OQz/nA9yiv/
- pQp+lOvqiCq/CS6HfbS8phbkF1N6ACn+YdJcrjBWWdUI7eMUCxUnU2Rjw8u9pUXATTYFQ6+jZs5
- CYKPXXDl6ux3OGeN+gQ==
-X-Proofpoint-Spam-Info: AW1haW4tMjYwNzA5MDE3NCBTYWx0ZWRfXyGvyNwuZ0vJ4
- +VeibGLSr3gCPTQ5tvN/e8/vCKl2b1JaUVEVOKdihsskF7GZOA0Vt+pLAsS7PDoxpkAgXBX/AUJ
- sJ5QNRSFvSnPceMLH5C1JG6KtXq51VU=
-X-Proofpoint-GUID: 41AdhLvgDbq8hbRLJzlhanUdUfics5be
-X-Proofpoint-ORIG-GUID: 41AdhLvgDbq8hbRLJzlhanUdUfics5be
-X-Authority-Analysis: v=2.4 cv=GJ441ONK c=1 sm=1 tr=0 ts=6a4fdd5e cx=c_pps
- a=WeENfcodrlLV9YRTxbY/uA==:117 a=nvVmADDuAioZMzk/ZEnfEw==:17
- a=IkcTkHD0fZMA:10 a=RAioF0-LDSMA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=gowsoOTTUOVcmtlkKump:22
- a=EUspDBNiAAAA:8 a=SSRPy7KZV2plhviXFSUA:9 a=QEXdDO2ut3YA:10
- a=kacYvNCVWA4VmyqE58fU:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.134,FMLib:17.12.100.49
- definitions=2026-07-09_04,2026-07-09_04,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 lowpriorityscore=0 bulkscore=0 priorityscore=1501
- clxscore=1015 suspectscore=0 spamscore=0 phishscore=0 adultscore=0
- impostorscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2606150000
- definitions=main-2607090174
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="esoH4S///u0LPdL7"
+Content-Disposition: inline
+In-Reply-To: <ak-5KdXFUldV2eTP@SMW015318>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-5.26 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-323954-lists,devicetree=lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,qualcomm.com:email,qualcomm.com:dkim,oss.qualcomm.com:from_mime,oss.qualcomm.com:dkim,oss.qualcomm.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns];
-	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:saravanak@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:test@example.com,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:daniel@makrotopia.org,m:krzysztof.kozlowski@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	TAGGED_FROM(0.00)[bounces-323956-lists,devicetree=lfdr.de];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[krzysztof.kozlowski@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS(0.00)[m:Frank.li@oss.nxp.com,m:Haoning.CHENG@cn.bosch.com,m:rafael@kernel.org,m:daniel.lezcano@linaro.org,m:rui.zhang@intel.com,m:lukasz.luba@arm.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:shawnguo@kernel.org,m:s.hauer@pengutronix.de,m:kernel@pengutronix.de,m:festevam@gmail.com,m:linux-pm@vger.kernel.org,m:devicetree@vger.kernel.org,m:imx@lists.linux.dev,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzysztof.kozlowski@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FORGED_SENDER(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	ALIAS_RESOLVED(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	PRECEDENCE_BULK(0.00)[];
+	FREEMAIL_CC(0.00)[cn.bosch.com,kernel.org,linaro.org,intel.com,arm.com,pengutronix.de,gmail.com,vger.kernel.org,lists.linux.dev,lists.infradead.org];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TO_DN_SOME(0.00)[];
+	REDIRECTOR_URL(0.00)[aka.ms];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,bosch.com:email,spud:mid,aka.ms:url,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 9F2A3733F44
+X-Rspamd-Queue-Id: 1FBF3734020
 
-Add a few more test cases for valid and incorrect DTS for
-dt-check-style.
+--esoH4S///u0LPdL7
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+On Thu, Jul 09, 2026 at 10:07:21AM -0500, Frank Li wrote:
+> On Thu, Jul 09, 2026 at 04:10:21PM +0800, HaoNing Cheng via B4 Relay wrot=
+e:
+> > [You don't often get email from devnull+haoning.cheng.cn.bosch.com@kern=
+el.org. Learn why this is important at https://aka.ms/LearnAboutSenderIdent=
+ification ]
+> >
+> > From: HaoNing Cheng <Haoning.CHENG@cn.bosch.com>
+> >
+> > Some boards need a small per-design correction to align the reported CPU
+> > temperature with board-level measurements.
+> >
+> > Document the optional fsl,temp-calibration-offset-millicelsius property,
+> > a signed offset in millicelsius that is added to the calculated sensor
+> > temperature.
+>=20
+> why board difference cause such offset, I suppose it is cause by SoC
+> variance. The offset may difference if you change to another chip. another
+> words, if you have 1000 boards, Is this offset the same?
 
----
+I think your "in other words" section here is confusing.
+You're asking about "1000 boards", which would imply that it is 1000 of
+the same design of board. The commit message says that the variance is
+between designs. If 1000 of the same design of board have the same offset,
+but 2 boards with different designs have different ones then this
+property seems fair. Of course, if the variance is determined by the SoC
+in use, then this should be deduced from the compatible, but the commit
+message seems to be fairly clear about it not being SoC related.
 
-Changes in v4:
-1. New patch
----
- .../dt-style-selftest/bad/dts-child-name-order.dts | 30 ++++++++++++++++
- .../bad/dts-extend-node-child-name-order.dts       | 23 ++++++++++++
- .../bad/dts-extend-node-digit-node-order.dts       | 31 ++++++++++++++++
- .../expected/dts-child-name-order.dts.txt          |  2 ++
- .../dts-extend-node-child-name-order.dts.txt       |  2 ++
- .../dts-extend-node-digit-node-order.dts.txt       |  2 ++
- .../good/dts-child-name-order.dts                  | 30 ++++++++++++++++
- .../good/dts-digit-node-order.dts                  | 41 ++++++++++++++++++++++
- .../good/dts-extend-node-child-name-order.dts      | 23 ++++++++++++
- .../good/dts-extend-node-digit-node-order.dts      | 31 ++++++++++++++++
- 10 files changed, 215 insertions(+)
+>=20
+>=20
+> > The property is optional and the existing behaviour is kept
+> > when it is omitted.
+> >
+> > Update the binding example to show its usage.
+> >
+> > Signed-off-by: HaoNing Cheng <Haoning.CHENG@cn.bosch.com>
+> > ---
+> >  Documentation/devicetree/bindings/thermal/imx-thermal.yaml | 8 ++++++++
+> >  1 file changed, 8 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/thermal/imx-thermal.yaml=
+ b/Documentation/devicetree/bindings/thermal/imx-thermal.yaml
+> > index 949b154856c5..eb7243a7ebaf 100644
+> > --- a/Documentation/devicetree/bindings/thermal/imx-thermal.yaml
+> > +++ b/Documentation/devicetree/bindings/thermal/imx-thermal.yaml
+> > @@ -59,6 +59,13 @@ properties:
+> >    clocks:
+> >      maxItems: 1
+> >
+> > +  fsl,temp-calibration-offset-millicelsius:
+> > +    maxItems: 1
+>=20
+> suppose it int32, why need maxItems here?
 
-diff --git a/scripts/dtc/dt-style-selftest/bad/dts-child-name-order.dts b/scripts/dtc/dt-style-selftest/bad/dts-child-name-order.dts
-new file mode 100644
-index 000000000000..49c5c10c92d7
---- /dev/null
-+++ b/scripts/dtc/dt-style-selftest/bad/dts-child-name-order.dts
-@@ -0,0 +1,30 @@
-+// SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+/ {
-+	#address-cells = <1>;
-+	#size-cells = <1>;
-+
-+	pmu {
-+		compatible = "example,pmu";
-+
-+		/* Include labels to be sure they do not affect sorting */
-+		foo: foo {
-+			label = "foo";
-+		};
-+
-+		label_bar: bar {
-+			label = "bar";
-+		};
-+	};
-+
-+	memory@a0000000 {
-+		device_type = "memory";
-+		reg = <0x0 0xa0000000 0x0 0x0>;
-+	};
-+
-+	pmu-2 {
-+		compatible = "example,pmu";
-+
-+		/* Just reference labels to avoid strict warnings */
-+		example,foo = <&foo>, <&label_bar>;
-+	};
-+};
-diff --git a/scripts/dtc/dt-style-selftest/bad/dts-extend-node-child-name-order.dts b/scripts/dtc/dt-style-selftest/bad/dts-extend-node-child-name-order.dts
-new file mode 100644
-index 000000000000..575dadd03c38
---- /dev/null
-+++ b/scripts/dtc/dt-style-selftest/bad/dts-extend-node-child-name-order.dts
-@@ -0,0 +1,23 @@
-+// SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+/ {
-+	#address-cells = <1>;
-+	#size-cells = <1>;
-+
-+	pmu {
-+		compatible = "example,pmu";
-+
-+		/* Just reference labels to avoid strict warnings */
-+		example,foo = <&foo>, <&label_bar>;
-+	};
-+};
-+
-+&pmu {
-+	/* Include labels to be sure they do not affect sorting */
-+	foo: foo {
-+		label = "foo";
-+	};
-+
-+	label_bar: bar {
-+		label = "bar";
-+	};
-+};
-diff --git a/scripts/dtc/dt-style-selftest/bad/dts-extend-node-digit-node-order.dts b/scripts/dtc/dt-style-selftest/bad/dts-extend-node-digit-node-order.dts
-new file mode 100644
-index 000000000000..f3ffc47365a3
---- /dev/null
-+++ b/scripts/dtc/dt-style-selftest/bad/dts-extend-node-digit-node-order.dts
-@@ -0,0 +1,31 @@
-+// SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+/ {
-+	#address-cells = <1>;
-+	#size-cells = <1>;
-+
-+	soc: soc@0 {
-+		compatible = "simple-bus";
-+		ranges = <0 0 0 0xc0000000>;
-+
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+	};
-+};
-+
-+&soc {
-+	serial@20000 {
-+		compatible = "example,serial";
-+		reg = <0x20000 0x1000>;
-+	};
-+
-+	interrupt-controller@10000 {
-+		compatible = "example,intc";
-+		reg = <0x10000 0x1000>;
-+		interrupts = <1 2 3>;
-+	};
-+
-+	serial@30000 {
-+		compatible = "example,serial";
-+		reg = <0x30000 0x1000>;
-+	};
-+};
-diff --git a/scripts/dtc/dt-style-selftest/expected/dts-child-name-order.dts.txt b/scripts/dtc/dt-style-selftest/expected/dts-child-name-order.dts.txt
-new file mode 100644
-index 000000000000..86b1de9bd654
---- /dev/null
-+++ b/scripts/dtc/dt-style-selftest/expected/dts-child-name-order.dts.txt
-@@ -0,0 +1,2 @@
-+# mode=strict
-+bad/dts-child-name-order.dts:14: [child-name-order] child node 'bar' out of name order
-diff --git a/scripts/dtc/dt-style-selftest/expected/dts-extend-node-child-name-order.dts.txt b/scripts/dtc/dt-style-selftest/expected/dts-extend-node-child-name-order.dts.txt
-new file mode 100644
-index 000000000000..e3d8fd367e09
---- /dev/null
-+++ b/scripts/dtc/dt-style-selftest/expected/dts-extend-node-child-name-order.dts.txt
-@@ -0,0 +1,2 @@
-+# mode=strict
-+bad/dts-extend-node-child-name-order.dts:20: [child-name-order] child node 'bar' out of name order
-diff --git a/scripts/dtc/dt-style-selftest/expected/dts-extend-node-digit-node-order.dts.txt b/scripts/dtc/dt-style-selftest/expected/dts-extend-node-digit-node-order.dts.txt
-new file mode 100644
-index 000000000000..525081867bf7
---- /dev/null
-+++ b/scripts/dtc/dt-style-selftest/expected/dts-extend-node-digit-node-order.dts.txt
-@@ -0,0 +1,2 @@
-+# mode=strict
-+bad/dts-extend-node-digit-node-order.dts:21: [child-address-order] child node @10000 out of address order
-diff --git a/scripts/dtc/dt-style-selftest/good/dts-child-name-order.dts b/scripts/dtc/dt-style-selftest/good/dts-child-name-order.dts
-new file mode 100644
-index 000000000000..d2a278763c3c
---- /dev/null
-+++ b/scripts/dtc/dt-style-selftest/good/dts-child-name-order.dts
-@@ -0,0 +1,30 @@
-+// SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+/ {
-+	#address-cells = <1>;
-+	#size-cells = <1>;
-+
-+	memory@a0000000 {
-+		device_type = "memory";
-+		reg = <0x0 0xa0000000 0x0 0x0>;
-+	};
-+
-+	pmu {
-+		compatible = "example,pmu";
-+
-+		/* Include labels to be sure they do not affect sorting */
-+		label_bar: bar {
-+			label = "bar";
-+		};
-+
-+		foo: foo {
-+			label = "foo";
-+		};
-+	};
-+
-+	pmu-2 {
-+		compatible = "example,pmu";
-+
-+		/* Just reference labels to avoid strict warnings */
-+		example,foo = <&foo>, <&label_bar>;
-+	};
-+};
-diff --git a/scripts/dtc/dt-style-selftest/good/dts-digit-node-order.dts b/scripts/dtc/dt-style-selftest/good/dts-digit-node-order.dts
-new file mode 100644
-index 000000000000..d2bf5861c3ee
---- /dev/null
-+++ b/scripts/dtc/dt-style-selftest/good/dts-digit-node-order.dts
-@@ -0,0 +1,41 @@
-+// SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+/ {
-+	#address-cells = <1>;
-+	#size-cells = <1>;
-+
-+	/* TODO: uncomment when child-address-order is fixed for top-level */
-+	/*
-+	memory@a0000000 {
-+		device_type = "memory";
-+		reg = <0x0 0xa0000000 0x0 0x0>;
-+	};
-+	*/
-+
-+	pmu {
-+		compatible = "example,pmu";
-+	};
-+
-+	soc@0 {
-+		compatible = "simple-bus";
-+		ranges = <0 0 0 0xc0000000>;
-+
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+
-+		interrupt-controller@10000 {
-+			compatible = "example,intc";
-+			reg = <0x10000 0x1000>;
-+			interrupts = <1 2 3>;
-+		};
-+
-+		serial@20000 {
-+			compatible = "example,serial";
-+			reg = <0x20000 0x1000>;
-+		};
-+
-+		serial@30000 {
-+			compatible = "example,serial";
-+			reg = <0x30000 0x1000>;
-+		};
-+	};
-+};
-diff --git a/scripts/dtc/dt-style-selftest/good/dts-extend-node-child-name-order.dts b/scripts/dtc/dt-style-selftest/good/dts-extend-node-child-name-order.dts
-new file mode 100644
-index 000000000000..47fe5455edfa
---- /dev/null
-+++ b/scripts/dtc/dt-style-selftest/good/dts-extend-node-child-name-order.dts
-@@ -0,0 +1,23 @@
-+// SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+/ {
-+	#address-cells = <1>;
-+	#size-cells = <1>;
-+
-+	pmu {
-+		compatible = "example,pmu";
-+
-+		/* Just reference labels to avoid strict warnings */
-+		example,foo = <&foo>, <&label_bar>;
-+	};
-+};
-+
-+&pmu {
-+	/* Include labels to be sure they do not affect sorting */
-+	label_bar: bar {
-+		label = "bar";
-+	};
-+
-+	foo: foo {
-+		label = "foo";
-+	};
-+};
-diff --git a/scripts/dtc/dt-style-selftest/good/dts-extend-node-digit-node-order.dts b/scripts/dtc/dt-style-selftest/good/dts-extend-node-digit-node-order.dts
-new file mode 100644
-index 000000000000..0c292fefa52a
---- /dev/null
-+++ b/scripts/dtc/dt-style-selftest/good/dts-extend-node-digit-node-order.dts
-@@ -0,0 +1,31 @@
-+// SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+/ {
-+	#address-cells = <1>;
-+	#size-cells = <1>;
-+
-+	soc: soc@0 {
-+		compatible = "simple-bus";
-+		ranges = <0 0 0 0xc0000000>;
-+
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+	};
-+};
-+
-+&soc {
-+	interrupt-controller@10000 {
-+		compatible = "example,intc";
-+		reg = <0x10000 0x1000>;
-+		interrupts = <1 2 3>;
-+	};
-+
-+	serial@20000 {
-+		compatible = "example,serial";
-+		reg = <0x20000 0x1000>;
-+	};
-+
-+	serial@30000 {
-+		compatible = "example,serial";
-+		reg = <0x30000 0x1000>;
-+	};
-+};
+  "-millicelsius$":
+    $ref: types.yaml#/definitions/int32-array
 
--- 
-2.53.0
+What's missing are constraints on the max and min I think though.
+pw-bot: changes-requested
 
+Thanks,
+Conor.
+
+>=20
+> Frank
+>=20
+> > +    description:
+> > +      A signed calibration offset, in millicelsius, added to the calcu=
+lated
+> > +      sensor temperature to compensate for board-level measurement
+> > +      differences. When absent, no offset is applied.
+> > +
+> >    "#thermal-sensor-cells":
+> >      const: 0
+> >
+> > @@ -109,6 +116,7 @@ examples:
+> >              nvmem-cells =3D <&tempmon_calib>, <&tempmon_temp_grade>;
+> >              nvmem-cell-names =3D "calib", "temp_grade";
+> >              clocks =3D <&clks IMX6SX_CLK_PLL3_USB_OTG>;
+> > +            fsl,temp-calibration-offset-millicelsius =3D <(-6400)>;
+> >              #thermal-sensor-cells =3D <0>;
+> >          };
+> >      };
+> >
+> > --
+> > 2.43.0
+> >
+> >
+> >
+
+--esoH4S///u0LPdL7
+Content-Type: application/pgp-signature; name=signature.asc
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCak/emwAKCRB4tDGHoIJi
+0pBqAP9YPAYWXklSPugB1dtOWcQhoSeQTrfQ4C/39Titj+z0xgD+JthpB204U0Pz
++KA/7Y06/va7cFZAdZiJl66l+G+89Qs=
+=0JsK
+-----END PGP SIGNATURE-----
+
+--esoH4S///u0LPdL7--
 
