@@ -1,162 +1,226 @@
-Return-Path: <devicetree+bounces-324071-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-324073-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id wM/kBXr2T2q8rAIAu9opvQ
-	(envelope-from <devicetree+bounces-324071-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 21:28:58 +0200
+	id Hye7N5z2T2rErAIAu9opvQ
+	(envelope-from <devicetree+bounces-324073-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 21:29:32 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E145734F58
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 21:28:57 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A8A2734F79
+	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 21:29:32 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=mzsWUZK5;
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324071-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-324071-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=SbmW8maq;
+	dmarc=pass (policy=none) header.from=gmail.com;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324073-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-324073-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 286AF3001844
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2026 19:28:54 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 05555302F41C
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2026 19:29:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E39F39C636;
-	Thu,  9 Jul 2026 19:28:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43BEA3BBFD3;
+	Thu,  9 Jul 2026 19:29:22 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30C6A4499A5
-	for <devicetree@vger.kernel.org>; Thu,  9 Jul 2026 19:28:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFEE23B4EB2
+	for <devicetree@vger.kernel.org>; Thu,  9 Jul 2026 19:29:19 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783625332; cv=none; b=SomiIefRZnL4IyYelu3jKv5eqwyef5D6ZVmCMT/GMz+VgJN8/xljUoy+rNPwx2y86wdD7cunkMQBX2nYO4JttCzqULFyD2+4l1E2Sg9oYHuDAzzSFvOnjH8aImNEifS7PQFMALVw//ZPm+m850Q0I4RFerCy9sNU5AfTrfZYBF0=
+	t=1783625362; cv=none; b=Q/meQD2verA7n+eoEXxO6F/6XfFpNq5dfVF/S3ElHbwcfh48XXmWWDEvt/MEfWbLAg5sxBDqOWU1jVo2CtjJ8EZszDrpK2qs0kbwplGzw8PMF6vkANFJOV8pAKDHyR+stasboBUwUlOT9hTijvXhnXX8yUJTp4Kw+1CJ1sTZhss=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783625332; c=relaxed/simple;
-	bh=GYmexX5OwWxaLf8IrahwxF3a6UZR3Pl6sn0lLyY1vnU=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=KeS6mRWyUo7QkwIUCCqbPOTE86LQC2XDwwzJxvbIOx6y10YB9qJQTrTj6MrtNvPLMC/NoAzNcWTykfkraqsonAa60AjMrI8ryC8h+gAle//Je6AYzz82rkvSDllh9TkVoKXbkYZ7b73qu7X9p0AnUPXcdE0ST4hIVtZzzjCoyJ4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mzsWUZK5; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 732D81F000E9;
-	Thu,  9 Jul 2026 19:28:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783625330;
-	bh=AyRm2Y+fsJPxLFyLWRneERsXWeNx9Utf9F280OE8EKo=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=mzsWUZK5AHpkw9nH+pj2z3G2KgUmTFCF6aD9gogTiaas3iIT9HFBnaYcQGhgpBZRa
-	 6AcjHawPBaC++iK7+EWe5ThfFlsIwU0jjjmefwH/shLu4wy7lGDaTEejWR5w8UzxtZ
-	 Dsx53gvfFeUE8HPU612eb7nVldjGk/MXghR38S+atubdJf4zoDPx0vzoAFpg311B0y
-	 Hx8Ig0DcBr16Cl7akztMhT3JR2f1ZJdkU4y+Dp4QepWaSB6Hcn/hk4f8tjpP+xvP60
-	 BfPLsLbs/8joQMTQJdeWweWutGw7+6NcnY7Y27EYsOFBXhW9HzExHS2J3yAKYjDk3q
-	 uLzkLAmwu0iPw==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v11 23/36] phy: rockchip: usbdp: Clear USB status on PHY
- exit
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Sebastian Reichel" <sebastian.reichel@collabora.com>
-Cc: olteanv@gmail.com, linux-phy@lists.infradead.org, neil.armstrong@linaro.org, conor+dt@kernel.org, robh@kernel.org, devicetree@vger.kernel.org, vkoul@kernel.org
-In-Reply-To: <20260709-rockchip-usbdp-cleanup-v11-23-a149ac60f76c@collabora.com>
-References: <20260709-rockchip-usbdp-cleanup-v11-0-a149ac60f76c@collabora.com>
- <20260709-rockchip-usbdp-cleanup-v11-23-a149ac60f76c@collabora.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Thu, 09 Jul 2026 19:28:49 +0000
-Message-Id: <20260709192850.732D81F000E9@smtp.kernel.org>
+	s=arc-20240116; t=1783625362; c=relaxed/simple;
+	bh=dPCjt2VVOrgeOOiej3J1U81Vg/oNhi0nOgkXTTXIb8M=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=NOdMAYLNXTX0wj89OH5k76Eh5gaOqrUltMhK+9GnE85vAayT/z9cn3ZU6mC7bYwaaSKnXIQgAuZS8yy+jukRUZbPgMZhCDAWCHDS+ZW7SYkp62UKP3wKRKDXzTTofGYU8md6Qk5RiOnEGUHIFTWtqUGADgsvJo1LBd3tew0/Tqs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SbmW8maq; arc=none smtp.client-ip=209.85.128.52
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-493ece78b0cso1502295e9.0
+        for <devicetree@vger.kernel.org>; Thu, 09 Jul 2026 12:29:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1783625358; x=1784230158; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=iJQOEk5yqB+dE9SiEhcvYRxkNhnNp9MLYOiszo4g7GA=;
+        b=SbmW8maqe6RrhgpI1e5+/YVHoWVT6bJS1yzE17CVYAatNWNSTvVGo8jQj7HV16ezzp
+         2/iE0NlcPsP5qF4gAXdCpjQLe1tN4j2RutsWj6ZnzBl8wPdBTwqa82SURrq41I9UDuBV
+         dDlWQVhlmpBCqE7Es/3Py8uAsOcfg8WQUUhzN1rMmfgFNsO0uxEP6gYU4YksJi8KBKpk
+         V71oiAedIENv1hFGDQYTzCYl6T2r8IDeHOVnM+m8uV2zKMvLhybd56WfZf4nrHycRIWs
+         zdDIXlmF7OiSlYUhvIN+J1ohyqUGlYblQMFQEpzl9GHFeDefRkKi6qzd/qo+bHbsI8ZP
+         MOSg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1783625358; x=1784230158;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=iJQOEk5yqB+dE9SiEhcvYRxkNhnNp9MLYOiszo4g7GA=;
+        b=DQo0ew8Vnj9LQj7eKQYxsfSoIz7PcgaLLVuKDHsekDJk3S34JDs4S7UaeX5d9Twp4C
+         jHAm+Ky5yBedztHt2BMUkEhcnqP36SQyrzaJRaWCkx3Gwo481UfZt87HN4pno6l50bP2
+         KUcWOE0NaduGZvUfNBCwROWSNriiK+XHT6UWVr7izBJuKEiXTcvkZKN2AJTFGOq1J85L
+         x/F8jOfP8le6KRQmLd18YxR1ITdWTQRA1cc18kzORKhoCox6ExuMAcc8qm8jvT1VuOGW
+         K/i9bcVaMvK5FCV5aNt3zQQFmo4oEpE0Pu9fqEzGnkYBHgoOO4s96fXxNfSSG8N1B2ae
+         OH6w==
+X-Forwarded-Encrypted: i=1; AHgh+Rr6sZ34SDBoSx8AxWpdKRh8oK8xKWpE9rQHyC3y0ngxVisYzxn8UbkQIjH8SibtQM0GeodM2xr6WGQe@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx3PEIVjWO4RIrdkvcnmZe6KUEwM9FeUVxdSNKut+Zheeuvs09Q
+	QERceaWRRcQXLnt5WsuqAdQDZD6rB+wji8cYc4fv5OUhkbn39UWHn7jS
+X-Gm-Gg: AfdE7ckp77r7GniFUpC9fFahtgBT0ya4nlUb1WKaM3QXn0uTbpOuQM0UGFi/19HRBaZ
+	CBYlVNcoLyvhKjiHeEWdtAXcGDw/RtTFIkif31CVSJ3jz7hwqUXyR3JwEAIriu/ovXpQNSIT5Mh
+	Zt46gk09NqwHKdfFxTMaaaMUHNm+MCnvvaIKngsDiGOroTsUiwZ6Y3gxQALc6FFWP4gAtQj6Nf+
+	wGBsnmLhmB7QdmO8nBHxnNltARrERQY5TwFLHiVNeGLFq4bzBAAwSLdTsCWzi9ao+cfyjhk1aoT
+	e1IDlIiUl+25dJJHiAe82BsNInGG5Bs5ihGcB5asWmmJpTpxghwA+bC9kT9ACPVEi/gzUpiDzDl
+	5BJmQ9FfBHqaaBNQ1JRY1SZ3pdAdD9V+Vqyf5ATWdvNe9c49efRHTlzHibNhAPxRQzWV4Dd7Zz+
+	W+sLGhdc7hGuZgsSaVA2B/
+X-Received: by 2002:a05:600c:4e93:b0:490:e5c1:b8b9 with SMTP id 5b1f17b1804b1-493e67f7c3emr78360215e9.0.1783625358090;
+        Thu, 09 Jul 2026 12:29:18 -0700 (PDT)
+Received: from biju.lan ([2a00:23c4:a702:d301:8fb6:1d85:3dc1:42ab])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-493eb6ccdbbsm84366045e9.3.2026.07.09.12.29.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 09 Jul 2026 12:29:17 -0700 (PDT)
+From: Biju <biju.das.au@gmail.com>
+X-Google-Original-From: Biju <biju.das.jz@bp.renesas.com>
+To: Ulf Hansson <ulfh@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Magnus Damm <magnus.damm@gmail.com>
+Cc: Biju Das <biju.das.jz@bp.renesas.com>,
+	Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	linux-mmc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Biju Das <biju.das.au@gmail.com>
+Subject: [PATCH v19 00/12] Add Renesas RZ/G3L SD/eMMC support
+Date: Thu,  9 Jul 2026 20:28:57 +0100
+Message-ID: <20260709192916.630794-1-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-1.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
-	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-324071-lists,devicetree=lfdr.de];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:sebastian.reichel@collabora.com,m:olteanv@gmail.com,m:linux-phy@lists.infradead.org,m:neil.armstrong@linaro.org,m:conor+dt@kernel.org,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:vkoul@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-324073-lists,devicetree=lfdr.de];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FORGED_RECIPIENTS(0.00)[m:ulfh@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:geert+renesas@glider.be,m:p.zabel@pengutronix.de,m:magnus.damm@gmail.com,m:biju.das.jz@bp.renesas.com,m:wsa+renesas@sang-engineering.com,m:linux-mmc@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-renesas-soc@vger.kernel.org,m:prabhakar.mahadev-lad.rj@bp.renesas.com,m:biju.das.au@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:geert@glider.be,m:magnusdamm@gmail.com,m:wsa@sang-engineering.com,m:bijudasau@gmail.com,s:lists@lfdr.de];
+	FREEMAIL_TO(0.00)[kernel.org,glider.be,pengutronix.de,gmail.com];
+	FREEMAIL_CC(0.00)[bp.renesas.com,sang-engineering.com,vger.kernel.org,gmail.com];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FREEMAIL_CC(0.00)[gmail.com,lists.infradead.org,linaro.org,kernel.org,vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ALIAS_RESOLVED(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[bijudasau@gmail.com,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[bijudasau@gmail.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,sashiko.dev:url,lists.linux.dev:replyto,smtp.kernel.org:mid,collabora.com:email,vger.kernel.org:from_smtp]
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	ALIAS_RESOLVED(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 0E145734F58
+X-Rspamd-Queue-Id: 9A8A2734F79
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [High] Clearing the `UDPHY_MODE_USB` flag from `udphy->status` on the ear=
-ly exit path can leave the hardware powered on and leak clock references if=
- the overall PHY status drops to `UDPHY_MODE_NONE`.
---
+From: Biju Das <biju.das.jz@bp.renesas.com>
 
---- Patch [23]: [PATCH v11 23/36] phy: rockchip: usbdp: Clear USB status on=
- PHY exit ---
-commit 7906fa37f6a1255421fda4caa815efbe878ca40d
-Author: Sebastian Reichel <sebastian.reichel@collabora.com>
+Hi All,
 
-phy: rockchip: usbdp: Clear USB status on PHY exit
+RZ/G3L SoC has:
 
-This commit ensures the USB status flag is cleared when the USB3 PHY is
-exited while the system is in DP-only mode to handle unbound controllers.
+Channel 0 supports SD and eMMC (including HS400/HS400ES).
+Channel 1 supports SD and eMMC (except for HS400).
+Channel 2 supports SD.
 
-Link: https://sashiko.dev/#/message/20260625-rockchip-usbdp-cleanup-v7-24-3=
-8eb3cf654fd%40collabora.com
+The SoC supports a maximum frequency of 150 MHz. The SD0 interface does
+not support IOVS and PWEN in the SDHI register (no internal regulator),
+unlike SD1 and SD2. It has an internal divider for all modes except HS400.
+It also has a 2048-bit divider compared to 512 on others. Moreover
+RZ/G3L supports HS400 enhanced strobe mode.
 
-> diff --git a/drivers/phy/rockchip/phy-rockchip-usbdp.c b/drivers/phy/rock=
-chip/phy-rockchip-usbdp.c
-> --- a/drivers/phy/rockchip/phy-rockchip-usbdp.c
-> +++ b/drivers/phy/rockchip/phy-rockchip-usbdp.c
-> @@ -1273,8 +1273,10 @@ static int rk_udphy_usb3_phy_exit(struct phy *phy)
->  	guard(mutex)(&udphy->mutex);
-> =20
->  	/* DP only or high-speed */
-> -	if (!(udphy->mode & UDPHY_MODE_USB) || udphy->hs)
-> +	if (!(udphy->mode & UDPHY_MODE_USB) || udphy->hs) {
-> +		udphy->status &=3D ~UDPHY_MODE_USB;
->  		return 0;
-> +	}
+v18->v19:
+ * Updated commit description for patch#1,#2,#6,#8,#11 and #12
+ * Updated clock and reset description with AXI master and AXI slave
+ * Added else condition for reset and reset-names.
+ * Renamed aclk->aclkm and reordered the axi clocks similar to resets.
+ * Retained the tag got binding patch as the changes are trivial.
+ * Fixed the clk_mask for non-DT platforms.
+ * Fixed max-divider setting for non-DT platforms.
+ * Replaced the magic number '9' with ilog2 function in
+   renesas_sdhi_clk_enable().
+ * Dropped divider variable from struct renesas_sdhi.
+ * Updated renesas_sdhi_clk_update() to return rate for HS400 mode
+   and non HS400 mode(uses 1/2 internal divider).
+ * Updated handling for clk divider.
+ * Renamed TMIO_MMC_HWADJ2->TMIO_MMC_HWADJ to make it generic for
+   hardware tuning delays
+ * Dropped duplicate SH_MOBILE_SDHI_SCC_TMPPORT2 macro
+ * Updated suspend/resume with scoped runtime calls in suspend.
+ * Fixed extra space in HS400MODE2 comment block.
+ * Updated the comment HS400mode2->HS400MODE2.
+ * Dropped the updation of clk handling as it is taken care in
+   previous patches.
+ * HS400ES support is enabled based on of_data.
+ * Fixed the space in HS400ES comment block.
 
-[Severity: High]
-Will this early return leak clock references if the overall PHY status drops
-to 0 (UDPHY_MODE_NONE)?
+v17->v18:
+ * Collected tag
+ * Merged patch #4 and #5 and updated commit description
+ * Annotated the empty sentinel entries in the OF match tables with a
+   "Sentinel." comment for clarity.
+ * Retained the tag as it is a trivial cleanup.
+ * New patches drop struct renesas_sdhi_hw_info, instead using
+   renesas_sdhi_of_data and tmio_mmc_data.
+ * Dropped clk, pinctrl, SoC, and board dtsi from this patch series;
+   will send later.
+v1->v17:
+ * Collected tag for binding patch.
+ * Resending the series as there is an issue with patch threading from
+   patch #14.
 
-If the USB3 PHY was previously initialized (enabling clocks via
-rk_udphy_setup) and the mode switches to DP-only, udphy->status gets
-cleared here.
+Biju Das (12):
+  dt-bindings: mmc: renesas,sdhi: Document RZ/G3L (r9a08g046) SoC
+  mmc: renesas_sdhi: Clean up whitespace and add OF table sentinels
+  mmc: renesas_sdhi: Add clk_mask field to support flexible clock
+    divider widths
+  mmc: renesas_sdhi: Add max_divider field to support SoC-specific clock
+    ranges
+  mmc: renesas_sdhi: Add tuning delay support for RZ/G2L
+  mmc: renesas_sdhi: Add TMIO_MMC_INTERNAL_DIVIDER flag
+  mmc: renesas_sdhi: Add optional axis/axim reset controls
+  mmc: renesas_sdhi: Add RZ/G3L SDHI support
+  mmc: renesas_sdhi: Save and restore IOVS across suspend/resume
+  mmc: renesas_sdhi: Make HS400 OSEL bit configurable per SoC
+  mmc: renesas_sdhi: Add RZ/G3L HS400 support
+  mmc: renesas_sdhi: Add HS400 enhanced strobe support for RZ/G3L
 
-Returning immediately skips rk_udphy_power_off() and its internal check
-that calls rk_udphy_disable() when the status reaches 0.
+ .../devicetree/bindings/mmc/renesas,sdhi.yaml | 108 ++++++--
+ drivers/mmc/host/renesas_sdhi.h               |  11 +-
+ drivers/mmc/host/renesas_sdhi_core.c          | 250 ++++++++++++++----
+ drivers/mmc/host/renesas_sdhi_internal_dmac.c |  73 ++++-
+ drivers/mmc/host/renesas_sdhi_sys_dmac.c      |  12 +-
+ include/linux/platform_data/tmio.h            |  18 ++
+ 6 files changed, 385 insertions(+), 87 deletions(-)
 
-Could this leave the hardware powered on and leak the clock references
-obtained during initialization?
+-- 
+2.43.0
 
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260709-rockchip-u=
-sbdp-cleanup-v11-0-a149ac60f76c@collabora.com?part=3D23
 
