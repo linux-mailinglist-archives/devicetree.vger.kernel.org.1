@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-323788-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-323668-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id CFdsG0qjT2r1lQIAu9opvQ
-	(envelope-from <devicetree+bounces-323788-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 15:34:02 +0200
+	id a5VnLKiGT2oriwIAu9opvQ
+	(envelope-from <devicetree+bounces-323668-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 13:31:52 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id D24F77319C9
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 15:34:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3FA6A7305CE
+	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 13:31:52 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
 	dkim=none;
 	dmarc=fail reason="SPF not aligned (relaxed), No valid DKIM" header.from=starfivetech.com (policy=quarantine);
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-323788-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-323788-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-323668-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-323668-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=reject ("cv is fail on i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 68A6130A995C
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2026 13:27:16 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id CBEC430306D6
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2026 11:27:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42E472BE05E;
-	Thu,  9 Jul 2026 13:27:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F9AD410D13;
+	Thu,  9 Jul 2026 11:27:05 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from CHN02-SH0-obe.outbound.protection.partner.outlook.cn (mail-sh0chn02on2135.outbound.protection.partner.outlook.cn [139.219.146.135])
+Received: from CHN02-SH0-obe.outbound.protection.partner.outlook.cn (mail-sh0chn02on2113.outbound.protection.partner.outlook.cn [139.219.146.113])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95DAE27AC31;
-	Thu,  9 Jul 2026 13:26:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 741AC3FC5BE;
+	Thu,  9 Jul 2026 11:27:02 +0000 (UTC)
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783603621; cv=fail; b=bPSCSt2tV1W4eLaUwobLi6gViKAC9OEmBK1mtcBCWuDdeateKjyVN3hEvuxp+raPQsRJzW49ZZU0s++Ydl8eNVRirNdQB5bfek0iMIxYG5bAlSnR9+oMsCnIUfKTkkLtOGZDlcu5P6zgy5qHGstrAe4fo14GqVsmyAeOf4zWb3c=
+	t=1783596425; cv=fail; b=VsRr0Jk4Osxnqjp5aUvbthimcFpHzDxrgD+foqExcHsnWipARPAJHTqi4CpLQu5jNrX9IcNxi6hElPjKK7qABKZNlQDDSkvzMlZBDbNIX7yEgdh1gUItff+EKVPaWUASLbJljxY8Kkxt63E8DVEFrsgNDXVpu5HBywMDFb+XgqI=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783603621; c=relaxed/simple;
-	bh=h6YOQ2c2GJKhXfmZfK38dE0SeUVHRg5YiiJap1KIcO8=;
+	s=arc-20240116; t=1783596425; c=relaxed/simple;
+	bh=gUKNQoxi+6z5Sn2iDz/+ekmjp2X1OtAh4tCJihzqk2E=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=ll2clLqd+Wt4/B7eU3YLuRoyd9dNPrzfFx/KEm+3C+SfjBLqYm7bmR20OxuZf7TpwDsetOPhLflZVkoIO1HhdC9eR5K5OKnHB3BezEYmVsRMdfdsQ6FJGp++BQ77o8UxugYIvfCWkIWtVJXDhQ6wpu1k2dVlK55W8t/TPVKkvGc=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=starfivetech.com; spf=pass smtp.mailfrom=starfivetech.com; arc=fail smtp.client-ip=139.219.146.135
+	 Content-Type:MIME-Version; b=TZPj5BJteKhW2kBY0OmRHa1QyJefSpDAXABe5i47tQbQXjvYEgpnGkH8SZLj6OLtjO/8eYVG2MORhwh5U/2fF6lLoDCo+qkG4R+eris8o/2CGmmxGPi637Djc6nzL184xgze04GNOu8NdQGHvqfYiNoYkvmDwojenCV8hjJZnRM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=starfivetech.com; spf=pass smtp.mailfrom=starfivetech.com; arc=fail smtp.client-ip=139.219.146.113
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=CImUjfk5I6FSC9WIORLfqN403g5DBCgGGRbHKoeCZgiS06BeJKODEDmU1REfbaKhxco9v0VApqOH/JuF8Q7EB9bHUKeciG2ItfJn0en/nbw40m+QRotep9V3Hdk3YXu/PGAHebhDxpAPZ8dChM16GQByXVwHK5zx43NcN84/cjRHqNnJWDIir7p1DV52CZ5UHtnaEH3R+smmTozWf2kp2o+D9vAGrD8H24HbqKSmRYH0VNCa/AHUluxg3INYJinRcU8ndFMwZJZfroWc9J9c87Oew/t2YZTqL0X8AlbUCV0uQkLp2v2ACR3rW/k2JDqi4iIAop0FQ693EyhORmWauQ==
+ b=QwnkrkAhF9Yo0VMu/ZcynBsVgToFesEl+nvgXu+Rd9wL0KVhEHAkLgAy/ygVeGdawjK6D8PW7Pt06VEnErMemLm9p6FjyZwzwKtpya9woPvn6TvYellkNJl36Olw4K4Kah5+2cvIe4W48Kcrk5h7SCdMYX5pEu0O2SmApPk70WvHPAcd/1akN3s9lpfn2cTnmkSrOBZdUlklkAVRhKZFlTPbNvT3nCWqYBm7PzoAOdt2xMcUQZ2FAceiZBQeFk6o58CNMc/h4TukXDzzQuNwqgsNPWf72VC5Wgi0funtFu8S6YlexngmvmxXDIrWGgubcI5Zz2klUv7euZ6jHoAIxg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=2fuoNgWGZ9ez6F4MaEDbwrwl4jJwQ9hd+yZ/URzpFMk=;
- b=gCprp0o30l06LpRaZDZGCGRFrLNsyOD1LA1VXBxqaqVd8KlaOE75yiGZTnOPWHy+7+xGOoNE/w4MSlTUkgAV3IaMInH8HKTEkgAYvHWH/0LVXKL9VnI0Ld7P4Gd9NH86HnwbWEz64p5wZbaKoEdsq5okBnXJQx71saQ4d+E42U6Ztv9RYIJ5iWilLvbsFX2TcrLtk/NI/1byc6LVNS4J+zY2Tn/A5C14L+VSnjEJs6jVLWH5zLn1TdO8kGTwMR4HrLMtFA/aaIJafByMkuuCNccayN79wUXA1deaPaGjsMIfzDeIBT55b55xjleqKIovnZftYSawyoy7o8j1rfK5PA==
+ bh=LLbgryrP4ns/5I/80bs2drSQAXT6CYPTRqozkPJHHPA=;
+ b=JFIThbEmWqElhSWepMPgeQlRVRENYJqUZw0Z919hQ3wBskUSBgtrbxdgba//uBOftucPauua7s7BySOmN/b4GTfKFExztI7ZfHUMEkTGqIVHp9axM/1tKjPZzbzpT53h0SDCo/VASmofpmyxxFyWAgutQ+VBUUo0cSj+v8bGT6nAQ/fYhfGJU8v1oTTaJAay0S4EKnyTjxluU1ZPyLstaq7H+lA7Fw5eMHPHLgf1TeDGxFMykkMH7d1bwQwBcCN7tyX6ca+HUweXkgxDCWcszbMC+XPmCUxhcP+gjAeiV3FZLBTx+yqL4i2VhLuk3Gczya7/cUznUtrWG59OGEPuHA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=starfivetech.com; dmarc=pass action=none
  header.from=starfivetech.com; dkim=pass header.d=starfivetech.com; arc=none
@@ -48,11 +48,11 @@ Received: from ZQ4PR01MB1202.CHNPR01.prod.partner.outlook.cn
  (2406:e500:c550:17::6) by ZQ4PR01MB1282.CHNPR01.prod.partner.outlook.cn
  (2406:e500:c550:17::5) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.113.23; Thu, 9 Jul
- 2026 05:52:26 +0000
+ 2026 05:52:27 +0000
 Received: from ZQ4PR01MB1202.CHNPR01.prod.partner.outlook.cn
  ([fe80::e7d4:256c:b066:850d]) by
  ZQ4PR01MB1202.CHNPR01.prod.partner.outlook.cn ([fe80::e7d4:256c:b066:850d%2])
- with mapi id 15.21.0139.024; Thu, 9 Jul 2026 05:52:26 +0000
+ with mapi id 15.21.0139.024; Thu, 9 Jul 2026 05:52:27 +0000
 From: Changhuang Liang <changhuang.liang@starfivetech.com>
 To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -64,9 +64,9 @@ Cc: Sudip Mukherjee <sudip.mukherjee@sifive.com>,
 	linux-kernel@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	Changhuang Liang <changhuang.liang@starfivetech.com>
-Subject: [PATCH v1 10/11] spi: dt-bindings: snps,dw-apb-ssi: Add starfive,jhb100-sfc
-Date: Wed,  8 Jul 2026 22:52:03 -0700
-Message-Id: <20260709055204.138168-11-changhuang.liang@starfivetech.com>
+Subject: [PATCH v1 11/11] spi: dw: Add support for StarFive JHB100 SoC SFC
+Date: Wed,  8 Jul 2026 22:52:04 -0700
+Message-Id: <20260709055204.138168-12-changhuang.liang@starfivetech.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20260709055204.138168-1-changhuang.liang@starfivetech.com>
 References: <20260709055204.138168-1-changhuang.liang@starfivetech.com>
@@ -83,56 +83,56 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: ZQ4PR01MB1202:EE_|ZQ4PR01MB1282:EE_
-X-MS-Office365-Filtering-Correlation-Id: 866da587-f65f-4579-95f8-08dedd7e4128
+X-MS-Office365-Filtering-Correlation-Id: 407b2f66-e18d-4852-7dd1-08dedd7e41b9
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|52116014|23010399003|376014|366016|20046099003|38350700014|56012099006|3023799007|6133799003|22082099003|18002099003;
+	BCL:0;ARA:13230040|1800799024|52116014|23010399003|376014|366016|38350700014|56012099006|3023799007|6133799003|22082099003|18002099003;
 X-Microsoft-Antispam-Message-Info:
-	7Wcqm5X/t1p7hlJaMJCIRCuNgEVBPIHVw+MRNf03Zm5DqM7dBaD9KA5oG817RSm/foPMTkiiGF6LWF9RjTBe3UKdam6VshH0naggq2gZn/J3vVTBDnLue7SnDOzN0uRRlYRT6fb8vLSo4UmV7muZyy2za2HjMaTmzyGRPtt3yRCzERtuNzAYbCB4GSY8RD5FEcFwa1oG9emPb041fjjBK5O9wLd5hlPIvs2fpDrp8FppkNEXgwlrOgsxuJV+yr1TyoExBgiQ3Mq2/X0lLPnlXugCOTu2BKil3+vRPfvw0UK4z2d/4HRpfPaDn1DsOlGm9Bpv6Ss1XgU+gUh9ehZZLplSN4R2pOhlqgYR4p/U38nyGVx022mW7HNL8n/xpCyIpoQzFUPS5RweDAHWGOzTkTKx1ptAzvlnIxxpBb5VLlvBNH7EqIBE3Br6TFTpIgw9m8auOAs2g1WoYHKBQ/2sPNm2ktDh30LsBbCtZOsBspJnCyiZAEKGAOaPqwpvlY7czB5ZVMMMFR+VBYmTGWmRe5FaYri8W3NR5wyah/Dhq7XvqoXv++pHLCaICmvwCysL
+	NU2hPoTVN+81sLbcY50mCSimbTtK5lueO/vlGVU5rSAM73o889TODIYDmfLiczK0aJ/ufQ4OPgaXHpLhWqV0Um22Oo3N/KLHvLQU0oHlqdKkeB7RDaz+eNSwjJXMts+kmtsy3DmreJS2qFxXrubtPxgVA3dpyMZ4Qp/koQeQ5fprFYa/fKcNs1KXdT3H1UgJEEIaNjzx7A4cV6EKOWcjFp5G0Yeqg8ia7zCK+Gis1o5J4+icaALBhu/ZJ9pYEWbILNRshMw3YT5QsQi2y4c3+kWwMLIc+crZMFDfcLTZyg38VLZkwlvMyXaLRzcNo/+B5UrDMl5NyEiyAHHjH28Y4Ds+X/KiEb5afXKq/IKK8isndhOgSavCXPwWzKOAW9YFuINP7Lptyu2YTMP2QA4zpYV2IFzKfjPqL+FlEXAftcdRckGtn4sgDOTwdvj0kwqpwN6D0Xzin8rcCKBu1QI4IEf5q4vAl21mjBDv3tmmx8t8Imbc6LtKIziHgWOwhyGjx8NosrD8IZgC47G4+QstpVITdRlv/OqZsynKrVVtWwFpS1V0H6w55QpbGwnPLwbW
 X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:ZQ4PR01MB1202.CHNPR01.prod.partner.outlook.cn;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(52116014)(23010399003)(376014)(366016)(20046099003)(38350700014)(56012099006)(3023799007)(6133799003)(22082099003)(18002099003);DIR:OUT;SFP:1102;
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:ZQ4PR01MB1202.CHNPR01.prod.partner.outlook.cn;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(52116014)(23010399003)(376014)(366016)(38350700014)(56012099006)(3023799007)(6133799003)(22082099003)(18002099003);DIR:OUT;SFP:1102;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?Cup6Dx8vJ2vVnEhaIGXJdH+zEdTqpsz3YsqDb/vEkWu/3dGtSOmNz+FsS8KA?=
- =?us-ascii?Q?f1RVwn5RwSN9asBve+8phaJ4Cajir/6t6xWylTtKUZbMGWzMYpfMFLb/d9y9?=
- =?us-ascii?Q?kFb2MsLMYtaAqHF0nDFqlTeDjy/LDTPwgqV1IpYacgk0Irf8fMkcaA2uD9nY?=
- =?us-ascii?Q?hQ3VxUC4iqWwWEh2czd4y1mO7UOfcaCFH4W/bqNSilj3WEKoJCswoHmieKzr?=
- =?us-ascii?Q?cxQIEpV3gpRwnMF+NIx4HyfqUscsGV4mgebjq42pJDutI5E70Oy54tkR6ObL?=
- =?us-ascii?Q?csIdZn9mOESUVJz0ekYxTNw/wmJGsOUwjuUTyrUif7beNtQOQrc1L77fnhuP?=
- =?us-ascii?Q?auhzR9Z5HaQtRMBLGcZXeiNCL5nINqM4sroSI1Lzo5i+hT6T9e+QCvv8weSl?=
- =?us-ascii?Q?TzMfMMBV1Xa1NzTlPqJo0llyAA3pWovSSNv712h/ja9speveOWX4MgeyXMjs?=
- =?us-ascii?Q?9mTHcKy1HvFTONavjNLtOek5TbzLjd6Ft9dhXt8bKvwVZDOYLCa8pIsA7K7Z?=
- =?us-ascii?Q?25ZxPMTAIUxY0CB2FxB1IlN6vNeokhaKg1/x/Q6fJovjLvhrHFMS/1WUljnf?=
- =?us-ascii?Q?P6h5wU5tgn1lnc0MmmXs3antqnMl3R/HJ35hmWHgpMjr/gMPahbSLMZvpK1g?=
- =?us-ascii?Q?hiYy0VvywS23QAeummwY5Yu2CJj2BZhQJgNfmh/VYdN9DhCdT+fyvLU1F5BX?=
- =?us-ascii?Q?tkK3svG0XimA/4VdqUQNVZ7Lx1HhuIeSuo9/eAb3P1MkE+1P7I+WpirPF5VQ?=
- =?us-ascii?Q?3xmkDW5wFL795sHahAcEoGVv0ijlGI6B2QoVqwfyAKn7yp8MYetudCQ5sx1e?=
- =?us-ascii?Q?pIF7inPVFONA8+x2BsLqPLmDX7Box/e1QYBTIXii3+Zm9NwE7FDnKqz6SnYA?=
- =?us-ascii?Q?ALccfxg/QWoFa7yEo4h+tvteb03ujAAYM3DxL87eJG9iWeohn44Z296rceYY?=
- =?us-ascii?Q?AZED0h6Xo4C6v9QMn24d5UGPcXaEnwpKZC01YNsK8b4kkrFOtu3GsQ5cmgsy?=
- =?us-ascii?Q?I6L5xrfE4CCJaD3c42WjdgyW4F0rWQBswkVV1okpo7u2ZPYEA8RUCK00gcp6?=
- =?us-ascii?Q?hi/vFSo7OUC0LyWDTHVYE3vq+X9naNfnY4H9pu32aA9dKmafAjrMZoDqx7dT?=
- =?us-ascii?Q?qtIcm7WmsR6CejG/RbLKffyklxX0bZ/x0CvBGXzUYz8kHhga9LGSTgKBt7lC?=
- =?us-ascii?Q?AdOjop1aCIbZz15pRHvICXRjbUN/bGlr/49a0gyXmn5gTQXqCfwUFiJIRugG?=
- =?us-ascii?Q?9z73haltSXo8vq19sryScrt8gwYnS/sIn1RrRJnbHcvo9h6N7th7ZK9ShOE7?=
- =?us-ascii?Q?29HX/ptucqE4GLSpdQr+QPiJ1g/ozopeBwBkb2ZlC1/uo7pEyDg1d3dVYpz/?=
- =?us-ascii?Q?DO2WRwsca8GHm47LcqBqlA4zItm4UFxvkQsqUXPalY2AEWobjL20cE5DRQiT?=
- =?us-ascii?Q?Oc72vdm3nyLlgDo8sTdetfFg3knh05ywyGjK0mhp35H6Kh7MwegBy6tkYPj+?=
- =?us-ascii?Q?Q2IXlXK7w4kAzrCKWsxN9S8yFnz3mUS6WiQ99dqJSZP3oshUg2+uACOX6xko?=
- =?us-ascii?Q?+EXo+VCN4QLO+7lgp4hcCsbwoU+UNEx2CvI6dAjrINs84GE6lLl+RiqZl6/J?=
- =?us-ascii?Q?1DgFAi0xHFo1G2KIl8uYZHIG+AJxSmKMvLhFqId09cUOLOX0rcse4QFSMY7p?=
- =?us-ascii?Q?CFP97wHVl6sSRJ1jEzSHpObOyX76ZHkHT+26KNiKF6Ox7DwY/5lXgCOY7aVw?=
- =?us-ascii?Q?VkyVio874R63d7INdk2B3K2JSKBauFOZKu+hCWB0AIZ+Qi/sAPVw?=
+	=?us-ascii?Q?tPcYVemsXtgiOnE+JNeQa9+kBf0UiYBqsg3k+jw+1iweDp+/oPyiUZWQXYtW?=
+ =?us-ascii?Q?tp2Oaoolay1R1F900nZIwmk3gei4OsoHd8aoUoyITcP4puqYk3+eyHJdGog4?=
+ =?us-ascii?Q?ehWXY+OTJ/35O685m5AXGQipDF2EGl6Pe9O5b76pqOwF/m+rmt/Sfm/MBhAr?=
+ =?us-ascii?Q?pquU4kh900Y4lVqwjxaLxW6eCMZf0ZlTWSlVpnd4zvHS43a9i+xfxSOWX1kS?=
+ =?us-ascii?Q?HCOrBEso4EMOuLFQgnsebi1ZWCyyG2QgzHoS+W4ZZykSNnu8BgnG5lhqaxqz?=
+ =?us-ascii?Q?9K7Az23gGA2E68KtpixQI5JqBHMf0LPdQl93CaLhbLC9z5qJrlamOU7/g3CQ?=
+ =?us-ascii?Q?EZSGgVYsfBwXkFfQ5XB7gB8bUdRcbwyHS0/IdUIXeUH5KoiDGQxRQzjy2X5l?=
+ =?us-ascii?Q?Gyp4EecYbL5xHki6hgQPTdR7jpnQ6Z7CQV96prroDiBCTUg5My06zzV4erit?=
+ =?us-ascii?Q?0CpxiB50Fpgm9N+kT/ew+jSsjrX2A+aJpK1qpKdpV+DfTMNPadpgMRdRvEwM?=
+ =?us-ascii?Q?fGEf8QAJ8pZjX7GRoVGLBppKRAM8yjniAIPcKWBDGyeZtCGUnu+6+KT5fH5M?=
+ =?us-ascii?Q?x5uqVrsZB2joERm0fMNcNoo9TEpxsR3EAcbehOZ/Tin7gWZaCzrjiwCEKBnS?=
+ =?us-ascii?Q?quTKRFGRfPOhEnWRN+/3UY+2cJlBbHfAk0PBr3/hCneZ8VOlkC2cPalONFgU?=
+ =?us-ascii?Q?Y2tTyDGGlC2jviDEfU3VtxYkg+XEHjB5XiRO1oziOyLMTxsjTFvyK7kxifoI?=
+ =?us-ascii?Q?OYt5SDGqRbDqTOhO3KNSz+iatueF+w2iF+p3/9nT3MWmxZFaFiKbeu5LSIyZ?=
+ =?us-ascii?Q?yGXILhNoD+tOBeF2j/MLy/8V+LwurmuXXDTEbgUmNUizI3+i1o3w3YL+GpkK?=
+ =?us-ascii?Q?mpYM+vNIMgK5oNtbNSJ0d8Cb/nnEj2BpT6RwQ0jChZfl76vqJxvgk9u+oTK/?=
+ =?us-ascii?Q?BZq4b8mTueimcjNpkL202k3SxzuQEAy0PUNZZa+0xO7sQiKhvGeF8cNn7rcv?=
+ =?us-ascii?Q?AKt6ZaJb0OWaqUitXIJWokQ5hjJo7s7BW8betmeIGHNeYLNgJ9nj5bLSS01I?=
+ =?us-ascii?Q?YrXxCRvAdRrxRxjNykj5JmNy5hxf4iN9mA/9+7aV8Hmy6cBk4AMqOfVfLGyB?=
+ =?us-ascii?Q?9/Io/jd4WLa/quUj/yDPr9AxUxUwb/i9z/jwfsr/uK8rcN1L/uY3CNVf5PMG?=
+ =?us-ascii?Q?0MTv15ZnE6NxDCdM4bpIGuH16eAADNJhCVapNfw604+KRtiQP0ela7h6o7Jk?=
+ =?us-ascii?Q?mBXYuo41ivj5d+YILAlFzLsU+z5WCWqbE3KykDU8a45mo/wiF41b4vHooCbY?=
+ =?us-ascii?Q?8k/CMKNBux5ul6extmiFUcA2nsMIZxnau4jT8jpx20I6lgfUD4Lqau+ye1XM?=
+ =?us-ascii?Q?YlOkH/O1FCXb/PR70pRuj4I3iHYj3QQbCYzJa7aG7uXJsFsMMDOmqWnJ6RDH?=
+ =?us-ascii?Q?vuGcw/FJKuYiKkiMPMQdafRriGXigSAwg9OgaNK+XHV8sLK0PGOBpCNOZiDo?=
+ =?us-ascii?Q?JGyOQ1KdPFj55vWaLvT+GJMOXoyAVkLYTsq48pycoWp3fVareSZKbTZVWg7Q?=
+ =?us-ascii?Q?bN4Bnnh9k8z/O3fVgkg1riIgjZ+XaBLB+g/eh2X4LEidUwbtc2w2i63eZzTn?=
+ =?us-ascii?Q?bpLfKt+AQCc1tdfKhNcOVX67+y2tC3VQ7qWnGvVw+67DNpmDNTIT7nXVat8j?=
+ =?us-ascii?Q?TPs1jyLNdKhKNrqdc6rxOaUXYs+t85Li06qJMIevPttNmHlxS9t3iaIXovnM?=
+ =?us-ascii?Q?UkUvw8v4Qe9VWYx12+TIFukjf9qn47Ga8Z+Cw6UqTVBkWMcV0Bhf?=
 X-OriginatorOrg: starfivetech.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 866da587-f65f-4579-95f8-08dedd7e4128
+X-MS-Exchange-CrossTenant-Network-Message-Id: 407b2f66-e18d-4852-7dd1-08dedd7e41b9
 X-MS-Exchange-CrossTenant-AuthSource: ZQ4PR01MB1202.CHNPR01.prod.partner.outlook.cn
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jul 2026 05:52:26.3014
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jul 2026 05:52:27.2597
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 06fe3fa3-1221-43d3-861b-5a4ee687a85c
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: uvbjCwLVkigmw6dVEjnW544QdlHyuEsZ6ek4oI+vP21IqHU9/Yc9ror2C1coM3Me/aCNYr5pu786W6HAiNPoGCTl8ASEd1bTkSkZZ8dpJ5Bv4fzP92+iTuG9QXWIU5oG
+X-MS-Exchange-CrossTenant-UserPrincipalName: cFJ8yEYiQIVHsnDzLEkqcXy8twgBLRHLLY1FMF370kA11RtiUwEnWqKea9MtXi9BBdjwNeIqoEJa42CSqmms/dt9ioaF7IRRha9IHhLCOXZVq9wYOXI0/xPHmVngoZqP
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: ZQ4PR01MB1282
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [5.04 / 15.00];
@@ -145,97 +145,232 @@ X-Spamd-Result: default: False [5.04 / 15.00];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[sifive.com,gmail.com,vger.kernel.org,starfivetech.com];
-	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:broonie@kernel.org,m:sudip.mukherjee@sifive.com,m:fancer.lancer@gmail.com,m:linux-spi@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:changhuang.liang@starfivetech.com,m:krzk@kernel.org,m:conor@kernel.org,m:fancerlancer@gmail.com,s:lists@lfdr.de];
 	GREYLIST(0.00)[pass,meta];
-	TAGGED_FROM(0.00)[bounces-323788-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-323668-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER(0.00)[changhuang.liang@starfivetech.com,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:broonie@kernel.org,m:sudip.mukherjee@sifive.com,m:fancer.lancer@gmail.com,m:linux-spi@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:changhuang.liang@starfivetech.com,m:krzk@kernel.org,m:conor@kernel.org,m:fancerlancer@gmail.com,s:lists@lfdr.de];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	TO_DN_SOME(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[changhuang.liang@starfivetech.com,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[lists@lfdr.de];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[changhuang.liang@starfivetech.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
-	R_DKIM_NA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	RCPT_COUNT_SEVEN(0.00)[10];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,starfivetech.com:from_mime,starfivetech.com:email,starfivetech.com:mid]
+	R_DKIM_NA(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	FREEMAIL_CC(0.00)[sifive.com,gmail.com,vger.kernel.org,starfivetech.com];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FROM_HAS_DN(0.00)[]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: D24F77319C9
+X-Rspamd-Queue-Id: 3FA6A7305CE
 
-Add a new compatible string "starfive,jhb100-sfc" for the StarFive
-JHB100 SPI Flash Controller, it based on the Synopsys DesignWare
-SSI version 2.00a but with minor modifications.
+Add support for the StarFive JHB100 SoC SPI Flash Controller (SFC),
+which is based on the Synopsys DesignWare SSI version 2.00a but with
+some customizations.
 
-Due to these minor modifications, it only supports access for flash
-memory and requires a system controller register to configure the
-address mode filter for SPI NOR flash devices.
+The JHB100 SFC controller has the following special features:
+1. Separate registers for instruction and address (DW_SPI_JHB100_INST
+   and DW_SPI_JHB100_ADDR) instead of using the common data register.
+2. A filter interrupt mask register (DW_SPI_JHB100_FILTER_IMR),
+   which is default masked to disable filter interrupts as they
+   are not used.
+3. Requires a system controller phandle "starfive,sfc-filter-syscon"
+   to configure 3-byte/4-byte address mode switching per chip select.
+4. Different Set CS and Enable Controller Timing.
 
-The starfive,sfc-filter-syscon property is required to provide a phandle
-to the system controller that manages switching between 3-byte and
-4-byte addressing modes, essential for supporting SPI NOR flash devices
-with different address width requirements.
+A new quirk flag DW_SPI_QUIRK_JHB100 is introduced to handle these
+differences in the enhanced SPI memory operation path. The controller
+uses the HSSI initialization path (DW_HSSI_ID) and shares the same
+interrupt masking logic.
 
 Signed-off-by: Changhuang Liang <changhuang.liang@starfivetech.com>
 ---
- .../bindings/spi/snps,dw-apb-ssi.yaml         | 22 +++++++++++++++++++
- 1 file changed, 22 insertions(+)
+ drivers/spi/spi-dw-core.c | 37 ++++++++++++++++++++++++----------
+ drivers/spi/spi-dw-mmio.c | 42 +++++++++++++++++++++++++++++++++++++++
+ drivers/spi/spi-dw.h      | 18 +++++++++++++++++
+ 3 files changed, 86 insertions(+), 11 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml b/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
-index 4458316326fc..f13cb963db88 100644
---- a/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
-+++ b/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
-@@ -33,6 +33,17 @@ allOf:
-     else:
-       properties:
-         amd,pensando-elba-syscon: false
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: starfive,jhb100-sfc
-+    then:
-+      required:
-+        - starfive,sfc-filter-syscon
-+    else:
-+      properties:
-+        starfive,sfc-filter-syscon: false
+diff --git a/drivers/spi/spi-dw-core.c b/drivers/spi/spi-dw-core.c
+index 0abdee82eaab..d7698802019a 100644
+--- a/drivers/spi/spi-dw-core.c
++++ b/drivers/spi/spi-dw-core.c
+@@ -906,16 +906,30 @@ static void dw_spi_init_enh_mem_buf(struct dw_spi *dws, const struct spi_mem_op
+ 	}
+ }
  
- properties:
-   compatible:
-@@ -68,6 +79,8 @@ properties:
-         const: amd,pensando-elba-spi
-       - description: Canaan Kendryte K210 SoS SPI Controller
-         const: canaan,k210-spi
-+      - description: StarFive JHB100 SoC SPI Flash Controller
-+        const: starfive,jhb100-sfc
-       - description: Renesas RZ/N1 SPI Controller
-         items:
-           - const: renesas,r9a06g032-spi # RZ/N1D
-@@ -139,6 +152,15 @@ properties:
-       Block address to control SPI chip-selects. The Elba SoC system controller
-       provides an interface to override the native DWC SSI CS control.
- 
-+  starfive,sfc-filter-syscon:
-+    $ref: /schemas/types.yaml#/definitions/phandle-array
-+    description:
-+      Phandle to the system controller register that controls the SPI NOR flash
-+      address mode filter. This system controller interface provides additional
-+      configuration to switch between 3-byte and 4-byte addressing modes, which
-+      is required when accessing SPI NOR flash devices with different address
-+      width requirements.
+-static void dw_spi_enh_write_cmd_addr(struct dw_spi *dws, const struct spi_mem_op *op)
++static void dw_spi_enh_write_cmd_addr(struct dw_spi *dws, const struct spi_mem_op *op,
++				      struct spi_mem *mem)
+ {
+-	/* Send cmd as 32 bit value */
+-	dw_write_io_reg(dws, DW_SPI_DR, op->cmd.opcode);
+-	if (op->addr.nbytes) {
+-		dw_write_io_reg(dws, DW_SPI_DR, lower_32_bits(op->addr.val));
+-		if (op->addr.nbytes > 4) {
+-			/* address more than 32bit */
+-			dw_write_io_reg(dws, DW_SPI_DR, upper_32_bits(op->addr.val));
++	if (dws->quirk_flags & DW_SPI_QUIRK_JHB100) {
++		dw_write_io_reg(dws, DW_SPI_JHB100_INST, op->cmd.opcode);
++		if (op->addr.nbytes)
++			dw_write_io_reg(dws, DW_SPI_JHB100_ADDR, op->addr.val);
 +
- patternProperties:
-   "@[0-9a-f]$":
-     type: object
++		dw_spi_set_cs(mem->spi, false);
++		dw_spi_enable_chip(dws, 1);
++	} else {
++		dw_spi_enable_chip(dws, 1);
++
++		/* Send cmd as 32 bit value */
++		dw_write_io_reg(dws, DW_SPI_DR, op->cmd.opcode);
++		if (op->addr.nbytes) {
++			dw_write_io_reg(dws, DW_SPI_DR, lower_32_bits(op->addr.val));
++			if (op->addr.nbytes > 4) {
++				/* address more than 32bit */
++				dw_write_io_reg(dws, DW_SPI_DR, upper_32_bits(op->addr.val));
++			}
+ 		}
++
++		dw_spi_set_cs(mem->spi, false);
+ 	}
+ }
+ 
+@@ -979,10 +993,11 @@ static int dw_spi_exec_enh_mem_op(struct spi_mem *mem, const struct spi_mem_op *
+ 
+ 	dw_spi_mask_intr(dws, 0xff);
+ 	reinit_completion(&ctlr->xfer_completion);
+-	dw_spi_enable_chip(dws, 1);
+ 
+-	dw_spi_enh_write_cmd_addr(dws, op);
+-	dw_spi_set_cs(mem->spi, false);
++	if (dws->set_addr_nbyte)
++		dws->set_addr_nbyte(mem->spi, op->addr.nbytes);
++
++	dw_spi_enh_write_cmd_addr(dws, op, mem);
+ 
+ 	udelay(5);
+ 
+diff --git a/drivers/spi/spi-dw-mmio.c b/drivers/spi/spi-dw-mmio.c
+index 603e81a92c57..236ac5fa9cd0 100644
+--- a/drivers/spi/spi-dw-mmio.c
++++ b/drivers/spi/spi-dw-mmio.c
+@@ -48,6 +48,8 @@ struct dw_spi_mmio {
+ #define SPARX5_FORCE_ENA			0xa4
+ #define SPARX5_FORCE_VAL			0xa8
+ 
++#define JHB100_ADDRMODE_CS			0x00
++
+ struct dw_spi_mscc {
+ 	struct regmap       *syscon;
+ 	void __iomem        *spi_mst; /* Not sparx5 */
+@@ -310,6 +312,45 @@ static int dw_spi_elba_init(struct platform_device *pdev,
+ 	return 0;
+ }
+ 
++static void dw_spi_jhb100_set_addr_nbyte(struct spi_device *spi, u8 nbyte)
++{
++	struct dw_spi *dws = spi_controller_get_devdata(spi->controller);
++	struct dw_spi_mmio *dwsmmio = container_of(dws, struct dw_spi_mmio, dws);
++	struct regmap *syscon = dwsmmio->priv;
++
++	if (nbyte == 3) {
++		regmap_update_bits(syscon, JHB100_ADDRMODE_CS,
++				   BIT(spi_get_chipselect(spi, 0)),
++				   0);
++	} else if (nbyte == 4) {
++		regmap_update_bits(syscon, JHB100_ADDRMODE_CS,
++				   BIT(spi_get_chipselect(spi, 0)),
++				   BIT(spi_get_chipselect(spi, 0)));
++	}
++}
++
++static int dw_spi_jhb100_init(struct platform_device *pdev,
++			      struct dw_spi_mmio *dwsmmio)
++{
++	struct regmap *syscon;
++
++	syscon = syscon_regmap_lookup_by_phandle(dev_of_node(&pdev->dev),
++						 "starfive,sfc-filter-syscon");
++	if (IS_ERR(syscon))
++		return dev_err_probe(&pdev->dev, PTR_ERR(syscon),
++				     "syscon regmap lookup failed\n");
++
++	dwsmmio->priv = syscon;
++
++	dwsmmio->dws.set_addr_nbyte = dw_spi_jhb100_set_addr_nbyte;
++	dwsmmio->dws.ip = DW_HSSI_ID;
++	dwsmmio->dws.quirk_flags = DW_SPI_QUIRK_JHB100;
++
++	dw_spi_jhb100_mask_intr(&dwsmmio->dws, 0xff);
++
++	return 0;
++}
++
+ static int dw_spi_mmio_probe(struct platform_device *pdev)
+ {
+ 	int (*init_func)(struct platform_device *pdev,
+@@ -447,6 +488,7 @@ static const struct of_device_id dw_spi_mmio_of_match[] = {
+ 	{ .compatible = "microchip,sparx5-spi", dw_spi_mscc_sparx5_init},
+ 	{ .compatible = "canaan,k210-spi", dw_spi_canaan_k210_init},
+ 	{ .compatible = "amd,pensando-elba-spi", .data = dw_spi_elba_init},
++	{ .compatible = "starfive,jhb100-sfc", .data = dw_spi_jhb100_init},
+ 	{ /* end of table */}
+ };
+ MODULE_DEVICE_TABLE(of, dw_spi_mmio_of_match);
+diff --git a/drivers/spi/spi-dw.h b/drivers/spi/spi-dw.h
+index 2dae81c15423..a913c850ba1a 100644
+--- a/drivers/spi/spi-dw.h
++++ b/drivers/spi/spi-dw.h
+@@ -67,6 +67,11 @@
+ #define DW_SPI_SPI_CTRLR0		0xf4
+ #define DW_SPI_CS_OVERRIDE		0xf4
+ 
++/* Register offsets (StarFive JHB100 DWC SSI IP-cores) */
++#define DW_SPI_JHB100_INST		0x1000
++#define DW_SPI_JHB100_ADDR		0x1004
++#define DW_SPI_JHB100_FILTER_IMR	0x1008
++
+ /* Bit fields in CTRLR0 (DWC APB SSI) */
+ #define DW_PSSI_CTRLR0_DFS_MASK			GENMASK(3, 0)
+ #define DW_PSSI_CTRLR0_DFS32_MASK		GENMASK(20, 16)
+@@ -199,6 +204,7 @@ struct dw_spi {
+ 	u32			num_cs;		/* chip select lines */
+ 	u16			bus_num;
+ 	void (*set_cs)(struct spi_device *spi, bool enable);
++	void (*set_addr_nbyte)(struct spi_device *spi, u8 nbyte);
+ 
+ 	/* Current message transfer state info */
+ 	void			*tx;
+@@ -228,6 +234,9 @@ struct dw_spi {
+ 	const struct dw_spi_dma_ops *dma_ops;
+ 	struct completion	dma_completion;
+ 
++#define DW_SPI_QUIRK_JHB100		BIT(0)
++	u32			quirk_flags;
++
+ #ifdef CONFIG_DEBUG_FS
+ 	struct dentry *debugfs;
+ 	struct debugfs_regset32 regset;
+@@ -296,6 +305,15 @@ static inline void dw_spi_umask_intr(struct dw_spi *dws, u32 mask)
+ 	dw_writel(dws, DW_SPI_IMR, new_mask);
+ }
+ 
++/* Disable JHB100 SPI filter IRQ bits */
++static inline void dw_spi_jhb100_mask_intr(struct dw_spi *dws, u32 mask)
++{
++	u32 new_mask;
++
++	new_mask = dw_readl(dws, DW_SPI_JHB100_FILTER_IMR) & ~mask;
++	dw_writel(dws, DW_SPI_JHB100_FILTER_IMR, new_mask);
++}
++
+ /*
+  * This disables the SPI controller, interrupts, clears the interrupts status
+  * and CS, then re-enables the controller back. Transmit and receive FIFO
 -- 
 2.25.1
 
