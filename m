@@ -1,362 +1,200 @@
-Return-Path: <devicetree+bounces-324093-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-324089-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id GkYTJ4j6T2rBrQIAu9opvQ
-	(envelope-from <devicetree+bounces-324093-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 21:46:16 +0200
+	id VT0hKir6T2qjrQIAu9opvQ
+	(envelope-from <devicetree+bounces-324089-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 21:44:42 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD71F735281
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 21:46:15 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id D164C735241
+	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 21:44:41 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=VH0UycqE;
-	dmarc=pass (policy=none) header.from=gmail.com;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324093-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-324093-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=bXZc9qgo;
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324089-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-324089-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 788D53061A05
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2026 19:42:00 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 3E455302DF9E
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2026 19:41:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C771C3CF680;
-	Thu,  9 Jul 2026 19:41:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBD483C10AC;
+	Thu,  9 Jul 2026 19:41:32 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 586DE3C5DBE
-	for <devicetree@vger.kernel.org>; Thu,  9 Jul 2026 19:41:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 893323BFE34
+	for <devicetree@vger.kernel.org>; Thu,  9 Jul 2026 19:41:31 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783626116; cv=none; b=MfNzUB5VydvBZEfg0AoDJqX5+JPnd1uCTgLvN4JzvkPobVh3D+RPChPAgUvR9RLOPWQr+U/nLzujrfT9huYryqxc3msr71CErA/8unXd2KhiPtvodCT8+2V8bLDfTCM+UtbVIKdFpUNnMBbiel7rahaavKid9ADDzrTIuaFZ4Do=
+	t=1783626092; cv=none; b=CyHjdebVutLwHU/M1yP8wTOR6ax6IXKVBmcEWETNd6Zv3U0cr58S6UxVsszGdPEnIvrGtI3+BySmfmnIUOEWVZRZULI3TsEEODyxjCbh2Mu2MHwiN+uG5ssjTCvKnnH/i55zsfrgleajkjqr+WSl54g1W6PtNz65KNkqgaL0gBo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783626116; c=relaxed/simple;
-	bh=eOnvKPKJ8xu0mv6PWBP9TLrtb2xhY1TMknT8DLnczJw=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=VRGWmX2MzcnGfJs7w3uvtwLewaRlzcGLpQipjHNqeaw9xrBRJ7nMM8dL9BhoWdnGeC9/Md5RfD6TeGnJsAgFfrzF2YZK9oIyRHoQeQQx9fbia/AhlSeLXXHoBXBlnyI9aPQVJmfWMdJn1aYrQW7ogfVchUyyRqvjrJX5fNInN0E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VH0UycqE; arc=none smtp.client-ip=209.85.128.45
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-493e4cccd8dso720655e9.2
-        for <devicetree@vger.kernel.org>; Thu, 09 Jul 2026 12:41:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1783626111; x=1784230911; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=rFhmEuyc0PnmumKeVIwU3QX5cIya1AepAA/H5CSWS5A=;
-        b=VH0UycqE76kJs5YWdStvyT0E3+Tyck4B2Upik6UG4N69tr9+Iy56YovdAbPIbLblPl
-         1eTK020cKtMt7ZPPloKh/uxZQtU+3YAnkWvsHdkvAQXGA/MGWIWeXdRLB4+5KWlsz+Bj
-         VaXg9esBIVltAnYb52Md9+XdfmwalfLy7AYsk0lRhzWD5hk2Re0cvS8sSi4bX4M+BUXV
-         rE8NYHbmDMK5COKOAmBmEi/wW6DMpK0wmrMdY1te7sWBZUuSUo62rRA+Ud22iORNqUsl
-         IVuYThcNjvrItM6eSZKImkH/eieDDTQJjxzoRPs4Uv2HtGqStVEbizR4Bcw2Oodi7Amo
-         wXyA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783626111; x=1784230911;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=rFhmEuyc0PnmumKeVIwU3QX5cIya1AepAA/H5CSWS5A=;
-        b=aufRfryrJgcmgn8Yuuel9oDdKWBO+mXTmI74eSSnbR0XG2ecdNlzJ3zDcXTNx3V+iS
-         PTB4cY2waRzwI2FagRCx+NZsxav0Y7TiHJqQvkRo4NWo/dsY6+DlZWMRDxcaLIs1m2LI
-         HDmYma6ie5am8HMwpAEWumTJDRJFWFFFlEpKlhtbAPhUtBFsw77FdfnAWrb88BxBBMO8
-         fM0Abme/6gV84u/MFWFgmboRBZdo0jqWvJ+45njO6xmWGyxJeACpF/24/KcUB7N9+Lu5
-         ZwJvB8xSACRW4dKUexO+fPbBDnX4JLj3TDcadTIKFiv68wxiNH2RlDTeOPOX99rU2CmH
-         y+pQ==
-X-Forwarded-Encrypted: i=1; AHgh+RrBY49HhZs5vXvCW+GtGn9KDgZsrhVzwxfb4IUQN4hIttmhacHl3reWUFDDjVYG0VEmfd++TsHu2LBh@vger.kernel.org
-X-Gm-Message-State: AOJu0YxNcvvuEdrZQcAN40zdw1ToyP5egd7T1LNRk6Kwlpm1juscxFnz
-	MffYqgYlJs0sWAgOvn8oV2c7mKVrJuXwjBOqSeozOVSmMugYsPm2VPye
-X-Gm-Gg: AfdE7cnc7yFY2ASeKM1jNL434mvL/NVPIZqHmu9dv4P+4ZAtUb0XRL0UiVUh8GTsA5h
-	RdPVj2dNJO97NFQ7TCRKSBF8N/z8y2dZEa/yWIIY+zUii4WgVOQOBxse+VcFVnO6DD7sx7u3vKG
-	aAbyVUfT9pfRClzgfO8dIx6DkQX4OobTzG1kdfeAmA1NgPU2CZNOeWRyDOv42359j8qhHnnKrxj
-	r4R62qKsPZo1FqeuVbqtc8bRfwDbu9JwEgnbOWCAxPIW21TKSe+1MnBFL7oLAAXjFlM8JWleI3q
-	ZZ2pvdTgMLOLsBACQYHl2AWRZiS4+avMNQCHJkMiImFBwq2VKi8KAi7PLfyrv0Zf1plNqlDBvX5
-	7U8Xl+yXIv7XuKM7rygiYv80Vhj7trqG4SZvzeN0tv+rdM3xRAdyj+uXAVOl0yU5d8PwvVHFBdw
-	vUYy5gMpakaJLRfRQ=
-X-Received: by 2002:a05:600c:1d08:b0:493:bd4f:510 with SMTP id 5b1f17b1804b1-493e68c40e6mr83772925e9.19.1783626110475;
-        Thu, 09 Jul 2026 12:41:50 -0700 (PDT)
-Received: from builder ([2001:9e8:f110:7f16:be24:11ff:fe30:5d85])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-493eb6e8844sm93126605e9.10.2026.07.09.12.41.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Jul 2026 12:41:50 -0700 (PDT)
-From: Jonas Jelonek <jelonek.jonas@gmail.com>
-To: Oleksij Rempel <o.rempel@pengutronix.de>,
-	Kory Maincent <kory.maincent@bootlin.com>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S . Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: netdev@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Daniel Golle <daniel@makrotopia.org>,
-	=?UTF-8?q?Bj=C3=B8rn=20Mork?= <bjorn@mork.no>,
-	Jonas Jelonek <jelonek.jonas@gmail.com>
-Subject: [PATCH net-next v6 4/4] net: pse-pd: realtek-pse-mcu: add UART transport
-Date: Thu,  9 Jul 2026 19:41:23 +0000
-Message-ID: <20260709194125.2784507-5-jelonek.jonas@gmail.com>
-X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20260709194125.2784507-1-jelonek.jonas@gmail.com>
-References: <20260709194125.2784507-1-jelonek.jonas@gmail.com>
+	s=arc-20240116; t=1783626092; c=relaxed/simple;
+	bh=3GIVQCPRqYKvW4hZLuxEDQmunZ36vk38xoI1venMEmU=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=nSIriMN0D3Df01yD8K2gixRubarqBSmmso50t8QpW5lVaSSmD5buif2wbepG6u0OBel00GZM6sgdZ7zCWOgANi/9CuxDNnupaQ8EPptFk8pGPCKjqGA1ZN+skTnNpjdVYMOl4HSw5zWnS7MbknCI0vuNyqTYnxFDP0xaAT1hsH4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bXZc9qgo; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AE87D1F000E9;
+	Thu,  9 Jul 2026 19:41:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1783626091;
+	bh=BSwixGZacA8eJ/2GfyJWVMp7rzTtyXn7KbRqjhiLazQ=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=bXZc9qgoFduqHQlI3CYAzo1wII2NGTBhLb+7ggJbHdUUnX02QCanx6vtlq0uQ0eOP
+	 VpR9tbs8ZJOofZ1/16n3zTUbfVqoP3wmPF1hWuyXxDVlwi5tn9Q8hNUw7W1sR7dqbg
+	 ihbDneWsVGFdCzvbSBNQFuVg6Ikxa3VaprEZNgBr3E1QFt+7/Rox71wtLVb1Ud6B0k
+	 4Y4LtCPmV6tKS+PvFiQtenz0tmRH/wAe/aj85jmn43hTCPJj+62MC3bz/uw8h34Iec
+	 cbDlSIXwrOI+r2mhHBKuz18cxVBeM19URez1o5+Tl0eqG6O6bYGtuoO1weCKq9JMjw
+	 +1dC/AvdeGOng==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v11 35/36] phy: rockchip: usbdp: Re-init PHY on mux
+ change
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Sebastian Reichel" <sebastian.reichel@collabora.com>
+Cc: devicetree@vger.kernel.org, neil.armstrong@linaro.org, conor+dt@kernel.org, olteanv@gmail.com, robh@kernel.org, vkoul@kernel.org, linux-phy@lists.infradead.org
+In-Reply-To: <20260709-rockchip-usbdp-cleanup-v11-35-a149ac60f76c@collabora.com>
+References: <20260709-rockchip-usbdp-cleanup-v11-0-a149ac60f76c@collabora.com>
+ <20260709-rockchip-usbdp-cleanup-v11-35-a149ac60f76c@collabora.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Thu, 09 Jul 2026 19:41:30 +0000
+Message-Id: <20260709194130.AE87D1F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-1.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	TAGGED_FROM(0.00)[bounces-324093-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[16];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:o.rempel@pengutronix.de,m:kory.maincent@bootlin.com,m:andrew+netdev@lunn.ch,m:davem@davemloft.net,m:edumazet@google.com,m:kuba@kernel.org,m:pabeni@redhat.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:netdev@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:daniel@makrotopia.org,m:bjorn@mork.no,m:jelonek.jonas@gmail.com,m:andrew@lunn.ch,m:krzk@kernel.org,m:conor@kernel.org,m:jelonekjonas@gmail.com,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER(0.00)[jelonekjonas@gmail.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[vger.kernel.org,makrotopia.org,mork.no,gmail.com];
-	FORWARDED(0.00)[lists@lfdr.de];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jelonekjonas@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	ALIAS_RESOLVED(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-324089-lists,devicetree=lfdr.de];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:sebastian.reichel@collabora.com,m:devicetree@vger.kernel.org,m:neil.armstrong@linaro.org,m:conor+dt@kernel.org,m:olteanv@gmail.com,m:robh@kernel.org,m:vkoul@kernel.org,m:linux-phy@lists.infradead.org,m:conor@kernel.org,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FREEMAIL_CC(0.00)[vger.kernel.org,linaro.org,kernel.org,gmail.com,lists.infradead.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ALIAS_RESOLVED(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,lists.linux.dev:replyto,smtp.kernel.org:mid,vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,collabora.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: DD71F735281
+X-Rspamd-Queue-Id: D164C735241
 
-Add the serdev (UART) transport for the Realtek PSE MCU core. It registers
-the MCU as a serdev device and provides the send/recv callbacks the core
-uses to exchange the 12-byte frames, receiving asynchronously via the
-serdev receive_buf callback.
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
+s) to consider:
 
-The baud rate defaults to 19200 and can be overridden per board with the
-"current-speed" property.
+New issues:
+- [High] Deadlock / Recursive Lock
 
-Signed-off-by: Jonas Jelonek <jelonek.jonas@gmail.com>
----
- drivers/net/pse-pd/Kconfig                |  11 ++
- drivers/net/pse-pd/Makefile               |   1 +
- drivers/net/pse-pd/realtek-pse-mcu-uart.c | 155 ++++++++++++++++++++++
- 3 files changed, 167 insertions(+)
- create mode 100644 drivers/net/pse-pd/realtek-pse-mcu-uart.c
+Pre-existing issues:
+- [High] Silent DP PHY State Loss
+--
 
-diff --git a/drivers/net/pse-pd/Kconfig b/drivers/net/pse-pd/Kconfig
-index 6d14c8832e8b..a0f2ae668c67 100644
---- a/drivers/net/pse-pd/Kconfig
-+++ b/drivers/net/pse-pd/Kconfig
-@@ -30,6 +30,17 @@ config PSE_REALTEK_MCU_I2C
- 	  PSE silicon is not accessed directly. To compile this driver as a
- 	  module, choose M here: the module will be called realtek-pse-mcu-i2c.
- 
-+config PSE_REALTEK_MCU_UART
-+	tristate "Realtek PSE MCU driver (UART transport)"
-+	depends on SERIAL_DEV_BUS
-+	select PSE_REALTEK_MCU
-+	help
-+	  Driver for the microcontroller (MCU) that fronts the PSE
-+	  hardware on various Realtek-based managed switches, attached
-+	  via UART. The MCU exposes a message-based protocol; the actual PSE
-+	  silicon is not accessed directly. To compile this driver as a
-+	  module, choose M here: the module will be called realtek-pse-mcu-uart.
-+
- config PSE_REGULATOR
- 	tristate "Regulator based PSE controller"
- 	help
-diff --git a/drivers/net/pse-pd/Makefile b/drivers/net/pse-pd/Makefile
-index ef869bba5ed9..9cca5900fe34 100644
---- a/drivers/net/pse-pd/Makefile
-+++ b/drivers/net/pse-pd/Makefile
-@@ -5,6 +5,7 @@ obj-$(CONFIG_PSE_CONTROLLER) += pse_core.o
- 
- obj-$(CONFIG_PSE_REALTEK_MCU) += realtek-pse-mcu-core.o
- obj-$(CONFIG_PSE_REALTEK_MCU_I2C) += realtek-pse-mcu-i2c.o
-+obj-$(CONFIG_PSE_REALTEK_MCU_UART) += realtek-pse-mcu-uart.o
- obj-$(CONFIG_PSE_REGULATOR) += pse_regulator.o
- obj-$(CONFIG_PSE_PD692X0) += pd692x0.o
- obj-$(CONFIG_PSE_SI3474) += si3474.o
-diff --git a/drivers/net/pse-pd/realtek-pse-mcu-uart.c b/drivers/net/pse-pd/realtek-pse-mcu-uart.c
-new file mode 100644
-index 000000000000..91cadb5569ab
---- /dev/null
-+++ b/drivers/net/pse-pd/realtek-pse-mcu-uart.c
-@@ -0,0 +1,155 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+
-+#include <linux/cleanup.h>
-+#include <linux/completion.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/pse-pd/pse.h>
-+#include <linux/serdev.h>
-+#include <linux/spinlock.h>
-+#include <linux/string.h>
-+
-+#include "realtek-pse-mcu.h"
-+
-+#define RTPSE_MCU_UART_BAUD_DEFAULT	19200
-+#define RTPSE_MCU_UART_TX_TIMEOUT	msecs_to_jiffies(100)
-+#define RTPSE_MCU_UART_RX_TIMEOUT	msecs_to_jiffies(RTPSE_MCU_RESPONSE_MAX_MS)
-+
-+struct rtpse_mcu_uart {
-+	struct rtpse_mcu_ctrl pse;
-+	struct serdev_device *serdev;
-+	struct completion rx_done;
-+	spinlock_t rx_lock;		/* protects rx_buf and rx_len */
-+	size_t rx_len;
-+	u8 rx_buf[RTPSE_MCU_MSG_SIZE];
-+};
-+
-+#define to_rtpse_mcu_uart(p)  container_of(p, struct rtpse_mcu_uart, pse)
-+
-+/*
-+ * No framing is done here: a glitched frame costs one transaction, then
-+ * the next _send re-frames from rx_len 0. Resync works by returning count
-+ * (not take), dropping any overflow so serdev keeps no leftover to bleed
-+ * into the next frame.
-+ */
-+static size_t rtpse_mcu_uart_receive(struct serdev_device *serdev,
-+				     const u8 *buf, size_t count)
-+{
-+	struct rtpse_mcu_uart *ctx = serdev_device_get_drvdata(serdev);
-+	size_t take;
-+
-+	scoped_guard(spinlock_irqsave, &ctx->rx_lock) {
-+		take = min(count, sizeof(ctx->rx_buf) - ctx->rx_len);
-+		if (take) {
-+			memcpy(ctx->rx_buf + ctx->rx_len, buf, take);
-+			ctx->rx_len += take;
-+			if (ctx->rx_len == sizeof(ctx->rx_buf))
-+				complete(&ctx->rx_done);
-+		}
-+	}
-+
-+	/* consume all to avoid desync/misalignment */
-+	return count;
-+}
-+
-+static const struct serdev_device_ops rtpse_mcu_uart_serdev_ops = {
-+	.receive_buf = rtpse_mcu_uart_receive,
-+	.write_wakeup = serdev_device_write_wakeup,
-+};
-+
-+static int rtpse_mcu_uart_send(struct rtpse_mcu_ctrl *pse, const struct rtpse_mcu_msg *req)
-+{
-+	struct rtpse_mcu_uart *ctx = to_rtpse_mcu_uart(pse);
-+	int written;
-+
-+	/* clear any leftover rx state before transmitting */
-+	scoped_guard(spinlock_irqsave, &ctx->rx_lock) {
-+		reinit_completion(&ctx->rx_done);
-+		ctx->rx_len = 0;
-+	}
-+
-+	written = serdev_device_write(ctx->serdev, (const u8 *)req, sizeof(*req),
-+				      RTPSE_MCU_UART_TX_TIMEOUT);
-+	if (written < 0)
-+		return written;
-+	if (written != sizeof(*req))
-+		return -EIO;
-+
-+	return 0;
-+}
-+
-+static int rtpse_mcu_uart_recv(struct rtpse_mcu_ctrl *pse,
-+			       const struct rtpse_mcu_msg *req,
-+			       struct rtpse_mcu_msg *resp)
-+{
-+	struct rtpse_mcu_uart *ctx = to_rtpse_mcu_uart(pse);
-+
-+	if (!wait_for_completion_timeout(&ctx->rx_done, RTPSE_MCU_UART_RX_TIMEOUT))
-+		return -ETIMEDOUT;
-+
-+	scoped_guard(spinlock_irqsave, &ctx->rx_lock) {
-+		if (ctx->rx_len != sizeof(*resp))
-+			return -EIO;
-+
-+		memcpy(resp, ctx->rx_buf, sizeof(*resp));
-+	}
-+	return 0;
-+}
-+
-+static const struct rtpse_mcu_transport_ops rtpse_mcu_uart_transport_ops = {
-+	.send = rtpse_mcu_uart_send,
-+	.recv = rtpse_mcu_uart_recv,
-+};
-+
-+static int rtpse_mcu_uart_probe(struct serdev_device *serdev)
-+{
-+	u32 speed = RTPSE_MCU_UART_BAUD_DEFAULT;
-+	struct device *dev = &serdev->dev;
-+	struct rtpse_mcu_uart *ctx;
-+	int ret;
-+
-+	ctx = devm_kzalloc(dev, sizeof(*ctx), GFP_KERNEL);
-+	if (!ctx)
-+		return -ENOMEM;
-+
-+	ctx->serdev = serdev;
-+	ctx->pse.dev = dev;
-+	ctx->pse.pcdev.owner = THIS_MODULE;
-+	ctx->pse.transport = &rtpse_mcu_uart_transport_ops;
-+	init_completion(&ctx->rx_done);
-+	spin_lock_init(&ctx->rx_lock);
-+
-+	serdev_device_set_drvdata(serdev, ctx);
-+	serdev_device_set_client_ops(serdev, &rtpse_mcu_uart_serdev_ops);
-+
-+	ret = devm_serdev_device_open(dev, serdev);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "failed to open serdev\n");
-+
-+	fwnode_property_read_u32(dev_fwnode(dev), "current-speed", &speed);
-+	serdev_device_set_baudrate(serdev, speed);
-+	serdev_device_set_flow_control(serdev, false);
-+	serdev_device_set_parity(serdev, SERDEV_PARITY_NONE);
-+
-+	return rtpse_mcu_register(&ctx->pse);
-+}
-+
-+static const struct of_device_id rtpse_mcu_uart_of_match[] = {
-+	{ .compatible = "realtek,pse-mcu-gen1", .data = &rtpse_mcu_gen1_data },
-+	{ .compatible = "realtek,pse-mcu-gen2", .data = &rtpse_mcu_gen2_data },
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, rtpse_mcu_uart_of_match);
-+
-+static struct serdev_device_driver rtpse_mcu_uart_driver = {
-+	.driver = {
-+		.name = "realtek-pse-mcu-uart",
-+		.of_match_table = rtpse_mcu_uart_of_match,
-+	},
-+	.probe  = rtpse_mcu_uart_probe,
-+};
-+module_serdev_device_driver(rtpse_mcu_uart_driver);
-+
-+MODULE_AUTHOR("Jonas Jelonek <jelonek.jonas@gmail.com>");
-+MODULE_DESCRIPTION("Realtek PSE MCU driver (UART transport)");
-+MODULE_LICENSE("GPL");
--- 
-2.51.0
+--- Patch [35]: [PATCH v11 35/36] phy: rockchip: usbdp: Re-init PHY on mux =
+change ---
+commit 63e6102eaff345b4ebf6faefafd6aae88e7bb98e
+Author: Sebastian Reichel <sebastian.reichel@collabora.com>
 
+phy: rockchip: usbdp: Re-init PHY on mux change
+
+Ensure that the right part of the PHY are powered up when the mode changes.
+This ensures the PHY is re-initialized when cable orientation changes witho=
+ut
+DP being involved, and when switching from DP-only into a mode with USB
+support.
+
+> diff --git a/drivers/phy/rockchip/phy-rockchip-usbdp.c b/drivers/phy/rock=
+chip/phy-rockchip-usbdp.c
+> index c5ad300620a65..ecf0ed0139f69 100644
+> --- a/drivers/phy/rockchip/phy-rockchip-usbdp.c
+> +++ b/drivers/phy/rockchip/phy-rockchip-usbdp.c
+> @@ -1383,7 +1383,7 @@ static int rk_udphy_typec_mux_set(struct typec_mux_=
+dev *mux,
+> =20
+>  	rk_udphy_set_typec_state(udphy, state->mode);
+> =20
+> -	return 0;
+> +	return rk_udphy_update_power_state(udphy);
+
+[Severity: High]
+Could this lead to a recursive locking deadlock if the DWC3 controller is
+runtime-suspended?
+
+Since rk_udphy_typec_mux_set() holds udphy->mutex using a guard, the
+following chain seems to re-acquire the same mutex:
+
+rk_udphy_typec_mux_set()
+   guard(mutex)(&udphy->mutex);
+   rk_udphy_update_power_state()
+      phy_notify_reset(udphy->phy_u3, PHY_NOTIFY_PRE_RESET);
+
+If the DWC3 driver handles this notification in device role:
+
+dwc3_usb3_phy_notify()
+   pm_runtime_resume_and_get()
+      ...
+      dwc3_resume_common()
+         dwc3_core_init_for_resume()
+            dwc3_phy_init()
+               phy_init()
+
+The PHY init then attempts to acquire the lock again:
+
+rk_udphy_usb3_phy_init()
+   guard(mutex)(&udphy->mutex);
+
+Will this cause a system freeze when hotplugging or switching modes?
+
+
+[Severity: High]
+This isn't a bug introduced by this patch, but does invoking
+rk_udphy_update_power_state() during a mux change cause the DP link to be
+permanently lost?
+
+When the power state updates, the PHY is re-initialized:
+
+rk_udphy_update_power_state()
+   rk_udphy_init()
+      regmap_write(..., FIELD_PREP(CMN_DP_LANE_EN_ALL, 0));
+
+This reset sequence clears the CMN_DP_LANE_EN_ALL bits and disables DP
+transmission. Since rk_udphy_dp_lane_enable() does not appear to be called
+afterward to restore the active DP configuration, does the DRM subsystem
+lose the link without a full power cycle?
+
+>  }
+> =20
+>  static void rk_udphy_typec_mux_unregister(void *data)
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260709-rockchip-u=
+sbdp-cleanup-v11-0-a149ac60f76c@collabora.com?part=3D35
 
