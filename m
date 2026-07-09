@@ -1,234 +1,365 @@
-Return-Path: <devicetree+bounces-324135-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-324133-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id C2YCO2EJUGr1sAIAu9opvQ
-	(envelope-from <devicetree+bounces-324135-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 22:49:37 +0200
+	id RlPpOFsJUGr0sAIAu9opvQ
+	(envelope-from <devicetree+bounces-324133-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 22:49:31 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7846E7358AA
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 22:49:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4FDD97358A7
+	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 22:49:31 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=analog.com header.s=DKIM header.b=XaSTqKAT;
-	dmarc=pass (policy=quarantine) header.from=analog.com;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324135-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-324135-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=nM1DQiVl;
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324133-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-324133-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 853E9303CC43
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2026 20:49:36 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 5683D30387A5
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2026 20:49:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 060FF3E0236;
-	Thu,  9 Jul 2026 20:49:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 798143D88E8;
+	Thu,  9 Jul 2026 20:49:29 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4948F283FD4;
-	Thu,  9 Jul 2026 20:49:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 048A03BD647
+	for <devicetree@vger.kernel.org>; Thu,  9 Jul 2026 20:49:28 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783630175; cv=none; b=E93J3xxXJdaLWTN7ZVc4VyrVBq0qk8ik0ov/5fDvFv/sh+OuPgKPKIKIG5PpMisSzgzfJ06sbK1PVNGaSmsWuPvvKIIxvaQEVMqwqFd8XX7JQKCseFh26ZRsoGGFvXLsaBEu3xFQR97uvNUa58QknHVS/MvYpH8ZZefJAR33rwY=
+	t=1783630169; cv=none; b=cpKvCe5OnacGDRxq+9M9spk0e1XbLVHy94FrJQB9QL/v5wZronNRJugbVG6fwPQ4nGhI6RyFeo68ssuuFMY/tQxjxpyCd1jGLHkcLbyYS2RUDlO1hJ4nzeds2DSe6Yu/JxUoDKyf9W3mM5FurokSbUfQ6dIzZpyAhaFMqbP8MLg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783630175; c=relaxed/simple;
-	bh=3xga7A3kXtcNqzDDYv/uIDEfi064QFEQN2be+835/9g=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=TeQncBFtKRjCz30r36o1I+ta38i8/Rnx6FXbyL09R5ZqczAi2JxDCS6XSXloW8rboBfSoNd53VLU+ijTFtymF2kSK9Olyk+MQ84flqgq2V10cu+V/LzGtJxvEqCT4pw1lSqHi4YarkWmcYY5rUD7IFNXZyo3Ch2nqs+FLfMfNhQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=XaSTqKAT; arc=none smtp.client-ip=148.163.135.77
-Received: from pps.filterd (m0516787.ppops.net [127.0.0.1])
-	by mx0a-00128a01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 669JEWaO1847790;
-	Thu, 9 Jul 2026 16:49:22 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
-	:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=DKIM; bh=h+dw3kCW/kleuhP7037TwZKiQBp
-	A/08bWVZBjne8V2Q=; b=XaSTqKATpdNZoMx2Se/+LUzHj/63kdOTAsg57MEe/Pv
-	45LviQ9MLtY3EQT/KalsxzBeSUPIb9du2lMuO0MCufWfO1GfRw/VkeBczEwzJzTn
-	bdqNjm5aeJpHoLwzgp3ALQ50rFluMyvBk7v09aJTWgbOctyi1FG03t99RChQGmvm
-	dEGwtIO90X4yzJyI8YyO3jPBfzK+BelSGDaRUk4aIpbG552AzGhgnGo49BfjsaIr
-	IQslu++eplygeDdDqiggDD6HLuXeouHFx2vJPzHNpwJIqpXKtZfUhgbL+JF/Ezw3
-	UQ8e1fKJh0W5e23qxvDYfaSg311pTCcbU8EBlWSHkiw==
-Received: from nwd2mta4.analog.com ([137.71.173.58])
-	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 4fa9qsagjy-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 09 Jul 2026 16:49:22 -0400 (EDT)
-Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
-	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 669KnKp3046364
-	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 9 Jul 2026 16:49:20 -0400
-Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by ASHBMBX8.ad.analog.com
- (10.64.17.5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.37; Thu, 9 Jul
- 2026 16:49:19 -0400
-Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
- (10.64.17.5) with Microsoft SMTP Server id 15.2.1748.37 via Frontend
- Transport; Thu, 9 Jul 2026 16:49:19 -0400
-Received: from work.maxim-ic.internal ([10.66.6.192])
-	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 669Kn7wn003656;
-	Thu, 9 Jul 2026 16:49:10 -0400
-From: Marcelo Schmitt <marcelo.schmitt@analog.com>
-To: <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-CC: <jic23@kernel.org>, <nuno.sa@analog.com>, <Michael.Hennerich@analog.com>,
-        <dlechner@baylibre.com>, <andy@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <julianbraha@gmail.com>,
-        <marcelo.schmitt1@gmail.com>
-Subject: [PATCH v6 0/4] iio: adc: Add support for LTC2378 and similar ADCs
-Date: Thu, 9 Jul 2026 17:49:02 -0300
-Message-ID: <cover.1783629101.git.marcelo.schmitt@analog.com>
-X-Mailer: git-send-email 2.39.2
+	s=arc-20240116; t=1783630169; c=relaxed/simple;
+	bh=0igcCrDdZboemki1d3PxLhQUjlMLz47aGRsS4+JvBHU=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=gV9EpGlOuPR0CzSzmqJZFeDtl6AeZMT0Ez3KR59ZdhvSx2qIkLcvlZliEiioWjtrzBlQpQGWURdljxPIvPCuk0m7Hogfwqil4382a/VkuUIZgJgTutrOpU1xIbY2/2fupiKVpkxRoFCh6/Goafrwqs6VkAK+rg03YudczPsQETw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nM1DQiVl; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A14611F000E9;
+	Thu,  9 Jul 2026 20:49:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1783630167;
+	bh=BCKoFQ0J2+8huB9xca/v18pbZ3p/ahh0MHG08PpDyug=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=nM1DQiVl3hWADNvNeBPhzee0mhfgHnMmr3WrOW23gA3IrT1mlKDUIUEKj2rb1W4+r
+	 46R2yzx56AdCTAyDFtLdiq9JbOmIZuS6MEUuOWR6VQZmmqebE7KVx9vOXf3mpv+mR/
+	 lsw1CH/TdCMdtX3YOI2ABLh4VnRta55ZHsNHH4ER59i+b02yCdMyK/ausN4X4cFpe6
+	 /hqoCEJtpmr6o6Q3URs6UhF4w3Q0sVdU/xjsRlUF5YfAlwfkBJOsybdUNLqz8OqMFV
+	 CBvoXJq36SUQsOCyr1pc92QbM8F8TOcl7TPvcu568wKxcYa/1+GM10xwTEfVSXT3uN
+	 sHYxFVLFAn3JQ==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v2 02/19] crypto: cmh - add core platform driver
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Saravanakrishnan Krishnamoorthy" <skrishnamoorthy@rambus.com>
+Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, robh@kernel.org
+In-Reply-To: <20260709203037.1884436-3-skrishnamoorthy@rambus.com>
+References: <20260709203037.1884436-1-skrishnamoorthy@rambus.com>
+ <20260709203037.1884436-3-skrishnamoorthy@rambus.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Thu, 09 Jul 2026 20:49:26 +0000
+Message-Id: <20260709204927.A14611F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ADIRuleOP-NewSCL: Rule Triggered
-X-Proofpoint-Spam-Info: AW1haW4tMjYwNzA5MDIwNiBTYWx0ZWRfX12iMe7JvJjLJ
- +dxkYmOGhOAEspzeza8WBw75uD+cCq6CKgoo6Kvhc6y4tjCDqMce4Tp3a7YxSq8POEjpGDmS5p7
- e2Lgq0L6uK93RjMrXqmp7ECH+Vbw/KluIyZpg2EYlB706tR6YAbb
-X-Proofpoint-GUID: CDqef9lPiYbQcPAcIpfq8YOj9dGw2r_A
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNzA5MDIwNiBTYWx0ZWRfXwNaKDcY79JnH
- 4eSeAI8/GT5HINbERnzQ2/5eseU0chCSnFhbTriQ9AdRXFRAHLpdmtcIf/YteAIwn1JVqZwOgBj
- 3MBJU+Irgk60YhfTpfmifWpwxAwuRc4YBPfD0VnphCaHLw2EnHeu/mBDPuVmqdajmFm6h0yMQNV
- 0Gwi6fXBEelV04MX0PwDXK+dAfR79KNTnPB0ctFl6Jj3stGb7gVyJINa1/PmnyBQp2y2HUgVtdD
- /kc/xmB7eDBByDLHnpk8INXrib+xL2Ha+UXbtSkJY9D6HUJRJ0xrEOgYCWFUY+uKxXwAKT/FztF
- 04kvjuAISQOdAE2ONJ1wR/UZpfg+/pnv2sCpRPQj3j49OKvIBXWRNkg9BrUsSoxdmkcA10DR1XE
- nZn4wNkGyTZ9FHNhbzSptEzDIDJYKDUyvE9bTd6sLzC0LAbB5J9D8VhtfYtCYe1f6slFkLmXFf8
- 6HNksh+BvxbeZI+8adg==
-X-Authority-Analysis: v=2.4 cv=fu7sol4f c=1 sm=1 tr=0 ts=6a500952 cx=c_pps
- a=3WNzaoukacrqR9RwcOSAdA==:117 a=3WNzaoukacrqR9RwcOSAdA==:17
- a=RAioF0-LDSMA:10 a=VkNPw1HP01LnGYTKEx00:22 a=0sLvza09kfJOxVLZPwjg:22
- a=OmVn7CZJonkx5R5zMQLL:22 a=gAnH3GRIAAAA:8 a=VwQbUJbxAAAA:8 a=pGLkceISAAAA:8
- a=XqN69BuZ7wOcV2cAv7kA:9
-X-Proofpoint-ORIG-GUID: CDqef9lPiYbQcPAcIpfq8YOj9dGw2r_A
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.134,FMLib:17.12.100.49
- definitions=2026-07-09_04,2026-07-09_04,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 clxscore=1015 impostorscore=0 suspectscore=0 spamscore=0
- phishscore=0 bulkscore=0 lowpriorityscore=0 malwarescore=0 adultscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2606150000 definitions=main-2607090206
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
+X-Spamd-Result: default: False [-1.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[analog.com,quarantine];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[analog.com:s=DKIM];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	RCVD_TLS_LAST(0.00)[];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-324133-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:skrishnamoorthy@rambus.com,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS(0.00)[m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:jic23@kernel.org,m:nuno.sa@analog.com,m:Michael.Hennerich@analog.com,m:dlechner@baylibre.com,m:andy@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:julianbraha@gmail.com,m:marcelo.schmitt1@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:marceloschmitt1@gmail.com,s:lists@lfdr.de];
-	FREEMAIL_CC(0.00)[kernel.org,analog.com,baylibre.com,gmail.com];
-	FORGED_SENDER(0.00)[marcelo.schmitt@analog.com,devicetree@vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-324135-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[analog.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	RCPT_COUNT_TWELVE(0.00)[13];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[marcelo.schmitt@analog.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_NONE(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	RCPT_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[9]
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[smtp.kernel.org:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,sashiko.dev:url,vger.kernel.org:from_smtp,lists.linux.dev:replyto,rambus.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 7846E7358AA
+X-Rspamd-Queue-Id: 4FDD97358A7
 
-This patch series adds support for LTC2378 and similar low noise, low power,
-high speed, successive approximation register (SAR) ADCs. These ADCs are similar
-among each other, varying mainly on the amount of precision bits, maximum sample
-rate, and input configuration (either fully differential or pseudo-differential).
+Thank you for your contribution! Sashiko AI review found 11 potential issue=
+(s) to consider:
+- [High] Force-completing transactions without a synchronous hardware stop =
+allows the hardware to write into freed DMA buffers.
+- [High] Unsynchronized hardware FLUSH commands race with TM thread VCQ sub=
+missions, corrupting the DMA queue.
+- [High] Concurrent modification of the CMQ drain list during timeout cance=
+llation corrupts list pointers.
+- [High] TM thread temporarily detaches messages from the CMQ, causing sync=
+hronous timeouts to bypass ABORT and allow DMA into freed memory.
+- [High] `cmh_tm_quiesce()` frees transaction objects while the active Resp=
+onse Handler accesses them.
+- [High] The per-transaction timeout timer is armed after the hardware door=
+bell, creating a race that leaves the timer armed after transaction complet=
+ion.
+- [High] Invoking completion callbacks while holding the `tm.cmq_lock` spin=
+lock creates a recursive deadlock hazard.
+- [High] TOCTOU race clearing the `pending` flag in `cmh_rh_thread` orphans=
+ hardware interrupt bits.
+- [High] Hardware DMA structures lack endianness conversions, breaking the =
+driver on Big-Endian hosts.
+- [Medium] Sysfs attributes 'product' and 'algorithms' claimed in the commi=
+t message are absent from the code.
+- [Medium] The driver masks `-EPROBE_DEFER` from `of_irq_get()`, permanentl=
+y degrading to polling mode.
+--
 
-Patch 1 adds device tree documentation for LTC2378.
+--- Patch [2]: [PATCH v2 02/19] crypto: cmh - add core platform driver ---
+commit ae92a2a00ed6a125d9d63aee91b693b747943c9a
+Author: Alex Ousherovitch <aousherovitch@rambus.com>
 
-Patch 2 enables single-shot sample read with a GPIO connected to the LTC2378 CNV pin.
+crypto: cmh - add core platform driver
 
-Patch 3 enables high-speed data captures with SPI offloading.
-The setup is similar to AD4030, with a specialized PWM generator being used both
-for SPI offload triggering and conversion start signaling.
+This commit introduces the core platform driver for the CRI CryptoManager H=
+ub
+hardware crypto accelerator. It sets up mailbox queues, a transaction manag=
+er,
+and response handlers for asynchronous crypto operations. The driver uses D=
+MA
+and MMIO to dispatch cryptographic commands to the hardware cores.
 
-Patch 4 enables running buffered data captures without SPI offloading.
+> - Sysfs attributes (fw_version, hw_version, product, algorithms)
 
-Even though these parts are somewhat similar to AD4000, the wiring configuration
-for LTC parts is different as well as the available HDL for high speed sample
-rate mode. Because of that, I propose creating a new device driver for
-supporting LTC2378-like devices.
+[Severity: Medium]
+The commit message mentions 'product' and 'algorithms' sysfs attributes, but
+are these actually implemented in the code? Looking at the cmh_sysfs_attrs
+array in cmh_sysfs.c, only fw_version, hw_version, boot_status, mbx_availab=
+le,
+and mbx_count appear to be present.
 
-Specifications can be found at:
-https://www.analog.com/media/en/technical-documentation/data-sheets/233818fa.pdf
-https://www.analog.com/media/en/technical-documentation/data-sheets/236416fa.pdf
-https://www.analog.com/media/en/technical-documentation/data-sheets/236418f.pdf
-https://www.analog.com/media/en/technical-documentation/data-sheets/236716fa.pdf
-https://www.analog.com/media/en/technical-documentation/data-sheets/236718f.pdf
-https://www.analog.com/media/en/technical-documentation/data-sheets/236816f.pdf
-https://www.analog.com/media/en/technical-documentation/data-sheets/236818f.pdf
-https://www.analog.com/media/en/technical-documentation/data-sheets/236918fa.pdf
-https://www.analog.com/media/en/technical-documentation/data-sheets/237016fa.pdf
-https://www.analog.com/media/en/technical-documentation/data-sheets/237616fa.pdf
-https://www.analog.com/media/en/technical-documentation/data-sheets/237618fa.pdf
-https://www.analog.com/media/en/technical-documentation/data-sheets/237620fb.pdf
-https://www.analog.com/media/en/technical-documentation/data-sheets/237716fa.pdf
-https://www.analog.com/media/en/technical-documentation/data-sheets/237718fa.pdf
-https://www.analog.com/media/en/technical-documentation/data-sheets/237720fb.pdf
-https://www.analog.com/media/en/technical-documentation/data-sheets/237816fa.pdf
-https://www.analog.com/media/en/technical-documentation/data-sheets/237818fa.pdf
-https://www.analog.com/media/en/technical-documentation/data-sheets/237820fb.pdf
-https://www.analog.com/media/en/technical-documentation/data-sheets/237918fb.pdf
-https://www.analog.com/media/en/technical-documentation/data-sheets/238016fb.pdf
+> diff --git a/drivers/crypto/cmh/include/cmh_vcq.h b/drivers/crypto/cmh/in=
+clude/cmh_vcq.h
+> --- a/drivers/crypto/cmh/include/cmh_vcq.h
+> +++ b/drivers/crypto/cmh/include/cmh_vcq.h
+[ ... ]
+> struct dma_scattergather_item {
+> 	u64 lli;
+> 	u64 src;
+> 	u64 dst;
+> 	u64 len;
+> };
 
-Previous submissions:
-  v5: https://lore.kernel.org/linux-iio/cover.1783028033.git.marcelo.schmitt@analog.com/
-  v4: https://lore.kernel.org/linux-iio/cover.1782397418.git.marcelo.schmitt@analog.com/
-  v3: https://lore.kernel.org/linux-iio/cover.1781661028.git.marcelo.schmitt@analog.com/
-  v2: https://lore.kernel.org/linux-iio/cover.1779976379.git.marcelo.schmitt@analog.com/
-  v1: https://lore.kernel.org/linux-iio/cover.1779117444.git.marcelo.schmitt1@gmail.com/
+[Severity: High]
+Will this driver operate correctly on big-endian architectures? The DMA
+scatter-gather items and VCQ command structures are defined using native u64
+types. If the hardware expects little-endian layout, do we need explicit
+endianness conversions here and when copying data to the DMA slots in
+cmh_dma_build_sg() and submit_vcq()?
 
-Change log v5 -> v6:
-[DT]
-- Dropped single compatible strings for parts that have a fall back so dt-schema
-  can enforces the fallback compliance.
-[IIO]
-- Added a comment to clarify IIO buffer storagebits and endianness for the
-  offload use case.
-- Added comment to clarify CPU endianness is used when device native BE is not.
-- Protected single sample read procedure with a mutex.
-- Dropped mod_devicetable.h, include device-id/spi.h device-id/of.h instead.
-- Used iwyu to add missing #includes and dropped superfluous ones.
-- Used pahole to minimize memory holes in LTC2378 data structures.
+> diff --git a/drivers/crypto/cmh/cmh_txn.c b/drivers/crypto/cmh/cmh_txn.c
+> --- a/drivers/crypto/cmh/cmh_txn.c
+> +++ b/drivers/crypto/cmh/cmh_txn.c
+[ ... ]
+> static int submit_vcq(struct command_msg *msg, u32 mbx_idx)
+> {
+[ ... ]
+> 	/* Ring doorbell: advance tail by number of VCQs submitted */
+> 	cmh_reg_write32(tail + num_vcqs, mbx->reg_base, R_MBX_QUEUE_TAIL);
+>=20
+> 	/* Arm per-request timeout after doorbell (async only) */
+> 	if (msg->timeout_jiffies)
+> 		mod_timer(&txn->timeout_timer,
+> 			  jiffies + msg->timeout_jiffies);
 
-With best regards,
-Marcelo
+[Severity: High]
+Can a concurrent mailbox flush operation corrupt the hardware queue here? I=
+f a
+watchdog or debugfs routine issues a flush command asynchronously after the=
+ TM
+thread reads the tail but before writing the new tail to the doorbell, could
+the hardware reset the tail to zero only for it to be overwritten with an
+advanced value pointing to empty DMA slots?
 
+[Severity: High]
+Is there a race condition with the timeout timer being armed? The doorbell
+is rung before mod_timer() is called. If the hardware completes the operati=
+on
+extremely quickly, could cmh_txn_finish() process the completion and delete
+the timer before it gets armed here, leaving an active timer on a freed
+transaction?
 
-Marcelo Schmitt (4):
-  dt-bindings: iio: adc: Add ltc2378
-  iio: adc: ltc2378: Add support for LTC2378-20 and similar ADCs
-  iio: adc: ltc2378: Enable high-speed data capture
-  iio: adc: ltc2378: Enable triggered buffer data capture
+[ ... ]
+> static int cmh_tm_thread(void *data)
+> {
+[ ... ]
+> 		/* Dequeue one command message */
+> 		spin_lock_irqsave(&tm.cmq_lock, flags);
+[ ... ]
+> 		msg =3D list_first_entry(&tm.cmq, struct command_msg, list);
+> 		list_del_init(&msg->list);
+> 		cmq_depth--;
 
- .../bindings/iio/adc/adi,ltc2378.yaml         | 170 ++++
- MAINTAINERS                                   |   8 +
- drivers/iio/adc/Kconfig                       |  19 +
- drivers/iio/adc/Makefile                      |   1 +
- drivers/iio/adc/ltc2378.c                     | 821 ++++++++++++++++++
- 5 files changed, 1019 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ltc2378.yaml
- create mode 100644 drivers/iio/adc/ltc2378.c
+[Severity: High]
+Could this temporary removal from the message queue lead to a use-after-free
+on timeouts? The message is detached from the list before checking mailbox
+availability. If a synchronous caller times out during this detached window,
+the cancellation attempt will fail. Because the actual mailbox is still
+unassigned, the timeout handler skips sending an abort command and frees the
+DMA buffers. However, the thread might later re-add and submit this message,
+instructing hardware to write to freed memory.
 
+[ ... ]
+> 		if (!list_empty(&tm.backlog)) {
+> 			struct command_msg *bl;
+[ ... ]
+> 			if (bl->complete)
+> 				bl->complete(bl->completion_data,
+> 					     -EINPROGRESS);
+> 		}
+>=20
+> 		spin_unlock_irqrestore(&tm.cmq_lock, flags);
 
-base-commit: 093239070573637ad2b4cb56abc9c4c7ee109294
--- 
-2.53.0
+[Severity: High]
+Can this recursive spinlock acquisition cause a deadlock? The code calls the
+completion callback with the in-progress status while holding the command
+queue lock. If the crypto framework consumer responds to this callback by
+submitting a new request, won't the submission attempt to acquire the exact
+same spinlock on the same CPU?
 
+[ ... ]
+> static void cmh_tm_stop_and_drain_cmq(void)
+> {
+[ ... ]
+> 	list_for_each_entry_safe(msg, tmp_msg, &cmq_drain, list) {
+> 		list_del(&msg->list);
+> 		if (msg->complete)
+> 			msg->complete(msg->completion_data, -ECANCELED);
+> 		command_msg_put(msg);
+> 	}
+
+[Severity: High]
+Is it safe to iterate over the spliced local drain list without holding a
+lock here? If a synchronous request times out simultaneously, the cancellat=
+ion
+function will acquire the queue lock, see that the message's list node isn't
+empty (since it is on the local drain list), and call list_del_init(). This
+concurrent modification could corrupt the list pointers during iteration.
+
+[ ... ]
+> void cmh_tm_quiesce(void)
+> {
+[ ... ]
+> 			list_for_each_entry_safe(txn, tmp_txn, &drain, list) {
+> 				list_del(&txn->list);
+>=20
+> 				if (timer_delete_sync(&txn->timeout_timer))
+> 					txn_put(txn);
+>=20
+> 				old =3D atomic_cmpxchg(&txn->state,
+> 						     TXN_INFLIGHT,
+> 						     TXN_COMPLETE);
+> 				if (txn->complete) {
+> 					if (old =3D=3D TXN_INFLIGHT)
+> 						txn->complete(txn->completion_data,
+> 							      -ECANCELED);
+[ ... ]
+> 				txn_put(txn);
+> 			}
+
+[Severity: High]
+Could this lead to a use-after-free race with the response handler?
+Transactions are being iterated and freed via txn_put() without holding the
+process lock. Concurrently, the active watchdog might peek at the head
+transaction. If the transaction is freed here before the watchdog reads its
+state, memory corruption could result.
+
+[Severity: High]
+Does completing these transactions with the cancelled status leave the
+hardware in a state where it might overwrite freed memory? The driver
+forcefully completes abandoned requests here (and similarly during module
+cleanup), which prompts callers to free their DMA buffers. Since the hardwa=
+re
+engines haven't been synchronously stopped, could they continue executing a=
+nd
+write into these newly freed buffers?
+
+> diff --git a/drivers/crypto/cmh/cmh_rh.c b/drivers/crypto/cmh/cmh_rh.c
+> --- a/drivers/crypto/cmh/cmh_rh.c
+> +++ b/drivers/crypto/cmh/cmh_rh.c
+[ ... ]
+> void cmh_rh_force_drain_mbx(u32 mbx_idx)
+> {
+[ ... ]
+> 	cmh_reg_write32(MBX_COMMAND_FLUSH, base, R_MBX_COMMAND);
+> 	cmh_rh_poke_tail(base);
+> 	cmh_rh_drain_mbx(mbx_idx, -ECANCELED);
+
+[Severity: High]
+Similar to the quiesce behavior, does issuing a flush and immediately
+draining the mailbox allow the hardware to access freed memory? If the
+flush command completes asynchronously, the hardware might still be accessi=
+ng
+the buffers when the drain completes the transactions, prompting callers
+to release them prematurely.
+
+[ ... ]
+> static irqreturn_t cmh_rh_thread(int irq, void *data)
+> {
+[ ... ]
+> 			irq_bits =3D (u32)atomic_xchg(&rh.mbx[i].irq_bits, 0);
+> 			WRITE_ONCE(rh.mbx[i].pending, false);
+
+[Severity: High]
+Is there a time-of-check to time-of-use race window here? The thread reads
+the interrupt bits using atomic_xchg and subsequently clears the pending fl=
+ag.
+If a hardware interrupt occurs strictly between these two lines, the hardirq
+handler will set the pending flag to true, but this code will immediately
+overwrite it to false. Could this result in orphaned interrupt bits and mis=
+sed
+completions?
+
+[ ... ]
+> static int cmh_rh_resolve_irqs(struct cmh_config *cfg)
+> {
+[ ... ]
+> 		int virq =3D of_irq_get(np, dt_idx);
+>=20
+> 		if (virq <=3D 0) {
+> 			dev_warn(cmh_dev(), "rh: failed to map IRQ for MBX%u (DT index %d, rc=
+=3D%d)\n",
+> 				 i, dt_idx, virq);
+> 			return -ENODEV;
+> 		}
+
+[Severity: Medium]
+Does swallowing the deferral error cause issues with interrupt controller
+readiness? If the IRQ controller is not yet ready, of_irq_get() will return
+-EPROBE_DEFER, but this code converts it to -ENODEV and falls back to polli=
+ng
+permanently. Should this propagate the deferral so the driver can be probed
+again later?
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260709203037.1884=
+436-1-skrishnamoorthy@rambus.com?part=3D2
 
