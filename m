@@ -1,177 +1,208 @@
-Return-Path: <devicetree+bounces-324065-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-324066-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id hkn9GEv1T2qBrAIAu9opvQ
-	(envelope-from <devicetree+bounces-324065-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 21:23:55 +0200
+	id QqLyGJf1T2qSrAIAu9opvQ
+	(envelope-from <devicetree+bounces-324066-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 21:25:11 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B83A9734EB5
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 21:23:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B9132734ED3
+	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 21:25:10 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=H2kw4e13;
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324065-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-324065-lists+devicetree=lfdr.de@vger.kernel.org";
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
+	dkim=pass header.d=NXP1.onmicrosoft.com header.s=selector1-NXP1-onmicrosoft-com header.b=nuCulSz8;
+	dmarc=fail reason="SPF not aligned (relaxed), DKIM not aligned (relaxed)" header.from=nxp.com (policy=none);
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324066-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-324066-lists+devicetree=lfdr.de@vger.kernel.org";
+	arc=reject ("cv is fail on i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 95473301A154
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2026 19:23:39 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id B4D283019FFF
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2026 19:25:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3EA0533ADB9;
-	Thu,  9 Jul 2026 19:23:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A865D3B2D10;
+	Thu,  9 Jul 2026 19:25:07 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from GVXPR05CU001.outbound.protection.outlook.com (mail-swedencentralazon11013003.outbound.protection.outlook.com [52.101.83.3])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DAF329BDB5
-	for <devicetree@vger.kernel.org>; Thu,  9 Jul 2026 19:23:35 +0000 (UTC)
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783625016; cv=none; b=Iexv9YoU9+HyWJxuRCbuKHtURXDgjB1kKnXRNkeehjVyvIySPU2uW1AF/TTLS5hsaiKR7zw+U40fEzH/g07nXdEcoPxqQE0A9wtcatAEPyyd9uSTOtu0qiLB6nv6xD8wOxSoiBE4FsEp14880LdU1KGn3pzWuHG39v2triy+1Dc=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783625016; c=relaxed/simple;
-	bh=ILEvhRVemoJeKbnZIle7Hboif1/aXhFmS2Ta5NcNatY=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=oIQyqh4oWLPGV2KV58a2leje1Y4dm9iko8OTdfd6AWkOHSYCH9c6/aAba3wOo0SY2OmpUDRvuJCxZoN7Aq6fTleWLXlRg5FP+4elp7clpG4QzZ2c4J4JCvsfwV0wBYNo6tYEImPI4YdCpSAJCXyEgTABRws8/z9H0cEJOIlxNV8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=H2kw4e13; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D07301F000E9;
-	Thu,  9 Jul 2026 19:23:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783625015;
-	bh=ORQM2+ASiYeX/Rfjm2A9eeKNU3LG8Q6cdF2YpPHQtp8=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=H2kw4e130BSP2mz0038CobXqYFHqdALVDJdHJpyycWOqNxYmCAtRgAhHXnH5KHS+n
-	 NZhwYDd8cbGYtSH1TozfZxvMs0ku5DXR5AiMW87rxIB6rGtvI7EWy+YAoy/ZDsoKQR
-	 tUnlYATib8Q/8YUMVNdaJOandQ6JZ8pncyzSutKJGbumasgVmnIZa1mminxtIB9VhY
-	 wKXQBv/2n3Z0IyKMFOo6QDUxcqGduz5JkO4cJTAFcVWcMoPSMyCToVQHvN0bzAO90L
-	 xjPdct2PK5P7ncWWZsgqoxwT6/ZcKqBKB+mSyPQoIC0jO5TFfOrhUE47gdJyz8M6bD
-	 Bo6jehlQdbxRw==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v11 17/36] phy: rockchip: usbdp: Drop DP HPD handling
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Sebastian Reichel" <sebastian.reichel@collabora.com>
-Cc: conor+dt@kernel.org, linux-phy@lists.infradead.org, olteanv@gmail.com, vkoul@kernel.org, neil.armstrong@linaro.org, devicetree@vger.kernel.org, robh@kernel.org
-In-Reply-To: <20260709-rockchip-usbdp-cleanup-v11-17-a149ac60f76c@collabora.com>
-References: <20260709-rockchip-usbdp-cleanup-v11-0-a149ac60f76c@collabora.com>
- <20260709-rockchip-usbdp-cleanup-v11-17-a149ac60f76c@collabora.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Thu, 09 Jul 2026 19:23:34 +0000
-Message-Id: <20260709192334.D07301F000E9@smtp.kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3708E449985;
+	Thu,  9 Jul 2026 19:25:05 +0000 (UTC)
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1783625107; cv=fail; b=FuSrl4cJwC0rW8w+WbZeiEsDY8/eeqhnvYQlsmVmaYpWvWx63M8OCNLGJ62Lqn5vKT2HNRAt4SvuG/+itYM8zqUiNK4wdWBgJXHwWP4r0RY6nZEKQkjc7sKjL1LskBXJSKL/aZk7WBog1oVe2wr/xfM7nLsC4zhaxK9RbP/48qE=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1783625107; c=relaxed/simple;
+	bh=zIE7HSk8xgMMBk9Oad8P4UlMyuIo5syFCxQWSC8/SOg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=mwE2jQwa20ZJWEolsxg+/5snghRpWYLqdJ+b3+uscJa7jRjp/4NSSwQtaQhwfK9uv12XTO3R7cZguN7gVrc7Oxpigy/0QkX+esgRKOG8Xe60cCX2squQRAAnLpQix5HAx4MVllc+ziFHzZwxkWv3PACT9Z+l1Ql7pfGNGjHjM00=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=nuCulSz8; arc=fail smtp.client-ip=52.101.83.3
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=WCgW9iIQ6Hvekxzlm8hgKFkPTV1/FpJJ3s5CeWd/oVVU4ZTEI77e8vT4vw0nIoykoBaJNbA2shVMmScQzPaNzH6/owFPU4B+dXFUkYrXtVxwi8nCQ0KkZ1xBrPI5md+B78n39XJ6v1nmLYKVP92maE70iPlxIB3IIVRL1HeyC4FflV+0puPn642SScMmiQBRRNcWnuH/u1Si3HTYgaABdFLn/pTCe2TIOH0eb30RGmtwSbOKjyUnEQp2cayXX+Rpqm/1w7XMEDlGWBAY8IVwOKFH8y+LBMGrjTgL87grcKaMJAF19U4iTo1ixrWgs6AClm+79YmYOzSbp0T+v9NL1A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=zIE7HSk8xgMMBk9Oad8P4UlMyuIo5syFCxQWSC8/SOg=;
+ b=ep6sVLK5g7wkwCgIi0HSegnsn4oAtFCBu733I9J1S9FnnoJYnnpZJLe450n0w5Mm3gtBtwIFk9JZlC0weYkyak9FaPJNuo7twFgQEt6SnxtIc5oSqmjEJKQhbIq2nkYa/eDuB2oKSP/uPCxv0ofoVC4zg6acsvOTCHN7ipxhS3iqzULDq1pXZ6ktL4xJwni3lArN49Gjp1evoU0kpDO1qpGXwqzxZZfAJ6F9TmwRJVsseTUGxoxZEArMKm7uEh3clDv8Fm7JTkebSiQt2mymG268ZADBsx3oUcwearblhAjpNZLgFP3J01T2XCufacUomSgKvGF8H47A+VRFNfjaBQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector1-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=zIE7HSk8xgMMBk9Oad8P4UlMyuIo5syFCxQWSC8/SOg=;
+ b=nuCulSz80QtKG3flfQLsvmHswBYArlxzOSF7QFlYzFdHvkNEkl71QjzO2qoTqd9VIfi0gb00+PsFhpZK9iMdtKw6EbA0BekyGClMx2ukD7v93N/fsu8XU9WXAs+k7eRl5EQGpI3lOvrqgSSobYRaofg1TMg/VsQ4E2WuXzIpgUf4Xzx+amqaE5GM8yZ+KI42+riN46Y5dSOBCIdxGKn9BGRwYFdB7G0bsbHrezWM9bgwdd8SC/O4lhY079Sjvp8IxUa+ErCkKS7l/fZCs+1Wp8LpqTPj2n2p+znz+a753f7dWaFDa19c+B8IkAqTBwYmMpgOw09A0j8/6qFGeC30Yg==
+Received: from GV2PR04MB11799.eurprd04.prod.outlook.com (2603:10a6:150:2cf::9)
+ by GV1PR04MB10631.eurprd04.prod.outlook.com (2603:10a6:150:202::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.15; Thu, 9 Jul
+ 2026 19:25:00 +0000
+Received: from GV2PR04MB11799.eurprd04.prod.outlook.com
+ ([fe80::2146:83a2:5329:b7c]) by GV2PR04MB11799.eurprd04.prod.outlook.com
+ ([fe80::2146:83a2:5329:b7c%6]) with mapi id 15.21.0159.007; Thu, 9 Jul 2026
+ 19:25:00 +0000
+Date: Thu, 9 Jul 2026 15:24:50 -0400
+From: Frank Li <Frank.li@oss.nxp.com>
+To: Shubham Patil <shubhamsanjay.patil@amd.com>
+Cc: git@amd.com, michal.simek@amd.com, alexandre.belloni@bootlin.com,
+	Frank.Li@nxp.com, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, pgaj@cadence.com,
+	wsa+renesas@sang-engineering.com, tommaso.merciai.xr@bp.renesas.com,
+	arnd@arndb.de, quic_msavaliy@quicinc.com, Shyam-sundar.S-k@amd.com,
+	sakari.ailus@linux.intel.com, billy_tsai@aspeedtech.com,
+	kees@kernel.org, gustavoars@kernel.org,
+	jarkko.nikula@linux.intel.com, jorge.marques@analog.com,
+	linux-i3c@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arch@vger.kernel.org,
+	linux-hardening@vger.kernel.org, radhey.shyam.pandey@amd.com,
+	srinivas.goud@amd.com, shubhrajyoti.datta@amd.com,
+	Manikanta Guntupalli <manikanta.guntupalli@amd.com>
+Subject: Re: [PATCH v10 2/2] i3c: master: Add driver for AMD AXI I3C master
+ controller
+Message-ID: <ak_1gpc6EpgQeOOl@lizhi-Precision-Tower-5810>
+References: <20260709064233.1451482-1-shubhamsanjay.patil@amd.com>
+ <20260709064233.1451482-3-shubhamsanjay.patil@amd.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260709064233.1451482-3-shubhamsanjay.patil@amd.com>
+X-ClientProxiedBy: SA9PR03CA0014.namprd03.prod.outlook.com
+ (2603:10b6:806:20::19) To GV2PR04MB11799.eurprd04.prod.outlook.com
+ (2603:10a6:150:2cf::9)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: GV2PR04MB11799:EE_|GV1PR04MB10631:EE_
+X-MS-Office365-Filtering-Correlation-Id: 9e15c3af-3b08-4d0b-eb55-08deddefc48e
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|23010399003|376014|7416014|1800799024|366016|19092799006|22082099003|18002099003|56012099006|11063799006|4143699003;
+X-Microsoft-Antispam-Message-Info:
+	OleXcigNERDBp3zqfnQPA+gSUhy1u9bvsEhBUsqW6LNS+r4GEM5m/e7fkGUDnthRcaKMta/NGSDiB9LyDXXvGka5rlyZcPPQR1sEncBa6Etz1w69uBFgQUCT9dRF22ZedvmfGcTC2v1wx4owPO6sU2ex7U7ke9qXTP2yCNMsQqStaQHr1hTCgjb4oUL3wNFtXXFPWt+fqYQoVQjgIWmF6RQyPARLMQ7tuTZBpC+NhuvhVJp3H6Ck0cqnO5pKumgJiUxehrFIECqiWag7F5oUmD51wxGcFB/45GwVaS1bPoZ9ur4wrhY9grxMmEO16Fd1ZCmOpe3kccNfogXTanFa9ZNPkHGU6Xw5jPATQfAIY1WisrSht2aVknE7NNKseEJc4qqlf8jDl57oXPVPhnsiTrPMbDZkSg2IdeBXUZcVT7oSvJBxOJ/+bDHH0UxmRg4n0Dgr+L4JT2qmcQE0c+Px9G+1kMBF2W/20aSTOWnr06ZYMUbHSHitrAceSawE6WOBT9xtnQTvN45iRA3lkJVTrH2dVD6z1GUITvijUogNcONk9pxGfzdZ/rZ0bOpCmZHdVjaIjkHpQmeRJLr9P+QovYpqIaRHkWAmitLFEEPjWLUh0hFeWa/qaj0o13z5yNDdYYXG35Q6KC9qvn2LiyaAnr6XDFJfT3YLL4pOolleZUY=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:GV2PR04MB11799.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(23010399003)(376014)(7416014)(1800799024)(366016)(19092799006)(22082099003)(18002099003)(56012099006)(11063799006)(4143699003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?yi1/cuHs30e+k9bBzl8zv/ZLTsrM9yMzCPgA83AMk7F1VAazlMCaSd488FaZ?=
+ =?us-ascii?Q?jSSSec06TBY80S9dE5FlvxWqJ9qATLYnpkLbmSykZlWs9mk6QMmbroGZESf5?=
+ =?us-ascii?Q?P7tW50uMJCBme1E0/Uyx5klsajsnfSftds0Z3Ps2fYfHghLoaDflWpwrUd24?=
+ =?us-ascii?Q?vBx+4Q33ozi63ICQkR/QTFOZpK9j+y5dfRGDHb/FgPhetPadz8xkAPm0T8XB?=
+ =?us-ascii?Q?QRNlJjNFM5sY52ZpmsUeQP84AFP+zuk4oSH9Km6hRqqWrRy111O0SmMJ7U4a?=
+ =?us-ascii?Q?eYUvqf94mXpzPvMKd4bHqkBZMeyo2vE6kO8a1j7BcTvLO3iL+c51wxQoyZlh?=
+ =?us-ascii?Q?i7CH2z4pQ0ButUGCIYXY6jjnLO+sdEf+4cVnIqEpee1UiPCoIhSxOreGulVX?=
+ =?us-ascii?Q?Qax/esIagLEYZHf0FIahkwlOYq9W0l0ygrcl4aquYIl4f15Ua2UoUmlKoxzv?=
+ =?us-ascii?Q?yQPceOQ4yICw0LqbtD3kgwHt4ZwDQ8w4OCvnvjX1wTJ71uCZShkIzTsOiImg?=
+ =?us-ascii?Q?A85SLJO0VzlikHRjmo71qE7IeENF0ZZxZ5Vd7ayye7EWZaM5Wza1DTm1gDD4?=
+ =?us-ascii?Q?J+sMyNE981jxzYshde/kJsd6nqiq+TtzlWZxfMVWTynD48ycUOavD/ahj9Mk?=
+ =?us-ascii?Q?Y4bNHI5xnGxKg/THyr8eQRe1RP/MHpiS8wXgm/R6Azl/HKmK+ZKRdgLcGV/i?=
+ =?us-ascii?Q?a/8kXweOE6w9jvtlj94vQNHjfA4daz2FHvtc1XsBJeG9UrpC1fWu6vcdKB5l?=
+ =?us-ascii?Q?cEE8lbReJtDIFS9BFmptAm23Zkmydnin67ex+Q4GnhD+Z8db6f1hMSDSu6MX?=
+ =?us-ascii?Q?0g3IJ1O0mxEhN0TGX1lhcz46VRvytDfP8PD/zUJDBWpuOQogafwReH2QFWCK?=
+ =?us-ascii?Q?FTJRbPnJxEH9cjpr5GYx/QOUO41kNZ7PU/TGVFc6sVjzwTTfT0c+tYgpYuv9?=
+ =?us-ascii?Q?xjlvQ+Vvr9/CCz3jYmI42sdEXFbd37RCfPnr+Z6M0vkAhOKNYNyTm1cwlUYx?=
+ =?us-ascii?Q?DpZtBq0hhXZ6O+/Kj8jM7VQRT9hY08ohttqseFKs2jj+IsVxu/afSfT4OCC7?=
+ =?us-ascii?Q?EqtapyA+lLNyoeoiuXVhK4ClVB//IkzmIcT0DT4KWlfdOYNoWPAYXrTp7qRm?=
+ =?us-ascii?Q?aDelmqkz/jm/DAfpA19SGTXGuMiQvTrNNTSVngvSUyUfFrjRWwkLPBeZnjVO?=
+ =?us-ascii?Q?YAw+PjorSi1WKFLTePyazDRoTEzf2ZVYWXbuzRc1Ur7AOUvnHBdsI8cIaqcd?=
+ =?us-ascii?Q?Ze+1DZub/tS+T0hLNPwsaAx8qZHXaBKiOQaCrItx0DihZbG7VrqGcayH2H04?=
+ =?us-ascii?Q?ZBvIqXiJa3S/UT6xS/OFNG9YSaoBFLxeBaWMpt7xbCTjrxdu3d/0hWusVq83?=
+ =?us-ascii?Q?wIIniGWyJlP9CYbADcSWPAD7mb8qn7Reg91yAY4+Ft4kKZA7gBWwSi5QaWOh?=
+ =?us-ascii?Q?IeLqBW3XMJMw4qj1cEWZBziW+wowsFDAsfSbwr1b2nPFXB8pfcnvmb5ffVKo?=
+ =?us-ascii?Q?pzIOGvhgNj1bEqQw8pIMGTePMkXikQf7CkJTYc2Bx33lTCqXmK7F2rYqARKg?=
+ =?us-ascii?Q?ajKbkNbvGF4w4CAfOSB+qkAvKalBr+G+aFVwDkfEFxgWuiGrldpKg+14SB9B?=
+ =?us-ascii?Q?MRomSXy4O16GSSXlwN4aLZnIkuAlDeR/nSut+xOBlBKZY/3If4kE72F5LvhC?=
+ =?us-ascii?Q?3hBPXw5xzNb/N6ayUGRuCxCVPfW2K5OHEQVJilTrck37hLZIPaXwaCWj5AoK?=
+ =?us-ascii?Q?Gm+6JxU/8jrd3YBuI7Rbu6HTB02N8NY2lPHxHajHHRKCRTzkR5N9?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9e15c3af-3b08-4d0b-eb55-08deddefc48e
+X-MS-Exchange-CrossTenant-AuthSource: GV2PR04MB11799.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jul 2026 19:25:00.0290
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: mO8RMOhHIUULoDiyU0PiUxc8tpGbKxMoHuBBUUKNgs7pioDtxd8+XM6BVciPql6mLWPBpe2fROIz+YY+aW2i/53sGeDcNqPoui54JX5mfkob+WejgxK3G4Y7hr2WNetY
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV1PR04MB10631
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [2.44 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	MID_RHS_NOT_FQDN(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[NXP1.onmicrosoft.com:s=selector1-NXP1-onmicrosoft-com];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	DMARC_POLICY_SOFTFAIL(0.10)[nxp.com : SPF not aligned (relaxed), DKIM not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-324065-lists,devicetree=lfdr.de];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:sebastian.reichel@collabora.com,m:conor+dt@kernel.org,m:linux-phy@lists.infradead.org,m:olteanv@gmail.com,m:vkoul@kernel.org,m:neil.armstrong@linaro.org,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-324066-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[29];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FREEMAIL_CC(0.00)[kernel.org,lists.infradead.org,gmail.com,linaro.org,vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:shubhamsanjay.patil@amd.com,m:git@amd.com,m:michal.simek@amd.com,m:alexandre.belloni@bootlin.com,m:Frank.Li@nxp.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:pgaj@cadence.com,m:wsa+renesas@sang-engineering.com,m:tommaso.merciai.xr@bp.renesas.com,m:arnd@arndb.de,m:quic_msavaliy@quicinc.com,m:Shyam-sundar.S-k@amd.com,m:sakari.ailus@linux.intel.com,m:billy_tsai@aspeedtech.com,m:kees@kernel.org,m:gustavoars@kernel.org,m:jarkko.nikula@linux.intel.com,m:jorge.marques@analog.com,m:linux-i3c@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arch@vger.kernel.org,m:linux-hardening@vger.kernel.org,m:radhey.shyam.pandey@amd.com,m:srinivas.goud@amd.com,m:shubhrajyoti.datta@amd.com,m:manikanta.guntupalli@amd.com,m:krzk@kernel.org,m:conor@kernel.org,m:wsa@sang-engineering.com,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[Frank.li@oss.nxp.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[NXP1.onmicrosoft.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[Frank.li@oss.nxp.com,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.linux.dev:replyto,collabora.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,smtp.kernel.org:mid,vger.kernel.org:from_smtp,sashiko.dev:url]
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,vger.kernel.org:from_smtp,amd.com:email,lizhi-Precision-Tower-5810:mid,NXP1.onmicrosoft.com:dkim,oss.nxp.com:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: B83A9734EB5
+X-Rspamd-Queue-Id: B9132734ED3
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
+On Thu, Jul 09, 2026 at 12:12:33PM +0530, Shubham Patil wrote:
+> From: Manikanta Guntupalli <manikanta.guntupalli@amd.com>
+>
+> Add an I3C master driver and maintainers fragment for the AMD I3C bus
+> controller.
+>
+> The driver currently supports the I3C bus operating in SDR mode,
+> with features including Dynamic Address Assignment, private data
+> transfers, and CCC transfers in both broadcast and direct modes. It
+> also supports operation in I2C mode.
+>
+> The controller's data FIFOs are accessed big-endian; the driver performs
+> this conversion locally using ioread32be()/iowrite32be() with the
+> helpers, so it does not depend on any core FIFO-endianness helpers.
+>
+> Signed-off-by: Manikanta Guntupalli <manikanta.guntupalli@amd.com>
+> Co-developed-by: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
+> Signed-off-by: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
+> Co-developed-by: Shubham Patil <shubhamsanjay.patil@amd.com>
+> Signed-off-by: Shubham Patil <shubhamsanjay.patil@amd.com>
+> ---
 
-Pre-existing issues:
-- [High] The typec_mux_set callback explicitly ignores base Type-C states (=
-TYPEC_STATE_SAFE and TYPEC_STATE_USB), preventing the PHY from reverting to=
- standard USB mode when exiting DP AltMode.
---
+Reviewed-by: Frank Li <Frank.Li@nxp.com>
 
---- Patch [17]: [PATCH v11 17/36] phy: rockchip: usbdp: Drop DP HPD handlin=
-g ---
-commit 4dd3353e7fa8e127b70281da8c2e85645bfbef65
-Author: Sebastian Reichel <sebastian.reichel@collabora.com>
-
-phy: rockchip: usbdp: Drop DP HPD handling
-
-This commit removes the HPD (Hot Plug Detect) handling logic from the
-USBDP PHY driver, delegating it to the displayport controller. It also
-simplifies the typec_mux_set callback by dropping AltMode specific event
-handling and adding an early return for non-DP events.
-
-> diff --git a/drivers/phy/rockchip/phy-rockchip-usbdp.c b/drivers/phy/rock=
-chip/phy-rockchip-usbdp.c
-> index 8ac6a83b0b2a9..24108816e3b95 100644
-> --- a/drivers/phy/rockchip/phy-rockchip-usbdp.c
-> +++ b/drivers/phy/rockchip/phy-rockchip-usbdp.c
-
-[ ... ]
-
-> @@ -1309,6 +1267,14 @@ static int rk_udphy_typec_mux_set(struct typec_mux=
-_dev *mux,
->  	struct rk_udphy *udphy =3D typec_mux_get_drvdata(mux);
->  	u8 mode;
-> =20
-> +	/*
-> +	 * Ignore mux events not involving DP AltMode, because
-> +	 * the mode field is being reused, e.g. state->mode =3D=3D 4
-> +	 * could be either TYPEC_MODE_USB4 or TYPEC_DP_STATE_C.
-> +	 */
-> +	if (!state->alt || state->alt->svid !=3D USB_TYPEC_DP_SID)
-> +		return 0;
-
-[Severity: High]
-This isn't a bug introduced by this patch, but does this early return
-prevent the PHY from reverting to standard USB mode when exiting DP AltMode?
-
-When a user dynamically disables DP AltMode or the DP sink disconnects,
-the Type-C core invokes typec_mux_set with state->mode =3D TYPEC_STATE_SAFE
-and state->alt =3D NULL.
-
-If this returns 0 immediately because state->alt is NULL, udphy->mode
-remains stuck at UDPHY_MODE_DP. Later, rk_udphy_usb3_phy_init() will see
-that the USB mode is not set (!(udphy->mode & UDPHY_MODE_USB)) and
-will actively disable the USB3 port.
-
-Should this condition be adjusted to only filter modal states, perhaps by
-checking if state->mode >=3D TYPEC_STATE_MODAL before filtering based on
-the AltMode SVID?
-
-> +
->  	mutex_lock(&udphy->mutex);
-
-[ ... ]
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260709-rockchip-u=
-sbdp-cleanup-v11-0-a149ac60f76c@collabora.com?part=3D17
 
