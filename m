@@ -1,45 +1,46 @@
-Return-Path: <devicetree+bounces-323333-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-323661-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id nWsgELRBT2r7cwIAu9opvQ
-	(envelope-from <devicetree+bounces-323333-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 08:37:40 +0200
+	id PXdsJLWET2qVigIAu9opvQ
+	(envelope-from <devicetree+bounces-323661-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 13:23:33 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BEA672D3C2
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 08:37:39 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 15943730434
+	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 13:23:33 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
 	dkim=none;
 	dmarc=fail reason="SPF not aligned (relaxed), No valid DKIM" header.from=starfivetech.com (policy=quarantine);
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-323333-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-323333-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-323661-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-323661-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=reject ("cv is fail on i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id F24CD302E3FD
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2026 06:26:08 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 65A4C3001FDB
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2026 11:23:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1349A3C2775;
-	Thu,  9 Jul 2026 06:25:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECD5733B6DB;
+	Thu,  9 Jul 2026 11:23:29 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from CHN02-SH0-obe.outbound.protection.partner.outlook.cn (mail-sh0chn02on2096.outbound.protection.partner.outlook.cn [139.219.146.96])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00B503C140D;
-	Thu,  9 Jul 2026 06:25:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F6023AF665;
+	Thu,  9 Jul 2026 11:23:25 +0000 (UTC)
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783578356; cv=fail; b=PmjAImsY+eIXLVuMbfwgML/iYQACV16+AQqtXs+SzIpMjp17gsqRh22zTzx3CU5DfvyR7HOWGC22ZuGwuurhFx4AgzNgDE61rhefCM4ZMKV6xAf4GcDlcIu0jcqw430TGqcbgenotdDWu+sSobwWoIGgPyyEw1emMeGh2Ogf2Ak=
+	t=1783596209; cv=fail; b=ZsJBvHIKnv7Us01IhSEy9PIB5+ObUiOMa90vddAooiJCxC5q5z8hmIbkQTpOV9q5iMoSONfAbClES+bt8SmraNbciar2pzfnR8At89hyWTNfjA7Zs1qVNgZ11EoAdbHFxO6mDUVulYjb+YbgitXOUrfbPVZ4KFN5ouae63rTqus=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783578356; c=relaxed/simple;
-	bh=hmf9j2i63gMsqRy7PiP5TN1QK5CsdMECT4bauo11+54=;
-	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=t8tixjefpboiXi47g0bZJgmCA45/GHakxUSqgXZGY/85JcXWOi+d7elTcjLbnZ/eLpHjBRtyccMUabRpDvDc4zptkMHz2ydpYO/i1PQW5dcmbM3ngItJssfRz758nlrxCQCXFk3sUH7gN9iaOzUsusDQ/FoCk8eT9ntGvzKUb8c=
+	s=arc-20240116; t=1783596209; c=relaxed/simple;
+	bh=/dwlo+HKG11bv57IM2NFTbD5nvIPlJ0FeqS9dwTrX0c=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=czvAJmAj+O2C4xlAsJCpazS5ZkMcfgTxKiJZicVLREaFrfCXUgRtO2Arfowgnddi9bwodL9lMNHEKcMFqP6IDCgcEIl+eZ2zFi5P7bKBX4mDVYL32DRCN6GEbs2uPZxTCRpIvoF6uAbFRr068y+Tl1hywaHR+j0EG5PKk07WU2o=
 ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=starfivetech.com; spf=pass smtp.mailfrom=starfivetech.com; arc=fail smtp.client-ip=139.219.146.96
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=H32q0L/p07YDhUKlqKL3fWqO1TZ+ZLADn50ReW6JeV7kASlVcps979DWeTgzTmHp7RHz0b9U2Bq59gfnsR3ogfMoALwogO7Z0jXvGzAfSlGp9c1j8geevFxyNJAaWoyAcn0aocSR3kuzoQsRCoauyhfq9hT5V2JmCScHQxRE7+mF6muiE0wucJmj1tMcoj78XfYTeKK3dmMwA0UABSKcJD/fVxLV+e1j6iHHSvZTT9C2UlyywaFwYtoXtjN078Ay+6+GuizRQHefJLyAVuKsBGoiT2Oqv3fG0za4JRP+ddwlsp/+o0d1ajx99HgZ3Dy9n4K7LEBXVitIPuVoC73g/g==
+ b=ek+8GpIf5T/asJyClM0ahPUCIiyjEOXuLr4VfvgxiXUAhzMdfbLc7CYws27y3NQsAteeeIcs0VlPlIypgAKv/Rj6+T4bFTwhgJCY67dvCSH1+Jl+yQYgDNcWxcrkMlr5lwQZaGB7MqDzYtjfRkSWseaFSaxdkAwuKmb07SKnaEDqCpxWFlNYVWpOp+wtoDDxlX52et+63OuKakV8hnned70NpkB6EAj4FQaowcIgO8gKcAlc0+EYTfTW0a9Kr3HOwFYjrqbFl+V8LumiKMsSE5r194nzSBV7yPNn+GokqOE+CrZ1TFAJhoyyWfUoAgL3fBgk8oIv8l6BKK8V7H+y4A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=tNu/z5d0YcYAvDBazbHh9We4FsyhQnbycJpASjFk7Cs=;
- b=gXXbLTLj8kwxHV3J387WLHoWbEmkImB6NQP1KQUY5rOdAxegFu/KG7UiojEgOyTxqbW2/lDfm+dJtcwY/B9J9B09MYRnK6rYWxyLeKYl/QE0qT79+gh08OHiMUgVaQqCol/kT/xCRPOxWWicBLMifnn17M5ug3YeByZfS5U4g1efsZLNLKsGqvJ3tYirbI3+yk+OvpEvvN9gwny2I+FsMbi9F2b+grSt/GJ8y/mYKgk6+xgEyb6lOQYYTttdJgfk/XejnUZnRb/+MqzuOJITiTjdnbdScSEW00bGDf4Qtv71o58b9VOEeQUVsiYbJdKvPPN9l3Boyl213tJ3TTxlog==
+ bh=U2OplIiNX6SWaCfDxn8hAcGzUnPJcCcOIQsmZHsvHZs=;
+ b=ORQVLV7rtP+BxtN3onvrUlzoJOWGsY2tmVu211ZJTn/WauY5hZG9sytawmTynFM0w5XKDIA1B6TJOk3NOZDoziuHdDYbnI41oGTmuoTyxQy+BwPoNNKBnWJNvGcQpfiDfybYMBPEQ693/c2zDUTJusKmowOfjW6Z88oy2gdWcqpA9ntAw9m8XV8GMb7Eb8zX3CJOHORV5FDYKZuP18yKi3VEaeWmfFPVn+aL+R2CM5u7G5TnqHdeiJv+i1kUXtcwknR1eYFZFwp0LS7emj7FKuCgzPa5816mbR723J79gzAs/3eP8BdI2Y8El/2liJh+PJnvK6fC/q2rNVcRtPfMgQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=starfivetech.com; dmarc=pass action=none
  header.from=starfivetech.com; dkim=pass header.d=starfivetech.com; arc=none
@@ -47,11 +48,11 @@ Received: from ZQ4PR01MB1202.CHNPR01.prod.partner.outlook.cn
  (2406:e500:c550:17::6) by ZQ4PR01MB1282.CHNPR01.prod.partner.outlook.cn
  (2406:e500:c550:17::5) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.113.23; Thu, 9 Jul
- 2026 05:52:16 +0000
+ 2026 05:52:17 +0000
 Received: from ZQ4PR01MB1202.CHNPR01.prod.partner.outlook.cn
  ([fe80::e7d4:256c:b066:850d]) by
  ZQ4PR01MB1202.CHNPR01.prod.partner.outlook.cn ([fe80::e7d4:256c:b066:850d%2])
- with mapi id 15.21.0139.024; Thu, 9 Jul 2026 05:52:16 +0000
+ with mapi id 15.21.0139.024; Thu, 9 Jul 2026 05:52:17 +0000
 From: Changhuang Liang <changhuang.liang@starfivetech.com>
 To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -63,10 +64,12 @@ Cc: Sudip Mukherjee <sudip.mukherjee@sifive.com>,
 	linux-kernel@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	Changhuang Liang <changhuang.liang@starfivetech.com>
-Subject: [PATCH v1 00/11] Add support for StarFive JHB100 SFC
-Date: Wed,  8 Jul 2026 22:51:53 -0700
-Message-Id: <20260709055204.138168-1-changhuang.liang@starfivetech.com>
+Subject: [PATCH v1 01/11] spi: dw: Introduce spi_frf and STD_SPI
+Date: Wed,  8 Jul 2026 22:51:54 -0700
+Message-Id: <20260709055204.138168-2-changhuang.liang@starfivetech.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20260709055204.138168-1-changhuang.liang@starfivetech.com>
+References: <20260709055204.138168-1-changhuang.liang@starfivetech.com>
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-ClientProxiedBy: NT0PR01CA0024.CHNPR01.prod.partner.outlook.cn
@@ -80,56 +83,56 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: ZQ4PR01MB1202:EE_|ZQ4PR01MB1282:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8efc9f69-11ec-4f02-a849-08dedd7e3b32
+X-MS-Office365-Filtering-Correlation-Id: e635f7be-8a5e-4568-d07b-08dedd7e3bcc
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|52116014|23010399003|376014|366016|38350700014|56012099006|6133799003|18002099003;
+	BCL:0;ARA:13230040|1800799024|52116014|23010399003|376014|366016|38350700014|56012099006|22082099003|18002099003;
 X-Microsoft-Antispam-Message-Info:
-	IQInybGgNBG0T/frrvW4IizcAjplIA1G10k8i7SaXBmYXQJEcZZLTr9yFvWJh99U8y2R+YV3VjEk3qO+mqWbSiusPo2NplMSPcTE32+RM3snBPLMOtJBmALbaTKeRwk7Y0vboZFh/jqjRhlb8lNmVYETAWW1w0ORzIiY9LLHIgK9tp4kXmJWoBDDzba0whc+PF08KWuUydO2snl/s3LbreC6BAGm0tgIMLYyePcwYZrfOjg2iNIRoqb+1pzHv7wGabERZorlGo1nyFUWaz1rQ1eRISgyhuu3bRLXmR6hS7majAKQJPX9TZF+bcrJ2CIuYVXTIQwVUXba9UhckksfB1La7novcs3hOj5+xlKR1VZTDxcQN3WlrVgi2Yqq1Sf1t/lrzk3NX/tmFo8sdQE6LBAogxEjokEODRKgpr4rwS0X9+XqHZIWjU8cBxptIYEGtkotDIH4Ybd/Esz4g3jVSMTzR0uw53oKiJdnAgP0LZauz7eF6vfZTHhx3Ol8peioEvdWT7OK3tuirGrrLFW46LHxade2YkSYzI5HxXV4nhl/q7zZ7QbLS3nVRHMz3lcc
+	jxkBepds9dRq/l2GH/bjb0OloG6uSgjvezBTGb6DZc5hk+1hMRK2PhmlEPi0cYVkPErhIr6PZ1xvILaBdb4aUq5ZgoaCp/3soJEWGR/2/hwU5I8zxZSqcdfrqZ51ChzHSGlR6We+z4MsFlHCd3griyTalZ4Wh8espM0wiFyiupHuwyvZHGwS125sxNxMLy1cU4CZ4kwD65Dpb9S8q2hMzRTtbRM2CG999B34vP5gArLZUwT2FCVjm6ApiMAu4WNN7ejalcJeFuOk4kwHo5GvPyGXfrzBwKCdUvjflPsE8MWGy/m/G7shBVhwQDtNKJ0NZEZLQwc4PvqXjOzSa7mM6uHz4cZpZUitJBf4efgsz8NewOO3w5yoFWsiKFWxh56y+WH43RcynnjWj2mwPWLGZ7g0DP1FcOdIvKjUlSIlKYcuVQp3WnKbeBH2QxwwhkQ558yWpEe2a7AamAGWHpwJps5azvEZJPmuQhbY0nJS9jPhzzolEjXpaTRP7VrU31lX4xAKGYwscUAXbmQYnslPfRXOs9s2YdgUQJAstisgqkYwqJ8us4jc6i3ugNPmyEZg
 X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:ZQ4PR01MB1202.CHNPR01.prod.partner.outlook.cn;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(52116014)(23010399003)(376014)(366016)(38350700014)(56012099006)(6133799003)(18002099003);DIR:OUT;SFP:1102;
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:ZQ4PR01MB1202.CHNPR01.prod.partner.outlook.cn;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(52116014)(23010399003)(376014)(366016)(38350700014)(56012099006)(22082099003)(18002099003);DIR:OUT;SFP:1102;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?0uRUgELEiDnHWTsxmoerNI3ld5OGMZ+3SAyFXH1ErR9Cw6OOxzMw1idTZFpr?=
- =?us-ascii?Q?53p3ECg0PqW7y9BSqxZfMj2K6gktTc87dTbDpfyh4FcuCFqutEQSHghYq8xO?=
- =?us-ascii?Q?F4JKM+lojVMcoTATwppK4SrciUorwcfUxpKoMhf0tC3rfBA5VtMldOTte+gd?=
- =?us-ascii?Q?/pt1h4wtiANp/LDLF7icwZEMNn6nMTuuitnP2GtZ0qBdBNlgjJCCeCCjjx3Z?=
- =?us-ascii?Q?9qReErAKJckMZtnmAQPRCupi/3m2DG+ZBpQrnPnRzroPeMNWrcq0uhMDtEFH?=
- =?us-ascii?Q?XR5gfewZvdhx2c7RgG3aRfyeFOJh/NHfNkNpQINm6Q33RWXtgEFxCaSLa1xs?=
- =?us-ascii?Q?QwbjiL8VANq15rpTzBvn9iY7bW3/9XiH07plRh4CwNXUTAaegHgsU/z9BFde?=
- =?us-ascii?Q?NNueZe5m97l7uQR5w3+WP7r8+1Mp/sMG4jvthqgR4AAGmN68nNi6UCKAGVTJ?=
- =?us-ascii?Q?/Du5HKFIfJDB1o/KTXm5Ex7ZozZDQP0yi7Kr2mtUQXnGlsfs9VXDYK4KqZmn?=
- =?us-ascii?Q?roJpbocp3GTpkWTop1J2rgOg9mj+YfWvdo8OylqUtWWn/GsDrpPO8oj0dPVt?=
- =?us-ascii?Q?yfySXlfa3T5Ol6z/KE2D1c0ZOOtBx5McU6GgF7niYWxuGOOOJbWl6rsiqyIz?=
- =?us-ascii?Q?aOvGYko5RDVDWL47+OUSj/qWzNihMvNoSLe/8hF/sifHC/Z166wWH64KoNz6?=
- =?us-ascii?Q?0huH0Y56EvypIiTR3rMukzdAZrzNQQbJNJdwP976WEzxaliR1OEZD/3xIKyL?=
- =?us-ascii?Q?lBGvD1Njl1JCuAHG3BpsrDBR82Pgx2nr8MDM5M6A9y4/5665bCV7dgwIriJH?=
- =?us-ascii?Q?cDXRjJ8ZplvJBK6fIYOnb6/EbINbQpHta3SMst+k5OPHnInIUse/DHBSPsn5?=
- =?us-ascii?Q?ph3BBEAs29UQtZlvXS5T2u7Zg6M+O5eKkhoVXc9wgOZCAas2YI2ISMHKJWp9?=
- =?us-ascii?Q?MdAsPUp2+gHAsDKOYL3exG5JE2D86PpoqrYHZWQMJaaEbjewLsly9ckRdgNB?=
- =?us-ascii?Q?SWyuAbeSWqCntzUzwAxkUoRvlN5sWjmbXJ9JJLg5y/+fhwx0k32xzqzKO/V1?=
- =?us-ascii?Q?FzRkl7/e7kkgThg/kWT6H6OzUuLD+OkNWOFhF9rCBauopEEH66OpKiZkaPTR?=
- =?us-ascii?Q?owxGT/AGgJWAIi3BAmLUA+eMMrtfS9c72E5kpXfe+9zVqRrT3qIgSIrUyyAn?=
- =?us-ascii?Q?ngsQjHTUsh+OKlViK/fcX2dN9oBaC3C4Z+/waifbWNxkjof64ITad8W7p68Z?=
- =?us-ascii?Q?OECMC9YG/EkFqnxxZFEHHD/sz6gVCc+3awxGHtZnmiEXI6fb92wzSmiE+CI8?=
- =?us-ascii?Q?kO8iaR0BhAUsGVOutR5HKylbOAHEN2JgVbBjFx73ltSbvJKw8UxaxPHl4VkV?=
- =?us-ascii?Q?w31i5tGi/57x1ftjxRASxCP6lLneoQTyga6P332QjXmInxEB5C+vgStKQv9C?=
- =?us-ascii?Q?mdC0Hmov6eMOtMj8NmI9GK88lWFRa439SpGmDKgZpKI9zsXL0/QdYVEkGmd1?=
- =?us-ascii?Q?TsT87wp4rCj2dFG2AWk/XYRIavTZQfSahJoKOT52gISt0F/kh60yPK3vJ/Tr?=
- =?us-ascii?Q?/tl9ZRJK/On53/OtkO6g8QwlzfhB/vMMlNAmLtxqo5T8m8ldA/kd1GLKV9+o?=
- =?us-ascii?Q?EQZTXU41fo6mJab2G3iafS8SNuBXD/5luUdo9ZcDvNQkrGNcViwpSOrdDdRd?=
- =?us-ascii?Q?o9m1X/V4KzyzlochyPCA6g/XoCLIp8r7Nm8eTSgxVhy0qfsX3BGQuak52NyQ?=
- =?us-ascii?Q?TGMiPgr1c5PeuyWEclk+/WuPGD9ZUOR832Dfk4kyR59z7xcuUGjy?=
+	=?us-ascii?Q?92A6/nl2Fsm51+EMZiDB4O1znkGpxTgSYMATyhmWDOBBaCS66U8kS3dFLDFS?=
+ =?us-ascii?Q?2cpmqBVFh97wNzCJPXbyfFKo/35hx5V86f+z8q/18P1i+m/j4i1yQPoH1D2n?=
+ =?us-ascii?Q?EC2GUiabNnLzn5SFdpoYXDcpEfao+QdOcC2d1YVTIJqDc6O4dP2isYQdXHvz?=
+ =?us-ascii?Q?ywbKrZpxzN4Vm0PcoRwOlpSGd8GsbZvKLRxzSyrdAvVh36MsYtufp4Tv+0/3?=
+ =?us-ascii?Q?nkmbofwqRelB1qdTi5ZM9GL8G0zOAcq2A5Xsd/Upn9rjadmWqGyKb9bS+YVJ?=
+ =?us-ascii?Q?SVEhNjEXEYPVk5toUk0g5XMc0oNSV9TavKjqOVm+vO5w1nQejqj1UNBGSiK1?=
+ =?us-ascii?Q?mJ5s0jyeku2Hpn/wpo568jXz/tVN8xxdywGB4+zRiQQgrRTM+Y9YmQMQyXEx?=
+ =?us-ascii?Q?eMUIXBhiEW94u+JvD+rDkefsun+X2IEC8f+Zlps9P1ClGAH8qy9aFp2Cd/FL?=
+ =?us-ascii?Q?WK5MmmgYWlQRoQ0GAyM3f71RIogIc++y9aDDOh8aFYoW0YaLSRguJmAFh/c4?=
+ =?us-ascii?Q?68DX0dKfgbjLfBbyskdtwcvgu6rHZWYxrAlGvzlCA5azma0vC1p9lOE+8oln?=
+ =?us-ascii?Q?nWxXvbcRfZlvpEP3JO0tqo8q4r+xRuiwglY2sovmE7mIZR2pmQnb1HQB8YdL?=
+ =?us-ascii?Q?n80XAN5uviFpSM3JtDYMww/D4GCNSlZDTZevblyiAUcVFP1yBQf6PlEJ5d20?=
+ =?us-ascii?Q?D3b1XHecBMzgE1la7EPDVy3/3B+loEJsXhxpxMCg1OVc6wVCiCo+RDDb6gsg?=
+ =?us-ascii?Q?O/wW/gOdNKatWrLPqsOE6Kzkh8P9yobaGuuxbrQjUoY5TIUkbo442o4f8jzc?=
+ =?us-ascii?Q?ggKGSxCvAc9wY6NMqiMwbL0R3fafuPtoFuYnlIIEhFDNT5vB0e9tE1DDMPSK?=
+ =?us-ascii?Q?FwFPtp6S8H8YYbRCEjsS0Xi4PkkVpw+DoKikHy4Nim4o/+FhELQak876Cij4?=
+ =?us-ascii?Q?tM5FRYB2bWN0/ZMXHw2i14I4I9ezfx2JcD8axDHJVXDbWCicFQFYI39xUKjB?=
+ =?us-ascii?Q?rbvt3xJTApP8noyIQgere9wK+Nj/jzgRoxqIF9yTy+rhguC+YJhJr/UPbpHp?=
+ =?us-ascii?Q?tDvU1w6/J2DevsPXxvu26f4yaU+lcck/gOQCjB0knuyLOK3Z4gDwH8gwpNKu?=
+ =?us-ascii?Q?pe5RNBvbW2nr3+tuGWKKh56mM6lwM8R+t5QlxW+f9oPuSfLJvESqv/o3hsqe?=
+ =?us-ascii?Q?aSZ/VXpWyRNRMBFyRE0NNtlQhZv4CW8IRIYUSTRYwOxD1EAqwGfG2rs9qZTm?=
+ =?us-ascii?Q?tT0G7V9ozSvaeVKT350jAm1XaJdUnjlVvnRt5VscvSiC/bKOThLIOfuHFQYO?=
+ =?us-ascii?Q?+m9JLPoRB3/MiB5VmlRS/0j6cXgbpoT3TwIoqo6A9ziRsg9OZysbUa+5BipY?=
+ =?us-ascii?Q?bMKQbkf6yJ2ucXZmn7AXa7JuMJ2pIhBW+LZ2IjhOhn/TGzMGAIw28W87lLfo?=
+ =?us-ascii?Q?ff0w6s1hMjN7SZJXUAOanSW5PDMsg04KmGgA2FxA8QMQuCemVW2pZDXgbhQb?=
+ =?us-ascii?Q?iyQv61etGiFvYerS/keHFdGTRmUmMDLE1TNg9VrX/x0DvSvVSOUXvFXNG8Ys?=
+ =?us-ascii?Q?80qiOVe6+hNxETepbUFWYI6WeoGJXSwVM/BcYgjIDAz7TwmT3igBFzMLgJW9?=
+ =?us-ascii?Q?PkqFpggtdD4el8lZEGro31xae8y66OYaT4UW0XrYXI3B95bgjqFFgYzAD90V?=
+ =?us-ascii?Q?lg16Kw+LuXMSAymz0Lk4J2tyj0SUaPi4u4H2n7s7a75GP2l6SEtws4UddJTX?=
+ =?us-ascii?Q?9uGHIiA+KvJNi2DzVxQLkmPP0J5dpeF2IAJoIYKYSagEgw4osTHt?=
 X-OriginatorOrg: starfivetech.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8efc9f69-11ec-4f02-a849-08dedd7e3b32
+X-MS-Exchange-CrossTenant-Network-Message-Id: e635f7be-8a5e-4568-d07b-08dedd7e3bcc
 X-MS-Exchange-CrossTenant-AuthSource: ZQ4PR01MB1202.CHNPR01.prod.partner.outlook.cn
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jul 2026 05:52:16.3370
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jul 2026 05:52:17.5234
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 06fe3fa3-1221-43d3-861b-5a4ee687a85c
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Wv+lWx7flE/YwBH8i+o+3odNwfx8MYu8Q7I+CK6TqgHg2tJTWtB0feEZsT/1faaEVnnuuw6iUXx+5Ssso2rBCQCHnrcLxQ+ys7ixB7JvnzX3aAZJdNYQeJAxL5+2ys3Q
+X-MS-Exchange-CrossTenant-UserPrincipalName: oEkvI4K/WHfSQA3U+GL2j1LcVnj3/ZLLFqBcM+veYmQEZ3/x40jXqtkdihrNy+L3p6sA52fmUf4Cpua2yLFSkTQltf0/n6yzHcZ5GmIYviZq6sbPCLFeV7M9OlXhZCE/
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: ZQ4PR01MB1282
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [5.04 / 15.00];
@@ -138,15 +141,15 @@ X-Spamd-Result: default: False [5.04 / 15.00];
 	ARC_REJECT(1.00)[cv is fail on i=2];
 	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	MIME_TRACE(0.00)[0:+];
 	FREEMAIL_CC(0.00)[sifive.com,gmail.com,vger.kernel.org,starfivetech.com];
 	FORWARDED(0.00)[lists@lfdr.de];
-	GREYLIST(0.00)[pass,body];
-	TAGGED_FROM(0.00)[bounces-323333-lists,devicetree=lfdr.de];
+	GREYLIST(0.00)[pass,meta];
+	TAGGED_FROM(0.00)[bounces-323661-lists,devicetree=lfdr.de];
 	FORGED_SENDER(0.00)[changhuang.liang@starfivetech.com,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
@@ -160,69 +163,100 @@ X-Spamd-Result: default: False [5.04 / 15.00];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	R_DKIM_NA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	ALIAS_RESOLVED(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	RCPT_COUNT_SEVEN(0.00)[10];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,vger.kernel.org:from_smtp,starfivetech.com:mid,starfivetech.com:from_mime]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,starfivetech.com:from_mime,starfivetech.com:email,starfivetech.com:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 3BEA672D3C2
+X-Rspamd-Queue-Id: 15943730434
 
-This serial add support for the StarFive JHB100 SoC SPI Flash
-Controller (SFC), which is based on the Synopsys DesignWare SSI
-version 2.00a but with some customizations and it also add
-enhanced SPI for DesignWare SPI controllers.
+From: Sudip Mukherjee <sudip.mukherjee@sifive.com>
 
-I picked up some patches from series [1].
-This series depends on the series [2]:
+The DW APB SSI controllers of v4.x and newer and DW AHB SSI controllers
+supports enhanced SPI modes which can be defined from SPI_FRF of
+DW_SPI_CTRLR0 register. Without enhanced mode, these controllers will
+work in the standard spi mode.
 
-[1] https://lore.kernel.org/all/20221212180732.79167-1-sudip.mukherjee@sifive.com/
-[2] https://lore.kernel.org/all/20260521012932.24163-1-changhuang.liang@starfivetech.com/
+Signed-off-by: Sudip Mukherjee <sudip.mukherjee@sifive.com>
+Co-developed-by: Changhuang Liang <changhuang.liang@starfivetech.com>
+Signed-off-by: Changhuang Liang <changhuang.liang@starfivetech.com>
+---
+ drivers/spi/spi-dw-core.c | 13 ++++++++++++-
+ drivers/spi/spi-dw.h      |  7 +++++++
+ 2 files changed, 19 insertions(+), 1 deletion(-)
 
-The expected SFC device tree configuration is as follows:
-
-sfc0_filter_syscon: syscon@14090000 {
-	compatible = "starfive,jhb100-sfc-filter-syscon", "syscon";
-	reg = <0x0 0x14090000 0x0 0x1000>;
-};
-
-sfc0: spi@18000000 {
-	compatible = "starfive,jhb100-sfc";
-	reg = <0x0 0x18000000 0x0 0x10000>;
-	#address-cells = <1>;
-	#size-cells = <0>;
-	interrupts = <111>;
-	clocks = <&per1crg JHB100_PER1CLK_MAIN_ICG_EN_SFC0>;
-	resets = <&per1crg JHB100_PER1RST_MAIN_RSTN_SFC0>;
-	reset-names = "spi";
-	starfive,sfc-filter-syscon = <&sfc0_filter_syscon>;
-	num-cs = <2>;
-	status = "disabled";
-};
-
-I will send a new version of series [2] to add the sfc0_filter_syscon node.
-
-Changhuang Liang (2):
-  spi: dt-bindings: snps,dw-apb-ssi: Add starfive,jhb100-sfc
-  spi: dw: Add support for StarFive JHB100 SoC SFC
-
-Sudip Mukherjee (9):
-  spi: dw: Introduce spi_frf and STD_SPI
-  spi: dw: update NDF while using enhanced spi mode
-  spi: dw: update SPI_CTRLR0 register
-  spi: dw: add check for support of enhanced spi
-  spi: dw: Introduce enhanced single/dual/quad/octal spi
-  spi: dw: send cmd and addr to start the spi transfer
-  spi: dw: use irq handler for enhanced spi
-  spi: dw: adjust size of mem_op
-  spi: dw: detect enhanced spi mode
-
- .../bindings/spi/snps,dw-apb-ssi.yaml         |  22 ++
- drivers/spi/spi-dw-core.c                     | 344 +++++++++++++++++-
- drivers/spi/spi-dw-mmio.c                     |  42 +++
- drivers/spi/spi-dw.h                          |  52 ++-
- 4 files changed, 450 insertions(+), 10 deletions(-)
-
---
+diff --git a/drivers/spi/spi-dw-core.c b/drivers/spi/spi-dw-core.c
+index eff08461c2f5..86e3e7487bc7 100644
+--- a/drivers/spi/spi-dw-core.c
++++ b/drivers/spi/spi-dw-core.c
+@@ -330,6 +330,16 @@ void dw_spi_update_config(struct dw_spi *dws, struct spi_device *spi,
+ 		/* CTRLR0[11:10] Transfer Mode */
+ 		cr0 |= FIELD_PREP(DW_HSSI_CTRLR0_TMOD_MASK, cfg->tmode);
+ 
++	if (dw_spi_ver_is_ge(dws, HSSI, 103A)) {
++		cr0 &= ~DW_HSSI_CTRLR0_SPI_FRF_MASK;
++		cr0 |= FIELD_PREP(DW_HSSI_CTRLR0_SPI_FRF_MASK,
++				  cfg->spi_frf);
++	} else if (dw_spi_ver_is_ge(dws, PSSI, 400A)) {
++		cr0 &= ~DW_PSSI_CTRLR0_SPI_FRF_MASK;
++		cr0 |= FIELD_PREP(DW_PSSI_CTRLR0_SPI_FRF_MASK,
++				  cfg->spi_frf);
++	}
++
+ 	dw_writel(dws, DW_SPI_CTRLR0, cr0);
+ 
+ 	if (spi_controller_is_target(dws->ctlr))
+@@ -422,6 +432,7 @@ static int dw_spi_transfer_one(struct spi_controller *ctlr,
+ 		.tmode = DW_SPI_CTRLR0_TMOD_TR,
+ 		.dfs = transfer->bits_per_word,
+ 		.freq = transfer->speed_hz,
++		.spi_frf = DW_SPI_CTRLR0_SPI_FRF_STD_SPI,
+ 	};
+ 	int ret;
+ 
+@@ -677,7 +688,7 @@ static void dw_spi_stop_mem_op(struct dw_spi *dws, struct spi_device *spi)
+ static int dw_spi_exec_mem_op(struct spi_mem *mem, const struct spi_mem_op *op)
+ {
+ 	struct dw_spi *dws = spi_controller_get_devdata(mem->spi->controller);
+-	struct dw_spi_cfg cfg;
++	struct dw_spi_cfg cfg = {0};
+ 	unsigned long flags;
+ 	int ret;
+ 
+diff --git a/drivers/spi/spi-dw.h b/drivers/spi/spi-dw.h
+index 2f2debc64e73..19cf1b1a5d4f 100644
+--- a/drivers/spi/spi-dw.h
++++ b/drivers/spi/spi-dw.h
+@@ -17,6 +17,9 @@
+ 
+ /* Synopsys DW SSI component versions (FourCC sequence) */
+ #define DW_HSSI_102A			0x3130322a
++#define DW_HSSI_103A			0x3130332a
++#define DW_HSSI_200A			0x3230302a
++#define DW_PSSI_400A			0x3430302a
+ 
+ /* DW SSI IP-core ID and version check helpers */
+ #define dw_spi_ip_is(_dws, _ip) \
+@@ -94,6 +97,9 @@
+ #define DW_HSSI_CTRLR0_TMOD_MASK		GENMASK(11, 10)
+ #define DW_HSSI_CTRLR0_SRL			BIT(13)
+ #define DW_HSSI_CTRLR0_MST			BIT(31)
++#define DW_HSSI_CTRLR0_SPI_FRF_MASK		GENMASK(23, 22)
++#define DW_PSSI_CTRLR0_SPI_FRF_MASK		GENMASK(22, 21)
++#define DW_SPI_CTRLR0_SPI_FRF_STD_SPI		0x0
+ 
+ /* Bit fields in CTRLR1 */
+ #define DW_SPI_NDF_MASK				GENMASK(15, 0)
+@@ -135,6 +141,7 @@ struct dw_spi_cfg {
+ 	u8 dfs;
+ 	u32 ndf;
+ 	u32 freq;
++	u8 spi_frf;
+ };
+ 
+ struct dw_spi;
+-- 
 2.25.1
+
 
