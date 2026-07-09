@@ -1,105 +1,61 @@
-Return-Path: <devicetree+bounces-324014-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-324018-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id V2keNcruT2p6qgIAu9opvQ
-	(envelope-from <devicetree+bounces-324014-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 20:56:10 +0200
+	id wBruEY3wT2r8qgIAu9opvQ
+	(envelope-from <devicetree+bounces-324018-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 21:03:41 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 479787349F2
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 20:56:10 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id ACEFB734B49
+	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 21:03:40 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=XrFaRUVX;
-	dkim=pass header.d=oss.qualcomm.com header.s=google header.b=PtQNxNt9;
-	dmarc=pass (policy=reject) header.from=qualcomm.com;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324014-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-324014-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=collabora.com header.s=mail header.b=TXwFOOZj;
+	dmarc=pass (policy=none) header.from=collabora.com;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324018-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-324018-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id AA44E3134AB3
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2026 18:47:38 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A8C8E303C630
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2026 19:02:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77BAA43F8D9;
-	Thu,  9 Jul 2026 18:43:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FEE23B19D1;
+	Thu,  9 Jul 2026 19:02:34 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37BB143B4A1
-	for <devicetree@vger.kernel.org>; Thu,  9 Jul 2026 18:43:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBCA0449998;
+	Thu,  9 Jul 2026 19:02:31 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783622610; cv=none; b=d0pEPWMZHKfvrzpgsjd3fch5GWxXh3wnB0GQx1x5ixPKYF2YCXN1Xz2iB6WV5K+wSy1VbHineofjOFOyEH0itwV6JBF8gBtFy83QnaSOkfoWiMU6UA4izDDJBfisMhghM+H8EZywzSp5tt6fxwnDNijNm9ZzRKe6FA6AOls6dDo=
+	t=1783623754; cv=none; b=AQOEFQ/VYq4vCMr34DdxrNXvjHypx9i4GM8Zy+1suS7Ba1eA13jPXsj88tZiPxyPiWHqe1LgmCLcmojaU1Pg5ICJQ2oHBRKi+GyZfTG9H9bcDEZwFsGVgnmZ/8aIZGSsW8QxGyPmeu5SyMVJTYz0pTUjtfhXqhT7LAoGZlKjG4g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783622610; c=relaxed/simple;
-	bh=I0NgFN3rF+KkU4yqBh/hyP5wG9C/1rf8uLv6/y4DOzo=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=XmIZInHAxgZmCqf6CB1s5yT2QtR0DWb8GKYkmhWeAV8bY2rjyo24WHWpjp/43O4ucre0PXrhWNQ0oifT5IISfApFwAHKot8HGpqT9kbBrmJNA9BTt59jwxJjpWHxVlTgOFLQWkO5Z14JTg/4PfInbAns57HNMc3z9Y6Zr8xnmW0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=XrFaRUVX; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=PtQNxNt9; arc=none smtp.client-ip=205.220.168.131
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 669HXAG92503948
-	for <devicetree@vger.kernel.org>; Thu, 9 Jul 2026 18:43:28 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	L1sQOlc7W2R+Nl5G9nVFB2M5cH4AGDkF0NzQkvcFvZA=; b=XrFaRUVXvcGaBNhE
-	ipDn5AT4mzKJkmmrNwgSczG9YfhH1HLN3LqbVGfzkoZ4d+ZwQCBxGoqoiFq/8qHt
-	LQeFAijKeUWmlUvtdQY844OtLzkeR113+HWzn6J/DkvbdkjV4Wzt9AljQ6uoLrvS
-	/z7SYXRzAGTLe71+O2jVCHnKtHXma/1qaJij/1uOa3wOtCKGkq883YeFVm0x+Whu
-	HnN80yEmEA1TBY5RL1xnMvuHcoNPyKyfIeFpPwUOUH+/xEE1H74Tl6x6a2Wzv6gl
-	JXLe2o9ZvPhGwnGxQ9/dwKR3udYAL7jP/LSWLSWx4hD1y565HjsEsXkKCNuql0IK
-	Z6rgdg==
-Received: from mail-pg1-f197.google.com (mail-pg1-f197.google.com [209.85.215.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4fa6p3ucuh-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 09 Jul 2026 18:43:28 +0000 (GMT)
-Received: by mail-pg1-f197.google.com with SMTP id 41be03b00d2f7-c894391f000so299906a12.1
-        for <devicetree@vger.kernel.org>; Thu, 09 Jul 2026 11:43:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1783622608; x=1784227408; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :content-type:mime-version:subject:date:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=L1sQOlc7W2R+Nl5G9nVFB2M5cH4AGDkF0NzQkvcFvZA=;
-        b=PtQNxNt9iRkGLSfPyu/0w6+3SNxXARJBdTcL0+7yQPNDxB3ZKcYs3vshJseggAOBVE
-         kt8MrpGvOf/CIrSDeZ1bWSAxbECks089zLc4HEURLARWZkDvNbjee1EVPRDdmp52WhDa
-         VjKNzeurFvReZA02EOaguc/SWOKTf+A0IfeCFUGlYRDsghs3ThWc8KE7Un4yh2koJobf
-         gJeSgmRnJfwQJsUmutCn61Fm7+Q7XHafuOCqJUbdb8Gyb3fCnruZKVTBUJ4HXUspDwb6
-         m2GHH/1lg1g+tivFhp7ZUrvRS6SLQ2UTakiDjI5z+/7aAAph2a7YrN6xEPT9ZOXps9b9
-         aFjg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783622608; x=1784227408;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :content-type:mime-version:subject:date:from:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=L1sQOlc7W2R+Nl5G9nVFB2M5cH4AGDkF0NzQkvcFvZA=;
-        b=kjMnNV1K/B1tNLD2uP2Gi3Y7Qt8lbdspJs3XUbUf+s9+7uPRUCwitGdPg9BoBhM0uZ
-         o1MuYqPvCfAxhU+Cg5uEYDh18wvWQ70sA8xGdFSkm11E5+bciiuUCCC3iJVHZ/ohqiMu
-         0pe8xbCWLQhzdqFQbBYTlPxEC16hIVQaqmfjZ52Iv8yk98JnTXps2ofMdeDAIqooofoV
-         V59Bf28REgRNJW0HxO06YfNfNLx0WctnP+quxuoNWWI97T16ul5uUp57SQ+v7guIxKkg
-         eH3v4YGm4llBl7QwN3cs/lnZOIdPXjROXv2i3b6RW22e5vfAEOrxANmvpLaU0XTF1myZ
-         gCMQ==
-X-Forwarded-Encrypted: i=1; AHgh+RqCqtfGVmzatwNQEf/dOr6v9DNiQHqYr9pwaQxnFeY8D7BT5ajHKecDZfQAzfhCgO4EIm4Q6sM7MII6@vger.kernel.org
-X-Gm-Message-State: AOJu0YzhJ/AN/y0EMlYHAFdVPDllP1nokHLJ2P8mRQ7oE6b/W948ARyM
-	XOTeDejrp+05yG+JkPV8LjgC8TGcTZkTvka/7hI77VTKSx8nNQ1BuAdlgTk8UgtHKAirFIw2Mze
-	0E3omwRAhAhBgs+i3yk0qudSGVLEA4sOTnDDiM+7Dan9Jc0MaQd/+qXoS7HWoAzrZ
-X-Gm-Gg: AfdE7clohq5N4NbxkyNUvl8FbKFyJTYfrpvruboKeaE6Hnl6XSqUA/GnQyrlVdXgihl
-	hw+pkmwcQ3tcWeSmTiBcQJn6O8LG+c4QZP6IO7t16j5z9+v9FYIqFiVxnHNyGEeBx8oC77a0SEK
-	5vVvpm4QJxvDkGqQot2sLYcZAVNBBF6AC4tZcKY0fosuvX0YZf0/4SObMRGJYWwQz63d+UlLFpE
-	o7TdpR77hQW+HlkWaoezWxHKZKG0Fiyu1+hu6Zlcm2b/4ZqviTadgnnYjbJyNSL5z9sojFyA0EB
-	rMRQSRWg7HyB71cjcntg59llM2nRe17yMj6taDW7sDG5PMRfHdRtDI68g9rcIMaky6zTT8o6uM+
-	1toO2FNobFp8l8heXP7uDWeHElohnEH37j6Y=
-X-Received: by 2002:a05:6a21:4902:b0:3c0:b766:750e with SMTP id adf61e73a8af0-3c0bcfea632mr10283282637.25.1783622607970;
-        Thu, 09 Jul 2026 11:43:27 -0700 (PDT)
-X-Received: by 2002:a05:6a21:4902:b0:3c0:b766:750e with SMTP id adf61e73a8af0-3c0bcfea632mr10283252637.25.1783622607576;
-        Thu, 09 Jul 2026 11:43:27 -0700 (PDT)
-Received: from hu-akhilpo-hyd.qualcomm.com ([202.46.23.25])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-31174a56848sm34205652eec.16.2026.07.09.11.43.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Jul 2026 11:43:27 -0700 (PDT)
-From: Akhil P Oommen <akhilpo@oss.qualcomm.com>
-Date: Fri, 10 Jul 2026 00:12:06 +0530
-Subject: [PATCH v6 7/7] arm64: dts: qcom: shikra-evk: Enable A704 GPU
+	s=arc-20240116; t=1783623754; c=relaxed/simple;
+	bh=1cXNReSpQ3xN4yaRnOLJD82kzsl0vFIJqafwsOicgKI=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=tYj+mMy1N3LDayIWHdSIVsdnEyvWm6VBez8l/WRFsdg7tgRe98lTmi1r2unH0Fc+VRZwKYc2bobL9D3Jaog0kf8E3UTYdqaUFz/Q+JGkRDSADYfljWQQ2BaajM7AHMyTq9YCkFY2eykW+VVRsTzRFJcdWACmcN0AISA8af11quw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=TXwFOOZj; arc=none smtp.client-ip=148.251.105.195
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1783623750;
+	bh=1cXNReSpQ3xN4yaRnOLJD82kzsl0vFIJqafwsOicgKI=;
+	h=From:Subject:Date:To:Cc:From;
+	b=TXwFOOZjzbsBYTEsVWflRPwTfMJbuiSFeVm8UVLIkVEtcIop/k89ImGOHtjTfMQAC
+	 FTeQCA3DuPZ6SIneft3yigmGjRRtrxWoqMPQQ0qQk+dSO7D3W+n33x/Ob6f6qCqFys
+	 /JHeFlEcr753OvGOhRHv7Y+Dh7gLtKwGNrI/zYhiPj2u83nVt09vI61s1sbx8gOG+1
+	 61wNJUXnleN0fk0ZWO06ebNEQrtItClZ2Noh7xJxICluv2DopWI41tJ7KlrtnipTLL
+	 wvoFaP6Dw/C861en+uNPyIECKV6qZfsaawbBaaHdlGKxMleFD9cX4DFEYBMWLPBJPs
+	 M59k90SbmN5Ig==
+Received: from jupiter.universe (unknown [100.64.1.62])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: sre)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id EDB4617E0D53;
+	Thu, 09 Jul 2026 21:02:29 +0200 (CEST)
+Received: by jupiter.universe (Postfix, from userid 1000)
+	id A1463480028; Thu, 09 Jul 2026 21:02:29 +0200 (CEST)
+From: Sebastian Reichel <sebastian.reichel@collabora.com>
+Subject: [PATCH v11 00/36] phy: rockchip: usbdp: Clean up the mess
+Date: Thu, 09 Jul 2026 21:02:23 +0200
+Message-Id: <20260709-rockchip-usbdp-cleanup-v11-0-a149ac60f76c@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -108,136 +64,351 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260710-shikra-gpu-v6-7-b388ec5dce77@oss.qualcomm.com>
-References: <20260710-shikra-gpu-v6-0-b388ec5dce77@oss.qualcomm.com>
-In-Reply-To: <20260710-shikra-gpu-v6-0-b388ec5dce77@oss.qualcomm.com>
-To: Rob Clark <robin.clark@oss.qualcomm.com>, Sean Paul <sean@poorly.run>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Dmitry Baryshkov <lumag@kernel.org>,
-        Abhinav Kumar <abhinav.kumar@linux.dev>,
-        Jessica Zhang <jesszhan0024@gmail.com>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        "Joerg Roedel (AMD)" <joro@8bytes.org>,
-        Bjorn Andersson <andersson@kernel.org>
-Cc: Bibek Kumar Patro <bibek.patro@oss.qualcomm.com>,
-        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        iommu@lists.linux.dev, Akhil P Oommen <akhilpo@oss.qualcomm.com>,
-        Aditya Sherawat <asherawa@qti.qualcomm.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+X-B4-Tracking: v=1; b=H4sIAD/wT2oC/4XSwU7DMAwG4FdBPVMUO42TcOI9EIckdVjEWKuWV
+ aBp7066SyuUjKMt5XN+y5dm5inx3Dw/XJqJlzSn4ZQLgMeHJhzc6Z3b1OdGgwJJoJDtNISPcEh
+ je559P7bhyO50Hlvlle2jVwRONvnxOHFM3zf59S3XhzR/DdPPbdACa/dfcoFWtECOokXuQdNLG
+ I5H54fJPYXhs1nZBXcU1CnMlCfNAVFFS1yi5EbJO5TMlGQT2Vgnc+wS1W1Uh6ZKdZnSWivSwIE
+ RS5TaKAKsUipTHIORgqwhG0sU7SlbpWgN6D1E1XkZZTGg3lGoqpReKcNehkiqi32JMnuKqpTJV
+ KcjGbRGG1v8ld0oLeq7suuuJHD0nrDH4jGA2Ft3blRkzEmLGiA44+xf7Hq9/gIYblFAZgMAAA=
+ =
+X-Change-ID: 20260203-rockchip-usbdp-cleanup-5b59dfb561a3
+To: Vinod Koul <vkoul@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Heiko Stuebner <heiko@sntech.de>, Frank Wang <frank.wang@rock-chips.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Thinh Nguyen <Thinh.Nguyen@synopsys.com>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Philipp Zabel <p.zabel@pengutronix.de>
+Cc: Andy Yan <andy.yan@rock-chips.com>, Dmitry Baryshkov <lumag@kernel.org>, 
+ Yubing Zhang <yubing.zhang@rock-chips.com>, 
+ Alexey Charkov <alchark@flipper.net>, linux-phy@lists.infradead.org, 
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, kernel@collabora.com, 
+ devicetree@vger.kernel.org, linux-usb@vger.kernel.org, 
+ Sebastian Reichel <sebastian.reichel@collabora.com>, 
+ Sashiko <sashiko-bot@kernel.org>, William Wu <william.wu@rock-chips.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1783622535; l=849;
- i=akhilpo@oss.qualcomm.com; s=20240726; h=from:subject:message-id;
- bh=TpvtLBwihWHNEKd1VwQvgAfHhzoeB2GGOqDfiPe0Xho=;
- b=ZIve4DWCl87XBF7AfPHf5g2BJeKum6itVChbN+14NX0yb+c2lSO4GLV80PWdApQDHp0lHww6y
- MmdHRS+rBCEDgn1bSRRYLQshjQmUl8u8iyr/Z7ckKek/8UGqepWFhl2
-X-Developer-Key: i=akhilpo@oss.qualcomm.com; a=ed25519;
- pk=lmVtttSHmAUYFnJsQHX80IIRmYmXA4+CzpGcWOOsfKA=
-X-Proofpoint-ORIG-GUID: 4wZIviWgDhgonfy3GvDarkDYxJL4-Lps
-X-Proofpoint-GUID: 4wZIviWgDhgonfy3GvDarkDYxJL4-Lps
-X-Authority-Analysis: v=2.4 cv=TPh1jVla c=1 sm=1 tr=0 ts=6a4febd0 cx=c_pps
- a=rz3CxIlbcmazkYymdCej/Q==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
- a=IkcTkHD0fZMA:10 a=RAioF0-LDSMA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=eoimf2acIAo5FJnRuUoq:22
- a=EUspDBNiAAAA:8 a=Xl3f10jGzgz6Ja07nhwA:9 a=QEXdDO2ut3YA:10
- a=bFCP_H2QrGi7Okbo017w:22
-X-Proofpoint-Spam-Info: AW1haW4tMjYwNzA5MDE4NSBTYWx0ZWRfX73PwrSxsYCaK
- /B8bM04RaWpLBngW725W35w4lx3dn9XD59CO95eEBNxDR/5IuwBtxK95okWZ4FDkdSRUVdV3c8y
- LCBQGnYsScb0AjVI5ONX8pHRbIAwqo4=
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNzA5MDE4NSBTYWx0ZWRfX1hyU88t13p8e
- AEVXf+Hw6qY3GCeS2ylD7LaIOGn3nAYqmVOA4JprNcciI9V3zKZxUpaAVgi9jJNVG6mGrmIz5dx
- itREpoL5LDYIslooQVqczNY9ZXsPKO66qz+mzOk4YOJHOSRCgint+JauZ/+u/XBmEglIcmjN+u6
- SuECCbRui7FX8K2awehiwo0RT898dBgWnKYquF9FsLFZW4VzcxmPa8hfXBnKVDh0LsrxPsX9Krc
- llQDkCfcQlp+9ZF0EHVPvCTcUp5luT3Qyf8n+1dXLdDWMZf4vyiLsYk2jwpMocq+1jWQjtr5yBJ
- YRffwHZJTe1a463gumUSpz1dwy9EfR4BpYIJI+uFLwZyAI6lb61OaE0XVewxcs5nqp0rrjB94se
- SePXftEnpGlfLQuk6w/j+wd0uobHIDg04lD4yUke+F087JfvwgZFx59L5SRTs94W8gfz/n3+Lw+
- Ore8d3OSmtr8wl3QCxQ==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.134,FMLib:17.12.100.49
- definitions=2026-07-09_04,2026-07-09_04,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 impostorscore=0 adultscore=0 bulkscore=0 phishscore=0
- lowpriorityscore=0 clxscore=1015 malwarescore=0 spamscore=0 suspectscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2606150000 definitions=main-2607090185
+X-Developer-Signature: v=1; a=openpgp-sha256; l=14511;
+ i=sebastian.reichel@collabora.com; h=from:subject:message-id;
+ bh=1cXNReSpQ3xN4yaRnOLJD82kzsl0vFIJqafwsOicgKI=;
+ b=owJ4nAFtApL9kA0DAAoB2O7X88g7+poByyZiAGpP8EQjhvacYCH41gMsKagK2WP+O/dvOl1SC
+ +Udp11dhBDlj4kCMwQAAQoAHRYhBO9mDQdGP4tyanlUE9ju1/PIO/qaBQJqT/BEAAoJENju1/PI
+ O/qatKwP/RptYRdVNH2uIC9nNGEPSJXhCi07DynBi9nYgUemsJPKNdmEq9EafvgklmAoB+BmbUS
+ 4QVX402pPclulr6JOlJoXKu4kA1fSsbeUMiLl4HQLtQpmuqtWBwzuiTzYlApa8v6j2VhP8CILxX
+ I0hqVXeGw52U/s/ANWzkBDSmBU8Ik5h36jkP5H+/hv54/+hmy3C0D75XR7ldYSC2z7fb5u7h4Jh
+ I22yEy9jQkqajxSoRMtVk87iK8E0TFyGI+oOb5rGj+ZRQeH5Y73hRf3oHjh7vo30awYm5Iw2ny/
+ RI+g6J1qFm4YMfQ02a3/6Ei6GUvgzLl7p2n/O+nqQZlhLDaiLvMH1gsJVafI/SkDpydZQ7iRTyH
+ I3bfUsedCYKpPiVOGO3JoGAN98j3xMPOVv1l7sP/XeSMrm1XBsMus3SVyG38+q8ygH0aqubw5ex
+ tUPzYPbP0vkMJRBxI7RJB3wkpi+ImfwmtAkusjic2rruAWILIFUGGagSj82Azptlk2GFkJ4qZ75
+ RDZB+3tIj2YB6262c4K81QhOHJXTNaqY8oK4IB8gD1KmKw669xwL/aQbvSOehA/hPDf0+BUQVPG
+ 1vm3E5MMT6pjtS0f6hlc85xheIQl+WJLbc/UaaJRvNsWKJqVCsOL6hoKzfiDLKQpId3tbPhVEga
+ G7KUnOdqS78F2LTyaqcorNw==
+X-Developer-Key: i=sebastian.reichel@collabora.com; a=openpgp;
+ fpr=EF660D07463F8B726A795413D8EED7F3C83BFA9A
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
+	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-324014-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-324018-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[30];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FREEMAIL_TO(0.00)[oss.qualcomm.com,poorly.run,kernel.org,linux.dev,gmail.com,somainline.org,ffwll.ch,linux.intel.com,suse.de,arm.com,8bytes.org];
-	FORGED_RECIPIENTS(0.00)[m:robin.clark@oss.qualcomm.com,m:sean@poorly.run,m:konradybcio@kernel.org,m:lumag@kernel.org,m:abhinav.kumar@linux.dev,m:jesszhan0024@gmail.com,m:marijn.suijten@somainline.org,m:airlied@gmail.com,m:simona@ffwll.ch,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:will@kernel.org,m:robin.murphy@arm.com,m:joro@8bytes.org,m:andersson@kernel.org,m:bibek.patro@oss.qualcomm.com,m:linux-arm-msm@vger.kernel.org,m:dri-devel@lists.freedesktop.org,m:freedreno@lists.freedesktop.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:iommu@lists.linux.dev,m:akhilpo@oss.qualcomm.com,m:asherawa@qti.qualcomm.com,m:dmitry.baryshkov@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[akhilpo@oss.qualcomm.com,devicetree@vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,oss.qualcomm.com:from_mime,oss.qualcomm.com:dkim,oss.qualcomm.com:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,qualcomm.com:email,qualcomm.com:dkim];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[akhilpo@oss.qualcomm.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	FORGED_SENDER(0.00)[sebastian.reichel@collabora.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[24];
+	FORGED_RECIPIENTS(0.00)[m:vkoul@kernel.org,m:neil.armstrong@linaro.org,m:heiko@sntech.de,m:frank.wang@rock-chips.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:Thinh.Nguyen@synopsys.com,m:gregkh@linuxfoundation.org,m:p.zabel@pengutronix.de,m:andy.yan@rock-chips.com,m:lumag@kernel.org,m:yubing.zhang@rock-chips.com,m:alchark@flipper.net,m:linux-phy@lists.infradead.org,m:linux-arm-kernel@lists.infradead.org,m:linux-rockchip@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:kernel@collabora.com,m:devicetree@vger.kernel.org,m:linux-usb@vger.kernel.org,m:sebastian.reichel@collabora.com,m:sashiko-bot@kernel.org,m:william.wu@rock-chips.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	DKIM_TRACE(0.00)[collabora.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sebastian.reichel@collabora.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	TO_DN_SOME(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:from_mime,collabora.com:email,collabora.com:mid,collabora.com:dkim,vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 479787349F2
+X-Rspamd-Queue-Id: ACEFB734B49
 
-From: Aditya Sherawat <asherawa@qti.qualcomm.com>
+This series does a major overhaul of the Rockchip USBDP driver. The
+initial main goal was to add USB-C DP AltMode support to the RK3576
+and RK3588 and this series still prepares the PHY driver for exactly
+that. But in addition to that I uncovered a huge amount of issues,
+that are fixed along the way. Some of the more interesting ones are:
 
-Enable the A704 GPU and configure its zap-shader firmware on the
-Shikra EVK boards.
+ * Currently the driver might trigger a fatal SError on USB-C hotplug,
+   since re-initializing the PHY stops the clocks going to DWC3. If
+   the DWC3 driver tries to access its registers at the same time the
+   system will crash.
+ * The DWC3 hardware can get into a buggy state when the PHY is
+   disabled, which results in the PHY not coming up properly again.
+ * Swithcing the USB-C connector orientation during hotplug breaks
+   USB3 speed, as the PHY is not being re-initialized.
+ * The code always enables DP mode when USB-C is involved.
+ * The driver has some locking issues uncovered by Sashiko.
 
-Signed-off-by: Aditya Sherawat <asherawa@qti.qualcomm.com>
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Signed-off-by: Akhil P Oommen <akhilpo@oss.qualcomm.com>
+In addition to these bigger ones, Sashiko also found a bunch of
+minor problems, which are mostly harmless, but were fixed while
+going at it.
+
+I've tested the v10 code changes with dozens of replugs of different
+devices (2 different USB-C hubs with USB3 + HDMI via DP AltMode, 1 USB-C
+to HDMI adapter [4 lanes DP AltMode], 1 USB-C to DP adapter [4 lanes DP
+AltMode], 1 USB-C to NVMe adapter [no DP AltMode] as well as a direct
+USB-C connection to a Dell display) on a Sige 5 board and haven't run
+into any issues. In addition I also tested peripheral/gadget mode works
+by plugging the USB-C port into a laptop using an USB-A to USB-C cable.
+In all cases USB3 was working in both directions and DP mode was
+properly initialized, so that the DRM driver could query the available
+modes. Apart from that the series is boot tested via CI on Rock 5B
+and Rock 4D.
+
+Technically some of the later patches are fixes, that one would
+expect at the beginning of the series, but they are only possible
+after the big cleanups.
+
+Changes in v11:
+- Link to v10: https://lore.kernel.org/r/20260703-rockchip-usbdp-cleanup-v10-0-a392711ca8a9@collabora.com
+- Fix depreated -> deprecated typo in DT binding (Sashiko)
+- dwc3 patch: (un)register PHY notifier in probe/remove instead of
+  phy_init/exit to avoid AB-BA deadlock (Sashiko)
+- dwc3 patch: replace pm_runtime_get_sync by pm_runtime_resume_and_get
+  and add error handling (Sashiko)
+- implement error handling for PRE_RESET in USBDP driver to match
+  this (me)
+- dwc3 patch: add reset counter to have balanced runtime PM count if
+  dwc3 is removed during an active reset (Sashiko)
+- Keep code to disable USB3 in highspeed-only mode in phy_init (Sashiko)
+- Always set lane mux in last patch to make sure orientation
+  changes are handled properly (Sashiko)
+- Update commit message of last patch to mention USB reconnections
+  happening during PD state negotiation (Sashiko)
+
+Changes in v10:
+- Link to v9: https://lore.kernel.org/r/20260702-rockchip-usbdp-cleanup-v9-0-e31efbb62d2e@collabora.com
+- Add 'deprecated: true' to port in DT binding, since ports replaces it (Sashiko)
+- In 'Drop seamless DP takeover' simply remove any handling for
+  pre-enabled PHY as there is no known bootloader doing that and
+  Sashiko keeps finding things, which I cannot test. (Sashiko, myself)
+- Use on/off instead of enabled/disabled in PHY reinit message,
+  which is shorter (myself)
+- Use notifier_to_errno() in "add notifier infrastructure" (Sashiko)
+- Rework DWC3 PHY reset notifier patch, so that it works correctly
+  for multiple ports (Rockchip is single-port) and keep a runtime
+  reference while the PHY reset is going on to massively simplify
+  the locking logic. (Sashiko)
+- Drop patch renaming phy_needs_reinit keep the existing logic to
+  set it whenever the lane configuration changes (Sashiko)
+- Update "Simplify power state handling" patch, to mostly depend
+  on the DT configured or TypeC negotiated modes to avoid
+  data stream disconnections when DP is hotplugged in a dock or
+  USB is used with runtime PM (Sashiko)
+- Ensure sw_mode is not set when the PHY enablement function fails
+  (Sashiko)
+- Add new patch adding USB-only mode as USB-C state, which results
+  in proper powering off the DP side when the remote hardware is
+  not capable of DP AltMode. (myself)
+
+Changes in v9:
+- Link to v8: https://lore.kernel.org/r/20260626-rockchip-usbdp-cleanup-v8-0-47f682987895@collabora.com
+- Update DT binding to explicitly mention that port@3 is for the
+  DP aux channel and not DP in general (Sashiko got this wrong)
+- Add a 100ms cooldown sleep in "Drop seamless DP takeover" after HPD
+  is force disabled (Sashiko)
+- Update comment in "Register DP aux bridge" to explain why port@3 is
+  checked, but port@0 is used (Sashiko)
+- Check for high-speed only mode in "Support going from DP-only mode to
+  USB mode" (Sashiko)
+- Add new patch for rk_udphy_reset_deassert error handling (Sashiko)
+- Add new patch to avoid enabling USB3 in high-speed only mode during
+  PHY reinit (Sashiko)
+- Add 3 more patches to handle the LCPLL lock issue mentioned in the v8
+  cover letter after feedback from Rockchip. Apparently the DWC3 does
+  not cope very well with the PHY disappearing resulting in the PIPE
+  interface misbehaving, which in turn results in the LCPLL not locking.
+  The new patches avoid this by asserting DWC3_GUSB3PIPECTL_PHYSOFTRST.
+  As this assert needs to be done when the PHY wants to reset, a new
+  notifier system has been implemented to support triggering this from
+  the PHY driver. This also means, that this version now also involves
+  the USB subsystem.
+- Drop old patch trying to solve the DP-only -> USB mode switch in
+  favour of 5 new patches completely rewriting and simplifying the
+  power status handling. The new code ensures that the PHY always
+  has the right modes enabled and also makes sure a re-init happens
+  on an orientation change.
+- rebased on v7.2-rc1
+
+Changes in v8:
+- Link to v7: https://lore.kernel.org/r/20260625-rockchip-usbdp-cleanup-v7-0-38eb3cf654fd@collabora.com
+- Move patch "Limit DP lane count to muxed lanes" after single lane
+  support, which introduces dp_lanes variable to make sure series
+  is bi-sectable (Sashiko)
+- Force disable HPD in "Drop seamless DP takeover" patch and update
+  patch description to mention potential issues with SErrors for
+  bootloaders really keeping the DW-DP on. As mentioned in the new
+  commit message this is untested as I'm not aware of such a
+  bootloader anyways; this also means we need to keep the HPD GRF
+  register defines in the 'Drop DP HPD handling' patch (Sashiko)
+- Fix mode logic in "Properly handle TYPEC_STATE_SAFE and
+  TYPEC_STATE_USB" patch; I blame the heat (Sashiko)
+- Improve "Support going from DP-only mode to USB mode" patch to
+  better handle starting in DP only mode; due to TypeC logic
+  starting delayed this does not really happen, though (Sashiko)
+- Improve "Support going from DP-only mode to USB mode" to avoid
+  checking previous state and instead power on USB state based
+  on previous requested state to avoid effects from the flip
+  callback (Sashiko)
+- Update the debug message patch to include some more info
+- Ad one more patch, which disables USB3 at startup and drops
+  the -EPROBE_DEFER logic
+
+Changes in v7:
+- Link to v6: https://lore.kernel.org/r/20260619-rockchip-usbdp-cleanup-v6-0-3bb1f54b3f35@collabora.com
+- Add new patch handling missing clock-names in DT gracefully (Sashiko)
+- Add new patch handling rk_udphy_reset_deassert_all errors in init check (Sashiko)
+- Add new patch to handle Properly handle TYPEC_STATE_SAFE and TYPEC_STATE_USB (Sashiko)
+- Add new patch to avoid xHCI SErrors
+
+Changes in v6:
+- Link to v5: https://lore.kernel.org/r/20260612-rockchip-usbdp-cleanup-v5-0-efc83069869f@collabora.com
+- Add explicit <linux/string_choices.h> include in last patch (Sashiko)
+- Add new patch moving mode_change update after error handling (Sashiko)
+- Add new patch fixing error masking of devm_clk_bulk_get_all() (Sashiko)
+- Add new patch dropping seamless DP takeover as it is non-functional and buggy (Sashiko) 
+- Add new patch limiting DP lane count to muxed lanes (Sashiko)
+- Add error handling in the patch that keeps clocks running on PHY re-init (Sashiko)
+- Also look for DP being configured to second lane for the flip config
+  in DP single-lane mode, which should at least keep USB working for
+  this super unusual config (Sashiko)
+- Drop useless ret variable in patch introducing guard() for the mutex
+- Add error handling for PHY re-enablement in the patch fixing support for
+  DP-only -> USB mode (Sashiko)
+
+Changes in v5:
+- Link to v4: https://lore.kernel.org/r/20260428-rockchip-usbdp-cleanup-v4-0-7775671ece22@collabora.com
+- Picked up Acked-by from Rob Herring for DT binding
+- Fix typos in commit messages/comments
+- Add Fixes tag to "Do not looe USB3 PHY status" patch
+- Collect Reviewed-by: Neil Armstrong for multiple patches
+- Drop now unused code from "Drop DP HPD handling" patch (Sashiko)
+- Ignore mux events not involving DP AltMode (Sashiko)
+- Add new patch to support going back from DP only mode to USB combo
+  mode; technically this is a fix, but DP mode does not yet work
+  upstream, so it does not matter (Sashiko)
+- Add new patch adding a few debug messages, which are useful
+  to investigate potential hotplug issues in the future
+- Sashiko comments about the DT binding and property usage
+  are wrong as the first port is for the superspeed lanes
+  used for DP and USB, while the last port is just about
+  DP aux. I ignored them.
+- There is a pre-existing bug, that can already be hit with the
+  upstream kernel and that the series doesn't fix properly:
+  Accessing the USB3 controller registers requires the USB PHY
+  running, since it provides a clock. Re-initializing the PHY
+  means there is a race-condition - if the system tries to access
+  the USB3 controller in parallel to the re-init, the system will
+  hang and/or fail with an SError. By keeping the clocks running
+  and only asserting the resets this time is minimized by this
+  series. A proper fix for this will be looked into independently
+  from this series.
+- I used v7.1-rc6 as base, but the driver has no changes since
+  6.18 even in linux-next and there are no pending patches for
+  it on the mailinglist either, so it applies to *any* recent
+  kernel branch.
+
+Changes in v4:
+- Link to v3: https://lore.kernel.org/r/20260313-rockchip-usbdp-cleanup-v3-0-3e8fe89a35b5@collabora.com
+- rebased to v7.1-rc1 (no changes)
+- Update DRM bridge registration patch to avoid registration when DP aux
+  port is not connected to anything, since this results in errors and some
+  boards use USBDP instances for USB3 only.
+- Add patch renaming mode_change into phy_needs_reinit
+- Add patch to re-init PHY on orientation change
+- Add patch to factor out lane_mux_sel setup
+- Add patch to handle mutex via guard functions
+
+Changes in v3:
+- Link to v2: https://lore.kernel.org/r/20260213-rockchip-usbdp-cleanup-v2-0-b67ec225f96e@collabora.com
+- Add patch to register the USBDP PHY as DRM bridge
+- Add patch to describe ports in DT binding (used by the DRM bridge)
+- Add patch to drop HPD handling from the PHY
+
+Changes in v2:
+- Link to v1: https://lore.kernel.org/r/20260203-rockchip-usbdp-cleanup-v1-0-16a6f92ed176@collabora.com
+- Added new patches to fix USB3 SError
+
+Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
 ---
- arch/arm64/boot/dts/qcom/shikra-evk.dtsi | 8 ++++++++
- 1 file changed, 8 insertions(+)
+Frank Wang (1):
+      phy: rockchip: usbdp: Amend SSC modulation deviation
 
-diff --git a/arch/arm64/boot/dts/qcom/shikra-evk.dtsi b/arch/arm64/boot/dts/qcom/shikra-evk.dtsi
-index 4b7be09eb5a5..9febbf200f10 100644
---- a/arch/arm64/boot/dts/qcom/shikra-evk.dtsi
-+++ b/arch/arm64/boot/dts/qcom/shikra-evk.dtsi
-@@ -36,6 +36,14 @@ vreg_pmu_ch1: ldo4 {
- 	};
- };
- 
-+&gpu {
-+	status = "okay";
-+};
-+
-+&gpu_zap_shader {
-+	firmware-name = "qcom/shikra/a704_zap.mbn";
-+};
-+
- &qupv3_0 {
- 	firmware-name = "qcom/shikra/qupv3fw.elf";
- 
+Sebastian Reichel (33):
+      dt-bindings: phy: rockchip-usbdp: add improved ports scheme
+      phy: rockchip: usbdp: Update mode_change after error handling
+      phy: rockchip: usbdp: Do not lose USB3 PHY status
+      phy: rockchip: usbdp: Fix devm_clk_bulk_get_all check
+      phy: rockchip: usbdp: Handle missing clock-names DT property gracefully
+      phy: rockchip: usbdp: Drop seamless DP takeover
+      phy: rockchip: usbdp: Keep clocks running on PHY re-init
+      phy: rockchip: usbdp: Add missing mode_change update
+      phy: rockchip: usbdp: Limit DP lane count to muxed lanes
+      phy: rockchip: usbdp: Rename DP lane functions
+      phy: rockchip: usbdp: Use FIELD_PREP_WM16_CONST
+      phy: rockchip: usbdp: Cleanup DP lane selection function
+      phy: rockchip: usbdp: Register DP aux bridge
+      phy: rockchip: usbdp: Drop DP HPD handling
+      phy: rockchip: usbdp: Rename mode_change to phy_needs_reinit
+      phy: rockchip: usbdp: Re-init the PHY on orientation change
+      phy: rockchip: usbdp: Factor out lane_mux_sel setup
+      phy: rockchip: usbdp: Properly handle TYPEC_STATE_SAFE and TYPEC_STATE_USB
+      phy: rockchip: usbdp: Use guard functions for mutex
+      phy: rockchip: usbdp: Clear USB status on PHY exit
+      phy: rockchip: usbdp: Hold mutex in DP PHY configure
+      phy: rockchip: usbdp: Add some extra debug messages
+      phy: rockchip: usbdp: Avoid xHCI SErrors
+      phy: rockchip: usbdp: Handle rk_udphy_reset_deassert errors
+      phy: rockchip: usbdp: Only enable USB3 when not in high-speed mode
+      phy: core: add notifier infrastructure
+      usb: dwc3: core: support PHY reset notifications
+      phy: rockchip: usbdp: Add phy reset notification support
+      phy: rockchip: usbdp: Drop -EPROBE_DEFER hack
+      phy: rockchip: usbdp: Rename mode to hw_mode
+      phy: rockchip: usbdp: Fix power state handling
+      phy: rockchip: usbdp: Re-init PHY on mux change
+      phy: rockchip: usbdp: Add USB-C state without DP enabled
 
+William Wu (1):
+      phy: rockchip: usbdp: Fix LFPS detect threshold control
+
+Zhang Yubing (1):
+      phy: rockchip: usbdp: Support single-lane DP
+
+ .../bindings/phy/phy-rockchip-usbdp.yaml           |  24 +
+ drivers/phy/phy-core.c                             |  60 +++
+ drivers/phy/rockchip/Kconfig                       |   2 +
+ drivers/phy/rockchip/phy-rockchip-usbdp.c          | 583 ++++++++++-----------
+ drivers/usb/dwc3/core.c                            |  80 +++
+ drivers/usb/dwc3/core.h                            |  18 +
+ include/linux/phy/phy.h                            |  40 ++
+ 7 files changed, 510 insertions(+), 297 deletions(-)
+---
+base-commit: dc59e4fea9d83f03bad6bddf3fa2e52491777482
+change-id: 20260203-rockchip-usbdp-cleanup-5b59dfb561a3
+
+Best regards,
 -- 
-2.54.0
+Sebastian Reichel <sebastian.reichel@collabora.com>
 
 
