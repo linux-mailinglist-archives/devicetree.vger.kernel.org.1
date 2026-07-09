@@ -1,365 +1,366 @@
-Return-Path: <devicetree+bounces-324133-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-324137-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id RlPpOFsJUGr0sAIAu9opvQ
-	(envelope-from <devicetree+bounces-324133-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 22:49:31 +0200
+	id B5O/JHgKUGo3sQIAu9opvQ
+	(envelope-from <devicetree+bounces-324137-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 22:54:16 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4FDD97358A7
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 22:49:31 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0786A735935
+	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 22:54:16 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=nM1DQiVl;
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324133-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-324133-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=analog.com header.s=DKIM header.b=etjrsUWO;
+	dmarc=pass (policy=quarantine) header.from=analog.com;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324137-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-324137-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 5683D30387A5
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2026 20:49:30 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id EEE0A307C65B
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2026 20:50:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 798143D88E8;
-	Thu,  9 Jul 2026 20:49:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF9D93E1694;
+	Thu,  9 Jul 2026 20:49:55 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 048A03BD647
-	for <devicetree@vger.kernel.org>; Thu,  9 Jul 2026 20:49:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B11773E0745;
+	Thu,  9 Jul 2026 20:49:53 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783630169; cv=none; b=cpKvCe5OnacGDRxq+9M9spk0e1XbLVHy94FrJQB9QL/v5wZronNRJugbVG6fwPQ4nGhI6RyFeo68ssuuFMY/tQxjxpyCd1jGLHkcLbyYS2RUDlO1hJ4nzeds2DSe6Yu/JxUoDKyf9W3mM5FurokSbUfQ6dIzZpyAhaFMqbP8MLg=
+	t=1783630195; cv=none; b=qpNdrCwLoPMRc7ZSdT9N4Yo1kovYeVOjzuH7a1MSBg+LSBH/k0FPBZbU772mQDFIlnBKmLxnNLxH3eT8VdZD6nlqRhXYonYne0DvHMSMXBAj2ERvUQbr5/t72quSnfLL2A7ZjmN47VtOZpwu4PswMUIkcY+Kt2TAFMNZoGrMDfo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783630169; c=relaxed/simple;
-	bh=0igcCrDdZboemki1d3PxLhQUjlMLz47aGRsS4+JvBHU=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=gV9EpGlOuPR0CzSzmqJZFeDtl6AeZMT0Ez3KR59ZdhvSx2qIkLcvlZliEiioWjtrzBlQpQGWURdljxPIvPCuk0m7Hogfwqil4382a/VkuUIZgJgTutrOpU1xIbY2/2fupiKVpkxRoFCh6/Goafrwqs6VkAK+rg03YudczPsQETw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nM1DQiVl; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A14611F000E9;
-	Thu,  9 Jul 2026 20:49:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783630167;
-	bh=BCKoFQ0J2+8huB9xca/v18pbZ3p/ahh0MHG08PpDyug=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=nM1DQiVl3hWADNvNeBPhzee0mhfgHnMmr3WrOW23gA3IrT1mlKDUIUEKj2rb1W4+r
-	 46R2yzx56AdCTAyDFtLdiq9JbOmIZuS6MEUuOWR6VQZmmqebE7KVx9vOXf3mpv+mR/
-	 lsw1CH/TdCMdtX3YOI2ABLh4VnRta55ZHsNHH4ER59i+b02yCdMyK/ausN4X4cFpe6
-	 /hqoCEJtpmr6o6Q3URs6UhF4w3Q0sVdU/xjsRlUF5YfAlwfkBJOsybdUNLqz8OqMFV
-	 CBvoXJq36SUQsOCyr1pc92QbM8F8TOcl7TPvcu568wKxcYa/1+GM10xwTEfVSXT3uN
-	 sHYxFVLFAn3JQ==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v2 02/19] crypto: cmh - add core platform driver
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Saravanakrishnan Krishnamoorthy" <skrishnamoorthy@rambus.com>
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, robh@kernel.org
-In-Reply-To: <20260709203037.1884436-3-skrishnamoorthy@rambus.com>
-References: <20260709203037.1884436-1-skrishnamoorthy@rambus.com>
- <20260709203037.1884436-3-skrishnamoorthy@rambus.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Thu, 09 Jul 2026 20:49:26 +0000
-Message-Id: <20260709204927.A14611F000E9@smtp.kernel.org>
+	s=arc-20240116; t=1783630195; c=relaxed/simple;
+	bh=+X/7zfTcBWAU6ZfVELLup4rp5pw5itToK77aspYcMJc=;
+	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=NKy/DB0ZpufE37ykrtI7teXY+31ys//ekllr/61zz006KSEMpY0O2yif6Q4YdTJCy6sZjuRtP/DdIccpkT7vr8EaCijDGjQiqcmxSNmX7xcSoxml2XoW7zJSmAO/iswVL4Mm77xOopjlJTz3GIANmC9mB2Jxz1rBObWBiEsGmbg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=etjrsUWO; arc=none smtp.client-ip=148.163.135.77
+Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
+	by mx0a-00128a01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 669HV9mn1719973;
+	Thu, 9 Jul 2026 16:49:49 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
+	:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=DKIM; bh=OcqAK
+	ndeytZIWMRUa8tzzK3U0BHe1od5GXO+D1ALDsE=; b=etjrsUWOKWQcIU3yepFIF
+	12x+sex/U3HYwbSi4yXAzpuOPcvFgmRaS0NjMK3SXCOdRiuy8Y9AwUOUdL0HLWVo
+	lM1VDNuAvPsvFsIttWy5v0noVBjnPhUTqHYKnJkvyeSYBpjXBHvMzRNldl11T5Ot
+	7qrqSzZ94oJcuSijEJxJAMZNCVRAcQq8h6zR2YcJyAm3A6CX4CxCw2S2D/pHS1aH
+	pLdSIiesT6NnR8QHlsd8pZ+M+JPQ/IPB6l+hJmvBXcu/ZAmiDb73C4BN0FWv8ZuM
+	kgQQGf6/emnl3uKWEB5CrG4K24R6YLKWWdLEJQ47uX5QeRKayPw50hfVbaPshWCc
+	w==
+Received: from nwd2mta4.analog.com ([137.71.173.58])
+	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 4fa4v9ku78-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 09 Jul 2026 16:49:49 -0400 (EDT)
+Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
+	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 669Knl3J046385
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 9 Jul 2026 16:49:48 -0400
+Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by ASHBMBX9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.37; Thu, 9 Jul
+ 2026 16:49:47 -0400
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server id 15.2.1748.37 via Frontend
+ Transport; Thu, 9 Jul 2026 16:49:47 -0400
+Received: from work.maxim-ic.internal ([10.66.6.192])
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 669KnWJ8003676;
+	Thu, 9 Jul 2026 16:49:34 -0400
+From: Marcelo Schmitt <marcelo.schmitt@analog.com>
+To: <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+CC: <jic23@kernel.org>, <nuno.sa@analog.com>, <Michael.Hennerich@analog.com>,
+        <dlechner@baylibre.com>, <andy@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <julianbraha@gmail.com>,
+        <marcelo.schmitt1@gmail.com>,
+        Conor Dooley <conor.dooley@microchip.com>
+Subject: [PATCH v6 1/4] dt-bindings: iio: adc: Add ltc2378
+Date: Thu, 9 Jul 2026 17:49:27 -0300
+Message-ID: <1a3259037ac87539490c8e070487703614e41e62.1783629101.git.marcelo.schmitt@analog.com>
+X-Mailer: git-send-email 2.39.2
+In-Reply-To: <cover.1783629101.git.marcelo.schmitt@analog.com>
+References: <cover.1783629101.git.marcelo.schmitt@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNzA5MDIwNiBTYWx0ZWRfX/30rJwTkU9+F
+ zpFfGJd3ukKS0BpmzAolvtONe6eEjlquKKFZiELIk4sgRsSPfS6zqYjT6KEEtsCLdTX8PDKpnPZ
+ dJzAyCEdxqdg3oBXSchZ9/+ujjr3w9vJ3FPEr1nVFZ1Qh/6YfUvjCedGnWKSsbZoN2Z7lrJlG/E
+ SiUXQcjQliUaq1sFdxBM+P91ThskjTtMkQqjhY6TYJFfkeushcNjUfLIpBFEFBGdXzZDfXKXIFB
+ ENYX4cieIQMGlIdHNRCMilXY5R3y4aV45v7KQW95nZ0l+lPS8iqGwtTOI+c+pn+LXIjznh6yCSo
+ lAg9QfhbdUn9mvdCkLV10iXmpd9aYlYV5qZLZCr3lfc+gd5gjNeV4fIoaQp2Vs0G7xtroowfRhA
+ ux7lk0guW3ePq8cpPCu51pOd9w/UwDGmPEvYNco12zwK/OkwgKlYdj727ddFN6KMhSFk0uZfckC
+ lPJLN0uGGUo6LBPIOAQ==
+X-Proofpoint-GUID: t2bUIObVDYbibU3yNFxEMFr5FuyU8zIX
+X-Proofpoint-Spam-Info: AW1haW4tMjYwNzA5MDIwNiBTYWx0ZWRfXwt0VizXGLGoh
+ 2YrxJtt0+QfP/j5R0FuHv0cYuIjSNIvAgAyp6JKj4IbaNXGYtyU811A3QJbJVGQI4PGMujdTW3J
+ 9FrPsQz/zvAFOBumTlX7qByuoYp/TurWiqDdIzYPjrBx1o325Ucd
+X-Proofpoint-ORIG-GUID: t2bUIObVDYbibU3yNFxEMFr5FuyU8zIX
+X-Authority-Analysis: v=2.4 cv=R8Ez39RX c=1 sm=1 tr=0 ts=6a50096d cx=c_pps
+ a=3WNzaoukacrqR9RwcOSAdA==:117 a=3WNzaoukacrqR9RwcOSAdA==:17
+ a=RAioF0-LDSMA:10 a=VkNPw1HP01LnGYTKEx00:22 a=0sLvza09kfJOxVLZPwjg:22
+ a=uXIjobp8t2wMuQ0fPvqm:22 a=gEfo2CItAAAA:8 a=gAnH3GRIAAAA:8 a=XYAwZIGsAAAA:8
+ a=VwQbUJbxAAAA:8 a=zHdOwAC9n8DEQaShn0QA:9 a=sptkURWiP4Gy88Gu7hUp:22
+ a=E8ToXWR_bxluHZ7gmE-Z:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.134,FMLib:17.12.100.49
+ definitions=2026-07-09_04,2026-07-09_04,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ bulkscore=0 clxscore=1015 priorityscore=1501 phishscore=0 lowpriorityscore=0
+ suspectscore=0 adultscore=0 spamscore=0 malwarescore=0 impostorscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2606150000 definitions=main-2607090206
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[analog.com,quarantine];
+	R_MISSING_CHARSET(0.50)[];
+	R_DKIM_ALLOW(-0.20)[analog.com:s=DKIM];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-324137-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	FREEMAIL_CC(0.00)[kernel.org,analog.com,baylibre.com,gmail.com,microchip.com];
+	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-324133-lists,devicetree=lfdr.de];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:jic23@kernel.org,m:nuno.sa@analog.com,m:Michael.Hennerich@analog.com,m:dlechner@baylibre.com,m:andy@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:julianbraha@gmail.com,m:marcelo.schmitt1@gmail.com,m:conor.dooley@microchip.com,m:krzk@kernel.org,m:conor@kernel.org,m:marceloschmitt1@gmail.com,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[marcelo.schmitt@analog.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:skrishnamoorthy@rambus.com,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	RCPT_COUNT_THREE(0.00)[4];
+	FROM_NEQ_ENVFROM(0.00)[marcelo.schmitt@analog.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[analog.com:+];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[smtp.kernel.org:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,sashiko.dev:url,vger.kernel.org:from_smtp,lists.linux.dev:replyto,rambus.com:email]
+	ALIAS_RESOLVED(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCVD_COUNT_SEVEN(0.00)[9]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 4FDD97358A7
+X-Rspamd-Queue-Id: 0786A735935
 
-Thank you for your contribution! Sashiko AI review found 11 potential issue=
-(s) to consider:
-- [High] Force-completing transactions without a synchronous hardware stop =
-allows the hardware to write into freed DMA buffers.
-- [High] Unsynchronized hardware FLUSH commands race with TM thread VCQ sub=
-missions, corrupting the DMA queue.
-- [High] Concurrent modification of the CMQ drain list during timeout cance=
-llation corrupts list pointers.
-- [High] TM thread temporarily detaches messages from the CMQ, causing sync=
-hronous timeouts to bypass ABORT and allow DMA into freed memory.
-- [High] `cmh_tm_quiesce()` frees transaction objects while the active Resp=
-onse Handler accesses them.
-- [High] The per-transaction timeout timer is armed after the hardware door=
-bell, creating a race that leaves the timer armed after transaction complet=
-ion.
-- [High] Invoking completion callbacks while holding the `tm.cmq_lock` spin=
-lock creates a recursive deadlock hazard.
-- [High] TOCTOU race clearing the `pending` flag in `cmh_rh_thread` orphans=
- hardware interrupt bits.
-- [High] Hardware DMA structures lack endianness conversions, breaking the =
-driver on Big-Endian hosts.
-- [Medium] Sysfs attributes 'product' and 'algorithms' claimed in the commi=
-t message are absent from the code.
-- [Medium] The driver masks `-EPROBE_DEFER` from `of_irq_get()`, permanentl=
-y degrading to polling mode.
---
+Document how to describe LTC2378-20 and similar ADCs in device tree.
 
---- Patch [2]: [PATCH v2 02/19] crypto: cmh - add core platform driver ---
-commit ae92a2a00ed6a125d9d63aee91b693b747943c9a
-Author: Alex Ousherovitch <aousherovitch@rambus.com>
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+Signed-off-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
+---
+Change log v5 -> v6:
+- Dropped single compatible strings for parts that hava a fall back so dt-schema
+  can enforces the fallback compliance.
 
-crypto: cmh - add core platform driver
+ .../bindings/iio/adc/adi,ltc2378.yaml         | 170 ++++++++++++++++++
+ MAINTAINERS                                   |   7 +
+ 2 files changed, 177 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ltc2378.yaml
 
-This commit introduces the core platform driver for the CRI CryptoManager H=
-ub
-hardware crypto accelerator. It sets up mailbox queues, a transaction manag=
-er,
-and response handlers for asynchronous crypto operations. The driver uses D=
-MA
-and MMIO to dispatch cryptographic commands to the hardware cores.
+diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ltc2378.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ltc2378.yaml
+new file mode 100644
+index 000000000000..33de1dc4c256
+--- /dev/null
++++ b/Documentation/devicetree/bindings/iio/adc/adi,ltc2378.yaml
+@@ -0,0 +1,170 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/iio/adc/adi,ltc2378.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Analog Devices LTC2378 and similar Analog to Digital Converters
++
++maintainers:
++  - Marcelo Schmitt <marcelo.schmitt@analog.com>
++
++description: |
++  Analog Devices LTC2378 series of ADCs.
++  Specifications can be found at:
++    https://www.analog.com/media/en/technical-documentation/data-sheets/233818fa.pdf
++    https://www.analog.com/media/en/technical-documentation/data-sheets/236416fa.pdf
++    https://www.analog.com/media/en/technical-documentation/data-sheets/236418f.pdf
++    https://www.analog.com/media/en/technical-documentation/data-sheets/236716fa.pdf
++    https://www.analog.com/media/en/technical-documentation/data-sheets/236718f.pdf
++    https://www.analog.com/media/en/technical-documentation/data-sheets/236816f.pdf
++    https://www.analog.com/media/en/technical-documentation/data-sheets/236818f.pdf
++    https://www.analog.com/media/en/technical-documentation/data-sheets/236918fa.pdf
++    https://www.analog.com/media/en/technical-documentation/data-sheets/237016fa.pdf
++    https://www.analog.com/media/en/technical-documentation/data-sheets/237616fa.pdf
++    https://www.analog.com/media/en/technical-documentation/data-sheets/237618fa.pdf
++    https://www.analog.com/media/en/technical-documentation/data-sheets/237620fb.pdf
++    https://www.analog.com/media/en/technical-documentation/data-sheets/237716fa.pdf
++    https://www.analog.com/media/en/technical-documentation/data-sheets/237718fa.pdf
++    https://www.analog.com/media/en/technical-documentation/data-sheets/237720fb.pdf
++    https://www.analog.com/media/en/technical-documentation/data-sheets/237816fa.pdf
++    https://www.analog.com/media/en/technical-documentation/data-sheets/237818fa.pdf
++    https://www.analog.com/media/en/technical-documentation/data-sheets/237820fb.pdf
++    https://www.analog.com/media/en/technical-documentation/data-sheets/237918fb.pdf
++    https://www.analog.com/media/en/technical-documentation/data-sheets/238016fb.pdf
++
++$ref: /schemas/spi/spi-peripheral-props.yaml#
++
++properties:
++  compatible:
++    oneOf:
++      # Single compatible string match.
++      - enum:
++          - adi,ltc2338-18
++          - adi,ltc2364-16
++          - adi,ltc2364-18
++          - adi,ltc2376-16
++          - adi,ltc2376-18
++          - adi,ltc2376-20
++
++      # Low sample rate fallback for 16-bit unipolar sensors.
++      - items:
++          - enum:
++              - adi,ltc2370-16 # 2 MSPS
++              - adi,ltc2368-16 # 1 MSPS
++              - adi,ltc2367-16 # 500 kSPS
++          - const: adi,ltc2364-16 # fallback (250 kSPS)
++
++      # Low sample rate fallback for 18-bit unipolar sensors.
++      - items:
++          - enum:
++              - adi,ltc2369-18 # 1.6 MSPS
++              - adi,ltc2368-18 # 1 MSPS
++              - adi,ltc2367-18 # 500 kSPS
++          - const: adi,ltc2364-18 # fallback (250 kSPS)
++
++      # Low sample rate fallback for 16-bit bipolar sensors.
++      - items:
++          - enum:
++              - adi,ltc2380-16 # 2 MSPS
++              - adi,ltc2378-16 # 1 MSPS
++              - adi,ltc2377-16 # 500 kSPS
++          - const: adi,ltc2376-16 # fallback (250 kSPS)
++
++      # Low sample rate fallback for 18-bit bipolar sensors.
++      - items:
++          - enum:
++              - adi,ltc2379-18 # 1.6 MSPS
++              - adi,ltc2378-18 # 1 MSPS
++              - adi,ltc2377-18 # 500 kSPS
++          - const: adi,ltc2376-18 # fallback (250 kSPS)
++
++      # Low sample rate fallback for 20-bit bipolar sensors.
++      - items:
++          - enum:
++              - adi,ltc2378-20 # 1 MSPS
++              - adi,ltc2377-20 # 500 kSPS
++          - const: adi,ltc2376-20 # fallback (250 kSPS)
++
++  reg:
++    maxItems: 1
++
++  spi-max-frequency:
++    maximum: 100000000
++
++  vdd-supply:
++    description: A 2.5V supply that powers the chip (VDD).
++
++  ovdd-supply:
++    description:
++      A 1.71V to 5.25V supply that sets the logic level for digital interface.
++
++  ref-supply:
++    description:
++      Voltage reference input that determines the scale of ADC conversions.
++
++  refin-supply:
++    description:
++      Alternative voltage reference input.
++
++  cnv-gpios:
++    description:
++      When provided, this property indicates the GPIO that is connected to the
++      CNV pin.
++    maxItems: 1
++
++  pwms:
++    description: PWM signal connected to the CNV pin.
++    maxItems: 1
++
++  interrupts:
++    description:
++      Interrupt for signaling the completion of conversion results. The active
++      low signal provided on the BUSY pin asserts when ADC conversions finish.
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++  - vdd-supply
++  - ovdd-supply
++
++allOf:
++  # Except for LTC2338, all designs require a voltage reference input
++  - if:
++      properties:
++        compatible:
++          not:
++            contains:
++              enum:
++                - adi,ltc2338-18
++    then:
++      required:
++        - ref-supply
++      properties:
++        refin-supply: false
++    else:
++      properties:
++        ref-supply: false
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
++    spi {
++        #address-cells = <1>;
++        #size-cells = <0>;
++        adc@0 {
++            compatible = "adi,ltc2378-20", "adi,ltc2376-20";
++            reg = <0>;
++            spi-max-frequency = <71000000>;
++            vdd-supply = <&supply_2_5V>;
++            ovdd-supply = <&supply_3_3V>;
++            ref-supply = <&supply_5V>;
++            cnv-gpios = <&gpio0 88 GPIO_ACTIVE_HIGH>;
++            interrupts = <7 IRQ_TYPE_EDGE_FALLING>;
++            interrupt-parent = <&gpio>;
++        };
++    };
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 2b1ec46c5919..f0ae26699c99 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -15343,6 +15343,13 @@ S:	Maintained
+ F:	Documentation/devicetree/bindings/iio/dac/lltc,ltc1660.yaml
+ F:	drivers/iio/dac/ltc1660.c
+ 
++LTC2378 IIO ADC DRIVER
++M:	Marcelo Schmitt <marcelo.schmitt@analog.com>
++L:	linux-iio@vger.kernel.org
++S:	Supported
++W:	https://ez.analog.com/linux-software-drivers
++F:	Documentation/devicetree/bindings/iio/adc/adi,ltc2378.yaml
++
+ LTC2664 IIO DAC DRIVER
+ M:	Michael Hennerich <michael.hennerich@analog.com>
+ M:	Kim Seer Paller <kimseer.paller@analog.com>
+-- 
+2.53.0
 
-> - Sysfs attributes (fw_version, hw_version, product, algorithms)
-
-[Severity: Medium]
-The commit message mentions 'product' and 'algorithms' sysfs attributes, but
-are these actually implemented in the code? Looking at the cmh_sysfs_attrs
-array in cmh_sysfs.c, only fw_version, hw_version, boot_status, mbx_availab=
-le,
-and mbx_count appear to be present.
-
-> diff --git a/drivers/crypto/cmh/include/cmh_vcq.h b/drivers/crypto/cmh/in=
-clude/cmh_vcq.h
-> --- a/drivers/crypto/cmh/include/cmh_vcq.h
-> +++ b/drivers/crypto/cmh/include/cmh_vcq.h
-[ ... ]
-> struct dma_scattergather_item {
-> 	u64 lli;
-> 	u64 src;
-> 	u64 dst;
-> 	u64 len;
-> };
-
-[Severity: High]
-Will this driver operate correctly on big-endian architectures? The DMA
-scatter-gather items and VCQ command structures are defined using native u64
-types. If the hardware expects little-endian layout, do we need explicit
-endianness conversions here and when copying data to the DMA slots in
-cmh_dma_build_sg() and submit_vcq()?
-
-> diff --git a/drivers/crypto/cmh/cmh_txn.c b/drivers/crypto/cmh/cmh_txn.c
-> --- a/drivers/crypto/cmh/cmh_txn.c
-> +++ b/drivers/crypto/cmh/cmh_txn.c
-[ ... ]
-> static int submit_vcq(struct command_msg *msg, u32 mbx_idx)
-> {
-[ ... ]
-> 	/* Ring doorbell: advance tail by number of VCQs submitted */
-> 	cmh_reg_write32(tail + num_vcqs, mbx->reg_base, R_MBX_QUEUE_TAIL);
->=20
-> 	/* Arm per-request timeout after doorbell (async only) */
-> 	if (msg->timeout_jiffies)
-> 		mod_timer(&txn->timeout_timer,
-> 			  jiffies + msg->timeout_jiffies);
-
-[Severity: High]
-Can a concurrent mailbox flush operation corrupt the hardware queue here? I=
-f a
-watchdog or debugfs routine issues a flush command asynchronously after the=
- TM
-thread reads the tail but before writing the new tail to the doorbell, could
-the hardware reset the tail to zero only for it to be overwritten with an
-advanced value pointing to empty DMA slots?
-
-[Severity: High]
-Is there a race condition with the timeout timer being armed? The doorbell
-is rung before mod_timer() is called. If the hardware completes the operati=
-on
-extremely quickly, could cmh_txn_finish() process the completion and delete
-the timer before it gets armed here, leaving an active timer on a freed
-transaction?
-
-[ ... ]
-> static int cmh_tm_thread(void *data)
-> {
-[ ... ]
-> 		/* Dequeue one command message */
-> 		spin_lock_irqsave(&tm.cmq_lock, flags);
-[ ... ]
-> 		msg =3D list_first_entry(&tm.cmq, struct command_msg, list);
-> 		list_del_init(&msg->list);
-> 		cmq_depth--;
-
-[Severity: High]
-Could this temporary removal from the message queue lead to a use-after-free
-on timeouts? The message is detached from the list before checking mailbox
-availability. If a synchronous caller times out during this detached window,
-the cancellation attempt will fail. Because the actual mailbox is still
-unassigned, the timeout handler skips sending an abort command and frees the
-DMA buffers. However, the thread might later re-add and submit this message,
-instructing hardware to write to freed memory.
-
-[ ... ]
-> 		if (!list_empty(&tm.backlog)) {
-> 			struct command_msg *bl;
-[ ... ]
-> 			if (bl->complete)
-> 				bl->complete(bl->completion_data,
-> 					     -EINPROGRESS);
-> 		}
->=20
-> 		spin_unlock_irqrestore(&tm.cmq_lock, flags);
-
-[Severity: High]
-Can this recursive spinlock acquisition cause a deadlock? The code calls the
-completion callback with the in-progress status while holding the command
-queue lock. If the crypto framework consumer responds to this callback by
-submitting a new request, won't the submission attempt to acquire the exact
-same spinlock on the same CPU?
-
-[ ... ]
-> static void cmh_tm_stop_and_drain_cmq(void)
-> {
-[ ... ]
-> 	list_for_each_entry_safe(msg, tmp_msg, &cmq_drain, list) {
-> 		list_del(&msg->list);
-> 		if (msg->complete)
-> 			msg->complete(msg->completion_data, -ECANCELED);
-> 		command_msg_put(msg);
-> 	}
-
-[Severity: High]
-Is it safe to iterate over the spliced local drain list without holding a
-lock here? If a synchronous request times out simultaneously, the cancellat=
-ion
-function will acquire the queue lock, see that the message's list node isn't
-empty (since it is on the local drain list), and call list_del_init(). This
-concurrent modification could corrupt the list pointers during iteration.
-
-[ ... ]
-> void cmh_tm_quiesce(void)
-> {
-[ ... ]
-> 			list_for_each_entry_safe(txn, tmp_txn, &drain, list) {
-> 				list_del(&txn->list);
->=20
-> 				if (timer_delete_sync(&txn->timeout_timer))
-> 					txn_put(txn);
->=20
-> 				old =3D atomic_cmpxchg(&txn->state,
-> 						     TXN_INFLIGHT,
-> 						     TXN_COMPLETE);
-> 				if (txn->complete) {
-> 					if (old =3D=3D TXN_INFLIGHT)
-> 						txn->complete(txn->completion_data,
-> 							      -ECANCELED);
-[ ... ]
-> 				txn_put(txn);
-> 			}
-
-[Severity: High]
-Could this lead to a use-after-free race with the response handler?
-Transactions are being iterated and freed via txn_put() without holding the
-process lock. Concurrently, the active watchdog might peek at the head
-transaction. If the transaction is freed here before the watchdog reads its
-state, memory corruption could result.
-
-[Severity: High]
-Does completing these transactions with the cancelled status leave the
-hardware in a state where it might overwrite freed memory? The driver
-forcefully completes abandoned requests here (and similarly during module
-cleanup), which prompts callers to free their DMA buffers. Since the hardwa=
-re
-engines haven't been synchronously stopped, could they continue executing a=
-nd
-write into these newly freed buffers?
-
-> diff --git a/drivers/crypto/cmh/cmh_rh.c b/drivers/crypto/cmh/cmh_rh.c
-> --- a/drivers/crypto/cmh/cmh_rh.c
-> +++ b/drivers/crypto/cmh/cmh_rh.c
-[ ... ]
-> void cmh_rh_force_drain_mbx(u32 mbx_idx)
-> {
-[ ... ]
-> 	cmh_reg_write32(MBX_COMMAND_FLUSH, base, R_MBX_COMMAND);
-> 	cmh_rh_poke_tail(base);
-> 	cmh_rh_drain_mbx(mbx_idx, -ECANCELED);
-
-[Severity: High]
-Similar to the quiesce behavior, does issuing a flush and immediately
-draining the mailbox allow the hardware to access freed memory? If the
-flush command completes asynchronously, the hardware might still be accessi=
-ng
-the buffers when the drain completes the transactions, prompting callers
-to release them prematurely.
-
-[ ... ]
-> static irqreturn_t cmh_rh_thread(int irq, void *data)
-> {
-[ ... ]
-> 			irq_bits =3D (u32)atomic_xchg(&rh.mbx[i].irq_bits, 0);
-> 			WRITE_ONCE(rh.mbx[i].pending, false);
-
-[Severity: High]
-Is there a time-of-check to time-of-use race window here? The thread reads
-the interrupt bits using atomic_xchg and subsequently clears the pending fl=
-ag.
-If a hardware interrupt occurs strictly between these two lines, the hardirq
-handler will set the pending flag to true, but this code will immediately
-overwrite it to false. Could this result in orphaned interrupt bits and mis=
-sed
-completions?
-
-[ ... ]
-> static int cmh_rh_resolve_irqs(struct cmh_config *cfg)
-> {
-[ ... ]
-> 		int virq =3D of_irq_get(np, dt_idx);
->=20
-> 		if (virq <=3D 0) {
-> 			dev_warn(cmh_dev(), "rh: failed to map IRQ for MBX%u (DT index %d, rc=
-=3D%d)\n",
-> 				 i, dt_idx, virq);
-> 			return -ENODEV;
-> 		}
-
-[Severity: Medium]
-Does swallowing the deferral error cause issues with interrupt controller
-readiness? If the IRQ controller is not yet ready, of_irq_get() will return
--EPROBE_DEFER, but this code converts it to -ENODEV and falls back to polli=
-ng
-permanently. Should this propagate the deferral so the driver can be probed
-again later?
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260709203037.1884=
-436-1-skrishnamoorthy@rambus.com?part=3D2
 
