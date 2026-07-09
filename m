@@ -1,158 +1,172 @@
-Return-Path: <devicetree+bounces-323735-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-323736-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id b0E/LNCWT2pXkQIAu9opvQ
-	(envelope-from <devicetree+bounces-323735-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 14:40:48 +0200
+	id 2y+EJMaVT2rckAIAu9opvQ
+	(envelope-from <devicetree+bounces-323736-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 14:36:22 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 529F873117F
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 14:40:48 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 295F07310C5
+	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 14:36:22 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=mailbox.org header.s=mail20150812 header.b=tyMdvF2x;
-	dmarc=pass (policy=reject) header.from=mailbox.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-323735-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-323735-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=SkOqs2hC;
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-323736-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-323736-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 6D28131632B0
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2026 12:33:43 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 05E2D304EB4C
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2026 12:35:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DAFC423168;
-	Thu,  9 Jul 2026 12:33:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53E6841C2FB;
+	Thu,  9 Jul 2026 12:35:29 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [80.241.56.172])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D13304229B9;
-	Thu,  9 Jul 2026 12:33:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 293284219F6
+	for <devicetree@vger.kernel.org>; Thu,  9 Jul 2026 12:35:28 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783600413; cv=none; b=czYTjW0xnOS6CwGhXDl5Vfu6jG9GHjT3QG+CF4zVSt6nldTGzYCewqNKKnn+VXJjfm/biCUuxD22ktARzejmCIiCsYZZfvmWd2CI6nrnY5nXzWarwVIe9TFQN4MJYKmFegKPuXVwcw+WwdI1oNfaUwQdVPCBmjhkY+x3ifxzHaY=
+	t=1783600529; cv=none; b=BVlaEy9rF0weHFM8MsmVcPW6jmldQAMYoQTrIGSrPfyaWeQ2M906eOO1qxbpvjIhHoH3GJPhmybYsktKk7IM2vIq3oxRdPJEB2R7zf/QtyIHQccwwzDSZSMipq/SS/T75i6vmhLNCAPk29a11aEgIBRXR2DE/OTMoHYymyoNi6I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783600413; c=relaxed/simple;
-	bh=5SS856U/nCy4jJiMrV8ZnkSZPJeo0BvH/8EL343aghc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=YRJojjeXSnLvt/YA27LJmhYuIt6rv5wqv9BEUk3CK/eKlNY5N1ZHplTUM67XpXQHLjd7HyGPkrjGMijWnJ+iD8uTJ1jX4Tgl1Rr9ejCFgv92X7x0ZZo6yvZFTb+T5x2a2EG/vtZReeNuHyho3+5ZKCbqu7ZAYlzb+MbFQq7RVlo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=tyMdvF2x; arc=none smtp.client-ip=80.241.56.172
-Received: from smtp202.mailbox.org (smtp202.mailbox.org [IPv6:2001:67c:2050:b231:465::202])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA512)
-	(No client certificate requested)
-	by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4gwvWr1BmTzMlHC;
-	Thu, 09 Jul 2026 14:33:28 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1783600408;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=bTRYbwF/XxEjYYFob5S+WLNVX0HYy0ckmE1WUa6o3cY=;
-	b=tyMdvF2xv5nIaXfmCYxbD6fRdAiNP55s0Xay6tcyDLZrqQOMXLTJyKpAAw0Axl9uJsn9H/
-	p8JvUbMcfGOoTIZRbQddoYA0iZ7D5dLVGObch3s0ZKgetZBbBOuGBJHV3zuvlpjIjec333
-	maPFXff9ntUELPQ7/XzebTVp/tx9R/9W2i+mzO9lF9F82FWnTE/+jTH05RsMS1XGZOS7nu
-	zSibBMFF8pCrKFwSRGQfvwvyVTLwG83C9AF0CW0YzlkPEd/nTsLetHNaY1d2vL2XZWF3SK
-	262lnO+lrhsIe+m5MAM8+pTj4smXWeFKJM2iZC7KXGU/1xScS8lLbZhzoKdiWg==
-Message-ID: <c12941e4-3715-404e-b674-090c62b868b8@mailbox.org>
-Date: Thu, 9 Jul 2026 14:33:22 +0200
+	s=arc-20240116; t=1783600529; c=relaxed/simple;
+	bh=6M62vnT518qtuvlLhsOyI0WZDWMqVuHEIFSzMXRGuZg=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=gYXjfNQMozQIvHxydcH3Gtbwnr5oKgQ7vBm5MPx9jS9LtR4ff+1gYom/e/yVMbsOqrH0NBMLluC4WTsnpDOKz3hCvccaZhDRslEiLBHzQZ0Akb5JnM22M+GHXwOeoVQ/+7QZl/84bbtRSYW8kYGvTE0UPuSYRoYUlWGyJDp1e3Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SkOqs2hC; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C062B1F000E9;
+	Thu,  9 Jul 2026 12:35:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1783600528;
+	bh=u9SxWDrc9MHmLLcwdD1FqxuetFSove5bGzTedsZjCN4=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=SkOqs2hCHmhf6/TYaQItx5+VGyycM/5h6KRTph1Mzn1RJtM6NVMse+cMC9pj1C/O2
+	 0oTP3+62U+4s63ikobjXOogrg8oYqlPLCflA5nNbew22boZXQ05QpMJMNDdhg5udSa
+	 jKal9HuJwfY+DonPQm8XwmsGom3cumyWqg1KP6dOb/Ou1XewRj//kOIkR34Pnf/lIY
+	 m/2AzXtM2lRAjgBcQbVM37dkFpSk75FzIjGAs5lu0dz2/9W5GS1AtAftfRZJMKgHsz
+	 +AdXIwWgdz7cGpZ7zUCnPVEgskFjKsHbIVs4RZJRtJW9F/vs8GhY3GdmkPZmizWqpC
+	 YDjFP8f8qHxQg==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v4 13/14] arm64: dts: mediatek: mt8195-cherry: Add M.2
+ E-key slot
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Chen-Yu Tsai" <wenst@chromium.org>
+Cc: conor+dt@kernel.org, robh@kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260709095726.704448-14-wenst@chromium.org>
+References: <20260709095726.704448-1-wenst@chromium.org>
+ <20260709095726.704448-14-wenst@chromium.org>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Thu, 09 Jul 2026 12:35:27 +0000
+Message-Id: <20260709123527.C062B1F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Subject: Re: [PATCH v4 0/5] PCI: rcar-gen4: irqchip/gic-v3: Handle GIC ITS
-To: Manivannan Sadhasivam <mani@kernel.org>
-Cc: linux-pci@vger.kernel.org, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?=
- <kwilczynski@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
- Catalin Marinas <catalin.marinas@arm.com>, Conor Dooley
- <conor+dt@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>, Marc Zyngier <maz@kernel.org>,
- Rob Herring <robh@kernel.org>,
- Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-renesas-soc@vger.kernel.org
-References: <20260707203743.88299-1-marek.vasut+renesas@mailbox.org>
- <ybnitlgx3dcqsesubz6jz7pn6snseuxhtz564tinbtvukianaq@33ubmcynyqmt>
-Content-Language: en-US
-From: Marek Vasut <marek.vasut@mailbox.org>
-In-Reply-To: <ybnitlgx3dcqsesubz6jz7pn6snseuxhtz564tinbtvukianaq@33ubmcynyqmt>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-MBO-RS-ID: a566168d3a29b829815
-X-MBO-RS-META: r9xtkd8txggmkzk54mcmgk1r644y6icg
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-1.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[mailbox.org,reject];
-	R_DKIM_ALLOW(-0.20)[mailbox.org:s=mail20150812];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-323735-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:mani@kernel.org,m:linux-pci@vger.kernel.org,m:kwilczynski@kernel.org,m:bhelgaas@google.com,m:catalin.marinas@arm.com,m:conor+dt@kernel.org,m:geert+renesas@glider.be,m:krzk+dt@kernel.org,m:lpieralisi@kernel.org,m:maz@kernel.org,m:robh@kernel.org,m:yoshihiro.shimoda.uh@renesas.com,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-doc@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-renesas-soc@vger.kernel.org,m:conor@kernel.org,m:geert@glider.be,m:krzk@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[marek.vasut@mailbox.org,devicetree@vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-323736-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS(0.00)[m:wenst@chromium.org,m:conor+dt@kernel.org,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[marek.vasut@mailbox.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[mailbox.org:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NO_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	RCPT_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mailbox.org:from_mime,mailbox.org:dkim,mailbox.org:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 529F873117F
+X-Rspamd-Queue-Id: 295F07310C5
 
-On 7/9/26 2:19 PM, Manivannan Sadhasivam wrote:
-> On Tue, Jul 07, 2026 at 10:35:38PM +0200, Marek Vasut wrote:
->> Configure all R-Car Gen4 PCIe controller MSI registers fully, both in
->> case MSI are enabled and disabled.
->>
->> Patch GIC ITS driver and add quirks for R-Car Gen4 GIC ITS, which is
->> configured to 32-bit address width for AXI or APB interface.
->>
->> Switch R-Car V4H to use GIC ITS in its DT and describe the GIC ITS
->> implementation cacheable and shareable limitations.
->>
->> Marek Vasut (5):
->>    PCI: dwc: Determine whether iMSI is used before calling .init
->>    PCI: rcar-gen4: Configure AXIINTC if iMSI-RX not used
->>    irqchip/gic-v3: Refactor GIC600 limited to 32bit PA erratum handling
->>    irqchip/gic-v3: Add Renesas R-Car Gen4 erratum workaround
-> 
-> Is there a functional dependency between irqchip and PCI patches? Since the
-> irqchip patches touch ARM64 Kconfig etc... I'm wondering if it still need to go
-> through PCI tree.
-I do not believe there is.
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [Medium] Wake-on-WLAN (WoWLAN) is broken due to the removal of the `wakeu=
+p-source` property.
+--
 
-These two configure the PCIe controller hardware:
-   PCI: dwc: Determine whether iMSI is used before calling .init
-   PCI: rcar-gen4: Configure AXIINTC if iMSI-RX not used
+--- Patch [13]: [PATCH v4 13/14] arm64: dts: mediatek: mt8195-cherry: Add M=
+.2 E-key slot ---
+commit d236ad7145736f4079f93e3a3bc9ca160b9f82df
+Author: Chen-Yu Tsai <wenst@chromium.org>
 
-These two fill in GIC ITS quirks:
-   irqchip/gic-v3: Refactor GIC600 limited to 32bit PA erratum handling
-   irqchip/gic-v3: Add Renesas R-Car Gen4 erratum workaround
+arm64: dts: mediatek: mt8195-cherry: Add M.2 E-key slot
 
-This one does yes depend on the two and two patches above, and can only 
-be applied once all four aforementioned patches land, otherwise things 
-really yes will break:
-   arm64: dts: renesas: r8a779g0: Add GICv3 ITS and update PCIe nodes
+The Mt8195 Cherry design features an M.2 E-key slot for WiFi/BT combo
+cards. This patch adds the proper representation for it, replacing the PCIe
+wifi node and vpcie3v3-supply property under the PCIe controller.
 
-Would you like me to split the series up , or can you and Marc (?) pick 
-the relevant parts via matching trees ?
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi b/arch/arm64=
+/boot/dts/mediatek/mt8195-cherry.dtsi
+> index ef7afc436aefc..8d4cc30d91e44 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
+
+[ ... ]
+
+> @@ -791,14 +832,14 @@ pcie@0 {
+>  		reg =3D <0 0 0 0 0>;
+>  		device_type =3D "pci";
+>  		num-lanes =3D <1>;
+> -		vpcie3v3-supply =3D <&pp3300_wlan>;
+>  		#address-cells =3D <3>;
+>  		#size-cells =3D <2>;
+>  		ranges;
+> =20
+> -		wifi@0 {
+> -			reg =3D <0 0 0 0 0>;
+> -			wakeup-source;
+
+[Severity: Medium]
+Will the removal of the wakeup-source property break Wake-on-WLAN for this
+device?
+
+The MT76 PCI driver checks for the wakeup-source property on the device's
+device tree node to enable Wake-on-WLAN. By replacing the wifi@0 PCI device
+node with an OF graph port node, the PCI device loses this property.
+
+Additionally, because the port node lacks a reg mapping, the PCI core won't
+associate it with the PCI device, leaving the PCI device's of_node as NULL.
+
+Does this board still expect Wake-on-WLAN to be enabled by default for the
+Wi-Fi card during system suspend and resume flows?
+
+> +		port {
+> +			pcie1_ep: endpoint {
+> +				remote-endpoint =3D <&wifi_ep>;
+> +			};
+>  		};
+>  	};
+>  };
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260709095726.7044=
+48-1-wenst@chromium.org?part=3D13
 
