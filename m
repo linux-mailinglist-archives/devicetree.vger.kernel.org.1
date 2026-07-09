@@ -1,372 +1,155 @@
-Return-Path: <devicetree+bounces-323917-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-323922-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id RM5FJpnDT2ogoAIAu9opvQ
-	(envelope-from <devicetree+bounces-323917-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 17:51:53 +0200
+	id DJjvDAvET2o9oAIAu9opvQ
+	(envelope-from <devicetree+bounces-323922-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 17:53:47 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id DBCB0733210
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 17:51:52 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id CBFCA733259
+	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 17:53:46 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=baylibre.com header.s=google header.b=gEYXdEq9;
+	dkim=none;
 	dmarc=none;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-323917-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-323917-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-323922-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-323922-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id CEBEE308C055
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2026 15:43:34 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id E1A873063964
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2026 15:52:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E94AD41A79E;
-	Thu,  9 Jul 2026 15:43:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E1E5423160;
+	Thu,  9 Jul 2026 15:52:38 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f46.google.com (mail-ot1-f46.google.com [209.85.210.46])
+Received: from mail-oo1-f42.google.com (mail-oo1-f42.google.com [209.85.161.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D48D040BCD6
-	for <devicetree@vger.kernel.org>; Thu,  9 Jul 2026 15:43:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2DA8426D18
+	for <devicetree@vger.kernel.org>; Thu,  9 Jul 2026 15:52:36 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783611813; cv=none; b=r+xVtiCnoZS3s3EWzuSBMSwQrXSmj0f3wYw3kpHS3QCquJftZPjL1C0DssXa4p37qLLjEwWLmBx/nR4GPBuvGEzibOpiWKesgq8Qkb/TJ6j0tSEybHWcIG4uel0rfMWV3UdIra/ugZbcUY6hwdACxogZHWB38vMsv8JVdw1VpQ4=
+	t=1783612357; cv=none; b=HHxlKZe4QSKuyx0rHmN0ThtHqebaFBgoTWgIE+vPOyjrwJ7CBaXXYLMNBAxlO00OsbxDL3brh79g/hcyMyzdVX309LMFfkd4hNrsvESNfdpK+TA8yCrV1ACTX9JHk0wcluqpcOhGxZPd7syfaTUwFgnSUKKL8XiVP8tqD8eauqo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783611813; c=relaxed/simple;
-	bh=46Vxt43agJazPbO88O2vqw7lt9h7u00qTiJXc2dgbv8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ap0+mVXL+kIk+oLwuVpFuHdnVu+Mzhrs2gCnvzrpa2Rdq7ky9HJkpTGShc5NXglQEfZY24V2mwDHp6TT23zGFrlNJCZbmXt9CT+uBKkx933Je3B/XBGAX4EQunQS8aR6j3DqY4+TSUBERA3PstFkMfa1+pgmmNyXqWQ7vI8dt/s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.b=gEYXdEq9; arc=none smtp.client-ip=209.85.210.46
-Received: by mail-ot1-f46.google.com with SMTP id 46e09a7af769-7e9fc3de7ceso4006a34.1
-        for <devicetree@vger.kernel.org>; Thu, 09 Jul 2026 08:43:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre.com; s=google; t=1783611809; x=1784216609; darn=vger.kernel.org;
-        h=content-transfer-encoding:content-type:in-reply-to:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=K71vA2rRxJHnRmY4YuInHn+JTOnkMM3kjsWFyARkKU4=;
-        b=gEYXdEq9nRZbXdd/wrFq1do5TqiYjXSW94459W5MmhV5Xeyaf/hcrvCvUVGE448PMK
-         TQNNjHq9f7FqqO7N46i7+rAJmwaQmOoza3zqAz6hqFi5qWRpKW0LCGUCMHcrmFcr9Ihw
-         7gIGBpwxuSlCQiffMs5I0nTRgqeKS0Z4ZR7I6Ip/RpA1/JdIznKiV2cUcHhkjAOFDOy7
-         Vxzc7D8/gAlXaCfBsRtO1cI9Y2+3KcdmuMrD54Gj+I/x6H5W2FvLl5eVu+7RQHvVgy6Z
-         ylQGXLubndBym826n7XPXDijePHj7mCAZP+HlKbLfMkKQUjFIjw2C6hgPz4saxTVPMi+
-         up5Q==
+	s=arc-20240116; t=1783612357; c=relaxed/simple;
+	bh=FK7tiZEI0WffDbTlu07kAZuJRwj0uLdhH15mcZOjFjk=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=siaaqBU/5vBmdZWiHRCHOaI9QyPGRTYoZP4YdaG9JambsjOtebcmUiVVIcjwfb037TvbUIpixjWdM7TJIIkAwDGCgDXyAAQB3C+P6gYi52PZF/QImXtzAJund4GcuUK4B3RmvVOFhjGDSzqqTxPQ3XEiaF4noh6l6BXQzTXp498=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.161.42
+Received: by mail-oo1-f42.google.com with SMTP id 006d021491bc7-6a354eea06dso2263eaf.3
+        for <devicetree@vger.kernel.org>; Thu, 09 Jul 2026 08:52:36 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783611809; x=1784216609;
-        h=content-transfer-encoding:content-type:in-reply-to:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=K71vA2rRxJHnRmY4YuInHn+JTOnkMM3kjsWFyARkKU4=;
-        b=BzCUqaBoYouEEvov3AIegJ5EAesQow7JPEzm8HEA/izvWQV5cvrNjGTqgp7OibGbCd
-         tYAzKCq7595G3E+AMjLvoIqL3m5bwndylg9TOPx6rLSmP2LTFXkQY0D+ddkrBJKRJXBK
-         mhdd8Ld6Xn5k0tFqCg9VMRDG4wAjRkxD2itSln7GSjnUuvfORzxBK0Ay2I7o32aDsoau
-         Z7eG6BwAf5SCKgZ7GjjDN4kJYMCcE0YHb5tvd1zvRsesgf1zS0ntzj5ccMd194KKrXfz
-         wFKWcOQp+lqJoBzvPRTMiHBKPRY+/c+nEvQf5kPnsOQGoD/e52t3Crj8vSlodrp12ZOf
-         G7Pg==
-X-Forwarded-Encrypted: i=1; AFNElJ9O4lxAYYvoxbYHXz8J5JM7jiWnx9RJnoGHnO2S7GD7uIs/ngXNt9Q5dnw60iM0zCtt9H2GRMs5Jow7@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx/gJUxlM37aLpODCuanvQ3AiVDhg/T+KV0QJFeDGEqT6vtjHPJ
-	LX1Om+sywPhrYQLsmR4kTZ6kEoHnu5mh9RnCRijFEsCuu3DtBpxoDx7IzLOOCtBIwl8=
-X-Gm-Gg: AfdE7clvauBbuC+iU/3VXPq8bUKKlGb/ftbKwXyjCJvnPrzsBB8qQsg+2GJHs8/3S10
-	FHX+v1s+XpfnYwEYpWWLtoxk2s4tiZfWxBkyu8DZ+h/Un8Z9ZtiDrDyla25eV9hSpa7ArYJihac
-	OS4jJUrTqqtvTfnyb9A5XLdltsjNnMPhLK39OFJRQz1oby4QTtG3tFyLruuGljj4TLRoDvndbXd
-	sR5STIodzzBJJ485z13Pz6ijGHsjX3NMwaBLAZl8iq2TyKarsuwDb4eefXcKPE7x4ZZvUOWYikG
-	gp+yeeBlgnUgD0W9n993HrTBGlCPzl1WFxT05baBFjB4olYakcSkv7mmZJw9JvpervutNWUxIYk
-	+mJrk83j2/XnxL1XyWuAGbxplzMykcnRxh7mj1JFga2AmIzFPR8Twj/aDvEuOGjv646yV/atE97
-	o22pz/0SBZ5+wSP7XCCVzLh3ofylwBX1t7PXpl8NxnbJap3DEbCQy4dwIGrWnLG+Q=
-X-Received: by 2002:a05:6830:82bb:b0:7dc:cdea:7d9 with SMTP id 46e09a7af769-7ebcff82b2dmr5550730a34.22.1783611808795;
-        Thu, 09 Jul 2026 08:43:28 -0700 (PDT)
-Received: from ?IPV6:2600:8803:e7e4:500:2a8b:8d9e:f359:9a35? ([2600:8803:e7e4:500:2a8b:8d9e:f359:9a35])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7ebcb3f27besm4343356a34.25.2026.07.09.08.43.27
+        d=1e100.net; s=20251104; t=1783612356; x=1784217156;
+        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
+         :references:mime-version:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to:content-type;
+        bh=iqrcHFDoPWS2t5kW57shcQV+qLcmaCnZOWUcXcNxWfY=;
+        b=JH054x2n0+jieE0xcyd/jQr4DJ8JqGOZEFFNx/r01dEGwcSsE68lbEnvFfjSWrg8EW
+         qW8WgU69/iwaCH43giFiD6dfnqGMY0gQ0skcrKyaK2e0qKloYz4ovNKu5mqXxx1vZPF6
+         GXwTUsA3QFthAy0FYl4U7JmDCRSfPZW9MJ3OOHVcsf68ySepdiMMj6s3xbANY7/pEvhn
+         PqYGJnDRGCw1zl2GUecPUvtms1UUIlyIB39xRTYJYWtmkXWhimDDefOeTqdG5cShjLnB
+         m8UUJCg/H8GbdV7XUblJICdAWPYLSik8ABtWVNFBXBMm9jf5i6qmJP+adah1G6TYwDMh
+         MkqQ==
+X-Forwarded-Encrypted: i=1; AFNElJ+j+87OF7KUNZoopd26SovoQqgLENH16iGTaY8zO6YNnjZbPjBUTUZZRrc1umneMBQguLMD9e2++ac0@vger.kernel.org
+X-Gm-Message-State: AOJu0YwUQvk2cY3fgM6C16FXoU6iTiqpd3xSxLjfmwsugw/kx5LheTrq
+	XYcgoTCybq5/KmzpqaHZwlj2vDnROa5TEa4/Ea0u+RgDAgMZp1Fwo2N3BXZOZEPgpJ4=
+X-Gm-Gg: AfdE7cmqicIstXTfrCw/sMf06Z8dJ2RqiCNy1sDkiX7VywbWxEEQSIKeYqmf3BdLbDy
+	YYmrXx5vI5PhUg3CC+4d/eyO6jK98NmJn4AA/eoDSVewmm0GDQxlNLRANkWNvQZ7loU0wmF0y7S
+	tSR4T2oapQHvuZytlR3MOpQHw0kboA+5J2m22JoCFKJZRV+/4JynUUBjQEqWmw80zXu1jixaG9a
+	GBTfj0idoEc3t+klY7izZ2ENu+oJzCQHhke11eY38yEUIOvTCwxk4UvpfdaC065cRCmRMMTZ96D
+	KtGcebNhUaSYJsXgDnwUm75njf7OP4COCx2Q2vju6xFziv1nKa78e3QDn9va3znJ/ifX5iPh5J+
+	UUoCf9/JFSIlveFcUnWcBi7dkje06ic34gfut3+C4mPgiAc0IkkgvYbZpQtzKbzHLDLS3ytpauO
+	wSRfhf8CsCTjTbwAawfjBKZPhFUIrHYLSexOYbo4QyiGWMwaIwQQ==
+X-Received: by 2002:a05:6820:210e:b0:69e:c2ef:617e with SMTP id 006d021491bc7-6a36d8eb23amr5303944eaf.30.1783612355560;
+        Thu, 09 Jul 2026 08:52:35 -0700 (PDT)
+Received: from mail-oo1-f44.google.com (mail-oo1-f44.google.com. [209.85.161.44])
+        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-451912444f0sm2296484fac.1.2026.07.09.08.52.34
+        for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 09 Jul 2026 08:43:28 -0700 (PDT)
-Message-ID: <36df7c4f-82ea-4ed5-a4f9-3a29c75dc99a@baylibre.com>
-Date: Thu, 9 Jul 2026 10:43:27 -0500
+        Thu, 09 Jul 2026 08:52:35 -0700 (PDT)
+Received: by mail-oo1-f44.google.com with SMTP id 006d021491bc7-6a321bb0328so2073eaf.2
+        for <devicetree@vger.kernel.org>; Thu, 09 Jul 2026 08:52:34 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AFNElJ8QhbCsUshsHkp6+FHvVFG7ssb/NIgSSNPdOSd12zyhsrmoG2LQP+EZiwIexRqpMrciZj6LY4IwxYGp@vger.kernel.org
+X-Received: by 2002:a05:6102:f8b:b0:6c2:e290:cc69 with SMTP id
+ ada2fe7eead31-744e01021e1mr4657081137.23.1783611946911; Thu, 09 Jul 2026
+ 08:45:46 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/6] dt-bindings: iio: adc: Add AD7768
-To: Janani Sunil <janani.sunil@analog.com>, =?UTF-8?Q?Nuno_S=C3=A1?=
- <nuno.sa@analog.com>, Michael Hennerich <Michael.Hennerich@analog.com>,
- Jonathan Cameron <jic23@kernel.org>, Andy Shevchenko <andy@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Olivier Moysan <olivier.moysan@foss.st.com>,
- Philipp Zabel <p.zabel@pengutronix.de>, Linus Walleij <linusw@kernel.org>,
- Bartosz Golaszewski <brgl@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
- Shuah Khan <skhan@linuxfoundation.org>
-Cc: linux@analog.com, linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
- linux-doc@vger.kernel.org, jananisunil.dev@gmail.com
-References: <20260709-ad7768-driver-v1-0-44e1194fd96a@analog.com>
- <20260709-ad7768-driver-v1-1-44e1194fd96a@analog.com>
-Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <20260709-ad7768-driver-v1-1-44e1194fd96a@analog.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20260707102418.1646159-1-claudiu.beznea+renesas@tuxon.dev> <20260707102418.1646159-2-claudiu.beznea+renesas@tuxon.dev>
+In-Reply-To: <20260707102418.1646159-2-claudiu.beznea+renesas@tuxon.dev>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 9 Jul 2026 17:45:35 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdUEQVN7VqsmQ6EKWxazrFyQdY4edaHyt8pPFEaJfGgbpQ@mail.gmail.com>
+X-Gm-Features: AUfX_mz8Do1OkGKS8SDkGEbLBy8tojYuESbee1M6XmgysSPwrDRBiIuowYvmngs
+Message-ID: <CAMuHMdUEQVN7VqsmQ6EKWxazrFyQdY4edaHyt8pPFEaJfGgbpQ@mail.gmail.com>
+Subject: Re: [PATCH 1/8] clk: r9a08g045-cpg: Add clocks and resets for CAN-FD
+To: Claudiu Beznea <claudiu.beznea+renesas@tuxon.dev>
+Cc: mkl@pengutronix.de, mailhol@kernel.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, magnus.damm@gmail.com, 
+	mturquette@baylibre.com, sboyd@kernel.org, bmasney@redhat.com, 
+	biju.das.jz@bp.renesas.com, tu.nguyen.xg@renesas.com, 
+	fabrizio.castro.jz@renesas.com, claudiu.beznea@tuxon.dev, 
+	linux-can@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-clk@vger.kernel.org, Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [0.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_DKIM_ALLOW(-0.20)[baylibre.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-323917-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:janani.sunil@analog.com,m:nuno.sa@analog.com,m:Michael.Hennerich@analog.com,m:jic23@kernel.org,m:andy@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:olivier.moysan@foss.st.com,m:p.zabel@pengutronix.de,m:linusw@kernel.org,m:brgl@kernel.org,m:corbet@lwn.net,m:skhan@linuxfoundation.org,m:linux@analog.com,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-gpio@vger.kernel.org,m:linux-doc@vger.kernel.org,m:jananisunil.dev@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:jananisunildev@gmail.com,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-323922-lists,devicetree=lfdr.de];
+	DMARC_NA(0.00)[linux-m68k.org];
 	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[dlechner@baylibre.com,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[21];
-	DMARC_NA(0.00)[baylibre.com];
+	FORGED_RECIPIENTS(0.00)[m:claudiu.beznea+renesas@tuxon.dev,m:mkl@pengutronix.de,m:mailhol@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:magnus.damm@gmail.com,m:mturquette@baylibre.com,m:sboyd@kernel.org,m:bmasney@redhat.com,m:biju.das.jz@bp.renesas.com,m:tu.nguyen.xg@renesas.com,m:fabrizio.castro.jz@renesas.com,m:claudiu.beznea@tuxon.dev,m:linux-can@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-renesas-soc@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-clk@vger.kernel.org,m:claudiu.beznea.uj@bp.renesas.com,m:krzk@kernel.org,m:conor@kernel.org,m:magnusdamm@gmail.com,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[20];
+	FREEMAIL_CC(0.00)[pengutronix.de,kernel.org,gmail.com,baylibre.com,redhat.com,bp.renesas.com,renesas.com,tuxon.dev,vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FREEMAIL_CC(0.00)[analog.com,vger.kernel.org,gmail.com];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dlechner@baylibre.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[baylibre.com:+];
-	ALIAS_RESOLVED(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	R_DKIM_NA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,devicetree.org:url,baylibre.com:from_mime,baylibre.com:dkim,baylibre.com:mid]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linux-m68k.org:from_mime,linux-m68k.org:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,mail.gmail.com:mid,vger.kernel.org:from_smtp,renesas.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: DBCB0733210
+X-Rspamd-Queue-Id: CBFCA733259
 
-On 7/9/26 3:50 AM, Janani Sunil wrote:
-> Devicetree Bindings for AD7768-4 (4 channel) and AD7768 (8 channel)
-> simultaneous sampling ADC
-> 
-> Signed-off-by: Janani Sunil <janani.sunil@analog.com>
-> ---
->  .../devicetree/bindings/iio/adc/adi,ad7768.yaml    | 285 +++++++++++++++++++++
->  MAINTAINERS                                        |   7 +
->  2 files changed, 292 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7768.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad7768.yaml
-> new file mode 100644
-> index 000000000000..b74fe6aef01c
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7768.yaml
-> @@ -0,0 +1,285 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/adc/adi,ad7768.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Analog Devices AD7768 and AD7768-4 ADC
-> +
-> +maintainers:
-> +  - Janani Sunil <janani.sunil@analog.com>
-> +
-> +description: |
-> +  The AD7768 is a 8-channel, 24-bit simultaneous sampling ADC with configurable
-> +  power and performance modes. The AD7768-4 is a 4-channel version.
+On Tue, 7 Jul 2026 at 12:24, Claudiu Beznea
+<claudiu.beznea+renesas@tuxon.dev> wrote:
+> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>
+> Renesas RZ/G3S SoC has a CAN-FD IP. Add clocks and resets for it.
+>
+> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 
-Probably worth mentioning that this binding is for SPI mode, not for pin control
-mode.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v7.3.
 
-And that the io-backend is for the data output interface, so consumes the DOUTx,
-DCLK, DRDY. Maybe also START? And SYNC_{IN,OUT}?
+Gr{oetje,eeting}s,
 
-> +
-> +  Datasheet at:
-> +    https://www.analog.com/media/en/technical-documentation/data-sheets/ad7768.pdf
+                        Geert
 
-A link to the example HDL project for the io-backend would be helpful too.
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - adi,ad7768
-> +      - adi,ad7768-4
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +    description: Master clock (MCLK)
-
-Could also be XTAL{1,2}.
-
-> +
-> +  avdd-supply:
-> +    description: Analog power supply AVDD1 (4.5V to 5.5V)
-> +
-> +  avss-supply:
-> +    description: Analog ground/negative supply AVSS (0V to -2.75V)
-> +
-
-What about AV{DD,SS}{1,2}{A,B} supplies?
-
-> +  dvdd-supply:
-> +    description: Analog power supply AVDD2 (2.0V to 5.5V)
-> +
-> +  iovdd-supply:
-> +    description: Digital I/O power supply (1.8V or 2.25V to 3.6V)
-> +
-> +  vref-supply:
-> +    description: ADC reference voltage supply
-
-There is more that one reference voltage input. so ref1-supply, ref2-supply.
-
-vref is the name of an internal signal, so doesn't make sense here.
-
-> +
-> +  reset-gpios:
-> +    maxItems: 1
-> +    description: GPIO connected to the active-low RESET pin
-> +
-> +  gpio-controller: true
-> +
-> +  '#gpio-cells':
-> +    const: 2
-> +
-> +  adi,data-lines-number:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    enum: [1, 2, 4, 8]
-> +    description:
-> +      Number of data output lines used for serial interface.
-
-This could be made a bit more clear that this is a secondary data
-output interface, not the SPI lines.
-
-> +      AD7768 supports 1, 2, or 8 lines. AD7768-4 supports 1 or 4 lines.
-> +
-> +  adi,common-mode-output:
-> +    $ref: /schemas/types.yaml#/definitions/string
-> +    enum:
-> +      - avdd-avss-half
-> +      - 1.65V
-> +      - 2.5V
-> +      - 2.14V
-> +    description:
-> +      Common mode voltage output selection.
-
-Why not using standard regulator provider bindings for this?
-
-> +
-> +  adi,vcm-power-down:
-> +    type: boolean
-> +    description: Power down the common mode output buffer
-
-Is the buffer separate from the output? In that case I would expect
-buffer to be in the property name, otherwise this should just be
-part of the enum options above (and the default one at that).
-
-> +
-> +  adi,power-mode:
-> +    $ref: /schemas/types.yaml#/definitions/string
-> +    enum:
-> +      - low
-> +      - median
-> +      - fast
-> +    description:
-> +      Power mode selection.
-
-Unless there are pins that control this, it seems like it should be
-left up to the driver to decide how to set this.
-
-In this case, it looks like the power mode also influences sample rate
-which is normally something controlled at runtime.
-
-> +
-> +  io-backends:
-> +    maxItems: 1
-> +
-> +  '#address-cells':
-> +    const: 1
-> +
-> +  '#size-cells':
-> +    const: 0
-> +
-> +patternProperties:
-> +  "^channel@[0-7]$":
-> +    type: object
-> +    description: |
-> +      Represents the external channels which are connected to the device.
-> +      AD7768 supports channels 0-7, AD7768-4 supports channels 0-3.
-> +
-> +    properties:
-> +      reg:
-> +        minimum: 0
-> +        maximum: 7
-> +        description: The channel number
-> +
-> +      adi,ch-mode:
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +        minimum: 0
-> +        maximum: 1
-> +        description: |
-> +          Channel mode selection. The AD7768 supports two independent
-> +          configuration profiles (Mode A and Mode B) for filter and
-> +          decimation settings. Each channel can be assigned to either mode:
-> +            0 - Channel uses Mode A filter and decimation settings
-> +            1 - Channel uses Mode B filter and decimation settings
-
-This could probably be handled in the driver. E.g. allow per-channel settings
-that just get stored in a data structure. Then when starting a buffered read
-check that all enabled channels have at most 2 different groups of settings.
-Then do all of the required register config at that time.
-
-> +
-> +      adi,prebuf-pos-en:
-> +        type: boolean
-> +        description: Enable positive input precharge buffer
-> +
-> +      adi,prebuf-neg-en:
-> +        type: boolean
-> +        description: Enable negative input precharge buffer
-> +
-> +      adi,refbuf-pos-en:
-> +        type: boolean
-> +        description: Enable positive reference buffer
-> +
-> +      adi,refbuf-neg-en:
-> +        type: boolean
-> +        description: Enable negative reference buffer
-> +
-> +    required:
-> +      - reg
-> +      - adi,ch-mode
-> +
-> +    additionalProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - avdd-supply
-> +  - avss-supply
-> +  - dvdd-supply
-> +  - iovdd-supply
-> +  - vref-supply
-
-> +  - adi,data-lines-number
-
-Suggest making the highest number of lines the default instead
-of making this property required.
-
-
-> +  - adi,common-mode-output
-
-Should probably default to disabled, unless it is always used?
-Changing it to a regulator provider makes this not relevant.
-
-> +  - io-backends
-> +
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
