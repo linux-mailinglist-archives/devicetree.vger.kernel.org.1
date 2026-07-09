@@ -1,311 +1,194 @@
-Return-Path: <devicetree+bounces-324103-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-324124-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id D05EA6wFUGoQsAIAu9opvQ
-	(envelope-from <devicetree+bounces-324103-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 22:33:48 +0200
+	id qtppNuAGUGpysAIAu9opvQ
+	(envelope-from <devicetree+bounces-324124-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 22:38:56 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7284A73567F
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 22:33:47 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6FDF77357AA
+	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 22:38:56 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=mPqolArs;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=VTb5wonk;
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324103-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-324103-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324124-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-324124-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 753843036423
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2026 20:31:23 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id D151B30054E8
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2026 20:38:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05B0D3BB690;
-	Thu,  9 Jul 2026 20:31:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FA463D16E2;
+	Thu,  9 Jul 2026 20:38:54 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B5A33CB8F1;
-	Thu,  9 Jul 2026 20:31:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE28D3CE0A2
+	for <devicetree@vger.kernel.org>; Thu,  9 Jul 2026 20:38:52 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783629082; cv=none; b=VxBatsQ5RSRt++wiCDaJ8A7/em810zVsORIf6Vi38NE00ZX8/Z+vVxOhC048EcSlXA7B4+i3EjhrRsmc/7wBPwjlVQ64o1sZckCkWP6Yn9Wl60NnWEn4CGLTOItHDyiViPbsaJ9KSlV0eFi4gpR8CuxblK2l71Ox2PHSYp3M4z8=
+	t=1783629534; cv=none; b=DeD4DNjKSHFitSzXKxEy1fDxyrlFxGEV184TxttnUj22lCaH1bGcYbpqG+0HpAl/Qk6pdY9FzrGOTkJPYmABuVQT7C5KUiQY+YZ3xSsZ/xMas/7EpR0GmklkVwFv02eFmuU7oLT1ToLnb6k1f3Nsk/IUHrVxLDA0MCmg1kd+VFg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783629082; c=relaxed/simple;
-	bh=ixMi6HpM4htSHbYkQqTkfjEBKIC3adwC+jwQ/ynG114=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HA6nJpyN278ilNdO47akb2o55e4jmNyoA4lxT70JwhrQc8WMdU9tGooeE4I/h8iFWJLxu/CJZcRDK5NJwbjUcsqYeG892vQ2KkqWYAxDbK23bauI5RzNx0ar7ajK8yNqrpkjtrLZj9CUG9rbeYdLgyQh8Zd9eobVYxaPI/XOLt0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mPqolArs; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6E9861F000E9;
-	Thu,  9 Jul 2026 20:31:18 +0000 (UTC)
+	s=arc-20240116; t=1783629534; c=relaxed/simple;
+	bh=5a1oev0qmzK4rCQ06hBgHetSD/Q1WPMvl2ggpKPDL/c=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=TAyDivcaN2EDQgpK+cjgMbjcWK6aLx1q6gtvAC0cntqbxybUKNZlBJM1mY375gyKSjlBb2qXIMQU4RPrQy6dDiC5VgAimf6467iLFEOtjI3UStgYviklcT2NM5FaQfBgn5jadfteCObPcQCkD2aujUS/qFAvuhTNpwIq+YygGR8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VTb5wonk; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2F2871F000E9;
+	Thu,  9 Jul 2026 20:38:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783629079;
-	bh=mU6wcQmTF9H5kdA4V6p1oE5hd739P6/b6LjkbNEjJo8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=mPqolArs5+rCBpKiIViShiPvWCTmtVNHSmuZtyl92YiFmNNlY4RNS0m32zsXkIA9e
-	 ZIgUVmdV3mc48AOFXhOf+FJN+XbIgFzggFMiQ74LhWPTV23AcW4OJaR8uPWUrWydjR
-	 E8cxZyqfWva2Ai4ZwNBA5Jm5eaqZ6o46957oULm+LUH3WGcf7dMzPesIumt/wbPbLr
-	 LXIQ0f8G5b2KlHLzJquCp1A5titiua7SRDkDDM+/iV3bsdNdeK0Qgcp5YgO/iszDWf
-	 kSpLtwc8/CDjY/WkSg2uIxXxNI4RTwmCqFUegkVxI9FWZ+QRzKODn17c6nl/B0LZaD
-	 IcnFy7izDWdqQ==
-Date: Thu, 9 Jul 2026 15:31:15 -0500
-From: Bjorn Andersson <andersson@kernel.org>
-To: Vignesh Viswanathan <vignesh.viswanathan@oss.qualcomm.com>
-Cc: Varadarajan Narayanan <varadarajan.narayanan@oss.qualcomm.com>, 
-	mathieu.poirier@linaro.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	konradybcio@kernel.org, manikanta.mylavarapu@oss.qualcomm.com, 
-	linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v12 0/6] Add new driver for WCSS secure PIL loading
-Message-ID: <alAEKQzBXqjESAbo@baldur>
-References: <20260505102310.2925956-1-varadarajan.narayanan@oss.qualcomm.com>
- <e6311e97-0a26-4412-bcf0-d0313bf52c01@oss.qualcomm.com>
- <4a4e0e9c-8541-4fcc-8019-10a576840109@oss.qualcomm.com>
+	s=k20260515; t=1783629532;
+	bh=pyMfdXHUuaY8ZLv6NGjyrCMc8vzviT0TrXwRkeNWvtI=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=VTb5wonkaOVvX2K7wKa0H+LuozjCPkSdVNj94J11j/FRDQ0AmwgB5EOKQzEoAALbq
+	 H7WGf8vVH+Wyo51sOHGqu0C29o5G6brkXRAq9/JkjuKHZQ0ftJameWaEqPPdqP6g1E
+	 gwx0kz/fzODEVs/4+J7p4+Fr7H2JCISyzSiyHCoMgIaIJCs3HSxlKJQFrXBfnQ3Gra
+	 mecNJiovCMfQI++8gZ5bwmej9m2wZ4uSV7O6bewzSDeQWTeMafG3g3NUlzoQ5+OJXc
+	 6p2lutrr8/wZ1N6JDporOnyRGLDdoHlpgwnE873R8sIrL+x1PeLU7q932D9gbjXY9b
+	 1uLtmftC0+Oxw==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v2 01/19] dt-bindings: crypto: add Rambus CryptoManager
+ Hub
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Saravanakrishnan Krishnamoorthy" <skrishnamoorthy@rambus.com>
+Cc: conor+dt@kernel.org, robh@kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260709203037.1884436-2-skrishnamoorthy@rambus.com>
+References: <20260709203037.1884436-1-skrishnamoorthy@rambus.com>
+ <20260709203037.1884436-2-skrishnamoorthy@rambus.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Thu, 09 Jul 2026 20:38:50 +0000
+Message-Id: <20260709203851.2F2871F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <4a4e0e9c-8541-4fcc-8019-10a576840109@oss.qualcomm.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-4.66 / 15.00];
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:vignesh.viswanathan@oss.qualcomm.com,m:varadarajan.narayanan@oss.qualcomm.com,m:mathieu.poirier@linaro.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:konradybcio@kernel.org,m:manikanta.mylavarapu@oss.qualcomm.com,m:linux-arm-msm@vger.kernel.org,m:linux-remoteproc@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	FORGED_SENDER(0.00)[andersson@kernel.org,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-324103-lists,devicetree=lfdr.de];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-324124-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:skrishnamoorthy@rambus.com,m:conor+dt@kernel.org,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andersson@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	RCPT_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[outlook.com:email,vger.kernel.org:from_smtp,qualcomm.com:url,qualcomm.com:email,baldur:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[rambus.com:email,vger.kernel.org:from_smtp,smtp.kernel.org:mid,lists.linux.dev:replyto,sashiko.dev:url,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 7284A73567F
+X-Rspamd-Queue-Id: 6FDF77357AA
 
-On Thu, Jul 09, 2026 at 11:25:17AM +0530, Vignesh Viswanathan wrote:
-> Hi Bjorn,
-> 
-> Could you please help review and pick this series if it looks okay to you.
-> 
+Thank you for your contribution! Sashiko AI review found 3 potential issue(=
+s) to consider:
+- [Medium] Commit message and schema discrepancy regarding child node compa=
+tible strings.
+- [Low] Ambiguous or missing standard DMA properties in schema.
+- [Low] Missing programmatic bounds validation for mailbox configuration pr=
+operties.
+--
 
-Sorry for not keeping up with this corner of my inbox.
+--- Patch [1]: [PATCH v2 01/19] dt-bindings: crypto: add Rambus CryptoManag=
+er Hub ---
+commit 4a05b4db54dfefd3f8865951add1c86499b1b7bd
+Author: Alex Ousherovitch <aousherovitch@rambus.com>
 
-Series looks good, please rebase on the PAS changes that should show up
-in the next linux-next.
+dt-bindings: crypto: add Rambus CryptoManager Hub
 
-Regards,
-Bjorn
+This commit adds a device tree binding schema for the CRI CryptoManager Hub
+hardware crypto accelerator. It defines the SoC-level node properties
+including registers, interrupts, and mailbox configuration, along with
+per-core child nodes.
 
-> Thanks,
-> Vignesh
-> 
-> On 5/13/2026 11:49 PM, Vignesh Viswanathan wrote:
-> > Hi Bjorn,
-> > 
-> > A gentle reminder to review this series. All the patches have picked
-> > up R-b tags. If it looks okay to you, could you please help pick
-> > it up in the current merge window.
-> > 
-> > Thanks
-> > Vignesh
-> > 
-> > On 5/5/2026 3:53 PM, Varadarajan Narayanan wrote:
-> >> As discussed in [4] posting this series after dropping IPQ5424 support
-> >> to remove dependency on Sricharan's tmel-qmp mailbox driver series v4 [1].
-> >>
-> >> Imported from 20251215-ipq5018-wifi-v7-0-ec4adba941b5@outlook.com.
-> >>
-> >> Imported from f20250417061245.497803-1-gokul.sriram.p@oss.qualcomm.com
-> >> I've resumed Gokul's work as the last submission dates back April 2025.
-> >>
-> >> - Secure PIL is signed, firmware images which only TrustZone (TZ)
-> >>   can authenticate and load. Linux kernel will send a request to TZ to
-> >>   authenticate and load the PIL images.
-> >>
-> >> - When secure PIL support was added to the existing wcss PIL driver
-> >>   earlier in [2], Bjorn suggested not to overload the existing WCSS
-> >>   rproc driver, instead post a new driver for PAS based IPQ WCSS driver.
-> >>   This series adds a new secure PIL driver for the same.
-> >>
-> >> - Also adds changes to scm to pass metadata size as required for IPQ5332,
-> >>   reposted from [3].
-> >>
-> >> [1]
-> >> https://patchwork.kernel.org/project/linux-arm-msm/cover/20250327181750.3733881-1-quic_srichara@quicinc.com/
-> >>
-> >> [2]
-> >> https://patchwork.kernel.org/project/linux-arm-msm/patch/1611984013-10201-3-git-send-email-gokulsri@codeaurora.org/
-> >>
-> >> [3]
-> >> https://patchwork.kernel.org/project/linux-arm-msm/patch/20240820055618.267554-6-quic_gokulsri@quicinc.com/
-> >>
-> >> [4]
-> >> https://lore.kernel.org/linux-arm-msm/aUN7Aer%2FGG1d5Om9@hu-varada-blr.qualcomm.com/
-> >>
-> >> Changes in v12:
-> >> 	- No code change
-> >> 	- Rebase to ToT
-> >> 	- Change quicinc mail ids to oss.qualcomm.com mail ids
-> >> 	- Link to v11: https://lore.kernel.org/linux-arm-msm/20260326043320.2507890-1-varadarajan.narayanan@oss.qualcomm.com/
-> >>
-> >> Changes in v11:
-> >> 	- Add R-b tags
-> >> 	- Rebase the first patch ("firmware: qcom_scm: ipq5332: add support to pass metadata size") to top of tree
-> >> 	- No change in other patches
-> >> 	- Link to v10: https://lore.kernel.org/linux-arm-msm/20260113092021.1887980-1-varadarajan.narayanan@oss.qualcomm.com/
-> >>
-> >> Changes in v10:
-> >> 	- Add R-b tags
-> >> 	- Remove unused fields from 'struct wcss_sec'
-> >> 	- Remove glink and ssr subdev if wcss_sec_probe() fails
-> >> 	- Link to v9: https://lore.kernel.org/linux-arm-msm/20260106105412.3529898-1-varadarajan.narayanan@oss.qualcomm.com/
-> >>
-> >> Changes in v9:
-> >> 	- Add R-b from Konrad for dts patches
-> >> 	- Renamed qcom,wcss-sec-pil.yaml -> qcom,ipq5018-wcss-sec-pil.yaml
-> >> 	- Restore clocks & clock-names in above yaml
-> >> 	- Fix DCO on two patches
-> >> 	- Link to v8: https://lore.kernel.org/linux-arm-msm/20251219031010.2919875-1-varadarajan.narayanan@oss.qualcomm.com/
-> >>
-> >> Changes in v8:
-> >> 	- Dropped Krzysztof's 'Reviewed-by' as the bindings file has changed significantly
-> >> 		* IPQ5018 support added in v6
-> >> 		* IPQ5424 support dropped in v8
-> >> 		* Updated to use IPQ9574 as example
-> >> 	- dt-bindings-check and dtbs-check passed
-> >> 	- Dropped IPQ5424 support from drivers/remoteproc/qcom_q6v5_wcss_sec.c
-> >> 	- Updated copyrights of drivers/remoteproc/qcom_q6v5_wcss_sec.c
-> >> 	- Change 'qcom,smem-state-names' order to resolve dt-bindings-check error in ipq5018.dtsi
-> >> 	- Dropped changes to ipq5424.dtsi
-> >> 	- Link to v7: https://lore.kernel.org/linux-arm-msm/20251215-ipq5018-wifi-v7-0-ec4adba941b5@outlook.com/
-> >>
-> >> Changes in v7:
-> >> 	- correctly sorted QCOM_SCM_PIL_PAS_INIT_IMAGE_V2 by command ID
-> >> 	- correctly sorted smp2p-wcss nodes in dtsi files
-> >> 	- Link to v6: https://lore.kernel.org/r/20251208-ipq5018-wifi-v6-0-d0ce2facaa5f@outlook.com
-> >>
-> >> Changes in v6:
-> >> 	- added patch to fix IPC register offset for ipq5424
-> >> 	- changed phandle description for mboxes property in dt-bindings
-> >> 	- updated bindings to define the right clocks per SoC based on
-> >> 	  compatible. Ran make dt_binding_check for validation of all
-> >> 	  SoCs
-> >> 	- use of more descriptive match data property (use_tmelcom) and
-> >> 	  added a condition in wcss_start to not error out if tmelcom
-> >> 	  isn't used
-> >> 	- mitigated potential off-by-one
-> >> 	- adopted use of of_reserved_mem_region_to_resource to acquire
-> >> 	  memory-region resource
-> >> 	- added driver support for ipq5018 SoC
-> >> 	- corrected size of reg properties as per Konrad's comments
-> >> 	- added patch to bring up Q6 in ipq5018 dtsi
-> >> 	- Link to v5: https://lore.kernel.org/r/20250417061245.497803-1-gokul.sriram.p@oss.qualcomm.com
-> >>
-> >> Changes in v5:
-> >> 	- retained all the patches as in v3 and addressed comments in
-> >> 	  v3.
-> >> 	- reverted changes to dt-bindings done in v4 and retained as in
-> >> 	  v3 and fixed firmware format from .mdt to .mbn and retained
-> >> 	  reviewed-by.
-> >> 	- dropped 2 patches in v4 that adds support for q6 dtb loading.
-> >> 	  Will post them as a new series.
-> >>
-> >> 	Following tests were done:
-> >> 	- checkpatch
-> >> 	- dt_binding_check and dtbs_check
-> >> 	- Link to v4: https://lore.kernel.org/r/20250327181750.3733881-1-quic_srichara@quicinc.com
-> >>
-> >> Changes in v4:
-> >>         - changed q6 firmware image format from .mdt to .mbn
-> >>         - corrected arrangement of variable assignemnts as per comments
-> >>           in qcom_scm.c
-> >>         - added scm call to get board machid
-> >>         - added support for q6 dtb loading with support for additional
-> >>           reserved memory for q6 dtb in .mbn format
-> >>         - updated dt-bindings to include new dts entry qcom,q6-dtb-info
-> >>           and additional item in memory-region for q6 dtb region.
-> >>         - removed unnecessary dependency for QCOM_Q6V5_WCSS_SEC in
-> >>           Kconfig
-> >>         - removed unwanted header files in qcom_q6v5_wcss_sec.c
-> >>         - removed repeated dtb parsing during runtime in qcom_q6v5_wcss_sec.c
-> >>         - added required check for using tmelcom, if available. Enabled
-> >>           fallback to scm based authentication, if tmelcom is unavailable.
-> >>         - added necessary padding for 8digt hex address in dts
-> >> 	- Link to v3: https://lore.kernel.org/r/20250107101320.2078139-1-quic_gokulsri@quicinc.com
-> >>
-> >> 	Following tests were done:
-> >> 	- checkpatch
-> >> 	- kernel-doc
-> >> 	- dt_binding_check and dtbs_check
-> >>
-> >> Changes in v3:
-> >>         - fixed copyright years and markings based on Jeff's comments.
-> >>         - replaced devm_ioremap_wc() with ioremap_wc() in
-> >>           wcss_sec_copy_segment().
-> >>         - replaced rproc_alloc() and rproc_add() with their devres
-> >>           counterparts.
-> >>         - added mailbox call to tmelcom for secure image authentication
-> >>           as required for IPQ5424. Added ipq5424 APCS comatible required.
-> >>         - added changes to scm call to pass metadata size as required for
-> >>           IPQ5332.
-> >> 	- Link to v2: https://lore.kernel.org/r/20240829134021.1452711-1-quic_gokulsri@quicinc.com
-> >>
-> >> Changes in v2:
-> >>         - Removed dependency of this series to q6 clock removal series
-> >>           as recommended by Krzysztof
-> >> 	- Link to v1: https://lore.kernel.org/r/20240820085517.435566-1-quic_gokulsri@quicinc.com
-> >>
-> >> George Moussalem (1):
-> >>   arm64: dts: qcom: ipq5018: add nodes to bring up q6
-> >>
-> >> Manikanta Mylavarapu (4):
-> >>   firmware: qcom_scm: ipq5332: add support to pass metadata size
-> >>   dt-bindings: remoteproc: qcom: document hexagon based WCSS secure PIL
-> >>   arm64: dts: qcom: ipq5332: add nodes to bring up q6
-> >>   arm64: dts: qcom: ipq9574: add nodes to bring up q6
-> >>
-> >> Vignesh Viswanathan (1):
-> >>   remoteproc: qcom: add hexagon based WCSS secure PIL driver
-> >>
-> >>  .../remoteproc/qcom,ipq5018-wcss-sec-pil.yaml | 178 ++++++++++
-> >>  arch/arm64/boot/dts/qcom/ipq5018.dtsi         |  64 ++++
-> >>  arch/arm64/boot/dts/qcom/ipq5332.dtsi         |  64 +++-
-> >>  arch/arm64/boot/dts/qcom/ipq9574.dtsi         |  60 +++-
-> >>  drivers/firmware/qcom/qcom_scm.c              |  14 +-
-> >>  drivers/firmware/qcom/qcom_scm.h              |   1 +
-> >>  drivers/remoteproc/Kconfig                    |  19 +
-> >>  drivers/remoteproc/Makefile                   |   1 +
-> >>  drivers/remoteproc/qcom_q6v5_wcss_sec.c       | 325 ++++++++++++++++++
-> >>  include/linux/remoteproc.h                    |   2 +
-> >>  10 files changed, 723 insertions(+), 5 deletions(-)
-> >>  create mode 100644 Documentation/devicetree/bindings/remoteproc/qcom,ipq5018-wcss-sec-pil.yaml
-> >>  create mode 100644 drivers/remoteproc/qcom_q6v5_wcss_sec.c
-> >>
-> >>
-> >> base-commit: 9d0d467c3572e93c5faa2e5906a8bbcd70b24efd
-> > 
-> 
+> Add device tree binding schema for the CRI CryptoManager Hub (CMH)
+> hardware crypto accelerator.  The binding covers the parent SoC-level
+> node with register region, interrupt, DMA properties, and per-core
+> child nodes identified by compatible string and unit address.
+
+[Severity: Medium]
+The commit message states that per-core child nodes are identified by a
+compatible string and unit address. However, looking at the schema definiti=
+on
+for the child nodes, they strictly set additionalProperties: false and do n=
+ot
+define or allow a compatible property. Will validation fail if a device tree
+author adds a compatible string to a child node as described here?
+
+[Severity: Low]
+The commit message also mentions that the binding covers DMA properties.
+Since the root node sets additionalProperties: false without referencing
+standard DMA properties like dmas or dma-coherent, they won't be permitted.
+If standard DMA properties are intended, shouldn't they be explicitly allow=
+ed
+in the schema? If the message is referring to the custom cri,mbx-* properti=
+es,
+the phrasing might be slightly ambiguous.
+
+> diff --git a/Documentation/devicetree/bindings/crypto/cri,cmh.yaml b/Docu=
+mentation/devicetree/bindings/crypto/cri,cmh.yaml
+> new file mode 100644
+> index 0000000000000..db41132e0591d
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/crypto/cri,cmh.yaml
+[ ... ]
+> +  cri,mbx-slots-log2:
+> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> +    minItems: 1
+> +    maxItems: 64
+> +    description:
+> +      Per-mailbox slot count as log2.  Valid range 1..15.
+> +      Array length must match cri,mbx-instances.
+> +      Default is 5 (32 slots).
+
+[Severity: Low]
+Does this property need YAML constraints to enforce the documented range?
+Without minimum and maximum constraints for the items, invalid device trees
+specifying out-of-range values might silently pass schema validation.
+
+> +
+> +  cri,mbx-strides-log2:
+> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> +    minItems: 1
+> +    maxItems: 64
+> +    description:
+> +      Per-mailbox stride (bytes per slot) as log2.  Valid range 7..10.
+> +      Array length must match cri,mbx-instances.
+> +      Default is 7 (128 bytes per slot).
+
+[Severity: Low]
+Similar to the slots property above, can we add minimum and maximum bounds
+to the schema here so that tooling can automatically catch values outside
+the 7 to 10 range?
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260709203037.1884=
+436-1-skrishnamoorthy@rambus.com?part=3D1
 
