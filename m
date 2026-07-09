@@ -1,140 +1,204 @@
-Return-Path: <devicetree+bounces-323707-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-323708-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id xPOdJeCMT2r1jQIAu9opvQ
-	(envelope-from <devicetree+bounces-323707-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 13:58:24 +0200
+	id TgwdL/eMT2oBjgIAu9opvQ
+	(envelope-from <devicetree+bounces-323708-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 13:58:47 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 344A3730BBF
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 13:58:24 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D3AD730BDC
+	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 13:58:47 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=collabora.com header.s=mail header.b=ZDjPdkfS;
-	dmarc=pass (policy=none) header.from=collabora.com;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-323707-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-323707-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=NZhevvRx;
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-323708-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-323708-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id A0CEF3008C16
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2026 11:58:23 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id BC026302A1BC
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2026 11:58:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F88C41DEE8;
-	Thu,  9 Jul 2026 11:58:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26D963F1676;
+	Thu,  9 Jul 2026 11:58:42 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E3A03BCD15;
-	Thu,  9 Jul 2026 11:58:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65DCA3C37B4
+	for <devicetree@vger.kernel.org>; Thu,  9 Jul 2026 11:58:38 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783598300; cv=none; b=WDr3h9KAMXuF5XJnjMveU9S6OD34Y5Do6PUjCHX3l7Mfw0QWUAZ+YQ9rxO09VcQM6KL96uqFwTxc0Wj8xlVcAmTa3GqLqcrxLqKOa+U0EF7oB6JfdPqWheZRcuZwT5K2BFGnpKTKwgAliAHXkSVbr0QrvcsW6zbD/BixvQ2F9To=
+	t=1783598321; cv=none; b=rCOYBtXLPwV19YRIrLEPD2ebm/YGD5ssMMdNzuJ7uXhVUtPowvlp29M4cwohC1YaaZc7d8zB4+mHaHmXM7ash3f7AVudItKSmVIdSBZkdbplp5ABMPYfE2MQdzeCUlbxK45Fw11rcI3HVq1TKlHQSB8O5XatTd1PeCLQScS47ck=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783598300; c=relaxed/simple;
-	bh=0l8hKYZsEJCMBNL+X7+mtDqQz8nsijJQ7qlJBYs68jw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=uNfGCzIMlwA99/+4Bf0aUZYGzp3kWFd7lUeUMaeq4I5fpzollRIdqXcMgSgOH+dUZlDtfEJRZWHYU5hp0SI4e1G7xVuleJADUhLIeWuuUZbmp4Vk21d9wZrX2RVl8ReUwtjmpUMxmM3B4aRhX2N8h2y/pnA2TTYNjnedhislu2c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=ZDjPdkfS; arc=none smtp.client-ip=148.251.105.195
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1783598295;
-	bh=0l8hKYZsEJCMBNL+X7+mtDqQz8nsijJQ7qlJBYs68jw=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ZDjPdkfSK69yVmIaEAk1+TJxeZr8mt+7OsHyjIIl6rYXJv89ODdh/Z/fyjs99nt48
-	 EgJ2tCrQzWssQva7MvmvBfhnY22o3ASoF/lkc8XCza3wyxbJDCE2KEAttCXIeNr7AH
-	 xQlVvlT4eFsXxZdtbQ3e+FucWTc0XjMTi5O+grXYz9Q8ea4Q4MrCvQtPf8U6VHI9Qh
-	 QDyEzfGWZNgIUR7IqF/sCl8gxbbplLYyfNhdajB3mSrrwxhuv/vUuDtVlN9CWonlyk
-	 NkG5x1h/e/R0ZFtXZffqJWlyZRnAjfYLQ5UGkXdwJ5JmjewOR+U9LvGbjJq84oGfOJ
-	 GOi8azvVyfV1Q==
-Received: from [100.64.1.21] (unknown [100.64.1.21])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id ADF0D17E019E;
-	Thu, 09 Jul 2026 13:58:14 +0200 (CEST)
-Message-ID: <e8ba5a28-e06f-4351-ae71-ac0eca350916@collabora.com>
-Date: Thu, 9 Jul 2026 13:58:14 +0200
+	s=arc-20240116; t=1783598321; c=relaxed/simple;
+	bh=HpUAxW7nAtSzB5JCSAzw1YGGEHhGeXNTP1L0jR/tRCg=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=syTZUwXMZtj99T701/Lsh5GYhstmpseFQNf5aZZAnchJ3FINWPwkqqqie5E+AvjckJkF6//3WNPMyybfUlpt3qYq7pkM3qqmdFkfT04aBCPhiSJLGZv+KN/rlDR6ZSSkOsPvEpzVPp3UjXWwcvVKdTNsFOll+GgVRu6QVNDqvPE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NZhevvRx; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F1BA41F000E9;
+	Thu,  9 Jul 2026 11:58:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1783598318;
+	bh=sjDyGfoRzt/F2TDRgMHPzBkJbrfdsPgOVKp/x9A2n1w=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=NZhevvRxfmv0jKKBkFjeKI5bIb4SzxIufG9grvJMJJd31I+zmZkBBJdIg2PJkCuPe
+	 zh/SK7FxFfsxpiUQhBK79x3WudfUAhp6Trl9MkJptvwo37eND89TS7jDFxvZjG+JBk
+	 Gj32QcqDptVI3glb5SWF+EfYpI9Wijn9qZH6OP2ZbgfACS9FUdjQ+YvTo8WJYSlT3G
+	 4x2XLk8ks8GhJ0RVSuQ1kKcnwB9S0g9ZwTCgeMcGHS+cc/urTruAwK4DNGOSeCqxMC
+	 F1PbE7hWu1G/Ji7XSTLFgtWbw5LnqmIHLo+JDza7XA67IhAEZVvQ61ctuHnYq5OavP
+	 /NJl1ajXN8Mfg==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v4 10/14] dt-bindings: usb: mediatek,mtk-xhci: Switch to
+ ports for USB connections
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Chen-Yu Tsai" <wenst@chromium.org>
+Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260709095726.704448-11-wenst@chromium.org>
+References: <20260709095726.704448-1-wenst@chromium.org>
+ <20260709095726.704448-11-wenst@chromium.org>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Thu, 09 Jul 2026 11:58:37 +0000
+Message-Id: <20260709115837.F1BA41F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH 1/3] dt-bindings: pinctrl: mt8516/mt8167: Move
- compatibles from mt66xx to mt6795
-To: Luca Leonardo Scorcia <l.scorcia@gmail.com>,
- Conor Dooley <conor@kernel.org>
-Cc: linux-mediatek@lists.infradead.org, Sean Wang <sean.wang@kernel.org>,
- Linus Walleij <linusw@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
- linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20260625104742.113803-1-l.scorcia@gmail.com>
- <20260625104742.113803-2-l.scorcia@gmail.com>
- <20260625-cameo-siamese-cd78c349519c@spud>
- <CAORyz2JHj7i6VhKom+tVd8PWBjM=TFhbr8-mOy3GH6eDYu4WPw@mail.gmail.com>
- <20260625-unearth-suffering-e2c59d39da0f@spud>
- <CAORyz2L5YuBifG-ud7QHPva+_nyL_SyXMVQ5EeC0s52isc5J3w@mail.gmail.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <CAORyz2L5YuBifG-ud7QHPva+_nyL_SyXMVQ5EeC0s52isc5J3w@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-1.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
-	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-323707-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:l.scorcia@gmail.com,m:conor@kernel.org,m:linux-mediatek@lists.infradead.org,m:sean.wang@kernel.org,m:linusw@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:matthias.bgg@gmail.com,m:linux-gpio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:lscorcia@gmail.com,m:krzk@kernel.org,m:matthiasbgg@gmail.com,s:lists@lfdr.de];
-	FREEMAIL_TO(0.00)[gmail.com,kernel.org];
-	FREEMAIL_CC(0.00)[lists.infradead.org,kernel.org,gmail.com,vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-323708-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	RCVD_COUNT_THREE(0.00)[4];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[angelogioacchino.delregno@collabora.com,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	FORGED_SENDER_FORWARDING(0.00)[];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS(0.00)[m:wenst@chromium.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[angelogioacchino.delregno@collabora.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[collabora.com:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TO_DN_SOME(0.00)[]
+	FROM_NO_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	RCPT_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 344A3730BBF
+X-Rspamd-Queue-Id: 3D3AD730BDC
 
-On 6/26/26 11:12, Luca Leonardo Scorcia wrote:
->> Usually when making ABI changes because something was inaccurate (but
->> not wrong to the point that it didn't work at all) it's possible to
->> support both new and old ABIs at the same time because of new properties
->> etc. This is a difficult one because it's using the same properties in
->> different ways. A new compatible would definitely be required for a
->> genuine fresh start while retaining kernel support for the old mechanism
->> in this case.
-> 
-> All things considered, the cleanest solution seems to be adding a new
-> compatible, mark the old one as deprecated and also try to fix the old
-> driver code. I'll try to do that before submitting again.
-> Thank you for your help!
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
+s) to consider:
+- [High] DT ABI Breakage: Reverting the top-level `port` property and repla=
+cing it with `ports` fails to update existing in-tree device tree users, ca=
+using schema validation failures.
+- [Medium] Incomplete and incorrect property constraints: The descriptions =
+for `port@1` and `port@2` strictly assume a maximum of 1 SS port and 1 HS p=
+ort, which contradicts hardware with multiple ports.
+--
 
-You can skip the "fix the old driver code" part. The only users here are
-demo boards that aren't even used that much and besides, they're even hard
-to find.
+--- Patch [10]: [PATCH v4 10/14] dt-bindings: usb: mediatek,mtk-xhci: Switc=
+h to ports for USB connections ---
+commit 2e9e786003304eb48defeb647a256e455bd0ffa3
+Author: Chen-Yu Tsai <wenst@chromium.org>
 
-Cheers,
-Angelo
+dt-bindings: usb: mediatek,mtk-xhci: Switch to ports for USB connections
+
+This commit replaces the single 'port' node with a 'ports' node containing
+'port@1' and 'port@2' to represent the USB connections. It maps port 1 to SS
+and port 2 to HS depending on controller capabilities.
+
+> diff --git a/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml=
+ b/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml
+> index 231e6f35a986f..d6c75bd20b785 100644
+> --- a/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml
+> +++ b/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml
+> @@ -107,10 +107,6 @@ properties:
+>        - description: USB3/SS(P) PHY
+>        - description: USB2/HS PHY
+> =20
+> -  port:
+> -    $ref: /schemas/graph.yaml#/properties/port
+> -    description: Super Speed (SS) Output endpoint to a Type-C connector
+> -
+
+[Severity: High]
+Does removing this property break schema validation for existing device tree
+files?=20
+
+For example, arch/arm64/boot/dts/mediatek/mt8390-genio-common.dtsi uses
+the port property under the &xhci1 node:
+
+arch/arm64/boot/dts/mediatek/mt8390-genio-common.dtsi:
+	port {
+		xhci_ss_ep: endpoint {
+			remote-endpoint =3D <&typec_con_ss>;
+		};
+	};
+
+Running make dtbs_check with this commit seems like it will result in
+'undocumented property' errors for the old port node.
+
+Should the in-tree users be updated alongside this binding change, or should
+backward compatibility be maintained?
+
+>    vusb33-supply:
+>      description: Regulator of USB AVDD3.3v
+> =20
+[ ... ]
+> @@ -188,6 +184,19 @@ properties:
+>    "#size-cells":
+>      const: 0
+> =20
+> +  ports:
+> +    $ref: /schemas/graph.yaml#/properties/ports
+> +
+> +    properties:
+> +      port@1:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description: Super Speed (SS) data bus if SS-capable;
+> +          otherwise High Speed (HS) data bus.
+> +
+> +      port@2:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description: High Speed (HS) data bus if controller is SS-capabl=
+e.
+
+[Severity: Medium]
+Do these port definitions fully account for controllers with multiple ports=
+ of
+the same speed?
+
+The hardware supports up to 9 PHYs in the existing phys property array,
+accommodating multiple ports on a single controller (e.g., 2 HS ports and 1=
+ SS
+port on ssusb1). Defining only port@1 and port@2 restricts the schema to a
+2-port layout.
+
+If a developer defines a valid port@3 for a second HS port, won't it fail
+schema validation? Could these descriptions be broadened or the properties
+expanded to accommodate multi-port controllers?
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260709095726.7044=
+48-1-wenst@chromium.org?part=3D10
 
