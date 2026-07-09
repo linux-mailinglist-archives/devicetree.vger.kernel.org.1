@@ -1,377 +1,299 @@
-Return-Path: <devicetree+bounces-323336-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-323344-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id rzRMD+BCT2pNdAIAu9opvQ
-	(envelope-from <devicetree+bounces-323336-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 08:42:40 +0200
+	id 2vhkCGxET2qzdAIAu9opvQ
+	(envelope-from <devicetree+bounces-323344-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 08:49:16 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6CE872D478
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 08:42:39 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 91B9472D562
+	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 08:49:15 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmx.de header.s=s31663417 header.b=excfjtwa;
-	dmarc=pass (policy=quarantine) header.from=gmx.de;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-323336-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-323336-lists+devicetree=lfdr.de@vger.kernel.org";
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
+	dkim=pass header.d=amd.com header.s=selector1 header.b=Zt21dIaE;
+	dmarc=pass (policy=quarantine) header.from=amd.com;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-323344-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-323344-lists+devicetree=lfdr.de@vger.kernel.org";
+	arc=reject ("cv is fail on i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 27A083017B9A
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2026 06:42:38 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 13AAF3034E75
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2026 06:46:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B3793D3CEA;
-	Thu,  9 Jul 2026 06:42:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A33403D6CD3;
+	Thu,  9 Jul 2026 06:43:26 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.22])
+Received: from BL2PR02CU003.outbound.protection.outlook.com (mail-eastusazon11011049.outbound.protection.outlook.com [52.101.52.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBBD73D9025;
-	Thu,  9 Jul 2026 06:42:20 +0000 (UTC)
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783579345; cv=none; b=edO7htLFPOqplRhFg1dF0XezCjyPfq/mCbCXTD8ODZM/q0CpHaL8P9KuEtNUAiffP48LN6BzWZ/bryHRo5F49y/YZlHCQaVlOlQSRdEH16kiv8Gmtcd750Vp5IMDonzsWbpVIZw6v/PFbBOkoJwJG2MP+Xc87W2svRH+Hwt2OD4=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783579345; c=relaxed/simple;
-	bh=lDroq1H8lPiC4vJ5FULxdPAbVa9mrqRKJb8PyV0prjQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=PuLWixAlDT4KMGEkJ8yOY0SYR9klEQf5yH6f7RCT3Hs39CkMyg6QHI0km9pCsZjwURDPcAiC/RGHW943Ahd0wEYWlkV91sBtM+SXSp7bqZ1gI1Ft/lguq7nOoi+alnrOq21+8WAEFEeDcb3NJFZcVFTiNTnrcZ8ZObL0CsrkO8c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.de; spf=pass smtp.mailfrom=gmx.de; dkim=pass (2048-bit key) header.d=gmx.de header.i=markus.stockhausen@gmx.de header.b=excfjtwa; arc=none smtp.client-ip=212.227.17.22
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.de;
-	s=s31663417; t=1783579335; x=1784184135;
-	i=markus.stockhausen@gmx.de;
-	bh=ei+d4Xn8DoLb/6CiZ7RSCa5ryRqlIEk6fUgtI4AurFE=;
-	h=X-UI-Sender-Class:From:To:Cc:Subject:Date:Message-ID:In-Reply-To:
-	 References:MIME-Version:Content-Transfer-Encoding:cc:
-	 content-transfer-encoding:content-type:date:from:message-id:
-	 mime-version:reply-to:subject:to;
-	b=excfjtwadsg7ol+EHmzkcpBMxX9/E+kg0MOZgyB9UjGn8e5PMQU1/cqXkP7xkmrh
-	 9vn4oX3/u+driwMo5ayQjpu6GJ+KB8FmOskGambbcw9UQZnzk5UF1opQ3IMt/7eTH
-	 4oTHRfowqwX/ejF6/ENlYRMhVpFmLZtz83BYLPifzf+HMx7TsbyLrB8YBTY2moeVP
-	 9tBPlcsGp1V2NblIxLhsknDKD+upcGxJocpN5pA3LgMBNWy0OERk8Dh9qvSHdgbR9
-	 /i4CSKMPyb0eJzeKBgqhwntb66XSaUH3NsLnbMN/J1ZVutZSQx0nW8pz6hmOz5XJU
-	 Bv87ZiF8LOGzqfztcw==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from client.hidden.invalid by mail.gmx.net (mrgmx104
- [212.227.17.168]) with ESMTPSA (Nemesis) id 1MiacR-1xJXv62X8p-00ZkVN; Thu, 09
- Jul 2026 08:42:15 +0200
-From: Markus Stockhausen <markus.stockhausen@gmx.de>
-To: andrew@lunn.ch,
-	hkallweit1@gmail.com,
-	linux@armlinux.org.uk,
-	davem@davemloft.net,
-	edumazet@google.com,
-	kuba@kernel.org,
-	pabeni@redhat.com,
-	netdev@vger.kernel.org,
-	chris.packham@alliedtelesis.co.nz,
-	daniel@makrotopia.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org
-Cc: Markus Stockhausen <markus.stockhausen@gmx.de>
-Subject: [PATCH net-next v4 8/8] net: mdio: realtek-rtl9300: Add support for RTL839x
-Date: Thu,  9 Jul 2026 08:41:57 +0200
-Message-ID: <20260709064157.2865063-9-markus.stockhausen@gmx.de>
-X-Mailer: git-send-email 2.54.0
-In-Reply-To: <20260709064157.2865063-1-markus.stockhausen@gmx.de>
-References: <20260709064157.2865063-1-markus.stockhausen@gmx.de>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 190573DB652;
+	Thu,  9 Jul 2026 06:43:19 +0000 (UTC)
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1783579405; cv=fail; b=TNekbO1Tc18MsMjva+RHsvUL+2Eo76S2MIqBnZDCWEB2EAYegQUTNEIC8LhgvwUWl1MmauJgfq5FIc+ckWqMmY5x2xaGIvdL6LRXnJRS0Quiy1N/EdFatfOZtOMnzNvLjXtbht0YyVMhPnsQ6O78q03G+BHNEF6cFPHf/XFq/88=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1783579405; c=relaxed/simple;
+	bh=KTrJXnyZzmck6ARj2yYWjcf9T/uQMjqAOqQhU8o04hU=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=h12Z3kgx0pmo1dgCnkKMzrKUFjYfX1qd5FLSrUzIv5V6RpB3vDwPwRIo0fR+kSzoCLnNz/tthtVImSZFf9DvMpexmIm6s6w0XvLOviRhER3Tg8Vdtvd65o7fUrv1pGFFJoJtfh4imUfdrJSJEP/M4N33yJAhj4i96/SGUb+i+xg=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=Zt21dIaE; arc=fail smtp.client-ip=52.101.52.49
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=OYVkWBDYF8sPhhvQXmcSre7prcBESHUCfNRxlsbaYqD9USXstfGniKHHnnLo+CUsOV/3coLIwS2bbgu8z7CzGXWOW/p4MfWlHjI+9N4CCVvLp3rnQ7IDDeMDdxQ20u39AZwLNQKnGxbL8r2h8Nre+l96d2TZ2HoszKq3raWxgKZlo8ep+KE1NAeVdnvZDNcspGIDGxXdZO6iOtvRWe0W5XRCobmVZKKv7/Zf53oy6Lr9d4UVTkb9mzu+SX59IZlS3tEzlcGwy+3l4qWvoOvMI2Ejegbr7YzltemGlZn4WThDpQ2yZs6z3k7ADMgCfGdCOz4RMz7mnAkGdHs/FxfUxg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=lPlleH54N+IDGEQZumGZpdTWNI3mINEqyIodk8Qvr3s=;
+ b=MGnRDg1Hb5b9tPIOg2iNAed3HJm1BArRJ09x0J4xvOBWO/hxLNd+uDyJfdcrG3jntfRglXPq4FN2ksGQx44MBr3VTSEnM5QKpbV5oNYiOdAovSs9noLOP00hNCY2NwQbHlMaLZwg1wKBv57ZDA97nL0QdwaKOBVSCkqc6uzJVZqTxAjqrhIvztGQgg1GaBXoEXJEx8e14rEuKu2QVOJO1ltCsH+8WkQgI6IHIFLPtWrGoZ/h+M9Hj94aP9tZhCpbprJE1IRSJ0OkuAFCZJl3+vvjLaSuwA75DTGz14HG7fe+YntgiOjGlz7CAbh+lNZ9HMMkC0zXN6ymI//yEZqtDg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=amd.com;
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=lPlleH54N+IDGEQZumGZpdTWNI3mINEqyIodk8Qvr3s=;
+ b=Zt21dIaEvFZwmDTHU0X3J5bbDXIkkdmhgeOkstTFNFEzAqmPrW/eI8VCcd0tYGBTNoreczBgofvuZwoE7D7AUQAKzhB+p+QaGt/2EaVdwR16C3ifsLRwh7nzxMrELgAzGmDAIHVPjY1/OuySe+kSh1zLRO3oyI9BEs96wsyoB/A=
+Received: from MN2PR16CA0038.namprd16.prod.outlook.com (2603:10b6:208:234::7)
+ by CYXPR12MB9443.namprd12.prod.outlook.com (2603:10b6:930:db::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.15; Thu, 9 Jul
+ 2026 06:43:14 +0000
+Received: from BL6PEPF0002256E.namprd02.prod.outlook.com
+ (2603:10b6:208:234:cafe::5e) by MN2PR16CA0038.outlook.office365.com
+ (2603:10b6:208:234::7) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.202.11 via Frontend Transport; Thu, 9
+ Jul 2026 06:43:13 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb08.amd.com; pr=C
+Received: from satlexmb08.amd.com (165.204.84.17) by
+ BL6PEPF0002256E.mail.protection.outlook.com (10.167.249.36) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.181.6 via Frontend Transport; Thu, 9 Jul 2026 06:43:13 +0000
+Received: from satlexmb08.amd.com (10.181.42.217) by satlexmb08.amd.com
+ (10.181.42.217) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Thu, 9 Jul
+ 2026 01:43:12 -0500
+Received: from xhdshubpati40x.xilinx.com (10.180.168.240) by
+ satlexmb08.amd.com (10.181.42.217) with Microsoft SMTP Server id 15.2.2562.41
+ via Frontend Transport; Thu, 9 Jul 2026 01:43:06 -0500
+From: Shubham Patil <shubhamsanjay.patil@amd.com>
+To: <git@amd.com>, <michal.simek@amd.com>, <alexandre.belloni@bootlin.com>,
+	<Frank.Li@nxp.com>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+	<conor+dt@kernel.org>, <pgaj@cadence.com>,
+	<wsa+renesas@sang-engineering.com>, <tommaso.merciai.xr@bp.renesas.com>,
+	<arnd@arndb.de>, <quic_msavaliy@quicinc.com>, <Shyam-sundar.S-k@amd.com>,
+	<sakari.ailus@linux.intel.com>, <billy_tsai@aspeedtech.com>,
+	<kees@kernel.org>, <gustavoars@kernel.org>, <jarkko.nikula@linux.intel.com>,
+	<jorge.marques@analog.com>, <linux-i3c@lists.infradead.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-arch@vger.kernel.org>, <linux-hardening@vger.kernel.org>
+CC: <radhey.shyam.pandey@amd.com>, <srinivas.goud@amd.com>,
+	<shubhrajyoti.datta@amd.com>, <shubhamsanjay.patil@amd.com>
+Subject: [PATCH v10 0/2] Add AMD I3C master controller driver and bindings
+Date: Thu, 9 Jul 2026 12:12:31 +0530
+Message-ID: <20260709064233.1451482-1-shubhamsanjay.patil@amd.com>
+X-Mailer: git-send-email 2.49.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:SUZgU+pZldcREEHCqRB+JfhP9El8uTKfd2BjD0AQBtD5zTtRFlv
- oKBf/fpsVvh3d///Ap1DxQD3bYZgWehdxfHaFmPyYrNmtontjHbpJCUoaALLSx25PP9JHwz
- ny88YAs0AtYFU2MARySpYsMOWqF+F8wt3HBR538tcrVaPRXfJIzAug1qoGywJm9oWAthQKg
- RtmxyL2M0Waai35yutWgg==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:BVjzlAhTIes=;qxhBx/Ru7jjquJpMgC8D+LNcuYL
- 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
- RnSwolFgyDVLsNpqHE=
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BL6PEPF0002256E:EE_|CYXPR12MB9443:EE_
+X-MS-Office365-Filtering-Correlation-Id: 198f682f-7581-4378-506d-08dedd8559ac
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|7416014|376014|23010399003|82310400026|36860700016|1800799024|921020|18002099003|3023799007|56012099006|11063799006|6133799003;
+X-Microsoft-Antispam-Message-Info:
+	5xC5cKqPuqaQWJpoYK/3rvaEts0VWni7ZTTbQvl+HxMDmkxlZdF9IjgcoXKYUsTIlworSqfVSA/gQ4W93sCK097Py1ZvGofKCBAY2ASQDqp7w3NqIaK08vd/+JrlQSxX+QmN+inWqgzRL6uKG7UX3EBhmoauGe+ilD4usKMR9q85ev68McR/y/K9JzHKBGaBkxN90vB7R2eXRe7o8VFcpW02YH5zR++teaDtlO8M0IDP7DTKby1KbBtzGA5zXdUZRmmkE2emfWgVZrtWHiqKscxjTY048Nki1EBO8jvf/UHIbzqwrsq2AnBB6+wAGtWyupvO/MQR/EcCD9JdMN1K74pMihhpt4h/HEtyrkGRYvYYkXjG5FINwabZdzZGPLSywlyBgQhwvVpEVUo4Khfk55zbhz0dCikL95BP4W1fhfUAALDcIJUdsHzuvmmvySn9rV5AKhKqf0XQqKXw/PPIvklSaRlqZgVVuq0wqdaSX/7NaPShDz29nfycmeoe6vGPWTca/U2IWgGmFQMOdY6wlUcJRT0qxRg+s3J3pbja16QQFpnwBCVy22PtpASlqZUjzJTwIwSYa2GhaKoRyqggZWR0egrK9lAS5jegcbHpgSxWYfuJqC7pdpVDFsuQNWk/Wlmx4tOvlrt2ftvuagUKt5oAVPpznXnWy9YX/5VBp3bcyPDVQp81P+liw5u1EYMY/7nq3Ov9z8EJbESAg2GH7ufxYsfvfuDKxj4XmuScy/z7NFSY7M3QtYvAnTRLYO6g
+X-Forefront-Antispam-Report:
+	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:satlexmb08.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(7416014)(376014)(23010399003)(82310400026)(36860700016)(1800799024)(921020)(18002099003)(3023799007)(56012099006)(11063799006)(6133799003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	hRVhYJHT/oja90ipzB8zvOuNv/AS3GdVvI6F9dynMk3018e+guFROZbyyl5DYVAk0C59FMMRlv52tzYErhmpf6+McLiljGBNMIDqyNsWgh7ln0Wr/e4Eu2uV9sjHF13gc476OcgUqElwKZu4BCTr7SHJ27P24S1NG0W3yxKT7REjGANFgXMVkBBcAUQNMawBTjDMGvhImvVLZNgvRn7rNnUHL5EsLdH4xQ7+fB509DfigS4PIrxd9YN/1ej1ZXdNUP01PJK5L+aFGXmRuPQo7q09Ld9XqDschjBy9Yre6jkL7iYEKFzIH4a5qwHbUhIhlcwLfmxcKYG4hqGEXuCyS4r2UUIzJ/DWhoAO5qbi7q5pDKw2XB9FLEQAEFESmroCcmea7h4FMnmvHEI6Wu+2dpzFb1dqpqKONe/9O2zuq+4VKLEaHsil78/lNnnCTyjv
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jul 2026 06:43:13.7597
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 198f682f-7581-4378-506d-08dedd8559ac
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[satlexmb08.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	BL6PEPF0002256E.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CYXPR12MB9443
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [2.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_REJECT(1.00)[cv is fail on i=2];
 	MID_CONTAINS_FROM(1.00)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmx.de,quarantine];
-	R_DKIM_ALLOW(-0.20)[gmx.de:s=s31663417];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:andrew@lunn.ch,m:hkallweit1@gmail.com,m:linux@armlinux.org.uk,m:davem@davemloft.net,m:edumazet@google.com,m:kuba@kernel.org,m:pabeni@redhat.com,m:netdev@vger.kernel.org,m:chris.packham@alliedtelesis.co.nz,m:daniel@makrotopia.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:markus.stockhausen@gmx.de,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[lunn.ch,gmail.com,armlinux.org.uk,davemloft.net,google.com,kernel.org,redhat.com,vger.kernel.org,alliedtelesis.co.nz,makrotopia.org];
-	FORGED_SENDER(0.00)[markus.stockhausen@gmx.de,devicetree@vger.kernel.org];
-	FORWARDED(0.00)[lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmx.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-323336-lists,devicetree=lfdr.de];
-	FREEMAIL_CC(0.00)[gmx.de];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[shubhamsanjay.patil@amd.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-323344-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:git@amd.com,m:michal.simek@amd.com,m:alexandre.belloni@bootlin.com,m:Frank.Li@nxp.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:pgaj@cadence.com,m:wsa+renesas@sang-engineering.com,m:tommaso.merciai.xr@bp.renesas.com,m:arnd@arndb.de,m:quic_msavaliy@quicinc.com,m:Shyam-sundar.S-k@amd.com,m:sakari.ailus@linux.intel.com,m:billy_tsai@aspeedtech.com,m:kees@kernel.org,m:gustavoars@kernel.org,m:jarkko.nikula@linux.intel.com,m:jorge.marques@analog.com,m:linux-i3c@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arch@vger.kernel.org,m:linux-hardening@vger.kernel.org,m:radhey.shyam.pandey@amd.com,m:srinivas.goud@amd.com,m:shubhrajyoti.datta@amd.com,m:shubhamsanjay.patil@amd.com,m:krzk@kernel.org,m:conor@kernel.org,m:wsa@sang-engineering.com,s:lists@lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[markus.stockhausen@gmx.de,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	TO_DN_SOME(0.00)[];
-	DKIM_TRACE(0.00)[gmx.de:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,gmx.de:from_mime,gmx.de:email,gmx.de:mid,gmx.de:dkim]
+	RCPT_COUNT_TWELVE(0.00)[28];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[shubhamsanjay.patil@amd.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[amd.com:+];
+	TO_DN_NONE(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,amd.com:from_mime,amd.com:dkim,amd.com:mid];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[8]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: D6CE872D478
+X-Rspamd-Queue-Id: 91B9472D562
 
-The MDIO driver has been prepared for multiple device support. Add all
-required bits for the RTL839x (aka cypress) series. This is straightforwar=
-d
-but some things are worth mentioning.
+This patch series introduces support for the AMD I3C master controller,
+including the device tree binding and driver implementation.
+---
+Changes for V10:
+clk config: reject timing values exceeding the 18-bit registers (-EINVAL)
+instead of silently masking.
+Direct CCC read: clamp length to min(rx_actual, payload.len).
+Private transfers: report err/actual_len only for issued commands.
+Handle response code 5 (early T-bit read termination) as a short read;
+added xi3c_cmd.rx_actual and XI3C_RESP_BYTES_MASK.
+Report actual_len as min(rx_actual, len) for private reads.
+Allow zero-length transfers with a NULL buffer.
+DAA: move PID scratch buffer off-stack to kcalloc().
+DAA: drop i3c_master_add_i3c_dev_locked() return check.
+DAA: replace __free(kfree) with explicit kfree() at a single out: label.
+DAA: on max devices / no free address, warn and break so already
+enumerated devices are kept.
+Document timing constants (MIPI I3C v1.1.1, AMD PG439); fix OD/tCAS
+constants to ns and XI3C_MAX_DEVS to 128.
+Replace udelay() with fsleep() in FIFO reset.
+Use kzalloc_flex() and kmalloc_objs().
+Replace min_t() with min() in RX-FIFO drain.
+Trim verbose comments and drop two MODULE_AUTHOR lines.
+Use symbolic interrupt macros (GIC_SPI / IRQ_TYPE_LEVEL_HIGH) in the
+binding example and include arm-gic.h.
+Added Shubham Patil as Co-developed-by / Signed-off-by on the binding.
+Trimmed verbose comments and dropped redundant MODULE_AUTHOR lines.
 
-- The device has a lot in common with the RTL931x series. 8192 (Realtek)
-  pages and 7 MMIO registers
-- There are two SMI buses for 1G PHYs. Neither the bus nor address map
-  registers exist.
-- The hardware has not much to configure. So the setup_controller()
-  function is not needed.
-- c22 read/write functions must be called with PARK_PAGE =3D 0. Keep code
-  clean and avoid setting it to zero, matching the behavior of the RTL9310
-  logic.
+Changes for V9:
+Drop big-endian MMIO infra patches; do BE FIFO access locally with
+ioread32be()/iowrite32be() (self-contained, no internals.h).
+Replace async completion/queue with a synchronous path under the mutex.
+Rework response handling: add enum i3c_error_code, return -ENODEV/-EIO,
+set err M2/M0, and propagate err to CCC and private transfers.
+Switch .priv_xfers to .i3c_xfers; reject non-SDR modes (-EOPNOTSUPP).
+Rework DAA: incremental addressing, bounded count (-ENOSPC),
+end-of-enumeration via -ENODEV, zeroed PID buffers.
+Sleep with usleep_range() in FIFO loops instead of busy-spinning.
+Use FIELD_PREP() with named masks; convert accessor macros to inlines.
+Split the timeout macro into XI3C_RESP_TIMEOUT_US and XI3C_XFER_TIMEOUT_MS;
+add XI3C_POLL_INTERVAL_US.
+xi3c_clk_cfg(): use NSEC_PER_SEC and named constants, guard underflow,
+handle I3C_BUS_MODE_MIXED_SLOW.
+Drop ENTHDR (SDR-only); dispatch CCCs via the I3C_CCC_DIRECT bit.
+Use const TX buffers and parity8() for the DAA parity bit.
+Update MODULE_DESCRIPTION, copyright, and Kconfig to AMD_AXI_I3C_MASTER;
+fix the MAINTAINERS entry.
 
-Signed-off-by: Markus Stockhausen <markus.stockhausen@gmx.de>
-=2D--
- drivers/net/mdio/mdio-realtek-rtl9300.c | 102 ++++++++++++++++++++++++
- 1 file changed, 102 insertions(+)
+Changes for V8:
+Included dependent patch "i3c: fix big-endian FIFO transfers"
+to this series as [3/5].
+Resolved conflicts with "i3c: fix big-endian FIFO transfers".
+Updated description.
+Used time_left instead of timeout.
+Used __free(kfree) for xfer to simplify err path in multiple places.
 
-diff --git a/drivers/net/mdio/mdio-realtek-rtl9300.c b/drivers/net/mdio/md=
-io-realtek-rtl9300.c
-index a6dfd8d26722..8ee92dbed52f 100644
-=2D-- a/drivers/net/mdio/mdio-realtek-rtl9300.c
-+++ b/drivers/net/mdio/mdio-realtek-rtl9300.c
-@@ -141,6 +141,28 @@
- #define RTL8380_SMI_POLL_CTRL			0xa17c
- #define RTL8380_SMI_PORT0_5_ADDR_CTRL		0xa1c8
-=20
-+#define RTL8390_NUM_BUSES			2
-+#define RTL8390_NUM_PAGES			8192
-+#define RTL8390_NUM_PORTS			52
-+#define RTL8390_BCAST_PHYID_CTRL		0x03ec
-+#define RTL8390_PHYREG_ACCESS_CTRL		0x03dc
-+#define   RTL8390_PHY_CTRL_REG_ADDR		GENMASK(9, 5)
-+#define   RTL8390_PHY_CTRL_MAIN_PAGE		GENMASK(22, 10)
-+#define   RTL8390_PHY_CTRL_FAIL			BIT(1)
-+#define   RTL8390_PHY_CTRL_WRITE		BIT(3)
-+#define   RTL8390_PHY_CTRL_READ			0
-+#define   RTL8390_PHY_CTRL_TYPE_C45		BIT(2)
-+#define   RTL8390_PHY_CTRL_TYPE_C22		0
-+#define RTL8390_PHYREG_CTRL			0x03e0
-+#define   RTL8390_PHY_CTRL_EXT_PAGE		GENMASK(8, 0)
-+#define RTL8390_PHYREG_DATA_CTRL		0x03f0
-+#define   RTL8390_PHY_CTRL_INDATA		GENMASK(31, 16)
-+#define   RTL8390_PHY_CTRL_DATA			GENMASK(15, 0)
-+#define RTL8390_PHYREG_MMD_CTRL			0x03f4
-+#define RTL8390_PHYREG_PORT_CTRL_LOW		0x03e4
-+#define RTL8390_PHYREG_PORT_CTRL_HIGH		0x03e8
-+#define RTL8390_SMI_PORT_POLLING_CTRL		0x03fc
-+
- #define RTL9300_NUM_BUSES			4
- #define RTL9300_NUM_PAGES			4096
- #define RTL9300_NUM_PORTS			28
-@@ -423,6 +445,62 @@ static int otto_emdio_8380_write_c45(struct mii_bus *=
-bus, int port,
- 	return otto_emdio_write_cmd(bus, RTL8380_PHY_CTRL_TYPE_C45, &cmd_data);
- }
-=20
-+static int otto_emdio_8390_read_c22(struct mii_bus *bus, int port, int re=
-gnum, u32 *value)
-+{
-+	struct otto_emdio_priv *priv =3D otto_emdio_bus_to_priv(bus);
-+	struct otto_emdio_cmd_regs cmd_data =3D {
-+		.c22_data	=3D FIELD_PREP(RTL8390_PHY_CTRL_REG_ADDR, regnum) |
-+				  FIELD_PREP(RTL8390_PHY_CTRL_MAIN_PAGE, priv->page[port]),
-+		.ext_page	=3D FIELD_PREP(RTL8390_PHY_CTRL_EXT_PAGE, 0x1ff),
-+		.io_data	=3D FIELD_PREP(RTL8390_PHY_CTRL_INDATA, port),
-+	};
-+
-+	return otto_emdio_read_cmd(bus, RTL8390_PHY_CTRL_TYPE_C22, &cmd_data,
-+				   RTL8390_PHY_CTRL_DATA, value);
-+}
-+
-+static int otto_emdio_8390_write_c22(struct mii_bus *bus, int port, int r=
-egnum, u16 value)
-+{
-+	struct otto_emdio_priv *priv =3D otto_emdio_bus_to_priv(bus);
-+	struct otto_emdio_cmd_regs cmd_data =3D {
-+		.c22_data	=3D FIELD_PREP(RTL8390_PHY_CTRL_REG_ADDR, regnum) |
-+				  FIELD_PREP(RTL8390_PHY_CTRL_MAIN_PAGE, priv->page[port]),
-+		.ext_page	=3D FIELD_PREP(RTL8390_PHY_CTRL_EXT_PAGE, 0x1ff),
-+		.io_data	=3D FIELD_PREP(RTL8390_PHY_CTRL_INDATA, value),
-+		.port_mask_high	=3D (u32)(BIT_ULL(port) >> 32),
-+		.port_mask_low	=3D (u32)(BIT_ULL(port)),
-+	};
-+
-+	return otto_emdio_write_cmd(bus, RTL8390_PHY_CTRL_TYPE_C22, &cmd_data);
-+}
-+
-+static int otto_emdio_8390_read_c45(struct mii_bus *bus, int port,
-+				    int dev_addr, int regnum, u32 *value)
-+{
-+	struct otto_emdio_cmd_regs cmd_data =3D {
-+		.c45_data	=3D FIELD_PREP(PHY_CTRL_MMD_DEVAD, dev_addr) |
-+				  FIELD_PREP(PHY_CTRL_MMD_REG, regnum),
-+		.io_data	=3D FIELD_PREP(RTL8390_PHY_CTRL_INDATA, port),
-+	};
-+
-+	return otto_emdio_read_cmd(bus, RTL8390_PHY_CTRL_TYPE_C45, &cmd_data,
-+				   RTL8390_PHY_CTRL_DATA, value);
-+}
-+
-+static int otto_emdio_8390_write_c45(struct mii_bus *bus, int port,
-+				     int dev_addr, int regnum, u16 value)
-+{
-+	struct otto_emdio_cmd_regs cmd_data =3D {
-+		.c45_data	=3D FIELD_PREP(PHY_CTRL_MMD_DEVAD, dev_addr) |
-+				  FIELD_PREP(PHY_CTRL_MMD_REG, regnum),
-+		.io_data	=3D FIELD_PREP(RTL8390_PHY_CTRL_INDATA, value),
-+		.port_mask_high	=3D (u32)(BIT_ULL(port) >> 32),
-+		.port_mask_low	=3D (u32)(BIT_ULL(port)),
-+	};
-+
-+	return otto_emdio_write_cmd(bus, RTL8390_PHY_CTRL_TYPE_C45, &cmd_data);
-+}
-+
- static int otto_emdio_9300_read_c22(struct mii_bus *bus, int port, int re=
-gnum, u32 *value)
- {
- 	struct otto_emdio_priv *priv =3D otto_emdio_bus_to_priv(bus);
-@@ -969,6 +1047,29 @@ static const struct otto_emdio_info otto_emdio_8380_=
-info =3D {
- 	.write_c45 =3D otto_emdio_8380_write_c45,
- };
-=20
-+static const struct otto_emdio_info otto_emdio_8390_info =3D {
-+	.cmd_fail =3D RTL8390_PHY_CTRL_FAIL,
-+	.cmd_read =3D RTL8390_PHY_CTRL_READ,
-+	.cmd_write =3D RTL8390_PHY_CTRL_WRITE,
-+	.cmd_regs =3D {
-+		.broadcast =3D RTL8390_BCAST_PHYID_CTRL,
-+		.c22_data =3D RTL8390_PHYREG_ACCESS_CTRL,
-+		.c45_data =3D RTL8390_PHYREG_MMD_CTRL,
-+		.ext_page =3D RTL8390_PHYREG_CTRL,
-+		.io_data =3D RTL8390_PHYREG_DATA_CTRL,
-+		.port_mask_low =3D RTL8390_PHYREG_PORT_CTRL_LOW,
-+		.port_mask_high =3D RTL8390_PHYREG_PORT_CTRL_HIGH,
-+	},
-+	.num_buses =3D RTL8390_NUM_BUSES,
-+	.num_pages =3D RTL8390_NUM_PAGES,
-+	.num_ports =3D RTL8390_NUM_PORTS,
-+	.poll_ctrl =3D RTL8390_SMI_PORT_POLLING_CTRL,
-+	.read_c22 =3D otto_emdio_8390_read_c22,
-+	.read_c45 =3D otto_emdio_8390_read_c45,
-+	.write_c22 =3D otto_emdio_8390_write_c22,
-+	.write_c45 =3D otto_emdio_8390_write_c45,
-+};
-+
- static const struct otto_emdio_info otto_emdio_9300_info =3D {
- 	.addr_map_base =3D RTL9300_SMI_PORT0_5_ADDR_CTRL,
- 	.bus_map_base =3D RTL9300_SMI_PORT0_15_POLLING_SEL,
-@@ -1020,6 +1121,7 @@ static const struct otto_emdio_info otto_emdio_9310_=
-info =3D {
-=20
- static const struct of_device_id otto_emdio_ids[] =3D {
- 	{ .compatible =3D "realtek,rtl8380-mdio", .data =3D &otto_emdio_8380_inf=
-o },
-+	{ .compatible =3D "realtek,rtl8391-mdio", .data =3D &otto_emdio_8390_inf=
-o },
- 	{ .compatible =3D "realtek,rtl9301-mdio", .data =3D &otto_emdio_9300_inf=
-o },
- 	{ .compatible =3D "realtek,rtl9311-mdio", .data =3D &otto_emdio_9310_inf=
-o },
- 	{}
-=2D-=20
-2.54.0
+Changes for V7:
+Added i3c controller version details to commit description.
+Added Reviewed-by tag to binding patch [1/4].
+Added big-endian MMIO accessors [2/4].
+Added endianness support for i3c_readl_fifo() and i3c_writel_fifo() [3/4].
+Updated timeout macro name.
+Updated xi3c_master_wr_to_tx_fifo() and xi3c_master_rd_from_rx_fifo()
+to use i3c_writel_fifo() and i3c_readl_fifo().
+
+Changes for V6:
+Corrected the $id in the YAML file to match the filename and fix
+the dtschema warning.
+Removed typecast for xi3c_getrevisionnumber(), xi3c_wrfifolevel(),
+and xi3c_rdfifolevel().
+Replaced dynamic allocation with a static variable for pid_bcr_dcr.
+Fixed sparse warning in do_daa by typecasting the address parity value
+to u8.
+Fixed sparse warning in xi3c_master_bus_init by typecasting the pid value
+to u64 in info.pid calculation.
+
+Changes for V5:
+Renamed the xlnx,axi-i3c.yaml file into xlnx,axi-i3c-1.0.yaml.
+Used GENMASK_ULL for PID mask as it's 64bit mask.
+
+Changes for V4:
+Added h/w documentation details.
+Updated timeout macros.
+Removed type casting for xi3c_is_resp_available() macro.
+Used ioread32() and iowrite32() instead of readl() and writel()
+to keep consistency.
+Read XI3C_RESET_OFFSET reg before udelay().
+Removed xi3c_master_free_xfer() and directly used kfree().
+Skipped checking return value of i3c_master_add_i3c_dev_locked().
+Used devm_mutex_init() instead of mutex_init().
+
+Changes for V3:
+Updated commit description.
+Corrected the order of properties and removed resets property.
+Added compatible to required list.
+Added interrupts to example.
+Resolved merge conflicts.
+
+Changes for V2:
+Updated commit subject and description.
+Moved allOf to after required.
+Removed xlnx,num-targets property.
+Added mixed mode support with clock configuration.
+Converted smaller functions into inline functions.
+Used FIELD_GET() in xi3c_get_response().
+Updated xi3c_master_rd_from_rx_fifo() to use cmd->rx_buf.
+Used parity8() for address parity calculation.
+Added guards for locks.
+Dropped num_targets and updated xi3c_master_do_daa().
+Used __free(kfree) in xi3c_master_send_bdcast_ccc_cmd().
+Dropped PM runtime support.
+Updated xi3c_master_read() and xi3c_master_write() with
+xi3c_is_resp_available() check.
+Created separate functions: xi3c_master_init() and xi3c_master_reinit().
+Used xi3c_master_init() in bus initialization and xi3c_master_reinit()
+in error paths.
+Added DAA structure to xi3c_master structure.
+---
+Manikanta Guntupalli (2):
+  dt-bindings: i3c: Add AMD I3C master controller support
+  i3c: master: Add driver for AMD AXI I3C master controller
+
+ .../bindings/i3c/xlnx,axi-i3c-1.0.yaml        |   58 +
+ MAINTAINERS                                   |    8 +
+ drivers/i3c/master/Kconfig                    |   15 +
+ drivers/i3c/master/Makefile                   |    1 +
+ drivers/i3c/master/amd-i3c-master.c           | 1124 +++++++++++++++++
+ 5 files changed, 1206 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/i3c/xlnx,axi-i3c-1.0.yaml
+ create mode 100644 drivers/i3c/master/amd-i3c-master.c
+
+-- 
+2.49.1
 
 
