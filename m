@@ -1,202 +1,180 @@
-Return-Path: <devicetree+bounces-323973-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-323974-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id bMxkCvThT2rWpgIAu9opvQ
-	(envelope-from <devicetree+bounces-323973-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 20:01:24 +0200
+	id hg68HoviT2rlpgIAu9opvQ
+	(envelope-from <devicetree+bounces-323974-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 20:03:55 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B293734185
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 20:01:23 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id DE6C173419D
+	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 20:03:54 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=K1MRVtRk;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=T5x82ZRF;
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-323973-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-323973-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-323974-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-323974-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 87E3930128CE
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2026 18:01:22 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id EA2D23020134
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2026 18:03:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3163E4195D0;
-	Thu,  9 Jul 2026 18:01:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33B132E7631;
+	Thu,  9 Jul 2026 18:03:53 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 039D84195BB
-	for <devicetree@vger.kernel.org>; Thu,  9 Jul 2026 18:01:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19EB14195BB;
+	Thu,  9 Jul 2026 18:03:51 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783620080; cv=none; b=CO/lVP6j5RfRaZQ2qtjtEIwekKPrVIDIKGB4ZjDjmqkGOBawuiskpJyCPV7yjrgqnGpzQcyDHZRG50TqMP6aDOvtAauAR/LULaf7cpjm2yInx8VbC1ZcQTJi8AbMijrV0m8qkuaAbuaNNP3d0VWN9fqZzJRCET4l4+JtkvsdhWk=
+	t=1783620233; cv=none; b=joDEpkUiD0VFn3lbu7+hWS1jn5hFJE+pDlr2ni8cbloj8avwhSS4mkv58y+kRhrSbXOilC768yBpw0pjiMwkvIsu5HWzbG+FjqBiyP3cXBcl0gY0k+bsZTiJOzmWbeOnai2Mtoaac6RwGgSzQ6DRCYLVThVeAJWBmvJ4zM8Kvvw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783620080; c=relaxed/simple;
-	bh=iorj0Fd+g02n9l1d7aDZ1AIWC17e1JX8CY+5BpI6vs0=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=RTVA1ee+RfluFo8zCIJhWnEn4Ydy/kGLXOl0yGxGkw4h5U7jAKhHun4x3xewNQYCLrZ1BeeHK2iwb2HNm8umMQhLk7KUdRt87dq5Saj1MnCF0EbD72ku6OFmpODI+CdNgualccEGupHQdxuQ3szcr+h2OB851bLX1xkyRV7VSWo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=K1MRVtRk; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6935B1F000E9;
-	Thu,  9 Jul 2026 18:01:18 +0000 (UTC)
+	s=arc-20240116; t=1783620233; c=relaxed/simple;
+	bh=4gt/DtEbA+N6ETtW9fXQMTK7/FqYplXc9rzTb7mC/OU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=a59JBXE2feXCBQ8NiJNEF7MmAHrJLRuf7AIsjw31cKL7VfFWTmJy6CwL83gpLZaS/6q5MgR0O1YcuXl/llpawt3HxYxdcW/3cFJ4EpCo9vDrm02fUti4d4ga7K364VfBtOyd/Sq84avpphUuZ6U7njPshSAuCx6L/o1EUdjFB3k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=T5x82ZRF; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 17C201F000E9;
+	Thu,  9 Jul 2026 18:03:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783620078;
-	bh=7IpjKhN+Fe2uZFmXQoIhNf/gp1Den1M+a/qfe7fscJQ=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=K1MRVtRko1whiyXRrKd1ZA3UzF+skvu00Dwh7Bx72o+zz/kEwgVl5N23nnnDorgBT
-	 KeK+Ntfo+e5wsL+oq/YA/JEx/qJP/KNI7XwwxXsgM9z5GmPQxTYyUgs9I/rQccq/8k
-	 9iDAPU0+qcvTNnKHHd9KAdxB9LUg5eakH1DButCFZ8qX77ikkqarbQ0zD6dvJWdwW/
-	 EunMKI1OhgC1w6EBaNfP8JuFnbU6toboD9PZW3SQtF2aACcOgHsy9FXtl0gPIhCTo+
-	 f6Z52Mi1Fa24RAO+wxL0napcvxAblJCs5/hjPKqzVfF2FWp7bkhyJsgs8T7dQuJt2M
-	 5VY0uOlpp1Qqg==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v5 2/7] dtc: dt-check-style: Allow space-aligning
- indentation in DTS
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Krzysztof Kozlowski" <krzysztof.kozlowski@oss.qualcomm.com>
-Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20260709-dts-style-checker-v5-2-fcc147cb697d@oss.qualcomm.com>
-References: <20260709-dts-style-checker-v5-0-fcc147cb697d@oss.qualcomm.com>
- <20260709-dts-style-checker-v5-2-fcc147cb697d@oss.qualcomm.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Thu, 09 Jul 2026 18:01:18 +0000
-Message-Id: <20260709180118.6935B1F000E9@smtp.kernel.org>
+	s=k20260515; t=1783620231;
+	bh=Gl3mdu01+YhSNina+Rf2K+m8lgx/CpuAdVmfkE0g9Uo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=T5x82ZRFx/+jd0n0a/6VDdNTEACrCIrQmkwZp/9jzcC0LuaCtGcLQmrzpNwvExtU/
+	 jEgKimy2naDK6Ak7Crg8Nvb8AiCFjc85eb9ZjBlHUM6wZmIf1mu8U7XR4BjPWjod9A
+	 /z3hTkSoFD5KclhgyxvLMSgUAtqhXEibBg//p7JRTQjqOkW3tXr9h381Juw6ZKWvSB
+	 Q1pkh2bRnt8/lZWEzmExsKSRzoOO+qEsTnD+WiJ9vyAf3uPJGdeAb9lC+js7yz0oLo
+	 Oia9IxrPp6DvYUISsxExvIbyC0P3dtVwrdZqCn76HB4XAGO/YxVJc/kH0lhocUuSv5
+	 jrJUoP9rYimyA==
+Date: Thu, 9 Jul 2026 19:03:48 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Stefan Wahren <wahrenst@gmx.net>
+Cc: Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jean-Jacques Hiblot <jjhiblot@traphandler.com>,
+	linux-leds@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH RFC 1/2] dt-bindings: leds-group-multicolor: Introduce
+ default-intensity
+Message-ID: <20260709-outsell-undamaged-6c8045d6115f@spud>
+References: <20260708224652.106632-1-wahrenst@gmx.net>
+ <20260708224652.106632-2-wahrenst@gmx.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="cMIjV14YmPuG/d5f"
+Content-Disposition: inline
+In-Reply-To: <20260708224652.106632-2-wahrenst@gmx.net>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
+X-Spamd-Result: default: False [-5.26 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-323974-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-323973-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[gmx.net];
+	FORGED_SENDER(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FORGED_RECIPIENTS(0.00)[m:wahrenst@gmx.net,m:lee@kernel.org,m:pavel@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:jjhiblot@traphandler.com,m:linux-leds@vger.kernel.org,m:devicetree@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:krzysztof.kozlowski@oss.qualcomm.com,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	RCPT_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,lists.linux.dev:replyto,qualcomm.com:email,sashiko.dev:url,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,smtp.kernel.org:mid]
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,spud:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 7B293734185
+X-Rspamd-Queue-Id: DE6C173419D
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
-s) to consider:
-- [Medium] The check for excessive space characters (> 7) is not applied to=
- continuation lines, allowing invalid mixed indentation to silently pass.
-- [Low] Dead code: Unreachable `LineType.PREPROCESSOR` check inside continu=
-ation loop.
---
+--cMIjV14YmPuG/d5f
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
---- Patch [2]: [PATCH v5 2/7] dtc: dt-check-style: Allow space-aligning ind=
-entation in DTS ---
-commit a9c24c0264c4f952c0bab2866c36e42454e6fbde
-Author: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-
-dtc: dt-check-style: Allow space-aligning indentation in DTS
-
-This commit modifies the dt-check-style script to allow spaces after tabs
-in DTS indentation for aligning continued lines. It limits spaces to a
-maximum of 7 and explicitly disallows a space followed by a tab.
-
-> --- a/scripts/dtc/dt-check-style
-> +++ b/scripts/dtc/dt-check-style
-> @@ -359,14 +359,24 @@ def check_tab_in_yaml_example(ctx):
+On Thu, Jul 09, 2026 at 12:46:51AM +0200, Stefan Wahren wrote:
+> Currently it's not possible to specify the initial color of a LED group
+> during boot. So introduce a new property similar to default-brightness,
+> which specifies the intensity of each LED in the group.
+>=20
+> Signed-off-by: Stefan Wahren <wahrenst@gmx.net>
+> ---
+>  .../devicetree/bindings/leds/leds-group-multicolor.yaml    | 7 +++++++
+>  1 file changed, 7 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/leds/leds-group-multicolor=
+=2Eyaml b/Documentation/devicetree/bindings/leds/leds-group-multicolor.yaml
+> index 5c9cfa39396b..18b722b807ba 100644
+> --- a/Documentation/devicetree/bindings/leds/leds-group-multicolor.yaml
+> +++ b/Documentation/devicetree/bindings/leds/leds-group-multicolor.yaml
+> @@ -19,6 +19,12 @@ properties:
 > =20
+>    leds: true
 > =20
->  def check_mixed_indent_chars(ctx):
-[ ... ]
-> +        if dl.indent_str.count(' ') > 7:
-> +            yield (dl.lineno, 'too many space characters in indent (more=
- than 7)')
-> +        for cont in dl.continuations:
-> +            if not cont.indent_str:
-> +                continue
-> +            if cont.linetype =3D=3D LineType.PREPROCESSOR:
-> +                continue
+> +  default-intensity:
+> +    description:
+> +      Intensity to be set for each individual LED. Used only during
+> +      initialization. If the property is not set then max intensity is u=
+sed.
+> +    $ref: /schemas/types.yaml#/definitions/uint32-array
 
-[Severity: Low]
-Are preprocessor lines possible in this continuation list? The logic that
-builds the list seems to guarantee that continuations only ever contain
-LineType.CONTINUATION elements, as preprocessor directives reset the
-continuation state and are added to the main line list instead.
+Hmm, there's already a property proposed and applied for this:
+https://lore.kernel.org/linux-leds/20260605-multicolor-default-v2-1-ed07271=
+df6b0@pengutronix.de/
+It only supports a single value, I suspect you'll have to rework this so
+as not to conflict with existing property?
+leds-group-multicolour imports the common leds properties after all.
+Probably the one in common.yaml needs to become an array?
 
-> +            if re.search(r' \t', cont.indent_str):
-> +                yield (cont.lineno, 'mixed tabs and spaces in indent')
+> +
+>  required:
+>    - leds
+> =20
+> @@ -56,6 +62,7 @@ examples:
+>          color =3D <LED_COLOR_ID_RGB>;
+>          function =3D LED_FUNCTION_INDICATOR;
+>          leds =3D <&led0>, <&led1>, <&led2>;
+> +        default-intensity =3D <1 0 0>;
+>      };
+> =20
+>  ...
+> --=20
+> 2.43.0
+>=20
 
-[Severity: Medium]
-Should this loop over continuations also enforce the check for excessive
-space characters? While the primary line is checked for more than 7 spaces
-above, continuation lines omit this validation, which could allow invalid
-mixed indentation to pass silently.
+--cMIjV14YmPuG/d5f
+Content-Type: application/pgp-signature; name=signature.asc
 
-[ ... ]
-> --- /dev/null
-> +++ b/scripts/dtc/dt-style-selftest/bad/dts-mixed-indent.dts
-> @@ -0,0 +1,21 @@
-[ ... ]
-> +		clocks =3D <1>,
-> +  			 <2>,
-> +			 <3>,
-> +		         <4>;
+-----BEGIN PGP SIGNATURE-----
 
-[Severity: Medium]
-Does the continuation line with value <4> contain 9 space characters?
-Because the excessive space check is omitted for continuations in the
-dt-check-style script, this 9-space indentation goes undetected.
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCak/igwAKCRB4tDGHoIJi
+0kYvAQDFqW0granAQsEhZOoMpPAZ5c+XR6miwCiQip2Plg32FgEAll9FCkvOHIQ+
+1XcfbmM057Nfx+7JZO0CESBxAGjoywE=
+=tmFt
+-----END PGP SIGNATURE-----
 
-> +		 resets =3D <5>;
-> +	};
-> +};
-> diff --git a/scripts/dtc/dt-style-selftest/expected/dts-mixed-indent.dts.=
-txt b/scripts/dtc/dt-style-selftest/expected/dts-mixed-indent.dts.txt
-> new file mode 100644
-> index 0000000000000..93146cfb51c78
-> --- /dev/null
-> +++ b/scripts/dtc/dt-style-selftest/expected/dts-mixed-indent.dts.txt
-> @@ -0,0 +1,9 @@
-[ ... ]
-> +bad/dts-mixed-indent.dts:13: [mixed-indent-chars] mixed tabs and spaces =
-in indent
-> +bad/dts-mixed-indent.dts:16: [mixed-indent-chars] mixed tabs and spaces =
-in indent
-> +bad/dts-mixed-indent.dts:19: [indent-consistent] indent mismatch (expect=
-ed depth 2 * '\t')
-
-[Severity: Medium]
-Should this expected output file also be updated once the excessive space
-check is applied to the continuations loop? It currently fails to assert a
-mixed-indent-chars warning for the 9-space continuation in the clocks
-property above.
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260709-dts-style-=
-checker-v5-0-fcc147cb697d@oss.qualcomm.com?part=3D2
+--cMIjV14YmPuG/d5f--
 
