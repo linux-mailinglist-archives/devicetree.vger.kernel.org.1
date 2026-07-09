@@ -1,357 +1,160 @@
-Return-Path: <devicetree+bounces-324072-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-324074-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id k+PPKJn2T2rDrAIAu9opvQ
-	(envelope-from <devicetree+bounces-324072-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 21:29:29 +0200
+	id 8wroG/z2T2rrrAIAu9opvQ
+	(envelope-from <devicetree+bounces-324074-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 21:31:08 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E6B7734F74
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 21:29:29 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 00AB2734FE5
+	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 21:31:07 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=GwGvkOXy;
-	dmarc=pass (policy=none) header.from=gmail.com;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324072-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-324072-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=XDjHB93p;
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324074-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-324074-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 1D8D3302BBD8
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2026 19:29:26 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 7B0973017C19
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2026 19:31:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 211633BBFC6;
-	Thu,  9 Jul 2026 19:29:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A974E3033CB;
+	Thu,  9 Jul 2026 19:31:03 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 535DA3B8BA4
-	for <devicetree@vger.kernel.org>; Thu,  9 Jul 2026 19:29:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4E633B9D81;
+	Thu,  9 Jul 2026 19:31:01 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783625362; cv=none; b=ZtvYOd0mtMONtEFcVk+mDbn4sYLF32t27QQ2PvUDkwZfMHn2d6oFREqXABIWY6v+xtoEClTKokdpBC5XKxZsvSuNCRPvMnzk+OWQPT2j6VxpAG6fLsEJbxrFxvMS7fs+r4sMJv5+HDXPlRGaOD1pbTI4Mt9hu43vEd2Jx2butB0=
+	t=1783625463; cv=none; b=aSEO2ZRuXs8tXeMeX77IGzwWfJNoLSNwpdCHS8A7NdOIOOjGjkXPDqlKa9ph2TCwfSSuPgZ3/9idIQ7SgtlVLt/hRUrA0aQEpes8X86C7AzvVWcJb0AlfG0YNNVRHzvNhTSj0sacbNj/iLorelVLlEE3J6WXUePNiQ70hCtROHI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783625362; c=relaxed/simple;
-	bh=Gs0fws9+Gd/2rQ5zcAPdBNSEeReL3xcHI6nMcWwIRUc=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=SZCmFg+2hdUemOzgpun+kl7UCbiKUB7MU8P00mxDnQaMsC8zL4EZP5+7ecfYpZWiKdN0dANXE7m7t8QzZl79mTiZ946OodNRCnBQg00LjHJHQ3Y6os2f3gpIsQ5xgNa7cf45PpsELKak5CIk5qDHEuyTx8k5lc5WE8KEsXgWtdQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GwGvkOXy; arc=none smtp.client-ip=209.85.128.50
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-493b7612475so1347405e9.3
-        for <devicetree@vger.kernel.org>; Thu, 09 Jul 2026 12:29:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1783625359; x=1784230159; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=oB3E49QZBjfmGTKqlsRL4IImHG0MNtyTR57h7Jogqb0=;
-        b=GwGvkOXyt3WUs5jMUdAzqywbfVNlW39T/d6cwW0eyCNxO8G72AGAI+v9BSP13D1nlC
-         3KDM7DwSfNmxf8wDthHSX5XgLAsvKKxPmMtuRKDmXorZR0jsf/s2AH05vCDDGabGu4Yw
-         tF64nYeOqGFV+tkfpt9xPJ1uWjtDc38Rk+zQSFg5PukapHU2SaMqzM42JLDjU0USB1k2
-         SNkSYEp+nRMy/WPB6MwN1ABLcXSdew4+bZSzy23Agoeyx00ILANTQcGmgcuLXWBT/cuz
-         m2K9bM3naMq1BZRT75+IL3vWs0uCGfXT/OxzEtdO3V6mocLlUYwNvjmDeo8cn51xCNtZ
-         N8NA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783625359; x=1784230159;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=oB3E49QZBjfmGTKqlsRL4IImHG0MNtyTR57h7Jogqb0=;
-        b=jITbB1LL/UduIp1T0TMGIntjanMfEdw8oCLYuszksgWzzTcCwAf5khtLlS1zfjeM7l
-         /x/fd3Vxccb9UztiheNTlhq0C7IArRUPCqs0/23lBXn+IPN8ITYMdIoh7dQFJh6xlTNv
-         EDiis396n+rUDdUyNIrL/SwHxTZ1q9hztt7wthfT/nwq64PjAwTO8EbWS2Zi0Xcl13ps
-         bsqPropbw9vhuiFulHYrvSS/Yl6Di03/VadkETmAPhkgmwcKUT17Gq/E8VwSPhS6rwv4
-         649YlYJ6j/QTdu2tO1/8HEfgzskFsl/0s+fuhP93sg/MGHeSf/kwVD89p39Ws1uMbqUR
-         Fojg==
-X-Forwarded-Encrypted: i=1; AHgh+RrPpWreGXrgy7lHdDE82hMOJbeWi3PcSuVKQxrN0S6Q0ECRUrxeq0Ch3RjOVWxBhyFXkhvEnAUWp59z@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywjr71iMvU5cc90JXZWKxiaM2ZD1UX3tPhMBLDAxmn6/vCgrrsv
-	pvO+9FRQb1KFQ8wbAwCwxaZBKZnxeuwMKS4f+nDtwm70DJzM6hTVPMtI
-X-Gm-Gg: AfdE7cnrPc5usXF7tJ8VahBLeaYvj8MAtAhC1R/VAuK1c275tgrZLMk8sI3Tqm0nU7j
-	mPJNUTcQL57GfgR7/fyYo5kLxkHjcp225ZIjXIOY6wnLr5QYcv7EOW6DgKOH19msSn+vywzn5oN
-	pV3WvkuJqZFzGs9AtDSiY82hQXu9S+rt0M2bnvmWzCpMvnCfIUdQCcOkMH0sM+ET3ZxN2tQEyfu
-	yjJPExYA/T+YhIWUKat41pBZfLv6EdChJ5MmljIhroyVv2/X//nWYtPrPzuRj4iySGb3EScD0Tj
-	+g1sdR3lYuDCyRHP7t6JyOUN803LFUFPQRDtlwWbqEGBvhWFvT3O5dXKM1eE9n/j08dQEE4lflL
-	+rK9kH5F+h/EJiJsTNhch6oQ6Oe+CymCtuscTrqRu8kSMhB2dogdKzi55TZuNnZBJqJtqfgil50
-	g+/OB92kttqc3e99z0sSxf
-X-Received: by 2002:a05:600c:8485:b0:493:e4cd:def1 with SMTP id 5b1f17b1804b1-493f2c113d4mr3457625e9.11.1783625358666;
-        Thu, 09 Jul 2026 12:29:18 -0700 (PDT)
-Received: from biju.lan ([2a00:23c4:a702:d301:8fb6:1d85:3dc1:42ab])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-493eb6ccdbbsm84366045e9.3.2026.07.09.12.29.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Jul 2026 12:29:18 -0700 (PDT)
-From: Biju <biju.das.au@gmail.com>
-X-Google-Original-From: Biju <biju.das.jz@bp.renesas.com>
-To: Ulf Hansson <ulfh@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>
-Cc: Biju Das <biju.das.jz@bp.renesas.com>,
-	Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	linux-mmc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Biju Das <biju.das.au@gmail.com>,
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: [PATCH v19 01/12] dt-bindings: mmc: renesas,sdhi: Document RZ/G3L (r9a08g046) SoC
-Date: Thu,  9 Jul 2026 20:28:58 +0100
-Message-ID: <20260709192916.630794-2-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260709192916.630794-1-biju.das.jz@bp.renesas.com>
-References: <20260709192916.630794-1-biju.das.jz@bp.renesas.com>
+	s=arc-20240116; t=1783625463; c=relaxed/simple;
+	bh=KD5GNSqifg8n6r6Za1C9Xqk5m8sCxsxNzNP2ZOl+x6Q=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=KjCk29lHoP6J4v82waAKVlygNrY0K8lGHAgCVL46z0RhPf/0AjCxCNzMLeKjwDXj2FpghMa/XMr2QaIUxPoElGO554m1V8PKOgwjo0IVus83A2e/VLU9u8v9zL7syLINzdohso6JyyMsZ35l+lKBkof8YBv90ASAv8Hyqf0Zcog=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XDjHB93p; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 424D61F000E9;
+	Thu,  9 Jul 2026 19:31:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1783625461;
+	bh=ocwF/ZKxDBjhnuSvPieRUz+GcrAs71RhqU5rwB0f8OM=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject;
+	b=XDjHB93pSzbStDdD5N3SYByBMhh1JXyMy9xjSTZVdt+4VJzoGJuIrARaAhKYEqBYz
+	 gtqsurJ02WWXqGNZZVZk0GFMFD7fwiPY2y50URmT8IdFXLHTz8pMyb5MPlMo8fpUMC
+	 1HhTEOeDVxf2viwelljtFoOlG4FNe6MbYQN+b5/8MnZvykrh2UaVf7alUHXD9M6aag
+	 WaoTKtF7Ome+tR9zE9yK2OH5gCuoY0jy6seQfAwAM7mqqELV9T03ikPkB/qWg4j9iG
+	 vuLD4k0IvPJiiURqv922cEJOKnrba/rTr9F9TfPLfoNlmfl6pSNpOl3IhocDwm7cod
+	 M6etv5go0iI9Q==
+Date: Thu, 09 Jul 2026 14:31:00 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Takashi Iwai <tiwai@suse.com>, 
+ Philipp Zabel <p.zabel@pengutronix.de>, linux-kernel@vger.kernel.org, 
+ linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
+ Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>, 
+ Mark Brown <broonie@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+ Srinivas Kandagatla <srini@kernel.org>, Jaroslav Kysela <perex@perex.cz>, 
+ linux-arm-msm@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>
+To: Prasad Kumpatla <prasad.kumpatla@oss.qualcomm.com>
+In-Reply-To: <20260709175915.3805851-2-prasad.kumpatla@oss.qualcomm.com>
+References: <20260709175915.3805851-1-prasad.kumpatla@oss.qualcomm.com>
+ <20260709175915.3805851-2-prasad.kumpatla@oss.qualcomm.com>
+Message-Id: <178362545943.1021343.12928472425962817382.robh@kernel.org>
+Subject: Re: [PATCH v3 1/2] ASoC: dt-bindings: qcom,wsa8855: add Qualcomm
+ WSA8855 speaker amplifier
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
+X-Spamd-Result: default: False [-2.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-324072-lists,devicetree=lfdr.de];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FORGED_RECIPIENTS(0.00)[m:ulfh@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:geert+renesas@glider.be,m:magnus.damm@gmail.com,m:biju.das.jz@bp.renesas.com,m:wsa+renesas@sang-engineering.com,m:linux-mmc@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-renesas-soc@vger.kernel.org,m:prabhakar.mahadev-lad.rj@bp.renesas.com,m:biju.das.au@gmail.com,m:conor.dooley@microchip.com,m:krzk@kernel.org,m:conor@kernel.org,m:geert@glider.be,m:magnusdamm@gmail.com,m:wsa@sang-engineering.com,m:bijudasau@gmail.com,s:lists@lfdr.de];
-	FREEMAIL_TO(0.00)[kernel.org,glider.be,gmail.com];
-	FREEMAIL_CC(0.00)[bp.renesas.com,sang-engineering.com,vger.kernel.org,gmail.com,microchip.com];
-	FORWARDED(0.00)[lists@lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[bijudasau@gmail.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-324074-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[bijudasau@gmail.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:lgirdwood@gmail.com,m:tiwai@suse.com,m:p.zabel@pengutronix.de,m:linux-kernel@vger.kernel.org,m:linux-sound@vger.kernel.org,m:devicetree@vger.kernel.org,m:srinivas.kandagatla@oss.qualcomm.com,m:broonie@kernel.org,m:conor+dt@kernel.org,m:srini@kernel.org,m:perex@perex.cz,m:linux-arm-msm@vger.kernel.org,m:krzk+dt@kernel.org,m:prasad.kumpatla@oss.qualcomm.com,m:conor@kernel.org,m:krzk@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[gmail.com,suse.com,pengutronix.de,vger.kernel.org,oss.qualcomm.com,kernel.org,perex.cz];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp,devicetree.org:url]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 5E6B7734F74
+X-Rspamd-Queue-Id: 00AB2734FE5
 
-From: Biju Das <biju.das.jz@bp.renesas.com>
 
-Document the RZ/G3L (r9a08g046) SDHI controller. The RZ/G3L SDHI
-controller is similar to RZ/G2L but has five clocks (core, clkh,
-cd, aclkm, aclks) and three resets (rst, axim, axis), so update the
-clocks/clock-names maximum to 5 and resets/reset-names maximum to 3.
-It has an internal divider for all modes except HS400, and a 2048-bit
-divider compared to 512 on others.
+On Thu, 09 Jul 2026 23:29:14 +0530, Prasad Kumpatla wrote:
+> Add bindings for the Qualcomm WSA8855 stereo smart speaker amplifier.
+> 
+> Signed-off-by: Prasad Kumpatla <prasad.kumpatla@oss.qualcomm.com>
+> ---
+>  .../bindings/sound/qcom,wsa8855.yaml          | 93 +++++++++++++++++++
+>  1 file changed, 93 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/sound/qcom,wsa8855.yaml
+> 
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
----
-v18->v19:
- * Updated commit description
- * Updated clock and reset description with AXI master and AXI slave
- * Added else condition for reset and reset-names.
- * Renamed aclk->aclkm and reordered the axi clocks similar to resets.
- * Retained the tag as the changes are trivial.
-v17->v18:
- * No change.
-v1->v17:
- * Collected tag.
----
- .../devicetree/bindings/mmc/renesas,sdhi.yaml | 108 +++++++++++++-----
- 1 file changed, 81 insertions(+), 27 deletions(-)
+My bot found errors running 'make dt_binding_check' on your patch:
 
-diff --git a/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml b/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
-index 4d66966ce290..6d229a41a4b5 100644
---- a/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
-+++ b/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
-@@ -18,6 +18,7 @@ properties:
-           - renesas,sdhi-r7s9210 # SH-Mobile AG5
-           - renesas,sdhi-r8a73a4 # R-Mobile APE6
-           - renesas,sdhi-r8a7740 # R-Mobile A1
-+          - renesas,sdhi-r9a08g046 # RZ/G3L
-           - renesas,sdhi-r9a09g057 # RZ/V2H(P)
-           - renesas,sdhi-sh73a0  # R-Mobile APE6
-       - items:
-@@ -86,11 +87,11 @@ properties:
- 
-   clocks:
-     minItems: 1
--    maxItems: 4
-+    maxItems: 5
- 
-   clock-names:
-     minItems: 1
--    maxItems: 4
-+    maxItems: 5
- 
-   dmas:
-     minItems: 4
-@@ -116,7 +117,12 @@ properties:
-     maxItems: 1
- 
-   resets:
--    maxItems: 1
-+    minItems: 1
-+    maxItems: 3
-+
-+  reset-names:
-+    minItems: 1
-+    maxItems: 3
- 
-   pinctrl-0:
-     minItems: 1
-@@ -155,60 +161,106 @@ allOf:
-         properties:
-           compatible:
-             contains:
--              enum:
--                - renesas,sdhi-r9a09g057
--                - renesas,rzg2l-sdhi
-+              const: renesas,sdhi-r9a08g046
-       then:
-         properties:
-           clocks:
-             items:
-               - description: IMCLK, SDHI channel main clock1.
-               - description: CLK_HS, SDHI channel High speed clock which operates
--                             4 times that of SDHI channel main clock1.
-+                             2 times that of SDHI channel main clock1.
-               - description: IMCLK2, SDHI channel main clock2. When this clock is
-                              turned off, external SD card detection cannot be
-                              detected.
--              - description: ACLK, SDHI channel bus clock.
-+              - description: IACLKM, SDHI channel AXI master bus clock.
-+              - description: IACLKS, SDHI channel AXI slave bus clock.
-           clock-names:
-             items:
-               - const: core
-               - const: clkh
-               - const: cd
--              - const: aclk
-+              - const: aclkm
-+              - const: aclks
-+          resets:
-+            items:
-+              - description: rst, Core reset.
-+              - description: axim, SDHI channel AXI master bus reset.
-+              - description: axis, SDHI channel AXI slave bus reset.
-+          reset-names:
-+            items:
-+              - const: rst
-+              - const: axim
-+              - const: axis
-         required:
-           - clock-names
-           - resets
-+          - reset-names
-       else:
-+        properties:
-+          resets:
-+            maxItems: 1
-+          reset-names:
-+            maxItems: 1
-         if:
-           properties:
-             compatible:
-               contains:
-                 enum:
--                  - renesas,rcar-gen2-sdhi
--                  - renesas,rcar-gen3-sdhi
--                  - renesas,rcar-gen4-sdhi
-+                  - renesas,sdhi-r9a09g057
-+                  - renesas,rzg2l-sdhi
-         then:
-           properties:
-             clocks:
--              minItems: 1
--              maxItems: 3
--            clock-names:
--              minItems: 1
--              uniqueItems: true
-               items:
--                - const: core
--                - enum: [ clkh, cd ]
--                - const: cd
--        else:
--          properties:
--            clocks:
--              minItems: 1
--              maxItems: 2
-+                - description: IMCLK, SDHI channel main clock1.
-+                - description: CLK_HS, SDHI channel High speed clock which operates
-+                               4 times that of SDHI channel main clock1.
-+                - description: IMCLK2, SDHI channel main clock2. When this clock is
-+                               turned off, external SD card detection cannot be
-+                               detected.
-+                - description: ACLK, SDHI channel bus clock.
-             clock-names:
--              minItems: 1
-               items:
-                 - const: core
-+                - const: clkh
-                 - const: cd
-+                - const: aclk
-+            resets:
-+              maxItems: 1
-+          required:
-+            - clock-names
-+            - resets
-+        else:
-+          if:
-+            properties:
-+              compatible:
-+                contains:
-+                  enum:
-+                    - renesas,rcar-gen2-sdhi
-+                    - renesas,rcar-gen3-sdhi
-+                    - renesas,rcar-gen4-sdhi
-+          then:
-+            properties:
-+              clocks:
-+                minItems: 1
-+                maxItems: 3
-+              clock-names:
-+                minItems: 1
-+                uniqueItems: true
-+                items:
-+                  - const: core
-+                  - enum: [ clkh, cd ]
-+                  - const: cd
-+          else:
-+            properties:
-+              clocks:
-+                minItems: 1
-+                maxItems: 2
-+              clock-names:
-+                minItems: 1
-+                items:
-+                  - const: core
-+                  - const: cd
- 
-   - if:
-       properties:
-@@ -247,7 +299,9 @@ allOf:
-       properties:
-         compatible:
-           contains:
--            const: renesas,sdhi-r9a09g057
-+            enum:
-+              - renesas,sdhi-r9a08g046
-+              - renesas,sdhi-r9a09g057
-     then:
-       properties:
-         vqmmc-regulator:
--- 
-2.43.0
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/qcom,wsa8855.example.dtb: speaker@c (qcom,wsa8855): compatible: 'oneOf' conditional failed, one must be fixed:
+	'qcom,wsa8855' does not match '^qcom,(apq|ipq|mdm|msm|qcm|qcs|q[dr]u|sa|sc|sd[amx]|sm|x1[ep])[0-9]+(pro)?-.*$'
+	'qcom,wsa8855' does not match '^qcom,sar[0-9]+[a-z]?-.*$'
+	'qcom,wsa8855' does not match '^qcom,(sa|sc)8[0-9]+[a-z][a-z]?-.*$'
+	'qcom,wsa8855' does not match '^qcom,(glymur|milos)-.*$'
+	'qcom,wsa8855' does not match '^qcom,[ak]pss-wdt-(apq|ipq|mdm|msm|qcm|qcs|q[dr]u|sa|sc|sd[amx]|sm)[0-9]+.*$'
+	'qcom,wsa8855' does not match '^qcom,gcc-(apq|ipq|mdm|msm|qcm|qcs|q[dr]u|sa|sc|sd[amx]|sm)[0-9]+.*$'
+	'qcom,wsa8855' does not match '^qcom,mmcc-(apq|ipq|mdm|msm|qcm|qcs|q[dr]u|sa|sc|sd[amx]|sm)[0-9]+.*$'
+	'qcom,wsa8855' does not match '^qcom,pcie-(apq|ipq|mdm|msm|qcm|qcs|q[dr]u|sa|sc|sd[amx]|sm|x1[ep])[0-9]+.*$'
+	'qcom,wsa8855' does not match '^qcom,rpm-(apq|ipq|mdm|msm|qcm|qcs|q[dr]u|sa|sc|sd[amx]|sm)[0-9]+.*$'
+	'qcom,wsa8855' does not match '^qcom,scm-(apq|ipq|mdm|msm|qcm|qcs|q[dr]u|sa|sc|sd[amx]|sm|x1[ep])[0-9]+.*$'
+	'qcom,wsa8855' is not one of ['qcom,dsi-ctrl-6g-qcm2290', 'qcom,gpucc-sdm630', 'qcom,gpucc-sdm660', 'qcom,lcc-apq8064', 'qcom,lcc-ipq8064', 'qcom,lcc-mdm9615', 'qcom,lcc-msm8960', 'qcom,lpass-cpu-apq8016', 'qcom,usb-ss-ipq4019-phy', 'qcom,usb-hs-ipq4019-phy', 'qcom,vqmmc-ipq4019-regulator']
+	'qcom,wsa8855' is not one of ['qcom,ipq806x-gmac', 'qcom,ipq806x-nand', 'qcom,ipq806x-sata-phy', 'qcom,ipq806x-usb-phy-ss', 'qcom,ipq806x-usb-phy-hs']
+	from schema $id: http://devicetree.org/schemas/arm/qcom-soc.yaml
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.kernel.org/project/devicetree/patch/20260709175915.3805851-2-prasad.kumpatla@oss.qualcomm.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
