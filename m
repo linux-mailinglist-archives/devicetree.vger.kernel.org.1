@@ -1,208 +1,201 @@
-Return-Path: <devicetree+bounces-324066-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-323666-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id QqLyGJf1T2qSrAIAu9opvQ
-	(envelope-from <devicetree+bounces-324066-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 21:25:11 +0200
+	id 3CDBFyyGT2oSiwIAu9opvQ
+	(envelope-from <devicetree+bounces-323666-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 13:29:48 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9132734ED3
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 21:25:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C9928730574
+	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 13:29:47 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=NXP1.onmicrosoft.com header.s=selector1-NXP1-onmicrosoft-com header.b=nuCulSz8;
-	dmarc=fail reason="SPF not aligned (relaxed), DKIM not aligned (relaxed)" header.from=nxp.com (policy=none);
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324066-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-324066-lists+devicetree=lfdr.de@vger.kernel.org";
-	arc=reject ("cv is fail on i=2")
+	dkim=pass header.d=ite.com.tw header.s=dkim header.b=psqLETwd;
+	dmarc=pass (policy=quarantine) header.from=ite.com.tw;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-323666-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-323666-lists+devicetree=lfdr.de@vger.kernel.org";
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id B4D283019FFF
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2026 19:25:09 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 0F9EC30A5811
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2026 11:26:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A865D3B2D10;
-	Thu,  9 Jul 2026 19:25:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81111416127;
+	Thu,  9 Jul 2026 11:26:04 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from GVXPR05CU001.outbound.protection.outlook.com (mail-swedencentralazon11013003.outbound.protection.outlook.com [52.101.83.3])
+Received: from ironport.ite.com.tw (60-251-196-230.hinet-ip.hinet.net [60.251.196.230])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3708E449985;
-	Thu,  9 Jul 2026 19:25:05 +0000 (UTC)
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783625107; cv=fail; b=FuSrl4cJwC0rW8w+WbZeiEsDY8/eeqhnvYQlsmVmaYpWvWx63M8OCNLGJ62Lqn5vKT2HNRAt4SvuG/+itYM8zqUiNK4wdWBgJXHwWP4r0RY6nZEKQkjc7sKjL1LskBXJSKL/aZk7WBog1oVe2wr/xfM7nLsC4zhaxK9RbP/48qE=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783625107; c=relaxed/simple;
-	bh=zIE7HSk8xgMMBk9Oad8P4UlMyuIo5syFCxQWSC8/SOg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=mwE2jQwa20ZJWEolsxg+/5snghRpWYLqdJ+b3+uscJa7jRjp/4NSSwQtaQhwfK9uv12XTO3R7cZguN7gVrc7Oxpigy/0QkX+esgRKOG8Xe60cCX2squQRAAnLpQix5HAx4MVllc+ziFHzZwxkWv3PACT9Z+l1Ql7pfGNGjHjM00=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=nuCulSz8; arc=fail smtp.client-ip=52.101.83.3
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=WCgW9iIQ6Hvekxzlm8hgKFkPTV1/FpJJ3s5CeWd/oVVU4ZTEI77e8vT4vw0nIoykoBaJNbA2shVMmScQzPaNzH6/owFPU4B+dXFUkYrXtVxwi8nCQ0KkZ1xBrPI5md+B78n39XJ6v1nmLYKVP92maE70iPlxIB3IIVRL1HeyC4FflV+0puPn642SScMmiQBRRNcWnuH/u1Si3HTYgaABdFLn/pTCe2TIOH0eb30RGmtwSbOKjyUnEQp2cayXX+Rpqm/1w7XMEDlGWBAY8IVwOKFH8y+LBMGrjTgL87grcKaMJAF19U4iTo1ixrWgs6AClm+79YmYOzSbp0T+v9NL1A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=zIE7HSk8xgMMBk9Oad8P4UlMyuIo5syFCxQWSC8/SOg=;
- b=ep6sVLK5g7wkwCgIi0HSegnsn4oAtFCBu733I9J1S9FnnoJYnnpZJLe450n0w5Mm3gtBtwIFk9JZlC0weYkyak9FaPJNuo7twFgQEt6SnxtIc5oSqmjEJKQhbIq2nkYa/eDuB2oKSP/uPCxv0ofoVC4zg6acsvOTCHN7ipxhS3iqzULDq1pXZ6ktL4xJwni3lArN49Gjp1evoU0kpDO1qpGXwqzxZZfAJ6F9TmwRJVsseTUGxoxZEArMKm7uEh3clDv8Fm7JTkebSiQt2mymG268ZADBsx3oUcwearblhAjpNZLgFP3J01T2XCufacUomSgKvGF8H47A+VRFNfjaBQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector1-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=zIE7HSk8xgMMBk9Oad8P4UlMyuIo5syFCxQWSC8/SOg=;
- b=nuCulSz80QtKG3flfQLsvmHswBYArlxzOSF7QFlYzFdHvkNEkl71QjzO2qoTqd9VIfi0gb00+PsFhpZK9iMdtKw6EbA0BekyGClMx2ukD7v93N/fsu8XU9WXAs+k7eRl5EQGpI3lOvrqgSSobYRaofg1TMg/VsQ4E2WuXzIpgUf4Xzx+amqaE5GM8yZ+KI42+riN46Y5dSOBCIdxGKn9BGRwYFdB7G0bsbHrezWM9bgwdd8SC/O4lhY079Sjvp8IxUa+ErCkKS7l/fZCs+1Wp8LpqTPj2n2p+znz+a753f7dWaFDa19c+B8IkAqTBwYmMpgOw09A0j8/6qFGeC30Yg==
-Received: from GV2PR04MB11799.eurprd04.prod.outlook.com (2603:10a6:150:2cf::9)
- by GV1PR04MB10631.eurprd04.prod.outlook.com (2603:10a6:150:202::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.15; Thu, 9 Jul
- 2026 19:25:00 +0000
-Received: from GV2PR04MB11799.eurprd04.prod.outlook.com
- ([fe80::2146:83a2:5329:b7c]) by GV2PR04MB11799.eurprd04.prod.outlook.com
- ([fe80::2146:83a2:5329:b7c%6]) with mapi id 15.21.0159.007; Thu, 9 Jul 2026
- 19:25:00 +0000
-Date: Thu, 9 Jul 2026 15:24:50 -0400
-From: Frank Li <Frank.li@oss.nxp.com>
-To: Shubham Patil <shubhamsanjay.patil@amd.com>
-Cc: git@amd.com, michal.simek@amd.com, alexandre.belloni@bootlin.com,
-	Frank.Li@nxp.com, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, pgaj@cadence.com,
-	wsa+renesas@sang-engineering.com, tommaso.merciai.xr@bp.renesas.com,
-	arnd@arndb.de, quic_msavaliy@quicinc.com, Shyam-sundar.S-k@amd.com,
-	sakari.ailus@linux.intel.com, billy_tsai@aspeedtech.com,
-	kees@kernel.org, gustavoars@kernel.org,
-	jarkko.nikula@linux.intel.com, jorge.marques@analog.com,
-	linux-i3c@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arch@vger.kernel.org,
-	linux-hardening@vger.kernel.org, radhey.shyam.pandey@amd.com,
-	srinivas.goud@amd.com, shubhrajyoti.datta@amd.com,
-	Manikanta Guntupalli <manikanta.guntupalli@amd.com>
-Subject: Re: [PATCH v10 2/2] i3c: master: Add driver for AMD AXI I3C master
- controller
-Message-ID: <ak_1gpc6EpgQeOOl@lizhi-Precision-Tower-5810>
-References: <20260709064233.1451482-1-shubhamsanjay.patil@amd.com>
- <20260709064233.1451482-3-shubhamsanjay.patil@amd.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260709064233.1451482-3-shubhamsanjay.patil@amd.com>
-X-ClientProxiedBy: SA9PR03CA0014.namprd03.prod.outlook.com
- (2603:10b6:806:20::19) To GV2PR04MB11799.eurprd04.prod.outlook.com
- (2603:10a6:150:2cf::9)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A334410D13;
+	Thu,  9 Jul 2026 11:26:01 +0000 (UTC)
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1783596364; cv=none; b=hteDGy/Iri2U7Au+Mw4AaJHA5+sjMaoYpmSzVXCKrSPI1iQOZHIMQPVlJwwHJUbjqWI6Rbc4fCm/YTBiwxlqkIlVKqK9JWZWq38XkgsBcW3BZNJ9EmpZEv77Fptyr9SOJPuWuFbi3PyvztrFfL0OSude7n5Po0FKUHBXdW4Cl7w=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1783596364; c=relaxed/simple;
+	bh=OofZMJL109njsqXxz80JUFGZf9nrKd8SY+AvqSDKwNo=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=AdXcbDNMDZprwN0HZvrc1AHhGtVSqkaDvFHV2JRjOP4A806cp9Bin2ecSBW1OJ2fuLiDNFX9YMaM8Pg2Oa/vXCUUi/cXBKY5V5zG7nEvnuqYykgKMfLmvKhAeHLfZu3WUFcd17A+9QtXUAsQt3db34ghQaQNsh/SQoz9GCsjuqU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ite.com.tw; spf=pass smtp.mailfrom=ite.com.tw; dkim=pass (2048-bit key) header.d=ite.com.tw header.i=@ite.com.tw header.b=psqLETwd; arc=none smtp.client-ip=60.251.196.230
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=ite.com.tw; s=dkim;
+  h=from:subject:date:message-id:mime-version:
+   content-transfer-encoding:to:cc;
+  bh=8WzcaJFlm+Ze+sn2/OTZccdOtQx+JEHSj35YZsPGCbg=;
+  b=psqLETwdvQxXbMB54s6aP6Q8ja6kK/PkvSreZY0gt0byPOV3w9VyxdVc
+   GN4cTdc9DDrgD2Hu4E2AaMLqqp4yLrnfGc4BZZnjL5mOhImRe8vVn7oiC
+   j6qpQD4ddiiOs4TlQH+sgfZcG8MgD74VhRpQlF3xjm3FH8oeANSYKMFqv
+   ASB0YL5Xz0KMLnFVPz/oy81Hf/ZsweacjRdgvnyh3pgW1pGrTkdX7o5VM
+   ud06WMk1Ot3GpC14rul8rcXWmrRGZ18NgCmTm4x2lTYAH7ghQsuRqRkix
+   pZUrzuS1uohqrJ080MalxzIouBj5N0G9IA4AwYtYm8G8dPNrl4zJqxzF4
+   A==;
+X-CSE-ConnectionGUID: 5bH+dLnMRk2SuDoJhxEfzg==
+X-CSE-MsgGUID: 83hStgKiRi6v2diV7vfiKw==
+Received: from unknown (HELO mse.ite.com.tw) ([192.168.35.30])
+  by ironport.ite.com.tw with ESMTP; 09 Jul 2026 19:25:55 +0800
+Received: from hscmail1.internal.ite.com.tw (HSCMAIL1.internal.ite.com.tw [192.168.35.58])
+	by mse.ite.com.tw with ESMTP id 669BPpHn093117;
+	Thu, 9 Jul 2026 19:25:51 +0800 (+08)
+	(envelope-from amber.kao@ite.com.tw)
+Received: from [127.0.1.1] (192.168.37.107) by HSCMAIL1.internal.ite.com.tw
+ (192.168.35.58) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.37; Thu, 9 Jul
+ 2026 19:25:50 +0800
+From: Amber Kao <amber.kao@ite.com.tw>
+Subject: [PATCH v3 0/2] usb: typec: ucsi: Add ITE IT885x Type-C PD
+ controller driver
+Date: Fri, 10 Jul 2026 03:25:46 +0800
+Message-ID: <20260710-ucsi-itepd-feature-v3-0-8523e1e1c47a@ite.com.tw>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: GV2PR04MB11799:EE_|GV1PR04MB10631:EE_
-X-MS-Office365-Filtering-Correlation-Id: 9e15c3af-3b08-4d0b-eb55-08deddefc48e
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|23010399003|376014|7416014|1800799024|366016|19092799006|22082099003|18002099003|56012099006|11063799006|4143699003;
-X-Microsoft-Antispam-Message-Info:
-	OleXcigNERDBp3zqfnQPA+gSUhy1u9bvsEhBUsqW6LNS+r4GEM5m/e7fkGUDnthRcaKMta/NGSDiB9LyDXXvGka5rlyZcPPQR1sEncBa6Etz1w69uBFgQUCT9dRF22ZedvmfGcTC2v1wx4owPO6sU2ex7U7ke9qXTP2yCNMsQqStaQHr1hTCgjb4oUL3wNFtXXFPWt+fqYQoVQjgIWmF6RQyPARLMQ7tuTZBpC+NhuvhVJp3H6Ck0cqnO5pKumgJiUxehrFIECqiWag7F5oUmD51wxGcFB/45GwVaS1bPoZ9ur4wrhY9grxMmEO16Fd1ZCmOpe3kccNfogXTanFa9ZNPkHGU6Xw5jPATQfAIY1WisrSht2aVknE7NNKseEJc4qqlf8jDl57oXPVPhnsiTrPMbDZkSg2IdeBXUZcVT7oSvJBxOJ/+bDHH0UxmRg4n0Dgr+L4JT2qmcQE0c+Px9G+1kMBF2W/20aSTOWnr06ZYMUbHSHitrAceSawE6WOBT9xtnQTvN45iRA3lkJVTrH2dVD6z1GUITvijUogNcONk9pxGfzdZ/rZ0bOpCmZHdVjaIjkHpQmeRJLr9P+QovYpqIaRHkWAmitLFEEPjWLUh0hFeWa/qaj0o13z5yNDdYYXG35Q6KC9qvn2LiyaAnr6XDFJfT3YLL4pOolleZUY=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:GV2PR04MB11799.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(23010399003)(376014)(7416014)(1800799024)(366016)(19092799006)(22082099003)(18002099003)(56012099006)(11063799006)(4143699003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?yi1/cuHs30e+k9bBzl8zv/ZLTsrM9yMzCPgA83AMk7F1VAazlMCaSd488FaZ?=
- =?us-ascii?Q?jSSSec06TBY80S9dE5FlvxWqJ9qATLYnpkLbmSykZlWs9mk6QMmbroGZESf5?=
- =?us-ascii?Q?P7tW50uMJCBme1E0/Uyx5klsajsnfSftds0Z3Ps2fYfHghLoaDflWpwrUd24?=
- =?us-ascii?Q?vBx+4Q33ozi63ICQkR/QTFOZpK9j+y5dfRGDHb/FgPhetPadz8xkAPm0T8XB?=
- =?us-ascii?Q?QRNlJjNFM5sY52ZpmsUeQP84AFP+zuk4oSH9Km6hRqqWrRy111O0SmMJ7U4a?=
- =?us-ascii?Q?eYUvqf94mXpzPvMKd4bHqkBZMeyo2vE6kO8a1j7BcTvLO3iL+c51wxQoyZlh?=
- =?us-ascii?Q?i7CH2z4pQ0ButUGCIYXY6jjnLO+sdEf+4cVnIqEpee1UiPCoIhSxOreGulVX?=
- =?us-ascii?Q?Qax/esIagLEYZHf0FIahkwlOYq9W0l0ygrcl4aquYIl4f15Ua2UoUmlKoxzv?=
- =?us-ascii?Q?yQPceOQ4yICw0LqbtD3kgwHt4ZwDQ8w4OCvnvjX1wTJ71uCZShkIzTsOiImg?=
- =?us-ascii?Q?A85SLJO0VzlikHRjmo71qE7IeENF0ZZxZ5Vd7ayye7EWZaM5Wza1DTm1gDD4?=
- =?us-ascii?Q?J+sMyNE981jxzYshde/kJsd6nqiq+TtzlWZxfMVWTynD48ycUOavD/ahj9Mk?=
- =?us-ascii?Q?Y4bNHI5xnGxKg/THyr8eQRe1RP/MHpiS8wXgm/R6Azl/HKmK+ZKRdgLcGV/i?=
- =?us-ascii?Q?a/8kXweOE6w9jvtlj94vQNHjfA4daz2FHvtc1XsBJeG9UrpC1fWu6vcdKB5l?=
- =?us-ascii?Q?cEE8lbReJtDIFS9BFmptAm23Zkmydnin67ex+Q4GnhD+Z8db6f1hMSDSu6MX?=
- =?us-ascii?Q?0g3IJ1O0mxEhN0TGX1lhcz46VRvytDfP8PD/zUJDBWpuOQogafwReH2QFWCK?=
- =?us-ascii?Q?FTJRbPnJxEH9cjpr5GYx/QOUO41kNZ7PU/TGVFc6sVjzwTTfT0c+tYgpYuv9?=
- =?us-ascii?Q?xjlvQ+Vvr9/CCz3jYmI42sdEXFbd37RCfPnr+Z6M0vkAhOKNYNyTm1cwlUYx?=
- =?us-ascii?Q?DpZtBq0hhXZ6O+/Kj8jM7VQRT9hY08ohttqseFKs2jj+IsVxu/afSfT4OCC7?=
- =?us-ascii?Q?EqtapyA+lLNyoeoiuXVhK4ClVB//IkzmIcT0DT4KWlfdOYNoWPAYXrTp7qRm?=
- =?us-ascii?Q?aDelmqkz/jm/DAfpA19SGTXGuMiQvTrNNTSVngvSUyUfFrjRWwkLPBeZnjVO?=
- =?us-ascii?Q?YAw+PjorSi1WKFLTePyazDRoTEzf2ZVYWXbuzRc1Ur7AOUvnHBdsI8cIaqcd?=
- =?us-ascii?Q?Ze+1DZub/tS+T0hLNPwsaAx8qZHXaBKiOQaCrItx0DihZbG7VrqGcayH2H04?=
- =?us-ascii?Q?ZBvIqXiJa3S/UT6xS/OFNG9YSaoBFLxeBaWMpt7xbCTjrxdu3d/0hWusVq83?=
- =?us-ascii?Q?wIIniGWyJlP9CYbADcSWPAD7mb8qn7Reg91yAY4+Ft4kKZA7gBWwSi5QaWOh?=
- =?us-ascii?Q?IeLqBW3XMJMw4qj1cEWZBziW+wowsFDAsfSbwr1b2nPFXB8pfcnvmb5ffVKo?=
- =?us-ascii?Q?pzIOGvhgNj1bEqQw8pIMGTePMkXikQf7CkJTYc2Bx33lTCqXmK7F2rYqARKg?=
- =?us-ascii?Q?ajKbkNbvGF4w4CAfOSB+qkAvKalBr+G+aFVwDkfEFxgWuiGrldpKg+14SB9B?=
- =?us-ascii?Q?MRomSXy4O16GSSXlwN4aLZnIkuAlDeR/nSut+xOBlBKZY/3If4kE72F5LvhC?=
- =?us-ascii?Q?3hBPXw5xzNb/N6ayUGRuCxCVPfW2K5OHEQVJilTrck37hLZIPaXwaCWj5AoK?=
- =?us-ascii?Q?Gm+6JxU/8jrd3YBuI7Rbu6HTB02N8NY2lPHxHajHHRKCRTzkR5N9?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9e15c3af-3b08-4d0b-eb55-08deddefc48e
-X-MS-Exchange-CrossTenant-AuthSource: GV2PR04MB11799.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jul 2026 19:25:00.0290
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: mO8RMOhHIUULoDiyU0PiUxc8tpGbKxMoHuBBUUKNgs7pioDtxd8+XM6BVciPql6mLWPBpe2fROIz+YY+aW2i/53sGeDcNqPoui54JX5mfkob+WejgxK3G4Y7hr2WNetY
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV1PR04MB10631
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/22NTQ6CMBBGr0Jm7ZBSKAor72FYYDuVMRFIW1BDu
+ LsFti5fvp+3gCfH5KFOFnA0s+ehj5CfEtBd2z8I2UQGKWQpSqFw0p6RA40GLbVhcoSVotJoosJ
+ qBXE4OrL82U9vzcF+uj9Jh+1pa3Tsw+C+u3WWW+8QnDPxTzBLFFhkVZFbo4zNL9eYp3p4peENz
+ bquP1qmiWHHAAAA
+X-Change-ID: 20260605-ucsi-itepd-feature-95e6dcee4fc5
+To: Jeson Yang <jeson.yang@ite.com.tw>, Yaode Fang <Yaode.Fang@ite.com.tw>,
+        Bling Chiang <Bling.Chiang@ite.com.tw>,
+        Doreen Lin <doreen.lin@ite.com.tw>, Eric Su <Eric.Su@ite.com.tw>,
+        Greg Kroah-Hartman
+	<gregkh@linuxfoundation.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Heikki
+ Krogerus <heikki.krogerus@linux.intel.com>
+CC: <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Amber Kao <amber.kao@ite.com.tw>
+X-Mailer: b4 0.15.2
+X-ClientProxiedBy: CSBMAIL2.internal.ite.com.tw (192.168.65.41) To
+ HSCMAIL1.internal.ite.com.tw (192.168.35.58)
+X-TM-SNTS-SMTP:
+	F7C5159D00E60979CC7037F65561722ECF459CEE3E5641EE0976348B6114D89A2002:8
+X-MAIL:mse.ite.com.tw 669BPpHn093117
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [2.44 / 15.00];
+X-Spamd-Result: default: False [3.34 / 15.00];
+	DATE_IN_FUTURE(4.00)[7];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	MID_RHS_NOT_FQDN(0.50)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[ite.com.tw,quarantine];
+	R_DKIM_ALLOW(-0.20)[ite.com.tw:s=dkim];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[NXP1.onmicrosoft.com:s=selector1-NXP1-onmicrosoft-com];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[nxp.com : SPF not aligned (relaxed), DKIM not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-324066-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[29];
+	TAGGED_FROM(0.00)[bounces-323666-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER(0.00)[amber.kao@ite.com.tw,devicetree@vger.kernel.org];
 	FORWARDED(0.00)[lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:shubhamsanjay.patil@amd.com,m:git@amd.com,m:michal.simek@amd.com,m:alexandre.belloni@bootlin.com,m:Frank.Li@nxp.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:pgaj@cadence.com,m:wsa+renesas@sang-engineering.com,m:tommaso.merciai.xr@bp.renesas.com,m:arnd@arndb.de,m:quic_msavaliy@quicinc.com,m:Shyam-sundar.S-k@amd.com,m:sakari.ailus@linux.intel.com,m:billy_tsai@aspeedtech.com,m:kees@kernel.org,m:gustavoars@kernel.org,m:jarkko.nikula@linux.intel.com,m:jorge.marques@analog.com,m:linux-i3c@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arch@vger.kernel.org,m:linux-hardening@vger.kernel.org,m:radhey.shyam.pandey@amd.com,m:srinivas.goud@amd.com,m:shubhrajyoti.datta@amd.com,m:manikanta.guntupalli@amd.com,m:krzk@kernel.org,m:conor@kernel.org,m:wsa@sang-engineering.com,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[Frank.li@oss.nxp.com,devicetree@vger.kernel.org];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:jeson.yang@ite.com.tw,m:Yaode.Fang@ite.com.tw,m:Bling.Chiang@ite.com.tw,m:doreen.lin@ite.com.tw,m:Eric.Su@ite.com.tw,m:gregkh@linuxfoundation.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:heikki.krogerus@linux.intel.com,m:linux-usb@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:amber.kao@ite.com.tw,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[NXP1.onmicrosoft.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[Frank.li@oss.nxp.com,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[amber.kao@ite.com.tw,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[ite.com.tw:+];
 	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,vger.kernel.org:from_smtp,amd.com:email,lizhi-Precision-Tower-5810:mid,NXP1.onmicrosoft.com:dkim,oss.nxp.com:from_mime]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,ite.com.tw:from_mime,ite.com.tw:email,ite.com.tw:mid,ite.com.tw:dkim,checkpatch.pl:url]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: B9132734ED3
+X-Rspamd-Queue-Id: C9928730574
 
-On Thu, Jul 09, 2026 at 12:12:33PM +0530, Shubham Patil wrote:
-> From: Manikanta Guntupalli <manikanta.guntupalli@amd.com>
->
-> Add an I3C master driver and maintainers fragment for the AMD I3C bus
-> controller.
->
-> The driver currently supports the I3C bus operating in SDR mode,
-> with features including Dynamic Address Assignment, private data
-> transfers, and CCC transfers in both broadcast and direct modes. It
-> also supports operation in I2C mode.
->
-> The controller's data FIFOs are accessed big-endian; the driver performs
-> this conversion locally using ioread32be()/iowrite32be() with the
-> helpers, so it does not depend on any core FIFO-endianness helpers.
->
-> Signed-off-by: Manikanta Guntupalli <manikanta.guntupalli@amd.com>
-> Co-developed-by: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
-> Signed-off-by: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
-> Co-developed-by: Shubham Patil <shubhamsanjay.patil@amd.com>
-> Signed-off-by: Shubham Patil <shubhamsanjay.patil@amd.com>
-> ---
+This series adds Device Tree bindings and minimal UCSI driver
+support for the ITE IT885x USB Type-C Power Delivery controller
+over I2C.
 
-Reviewed-by: Frank Li <Frank.Li@nxp.com>
+Per Heikki's review of v1, this series has been split into smaller,
+self-contained patches. This version drops the Alternate Mode
+support, the UCSI command-translation hook, and the auxiliary-bus
+core/client split entirely. The driver now does nothing more than
+register the UCSI ports and partners. Alternate Mode support and
+the auxiliary-bus split will follow in later series, once each
+feature can be reviewed on its own.
+
+v2 also had two high-severity issues found by Sashiko review,
+both fixed in this version: a use-after-free race in remove() where
+free_irq() ran after ucsi_unregister() had already freed the 
+ucsi->connector array a pending IRQ could still access, and a missing
+check on the interrupt-clear write that could unconditionally return
+IRQ_HANDLED even when the hardware interrupt was never actually cleared,
+risking an IRQ storm.
+
+Note: This driver has not been tested on physical hardware. Runtime
+verification was performed by building the module out-of-tree
+against the currently running kernel's headers and loading it on an
+x86_64 virtual machine, using i2c-stub with manual device
+instantiation to trigger probe().
+
+Testing performed:
+- checkpatch.pl --strict: no errors or warnings
+- dt_binding_check / dtbs_check: no errors or warnings
+- Sparse (C=2 CF="-D__CHECK_ENDIAN__"): no errors or warnings
+- checkstack.pl: no functions exceed 512-byte stack limit on
+  x86_64, arm64, arm32, and ppc64le
+- Kconfig tristate: tested =m, =y, =n, allmodconfig, allnoconfig
+- Cross-compilation: x86_64, arm64, arm32, ppc64le
+- CONFIG_SMP and CONFIG_PREEMPT: both on and off
+- Strict warning mode (W=1 EXTRA_CFLAGS=-W): no new warnings
+- i2c-stub emulation with manual device instantiation: re-verified
+  after the v3 fixes,probe() still correctly rejects devices with 
+  no IRQ resource (-ENODEV), no crash, module load/unload cycle clean
+- Fault injection (CONFIG_FAILSLAB, fail-nth): each reachable kzalloc()/
+  devm_kzalloc() in probe() was individually failed and returned -ENOMEM
+  cleanly with correct teardown; the runtime IRQ/UCSI paths were not
+  reachable via i2c-stub.
+
+Note: big-endian (ppc64) cross-compilation was not tested, as
+TYPEC_UCSI currently depends on !CPU_BIG_ENDIAN upstream. Byte-order
+correctness was instead verified via sparse.
+
+Signed-off-by: Amber Kao <amber.kao@ite.com.tw>
+---
+Amber Kao (2):
+      dt-bindings: usb: Add ITE IT885x support
+      usb: typec: ucsi: Add ITE IT885x Type-C PD controller driver
+
+ .../devicetree/bindings/usb/ite,itepd-it885x.yaml  | 105 ++++++
+ MAINTAINERS                                        |  12 +
+ drivers/usb/typec/ucsi/Kconfig                     |  10 +
+ drivers/usb/typec/ucsi/Makefile                    |   1 +
+ drivers/usb/typec/ucsi/ucsi_itepd.c                | 354 +++++++++++++++++++++
+ 5 files changed, 482 insertions(+)
+---
+base-commit: 8fde5d1d47f69db6082dfa34500c27f8485389a5
+change-id: 20260605-ucsi-itepd-feature-95e6dcee4fc5
+
+Best regards,
+--  
+Amber Kao <amber.kao@ite.com.tw>
 
 
