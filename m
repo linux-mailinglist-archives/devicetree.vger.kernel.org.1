@@ -1,57 +1,57 @@
-Return-Path: <devicetree+bounces-323872-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-323871-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 2ILiIiuyT2qkmwIAu9opvQ
-	(envelope-from <devicetree+bounces-323872-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 16:37:31 +0200
+	id a1XbM0uyT2qsmwIAu9opvQ
+	(envelope-from <devicetree+bounces-323871-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 16:38:03 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2850573255E
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 16:37:31 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F36C73257F
+	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 16:38:03 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20201202 header.b=uGsGBr9m;
+	dkim=pass header.d=kernel.org header.s=k20201202 header.b=D0dMSXbb;
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-323872-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-323872-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-323871-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-323871-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 410B5306442E
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2026 14:30:40 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id E105130911E0
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2026 14:30:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BAF6F331EC4;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BAC2A331EBA;
 	Thu,  9 Jul 2026 14:30:37 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 979BE32ABC0;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9793E329E6A;
 	Thu,  9 Jul 2026 14:30:37 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783607437; cv=none; b=HK0IJZnbjJmWkiKy5L2fy5rJBVkfhNR1ocE/ANlq+FFBFsm8lmxDrqtvlkZeq6HVxTsbRvUBuQothE1Gb1EJ+OcamVC53vjh7Ljz/JJ1GfrC8vQRAOnLzP47F9f5dtwzkkSV5B6sHHLJfV0N5HErMPmXktE5fOLxUPbX0lvRlHg=
+	t=1783607437; cv=none; b=OQhQ/kAerGAQv4dkPyTvHXp9TXM/Fmf40OPEjQTmMO5S+HYyo50gZkMW0S4QI1BD/i/Di6X67hpFhq23YJrVJxQG1I7Nl+bRBcY2v6k/igc+qD+gUGGf5dHko15NG9AWzGvAnzoH+KRvIM4fQTOjQhjHnhNQEO50+iB/9raSgss=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1783607437; c=relaxed/simple;
-	bh=qTdriu943CBSGqpOSZgwkmagkjYfITvCJGhf7IcjgQw=;
+	bh=zKNYhWho75+rU/ABdikQ1xUai+mDK7/BIyEbsmIRsHo=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=LfRQu+CYDE4fT1AF3Eu5eK7pLv4M/jVoFXD4RgSXv41G82xLFnI7H5HwMRPz82IGJoxEhebefp/mPDCAFeIIhBmmoq1+/R8bFoJv9kTs4XqWgze2L4EussbTwX0DuWdtfuLHnYloiDk6U2J2fjYGqFNVfZvA2qxiYlxX7oRVsqo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uGsGBr9m; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 4E4ECC2BCC9;
+	 In-Reply-To:To:Cc; b=GJ76RUTiyycZdCxqz/4AnfV/7N3BgOpxaauIvIxfbDpniQC2rUzIusgVmJXapcZkUmWdOzOr2oCxNQvAMps/BYB721xBQcc4av7ILgSQNv9EE/F25Q6HNLhJR+Wf8Dy/G96PhMGI2l/DQBFOvof4cwMpM1P+t2slVdd1qtHoCuM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=D0dMSXbb; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 5A9A1C2BCB7;
 	Thu,  9 Jul 2026 14:30:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1783607437;
-	bh=qTdriu943CBSGqpOSZgwkmagkjYfITvCJGhf7IcjgQw=;
+	bh=zKNYhWho75+rU/ABdikQ1xUai+mDK7/BIyEbsmIRsHo=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=uGsGBr9mH5qy72a8tGVMwU9Gn4de88iSkZsjsyoPk2N6YMAwphHkHjRmgyhyBa15p
-	 QSNHap7pPzlR8DWEEtXbTGmyYVRc3JyXpiq+aOhjG647dsYB7u/FKs7qjeJsINKKR6
-	 rVngQ3jwbEeGhFOUgWdATU0Ys9Vo3GHUfiM7OE+jmy2MLKgdGVk7rEhyhSHUNqPi9t
-	 Fe5Rxbm28bXocTKOgUhpToz72azs1E43FIS843ahLFdR7UD6qvA2GcsCW7sUTXY0YF
-	 Nv56FS8h7ErS5SG6/RQUh1KFKy3Cqa1kWLQ5j8kZy5t0T6O+atMBbO4fWmFhtdbmal
-	 kORphNnewNWLA==
+	b=D0dMSXbb+k6nwjW3MWTkcPR/co+JjqhIn9OnMv2FfAyyc4bX+3779YGy6u9f/yR1J
+	 HvCwsm1cMjXKwkH2qcYWNTuIaftDjdwNuJuqU2OggP0s55J9YNFPuYj1SU1yv2OnyQ
+	 NnjlLxxaTv5OkYyH+BDolW+2QS7seRtwcetE6QkWs1TQaaZd8WbuxmwxiVWsuQ4KMv
+	 OqT6QgIq79XltKAHjF32Mp+96BomT8j0YhCQLwaxWAzpOcft3ddDdBOdSvT+YQt3ka
+	 xqNF7CU4nlPU/xMDDNSV7zefow9jf9Dgi7ytN3z1diF6ZfYg7As6AhQwvQSq6kUEQQ
+	 n7Jb6m7h/Q+2A==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2F03BC44506;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3CA92C43458;
 	Thu,  9 Jul 2026 14:30:37 +0000 (UTC)
 From: Roman Vivchar via B4 Relay <devnull+rva333.protonmail.com@kernel.org>
-Date: Thu, 09 Jul 2026 17:30:27 +0300
-Subject: [PATCH v2 1/2] ARM: dts: mediatek: mt6572: rename fixed clocks
+Date: Thu, 09 Jul 2026 17:30:28 +0300
+Subject: [PATCH v2 2/2] ARM: dts: mediatek: mt6572: add cache data
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,7 +60,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260709-6572-phase1-v2-1-1fd4a69542ab@protonmail.com>
+Message-Id: <20260709-6572-phase1-v2-2-1fd4a69542ab@protonmail.com>
 References: <20260709-6572-phase1-v2-0-1fd4a69542ab@protonmail.com>
 In-Reply-To: <20260709-6572-phase1-v2-0-1fd4a69542ab@protonmail.com>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -71,11 +71,11 @@ Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
  Roman Vivchar <rva333@protonmail.com>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1783607435; l=2336;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1783607435; l=1386;
  i=rva333@protonmail.com; s=20260510; h=from:subject:message-id;
- bh=SimJbn1seivrKmmRN96xb6J0kutHD3BQPIniNyDo7go=;
- b=VNI59q6VB4Q6KgEj6fN0jBXh2LcuBZP4Qhr0xeTN/qHjNCT/57zhZwCFs1cMbQWusZ2WWzEZ7
- Ymkjm9tkdETCUN41G+AD0y/m2EvZwp3Dgau03S0wre1mnCRnG/9K8PK
+ bh=yG+0dUgYSF3RJV8lkKqGeDWHiS5d4OCEqF8neCRE0Ic=;
+ b=uJvq72ISmk7+HZwoFzlOX0oC9zEZkyJaY/VNERaq99Lj8xDakWjSGVO13sDJNpVhD6hPwJtD1
+ I9dPTHZkiABAY0rBnXD3L9pdc0xFRox8VcmnpFqg3tTYug7J79J64Sl
 X-Developer-Key: i=rva333@protonmail.com; a=ed25519;
  pk=zww/nWjBGoQ4POXCG0BV6fx2iuXK6jx77rsKPA5YK5Y=
 X-Endpoint-Received: by B4 Relay for rva333@protonmail.com/20260510 with
@@ -89,7 +89,7 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
@@ -97,7 +97,7 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-323872-lists,devicetree=lfdr.de,rva333.protonmail.com];
+	TAGGED_FROM(0.00)[bounces-323871-lists,devicetree=lfdr.de,rva333.protonmail.com];
 	FORGED_SENDER(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:matthias.bgg@gmail.com,m:angelogioacchino.delregno@collabora.com,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-mediatek@lists.infradead.org,m:rva333@protonmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:matthiasbgg@gmail.com,s:lists@lfdr.de];
 	TO_DN_SOME(0.00)[];
@@ -115,88 +115,66 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,protonmail.com];
 	RCPT_COUNT_SEVEN(0.00)[10];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,protonmail.com:replyto,protonmail.com:mid,protonmail.com:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,protonmail.com:replyto,protonmail.com:mid,protonmail.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 2850573255E
+X-Rspamd-Queue-Id: 7F36C73257F
 
 From: Roman Vivchar <rva333@protonmail.com>
 
-Old-style naming like uart_clk, system_clk and rtc_clk doesn't actually
-reflect hardware on the mt6572 SoC.
+MediaTek mt6572 includes 32 KB I-cache and D-cache, and 256 KB L2 cache.
 
-For example, uart_clk is used as parent for various parts of the SoC
-like AXI bus, MMC controller, SPI, etc. While it usually shouldn't be
-used as active parent, uart_clk is a wrong name. The same logic applies
-to the rtc_clk, that is also used as input for MultiMedia subsystem
-clock.
-
-Therefore, rename all uart_clk, system_clk and rtc_clk to clk26m, clk13m
-and clk32k to properly describe the hardware.
+Add information about cache size, cache line size and cache sets to the
+devicetree.
 
 Signed-off-by: Roman Vivchar <rva333@protonmail.com>
 ---
- arch/arm/boot/dts/mediatek/mt6572.dtsi | 12 ++++++------
- 1 file changed, 6 insertions(+), 6 deletions(-)
+ arch/arm/boot/dts/mediatek/mt6572.dtsi | 23 +++++++++++++++++++++++
+ 1 file changed, 23 insertions(+)
 
 diff --git a/arch/arm/boot/dts/mediatek/mt6572.dtsi b/arch/arm/boot/dts/mediatek/mt6572.dtsi
-index ac70f266d698..fa0e5df766c2 100644
+index fa0e5df766c2..4d5d3b46bc18 100644
 --- a/arch/arm/boot/dts/mediatek/mt6572.dtsi
 +++ b/arch/arm/boot/dts/mediatek/mt6572.dtsi
-@@ -28,19 +28,19 @@ cpu@1 {
+@@ -20,11 +20,34 @@ cpu@0 {
+ 			device_type = "cpu";
+ 			compatible = "arm,cortex-a7";
+ 			reg = <0x0>;
++			i-cache-size = <32768>;
++			i-cache-line-size = <32>;
++			i-cache-sets = <512>;
++			d-cache-size = <32768>;
++			d-cache-line-size = <64>;
++			d-cache-sets = <128>;
++			next-level-cache = <&l2>;
+ 		};
+ 		cpu@1 {
+ 			device_type = "cpu";
+ 			compatible = "arm,cortex-a7";
+ 			reg = <0x1>;
++			i-cache-size = <32768>;
++			i-cache-line-size = <32>;
++			i-cache-sets = <512>;
++			d-cache-size = <32768>;
++			d-cache-line-size = <64>;
++			d-cache-sets = <128>;
++			next-level-cache = <&l2>;
++		};
++
++		l2: l2-cache {
++			compatible = "cache";
++			cache-level = <2>;
++			cache-size = <262144>;
++			cache-line-size = <64>;
++			cache-sets = <512>;
++			cache-unified;
  		};
  	};
  
--	uart_clk: dummy26m {
-+	clk26m: clk26m {
- 		compatible = "fixed-clock";
- 		clock-frequency = <26000000>;
- 		#clock-cells = <0>;
- 	};
- 
--	system_clk: dummy13m {
-+	clk13m: clk13m {
- 		compatible = "fixed-clock";
- 		clock-frequency = <13000000>;
- 		#clock-cells = <0>;
- 	};
- 
--	rtc_clk: dummy32k {
-+	clk32k: clk32k {
- 		compatible = "fixed-clock";
- 		clock-frequency = <32000>;
- 		#clock-cells = <0>;
-@@ -64,7 +64,7 @@ timer: timer@10008000 {
- 			compatible = "mediatek,mt6572-timer", "mediatek,mt6577-timer";
- 			reg = <0x10008000 0x80>;
- 			interrupts = <GIC_SPI 74 IRQ_TYPE_LEVEL_LOW>;
--			clocks = <&system_clk>, <&rtc_clk>;
-+			clocks = <&clk13m>, <&clk32k>;
- 			clock-names = "system-clk", "rtc-clk";
- 		};
- 
-@@ -91,7 +91,7 @@ uart0: serial@11005000 {
- 			compatible = "mediatek,mt6572-uart", "mediatek,mt6577-uart";
- 			reg = <0x11005000 0x400>;
- 			interrupts = <GIC_SPI 31 IRQ_TYPE_LEVEL_LOW>;
--			clocks = <&uart_clk>;
-+			clocks = <&clk26m>;
- 			clock-names = "baud";
- 			status = "disabled";
- 		};
-@@ -100,7 +100,7 @@ uart1: serial@11006000 {
- 			compatible = "mediatek,mt6572-uart", "mediatek,mt6577-uart";
- 			reg = <0x11006000 0x400>;
- 			interrupts = <GIC_SPI 32 IRQ_TYPE_LEVEL_LOW>;
--			clocks = <&uart_clk>;
-+			clocks = <&clk26m>;
- 			clock-names = "baud";
- 			status = "disabled";
- 		};
 
 -- 
 2.54.0
