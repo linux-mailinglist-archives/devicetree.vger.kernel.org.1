@@ -1,205 +1,170 @@
-Return-Path: <devicetree+bounces-323408-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-323410-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id IgBlBHlXT2oiewIAu9opvQ
-	(envelope-from <devicetree+bounces-323408-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 10:10:33 +0200
+	id eQy2EjBZT2q+ewIAu9opvQ
+	(envelope-from <devicetree+bounces-323410-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 10:17:52 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9850472E13D
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 10:10:32 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 975C572E291
+	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 10:17:51 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20201202 header.b=IWJlOnrY;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=WTBH081n;
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-323408-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-323408-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-323410-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-323410-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id DA02430059B1
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2026 08:10:30 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 4012F313D069
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2026 08:10:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A02C73E8C65;
-	Thu,  9 Jul 2026 08:10:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F24D43E9C36;
+	Thu,  9 Jul 2026 08:10:34 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B41C3E7BA0;
-	Thu,  9 Jul 2026 08:10:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCF793E9C05
+	for <devicetree@vger.kernel.org>; Thu,  9 Jul 2026 08:10:33 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783584628; cv=none; b=enaYGBwn+DZlKANLGYuIbjH656V3J6U5JSa0dQyozd22T3OOJ/RIFdVuzpgS2Ud8d4rpE6wBuj8KUOMmU5g6WB6xjqVdtRK6RtREEkJT/+qyqqFpAxFXxQbFXP+U0xuGFrCPHLQaKAk4LKabhmS4SHmkvNMUs7Bt5ZdICzEVi84=
+	t=1783584634; cv=none; b=jydIVkWRuPcIZ/HxdZah7zrEy3AYpho5LzqJKis8v0avCwQKz1PoZtlwBlBHstMjPPRuIHVJDt6iJpawUu42Q7fRxuA8srg7Fi/I5AsOphbUMzDcasj/9u4FT0KcFHDEzFL3SqJootvhwCFs4fWnkngrGCeTh5rCaSE2D8EpFwY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783584628; c=relaxed/simple;
-	bh=TpGJ0HgZLVDPaYc57SOUoH7whSlNEtTx1wMSxT+hVHk=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=VE1fWNQHENrMTDMU8vkPaPsJLBGpR0ciCqI5sh5orKCw/Z642hpYz2q1gmJyHc5qtnTNRqntMPjEUAqWUGnQwMZcjE93rz6SJ6qZgnsVaXbZROc9l1CUF7Orm3PZ+xQxoHPgUokVwY03+shbIBTUvarg35OsTsotorIF6jtQ4dI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IWJlOnrY; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 40571C2BCF4;
-	Thu,  9 Jul 2026 08:10:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1783584628;
-	bh=TpGJ0HgZLVDPaYc57SOUoH7whSlNEtTx1wMSxT+hVHk=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=IWJlOnrYOr1Qe/r4tVCS0B5CHvMEG9ofGLbXn3rQfKYFgRzT/H8nHZWHHh0B1s8Jt
-	 09VioFuLxnN6HmFy/SLZ+++joQ2yP2X0O5Ft0BjvwFgRtqlkxowJ9f4YBiH5rIlb9/
-	 xXkvfzJgjHZ6F8v1Ld9LXnHEtzF8nFX+Cx6awDASc8HgVMivtWG8Kc9a/d3Nb1dmh3
-	 9PhXIEA4g6reDGyCgExeRCo0vSaXqqU4anBvgDqM5Xalf4zDMSLal7YFQpH9gfTtBZ
-	 hv+rTg8MPfigBsxy6T6VxAlVl46IUfCu7SG+OjO47gUUkT9eOF8wFoCB3f4owt4pnC
-	 LyJs5lsuF/+1g==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2EA7FC44503;
-	Thu,  9 Jul 2026 08:10:28 +0000 (UTC)
-From: HaoNing Cheng via B4 Relay <devnull+Haoning.CHENG.cn.bosch.com@kernel.org>
-Date: Thu, 09 Jul 2026 16:10:22 +0800
-Subject: [PATCH v2 2/2] thermal/drivers/imx: Add calibration offset support
+	s=arc-20240116; t=1783584634; c=relaxed/simple;
+	bh=OEahzOA/KTRGTvkyoCk8o8fpVF85458RzotimJ/M6YA=;
+	h=From:In-Reply-To:MIME-Version:References:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=FgI9aymOPSjmyVZqfVrXi/5ekvy9Q6BpNTWpT78NH9S3UjLBZYXNdyjqsFnac/NvlcX/rmfc1hOWiSDW3bP3exWOcgxJcXQHKoKEWkm4ESeDTVZbP0DXZhSoCFYfJrRagG8QGgUAl1j1r7rc5vmUSu7W3lfMI1pUfYSeFW1Lr+k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WTBH081n; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 77B421F00ADB
+	for <devicetree@vger.kernel.org>; Thu,  9 Jul 2026 08:10:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1783584633;
+	bh=OEahzOA/KTRGTvkyoCk8o8fpVF85458RzotimJ/M6YA=;
+	h=From:In-Reply-To:References:Date:Subject:To:Cc;
+	b=WTBH081nAVdwug7LFzIXFDgrbegoCxoadFT6WO6Frj2908/6QzMGpqt+CfrEXJqRU
+	 rcgGiDX4HCNTU8FqoW1govO01jdvhuzUXNNJ0tTwJ/a75ha6cknVn+4Ri9j8V9UT6j
+	 FEDw2qbGgQMoPPJBJI33u2xbH/NNR/2Po70XNcNawxYMXR37COZ6bP05UqWxnXPglt
+	 +/3qvpADr+xjrw+F8R/KNXi2aw9RGkyyEgsPKWJU1EspALz+kc34kr4mUtD5XemHJd
+	 k7mj/FGZm/6JeoPOKEQouTiImik/jECjqVZ4/3PN4IM+ItDJKnXZfeOx0R9CmyjUkp
+	 t8QVaWsR+PBRg==
+Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-5aebba706b3so1812440e87.0
+        for <devicetree@vger.kernel.org>; Thu, 09 Jul 2026 01:10:33 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AHgh+RoHoyTJ+RfFSNsAzTono5VhWxP0SD7oQsGLe6Fta/sCnk8Go5tcIfHDIQZuFoImK4efQZJrnEnRA1W7@vger.kernel.org
+X-Gm-Message-State: AOJu0YwORKxNTj84J5jJ/LqU+ugET98rgFKtXjIO+dpSzhOuTv3ncqi2
+	t0SHTdOhKCFxgW7N71tYrOmumWQxX2abeeQ0zSsu5EuLiSIZMmVviD0YJBf7nJW4tR7+fZR/u/M
+	/PHXnq2nfCh/HWdHrx9VzPsBAIz+zBd2cRhIsx862Mg==
+X-Received: by 2002:ac2:57cb:0:b0:5ae:b75a:7176 with SMTP id
+ 2adb3069b0e04-5b0115b31cbmr957946e87.65.1783584632201; Thu, 09 Jul 2026
+ 01:10:32 -0700 (PDT)
+Received: from 969154062570 named unknown by gmailapi.google.com with
+ HTTPREST; Thu, 9 Jul 2026 01:10:30 -0700
+Received: from 969154062570 named unknown by gmailapi.google.com with
+ HTTPREST; Thu, 9 Jul 2026 01:10:30 -0700
+From: Bartosz Golaszewski <brgl@kernel.org>
+In-Reply-To: <20260708-samsung-kp-v2-0-3c6ed4c9b3b6@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20260709-b4-symana21-11221-imx-thermal-support-upstream-6-18-v2-2-00ff72495e24@cn.bosch.com>
-References: <20260709-b4-symana21-11221-imx-thermal-support-upstream-6-18-v2-0-00ff72495e24@cn.bosch.com>
-In-Reply-To: <20260709-b4-symana21-11221-imx-thermal-support-upstream-6-18-v2-0-00ff72495e24@cn.bosch.com>
-To: "Rafael J. Wysocki" <rafael@kernel.org>, 
- Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>, 
- Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
- Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>
-Cc: linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
- linux-kernel@vger.kernel.org, Haoning CHENG <Haoning.CHENG@cn.bosch.com>
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1783584623; l=2625;
- i=Haoning.CHENG@cn.bosch.com; s=20260709; h=from:subject:message-id;
- bh=MRMJXW3PasN1+vP3XrwOg3tSDMAKHZqZCG42ukJ5xEc=;
- b=SJTjctrQ1rBbwltm4KOKrbYdL+m5Hm3vJLKDmxkNxuaBIKT2Wpr9VlsjHRvXwUU7cyUX9+Bbc
- OMGxoPkO7FyAvJqfL2qIT4IPKHLPAc2gcNqIeYVZ3N/SUzIPYd9Mtlu
-X-Developer-Key: i=Haoning.CHENG@cn.bosch.com; a=ed25519;
- pk=glQGwad/fosRS5gZUJYbLDPPLGe7rFTrTV2VxY/ySdc=
-X-Endpoint-Received: by B4 Relay for Haoning.CHENG@cn.bosch.com/20260709
- with auth_id=860
-X-Original-From: HaoNing Cheng <Haoning.CHENG@cn.bosch.com>
-Reply-To: Haoning.CHENG@cn.bosch.com
+References: <20260708-samsung-kp-v2-0-3c6ed4c9b3b6@gmail.com>
+Date: Thu, 9 Jul 2026 01:10:30 -0700
+X-Gmail-Original-Message-ID: <CAMRc=MfJQm8RqhiLbRA1x7skt=jW8vvTD-1VCDcw-dO_VjisZQ@mail.gmail.com>
+X-Gm-Features: AVVi8CddxA9iUF7IgAB_SRFc1uKWkA3NnqyOXCt0i1LuR82tf86E-F3pS5f_rfg
+Message-ID: <CAMRc=MfJQm8RqhiLbRA1x7skt=jW8vvTD-1VCDcw-dO_VjisZQ@mail.gmail.com>
+Subject: Re: [PATCH v2 00/11] Remove support for platform data from samsung keypad
+To: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, linux-input@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+	patches@opensource.cirrus.com, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Peter Griffin <peter.griffin@linaro.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
+	Russell King <linux@armlinux.org.uk>, Mark Brown <broonie@kernel.org>, 
+	Linus Walleij <linusw@kernel.org>, Charles Keepax <ckeepax@opensource.cirrus.com>, 
+	Sam Protsenko <semen.protsenko@linaro.org>, Arnd Bergmann <arnd@arndb.de>, 
+	Bartosz Golaszewski <brgl@bgdev.pl>
+Content-Type: text/plain; charset="UTF-8"
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-3.66 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-323408-lists,devicetree=lfdr.de,Haoning.CHENG.cn.bosch.com];
+	TAGGED_FROM(0.00)[bounces-323410-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:rafael@kernel.org,m:daniel.lezcano@linaro.org,m:rui.zhang@intel.com,m:lukasz.luba@arm.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:shawnguo@kernel.org,m:s.hauer@pengutronix.de,m:kernel@pengutronix.de,m:festevam@gmail.com,m:linux-pm@vger.kernel.org,m:devicetree@vger.kernel.org,m:imx@lists.linux.dev,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:Haoning.CHENG@cn.bosch.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[17];
+	RCPT_COUNT_TWELVE(0.00)[20];
+	FORGED_RECIPIENTS(0.00)[m:dmitry.torokhov@gmail.com,m:krzk@kernel.org,m:linux-input@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-samsung-soc@vger.kernel.org,m:patches@opensource.cirrus.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:peter.griffin@linaro.org,m:alim.akhtar@samsung.com,m:linux@armlinux.org.uk,m:broonie@kernel.org,m:linusw@kernel.org,m:ckeepax@opensource.cirrus.com,m:semen.protsenko@linaro.org,m:arnd@arndb.de,m:brgl@bgdev.pl,m:dmitrytorokhov@gmail.com,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[kernel.org,linaro.org,intel.com,arm.com,pengutronix.de,gmail.com];
+	FREEMAIL_TO(0.00)[gmail.com];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	FORGED_SENDER(0.00)[brgl@kernel.org,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,qualcomm.com:email,mail.gmail.com:mid,vger.kernel.org:from_smtp];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[brgl@kernel.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	ALIAS_RESOLVED(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	HAS_REPLYTO(0.00)[Haoning.CHENG@cn.bosch.com]
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 9850472E13D
+X-Rspamd-Queue-Id: 975C572E291
 
-From: HaoNing Cheng <Haoning.CHENG@cn.bosch.com>
+On Thu, 9 Jul 2026 06:52:58 +0200, Dmitry Torokhov
+<dmitry.torokhov@gmail.com> said:
+> Hi,
+>
+> This is a reworked and extended version of the series previously posted
+> to convert the Samsung keypad driver and Cragganmore 6410 board to
+> generic device properties. The first 8 patches of the original series
+> (general cleanups) have been merged into mainline, and this version
+> focuses on the remaining keypad rework and extends the board conversion.
+>
+> Specifically, we rework the Samsung keypad driver to stop using platform
+> data and instead rely on generic device properties, and convert the
+> Cragganmore board to use software nodes for all its peripherals, removing
+> legacy GPIO lookup tables.
+>
+> We start by introducing a compact matrix keypad binding and implementing
+> it in the driver. To support referencing Samsung GPIO chips in board
+> properties, we add infrastructure to register and attach software nodes
+> to Samsung gpio_chips. We then switch the Cragganmore keypad to use
+> software properties and drop platform data support from the driver.
+>
+> To convert the PMIC DVS regulator on Cragganmore, we add software node
+> support to the wm831x regulator driver, allowing DVS configuration via
+> device properties. Once the board is converted, we clean up the driver
+> by removing legacy DVS platform data fields.
+>
+> Finally, we convert the remaining peripherals on Cragganmore (GPIO keys,
+> PMIC, WM1250, SPI0, basic-mmio-gpio, and LEDs) to software properties.
+> This allows us to eliminate all legacy GPIO lookup tables, which also
+> fixes incorrect GPIO chip names ("GPIO<N>" vs "GP<N>") from previous
+> descriptor conversions.
+>
+> Mark, it would be great if you could give this a spin on Cragganmore.
+>
+> Thanks!
+>
 
-Some boards need a small per-design correction to align the reported CPU
-temperature with board-level measurements.
+I admit I haven't looked at the series in great detail but it looks sane and
+you've been doing these conversions before so I trust your judgment.
 
-Read the optional fsl,temp-calibration-offset-millicelsius property from
-DT and apply it to the i.MX6/6SX/7D calibration formulas. When the
-property is not present, the default offset remains 0, preserving the
-current behaviour.
+Acked-by: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
 
-Signed-off-by: HaoNing Cheng <Haoning.CHENG@cn.bosch.com>
----
- drivers/thermal/imx_thermal.c | 18 +++++++++++++-----
- 1 file changed, 13 insertions(+), 5 deletions(-)
-
-diff --git a/drivers/thermal/imx_thermal.c b/drivers/thermal/imx_thermal.c
-index 38c993d1bcb3..8062d34ffed8 100644
---- a/drivers/thermal/imx_thermal.c
-+++ b/drivers/thermal/imx_thermal.c
-@@ -207,6 +207,7 @@ struct imx_thermal_data {
- 	struct regmap *tempmon;
- 	u32 c1, c2; /* See formula in imx_init_calib() */
- 	int temp_max;
-+	s32 calibration_offset;
- 	int alarm_temp;
- 	int last_temp;
- 	bool irq_enabled;
-@@ -240,10 +241,13 @@ static void imx_set_alarm_temp(struct imx_thermal_data *data,
- 
- 	data->alarm_temp = alarm_temp;
- 
--	if (data->socdata->version == TEMPMON_IMX7D)
--		alarm_value = alarm_temp / 1000 + data->c1 - 25;
--	else
-+	if (data->socdata->version == TEMPMON_IMX7D) {
-+		alarm_value = DIV_ROUND_UP(alarm_temp - data->calibration_offset,
-+					   1000) + data->c1 - 25;
-+		alarm_value = clamp(alarm_value, 0, 0x1ff);
-+	} else {
- 		alarm_value = (data->c2 - alarm_temp) / data->c1;
-+	}
- 
- 	regmap_write(map, soc_data->high_alarm_ctrl + REG_CLR,
- 		     soc_data->high_alarm_mask);
-@@ -274,7 +278,7 @@ static int imx_get_temp(struct thermal_zone_device *tz, int *temp)
- 
- 	/* See imx_init_calib() for formula derivation */
- 	if (data->socdata->version == TEMPMON_IMX7D)
--		*temp = (n_meas - data->c1 + 25) * 1000;
-+		*temp = (n_meas - data->c1 + 25) * 1000 + data->calibration_offset;
- 	else
- 		*temp = data->c2 - n_meas * data->c1;
- 
-@@ -413,7 +417,7 @@ static int imx_init_calib(struct platform_device *pdev, u32 ocotp_ana1)
- 	temp64 *= 1000; /* to get result in °mC */
- 	do_div(temp64, 15423 * n1 - 4148468);
- 	data->c1 = temp64;
--	data->c2 = n1 * data->c1 + 28581;
-+	data->c2 = n1 * data->c1 + 28581 + data->calibration_offset;
- 
- 	return 0;
- }
-@@ -629,6 +633,10 @@ static int imx_thermal_probe(struct platform_device *pdev)
- 
- 	platform_set_drvdata(pdev, data);
- 
-+	of_property_read_s32(dev->of_node,
-+			     "fsl,temp-calibration-offset-millicelsius",
-+			     &data->calibration_offset);
-+
- 	if (of_property_present(dev->of_node, "nvmem-cells")) {
- 		ret = imx_init_from_nvmem_cells(pdev);
- 		if (ret)
-
--- 
-2.43.0
-
-
+Thanks,
+Bartosz
 
