@@ -1,243 +1,225 @@
-Return-Path: <devicetree+bounces-323625-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-323629-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id yomnIq5/T2r3iAIAu9opvQ
-	(envelope-from <devicetree+bounces-323625-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 13:02:06 +0200
+	id lUDwI499T2o/iAIAu9opvQ
+	(envelope-from <devicetree+bounces-323629-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 12:53:03 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDF3F72FFF3
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 13:02:04 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 735A272FE6D
+	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 12:53:03 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=collabora.com header.s=mail header.b=h2ekCjMH;
-	dmarc=pass (policy=none) header.from=collabora.com;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-323625-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-323625-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20201202 header.b=WlX032nU;
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-323629-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-323629-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id DBD943002B51
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2026 10:52:14 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id E21583003360
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2026 10:53:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B7BE3FE645;
-	Thu,  9 Jul 2026 10:52:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 052A340E8FC;
+	Thu,  9 Jul 2026 10:52:55 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB88A3BBFBE
-	for <devicetree@vger.kernel.org>; Thu,  9 Jul 2026 10:52:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 212AA40DFAC;
+	Thu,  9 Jul 2026 10:52:53 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783594333; cv=none; b=gO/rFy4yGIdMu3kPQpafMT/UnZNVO92VxFoO11rYTSsb3Mr8efi39lyR7SmemDWQYufoj8yfY01M5sYpFcDsg/V0o/mbrW+c+D8Ntz0u+PY7A/+uzboXuomU4BTnRnxMNaRy1gGSRpcq78O3cBGytVaQdjlCXtr9AyfSGedYfYw=
+	t=1783594373; cv=none; b=gJfFDMBNWg4TJ7pOyTYNiygKWdeMBgcJZSyUbB1Hw4bM5kj8GHhpbXvbQWzggh7BN2t7AS3hz6o/IYAwegMixcKZkA5LJSisbVC273fpLc4xPN3xgLF0KIjj1QlHGRNzn9j278wQD/LzfVbmU1pqz6CHgCEdVTu+6+9UDuQ2tnw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783594333; c=relaxed/simple;
-	bh=r6FjVnEXwE0IGEmKbTI/hDFm3Nf0DQ8S1T/ck81JAEM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Jr6Ni8bi4L2qWEebsrOeNyJWrV0/SBSNWLnOwEQji+KlYjc78PMBCHkz/so3Hl3bEPpcpPrSrsffoT39N+fXvODjg1ea1GSzg1UaMDlpZzlA4bXw/x++gxBP+Khlv8+C0GDlkUomG157OttKtxRBFi80oFsaEqOoLiMNS5xwYcQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=h2ekCjMH; arc=none smtp.client-ip=148.251.105.195
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1783594330;
-	bh=r6FjVnEXwE0IGEmKbTI/hDFm3Nf0DQ8S1T/ck81JAEM=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=h2ekCjMHC5AgjXntNqWY2j4muZT4FhN2htvXPl6KTYk6Q165IBO2SsF+8avDrAiAB
-	 EhRlP3kE/rtBT7T08UutOjZ0+eh2EJnuWkxuPSf6UcdNixIRWTr09OY8W2ap4y4tWk
-	 HNkpSmpXODFp6wchiKv//DRKOxAVrC0A3ODgdVmC16tu1zKhfppxyTgOMl4ryDZnZ2
-	 TsGTpWr1QlZL4/hGoSMJXgad7fYUfUGaeFspvSFQrXXz/b+XLWJBZmBlhoDG/JTay+
-	 jjXJqxzewxs9WHRrPOrubkTnmrtNxLNtXNVZDm0KpyXDWOGKEdsEK4DYa2CvWjSCBh
-	 XsUdhdJHIYmjw==
-Received: from [100.64.1.21] (unknown [100.64.1.21])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange x25519)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id E9ADA17E0886;
-	Thu, 09 Jul 2026 12:52:09 +0200 (CEST)
-Message-ID: <be903cb1-8184-4112-9672-ea262716e5b9@collabora.com>
-Date: Thu, 9 Jul 2026 12:52:09 +0200
+	s=arc-20240116; t=1783594373; c=relaxed/simple;
+	bh=W+zLO7+0D4YcJsgd55UMB8D9Ag99lffSIs84hIwj1wk=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=ZTFmh5RYQhe+EOOehvuNxtzZrRNQIHxva/KolZD+7Lu+oY8vy1KHiCJQYH5tp6LAi+sIS7WgBiP8QAJFDI9GwE8bZ8p6/N3S2rYeqMlyrOnAz4BcyIqGLypg+kDaemUYrescf/ct5zUBSqha2PwcI7B9eHZqFeQDH7MVQVklZMA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WlX032nU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 009ACC2BCB9;
+	Thu,  9 Jul 2026 10:52:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1783594372;
+	bh=W+zLO7+0D4YcJsgd55UMB8D9Ag99lffSIs84hIwj1wk=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=WlX032nUWpU6E+/E2hzz0StoTDCWnw2wYjQ9hGGcqoLCQT6RNEWFSjQsJyK2bzo/q
+	 wup/0+sAD7BtOJnba1Lh3D+HfYB1zOuN721YsGy4xkaCgV6icGPqeP5mTpNUSynlZb
+	 hhSlEpDZQ2r7a9WPKOGpTLr1EH6YmahrWQ2coqRz6iFWXXGcO16IdO5Ns6Bm4IlE9y
+	 HDgkeE3uwKdlu01zg/kyNEJ2T9LFZ2nJeuGnF1uiFpOtvfilU1+rGqmp36rvl7ZwTp
+	 MkmAnewVL1JwLuEoFj81ClDXYx6rvcZ5/YDq36cVTa4+mODVo2lPfXO866inCBCpZf
+	 BN//KUjXKnTEA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E212EC43458;
+	Thu,  9 Jul 2026 10:52:51 +0000 (UTC)
+From: Roman Vivchar via B4 Relay <devnull+rva333.protonmail.com@kernel.org>
+Subject: [PATCH v5 0/4] AUXADC driver for the MediaTek mt6323 PMIC
+Date: Thu, 09 Jul 2026 13:52:46 +0300
+Message-Id: <20260709-mt6323-adc-v5-0-d11b8332a735@protonmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] arm64: dts: mediatek: mt8188-geralt: Add MT6319 PMIC
-To: Chen-Yu Tsai <wenst@chromium.org>, sashiko-reviews@lists.linux.dev
-Cc: devicetree@vger.kernel.org, conor+dt@kernel.org, robh@kernel.org,
- "moderated list:ARM/Mediatek SoC support"
- <linux-mediatek@lists.infradead.org>, Mark Brown <broonie@kernel.org>
-References: <20260709081928.612294-1-wenst@chromium.org>
- <20260709083024.330381F000E9@smtp.kernel.org>
- <CAGXv+5HO5eWaJ-AhH9JG=aZ9f_se8L8Ebz-NRHfKMsNXvGnQTg@mail.gmail.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <CAGXv+5HO5eWaJ-AhH9JG=aZ9f_se8L8Ebz-NRHfKMsNXvGnQTg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/23NQW7DIBCF4atErEMEMwZDV71HlQXG44YqNhG4V
+ qrIdy9ONkTJ8knz/XNjmVKgzD52N5ZoCTnEqQy13zF/ctM38dCXzUCAFgoUH2eNgNz1nmNHgyf
+ UvhuAFXBJNITrPfZ1fOz82/2Qn7fCdnEKeY7p7/5tkdvdI6wF1OFFcsG1Id9iq4Qh+rykOMdpd
+ OF88HFkW32B2tsnD8U7Z9EBoLCDfeux8lI/eSxeemi9MkYa1b/1TeULrH1TPFirjXA9Stu8+HV
+ d/wF2cbq/ewEAAA==
+X-Change-ID: 20260525-mt6323-adc-3befce36cbf2
+To: Jonathan Cameron <jic23@kernel.org>, 
+ David Lechner <dlechner@baylibre.com>, 
+ =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
+ Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Lee Jones <lee@kernel.org>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-mediatek@lists.infradead.org, Ben Grisdale <bengris32@protonmail.ch>, 
+ Roman Vivchar <rva333@protonmail.com>, 
+ Conor Dooley <conor.dooley@microchip.com>, 
+ Andy Shevchenko <andriy.shevchenko@intel.com>
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1783594368; l=3957;
+ i=rva333@protonmail.com; s=20260510; h=from:subject:message-id;
+ bh=W+zLO7+0D4YcJsgd55UMB8D9Ag99lffSIs84hIwj1wk=;
+ b=vC7qT016llzBOmF+PEhK0ccwAPJrPTSdWmj97noZV+zvssERAiIuogUi8fbDoXTCwlN9Nzw+W
+ wDASqDkMo1JCbvo0sksAKZM81Avhn0FcPJjXmPOBaU91ieF99V0i9wL
+X-Developer-Key: i=rva333@protonmail.com; a=ed25519;
+ pk=zww/nWjBGoQ4POXCG0BV6fx2iuXK6jx77rsKPA5YK5Y=
+X-Endpoint-Received: by B4 Relay for rva333@protonmail.com/20260510 with
+ auth_id=777
+X-Original-From: Roman Vivchar <rva333@protonmail.com>
+Reply-To: rva333@protonmail.com
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-1.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	FREEMAIL_REPLYTO_NEQ_FROM(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
-	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-323629-lists,devicetree=lfdr.de,rva333.protonmail.com];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-323625-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER(0.00)[angelogioacchino.delregno@collabora.com,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS(0.00)[m:wenst@chromium.org,m:sashiko-reviews@lists.linux.dev,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:robh@kernel.org,m:linux-mediatek@lists.infradead.org,m:broonie@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:jic23@kernel.org,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:andy@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:matthias.bgg@gmail.com,m:angelogioacchino.delregno@collabora.com,m:lee@kernel.org,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-mediatek@lists.infradead.org,m:bengris32@protonmail.ch,m:rva333@protonmail.com,m:conor.dooley@microchip.com,m:andriy.shevchenko@intel.com,m:krzk@kernel.org,m:conor@kernel.org,m:matthiasbgg@gmail.com,s:lists@lfdr.de];
+	FREEMAIL_REPLYTO(0.00)[protonmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[collabora.com:+];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	TO_DN_SOME(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[kernel.org,baylibre.com,analog.com,gmail.com,collabora.com];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,msgid.link:url,protonmail.ch:email,vger.kernel.org:from_smtp];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	HAS_REPLYTO(0.00)[rva333@protonmail.com];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[angelogioacchino.delregno@collabora.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[7];
+	FROM_HAS_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,protonmail.ch,protonmail.com,microchip.com,intel.com];
+	ALIAS_RESOLVED(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:from_mime,collabora.com:dkim,collabora.com:mid,chromium.org:email,vger.kernel.org:from_smtp,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,sashiko.dev:url]
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: CDF3F72FFF3
+X-Rspamd-Queue-Id: 735A272FE6D
 
-On 7/9/26 11:27, Chen-Yu Tsai wrote:
-> On Thu, Jul 9, 2026 at 4:30 PM <sashiko-bot@kernel.org> wrote:
->>
->> Thank you for your contribution! Sashiko AI review found 2 potential issue(s) to consider:
->> - [High] The MT6319 PMIC fallback compatible triggers incorrect MT6315_PP mode ganging in the regulator driver, causing silent cross-talk between the CPU and EMI VDDQ regulators.
->> - [Low] Grammatical error in the comment explaining the firmware workaround.
->> --
->>
->> --- Patch [1]: [PATCH v2] arm64: dts: mediatek: mt8188-geralt: Add MT6319 PMIC ---
->> commit 0ff94c6622559a57199ed1f2d1f4063c6c911df1
->> Author: Chen-Yu Tsai <wenst@chromium.org>
->>
->> arm64: dts: mediatek: mt8188-geralt: Add MT6319 PMIC
->>
->> The Geralt design uses a MT6319 PMIC to power the big cores and LPDDR4X
->> DRAM.
->>
->>> diff --git a/arch/arm64/boot/dts/mediatek/mt8188-geralt.dtsi b/arch/arm64/boot/dts/mediatek/mt8188-geralt.dtsi
->>> index 8e423504ec052..af05315092f53 100644
->>> --- a/arch/arm64/boot/dts/mediatek/mt8188-geralt.dtsi
->>> +++ b/arch/arm64/boot/dts/mediatek/mt8188-geralt.dtsi
->> [ ... ]
->>> @@ -1225,6 +1235,70 @@ &spi2 {
->>>        status = "okay";
->>>   };
->>>
->>> +&spmi {
->>> +     pinctrl-names = "default";
->>> +     pinctrl-0 = <&spmi_pins>;
->>> +     #address-cells = <2>;
->>> +     #size-cells = <0>;
->>> +     status = "okay";
->>> +
->>> +     pmic@6 {
->>> +             compatible = "mediatek,mt6319-regulator", "mediatek,mt6315-regulator";
->>> +             reg = <0x6 SPMI_USID>;
->>
->> [Severity: High]
->> Does this fallback compatible trigger incorrect mode ganging?
->>
->> The mt6315-regulator driver maps USID 6 to the MT6315_PP variant, which
->> hardcodes mode ganging for vbuck1, vbuck2, and vbuck4. On the MT8188
->> Geralt's MT6319, vbuck4 is wired as an independent regulator for
->> pp0600_emi_vddq.
->>
->> If a mode change happens on vbuck1 (which is allowed by the
->> regulator-allowed-modes property), the driver will apply the ganged
->> mask and silently overwrite vbuck4's mode bits in the PMIC, potentially
->> forcing the RAM supply into an unexpected mode.
->>
->> Could this silent cross-talk between the CPU and EMI VDDQ regulators
->> lead to memory voltage instability?
-> 
-> This discrepency is actually bigger than Sashiko mentions. The ganging
-> supported by the driver only applies to the PMICs in the Asuarada design:
-> 
->    - SPMI ID 6 has 1+2 (GPU); 3 and 4 are unused
->    - SPMI ID 7 has 1+2+4 (big cores) and 3 (little cores)
-> 
-> On the Cherry design we have:
-> 
->    - SPMI ID 6 has 1+2 (GPU); 3 and 4 are unused
->    - SPMI ID 7 has 1+2+3+4 (big cores)
-> 
-> On the Corsola designs with beefier chips:
-> 
->    - SPMI ID 6 has 1+2 (big cores); 3 and 4 are unused
-> 
-> On the Geralt design (this one):
-> 
->    - SPMI ID 7 has 1+2 (big cores); 3 (DRAM); 4 (DRAM)
-> 
-> Any ideas on what to do about this mess?
+This series adds support for the 15-bit AUXADC hardware block found on
+the MediaTek mt6323 PMIC.
 
-wenst, I think that the only way to fix that properly is to add generic support
-for buck phases ganging in the regulator API... because AFAIK there's nothing
-right now.
+The previous version of the series for all AUXADC, EFUSE and thermal
+drivers was split after Krzysztof's comment [1].
 
- From what I remember from last time I looked, MediaTek PMICs wouldn't be the
-only ones, there's something else that also has ganged bucks, and again if I
-remember correctly, I remember seeing one platform data struct for each of the
-ganging combinations in that driver.
+Tested on the MediaTek mt6572 and mt8163 SoCs (Ben), both paired with a
+mt6323.
 
-So.. especially because MTK wouldn't be the first, I think the addition of some
-kind of generic properties (and callbacks) for this kind of configuration in
-the API would be both profitable and welcome.
+[1]: https://lore.kernel.org/linux-mediatek/20260504-mt6323-v1-0-799b58b355ff@protonmail.com/T/#med30fad67a090be35f549231336b2dec295233f6
 
-Mark, any considerations?
+Tested-by: Ben Grisdale <bengris32@protonmail.ch> # Amazon Echo Dot (2nd Generation)
+Signed-off-by: Roman Vivchar <rva333@protonmail.com>
+---
+Changes in v5:
+- Rebase onto next-20260708
+- Link to v4: https://patch.msgid.link/20260623-mt6323-adc-v4-0-299680ad3194@protonmail.com
 
-Cheers,
-Angelo
+Changes in v4:
+- dt-bindings: Drop separate driver mention from the commit message (Conor)
+- AUXADC driver: Break one more time 'regmap_read_poll_timeout' on logical boundaries (Andy)
+- Link to v3: https://patch.msgid.link/20260616-mt6323-adc-v3-0-1c27c588185d@protonmail.com
 
-> 
-> Another thing is that I kind of wonder why the mode configuration register
-> setting isn't ganged in hardware like the enable and voltage settings.
-> 
-> 
-> Thanks
-> ChenYu
-> 
->>> +             pvdd1-supply = <&pp4200_s5>;
->>> +             pvdd2-supply = <&pp4200_s5>;
->>> +             pvdd3-supply = <&pp4200_s5>;
->>> +             pvdd4-supply = <&pp4200_s5>;
->>> +
->>> +             regulators {
->>> +                     /*
->>> +                      * vbuck1 is the cpu-supply for CPU6 and CPU7.
->>> +                      *
->>> +                      * However, this device originally shipped with a broken
->>> +                      * firmware that causes register reads over SPMI fail.
->>> +                      * This is fixed in firmware version 15842.175.0, which
->>> +                      * is included in ChromeOS releases R150-16700.22.0 or
->>> +                      * R151-16721.0.0 and later.
->>> +                      *
->>> +                      * Assigning the cpu-supply properties for CPU6 and CPU7
->>> +                      * without the fix will likely cause CPU DVFS to stop
->>> +                      * working. Hence the assignment is left out to avoid a
->>> +                      * regression of the function. If the user is confident
->>> +                      * that their system has the fix, they can added the
->>
->> [Severity: Low]
->> This isn't a bug, but there is a typo in this comment. It should say
->> "they can add the property themselves".
->>
->>> +                      * property themselves.
->>> +                      */
->>
->> --
->> Sashiko AI review · https://sashiko.dev/#/patchset/20260709081928.612294-1-wenst@chromium.org?part=1
+Changes in v3:
+- AUXADC driver:
+    - Add comment for channels table about voltage and channel IDs (Jonathan)
+    - Add comment for mutex in the 'mt6323_auxadc' struct (Jonathan)
+    - Break 'regmap_read_poll_timeout' on logical boundaries (Andy)
+    - Switch to 'guard' from 'scoped_guard' (Andy)
+- Link to v2: https://patch.msgid.link/20260609-mt6323-adc-v2-0-aa93a22309f9@protonmail.com
+
+Changes in v2:
+- AUXADC driver:
+    - Drop channel type from the MTK_PMIC_IIO_CHAN macro (Nuno)
+    - Drop kerneldoc for the mt6323_auxadc struct (Nuno)
+    - Add channel release to save power (Sashiko, Jonathan)
+    - Drop 'reg' variable in the mt6323_auxadc_read (Jonathan)
+    - Sort variables in the mt6323_auxadc_probe (Jonathan)
+- Maintainers:
+    - Drop linux-mediatek list (Andy)
+    - Split between dt-bindings and driver to avoid missing file (Nuno)
+- Link to v1: https://patch.msgid.link/20260602-mt6323-adc-v1-0-68ec737508ee@protonmail.com
+
+Changes after split:
+- dt-bindings: Change 'MT63xx' to 'MT6350 series and similar' (Jonathan)
+- AUXADC driver:
+    - Add missing headers (Andy)
+    - Fix AUXADC_TRIM_CH* values (Andy)
+    - Rename masks to include their register name (Jonathan)
+    - Fix formatting (Andy, Jonathan)
+    - Replace channel address with actual register value (Jonathan), align the table
+    - Replace IIO_TEMP with IIO_VOLTAGE, since the actual output is still mV, not mC
+    - Rename constants to match their registers (Jonathan)
+    - Remove 'if/else if/else' in the mt6323_auxadc_read_raw (Andy)
+    - Add comments for fsleep, ADC range and resolution (Andy, Jonathan)
+    - Remove useless error messages (Andy)
+- Maintainers:
+    - Explicitly include mt6323 in the name (Jonathan)
+    - Squash with AUXADC driver commit (Krzysztof)
+    - Set status back to 'Maintained'
+- Link to a previous series: https://patch.msgid.link/20260512-mt6323-v2-0-3efcba579e88@protonmail.com
+
+---
+Roman Vivchar (4):
+      dt-bindings: iio: adc: mediatek,mt6359-auxadc: add mt6323 PMIC AUXADC
+      iio: adc: mt6323-auxadc: add mt6323 PMIC AUXADC driver
+      mfd: mt6397-core: add mt6323 AUXADC support
+      ARM: dts: mediatek: mt6323: add AUXADC support
+
+ .../bindings/iio/adc/mediatek,mt6359-auxadc.yaml   |   3 +-
+ MAINTAINERS                                        |   7 +
+ arch/arm/boot/dts/mediatek/mt6323.dtsi             |   5 +
+ drivers/iio/adc/Kconfig                            |  11 +
+ drivers/iio/adc/Makefile                           |   1 +
+ drivers/iio/adc/mt6323-auxadc.c                    | 314 +++++++++++++++++++++
+ drivers/mfd/mt6397-core.c                          |   3 +
+ .../dt-bindings/iio/adc/mediatek,mt6323-auxadc.h   |  24 ++
+ 8 files changed, 367 insertions(+), 1 deletion(-)
+---
+base-commit: b9810cd75b9fb56a3425d391cba3f608502bd474
+change-id: 20260525-mt6323-adc-3befce36cbf2
+
+Best regards,
+--  
+Roman Vivchar <rva333@protonmail.com>
+
 
 
