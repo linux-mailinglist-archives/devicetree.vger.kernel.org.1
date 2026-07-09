@@ -1,167 +1,165 @@
-Return-Path: <devicetree+bounces-323350-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-323351-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 6yhTL81IT2oCdgIAu9opvQ
-	(envelope-from <devicetree+bounces-323350-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 09:07:57 +0200
+	id mEiKGSBJT2oZdgIAu9opvQ
+	(envelope-from <devicetree+bounces-323351-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 09:09:20 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9CC372D75E
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 09:07:56 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E54572D777
+	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 09:09:19 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=sntech.de header.s=gloria202408 header.b=wzpkFYTS;
-	dmarc=pass (policy=quarantine) header.from=sntech.de;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-323350-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-323350-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=intel.com header.s=Intel header.b=V9C2oAwy;
+	dmarc=pass (policy=none) header.from=intel.com;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-323351-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-323351-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id D624430069A9
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2026 07:07:53 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 55CFE3010613
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2026 07:09:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18F0C396588;
-	Thu,  9 Jul 2026 07:07:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53E5C233948;
+	Thu,  9 Jul 2026 07:09:17 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A73D3233955;
-	Thu,  9 Jul 2026 07:07:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 942153B38AF;
+	Thu,  9 Jul 2026 07:09:15 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783580870; cv=none; b=qRc1UkOV8SdYMaFya6XcxFSI7knIDEBgVNAGmVsI7SG3C7S6yAvb89DGOAAZbKFCASEpjsMkq8Tje6ZNjUxyHjmL8kh6Uk4mNTqNepvQfOBIJ+fheFmy2Ucx5jElMfh4LnA3zX/gz92hGHdTqJhOb5K0icQJc/VTJQVL5s+4gog=
+	t=1783580957; cv=none; b=mq/A2Rd2rT/+dCApejFGP+SfrAp4JOUAF1pm4N80Zikfb300ZaMgsqy1s5xKM9ieq4lhz9kmnKDUQZUzc0b6N3KpQ0fU8rLD23Myralo9/ZE7PfW+9bLOvcF2r660Wo5x9ZOfsRc9kZmFwX8Hlth8Q5SjjmNjfV0xare7bRcMx4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783580870; c=relaxed/simple;
-	bh=dr+5FgGKUdCueZyGgCiTv2gSI67Cx1yifBwDoBjQuXo=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Gb458e/jPHSH9YTbSGB+KHpWDsWd+pcq2POw1scjKkKm8wnlmTZaQ4bipcQomAZbCk6ILURIsCCSNfV32YI02gp37pKCHLUepPjAauu2E18UA9I8ICJ5DghOgu+BBVUN58L1vjDuY8SvVPjxpjzn8UFf9tOGTWiWBjEJR92G46g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=wzpkFYTS; arc=none smtp.client-ip=185.11.138.130
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
-	bh=pdSw+G21z2NrE5iHKTKAJzseZhloGwIrHZmDJjo4p4c=; b=wzpkFYTSB2o038W334C7hu8s9v
-	7+L3+hqneJ1n9ursKNn/qF9aAa80jolpgMvJtb93jbbHpRHdG7+hl4Hfgwotw3LsMcvvE7NGnbpHi
-	9bFxj2FYvyUZbgVxteLRtrPMAZUOt0YENy0Hg9DFimz1NYygsj0BXE2v77IoA+8H4/3fPk0tX6Qai
-	9MNf5M9KYENWFUWpkudTS1bInIn8spWFtpDgqpeTmTaYvRRZrzRS3ULHq7/RMFB+tahmMaQ2B0uXo
-	l5z9MVr1Xc+4GJPPZKcA1sh1Xo4ASqn09/xQX2HsOyMt+jqVybBUP0gYe8w8Vm4iOpudzcyPjxnsF
-	08GKkryQ==;
-From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
-To: Dawid Olesinski <dawidro@gmail.com>,
- Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc: Herbert Xu <herbert@gondor.apana.org.au>,
- "David S . Miller" <davem@davemloft.net>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Corentin Labbe <clabbe@baylibre.com>, linux-crypto@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject:
- Re: [PATCH v2 3/4] arm64: dts: rockchip: Add crypto node to rk356x-base
-Date: Thu, 09 Jul 2026 09:07:23 +0200
-Message-ID: <4011768.FjKLVJYuhi@diego>
-In-Reply-To: <ak7jEYTAGgeDdi1W@venus>
-References:
- <20260708175837.1718437-1-dawidro@gmail.com>
- <20260708175837.1718437-4-dawidro@gmail.com> <ak7jEYTAGgeDdi1W@venus>
+	s=arc-20240116; t=1783580957; c=relaxed/simple;
+	bh=ndtxCX9CLv6e7CFilLh3Nw7lUewzP1cPg9mhsHLos6s=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=eHfqBYR2ANv3y9ANFh1DC5PQRnFr5Aq4cczPc7XN9VVSjgykFwtlpo4gI4pG/9Q1abf7QsqXGG1sYquqbEYGvbeQ0DPW8QK698l9KttdoSYpA5YkZ4MKWV7ZBMtavLqorBInl4aLe31Q+XLZYo4WJ2heIhK2QT6XBcgUX94a5bk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=V9C2oAwy; arc=none smtp.client-ip=192.198.163.17
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1783580956; x=1815116956;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=ndtxCX9CLv6e7CFilLh3Nw7lUewzP1cPg9mhsHLos6s=;
+  b=V9C2oAwyRLtJQ6hGJwpwF8fCK+fj3o6/xOoT9zTZFc3reJFS0xJVcZ/h
+   3+WTygOCImNUzFptbVGEbbBTM3nTlMFBxEvKzm7lpS2P0mKKhcEVY2FHN
+   +SkecF4esgffbL9kJAxcZnep6hLKnLqMlie4sW0VoR1PPqyN7hpPbHa/K
+   nDUYrMKfJm+FwiZtY7NJSZaJpkIeVWwWhMb6AOAuhKpKA7Qb7sKCWkTty
+   iD/btYoun1qHse7S1fbewXi3MJ3nEJ60FU5qSR2M7XxGYkeja7lAi/JCN
+   4ebO1PMrlWm36shDQMfTEEQpHhlvk7Ioq2kVXB4sKu/J3YcG8c9tkF7Tg
+   g==;
+X-CSE-ConnectionGUID: RkTIeEfrTlyg52R15ACkKg==
+X-CSE-MsgGUID: HO/Kw6YRSQmDC5+GRCIzPw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11841"; a="84131745"
+X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; 
+   d="scan'208";a="84131745"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Jul 2026 00:09:15 -0700
+X-CSE-ConnectionGUID: thvvHjm9R9isY/ob8WDCYQ==
+X-CSE-MsgGUID: mXFVt/hNS8acl/ww1Ey7wA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; 
+   d="scan'208";a="277726261"
+Received: from ettammin-mobl3.ger.corp.intel.com (HELO localhost) ([10.245.245.235])
+  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Jul 2026 00:09:08 -0700
+Date: Thu, 9 Jul 2026 10:09:06 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Inochi Amaoto <inochiama@gmail.com>
+Cc: Jingoo Han <jingoohan1@gmail.com>,
+	Manivannan Sadhasivam <mani@kernel.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@kernel.org>,
+	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	Christian Bruel <christian.bruel@foss.st.com>,
+	Frank Li <Frank.Li@nxp.com>, Nam Cao <namcao@linutronix.de>,
+	Qiang Yu <qiang.yu@oss.qualcomm.com>,
+	Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>,
+	Xincheng Zhang <zhangxincheng@ultrarisc.com>,
+	Alex Elder <elder@riscstar.com>,
+	Siddharth Vadapalli <s-vadapalli@ti.com>,
+	Vidya Sagar <vidyas@nvidia.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+	spacemit@lists.linux.dev, Yixun Lan <dlan@gentoo.org>,
+	Longbin Li <looong.bin@gmail.com>
+Subject: Re: [PATCH v4 1/6] PCI: spacemit-k1: Add device data support
+Message-ID: <ak9JEs2Ep5FcAgEp@ashevche-desk.local>
+References: <20260709040027.958400-1-inochiama@gmail.com>
+ <20260709040027.958400-2-inochiama@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260709040027.958400-2-inochiama@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-3.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[intel.com:d:+,kernel.org:s:+];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[sntech.de,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
-	R_DKIM_ALLOW(-0.20)[sntech.de:s=gloria202408];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:dawidro@gmail.com,m:sebastian.reichel@collabora.com,m:herbert@gondor.apana.org.au,m:davem@davemloft.net,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:clabbe@baylibre.com,m:linux-crypto@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-rockchip@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	FORGED_SENDER(0.00)[heiko@sntech.de,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[gmail.com,collabora.com];
 	FORWARDED(0.00)[lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-323351-lists,devicetree=lfdr.de];
+	HAS_ORG_HEADER(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:inochiama@gmail.com,m:jingoohan1@gmail.com,m:mani@kernel.org,m:bhelgaas@google.com,m:lpieralisi@kernel.org,m:kwilczynski@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:dlan@kernel.org,m:pjw@kernel.org,m:palmer@dabbelt.com,m:aou@eecs.berkeley.edu,m:alex@ghiti.fr,m:christian.bruel@foss.st.com,m:Frank.Li@nxp.com,m:namcao@linutronix.de,m:qiang.yu@oss.qualcomm.com,m:krishna.chundru@oss.qualcomm.com,m:zhangxincheng@ultrarisc.com,m:elder@riscstar.com,m:s-vadapalli@ti.com,m:vidyas@nvidia.com,m:neil.armstrong@linaro.org,m:gustavo.pimentel@synopsys.com,m:linux-pci@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-riscv@lists.infradead.org,m:spacemit@lists.linux.dev,m:dlan@gentoo.org,m:looong.bin@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:looongbin@gmail.com,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[andriy.shevchenko@linux.intel.com,devicetree@vger.kernel.org];
+	FREEMAIL_TO(0.00)[gmail.com];
+	FREEMAIL_CC(0.00)[gmail.com,kernel.org,google.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,foss.st.com,nxp.com,linutronix.de,oss.qualcomm.com,ultrarisc.com,riscstar.com,ti.com,nvidia.com,linaro.org,synopsys.com,vger.kernel.org,lists.infradead.org,lists.linux.dev,gentoo.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-323350-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[sntech.de:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[32];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[heiko@sntech.de,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@linux.intel.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	ALIAS_RESOLVED(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: B9CC372D75E
+X-Rspamd-Queue-Id: 0E54572D777
 
-Am Donnerstag, 9. Juli 2026, 01:56:10 Mitteleurop=C3=A4ische Sommerzeit sch=
-rieb Sebastian Reichel:
-> Hi,
->=20
-> On Wed, Jul 08, 2026 at 06:58:24PM +0100, Dawid Olesinski wrote:
-> > Add the device tree node for the V2 cryptographic hardware accelerator
-> > on RK356x SoCs (RK3566, RK3568).
-> >=20
-> > The IP block sits in the non-secure peripheral domain. Its three clocks
-> > (core, aclk, hclk) and reset line are accessible directly through the
-> > main non-secure CRU, so no firmware intermediary is required.
-> >=20
-> > The node is disabled by default; board files that wish to use hardware
-> > crypto offload must enable it.
->=20
-> Why is it disabled by default? It doesn't seem to be board specific
-> at all to me (the same question applies to the RK3588 DT).
+On Thu, Jul 09, 2026 at 12:00:21PM +0800, Inochi Amaoto wrote:
+> To reuse the K1 PCIe driver logic for K3 PCIe controller, add device
+> data to handle the K1 specific logic and make room for the incoming
+> logic for K3.
 
-You're definitly right about that ... there are no board specific resources
-needed, so Dawid please drop the status from both nodes.
+...
 
+>  static const struct of_device_id k1_pcie_of_match_table[] = {
+> -	{ .compatible = "spacemit,k1-pcie", },
+> +	{ .compatible = "spacemit,k1-pcie", .data = &k1_pcie_device_data},
 
-Heiko
+Missing space before }.
 
-> >=20
-> > Signed-off-by: Dawid Olesinski <dawidro@gmail.com>
-> > ---
-> >  arch/arm64/boot/dts/rockchip/rk356x-base.dtsi | 12 ++++++++++++
-> >  1 file changed, 12 insertions(+)
-> >=20
-> > diff --git a/arch/arm64/boot/dts/rockchip/rk356x-base.dtsi b/arch/arm64=
-/boot/dts/rockchip/rk356x-base.dtsi
-> > index a5832895bd39..9de7e7487ca1 100644
-> > --- a/arch/arm64/boot/dts/rockchip/rk356x-base.dtsi
-> > +++ b/arch/arm64/boot/dts/rockchip/rk356x-base.dtsi
-> > @@ -1112,6 +1112,18 @@ sdhci: mmc@fe310000 {
-> >  		status =3D "disabled";
-> >  	};
-> > =20
-> > +	crypto: crypto@fe380000 {
-> > +		compatible =3D "rockchip,rk3568-crypto";
-> > +		reg =3D <0x0 0xfe380000 0x0 0x2000>;
-> > +		interrupts =3D <GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>;
-> > +		clocks =3D <&cru CLK_CRYPTO_NS_CORE>, <&cru ACLK_CRYPTO_NS>,
-> > +			 <&cru HCLK_CRYPTO_NS>;
-> > +		clock-names =3D "core", "aclk", "hclk";
-> > +		resets =3D <&cru SRST_CRYPTO_NS_CORE>;
-> > +		reset-names =3D "core";
-> > +		status =3D "disabled";
-> > +	};
-> > +
-> >  	/*
-> >  	 * Testing showed that the HWRNG found in RK3566 produces unacceptably
-> >  	 * low quality of random data, so the HWRNG isn't enabled for all RK3=
-56x
->=20
+>  	{ }
+>  };
 
-
+-- 
+With Best Regards,
+Andy Shevchenko
 
 
 
