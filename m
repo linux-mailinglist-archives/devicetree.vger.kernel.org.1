@@ -1,274 +1,255 @@
-Return-Path: <devicetree+bounces-323525-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-323527-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id Ix9XJgBsT2rfgQIAu9opvQ
-	(envelope-from <devicetree+bounces-323525-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 11:38:08 +0200
+	id 12rIJOFsT2oQggIAu9opvQ
+	(envelope-from <devicetree+bounces-323527-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 11:41:53 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 950E572F08D
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 11:38:07 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id DDA6072F105
+	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 11:41:52 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=chromium.org header.s=google header.b=Pta5oDD0;
-	dmarc=pass (policy=none) header.from=chromium.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-323525-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-323525-lists+devicetree=lfdr.de@vger.kernel.org";
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=2")
+	dkim=pass header.d=outlook.com header.s=selector1 header.b=JYNnVs2A;
+	dmarc=pass (policy=none) header.from=outlook.com;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-323527-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-323527-lists+devicetree=lfdr.de@vger.kernel.org";
+	arc=reject ("cv is fail on i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 8A116304B075
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2026 09:28:03 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E4B863140F73
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2026 09:30:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3190402453;
-	Thu,  9 Jul 2026 09:28:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8641B3E5EE3;
+	Thu,  9 Jul 2026 09:30:09 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yx1-f49.google.com (mail-yx1-f49.google.com [74.125.224.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from CH5PR02CU005.outbound.protection.outlook.com (mail-northcentralusazolkn19012051.outbound.protection.outlook.com [52.103.20.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A818B403AE8
-	for <devicetree@vger.kernel.org>; Thu,  9 Jul 2026 09:27:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6F4037BE75
+	for <devicetree@vger.kernel.org>; Thu,  9 Jul 2026 09:30:07 +0000 (UTC)
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783589281; cv=pass; b=uGobd7I/hg5X6y6rtOzdn+jHUOd+sLRHtNEnRMC/fttMMOkC+lLmlHTp7J2OJo066CTwOK1wvUgC6pkrna/7+3rvz9y1au2Cbrw8YaoHkMTEugZmk+jKSdrSaGUoJzqr6cDbNaK7/MOxs05RZtBMmhAdqDxB8i6pMgrmUwqjhX4=
+	t=1783589409; cv=fail; b=jOXFsJbigwI39+u0nj95tzKZz0HwFC/J0DIJjwg1bVqF0GOZaNnkF+Lf9Ze9Z3eUTBCCsY9IiYqLgspfaHSSM4nfmVmRk6rfhIsGyaaPO5Md5qhIsVpn/5UwtEpPjI1pFPVRpP+whfl7SbbdIZGehArddzVk9lJycMJsYm2ninI=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783589281; c=relaxed/simple;
-	bh=mekk8Qs9paOr/JOz+cCQQowV22V0kdNKPamGxe5W2bU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=qlU3fuyJSIEZgmbkKG/qzF4hhopqEMXADKkwdwTG/Aasm96fuJpLyP+QaPgHrv4DEIgViWueQ2u84AstgTdkC35x5vw5lq6JJbJTdicNYI11iPaBvSEwtczZt1F1b/Nfr15eLfpYbM4um/6QuG5w2uxj46B/oBydFWefaN+LEXU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=Pta5oDD0; arc=pass smtp.client-ip=74.125.224.49
-Received: by mail-yx1-f49.google.com with SMTP id 956f58d0204a3-66628618509so976142d50.2
-        for <devicetree@vger.kernel.org>; Thu, 09 Jul 2026 02:27:53 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1783589271; cv=none;
-        d=google.com; s=arc-20260327;
-        b=spcf79aU9wcXl0loX2Zwy3uGaor2nAWAK4F5UYrh5PJAENMN0y4ex/O8IMKA+8HCxT
-         ZiG++sH0uUjo1acoLJ1ShMyYKc9PsdqoOm7o+6/uQMAQE43X6lUAIVtT2tRNF4uqUuC7
-         j705Hce2O+t5gKKfJtYWfupWDCns3Thobaek6NlIAwyR5PzICEPSyBTuV+nc74kis0QU
-         rZxuelBOW7lsTF1QACMsRnnBTmjw0fcx2JCfzQhbNak0EF4PIz4gkkYPPV4A7zyBUPKg
-         IX0W6zHksZ0pJAaF9+QDDsIGZXJxtypYEovxbSCIYBdNOu2d5xb7/WdANsgF/tqrHMcD
-         9Geg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=74c3zDUYj1sq4/rZ6bxjy4uiRjT7W3hHmw8hfbbGZdU=;
-        fh=Dcsate2Q5+LeS9EBFWreJHWg2I7PTdSXNFgEHIV76Us=;
-        b=UagNm2awZTib/7efDPomOm6kbYGGJarJBzZoDhvrX4qGe/AUdyvQONowk0fEqF1ULK
-         fgJR8csDRaQ7nMnUEm44DWbmBT+tmwmyRKE0CEFs+7XQ/+PBnULk/gQv5rb2CQ0GO8s9
-         +hBKLfzp/mX3ZyTmFtxsoCj2tyqKjFtDOKPU1TwFKnrGGgxBtQR1Cr0kX/ldq3NISaNu
-         adwtWw1BtV4iiSdvn0cUCAKS6emuGqK/wW3bl8GeZpvS78pOyVFMkaEXWFYUdZZJDPuO
-         9YMmTOpfeDXqwGwguW9OuTqrrChVOPwb/zyEkmL6nmIWchV4yCrVtHsoTVbk6j+bHkIP
-         txHw==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1783589271; x=1784194071; darn=vger.kernel.org;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=74c3zDUYj1sq4/rZ6bxjy4uiRjT7W3hHmw8hfbbGZdU=;
-        b=Pta5oDD01+qqIiCQKZxYoV7CXTd9/YDc+ExqWz/u9YbuO+rYq3V9nt2jiZhUpI8fNf
-         5kYIXrJDZ8B1pKnjVvxzyaxeZQ49YEB6sqXd1twA0qvoFsvLni5SzZWWPJ3lBlfKVIJw
-         IA0dyYW70iyzh+d0Nzi6M/AmGSd1HgJoYmZjI=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783589271; x=1784194071;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=74c3zDUYj1sq4/rZ6bxjy4uiRjT7W3hHmw8hfbbGZdU=;
-        b=ELHcZRYhllcOwhzwlD6fBNYBbF/dn6PeS4y3V6UzvKwpyrGZibNo0Yt8nGH4KkRLtT
-         iCt4VYDdPwavbI9r89zic4enI8xNUMuLWWwqiSw7hWu+0eEWEkmo/KBv8KAiHLt+gtTb
-         RSkigHOnwli9ISYIL7NfKPDnM2Z3zU+eGi12nxIbXcCsgFdo4hDi5k6xTYoXpWZP2nQw
-         3gKIxCl04aDadciRx0BlnqiROZseEbfTfiYFNMW0CNjfVJHyhMBlVZSV/w77/XK+5isV
-         2np5a6eZEolLIGmp3RDIbNqzVN9fy99SHGkCbfHyYp0zDEJWRYWbDp3QjiHa83zQES7W
-         jXQA==
-X-Gm-Message-State: AOJu0Yw4g7R+W8sqyQsYk/9SRnklJ9WLqWFoInU6faCJIZFGDWCKkl2S
-	CxiDkgOiGE7cSnAoLXDLxI112rgR1wy4xBxTfFnmjd4gjj8OE9swrYAw3gsJaiSB1P9lbe0Mmfa
-	BkSVZD+EjnJiyBDN3pO/IcaHF4sOciHgYSOpnkS4p
-X-Gm-Gg: AfdE7cnIvfjCjb9xyM5vj6dbCEOhSuQOt7Dl843LdjH5YAaOq2AmbSffZ5IfA4+kEj+
-	XRPKJVGw303e1gdzVNN5WQzxc1bQekfPqfbYxxrrILAyUVYZ4T6KSsiqhyAewT26wVFlW9lPV3T
-	sy2dVd5QpBQzvIPUHtAxx5730WhnaGO/45FrUI8X83aizSesmRWt/lWMikIBflEWXRyRBfkE87J
-	Nxe9+9VGyjtIkx3lJjB1tj34LQwCGMGkuNPVe/uB2vG/ET1rdwOZ+74bv4ok9nSXy4FP58ff9fz
-	qmthrBemHZqJPd5zL+Ww9q0Qp38=
-X-Received: by 2002:a05:690e:134a:b0:667:b262:16bd with SMTP id
- 956f58d0204a3-667b26234b2mr2825271d50.81.1783589271117; Thu, 09 Jul 2026
- 02:27:51 -0700 (PDT)
+	s=arc-20240116; t=1783589409; c=relaxed/simple;
+	bh=OWCWOhZINT+aloacHBXEWqvkehZUdJI5PP4C6MO62T0=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=Oc8DaKhjrAQfxVoDWnxdYzOuE4ztggjnqwRg8RFVFhk7hV+d4jfLLuvyfAYXVMpHYwOwMygBvLCuEBaeZUFNVfV4h4qJCaX7YQa/TMJQCcX+BhV1rPodaDAKugVMTgq90SG/p2jMtTQBOuQ/8hbRgc3b4ZlexWKNWuNVPndiV/E=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=JYNnVs2A; arc=fail smtp.client-ip=52.103.20.51
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=OG9esgEQLqND6aECvAM+vG6MPCf+JnXM5CZfK2L39s/dWQAeeJIe/qoUqkVEVnnuTqK0cC3H0qg0+TRVcbuZ+hT24+V9roXQjRm5+WcCgVsuR2+eoGdOcZaEvdw+ybInsCqUserPcsxfdmbhnzgsseYPXsVuDJQxY7PVu7N7aOmB2lV+/BQa/+V0gLu4xIiXTQ58qg96gds1/FfCCrgn8850zF+gSkvxHhowMWtmvnuLTxGSABhjO0AmTF7nvhf6KNd3GxzkoUbbhYOKHrf1/teSVwvdS5Ebe/l+TryfZNJSdSZIMhYl1ZyKNygSF1n5/z/rY/vuATR1nbicSdkLVQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=rb4kBhPHdndYzWSW3s/rV4fk6N4qWG/BtCibSI2q+gU=;
+ b=v5SRUdDGmlwIPkNWoyRUCrL97Q26EOX0Ec1bNGiIvje4k2NucfLfTqxYrTXFkS/Lscfhw9QceSeYvwV/l6iw73bm1/ZWs2As0Mt2ei/M5+4VyhvqkeusPFvLK7W/FhnmH6BgDHcoxr09KYPLHY9WTCWMvDtQeXCYRyPu8TSae4hbVyR3otqgQMOnraw1v878x8kZ+zHdfZq+P8dZWwNWCJOftfdcVQUfFe8mUJ28tLGJXfgAXhE2UxO+ZFhqU3Eo2QuFcufmdwvRMdWexLz4T96oIgrKZp4dek/syqy8rLm2HcrYhgJ/b0mU4waptmM2p2dQ3Rb++ocsfeqkgSIrpg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=rb4kBhPHdndYzWSW3s/rV4fk6N4qWG/BtCibSI2q+gU=;
+ b=JYNnVs2AsgamtYNjChEi61csTXa1tBENYgWzDpOj35xqDGidSL0SeKfFOcKGtCKCLPehoJ0tOZfHWkawZ/di99XSDjCls1dturpCvt9bZI11JeLA1ZwlR+4ujFIK7l1+sUMDupCpqlii98ip2n8ahJv8v00M4UCSWFBhhgb3pfvhtkC08Y0LX6XqU6tLNUS+wB+ea1OB5nqWS8SOHrWmJ2S4Dxlz4Y5Mt4SUDJEOzaw5jV7LsX89wlUiqoRtRtwJvZtGfARi8iRWwVTRfzcV2Cdr1bNC1WTb6acxYwE79/NDhPj5DTB2BE1ij5X/UwExGpK1qgdVInoITACCsLrOzQ==
+Received: from SN7PR19MB6736.namprd19.prod.outlook.com (2603:10b6:806:263::12)
+ by BY3PR19MB4993.namprd19.prod.outlook.com (2603:10b6:a03:36f::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.16; Thu, 9 Jul
+ 2026 09:30:05 +0000
+Received: from SN7PR19MB6736.namprd19.prod.outlook.com
+ ([fe80::4b6c:b84f:b71c:d0a]) by SN7PR19MB6736.namprd19.prod.outlook.com
+ ([fe80::4b6c:b84f:b71c:d0a%3]) with mapi id 15.21.0181.009; Thu, 9 Jul 2026
+ 09:30:03 +0000
+Message-ID:
+ <SN7PR19MB6736E43DFD0F563C3D31F52C9DFE2@SN7PR19MB6736.namprd19.prod.outlook.com>
+Date: Thu, 9 Jul 2026 13:29:55 +0400
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 3/6] firmware: qcom: scm: Add support for setting
+ Bluetooth power modes
+To: sashiko-reviews@lists.linux.dev, Bartosz Golaszewski <brgl@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>,
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
+References: <20260709-ipq5018-bluetooth-v5-0-e476c41f03b8@outlook.com>
+ <20260709-ipq5018-bluetooth-v5-3-e476c41f03b8@outlook.com>
+ <20260709092720.973B21F000E9@smtp.kernel.org>
+Content-Language: en-US
+From: George Moussalem <george.moussalem@outlook.com>
+In-Reply-To: <20260709092720.973B21F000E9@smtp.kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: DX0P273CA0010.AREP273.PROD.OUTLOOK.COM
+ (2603:1086:300:26::16) To SN7PR19MB6736.namprd19.prod.outlook.com
+ (2603:10b6:806:263::12)
+X-Microsoft-Original-Message-ID:
+ <770ce900-e086-4a22-b075-b27733b80437@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260709081928.612294-1-wenst@chromium.org> <20260709083024.330381F000E9@smtp.kernel.org>
-In-Reply-To: <20260709083024.330381F000E9@smtp.kernel.org>
-From: Chen-Yu Tsai <wenst@chromium.org>
-Date: Thu, 9 Jul 2026 17:27:39 +0800
-X-Gm-Features: AUfX_mx_3xgToBgzkBmOX1DPVDvwVrzb4et6fk5WWd8Ysjgsr4mMAnsSLQdDprs
-Message-ID: <CAGXv+5HO5eWaJ-AhH9JG=aZ9f_se8L8Ebz-NRHfKMsNXvGnQTg@mail.gmail.com>
-Subject: Re: [PATCH v2] arm64: dts: mediatek: mt8188-geralt: Add MT6319 PMIC
-To: sashiko-reviews@lists.linux.dev, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: devicetree@vger.kernel.org, conor+dt@kernel.org, robh@kernel.org, 
-	"moderated list:ARM/Mediatek SoC support" <linux-mediatek@lists.infradead.org>, Mark Brown <broonie@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SN7PR19MB6736:EE_|BY3PR19MB4993:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6400d573-a757-4444-2b8a-08dedd9ca6f7
+X-MS-Exchange-SLBlob-MailProps:
+	Cq7lScuPrnrlC5lHdFGci+YUsdS3F/CI0YQmwsdw1t3W92hJFQxPiNNgHFJQensCfFfyIcTiZFKDHKJfYIFQOnq3hW5JlDJPKGrdvIBkgReiPRBNySHrvOuox1Us1hQOdLIsHcuRBjvOjYnp1Y3PH945+wDA57iwIwG4k4wPu/GuSfT4yEhHDYY5/ptVx8/J3lAhbQKOLI33kfSGnCyz5FGEv+RvX9FjmIkXUd+DJQ4N9pF0OOeKsKYPXvjDr6myDYl6ih/zUGRiAS7yhS1FXL/l84sBkedBjbLKQddKiBJII993zgueYCC4NYM3dr6ibtV/qtMNsLBZ9UpXs3Yw5glcSS9J+Ruptn1+QEJ/xmI6EdSi9jwu2k3u9KrqKfT7syP2+oJGQsfgKmnoVfkKDGfpKwcg+kkaEC4lpsB93yH2zBBAncVkNN1DsuEeJ5GjbyCDfkl+bwbzK2cmCmc8FYhHEWdL3/5zGfzZo+CaD5pjFNUlu7H01R7okdVIx/7d6oVDXP+c0J4UuTNRME9E/uvzsW/asW/nvQDtu1gXeXDULioJYVazu7D5kEfUhdStm728BSw3HHz1HidgIVHsu3h7TtoYqGykVAsvyekFrzrbXFEHwdNvoJRNVAAzjYB1nUZIqgpVIgh+uy8Xj3HWumxzfiUHcQyV01AHKOJjLOzNcSIXKXXLDZYMZ8EPUC7Jl8mns0sEuvN3Yg8+ARnWlTx4XkSPDlJvS9k4c58XnLM4hk6j7McWGo4+jJFRxGHnXR/eIza+ZdI=
+X-Microsoft-Antispam:
+	BCL:0;ARA:14566002|24021099003|5072599009|41001999006|8060799015|6090799003|19110799012|4140399003|37011999003|23021999003|15080799012|51005399006|25010399006|40105399003|3412199025|440099028;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?YXlYQlFyazg0Wlo4ZTJGOEpQTytkS1ZLdjh0cS9LT3FvRGUvNVF6cmhaTzBV?=
+ =?utf-8?B?OXAwdlRhRVFrd1J2ckFobmhON3ZtN0gzdHJpdDZUc1RIV2cxWVpORFh1Z1B5?=
+ =?utf-8?B?cHJCVm4vL3lPR1NUd1Q3RVUwYmhaby84RWRQN0tzOGs3OGR2dHJ3RGlkZFFk?=
+ =?utf-8?B?SG5ZYWVlQS8yaEhYV2dCVDdOTmQ0NTZuV1c2TEhDZDNLdW9FYkcrTFIyZHY5?=
+ =?utf-8?B?YXBGa1hTeGJNQm9TUVVqRWF4QnJpMXBSMDY3ei9ITjd0OUhtNVpmOUp3MFVu?=
+ =?utf-8?B?WEh4eUhmTHF0SzhLRDgwc3k2eHVXOW9TQWV2dm5XdWk3OFlrK1RMZ2JkcXBB?=
+ =?utf-8?B?eEE1ZG1EZXgrQS9JMkhRL011ZnFiRlpsZzN4RGh2RzQ0NWpRZ21mRGd3VWQr?=
+ =?utf-8?B?MUZJenV6L0ZBWXJkZTJtS0FENUxuOC94VWZaKzJEVWZJVFlXYkxHYXlhM090?=
+ =?utf-8?B?SUVkSkJRdjh3UDA3eDhHWTE4d0RiT2FVbGNIdEdSZitKdlNRZFlocndvakxz?=
+ =?utf-8?B?cTZ6S0x3WEM0WW5Vd1BObE40a1RYd1B1NDFGWSs2SW5KNWdPTVBubkNQaEd6?=
+ =?utf-8?B?cllTOVZGQUNpTGpzMWc4WkNqTzJsNzh5dnJmUVJ5SzV4SFRZUzZRRDdtc2g2?=
+ =?utf-8?B?UkJTYjMrTnRtTVFnUWdncEFtSEFzUXUvbEg1RXhyMEpOdzNkV0xZUWdXeTNT?=
+ =?utf-8?B?VFc5eXkzNHBHUWpkYTlWaDB2NTh4VndQUTN3QzdkdnppOFFHTU56TGQ2blpl?=
+ =?utf-8?B?Q1B5dHFkQ1lYUXovMmR6Z200eUVLTlY1Q1NyTlZyQytqaGRLTDVxck5uS3NH?=
+ =?utf-8?B?UUw4NnpHWng0bm0zUFFKQkNhUWEwMG8zdjRPQzMwRUZTR01NVzMveC9VSFpZ?=
+ =?utf-8?B?RXB6ckZSdVJqRVBqUnNKUHVqeHgzTU5xYUZKdDhrbDN5b1FlNXd2YnVzNU1z?=
+ =?utf-8?B?YzZOdGtFaEFrRmNZNndvaDBlMElDM1d1c29abkd4RXVCMFBJdzZpbCt0ZjJC?=
+ =?utf-8?B?MlZhVjhRaHREb3NzdHJTb2RTcUJGSHpzTlBQUG9lRzlKd1EvejFVc1g2UnlK?=
+ =?utf-8?B?UVdLT3FKTlVqNFFSYW5tdUwzbzBtNkJ5M1F4Tkx6dHc2RjlWRWJWR0VwUjVS?=
+ =?utf-8?B?T1BxSlFac1dHcC8wQjV6TVR1SmZwNWdORHQxZnl2eFpxZ3Zmd0YwK1ZDdFRo?=
+ =?utf-8?B?bjBFWXA0QlZSTTA1RTAxT3dpRDdvY1kxSGhnTlJZTmtZYm5GVEJWZ3FUOXJY?=
+ =?utf-8?B?SURUUjIxY1IxV1phOUt4NHg5Q05uWDdXWVlHYzNqZWd4L0wrMlJPTlh6MGlB?=
+ =?utf-8?B?cG9EU2YwS1VwUEVvMFN5RS9nbWRNbW00T0RoV3FUeURaK0llUStZaWtzS3VV?=
+ =?utf-8?B?R3kyOFc5T0E3MWc9PQ==?=
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?UmVjQU5oR3d3MGNuWjF0cjRlcUpMOVBBdTZUNVJtbUs1MFN2eXJJZk4xemZO?=
+ =?utf-8?B?RDY3VEx0YVUwWEpaNEh0Y3QvajNhY2MvY1ljb0EyWS82ZjkrZjIwYk1WRkVV?=
+ =?utf-8?B?ZlU1SEdta0ZNd1F6Z1Z4TkZXL2xTamlHWTloNTBobXFMMGZyNzRlWElVS1N6?=
+ =?utf-8?B?QTJpRG1vamh5MEFIV2VCMkJBMnlnNVZTZkltUGhrRUE2NkdmTUFmanVQRFpL?=
+ =?utf-8?B?UkVOK1dpSjZlWVRmSWF4YStQSmYybTRjYWZONGZpdDk2RHFSNGlna0xxWHNW?=
+ =?utf-8?B?bXMvalhJTFdFU04xampuWUhkdG5PcFBSSldzZUEvazhkMjAzdDh3dk9tT1hr?=
+ =?utf-8?B?MEozNDFpQ3hiUjdCQjhwODdYbnlzMWpEb2FjTC94K0NONStRbTZ1WWRQTDNR?=
+ =?utf-8?B?Mlh5dFJZaVQyRnBQTTJKajhQcUdDQ29GeEJqWkdUdm5xdmNIc1o3V1UrSHZ1?=
+ =?utf-8?B?bmpiOUVicmk3U3FHRFdXVFhCVW9ZaXJnUGV3cVZMZnBQN3lKTVpRRW5VeTdZ?=
+ =?utf-8?B?azNVSkdteEhjendXWjRNVlI0WllPMmNZbEo4WUJQM3V2SDZBd3FtRTBtOEky?=
+ =?utf-8?B?dVpheXJVdS9VUldSQnlZVGNOejJjOXZrS1pSRFJ3eXdpY0p6aU5meVRZcnZo?=
+ =?utf-8?B?VU1YOUZONXJ1NWJGczZzUFpIQWlXbjFOTlgrclZIWCtUbVZSc0xra21zSEti?=
+ =?utf-8?B?djVacGhLZkhXRkpyNE91T0RMQmN0b2xCMTRUemdmb2x4VEhOSXRMM3Q1cU5k?=
+ =?utf-8?B?QjN3TlFYY1pFQkt1K3lQRSt6NURNcXpHVlErc3crdVZMMkFyQUMzNDJPNjdp?=
+ =?utf-8?B?VUNTZzB5dUplcENtODIvUXNERXg3UWhOdnVMTis0bEdsbVQ0Rlc4NERJOStF?=
+ =?utf-8?B?TWZvZTMybWFOREpsdkFKVU9naWxqa2hsTVpGRzdLU1U1WVlST0J3RzNuek00?=
+ =?utf-8?B?c0Q3Z1JENmg4VTdJUmVVOFI0SFhrUFdoN1I0NjdsL3Vpb0kxYlg4QUtqc3Mx?=
+ =?utf-8?B?QlVESGRrbEQxNHhrVUpiZlVyS2FFTzJ3WWZpQ2p5STlkMExlVVlLVmpkMFJG?=
+ =?utf-8?B?bklJU2VIMmZ0MmFZWEFaNEg1dnYrZTBvVjVvQ2xtZ0R1cEJDTVR0T0NWcTFj?=
+ =?utf-8?B?dlhHV3hNSmQwU0ptR09mRDducVdLalVMcEZkRFdlaUN1ZmRRcjVoTUVhZjI0?=
+ =?utf-8?B?QnNuQmdRMGxxbFRGd1dTRlYwd0gzOW5WRW1pQ1lvNFVQRmxIUll4d3pnRTFr?=
+ =?utf-8?B?NXdTMlVwS3NlZDB1YXN1Vi9iVU5zcEsvWTVlOFV3Qk4ybDhjNGRrSWFxTUpW?=
+ =?utf-8?B?Q0k3VVhuV3lxV3Byd0UwaHRyMmJ2aWlDRSsvZWkxWDh2Y1ZwUW9XZHhlYTRG?=
+ =?utf-8?B?SlhSalcwd3hoeDdnU2N0djZiYkJDUHJjU2ZnM1ZWd2llMTNyRDhvMEFXaExR?=
+ =?utf-8?B?UXhuMWlWVFNRNEtJOGI4ZXczdGs3VHBQSWNUaVQvZHlJdkJrTTU2c01MaktP?=
+ =?utf-8?B?eE5PamhPbXN0bXFUcVgzMnlUdEp6MWw3NWlFK1lTKzkyc1BvT1VILzNpeGE5?=
+ =?utf-8?B?RDNCSHZKQTZiRGtZUnJTdmMzOExDUWNRMmxJMUw2L2dRZW9ndFdTaFZYMXpQ?=
+ =?utf-8?B?QXZLeEhCS1hhUDkzTTA0TlRSeGxXOFZYQzB1NE9vOG0vbXJKdE95YkFmNmwv?=
+ =?utf-8?B?SHJlb3VtRzVHKzBtR3E4SlZKdXdHMUc4Wlp3OWJETnVoQklSMGhZeVdWYi9T?=
+ =?utf-8?B?aHhkUmE2d1gvbzRXMFhIbXRyS2JFVHBndFEyem52SnRPTWgrNzJlb0J2L0tm?=
+ =?utf-8?B?K2Z0NzFkaHBUd0Y0WUpvcnArak5oYmZXVjdxcTJsbktMYVZvZ1dDRW1ZOG85?=
+ =?utf-8?B?VE1ua2R4QnFZckUvWSsvMUNVSnFidlhLVStLUGJjRWJ2Mnc9PQ==?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6400d573-a757-4444-2b8a-08dedd9ca6f7
+X-MS-Exchange-CrossTenant-AuthSource: SN7PR19MB6736.namprd19.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jul 2026 09:30:03.3718
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY3PR19MB4993
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [1.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[chromium.org,none];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
-	R_DKIM_ALLOW(-0.20)[chromium.org:s=google];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	DMARC_POLICY_ALLOW(-0.50)[outlook.com,none];
+	R_DKIM_ALLOW(-0.20)[outlook.com:s=selector1];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-323525-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER(0.00)[wenst@chromium.org,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS(0.00)[m:sashiko-reviews@lists.linux.dev,m:angelogioacchino.delregno@collabora.com,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:robh@kernel.org,m:linux-mediatek@lists.infradead.org,m:broonie@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	TO_DN_SOME(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-323527-lists,devicetree=lfdr.de];
+	FORGED_MUA_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:sashiko-reviews@lists.linux.dev,m:brgl@kernel.org,m:konradybcio@kernel.org,m:dmitry.baryshkov@oss.qualcomm.com,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[george.moussalem@outlook.com,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[outlook.com:+];
+	FREEMAIL_FROM(0.00)[outlook.com];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[wenst@chromium.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[chromium.org:+];
-	RCPT_COUNT_SEVEN(0.00)[7];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NEQ_ENVFROM(0.00)[george.moussalem@outlook.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,mail.gmail.com:mid,vger.kernel.org:from_smtp,chromium.org:from_mime,chromium.org:email,chromium.org:dkim,sashiko.dev:url]
+	RCPT_COUNT_SEVEN(0.00)[7];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,outlook.com:from_mime,outlook.com:email,outlook.com:dkim,vger.kernel.org:from_smtp,SN7PR19MB6736.namprd19.prod.outlook.com:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 950E572F08D
+X-Rspamd-Queue-Id: DDA6072F105
 
-On Thu, Jul 9, 2026 at 4:30=E2=80=AFPM <sashiko-bot@kernel.org> wrote:
->
-> Thank you for your contribution! Sashiko AI review found 2 potential issu=
-e(s) to consider:
-> - [High] The MT6319 PMIC fallback compatible triggers incorrect MT6315_PP=
- mode ganging in the regulator driver, causing silent cross-talk between th=
-e CPU and EMI VDDQ regulators.
-> - [Low] Grammatical error in the comment explaining the firmware workarou=
-nd.
+adding Bartosz, Konrad, and Dmitry for awareness.
+
+On 7/9/26 13:27, sashiko-bot@kernel.org wrote:
+> Thank you for your contribution! Sashiko AI review found 1 potential issue(s) to consider:
+> - [High] The new `QCOM_SCM_PIL_PAS_BT_PWR_MODE` macro uses the exact same command ID (`0x21`) as the existing `QCOM_SCM_PIL_PAS_GET_RSCTABLE` macro within the `QCOM_SCM_SVC_PIL` service.
 > --
->
-> --- Patch [1]: [PATCH v2] arm64: dts: mediatek: mt8188-geralt: Add MT6319=
- PMIC ---
-> commit 0ff94c6622559a57199ed1f2d1f4063c6c911df1
-> Author: Chen-Yu Tsai <wenst@chromium.org>
->
-> arm64: dts: mediatek: mt8188-geralt: Add MT6319 PMIC
->
-> The Geralt design uses a MT6319 PMIC to power the big cores and LPDDR4X
-> DRAM.
->
-> > diff --git a/arch/arm64/boot/dts/mediatek/mt8188-geralt.dtsi b/arch/arm=
-64/boot/dts/mediatek/mt8188-geralt.dtsi
-> > index 8e423504ec052..af05315092f53 100644
-> > --- a/arch/arm64/boot/dts/mediatek/mt8188-geralt.dtsi
-> > +++ b/arch/arm64/boot/dts/mediatek/mt8188-geralt.dtsi
-> [ ... ]
-> > @@ -1225,6 +1235,70 @@ &spi2 {
-> >       status =3D "okay";
-> >  };
-> >
-> > +&spmi {
-> > +     pinctrl-names =3D "default";
-> > +     pinctrl-0 =3D <&spmi_pins>;
-> > +     #address-cells =3D <2>;
-> > +     #size-cells =3D <0>;
-> > +     status =3D "okay";
-> > +
-> > +     pmic@6 {
-> > +             compatible =3D "mediatek,mt6319-regulator", "mediatek,mt6=
-315-regulator";
-> > +             reg =3D <0x6 SPMI_USID>;
->
+> 
+> --- Patch [3]: [PATCH v5 3/6] firmware: qcom: scm: Add support for setting Bluetooth power modes ---
+> commit 7001f29bdf69c1e84287e5d8734b48feda414e41
+> Author: George Moussalem <george.moussalem@outlook.com>
+> 
+> firmware: qcom: scm: Add support for setting Bluetooth power modes
+> 
+> The Bluetooth subsystem (BTSS) on the IPQ5018 SoC supports setting power
+> modes which are configured through a Secure Channel Manager (SCM) call to
+> TrustZone. This commit adds a function to perform this call after checking
+> if the feature is supported by the QSEE image.
+> 
+>> diff --git a/drivers/firmware/qcom/qcom_scm.h b/drivers/firmware/qcom/qcom_scm.h
+>> index caab80a73e17f..5579df5a2aca7 100644
+>> --- a/drivers/firmware/qcom/qcom_scm.h
+>> +++ b/drivers/firmware/qcom/qcom_scm.h
+>> @@ -105,6 +105,7 @@ int qcom_scm_shm_bridge_enable(struct device *scm_dev);
+>>  #define QCOM_SCM_PIL_PAS_SHUTDOWN	0x06
+>>  #define QCOM_SCM_PIL_PAS_IS_SUPPORTED	0x07
+>>  #define QCOM_SCM_PIL_PAS_MSS_RESET	0x0a
+>> +#define QCOM_SCM_PIL_PAS_BT_PWR_MODE	0x21
+>>  #define QCOM_SCM_PIL_PAS_GET_RSCTABLE	0x21
+> 
 > [Severity: High]
-> Does this fallback compatible trigger incorrect mode ganging?
->
-> The mt6315-regulator driver maps USID 6 to the MT6315_PP variant, which
-> hardcodes mode ganging for vbuck1, vbuck2, and vbuck4. On the MT8188
-> Geralt's MT6319, vbuck4 is wired as an independent regulator for
-> pp0600_emi_vddq.
->
-> If a mode change happens on vbuck1 (which is allowed by the
-> regulator-allowed-modes property), the driver will apply the ganged
-> mask and silently overwrite vbuck4's mode bits in the PMIC, potentially
-> forcing the RAM supply into an unexpected mode.
->
-> Could this silent cross-talk between the CPU and EMI VDDQ regulators
-> lead to memory voltage instability?
+> Is it intended for QCOM_SCM_PIL_PAS_BT_PWR_MODE to use the exact same
+> command ID (0x21) as QCOM_SCM_PIL_PAS_GET_RSCTABLE?
 
-This discrepency is actually bigger than Sashiko mentions. The ganging
-supported by the driver only applies to the PMICs in the Asuarada design:
+Yes, this is intended. This is the documented power mode register for
+Bluetooth on IPQ5018.
 
-  - SPMI ID 6 has 1+2 (GPU); 3 and 4 are unused
-  - SPMI ID 7 has 1+2+4 (big cores) and 3 (little cores)
+> 
+> Because both definitions share 0x21 within the QCOM_SCM_SVC_PIL service,
+> when __qcom_scm_is_call_available() queries the firmware for
+> QCOM_SCM_PIL_PAS_BT_PWR_MODE, it will falsely return true on any SoC that
+> already supports GET_RSCTABLE.
+> 
+> This would allow qcom_scm_pas_set_bluetooth_power_mode() to incorrectly
+> proceed and execute a 2-argument SCM call to TrustZone. Could this cause
+> the firmware to route the call to the GET_RSCTABLE handler (which expects
+> 5 arguments, including physical addresses for DMA), potentially leading
+> to a Secure World memory fault?
+> 
 
-On the Cherry design we have:
-
-  - SPMI ID 6 has 1+2 (GPU); 3 and 4 are unused
-  - SPMI ID 7 has 1+2+3+4 (big cores)
-
-On the Corsola designs with beefier chips:
-
-  - SPMI ID 6 has 1+2 (big cores); 3 and 4 are unused
-
-On the Geralt design (this one):
-
-  - SPMI ID 7 has 1+2 (big cores); 3 (DRAM); 4 (DRAM)
-
-Any ideas on what to do about this mess?
-
-Another thing is that I kind of wonder why the mode configuration register
-setting isn't ganged in hardware like the enable and voltage settings.
-
-
-Thanks
-ChenYu
-
-> > +             pvdd1-supply =3D <&pp4200_s5>;
-> > +             pvdd2-supply =3D <&pp4200_s5>;
-> > +             pvdd3-supply =3D <&pp4200_s5>;
-> > +             pvdd4-supply =3D <&pp4200_s5>;
-> > +
-> > +             regulators {
-> > +                     /*
-> > +                      * vbuck1 is the cpu-supply for CPU6 and CPU7.
-> > +                      *
-> > +                      * However, this device originally shipped with a=
- broken
-> > +                      * firmware that causes register reads over SPMI =
-fail.
-> > +                      * This is fixed in firmware version 15842.175.0,=
- which
-> > +                      * is included in ChromeOS releases R150-16700.22=
-.0 or
-> > +                      * R151-16721.0.0 and later.
-> > +                      *
-> > +                      * Assigning the cpu-supply properties for CPU6 a=
-nd CPU7
-> > +                      * without the fix will likely cause CPU DVFS to =
-stop
-> > +                      * working. Hence the assignment is left out to a=
-void a
-> > +                      * regression of the function. If the user is con=
-fident
-> > +                      * that their system has the fix, they can added =
-the
->
-> [Severity: Low]
-> This isn't a bug, but there is a typo in this comment. It should say
-> "they can add the property themselves".
->
-> > +                      * property themselves.
-> > +                      */
->
-> --
-> Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260709081928.61=
-2294-1-wenst@chromium.org?part=3D1
+Best regards,
+George
 
