@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-323361-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-323526-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 78Z2JBFST2qdeQIAu9opvQ
-	(envelope-from <devicetree+bounces-323361-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 09:47:29 +0200
+	id 2VlIMPJrT2ragQIAu9opvQ
+	(envelope-from <devicetree+bounces-323526-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 11:37:54 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1EB772DEC3
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 09:47:28 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 95ED172F082
+	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 11:37:53 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
 	dkim=none;
 	dmarc=fail reason="SPF not aligned (relaxed), No valid DKIM" header.from=starfivetech.com (policy=quarantine);
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-323361-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-323361-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-323526-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-323526-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=reject ("cv is fail on i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id CB49C3015A4F
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2026 07:27:37 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id B6A7E304E665
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2026 09:28:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDC5428466C;
-	Thu,  9 Jul 2026 07:27:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E613401A3B;
+	Thu,  9 Jul 2026 09:28:14 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from CHN02-SH0-obe.outbound.protection.partner.outlook.cn (mail-sh0chn02on2119.outbound.protection.partner.outlook.cn [139.219.146.119])
+Received: from CHN02-BJS-obe.outbound.protection.partner.outlook.cn (mail-bjschn02on2110.outbound.protection.partner.outlook.cn [139.219.17.110])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E28513CA48C;
-	Thu,  9 Jul 2026 07:27:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 556FE4014AA;
+	Thu,  9 Jul 2026 09:28:06 +0000 (UTC)
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783582055; cv=fail; b=LOO4Jd2Yzaxzp26nU0INfswgw/JyzWZ/WIO5PCUXuQ03JOJdAF171aflW6bn5ETVkc7W6juwxM+pYGFuvdOy07a7/E0ir2Af/Y+vL0U3KoG8vAIQycp+R5Iqx0Y6uRZk31ZC5CA91TQt8JZ7QdqpYvc++s7x95skWKroITUCK00=
+	t=1783589293; cv=fail; b=Swne13ao+zP74euZuGLXS1XxpSm2k4ojDC+p5wbF9+0YBjJss5Z1BBJySnEUqxbjHYKhhl+5sZRU0JHTTfFq4a37ICRKIQi8z5/xBxJ9rydHvR9tmWdEV7iTAyclm56yNTbcGx/neqXfU/1/J4UZh0GXZUWEi6pzmFnnD26Pggo=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783582055; c=relaxed/simple;
-	bh=sZjKLXTSvCudo9YYyPiwzcbJnfORhH/NhTSBtOF/g/Q=;
+	s=arc-20240116; t=1783589293; c=relaxed/simple;
+	bh=QZTzgB7FNnKVayuuzufYI1xUfv9yUmb+F7GHUHEWLls=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=G7xA9jXqAKITNGqcFrTYXQJ6RhG/zjmgadsGTEoBJlr/aJTg3WfwVAbwoxYWK7RRGKt5VRT10EUZmIzj6sBZyYjhPqwR1we7xuAflLweQqcF9kcLT35e1CgprINxTtekGGQ2K2JNzusm19xVYr+jxmG8hD8rhxS7IdleREfRccM=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=starfivetech.com; spf=pass smtp.mailfrom=starfivetech.com; arc=fail smtp.client-ip=139.219.146.119
+	 Content-Type:MIME-Version; b=SzMoz9EqS/g21PRaWCmRQCZeDWK19Xh0v1YnzP/w/Vjy5QFQs2WSzQIF3PWHdRjMDxDhX6O7NTz/fdesMqi3wHvT9w8E16lv7qtWGA4jRpqHLV4yjPXwKFIRCfGPcunmGqHalNsX1K2FsPXtbY8ESOFg+eD25HxSOWFFlPoMhF8=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=starfivetech.com; spf=pass smtp.mailfrom=starfivetech.com; arc=fail smtp.client-ip=139.219.17.110
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=MaELifj0PtogB1Ex1dW9EvAVXyYVbc11Nx/zt414yFGtFwniYrr2xb6/GrnfP4N470MZWjIG6ZcbU3hdo3XFgqZy1lBq1B18Yi6va1ljVd1ALm1QsVZZvmD7eIuoj3vc+fV7BpPNpXDrpiA1nmKMccnvCFZjRRC7WLoHliPy3MgRV1szQN+hjROhov98dZLjupzTHRO4otPVzJ/akOBCUF4rsqqshz0aVtCK3fYf0JqngsgYH5ji4DVKwZj/A9G4rFnf4IBaxf9bO92VTAxwRaLSXR97wQ6tTmgaWSKqblqJfgOjxO413m0HvWK3oynuzqBgEgfplNiM+CNGdOOeNA==
+ b=UrDbg1CbJNhwwiPACxu7u4Uclh0RkeHJH3WFXjax85fYd0ht5xjcZBe2dg/zRQ/UrCnEJhGy6uH6NZmbGuJUAIalYjvSnWtKNuppDwkPJNhPljJ//2K/2k9VJuPQHorUrmjZ3ttXVHfRezLG1ll2Kv3vVTRmlehEKEA9XYI7RgW2JmiPEhyULzOcKD12+c6gccY9rn/FAh1VlqdVFP4wjfR64bTHqiKThCnFFRDPRQaDxW0UmgnWv3wG1xTymc9Jw4RCAaIZhNvOxtHS375jHaB8GgkYZ6FLHiet9SVTXi09tRAU4zD9erF+vBc3dF9ame75d6mQPP+2H1IUkxfeHw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=2jbI2nid3al0BCY74tx1mVfC1DQEwak6raNFRp6ZLdI=;
- b=WA2aSyL6v01Xtv7Jy5+ofow8GORYcYMV9ej7BvXKV7MnWaroXwlFqXUmOhRz9a3/6KhYAvRTFL+uCuYJtJI4pmk7fyGYkJSc/HcLl2nTQzQ+caOdszDIl0NPjw/oAPN27OjXBE1lQ2Qq/sXUDid/EWTHzh0BkI3/Zibco3Omdg/qfMUmjP5SDgCDBq2AhZesB1KaPuxC88ubOv1G6viMetsSUDQd9IjVQtkJO0isiim/xW5/BYaNFYbP+2MJBsrD/HS/b1j51G/vBLy+BgVl32NY0sN8x+/HS45lThlRmQOlFHiEuGGAW6kTStm/QBcasK9c/AP83uSOpcVIMc3bVA==
+ bh=UP8tMIHHeK70idgfJcXHDnj6QWKRa8fLvzExMJyPOz4=;
+ b=cyHVWfHvhyUEgMxxkXKdnne6M/C6yokVA9xXMyCC4ZXcdoZNe77cN5jJjGZ2jKh+LnhnFhgRcSytvAZ2tsTun4TZUdcgchKnFPWyOFA4fhJSaECB4QH6Rl68vb0rWhetrd0OInnD8Eni9gchJW+jBvg6QCehkd9nLMHunnYNJgILex7ZiTw4Norlf+bc72EGiYB+hL4RF1uYx/wCIzXr0NpzZJbtQigKyFaCoOFX4MVCdAfgFPjHy1Y6TdmsN8cQ7H8k4Qj7tWb9YWosFB5gpTOlOWYZtnYsr36VOrHP/TlLzZDe08b+jUO8p37poQ6MzLki9nlTLHWxpXu35f1P4Q==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=starfivetech.com; dmarc=pass action=none
  header.from=starfivetech.com; dkim=pass header.d=starfivetech.com; arc=none
@@ -48,11 +48,11 @@ Received: from ZQ4PR01MB1202.CHNPR01.prod.partner.outlook.cn
  (2406:e500:c550:17::6) by ZQ4PR01MB1282.CHNPR01.prod.partner.outlook.cn
  (2406:e500:c550:17::5) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.113.23; Thu, 9 Jul
- 2026 05:52:24 +0000
+ 2026 05:52:25 +0000
 Received: from ZQ4PR01MB1202.CHNPR01.prod.partner.outlook.cn
  ([fe80::e7d4:256c:b066:850d]) by
  ZQ4PR01MB1202.CHNPR01.prod.partner.outlook.cn ([fe80::e7d4:256c:b066:850d%2])
- with mapi id 15.21.0139.024; Thu, 9 Jul 2026 05:52:24 +0000
+ with mapi id 15.21.0139.024; Thu, 9 Jul 2026 05:52:25 +0000
 From: Changhuang Liang <changhuang.liang@starfivetech.com>
 To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -64,9 +64,9 @@ Cc: Sudip Mukherjee <sudip.mukherjee@sifive.com>,
 	linux-kernel@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	Changhuang Liang <changhuang.liang@starfivetech.com>
-Subject: [PATCH v1 08/11] spi: dw: adjust size of mem_op
-Date: Wed,  8 Jul 2026 22:52:01 -0700
-Message-Id: <20260709055204.138168-9-changhuang.liang@starfivetech.com>
+Subject: [PATCH v1 09/11] spi: dw: detect enhanced spi mode
+Date: Wed,  8 Jul 2026 22:52:02 -0700
+Message-Id: <20260709055204.138168-10-changhuang.liang@starfivetech.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20260709055204.138168-1-changhuang.liang@starfivetech.com>
 References: <20260709055204.138168-1-changhuang.liang@starfivetech.com>
@@ -83,56 +83,56 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: ZQ4PR01MB1202:EE_|ZQ4PR01MB1282:EE_
-X-MS-Office365-Filtering-Correlation-Id: d48d26bf-9949-417f-99b7-08dedd7e3ffb
+X-MS-Office365-Filtering-Correlation-Id: f448a82e-517c-4657-453d-08dedd7e4098
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|52116014|23010399003|376014|366016|38350700014|56012099006|3023799007|22082099003|18002099003;
+	BCL:0;ARA:13230040|1800799024|52116014|23010399003|376014|366016|38350700014|56012099006|3023799007|6133799003|22082099003|18002099003;
 X-Microsoft-Antispam-Message-Info:
-	VGKUJWPB8QXjDjFAV9mRTYXg73WN12WAyNbxTpRyE5wtL7XwwwsptgmwGEqca7be11bT7S7c2JSK6QLD1GG+ABHYIsY78hD6vIqq9oQjybex4JGYKXvVs4KT2vQqyGF23Umw4VDq9w0JNmyS+WppGWiiAt6VE8Fa0B2hDkcWc6jtkilX2zOJlhiafGLe7Ajrr/cDeGMTfYlwTWJ3o3+FPn6nHAnb/v6GdLR0ecWFZcvGZ2IXnxcIgILMGNLsq7RU2AJSd6BBjzstXsUFl0vKGUpt3cGrdfvbXa/g0dDfn9i4QlVX/4BTKV2+3iWHRVxCbOfVoVHy/Of0+xwjYqovuIIPfBzCcffrsdG/Uyp/nR+hRQ1ObO7uzmUOEOySqPkFBPyzXrBmJR+ZHDpvx0/ypDrIA+0tk+cK1YGDA/kh+lwYtiXJkKqjeoEPFLatqKfGMFb3eyJeUFJLq3DLSJGJzJdh9bXrligCv6iQmkn61G4xRpzX7Q9I4K2jkyFu+3RKp1rBQcrSV27q3dlVNqXMMLLcbVcwjTouqpGknMV9rrU7h0gVeCLEbJgjN8mK15yc
+	oFPsUms9UZ25IS/Ua89l6yvp2IxLvu3qgcvdx7xuTz0Zp/WWh18Q4iO8JeclRyVBrLZTcAU/f9VlItGiyRxRiNH/uyAYJX1ABJLFsvcdOa5WGx1V/3SX6hdLPcxfq+T8iH/SQhmeBO/eDiriJ6dKfqq+1rwz9DmuoQq3agKOnrc2vX08pKSoLnB3xamXrBR1zrD5J6OQaG/7oFLmZmLyPPTeK5aobnXd8ES9RfQwClMS/7OudbgwxxWZyCD5m0YTZLAAznnZOEbrbako/EvdEmJn/c/DdbCCOWXCOr7O6kDkn/kXt82gpE1Z1hf7n2UqD2bMN8NrodGzqDa4ypV8VF+jZ/LtT+xHizqsBPZgkuoVhIIXjAWZgfc4G2EdFkoVvx6qcQsXfPNEOEmkfA3L1K1djLqcjRcj59afJeyl6VP0F94TuWuJDhIIZzkUqkV8Z5LEZDZ7sT5FOvuCqWOC7giR1r1PR8BFb9eAOlBtYhDg+1xZhoL2LtI3TEtDK9GYQdqyOTT0xwwg5C3EZx+9U6pv8geyNvdVRa9m7Cl8+N+tFbu9voGgzZNuJfvpn4Ib
 X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:ZQ4PR01MB1202.CHNPR01.prod.partner.outlook.cn;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(52116014)(23010399003)(376014)(366016)(38350700014)(56012099006)(3023799007)(22082099003)(18002099003);DIR:OUT;SFP:1102;
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:ZQ4PR01MB1202.CHNPR01.prod.partner.outlook.cn;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(52116014)(23010399003)(376014)(366016)(38350700014)(56012099006)(3023799007)(6133799003)(22082099003)(18002099003);DIR:OUT;SFP:1102;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?QDbXKqN4/sX71U0NEjxJpGMHA1riDhHkSfYbs1jBp8tDxUYY+5POahN75Nat?=
- =?us-ascii?Q?lcG81ACbz+OSBpVdrq8quO9XxsthJ17VfJgyAW6aeDQxnG52AIMMAb7mZg0J?=
- =?us-ascii?Q?vDtRtkxDBJmb2n5cpiXek2gUqY9vjtKG/xcJF87ZtKC9UdHx9ELKi8jIjZdN?=
- =?us-ascii?Q?r/hXYUroGLtx0MrTJwu2QcPDhVIIBJwgHXXImzuqw+eOWYislXVmAiYGKA00?=
- =?us-ascii?Q?ADQ7UhW81qrdoGFJDb1RssBRRw8KVa1IU6VF7Q6hVOU5afyqZ9frGsZ95ep3?=
- =?us-ascii?Q?aE1rgFVvgK+YMX7G4dtb/pr5oHvGFxOXZYoG92zgqyoOt/+pwWjwwuz/N8SV?=
- =?us-ascii?Q?vzih9koNaoDiUr8PmOlCMYofLPBiBFybd0AdpdYSBxqcRmvRYkHp+hiSCoqo?=
- =?us-ascii?Q?Hbr21UiqiRa/opZu0E8pVJRghz3TuH8des7K8AtNWqAfPIyC9jMmJBmh9F+a?=
- =?us-ascii?Q?ay7BHlHqtdBeG2euNh2cdK1+sBHUCCxWvqkmwO5ItrTDKDENeL27yuzfu/dM?=
- =?us-ascii?Q?czTw8qHB2tdNwC18B+c1KYTRmh2vGEECj7LwqRGN8XmHOt3Bf52//V61J61l?=
- =?us-ascii?Q?umaFGB55P8A1s1rDcJgaPlQ8Jjs6OD4j1blPivKIlt1HhoaWKhqW5XDyLPDZ?=
- =?us-ascii?Q?79n+n2551oUKpByqibaPijbD+7kFBX0FHTomQrXHz8OOamjLlsaGnnY0NFNe?=
- =?us-ascii?Q?7C5CsGpqDTkparhukL768p9vh9B4fHIJSwql298L31wnTPOVGgbNDlc9rlue?=
- =?us-ascii?Q?x72E90j07F/3QdYMZyz857qeta2CG/tyQ9p1uvg5FjZu3HI2rplLdSJJnVKv?=
- =?us-ascii?Q?uJxrzNY/XxLR0b/pwU1XN8jfy6NvhQiclspAv3AvQo+i085/DI7Q1a2l6MfQ?=
- =?us-ascii?Q?VaDY5Txbmp65m0w3IYSDB7sFsSVQ019AIAXxRF/SEti6kapluokdXuWWs34i?=
- =?us-ascii?Q?e4BMKbIexDD8vyd4pJGC0vgDijNdftd/g06avdaPDAxCLZ9XOKpS1rfPIpfS?=
- =?us-ascii?Q?6iWoI8b+AS5rmtEXkGxXuKtZDBqO8Jlxp9ZIKDqeg0jMsj2tH4lzBP6yIzNN?=
- =?us-ascii?Q?UwSpqabTfq1H6U7LnMbMXjZ4ZJvAnMbzM+UiM+R8By5V14QeoyKs7Qgl08X0?=
- =?us-ascii?Q?j/vWnm3kj7vg+5BtH2vaXI7YBlV3jg38FhSDzJDrweX3Jce0O1ZKRRwFaIlg?=
- =?us-ascii?Q?UooFf0L2j5xa8aFcBBei4grdTijMMPhMIHsYwGGvNzaVNvfVEOj8ME5O3RUP?=
- =?us-ascii?Q?TPyDyBX1pqFYUYqb9WnN85CmxFFMc73nuuyqvJ38m+ordu1ZwHDeeGriNOk8?=
- =?us-ascii?Q?z3CcwTwToELcTEii7oBFMjH6HKmQx0Tdiw23IJeEk0H5jiS8/PfRvnKPeIoD?=
- =?us-ascii?Q?UqV9145/F+yBCLZPK5Jba+pbmEGNchujlfrk4SMd2ZBkz+Ju33v2Q+SLYkXL?=
- =?us-ascii?Q?VYAJ0iuidAHeHAp/IU7Uwdd5TglD5SEg5Ealdop6BR7yZwXNSC1NJv9odIHG?=
- =?us-ascii?Q?x8PVF1maoYcOquMiu1BLJta+oMCymrB05J9ma8lQx9LTFejVr/CPaTYArD3d?=
- =?us-ascii?Q?HMmYPrJExbvY43k80Br3MsA0kIFa7G47/JIzr9pgNFC/MKWyUwwo5EdAkO0B?=
- =?us-ascii?Q?EgT5Sco6eh5ZjiZabqv1m3cU2mlf5N2S/foA6kkLCstguSsgx7BjMGYn42RS?=
- =?us-ascii?Q?Zu7FghZwCW6XPS3Sknnq/A36BMMWF6vPGONeJnuQWpOyMJjQlzZezpB95HpQ?=
- =?us-ascii?Q?L7a/e7ydtW/9blv5IXgEzAuEl6QAsZy8lKaEaipLG3GOcEptc+uD?=
+	=?us-ascii?Q?4lIHTfRFXFpu232dAsqosJMke4e+vyLexUxggbG8Fp28hcvB6rc4USQPp32a?=
+ =?us-ascii?Q?LLv92/vb+7I9kfvIMwMOFd78T42JMNrbLPnrlb4i1VA//WH0Kk+GCOqOiHZg?=
+ =?us-ascii?Q?3MC6x0HpVE0keJCCPXzTzwzgkLnOliBcfrHPS/DMRJq9lmtf5cC/RqT4El+a?=
+ =?us-ascii?Q?tG2ARLEAjKxF49U0WqN0tx1CGFtdIr0hFsxPzsOOqeyEZ7bfinKZEMt9RcAW?=
+ =?us-ascii?Q?nKcQQ4Dy9vciOYfEUVJF3tERhGCUKtmKuRVgIIjnivaKjR/IG47Ar52FNtFg?=
+ =?us-ascii?Q?yLMnSOS7DlI3iQ4ypngaN0nm5o+MZpkjnOym8E5FFcxbKQovrP8pj74iYNqw?=
+ =?us-ascii?Q?eYR+vBwRkfSVrDBpK/dECHuU+rM/Hqdhs2IMHb8Acw14dDa1mWrcLfytr/6e?=
+ =?us-ascii?Q?/GGi/qHfg43K9H6MGILwbBFbTeT5ltG7boDoptS+GT6x/p/QGrm83ZrmMQzL?=
+ =?us-ascii?Q?jEI8MigeHGHG8DtKxUV4MiUbG7xec9/x/cxJote1sZjcXBD13lWdSHFXsQvW?=
+ =?us-ascii?Q?Q4tYK/lWSl31p8kSuAPlZO1Rqa5DBdKu/sN6DVY70Nst3hGWQER+HlEdqBql?=
+ =?us-ascii?Q?eYBPEx1csGoB0ZQgnaRpbARxD12LOiYXQMLgL//VNuBOHixVFpwkMhHPq4fl?=
+ =?us-ascii?Q?NeKZZIhmuQpJEh/QoSMKc6qYyV06Ut6GhmqcmPxqeWDqRg2RholxI0Sug24+?=
+ =?us-ascii?Q?/8+tUzWaIlfNXw+1Gr/5hTjbTKZdKJRlpS8FPJDMCXyBkYMZyBWkYWw4xhq4?=
+ =?us-ascii?Q?ijUYoOJjcTLjW2+bMGwzLqcBghTx1h8e2m26WvXgpCTcL3baFoaMkWvMWzBN?=
+ =?us-ascii?Q?u4Op2XGuuYCo5aypxQmP/PhnLBcPRWK+ehJkBL8OglXdqNFwRk/l98qBLiX3?=
+ =?us-ascii?Q?g0btiMVFfLpNGgI8YhZjWG6T/WYp5jeVcw4WZIVwyNoa9ON/xW16B5RoIpkQ?=
+ =?us-ascii?Q?c/VKy83WFefbDmp14toHOQg/XjCu81cUYt2nyHCIvXxUgFviRHmUnGkjPjnP?=
+ =?us-ascii?Q?Bpw4suvQoaj9TlsbWNUtEE2f+MTn19GiRl0lCNXEFVxiTd5be+df5LqrSWOU?=
+ =?us-ascii?Q?U4FtmFW1hAZCUjBTvQU55Jlz0asUR3BvBKYme6422/GsclqdPnG7O5zpKjVc?=
+ =?us-ascii?Q?rs3uFVXdBPR5AErfRmWV0OiWeSdL292+CZlcVxVvSel7plwC3bawzV46z16Q?=
+ =?us-ascii?Q?rEEzePSmTT2K1DEtu6ERrx+VGxk1JfT9tzXvhza3SLXYC5isBzhJRBdbIMSI?=
+ =?us-ascii?Q?mrCZRhGQQ/hDQZwomT9GzWlI/fBdwfitmcdqv+0yXu8D582xT9tUF+ECYFnX?=
+ =?us-ascii?Q?8OqFGraEmdVumwcbzwqziBmd6CYarySkrRXFuPczHd48B58rmL8XaKyFVj9u?=
+ =?us-ascii?Q?4tJzimlN8lfxofHgFPdv51QLj5LCIXrDY5tHLblIKvaL0Aa7DyWFClrm0n4Z?=
+ =?us-ascii?Q?t+LBlLmvwbOghckYI6DhGAaB3wu63TdpDaCDqCjvVYiDNhzU0dZeI/m9ohZa?=
+ =?us-ascii?Q?SFPiSeL/ukvLcAaFSicikyTxgSvM4wsrojbtdsna9JhFl66XN1AM4OKdtG4R?=
+ =?us-ascii?Q?xeAYB4V94LuhsBwVtxj8VHEmeaARP1HEgq/zSLOoWsvrsH9MFw/sLMqJzA7P?=
+ =?us-ascii?Q?hrIzWJ/rvABbebbRTVfMrKgWr+bGaXNK1JwAJPB3p2f67OuyPsHNSCVb1hnr?=
+ =?us-ascii?Q?D34IbCYuANnPqNvMCIXdIyHWajyeUQhuquHoSX6hZef2XN0TteZRrKwVMmM7?=
+ =?us-ascii?Q?XgqBl1tjB4RR97ZRgUJxhOBePi44uPnd4qFkB5Q9encUV+UgL+B6?=
 X-OriginatorOrg: starfivetech.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d48d26bf-9949-417f-99b7-08dedd7e3ffb
+X-MS-Exchange-CrossTenant-Network-Message-Id: f448a82e-517c-4657-453d-08dedd7e4098
 X-MS-Exchange-CrossTenant-AuthSource: ZQ4PR01MB1202.CHNPR01.prod.partner.outlook.cn
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jul 2026 05:52:24.3403
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jul 2026 05:52:25.3463
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 06fe3fa3-1221-43d3-861b-5a4ee687a85c
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: M8mag5jLP34WNV9JOlf2FS+pzuesvfFn6zipIdqBXWcypWj0EKEnoG93yETdFTYUXk86rmgRZl00VbemkF8bWB5cIu0pMKucd15xbOwof8LzqiVNi27o7RDU/LJurfoo
+X-MS-Exchange-CrossTenant-UserPrincipalName: 1JRbqwdw6k/nHr2DOuR4RqlEQMkxuiB/lIPNapxzj5Aa6CARJC1Hm1eawlXOyFlAgxfiLj+YQEbGLhLMNYfULMPWvvsSIG48J2w5Ea4S0NiTQacVsjbkVsu+B5izqb/O
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: ZQ4PR01MB1282
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [5.04 / 15.00];
@@ -141,15 +141,15 @@ X-Spamd-Result: default: False [5.04 / 15.00];
 	ARC_REJECT(1.00)[cv is fail on i=2];
 	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	MIME_TRACE(0.00)[0:+];
 	FREEMAIL_CC(0.00)[sifive.com,gmail.com,vger.kernel.org,starfivetech.com];
 	FORWARDED(0.00)[lists@lfdr.de];
-	GREYLIST(0.00)[pass,body];
-	TAGGED_FROM(0.00)[bounces-323361-lists,devicetree=lfdr.de];
+	GREYLIST(0.00)[pass,meta];
+	TAGGED_FROM(0.00)[bounces-323526-lists,devicetree=lfdr.de];
 	FORGED_SENDER(0.00)[changhuang.liang@starfivetech.com,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
@@ -163,59 +163,115 @@ X-Spamd-Result: default: False [5.04 / 15.00];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	R_DKIM_NA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	ALIAS_RESOLVED(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	RCPT_COUNT_SEVEN(0.00)[10];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,sifive.com:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,starfivetech.com:from_mime,starfivetech.com:email,starfivetech.com:mid,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,sifive.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: A1EB772DEC3
+X-Rspamd-Queue-Id: 95ED172F082
 
 From: Sudip Mukherjee <sudip.mukherjee@sifive.com>
 
-In enhanced mode adjust the size of the data that can be sent or received
-as this will then be used to set the NDF.
+All the SSI controllers supporting enhanced spi modes might not support
+all the three dual or quad or octal modes. Detect the modes that are
+supported and finally enable the DW_SPI_CAP_EMODE capability which will
+start using all the enhanced spi functions that has been added.
 
 Signed-off-by: Sudip Mukherjee <sudip.mukherjee@sifive.com>
+Co-developed-by: Changhuang Liang <changhuang.liang@starfivetech.com>
 Signed-off-by: Changhuang Liang <changhuang.liang@starfivetech.com>
 ---
- drivers/spi/spi-dw-core.c | 10 +++++++++-
- 1 file changed, 9 insertions(+), 1 deletion(-)
+ drivers/spi/spi-dw-core.c | 62 ++++++++++++++++++++++++++++++++++++++-
+ 1 file changed, 61 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/spi/spi-dw-core.c b/drivers/spi/spi-dw-core.c
-index 532441da235e..0dbf250a101b 100644
+index 0dbf250a101b..0abdee82eaab 100644
 --- a/drivers/spi/spi-dw-core.c
 +++ b/drivers/spi/spi-dw-core.c
-@@ -576,6 +576,13 @@ static int dw_spi_target_abort(struct spi_controller *ctlr)
- 	return 0;
+@@ -1083,6 +1083,64 @@ static void dw_spi_cleanup(struct spi_device *spi)
+ 	spi_set_ctldata(spi, NULL);
  }
  
-+static int dw_spi_adjust_enh_mem_op_size(struct spi_mem *mem, struct spi_mem_op *op)
++static u16 detect_enh_mode(struct dw_spi *dws)
 +{
-+	op->data.nbytes = clamp_val(op->data.nbytes, 0, DW_SPI_NDF_MASK + 1);
++	u32 tmp_spi_ctrlr0, tmp_ctrlr0;
++	u32 tmp_val, frf_shift;
++	u16 mode = 0;
 +
-+	return 0;
++	if (dw_spi_ver_is_ge(dws, HSSI, 103A))
++		frf_shift = __bf_shf(DW_HSSI_CTRLR0_SPI_FRF_MASK);
++	else if (dw_spi_ver_is_ge(dws, PSSI, 400A))
++		frf_shift = __bf_shf(DW_PSSI_CTRLR0_SPI_FRF_MASK);
++	else
++		return 0;
++
++	tmp_ctrlr0 = dw_readl(dws, DW_SPI_CTRLR0);
++	tmp_spi_ctrlr0 = dw_readl(dws, DW_SPI_SPI_CTRLR0);
++	dw_spi_enable_chip(dws, 0);
++
++	/* test dual mode */
++	tmp_val = DW_SPI_CTRLR0_SPI_FRF_DUAL_SPI << frf_shift;
++	dw_writel(dws, DW_SPI_CTRLR0, tmp_val);
++	if ((tmp_val & dw_readl(dws, DW_SPI_CTRLR0)) == tmp_val)
++		mode |= SPI_TX_DUAL | SPI_RX_DUAL;
++
++	/* test quad mode */
++	tmp_val = DW_SPI_CTRLR0_SPI_FRF_QUAD_SPI << frf_shift;
++	dw_writel(dws, DW_SPI_CTRLR0, tmp_val);
++	if ((tmp_val & dw_readl(dws, DW_SPI_CTRLR0)) == tmp_val)
++		mode |= SPI_TX_QUAD | SPI_RX_QUAD;
++
++	/* test octal mode */
++	tmp_val = DW_SPI_CTRLR0_SPI_FRF_OCT_SPI << frf_shift;
++	dw_writel(dws, DW_SPI_CTRLR0, tmp_val);
++	if ((tmp_val & dw_readl(dws, DW_SPI_CTRLR0)) == tmp_val)
++		mode |= SPI_TX_OCTAL | SPI_RX_OCTAL;
++
++	if (!mode)
++		goto disable_enh;
++
++	/* test clock stretching */
++	dw_writel(dws, DW_SPI_SPI_CTRLR0, DW_SPI_ENH_CTRLR0_CLK_STRETCH_EN);
++	if ((DW_SPI_ENH_CTRLR0_CLK_STRETCH_EN & dw_readl(dws, DW_SPI_SPI_CTRLR0)) !=
++	    DW_SPI_ENH_CTRLR0_CLK_STRETCH_EN)
++		/*
++		 * If clock stretching is not enabled then do not use
++		 * enhanced mode.
++		 */
++		goto disable_enh;
++
++	dws->caps |= DW_SPI_CAP_EMODE;
++
++disable_enh:
++	dw_writel(dws, DW_SPI_CTRLR0, tmp_ctrlr0);
++	dw_writel(dws, DW_SPI_SPI_CTRLR0, tmp_spi_ctrlr0);
++	dw_spi_enable_chip(dws, 1);
++
++	return mode;
 +}
 +
- static int dw_spi_adjust_mem_op_size(struct spi_mem *mem, struct spi_mem_op *op)
+ /* Restart the controller, disable all interrupts, clean rx fifo */
+ static void dw_spi_hw_init(struct device *dev, struct dw_spi *dws)
  {
- 	if (op->data.dir == SPI_MEM_DATA_IN)
-@@ -1017,13 +1024,14 @@ static void dw_spi_init_mem_ops(struct dw_spi *dws)
- {
- 	if (!dws->mem_ops.exec_op && !(dws->caps & DW_SPI_CAP_CS_OVERRIDE) &&
- 	    !dws->set_cs) {
--		dws->mem_ops.adjust_op_size = dw_spi_adjust_mem_op_size;
- 		if (dws->caps & DW_SPI_CAP_EMODE) {
- 			dws->mem_ops.exec_op = dw_spi_exec_enh_mem_op;
- 			dws->mem_ops.supports_op = dw_spi_supports_enh_mem_op;
-+			dws->mem_ops.adjust_op_size = dw_spi_adjust_enh_mem_op_size;
- 		} else {
- 			dws->mem_ops.exec_op = dw_spi_exec_mem_op;
- 			dws->mem_ops.supports_op = dw_spi_supports_mem_op;
-+			dws->mem_ops.adjust_op_size = dw_spi_adjust_mem_op_size;
- 		}
- 		if (!dws->max_mem_freq)
- 			dws->max_mem_freq = dws->max_freq;
+@@ -1162,6 +1220,9 @@ static void dw_spi_hw_init(struct device *dev, struct dw_spi *dws)
+ 		dws->caps |= DW_SPI_CAP_DFS32;
+ 	}
+ 
++	dws->ctlr->mode_bits = SPI_CPOL | SPI_CPHA;
++	dws->ctlr->mode_bits |= detect_enh_mode(dws);
++
+ 	/* enable HW fixup for explicit CS deselect for Amazon's alpine chip */
+ 	if (dws->caps & DW_SPI_CAP_CS_OVERRIDE)
+ 		dw_writel(dws, DW_SPI_CS_OVERRIDE, 0xF);
+@@ -1206,7 +1267,6 @@ int dw_spi_add_controller(struct device *dev, struct dw_spi *dws)
+ 
+ 	dw_spi_init_mem_ops(dws);
+ 
+-	ctlr->mode_bits = SPI_CPOL | SPI_CPHA;
+ 	if (dws->caps & DW_SPI_CAP_DFS32)
+ 		ctlr->bits_per_word_mask = SPI_BPW_RANGE_MASK(4, 32);
+ 	else
 -- 
 2.25.1
 
