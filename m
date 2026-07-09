@@ -1,202 +1,174 @@
-Return-Path: <devicetree+bounces-323660-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-323657-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id BhaBKPGET2qzigIAu9opvQ
-	(envelope-from <devicetree+bounces-323660-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 13:24:33 +0200
+	id PlyZGriET2qWigIAu9opvQ
+	(envelope-from <devicetree+bounces-323657-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 13:23:36 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C244730475
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 13:24:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D760C73043B
+	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 13:23:35 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=sartura.hr header.s=sartura header.b=smSusoIS;
-	dmarc=pass (policy=reject) header.from=sartura.hr;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-323660-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-323660-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=Grqz991b;
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-323657-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-323657-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 4024130B5DF8
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2026 11:20:45 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 3F2A8306EF34
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2026 11:20:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 890E44192E7;
-	Thu,  9 Jul 2026 11:20:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAC86414A1A;
+	Thu,  9 Jul 2026 11:20:24 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5CD0416CFF
-	for <devicetree@vger.kernel.org>; Thu,  9 Jul 2026 11:20:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 856D8414A31
+	for <devicetree@vger.kernel.org>; Thu,  9 Jul 2026 11:20:23 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783596027; cv=none; b=kIDNp0nnqgViKjdMF/pN8/hBVUd3QmmBqGpvEmkS8Kk0QRVsIwRYyxaAHzFEic0EUvw01T3GqLKXxzdV0Fes+dwTbKdj0AIoVRx9wPI8Rg+hU3zZ7P93Z7bj2hIAb+KTtDuU6aOX7s/sISv8mlfnzcSIeD4q39/7tW+tga35sKo=
+	t=1783596024; cv=none; b=Ocw2PpxeJkJXsyUzct8PHd0z8mZ8vqsiNzjcEg0uT0PezorCi37J3i9wSbmvNAGxpjRogFCh3WlJpxCDtRrwkmokoIRVKQanmXSVT0pQFlN4Xa93twLJ9YiFeQq4J3YWgQ8UWrrLO9S5TyNHCpB2wj6C72ECvH1DQ0iiyWiMKSQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783596027; c=relaxed/simple;
-	bh=zJUsq8hBqUk3DkfEzxLjaBfCm9NZwOgMgh6kqisTHJA=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Yo3oInSMN8byT9dAlirc5Izercbq7WfyZbfHMZrCdPMawypTUlKZF18E/Cz3BDwP0IDlTNw70qGBIlAbBtsMMw2rn6sYtBwZMojI6gMdm3891bqeuFwSDW40iK155N/cilv/bT8g0O+rKRIRb1x/J6BQZjtGrjFk52EWKErmeWQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sartura.hr; spf=pass smtp.mailfrom=sartura.hr; dkim=pass (2048-bit key) header.d=sartura.hr header.i=@sartura.hr header.b=smSusoIS; arc=none smtp.client-ip=209.85.128.50
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-493bab44440so5076995e9.0
-        for <devicetree@vger.kernel.org>; Thu, 09 Jul 2026 04:20:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sartura.hr; s=sartura; t=1783596024; x=1784200824; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=TE/86mbnkjdeQ/eUjLcxECV2tO9a4hCqlVOp6ra577s=;
-        b=smSusoISkVX+jL4XIJmaGMhWtu+f/pYeXkgC/+RAT+bnagRX4HRUz94sNmq6iouvOr
-         NHp1TS1CSaQDYBvWapijcNvXVhDSOpMX/QKM0ugjvSJsPTuezeONEdyUUEfS5RxxyXDM
-         J1YBDGE1EFfydirQz3pfmfGCmksGP5M0fGsD0Kf8RnWHqoPvE71eXTlDrHFNbRB2Gcr0
-         atK9x91TahnvbCZl5DtrJNT2GkPTT+81YKWPFZsIM5O9veGhAQ9pncSPS9JCoeDTv8Gi
-         3EiN0Nw9B14L3CM39tp3TmLGIuIGvLj2WAI/mcQL4A33Uzv+mhWckkN1yS4ag7q6aUzJ
-         bxbw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783596024; x=1784200824;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=TE/86mbnkjdeQ/eUjLcxECV2tO9a4hCqlVOp6ra577s=;
-        b=nXV2ZwV6joANz/WI4L3yyzO3QW3v9Y3/o1pc9I9r9scrdar503MmrmYZs3RV4eB+sl
-         5/w/CgpubruEmqzykyRu7jgQjfPWQLdyC9Lby0IHydETnUmDJyXD2A3PkBt6xEj95tcg
-         oxPu3bx3JMIRI86Bye98B1hg4g9WNT4PSy97gBA3OSRYuJaUSyJUCCnD4x3ANyosGy0c
-         39yLoB/FqDcBf7Fy4/MRsaEapFmBFqOMxLXFANk6Pn3Qn70HNLxquWPDCWVWr/h5cFVJ
-         C2fVxQJmbPIOXmjI3cqGgnObPMK1aQ2uV6TCeGy8pEcqq/c2PTtjkM4P/eLDw/eOfyq2
-         ks4A==
-X-Forwarded-Encrypted: i=1; AHgh+Rrflco/Omn3pEhnIf845R5fDTDbMS/rC42JaIPhrfkeyXsnyPAMmCWiJDH1eC5/wQJQmK09XinMuDzr@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxdh+ETv2AAJcTAKGK4mdb0mZyrc9FUPtpsNk5Ci/PEZ62zZz/K
-	TCFnealOKKf+C3si5T7zDKl+EoJG6W5S1erZC3kmju9EWHIBHJug/zq3jpyvmdg+7JY=
-X-Gm-Gg: AfdE7cnUzRPBFsELakh5WalxrA3jFM5qG9HgEQD8URX1oBvM4+pftj9T/2rrQAtVp/h
-	VJsib4YAYGML1hIjpIw9SqZJXEeDP6iEJ0qwBuPt4OAj/WcKWQYOXfSy+dpdp2wyXOjRseIYJLV
-	b8yGJ7OLyIKnfm7NODQKM5jwJIHKcM/wABNFAhVwxJJXpOVh8zTtDXd0CSm9yrZ5TRdyT1XHUua
-	5yy3/C75opWjfejbRnDNN6Y9RT+GNxjbO7K40tcIP4LlO8b+hG/FL4C57AkQAc7SWpAWe3rH/HB
-	8PqGIJjVWWBzHOAO0A9Lp2KR+30TqMB6h4nmdFQAH3ykPaRNnA5Q/yhGOpHaEn8Vx2IjsfGLukJ
-	5FThCmzjc/okxtlPSSfd+FidyF1Bqh5aX5iUaHdWHEfExWWcOzshnjiQ0SYNioIY0v23LgUjIDI
-	jNez2idzydeC58JF2p69q574p6r4YKrEkZXFym0MN7Po+cUY/homSfi3c/cSy+F9vbvp7+p8sui
-	sp9zFRsvYWbIXpEvjVxucSluIPCle5qwE1S1YTzHT4=
-X-Received: by 2002:a05:600c:5303:b0:493:e41a:9b23 with SMTP id 5b1f17b1804b1-493ec561411mr24840465e9.1.1783596024101;
-        Thu, 09 Jul 2026 04:20:24 -0700 (PDT)
-Received: from threadripper-fedora-workstation (dh207-15-57.xnet.hr. [88.207.15.57])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-493eb6f3c42sm53910475e9.1.2026.07.09.04.20.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Jul 2026 04:20:23 -0700 (PDT)
-From: Robert Marko <robert.marko@sartura.hr>
-To: broonie@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	nicolas.ferre@microchip.com,
-	alexandre.belloni@bootlin.com,
-	claudiu.beznea@tuxon.dev,
-	tudor.ambarus@linaro.org,
-	linux-spi@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	daniel.machon@microchip.com
-Cc: luka.perkov@sartura.hr,
-	Robert Marko <robert.marko@sartura.hr>
-Subject: [PATCH v2 5/5] arm64: dts: microchip: lan969x: add QSPI nodes
-Date: Thu,  9 Jul 2026 13:19:11 +0200
-Message-ID: <20260709112006.390742-6-robert.marko@sartura.hr>
-X-Mailer: git-send-email 2.55.0
-In-Reply-To: <20260709112006.390742-1-robert.marko@sartura.hr>
-References: <20260709112006.390742-1-robert.marko@sartura.hr>
+	s=arc-20240116; t=1783596024; c=relaxed/simple;
+	bh=kyqTCjcPBKDmDbhJaQIwajyRclLNv4JjG8sXxp2O4Vg=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=L4alziLTYGOj1BNG/zLNYPp4geP6+3+Lfj7rX+k0ycAOMGCo1sfZSF47gtpIqOZv2fvvyqumXpLoXZFJeX6gQ5R7f4k2mI2XgEPd/lUnft/gxcsWIC3/6b1aivoY1Qt5FVJvmz8mLZMmGG+3GvGi0jm6IXZsBEhOmis7wbvYl7M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Grqz991b; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 02B421F00ADB;
+	Thu,  9 Jul 2026 11:20:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1783596023;
+	bh=db5QYznW5xf/Hd/GXaXEuPFqjRu+CSLiGqpqeVi6r+w=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=Grqz991bEctGInIzL9hD+SPKFGikgEq9s2f5paUAXQ+YtLPxNtse+tB6mwTun4q+9
+	 gpi1VyuafY/gybwslbxOZi2Oi5TCpQJ3yh8Na0Gvdbm77vOUV3DGYnAhqCX59Hjgrg
+	 up32KUVgvs/rLG7xY3SLV/cOJLuXDLpC8s9oFYGBX0Nprq2VqBcH6IJRc//nIZvGyn
+	 nfo2kUz7077xV5YBSJ7VU65ptVTlckfzvukmzOpNbIA4fvHcKwmRSGRg5mgadntn52
+	 Yx67jzil8MXGjumfU9/7EN+op/hOCvv9+f0UwktTXOFGKKAKqNkVrnZb7iSfnwURSS
+	 PI2p9SaBC/ORQ==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v2 8/8] clk: clocking-wizard: Use separate
+ notifier_block for each clock
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Shubhrajyoti Datta" <shubhrajyoti.datta@amd.com>
+Cc: robh@kernel.org, devicetree@vger.kernel.org, conor+dt@kernel.org
+In-Reply-To: <20260709111403.1579159-9-shubhrajyoti.datta@amd.com>
+References: <20260709111403.1579159-1-shubhrajyoti.datta@amd.com>
+ <20260709111403.1579159-9-shubhrajyoti.datta@amd.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Thu, 09 Jul 2026 11:20:22 +0000
+Message-Id: <20260709112023.02B421F00ADB@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [-1.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[sartura.hr,reject];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[sartura.hr:s=sartura];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-323660-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[robert.marko@sartura.hr,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS(0.00)[m:broonie@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:nicolas.ferre@microchip.com,m:alexandre.belloni@bootlin.com,m:claudiu.beznea@tuxon.dev,m:tudor.ambarus@linaro.org,m:linux-spi@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:daniel.machon@microchip.com,m:luka.perkov@sartura.hr,m:robert.marko@sartura.hr,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORWARDED(0.00)[lists@lfdr.de];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-323657-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robert.marko@sartura.hr,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[sartura.hr:+];
-	ALIAS_RESOLVED(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:shubhrajyoti.datta@amd.com,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	ALIAS_RESOLVED(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_HAS_DN(0.00)[]
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	RCPT_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,sashiko.dev:url,amd.com:email,lists.linux.dev:replyto,smtp.kernel.org:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 0C244730475
+X-Rspamd-Queue-Id: D760C73043B
 
-Add the required DT nodes for both QSPI controllers.
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [High] Incorrect `container_of` cast when reusing the same notifier callb=
+ack for a new `notifier_block`, resulting in a misaligned `struct clk_wzrd`=
+ pointer and out-of-bounds memory accesses.
+--
 
-Signed-off-by: Robert Marko <robert.marko@sartura.hr>
----
-Changes in v2:
-* Make it apply on top of next-20260708, as SDMMC is not yet upstream
+--- Patch [8]: [PATCH v2 8/8] clk: clocking-wizard: Use separate notifier_b=
+lock for each clock ---
+commit f1481850744c067369ec043b5f8c6bf3ee19d10b
+Author: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
 
- arch/arm64/boot/dts/microchip/lan9691.dtsi | 33 ++++++++++++++++++++++
- 1 file changed, 33 insertions(+)
+clk: clocking-wizard: Use separate notifier_block for each clock
 
-diff --git a/arch/arm64/boot/dts/microchip/lan9691.dtsi b/arch/arm64/boot/dts/microchip/lan9691.dtsi
-index ed997d87dd09..a8541c6a098d 100644
---- a/arch/arm64/boot/dts/microchip/lan9691.dtsi
-+++ b/arch/arm64/boot/dts/microchip/lan9691.dtsi
-@@ -396,6 +396,39 @@ clks: clock-controller@e00c00b4 {
- 			clock-names = "cpu", "ddr", "sys";
- 		};
- 
-+		qspi0: spi@e0804000 {
-+			compatible = "microchip,lan9691-qspi";
-+			reg = <0xe0804000 0x00000100>,
-+			      <0x20000000 0x08000000>;
-+			reg-names = "qspi_base", "qspi_mmap";
-+			interrupts = <GIC_SPI 43 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&fabric_clk>, <&clks GCK_ID_QSPI0>;
-+			clock-names = "pclk", "gclk";
-+			assigned-clocks = <&clks GCK_ID_QSPI0>;
-+			assigned-clock-rates = <100000000>;
-+			dmas = <&dma AT91_XDMAC_DT_PERID(1)>,
-+			       <&dma AT91_XDMAC_DT_PERID(0)>;
-+			dma-names = "tx", "rx";
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			status = "disabled";
-+		};
-+
-+		qspi2: spi@e0834000 {
-+			compatible = "microchip,lan9691-qspi";
-+			reg = <0xe0834000 0x00000100>,
-+			      <0x30000000 0x04000000>;
-+			reg-names = "qspi_base", "qspi_mmap";
-+			interrupts = <GIC_SPI 66 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&fabric_clk>, <&clks GCK_ID_QSPI2>;
-+			clock-names = "pclk", "gclk";
-+			assigned-clocks = <&clks GCK_ID_QSPI2>;
-+			assigned-clock-rates = <100000000>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			status = "disabled";
-+		};
-+
- 		reset: reset-controller@e201000c {
- 			compatible = "microchip,lan9691-switch-reset",
- 				     "microchip,lan966x-switch-reset";
--- 
-2.55.0
+This commit introduces a dedicated notifier_block, nb_axi, for the
+s_axi_aclk chain. This prevents linked list corruption that occurs
+when registering a single notifier block to multiple chains.
 
+> diff --git a/drivers/clk/xilinx/clk-xlnx-clock-wizard.c b/drivers/clk/xil=
+inx/clk-xlnx-clock-wizard.c
+> index 289c32ab5cd80..bcbfb4341dbab 100644
+> --- a/drivers/clk/xilinx/clk-xlnx-clock-wizard.c
+> +++ b/drivers/clk/xilinx/clk-xlnx-clock-wizard.c
+> @@ -137,6 +138,7 @@ enum clk_wzrd_int_clks {
+>   */
+>  struct clk_wzrd {
+>  	struct notifier_block nb;
+> +	struct notifier_block nb_axi;
+>  	void __iomem *base;
+
+[ ... ]
+
+> @@ -1318,8 +1320,10 @@ static int clk_wzrd_probe(struct platform_device *=
+pdev)
+>  				dev_warn(&pdev->dev,
+>  					 "unable to register clock notifier\n");
+> =20
+> +			clk_wzrd->nb_axi.notifier_call =3D clk_wzrd_clk_notifier;
+> +
+>  			ret =3D devm_clk_notifier_register(&pdev->dev, clk_wzrd->axi_clk,
+> -							 &clk_wzrd->nb);
+> +							 &clk_wzrd->nb_axi);
+
+[Severity: High]
+Does sharing clk_wzrd_clk_notifier for nb_axi lead to an incorrect
+container_of() cast?
+
+Looking at clk_wzrd_clk_notifier(), it uses to_clk_wzrd(nb), which is
+hardcoded to expect the original nb field:
+
+#define to_clk_wzrd(_nb) container_of(_nb, struct clk_wzrd, nb)
+
+Since nb_axi is at a non-zero offset in struct clk_wzrd (unlike nb), won't=
+=20
+using the same callback for nb_axi result in a misaligned struct clk_wzrd=20
+pointer?=20
+
+It seems this would lead to out-of-bounds memory accesses and incorrectly=20
+skipped frequency bounds checks when the s_axi_aclk chain triggers a rate=20
+change.
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260709111403.1579=
+159-1-shubhrajyoti.datta@amd.com?part=3D8
 
