@@ -1,240 +1,182 @@
-Return-Path: <devicetree+bounces-323348-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-323360-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id NXBgECxHT2qpdQIAu9opvQ
-	(envelope-from <devicetree+bounces-323348-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 09:01:00 +0200
+	id EvmYFJlNT2rYdwIAu9opvQ
+	(envelope-from <devicetree+bounces-323360-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 09:28:25 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id BDC8572D6F6
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 09:00:59 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id AEE1772DB14
+	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 09:28:24 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=AUHqqvZF;
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-323348-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-323348-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=fail ("headers rsa verify failed") header.d=superkali.me header.s=default header.b=EPWmXbpP;
+	dmarc=fail reason="SPF not aligned (relaxed)" header.from=superkali.me (policy=reject);
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-323360-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-323360-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 2EC173081344
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2026 06:58:28 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 249163025C24
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2026 07:26:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4A493DBD76;
-	Thu,  9 Jul 2026 06:58:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90DF13C8C73;
+	Thu,  9 Jul 2026 07:26:53 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from fr5000-r.dnsiaas.com (fr5000-r.dnsiaas.com [92.42.104.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 356E73DDDAF
-	for <devicetree@vger.kernel.org>; Thu,  9 Jul 2026 06:58:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 580031B7910;
+	Thu,  9 Jul 2026 07:26:51 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783580282; cv=none; b=aBCUUGjY2BhDHqOfLB52MZIhLmbFOiaLEVdR5b9T1+ogSoH78z0zRoJDVDBhPnuUaVlhlTUmGv8TQ/Pu1DaNCDNSd6qN9ulshkl0mslxHCxmLFAV++0HSsFOdGDfmgGlETsZC8F5laKHC9XgmsZV3CsUI+wtwv047jGU/lFhvpU=
+	t=1783582013; cv=none; b=MF1F8jbaVm/1YmzVUuN5ORnCBKu2yA7Q4D8N+jkdWVqXk1wyA/l4KzqzcZq7PJNa6R0M/bnuVXazUEJHKTNXdKQ/F9KJ47t4SGn1DBXJT/lhED85X5XXgR0hVUhy4txfjiJ2h4MPjOLQ+eXT/8XUoBqRgi/8TbKyL4oKgblrWK8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783580282; c=relaxed/simple;
-	bh=F4jkBYDEmQhTJEhA4rY1z/0d2c02wkDCLW3QSDHLl04=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=uen57pLkzCBLIE8UTqhAX6/QNbPpLzwoExbVBL6evEfArBV2mbRcxzVOZP775hNceoa7jq1Qy9HIPiJaVF+RmE3+tOBQUdZ5J2c/TCEw9L9RrPn6Azc8qCYRJe1KyCuUN6cNNERXwyKabo9yEbpeLlkI3JQvzpD+28TMqo0vjWc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AUHqqvZF; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 68AC61F00A3A;
-	Thu,  9 Jul 2026 06:58:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783580280;
-	bh=cbaOBz46srE2heZPiINicbEw0+k5yBxXocBgZjx/iVQ=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=AUHqqvZFM142YTXejp4zRY/syaI7pZIsPqIszBVvLrv2o86RqZyIILk1s8DEG2Tn/
-	 Uq5EpBw1oe+b1MtR+GDZOsB7YpqIlvZj5gMzyfrLkzBE3UhYpHb74upD2M7F5TlY+5
-	 gqtpt5rWi5C3zy4xXxSciE0uNhd2iQ/Ng4Hf9ZAORHen54SbbPAHkMJeLXy4kNRlIP
-	 dhr9+ZsFr0soOayjzvKY38xPJemlqFZdntKkMFnKVxkR4f6N9rOvDSTl/eCh5Vj28z
-	 vE+T5z3KqDUzTZKIWNQW84HpIRYKZqa8qKIWji/w9OaMwlF/XaRWqnVjCedkkKkjlB
-	 MoLs0qq8BupfQ==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v10 2/2] i3c: master: Add driver for AMD AXI I3C master
- controller
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Shubham Patil" <shubhamsanjay.patil@amd.com>
-Cc: "Alexandre Belloni" <alexandre.belloni@bootlin.com>, Frank.Li@kernel.org, robh@kernel.org, devicetree@vger.kernel.org, conor+dt@kernel.org, linux-i3c@lists.infradead.org
-In-Reply-To: <20260709064233.1451482-3-shubhamsanjay.patil@amd.com>
-References: <20260709064233.1451482-1-shubhamsanjay.patil@amd.com>
- <20260709064233.1451482-3-shubhamsanjay.patil@amd.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Thu, 09 Jul 2026 06:57:59 +0000
-Message-Id: <20260709065800.68AC61F00A3A@smtp.kernel.org>
+	s=arc-20240116; t=1783582013; c=relaxed/simple;
+	bh=iFef+RMo4HD2L2iqYTWAnm1yAXxvyc5ptpgmGuUjzjc=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=M2f9ZTmtMjxjEdVRgmpDpJJvEplA8KyHScKNJa58qYMwisrWcuHbjAtEyCnTxDfoUPM2fFKIAcoMTkTuXxPshp0r5tqtjI2VVCKyipLBD3V0cVD/nj2CvdGqNtjZrjzHsZvZelawQ1a/QlxhhIdRVbQdgci3E1ylyzCWa1OB6tg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=superkali.me; spf=pass smtp.mailfrom=superkali.me; dkim=pass (2048-bit key) header.d=superkali.me header.i=@superkali.me header.b=EPWmXbpP; arc=none smtp.client-ip=92.42.104.18
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=superkali.me; s=default; h=Cc:To:Message-Id:Content-Transfer-Encoding:
+	Content-Type:MIME-Version:Subject:Date:From:Sender:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=8aF1jWcB6IB9KR+4XWsQOiLJ0TW7MXvqDka6LPg71dM=; b=EPWmXbpPXQfTrkeIfmqIdPvbxQ
+	wOW1LiG49jLz1d8Q5Ne7HjE3dsDF0OUhozjqMdKtMb/PZSfWxpruPh+31py9o0zgBXWiPNKNw53+p
+	rHIRqI5JDlWPZx4khUMn6KqjR72+8SdcSb+soUkVAxXKQLW8Rb1VFcmvUnm01O5Tf2u+OYMpWiF6m
+	QnXAd31jSLZI7UsDQ4hpUSsfHm+yvUuAlaLBCxcozca16FWoFmS3Qc7JCprmT9NBijoHqRjsIsHjk
+	MFS5D7+5rBzGVgJUt5rADZKbF08amGGl7AYPe4T/oSj7dQyb3r4QEDfmnZlRmDeE/kbp5fhpf9MLm
+	fz/U84Pg==;
+Received: from [81.57.40.39] (port=46604 helo=vscode.iliadbox.lan)
+	by fr5000-r.dnsiaas.com with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.99.4)
+	(envelope-from <hello@superkali.me>)
+	id 1whiiX-00000009Qd7-3dNf;
+	Thu, 09 Jul 2026 08:58:39 +0200
+From: Daniele Briguglio <hello@superkali.me>
+Date: Thu, 09 Jul 2026 08:58:38 +0200
+Subject: [PATCH] arm64: dts: rockchip: yy3588: fix HDMI-RX signal detect
+ GPIO
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20260709-yy3588-hdmirx-d5-fix-v1-1-900a6790386c@superkali.me>
+X-B4-Tracking: v=1; b=H4sIAJ1GT2oC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIzMDcwNL3cpKY1MLC92MlNzMogrdFFPdtMwKXUvDRAszQ3NzYxNTQyWg1oK
+ iVKAw2NjoWAi/uDQpKzW5BGSWUm0tAFopeB14AAAA
+X-Change-ID: 20260709-yy3588-hdmirx-d5-fix-91a861773451
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Daniele Briguglio <hello@superkali.me>
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1783580318; l=1813;
+ i=hello@superkali.me; h=from:subject:message-id;
+ bh=iFef+RMo4HD2L2iqYTWAnm1yAXxvyc5ptpgmGuUjzjc=;
+ b=UCQjMBPadCMciZrzLQcdA3pxynAHmzMfHADkyU2CwwQZycfvm/6rKPhrA3a/znGshyo3923GF
+ NMmlUAIPPXDAToHT1ML913ozQHQ9SwxAbKFzqlrIxXyMsnBRZ+esFEJ
+X-Developer-Key: i=hello@superkali.me; a=ed25519;
+ pk=5tynRWQdL93CDcapJ73FkcCRY2PeBOJOIAoIhRig53U=
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - fr5000-r.dnsiaas.com
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - superkali.me
+X-Get-Message-Sender-Via: fr5000-r.dnsiaas.com: authenticated_id: hello@superkali.me
+X-Authenticated-Sender: fr5000-r.dnsiaas.com: hello@superkali.me
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [3.04 / 15.00];
+	DMARC_POLICY_REJECT(2.00)[superkali.me : SPF not aligned (relaxed),reject];
 	SUSPICIOUS_RECIPS(1.50)[];
+	R_DKIM_REJECT(1.00)[superkali.me:s=default];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-323348-lists,devicetree=lfdr.de];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:shubhamsanjay.patil@amd.com,m:alexandre.belloni@bootlin.com,m:Frank.Li@kernel.org,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:linux-i3c@lists.infradead.org,m:conor@kernel.org,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[7];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_FROM(0.00)[bounces-323360-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:heiko@sntech.de,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-rockchip@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:hello@superkali.me,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	HAS_X_AS(0.00)[hello@superkali.me];
+	HAS_X_GMSV(0.00)[hello@superkali.me];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[hello@superkali.me,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	HAS_X_SOURCE(0.00)[];
+	HAS_X_ANTIABUSE(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_HAS_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[hello@superkali.me,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[superkali.me:-];
+	RCPT_COUNT_SEVEN(0.00)[9];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FROM_NO_DN(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,sashiko.dev:url,smtp.kernel.org:mid,vger.kernel.org:from_smtp,amd.com:email,lists.linux.dev:replyto]
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,vger.kernel.org:from_smtp,superkali.me:from_mime,superkali.me:email,superkali.me:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: BDC8572D6F6
+X-Rspamd-Queue-Id: AEE1772DB14
 
-Thank you for your contribution! Sashiko AI review found 3 potential issue(=
-s) to consider:
-- [Critical] Use-After-Free due to using devm_kzalloc for a structure embed=
-ding a registered device.
-- [High] Custom FIFO accessors incorrectly use host-endian memory access wi=
-th BE I/O functions, causing data corruption on Little-Endian architectures.
-- [Medium] Clock math rounding errors violate I3C/I2C timing requirements.
---
+The YY3588 declares the HDMI-RX signal detect on GPIO1_C6, but the
+receiver never sees an attached source there and cannot capture any
+input.
 
---- Patch [2]: [PATCH v10 2/2] i3c: master: Add driver for AMD AXI I3C mast=
-er controller ---
-commit 00474ccc3cfbb305b1555163333b3484dcd7f140
-Author: Manikanta Guntupalli <manikanta.guntupalli@amd.com>
+That value was copied from the vendor device tree and is wrong. The
+core-board schematics are not available and the SoM documentation does
+not clearly show where this signal is routed, so the correct pin was
+read from the device tree in the board's Android image: GPIO1_D5. With
+GPIO1_D5 the receiver detects a connected source and locks, and v4l2
+reports the input timing (1920x1080p60).
 
-i3c: master: Add driver for AMD AXI I3C master controller
+Fixes: 19847bde695f ("arm64: dts: rockchip: Add Youyeetoo YY3588")
+Signed-off-by: Daniele Briguglio <hello@superkali.me>
+---
+ arch/arm64/boot/dts/rockchip/rk3588-youyeetoo-yy3588.dts | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-This commit introduces a new driver for the AMD AXI I3C master controller.
-It supports Standard Data Rate (SDR) mode, Dynamic Address Assignment, priv=
-ate
-transfers, and CCC transfers in both broadcast and direct modes, as well as
-falling back to I2C mode.
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588-youyeetoo-yy3588.dts b/arch/arm64/boot/dts/rockchip/rk3588-youyeetoo-yy3588.dts
+index 658d87504841..e31d04b85edf 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3588-youyeetoo-yy3588.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3588-youyeetoo-yy3588.dts
+@@ -341,7 +341,7 @@ &hdmi_receiver_cma {
+ };
+ 
+ &hdmi_receiver {
+-	hpd-gpios = <&gpio1 RK_PC6 GPIO_ACTIVE_LOW>;
++	hpd-gpios = <&gpio1 RK_PD5 GPIO_ACTIVE_LOW>;
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&hdmim1_rx_cec &hdmim1_rx_hpdin &hdmim1_rx_scl &hdmim1_rx_sda &hdmirx_5v_det>;
+ 	status = "okay";
+@@ -605,7 +605,7 @@ &pcie3x4 {
+ &pinctrl {
+ 	hdmirx {
+ 		hdmirx_5v_det: hdmirx-5v-det {
+-			rockchip,pins = <1 RK_PC6 RK_FUNC_GPIO &pcfg_pull_none>;
++			rockchip,pins = <1 RK_PD5 RK_FUNC_GPIO &pcfg_pull_none>;
+ 		};
+ 	};
+ 
 
-> diff --git a/drivers/i3c/master/amd-i3c-master.c b/drivers/i3c/master/amd=
--i3c-master.c
-> new file mode 100644
-> index 0000000000000..ef5ad5abb788c
-> --- /dev/null
-> +++ b/drivers/i3c/master/amd-i3c-master.c
-> @@ -0,0 +1,1124 @@
-[ ... ]
-> +static inline void xi3c_readsl_be(const void __iomem *addr, void *buffer,
-> +				  unsigned int count)
-> +{
-> +	u32 *buf =3D buffer;
-> +
-> +	while (count--)
-> +		put_unaligned(ioread32be(addr), buf++);
-> +}
+---
+base-commit: f5ed1537219ae8bf55446232d331b114653a1475
+change-id: 20260709-yy3588-hdmirx-d5-fix-91a861773451
 
-[Severity: High]
-Can these custom stream accessors corrupt data on Little-Endian
-architectures?
+Best regards,
+--  
+Daniele Briguglio <hello@superkali.me>
 
-In xi3c_readsl_be(), ioread32be() returns a native 32-bit integer. When
-put_unaligned() writes this back to memory on a Little-Endian system, it
-writes it in Little-Endian order, effectively reversing the byte stream for
-every 4-byte chunk.
-
-[ ... ]
-> +static inline void xi3c_readl_fifo(const void __iomem *addr, void *buf,
-> +				   int nbytes)
-> +{
-> +	xi3c_readsl_be(addr, buf, nbytes / 4);
-> +	if (nbytes & 3) {
-> +		u32 tmp;
-> +
-> +		xi3c_readsl_be(addr, &tmp, 1);
-> +		memcpy((u8 *)buf + (nbytes & ~3), &tmp, nbytes & 3);
-> +	}
-> +}
-
-[Severity: High]
-Will this remainder copy logic discard the payload on Little-Endian systems?
-
-Because the remainder is read into a stack variable (tmp), the lowest memory
-address of this 32-bit integer receives the zero-padding on Little-Endian
-architectures. The memcpy() will then copy this zero-padding into the buffer
-instead of the actual payload bytes.
-
-[ ... ]
-> +static int xi3c_clk_cfg(struct xi3c_master *master, unsigned long sclhz,=
- u8 mode)
-> +{
-> +	unsigned long core_rate, core_periodns;
-> +	u32 tcasmin, tsustart, tsustop, thdstart;
-> +	u32 thigh, tlow, thold;
-> +	u32 odthigh, odtlow;
-> +
-> +	core_rate =3D clk_get_rate(master->pclk);
-> +	if (!core_rate)
-> +		return -EINVAL;
-> +
-> +	if (!sclhz)
-> +		return -EINVAL;
-> +
-> +	core_periodns =3D DIV_ROUND_UP(NSEC_PER_SEC, core_rate);
-> +
-> +	thigh =3D DIV_ROUND_UP(core_rate, sclhz) >> 1;
-> +	tlow =3D thigh;
-
-[Severity: Medium]
-Does this clock calculation risk violating minimum I3C/I2C timing
-requirements?
-
-The DIV_ROUND_UP for core_periodns overestimates the period. When calculati=
-ng
-tcasmin later by dividing XI3C_TCASMIN_NS by core_periodns, this
-overestimated period could result in fewer nanoseconds than required by the
-specification.
-
-Additionally, the right shift by 1 on the DIV_ROUND_UP of core_rate and scl=
-hz
-discards the remainder. If the quotient is odd, thigh and tlow will lose a
-cycle, resulting in an overall bus frequency that exceeds the requested scl=
-hz
-limit.
-
-[ ... ]
-> +static int xi3c_master_probe(struct platform_device *pdev)
-> +{
-> +	struct xi3c_master *master;
-> +	int ret;
-> +
-> +	master =3D devm_kzalloc(&pdev->dev, sizeof(*master), GFP_KERNEL);
-
-[Severity: Critical]
-Is it safe to use devm_kzalloc for the master structure here?
-
-The master structure embeds struct i3c_master_controller, which contains a
-struct device registered with the driver core. During driver unbind, the
-devres core will free this memory immediately after remove() returns.
-
-However, userspace or another subsystem might still hold a reference to the
-embedded device (for example, through an open sysfs file). If that happens,
-it could trigger a use-after-free when the final reference is eventually
-dropped.
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260709064233.1451=
-482-1-shubhamsanjay.patil@amd.com?part=3D2
 
