@@ -1,242 +1,276 @@
-Return-Path: <devicetree+bounces-323714-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-323716-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id k4UjBiWOT2pZjgIAu9opvQ
-	(envelope-from <devicetree+bounces-323714-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 14:03:49 +0200
+	id YRGMFKmOT2qHjgIAu9opvQ
+	(envelope-from <devicetree+bounces-323716-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 14:06:01 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74464730C90
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 14:03:48 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C788730CF1
+	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 14:06:00 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=Dk0OYiTT;
-	dkim=pass header.d=oss.qualcomm.com header.s=google header.b=LbH6dWt9;
-	dmarc=pass (policy=reject) header.from=qualcomm.com;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-323714-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-323714-lists+devicetree=lfdr.de@vger.kernel.org";
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
+	dkim=none;
+	dmarc=none;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-323716-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-323716-lists+devicetree=lfdr.de@vger.kernel.org";
+	arc=reject ("cv is fail on i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id DB9633059329
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2026 12:01:33 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 4523C3043FBE
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2026 12:02:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF447421A0A;
-	Thu,  9 Jul 2026 12:01:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26E36423A6A;
+	Thu,  9 Jul 2026 12:01:38 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from SEYPR02CU001.outbound.protection.outlook.com (mail-koreacentralazon11023080.outbound.protection.outlook.com [40.107.44.80])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FA37421885
-	for <devicetree@vger.kernel.org>; Thu,  9 Jul 2026 12:01:25 +0000 (UTC)
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783598486; cv=none; b=PF3daxOAre1/GZbwGjZQDaYefbz8CXdvlihVHc23gGdujvz+jAUxQoh65GHesV18dP7PhtFmIhs9BLF1uvVLRBy37ia0Yhbm8LQuLG0K1peoOQAWlSlSvHobXrSxG+Vyxx03uQLOuUc7feeFdRQ7uJtrkGb8kwRJWLs3Dy3wLns=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783598486; c=relaxed/simple;
-	bh=dSRokIMG5FGCZ4G+yYBu/oIlzG/8dd+9MeEg+3C5DBQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jVAPsYLS6GT25mvMmtBsaElAAPq/turjrYEBPsbt74pfWr+zqhZAfzRaqJw/Suzo0q0wMjsPjzDNY0rVNETyQBxlOw9PRGoeZhs/w7fDv0On+YXRdohJ3quTWYBqwwhVeCe+75WndUOTqUa+zE01pe21m8atWny97vwF56+FN64=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Dk0OYiTT; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=LbH6dWt9; arc=none smtp.client-ip=205.220.168.131
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 669BNBlZ1715982
-	for <devicetree@vger.kernel.org>; Thu, 9 Jul 2026 12:01:24 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=lSRAHUem76Xncoxq5BufxBYy
-	3+SviaRcXkZ1QjWiysc=; b=Dk0OYiTTBBpY3gWGfrqEtNt4Xc3PNPcfwugHEUjy
-	klD/ypb045J/c1uZs9YUjlVDNfGidVnOs0OQ8oRmRlXcijHfopZ1qSfOyaff2/VM
-	WbnrnX+DRZnBb6NdGJxZr4bZ2E/TwKbe5Ma0Od6mCpILXnwEKpa60rarUBEfn9rw
-	YGtKrGxujBfFVXLxbSkZtxj1OU45GQv7wrXNUNFexxBC9Dgt7gK7uCbse3W3F0vx
-	qzJdRfQi7kIkHK72+CRp56wYgYhxvNfzD9AzyR245mZKEigjLplcGpWp+bOJE5D+
-	SkpBw9LOtY/mNQu5JrR63Ey2WIApy2oo46+BO0EuRYVwzw==
-Received: from mail-pj1-f70.google.com (mail-pj1-f70.google.com [209.85.216.70])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4f9v4vup1j-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 09 Jul 2026 12:01:24 +0000 (GMT)
-Received: by mail-pj1-f70.google.com with SMTP id 98e67ed59e1d1-3855a987c0aso2314353a91.3
-        for <devicetree@vger.kernel.org>; Thu, 09 Jul 2026 05:01:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1783598484; x=1784203284; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:content-type:mime-version
-         :references:message-id:subject:cc:to:from:date:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=lSRAHUem76Xncoxq5BufxBYy3+SviaRcXkZ1QjWiysc=;
-        b=LbH6dWt9+wlR3Acrk02BfqbHdM4yM6OBSZV1AzNPMFjcVKPDxpPwU2BSu1hozsjd0X
-         VVGEmuy0RA4sFk2Bccie/+Oe1nOyBbHKZC0s9WreDa3/CCNTArnPSLRlZ3ESUxylAj5i
-         WEIV0rA+hmHSALvdypNHts5XmcKsLlRvx63LN7vEHn6Ahq9627Q5HezVRWgfVoa6oKVR
-         9WyIp87tgDR+Ydr7kIM2m/HvxgOo3+ZmtKDbFyX4k1Ug6hU+BEkpNQRcurD+RERj/zIr
-         2QntrZElHAtWE2VcY+b1Gajd9SKMUC/YRTA8M4kN3CHODGvDG6QDvxNNoGvTJS2Kof/a
-         OVMw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783598484; x=1784203284;
-        h=in-reply-to:content-disposition:content-type:mime-version
-         :references:message-id:subject:cc:to:from:date:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=lSRAHUem76Xncoxq5BufxBYy3+SviaRcXkZ1QjWiysc=;
-        b=RD3E4uAAv9osaUwndG0Z7/uV1wkOrysA44QWqp25FgEk9PpTA4orv4mQV1ZyiNXWOP
-         9GAM40uTLHPk1c+wsL5rUsOl0Fai16Saud4hNPQuFy40UWWvNeASoOtcMdvgu0WIFmEx
-         UmJcLF5UWbebjw4CLw10WU9Ptcf6CQmyQ6CONkVSF4R7dDS1GyPmwzQuC5ipaJEWmhEK
-         DOvWx3vpY6rO88IAIFWhYklFgnGT4xKAWAeh1KTkxaa1V7ur9pR1KCIbI8GDaAwo8PIQ
-         5xD0IqrxOlYahqudnFOOkVKMOtThJdkEwAGiP6qUgBw3uZWSluHPHdb6NEekwas3DVEs
-         +l0A==
-X-Forwarded-Encrypted: i=1; AHgh+RqFwblMI0Za43BODym5qCxPPJqkPvO4j1QaowTmH6OVXG9MgMLc7uDXO5jnrwjWfqh6OaYk1loxqU1K@vger.kernel.org
-X-Gm-Message-State: AOJu0YxeUn2jAb+uz+AQy2ZpXl3kMcUBr18O2jpR+s3bOz4ac5yc5GWP
-	WoMJXUSEL8C1+dRFamBD4gTf5PowYntHO8AfmekRrz0/HaeQIEBOrbk/BmkBq707gxL7jjRpNEv
-	XlxNuNYFj6u8VvfiAMlQ0VE52uUseCwCov37VNQz9oN81CWdwVb/kjhtnFVIncMRL
-X-Gm-Gg: AfdE7cmki2qYG7g39G5ZvvO+HMTNGeAIuaCKiCzYCnHPcFosFsfJmxgdksWdkWTbbzk
-	dF1BIwX/NwnX/+aovWyivZml3Gr5yRexmI0YseSaS5UvtLFNfm5g2VWiM0XDC3UgX2q90uup1Nk
-	/HiPvs3OxYSHZ3+/2GVUihiAt7n7GR+xzQkCf5hFkZijxKJd/vaT73jSjEboTD5+GhDBsqRKczG
-	vN8gNz9rGNQJChYBVDNHUOfXdRNpAHM1HWrLEW7c52FXf9SjHWE3/I1FFSTNDo48l+EG+hB0nuQ
-	3kmR2TffzF2xz2Nc6pq4WWJ5KgVLotCV/clIN5UuiMPDt6zkx47SvXPourl0sj5b2BIoBQU7NCj
-	OvrX4TBv1Jx0/GFNUUfIvCOLIZfvAz+qZFy+eb2wyRrTzTOB0YJOltd0evmPT
-X-Received: by 2002:a17:90b:4cce:b0:37f:9ce0:af32 with SMTP id 98e67ed59e1d1-389421ac479mr7391612a91.29.1783598483676;
-        Thu, 09 Jul 2026 05:01:23 -0700 (PDT)
-X-Received: by 2002:a17:90b:4cce:b0:37f:9ce0:af32 with SMTP id 98e67ed59e1d1-389421ac479mr7391549a91.29.1783598483101;
-        Thu, 09 Jul 2026 05:01:23 -0700 (PDT)
-Received: from hu-anancv-lv.qualcomm.com (Global_NAT1.qualcomm.com. [129.46.96.20])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-31174a583bcsm34921181eec.19.2026.07.09.05.01.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Jul 2026 05:01:22 -0700 (PDT)
-Date: Thu, 9 Jul 2026 05:01:20 -0700
-From: Ananthu C V <ananthu.cv@oss.qualcomm.com>
-To: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-remoteproc@vger.kernel.org
-Subject: Re: [PATCH v5 2/3] arm64: dts: qcom: fix SoCCP memory mappings for
- Glymur
-Message-ID: <ak-NkIoAuiZ_8q9u@hu-anancv-lv.qualcomm.com>
-References: <20260707-glymur-soccp-v5-0-053993f0c6fe@oss.qualcomm.com>
- <20260707-glymur-soccp-v5-2-053993f0c6fe@oss.qualcomm.com>
- <20260709071407.hd2etfpud5dq44yd@hu-mojha-hyd.qualcomm.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 534F3421898;
+	Thu,  9 Jul 2026 12:01:35 +0000 (UTC)
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1783598498; cv=fail; b=TE/f0pIgTW15QoZlEs0ZyiV/L5JFuh3Ig1TrPhcGUs34J6IDGrVyP75Ep3eDkeKxPGvHu0DM1RKx1n0R/HiDxU85X0mTtrUIIJLjhph5gfX3ivP5y+PmNAT8U4c7JxdNh3PwOL7jmcxM8nQdks3zMwPnVUXiWqlfy//Szj9N+Ck=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1783598498; c=relaxed/simple;
+	bh=OMFQt8krwgyaEHyL3lJBRLM+OzSFXW9huHydQEmdd0k=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=JHV8iN9J0Q6B8Wr3vf6Pg/lo4AvaoFF6l9VTHS/ZuEjvp0y46r11httQTxLW9Zu0Tf7VqWdwTHoNAvrxdTijJNwZfwFf5F/Euc5ATcwpmBCyRfq3NPwCNbr3sAjqsv6p785dnIfXRpIV8FUrZ5DUsxyyhBZ5Ayu9YZz86J6ce7E=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; arc=fail smtp.client-ip=40.107.44.80
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=M6C90qjMaPv0YfXID8NFnO/yXntknpbS6eYTGwFuHT8r6UEnN+GQCxRt1+jXZtdcXnIfyvvLx2pUXFAPGZfCAzxviBHZzK8PB6gxq93SjNsblq4/Xz55mRCItAQysy4DpfI4pdm7SfINns/C2UYGDUmIjkhCYEImh2YJonA1dFPgNieO6P1jQf09uH1SEOxbZOl+VwE5EZPQYiStDI5V6Qb71h7dBOHoZuTW+06M82+yQpmwLSua0cP8AcbSmSdxl5BEgOx20XuOV+NIDWXxyyEmY8bYrfcTaRq1bwLpPFZmfki8oDGi0S6w+x2llLe1wmGcyo7SHSfwnwjO5OhHJQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=F424nrgsh0asWYfbRO7MY9PITUgXXZMIoEaGoaElsRw=;
+ b=rHavlSICuZyJIaEIs6KzawWFHD/VowuT5CgdYcMbEnpGmdTzFmhe2TXzL4+msfAq00l+MQ87FoViEAR0MYlZUIMgfOCi/1tVCjv00hH4GzAvvSQhUVRN7JoI0/qiCkmSON4Mkq1WRk8gwHmyf6Xk56Ut+m4onqiJj4bdVGRaOlDtF5Fo75HSy5LdPPMm+l1xY0dpMasM+gAik2IXE10ME9T6tGpqG+CLXUbXVfg2GX/5thpARgueNAy66esfLVn5+j0P/xRKtJF6BMY18NU+Nd2fXBNr2Kr3IrZfXxrxqo7AXF9/wpX8pL5PVzMuL7z4gd1XMBfzRMSctxd5BvTv1g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 222.71.101.198) smtp.rcpttodomain=baylibre.com smtp.mailfrom=cixtech.com;
+ dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
+ not signed); arc=none (0)
+Received: from SI2PR01CA0042.apcprd01.prod.exchangelabs.com
+ (2603:1096:4:193::23) by JH0PR06MB7106.apcprd06.prod.outlook.com
+ (2603:1096:990:9c::9) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.15; Thu, 9 Jul
+ 2026 12:01:31 +0000
+Received: from OSA0EPF000000C9.apcprd02.prod.outlook.com
+ (2603:1096:4:193:cafe::49) by SI2PR01CA0042.outlook.office365.com
+ (2603:1096:4:193::23) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.202.11 via Frontend Transport; Thu, 9
+ Jul 2026 12:01:30 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 222.71.101.198)
+ smtp.mailfrom=cixtech.com; dkim=none (message not signed)
+ header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
+Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
+ 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
+Received: from smtprelay.cixcomputing.com (222.71.101.198) by
+ OSA0EPF000000C9.mail.protection.outlook.com (10.167.240.55) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.181.6 via Frontend Transport; Thu, 9 Jul 2026 12:01:30 +0000
+Received: from cix (unknown [172.18.64.61])
+	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id D9A494351F32;
+	Thu,  9 Jul 2026 20:01:28 +0800 (CST)
+From: joakim.zhang@cixtech.com
+To: mturquette@baylibre.com,
+	sboyd@kernel.org,
+	bmasney@redhat.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	p.zabel@pengutronix.de
+Cc: cix-kernel-upstream@cixtech.com,
+	linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	Joakim Zhang <joakim.zhang@cixtech.com>
+Subject: [PATCH v9 0/4] Add Cix Sky1 AUDSS clock and reset support
+Date: Thu,  9 Jul 2026 20:01:21 +0800
+Message-ID: <20260709120125.3997078-1-joakim.zhang@cixtech.com>
+X-Mailer: git-send-email 2.50.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260709071407.hd2etfpud5dq44yd@hu-mojha-hyd.qualcomm.com>
-X-Proofpoint-GUID: vztWt0f5-VnVF2uzseQyBVElskbyLS_f
-X-Proofpoint-ORIG-GUID: vztWt0f5-VnVF2uzseQyBVElskbyLS_f
-X-Authority-Analysis: v=2.4 cv=GIg41ONK c=1 sm=1 tr=0 ts=6a4f8d94 cx=c_pps
- a=0uOsjrqzRL749jD1oC5vDA==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=kj9zAlcOel0A:10 a=RAioF0-LDSMA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=Um2Pa8k9VHT-vaBCBUpS:22
- a=EUspDBNiAAAA:8 a=9Iu-izY7Zm1IiM7mkRwA:9 a=CjuIK1q_8ugA:10
- a=mQ_c8vxmzFEMiUWkPHU9:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNzA5MDExNSBTYWx0ZWRfX2IdtP5Prn8tN
- nVvfxPifB5YU5jUmuOOtKx/kR5sTyvcdf98gw1o0oY1eMyYl9fT/p6/c+7OjjDlJ/2FUgA3gPZH
- l9wIpP7qHOq9OnILYaezpKBT5zdf1QnmM14HHZ+25e92cHNNLPOgkCZLXU9xvxf7DGs40TBEvmI
- RJgVh+XJ4ZHWOFui4ZaLchSGyLcxhVyh6ooR2ZPCQMQJedrQQAN4MvxwnXM3q2yjSN6L8eIr5D5
- WKA6wTu2dZp1o90K1mOFRa3hGice8zQHFWyU4W5NMpcCyaDSJCYHzDtZ4c5cIS0XxZedNvDU8rK
- 3hjVN87R4Xe1jmxEx7qCfz3mtIT8sP2okn6idFqEkQtQ9VIzr+dIjp10feHtWKhhu+8OlkbXjcK
- lgAAD/55zHL+AR4f+xqti3MhR9/KSAwvoCGHlkRR/xtc6gsubykXV3I5f3b5UrkUT5jPo/JzghZ
- unIQYDxwJDKBkzWG1nQ==
-X-Proofpoint-Spam-Info: AW1haW4tMjYwNzA5MDExNSBTYWx0ZWRfXyzY0a0ZNZbuY
- vfYr6m353cNX/8xgiIMr74T2XtDWkc8F3fdAQCuca7WSJRZIOpLvZW449hvhkzsbwbIXT+GnA9g
- 1l7KUY5Aq2dqTJzmtHh03nE/xHKnX8Q=
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.134,FMLib:17.12.100.49
- definitions=2026-07-09_02,2026-07-09_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 clxscore=1015 suspectscore=0 adultscore=0 priorityscore=1501
- spamscore=0 malwarescore=0 bulkscore=0 impostorscore=0 lowpriorityscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2606150000 definitions=main-2607090115
+Content-Transfer-Encoding: 8bit
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: OSA0EPF000000C9:EE_|JH0PR06MB7106:EE_
+Content-Type: text/plain
+X-MS-Office365-Filtering-Correlation-Id: 79ca0054-8ee1-40f7-40ea-08deddb1d008
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|36860700016|7416014|376014|1800799024|23010399003|82310400026|18002099003|3023799007|56012099006;
+X-Microsoft-Antispam-Message-Info:
+	HpD7sJLPkQjYKqLtWqn4wbysYceN2E+xBuNCR+OXZAP9SH3pv8ifNcihSFeQvlKAqp7JC8+g9W//K8N+eCgmcsPoH/eBh2z5AndMuTc1ABFHnmRWdbBlZpBggpW66gGJww4xN2dQ9x1Vs/8rTQycYLr7aphW2fhXoWHokIwA8fG6B1pwuCvNRtlyJ82eOtTSm0qKgVUswYDV95V5gegsx8zXJyVtd30OHqtuHvJ/ME3SopvRBcYUu7/y2dkVStPIdYVQRto8R+wxZggHNSSw79Guddo95tpkW36z9Rz2FqnluebEkcdfTZVjaC2rYlSmT2ANlNgik8M6qFV/UJbUwvaXst/kTv9LLJcwXQfAabXLEFzZjZgHueoF/NLw1EehtRxBu2oVPgRO6NSAqqGPk79Nx5FluQEmskVYryH6sWIpysJEBj57cxkCFWkjF+719vwuVyNQA64DIwL8MBBUFBGLnDR0ROoAUh/Q2mgnBM5DAIQbGHEBV1HMCsmbLmlEwkGFPfuPcAojWmpewvZ/6gzLigBCQijC47WQwixnDWZIgvX4rXCihsxRr55QJ/Vm9EM3VYia94pVkM+3czKERjMOMGBpCQnMiW4NvNQoB0KJ4/cy1J49YTLSSNrZpL9bqcQtfjAIFpTQWtemfBZJT3Rw2O5LPrlqbBGWfNKPxaWsMWGEp7qaLOM+tlVqrY++0T7Ml/SukWC224at+LqC9A==
+X-Forefront-Antispam-Report:
+	CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700016)(7416014)(376014)(1800799024)(23010399003)(82310400026)(18002099003)(3023799007)(56012099006);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	Rlld1WtyzDAa0Pk8sV1WGmWVQrmT81yKtyxOQ8hQD7oxuRmVPu+gioBSo+JWav74jXx/nXT9n61aDONAxZRJA496DcVfNYS+LWV1zaqWb1EtAIce8Ngtv1f2OF359yuUYIiXBYpXUVf244kY0aF6CQPgq7uoKMBzBJffJ8TED4blKHDTYP2qh8NZp29XGRwmGDp/PvrXQrugNjTOywSWKPqTH+MwJVYK7rY4vGLK0NCIbcwUiDzMUZg0PtiDLdrD/BRqbdQho16P1CdB0hHHZuGu5dcUmUZ17LNsXFxgE2OphB6VW6YYtRnxKYgSSTSTKBXd2o8KS5LUawgRFijWPUS8iYUgPklImCV9w1qgR8rMcdLcPn3vH7w3TVK80nDWOi4mOxZ71GdTUbTpMYvkJQy0/wu7ORl8vfBxhZ6empUNrwhJ6HFKBq1o+vrLcfZP
+X-OriginatorOrg: cixtech.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jul 2026 12:01:30.0322
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 79ca0054-8ee1-40f7-40ea-08deddb1d008
+X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	OSA0EPF000000C9.apcprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: JH0PR06MB7106
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [3.54 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-323716-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-323714-lists,devicetree=lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,vger.kernel.org:from_smtp,qualcomm.com:email,qualcomm.com:dkim,oss.qualcomm.com:from_mime,oss.qualcomm.com:dkim,hu-anancv-lv.qualcomm.com:mid];
-	FORGED_RECIPIENTS(0.00)[m:mukesh.ojha@oss.qualcomm.com,m:andersson@kernel.org,m:konradybcio@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:mathieu.poirier@linaro.org,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-remoteproc@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[ananthu.cv@oss.qualcomm.com,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	MISSING_XM_UA(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ananthu.cv@oss.qualcomm.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
+	DMARC_NA(0.00)[cixtech.com];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[joakim.zhang@cixtech.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS(0.00)[m:mturquette@baylibre.com,m:sboyd@kernel.org,m:bmasney@redhat.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:p.zabel@pengutronix.de,m:cix-kernel-upstream@cixtech.com,m:linux-clk@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:joakim.zhang@cixtech.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,cixtech.com:from_mime,cixtech.com:email,cixtech.com:mid,vger.kernel.org:from_smtp,qualcomm.com:email];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[joakim.zhang@cixtech.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NO_DN(0.00)[];
+	R_DKIM_NA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 74464730C90
+X-Rspamd-Queue-Id: 6C788730CF1
 
-Hi Mukesh,
+From: Joakim Zhang <joakim.zhang@cixtech.com>
 
-On Thu, Jul 09, 2026 at 12:44:07PM +0530, Mukesh Ojha wrote:
-> On Tue, Jul 07, 2026 at 03:12:45AM -0700, Ananthu C V wrote:
-> > The currently listed SoCCP and SoCCP DTB reserved memory regions
-> > don't align with the memory requested by the SoCCP Firmware. Fix
-> > this by updating the SoCCP/SoCCP DTB memory regions to reflect the
-> > memory region requirements of the SoCCP firmware, as described in
-> > the Glymur v21 memory map release.
-> > 
-> > Signed-off-by: Ananthu C V <ananthu.cv@oss.qualcomm.com>
-> 
-> 
-> It should have fixes tag ?
+The Cix Sky1 Audio Subsystem (AUDSS) groups audio-related blocks such as
+HDA, I2S, DSP, DMA, mailboxes, watchdog and timer behind one Clock and
+Reset Unit (CRU). The CRU is a single MMIO register block that provides
+clock muxing, gating and block-level software reset lines for those
+peripherals.
 
-I did consider this, but since neither reserved regions had uesrs, I
-thought this might not be applicable.
+Clock and reset support are submitted in one series because they belong
+to the same hardware block and share one devicetree node
+(cix,sky1-audss-cru). The binding, clock indices and reset indices are
+defined together; the clock driver maps the CRU and instantiates the
+reset controller as an auxiliary driver on that node. Splitting clk and
+reset across separate series would leave neither side self-contained: the
+DTS node needs both providers, and the reset driver has no standalone
+probe path without the clock driver.
 
-> > ---
-> >  arch/arm64/boot/dts/qcom/glymur.dtsi | 8 ++++----
-> >  1 file changed, 4 insertions(+), 4 deletions(-)
-> > 
-> > diff --git a/arch/arm64/boot/dts/qcom/glymur.dtsi b/arch/arm64/boot/dts/qcom/glymur.dtsi
-> > index 20b49af7298e..9ec7c256b80a 100644
-> > --- a/arch/arm64/boot/dts/qcom/glymur.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/glymur.dtsi
-> > @@ -602,13 +602,13 @@ spss_region_mem: spss@88a00000 {
-> >  			no-map;
-> >  		};
-> >  
-> > -		soccpdtb_mem: soccpdtb@892e0000 {
-> > -			reg = <0x0 0x892e0000 0x0 0x20000>;
-> > +		soccp_mem: soccp@88e00000 {
-> > +			reg = <0x0 0x88e00000 0x0 0x400000>;
-> >  			no-map;
-> >  		};
-> >  
-> > -		soccp_mem: soccp@89300000 {
-> > -			reg = <0x0 0x89300000 0x0 0x400000>;
-> > +		soccpdtb_mem: soccpdtb@89200000 {
-> > +			reg = <0x0 0x89200000 0x0 0x20000>;
-> >  			no-map;
-> >  		};
-> >  
-> > 
-> > -- 
-> > 2.43.0
-> > 
-> 
-> -- 
-> -Mukesh Ojha
+---
+ChangeLogs:
+v8->v9:
+  * Reverse Christmas tree order 
+  * use devm_clk_hw_register_composite_pdata() 
+  * assert reset if clks enabled failed
+  * add pm_ptr
 
-Best,
-Ananthu
+v7->v8:
+  * reset Kconfig: drop select REGMAP_MMIO
+
+v6->v7:
+  * reset driver:
+    * propagate regmap errors in assert/deassert ops
+    * drop .reset and .status ops (no consumer uses them)
+    * remove regmap fallback path; use parent regmap only
+    * use dev->of_node for rcdev.of_node
+    * drop of_reset_n_cells and dev_set_drvdata()
+  * dt-binding:
+    * Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+
+v5->v6:
+  * rename dt-bindings headers to cix,sky1-audss-cru.h to match compatible
+  * drop status = "okay" from audss_cru node in sky1.dtsi
+
+v4->v5:
+  * refactor the driver, using platform_driver for clk and auxiliary_driver
+    for reset.
+
+v3->v4:
+  * move both power domain and resets into parset node (audss_cru)
+  * remove "simple-mfd", and change to populate the child node
+  * cix,sky1-audss.h -> cix,sky1-audss-clock.h
+
+v2->v3:
+  * clk part:
+    * devm_reset_control_get()->devm_reset_control_get_exclusive()
+    * assert noc reset from suspend
+    * clock parents changes from 6 to 4, and rename the clock names,
+      explain more about this: confirm with our designer, In fact,
+      there are 6 clock sources going into the audio subsystem. audio_clk1
+      and audio_clk3 are redundant in design and are not actually needed
+      in practice, so they are not shown here.
+    * refine clocks and clock-names property
+    * add detailed description of clocks
+    * drop parent node from clk binding
+    * drop define AUDSS_MAX_CLKS
+  * reset part:
+    * rename reset signal macro, remove _N
+    * drop SKY1_AUDSS_SW_RESET_NUM
+    * switching to compatible-style of defining subnodes in parent schema
+
+v1->v2:
+  * remove audss_rst device node since it doesn't has resource, and
+    move to reset-sky1.c driver.
+  * remove hda related which would be sent after this patch set accepted
+  * soc componnet is okay by default from dtsi
+  * fix for audss clk driver:
+    * remove "comment "Clock options for Cixtech audss:""
+    * add select MFD_SYSCON
+    * move lock and clk_data into struct sky1_audss_clks_priv
+    * const char *name -> const char * const * name
+    * remove CLK_GET_RATE_NOCACHE
+    * divicer -> divider
+    * Reverse Christmas tree order
+    * return reg ? 1 : 0; -> return !!reg;
+    * return ERR_CAST(hw); -> return hw;
+    * of_device_get_match_data(dev) -> device_get_match_data()
+    * add lock from runtime_suspend/resume
+  * loop to more mailing lists
+
+Joakim Zhang (4):
+  dt-bindings: soc: cix: add sky1 audss cru controller
+  clk: cix: add sky1 audss clock controller
+  reset: cix: add sky1 audss auxiliary reset driver
+  arm64: dts: cix: sky1: add audss cru
+
+ .../bindings/soc/cix/cix,sky1-audss-cru.yaml  |   92 ++
+ arch/arm64/boot/dts/cix/sky1.dtsi             |   18 +
+ drivers/clk/Kconfig                           |    1 +
+ drivers/clk/Makefile                          |    1 +
+ drivers/clk/cix/Kconfig                       |   16 +
+ drivers/clk/cix/Makefile                      |    3 +
+ drivers/clk/cix/clk-sky1-audss.c              | 1205 +++++++++++++++++
+ drivers/reset/Kconfig                         |   13 +
+ drivers/reset/Makefile                        |    1 +
+ drivers/reset/reset-sky1-audss.c              |  137 ++
+ .../dt-bindings/clock/cix,sky1-audss-cru.h    |   60 +
+ .../dt-bindings/reset/cix,sky1-audss-cru.h    |   25 +
+ 12 files changed, 1572 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/soc/cix/cix,sky1-audss-cru.yaml
+ create mode 100644 drivers/clk/cix/Kconfig
+ create mode 100644 drivers/clk/cix/Makefile
+ create mode 100644 drivers/clk/cix/clk-sky1-audss.c
+ create mode 100644 drivers/reset/reset-sky1-audss.c
+ create mode 100644 include/dt-bindings/clock/cix,sky1-audss-cru.h
+ create mode 100644 include/dt-bindings/reset/cix,sky1-audss-cru.h
+
+-- 
+2.50.1
+
 
