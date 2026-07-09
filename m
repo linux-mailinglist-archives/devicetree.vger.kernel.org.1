@@ -1,164 +1,152 @@
-Return-Path: <devicetree+bounces-323436-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-323439-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id qIppLUdbT2pefAIAu9opvQ
-	(envelope-from <devicetree+bounces-323436-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 10:26:47 +0200
+	id siFZJ2RbT2pwfAIAu9opvQ
+	(envelope-from <devicetree+bounces-323439-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 10:27:16 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26E6472E40C
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 10:26:47 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 370AC72E42D
+	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 10:27:16 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=bTjTHykT;
+	dkim=pass header.d=kernel.org header.s=k20201202 header.b=mmmhD2Zq;
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-323436-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-323436-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-323439-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-323439-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id A2B3A307EA60
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2026 08:24:59 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 897CB3031105
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2026 08:26:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 379313BB9EB;
-	Thu,  9 Jul 2026 08:24:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2484F3ED10D;
+	Thu,  9 Jul 2026 08:26:53 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0ED1C25B663
-	for <devicetree@vger.kernel.org>; Thu,  9 Jul 2026 08:24:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E85713E6DE0;
+	Thu,  9 Jul 2026 08:26:52 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783585499; cv=none; b=PJGSANHY26orflAue0n86wurdvEoNOybU/pqLGQdjcSv96ApVMr2Z9KDJrRLeuAAMvpMRI3JHR+Z9BnFckjEkUNVplJupl6ldFXMA285Gzb+OenLCvApGNTgvUv3r+LHGcQNcilwM9lyWzXFuulBNyikjQRgGf4aMj6f1JKvAk4=
+	t=1783585613; cv=none; b=AtZW+CF5hU78uiS/rEUeB4cwzmTyzOV7hEAjpAI3xrf0pLZQqWAkx4PwPlyjs7IMG/IQuXoRd0lXTpGFS2MHaQgRz1RRUA0oNHcdn+HUya6Rvmlhgmqajmx5adjM6dOxoeCR67I1/PYrv+VCm3yWrXIIuinv9g7HbQ0+DonDzwk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783585499; c=relaxed/simple;
-	bh=KU9q9OqgQwD9QY92KR5eo1OBRO5IEnzQQvCxZyPs+bs=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=hVE7vj/wGAVuDBnCltnIcmptc8oh5rYE2leaJspOOQlh0IchgJ1ycvfvTrEofBqRDz8AAMSWWI7hlDzrFxB3EbPMvaJ4LmRYr20YGNyCrWMJjObOikv25FesOrhFCRZYh+q+TO2S75T6LxqXoAJpoq2JLEAixXA8RRNBKvylLbU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bTjTHykT; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 66EFD1F000E9;
-	Thu,  9 Jul 2026 08:24:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783585497;
-	bh=jFi6Dn7F1t4N6uCKWimkSPfG4Ex7cB8L3VhcVdbzOT4=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=bTjTHykTSfhH0ankdpdZl/sfb9sY4QT301/pYd7+YSHsG0+09ztP0baphceAkPNRC
-	 L/v+ENXKlwpKK4ndZof+dp34Gnm9o5AfsV+Eo2TdVVEYjAsn6kdlN+eLk4AfgjTm/4
-	 2VEVdfe2qnO99i9bV5MZbGnfRXkltByIWpOEh6nWpQLlS//3GgZX0HxiqHM6Kl2Wg0
-	 P7sVWl5sLIqmwv3oQBjDsHcRzGnB5URRmKFbC6GCoyOo6oU9E5/XIuDKI+z7jv1N81
-	 z4ZznJEUvl9uI8CSmw101XyTbUIcll/T7zx5zdQDDEt9Np5/1szG/r+2vyuCVgjY2F
-	 ftBiAvsJG3dVg==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v11 1/3] dt-bindings: pwm: dwc: Document optional resets
- property
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Xuyang Dong" <dongxuyang@eswincomputing.com>
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, robh@kernel.org
-In-Reply-To: <20260709081419.2077-1-dongxuyang@eswincomputing.com>
-References: <20260709081337.2022-1-dongxuyang@eswincomputing.com>
- <20260709081419.2077-1-dongxuyang@eswincomputing.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Thu, 09 Jul 2026 08:24:56 +0000
-Message-Id: <20260709082457.66EFD1F000E9@smtp.kernel.org>
+	s=arc-20240116; t=1783585613; c=relaxed/simple;
+	bh=H3w0l7hrjjW6pdWG0bib0lwIpaQgQQxF1dBATULlBpk=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=FT7qBM6sGVhoOllqpdZjtI2eqLhu2uHgLw8gjSUFsfa5/B0KkY7JsQWz4nt4WkZtKVS6iD/3ByCpQStf2rnFpO8JtOAVixIEXYCiA8xi1MjHBX0MMEw68Mbdd5FUYu19E+CI0UHhBDKKB+TFnZx0gRjY6nj9C87qK2jMiwMN1ww=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mmmhD2Zq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 8CC88C2BCC7;
+	Thu,  9 Jul 2026 08:26:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1783585612;
+	bh=H3w0l7hrjjW6pdWG0bib0lwIpaQgQQxF1dBATULlBpk=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=mmmhD2ZqmLsQssTB6R9fn+yETQFaJ4/weHKnnXgWXewI6nAF7nvGgKSL/ko3rh0EU
+	 EmVlPAPpnPnxt8TA7ltnWMsI6FiNI9h/MKL4FpmqDPheIBMi8gDaZvhRYRhKcpMmkK
+	 Dz0wki97eGPxp9FuaVdoCploB/+qCPJAQm3kMJF2XVNxyxkETI3aDwAF2Gm6sYz2/7
+	 Tnn39xAKAWFzciZEd4wWxSExiISVoCFIndKsCzGlUENB/tQQM1BJne7B4tbTNAXdAB
+	 hEZrru9qPOUDzILMrPpy3PV72cLAKMSc9P/pFP0dNvjF41dxMQ01iY1913mwNZG0kD
+	 3Mi4MLqAUAz/A==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 69E98C44503;
+	Thu,  9 Jul 2026 08:26:52 +0000 (UTC)
+From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
+Subject: [PATCH 0/3] reset: support reset for Amlogic A9 SoC
+Date: Thu, 09 Jul 2026 08:26:47 +0000
+Message-Id: <20260709-a9-reset-v1-0-fd7cf039b853@amlogic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAEdbT2oC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIzMDcwMz3URL3aLU4tQSXctkY8tUi7SUJAOzFCWg8oKi1LTMCrBR0bG1tQC
+ MfgGxWgAAAA==
+X-Change-ID: 20260706-a9-reset-9c39e8fdb06d
+To: Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Xianwei Zhao <xianwei.zhao@amlogic.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1783585609; l=933;
+ i=xianwei.zhao@amlogic.com; s=20251216; h=from:subject:message-id;
+ bh=H3w0l7hrjjW6pdWG0bib0lwIpaQgQQxF1dBATULlBpk=;
+ b=dKYqDjYW0xtchgfDyokC7WrSeQ1iXnOt2qN3/i3l28AB/hNGg8tUAE9McgzMVqe7fT5ApDir8
+ Xa/ZDc6NLucCYu4hq/u+kBIe30tg+1iQR3B2nYbX1OLRUkhAN1qrt7W
+X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
+ pk=dWwxtWCxC6FHRurOmxEtr34SuBYU+WJowV/ZmRJ7H+k=
+X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20251216 with
+ auth_id=578
+X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Reply-To: xianwei.zhao@amlogic.com
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
+X-Spamd-Result: default: False [-3.66 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-323436-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:dongxuyang@eswincomputing.com,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-323439-lists,devicetree=lfdr.de,xianwei.zhao.amlogic.com];
+	FORGED_RECIPIENTS(0.00)[m:p.zabel@pengutronix.de,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:neil.armstrong@linaro.org,m:khilman@baylibre.com,m:jbrunet@baylibre.com,m:martin.blumenstingl@googlemail.com,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-amlogic@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:xianwei.zhao@amlogic.com,m:krzk@kernel.org,m:conor@kernel.org,m:martinblumenstingl@gmail.com,s:lists@lfdr.de];
+	FREEMAIL_TO(0.00)[pengutronix.de,kernel.org,linaro.org,baylibre.com,googlemail.com];
+	FORGED_SENDER(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	MIME_TRACE(0.00)[0:+];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_HAS_DN(0.00)[];
 	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
+	HAS_REPLYTO(0.00)[xianwei.zhao@amlogic.com];
 	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
 	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	RCPT_COUNT_THREE(0.00)[4];
+	ALIAS_RESOLVED(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,vger.kernel.org:from_smtp,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,smtp.kernel.org:mid,eswincomputing.com:email,lists.linux.dev:replyto]
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,amlogic.com:replyto,amlogic.com:mid,amlogic.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 26E6472E40C
+X-Rspamd-Queue-Id: 370AC72E42D
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [Medium] Inconsistent Related Binding: The related timer binding (snps,dw=
--apb-timer.yaml) was not updated to support the two reset inputs, causing a=
- mismatch within the same hardware family.
---
+Document the reset controller compatibles used by the Amlogic A9 SoC, and
+add the reset configuration and compatible entry for the Amlogic A9 AO
+reset controller, and add reset node for Amlogic A9.
 
---- Patch [1]: [PATCH v11 1/3] dt-bindings: pwm: dwc: Document optional res=
-ets property ---
-commit 9b39c1c87d6471d2eec01acf8e6da72e82635001
-Author: Xuyang Dong <dongxuyang@eswincomputing.com>
+Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+---
+Xianwei Zhao (3):
+      dt-bindings: reset: amlogic: Add A9 reset compatibles
+      reset: amlogic: Add A9 AO reset controller support
+      arm64: dts: amlogic: a9: Add reset controller support
 
-dt-bindings: pwm: dwc: Document optional resets property
+ .../bindings/reset/amlogic,meson-reset.yaml        |   5 +
+ arch/arm64/boot/dts/amlogic/amlogic-a9-reset.h     | 247 +++++++++++++++++++++
+ arch/arm64/boot/dts/amlogic/amlogic-a9.dtsi        |  14 ++
+ drivers/reset/amlogic/reset-meson.c                |   9 +
+ 4 files changed, 275 insertions(+)
+---
+base-commit: 4336e970ec6890fbd424128c352564a9c1dd514a
+change-id: 20260706-a9-reset-9c39e8fdb06d
 
-This commit updates the DesignWare PWM binding to document two optional
-active-low reset lines, presetn and timer_N_resetn, to support future
-use of resets for this IP block.
+Best regards,
+-- 
+Xianwei Zhao <xianwei.zhao@amlogic.com>
 
-> diff --git a/Documentation/devicetree/bindings/pwm/snps,dw-apb-timers-pwm=
-2.yaml b/Documentation/devicetree/bindings/pwm/snps,dw-apb-timers-pwm2.yaml
-> --- a/Documentation/devicetree/bindings/pwm/snps,dw-apb-timers-pwm2.yaml
-> +++ b/Documentation/devicetree/bindings/pwm/snps,dw-apb-timers-pwm2.yaml
-[ ... ]
-> @@ -43,6 +43,11 @@ properties:
->        - const: bus
->        - const: timer
-> =20
-> +  resets:
-> +    items:
-> +      - description: Interface bus (presetn) reset
-> +      - description: PWM timer logic (timer_N_resetn) reset
-> +
 
-[Severity: Medium]
-Since the DesignWare PWM IP has two reset lines for this hardware family,
-does the related timer binding also need a matching update?
-
-Currently, the sibling timer binding restricts resets to a single item:
-
-Documentation/devicetree/bindings/timer/snps,dw-apb-timer.yaml:properties.r=
-esets
-  resets:
-    maxItems: 1
-
-If an SoC device tree author adds both reset lines to a snps,dw-apb-timer
-node to match the hardware capabilities described here, dt_binding_check
-will reject the valid hardware description.
-
-Could the sibling timer binding be updated in this series to prevent
-this inconsistency and allow for both reset lines?
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260709081337.2022=
--1-dongxuyang@eswincomputing.com?part=3D1
 
