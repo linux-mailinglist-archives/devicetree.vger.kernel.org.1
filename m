@@ -1,63 +1,64 @@
-Return-Path: <devicetree+bounces-323507-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-323508-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id +0c3E9FoT2rngAIAu9opvQ
-	(envelope-from <devicetree+bounces-323507-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 11:24:33 +0200
+	id fNVpIwBqT2o5gQIAu9opvQ
+	(envelope-from <devicetree+bounces-323508-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 11:29:36 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F7ED72EEA6
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 11:24:32 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B65672EF5A
+	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 11:29:35 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=M5+uuC1E;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=WDrUYcvx;
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-323507-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-323507-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-323508-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-323508-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id CF1B63048AE3
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2026 09:14:52 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 4AE0830005A4
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2026 09:17:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55A063EDAA0;
-	Thu,  9 Jul 2026 09:14:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BAFB93EBF15;
+	Thu,  9 Jul 2026 09:17:02 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2308C3D6CA0
-	for <devicetree@vger.kernel.org>; Thu,  9 Jul 2026 09:14:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 831693FBEA4
+	for <devicetree@vger.kernel.org>; Thu,  9 Jul 2026 09:17:01 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783588492; cv=none; b=CpHobTRlALRMi+6mmBZiNHUne4AMcb3toWs+fBG6Sa86MGaLzntrHT9J+HKFtDmrqZChbsN8k+1i7Laapryb3hMddK8VhqDtG3WOevFt0AjuMCNTABanDqLRSu8/dtrfhe0dhclu1t6Uyp+g/xYRKt6qsD3DcbJiptGXMJsgHQ8=
+	t=1783588622; cv=none; b=mA6PvA9uf0rMB5turQ00poZFyE0hOEi4qIoWvWl0oyaAiyMnAyNRKia9+ViDVhc9dx4M3XYgS0KHbnUMd9ZDxSwZoIYTkxtqJVMXyFQYXCzJRl9O1kCZFZSkzWFfkY1dGFDOBKYFXjQv1CLQ+CMR/vYpxIR4rD0kvF+dhtFIG/g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783588492; c=relaxed/simple;
-	bh=wYaUDUazmE0YOAWtjq7lTPtnxHTH/KJ/QTyCAeRJqjQ=;
+	s=arc-20240116; t=1783588622; c=relaxed/simple;
+	bh=2hQtk3PLIWgMmDmTzKwDnjsAwTfZ/oMM1e4/tNbw9oM=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=I2kRzlrFP5f4CBGfbZx9vlPxX0zO/2oyqIiwOqTR6Ye4U+MVCcaEJB+4EEHHpdn0vX0a6k087T6xfmheERpF+u1KRBIpmcPhK5wo2fzs6NxOzmUNplPN5oDh1lE7wlmZV6YHOpQ6RXPUoi0+61DraKUQBtKZb6yBcYUAi68d0MQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=M5+uuC1E; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 855981F00A3A;
-	Thu,  9 Jul 2026 09:14:50 +0000 (UTC)
+	 Message-Id; b=Ybv+Sy+XCW9y7IdEpHeY7ujdIBwikZrmXN7HWdvg/xMh1N/1aYJQJF4sRQBVKh0ytAZT7tOoR4rNWyqqUtll9a7dQIeIf4MMTNhgNcOteriKqPDgqRop4DBh2PsdTy/6hxMOo3yPVyFaPi1lbjFTwv/6Ki9BM+Dgrwz7XnaW784=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WDrUYcvx; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 098811F000E9;
+	Thu,  9 Jul 2026 09:17:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783588490;
-	bh=K6Fj+u6d/DEEvwAfhmRDWqlPKg9MB/RnF++C9zBfP3E=;
+	s=k20260515; t=1783588621;
+	bh=/jKMthdhTARD7MKljzmOKcJ/tsf7y//qpWUdGQDUyhw=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=M5+uuC1EitTpVS42kLt1fx3wSYiwg+VK+f8ky5g9bbc994+noba0o4cyOauLEhMvo
-	 NGKP76vXba3CBL68BiIAYYncDgBz/wMztPM2AjfCEGltGEMWxjbPrFc1l82SU6GxBF
-	 QCXUbrCTRGEwbNcVQmsR0/hwLvDe950nMHrdflDsMBYNKAuGXRxXLTlt08Bf3uvcK4
-	 PCXHkMqdzlu9W/dmL7SS5CSOkQK4cJFE1ALz8GuqNm1vRm+17tT6EfOQ4v/ltTBxnk
-	 swRENTUONnhUsGAsg6tCGG8FI2sQXDboR5GWDg/MT1fe2IeyNtFezA2Wz4+5NeRgWa
-	 icfTGd1Qc7VHw==
+	b=WDrUYcvx5lw6dphY+nuGBquWqUUxW97lnw0PqeTKO7ziDnr22uwKmv2HpmzDrbl0t
+	 yJYluRi+nL2wBQHnCoKTabBFDqniuHA3HQNKHq/StJs/GCdC3YLQS0DVXxDpEfKkqH
+	 XBALIc6Z527cH6U9otJt+xVYyNpCw6IB/T3tO0ywXU6VrxSoS0/lSuaim67gO73Hli
+	 tuvCwNcFS7j68yu/D3lrRCkZDpQ+jkBUCQBFmSkMhc0SEOjPF80+R4igRLXfA3HORj
+	 zoBt2IUsJoILqyLC0pNdHjN3snJJQ79fBVx003lP+OsZGRvixy1S+wbzYnxEDR0nx6
+	 h++qvK2I/D0/w==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 3/6] iio: adc: adi-axi-adc: Add support for CRC
+Subject: Re: [PATCH v3 2/7] arm64: dts: mediatek: mt8173: Add and use UART
+ AP_DMA controller
 Reply-To: sashiko-reviews@lists.linux.dev
-To: "Janani Sunil" <janani.sunil@analog.com>
+To: "AngeloGioacchino Del Regno" <angelogioacchino.delregno@collabora.com>
 Cc: devicetree@vger.kernel.org, conor+dt@kernel.org, robh@kernel.org
-In-Reply-To: <20260709-ad7768-driver-v1-3-44e1194fd96a@analog.com>
-References: <20260709-ad7768-driver-v1-0-44e1194fd96a@analog.com>
- <20260709-ad7768-driver-v1-3-44e1194fd96a@analog.com>
+In-Reply-To: <20260709090924.27056-3-angelogioacchino.delregno@collabora.com>
+References: <20260709090924.27056-1-angelogioacchino.delregno@collabora.com>
+ <20260709090924.27056-3-angelogioacchino.delregno@collabora.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Thu, 09 Jul 2026 09:14:49 +0000
-Message-Id: <20260709091450.855981F00A3A@smtp.kernel.org>
+Date: Thu, 09 Jul 2026 09:17:00 +0000
+Message-Id: <20260709091701.098811F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,17 +72,17 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-323507-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-323508-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:janani.sunil@analog.com,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:angelogioacchino.delregno@collabora.com,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
 	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
@@ -98,93 +99,78 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FROM_NO_DN(0.00)[];
 	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	RCPT_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sashiko.dev:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,analog.com:email,lists.linux.dev:replyto,smtp.kernel.org:mid]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.linux.dev:replyto,collabora.com:email,vger.kernel.org:from_smtp,smtp.kernel.org:mid,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,sashiko.dev:url]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 9F7ED72EEA6
+X-Rspamd-Queue-Id: 8B65672EF5A
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-
-New issues:
-- [Medium] Incomplete implementation: missing `crc_enable` and `crc_disable=
-` callbacks in AD485X and AD408X specific operations structures.
-
-Pre-existing issues:
-- [High] The mutex `st->lock` is never initialized in the driver's probe fu=
-nction.
+- [High] The AP_DMA controller specifies `dma-requests =3D <8>` but only pr=
+ovides 6 `reg` and 6 `interrupts` entries, which causes the APDMA driver to=
+ fail during probe. Additionally, the patch omits DMA assignments for `uart=
+0` despite the commit message claiming to configure all four UART controlle=
+rs.
 --
 
---- Patch [3]: [PATCH 3/6] iio: adc: adi-axi-adc: Add support for CRC ---
-commit c99754ea278319045472336d04b62842c05a3731
-Author: Janani Sunil <janani.sunil@analog.com>
+--- Patch [2]: [PATCH v3 2/7] arm64: dts: mediatek: mt8173: Add and use UAR=
+T AP_DMA controller ---
+commit ac8a25e005302375b885a8325819560714cb8e2c
+Author: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-iio: adc: adi-axi-adc: Add support for CRC
+arm64: dts: mediatek: mt8173: Add and use UART AP_DMA controller
 
-Add support for enabling and disabling Cyclic Redundancy Check (CRC)
-processing in the AXI ADC backend. CRC provides data integrity verification
-for high-speed ADC data streams, ensuring reliable data transfer between
-the ADC frontend and backend processing systems.
+This commit adds the UART AP_DMA controller to the mt8173 device tree.
+It also assigns DMA channels to the UART controllers to increase TX/RX
+efficiency.
 
-> diff --git a/drivers/iio/adc/adi-axi-adc.c b/drivers/iio/adc/adi-axi-adc.c
-> index 26b9c75bd4d8e..8af42d26aac08 100644
-> --- a/drivers/iio/adc/adi-axi-adc.c
-> +++ b/drivers/iio/adc/adi-axi-adc.c
-
-[ ... ]
-
-> @@ -615,6 +633,8 @@ static const struct iio_backend_ops adi_axi_adc_ops =
-=3D {
->  	.num_lanes_set =3D axi_adc_num_lanes_set,
->  	.debugfs_reg_access =3D iio_backend_debugfs_ptr(axi_adc_reg_access),
->  	.debugfs_print_chan_status =3D iio_backend_debugfs_ptr(axi_adc_debugfs_=
-print_chan_status),
-> +	.crc_enable =3D axi_adc_crc_enable,
-> +	.crc_disable =3D axi_adc_crc_disable,
->  };
-
-[Severity: Medium]
-Did this patch introduce a regression where AD485X and AD408X backend
-operations are missing the new CRC callbacks?
-
-If a frontend driver for AD485X or AD408X tries to enable CRC via
-iio_backend_crc_enable(), it will return -EOPNOTSUPP because the
-callbacks are missing in their respective structures:
-
-drivers/iio/adc/adi-axi-adc.c:
-static const struct iio_backend_ops adi_ad485x_ops =3D {
-	.enable =3D axi_adc_enable,
-	...
-	.debugfs_print_chan_status =3D
-		iio_backend_debugfs_ptr(axi_adc_debugfs_print_chan_status),
-	/* crc_enable and crc_disable are NULL */
-};
-
-Should adi_ad485x_ops and adi_ad408x_ops also be updated?
+>     In order to increase the efficiency of data TX/RX over the UART
+>     controllers, add the UART DMA controller and assign the right
+>     channels to each of the four UART controllers.
 
 [Severity: High]
-This isn't a bug introduced by this patch, but I noticed the mutex
-st->lock is never initialized during probe:
+The commit message mentions assigning channels to each of the four UART
+controllers, but only uart1, uart2, and uart3 are updated in the patch. Is
+uart0 intentionally missing?
 
-drivers/iio/adc/adi-axi-adc.c:adi_axi_adc_probe() {
-	...
-	st =3D devm_kzalloc(dev, sizeof(*st), GFP_KERNEL);
-	if (!st)
-		return -ENOMEM;
-	...
-}
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8173.dtsi b/arch/arm64/boot/d=
+ts/mediatek/mt8173.dtsi
+> --- a/arch/arm64/boot/dts/mediatek/mt8173.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8173.dtsi
+[ ... ]
+> +		apdma: dma-controller@11000400 {
+> +			compatible =3D "mediatek,mt8173-uart-dma", "mediatek,mt6577-uart-dma";
+> +			reg =3D <0 0x11000400 0 0x80>, <0 0x11000480 0 0x80>,
+> +			      <0 0x11000500 0 0x80>, <0 0x11000580 0 0x80>,
+> +			      <0 0x11000600 0 0x80>, <0 0x11000680 0 0x80>;
+> +			interrupts =3D <GIC_SPI 97 IRQ_TYPE_LEVEL_LOW>,
+> +				     <GIC_SPI 98 IRQ_TYPE_LEVEL_LOW>,
+> +				     <GIC_SPI 99 IRQ_TYPE_LEVEL_LOW>,
+> +				     <GIC_SPI 100 IRQ_TYPE_LEVEL_LOW>,
+> +				     <GIC_SPI 101 IRQ_TYPE_LEVEL_LOW>,
+> +				     <GIC_SPI 102 IRQ_TYPE_LEVEL_LOW>;
+> +			clocks =3D <&pericfg CLK_PERI_AP_DMA>;
+> +			#dma-cells =3D <1>;
+> +			dma-requests =3D <8>;
 
-Because devm_kzalloc only zero-initializes the memory, the internal
-wait_list for st->lock is left uninitialized.
+[Severity: High]
+Does this dma-requests count of 8 match the provided reg and interrupts
+arrays?
 
-When concurrent access occurs and hits the mutex slow path, won't this
-cause a kernel panic due to a NULL pointer dereference? Should a call to
-devm_mutex_init() be added here?
+The mtk-uart-apdma driver iterates dma-requests times during probe. With on=
+ly
+6 resources defined in the reg and interrupts arrays,
+devm_platform_ioremap_resource() will fail with -EINVAL when trying to map
+the missing resources. This will cause the probe to abort, unconditionally
+breaking DMA for all UARTs on this SoC.
+
+Should dma-requests be 6 here since uart0 was omitted, or are there missing
+reg and interrupts entries that should be added?
 
 --=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260709-ad7768-dri=
-ver-v1-0-44e1194fd96a@analog.com?part=3D3
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260709090924.2705=
+6-1-angelogioacchino.delregno@collabora.com?part=3D2
 
