@@ -1,228 +1,211 @@
-Return-Path: <devicetree+bounces-323921-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-323923-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id URSNJeXDT2otoAIAu9opvQ
-	(envelope-from <devicetree+bounces-323921-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 17:53:09 +0200
+	id 0aBFNIzHT2oaoQIAu9opvQ
+	(envelope-from <devicetree+bounces-323923-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 18:08:44 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0AFD573322D
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 17:53:09 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B61577334DA
+	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 18:08:43 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=YwClcfqy;
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-323921-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-323921-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=CAhydAe+;
+	dmarc=none;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-323923-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-323923-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 10E2A305C938
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2026 15:52:17 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id EDAC73003BDD
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2026 15:54:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EE2F42B756;
-	Thu,  9 Jul 2026 15:52:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C09242B723;
+	Thu,  9 Jul 2026 15:54:13 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com [209.85.214.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3BBC42B324;
-	Thu,  9 Jul 2026 15:52:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C66F43382E5
+	for <devicetree@vger.kernel.org>; Thu,  9 Jul 2026 15:54:11 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783612326; cv=none; b=Yz8H/fVpc2OH3XToC02Istx2fzf/9mIzkRTaoIYkwqnnwaYtZpTDRxrTh9P7hvLk2tuyaBT/FwupZi3SswV9/xY1R6+GV/IC40LCzsOr9OxoH4096AeaI4oOCb8EEoVDhnwEj9+7LkOo8thBN/1J7dxlmj17q/6GmtPnA+CPCUo=
+	t=1783612453; cv=none; b=LzPw5M2iyfMoLeIed82/WeuKjvt9rvVIJCTH/xdRaEfQdlaBcxBkwo25NyhU65FJA9RJctmx53kD+4LFN+Hvi1yw2uewC5F66Vsgwv3K9XeltJr2qihaI5RpmgsHGXv5Ez10H+j817zbkcL2eQaufKu8ZWuMgy/DVZkKgeIesyg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783612326; c=relaxed/simple;
-	bh=QgoiG6IPX5YsMyUlVzmh9MgMADCFITLbf9l1isOTDOc=;
+	s=arc-20240116; t=1783612453; c=relaxed/simple;
+	bh=E7xh6evd46JlapDcP1wu59TPdEBuTy/YptxJBkiz3T8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rBt2YMtxPxnucmojJWG4E6D2ZXZVBPLJ/VjzskSj9H5KIhMoG9VYTN+oyWChpf11Z9qNpYBztH8QFgh6eUEen1OM8yRKhN4ysZOcfBjn9duYv0y07IE22ZOtZjzx7SaNcSiWmU8ycMXGmsJzLlZo4D2GNlWCZpHVzzQIJDakYnw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YwClcfqy; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D0D8F1F000E9;
-	Thu,  9 Jul 2026 15:52:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783612324;
-	bh=GRMlo223WK1vJhCGy8/PE42NkVsYFCsHmCK+AI0l5aI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=YwClcfqy+EI0om3wSR+FTT1nFgfjpWkF5h/T1GEs2Hwem8VlfwtaZT1QNgHljZDAW
-	 hipWaCyRmHExw0KqSNv/DEr/yLqjSScHHShaYXoLCEbXeMIIj+Aqs4O9iJP7uWLJrk
-	 AxD0I3bINYSMttjJ51Ryh5aKOd7sAt7uBRwhghu20uMYKW5WnpcJoKdRgm3FEeNjce
-	 jPV4MVNrJp4jz/JLFpD5KL5Ppm5AmP8zte4zGC+yyiRtCNYhZsUAyoFYBNxfPJbzr/
-	 gnyt7BrYYpctTlbIIhJaXsAkkugU6Ep2yVX3ZIZ7V1dAOJjimxGQQqNViFMw3LaZsy
-	 BAtoaebdIc8gQ==
-Date: Thu, 9 Jul 2026 16:51:59 +0100
-From: Conor Dooley <conor@kernel.org>
-To: "Praveen, Gokul" <g-praveen@ti.com>
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, krzk+dt@kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-phy@lists.infradead.org, neil.armstrong@linaro.org, nm@ti.com,
-	robh@kernel.org, sjakhade@cadence.com, kristo@kernel.org,
-	vigneshr@ti.com, vkoul@kernel.org, yamonkar@cadence.com
-Subject: Re: [PATCH v5 net-next 1/2] dt-bindings: phy: cadence-torrent:
- Update property values to support multilink SERDES configuration
-Message-ID: <20260709-unvalued-washtub-d024d21f5624@spud>
-References: <20260708083725.66777-1-g-praveen@ti.com>
- <20260708083725.66777-2-g-praveen@ti.com>
- <20260708-purifier-subside-667f32244c09@spud>
- <18b1c832-d0ba-4465-90c8-09e7c48becde@ti.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=QqNgyeowOmjniI2qtEArbZApS102ZQvEYffOn5ZbPALRJyQNDynUqNA//d+CmXgfW0AttbDilIOSncVMjNI8H/c2ASnq6YmOTVLGz6WzhC1roMxFu+B2bQyqv5j1Y0/2TWO2umVSaGKwQWzA/4VCGp59eH1mZU4Szb8+YHiOojo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CAhydAe+; arc=none smtp.client-ip=209.85.214.170
+Received: by mail-pl1-f170.google.com with SMTP id d9443c01a7336-2cc7e86e7aeso20557515ad.2
+        for <devicetree@vger.kernel.org>; Thu, 09 Jul 2026 08:54:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1783612451; x=1784217251; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :content-type:mime-version:references:message-id:subject:cc:to:from
+         :date:sender:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=iyiC5ezPowkdRB/jC99TZVbd/6jva1/e2ioHJ+vpJlU=;
+        b=CAhydAe+OhkxBPdygMWMa98stHEw/YsRduHEum3lnZ9PBWL6Qfbuc/Ejfs7VGCi8oj
+         ZuuessoqrKGRMWQSNnBMiBFJkRc08UOfASEIEWl+o3lDzF5qj6OdKecR1fP3mDwtJe8M
+         29a/uqvBok7bYqahsDYPvFSjgh62w9n2I1tsVwMoci7cj7Mpcvi1XX4+3axOzFnkok80
+         PEbjc/KFGoWagNG1O8Qjm28K57SwFUiJ42uotEG8A76sZOJ7STPEu2noJcwnEoEwWOcv
+         3sION70qAfk+4vvN3mArxF7hMjX/x/mBdgdLDL5Dxnt1ZFPjbjvC3aESJo6a6JDgT6sy
+         9m3Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1783612451; x=1784217251;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :content-type:mime-version:references:message-id:subject:cc:to:from
+         :date:sender:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=iyiC5ezPowkdRB/jC99TZVbd/6jva1/e2ioHJ+vpJlU=;
+        b=U4MUF7FKP3lo+aTgYdLdEPAohBbk6J9SRro8LdVe8E/OLT1PqecwkqP+cbomaCAjnh
+         aoqs5505rJNBTx5S9Ly3Zv1mko8RocNLsOTPxQb12ocD6KNZALlnCu3lS7IwsJxHVC/E
+         jyHQpqK1KlCXlc12xXZLGEuzkVEOLTZhVl/pjhxaDnLTfZlLXckMoJ/dTSO6HASOSgGq
+         bJKSwycHxVJotHx1u0NpD7Z/fF4mFRcwXEBNxAW0g0387qMBeoR5Wujv6kFFEQ0pJE5W
+         PJHYE+SS1tXUzexQl2gQB40/MITMJV1SWhw4UEPAAhul2GPuI5y8qMS0EUpGyKxc85Q2
+         Rz+g==
+X-Forwarded-Encrypted: i=1; AHgh+Rr57ngjep7I46U4XkUcnpa5xv04A2pf95ss6x7IVIK1fs8y/yCqmzS/HA7ojpRl2/DuEWKFiWqFcrx9@vger.kernel.org
+X-Gm-Message-State: AOJu0YzUGZBW+7iVXmcX2Gj6276cxaA/7QTxjHLedR3waTqt10zyKFnQ
+	Xwibv3HvqbWbama7tv4mUDFVnhQAUUYA5RFV3oO//hrOJp6k1QnXwWTx
+X-Gm-Gg: AfdE7clyW6QYIFz6GNReJZIbB5qURipQwCD/0q7l7mI6kfsou7h7hlPZBxGxku/Bib1
+	DmTBb9P09zYNrNhvA/Q6XS72nBEuVjszAy4xiSOFp2KABOdSM28kMiKB7UQs+OgUK1SOg9BnPT0
+	ICzNm5Fb4m21wnVI3ry7OFFpfYCLJatHLjK9ohckFqzw+c05rd/6WEaIyDjUEQZdtCElmEcaHhP
+	kNcpIZ/jbV4TZDILz8vNa1YHs8Kbl0tXkOfjKKw9dHWitnOYY7o1QQdyMkdHLkWmacDHe/wY9C8
+	rVnGLaX0dPsqnLEIIrxEDzUsksnVQHZBBDiyMMe9NeqZ+FD3EEWeOPbmdlGwbwkfCrZDrR0yFcu
+	SmPZUPobA5PIN4+vFf5v2dQX1kT5yIUcyeLMpdQcnzeDGhxxlLVoMS00oy7VdJ7ETwk/TsQxI4b
+	2aglbY5MYr8VN/m3cUmKvXINFOfg==
+X-Received: by 2002:a17:903:2990:b0:2cc:f4d4:29a7 with SMTP id d9443c01a7336-2ccf4d46bd1mr64154525ad.24.1783612451048;
+        Thu, 09 Jul 2026 08:54:11 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2ccc9d1edb0sm46019575ad.53.2026.07.09.08.54.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 09 Jul 2026 08:54:10 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date: Thu, 9 Jul 2026 08:54:09 -0700
+From: Guenter Roeck <linux@roeck-us.net>
+To: Nuno =?iso-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+Cc: Fred Chen <fredchen.openbmc@gmail.com>,
+	"Torreno, Alexis Czezar" <AlexisCzezar.Torreno@analog.com>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Shuah Khan <skhan@linuxfoundation.org>,
+	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+	Wensheng Wang <wenswang@yeah.net>, Frank Li <Frank.Li@nxp.com>,
+	Brian Chiang <chiang.brian@inventec.com>,
+	Cosmo Chou <chou.cosmo@gmail.com>,
+	Dixit Parmar <dixitparmar19@gmail.com>,
+	Eddie James <eajames@linux.ibm.com>,
+	Antoni Pokusinski <apokusinski01@gmail.com>,
+	Thorsten Blum <thorsten.blum@linux.dev>,
+	Ashish Yadav <ashish.yadav@infineon.com>,
+	Syed Arif <arif.syed@hpe.com>, ChiShih Tsai <tomtsai764@gmail.com>,
+	Abdurrahman Hussain <abdurrahman@nexthop.ai>,
+	"Paller, Kim Seer" <KimSeer.Paller@analog.com>,
+	Colin Huang <u8813345@gmail.com>,
+	Yuxi Wang <Yuxi.Wang@monolithicpower.com>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
+	"linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>
+Subject: Re: [PATCH 2/2] hwmon: (pmbus) Add driver for Analog Devices
+ MAX20912 and MAX20916
+Message-ID: <5b865eed-ae58-47fc-8d80-e14a76a93050@roeck-us.net>
+References: <20260707122701.751878-1-fredchen.openbmc@gmail.com>
+ <20260707122701.751878-3-fredchen.openbmc@gmail.com>
+ <f9e32dd1-7c2c-4055-83fa-94683777e30b@roeck-us.net>
+ <ak4QO9uhKOt68dl1@nsa>
+ <20260708-true-carp-of-champagne-a0dcca@quoll>
+ <ak41BRQBNdsQrYww@nsa>
+ <b2a5e99c-6d4d-454e-8ecd-8638e4dc0ddb@roeck-us.net>
+ <PH0PR03MB63512A19C32B7722D17D0FD4F1FE2@PH0PR03MB6351.namprd03.prod.outlook.com>
+ <CABOy65_GqKiZLM+soZUK_34T8MYZS3dRX38-CMf_Bd1EmG0jhA@mail.gmail.com>
+ <ak9gFKkfEgkU_q1G@nsa>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="mqzgQ8eCWAJGP231"
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <18b1c832-d0ba-4465-90c8-09e7c48becde@ti.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <ak9gFKkfEgkU_q1G@nsa>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-6.76 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	SIGNED_PGP(-2.00)[];
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-323923-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:noname.nuno@gmail.com,m:fredchen.openbmc@gmail.com,m:AlexisCzezar.Torreno@analog.com,m:krzk@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:corbet@lwn.net,m:skhan@linuxfoundation.org,m:Jonathan.Cameron@huawei.com,m:wenswang@yeah.net,m:Frank.Li@nxp.com,m:chiang.brian@inventec.com,m:chou.cosmo@gmail.com,m:dixitparmar19@gmail.com,m:eajames@linux.ibm.com,m:apokusinski01@gmail.com,m:thorsten.blum@linux.dev,m:ashish.yadav@infineon.com,m:arif.syed@hpe.com,m:tomtsai764@gmail.com,m:abdurrahman@nexthop.ai,m:KimSeer.Paller@analog.com,m:u8813345@gmail.com,m:Yuxi.Wang@monolithicpower.com,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-hwmon@vger.kernel.org,m:linux-doc@vger.kernel.org,m:nonamenuno@gmail.com,m:fredchenopenbmc@gmail.com,m:conor@kernel.org,m:choucosmo@gmail.com,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	DMARC_NA(0.00)[roeck-us.net];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	FORGED_RECIPIENTS(0.00)[m:g-praveen@ti.com,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:krzk+dt@kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:linux-phy@lists.infradead.org,m:neil.armstrong@linaro.org,m:nm@ti.com,m:robh@kernel.org,m:sjakhade@cadence.com,m:kristo@kernel.org,m:vigneshr@ti.com,m:vkoul@kernel.org,m:yamonkar@cadence.com,m:conor@kernel.org,m:krzk@kernel.org,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FREEMAIL_TO(0.00)[gmail.com];
+	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[29];
+	FREEMAIL_CC(0.00)[gmail.com,analog.com,kernel.org,lwn.net,linuxfoundation.org,huawei.com,yeah.net,nxp.com,inventec.com,linux.ibm.com,linux.dev,infineon.com,hpe.com,nexthop.ai,monolithicpower.com,vger.kernel.org];
 	FORWARDED(0.00)[lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-323921-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	FORGED_SENDER(0.00)[linux@roeck-us.net,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_HAS_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[linux@roeck-us.net,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,vger.kernel.org:from_smtp,ti.com:email,spud:mid]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,vger.kernel.org:from_smtp,roeck-us.net:mid,roeck-us.net:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 0AFD573322D
+X-Rspamd-Queue-Id: B61577334DA
 
---mqzgQ8eCWAJGP231
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Thu, Jul 09, 2026 at 09:54:22AM +0100, Nuno Sá wrote:
+> > 
+> > Based on the MAX20912/16 specs on my hand, these chips do not support
+> > PMBUS_PHASE (0x04). Furthermore, the spec only indicates support for VID mode
+> > and does not provide m/b/r. Therefore, some of the features you mentioned might
+> > be specific to the MAX20826 series.
+> 
+> I see, phases are not supported using standard PMBUS.
+> 
 
-On Thu, Jul 09, 2026 at 03:37:15PM +0530, Praveen, Gokul wrote:
-> Hi Conor,
->=20
-> On 08-07-2026 22:09, Conor Dooley wrote:
-> > On Wed, Jul 08, 2026 at 02:07:24PM +0530, Gokul Praveen wrote:
-> > > Update the maxItems value of clocks parameter as 3 clocks
-> > > (refclk,pll1_refclk,phy_en_refclk) are supported.
-> > >=20
-> > > Update the clock-names parameter to support mutilink SERDES configura=
-tion
-> > > as the existing enum configuration of the clock-names parameter does =
-not
-> > > allow both pll1_refclk and phy_en_refclk to be used at the same time,
-> > > hence preventing the support for the configuration  (refclk,pll1_refc=
-lk,
-> > > phy_en_refclk), which is neeed for multilink SERDES usecases.
-> > >=20
-> > > For multilink SERDES configurations where the links require different
-> > > clock speeds, all 3 clocks(refclk, pll1_refclk and phy_en_refclk)
-> > > are needed.
-> > >=20
-> > > For example,considering the USXGMII+SGMII multilink SERDES configurat=
-ion
-> > > usecase, having only 1 reference clock(refclk) fails because USXGMII
-> > > requires a clock speed of 156.25 Mhz and SGMII protocol requires an
-> > > clock speed of 100 Mhz.
-> > >=20
-> > > Since one reference clock(refclk) alone cannot cater to the 2
-> > > different clock speed requirements of these protocols, the second
-> > > input reference clock(pll1_refclk) along with phy_en_refclk
-> > > is also needed.
-> > This binding supports 2 devices and the generic compatible. Do all these
-> > devices have the new refclk?
->=20
-> Not all of these devices have the new refclk(pll1_refclk), Conor, which is
-> is why the enum was kept as it is and in these devices multilink serdes
-> configuration will not be possible due to the limitation of not having the
-> new refclk(pll1_refclk).
+As mentioned in my other e-mail, it can still be supported by the driver.
+That is what the chip drivers are for, after all.
 
-In that case, please restrict 3 clocks to only the devices which have
-them.
+> > 
+> > Regarding enabling VOUT via GPIO, our platform handles this via the CPLD as
+> > part of the hardware power sequencing. Managing this pin through the driver is
+> > not a requirement for our system.
+> 
+> But we cannot assume all systems will behave like the above. But now i
+> do wonder about controlling the GPIOs in the driver. In your system you
+> clearly did not need to do it. In mine (testing with a rpi) I had to
+> use a GPIO (well I could have used hogs or pinctrl). But if you control the pin
+> you do gain the ability to turn off the regulator. If you don't it's always on
+> (which might be indeed the bulk of the real usecases for these systems).
+> 
+Agreed. I don't really like it, but if the chip and some specific hardware
+mandate it, it should be supported. However, that code also needs to be
+tested - an untested implementation would be worse than no implementation.
 
-pw-bot: changes-requested
+Note to anyone from Analog listening: It is really unfortunate that I,
+as subsystem maintainer, do not have access to datasheets. That means I have
+to rely on assumptions and can not really provide actionable feedback other
+than guesswork based on the PMBus standard. That feedback may and likely
+will miss essential details.
 
 Thanks,
-Conor.
-
->=20
-> However, The intent of this patch is to add multilink serdes support for =
-the
-> devices which have the new refclk because the
->=20
-> earlier clock-names configuration could not support having all the 3
-> clocks(refclk, pll1_refclk, phy_en_refclk) in the clock-names, which is
-> needed for mutlilink serdes configuration configuration.
->=20
-> Also, Please feel free to ask if you have any other queries, Conor and th=
-ank
-> you for this query .
->=20
-> Thanks and Best Regards
->=20
-> Gokul Praveen
->=20
-> > Thanks,
-> > Conor.
-> >=20
-> > > Signed-off-by: Gokul Praveen <g-praveen@ti.com>
-> > > ---
-> > >   Documentation/devicetree/bindings/phy/phy-cadence-torrent.yaml | 3 =
-++-
-> > >   1 file changed, 2 insertions(+), 1 deletion(-)
-> > >=20
-> > > diff --git a/Documentation/devicetree/bindings/phy/phy-cadence-torren=
-t.yaml b/Documentation/devicetree/bindings/phy/phy-cadence-torrent.yaml
-> > > index 9af39b33646a..ac0f625cd76d 100644
-> > > --- a/Documentation/devicetree/bindings/phy/phy-cadence-torrent.yaml
-> > > +++ b/Documentation/devicetree/bindings/phy/phy-cadence-torrent.yaml
-> > > @@ -34,7 +34,7 @@ properties:
-> > >     clocks:
-> > >       minItems: 1
-> > > -    maxItems: 2
-> > > +    maxItems: 3
-> > >       description:
-> > >         PHY input reference clocks - refclk (for PLL0) & pll1_refclk =
-(for PLL1).
-> > >         pll1_refclk is optional and used for multi-protocol configura=
-tions requiring
-> > > @@ -48,6 +48,7 @@ properties:
-> > >       items:
-> > >         - const: refclk
-> > >         - enum: [ pll1_refclk, phy_en_refclk ]
-> > > +      - const: phy_en_refclk
-> > >     reg:
-> > >       minItems: 1
-> > > --=20
-> > > 2.34.1
-> > >=20
-
---mqzgQ8eCWAJGP231
-Content-Type: application/pgp-signature; name=signature.asc
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCak/DnwAKCRB4tDGHoIJi
-0n4XAQC5MnC2I5YXHC52d+ueIJB+UAs57axUxbMswrRVlQ4JpgEA/wgE2WC9Nhgs
-VMzI4rhMq6Yy6RqGA/Uoy3fwULsBgQM=
-=t+xa
------END PGP SIGNATURE-----
-
---mqzgQ8eCWAJGP231--
+Guenter
 
