@@ -1,251 +1,203 @@
-Return-Path: <devicetree+bounces-323969-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-323971-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id N/eAHTXhT2qmpgIAu9opvQ
-	(envelope-from <devicetree+bounces-323969-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 19:58:13 +0200
+	id bLiNOp3hT2rEpgIAu9opvQ
+	(envelope-from <devicetree+bounces-323971-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 19:59:57 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD93473411D
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 19:58:12 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id E4735734164
+	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 19:59:56 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=n5I29HUi;
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-323969-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-323969-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=KSQDfGuN;
+	dmarc=pass (policy=reject) header.from=qualcomm.com;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-323971-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-323971-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 11BBE3017240
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2026 17:58:09 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 54E27301DE8A
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2026 17:59:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E066F4DB540;
-	Thu,  9 Jul 2026 17:58:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 265A54DB55B;
+	Thu,  9 Jul 2026 17:59:40 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C71B39937B;
-	Thu,  9 Jul 2026 17:58:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD6D94DA53B;
+	Thu,  9 Jul 2026 17:59:38 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783619885; cv=none; b=W2Q02dnpdy34/ticVoEZxbcjB8UWrsSwZQTSZXkKzrzH4/+hZSkq4dv+neM7J/+Mw3oWNyNjNyIC6tRmYcIKSht+Oe86ojYq0Y0IQZWM5fDBFROBFP4KpnIePCf/qOc8eN0lnSAiP9kBCHPW9uPG8YSaxTsxstgipcFxfEqZ54w=
+	t=1783619980; cv=none; b=Zp2Wem8bFiORu2qqNeuuZe0IrdRdywVxMr26taZNMIqcveelthtQkk6Fdn4HkkDlyx+joIz5qIwGX2IT9GhyaTQHlrI8rjBTYEaJZzfH3RYpVPrQ9sHDcAdRkEznjnwHVLAK3uKLomgaI+yQPapEVq3w7GxNgAcXVNupCUPPx2M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783619885; c=relaxed/simple;
-	bh=u4rzu6YfPIc1q+pM0Hh0Y2/NQqGaNFdiDn+QTvU16Jw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Bt2xDN2zUoQQcgnGNbU2uFnuJgKaxw1G14+l8iGaY7btE7vTLn279c0lo+z+MbIOXEOZXpgbftWA3fePw0LHHOHVZ2KATY1OuA4J0cZFc1fphst6fMg8+k/KaugjKsVis6t70HxCqHJqDNuh0OgNqT7XvQX362AmvOSHoHJsr1c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=n5I29HUi; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 01AC81F000E9;
-	Thu,  9 Jul 2026 17:58:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783619884;
-	bh=LRJ1/OPtx1Iim/kW87V48kJYVXQps8lsYFvlD6icIBk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=n5I29HUiseWe37yvndAIEuS+lV5BsGhqvU4NXd/jsX4v+r7Ie4rxuX3TpupyHDj9W
-	 sO04Mvgsk4+I0mSKt1FUxmbhmTIVqiYF2YuAbrRVUbnkGuh318xOJ6VgGlrXBXJlKl
-	 mvb3uq4IdESiEZFShCt+6VGLmPb3IHD3rDIqUPOprQ1XcjptaeQFINqAE/SXvmm57R
-	 98mark9lO/9yMWXUQETpA1Ty5RNwQhLJpCoCSrgP3WqqspWlcLBXvvgY0UtzA90Sq+
-	 vANLKuP/VbEPkgC2MfgJx1nx1hvaxGtUyPjN6YdNw/MKdZWZM8iJimjAsqQa7+ELU1
-	 C181nltTPgCuQ==
-Date: Thu, 9 Jul 2026 18:57:59 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Jianhua Lin <jianhua.lin@mediatek.com>
-Cc: nicolas@ndufresne.ca, mchehab@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, matthias.bgg@gmail.com,
-	angelogioacchino.delregno@collabora.com, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	Project_Global_Chrome_Upstream_Group@mediatek.com,
-	sirius.wang@mediatek.com, vince-wl.liu@mediatek.com,
-	jh.hsu@mediatek.com
-Subject: Re: [PATCH v9 1/3] dt-bindings: media: mediatek-jpeg-decoder: add
- MT8189 compatible string
-Message-ID: <20260709-octane-refold-37324d9f2aad@spud>
-References: <20260709032657.25730-1-jianhua.lin@mediatek.com>
- <20260709032657.25730-2-jianhua.lin@mediatek.com>
+	s=arc-20240116; t=1783619980; c=relaxed/simple;
+	bh=CG9Bt+imzkZh0V1YS6jUTmxNR0JEiYcfMJrmIibkhMI=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=SXLKl5d3bXQtmMHbGdOwCgfRTS+Iy1Mb1cyH7HT4BlYAHBDIHesS0lFkcCh4SSOAa0UcLaRbS24opE8wzwgfw/HdoSDwfdy0RaTAJi7aBzVBUNptn7mjqWDBjiIEXSVP+B+4RTrH2y2LsWMF0JsyWTmi7pAf09KU4FrMOQcZWkw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=KSQDfGuN; arc=none smtp.client-ip=205.220.168.131
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 669HWxUY2514973;
+	Thu, 9 Jul 2026 17:59:21 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=qcppdkim1; bh=2ci9LSmM42a8Lx1wgUmOK5q0PK6b0rpGvgO
+	eqOLsMdc=; b=KSQDfGuNNuknHkQxebZxyfdAaDqY7EWhTp+2R0wvy6xYHW4O54y
+	BDi/nFRYMaba0HtDoaRQxnGE7P+zWghvUE8K8mv4Ou4n0weP/Y9/jI0eI5gxlLP2
+	2+lH/H/CBv6SuOOIIZxEBp23O6bn4LTOeYCPxa5DMDLO5fDqU8VNVNqbVi/6Rio2
+	oaM2b+2csJO9ADJeya+/mnZ+Swzh8qYSo/id6tJHjqinkBuO+32tzdgcnmK9UhSG
+	wY6Tml1YS/eghzQVSjho/7kmLlYRVGl+JNzTInU6lqU4kEg8VXxvC22o6Qy9qJ7a
+	SmtM0+Snur4Xxmbzgx02mNXrlLhDDlkHR6A==
+Received: from apblrppmta02.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4fa418ks7j-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 09 Jul 2026 17:59:21 +0000 (GMT)
+Received: from pps.filterd (APBLRPPMTA02.qualcomm.com [127.0.0.1])
+	by APBLRPPMTA02.qualcomm.com (8.18.1.7/8.18.1.7) with ESMTP id 669HxIeQ020151;
+	Thu, 9 Jul 2026 17:59:18 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 4f6u8m4wrt-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 09 Jul 2026 17:59:18 +0000 (GMT)
+Received: from APBLRPPMTA02.qualcomm.com (APBLRPPMTA02.qualcomm.com [127.0.0.1])
+	by pps.reinject (8.18.1.12/8.18.1.12) with ESMTP id 669HxHvU020136;
+	Thu, 9 Jul 2026 17:59:17 GMT
+Received: from hu-devc-hyd-u22-c.qualcomm.com (hu-pkumpatl-hyd.qualcomm.com [10.147.245.204])
+	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 669HxHIg020134
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 09 Jul 2026 17:59:17 +0000 (GMT)
+Received: by hu-devc-hyd-u22-c.qualcomm.com (Postfix, from userid 3914174)
+	id 81C2B634; Thu,  9 Jul 2026 23:29:16 +0530 (+0530)
+From: Prasad Kumpatla <prasad.kumpatla@oss.qualcomm.com>
+To: Srinivas Kandagatla <srini@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>, Philipp Zabel <p.zabel@pengutronix.de>,
+        Prasad Kumpatla <prasad.kumpatla@oss.qualcomm.com>
+Cc: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>,
+        linux-sound@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v3 0/2] Add support for the Qualcomm WSA885X Stereo smart speaker amplifier
+Date: Thu,  9 Jul 2026 23:29:13 +0530
+Message-Id: <20260709175915.3805851-1-prasad.kumpatla@oss.qualcomm.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="APjTtQgaMDz/nB9h"
-Content-Disposition: inline
-In-Reply-To: <20260709032657.25730-2-jianhua.lin@mediatek.com>
+Content-Transfer-Encoding: 8bit
+X-QCInternal: smtphost
+X-QCInternal: smtphost
+X-Authority-Analysis: v=2.4 cv=UI3t2ify c=1 sm=1 tr=0 ts=6a4fe179 cx=c_pps
+ a=Ou0eQOY4+eZoSc0qltEV5Q==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17
+ a=RAioF0-LDSMA:10 a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22
+ a=yOCtJkima9RkubShWh1s:22 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
+ a=uthJsKoNB9gwUhIDdEMA:9
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNzA5MDE3NyBTYWx0ZWRfX8q+rXT+Fpj8c
+ aAeysBzfBLy/Cnp12i47UuCBJwfPpUuqoRXNcz+1Vz9tvJ/jvbBUjupRJnXW6O/2euUrp5QSjsG
+ R/AoNHbHK8BrliCqKTtAzX35IbBsk2NmfnfdLkebXTkFuC7JD0GIAwkl67SJspoXgp7nMo35wTQ
+ eud7jzY60B+A2x01yAZNHD1dysD0WLo5Lf62tkW6P1VlEuIw9ZJXZv3QpnZkIit5s6gqBOqjGsd
+ KSFk8B3N+q6ijOj2qSSAT6pgnqbAbdpthwstWxxhBYr+Pa0lN+34Keo8BhQZvfXAZf7645EKz4E
+ mJvOl8+If2kBv5xcwkLbb4b6Qp/bAe4H+n5hu+shBdfBnA9jFFbuLPFHLY0OdaMi3BluIsrU4aZ
+ CckhbstW2MPW9AX4Fkshq0HvurQUvJvUrZxXaRphjxTuZmcDKsthZWoYp7iqX5QOvzBP0e2tiOm
+ 8GkPDLxfsmfnJfJ2Qqg==
+X-Proofpoint-Spam-Info: AW1haW4tMjYwNzA5MDE3NyBTYWx0ZWRfX7eYnGbsWLcDb
+ eu2ZrCwPgO/dE+jPPYBE66eW8/scQFsYmVNETS31l0DtVqgXT+hKgabrUdbnUGfYNMomEs/S9Me
+ 8Ab6ItMV+AzlytvVRHWVnATah4a8sew=
+X-Proofpoint-GUID: gUWb4nxSV7qJ2G6xERNwaZ_54R4bvGKe
+X-Proofpoint-ORIG-GUID: gUWb4nxSV7qJ2G6xERNwaZ_54R4bvGKe
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.134,FMLib:17.12.100.49
+ definitions=2026-07-09_04,2026-07-09_04,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 suspectscore=0 spamscore=0 malwarescore=0 bulkscore=0
+ adultscore=0 clxscore=1011 lowpriorityscore=0 impostorscore=0 phishscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2606150000 definitions=main-2607090177
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-5.26 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	SIGNED_PGP(-2.00)[];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_MISSING_CHARSET(0.50)[];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	FORGED_RECIPIENTS(0.00)[m:jianhua.lin@mediatek.com,m:nicolas@ndufresne.ca,m:mchehab@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:matthias.bgg@gmail.com,m:angelogioacchino.delregno@collabora.com,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-media@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-mediatek@lists.infradead.org,m:Project_Global_Chrome_Upstream_Group@mediatek.com,m:sirius.wang@mediatek.com,m:vince-wl.liu@mediatek.com,m:jh.hsu@mediatek.com,m:krzk@kernel.org,m:conor@kernel.org,m:matthiasbgg@gmail.com,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-323971-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	FREEMAIL_TO(0.00)[kernel.org,gmail.com,perex.cz,suse.com,pengutronix.de,oss.qualcomm.com];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS(0.00)[m:srini@kernel.org,m:lgirdwood@gmail.com,m:broonie@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:perex@perex.cz,m:tiwai@suse.com,m:p.zabel@pengutronix.de,m:prasad.kumpatla@oss.qualcomm.com,m:srinivas.kandagatla@oss.qualcomm.com,m:linux-sound@vger.kernel.org,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-323969-lists,devicetree=lfdr.de];
-	FORGED_SENDER(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[ndufresne.ca,kernel.org,gmail.com,collabora.com,vger.kernel.org,lists.infradead.org,mediatek.com];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[prasad.kumpatla@oss.qualcomm.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[prasad.kumpatla@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[qualcomm.com:+];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,oss.qualcomm.com:mid,oss.qualcomm.com:from_mime,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,qualcomm.com:dkim];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,spud:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+	RCVD_COUNT_SEVEN(0.00)[10]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: DD93473411D
+X-Rspamd-Queue-Id: E4735734164
 
---APjTtQgaMDz/nB9h
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+The series first documents the WSA885X devicetree binding,
+including supplies, GPIOs, Interrupt and battery configuration.
 
-On Thu, Jul 09, 2026 at 11:26:54AM +0800, Jianhua Lin wrote:
-> Add the compatible string for the JPEG decoder block found in the
-> MediaTek MT8189 SoC.
->=20
-> Compared to previous generation ICs, the MT8189 JPEG decoder requires
-> 34-bit IOVA address space support and only needs a single clock
-> ("jpgdec") instead of two. Therefore, it is added as a standalone
-> compatible string without falling back to older SoCs.
->=20
-> Update the binding schema to include the new compatible string and add
-> an `allOf` block with conditional checks. This enforces the single clock
-> requirement for MT8189 while preserving the two-clock requirement
-> ("jpgdec-smi", "jpgdec") for older SoCs.
->=20
-> Signed-off-by: Jianhua Lin <jianhua.lin@mediatek.com>
-> ---
->  .../bindings/media/mediatek-jpeg-decoder.yaml | 49 ++++++++++++++++---
->  1 file changed, 41 insertions(+), 8 deletions(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/media/mediatek-jpeg-decode=
-r.yaml b/Documentation/devicetree/bindings/media/mediatek-jpeg-decoder.yaml
-> index a4aacd3eb189..13fb4fb61f2b 100644
-> --- a/Documentation/devicetree/bindings/media/mediatek-jpeg-decoder.yaml
-> +++ b/Documentation/devicetree/bindings/media/mediatek-jpeg-decoder.yaml
-> @@ -15,10 +15,10 @@ description: |-
->  properties:
->    compatible:
->      oneOf:
-> -      - items:
-> -          - enum:
-> -              - mediatek,mt8173-jpgdec
-> -              - mediatek,mt2701-jpgdec
-> +      - enum:
-> +          - mediatek,mt2701-jpgdec
-> +          - mediatek,mt8173-jpgdec
-> +          - mediatek,mt8189-jpgdec
->        - items:
->            - enum:
->                - mediatek,mt7623-jpgdec
-> @@ -32,13 +32,16 @@ properties:
->      maxItems: 1
-> =20
->    clocks:
-> +    minItems: 1
->      maxItems: 2
-> -    minItems: 2
-> =20
->    clock-names:
-> -    items:
-> -      - const: jpgdec-smi
-> -      - const: jpgdec
-> +    oneOf:
-> +      - items:
-> +          - const: jpgdec
-> +      - items:
-> +          - const: jpgdec-smi
-> +          - const: jpgdec
-> =20
->    power-domains:
->      maxItems: 1
-> @@ -51,6 +54,15 @@ properties:
->        Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml for de=
-tails.
->        Ports are according to the HW.
-> =20
-> +  mediatek,larb:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description: |
-> +      A phandle to the local arbiter (SMI LARB) node. This explicitly
-> +      describes the hardware topology where the JPEG block is connected
-> +      to a dedicated SMI LARB for memory bandwidth arbitration. It is
-> +      required to accurately represent the hardware connection independe=
-ntly
-> +      of the IOMMU.
-> +
->  required:
->    - compatible
->    - reg
-> @@ -60,6 +72,27 @@ required:
->    - power-domains
->    - iommus
-> =20
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: mediatek,mt8189-jpgdec
-> +    then:
-> +      properties:
-> +        clocks:
-> +          maxItems: 1
-> +        clock-names:
-> +          maxItems: 1
-> +      required:
-> +        - mediatek,larb
-> +    else:
-> +      properties:
-> +        clocks:
-> +          minItems: 2
-> +        clock-names:
-> +          minItems: 2
+It then adds the ASoC codec driver with register programming, serial
+interface setup, clock handling, mute and gain control, reset handling,
+interrupt support, runtime TDM slot-count configuration, and stream-time
+power-state sequencing.
 
-Please add a mediatek,larb: false here too.
+validated speaker playback on Shikra and Hawi platforms.
 
-pw-bot: changes-requested
+changes in v3:
+	- Addressed comments from sashkio.
+	- Addressed Mark comments and Updated the sample rate which are validated.
+	- Addressed Krzysztof comments, added support for shared gpio pin.
 
-Thanks,
-Conor.
+Changes in v2:
+	- Drop "-i2c" suffix from the binding filename.
+	- Convert qcom,battery-config to string-based configuration with improved documentation.
+	- Remove register/value initialization data from DT and move it to the driver.
+	- Replace interrupt-gpios with interrupts.
+	- Address all review comments and update the binding to follow upstream DT conventions.
+	- Removed redundant GPIO abstraction layer and direct GPIO API wrapper.
+	- Dropped unnecessary NULL checks on driver private data.
+	- Switched regulator management to devm_regulator_get_enable().
+	- Converted I2C device ID table entries to use named initializers.
+	- Cleaned up code per review feedback and aligned with upstream kernel conventions.
 
-> +
->  additionalProperties: false
-> =20
->  examples:
-> --=20
-> 2.45.2
->=20
+This series depends on:
+ - https://lore.kernel.org/all/20260707-dt-bindings-qcom-soc-naming-v2-4-1b7d695be2e1@oss.qualcomm.com/
 
---APjTtQgaMDz/nB9h
-Content-Type: application/pgp-signature; name=signature.asc
+Prasad Kumpatla (2):
+  ASoC: dt-bindings: qcom,wsa8855: add Qualcomm WSA8855 speaker
+    amplifier
+  ASoC: codecs: add Qualcomm WSA885X codec driver
 
------BEGIN PGP SIGNATURE-----
+ .../bindings/sound/qcom,wsa8855.yaml          |   93 +
+ sound/soc/codecs/Kconfig                      |   11 +
+ sound/soc/codecs/Makefile                     |    2 +
+ sound/soc/codecs/wsa885x.c                    | 1526 +++++++++++++++++
+ 4 files changed, 1632 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/sound/qcom,wsa8855.yaml
+ create mode 100644 sound/soc/codecs/wsa885x.c
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCak/hJgAKCRB4tDGHoIJi
-0sywAP4/3MErasyHV912BqopkkvO7NXQwYknCYOiZVu8kxtNtwD+Kqr61fQW/M2k
-AvZSQrEqRK2jJ144zH8+IVUJ/w6DxQc=
-=STFS
------END PGP SIGNATURE-----
 
---APjTtQgaMDz/nB9h--
+base-commit: 34cf6dafc47441dfb6b356a095b89c3585a93714
+-- 
+2.34.1
+
 
