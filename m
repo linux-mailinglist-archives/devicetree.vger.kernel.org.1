@@ -1,152 +1,131 @@
-Return-Path: <devicetree+bounces-323396-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-323397-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id elAxN4FST2rMeQIAu9opvQ
-	(envelope-from <devicetree+bounces-323396-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 09:49:21 +0200
+	id SsGGC51ST2rUeQIAu9opvQ
+	(envelope-from <devicetree+bounces-323397-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 09:49:49 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F4E472DF0A
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 09:49:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 949DA72DF25
+	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 09:49:48 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=ZJH31OmY;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=OF325UGh;
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-323396-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-323396-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-323397-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-323397-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 19AE83000E1B
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2026 07:48:16 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 27F433028664
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2026 07:48:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C8B83C76A2;
-	Thu,  9 Jul 2026 07:48:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46A0C3CA4B8;
+	Thu,  9 Jul 2026 07:48:54 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 381E5285CAD;
-	Thu,  9 Jul 2026 07:48:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 329E42701D9;
+	Thu,  9 Jul 2026 07:48:52 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783583293; cv=none; b=BrQyCo2C8H5uWdOWzih1YrbLqm9Hd1sNN/qsi17p7wY4LrwMz7pjsXICzjMJI37cAfa/M40iczCAwdKnUx12FDmr0Y92645GP5cl2uBhnysKiWYYySjGIrnVZGZviQxdJSR+3061lfQAjQ6Fw6xyEqlfIrMcdnZBI7OAsk1JXaU=
+	t=1783583334; cv=none; b=nqmAFsMGCJxEOHRgxtgFhdvEtThBVrwdOGfuqbBpjfXckJPyTyJQHlqZeTlnTnDa5BLPNQCcHaXfSBqQ2v6uHLTNcvuHYdGafbWqQUdH1ger1bojuX689A0bP1XAyDcWXr3kBYkx1Rhz6NW6NphPg8pyduJQ/j1YC8wEyXjnV7Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783583293; c=relaxed/simple;
-	bh=4E2vZPlsb54o9U2CHRxIeYOMNh/VtlYJ2M8MhFtbTeE=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=YPgoBDBMko/Ba3pGnOtasfDLQs0BNYaH71BTAVXjcbNrJGoBLsvFjj+NuXFAEwa4dLBX4F8Kssr1i3301Soq3CaQhByA+mhAPt8kXsFgFrI8EIt6IpI7TiSS0g8emrm8vwTrpHJRy2dD0k7KjuY/SsSrHOnhsGoPuT1IIbKNkdw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZJH31OmY; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8273E1F000E9;
-	Thu,  9 Jul 2026 07:48:11 +0000 (UTC)
+	s=arc-20240116; t=1783583334; c=relaxed/simple;
+	bh=p5tAdBj63DJ1E1YfIJZdF3ksO1rK12DML396muyqx98=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=G3uOs8uoPF0ej7qfdXXaJLxvhkUVuJ7ZVBx5rAgpprOI2DiCJsuvEcqfi9uf1DG+xYYD3M9DTe0c5zUqwoybp3dg15vinEEm8eCAtewXj+jerByngHhNP0/JAd0r+UdHAyH7S8wSNK/nYYToOktki9AqhbfUboaJP5pN2sr+FZw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OF325UGh; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D4F991F000E9;
+	Thu,  9 Jul 2026 07:48:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783583291;
-	bh=3O0a7udsjYZ6WWbRNIHV3MFl7vF3eePsGu+G9FZ4i+4=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=ZJH31OmYgVdpw3s7934HGDXZent6sF877aQcZDYjQKtDQ1c35CuDuTTh0KWYhrDKG
-	 B8Chg6S5Gcz2WXAhcC3bk0JgdPi6arcSgk41jg+kUlWe9kBr1HHwaKQQe42PfKXhDI
-	 epsK+YlVWFgkiN4wM0bUHLkn5d/iI+MPCjyNgQiWtIP9BYCwM0iWDx/C5OEeP4l/08
-	 6mFsVyckxBhJylkEYffcoWLbpHMDvtWTeROAEUVA/Zq9c8be/59vxO+kqdVBU2KyuQ
-	 PRoOuNJnnZbJwl9c3N1GMhtxG5HvWpZj92s4SJcg7oqzUC4+Mg4fHEV/BtKWNnpFSg
-	 65oCXicrWiejA==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 09/11] dt-bindings: pwm: apple,s5l-fpwm: Add t6030 and
- t6031 compatibles
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Janne Grunau" <j@jannau.net>
-Cc: devicetree@vger.kernel.org, conor+dt@kernel.org, robh@kernel.org, linux-watchdog@vger.kernel.org
-In-Reply-To: <20260709-apple-t603x-initial-devices-v1-9-55b305833123@jannau.net>
-References: <20260709-apple-t603x-initial-devices-v1-0-55b305833123@jannau.net>
- <20260709-apple-t603x-initial-devices-v1-9-55b305833123@jannau.net>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Thu, 09 Jul 2026 07:48:11 +0000
-Message-Id: <20260709074811.8273E1F000E9@smtp.kernel.org>
+	s=k20260515; t=1783583332;
+	bh=4lU6Z4yrgGwxsrc13XDMGNKlMordxGxnjKrbugW39uk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=OF325UGhnPDUmO1eAN753pvZDQj0osuqNN1QCdQVrVrAFK4di3CRE3aZ2A4aXW/UD
+	 ryZgxry8pmMZ5zV7ofzMT1PgYAphxAikrw5RgxSdyaRFC9Qziagq3Z9mxbGDuKftm4
+	 1cRX+e9tC2w5n6X+1IswmPID4Uu5xqH5ddn8KQdMPVsMlHS5ks5Dhg9RjiIjs23lYI
+	 I3lBfNVQZwZv+nnIAlESWVd5R7QpW9UE3ZWHkQS1eujor3zxyNuXLGnzK1UnX5F4rf
+	 wx5zvqS9kGCgrTk9RDXdLowWRHuRWAZPaeTRX7DI4y+ZgF09FlnMkuzO6BWVSVK0hY
+	 +Q4IoFwdJ8Z2w==
+Date: Thu, 9 Jul 2026 09:48:48 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Qiang Yu <qiang.yu@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Brian Masney <bmasney@redhat.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Taniya Das <taniya.das@oss.qualcomm.com>, Kees Cook <kees@kernel.org>, 
+	"Gustavo A. R. Silva" <gustavoars@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org
+Subject: Re: [PATCH v8 1/7] dt-bindings: clock: qcom: Move glymur TCSR to own
+ binding
+Message-ID: <20260709-inquisitive-debonair-bat-5a114a@quoll>
+References: <20260708-tcsr_qref_0708-v8-0-62c42b5fa269@oss.qualcomm.com>
+ <20260708-tcsr_qref_0708-v8-1-62c42b5fa269@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20260708-tcsr_qref_0708-v8-1-62c42b5fa269@oss.qualcomm.com>
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-3.16 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-323396-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,smtp.kernel.org:mid,lists.linux.dev:replyto,sashiko.dev:url,jannau.net:email];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:j@jannau.net,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:robh@kernel.org,m:linux-watchdog@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	FORGED_RECIPIENTS(0.00)[m:qiang.yu@oss.qualcomm.com,m:andersson@kernel.org,m:mturquette@baylibre.com,m:sboyd@kernel.org,m:bmasney@redhat.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:taniya.das@oss.qualcomm.com,m:kees@kernel.org,m:gustavoars@kernel.org,m:konradybcio@kernel.org,m:linux-arm-msm@vger.kernel.org,m:linux-clk@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-hardening@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-323397-lists,devicetree=lfdr.de];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	ALIAS_RESOLVED(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FROM_NO_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5]
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,vger.kernel.org:from_smtp,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 8F4E472DF0A
+X-Rspamd-Queue-Id: 949DA72DF25
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [Medium] Mismatch between commit message body and patch contents. The com=
-mit message states it adds 'apple,t6030-pinctrl' and 'apple,t6031-pinctrl',=
- but the patch actually adds 'apple,t6030-fpwm' and 'apple,t6031-fpwm'.
---
+On Wed, Jul 08, 2026 at 03:02:38AM -0700, Qiang Yu wrote:
+> The QREF block supplies reference clocks to PCIe PHYs and requires
+> dedicated LDO supplies to operate. The digital control interface for QREF
+> (clkref_en registers) resides in TCSR on glymur. Since QREF has no
+> dedicated DT node of its own, these supply properties are placed in the
+> TCSR node which acts as the control interface for QREF.
+> 
+> Add a dedicated binding file for qcom,glymur-tcsr and document the supply
+> properties. As this binding will grow to cover more SoCs, mark the
+> required supplies per compatible using an allOf/if/then conditional.
+> 
+> Signed-off-by: Qiang Yu <qiang.yu@oss.qualcomm.com>
+> ---
 
---- Patch [9]: [PATCH 09/11] dt-bindings: pwm: apple,s5l-fpwm: Add t6030 an=
-d t6031 compatibles ---
-commit 311071f5987c86b8cc9cbb237a0d70bae746172d
-Author: Janne Grunau <j@jannau.net>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
-dt-bindings: pwm: apple,s5l-fpwm: Add t6030 and t6031 compatibles
+Best regards,
+Krzysztof
 
-This commit adds new per-SoC compatible strings for the PWM controllers
-on Apple silicon M3 Pro, Max, and Ultra SoCs.
-
-> The PWM controller on Apple silicon M3 Pro, Max and Ultra SoCs is
-> compatible with the t8103 (M1) one. Add "apple,t6030-pinctrl" for M3 Pro
-> and "apple,t6031-pinctrl" for M3 Max and Ultra as per-SoC compatibles.
-
-[Severity: Medium]
-Is there a typo in the commit message description? The text mentions adding
-"-pinctrl" compatibles ("apple,t6030-pinctrl" and "apple,t6031-pinctrl"),
-but the patch itself actually adds "-fpwm" compatibles, which seems to be
-the intended change for this file.
-
-> diff --git a/Documentation/devicetree/bindings/pwm/apple,s5l-fpwm.yaml b/=
-Documentation/devicetree/bindings/pwm/apple,s5l-fpwm.yaml
-> index 25ef04b60ca17..dd95037ea5eef 100644
-> --- a/Documentation/devicetree/bindings/pwm/apple,s5l-fpwm.yaml
-> +++ b/Documentation/devicetree/bindings/pwm/apple,s5l-fpwm.yaml
-> @@ -21,6 +21,8 @@ properties:
->            - apple,t8122-fpwm
->            - apple,t6000-fpwm
->            - apple,t6020-fpwm
-> +          - apple,t6030-fpwm
-> +          - apple,t6031-fpwm
->        - const: apple,s5l-fpwm
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260709-apple-t603=
-x-initial-devices-v1-0-55b305833123@jannau.net?part=3D9
 
