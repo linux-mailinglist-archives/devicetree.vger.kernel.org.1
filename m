@@ -1,164 +1,331 @@
-Return-Path: <devicetree+bounces-323845-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-323846-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id mMYgImSqT2p+mQIAu9opvQ
-	(envelope-from <devicetree+bounces-323845-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 16:04:20 +0200
+	id ZU0cE7WqT2qbmQIAu9opvQ
+	(envelope-from <devicetree+bounces-323846-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 16:05:41 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C574E731F16
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 16:04:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8CBBE731F68
+	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 16:05:40 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=collabora.com header.s=mail header.b=Uk9k61Ti;
-	dmarc=pass (policy=none) header.from=collabora.com;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-323845-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-323845-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=bOmkqLqe;
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-323846-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-323846-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2EE6D3081B7F
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2026 14:02:02 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 4FFDD30B72FD
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2026 14:02:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A8A333A6E0;
-	Thu,  9 Jul 2026 13:58:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2AC673F5BEE;
+	Thu,  9 Jul 2026 13:59:01 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B65772E9ED6;
-	Thu,  9 Jul 2026 13:58:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9FFE1C5499
+	for <devicetree@vger.kernel.org>; Thu,  9 Jul 2026 13:58:59 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783605508; cv=none; b=OMaqOlSz/bBk6CHbVFhsTbT5LyBXGgofZKpQwUS5KdeE9J5TzaqogJOweIvwq65totjnVROh1ujDtmSQ5rDWeUS2JYOGAXU8g8EV/ygwhjW71Iik0WEPIRlVuqWd1ssKruPi6nCUDEQ+PTLNrwUU+En1pdPzKVL6sDZ2S4WAm2U=
+	t=1783605541; cv=none; b=SyQsov5EKH8U0zrOa0ujlbY6gkEk0ysIoXkbsUAet46YI4Bt4mGN3nD/eujCM7nB4T9+I95TvLQzU7G5IkNamULbqQO8jsEWI0m+I+uOffqBEr/vRUTov5ozEUe99Qo/L2Gm35LwK/b1MfDruxO1XW294jPETqsWYFJ0aKSszxw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783605508; c=relaxed/simple;
-	bh=DjWIojAzSpqrury6RVuc3AKXDQ21nXDPRrnz5nALTGA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=F8sLY3dqr2KVhRhqVAz6sLsshggpvgtZboNU+ppQxFZNcr9r9vFWZTMNUUiJ2cCLG/qDpRkwxrQkqQxtLrqTKEmiAXz7JoFSHDdSxlQEaoybEc/Xzb3G2C9G6y+tsSBS0r1NSXJhSeFIp2CzvEYJYhLhN+QUlfMgT1aqhY8kf/U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=Uk9k61Ti; arc=none smtp.client-ip=148.251.105.195
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1783605505;
-	bh=DjWIojAzSpqrury6RVuc3AKXDQ21nXDPRrnz5nALTGA=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Uk9k61TiU5kLuxeWd3yKSlAqlof2xEMCyZ91YUH3EfsxlKkfbd0J9XbYPF2Ozvnx2
-	 znsCEGFc0wsenIpMQNl9u8fUGgAEXMNXikFccXqUNWwyipJ6b4k7hwQdB+28KHNYgV
-	 DhGM+/SdJbKXOTVW8bKfuCRp6qIndc4Bicdywmrx8J4xx3lLAWIOOTO1Uui4dEFIlM
-	 njnJBYlIgqMZkMzTUVIyiAa4RtLla1XMF/0vUPccM7sSh2aOyGfsAHSchAmSGL9UJx
-	 GMq1i7dDU2zbAh61mKNXgcrr/LfUmlxvBwforDJ3gRoQAAgG63SBV3U7NlObDn0Baf
-	 +WVSbE+qB6gzg==
-Received: from [100.64.1.21] (unknown [100.64.1.21])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange x25519)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 08BAF17E071A;
-	Thu, 09 Jul 2026 15:58:23 +0200 (CEST)
-Message-ID: <fba4f7d6-d480-4f1a-8d80-3dd0a797b61e@collabora.com>
-Date: Thu, 9 Jul 2026 15:58:23 +0200
+	s=arc-20240116; t=1783605541; c=relaxed/simple;
+	bh=+w8+MNY67NnEZOU2fY/0lQZGe/cA71Z1Z4sP9Sop+e4=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=TCUoM5rOSqME0bUetEPRs81VkYJvkaXs5o3P7raFxMtPm6mvpniSpwl9P4IRI9Gy9HabXHOBuQliwhxWwNfFvuGJWLWmv/+29u6sqn931FDUtBfWoGeM6QAODS8D7JaE2wYYPfJrt3zZbmbJY3fJvAIIvLUBJjFR7kkpkTDKR0M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bOmkqLqe; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0F9D61F000E9;
+	Thu,  9 Jul 2026 13:58:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1783605539;
+	bh=eX/bMcG1Y7+xUg9oCJe8EufDdHsNPoHpa2IHWgZz9yc=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=bOmkqLqegx3OLViplXQfYykU/eKxkJV4F6Mo81bgJAi03xbamfzpnGmZx8MF2dJwE
+	 R3CChoEFtsXPc+9lugc1hWbNl+tRhno3mYT/ZU0RCwmSm0rL+Zlyl+N86JpadZ17Fm
+	 PsHPBvu3z+WFhq4xRLsa+8d4UH+THK4HKbht2v5yCBUZap/2FAIMyr7OiVctL+lPNd
+	 O9dluYcLPRFdvrxhE3KzV5NF6HGV5hfxIJ4sLdrVLFilMCZO/998BWEx3NjBxIsskt
+	 Nabg8ZRT6gWrwTKftkfl7fmoeIfqJngphq8ifdgvWpuNbic4eypRAhGpPTjcqvHicr
+	 8uKIkRWJg7YKw==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v7 01/18] media: iris: Add Gen2 firmware autodetect and
+ fallback
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Dmitry Baryshkov" <dmitry.baryshkov@oss.qualcomm.com>
+Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260709-iris-ar50lt-v7-1-76af9dd4d1f6@oss.qualcomm.com>
+References: <20260709-iris-ar50lt-v7-0-76af9dd4d1f6@oss.qualcomm.com>
+ <20260709-iris-ar50lt-v7-1-76af9dd4d1f6@oss.qualcomm.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Thu, 09 Jul 2026 13:58:58 +0000
+Message-Id: <20260709135859.0F9D61F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/6] dt-bindings: soc: mediatek: mutex: Allow
- #trigger-source-cells
-To: krzk+dt@kernel.org
-Cc: p.zabel@pengutronix.de, maarten.lankhorst@linux.intel.com,
- mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch,
- robh@kernel.org, conor+dt@kernel.org, mcoquelin.stm32@gmail.com,
- alexandre.torgue@foss.st.com, matthias.bgg@gmail.com, andi.shyti@kernel.org,
- djakov@kernel.org, broonie@kernel.org, jitao.shi@mediatek.com,
- ck.hu@mediatek.com, dri-devel@lists.freedesktop.org,
- linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, justin.yeh@mediatek.com,
- jason-jh.lin@mediatek.com, kernel@collabora.com, chunkuang.hu@kernel.org
-References: <20260701122043.19612-1-angelogioacchino.delregno@collabora.com>
- <20260701122043.19612-3-angelogioacchino.delregno@collabora.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20260701122043.19612-3-angelogioacchino.delregno@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-1.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-323845-lists,devicetree=lfdr.de];
-	FORWARDED(0.00)[lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER(0.00)[angelogioacchino.delregno@collabora.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS(0.00)[m:krzk+dt@kernel.org,m:p.zabel@pengutronix.de,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:robh@kernel.org,m:conor+dt@kernel.org,m:mcoquelin.stm32@gmail.com,m:alexandre.torgue@foss.st.com,m:matthias.bgg@gmail.com,m:andi.shyti@kernel.org,m:djakov@kernel.org,m:broonie@kernel.org,m:jitao.shi@mediatek.com,m:ck.hu@mediatek.com,m:dri-devel@lists.freedesktop.org,m:linux-mediatek@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-stm32@st-md-mailman.stormreply.com,m:linux-arm-kernel@lists.infradead.org,m:justin.yeh@mediatek.com,m:jason-jh.lin@mediatek.com,m:kernel@collabora.com,m:chunkuang.hu@kernel.org,m:krzk@kernel.org,m:conor@kernel.org,m:mcoquelinstm32@gmail.com,m:matthiasbgg@gmail.com,s:lists@lfdr.de];
-	FREEMAIL_CC(0.00)[pengutronix.de,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,foss.st.com,mediatek.com,lists.freedesktop.org,lists.infradead.org,vger.kernel.org,st-md-mailman.stormreply.com,collabora.com];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-323846-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	TO_DN_NONE(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[angelogioacchino.delregno@collabora.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[collabora.com:+];
-	ALIAS_RESOLVED(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[27];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:dmitry.baryshkov@oss.qualcomm.com,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:from_mime,collabora.com:email,collabora.com:mid,collabora.com:dkim,vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+	ALIAS_RESOLVED(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCPT_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,lists.linux.dev:replyto,vger.kernel.org:from_smtp,sashiko.dev:url]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: C574E731F16
+X-Rspamd-Queue-Id: 8CBBE731F68
 
-On 7/1/26 14:20, AngeloGioacchino Del Regno wrote:
-> This hardware controls trigger sources, and there's even a generic
-> binding just for that: allow #trigger-source-cells in MuteX, so
-> that this is allowed to provide triggers to external HW.
-> 
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Thank you for your contribution! Sashiko AI review found 7 potential issue(=
+s) to consider:
 
-Hey Krzysztof, I noticed you gave your A-b/R-b on the other two bindings commits
-but you skipped this.
+New issues:
+- [High] Firmware generation detection fails for split `.mdt` firmware file=
+s provided via DT override.
+- [High] Firmware generation detection aborts on the first occurrence of th=
+e marker string, risking false Gen1 classification.
+- [Low] MAX_FIRMWARE_NAME_SIZE macro is unused after the patch.
 
-Did you have any doubts on this one that I may clarify for you, or was it just
-that this one slipped through while reviewing?
+Pre-existing issues:
+- [Critical] Lockless traversal of `core->instances` linked list leads to p=
+otential Use-After-Free.
+- [High] Possible NULL pointer dereference of `core->hfi_sys_ops` in the in=
+terrupt handler.
+- [High] Concurrent open() allows userspace to issue ioctls to uninitialize=
+d or failed firmware.
+- [Medium] iris_add_session silently fails if max_session_count is reached,=
+ causing ioctl timeouts.
+--
 
-Cheers,
-Angelo
+--- Patch [1]: [PATCH v7 01/18] media: iris: Add Gen2 firmware autodetect a=
+nd fallback ---
+commit 895d948eb718207e479cf98e9811c2b53fd39e23
+Author: Dikshita Agarwal <dikshita.agarwal@oss.qualcomm.com>
 
-> ---
->   .../devicetree/bindings/soc/mediatek/mediatek,mutex.yaml      | 4 ++++
->   1 file changed, 4 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/soc/mediatek/mediatek,mutex.yaml b/Documentation/devicetree/bindings/soc/mediatek/mediatek,mutex.yaml
-> index 1ba086ad749d..429ea149068e 100644
-> --- a/Documentation/devicetree/bindings/soc/mediatek/mediatek,mutex.yaml
-> +++ b/Documentation/devicetree/bindings/soc/mediatek/mediatek,mutex.yaml
-> @@ -57,6 +57,9 @@ properties:
->       items:
->         - description: MUTEX Clock
->   
-> +  '#trigger-source-cells':
-> +    const: 1
+media: iris: Add Gen2 firmware autodetect and fallback
+
+Some Iris platforms support both Gen1 and Gen2 HFI firmware images.
+Update the firmware loading logic to handle this generically by
+preferring Gen2 when available, while safely falling back to Gen1
+when required.
+
+> diff --git a/drivers/media/platform/qcom/iris/iris_core.c b/drivers/media=
+/platform/qcom/iris/iris_core.c
+> index 52bf56e517f91..6dbe18be5b495 100644
+> --- a/drivers/media/platform/qcom/iris/iris_core.c
+> +++ b/drivers/media/platform/qcom/iris/iris_core.c
+> @@ -79,6 +80,7 @@ int iris_core_init(struct iris_core *core)
+>  		goto error_unload_fw;
+> =20
+>  	core->iris_firmware_data->init_hfi_ops(core);
+
+[Severity: High]
+This is a pre-existing issue, but can the interrupt handler dereference a N=
+ULL
+core->hfi_sys_ops here?
+
+Looking at iris_core_init(), iris_vpu_power_on(core) is called earlier, whi=
+ch
+enables interrupts. However, core->hfi_sys_ops is not populated until this
+init_hfi_ops() call. If an interrupt fires during this window,
+iris_hfi_isr_handler() will unconditionally dereference core->hfi_sys_ops a=
+nd
+cause a kernel panic.
+
+[Severity: High]
+This is a pre-existing issue, but can a concurrent open() cause userspace to
+issue ioctls to uninitialized hardware?
+
+In iris_core_init(), the core state is set to IRIS_CORE_INIT before waiting
+for the firmware SYS_INIT_DONE response. The lock is dropped during the wai=
+t.
+If a second thread concurrently calls iris_open(), it sees
+core->state =3D=3D IRIS_CORE_INIT, bypasses the wait, and returns success
+immediately. The second thread can then issue V4L2 ioctls while the firmware
+is still booting.
+
+> +	iris_session_init_caps(core);
+> =20
+>  	ret =3D iris_hfi_core_init(core);
+>  	if (ret)
+> diff --git a/drivers/media/platform/qcom/iris/iris_firmware.c b/drivers/m=
+edia/platform/qcom/iris/iris_firmware.c
+> index 1a476146d7580..a3aa41aa1e66b 100644
+> --- a/drivers/media/platform/qcom/iris/iris_firmware.c
+> +++ b/drivers/media/platform/qcom/iris/iris_firmware.c
+> @@ -16,20 +16,138 @@
+> =20
+>  #define MAX_FIRMWARE_NAME_SIZE	128
+
+[Severity: Low]
+Is the MAX_FIRMWARE_NAME_SIZE macro still needed? It appears to be unused
+after the removal of the strlen check in this patch.
+
+> -static int iris_load_fw_to_memory(struct iris_core *core, const char *fw=
+_name)
+> +/* Detect Gen2 firmware by scanning the blob for:
+> + *   QC_IMAGE_VERSION_STRING=3D<version>
+> + * and then checking:
+> + *   - version starts with "vfw", OR
+> + *   - version matches "video-firmware.N.M" with N >=3D 2
+> + */
 > +
->     mediatek,gce-events:
->       description:
->         The event id which is mapping to the specific hardware event signal
-> @@ -119,6 +122,7 @@ examples:
->               interrupts = <GIC_SPI 169 IRQ_TYPE_LEVEL_LOW>;
->               power-domains = <&spm MT8173_POWER_DOMAIN_MM>;
->               clocks = <&mmsys CLK_MM_MUTEX_32K>;
-> +            #trigger-source-cells = <1>;
->               mediatek,gce-events = <CMDQ_EVENT_MUTEX0_STREAM_EOF>,
->                                     <CMDQ_EVENT_MUTEX1_STREAM_EOF>;
->           };
+> +static bool iris_detect_gen2_from_fwdata(const u8 *data, size_t size)
+> +{
+> +	static const char *marker =3D "QC_IMAGE_VERSION_STRING=3D";
+> +	const size_t mlen =3D strlen(marker);
+> +	static const char *vfw =3D "vfw";
+> +	const size_t vfwlen =3D strlen(vfw);
+> +	static const char *vf =3D "video-firmware.";
+> +	const size_t vflen =3D strlen(vf);
+> +
+> +	for (size_t i =3D 0; i + mlen < size; i++) {
+> +		const char *found;
+> +
+> +		if (memcmp(data + i, marker, mlen))
+> +			continue;
+> +
+> +		found =3D data + i + mlen;
+> +		size -=3D i + mlen;
+> +
+> +		/* vfw =3D> Gen2 */
+> +		if (size > vfwlen && !memcmp(found, vfw, vfwlen))
+> +			return true;
+> +
+> +		if (size < vflen ||
+> +		    memcmp(found, vf, vflen))
+> +			return false;
 
+[Severity: High]
+Will this prematurely abort the search if the marker string is encountered =
+but
+the prefix doesn't match?
 
+If a debug or format string matches "QC_IMAGE_VERSION_STRING=3D" earlier in=
+ the
+binary (e.g., "Error parsing QC_IMAGE_VERSION_STRING=3D%s"), this function
+returns false immediately instead of continuing to scan, missing the actual
+version string. Should it continue searching instead?
+
+> +
+> +		found +=3D vflen;
+> +		size -=3D vflen;
+
+[ ... ]
+
+> +	if (ret) {
+> +		/* No firmware-name in DT: select by probing Gen2 then Gen1. */
+> +		*fw_name =3D desc->fwname;
+> +		if (has_both_gens)
+> +			ret =3D firmware_request_nowarn(&firmware, *fw_name, core->dev);
+> +		else
+> +			ret =3D request_firmware(&firmware, *fw_name, core->dev);
+> +		if (ret && has_both_gens) {
+> +			desc =3D core->iris_platform_data->firmware_desc_gen1;
+> +			*fw_name =3D desc->fwname;
+> +			ret =3D request_firmware(&firmware, *fw_name, core->dev);
+> +		}
+> +		if (ret)
+> +			return ERR_PTR(ret);
+> +	} else {
+> +		/* firmware-name given: load it and detect its generation. */
+> +		ret =3D request_firmware(&firmware, *fw_name, core->dev);
+> +		if (ret)
+> +			return ERR_PTR(ret);
+> +
+> +		if (has_both_gens &&
+> +		    !iris_detect_gen2_from_fwdata((const u8 *)firmware->data, firmware=
+->size)) {
+
+[Severity: High]
+Does this code fail to detect Gen2 firmware when a standard split .mdt file=
+ is
+provided via DT override?
+
+If request_firmware() is called on a split .mdt file, it provides only the
+ELF headers. Since the actual version string resides in the .bXX data segme=
+nts,
+scanning the header will miss the version string and falsely assume Gen1.
+Subsequently, qcom_mdt_load() will properly load the Gen2 segments into
+memory, causing a mismatch between the running firmware and the driver's HFI
+operations.
+
+> +			dev_info(core->dev, "Gen1 FW detected in %s\n", *fw_name);
+> +			desc =3D core->iris_platform_data->firmware_desc_gen1;
+> +		}
+> +	}
+
+[ ... ]
+
+> diff --git a/drivers/media/platform/qcom/iris/iris_vidc.c b/drivers/media=
+/platform/qcom/iris/iris_vidc.c
+> index 14d63dc76c9ba..33edbc5cab8f0 100644
+> --- a/drivers/media/platform/qcom/iris/iris_vidc.c
+> +++ b/drivers/media/platform/qcom/iris/iris_vidc.c
+> @@ -9,6 +9,7 @@
+>  #include <media/v4l2-mem2mem.h>
+>  #include <media/videobuf2-dma-contig.h>
+> =20
+> +#include "iris_ctrls.h"
+>  #include "iris_vidc.h"
+>  #include "iris_instance.h"
+>  #include "iris_vdec.h"
+
+[Severity: Medium]
+This isn't a bug introduced by this patch, but does iris_add_session() sile=
+ntly
+fail when max_session_count is reached?
+
+When userspace opens more instances than max_session_count, iris_add_sessio=
+n()
+skips adding the instance but returns void. iris_open() continues as if
+successful and provides an FD to userspace. Subsequent ioctls will timeout
+because the responses are dropped since the instance is missing from
+core->instances.
+
+[Severity: Critical]
+This is a pre-existing issue, but is it safe to traverse core->instances
+without holding core->lock in iris_check_session_supported()?
+
+iris_check_session_supported() uses list_for_each_entry() to traverse the
+core->instances list holding only inst->lock. Concurrently, another thread
+executing iris_close() can call iris_remove_session() (which holds
+core->lock), remove a different instance from the list via list_del_init(),
+and free it. The lockless traversal will then follow a freed pointer,
+leading to a use-after-free.
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260709-iris-ar50l=
+t-v7-0-76af9dd4d1f6@oss.qualcomm.com?part=3D1
 
