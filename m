@@ -1,56 +1,56 @@
-Return-Path: <devicetree+bounces-323598-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-323599-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id wuJcAmp5T2rahgIAu9opvQ
-	(envelope-from <devicetree+bounces-323598-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 12:35:22 +0200
+	id 92xmMFp/T2rmiAIAu9opvQ
+	(envelope-from <devicetree+bounces-323599-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 13:00:42 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86FFF72FAD0
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 12:35:21 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E4F4F72FFCD
+	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 13:00:40 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=collabora.com header.s=mail header.b=NAOsadfR;
+	dkim=pass header.d=collabora.com header.s=mail header.b=ZHBUf3P8;
 	dmarc=pass (policy=none) header.from=collabora.com;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-323598-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-323598-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-323599-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-323599-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 773EC300B1BE
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2026 10:34:50 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id CF0F1315DA39
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2026 10:34:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0ECC3406269;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F4190407CFC;
 	Thu,  9 Jul 2026 10:34:40 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83AC0405C3F;
-	Thu,  9 Jul 2026 10:34:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7ECC14071D2;
+	Thu,  9 Jul 2026 10:34:39 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783593279; cv=none; b=hgt5nn07D/Bn3O/OtmnXKd1De5qR02Gh7Kk67jnC40ZXZdncAaTEIutrX40ZFZO8laZ+/2Pi+TQ+6E9CGQd+yQhnRZpxfqaYbBwt5IkqW/qIgz7YU9wVQ/Ljmud0vURI3UOhFmnW6KTsDGg7F5l6uV02r2ySc+71CBRe4ATQ+fU=
+	t=1783593280; cv=none; b=Wh+QVi2V32TwTIIhQymGbREUHMp1DltfKR6zDGFKQYPadeWwF//RBv6UTLDecqdthfDjwxRP5F8TOYnCfnoYW/Hknb4DDDQXgLet8A7joZzJXa+1u2hoA7yANVmTj+I8d9JtSloFkmMuTWBZHZd1nXZ3+uzVVQ/+OAV+PTiCw48=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783593279; c=relaxed/simple;
-	bh=kHVv2nCdsp0f/QR38D6tcCGOazDnOTOs2KSvBo2SWnI=;
+	s=arc-20240116; t=1783593280; c=relaxed/simple;
+	bh=g3NFv/k1bhmvy3mt7HV2c3qJ0TtBnuA23r95Ywj2Yqs=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=c5RCA/n8h7xuDZBbN7L38bElJXhoLRrWxPhMiRUPcH7Q8cJzjStdGMeTBM6RiK6VC1lgw/nuMK7YFlDZD3yY9yo/dEvpZRr7nPogssgbIIHPt3vCqeWeK+lHmzToo/Rbzs5gXzlVoS4jv0RfmqPHQNuYYjSBrgGW7JWx89OaOoM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=NAOsadfR; arc=none smtp.client-ip=148.251.105.195
+	 MIME-Version; b=rLNSMJTMUNVuBOrQYe0DhmvU7b/fN9wg8MnXkWAlMabv8DnLp7YCMKue61F8/8UeVXWgwTiJotiVDwXvxexToA8xslkWxzcXlEYB00Hp6PC8bxfxvopza55WYNmC4ZTc6gAz1zm+k08VgHaRIx1wPvKSEgXO3OVJ08+TjBV6Pug=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=ZHBUf3P8; arc=none smtp.client-ip=148.251.105.195
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1783593276;
-	bh=kHVv2nCdsp0f/QR38D6tcCGOazDnOTOs2KSvBo2SWnI=;
+	s=mail; t=1783593278;
+	bh=g3NFv/k1bhmvy3mt7HV2c3qJ0TtBnuA23r95Ywj2Yqs=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=NAOsadfR5/GhS5a6Blg4iy/kPKN7ErRwXBYIo5WUe3EZeG71lK2RGnJJmVjjZBJ2c
-	 i7P2rvaq2581vvojbBUmuM6gHoztnJVuZ31rnEomZAZdN0EnCW5Jk/V6leXU45Xt7P
-	 NGuCpQFo8Q5HT3k24XZXa8G8ohADojDZCabd7EgyIqyTI8YBuPynSFjrvu2PliwaeH
-	 s+0zm8IWvrNo5q6LSgL494UHJr5E9lmIclcCSQZ64yODy28BySZYIELR34CUPq5rHL
-	 vyPjH9reCFExcfIXvbPuxiBEhkQj9LVxRetVFc5K9eLvGq4pcYqd3N6ZFdpbyveJqn
-	 4uVyEK6r3yaTw==
+	b=ZHBUf3P8g1Mm3j1yWaPhbdKA0EFBKAw6f/yo49Qa6AvisFaFcTvbCE68BOHjFminq
+	 VCPMb3OAd/iMauOW43+52q6YC4sBeQ8nVOf8XikeNuTSj4+rtfttXXFF//cm8b5cqw
+	 Hqf5I4WSjok8GxCFHYIBj14KL2/jAALVC9mef/P3kdx2WdNfF5EZstxY0Z2ipbKS81
+	 sfUZGnpAvXMiq14pgfrYxycAi04eBxMG5Caco6apHpCr0j1MB1+nXOuV+88jzLMY2l
+	 O+PNvtNuw26r+SI3cxpn4Po0OfpI2WzzNifNOapsstOinzvE6EopxQQqrDgHTkOJ18
+	 udAxN8mAvoymw==
 Received: from IcarusMOD.eternityproject.eu (unknown [100.64.1.21])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
 	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id F419417E0D53;
-	Thu, 09 Jul 2026 12:34:35 +0200 (CEST)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 12A4717E05D3;
+	Thu, 09 Jul 2026 12:34:37 +0200 (CEST)
 From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 To: chunkuang.hu@kernel.org
 Cc: p.zabel@pengutronix.de,
@@ -78,9 +78,9 @@ Cc: p.zabel@pengutronix.de,
 	linux-kernel@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	kernel@collabora.com
-Subject: [PATCH v3 02/11] dt-bindings: display: mediatek: dp: Add compatible for MT8196 eDP
-Date: Thu,  9 Jul 2026 12:34:22 +0200
-Message-ID: <20260709103431.46616-3-angelogioacchino.delregno@collabora.com>
+Subject: [PATCH v3 03/11] drm/mediatek: mtk_dp: Fix hdmi codec and phy driver unregistration
+Date: Thu,  9 Jul 2026 12:34:23 +0200
+Message-ID: <20260709103431.46616-4-angelogioacchino.delregno@collabora.com>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20260709103431.46616-1-angelogioacchino.delregno@collabora.com>
 References: <20260709103431.46616-1-angelogioacchino.delregno@collabora.com>
@@ -99,14 +99,14 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
 	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	FORWARDED(0.00)[lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FREEMAIL_CC(0.00)[pengutronix.de,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,collabora.com,mediatek.com,baylibre.com,lists.freedesktop.org,lists.infradead.org,vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-323598-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-323599-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_SENDER(0.00)[angelogioacchino.delregno@collabora.com,devicetree@vger.kernel.org];
@@ -121,36 +121,103 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	DKIM_TRACE(0.00)[collabora.com:+];
 	TO_DN_NONE(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	ALIAS_RESOLVED(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:from_mime,collabora.com:email,collabora.com:mid,collabora.com:dkim,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,collabora.com:from_mime,collabora.com:email,collabora.com:mid,collabora.com:dkim,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 86FFF72FAD0
+X-Rspamd-Queue-Id: E4F4F72FFCD
 
-Add a new compatible for the Embedded DisplayPort IP found in the
-MT8196 SoC.
+During probe, this driver is registering two platform devices: one
+for the HDMI Codec driver and one for the DisplayPort PHY driver.
 
-This IP is compatible with the previous ones, but not fully.
+In the probe function, none of the error cases are unregistering
+any of the two platform devices and this may cause registration
+of multiple instances of those in case this driver returns one or
+more probe deferral(s) in the "wrong" spots.
 
+In order to fix this, add devm actions to unregister those and
+remove the manual calls to platform_device_unregister in the
+mtk_dp_remove() function, as those would otherwise be redundant.
+
+Fixes: e71a8ebbe086 ("drm/mediatek: dp: Audio support for MT8195")
+Fixes: caf2ae486742 ("drm/mediatek: dp: Add support for embedded DisplayPort aux-bus")
 Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 ---
- .../devicetree/bindings/display/mediatek/mediatek,dp.yaml        | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/gpu/drm/mediatek/mtk_dp.c | 27 +++++++++++++++++++++++----
+ 1 file changed, 23 insertions(+), 4 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,dp.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,dp.yaml
-index 980f76667ada..3a752a99949a 100644
---- a/Documentation/devicetree/bindings/display/mediatek/mediatek,dp.yaml
-+++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,dp.yaml
-@@ -25,6 +25,7 @@ properties:
-       - mediatek,mt8188-edp-tx
-       - mediatek,mt8195-dp-tx
-       - mediatek,mt8195-edp-tx
-+      - mediatek,mt8196-edp-tx
+diff --git a/drivers/gpu/drm/mediatek/mtk_dp.c b/drivers/gpu/drm/mediatek/mtk_dp.c
+index f656b85b8421..12400383fbb2 100644
+--- a/drivers/gpu/drm/mediatek/mtk_dp.c
++++ b/drivers/gpu/drm/mediatek/mtk_dp.c
+@@ -2670,6 +2670,13 @@ static const struct hdmi_codec_ops mtk_dp_audio_codec_ops = {
+ 	.hook_plugged_cb = mtk_dp_audio_hook_plugged_cb,
+ };
  
-   reg:
-     maxItems: 1
++static void mtk_dp_unregister_pdevs(void *data)
++{
++	struct platform_device *ext_pdev = data;
++
++	platform_device_unregister(ext_pdev);
++}
++
+ static int mtk_dp_register_audio_driver(struct device *dev)
+ {
+ 	struct mtk_dp *mtk_dp = dev_get_drvdata(dev);
+@@ -2680,18 +2687,28 @@ static int mtk_dp_register_audio_driver(struct device *dev)
+ 		.data = mtk_dp,
+ 		.no_capture_mute = 1,
+ 	};
++	int ret;
+ 
+ 	mtk_dp->audio_pdev = platform_device_register_data(dev,
+ 							   HDMI_CODEC_DRV_NAME,
+ 							   PLATFORM_DEVID_AUTO,
+ 							   &codec_data,
+ 							   sizeof(codec_data));
+-	return PTR_ERR_OR_ZERO(mtk_dp->audio_pdev);
++	if (IS_ERR(mtk_dp->audio_pdev))
++		return PTR_ERR(mtk_dp->audio_pdev);
++
++	ret = devm_add_action_or_reset(dev, mtk_dp_unregister_pdevs, mtk_dp->audio_pdev);
++	if (ret)
++		return dev_err_probe(dev, ret,
++				     "Failed to add codec unregister devm action");
++
++	return 0;
+ }
+ 
+ static int mtk_dp_register_phy(struct mtk_dp *mtk_dp)
+ {
+ 	struct device *dev = mtk_dp->dev;
++	int ret;
+ 
+ 	mtk_dp->phy_dev = platform_device_register_data(dev, "mediatek-dp-phy",
+ 							PLATFORM_DEVID_AUTO,
+@@ -2701,6 +2718,11 @@ static int mtk_dp_register_phy(struct mtk_dp *mtk_dp)
+ 		return dev_err_probe(dev, PTR_ERR(mtk_dp->phy_dev),
+ 				     "Failed to create device mediatek-dp-phy\n");
+ 
++	ret = devm_add_action_or_reset(dev, mtk_dp_unregister_pdevs, mtk_dp->phy_dev);
++	if (ret)
++		return dev_err_probe(dev, ret,
++				     "Failed to add phy unregister devm action");
++
+ 	mtk_dp_get_calibration_data(mtk_dp);
+ 
+ 	mtk_dp->phy = devm_phy_get(&mtk_dp->phy_dev->dev, "dp");
+@@ -2870,9 +2892,6 @@ static void mtk_dp_remove(struct platform_device *pdev)
+ 	pm_runtime_disable(&pdev->dev);
+ 	if (mtk_dp->data->bridge_type != DRM_MODE_CONNECTOR_eDP)
+ 		timer_delete_sync(&mtk_dp->debounce_timer);
+-	platform_device_unregister(mtk_dp->phy_dev);
+-	if (mtk_dp->audio_pdev)
+-		platform_device_unregister(mtk_dp->audio_pdev);
+ }
+ 
+ #ifdef CONFIG_PM_SLEEP
 -- 
 2.54.0
 
