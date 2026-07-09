@@ -1,572 +1,228 @@
-Return-Path: <devicetree+bounces-323457-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-323933-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id geoTAaZfT2q2fQIAu9opvQ
-	(envelope-from <devicetree+bounces-323457-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 10:45:26 +0200
+	id dXC6DpfQT2rZogIAu9opvQ
+	(envelope-from <devicetree+bounces-323933-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 18:47:19 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37BCF72E705
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 10:45:25 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 294B673395D
+	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 18:47:18 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=ite.com.tw header.s=dkim header.b=fCQaYzDb;
-	dmarc=pass (policy=quarantine) header.from=ite.com.tw;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-323457-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-323457-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=b4moN+Ss;
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-323933-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-323933-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id B198A3019068
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2026 08:38:19 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 1B2EC3001597
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2026 16:47:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F8173F4127;
-	Thu,  9 Jul 2026 08:38:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1DB6B35E955;
+	Thu,  9 Jul 2026 16:47:14 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from ironport.ite.com.tw (60-251-196-230.hinet-ip.hinet.net [60.251.196.230])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 691183F39DD;
-	Thu,  9 Jul 2026 08:38:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6FB92367CF;
+	Thu,  9 Jul 2026 16:47:12 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783586298; cv=none; b=Ty1zR1SHQtFZEhRwp9swUbHME6ql2sqwRkS1wqe0+Xf2afx6Bk4yGSOEqHuMMkpa1T8Su3N+69pOGInS7rBGyKapjBvzFIcra757CKr/TIHJSJezzJBZa9ail1/oLJZLHsM92sgyOvXM3oeiwUrFkN+V8ERzV2ERFI7mvWoBMeQ=
+	t=1783615634; cv=none; b=XvqV9KftdOS6QK9DnYYwsKKWduQClzi0f2j/tFhtws7YMEBJb6QsphTQXP797k8TudbkbZz8dWKaYuzm6v/WyvSgABvA44UVFmaKoguNiipmqFQT+sXWzyH3QbSN+2Hmn44m1dcyM+soHOKzoW43VRozxNgMlYYSL/T4/iOpmi0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783586298; c=relaxed/simple;
-	bh=dk+uHbCKqzHrXM84tiElK/6X9O7vMKUvln/1TKYFsRM=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=SxXCIfAvKOohBdZF9rCI2oCqVT0M4MEmkenF68umBYFiTMp78f/kM3sUOunMbk+mD1yokRVLDMv9CQL5Gs71aVJh6C2RIxdZOIjZ+dG8mMJZ24g9hOlyjhDMN2u9qcvjBtd+mOFN6AyA1Uvzn6WxGP2GXUyHxgQP8EtucRA1Brs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ite.com.tw; spf=pass smtp.mailfrom=ite.com.tw; dkim=pass (2048-bit key) header.d=ite.com.tw header.i=@ite.com.tw header.b=fCQaYzDb; arc=none smtp.client-ip=60.251.196.230
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=ite.com.tw; s=dkim;
-  h=from:date:subject:mime-version:content-transfer-encoding:
-   message-id:references:in-reply-to:to:cc;
-  bh=Uj0xSm2THla/zxNLmqG6cFNVvodduBFGoSUJfMeFas0=;
-  b=fCQaYzDbKVNVCoD8W5hgRaB25UgrIYuc7dJQ/+W1a8hVZWEBTbF2e6X7
-   hXgkTSn2JdKDZAmju4CKq1LvucN43J/l/rj2Zhs8UY8PGZgTqxBgoRxEy
-   MQSc6mDl8UQVeloprbK7cLr+61dpDgocszwNs4MgBG8xJTJcE+Q0WC9aA
-   wFp1DgQ4DLoTbFHnAdeSfr+Rp4/hfiF+jBxjoxjCjzbEYcqJcbh6w+4ah
-   Usqwp4itWB3n2U4+XsjXHCje9MVmuvSg+2f7G1gFMEfpBHRdbygdt/8/J
-   yziYWnatbCLEscEV5U5OdzfE722wlOCM3MkdE6hMM4TBSaFTPVOb2AIwq
-   A==;
-X-CSE-ConnectionGUID: Ua30jdnxRd6lt9OEHRO72g==
-X-CSE-MsgGUID: riLE03nATnmFzh/2Fg+GxA==
-Received: from unknown (HELO mse.ite.com.tw) ([192.168.35.30])
-  by ironport.ite.com.tw with ESMTP; 09 Jul 2026 16:34:53 +0800
-Received: from hscmail1.internal.ite.com.tw (HSCMAIL1.internal.ite.com.tw [192.168.35.58])
-	by mse.ite.com.tw with ESMTP id 6698Yl1m046603;
-	Thu, 9 Jul 2026 16:34:47 +0800 (+08)
-	(envelope-from amber.kao@ite.com.tw)
-Received: from [127.0.1.1] (192.168.37.107) by HSCMAIL1.internal.ite.com.tw
- (192.168.35.58) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.37; Thu, 9 Jul
- 2026 16:34:46 +0800
-From: Amber Kao <amber.kao@ite.com.tw>
-Date: Fri, 10 Jul 2026 00:34:43 +0800
-Subject: [PATCH v2 2/2] usb: typec: ucsi: Add ITE IT885x Type-C PD
- controller driver
+	s=arc-20240116; t=1783615634; c=relaxed/simple;
+	bh=LM1blfvROpFyR9Rjahdrqv7ioTYVwK+ecmt6V6ifnVk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=gL8obqU5FOUGCNloHQS32LZKTF6uC5lMgeddMigo5Pkv+HmpiN6m3QRfYHwQf2bXh+shPiFDDZ8UYRbzAkLEXNY0ftm9PdUq+RguUTd9EBxLFhHE5wVyfomQGoU1qAP1AFORNZCUoGJbkxltHS1r0sdM6yYPn/h9ZvleZfw43BE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=b4moN+Ss; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 82A1F1F000E9;
+	Thu,  9 Jul 2026 16:47:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1783615632;
+	bh=f6zfm76fEAbtqbPgr8gSWD50RFqbsGXOG5Wy3pfyM+U=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To;
+	b=b4moN+SscOMvp/fQApGNRYxiRUl57GNzScV0hh8gIEFcgYPJxGAVowYd5GiQSYpkK
+	 1qAFqokbo1YQ3RjBWoDdJM/p5x3QuSRp3HVpcra58EYEiCo5Jp5aqhOZ9qOzfUCaSi
+	 XXSiRnGo2rWNynWHTnmIcs1yBa9YaiB7WRf/8CgxgzOLbiCJLMJFNjRLMfMtmhQSjg
+	 mgAUE4cUofFTzJgnNCe5hleRlYX0mqrXRSCLRMLAoiZfs6+AA38tlOjeGPFj5L7kXm
+	 opPHgG0T5fi8n2S7eofIokNYK74VAct58PK8eE7Ps8xW6XBwpZ4RuLmHUjnZ0b+/ec
+	 c9yaTDBg+Ms9g==
+Message-ID: <40c82e88-2f3e-4651-b063-08754af73cf4@kernel.org>
+Date: Thu, 9 Jul 2026 18:47:06 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20260710-ucsi-itepd-feature-v2-2-41943fd5df38@ite.com.tw>
-References: <20260710-ucsi-itepd-feature-v2-0-41943fd5df38@ite.com.tw>
-In-Reply-To: <20260710-ucsi-itepd-feature-v2-0-41943fd5df38@ite.com.tw>
-To: Jeson Yang <jeson.yang@ite.com.tw>, Yaode Fang <Yaode.Fang@ite.com.tw>,
-        Bling Chiang <Bling.Chiang@ite.com.tw>,
-        Doreen Lin <doreen.lin@ite.com.tw>, Eric Su <Eric.Su@ite.com.tw>,
-        Greg Kroah-Hartman
-	<gregkh@linuxfoundation.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof
- Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Heikki
- Krogerus <heikki.krogerus@linux.intel.com>
-CC: <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Amber Kao <amber.kao@ite.com.tw>
-X-Mailer: b4 0.15.2
-X-ClientProxiedBy: CSBMAIL1.internal.ite.com.tw (192.168.65.58) To
- HSCMAIL1.internal.ite.com.tw (192.168.35.58)
-X-TM-SNTS-SMTP:
-	F483AB3C76BE205EC1778D0623C059339D85CF6CB0CDEFBAC1C5CB1819FAF2BE2002:8
-X-MAIL:mse.ite.com.tw 6698Yl1m046603
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 00/10] soc: fsl: qe: QE PIC improvement and add support
+ of IRQs to QUICC ENGINE GPIOs
+To: Paul Louvel <paul.louvel@bootlin.com>, Qiang Zhao <qiang.zhao@nxp.com>,
+ Thomas Gleixner <tglx@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Linus Walleij <linusw@kernel.org>,
+ Bartosz Golaszewski <brgl@kernel.org>,
+ Madhavan Srinivasan <maddy@linux.ibm.com>,
+ Michael Ellerman <mpe@ellerman.id.au>, Nicholas Piggin <npiggin@gmail.com>
+Cc: linuxppc-dev@lists.ozlabs.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-gpio@vger.kernel.org, Herve Codina <herve.codina@bootlin.com>,
+ stable@kernel.org, Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+References: <20260708-qe-pic-gpios-v2-0-1972044cfbd1@bootlin.com>
+Content-Language: fr-FR
+From: "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>
+In-Reply-To: <20260708-qe-pic-gpios-v2-0-1972044cfbd1@bootlin.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [3.34 / 15.00];
-	DATE_IN_FUTURE(4.00)[7];
+X-Spamd-Result: default: False [-3.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[ite.com.tw,quarantine];
-	R_DKIM_ALLOW(-0.20)[ite.com.tw:s=dkim];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-323457-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER(0.00)[amber.kao@ite.com.tw,devicetree@vger.kernel.org];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:paul.louvel@bootlin.com,m:qiang.zhao@nxp.com,m:tglx@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linusw@kernel.org,m:brgl@kernel.org,m:maddy@linux.ibm.com,m:mpe@ellerman.id.au,m:npiggin@gmail.com,m:linuxppc-dev@lists.ozlabs.org,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-gpio@vger.kernel.org,m:herve.codina@bootlin.com,m:stable@kernel.org,m:krzysztof.kozlowski@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:jeson.yang@ite.com.tw,m:Yaode.Fang@ite.com.tw,m:Bling.Chiang@ite.com.tw,m:doreen.lin@ite.com.tw,m:Eric.Su@ite.com.tw,m:gregkh@linuxfoundation.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:heikki.krogerus@linux.intel.com,m:linux-usb@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:amber.kao@ite.com.tw,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER(0.00)[chleroy@kernel.org,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	FREEMAIL_TO(0.00)[bootlin.com,nxp.com,kernel.org,linux.ibm.com,ellerman.id.au,gmail.com];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-323933-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[amber.kao@ite.com.tw,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[ite.com.tw:+];
 	ALIAS_RESOLVED(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[chleroy@kernel.org,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,ite.com.tw:from_mime,ite.com.tw:email,ite.com.tw:mid,ite.com.tw:dkim,metrocast.net:email]
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,vger.kernel.org:from_smtp,bootlin.com:url,bootlin.com:email,outlook.com:url,msgid.link:url]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 37BCF72E705
+X-Rspamd-Queue-Id: 294B673395D
 
-Add core UCSI support for the ITE IT885x USB Type-C Power Delivery
-controller over I2C.
 
-Per Heikki's review of v1, this series has been split into smaller
-patches. This patch provides the bare minimum: register the UCSI
-ports and partners only, with no command translation and no
-Alternate Mode support. The command-translation hook and Alternate
-Mode child device from v1 have been dropped entirely for this patch,
-and will be reintroduced one feature at a time in follow-up series.
 
-v1 -> v2:
-- Per Heikki: split into a minimal, single-file patch
-  (ucsi_itepd.c only); the itepd.c/itepd.h core, the auxiliary-bus
-  child-device split, and itepd_altmode.c are dropped from this
-  patch and deferred to a follow-up series
-- Per Heikki: removed the UCSI command-translation hook
-  (ucsi_itepd_command_hook()) entirely for this minimal patch
-- Use heap-allocated (kzalloc) I2C buffers instead of stack memory,
-  since i2c_transfer() buffers must be DMA-safe
-- Add explicit little-endian conversions for all multi-byte
-  register fields
-- Require a valid IRQ at probe time
-- Fix probe()/remove() ordering so the IRQ thread can never observe
-  a freed or not-yet-created ucsi instance
-- Add an i2c_device_id table alongside of_device_id
-- Dropped the AUXILIARY_BUS/DRM Kconfig dependencies, no longer
-  needed without the altmode client
+Le 08/07/2026 à 12:15, Paul Louvel a écrit :
+> This series modernizes the QUICC Engine Port Interrupt Controller (QE
+> PIC) driver and adds the ability for QE GPIO pins to generate interrupts
+> through the QE PIC, completing Christophe Leroy's prior work [1].
+> 
+> Christophe's series was partially merged; patches 4, 6 and 7 did not
+> make it to mainline.
+> 
+> The series is organized in three parts:
+> 
+> 1) Add missing chained_irq_{enter,exit}() calls
+> 
+>     - In a chained handler, the parent controller need to mask and ack
+>       the interrupt source.
+> 
+> 2) DT binding updates
+> 
+>     - Update #interrupt-cells from 1 to 2 in the QE PIC binding so
+>       consumers can encode the interrupt type (falling-edge or
+>       both-edges).
+> 
+>     - Convert the QE GPIO binding from freeform text to DT schema.
+> 
+>     - Extend the QE GPIO binding with an interrupt-map (nexus node) that
+>       maps GPIO lines to parent QE PIC interrupts.  This approach was
+>       suggested by Rob Herring [2] as an alternative to using compatible
+>       strings and driver data to specify which pins support interrupts in
+>       a given bank.
+> 
+> 3) QE PIC driver refactoring
+> 
+>     - The QE PIC is a perfect fit to use the generic irq framework
+>       instead. Perform the necessary changes to the driver to convert it.
+> 
+>     - Minor cleanups.
+> 
+> 4) QE GPIO interrupt support
+> 
+>     - Add a to_irq() method to the QE GPIO driver that perform the
+>       mapping of the GPIO pin to the parent interrupt domain, allowing
+>       GPIO pins to be used as interrupt sources through the QE PIC via
+>       gpio_to_irq().
+> 
+> [1] https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2Flore.kernel.org%2Fall%2Fcover.1758212309.git.christophe.leroy%40csgroup.eu%2F&data=05%7C02%7Cchristophe.leroy%40csgroup.eu%7C1e59449bc6904ae4c2a808dedcd9e3e4%7C8b87af7d86474dc78df45f69a2011bb5%7C0%7C0%7C639191025561275310%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&sdata=SgmsHETiol22Fip%2FU04XAAKihuQ4UtGfIqUU8t%2FMTpI%3D&reserved=0
+> [2] https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2Flore.kernel.org%2Fall%2F20250919152414.GB852815-robh%40kernel.org%2F&data=05%7C02%7Cchristophe.leroy%40csgroup.eu%7C1e59449bc6904ae4c2a808dedcd9e3e4%7C8b87af7d86474dc78df45f69a2011bb5%7C0%7C0%7C639191025561303589%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&sdata=t%2B83hXaaY147CW1fvLA7ATUHJXDkfq6jLv5OWRr9ABI%3D&reserved=0
+> 
+> Signed-off-by: Paul Louvel <paul.louvel@bootlin.com>
 
-Cc: Yaode Fang <Yaode.Fang@ite.com.tw>
-Cc: Jeson Yang <jeson.yang@ite.com.tw>
-Cc: Bling Chiang <Bling.Chiang@ite.com.tw>
-Cc: Eric Su <Eric.Su@ite.com.tw>
-Cc: Doreen Lin <doreen.lin@ite.com.tw>
-Signed-off-by: Amber Kao <amber.kao@ite.com.tw>
----
-v1: https://lore.kernel.org/all/20260615-ucsi-itepd-feature-v1-0-a826cfd0df6a@ite.com.tw/
----
- MAINTAINERS                         |   1 +
- drivers/usb/typec/ucsi/Kconfig      |  10 ++
- drivers/usb/typec/ucsi/Makefile     |   1 +
- drivers/usb/typec/ucsi/ucsi_itepd.c | 348 ++++++++++++++++++++++++++++++++++++
- 4 files changed, 360 insertions(+)
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 1b03fa3aa060..22c0f386b25a 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -13730,6 +13730,7 @@ R:	Eric Su <Eric.Su@ite.com.tw>
- L:	linux-usb@vger.kernel.org
- S:	Maintained
- F:	Documentation/devicetree/bindings/usb/ite,itepd-it885x.yaml
-+F:	drivers/usb/typec/ucsi/ucsi_itepd.c
- 
- IVTV VIDEO4LINUX DRIVER
- M:	Andy Walls <awalls@md.metrocast.net>
-diff --git a/drivers/usb/typec/ucsi/Kconfig b/drivers/usb/typec/ucsi/Kconfig
-index 87dd992a4b9e..28442d2aebf8 100644
---- a/drivers/usb/typec/ucsi/Kconfig
-+++ b/drivers/usb/typec/ucsi/Kconfig
-@@ -104,4 +104,14 @@ config UCSI_HUAWEI_GAOKUN
- 	  To compile the driver as a module, choose M here: the module will be
- 	  called ucsi_huawei_gaokun.
- 
-+config UCSI_ITEPD
-+	tristate "UCSI Interface Driver for ITE IT885x"
-+	depends on I2C
-+	help
-+	  This driver enables UCSI support on platforms that expose an
-+	  ITE IT885x Type-C Power Delivery controller over I2C interface
-+
-+	  To compile the driver as a module, choose M here: the module
-+	  will be called ucsi_itepd.
-+
- endif
-diff --git a/drivers/usb/typec/ucsi/Makefile b/drivers/usb/typec/ucsi/Makefile
-index c7e38bf01350..0903a1fd486b 100644
---- a/drivers/usb/typec/ucsi/Makefile
-+++ b/drivers/usb/typec/ucsi/Makefile
-@@ -28,3 +28,4 @@ obj-$(CONFIG_UCSI_PMIC_GLINK)		+= ucsi_glink.o
- obj-$(CONFIG_CROS_EC_UCSI)		+= cros_ec_ucsi.o
- obj-$(CONFIG_UCSI_LENOVO_YOGA_C630)	+= ucsi_yoga_c630.o
- obj-$(CONFIG_UCSI_HUAWEI_GAOKUN)	+= ucsi_huawei_gaokun.o
-+obj-$(CONFIG_UCSI_ITEPD)		+= ucsi_itepd.o
-diff --git a/drivers/usb/typec/ucsi/ucsi_itepd.c b/drivers/usb/typec/ucsi/ucsi_itepd.c
-new file mode 100644
-index 000000000000..e364a3bd7df4
---- /dev/null
-+++ b/drivers/usb/typec/ucsi/ucsi_itepd.c
-@@ -0,0 +1,348 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (C) 2025-2026, ITE. All Rights Reserved
-+ */
-+#include <linux/bits.h>
-+#include <linux/err.h>
-+#include <linux/i2c.h>
-+#include <linux/interrupt.h>
-+#include <linux/module.h>
-+#include <linux/mutex.h>
-+#include <linux/slab.h>
-+#include <linux/unaligned.h>
-+
-+#include "ucsi.h"
-+
-+#define ITEPD_UCSI_VERSION_REG	0x80
-+#define ITEPD_UCSI_CCI_REG	    0x84
-+#define ITEPD_UCSI_MSG_IN_REG	0x88
-+#define ITEPD_UCSI_CONTROL_REG	0x98
-+
-+#define ITEPD_VENDOR_WC_INT	    0xbc
-+#define ITEPD_VENDOR_INT	    0xbd
-+#define ITEPD_ALERT_VDM_EVENT	    BIT(0)
-+#define ITEPD_ALERT_UCSI_EVENT	    BIT(1)
-+
-+#define ITEPD_MSG_IN_MAX_LEN	0x28
-+
-+struct itepd {
-+	struct i2c_client *client;
-+	struct ucsi *ucsi;
-+	struct mutex i2c_lock;		/* Serializes I2C accesses */
-+	struct mutex received_lock;	/* Protects cci and msg_in */
-+	u8 msg_in[ITEPD_MSG_IN_MAX_LEN];
-+	u32 cci;
-+};
-+
-+static u8 ucsi_itepd_get_len(u32 cci)
-+{
-+	if (cci & UCSI_CCI_COMMAND_COMPLETE)
-+		return UCSI_CCI_LENGTH(cci);
-+	return 0;
-+}
-+
-+static int itepd_read_reg(struct itepd *itepd, u8 reg, void *data, u32 len)
-+{
-+	struct i2c_client *client = itepd->client;
-+	struct i2c_msg msg[2];
-+	u8 *buf;
-+	int ret;
-+
-+	/* I2C buffers must be DMA-safe, so no stack memory here. */
-+	buf = kzalloc(len + 1, GFP_KERNEL);
-+	if (!buf)
-+		return -ENOMEM;
-+
-+	buf[0] = reg;
-+
-+	msg[0].addr     = client->addr;
-+	msg[0].flags    = 0;
-+	msg[0].len      = 1;
-+	msg[0].buf      = buf;
-+
-+	msg[1].addr     = client->addr;
-+	msg[1].flags    = I2C_M_RD;
-+	msg[1].len      = len;
-+	msg[1].buf      = buf + 1;
-+
-+	mutex_lock(&itepd->i2c_lock);
-+	ret = i2c_transfer(client->adapter, msg, ARRAY_SIZE(msg));
-+	mutex_unlock(&itepd->i2c_lock);
-+	if (ret < 0) {
-+		dev_err(&client->dev, "reg 0x%02x read failed: %d\n", reg, ret);
-+		goto out_free;
-+	}
-+	if (ret != ARRAY_SIZE(msg)) {
-+		ret = -EIO;
-+		goto out_free;
-+	}
-+
-+	memcpy(data, buf + 1, len);
-+	ret = 0;
-+
-+out_free:
-+	kfree(buf);
-+	return ret;
-+}
-+
-+static int itepd_write_reg(struct itepd *itepd, u8 reg, const void *data, u32 len)
-+{
-+	struct i2c_client *client = itepd->client;
-+	struct i2c_msg msg[1];
-+	u8 *buf;
-+	int ret;
-+
-+	buf = kzalloc(len + 1, GFP_KERNEL);
-+	if (!buf)
-+		return -ENOMEM;
-+
-+	buf[0] = reg;
-+	memcpy(buf + 1, data, len);
-+
-+	msg[0].addr = client->addr;
-+	msg[0].flags = 0;
-+	msg[0].len = len + 1;
-+	msg[0].buf = buf;
-+
-+	mutex_lock(&itepd->i2c_lock);
-+	ret = i2c_transfer(client->adapter, msg, ARRAY_SIZE(msg));
-+	mutex_unlock(&itepd->i2c_lock);
-+
-+	if (ret < 0) {
-+		dev_err(&client->dev, "reg 0x%02x write failed: %d\n", reg, ret);
-+		goto out_free;
-+	}
-+
-+	if (ret != ARRAY_SIZE(msg)) {
-+		ret = -EIO;
-+		goto out_free;
-+	}
-+
-+	ret = 0;
-+
-+out_free:
-+	kfree(buf);
-+	return ret;
-+}
-+
-+static int ucsi_itepd_read_version(struct ucsi *ucsi, u16 *version)
-+{
-+	struct itepd *itepd = ucsi_get_drvdata(ucsi);
-+	__le16 le_version;
-+	int ret;
-+
-+	ret = itepd_read_reg(itepd, ITEPD_UCSI_VERSION_REG, &le_version,
-+			     sizeof(le_version));
-+
-+	if (ret)
-+		return ret;
-+
-+	*version = le16_to_cpu(le_version);
-+
-+	return 0;
-+}
-+
-+static int ucsi_itepd_read_cci(struct ucsi *ucsi, u32 *cci)
-+{
-+	struct itepd *itepd = ucsi_get_drvdata(ucsi);
-+
-+	mutex_lock(&itepd->received_lock);
-+	*cci = itepd->cci;
-+	mutex_unlock(&itepd->received_lock);
-+
-+	return 0;
-+}
-+
-+static int ucsi_itepd_poll_cci(struct ucsi *ucsi, u32 *cci)
-+{
-+	struct itepd *itepd = ucsi_get_drvdata(ucsi);
-+	__le32 le_cci;
-+	int ret;
-+
-+	ret = itepd_read_reg(itepd, ITEPD_UCSI_CCI_REG, &le_cci,
-+			     sizeof(le_cci));
-+
-+	if (ret)
-+		return ret;
-+
-+	*cci = le32_to_cpu(le_cci);
-+
-+	return 0;
-+}
-+
-+static int ucsi_itepd_read_message_in(struct ucsi *ucsi, void *val, size_t val_len)
-+{
-+	struct itepd *itepd = ucsi_get_drvdata(ucsi);
-+
-+	mutex_lock(&itepd->received_lock);
-+	memcpy(val, itepd->msg_in, min(val_len, sizeof(itepd->msg_in)));
-+	mutex_unlock(&itepd->received_lock);
-+
-+	return 0;
-+}
-+
-+static int ucsi_itepd_async_control(struct ucsi *ucsi, u64 command)
-+{
-+	struct itepd *itepd = ucsi_get_drvdata(ucsi);
-+	__le64 le_cmd = cpu_to_le64(command);
-+
-+	return itepd_write_reg(itepd, ITEPD_UCSI_CONTROL_REG, &le_cmd,
-+			       sizeof(le_cmd));
-+}
-+
-+static const struct ucsi_operations ucsi_itepd_ops = {
-+	.read_version		= ucsi_itepd_read_version,
-+	.read_cci		= ucsi_itepd_read_cci,
-+	.poll_cci		= ucsi_itepd_poll_cci,
-+	.read_message_in	= ucsi_itepd_read_message_in,
-+	.sync_control		= ucsi_sync_control_common,
-+	.async_control		= ucsi_itepd_async_control,
-+};
-+
-+static irqreturn_t itepd_irq_process(struct itepd *itepd)
-+{
-+	u8 msg_in[ITEPD_MSG_IN_MAX_LEN] = {};
-+	__le32 le_cci;
-+	u32 cci = 0;
-+	u8 event;
-+	u8 len;
-+	int ret;
-+
-+	ret = itepd_read_reg(itepd, ITEPD_VENDOR_INT, &event, sizeof(event));
-+
-+	if (ret)
-+		return IRQ_NONE;
-+
-+	event &= ITEPD_ALERT_VDM_EVENT | ITEPD_ALERT_UCSI_EVENT;
-+
-+	if (!event)
-+		return IRQ_NONE;
-+
-+	if (event & ITEPD_ALERT_UCSI_EVENT) {
-+		ret = itepd_read_reg(itepd, ITEPD_UCSI_CCI_REG, &le_cci, sizeof(le_cci));
-+		if (ret)
-+			goto out_clear;
-+
-+		cci = le32_to_cpu(le_cci);
-+		len = min_t(u8, ucsi_itepd_get_len(cci), sizeof(msg_in));
-+
-+		if (len) {
-+			ret = itepd_read_reg(itepd, ITEPD_UCSI_MSG_IN_REG,
-+					     msg_in, len);
-+			if (ret)
-+				goto out_clear;
-+		}
-+
-+		mutex_lock(&itepd->received_lock);
-+		itepd->cci = cci;
-+		memcpy(itepd->msg_in, msg_in, sizeof(msg_in));
-+		mutex_unlock(&itepd->received_lock);
-+	}
-+
-+out_clear:
-+	itepd_write_reg(itepd, ITEPD_VENDOR_WC_INT, &event, sizeof(event));
-+
-+	if (!ret && (event & ITEPD_ALERT_UCSI_EVENT))
-+		ucsi_notify_common(itepd->ucsi, cci);
-+
-+	return IRQ_HANDLED;
-+}
-+
-+static irqreturn_t itepd_irq_thread_fn(int irq, void *data)
-+{
-+	struct itepd *itepd = data;
-+
-+	return itepd_irq_process(itepd);
-+}
-+
-+static int itepd_probe(struct i2c_client *client)
-+{
-+	struct device *dev = &client->dev;
-+	struct itepd *itepd;
-+	u8 event;
-+	int ret;
-+
-+	if (client->irq <= 0)
-+		return dev_err_probe(dev, -ENODEV, "no IRQ provided\n");
-+
-+	itepd = devm_kzalloc(dev, sizeof(*itepd), GFP_KERNEL);
-+
-+	if (!itepd)
-+		return -ENOMEM;
-+
-+	itepd->client = client;
-+	mutex_init(&itepd->i2c_lock);
-+	mutex_init(&itepd->received_lock);
-+	i2c_set_clientdata(client, itepd);
-+
-+	itepd->ucsi = ucsi_create(dev, &ucsi_itepd_ops);
-+
-+	if (IS_ERR(itepd->ucsi))
-+		return PTR_ERR(itepd->ucsi);
-+
-+	ucsi_set_drvdata(itepd->ucsi, itepd);
-+
-+	event = ITEPD_ALERT_VDM_EVENT | ITEPD_ALERT_UCSI_EVENT;
-+	ret = itepd_write_reg(itepd, ITEPD_VENDOR_WC_INT, &event, sizeof(event));
-+
-+	if (ret)
-+		goto out_ucsi_destroy;
-+
-+	ret = request_threaded_irq(client->irq, NULL, itepd_irq_thread_fn, IRQF_ONESHOT,
-+				   dev_name(dev), itepd);
-+
-+	if (ret) {
-+		dev_err(dev, "request_threaded_irq failed - %d\n", ret);
-+		goto out_ucsi_destroy;
-+	}
-+
-+	ret = ucsi_register(itepd->ucsi);
-+	if (ret) {
-+		dev_err(dev, "failed to register UCSI: %d\n", ret);
-+		goto out_free_irq;
-+	}
-+
-+	return 0;
-+
-+out_free_irq:
-+	free_irq(client->irq, itepd);
-+out_ucsi_destroy:
-+	ucsi_destroy(itepd->ucsi);
-+	return ret;
-+}
-+
-+static void itepd_remove(struct i2c_client *client)
-+{
-+	struct itepd *itepd = i2c_get_clientdata(client);
-+
-+	ucsi_unregister(itepd->ucsi);
-+	free_irq(client->irq, itepd);
-+	ucsi_destroy(itepd->ucsi);
-+}
-+
-+static const struct of_device_id itepd_of_match_table[] = {
-+	{ .compatible = "ite,itepd-it885x" },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(of, itepd_of_match_table);
-+
-+static const struct i2c_device_id itepd_id_table[] = {
-+	{ "ucsi_itepd", 0 },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(i2c, itepd_id_table);
-+
-+static struct i2c_driver itepd_driver = {
-+	.driver = {
-+		.name = "ucsi_itepd",
-+		.of_match_table = itepd_of_match_table,
-+	},
-+	.probe = itepd_probe,
-+	.remove = itepd_remove,
-+	.id_table = itepd_id_table,
-+};
-+module_i2c_driver(itepd_driver);
-+
-+MODULE_AUTHOR("Jeson Yang <jeson.yang@ite.com.tw>");
-+MODULE_DESCRIPTION("UCSI driver for ITE IT885x Type-C PD controllers");
-+MODULE_LICENSE("GPL");
+Reviewed-by: Christophe Leroy (CS GROUP) <chleroy@kernel.org>
 
--- 
-2.53.0
+
+> 
+> ---
+> Changes in v2:
+> - Applied Christophe two patches before this series [3] [4].
+> - Fix a miscalculation in patch 6 when iterating over bits set in
+>    CEPIER. Old ffs() is 1-indexed, but for_each_set_bit() is 0-indexed.
+> - Add in patch 3 commit message more info about the changes introduced
+>    by the conversion to DT schema.
+> - In patch 4, keep the existing example without any IRQ supports, and
+>    add only one new example. Also fix the DTS coding style that was wrong.
+> - Add raw spinlock guard to mask and unmasking hook since multiple CPUs
+>    can modify different IRQs concurrently. Also add it to set_type hook.
+> - Drop usage of register offset in irq_chip_type. It requires additional
+>    load instruction with no real benefit since irq_gc_* functions are not
+>    used.
+> - A race condition can occurs if an interrupt fires immediately after
+>    the domain is initialised, because gc is NULL.
+>    Instead, do not carry gc in the struct qepic_data. Add the domain in
+>    the handler data, and retrieve gc with irq_data_get_irq_chip_data() in
+>    hook functions.
+>    Because of this modification, patch 10 and 11 are dropped.
+> - Link to v1: https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2Fpatch.msgid.link%2F20260703-qe-pic-gpios-v1-0-6c3e706e27dc%40bootlin.com&data=05%7C02%7Cchristophe.leroy%40csgroup.eu%7C1e59449bc6904ae4c2a808dedcd9e3e4%7C8b87af7d86474dc78df45f69a2011bb5%7C0%7C0%7C639191025561327333%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&sdata=fSy9tyhbYvMFKNFQsqGikR3llkOgaLXFMv6sGt4UPXg%3D&reserved=0
+> 
+> [3] https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2Flore.kernel.org%2Fall%2Fb08f76c1d8ff864774246f1e2c2158c223c001be.1783435914.git.chleroy%40kernel.org%2F&data=05%7C02%7Cchristophe.leroy%40csgroup.eu%7C1e59449bc6904ae4c2a808dedcd9e3e4%7C8b87af7d86474dc78df45f69a2011bb5%7C0%7C0%7C639191025561348477%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&sdata=JDjk7SvhF1cJGAI8xnVtECrKn1m6ZhmHeNO860rQhwo%3D&reserved=0
+> [4] https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2Flore.kernel.org%2Fall%2Fcd46aec4b325745d38ac7992e4d3d5b4f4c4e95f.1783435914.git.chleroy%40kernel.org%2F&data=05%7C02%7Cchristophe.leroy%40csgroup.eu%7C1e59449bc6904ae4c2a808dedcd9e3e4%7C8b87af7d86474dc78df45f69a2011bb5%7C0%7C0%7C639191025561367590%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&sdata=sYCT9QzjBWVowv%2BEgbvSiYe0qVdWGZV4vGwgIGAwQhg%3D&reserved=0
+> 
+> ---
+> Christophe Leroy (1):
+>        dt-bindings: soc: fsl: qe: Convert QE GPIO to DT schema
+> 
+> Paul Louvel (9):
+>        soc: fsl: qe: Add chained_irq_{enter,exit}() calls in cascade handler
+>        dt-bindings: soc: fsl: qe: Set #interrupt-cells to 2 to support interrupt type encoding
+>        dt-bindings: soc: fsl: qe: Add support of IRQ in QE GPIO
+>        soc: fsl: qe: Use generic_handle_domain_irq()
+>        soc: fsl: qe: Iterate over all pending interrupts in cascade handler
+>        soc: fsl: qe: Handle spurious interrupts
+>        soc: fsl: qe: Convert to generic IRQ chip
+>        soc: fsl: qe: Rename irq variable to parent_irq
+>        soc: fsl: qe: Add support of IRQs in QE GPIO
+> 
+>   .../bindings/gpio/fsl,mpc8323-qe-pario-bank.yaml   |  84 ++++++++++++
+>   .../interrupt-controller/fsl,qe-ports-ic.yaml      |   4 +-
+>   .../bindings/soc/fsl/cpm_qe/qe/par_io.txt          |  26 +---
+>   drivers/soc/fsl/qe/Kconfig                         |   1 +
+>   drivers/soc/fsl/qe/gpio.c                          |  28 +++-
+>   drivers/soc/fsl/qe/qe_ports_ic.c                   | 145 +++++++++++++--------
+>   6 files changed, 208 insertions(+), 80 deletions(-)
+> ---
+> base-commit: c34b47a17bc566c7113679e6ae095d5510b4f1c6
+> change-id: 20260513-qe-pic-gpios-073e284615a3
+> 
+> Best regards,
+> --
+> Paul Louvel, Bootlin
+> Embedded Linux and Kernel engineering
+> https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2Fbootlin.com%2F&data=05%7C02%7Cchristophe.leroy%40csgroup.eu%7C1e59449bc6904ae4c2a808dedcd9e3e4%7C8b87af7d86474dc78df45f69a2011bb5%7C0%7C0%7C639191025561386837%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&sdata=EMKgQXFWGtGS8OwHXgqIB7IH3cWQVA0ZJA%2B2emFlI1E%3D&reserved=0
+> 
 
 
