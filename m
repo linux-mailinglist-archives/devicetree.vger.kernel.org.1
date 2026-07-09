@@ -1,265 +1,134 @@
-Return-Path: <devicetree+bounces-323726-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-323729-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 09pMKEaRT2pajwIAu9opvQ
-	(envelope-from <devicetree+bounces-323726-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 14:17:10 +0200
+	id B5OTDZmST2q0jwIAu9opvQ
+	(envelope-from <devicetree+bounces-323729-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 14:22:49 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9080730E3B
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 14:17:09 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 92571730ED3
+	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 14:22:48 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=collabora.com header.s=mail header.b=c0Pu35mq;
-	dmarc=pass (policy=none) header.from=collabora.com;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-323726-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-323726-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=OBUR1DGw;
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-323729-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-323729-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E785F300B9DA
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2026 12:17:06 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 2D85A30A455E
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2026 12:19:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45BE041B360;
-	Thu,  9 Jul 2026 12:17:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FD8E4219F6;
+	Thu,  9 Jul 2026 12:19:37 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E9993E7BCB
-	for <devicetree@vger.kernel.org>; Thu,  9 Jul 2026 12:17:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E50D420E78;
+	Thu,  9 Jul 2026 12:19:36 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783599426; cv=none; b=Q6GCrwEYHwjuTaIklL5LSorh0eOBh8w8w/61XLJwiATyZ3xEcQQDyQwBczACc10S+tCsCMh0RmgL+hq1rFtS/VQm6YjTzSfbr789PAOZtMpy8zVqWafqehbyTp0eYbg6xKX6bxvUN0Xy4tfRTZlgWlU17Hu7lz2PHtE4+ae1XUw=
+	t=1783599577; cv=none; b=TjtBugGK2c2id4gpk0/3mqai2zk6vAzVWE4qzQ0Mwlv/SBFchoUjc0K0FfwJZObLyMaVIyJiDAidc2A5yF3ZlCAt0l9TFNSDMwuc/0wplOXTbgcEmJP3Tbk248yrkqQqaeIpPcVtV5v6BimQO2kjh480lsLs+b1H+Sc0GiUmJd8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783599426; c=relaxed/simple;
-	bh=OR9YHbLNwYMQoOxdPeb/MsgoI/x7bUyfQ2QYnIgwfR4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=fz3PnxaqlBxSY9C/OloqiOFd9yrIEpxndzn1T2BGecB4fUruWfwb/+wl5IaoFkMvMcatQRerY9kOcOQKEW2RoZ/cAeZpyDBnE/TX9ogKEKHfzYZa/FfdlOWGCDVKmlE1ceQm7uYoZTih/wj5MFXBkAkzJo79TWUQuPYNOE+D21w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=c0Pu35mq; arc=none smtp.client-ip=148.251.105.195
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1783599422;
-	bh=OR9YHbLNwYMQoOxdPeb/MsgoI/x7bUyfQ2QYnIgwfR4=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=c0Pu35mqDk9AFzlp/gU0iUqO8fNQrJXsNNdwxgCOPCSzwqmhZoyoNhVPLlZiP13bo
-	 T11/mwXeriXUv09Cr1eusdOLyxS9wyIbFyLTzw8biGL89Ej7fljGY2sK2dk+GEkLuI
-	 RKBZD9SSwPDRcNgCRlo/AYW4YAz+tymVZshHcUislhRlwiH6gQDVTdG3+z0LlfV2om
-	 7zC9hbExStQY5yRqi9r/HKu5s3BXS0gIKI3gou9JcM0Qbi/8g2WXNFD9jd0mMhmH1/
-	 GqW/o0iTK9OBRwrB+WhShtLfHUS8AnhBrx5sIMA44Wc214VNm2j8XnuhkqYcSRQror
-	 H6m1yh4bCvCMw==
-Received: from [100.64.1.21] (unknown [100.64.1.21])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange x25519)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 9DAEF17E062C;
-	Thu, 09 Jul 2026 14:17:02 +0200 (CEST)
-Message-ID: <cf19aa15-9253-40c3-b86b-c803b3deed84@collabora.com>
-Date: Thu, 9 Jul 2026 14:17:02 +0200
+	s=arc-20240116; t=1783599577; c=relaxed/simple;
+	bh=580PdfO5T/N0wE5TSQ8iHnD+J0cD0gm6d8xwCpWvU+k=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=PtOs4ZFtqlRIqu+PKIq8yQmTXH/pldKebUjFYv4siGauOyblKdKPyQqmTHtYQsjrnFgGNu/DfATqbhLhCUmNUSNx4ahWTBlhndB3jMBxM1oYn4QRxWWIz1MXmgLUiWhBhICIKXGq0o/aCx5t2urcBDuHyJnCC3ZBGttnmhaugM0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OBUR1DGw; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E99FD1F000E9;
+	Thu,  9 Jul 2026 12:19:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1783599575;
+	bh=gxbdaaWxpr16WNk35CrzdmbV8r7MBy1PuvbOHdfmxDE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=OBUR1DGwpGFYcbqf0LlDuPPlLYUTgZvfuO5U6Ul/MnY4wx0OBCbaIyS958hgXIYQG
+	 K3HyWh9Y84+xfOKpEaJhGRzvHqiItFCexfHA+pSGdHlXhZciC3L2cfVf9qbx4JceWy
+	 YBovMQRpd8h8XhMCf/+oCvIa75iStdsgTUnQ3TJrH4YcsNwjLTud6dXAvg0OlXAd+L
+	 gwjJfuv3x9oPyJ9zGYNSbp+XSBA4qzthNNE/oLdkz3bagqc/Xp196k1RKx56yjt7et
+	 apjnSUESOnPia+q48p/WW3GU1rQT6yzxATz4Lrt3TbnFds9+jUD/nxLrh+cPUmVmrn
+	 ACdrFZmlY6HkQ==
+Date: Thu, 9 Jul 2026 14:19:23 +0200
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Marek Vasut <marek.vasut+renesas@mailbox.org>
+Cc: linux-pci@vger.kernel.org, 
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
+	Catalin Marinas <catalin.marinas@arm.com>, Conor Dooley <conor+dt@kernel.org>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Lorenzo Pieralisi <lpieralisi@kernel.org>, Marc Zyngier <maz@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH v4 0/5] PCI: rcar-gen4: irqchip/gic-v3: Handle GIC ITS
+Message-ID: <ybnitlgx3dcqsesubz6jz7pn6snseuxhtz564tinbtvukianaq@33ubmcynyqmt>
+References: <20260707203743.88299-1-marek.vasut+renesas@mailbox.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 11/12] drm/mediatek: mtk_dp: Add support for eDP1.5 IPs
- and MT8196 SoC
-To: sashiko-reviews@lists.linux.dev
-Cc: conor+dt@kernel.org, dri-devel@lists.freedesktop.org, robh@kernel.org,
- devicetree@vger.kernel.org
-References: <20260709113148.49090-1-angelogioacchino.delregno@collabora.com>
- <20260709113148.49090-12-angelogioacchino.delregno@collabora.com>
- <20260709121111.23CC71F000E9@smtp.kernel.org>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20260709121111.23CC71F000E9@smtp.kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260707203743.88299-1-marek.vasut+renesas@mailbox.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-3.16 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
-	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-323726-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:sashiko-reviews@lists.linux.dev,m:conor+dt@kernel.org,m:dri-devel@lists.freedesktop.org,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[angelogioacchino.delregno@collabora.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER(0.00)[mani@kernel.org,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	FORGED_RECIPIENTS(0.00)[m:marek.vasut+renesas@mailbox.org,m:linux-pci@vger.kernel.org,m:kwilczynski@kernel.org,m:bhelgaas@google.com,m:catalin.marinas@arm.com,m:conor+dt@kernel.org,m:geert+renesas@glider.be,m:krzk+dt@kernel.org,m:lpieralisi@kernel.org,m:maz@kernel.org,m:robh@kernel.org,m:yoshihiro.shimoda.uh@renesas.com,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-doc@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-renesas-soc@vger.kernel.org,m:marek.vasut@mailbox.org,m:conor@kernel.org,m:geert@glider.be,m:krzk@kernel.org,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[collabora.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCPT_COUNT_FIVE(0.00)[5];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	TO_DN_NONE(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[angelogioacchino.delregno@collabora.com,devicetree@vger.kernel.org];
+	FORWARDED(0.00)[lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-323729-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[mani@kernel.org,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,collabora.com:from_mime,collabora.com:email,collabora.com:mid,collabora.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: E9080730E3B
+X-Rspamd-Queue-Id: 92571730ED3
 
-On 7/9/26 14:11, sashiko-bot@kernel.org wrote:
-> Thank you for your contribution! Sashiko AI review found 3 potential issue(s) to consider:
+On Tue, Jul 07, 2026 at 10:35:38PM +0200, Marek Vasut wrote:
+> Configure all R-Car Gen4 PCIe controller MSI registers fully, both in
+> case MSI are enabled and disabled.
 > 
-> New issues:
-> - [High] Flawed hardware reset sequence and register mask conflict for the new IP (hwip_v1p4) in mtk_dp_encoder_reset().
-> - [High] Uninitialized calibration data is applied to PHY registers on MT8196 if a legacy device tree is used.
+> Patch GIC ITS driver and add quirks for R-Car Gen4 GIC ITS, which is
+> configured to 32-bit address width for AXI or APB interface.
 > 
-> Pre-existing issues:
-> - [High] Sleeping functions called from atomic context in bridge atomic callbacks.
+> Switch R-Car V4H to use GIC ITS in its DT and describe the GIC ITS
+> implementation cacheable and shareable limitations.
+> 
+> Marek Vasut (5):
+>   PCI: dwc: Determine whether iMSI is used before calling .init
+>   PCI: rcar-gen4: Configure AXIINTC if iMSI-RX not used
+>   irqchip/gic-v3: Refactor GIC600 limited to 32bit PA erratum handling
+>   irqchip/gic-v3: Add Renesas R-Car Gen4 erratum workaround
 
-None of those are valid, if you want more context, check below.
+Is there a functional dependency between irqchip and PCI patches? Since the
+irqchip patches touch ARM64 Kconfig etc... I'm wondering if it still need to go
+through PCI tree.
 
-> --
-> 
-> --- Patch [11]: [PATCH v4 11/12] drm/mediatek: mtk_dp: Add support for eDP1.5 IPs and MT8196 SoC ---
-> commit 21e6cb76ec5d736e41c62351d0dcc4f501bc644f
-> Author: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> 
-> drm/mediatek: mtk_dp: Add support for eDP1.5 IPs and MT8196 SoC
-> 
-> Add support for MediaTek's Embedded DisplayPort (eDP) v1.5 IP as
-> found in the MT8196 SoC and other variants, and enclose some of
-> the new register writes in specific platform data booleans.
-> 
->> --- a/drivers/gpu/drm/mediatek/mtk_dp_reg.h
->> +++ b/drivers/gpu/drm/mediatek/mtk_dp_reg.h
-> [ ... ]
->> +#define REG_3FF8_DP_ENC_P0_3			0x1ff8
->> +#define ENC_PHY_STATE_RESET_ALL_MASK			GENMASK(7, 0)
->> +#define PHY_STATE_W_1_DP_ENC_P0_3			BIT(6)
->> +#define DP_ENCODER_DVO_ON_W_1				BIT(5)
->> +#define DP_ENCODER_PSR_XTAL_FREQ_MHZ_MASK		GENMASK(13, 9)
-> 
-> [ ... ]
-> 
->> --- a/drivers/gpu/drm/mediatek/mtk_dp.c
->> +++ b/drivers/gpu/drm/mediatek/mtk_dp.c
-> [ ... ]
->> +static void mtk_dp_encoder_reset(struct mtk_dp *mtk_dp)
->> +{
->>   	/* dp tx encoder reset all sw */
->>   	mtk_dp_update_bits(mtk_dp, MTK_DP_ENC0_P0_3004,
->>   			   DP_TX_ENCODER_4P_RESET_SW_DP_ENC0_P0,
->>   			   DP_TX_ENCODER_4P_RESET_SW_DP_ENC0_P0);
->>   
->> +	if (mtk_dp->data->hwip_v1p4) {
->> +		mtk_dp_update_bits(mtk_dp, MTK_DP_ENC0_P0_3004, 0,
->> +				   DP_TX_ENCODER_4P_RESET_SW_DP_ENC0_P0);
->> +		mtk_dp_update_bits(mtk_dp, REG_3FF8_DP_ENC_P0_3,
->> +				   ENC_PHY_STATE_RESET_ALL_MASK,
->> +				   ENC_PHY_STATE_RESET_ALL_MASK);
->> +	}
->> +
->>   	/* Wait for sw reset to complete */
->>   	usleep_range(1000, 5000);
->> -	mtk_dp_update_bits(mtk_dp, MTK_DP_ENC0_P0_3004,
->> -			   0, DP_TX_ENCODER_4P_RESET_SW_DP_ENC0_P0);
->> +
->> +	if (!mtk_dp->data->hwip_v1p4)
->> +		mtk_dp_update_bits(mtk_dp, MTK_DP_ENC0_P0_3004,
->> +				   0, DP_TX_ENCODER_4P_RESET_SW_DP_ENC0_P0);
->> +}
-> 
-> [Severity: High]
-> Does ENC_PHY_STATE_RESET_ALL_MASK overlap with functional state bits
-> like PHY_STATE_W_1_DP_ENC_P0_3 and DP_ENCODER_DVO_ON_W_1 defined in
-> mtk_dp_reg.h?
-> 
+- Mani
 
-That's trolling!!! :-P
-
-Yes, and that's on purpose.
-
-> Also, could the new hwip_v1p4 sequence in mtk_dp_encoder_reset() leave the
-> encoder PHY stuck in reset? The code asserts ENC_PHY_STATE_RESET_ALL_MASK
-> before the wait, but there does not appear to be a step to deassert it after
-> the sleep finishes.
-> 
-
-It's ok, because it's auto-cleared by HW.
-
->> @@ -2860,7 +3079,8 @@ static int mtk_dp_register_phy(struct mtk_dp *mtk_dp)
-> [ ... ]
->>   	/* PHY calibration data is in mtk_dp only for legacy devicetree */
->> -	mtk_dp_get_calibration_data(mtk_dp);
->> +	if (mtk_dp->data->efuse_fmt)
->> +		mtk_dp_get_calibration_data(mtk_dp);
->>   
->>   	mtk_dp->phy = devm_phy_get(&mtk_dp->phy_dev->dev, "dp");
-> 
-> [ ... ]
-> 
->> @@ -1359,8 +1550,10 @@ static int mtk_dp_phy_configure(struct mtk_dp *mtk_dp,
-> [ ... ]
->>   	/*
->>   	 * For legacy, deprecated strategy, set partial PHY calibration here.
->>   	 * New-style will set all PHY calibrations with phy ops instead.
->>   	 */
->>   	if (mtk_dp->phy_dev)
->>   		mtk_dp_set_calibration_data(mtk_dp);
-> 
-> [Severity: High]
-> If a legacy device tree is used on an MT8196 device, could this configuration
-> apply uninitialized zeros to the PHY hardware?
-
-If a legacy device tree is used on MT8196, this MediaTek maintainer (me) needs
-a big vacation :-D
-
-This is an impossible scenario.
-
-> 
-> In mtk_dp_register_phy(), mtk_dp_get_calibration_data() is skipped because
-> efuse_fmt is NULL for mt8196_edp_data. However, mtk_dp_phy_configure() will
-> still call mtk_dp_set_calibration_data() if the legacy phy_dev was created,
-> potentially writing an unpopulated cal_data array directly to the registers.
-> 
-
-The legacy phy_dev can't be created, unless the DT is very-very-very wrong, and
-if it is, this driver can't get a magic 8 ball.
-
->> +static void mtk_dp_encoder_force_bias_power_on(struct mtk_dp *mtk_dp)
->> +{
-> [ ... ]
->> +	/* Wait for the MCU to get LDO ready in PHYD */
->> +	msleep(50);
-> [ ... ]
->> +}
-> 
-> [ ... ]
-> 
->> @@ -2580,6 +2795,10 @@ static void mtk_dp_bridge_atomic_disable(struct drm_bridge *bridge,
-> [ ... ]
->>   	/* SDP path reset sw*/
->>   	mtk_dp_sdp_path_reset(mtk_dp);
->>   
->> +	/* Make sure BIAS is powered on after reset even when disabled */
->> +	if (mtk_dp->data->force_pwr_states)
->> +		mtk_dp_encoder_force_bias_power_on(mtk_dp);
->> +
->>   	/* Ensure the sink is muted */
->>   	msleep(20);
->>   }
-> 
-> [Severity: High]
-> This is a pre-existing issue, but does this introduce an additional sleeping
-> function into an atomic context path?
-> 
-> Since mtk_dp_bridge_atomic_disable() operates in an atomic context during
-> modesetting, calling mtk_dp_encoder_force_bias_power_on() uses msleep(50),
-> which could result in kernel warnings or system instability.
-> 
-
-It's not atomic context....
+-- 
+மணிவண்ணன் சதாசிவம்
 
