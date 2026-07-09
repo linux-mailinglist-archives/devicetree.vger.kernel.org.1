@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-323718-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-323715-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id SrQZAeuOT2qYjgIAu9opvQ
-	(envelope-from <devicetree+bounces-323718-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 14:07:07 +0200
+	id wRFYFYyOT2p/jgIAu9opvQ
+	(envelope-from <devicetree+bounces-323715-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 14:05:32 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A065730D12
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 14:07:05 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id D8245730CDC
+	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 14:05:31 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
 	dkim=none;
 	dmarc=none;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-323718-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-323718-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-323715-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-323715-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=reject ("cv is fail on i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 99672304C1A7
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2026 12:02:30 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 30CCE30B94DD
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2026 12:02:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 642BB4252DB;
-	Thu,  9 Jul 2026 12:01:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5714423765;
+	Thu,  9 Jul 2026 12:01:37 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from TYDPR03CU002.outbound.protection.outlook.com (mail-japaneastazon11023102.outbound.protection.outlook.com [52.101.127.102])
+Received: from TYPPR03CU001.outbound.protection.outlook.com (mail-japaneastazon11022117.outbound.protection.outlook.com [52.101.126.117])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A90C423168;
-	Thu,  9 Jul 2026 12:01:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06635421896;
+	Thu,  9 Jul 2026 12:01:34 +0000 (UTC)
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783598500; cv=fail; b=rJP1k8HRWN8LHJQ3LyZTiZsUTNGm9uDD3LiJwp+pJKnSazAg9vsIdZGcUF3j++QpZFD+sBbIJGPQLm7Csn55dvuyOFvRs+UTMnBbTPv+3slqBvZ1Px6ZckGAGFZ04CoFMMkT/q7J4q1ptDwT7UWqRkX45vL+xWLBpLNCf0sxKzg=
+	t=1783598497; cv=fail; b=LEFwJQViERa5svM2Bj8/BWNm5Flnn2M0nL6Un+t5+/lVUzvQHGj6aza2iHA4AJUGGZbmqwtIWdkfg1pGLA/SroFTgzy9NOFk+FcR5w0ldSPDT2Icftg1/N5WEG2vIQ59YhCYv/MtrSA6iMaFQG/vJHFXLKmXsDIq/BljD7Ui1+4=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783598500; c=relaxed/simple;
-	bh=jVrepiYVlkQwZzZ+475bqfIn3TSrrPfrkRVAOXUrfSc=;
+	s=arc-20240116; t=1783598497; c=relaxed/simple;
+	bh=hcpQc8TkxBYLssSkBpBmkRoJy7k+tt6OzepS8jWZ0Gw=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=rBcrNO+acFSiq364hjkwHkWdnZC1hV9mwoH7gEkyV7IG/mFqoK4iABhTYrFiOk47f385rvWNRn6kQAw8/iLcRvzRt/lU6OynSmxmrLVFGN1LYsUiWAjOKhu+r3O5WITJPGvkGYmuEx8dpg/a1/gyk6RUUB5rSoKfyAc+bCMKTlk=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; arc=fail smtp.client-ip=52.101.127.102
+	 MIME-Version:Content-Type; b=ZwVd2JdOw/gesn2Q/5mXpeiZVp1IsWdMkL5slHsgcv2qpPrzHuxm4hfT/PoX2sFz+Twq3nb+e8os8gYWVM+UbzTXBLasbBay4WvPlOpAi1DhxI/u7JHWZOwx3LlkFVVOZhXRBRbbB8BJZ2Tq8pM87yFDmxvZT6ZoekfT9WcL+WQ=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; arc=fail smtp.client-ip=52.101.126.117
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=fSpqv9vAHB0Lt8GT2mx0KX7jdxZMS7WnnF/v6xQmm0GtGEsl4Be5OvTN0l1q83ZId01yQOs5ZbanIWAznxExE4A5HLyj+NIsAdJiSUBZjIHe+PDHn1jLJ6zvUbFQs0JVKNKr0gdFLKlMd/zfwIbyhkGmv9UUie6gLK0QiAlgAikWfrTUDq+fN+AJaxVcoS7FiVXVuT/15lp917IYp2BiCSaxSrSZN48mQtmQ9ZzWEA5AyE5JZyCCZmGYwno+QYXvDSiTZ0IAJicXxXoLz8SZmT87m8O3bubEhQ5ssuNg+wwpDFh8DyhHXg529wbrnbyjuBoykFRmjVXhoEROgbQvgA==
+ b=vOVMgk75worEZW0ZtBmK1cxTmZOcQBnA2ceq57kHLfkAHs1Bt1I1npVmZnqUjqQjQcHBjaaUgZt1YPS9k1R9cJuimCObwlqKeBBiJBBAtQ1+KELz2GFeVtWA/63GEa4uZbikH6bIZS4YWfT1Ip9+hHlm6qWtrNJuFvuWtzVFeWcHCTFpCccgIsPmeApYRrdVSZwmdB0je5zteb8SNJh+eAPj9NHV3ymfy5E+Jd/+jk50XvaGmzjZ+XTC8dbWBcmeqLJtSFUuQwPH5rppM+5hR9uEuKZ148mINJ1bquVHxar4XfarXrOaGK6TPl2L+ItHO82KvYxnYXnOxhLie1MkYw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=XX5TXVa04xJIj3b9dUCxE+x+OWHQh0tlqnmBhCjd3dA=;
- b=ktipxVw373gc3K6CLnolf0s92ipaRFyf4r7B0gaW2QwgEIG7SrKU6rg9Y3RinWEmnv97d0KLqKauOZOJfxsx5dPuTKoV74+yu8DsNr8LQFt4MaUUITGdhGuz0izu+j7MUjDbC5pkxsfKwUZaAinG7YnB6DnvWPxpbbrXOA7p2qLdLp4Pv9bmh9CGfkAQYMQy341EpZE2FgLs+ZaqXcWoHhyMYq9W+JBC0RG3xD2RWZTx2u0YD+yC8pvTbKYHxCZmqe7Yc7/eZ+y4tTFKJQYJlXWL8iBvvJ6wqA30EtixR080g4sTE0gXh0fCo79ibiFdI9yF6fhCqRR6a3GdL/8y2A==
+ bh=efu/eKs2NQ92JaelL1qHqkQ1iI9MMxrdg9ZC113sUtE=;
+ b=iwA68grFwvP6Yfd+PGVDTz2AvVHIONvvxfw7+v6Q/MdqXnhJULF6iWE9AqiMi/ETNq/xYoH2vsaZy8GNFlGYpWOVwkS+a4SOtlNIqlz6u8eOWStGXRhFMS+5/YWEAWuHdVQk1yaeWatB7Gc5hde9r23GvsR2ymj9n9QhFwjGoHgTQSQluY3mqKMBhuoJAedgNnJA0UY7drRbG3bPFxD4ebb5Gc8C8GxvSWeJanqe4jS5LM0RCUNRALoFzgS2+aIrOvaUl18SgF2ZF4g4bK5qZvTsuWH1jcVabDMbce0o4PepPNgiVK7r5uKZDsPSXxKuMeBEP9YyU/bm31cNK0o9Rg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  222.71.101.198) smtp.rcpttodomain=baylibre.com smtp.mailfrom=cixtech.com;
  dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
  not signed); arc=none (0)
-Received: from SI1PR02CA0041.apcprd02.prod.outlook.com (2603:1096:4:1f6::18)
- by TY0PR06MB5379.apcprd06.prod.outlook.com (2603:1096:400:216::5) with
+Received: from SI2PR02CA0010.apcprd02.prod.outlook.com (2603:1096:4:194::15)
+ by TY2PPF089F03E6D.apcprd06.prod.outlook.com (2603:1096:408::784) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.11; Thu, 9 Jul
- 2026 12:01:32 +0000
-Received: from SG2PEPF000B66CC.apcprd03.prod.outlook.com
- (2603:1096:4:1f6:cafe::3e) by SI1PR02CA0041.outlook.office365.com
- (2603:1096:4:1f6::18) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.15; Thu, 9 Jul
+ 2026 12:01:31 +0000
+Received: from SG2PEPF000B66D0.apcprd03.prod.outlook.com
+ (2603:1096:4:194:cafe::8f) by SI2PR02CA0010.outlook.office365.com
+ (2603:1096:4:194::15) with Microsoft SMTP Server (version=TLS1_3,
  cipher=TLS_AES_256_GCM_SHA384) id 15.21.202.10 via Frontend Transport; Thu, 9
- Jul 2026 12:01:32 +0000
+ Jul 2026 12:01:31 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 222.71.101.198)
  smtp.mailfrom=cixtech.com; dkim=none (message not signed)
  header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
@@ -62,11 +62,11 @@ Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
  222.71.101.198 as permitted sender) receiver=protection.outlook.com;
  client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
 Received: from smtprelay.cixcomputing.com (222.71.101.198) by
- SG2PEPF000B66CC.mail.protection.outlook.com (10.167.240.25) with Microsoft
+ SG2PEPF000B66D0.mail.protection.outlook.com (10.167.240.26) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
  15.21.181.6 via Frontend Transport; Thu, 9 Jul 2026 12:01:30 +0000
 Received: from cix (unknown [172.18.64.61])
-	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id 7B59940920E0;
+	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id D00E740920E2;
 	Thu,  9 Jul 2026 20:01:29 +0800 (CST)
 From: joakim.zhang@cixtech.com
 To: mturquette@baylibre.com,
@@ -82,9 +82,9 @@ Cc: cix-kernel-upstream@cixtech.com,
 	linux-kernel@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	Joakim Zhang <joakim.zhang@cixtech.com>
-Subject: [PATCH v9 2/4] clk: cix: add sky1 audss clock controller
-Date: Thu,  9 Jul 2026 20:01:23 +0800
-Message-ID: <20260709120125.3997078-3-joakim.zhang@cixtech.com>
+Subject: [PATCH v9 3/4] reset: cix: add sky1 audss auxiliary reset driver
+Date: Thu,  9 Jul 2026 20:01:24 +0800
+Message-ID: <20260709120125.3997078-4-joakim.zhang@cixtech.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20260709120125.3997078-1-joakim.zhang@cixtech.com>
 References: <20260709120125.3997078-1-joakim.zhang@cixtech.com>
@@ -97,42 +97,42 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SG2PEPF000B66CC:EE_|TY0PR06MB5379:EE_
+X-MS-TrafficTypeDiagnostic: SG2PEPF000B66D0:EE_|TY2PPF089F03E6D:EE_
 Content-Type: text/plain
-X-MS-Office365-Filtering-Correlation-Id: cce4db1d-584f-4652-643b-08deddb1d059
+X-MS-Office365-Filtering-Correlation-Id: fc20061b-dc33-40a4-febc-08deddb1d07d
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|82310400026|36860700016|376014|7416014|23010399003|1800799024|18002099003|22082099003|56012099006;
+	BCL:0;ARA:13230040|36860700016|82310400026|23010399003|376014|7416014|1800799024|5023799004|56012099006|18002099003|3023799007|22082099003;
 X-Microsoft-Antispam-Message-Info:
-	/P3biq97Tjmeq5uGjI6Us9O9MoDsLXkl8Q8M8kiygtR4i1CgS4ebh/h/aMGY2z6zvvpqWg1Mfg5UdfJt8mIqCjDkDu19aOfqR/WHehr2s9I+7k4wvjb3fHRwD1azDvhEJk2iP/2szTDJOhvWGBIP+Uc6Px6xdxnPoxasI/YD3G9cd0UqCzau5ahp1Jz9T0fwiT0mhAbAIF+KgBFGVVIQjBN55jHA+95uB52wML2dl/AylsGeh9CufTbd5WDqc+ePRhdjH1u2YKhvd23ryXrGzrRs0cXgnRdvfA87tcdUbbcxGP4pIM3lpnQHnHlyBiyMIAVlexLSEi/sHFwc0m9U1HAJdbCw/TJmDrg4zk9iMq4UroGJa7UkRuYQkEyTYFEVUlQ2uL3pTPpBtK2Fq7OzucbBj6t8QmWLU9nDTnRhy5Ktgp4yf+hDsB3Vaadi4CBD2o5fYyTwWzBShwgStvVEHCjm7c7HY38eRTTlv0BCaUQgERMd0gBcExhg8mCdtIkO+uXaiJpInKM83Z50F5Mj5BPdJp4X0o/WPZk3e47hoIlMSqlonotve9qJ7Wzx3sRlHfc4fhHc2QMDIl/k1IAs+bZ2QHX5MxuQR3qoIe41QPMZijfPy0XaGarFwEzYREKwIxhK6ESCylTxyK2LYkC7Yv7P+zZ3n67NqFu0kx+n4L+JUlqkqoIOxJMjhxf40mhpzWzXh9Tl9SSiEpAbuLpAGA==
+	ieex+3VGMa+ljgq5B5Pt4l6KyIDWh/Fm2eKzg5QmOZ0Ug6UVNo1t4ijtLuQyTnj7cyQoac6lW1eoK5Ge7vFG7UzUkHP8XvyCzQNqCRVB9pfeMolnhkxhxj4m+ouQAcnvdvLTxiXP6an6oA9wLYCvdTIg/ol2i6xNY7WM/AJJne1mIoNU02o+WQ9d9jyi7eFuls+Zjw8eFiR0swHWABsZaRg2ui4FRqgEb/REOTDXMl4dNY59R1ygFswZuuaJ4lRDno+38K4DjrQkA8RDm/YmEH/76uQC8K2mwYoqzlz87shahwwkUOu5wLuM38CbQPkzCRhWhe3bkIJ02+L/G5/p0RPem5Jl9EH5mNt1lDMjRFb218RP981EGBNzGPN70FO0go6A+fClkKYdDwUUc9NdKMr+xvUpFFZP4AUVLR4mvG7XwbHfv2id8D+dguKpM0hazqCB60GvQz3hm/EFAl4vmry9EppJ7147Q5PiIsUIPzCeziT3t63QSEyEtnIXPfylms+FP7vjX44bdUVR1kG3GCZt0ChHqXRGnOPR9u1F1YU1ils67j+DmutUBDcvwH68QyB14RdPt66Kphe9y6fk5WuBAhxs9wCwuW5M/Das653qjhUNCKj41QVnDZiFKPrxaf+TDfH8og7bIWuqXL3BM9wwSZQ2Z6C5QaMKpj53Lm1FeO3Zdz9QhHBB87w+6Ht3g/i4974efbS2c1/FVXjNuA==
 X-Forefront-Antispam-Report:
-	CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(82310400026)(36860700016)(376014)(7416014)(23010399003)(1800799024)(18002099003)(22082099003)(56012099006);DIR:OUT;SFP:1102;
+	CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700016)(82310400026)(23010399003)(376014)(7416014)(1800799024)(5023799004)(56012099006)(18002099003)(3023799007)(22082099003);DIR:OUT;SFP:1102;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0:
-	nR7OSzwuVq47U/6vS2Q8yatYE79FNHCEXC6wIj+F6qAgBc7v5RUFyFrpLzPlwPuaCHs9CkIqG37s6kCw7/RvI809e7j3JRctYg+XlxcYAuS5cn0CkppOVigW3vOHgamXu0mJE/suflGKvP3gfeurJVABmrasbNJByTjd9NjKgXvDhHJwZnBTpZFoIXe2V1pO/gbKMZvyzQodG/q2dBy7lql8sR3H5iV60kosLnikWZ0dcXGELaOhG+kMssb+wA2vtg1jPRy0uDxZxDF8dfejRP5yzcDTATSK/fpcWmluGkmjZVt1qsX8dsr7Zn/3QMTqg1RsHFJv36QiNwUsQXlU2a7GwrZpYw/Dmvtwq2rN/kQf1j5zswINd252wmkn1QmQbWLn94BR39zAet1+0LI3U5Ii45DLUPs8f/crIr4+pujBhzu6NAQteQ6tpXNFL0tB
+	qlqVAmZa6lEJ2p/APzKJChpupbRj0FJs0dxs5M3758hPATjyHPpDjnQF465/MsyH3z0M+Las4zBm/0X9Tpup7sJbPGmPh3lnbCr/w6l881Op9JmXoH2HzL6gC4MHh2FMsjLeYkXCrSCggp+kAjha4Z4RaT/PiLqNR2OGjKqhPbapw0MalzYgp+Wsf6F4sR+zR6YBXzn5F1xIoEe43stxdmNef/sykv5TxdOYLAdr/0g6cpn7C84h0qGQut12bAQPpJAUMbAq6cdXm10E6kN2VbUwHa4gMcDSO/isOQEuoLuZEU9c/YZcXjsHL86xqtRVQ6Tqr9/svp3PzAaJrhDmbzJFmSa1bLTycINTq+DANP0bivHM1MrEs62+iDJug2dL/zdlP8Ep4Hfbcbw4mToJImS8CwSqXqcNq/Mq2EXqZA2fedUnZfQJ/5hwMV2DXHEc
 X-OriginatorOrg: cixtech.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jul 2026 12:01:30.5298
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jul 2026 12:01:30.7809
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: cce4db1d-584f-4652-643b-08deddb1d059
+X-MS-Exchange-CrossTenant-Network-Message-Id: fc20061b-dc33-40a4-febc-08deddb1d07d
 X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
 X-MS-Exchange-CrossTenant-AuthSource:
-	SG2PEPF000B66CC.apcprd03.prod.outlook.com
+	SG2PEPF000B66D0.apcprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY0PR06MB5379
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY2PPF089F03E6D
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [3.54 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_REJECT(1.00)[cv is fail on i=2];
 	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-323718-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-323715-lists,devicetree=lfdr.de];
 	RCPT_COUNT_TWELVE(0.00)[13];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
@@ -144,7 +144,7 @@ X-Spamd-Result: default: False [3.54 / 15.00];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,cixtech.com:from_mime,cixtech.com:email,cixtech.com:mid,vger.kernel.org:from_smtp];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,cixtech.com:from_mime,cixtech.com:email,cixtech.com:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[joakim.zhang@cixtech.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
@@ -152,1300 +152,208 @@ X-Spamd-Result: default: False [3.54 / 15.00];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	FROM_NO_DN(0.00)[];
 	R_DKIM_NA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 9A065730D12
+X-Rspamd-Queue-Id: D8245730CDC
 
 From: Joakim Zhang <joakim.zhang@cixtech.com>
 
-Add a platform driver for the Cix Sky1 AUDSS CRU. The driver maps
-the CRU registers and registers mux, divider and gate clocks for
-DSP, SRAM, HDA, DMAC, I2S, mailbox, watchdog and timer blocks.
+Add an auxiliary reset controller driver for the AUDSS CRU. Sixteen
+software reset lines for audio subsystem peripherals are controlled
+through one register in the CRU register map.
 
-Four SoC-level audio reference clocks are enabled as inputs to the
-internal clock tree. The driver releases the AUDSS NOC reset, enables
-runtime PM and instantiates the auxiliary reset device.
+The driver is created by the AUDSS clock platform driver and registers
+the reset controller on the CRU device node.
 
 Signed-off-by: Joakim Zhang <joakim.zhang@cixtech.com>
 ---
- drivers/clk/Kconfig              |    1 +
- drivers/clk/Makefile             |    1 +
- drivers/clk/cix/Kconfig          |   16 +
- drivers/clk/cix/Makefile         |    3 +
- drivers/clk/cix/clk-sky1-audss.c | 1205 ++++++++++++++++++++++++++++++
- 5 files changed, 1226 insertions(+)
- create mode 100644 drivers/clk/cix/Kconfig
- create mode 100644 drivers/clk/cix/Makefile
- create mode 100644 drivers/clk/cix/clk-sky1-audss.c
+ drivers/reset/Kconfig            |  13 +++
+ drivers/reset/Makefile           |   1 +
+ drivers/reset/reset-sky1-audss.c | 137 +++++++++++++++++++++++++++++++
+ 3 files changed, 151 insertions(+)
+ create mode 100644 drivers/reset/reset-sky1-audss.c
 
-diff --git a/drivers/clk/Kconfig b/drivers/clk/Kconfig
-index 1717ce75a907..cfcaab39068a 100644
---- a/drivers/clk/Kconfig
-+++ b/drivers/clk/Kconfig
-@@ -509,6 +509,7 @@ source "drivers/clk/actions/Kconfig"
- source "drivers/clk/analogbits/Kconfig"
- source "drivers/clk/aspeed/Kconfig"
- source "drivers/clk/bcm/Kconfig"
-+source "drivers/clk/cix/Kconfig"
- source "drivers/clk/eswin/Kconfig"
- source "drivers/clk/hisilicon/Kconfig"
- source "drivers/clk/imgtec/Kconfig"
-diff --git a/drivers/clk/Makefile b/drivers/clk/Makefile
-index cc108a75a900..87c992f0df54 100644
---- a/drivers/clk/Makefile
-+++ b/drivers/clk/Makefile
-@@ -119,6 +119,7 @@ obj-$(CONFIG_ARCH_ARTPEC)		+= axis/
- obj-$(CONFIG_ARC_PLAT_AXS10X)		+= axs10x/
- obj-y					+= bcm/
- obj-$(CONFIG_ARCH_BERLIN)		+= berlin/
-+obj-y					+= cix/
- obj-$(CONFIG_ARCH_DAVINCI)		+= davinci/
- obj-$(CONFIG_COMMON_CLK_ESWIN)		+= eswin/
- obj-$(CONFIG_ARCH_HISI)			+= hisilicon/
-diff --git a/drivers/clk/cix/Kconfig b/drivers/clk/cix/Kconfig
-new file mode 100644
-index 000000000000..c92a9a873893
---- /dev/null
-+++ b/drivers/clk/cix/Kconfig
-@@ -0,0 +1,16 @@
-+# SPDX-License-Identifier: GPL-2.0
-+# Audio subsystem clock support for Cixtech SoC family
-+menu "Clock support for Cixtech audss"
-+
-+config CLK_SKY1_AUDSS
-+	tristate "Cixtech Sky1 Audio Subsystem Clock Driver"
+diff --git a/drivers/reset/Kconfig b/drivers/reset/Kconfig
+index d009eb0849a3..b19e719f2abe 100644
+--- a/drivers/reset/Kconfig
++++ b/drivers/reset/Kconfig
+@@ -300,6 +300,19 @@ config RESET_SKY1
+ 	help
+ 	  This enables the reset controller for Cix Sky1.
+ 
++config RESET_SKY1_AUDSS
++	tristate "Cix Sky1 Audio Subsystem reset controller"
 +	depends on ARCH_CIX || COMPILE_TEST
 +	select AUXILIARY_BUS
-+	select REGMAP_MMIO
-+	select RESET_CONTROLLER
++	default CLK_SKY1_AUDSS
 +	help
-+	  Support for the Audio Subsystem clock controller present on
-+	  Cixtech Sky1 SoC. This driver provides mux, divider and gate
-+	  clocks for DSP, I2S, HDA and related blocks in the audio
-+	  subsystem. Say M or Y here if you want to build this driver.
-+endmenu
-diff --git a/drivers/clk/cix/Makefile b/drivers/clk/cix/Makefile
-new file mode 100644
-index 000000000000..bc612f1d08b2
---- /dev/null
-+++ b/drivers/clk/cix/Makefile
-@@ -0,0 +1,3 @@
-+# SPDX-License-Identifier: GPL-2.0
++	  Support for block-level software reset lines in the Cix Sky1
++	  Audio Subsystem (AUDSS) Clock and Reset Unit. Sixteen reset
++	  outputs for audio peripherals are controlled through the CRU
++	  register map. The driver binds as an auxiliary device from
++	  the AUDSS clock driver. Say M or Y here if you want to build
++	  this driver.
 +
-+obj-$(CONFIG_CLK_SKY1_AUDSS) += clk-sky1-audss.o
-diff --git a/drivers/clk/cix/clk-sky1-audss.c b/drivers/clk/cix/clk-sky1-audss.c
+ config RESET_SOCFPGA
+ 	bool "SoCFPGA Reset Driver" if COMPILE_TEST && (!ARM || !ARCH_INTEL_SOCFPGA)
+ 	default ARM && ARCH_INTEL_SOCFPGA
+diff --git a/drivers/reset/Makefile b/drivers/reset/Makefile
+index 3e52569bd276..e81407ea3e29 100644
+--- a/drivers/reset/Makefile
++++ b/drivers/reset/Makefile
+@@ -39,6 +39,7 @@ obj-$(CONFIG_RESET_RZV2H_USB2PHY) += reset-rzv2h-usb2phy.o
+ obj-$(CONFIG_RESET_SCMI) += reset-scmi.o
+ obj-$(CONFIG_RESET_SIMPLE) += reset-simple.o
+ obj-$(CONFIG_RESET_SKY1) += reset-sky1.o
++obj-$(CONFIG_RESET_SKY1_AUDSS) += reset-sky1-audss.o
+ obj-$(CONFIG_RESET_SOCFPGA) += reset-socfpga.o
+ obj-$(CONFIG_RESET_SUNPLUS) += reset-sunplus.o
+ obj-$(CONFIG_RESET_SUNXI) += reset-sunxi.o
+diff --git a/drivers/reset/reset-sky1-audss.c b/drivers/reset/reset-sky1-audss.c
 new file mode 100644
-index 000000000000..5f9133232eb1
+index 000000000000..d31d80e1251a
 --- /dev/null
-+++ b/drivers/clk/cix/clk-sky1-audss.c
-@@ -0,0 +1,1205 @@
++++ b/drivers/reset/reset-sky1-audss.c
+@@ -0,0 +1,137 @@
 +// SPDX-License-Identifier: GPL-2.0-only
-+// Copyright 2026 Cix Technology Group Co., Ltd.
++/*
++ * Cix Sky1 Audio Subsystem reset controller driver
++ *
++ * Copyright 2026 Cix Technology Group Co., Ltd.
++ */
++
++#include <dt-bindings/reset/cix,sky1-audss-cru.h>
 +
 +#include <linux/auxiliary_bus.h>
-+#include <linux/clk.h>
-+#include <linux/clk-provider.h>
++#include <linux/delay.h>
 +#include <linux/device.h>
 +#include <linux/module.h>
 +#include <linux/of.h>
-+#include <linux/of_device.h>
-+#include <linux/platform_device.h>
-+#include <linux/pm_runtime.h>
 +#include <linux/regmap.h>
-+#include <linux/reset.h>
++#include <linux/reset-controller.h>
 +
-+#include <dt-bindings/clock/cix,sky1-audss-cru.h>
++#define SKY1_RESET_SLEEP_MIN_US		50
++#define SKY1_RESET_SLEEP_MAX_US		100
 +
-+#define INFO_HIFI0				0x00
-+#define INFO_CLK_GATE				0x10
-+#define INFO_CLK_DIV				0x14
-+#define INFO_CLK_MUX				0x18
-+#define INFO_MCLK				0x70
++#define AUDSS_SW_RST			0x78
 +
-+#define SKY1_AUDSS_CLK_PARENTS_CNT		4
-+#define SKY1_AUDSS_NUM_CLKS			(CLK_MCLK4 + 1)
-+
-+static u32 sky1_reg_save[][2] = {
-+	{ INFO_HIFI0,  0 },
-+	{ INFO_CLK_GATE,  0 },
-+	{ INFO_CLK_DIV, 0 },
-+	{ INFO_CLK_MUX, 0 },
-+	{ INFO_MCLK, 0 },
++struct sky1_audss_reset_map {
++	unsigned int offset;
++	unsigned int mask;
 +};
 +
-+static const char * const sky1_audss_clk_names[SKY1_AUDSS_CLK_PARENTS_CNT] = {
-+	"x8k", "x11k", "sys", "48m",
-+};
-+
-+static const u32 sky1_clk_rate_default[SKY1_AUDSS_CLK_PARENTS_CNT] = {
-+	294912000,
-+	270950400,
-+	800000000,
-+	48000000,
-+};
-+
-+static const char * const dsp_clk_parent[] = {
-+	"audio_clk4"
-+};
-+
-+static const char * const dsp_bclk_parent[] = {
-+	"audio_clk4_div2"
-+};
-+
-+static const char * const dsp_pbclk_parent[] = {
-+	"audio_clk4_div4"
-+};
-+
-+static const char * const sram_axi_parent[] = {
-+	"audio_clk4_div2"
-+};
-+
-+static const char * const hda_sys_parent[] = {
-+	"audio_clk4_div2"
-+};
-+
-+static const char * const hda_hda_parent[] = {
-+	"audio_clk5"
-+};
-+
-+static const char * const dmac_axi_parent[] = {
-+	"audio_clk4_div2"
-+};
-+
-+static const char * const wdg_apb_parent[] = {
-+	"audio_clk5_div2"
-+};
-+
-+static const char * const wdg_wdg_parent[] = {
-+	"audio_clk5_div2"
-+};
-+
-+static const char * const timer_apb_parent[] = {
-+	"audio_clk4_div4"
-+};
-+
-+static const char * const timer_timer_parent[] = {
-+	"audio_clk5_div2"
-+};
-+
-+static const char * const mailbox_apb_parent[] = {
-+	"audio_clk4_div4"
-+};
-+
-+static const char * const i2s_apb_parent[] = {
-+	"audio_clk4_div4"
-+};
-+
-+static const char * const i2s0_parents[] = {
-+	"audio_clk0", "audio_clk2"
-+};
-+
-+static const char * const i2s1_parents[] = {
-+	"audio_clk0", "audio_clk2"
-+};
-+
-+static const char * const i2s2_parents[] = {
-+	"audio_clk0", "audio_clk2"
-+};
-+
-+static const char * const i2s3_parents[] = {
-+	"audio_clk0", "audio_clk2"
-+};
-+
-+static const char * const i2s4_parents[] = {
-+	"audio_clk0", "audio_clk2"
-+};
-+
-+static const char * const i2s5_parents[] = {
-+	"audio_clk0", "audio_clk2"
-+};
-+
-+static const char * const i2s6_parents[] = {
-+	"audio_clk0", "audio_clk2"
-+};
-+
-+static const char * const i2s7_parents[] = {
-+	"audio_clk0", "audio_clk2"
-+};
-+
-+static const char * const i2s8_parents[] = {
-+	"audio_clk0", "audio_clk2"
-+};
-+
-+static const char * const i2s9_parents[] = {
-+	"audio_clk0", "audio_clk2"
-+};
-+
-+static const char * const mclk_parents[] = {
-+	"audio_clk0", "audio_clk2"
-+};
-+
-+static const u32 i2s3_mux_table[] = { 0, 2 };
-+static const u32 i2s4_mux_table[] = { 0, 2 };
-+
-+/*
-+ * audss composite clock definition
-+ */
-+struct muxdiv_cfg {
-+	int offset;
-+	u8 shift;
-+	u8 width;
-+	u8 flags;
-+};
-+
-+struct gate_cfg {
-+	int offset;
-+	u8 shift;
-+	u8 flags;
-+};
-+
-+struct composite_clk_cfg {
-+	u32 id;
-+	const char * const name;
-+	const char * const *parent_names;
-+	int num_parents;
-+	const u32 *mux_table;
-+	struct muxdiv_cfg *mux_cfg;
-+	struct muxdiv_cfg *div_cfg;
-+	struct gate_cfg *gate_cfg;
-+	unsigned long flags;
-+};
-+
-+#define CFG(_id,\
-+	    _name,\
-+	    _parent_names,\
-+	    _mux_table,\
-+	    _mux_offset, _mux_shift, _mux_width, _mux_flags,\
-+	    _div_offset, _div_shift, _div_width, _div_flags,\
-+	    _gate_offset, _gate_shift, _gate_flags,\
-+	    _flags)\
-+{\
-+	.id = _id,\
-+	.name = _name,\
-+	.parent_names = _parent_names,\
-+	.num_parents = ARRAY_SIZE(_parent_names),\
-+	.mux_table = _mux_table,\
-+	.mux_cfg = &(struct muxdiv_cfg) { _mux_offset, _mux_shift, _mux_width, _mux_flags },\
-+	.div_cfg = &(struct muxdiv_cfg) { _div_offset, _div_shift, _div_width, _div_flags },\
-+	.gate_cfg = &(struct gate_cfg) { _gate_offset, _gate_shift, _gate_flags },\
-+	.flags = _flags,\
-+}
-+
-+static const struct composite_clk_cfg sky1_audss_clks[] = {
-+	/* dsp */
-+	CFG(CLK_DSP_CLK,
-+	    "audss_dsp_clk",
-+	    dsp_clk_parent,
-+	    NULL,
-+	    -1, 0, 0, 0,
-+	    INFO_CLK_DIV, 0, 2, 0,
-+	    INFO_HIFI0, 0, 0,
-+	    0),
-+	CFG(CLK_DSP_BCLK,
-+	    "audss_dsp_bclk",
-+	    dsp_bclk_parent,
-+	    NULL,
-+	    -1, 0, 0, 0,
-+	    INFO_CLK_DIV, 0, 2, 0,
-+	    -1, 0, 0,
-+	    0),
-+	CFG(CLK_DSP_PBCLK,
-+	    "audss_dsp_pbclk",
-+	    dsp_pbclk_parent,
-+	    NULL,
-+	    -1, 0, 0, 0,
-+	    INFO_CLK_DIV, 0, 2, 0,
-+	    -1, 0, 0,
-+	    0),
-+	/* sram */
-+	CFG(CLK_SRAM_AXI,
-+	    "audss_sram_axi",
-+	    sram_axi_parent,
-+	    NULL,
-+	    -1, 0, 0, 0,
-+	    INFO_CLK_DIV, 0, 2, 0,
-+	    INFO_CLK_GATE, 16, 0,
-+	    0),
-+	/* hda */
-+	CFG(CLK_HDA_SYS,
-+	    "audss_hda_sys",
-+	    hda_sys_parent,
-+	    NULL,
-+	    -1, 0, 0, 0,
-+	    INFO_CLK_DIV, 0, 2, 0,
-+	    INFO_CLK_GATE, 14, 0,
-+	    0),
-+	CFG(CLK_HDA_HDA,
-+	    "audss_hda_hda",
-+	    hda_hda_parent,
-+	    NULL,
-+	    -1, 0, 0, 0,
-+	    -1, 0, 0, 0,
-+	    INFO_CLK_GATE, 14, 0,
-+	    0),
-+	/* dmac */
-+	CFG(CLK_DMAC_AXI,
-+	    "audss_dmac_axi",
-+	    dmac_axi_parent,
-+	    NULL,
-+	    -1, 0, 0, 0,
-+	    INFO_CLK_DIV, 0, 2, 0,
-+	    INFO_CLK_GATE, 15, 0,
-+	    0),
-+	/* wdg */
-+	CFG(CLK_WDG_APB,
-+	    "audss_wdg_apb",
-+	    wdg_apb_parent,
-+	    NULL,
-+	    -1, 0, 0, 0,
-+	    -1, 0, 0, 0,
-+	    INFO_CLK_GATE, 10, 0,
-+	    0),
-+	CFG(CLK_WDG_WDG,
-+	    "audss_wdg_wdg",
-+	    wdg_wdg_parent,
-+	    NULL,
-+	    -1, 0, 0, 0,
-+	    -1, 0, 0, 0,
-+	    INFO_CLK_GATE, 10, 0,
-+	    0),
-+	/* timer */
-+	CFG(CLK_TIMER_APB,
-+	    "audss_timer_apb",
-+	    timer_apb_parent,
-+	    NULL,
-+	    -1, 0, 0, 0,
-+	    INFO_CLK_DIV, 0, 2, 0,
-+	    INFO_CLK_GATE, 11, 0,
-+	    0),
-+	CFG(CLK_TIMER_TIMER,
-+	    "audss_timer_timer",
-+	    timer_timer_parent,
-+	    NULL,
-+	    -1, 0, 0, 0,
-+	    -1, 0, 0, 0,
-+	    INFO_CLK_GATE, 11, 0,
-+	    0),
-+	/* mailbox: mb0(ap->dsp), mb1(dsp->ap) */
-+	CFG(CLK_MB_0_APB,
-+	    "audss_mb_0_apb",
-+	    mailbox_apb_parent,
-+	    NULL,
-+	    -1, 0, 0, 0,
-+	    -1, 0, 0, 0,
-+	    INFO_CLK_GATE, 12, 0,
-+	    0),
-+	CFG(CLK_MB_1_APB,
-+	    "audss_mb_1_apb",
-+	    mailbox_apb_parent,
-+	    NULL,
-+	    -1, 0, 0, 0,
-+	    -1, 0, 0, 0,
-+	    INFO_CLK_GATE, 13, 0,
-+	    0),
-+	/* i2s */
-+	CFG(CLK_I2S0_APB,
-+	    "audss_i2s0_apb",
-+	    i2s_apb_parent,
-+	    NULL,
-+	    -1, 0, 0, 0,
-+	    INFO_CLK_DIV, 0, 2, 0,
-+	    INFO_CLK_GATE, 0, 0,
-+	    0),
-+	CFG(CLK_I2S1_APB,
-+	    "audss_i2s1_apb",
-+	    i2s_apb_parent,
-+	    NULL,
-+	    -1, 0, 0, 0,
-+	    INFO_CLK_DIV, 0, 2, 0,
-+	    INFO_CLK_GATE, 1, 0,
-+	    0),
-+	CFG(CLK_I2S2_APB,
-+	    "audss_i2s2_apb",
-+	    i2s_apb_parent,
-+	    NULL,
-+	    -1, 0, 0, 0,
-+	    INFO_CLK_DIV, 0, 2, 0,
-+	    INFO_CLK_GATE, 2, 0,
-+	    0),
-+	CFG(CLK_I2S3_APB,
-+	    "audss_i2s3_apb",
-+	    i2s_apb_parent,
-+	    NULL,
-+	    -1, 0, 0, 0,
-+	    INFO_CLK_DIV, 0, 2, 0,
-+	    INFO_CLK_GATE, 3, 0,
-+	    0),
-+	CFG(CLK_I2S4_APB,
-+	    "audss_i2s4_apb",
-+	    i2s_apb_parent,
-+	    NULL,
-+	    -1, 0, 0, 0,
-+	    INFO_CLK_DIV, 0, 2, 0,
-+	    INFO_CLK_GATE, 4, 0,
-+	    0),
-+	CFG(CLK_I2S5_APB,
-+	    "audss_i2s5_apb",
-+	    i2s_apb_parent,
-+	    NULL,
-+	    -1, 0, 0, 0,
-+	    INFO_CLK_DIV, 0, 2, 0,
-+	    INFO_CLK_GATE, 5, 0,
-+	    0),
-+	CFG(CLK_I2S6_APB,
-+	    "audss_i2s6_apb",
-+	    i2s_apb_parent,
-+	    NULL,
-+	    -1, 0, 0, 0,
-+	    INFO_CLK_DIV, 0, 2, 0,
-+	    INFO_CLK_GATE, 6, 0,
-+	    0),
-+	CFG(CLK_I2S7_APB,
-+	    "audss_i2s7_apb",
-+	    i2s_apb_parent,
-+	    NULL,
-+	    -1, 0, 0, 0,
-+	    INFO_CLK_DIV, 0, 2, 0,
-+	    INFO_CLK_GATE, 7, 0,
-+	    0),
-+	CFG(CLK_I2S8_APB,
-+	    "audss_i2s8_apb",
-+	    i2s_apb_parent,
-+	    NULL,
-+	    -1, 0, 0, 0,
-+	    INFO_CLK_DIV, 0, 2, 0,
-+	    INFO_CLK_GATE, 8, 0,
-+	    0),
-+	CFG(CLK_I2S9_APB,
-+	    "audss_i2s9_apb",
-+	    i2s_apb_parent,
-+	    NULL,
-+	    -1, 0, 0, 0,
-+	    INFO_CLK_DIV, 0, 2, 0,
-+	    INFO_CLK_GATE, 9, 0,
-+	    0),
-+	CFG(CLK_I2S0,
-+	    "audss_i2s0",
-+	    i2s0_parents,
-+	    NULL,
-+	    INFO_CLK_MUX, 0, 2, 0,
-+	    INFO_CLK_DIV, 2, 2, 0,
-+	    INFO_CLK_GATE, 0, 0,
-+	    0),
-+	CFG(CLK_I2S1,
-+	    "audss_i2s1",
-+	    i2s1_parents,
-+	    NULL,
-+	    INFO_CLK_MUX, 2, 2, 0,
-+	    INFO_CLK_DIV, 4, 2, 0,
-+	    INFO_CLK_GATE, 1, 0,
-+	    0),
-+	CFG(CLK_I2S2,
-+	    "audss_i2s2",
-+	    i2s2_parents,
-+	    NULL,
-+	    INFO_CLK_MUX, 4, 2, 0,
-+	    INFO_CLK_DIV, 6, 2, 0,
-+	    INFO_CLK_GATE, 2, 0,
-+	    0),
-+	CFG(CLK_I2S3,
-+	    "audss_i2s3",
-+	    i2s3_parents,
-+	    i2s3_mux_table,
-+	    INFO_CLK_MUX, 6, 2, 0,
-+	    INFO_CLK_DIV, 8, 2, 0,
-+	    INFO_CLK_GATE, 3, 0,
-+	    0),
-+	CFG(CLK_I2S4,
-+	    "audss_i2s4",
-+	    i2s4_parents,
-+	    i2s4_mux_table,
-+	    INFO_CLK_MUX, 8, 2, 0,
-+	    INFO_CLK_DIV, 10, 2, 0,
-+	    INFO_CLK_GATE, 4, 0,
-+	    0),
-+	CFG(CLK_I2S5,
-+	    "audss_i2s5",
-+	    i2s5_parents,
-+	    NULL,
-+	    INFO_CLK_MUX, 10, 2, 0,
-+	    INFO_CLK_DIV, 12, 2, 0,
-+	    INFO_CLK_GATE, 5, 0,
-+	    0),
-+	CFG(CLK_I2S6,
-+	    "audss_i2s6",
-+	    i2s6_parents,
-+	    NULL,
-+	    INFO_CLK_MUX, 12, 2, 0,
-+	    INFO_CLK_DIV, 14, 2, 0,
-+	    INFO_CLK_GATE, 6, 0,
-+	    0),
-+	CFG(CLK_I2S7,
-+	    "audss_i2s7",
-+	    i2s7_parents,
-+	    NULL,
-+	    INFO_CLK_MUX, 14, 2, 0,
-+	    INFO_CLK_DIV, 16, 2, 0,
-+	    INFO_CLK_GATE, 7, 0,
-+	    0),
-+	CFG(CLK_I2S8,
-+	    "audss_i2s8",
-+	    i2s8_parents,
-+	    NULL,
-+	    INFO_CLK_MUX, 16, 2, 0,
-+	    INFO_CLK_DIV, 18, 2, 0,
-+	    INFO_CLK_GATE, 8, 0,
-+	    0),
-+	CFG(CLK_I2S9,
-+	    "audss_i2s9",
-+	    i2s9_parents,
-+	    NULL,
-+	    INFO_CLK_MUX, 18, 2, 0,
-+	    INFO_CLK_DIV, 20, 2, 0,
-+	    INFO_CLK_GATE, 9, 0,
-+	    0),
-+	/* mclk */
-+	CFG(CLK_MCLK0,
-+	    "audss_mclk0",
-+	    mclk_parents,
-+	    NULL,
-+	    INFO_MCLK, 5, 1, 0,
-+	    -1, 0, 0, 0,
-+	    INFO_MCLK, 0, 0,
-+	    0),
-+	CFG(CLK_MCLK1,
-+	    "audss_mclk1",
-+	    mclk_parents,
-+	    NULL,
-+	    INFO_MCLK, 6, 1, 0,
-+	    -1, 0, 0, 0,
-+	    INFO_MCLK, 1, 0,
-+	    0),
-+	CFG(CLK_MCLK2,
-+	    "audss_mclk2",
-+	    mclk_parents,
-+	    NULL,
-+	    INFO_MCLK, 7, 1, 0,
-+	    -1, 0, 0, 0,
-+	    INFO_MCLK, 2, 0,
-+	    0),
-+	CFG(CLK_MCLK3,
-+	    "audss_mclk3",
-+	    mclk_parents,
-+	    NULL,
-+	    INFO_MCLK, 8, 1, 0,
-+	    -1, 0, 0, 0,
-+	    INFO_MCLK, 3, 0,
-+	    0),
-+	CFG(CLK_MCLK4,
-+	    "audss_mclk4",
-+	    mclk_parents,
-+	    NULL,
-+	    INFO_MCLK, 9, 1, 0,
-+	    -1, 0, 0, 0,
-+	    INFO_MCLK, 4, 0,
-+	    0),
-+};
-+
-+struct sky1_audss_clks_devtype_data {
-+	u32 (*reg_save)[2];
-+	size_t reg_save_size;
-+	const char * const *clk_names;
-+	size_t clk_num;
-+	const u32 *clk_rate_default;
-+	const struct composite_clk_cfg *clk_cfg;
-+	size_t clk_cfg_size;
-+};
-+
-+static const struct regmap_config sky1_audss_regmap_config = {
-+	.reg_bits = 32,
-+	.val_bits = 32,
-+	.reg_stride = 4,
-+};
-+
-+struct sky1_audss_clks_priv {
-+	struct device *dev;
-+	struct regmap *regmap_cru;
-+	struct reset_control *rst_noc;
-+	struct clk *clks[SKY1_AUDSS_CLK_PARENTS_CNT];
-+	const struct sky1_audss_clks_devtype_data *devtype_data;
-+	spinlock_t lock;
-+	struct clk_hw_onecell_data *clk_data;
-+};
-+
-+#if IS_ENABLED(CONFIG_RESET_SKY1_AUDSS)
-+
-+static int sky1_audss_reset_controller_register(struct device *dev)
-+{
-+	struct auxiliary_device *adev;
-+
-+	if (!of_property_present(dev->of_node, "#reset-cells"))
-+		return 0;
-+
-+	adev = devm_auxiliary_device_create(dev, "reset", NULL);
-+	if (!adev)
-+		return -ENODEV;
-+
-+	return 0;
-+}
-+
-+#else
-+
-+static int sky1_audss_reset_controller_register(struct device *dev)
-+{
-+	return 0;
-+}
-+
-+#endif
-+
-+/*
-+ * clk_ops for audss clock mux/divider/gate
-+ */
-+struct sky1_clk_divider {
-+	struct clk_divider div;
++struct sky1_audss_reset {
++	struct reset_controller_dev rcdev;
 +	struct regmap *regmap;
-+	int offset;
++	const struct sky1_audss_reset_map *map;
 +};
 +
-+struct sky1_clk_gate {
-+	struct clk_gate gate;
-+	struct regmap *regmap;
-+	int offset;
++static const struct sky1_audss_reset_map sky1_audss_reset_map[] = {
++	[AUDSS_I2S0_SW_RST]   = { AUDSS_SW_RST, BIT(0) },
++	[AUDSS_I2S1_SW_RST]   = { AUDSS_SW_RST, BIT(1) },
++	[AUDSS_I2S2_SW_RST]   = { AUDSS_SW_RST, BIT(2) },
++	[AUDSS_I2S3_SW_RST]   = { AUDSS_SW_RST, BIT(3) },
++	[AUDSS_I2S4_SW_RST]   = { AUDSS_SW_RST, BIT(4) },
++	[AUDSS_I2S5_SW_RST]   = { AUDSS_SW_RST, BIT(5) },
++	[AUDSS_I2S6_SW_RST]   = { AUDSS_SW_RST, BIT(6) },
++	[AUDSS_I2S7_SW_RST]   = { AUDSS_SW_RST, BIT(7) },
++	[AUDSS_I2S8_SW_RST]   = { AUDSS_SW_RST, BIT(8) },
++	[AUDSS_I2S9_SW_RST]   = { AUDSS_SW_RST, BIT(9) },
++	[AUDSS_WDT_SW_RST]    = { AUDSS_SW_RST, BIT(10) },
++	[AUDSS_TIMER_SW_RST]  = { AUDSS_SW_RST, BIT(11) },
++	[AUDSS_MB0_SW_RST]    = { AUDSS_SW_RST, BIT(12) },
++	[AUDSS_MB1_SW_RST]    = { AUDSS_SW_RST, BIT(13) },
++	[AUDSS_HDA_SW_RST]    = { AUDSS_SW_RST, BIT(14) },
++	[AUDSS_DMAC_SW_RST]   = { AUDSS_SW_RST, BIT(15) },
 +};
 +
-+struct sky1_clk_mux {
-+	struct clk_mux mux;
-+	struct regmap *regmap;
-+	int offset;
-+};
-+
-+static inline struct sky1_clk_mux *to_sky1_clk_mux(struct clk_mux *mux)
++static struct sky1_audss_reset *to_sky1_audss_reset(struct reset_controller_dev *rcdev)
 +{
-+	return container_of(mux, struct sky1_clk_mux, mux);
++	return container_of(rcdev, struct sky1_audss_reset, rcdev);
 +}
 +
-+static u8 sky1_audss_clk_mux_get_parent(struct clk_hw *hw)
++static int sky1_audss_reset_set(struct reset_controller_dev *rcdev,
++				unsigned long id, bool assert)
 +{
-+	struct clk_mux *mux = to_clk_mux(hw);
-+	struct sky1_clk_mux *sky1_mux = to_sky1_clk_mux(mux);
-+	u32 val;
++	struct sky1_audss_reset *priv = to_sky1_audss_reset(rcdev);
++	const struct sky1_audss_reset_map *signal = &priv->map[id];
++	unsigned int value = assert ? 0 : signal->mask;
 +
-+	regmap_read(sky1_mux->regmap, sky1_mux->offset, &val);
-+	val = val >> mux->shift;
-+	val &= mux->mask;
-+
-+	return clk_mux_val_to_index(hw, mux->table, mux->flags, val);
++	return regmap_update_bits(priv->regmap, signal->offset, signal->mask, value);
 +}
 +
-+static int sky1_audss_clk_mux_set_parent(struct clk_hw *hw, u8 index)
++static int sky1_audss_reset_assert(struct reset_controller_dev *rcdev,
++				   unsigned long id)
 +{
-+	struct clk_mux *mux = to_clk_mux(hw);
-+	u32 val = clk_mux_index_to_val(mux->table, mux->flags, index);
-+	struct sky1_clk_mux *sky1_mux = to_sky1_clk_mux(mux);
-+	unsigned long flags = 0;
-+	u32 reg;
++	int ret;
 +
-+	if (mux->lock)
-+		spin_lock_irqsave(mux->lock, flags);
-+	else
-+		__acquire(mux->lock);
++	ret = sky1_audss_reset_set(rcdev, id, true);
++	if (ret)
++		return ret;
 +
-+	if (mux->flags & CLK_MUX_HIWORD_MASK) {
-+		reg = mux->mask << (mux->shift + 16);
-+	} else {
-+		regmap_read(sky1_mux->regmap, sky1_mux->offset, &reg);
-+		reg &= ~(mux->mask << mux->shift);
-+	}
-+	val = val << mux->shift;
-+	reg |= val;
-+	regmap_write(sky1_mux->regmap, sky1_mux->offset, reg);
-+
-+	if (mux->lock)
-+		spin_unlock_irqrestore(mux->lock, flags);
-+	else
-+		__release(mux->lock);
-+
++	usleep_range(SKY1_RESET_SLEEP_MIN_US, SKY1_RESET_SLEEP_MAX_US);
 +	return 0;
 +}
 +
-+static int sky1_audss_clk_mux_determine_rate(struct clk_hw *hw,
-+					     struct clk_rate_request *req)
++static int sky1_audss_reset_deassert(struct reset_controller_dev *rcdev,
++				     unsigned long id)
 +{
-+	struct clk_mux *mux = to_clk_mux(hw);
++	int ret;
 +
-+	return clk_mux_determine_rate_flags(hw, req, mux->flags);
++	ret = sky1_audss_reset_set(rcdev, id, false);
++	if (ret)
++		return ret;
++
++	usleep_range(SKY1_RESET_SLEEP_MIN_US, SKY1_RESET_SLEEP_MAX_US);
++	return 0;
 +}
 +
-+static const struct clk_ops sky1_audss_clk_mux_ops = {
-+	.get_parent = sky1_audss_clk_mux_get_parent,
-+	.set_parent = sky1_audss_clk_mux_set_parent,
-+	.determine_rate = sky1_audss_clk_mux_determine_rate,
++static const struct reset_control_ops sky1_audss_reset_ops = {
++	.assert   = sky1_audss_reset_assert,
++	.deassert = sky1_audss_reset_deassert,
 +};
 +
-+static inline struct sky1_clk_divider *to_sky1_clk_divider(struct clk_divider *div)
++static int sky1_audss_reset_probe(struct auxiliary_device *adev,
++				  const struct auxiliary_device_id *id)
 +{
-+	return container_of(div, struct sky1_clk_divider, div);
-+}
-+
-+static unsigned long sky1_audss_clk_divider_recalc_rate(struct clk_hw *hw,
-+							unsigned long parent_rate)
-+{
-+	struct clk_divider *divider = to_clk_divider(hw);
-+	struct sky1_clk_divider *sky1_div = to_sky1_clk_divider(divider);
-+	unsigned int val;
-+
-+	regmap_read(sky1_div->regmap, sky1_div->offset, &val);
-+	val = val >> divider->shift;
-+	val &= clk_div_mask(divider->width);
-+
-+	return divider_recalc_rate(hw, parent_rate, val, divider->table,
-+				   divider->flags, divider->width);
-+}
-+
-+static int sky1_audss_clk_divider_determine_rate(struct clk_hw *hw,
-+						 struct clk_rate_request *req)
-+{
-+	struct clk_divider *divider = to_clk_divider(hw);
-+	struct sky1_clk_divider *sky1_div = to_sky1_clk_divider(divider);
-+
-+	/* if read only, just return current value */
-+	if (divider->flags & CLK_DIVIDER_READ_ONLY) {
-+		u32 val;
-+
-+		regmap_read(sky1_div->regmap, sky1_div->offset, &val);
-+		val = val >> divider->shift;
-+		val &= clk_div_mask(divider->width);
-+
-+		return divider_ro_determine_rate(hw, req, divider->table,
-+						 divider->width,
-+						 divider->flags, val);
-+	}
-+
-+	return divider_determine_rate(hw, req, divider->table, divider->width,
-+				      divider->flags);
-+}
-+
-+static int sky1_audss_clk_divider_set_rate(struct clk_hw *hw,
-+					   unsigned long rate,
-+					   unsigned long parent_rate)
-+{
-+	struct clk_divider *divider = to_clk_divider(hw);
-+	struct sky1_clk_divider *sky1_div = to_sky1_clk_divider(divider);
-+	int value;
-+	unsigned long flags = 0;
-+	u32 val;
-+
-+	value = divider_get_val(rate, parent_rate, divider->table,
-+				divider->width, divider->flags);
-+	if (value < 0)
-+		return value;
-+
-+	if (divider->lock)
-+		spin_lock_irqsave(divider->lock, flags);
-+	else
-+		__acquire(divider->lock);
-+
-+	if (divider->flags & CLK_DIVIDER_HIWORD_MASK) {
-+		val = clk_div_mask(divider->width) << (divider->shift + 16);
-+	} else {
-+		regmap_read(sky1_div->regmap, sky1_div->offset, &val);
-+		val &= ~(clk_div_mask(divider->width) << divider->shift);
-+	}
-+	val |= (u32)value << divider->shift;
-+	regmap_write(sky1_div->regmap, sky1_div->offset, val);
-+
-+	if (divider->lock)
-+		spin_unlock_irqrestore(divider->lock, flags);
-+	else
-+		__release(divider->lock);
-+
-+	return 0;
-+}
-+
-+static const struct clk_ops sky1_audss_clk_divider_ops = {
-+	.recalc_rate = sky1_audss_clk_divider_recalc_rate,
-+	.determine_rate = sky1_audss_clk_divider_determine_rate,
-+	.set_rate = sky1_audss_clk_divider_set_rate,
-+};
-+
-+static inline struct sky1_clk_gate *to_sky1_clk_gate(struct clk_gate *gate)
-+{
-+	return container_of(gate, struct sky1_clk_gate, gate);
-+}
-+
-+static void sky1_audss_clk_gate_endisable(struct clk_hw *hw, int enable)
-+{
-+	struct clk_gate *gate = to_clk_gate(hw);
-+	struct sky1_clk_gate *sky1_gate = to_sky1_clk_gate(gate);
-+	int set = gate->flags & CLK_GATE_SET_TO_DISABLE ? 1 : 0;
-+	unsigned long flags = 0;
-+	u32 reg;
-+
-+	set ^= enable;
-+
-+	if (gate->lock)
-+		spin_lock_irqsave(gate->lock, flags);
-+	else
-+		__acquire(gate->lock);
-+
-+	if (gate->flags & CLK_GATE_HIWORD_MASK) {
-+		reg = BIT(gate->bit_idx + 16);
-+		if (set)
-+			reg |= BIT(gate->bit_idx);
-+	} else {
-+		regmap_read(sky1_gate->regmap, sky1_gate->offset, &reg);
-+
-+		if (set)
-+			reg |= BIT(gate->bit_idx);
-+		else
-+			reg &= ~BIT(gate->bit_idx);
-+	}
-+
-+	regmap_write(sky1_gate->regmap, sky1_gate->offset, reg);
-+
-+	if (gate->lock)
-+		spin_unlock_irqrestore(gate->lock, flags);
-+	else
-+		__release(gate->lock);
-+}
-+
-+static int sky1_audss_clk_gate_enable(struct clk_hw *hw)
-+{
-+	sky1_audss_clk_gate_endisable(hw, 1);
-+
-+	return 0;
-+}
-+
-+static void sky1_audss_clk_gate_disable(struct clk_hw *hw)
-+{
-+	sky1_audss_clk_gate_endisable(hw, 0);
-+}
-+
-+static int sky1_audss_clk_gate_is_enabled(struct clk_hw *hw)
-+{
-+	struct clk_gate *gate = to_clk_gate(hw);
-+	struct sky1_clk_gate *sky1_gate = to_sky1_clk_gate(gate);
-+	u32 reg;
-+
-+	regmap_read(sky1_gate->regmap, sky1_gate->offset, &reg);
-+
-+	/* if a set bit disables this clk, flip it before masking */
-+	if (gate->flags & CLK_GATE_SET_TO_DISABLE)
-+		reg ^= BIT(gate->bit_idx);
-+
-+	reg &= BIT(gate->bit_idx);
-+
-+	return !!reg;
-+}
-+
-+static const struct clk_ops sky1_audss_clk_gate_ops = {
-+	.enable = sky1_audss_clk_gate_enable,
-+	.disable = sky1_audss_clk_gate_disable,
-+	.is_enabled = sky1_audss_clk_gate_is_enabled,
-+};
-+
-+static struct clk_hw *sky1_audss_clk_register(struct device *dev,
-+					      const char *name,
-+					      const char * const *parent_names,
-+					      int num_parents,
-+					      struct regmap *regmap,
-+					      const u32 *mux_table,
-+					      struct muxdiv_cfg *mux_cfg,
-+					      struct muxdiv_cfg *div_cfg,
-+					      struct gate_cfg *gate_cfg,
-+					      unsigned long flags,
-+					      spinlock_t *lock)
-+{
-+	const struct clk_ops *sky1_gate_ops = NULL;
-+	const struct clk_ops *sky1_mux_ops = NULL;
-+	const struct clk_ops *sky1_div_ops = NULL;
-+	struct sky1_clk_divider *sky1_div = NULL;
-+	struct sky1_clk_gate *sky1_gate = NULL;
-+	struct sky1_clk_mux *sky1_mux = NULL;
-+	struct clk_hw *hw = ERR_PTR(-ENOMEM);
-+	struct clk_parent_data *parent_data;
-+	int i;
-+
-+	parent_data = devm_kcalloc(dev, num_parents, sizeof(*parent_data), GFP_KERNEL);
-+	if (!parent_data)
-+		return ERR_PTR(-ENOMEM);
-+
-+	for (i = 0; i < num_parents; i++)
-+		parent_data[i].name = parent_names[i];
-+
-+	if (mux_cfg->offset >= 0) {
-+		sky1_mux = devm_kzalloc(dev, sizeof(*sky1_mux), GFP_KERNEL);
-+		if (!sky1_mux)
-+			return ERR_PTR(-ENOMEM);
-+
-+		sky1_mux->mux.reg = NULL;
-+		sky1_mux->mux.shift = mux_cfg->shift;
-+		sky1_mux->mux.mask = BIT(mux_cfg->width) - 1;
-+		sky1_mux->mux.flags = mux_cfg->flags;
-+		sky1_mux->mux.table = mux_table;
-+		sky1_mux->mux.lock = lock;
-+		sky1_mux_ops = &sky1_audss_clk_mux_ops;
-+		sky1_mux->regmap = regmap;
-+		sky1_mux->offset = mux_cfg->offset;
-+	}
-+
-+	if (div_cfg->offset >= 0) {
-+		sky1_div = devm_kzalloc(dev, sizeof(*sky1_div), GFP_KERNEL);
-+		if (!sky1_div)
-+			return ERR_PTR(-ENOMEM);
-+
-+		sky1_div->div.reg = NULL;
-+		sky1_div->div.shift = div_cfg->shift;
-+		sky1_div->div.width = div_cfg->width;
-+		sky1_div->div.flags = div_cfg->flags | CLK_DIVIDER_POWER_OF_TWO;
-+		sky1_div->div.lock = lock;
-+		sky1_div_ops = &sky1_audss_clk_divider_ops;
-+		sky1_div->regmap = regmap;
-+		sky1_div->offset = div_cfg->offset;
-+	}
-+
-+	if (gate_cfg->offset >= 0) {
-+		sky1_gate = devm_kzalloc(dev, sizeof(*sky1_gate), GFP_KERNEL);
-+		if (!sky1_gate)
-+			return ERR_PTR(-ENOMEM);
-+
-+		sky1_gate->gate.reg = NULL;
-+		sky1_gate->gate.bit_idx = gate_cfg->shift;
-+		sky1_gate->gate.flags = gate_cfg->flags;
-+		sky1_gate->gate.lock = lock;
-+		sky1_gate_ops = &sky1_audss_clk_gate_ops;
-+		sky1_gate->regmap = regmap;
-+		sky1_gate->offset = gate_cfg->offset;
-+	}
-+
-+	hw = devm_clk_hw_register_composite_pdata(dev, name, parent_data, num_parents,
-+						sky1_mux ? &sky1_mux->mux.hw : NULL, sky1_mux_ops,
-+						sky1_div ? &sky1_div->div.hw : NULL, sky1_div_ops,
-+						sky1_gate ? &sky1_gate->gate.hw : NULL, sky1_gate_ops,
-+						flags);
-+	if (IS_ERR(hw)) {
-+		dev_err(dev, "register %s clock failed with err = %ld\n",
-+			name, PTR_ERR(hw));
-+		return hw;
-+	}
-+
-+	return hw;
-+}
-+
-+static int sky1_audss_clks_get(struct sky1_audss_clks_priv *priv)
-+{
-+	const struct sky1_audss_clks_devtype_data *devtype_data = priv->devtype_data;
-+	int i;
-+
-+	for (i = 0; i < devtype_data->clk_num; i++) {
-+		priv->clks[i] = devm_clk_get(priv->dev, devtype_data->clk_names[i]);
-+		if (IS_ERR(priv->clks[i]))
-+			return dev_err_probe(priv->dev, PTR_ERR(priv->clks[i]),
-+					     "failed to get clock %s", devtype_data->clk_names[i]);
-+	}
-+
-+	return 0;
-+}
-+
-+static int sky1_audss_clks_enable(struct sky1_audss_clks_priv *priv)
-+{
-+	const struct sky1_audss_clks_devtype_data *devtype_data = priv->devtype_data;
-+	int i, err;
-+
-+	for (i = 0; i < devtype_data->clk_num; i++) {
-+		err = clk_prepare_enable(priv->clks[i]);
-+		if (err) {
-+			dev_err(priv->dev, "failed to enable clock %s\n",
-+				devtype_data->clk_names[i]);
-+			goto err_clks;
-+		}
-+	}
-+
-+	return 0;
-+
-+err_clks:
-+	while (--i >= 0)
-+		clk_disable_unprepare(priv->clks[i]);
-+
-+	return err;
-+}
-+
-+static void sky1_audss_clks_disable(struct sky1_audss_clks_priv *priv)
-+{
-+	const struct sky1_audss_clks_devtype_data *devtype_data = priv->devtype_data;
-+	int i;
-+
-+	for (i = 0; i < devtype_data->clk_num; i++)
-+		clk_disable_unprepare(priv->clks[i]);
-+}
-+
-+static int sky1_audss_clks_set_rate(struct sky1_audss_clks_priv *priv)
-+{
-+	const struct sky1_audss_clks_devtype_data *devtype_data = priv->devtype_data;
-+	int i, err;
-+
-+	for (i = 0; i < devtype_data->clk_num; i++) {
-+		err = clk_set_rate(priv->clks[i], devtype_data->clk_rate_default[i]);
-+		if (err) {
-+			dev_err(priv->dev, "failed to set clock rate %s\n",
-+				devtype_data->clk_names[i]);
-+			return err;
-+		}
-+	}
-+
-+	return 0;
-+}
-+
-+/* register sky1 audio subsystem clocks */
-+static int sky1_audss_clk_probe(struct platform_device *pdev)
-+{
-+	const struct sky1_audss_clks_devtype_data *devtype_data;
-+	struct sky1_audss_clks_priv *priv;
-+	struct device *dev = &pdev->dev;
-+	struct clk_hw **clk_table;
-+	void __iomem *base;
-+	int i, ret;
-+
-+	devtype_data = device_get_match_data(dev);
-+	if (!devtype_data)
-+		return -ENODEV;
++	struct sky1_audss_reset *priv;
++	struct device *dev = &adev->dev;
 +
 +	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
 +	if (!priv)
 +		return -ENOMEM;
 +
-+	spin_lock_init(&priv->lock);
++	priv->regmap = dev_get_regmap(dev->parent, NULL);
++	if (!priv->regmap)
++		return dev_err_probe(dev, -ENODEV, "failed to get parent regmap\n");
 +
-+	priv->clk_data = devm_kzalloc(dev,
-+				      struct_size(priv->clk_data, hws, SKY1_AUDSS_NUM_CLKS),
-+				      GFP_KERNEL);
-+	if (!priv->clk_data)
-+		return -ENOMEM;
++	priv->map = sky1_audss_reset_map;
++	priv->rcdev.owner = THIS_MODULE;
++	priv->rcdev.nr_resets = ARRAY_SIZE(sky1_audss_reset_map);
++	priv->rcdev.ops = &sky1_audss_reset_ops;
++	priv->rcdev.of_node = dev->of_node;
++	priv->rcdev.dev = dev;
 +
-+	priv->clk_data->num = SKY1_AUDSS_NUM_CLKS;
-+	clk_table = priv->clk_data->hws;
-+
-+	base = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(base))
-+		return PTR_ERR(base);
-+
-+	priv->regmap_cru = devm_regmap_init_mmio(dev, base, &sky1_audss_regmap_config);
-+	if (IS_ERR(priv->regmap_cru))
-+		return dev_err_probe(dev, PTR_ERR(priv->regmap_cru),
-+				     "failed to initialize regmap\n");
-+
-+	priv->dev = dev;
-+	priv->devtype_data = devtype_data;
-+
-+	priv->rst_noc = devm_reset_control_get_exclusive(dev, NULL);
-+	if (IS_ERR(priv->rst_noc))
-+		return dev_err_probe(dev, PTR_ERR(priv->rst_noc),
-+				     "failed to get audss noc reset");
-+
-+	reset_control_assert(priv->rst_noc);
-+
-+	reset_control_deassert(priv->rst_noc);
-+
-+	pm_runtime_get_noresume(dev);
-+	pm_runtime_set_active(dev);
-+	pm_runtime_enable(dev);
-+
-+	platform_set_drvdata(pdev, priv);
-+
-+	ret = sky1_audss_clks_get(priv);
-+	if (ret)
-+		goto err_pm;
-+
-+	ret = sky1_audss_clks_enable(priv);
-+	if (ret) {
-+		dev_err(dev, "failed to enable clocks\n");
-+		goto err_pm;
-+	}
-+
-+	ret = sky1_audss_clks_set_rate(priv);
-+	if (ret) {
-+		dev_err(dev, "failed to set clocks rate\n");
-+		goto fail_clks_set;
-+	}
-+
-+	/* audio_clk4 clock fixed divider */
-+	clk_table[CLK_AUD_CLK4_DIV2] =
-+		devm_clk_hw_register_fixed_factor(dev,
-+						  "audio_clk4_div2",
-+						  "audio_clk4",
-+						  0,
-+						  1, 2);
-+	if (IS_ERR(clk_table[CLK_AUD_CLK4_DIV2])) {
-+		ret = PTR_ERR(clk_table[CLK_AUD_CLK4_DIV2]);
-+		dev_err(dev, "failed to register clock %d, ret:%d\n", CLK_AUD_CLK4_DIV2, ret);
-+		goto fail_fixed_clk;
-+	}
-+
-+	clk_table[CLK_AUD_CLK4_DIV4] =
-+		devm_clk_hw_register_fixed_factor(dev,
-+						  "audio_clk4_div4",
-+						  "audio_clk4",
-+						  0,
-+						  1, 4);
-+	if (IS_ERR(clk_table[CLK_AUD_CLK4_DIV4])) {
-+		ret = PTR_ERR(clk_table[CLK_AUD_CLK4_DIV4]);
-+		dev_err(dev, "failed to register clock %d, ret:%d\n", CLK_AUD_CLK4_DIV4, ret);
-+		goto fail_fixed_clk;
-+	}
-+
-+	/* audio_clk5 clock fixed divider */
-+	clk_table[CLK_AUD_CLK5_DIV2] =
-+		devm_clk_hw_register_fixed_factor(dev,
-+						  "audio_clk5_div2",
-+						  "audio_clk5",
-+						  0,
-+						  1, 2);
-+	if (IS_ERR(clk_table[CLK_AUD_CLK5_DIV2])) {
-+		ret = PTR_ERR(clk_table[CLK_AUD_CLK5_DIV2]);
-+		dev_err(dev, "failed to register clock %d, ret:%d\n", CLK_AUD_CLK5_DIV2, ret);
-+		goto fail_fixed_clk;
-+	}
-+
-+	for (i = 0; i < devtype_data->clk_cfg_size; i++) {
-+		clk_table[devtype_data->clk_cfg[i].id] =
-+			sky1_audss_clk_register(dev,
-+						devtype_data->clk_cfg[i].name,
-+						devtype_data->clk_cfg[i].parent_names,
-+						devtype_data->clk_cfg[i].num_parents,
-+						priv->regmap_cru,
-+						devtype_data->clk_cfg[i].mux_table,
-+						devtype_data->clk_cfg[i].mux_cfg,
-+						devtype_data->clk_cfg[i].div_cfg,
-+						devtype_data->clk_cfg[i].gate_cfg,
-+						devtype_data->clk_cfg[i].flags,
-+						&priv->lock);
-+		if (IS_ERR(clk_table[devtype_data->clk_cfg[i].id])) {
-+			ret = PTR_ERR(clk_table[devtype_data->clk_cfg[i].id]);
-+			dev_err(dev, "failed to register clock %d, ret:%d\n",
-+				devtype_data->clk_cfg[i].id, ret);
-+			goto fail_fixed_clk;
-+		}
-+	}
-+
-+	ret = devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get, priv->clk_data);
-+	if (ret) {
-+		dev_err(dev, "failed to add clock provider: %d\n", ret);
-+		goto fail_register;
-+	}
-+
-+	ret = sky1_audss_reset_controller_register(dev);
-+	if (ret)
-+		goto fail_register;
-+
-+	pm_runtime_put_sync(dev);
-+
-+	return 0;
-+
-+fail_register:
-+fail_fixed_clk:
-+fail_clks_set:
-+	pm_runtime_put_sync(dev);
-+err_pm:
-+	pm_runtime_put_noidle(dev);
-+	pm_runtime_disable(dev);
-+	return ret;
++	return devm_reset_controller_register(dev, &priv->rcdev);
 +}
 +
-+static void sky1_audss_clk_remove(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+
-+	if (!pm_runtime_status_suspended(dev))
-+		pm_runtime_force_suspend(dev);
-+
-+	pm_runtime_disable(dev);
-+}
-+
-+static int __maybe_unused sky1_audss_clk_runtime_suspend(struct device *dev)
-+{
-+	struct sky1_audss_clks_priv *priv = dev_get_drvdata(dev);
-+	const struct sky1_audss_clks_devtype_data *devtype_data = priv->devtype_data;
-+	unsigned long flags;
-+	int i;
-+
-+	spin_lock_irqsave(&priv->lock, flags);
-+	for (i = 0; i < devtype_data->reg_save_size; i++)
-+		regmap_read(priv->regmap_cru,
-+			    devtype_data->reg_save[i][0], &devtype_data->reg_save[i][1]);
-+	spin_unlock_irqrestore(&priv->lock, flags);
-+
-+	sky1_audss_clks_disable(priv);
-+
-+	return reset_control_assert(priv->rst_noc);
-+}
-+
-+static int __maybe_unused sky1_audss_clk_runtime_resume(struct device *dev)
-+{
-+	struct sky1_audss_clks_priv *priv = dev_get_drvdata(dev);
-+	const struct sky1_audss_clks_devtype_data *devtype_data = priv->devtype_data;
-+	unsigned long flags;
-+	int i, ret;
-+
-+	ret = reset_control_deassert(priv->rst_noc);
-+	if (ret)
-+		return ret;
-+
-+	ret = sky1_audss_clks_enable(priv);
-+	if (ret) {
-+		dev_err(dev, "failed to enable clocks\n");
-+		reset_control_assert(priv->rst_noc);
-+		return ret;
-+	}
-+
-+	spin_lock_irqsave(&priv->lock, flags);
-+	for (i = 0; i < devtype_data->reg_save_size; i++)
-+		regmap_write(priv->regmap_cru,
-+			     devtype_data->reg_save[i][0], devtype_data->reg_save[i][1]);
-+	spin_unlock_irqrestore(&priv->lock, flags);
-+
-+	return 0;
-+}
-+
-+static const struct dev_pm_ops sky1_audss_clk_pm_ops = {
-+	SET_RUNTIME_PM_OPS(sky1_audss_clk_runtime_suspend,
-+			   sky1_audss_clk_runtime_resume, NULL)
-+	SET_SYSTEM_SLEEP_PM_OPS(pm_runtime_force_suspend,
-+				pm_runtime_force_resume)
++static const struct auxiliary_device_id sky1_audss_reset_ids[] = {
++	{ .name = "clk_sky1_audss.reset" },
++	{ }
 +};
++MODULE_DEVICE_TABLE(auxiliary, sky1_audss_reset_ids);
 +
-+static const struct sky1_audss_clks_devtype_data sky1_devtype_data = {
-+	.reg_save = sky1_reg_save,
-+	.reg_save_size = ARRAY_SIZE(sky1_reg_save),
-+	.clk_names = sky1_audss_clk_names,
-+	.clk_num = ARRAY_SIZE(sky1_audss_clk_names),
-+	.clk_rate_default = sky1_clk_rate_default,
-+	.clk_cfg = sky1_audss_clks,
-+	.clk_cfg_size = ARRAY_SIZE(sky1_audss_clks),
++static struct auxiliary_driver sky1_audss_reset_driver = {
++	.probe = sky1_audss_reset_probe,
++	.id_table = sky1_audss_reset_ids,
 +};
++module_auxiliary_driver(sky1_audss_reset_driver);
 +
-+static const struct of_device_id sky1_audss_clk_of_match[] = {
-+	{ .compatible = "cix,sky1-audss-cru", .data = &sky1_devtype_data, },
-+	{ /* sentinel */ },
-+};
-+MODULE_DEVICE_TABLE(of, sky1_audss_clk_of_match);
-+
-+static struct platform_driver sky1_audss_clk_driver = {
-+	.probe = sky1_audss_clk_probe,
-+	.remove = sky1_audss_clk_remove,
-+	.driver = {
-+		.name = "sky1-audss-clk",
-+		.suppress_bind_attrs = true,
-+		.of_match_table = sky1_audss_clk_of_match,
-+		.pm = pm_ptr(&sky1_audss_clk_pm_ops),
-+	},
-+};
-+module_platform_driver(sky1_audss_clk_driver);
-+
-+MODULE_LICENSE("GPL");
 +MODULE_AUTHOR("Joakim Zhang <joakim.zhang@cixtech.com>");
-+MODULE_DESCRIPTION("Cixtech Sky1 Audio Subsystem Clock Controller Driver");
++MODULE_DESCRIPTION("Cix Sky1 Audio Subsystem reset driver");
++MODULE_LICENSE("GPL");
 -- 
 2.50.1
 
