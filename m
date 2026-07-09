@@ -1,57 +1,57 @@
-Return-Path: <devicetree+bounces-323438-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-323440-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id RljUFGFbT2pufAIAu9opvQ
-	(envelope-from <devicetree+bounces-323438-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 10:27:13 +0200
+	id 89O9GopbT2p5fAIAu9opvQ
+	(envelope-from <devicetree+bounces-323440-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 10:27:54 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id ACF1972E425
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 10:27:12 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2928072E448
+	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 10:27:54 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20201202 header.b=VCLhaRXO;
+	dkim=pass header.d=kernel.org header.s=k20201202 header.b=YNbV1veO;
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-323438-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-323438-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-323440-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-323440-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5C7E4302F9AD
+	by sto.lore.kernel.org (Postfix) with ESMTP id 9620E3026AD1
 	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2026 08:26:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 249F53ED13B;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2495E3ED134;
 	Thu,  9 Jul 2026 08:26:53 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E837C3806DA;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E84D93DB31F;
 	Thu,  9 Jul 2026 08:26:52 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783585613; cv=none; b=njLNgelu4yHjA2xyd7z0jBquTg5kR1W7DQTEhvneEAx4CgxX3AGIca6Hsj5l+s856z4jH6Moj4+JrRyDPTWDl8dHidjyvM83T1vcazL127oshZZcdmdGOEkMJkP0H9iMMnDNJbzIDy1pmZ2o32b3Z0EVDfwdiBWvcD5a/unjYLo=
+	t=1783585613; cv=none; b=IUJ+Rxut7ZfR4mitjNjydaMV6KD0pX2MEr37IF64xWly0Dvx+fsLrR7FoGnr5hJ+9wIIlv4Blhpg6UIxwOE6GSP8PpERPnrNDm4sSrxwn8WnFFOapWwY+4qhzbPHH1A9eGjzQ+AIYjPIYK7PuTm846bI51upvkCydUGvwgkC6Pg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1783585613; c=relaxed/simple;
-	bh=wy5SZcpI6/jWc/lOr/zKxKWEbpIR/CMuHGQUzKbv9qY=;
+	bh=Cc2E8akdH+G5Ofl/remAcjKjYApuWhW2x/f3uTajPuA=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=AqZw+FU6u03QI/PXNAVYlVOPM+jo44FR0LL5h1RhKRqtgjcDBJyiKpZ/z3QS/VVJn2WXBTGg74QH0zO/Qmp1evYKohBulMPUa7uIu9d4Bd2T1G1izEBIxreMoslNBrKC2+HpzBjmiTMafyqzLO+q+xiFHRZkHxV7yAlvsFcvVig=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VCLhaRXO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 9668CC2BCB7;
+	 In-Reply-To:To:Cc; b=TzrRZf/fzYjvPNi8z2IC3BteR4iJtVDgI95N8arUTw30fC6rRemiAO7Mji5pkGmFkJKo6+jAu3ezW9Owm0dRq2opqTjoP0dHFS+x/ipmv2hb2aA2iFgGLCWNpocJfELUq6/4SHBYY4SU6NmkOnzqXFOAybX6AP24uF4jeiUyY18=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YNbV1veO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id A4578C2BCF4;
 	Thu,  9 Jul 2026 08:26:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1783585612;
-	bh=wy5SZcpI6/jWc/lOr/zKxKWEbpIR/CMuHGQUzKbv9qY=;
+	bh=Cc2E8akdH+G5Ofl/remAcjKjYApuWhW2x/f3uTajPuA=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=VCLhaRXOUoZ7zkZUf3rbYh6H6r9VVysnQmXfaOT9ZaJOldwR489rV1Ga3nToRF+Vi
-	 aATrIp6IaeRsOKOzDyghiCzWbgqTmzBufW6RzdsIlSOe2dyI5AOtlSpUYeCI2dW9j8
-	 1GGY3prAEbIQ1RVw5mZirDSmHOLLOIj8kECIoBdeWBMN6ss9JfEeYsgGn7oft/HEzh
-	 vEZDV+YwjF47N+J4DGm5YcZ1SzNZwTuAyE6kLyes0Ujx+woxrgJZb9aSWodK3wz18U
-	 S2G4f62ZpZS+KaJwGwdbnZQLgcgKV8mCQAoqtNYT4snm1FOW3wXHQjQKJYfYS/tBK4
-	 /2fiO522uIwAw==
+	b=YNbV1veO7EUA+5IxYAX+xfO3cP/9RbSB46gB8lslzzu86q4S5fygqcC5gT1pRbKo7
+	 Q9Ob5hedHskFnGAHYSZ9OxW+a0mUHz9kzbjVnr7dank87ovzDmTnE4IpGryoxB2KXZ
+	 YSFYADA1U7y8hDWf80RV87uEsVtJYmXHc7n02thsqyVnAzgissaXrVyiimTE9RYJzb
+	 XOAd4tRgYnFpQaZbjILWY2PKinlOoNRTbCFatBmsyG09gj/KwvlUdxBaXbpz/4aC0X
+	 R8lzXJ0V4MoItjA7wRab4TGXJ0ogU+Ff1QdCQun8+bIXsJDESNuIBn7EbQEdaOu/gG
+	 LslAqdWpD9M9w==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 78BBCC44501;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 86EB8C44507;
 	Thu,  9 Jul 2026 08:26:52 +0000 (UTC)
 From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
-Date: Thu, 09 Jul 2026 08:26:48 +0000
-Subject: [PATCH 1/3] dt-bindings: reset: amlogic: Add A9 reset compatibles
+Date: Thu, 09 Jul 2026 08:26:49 +0000
+Subject: [PATCH 2/3] reset: amlogic: Add A9 AO reset controller support
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,7 +60,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260709-a9-reset-v1-1-fd7cf039b853@amlogic.com>
+Message-Id: <20260709-a9-reset-v1-2-fd7cf039b853@amlogic.com>
 References: <20260709-a9-reset-v1-0-fd7cf039b853@amlogic.com>
 In-Reply-To: <20260709-a9-reset-v1-0-fd7cf039b853@amlogic.com>
 To: Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>, 
@@ -73,11 +73,11 @@ Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
  Xianwei Zhao <xianwei.zhao@amlogic.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1783585609; l=1435;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1783585609; l=1414;
  i=xianwei.zhao@amlogic.com; s=20251216; h=from:subject:message-id;
- bh=7LNW8ZvaZWeVEkBMdvk9VNvgoGwo+rCuBHKz7WRUMqs=;
- b=uONKi2L9TMAYQPdEjU+xjWFSPacFpUyOPj/7ey/WJawPT5d9d7oUYGyYwElqMKrmSROx/YAT6
- mvpejoyMxsQC/NK7D3hLvk4NGmdJN1+MHHtqheucvSKrVtHXXoHJ2wc
+ bh=patSBH/uW6tkb/H97P+dDOJPShFdk5yhMtjXp5whRlQ=;
+ b=Wr7Qnot0A9kH8SFK8eAdVVE1BLLzUYjbyQMygeJ0+Mtyg7GsbDeYVajtNUYGCghvp8wcPI5Uc
+ kpvQ9xiZvC4CMtPPUY7zXfrAYsOdt9tcGtuqgcpZZcZ6z8/UK12bswT
 X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
  pk=dWwxtWCxC6FHRurOmxEtr34SuBYU+WJowV/ZmRJ7H+k=
 X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20251216 with
@@ -91,12 +91,12 @@ X-Spamd-Result: default: False [-3.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-323438-lists,devicetree=lfdr.de,xianwei.zhao.amlogic.com];
+	TAGGED_FROM(0.00)[bounces-323440-lists,devicetree=lfdr.de,xianwei.zhao.amlogic.com];
 	FORGED_RECIPIENTS(0.00)[m:p.zabel@pengutronix.de,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:neil.armstrong@linaro.org,m:khilman@baylibre.com,m:jbrunet@baylibre.com,m:martin.blumenstingl@googlemail.com,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-amlogic@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:xianwei.zhao@amlogic.com,m:krzk@kernel.org,m:conor@kernel.org,m:martinblumenstingl@gmail.com,s:lists@lfdr.de];
 	FREEMAIL_TO(0.00)[pengutronix.de,kernel.org,linaro.org,baylibre.com,googlemail.com];
 	FORGED_SENDER(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
@@ -106,7 +106,7 @@ X-Spamd-Result: default: False [-3.66 / 15.00];
 	RCPT_COUNT_TWELVE(0.00)[13];
 	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	HAS_REPLYTO(0.00)[xianwei.zhao@amlogic.com];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
@@ -115,48 +115,51 @@ X-Spamd-Result: default: False [-3.66 / 15.00];
 	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,amlogic.com:replyto,amlogic.com:mid,amlogic.com:email]
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,vger.kernel.org:from_smtp,amlogic.com:replyto,amlogic.com:mid,amlogic.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: ACF1972E425
+X-Rspamd-Queue-Id: 2928072E448
 
 From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 
-Document the reset controller compatibles used by the Amlogic A9 SoC.
-Add support for the A9 AO reset controller and add the A9 reset
-compatible with the T7 reset controller as fallback.
+Add the reset configuration and compatible entry for the Amlogic A9 AO
+reset controller.
 
 Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
 ---
- Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml | 5 +++++
- 1 file changed, 5 insertions(+)
+ drivers/reset/amlogic/reset-meson.c | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml b/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml
-index 150e95c0d9be..e585f71879f2 100644
---- a/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml
-+++ b/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml
-@@ -19,6 +19,7 @@ properties:
-           - amlogic,meson-axg-reset # Reset Controller on AXG and compatible SoCs
-           - amlogic,meson-a1-reset # Reset Controller on A1 and compatible SoCs
-           - amlogic,meson-s4-reset # Reset Controller on S4 and compatible SoCs
-+          - amlogic,a9-ao-reset
-           - amlogic,c3-reset # Reset Controller on C3 and compatible SoCs
-           - amlogic,t7-reset
-       - items:
-@@ -26,6 +27,10 @@ properties:
-               - amlogic,a4-reset
-               - amlogic,a5-reset
-           - const: amlogic,meson-s4-reset
-+      - items:
-+          - enum:
-+              - amlogic,a9-reset
-+          - const: amlogic,t7-reset
+diff --git a/drivers/reset/amlogic/reset-meson.c b/drivers/reset/amlogic/reset-meson.c
+index c303e8590dd6..5e8afbceaf23 100644
+--- a/drivers/reset/amlogic/reset-meson.c
++++ b/drivers/reset/amlogic/reset-meson.c
+@@ -49,6 +49,14 @@ static const struct meson_reset_param t7_param = {
+ 	.level_low_reset = true,
+ };
  
-   reg:
-     maxItems: 1
++static const struct meson_reset_param a9_ao_param = {
++	.reset_ops	= &meson_reset_ops,
++	.reset_num      = 32,
++	.reset_offset	= 0x0,
++	.level_offset   = 0x4,
++	.level_low_reset = true,
++};
++
+ static const struct of_device_id meson_reset_dt_ids[] = {
+ 	 { .compatible = "amlogic,meson8b-reset",    .data = &meson8b_param},
+ 	 { .compatible = "amlogic,meson-gxbb-reset", .data = &meson8b_param},
+@@ -57,6 +65,7 @@ static const struct of_device_id meson_reset_dt_ids[] = {
+ 	 { .compatible = "amlogic,meson-s4-reset",   .data = &meson_s4_param},
+ 	 { .compatible = "amlogic,c3-reset",   .data = &meson_s4_param},
+ 	 { .compatible = "amlogic,t7-reset",   .data = &t7_param},
++	 { .compatible = "amlogic,a9-ao-reset",      .data = &a9_ao_param},
+ 	 { /* sentinel */ },
+ };
+ MODULE_DEVICE_TABLE(of, meson_reset_dt_ids);
 
 -- 
 2.52.0
