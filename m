@@ -1,105 +1,105 @@
-Return-Path: <devicetree+bounces-323953-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-323955-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id HDwCFz7eT2rKpQIAu9opvQ
-	(envelope-from <devicetree+bounces-323953-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 19:45:34 +0200
+	id cyh5MLXeT2rfpQIAu9opvQ
+	(envelope-from <devicetree+bounces-323955-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 19:47:33 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5731733F1B
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 19:45:33 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 59DFD733F47
+	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 19:47:33 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=C+w5cxU9;
-	dkim=pass header.d=oss.qualcomm.com header.s=google header.b=SulFaoTW;
+	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=fbxeSIWC;
+	dkim=pass header.d=oss.qualcomm.com header.s=google header.b=SwHv9PQc;
 	dmarc=pass (policy=reject) header.from=qualcomm.com;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-323953-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-323953-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-323955-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-323955-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 8834030B4FEA
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2026 17:41:47 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 4716A3044B9A
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2026 17:41:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0966D4195A9;
-	Thu,  9 Jul 2026 17:41:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 136894195AF;
+	Thu,  9 Jul 2026 17:41:58 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 751F14195B3
-	for <devicetree@vger.kernel.org>; Thu,  9 Jul 2026 17:41:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A30394195BE
+	for <devicetree@vger.kernel.org>; Thu,  9 Jul 2026 17:41:48 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783618906; cv=none; b=TzoLxywzO/sgIros8pDvc0CDV1Q005hB4vrJ133UzPFoEf4GfitXZVTU0HlCMSZU1HwgOeAbNFTbZFi992m9futE3VYEfWNBwHHRPLXJLRntTS2IajNBpAzpyDUi/wiv3JjrqUkQLivALAGoGVJKiR8Svmn0NOA4kv/YyQ2IUEQ=
+	t=1783618918; cv=none; b=ULru4oy5p9YOmAyRd34gh4indC1ce/JsycnXO9KY1FennZLAf9I9MmzQHXkJShdpdOMBPoG7uVDTTUxJM4qwDoVtT31VqcZEKFYmALE7Ig/CqsbtCNT7hOQAD/VlyLVBTASdtk0EowZquyhQF8RbJQBQ5A9qBy9e2bGHhxhvdzU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783618906; c=relaxed/simple;
-	bh=HbDHhLgOl729fEDYEn3GHHtDxijoT4kwtCgdIa2fMTo=;
+	s=arc-20240116; t=1783618918; c=relaxed/simple;
+	bh=31Yek430e1uqebAy9ZELLFearIkajkO02QdXaEoVJTs=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=pTd3E5xisVr24ggwCFG7woTd7jfVCCU1CegtO9vZgmZkyoVrUUVLpOoeCdLngeb1UespQ1uOaL2DSW7imf+pU6UhE93gP3fC4vHSYm4h2uWMQmmMgyX9SytH7vyCV3TYtX32A+2WuYeeCJ8MF8DH3k5Y4LZSLXxLIVYhoZuaelo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=C+w5cxU9; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=SulFaoTW; arc=none smtp.client-ip=205.220.168.131
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 669HXA7d2503948
-	for <devicetree@vger.kernel.org>; Thu, 9 Jul 2026 17:41:44 GMT
+	 In-Reply-To:To:Cc; b=aA1WdxraxpGN4aNZLsK+7/O2YxQPH4A0SJgwpu14nu254P6VLMkr2HWNllPErMqHTfB6GHxvtbWnuim3Kzs36w/g1fGza0k3SGshIiD//yyqXbYLI7Kc4Hew/E5q6xkasKor69fr5MFHMatijxy2WcKODmeBRFg0oiyGmmlEUEA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=fbxeSIWC; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=SwHv9PQc; arc=none smtp.client-ip=205.220.180.131
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 669HXLBo2517485
+	for <devicetree@vger.kernel.org>; Thu, 9 Jul 2026 17:41:48 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	P3q/rRtUnUE3CGutJGERiIiNbS2WKc4uDZITOx7V+bk=; b=C+w5cxU9Hoc1UIo0
-	Ic/TCGpmm+tlef18uWhvS39bUF/wwWqO147R+JPdwCXAsla2RfIRkpzmcHuo1xrz
-	Rx6wr5d0SOE/xMedfyrCxgrEA9/E5zegS8zA4fMV7EX6D1Tl3c1q/7kZX3L5hWrK
-	cWqDC9xgKXaU2k49pVhwHMm5geeRy5+uxFlZRDnUczkbTwL9tHObaGY0vpiV1P3Y
-	K+JtivrmmYdeymRE33NtOujnt/uIkl/b9V7z2De08BjmZrqfOqjEu4LeuYhe0R9r
-	dgLPn8TiYn9M2bGi8QfLhhZMDNutEESoQ7z9Vyjj8dy+BVqCS1zSgFGMzJaWRkkx
-	X4yxSw==
-Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4fa6p3u3qp-1
+	uuXgEvlASP0UBHjE/3eYOsropkXJkf6Cj4VcoOnjcDk=; b=fbxeSIWChabMSLlz
+	uq+IGhAkbWJMqeNz8fmqMngPZQ2FEbaHwHT5Z9Fxa/aZnGWJyiNSwIlD6sFiyXwm
+	iSuhAOFRfn8+uGH+BxEW9jzmVwhXta7cLphJqglnrPd7POTrYtpquHbepAWe8qWu
+	Xf0IOuRhwLsFzNRUvR6ZVssPnlvk3OHQiWS0wX2oSjJhVanPj6qA7qS1owvsmCHg
+	DasRAY1Aja/+Y1nSNAWJ4w86Swo1toCHVDSV2+guj1CEBkP2dX9HkIrOhSN+BKk3
+	LsnzSb0DEFeDKxyujsUFCu3cDBolDXwqeRXVBXD0SiV6sLFn82f5jSDXg2H7BSMB
+	k2JW4A==
+Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4faeesrnua-1
 	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 09 Jul 2026 17:41:44 +0000 (GMT)
-Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-51c1852a86fso463621cf.0
-        for <devicetree@vger.kernel.org>; Thu, 09 Jul 2026 10:41:44 -0700 (PDT)
+	for <devicetree@vger.kernel.org>; Thu, 09 Jul 2026 17:41:48 +0000 (GMT)
+Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-51a8c689b5fso534881cf.0
+        for <devicetree@vger.kernel.org>; Thu, 09 Jul 2026 10:41:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1783618904; x=1784223704; darn=vger.kernel.org;
+        d=oss.qualcomm.com; s=google; t=1783618907; x=1784223707; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=P3q/rRtUnUE3CGutJGERiIiNbS2WKc4uDZITOx7V+bk=;
-        b=SulFaoTWDbdyjMvrfjjltR83mfgb9Rj/utjJ7XLHcbevBIzxnprh3UPfRR1czVhYem
-         kxfXKp3kd4XapWKzzInfkzzk/v+0LRjC/fvYsPJ7S6XQ8c7LrjD57Fjpa5YXviGa8zts
-         ucoqsOXNQrza0gqGVnYS3n1Vtu64abIEP8vrvp2Fnph77x0dRpitMR2snyVAReZadPDQ
-         ox9cWs3IK7ACjfaRNNOCsYSL1ftQSZffzNSeNq1ej4IAhv/KlN3/IH8xF5FDD8k3WhVY
-         jrtnfzMWHUtfLc5Jgwk5GnR75pfSHtgvXEQNASbjSbcD+sZF4fvvVuNe8/P7rJM40B3N
-         /y7A==
+        bh=uuXgEvlASP0UBHjE/3eYOsropkXJkf6Cj4VcoOnjcDk=;
+        b=SwHv9PQc8gKnmkWcNb4CH9DLjPs29EsWTR3TVyTE0upLCwsrcFk6MgGuVIrSjCRrKY
+         YJzk6Td6IHEIwS8/dOp3cU/rNXkjEmwvmxjvsDcdHX3sPlZKqPamPyxH3S/Lf9UD+gch
+         lXrzRrkCknEdcHJF09Oaj934Vrotk7hstyjvuU9vo06/eKTFXZOqnhlZ8OrmX7IhB0BF
+         k/RdwUSXBQqgW9uCXLGzBP3S/1waqk/TzY9bHmiJnOUVxnEwddBG8LKFAoecmFJo9iWM
+         4/CYtKktQsilkzCG+xErn3cdnl3KM/932HrfROfXBhY9jG7Ew0zjmCOjLK8HgRr7i9co
+         V0GA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783618904; x=1784223704;
+        d=1e100.net; s=20251104; t=1783618907; x=1784223707;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=P3q/rRtUnUE3CGutJGERiIiNbS2WKc4uDZITOx7V+bk=;
-        b=cBIv7QSNvu6W6Vhqq3TWn3y/qFy3bvo3y56GA5Oh161c5cMrGvgF9JsEGQ2Li+d6f7
-         vr06u4C3BdxFF88kBoiW9wPwaw9HmXzanZQoQJy6JiX5r/QLs9sz9BFYRqfPzxVVz1yE
-         J9xYB2fKIUoT01o+QgeLBIIXJCqkj9SmdT9NWYXKqc6k5BWnYsQchPfE/wv/1GQUhtLc
-         hjhJ6RFlGiY2/Ipqiw9Nr+9oQi/xlX9xAtGmQtBv839+8RUTj+yr4RNIWrn3aXdMPPm1
-         pge0tH/fKlIPukFznK6uk0Ld1IpTHeW57K6VqSKym3o1VmxqC9+tu8Rt0G/7rmUchhkf
-         BYxQ==
-X-Gm-Message-State: AOJu0YwexIbwKhtzqaq7OcZWcw8MpV0Mw0nJydKWMpqebBkdxQZFKwF0
-	3nz4bLzkRwwPSDtAAxwKxGWPzZ2fdJT7iucCIrgHvOGLDNAX2PAK/ERFc9cC+p6sam24VbgG95M
-	rXgPM5hWtiIB+WtlrcOpUGLbRV/Ik4kbrmcOLyYPx4f2FM0IDY0O+fIXwuMA0lT5Q
-X-Gm-Gg: AfdE7cmDLFGJ7JRqF8JR2OujiDg5rWZGfOYb1zSYRC2HG9z5dT138KqcIY0kawozIdA
-	eTig6hRCQMt+hkY0uLMKxfTTS3um4Ylm4iR2k7rYbCXTq7IWCT0XDjXb7ZL5xuAK4ewEFo/XZKj
-	3RNVC6+ZlxQ/hdu8nleBHONIwfHIdq8N5/taTdIEP/UVDMs92Ntb0KspjGlOzan3OAbh+WJS7pz
-	bnohbWkM4ZVpRAqPGM1HPvIbTlbAVj/VlYO+V4lhQ19tjyHOD6ySkyvjhHFi/hOH8yEZf+wcmNY
-	wB44qYc/Fw464vkKdXc0a8j97ZCzR4jmdPyPZ+iTaEzrqQKRHrrG9PFdDABUcF3fQzI1k9ndtBf
-	KrfjsZtvVF5/kQlYmM+lunUZiZRDVXUP4
-X-Received: by 2002:a05:622a:1819:b0:51b:f549:c706 with SMTP id d75a77b69052e-51c8b2a9ba0mr86214331cf.16.1783618903727;
-        Thu, 09 Jul 2026 10:41:43 -0700 (PDT)
-X-Received: by 2002:a05:622a:1819:b0:51b:f549:c706 with SMTP id d75a77b69052e-51c8b2a9ba0mr86214091cf.16.1783618903214;
-        Thu, 09 Jul 2026 10:41:43 -0700 (PDT)
+        bh=uuXgEvlASP0UBHjE/3eYOsropkXJkf6Cj4VcoOnjcDk=;
+        b=NWu+nsGl+VjNdX0UUZMRGjG9BiXyiIvcX18TJX09kdcPQ7r5l0AA2oepER0+uyqp3S
+         vRJeR9Uv5oQid4gX1g920r+NPlVU4AVrwlqkGBssMHqC8bTsArlzfczctA+4oyRoJ2gu
+         QIy9pjLfiX+BpArKs25ZHmnt9Lylf8ZBIKIlYkhLTJf5zjunEh9pqC6OhSUCcVbBsWnT
+         QMWdus0g02jq0TmDSBOBDbwiqt7ryhlutBb4itEToKFcx1tGJxS4jhPZnwGDmjTeVJOE
+         JA/TfBeDrp99wboHEKXy1rd4XokaRJeQxs+5/ebQ+HGsED+qz43ArC/ASdYu3IuYFJ/3
+         GiOA==
+X-Gm-Message-State: AOJu0YwK/aROoFt+poKN+HlJMBC0mmyBOathAYUSRyA6z4gPpyztv1VM
+	vRvnwgFbctke2kKQuAKzHycS4Hzt1V/YUH4dqe136DTkprgeu/A90ry9YcsVP3WNKcyozHgPj0T
+	x7k8o+huhDLXdr+X6kjONF7PmLGEaQPoySY7mK4qRFhdSiMRZGlZiXj0VAsHZrYRc
+X-Gm-Gg: AfdE7ckd4pkS5bnSmYA8M8iNuV/X9N+uqTsItCs375DsC80a4aA5EW05KYbkXxGfcKK
+	ZA8mpOw/KJiCJyS3mFXgYvTHBMtfcrMSSZ4CtcfKBlygFaXWN5CIrw40oIxTiMajDVDzz+QjM3p
+	45UIFWuitkA+ePNmvc35+JeR/ed+L7pB0S0GsvwHlO+6ZlWLf7I/MSkj3K+rj4Svp3Mnk70AOLE
+	tNDZU2lNBtLgcve/z+ezaa4IJ8sVQ0G5hfguIZLZgxpWlGRw1tsJBfPKNGOrk6wkZ7SsfvmQb7S
+	MHzdBxINDH4nSsjxSShcTXzHdnLZQ8ybknSk1SGlZWfYNc1BjgvUHGs4xax5+ftFpWWOWg7NyXq
+	Obhhtl9TvScFqzYN+BzyIoKX2697K5jvi
+X-Received: by 2002:ac8:6f07:0:b0:51a:8c9c:7f3d with SMTP id d75a77b69052e-51c8b4fda49mr91384041cf.64.1783618907453;
+        Thu, 09 Jul 2026 10:41:47 -0700 (PDT)
+X-Received: by 2002:ac8:6f07:0:b0:51a:8c9c:7f3d with SMTP id d75a77b69052e-51c8b4fda49mr91383621cf.64.1783618906920;
+        Thu, 09 Jul 2026 10:41:46 -0700 (PDT)
 Received: from [127.0.1.1] ([213.55.184.23])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-47aa039bcdasm55174048f8f.21.2026.07.09.10.41.41
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-47aa039bcdasm55174048f8f.21.2026.07.09.10.41.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Jul 2026 10:41:42 -0700 (PDT)
+        Thu, 09 Jul 2026 10:41:44 -0700 (PDT)
 From: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-Date: Thu, 09 Jul 2026 19:41:33 +0200
-Subject: [PATCH v5 5/7] dtc: dt-check-style: Handle properly DTC-style
- includes
+Date: Thu, 09 Jul 2026 19:41:34 +0200
+Subject: [PATCH v5 6/7] dtc: dt-check-style: Print proper line number of
+ indentation detection place
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -108,7 +108,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260709-dts-style-checker-v5-5-fcc147cb697d@oss.qualcomm.com>
+Message-Id: <20260709-dts-style-checker-v5-6-fcc147cb697d@oss.qualcomm.com>
 References: <20260709-dts-style-checker-v5-0-fcc147cb697d@oss.qualcomm.com>
 In-Reply-To: <20260709-dts-style-checker-v5-0-fcc147cb697d@oss.qualcomm.com>
 To: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@kernel.org>,
@@ -118,31 +118,31 @@ Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         Daniel Golle <daniel@makrotopia.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 X-Mailer: b4 0.15.2
-X-Proofpoint-ORIG-GUID: 6Ms4kraPd4ZeHfTNAY9r_qle-8hpxGmL
-X-Proofpoint-GUID: 6Ms4kraPd4ZeHfTNAY9r_qle-8hpxGmL
-X-Authority-Analysis: v=2.4 cv=TPh1jVla c=1 sm=1 tr=0 ts=6a4fdd58 cx=c_pps
- a=JbAStetqSzwMeJznSMzCyw==:117 a=nvVmADDuAioZMzk/ZEnfEw==:17
+X-Proofpoint-GUID: gtERkjLOMu_sSiM4MwfjdMB1m8-AiFNf
+X-Authority-Analysis: v=2.4 cv=bbpbluPB c=1 sm=1 tr=0 ts=6a4fdd5c cx=c_pps
+ a=EVbN6Ke/fEF3bsl7X48z0g==:117 a=nvVmADDuAioZMzk/ZEnfEw==:17
  a=IkcTkHD0fZMA:10 a=RAioF0-LDSMA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=eoimf2acIAo5FJnRuUoq:22
- a=EUspDBNiAAAA:8 a=0y9rCkXEhHseLPfnHlwA:9 a=QEXdDO2ut3YA:10
- a=uxP6HrT_eTzRwkO_Te1X:22
-X-Proofpoint-Spam-Info: AW1haW4tMjYwNzA5MDE3NCBTYWx0ZWRfXwpxTpWkqdFd4
- c2M58+8lFCTrlScncuZpZ9g0RLxvwssNKEPMQiOJnqiT6v40ABamZkMKLY+X03xzMogkzws8Tga
- HEHY//bCtJKYP638t+IiDwR/CwD0Z2c=
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNzA5MDE3NCBTYWx0ZWRfXzfyoijHM9P0i
- mfTP6N+ELDbphYrbcKIsnMRIRkzwwo9jrL1TIqei7y+E334ZSOvZ4762a1Hg24v9Q0witHtcLid
- AmJ0jyoUHNg1g/vpqTiOw/kvlg8FmlROQRFj4TPC9ap08awJH/uBnggSnbsOXtL7be1T42Dwcut
- zLApPlSTZrrcSMWiuSQTWsbOR3o6R6JRDc57XsFdZg0cQORjcENOT5YRLiQi/rmpYIqQ6Lht/xt
- ujEgNLVvWmiDou7KfR9N973TF95TiAhMkq9utINma1du0/oDtpGjCjv0+qLdkn3YUL+KAZowsQA
- 6wd7ECw5wuGQPIjPu7f+c19APxnrlzZH7yKD5eorIsEDkur8MJ2YFMjfrPGWD0+XX68ys/aCj4V
- xocChGSs3FygeFa/U5/TU+LBljGotsjT+STrU8svAtMXpcdGjbwuYrdicMaqMpPZut9LJJJU9EL
- lEXFgzEnqFdmtvQrQqA==
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=_glEPmIy2e8OvE2BGh3C:22
+ a=EUspDBNiAAAA:8 a=PZs63ITsWf6chMizFqwA:9 a=QEXdDO2ut3YA:10
+ a=a_PwQJl-kcHnX1M80qC6:22
+X-Proofpoint-Spam-Info: AW1haW4tMjYwNzA5MDE3NCBTYWx0ZWRfX0kOnxddqqbrn
+ WdFQK8NIdQ+g+xvAfd9Is7NuYF+9lo/gMv3S5KALvFTbNkGAmt1CX0asQ8FN0tP/q/CEUtgxdPu
+ 6klaGXOcJDmhC6HffzuJT4IyCe4CvSA=
+X-Proofpoint-ORIG-GUID: gtERkjLOMu_sSiM4MwfjdMB1m8-AiFNf
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNzA5MDE3NCBTYWx0ZWRfX6o0mpvJKzE61
+ 3YtTLLRDzSvCSsj8oy0aUz7/tcVD5PuMic/P3N949c5rIKeRBsr9fR01hC8fl3E8yjqnlsYrfB1
+ fhYIxykCSZTxglqNC0uZfYHkyVlf+iW2B+RCYAKV1i0MPAoJgDn/kgT1gm2TnvQg184TkIXFbKE
+ f2Bcs3bJJRGvgY2JIwknnd6br0qca3Dnc86TiS+2pKqybf7RWjr0r3JS6k7oVOTGNnTXU00mD1o
+ 68qH5ofq8Bru8Krr2BvgIZWZTpTj/xDU3C/6NvThQCaoKy1ZfhLZW0bRRH1b0zz7nv1npYOChv4
+ cua8wgyfHOQTa5Z6qI2j1Z1Te8xxyyUeQ8bc6aO+NYkFq7KCU11NtkNAah96n5cvlXGCA6LVT8Y
+ AcYBP4MHY1BaacIUOYEVfpEPP/dVnqu5gO6+pBS0e99jaPEroUeDAy5LuVjtAaqz0jMqIkvGHOk
+ a1nA1Au7gjdjiQfNFdg==
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.134,FMLib:17.12.100.49
  definitions=2026-07-09_04,2026-07-09_04,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 impostorscore=0 adultscore=0 bulkscore=0 phishscore=0
- lowpriorityscore=0 clxscore=1015 malwarescore=0 spamscore=0 suspectscore=0
+ adultscore=0 priorityscore=1501 malwarescore=0 bulkscore=0 suspectscore=0
+ spamscore=0 clxscore=1015 lowpriorityscore=0 impostorscore=0 phishscore=0
  classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
  reason=mlx scancount=1 engine=8.22.0-2606150000 definitions=main-2607090174
 X-Rspamd-Action: no action
@@ -151,13 +151,13 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
 	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-323953-lists,devicetree=lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp,qualcomm.com:email,qualcomm.com:dkim,oss.qualcomm.com:from_mime,oss.qualcomm.com:dkim,oss.qualcomm.com:mid];
+	TAGGED_FROM(0.00)[bounces-323955-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,qualcomm.com:email,qualcomm.com:dkim,oss.qualcomm.com:from_mime,oss.qualcomm.com:dkim,oss.qualcomm.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns];
 	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:saravanak@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:test@example.com,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:daniel@makrotopia.org,m:krzysztof.kozlowski@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
@@ -165,7 +165,7 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	FORGED_SENDER(0.00)[krzysztof.kozlowski@oss.qualcomm.com,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
@@ -179,170 +179,113 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: E5731733F1B
+X-Rspamd-Queue-Id: 59DFD733F47
 
-dt-check-style was not properly handling DTC directives (starting with
-'/', e.g. /dts-v1/ or /include/), thus a few DTS files had false
-positive like:
+Script judges the indentation however always suggests it is the first
+line which is wrong, e.g.:
 
-  apm/apm-merlin.dts:1: [indent-unit-dts] indent unit must be 1 tab in DTS, got '\t\t'
+  sigmastar/mstar-infinity2m.dtsi:1: [indent-unit-dts] indent unit must be 1 tab in DTS, got '\t\t'
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-
 ---
-
-Changes in v3:
-New patch
----
- scripts/dtc/dt-check-style                         | 11 ++++-
- scripts/dtc/dt-style-selftest/good/dts-dtc.dts     | 21 ++++++++++
- .../dt-style-selftest/good/dts-preprocessor.dts    | 21 ++++++++++
- scripts/dtc/dt-style-selftest/good/soc.dtsi        | 47 ++++++++++++++++++++++
- 4 files changed, 98 insertions(+), 2 deletions(-)
+ scripts/dtc/dt-check-style                         | 29 +++++++++++-----------
+ .../dt-style-selftest/expected/dts-spaces.dts.txt  |  2 +-
+ .../expected/yaml-indent-strict.yaml.txt           |  2 +-
+ 3 files changed, 17 insertions(+), 16 deletions(-)
 
 diff --git a/scripts/dtc/dt-check-style b/scripts/dtc/dt-check-style
-index d19ef26c2213..ad07b0d27470 100755
+index ad07b0d27470..3985923622e8 100755
 --- a/scripts/dtc/dt-check-style
 +++ b/scripts/dtc/dt-check-style
-@@ -49,6 +49,9 @@ re_cpp_directive = re.compile(
-     r'^#\s*(include|define|undef|ifdef|ifndef|if|else|elif|endif|'
-     r'pragma|error|warning)\b')
+@@ -392,8 +392,9 @@ def check_mixed_indent_chars(ctx):
+ def detect_indent_unit(ctx):
+     """Find the indent unit used at depth 1 in this block.
  
-+re_dtc_directive = re.compile(
-+    r'^/(dts-v1|include)/')
-+
- # label: name@addr {  -- label and addr optional; name can be "/"
- # Per the DT spec a node name may start with a digit (e.g. 1wire@...).
- # The address part is captured loosely (any non-space, non-brace run) so
-@@ -66,7 +69,11 @@ re_ref_node = re.compile(
- 
- def is_preprocessor(stripped):
-     """Tell C preprocessor directives apart from DTS '#'-prefixed props."""
--    return re_cpp_directive.match(stripped) is not None
-+    if re_cpp_directive.match(stripped) is not None:
-+        return True
-+    if re_dtc_directive.match(stripped) is not None:
-+        return True
-+    return False
- 
- 
- class DtsLine:
-@@ -178,7 +185,7 @@ def classify_lines(text):
-             out.append(dl)
+-    Returns one of: '  ' (2 spaces), '    ' (4 spaces), '\\t' (tab),
+-    or None if depth-1 is empty or ambiguous."""
++    Returns tuple of string (one of: '  ' (2 spaces), '    ' (4 spaces),
++    '\\t' (tab), or None if depth-1 is empty or ambiguous) and line number when
++    detection was made)."""
+     for dl in ctx.lines:
+         if dl.depth != 1:
              continue
+@@ -404,48 +405,48 @@ def detect_indent_unit(ctx):
+         if not dl.indent_str:
+             continue
+         if dl.indent_str == '\t':
+-            return '\t'
++            return ('\t', dl.lineno)
+         if dl.indent_str == '    ':
+-            return '    '
++            return ('    ', dl.lineno)
+         if dl.indent_str == '  ':
+-            return '  '
++            return ('  ', dl.lineno)
+         # Anything else at depth 1 is non-canonical; flag elsewhere.
+-        return dl.indent_str
+-    return None
++        return (dl.indent_str, dl.lineno)
++    return (None, None)
  
--        if stripped.startswith('#') and is_preprocessor(stripped):
-+        if (stripped.startswith('#') or stripped.startswith('/')) and is_preprocessor(stripped):
-             dl = DtsLine(i, raw, LineType.PREPROCESSOR,
-                          indent_str, stripped)
-             dl.depth = depth
-diff --git a/scripts/dtc/dt-style-selftest/good/dts-dtc.dts b/scripts/dtc/dt-style-selftest/good/dts-dtc.dts
-new file mode 100644
-index 000000000000..a3207196214c
---- /dev/null
-+++ b/scripts/dtc/dt-style-selftest/good/dts-dtc.dts
-@@ -0,0 +1,21 @@
-+// SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+/*
-+ * Test fixture: dtc directive
-+ */
-+
-+/dts-v1/;
-+
-+/include/ "soc.dtsi"
-+/include/"soc-other.dtsi"
-+
-+/ {
-+	compatible = "example,test-board";
-+	#address-cells = <1>;
-+	#size-cells = <1>;
-+
-+	leds {
-+		led-0 {
-+			compatible = "example,led";
-+		};
-+	};
-+};
-diff --git a/scripts/dtc/dt-style-selftest/good/dts-preprocessor.dts b/scripts/dtc/dt-style-selftest/good/dts-preprocessor.dts
-new file mode 100644
-index 000000000000..bd6d9dddec73
---- /dev/null
-+++ b/scripts/dtc/dt-style-selftest/good/dts-preprocessor.dts
-@@ -0,0 +1,21 @@
-+// SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+/*
-+ * Test fixture: preprocessor directive
-+ */
-+
-+/dts-v1/;
-+
-+#include "soc.dtsi"
-+#include<dt-bindings/gpio/gpio.h>
-+
-+/ {
-+	compatible = "example,test-board";
-+	#address-cells = <1>;
-+	#size-cells = <1>;
-+
-+	leds {
-+		led-0 {
-+			compatible = "example,led";
-+		};
-+	};
-+};
-diff --git a/scripts/dtc/dt-style-selftest/good/soc.dtsi b/scripts/dtc/dt-style-selftest/good/soc.dtsi
-new file mode 100644
-index 000000000000..c60274469555
---- /dev/null
-+++ b/scripts/dtc/dt-style-selftest/good/soc.dtsi
-@@ -0,0 +1,47 @@
-+// SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+/ {
-+	#address-cells = <1>;
-+	#size-cells = <1>;
-+
-+	cpus {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		cpu@0 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a57";
-+			reg = <0x0 0x0>;
-+			enable-method = "psci";
-+		};
-+	};
-+
-+	pmu {
-+		compatible = "example,pmu";
-+	};
-+
-+	soc@0 {
-+		compatible = "simple-bus";
-+		ranges = <0 0 0 0xc0000000>;
-+
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+
-+		interrupt-controller@10000 {
-+			compatible = "example,intc";
-+			reg = <0x10000 0x1000>;
-+			interrupts = <1 2 3>,
-+				     <4 5 6>,
-+				     <7 8 9>;
-+		};
-+
-+		serial@20000 {
-+			compatible = "example,serial";
-+			reg = <0x20000 0x1000>;
-+		};
-+
-+		serial@30000 {
-+			compatible = "example,serial";
-+			reg = <0x30000 0x1000>;
-+		};
-+	};
-+};
+ 
+ def check_indent_unit_relaxed(ctx):
+     """YAML examples: 2 or 4 spaces. Never tabs or other widths."""
+-    unit = detect_indent_unit(ctx)
++    (unit, lineno) = detect_indent_unit(ctx)
+     if unit is None:
+         return
+     if unit not in ('  ', '    '):
+-        yield (1, 'indent unit must be 2 or 4 spaces, got %r' % unit)
++        yield (lineno, 'indent unit must be 2 or 4 spaces, got %r' % unit)
+ 
+ 
+ def check_indent_unit_dts(ctx):
+     """DTS files: 1 tab per level. Always required."""
+-    unit = detect_indent_unit(ctx)
++    (unit, lineno) = detect_indent_unit(ctx)
+     if unit is None:
+         return
+     if unit != '\t':
+-        yield (1, 'indent unit must be 1 tab in DTS, got %r' % unit)
++        yield (lineno, 'indent unit must be 1 tab in DTS, got %r' % unit)
+ 
+ 
+ def check_indent_unit_strict(ctx):
+     """YAML: must be exactly 4 spaces. DTS: 1 tab (same as relaxed)."""
+-    unit = detect_indent_unit(ctx)
++    (unit, lineno) = detect_indent_unit(ctx)
+     if unit is None:
+         return
+     if ctx.file_type == 'yaml':
+         if unit != '    ':
+-            yield (1, 'indent unit must be 4 spaces in strict mode, '
++            yield (lineno, 'indent unit must be 4 spaces in strict mode, '
+                    'got %r' % unit)
+ 
+ 
+ def check_indent_consistent(ctx):
+     """All indented lines must be a multiple of the detected unit."""
+-    unit = detect_indent_unit(ctx)
++    (unit, lineno) = detect_indent_unit(ctx)
+     if unit is None:
+         return
+     if ctx.file_type == 'yaml':
+diff --git a/scripts/dtc/dt-style-selftest/expected/dts-spaces.dts.txt b/scripts/dtc/dt-style-selftest/expected/dts-spaces.dts.txt
+index 070025c4568c..5afdb101dcee 100644
+--- a/scripts/dtc/dt-style-selftest/expected/dts-spaces.dts.txt
++++ b/scripts/dtc/dt-style-selftest/expected/dts-spaces.dts.txt
+@@ -1,2 +1,2 @@
+ # mode=relaxed
+-bad/dts-spaces.dts:1: [indent-unit-dts] indent unit must be 1 tab in DTS, got '    '
++bad/dts-spaces.dts:9: [indent-unit-dts] indent unit must be 1 tab in DTS, got '    '
+diff --git a/scripts/dtc/dt-style-selftest/expected/yaml-indent-strict.yaml.txt b/scripts/dtc/dt-style-selftest/expected/yaml-indent-strict.yaml.txt
+index 5ef290d3a847..c4f31deea4ca 100644
+--- a/scripts/dtc/dt-style-selftest/expected/yaml-indent-strict.yaml.txt
++++ b/scripts/dtc/dt-style-selftest/expected/yaml-indent-strict.yaml.txt
+@@ -1,2 +1,2 @@
+ # mode=strict
+-bad/yaml-indent-strict.yaml:26: example 0 [indent-unit-strict] indent unit must be 4 spaces in strict mode, got '  '
++bad/yaml-indent-strict.yaml:27: example 0 [indent-unit-strict] indent unit must be 4 spaces in strict mode, got '  '
 
 -- 
 2.53.0
