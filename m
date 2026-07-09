@@ -1,160 +1,246 @@
-Return-Path: <devicetree+bounces-323515-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-323518-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id je2gAnlnT2pPgAIAu9opvQ
-	(envelope-from <devicetree+bounces-323515-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 11:18:49 +0200
+	id Op4kIXtqT2pUgQIAu9opvQ
+	(envelope-from <devicetree+bounces-323518-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 11:31:39 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A0C8F72ED12
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 11:18:48 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id E81EC72EF85
+	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 11:31:38 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20201202 header.b=l3hOQ4+3;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b="B/SK/3Tn";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-323515-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-323515-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-323518-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-323518-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id B310D3009F46
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2026 09:18:47 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id AE5203185A5B
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2026 09:21:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72B9A4028EB;
-	Thu,  9 Jul 2026 09:18:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 832143FFF91;
+	Thu,  9 Jul 2026 09:19:20 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A274402429;
-	Thu,  9 Jul 2026 09:18:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D6533F0746
+	for <devicetree@vger.kernel.org>; Thu,  9 Jul 2026 09:19:19 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783588717; cv=none; b=VpwwSGy2TZghm4x/+zPsYOzOw709gsJMUMVhl9+UVgHNVNay5j/Z5KgNB68zO+j5jiND33CsbJUshA5Mwum567WSbWkF91seqAzhKDMjEh+4N+UTsXqMQJchcgC5uZo6VbLTyWw/T8Jo9Wa33AensAkzRPw5WmMNdqifuuHLxkM=
+	t=1783588760; cv=none; b=g3wvLGenoOlGPLxhF8wbXbBQ/Asi1lCchSLdh2m44AbQ+f/08ZXiuurtEa3L/UvGfGvcm3pv1NslWd/6J8tesXXtfzCliztRBTMazWfCbTTPrP2MHW20KYecD4Rzq4N+ODRysVADtS2I+rJp2qSroMBGpvgeRRCtnNl8Kt0H3go=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783588717; c=relaxed/simple;
-	bh=2TcyOXsmylc9xai9nNc9EisV18MbNeNLG4uNJzVn8pI=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=MqVf1yH+SFEyUC0jh8NnP0bwkTdDtGU5nM7S5Shrh+pxAyjFpj4ZtAuwR/PsOlr/5wU8lvn9+1VTiuNsWSVakJtn3vTB3nRFljO1sgh8k8L+DB3EqLrciyaIG1XAOKk7exOok0pH1qhpAXRoai0FDNXp+Sq2NXfyOx46Hh7aM90=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=l3hOQ4+3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 9DD8CC2BCFD;
-	Thu,  9 Jul 2026 09:18:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1783588716;
-	bh=2TcyOXsmylc9xai9nNc9EisV18MbNeNLG4uNJzVn8pI=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=l3hOQ4+3+QE4KlKe8hUHyMJOb7VET8wGDmsqn8FxHcBM6nr3FWtEtqPwT1QQFdghk
-	 Jir+jw8VzKBWLJu0ku7Q8mPnvkMPwlbicHCkrEuWk23HKJ9a4twskh6pbDoK7jhb37
-	 LkS9OMFFx7XI57uHzHf6X0hwG31M+9Nu+3hT+wfROieOwaxxgmCRAEB+rbMmTfPkCw
-	 x8meJvmMeUGCryhbHiN1g7E4fBuL+1HAls+1YqzzrmYsWulwk+fYBRnhHp56iph/e8
-	 qZh62i82H4jILBGoCInP9/FxzdhQF8tJk5q02gaQs3ISV/5VfqAed1wz+NJarZDxav
-	 UY2F8/HBTNDAg==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 89F07C44501;
-	Thu,  9 Jul 2026 09:18:36 +0000 (UTC)
-From: George Moussalem via B4 Relay <devnull+george.moussalem.outlook.com@kernel.org>
-Date: Thu, 09 Jul 2026 13:18:32 +0400
-Subject: [PATCH v5 6/6] MAINTAINERS: Add IPQ5018 driver to Qualcomm
- Bluetooth driver entry
+	s=arc-20240116; t=1783588760; c=relaxed/simple;
+	bh=8J9G/6CpqIeI3h5lGB9jyfD9vKPQEMT2sxxH31SWgeo=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=S6ymY2qAeDybFSWOqohBymM2JBLlJuUcPp0Bcb48VENPErblBLzL1qHi6Wi50NCNxyoMRT/GdcOPi1wVd0c1scol0ZPhPUGds2e2sagJQPgg2dK6HgBHgiBRBNYuAT/RSTbc5EoD3OMifiJLK7IubDSMp+2T/WZ+yJpbb7RBnmg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=B/SK/3Tn; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A1AD01F000E9;
+	Thu,  9 Jul 2026 09:19:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1783588758;
+	bh=PJcW/6iJnTIXDSyNQkQPDt4fKQ3JZOJUTGWTOYpCKR0=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=B/SK/3TnZfzbSlQzcqbn5ucyn29bq7d3Z0/4+YaC35Y2Hevc4/PPP3lpVormL4/ni
+	 LmyD8LaMgOyd2kcQg+4O3xpIzAhgWEZoHLUq0HTYWKozfWHyMm4hIz9h3RtlOJLGqI
+	 VapwPWSCgKJwG63UMOuZOIhrbOeJ9e5tJat3ta/1quukEgT0FZJOifqfRIkTubSmeX
+	 CXtMWxt6eXTOKDZ5AF3+c5NCNacEsFz6PSOQ8ZkGUY1pSflQ05sksZ4049mJ++omMp
+	 0cfeQci+FDzOpyFcXRxboI6MCnTTMYVLv5obUPvc7H1hfU9dexNRPGNQCMCDWJ2M56
+	 AUwvOWBQckv2g==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH net-next v9 4/9] net: dsa: lan9645x: add basic dsa
+ driver for LAN9645X
+Reply-To: sashiko-reviews@lists.linux.dev
+To: =?utf-8?b?SmVucyBFbWlsIFNjaHVseiDDmHN0ZXJnYWFyZA==?= <jensemil.schulzostergaard@microchip.com>
+Cc: devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org
+In-Reply-To: <20260708-dsa_lan9645x_switch_driver_base-v9-4-0d1512a326d7@microchip.com>
+References: <20260708-dsa_lan9645x_switch_driver_base-v9-0-0d1512a326d7@microchip.com>
+ <20260708-dsa_lan9645x_switch_driver_base-v9-4-0d1512a326d7@microchip.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Thu, 09 Jul 2026 09:19:18 +0000
+Message-Id: <20260709091918.A1AD01F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260709-ipq5018-bluetooth-v5-6-e476c41f03b8@outlook.com>
-References: <20260709-ipq5018-bluetooth-v5-0-e476c41f03b8@outlook.com>
-In-Reply-To: <20260709-ipq5018-bluetooth-v5-0-e476c41f03b8@outlook.com>
-To: Bartosz Golaszewski <brgl@kernel.org>, 
- Marcel Holtmann <marcel@holtmann.org>, 
- Luiz Augusto von Dentz <luiz.dentz@gmail.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, 
- Philipp Zabel <p.zabel@pengutronix.de>
-Cc: linux-arm-msm@vger.kernel.org, linux-bluetooth@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- George Moussalem <george.moussalem@outlook.com>, 
- Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1783588713; l=702;
- i=george.moussalem@outlook.com; s=20250321; h=from:subject:message-id;
- bh=2A14I/9djkbP7Q/3gMV0xrYoXvOWpPLiNZFRJ5IU8Qc=;
- b=E5AlHnX2v2ikivvWxaDyWRXrdlt6w6bqiiGkCWHWmGorm+1BvaoideNHaGiMCcdgSiOtl8BWq
- 0/u/tBoJAIgC7Np7whNWHhHMrfMbsfGyVnRtN7mdb4vXTtINRJ8rf4Z
-X-Developer-Key: i=george.moussalem@outlook.com; a=ed25519;
- pk=/PuRTSI9iYiHwcc6Nrde8qF4ZDhJBlUgpHdhsIjnqIk=
-X-Endpoint-Received: by B4 Relay for george.moussalem@outlook.com/20250321
- with auth_id=364
-X-Original-From: George Moussalem <george.moussalem@outlook.com>
-Reply-To: george.moussalem@outlook.com
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-1.66 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	FREEMAIL_REPLYTO_NEQ_FROM(2.00)[];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-323515-lists,devicetree=lfdr.de,george.moussalem.outlook.com];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:brgl@kernel.org,m:marcel@holtmann.org,m:luiz.dentz@gmail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:andersson@kernel.org,m:konradybcio@kernel.org,m:p.zabel@pengutronix.de,m:linux-arm-msm@vger.kernel.org,m:linux-bluetooth@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:george.moussalem@outlook.com,m:bartosz.golaszewski@oss.qualcomm.com,m:luizdentz@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FREEMAIL_REPLYTO(0.00)[outlook.com];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-323518-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:jensemil.schulzostergaard@microchip.com,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[15];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[kernel.org,holtmann.org,gmail.com,pengutronix.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,outlook.com:replyto,outlook.com:mid,outlook.com:email,vger.kernel.org:from_smtp,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	HAS_REPLYTO(0.00)[george.moussalem@outlook.com];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[vger.kernel.org,outlook.com,oss.qualcomm.com];
-	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[]
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ALIAS_RESOLVED(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCPT_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,microchip.com:email,vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,lists.linux.dev:replyto,smtp.kernel.org:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: A0C8F72ED12
+X-Rspamd-Queue-Id: E81EC72EF85
 
-From: George Moussalem <george.moussalem@outlook.com>
+Thank you for your contribution! Sashiko AI review found 3 potential issue(=
+s) to consider:
+- [High] Source PGID mask drops all data-plane traffic to and from the CPU.
+- [Low] Trailing backslash on the last line of a Makefile variable assignme=
+nt.
+- [Low] Redundant register write to QS_INJ_CTRL_GAP_SIZE.
+--
 
-Add the Qualcomm IPQ5018 Bluetooth driver to the existing entry for
-Qualcomm Bluetooth drivers.
+--- Patch [4]: [PATCH net-next v9 4/9] net: dsa: lan9645x: add basic dsa dr=
+iver for LAN9645X ---
+commit 3edb62282650bb2eeb57a08ce4dcd00f00d76a54
+Author: Jens Emil Schulz =C3=98stergaard <jensemil.schulzostergaard@microch=
+ip.com>
 
-Acked-by: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
-Signed-off-by: George Moussalem <george.moussalem@outlook.com>
----
- MAINTAINERS | 1 +
- 1 file changed, 1 insertion(+)
+net: dsa: lan9645x: add basic dsa driver for LAN9645X
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index eb8cdcc76324..33dd0c70c277 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -21876,6 +21876,7 @@ L:	linux-arm-msm@vger.kernel.org
- S:	Maintained
- F:	Documentation/devicetree/bindings/net/bluetooth/qcom,*
- F:	drivers/bluetooth/btqca.[ch]
-+F:	drivers/bluetooth/btqcomipc.c
- F:	drivers/bluetooth/btqcomsmd.c
- F:	drivers/bluetooth/hci_qca.c
- 
+Add the LAN9645X basic DSA driver with initialization, parent regmap
+requests, port module initialization for NPI, CPU ports and front ports,
+and phylink integration for MAC side configuration.
 
--- 
-2.53.0
+> diff --git a/drivers/net/dsa/microchip/lan9645x/Makefile b/drivers/net/ds=
+a/microchip/lan9645x/Makefile
+> new file mode 100644
+> index 0000000000000..7cc0ae0ada402
+> --- /dev/null
+> +++ b/drivers/net/dsa/microchip/lan9645x/Makefile
+> @@ -0,0 +1,8 @@
+> +# SPDX-License-Identifier: GPL-2.0-only
+> +obj-$(CONFIG_NET_DSA_MICROCHIP_LAN9645X) +=3D mchp-lan9645x.o
+> +
+> +mchp-lan9645x-objs :=3D \
+> +	lan9645x_main.o \
+> +	lan9645x_npi.o \
+> +	lan9645x_phylink.o \
+> +	lan9645x_port.o \
 
+[Severity: Low]
+This isn't a bug, but should the trailing backslash on the last line be
+removed? Leaving it could cause the build system to escape the EOF or
+absorb appended lines into the variable in future patches.
 
+> diff --git a/drivers/net/dsa/microchip/lan9645x/lan9645x_main.c b/drivers=
+/net/dsa/microchip/lan9645x/lan9645x_main.c
+> new file mode 100644
+> index 0000000000000..b253813518c20
+> --- /dev/null
+> +++ b/drivers/net/dsa/microchip/lan9645x/lan9645x_main.c
+
+[ ... ]
+
+> @@ -0,0 +1,447 @@
+> +static int lan9645x_setup(struct dsa_switch *ds)
+> +{
+
+[ ... ]
+
+> +	/* Allow VLAN table to control whether cpu copy from the pgid table is
+> +	 * enabled. Index PGID_ENTRIES is CPU src pgid, so we skip it as the
+> +	 * configuration makes little sense here.
+> +	 */
+> +	for (int i =3D 0; i < PGID_ENTRIES; ++i)
+> +		lan_wr(ANA_PGID_CFG_OBEY_VLAN_SET(1),
+> +		       lan9645x, ANA_PGID_CFG(i));
+> +
+> +	/* Disable bridging by default */
+> +	for (int p =3D 0; p < lan9645x->num_phys_ports; p++) {
+> +		lan_wr(0, lan9645x, ANA_PGID(PGID_SRC + p));
+
+[Severity: High]
+Will this source PGID mask drop all data-plane traffic to and from the CPU?
+
+By setting this to 0 for all ports in lan9645x_setup() and later in
+lan9645x_update_fwd_mask(), it appears the user ports lack the CPU port
+module bit.
+
+Additionally, because the NPI port isn't part of any bridge, won't its mask
+also be set to 0, causing frames injected by the CPU to be dropped by source
+filtering before reaching the user ports?
+
+> +
+> +		/* Do not forward BPDU frames to the front ports and copy them
+> +		 * to CPU
+> +		 */
+> +		lan_wr(ANA_CPU_FWD_BPDU_CFG_BPDU_REDIR_ENA,
+> +		       lan9645x, ANA_CPU_FWD_BPDU_CFG(p));
+> +	}
+
+[ ... ]
+
+> diff --git a/drivers/net/dsa/microchip/lan9645x/lan9645x_port.c b/drivers=
+/net/dsa/microchip/lan9645x/lan9645x_port.c
+> new file mode 100644
+> index 0000000000000..0642b59419c25
+> --- /dev/null
+> +++ b/drivers/net/dsa/microchip/lan9645x/lan9645x_port.c
+
+[ ... ]
+
+> @@ -0,0 +1,214 @@
+> +void lan9645x_port_cpu_init(struct lan9645x *lan9645x)
+> +{
+> +	/* Map the 8 CPU extraction queues to the CPU port module (datasheet is
+> +	 * wrong)
+> +	 */
+> +	lan_wr(0, lan9645x, QSYS_CPU_GROUP_MAP);
+> +
+> +	/* Set min-spacing of EOF to SOF on injected frames to 0, on cpu device
+> +	 * 1. This is required when injecting with IFH.
+> +	 * Default values emulates delay of std preamble/IFG setting on a front
+> +	 * port.
+> +	 */
+> +	lan_rmw(QS_INJ_CTRL_GAP_SIZE_SET(0),
+> +		QS_INJ_CTRL_GAP_SIZE,
+> +		lan9645x, QS_INJ_CTRL(1));
+> +
+> +	/* Injection: Mode: manual injection | Byte_swap */
+> +	lan_wr(QS_INJ_GRP_CFG_MODE_SET(1) |
+> +	       QS_INJ_GRP_CFG_BYTE_SWAP_SET(1),
+> +	       lan9645x, QS_INJ_GRP_CFG(1));
+> +
+> +	lan_rmw(QS_INJ_CTRL_GAP_SIZE_SET(0),
+> +		QS_INJ_CTRL_GAP_SIZE,
+> +		lan9645x, QS_INJ_CTRL(1));
+
+[Severity: Low]
+This isn't a bug, but is this second write to QS_INJ_CTRL_GAP_SIZE
+intentional? It looks like it writes the exact same value as the register
+modification a few lines above.
+
+> +
+> +	lan_wr(SYS_PORT_MODE_INCL_INJ_HDR_SET(1),
+> +	       lan9645x, SYS_PORT_MODE(lan9645x->num_phys_ports + 1));
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260708-dsa_lan964=
+5x_switch_driver_base-v9-0-0d1512a326d7@microchip.com?part=3D4
 
