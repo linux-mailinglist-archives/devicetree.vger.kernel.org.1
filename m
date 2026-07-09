@@ -1,301 +1,194 @@
-Return-Path: <devicetree+bounces-323672-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-323673-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id wCtqA5aHT2qGiwIAu9opvQ
-	(envelope-from <devicetree+bounces-323672-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 13:35:50 +0200
+	id lcyLGOeHT2qniwIAu9opvQ
+	(envelope-from <devicetree+bounces-323673-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 13:37:11 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 445617306C3
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 13:35:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CA9E673072B
+	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 13:37:10 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=UUNJ8ISr;
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-323672-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-323672-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=collabora.com header.s=mail header.b="c/ivEYIT";
+	dmarc=pass (policy=none) header.from=collabora.com;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-323673-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-323673-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 613C530F332B
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2026 11:28:49 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 1F32230A1F6D
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2026 11:31:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 228B7413D63;
-	Thu,  9 Jul 2026 11:28:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE19C416CE3;
+	Thu,  9 Jul 2026 11:31:57 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C18C81632E7
-	for <devicetree@vger.kernel.org>; Thu,  9 Jul 2026 11:28:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00995416122;
+	Thu,  9 Jul 2026 11:31:55 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783596524; cv=none; b=XRrz6Rh8n0GzIbZzBEsTA7uPbto5jmrotBYktXgVfQCIzQn84gO77yh/KGwl+OjGe+E0zYIHVO/AkB6hgqv4tT/yxEHEvryeaThDNhm0mhv6cuyup3lq3ULXLHvzKNJ1zybYgDuQY4nAG1MFGzDQ8gAp8tfwU7QmNcdcC1b0294=
+	t=1783596717; cv=none; b=qOG0t77H5LxLwCRlr6l7R1erELdY9dP0n01q/7sS3A0Y3RLvfPTRaBWv4oGzt3P5Kkrp+kWYLHEkZDCLamWAWInrHq+xuEAIzca0Tbp1liWbwL/RAFLRoCEGRLS/X98wg5BDS/9/PaeO+EovchTTJj5+tM3uYHosFCPgB4aGv8E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783596524; c=relaxed/simple;
-	bh=G2qX3bOkijoV+kojhK4G226gmCfZWJSBFGI38WBTbK8=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=CZWF8/j+m9eedx5KqxokmtmEMijQebaBDGpkzl9PSKZicWY3tEhwAwVe9XJbQBVwl1hezdQYmFHoAAVJekoiTOodqjrwEPFOI2bQ1V0zxSAJL4qQpDuZx6pWFRozVphApr7kKvHJimROgoBcL51CkX2aXAHZdD9gnXzIwDZzJxg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UUNJ8ISr; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 227F61F000E9;
-	Thu,  9 Jul 2026 11:28:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783596522;
-	bh=GN/CZMkXGV4XTWgX2nOOEtyOMALEN3U7GjZ0fnlHBtg=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=UUNJ8ISrABmv9F0aUPuXJh765/p3/q+ogqXpXfHnNm14B54I9VNRvXYxmHznmCkTG
-	 6BLCuwJeYUQFotkR2rxUv6kENlxuu93OdoF5Ln8MKqRaOrxANVe//R0odCfv9HA5fG
-	 UapyNWydzDbiMSNnjP8B6+IairezqELl4rfblDmXx0m3Al53Iv73aDYOcPZ+LZGTPE
-	 opfzFwJ0dWq07wNkPIZYMiA6TYR5RLbDdQWPJ/wjyar4g6d5yORxs1FjMcxFSdg1l4
-	 zevO4oYHuo+Gc1OP5IuvLEqkDPoz+D+JddwZ6sfsqIL/Z5+rf7OMZnDmmJ9cPCu0n+
-	 +SPqCUCLZ3+uA==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v2 7/8] clk: clocking-wizard: Fix division by zero and
- unbounded register write
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Shubhrajyoti Datta" <shubhrajyoti.datta@amd.com>
-Cc: devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org
-In-Reply-To: <20260709111403.1579159-8-shubhrajyoti.datta@amd.com>
-References: <20260709111403.1579159-1-shubhrajyoti.datta@amd.com>
- <20260709111403.1579159-8-shubhrajyoti.datta@amd.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Thu, 09 Jul 2026 11:28:41 +0000
-Message-Id: <20260709112842.227F61F000E9@smtp.kernel.org>
+	s=arc-20240116; t=1783596717; c=relaxed/simple;
+	bh=/6X5aTA1WAp5weAzuuMhHcf+iDvCUATBixi7faNN+KA=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=crGs+OOpsawBbhPqx2v0k3mBZXsXeOhkKzHbUcFslwndVCDEWIZt1tq0J/4tNpEmmR8oaf0Wmd4Y2bGyf0RiuYV5JL+gKomFGlioPhC7dXFBYccodNNbCn/utpVe7RyJ7K24uDpNw+We/yt4JEhpOghAVLqiCI64+gIpoHJKnNM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=c/ivEYIT; arc=none smtp.client-ip=148.251.105.195
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1783596713;
+	bh=/6X5aTA1WAp5weAzuuMhHcf+iDvCUATBixi7faNN+KA=;
+	h=From:To:Cc:Subject:Date:From;
+	b=c/ivEYITm2ZR03YZNvysCZHn4GoegXdUWV1qGl5x5qa+7Di3uIrKLZXvtI1eCPGmZ
+	 K/MH3Gq5B6J8NjM6+IJdnxPlDtau8cKcIOAJbumiCEW0qm5vzDh/NP+c8cN92CCJes
+	 CUNTdO0GciGvMdkfkQez02OlPBpVqn4MGEWyOylds6735FY2DD6bNBc1UXLuN+8Hj2
+	 vCtmQk2/uhHmt21zj+OM7tr22BMMEDKPF8bjlEN4uZn5ZLjutiNGBGjaxDI1LKLaXl
+	 2e92K+InZ7EmKzieQdpRpQd1tqGICo5qFTXp+CDJP/lf+c6VqFkteLfeZRX+dyQRu2
+	 Oe1/0FkaZLp6g==
+Received: from IcarusMOD.eternityproject.eu (unknown [100.64.1.21])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id D1E4F17E019E;
+	Thu, 09 Jul 2026 13:31:52 +0200 (CEST)
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+To: chunkuang.hu@kernel.org
+Cc: p.zabel@pengutronix.de,
+	airlied@gmail.com,
+	simona@ffwll.ch,
+	maarten.lankhorst@linux.intel.com,
+	mripard@kernel.org,
+	tzimmermann@suse.de,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	matthias.bgg@gmail.com,
+	angelogioacchino.delregno@collabora.com,
+	jitao.shi@mediatek.com,
+	granquet@baylibre.com,
+	rex-bc.chen@mediatek.com,
+	dmitry.osipenko@collabora.com,
+	ck.hu@mediatek.com,
+	amergnat@baylibre.com,
+	justin.yeh@mediatek.com,
+	jason-jh.lin@mediatek.com,
+	dri-devel@lists.freedesktop.org,
+	linux-mediatek@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	kernel@collabora.com
+Subject: [PATCH v4 00/12] drm: MediaTek DisplayPort cleanups and MT8196 eDP
+Date: Thu,  9 Jul 2026 13:31:36 +0200
+Message-ID: <20260709113148.49090-1-angelogioacchino.delregno@collabora.com>
+X-Mailer: git-send-email 2.54.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
+	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
 	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-323672-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:shubhrajyoti.datta@amd.com,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ALIAS_RESOLVED(0.00)[];
+	FREEMAIL_CC(0.00)[pengutronix.de,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,collabora.com,mediatek.com,baylibre.com,lists.freedesktop.org,lists.infradead.org,vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-323673-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[angelogioacchino.delregno@collabora.com,devicetree@vger.kernel.org];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:chunkuang.hu@kernel.org,m:p.zabel@pengutronix.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:matthias.bgg@gmail.com,m:angelogioacchino.delregno@collabora.com,m:jitao.shi@mediatek.com,m:granquet@baylibre.com,m:rex-bc.chen@mediatek.com,m:dmitry.osipenko@collabora.com,m:ck.hu@mediatek.com,m:amergnat@baylibre.com,m:justin.yeh@mediatek.com,m:jason-jh.lin@mediatek.com,m:dri-devel@lists.freedesktop.org,m:linux-mediatek@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:kernel@collabora.com,m:krzk@kernel.org,m:conor@kernel.org,m:matthiasbgg@gmail.com,s:lists@lfdr.de];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[26];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	RCPT_COUNT_THREE(0.00)[4];
+	FROM_NEQ_ENVFROM(0.00)[angelogioacchino.delregno@collabora.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[collabora.com:+];
+	TO_DN_NONE(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,amd.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,lists.linux.dev:replyto,sashiko.dev:url]
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	ALIAS_RESOLVED(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,collabora.com:from_mime,collabora.com:dkim,collabora.com:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 445617306C3
+X-Rspamd-Queue-Id: CA9E673072B
 
-Thank you for your contribution! Sashiko AI review found 5 potential issue(=
-s) to consider:
+Changes in v4:
+ - Added sanitization commit to ensure pm_runtime_put() finishes
+   execution in module unload path
+ - Added some comments in code clarifying that BIAS shall stay
+   powered on at atomic_disable() time for eDP1.5 IP
+ - Fixed some comments in code to clarify that the transmitter
+   hotplug detection register is ignored on SoCs that have the
+   AUX one fully functional
+ - Fixed one more double-free for legacy phy_dev
 
-New issues:
-- [High] Integer truncation and logic error causing silent massive overcloc=
-king.
+Changes in v3:
+ - Fix bad fixup squashing from v2... oops.
 
-Pre-existing issues:
-- [High] Unhandled division by zero in rate calculation and configuration c=
-allbacks.
-- [High] Out-of-bounds register write leading to bitfield corruption.
-- [High] Missing lock leading to data races during dynamic hardware reconfi=
-guration.
-- [High] Integer overflow in fractional divider calculation on 32-bit syste=
-ms.
---
+Changes in v2:
+ - Fixed all audio_pdev unregister issues (wrong pointer and double
+   free in case of error)
+ - Fixed double free of phy_dev in case of devm_add_action_or_reset()
+   error in legacy probe path
+ - Fixed legacy phy registers erroneously offset by legacy_regoff
+ - Added abstraction of AUX interrupts to legacy transmitter ones
+   for hotplug detection
+ - Fixed forgotten addition of SDP_DP13_EN_DP_ENC1_P0 in mask
+ - Fixed new register mask for interrupt debounce threshold time
 
---- Patch [7]: [PATCH v2 7/8] clk: clocking-wizard: Fix division by zero an=
-d unbounded register write ---
-commit 4ea4bda6fb88975f9f2f07bd41a24f7bd7621124
-Author: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
+This series performs some very much needed cleanups to the MediaTek
+DisplayPort driver, including a fix for the audio codec and PHY driver
+unregistration, a refactor to finally correctly use the PHY (!) and
+introduces support for the Embedded DisplayPort (eDP) IP in MT8196.
 
-clk: clocking-wizard: Fix division by zero and unbounded register write
+Note that this deprecates the nvmem related properties in this driver
+because those are NOT related to the DisplayPort IP, but rather to the
+DisplayPort PHY, and were therefore transferred there instead (code in
+a different series, updating the PHY driver).
 
-This commit attempts to fix division by zero and unbounded register writes =
-by
-clamping the divisor to a minimum of 1 and ensuring min_t results are
-correctly assigned. It also adds early returns when the rate is 0 in the
-divisor calculation functions.
+On legacy devices, this driver was carefully tested with both NEW and
+OLD devicetrees, so both with the new, proper PHY usage, and with the
+old platform device registration strategy and eFuse retrieval from DP
+instead of PHY driver.
 
-> diff --git a/drivers/clk/xilinx/clk-xlnx-clock-wizard.c b/drivers/clk/xil=
-inx/clk-xlnx-clock-wizard.c
-> index 381e396aef0e7..289c32ab5cd80 100644
-> --- a/drivers/clk/xilinx/clk-xlnx-clock-wizard.c
-> +++ b/drivers/clk/xilinx/clk-xlnx-clock-wizard.c
-> @@ -296,7 +296,7 @@ static int clk_wzrd_dynamic_reconfig(struct clk_hw *h=
-w, unsigned long rate,
->  	value =3D DIV_ROUND_CLOSEST(parent_rate, rate);
+This was also successfully (manually) tested in a kernel that misses
+the PHY driver updates on devices using old devicetrees (mt8195/88)
+and no regressions were experienced.
 
-[Severity: High]
-This is a pre-existing issue, but if a consumer driver requests a clock rate
-of 0, does the DIV_ROUND_CLOSEST() macro cause a division by zero panic her=
-e?
+AngeloGioacchino Del Regno (12):
+  dt-bindings: display: mediatek: dp: Deprecate nvmem efuse data
+  dt-bindings: display: mediatek: dp: Add compatible for MT8196 eDP
+  drm/mediatek: mtk_dp: Call pm_runtime_put_sync() in removal path
+  drm/mediatek: mtk_dp: Fix hdmi codec and phy driver unregistration
+  drm/mediatek: mtk_dp: Clarify SMC eDP/DP video unmute commands
+  drm/mediatek: mtk_dp: Rework register offsets for proper PHY usage
+  drm/mediatek: mtk_dp: Use PHY API for PHY power sequences
+  drm/mediatek: mtk_dp: Add support for PHY from devicetree
+  drm/mediatek: mtk_dp: Move max link rate to SoC specific data
+  drm/mediatek: mtk_dp: Add support for HotPlug Detection in DP AUX
+  drm/mediatek: mtk_dp: Add support for eDP1.5 IPs and MT8196 SoC
+  drm/mediatek: mtk_dp: Clarify XTAL freq and Debounce registers
 
-Since this occurs while holding the divider->lock, would a panic also leak
-the global hardware lock?
+ .../display/mediatek/mediatek,dp.yaml         |   5 +-
+ drivers/gpu/drm/mediatek/mtk_dp.c             | 630 +++++++++++++++---
+ drivers/gpu/drm/mediatek/mtk_dp_reg.h         | 328 +++++----
+ 3 files changed, 716 insertions(+), 247 deletions(-)
 
-> =20
->  	/* Cap the value to max */
-> -	min_t(u32, value, WZRD_DR_MAX_INT_DIV_VALUE);
-> +	value =3D min_t(u32, value, WZRD_DR_MAX_INT_DIV_VALUE);
-> =20
->  	/* Set divisor and clear phase offset */
->  	writel(value, div_addr);
+-- 
+2.54.0
 
-[ ... ]
-
-> @@ -334,6 +334,8 @@ static int clk_wzrd_determine_rate(struct clk_hw *hw,
->  	 * achievable
->  	 */
->  	div =3D DIV_ROUND_CLOSEST(req->best_parent_rate, req->rate);
-
-[Severity: High]
-This is a pre-existing issue, but if req->rate is 0, wouldn't the
-DIV_ROUND_CLOSEST() macro itself trigger a division by zero panic before it
-even reaches the newly added zero check below?
-
-> +	if (!div)
-> +		div =3D 1;
-
-[Severity: High]
-Because the div variable in clk_wzrd_determine_rate() is declared as a u8:
-
-drivers/clk/xilinx/clk-xlnx-clock-wizard.c:clk_wzrd_determine_rate() {
-    u8 div;
-    ...
-    div =3D DIV_ROUND_CLOSEST(req->best_parent_rate, req->rate);
-}
-
-Does assigning a valid large divisor (like 256) result in a modulo-256
-truncation to 0?
-
-If a consumer requests a valid low frequency that requires a multiple of 25=
-6,
-this truncation could silently force the divisor to 0. Then, this new logic
-would force the divisor to 1, potentially bypassing the hardware limit and
-causing unexpected clock frequencies.
-
-> =20
->  	req->rate =3D req->best_parent_rate / div;
-> =20
-
-[ ... ]
-
-Additionally, there are a few other pre-existing issues in this file worth
-investigating:
-
-[Severity: High]
-This is a pre-existing issue, but does the Versal variant lack the same bou=
-nds
-checking that was just fixed above?
-
-Looking at clk_wzrd_ver_dynamic_reconfig():
-
-drivers/clk/xilinx/clk-xlnx-clock-wizard.c:clk_wzrd_ver_dynamic_reconfig() {
-    ...
-    value =3D DIV_ROUND_CLOSEST(parent_rate, rate);
-    regh =3D (value / 4);
-    ...
-    regval =3D regh | regh << WZRD_CLKFBOUT_H_SHIFT;
-    writel(regval, div_addr + 4);
-    ...
-}
-
-If the rate is low and demands a large divisor, an unbounded value propagat=
-es
-to regh. Because it is OR-ed without a bitmask, could this overwrite adjace=
-nt
-configuration bits in the register?
-
-Also, like clk_wzrd_dynamic_reconfig(), does this DIV_ROUND_CLOSEST() call
-panic if the rate is 0?
-
-
-[Severity: High]
-This is a pre-existing issue, but is the fractional dynamic reconfiguration
-path missing spinlock protection?
-
-While other paths synchronize access to shared wizard initialization
-registers, clk_wzrd_dynamic_reconfig_f() seems to omit the lock entirely:
-
-drivers/clk/xilinx/clk-xlnx-clock-wizard.c:clk_wzrd_dynamic_reconfig_f() {
-    int err;
-    u32 value, pre;
-    ...
-    writel(WZRD_DR_BEGIN_DYNA_RECONF_5_2,
-           divider->base + WZRD_DR_INIT_REG_OFFSET);
-    ...
-}
-
-Could concurrent rate changes on multiple fractional outputs corrupt the
-sequence of shared register writes?
-
-
-[Severity: High]
-This is a pre-existing issue, but does the fractional divider calculation
-overflow on 32-bit systems?
-
-Looking at clk_wzrd_dynamic_reconfig_f():
-
-drivers/clk/xilinx/clk-xlnx-clock-wizard.c:clk_wzrd_dynamic_reconfig_f() {
-    ...
-    rate_div =3D DIV_ROUND_DOWN_ULL(parent_rate * 1000, rate);
-    clockout0_div =3D rate_div / 1000;
-    pre =3D DIV_ROUND_CLOSEST((parent_rate * 1000), rate);
-    ...
-}
-
-On 32-bit architectures, parent_rate * 1000 is computed as a 32-bit integer.
-If parent_rate exceeds 4.29 MHz, wouldn't this overflow before the implicit
-cast to u64 by DIV_ROUND_DOWN_ULL?
-
-Furthermore, do DIV_ROUND_DOWN_ULL() and DIV_ROUND_CLOSEST() trigger a
-division by zero if the rate is 0?
-
-
-[Severity: High]
-This is a pre-existing issue, but do the recalculation paths also suffer fr=
-om
-division by zero if the hardware is uninitialized?
-
-Looking at clk_wzrd_recalc_rate_all():
-
-drivers/clk/xilinx/clk-xlnx-clock-wizard.c:clk_wzrd_recalc_rate_all() {
-    ...
-    return DIV_ROUND_CLOSEST_ULL(parent_rate * mul, d * (o * 1000 + f));
-}
-
-And clk_wzrd_recalc_ratef():
-
-drivers/clk/xilinx/clk-xlnx-clock-wizard.c:clk_wzrd_recalc_ratef() {
-    ...
-    return mult_frac(parent_rate, 1000, (div * 1000) + frac);
-}
-
-If the hardware register values (d, o, f, div, frac) are 0 at boot-time,
-would dividing by these unchecked values cause a division by zero panic?
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260709111403.1579=
-159-1-shubhrajyoti.datta@amd.com?part=3D7
 
