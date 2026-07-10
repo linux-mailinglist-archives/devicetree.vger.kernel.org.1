@@ -1,192 +1,293 @@
-Return-Path: <devicetree+bounces-324358-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-324357-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id GkdIGNPFUGpr4wIAu9opvQ
-	(envelope-from <devicetree+bounces-324358-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 12:13:39 +0200
+	id oYhbELHFUGph4wIAu9opvQ
+	(envelope-from <devicetree+bounces-324357-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 12:13:05 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id BEAD1739830
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 12:13:38 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7ADDB739804
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 12:13:04 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b="VMM2JGq/";
-	dmarc=pass (policy=none) header.from=intel.com;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324358-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-324358-lists+devicetree=lfdr.de@vger.kernel.org";
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
+	dkim=pass header.d=NXP1.onmicrosoft.com header.s=selector1-NXP1-onmicrosoft-com header.b=QbTsKMwf;
+	dmarc=fail reason="SPF not aligned (relaxed), DKIM not aligned (relaxed)" header.from=nxp.com (policy=none);
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324357-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-324357-lists+devicetree=lfdr.de@vger.kernel.org";
+	arc=reject ("cv is fail on i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id B40623074109
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 10:09:23 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id ECFFE3034BC9
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 10:09:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 799143D0908;
-	Fri, 10 Jul 2026 10:09:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DC0C3F6C4D;
+	Fri, 10 Jul 2026 10:09:02 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+Received: from AM0PR02CU008.outbound.protection.outlook.com (mail-westeuropeazon11013035.outbound.protection.outlook.com [52.101.72.35])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D61E3C277E;
-	Fri, 10 Jul 2026 10:09:21 +0000 (UTC)
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783678163; cv=none; b=osZo2pCFwdVTwPrhZSljVG7gTxBc7mrykO3PAPPwP2g0kJF/jWukXQKEfXZsyfK94PBZ9XrvrpEQwzM65FIiEDm/kEo3hzlcAiqsXkOTz+wXUomCm2wrZzAtj3mE09bLTCBrsKHXBKxAtmAtLVoingX7DHxjdf1zpL22oku4v3I=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783678163; c=relaxed/simple;
-	bh=XR/AKWm9S/bmj9R9xWPMyTJeT0hkkYbgIdFX+BFmVaU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZyZGBrSiGoUzwk/f6q4vw8Jf19bvk8q4d2lbp15u/46nd7EUe+iF8FBu8VeHtG5FqRZgLyRspJSxUD48IkeKgnsJeApUc6yeDfIwEx3eLlgI+GihepeTSR/lZ0DOJ2Vk6WTKqV4jvt3NEL1JvotnfiGxhZALPzF63TvOR+6cWXo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=VMM2JGq/; arc=none smtp.client-ip=192.198.163.7
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1783678162; x=1815214162;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=XR/AKWm9S/bmj9R9xWPMyTJeT0hkkYbgIdFX+BFmVaU=;
-  b=VMM2JGq/nhc5yOiOzHQCg5NdeBW3khGvnk+GHNX57ngiMStO65qQSUSQ
-   he28S/3lUF+9NzlhhetvN3DmegYdDIewrwlSdYO9+nh/Tn29zIlFbwjC1
-   ebp0RJL3zMLzcHQbGCSyYPio4uNP0rqrvJGntxbgwb6lDimQE24KRoozq
-   97uFN681m8hc90aUP6gPOfrZBG0eHw3PCmMrZSoW5RvgdZEc406RMFnO2
-   JA3oIoQURUHeu4AbAZvmiLG7rljKvu9NGHSS5k6/Ohsj8RDiHA0WzMpPt
-   i6Evv43507G9+bKJy30epAKjfcJIt5D8GsOBTZiA9ewrS03Yq/FuZZX/J
-   A==;
-X-CSE-ConnectionGUID: tlvP+TnwTeq2iLsWXkrnlQ==
-X-CSE-MsgGUID: dTSOxMTsR3OWc31Kyxjs3A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11841"; a="109921648"
-X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; 
-   d="scan'208";a="109921648"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
-  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Jul 2026 03:09:20 -0700
-X-CSE-ConnectionGUID: lssv4d2ET0CBZjyOXT6OfA==
-X-CSE-MsgGUID: AUwfa79ARf6ngIC2ZTogHQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; 
-   d="scan'208";a="279256841"
-Received: from ettammin-mobl3.ger.corp.intel.com (HELO localhost) ([10.245.244.100])
-  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Jul 2026 03:09:14 -0700
-Date: Fri, 10 Jul 2026 13:09:11 +0300
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Christian Marangi <ansuelsmth@gmail.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Ilpo =?iso-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>,
-	Benjamin Larsson <benjamin.larsson@genexis.eu>,
-	John Ogness <john.ogness@linutronix.de>,
-	Marco Felsch <m.felsch@pengutronix.de>,
-	Gerhard Engleder <eg@keba.com>,
-	Jiaxun Yang <jiaxun.yang@flygoat.com>,
-	Randy Dunlap <rdunlap@infradead.org>,
-	Binbin Zhou <zhoubinbin@loongson.cn>,
-	Rong Zhang <rongrong@oss.cipunited.com>,
-	Lukas Wunner <lukas@wunner.de>, Lubomir Rintel <lkundrak@v3.sk>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-serial@vger.kernel.org
-Subject: Re: [PATCH 3/4] serial: 8250: map UAPI port type to internal enum
-Message-ID: <alDExy46n55IVHeN@ashevche-desk.local>
-References: <20260709205656.319531-1-ansuelsmth@gmail.com>
- <20260709205656.319531-4-ansuelsmth@gmail.com>
- <alAUrANx15gyOgdZ@ashevche-desk.local>
- <6a50169d.41a38e5f.1bb169.a6d5@mx.google.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5A8F351C27;
+	Fri, 10 Jul 2026 10:09:00 +0000 (UTC)
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1783678142; cv=fail; b=cAUPcD9EmBzhyxY6LsZ1A2a37QV/3TtOcpu7Io6FhsBU/TB+nbdFe/hZa+I9zAJCZD2Vu+zbvA0VXswwYdR6AEI/Q26VgvxXdnvRSYO0TELT3VG+GUUVKADWMQrBl0LJlezR7YpcyBgDaMj2rfeh7pH8u2OsxOwUC91+YN8c8Kg=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1783678142; c=relaxed/simple;
+	bh=jI7LKP4SiuaovJsJTO0beFGv2Jk9lJuY+wFUhKe3DTI=;
+	h=From:Date:Subject:Content-Type:Message-Id:To:Cc:MIME-Version; b=eceH7z4ZRnzcIbTwxjXe4BieL5+a4MkYJm6zAw/WhGVAtspOH6e2Hzc7kwXOITwykW4tkLCTAu4Rgv8Nai4/Wkmod1XG58jPCMgAvPNyEL5gDA6ulRvuHQiFYk2uiLoQ9hSkDzBKZy9YWVMXLrzZrOP8aAEDD/E56tBNIGzs0p0=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=QbTsKMwf; arc=fail smtp.client-ip=52.101.72.35
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=UWhkjwDbiAVYr12bBtlJCDcdVW/bkzANIixkZSxrYmMVPKZIK6ULqb7Ht3KHFVvoFoCuXOV0RkbZ/xmuWTgJkGc+cbHva7byl7jX2kyeu9HStYQi3eLuBRJxtiIm8crRcPwoceb1w/0BuVVoTT1XGVQdk8dcAVcJHhyAHfJOfp4i0Gm37t3gdKyn/UBWcVWf8p5JTjORTNDQkImW9ythjP8v6UguUD4bndDTJ1LpGliS+Ke49szIfEu9gd6PAbi4FhsjP1ikg8qanJCh3BnASABLxX1pe3PInfg/Kt4lbKtUCwz0eSFNkYOmoGSWYU7MovGc+TiNU9AaWVnzsuhyFQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=L4KWrzr+YWD0/ZwxErTj48n5Bz6Sdq2e6ah0W6DJcDQ=;
+ b=lmwb0yZ/IZWqCMcvR09iyQQg44ZeSlu/2wY6lxNjeUW5XqhNh4JxyqZ1w6tIkZJuzugJIXy3r7Xbg2DR0kpRAIzBxluphK0KPKHylAImLco9Pa9BlOS3ZCEF2fMe8P86ooru9akXYgZHp5uaPthS8sWES/BuT9N33U1RV+WG/G/VqMFUurXzjJ9JqkQAXZrZVV7UcDvhMy9ydTquFSAbkMse2xvhb30HyJFfvSc+6DVlX8fbG605H/opgqSWKuEyz8ZjqZdlqqaPBOt7Vpq6UyvqakPf5nP/3F8Zyf0mN5rCs6rFoyaXlwQOvErnHofUlSE4b21P2MpWlppvNfCeew==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector1-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=L4KWrzr+YWD0/ZwxErTj48n5Bz6Sdq2e6ah0W6DJcDQ=;
+ b=QbTsKMwf+smf+IDDSoTT2E4NLBnJImyXLGz5dRGNQeFtcBubxjjw0uBsjQN2ss2SutzwC1Tnj81ZGaYHbNgF66CsGkFlEF3TlnyGPQyJw7cx1kFEAo3UTdYmSPKVyiERBedAEbYGBfAnNumqJTgM2bCvoKf0JAL4QvwBMiegkcKG0os6nrXQBX4AAFstXYdyB/IK7nDZ9q7uOg2VVtkTduHvLmwePzaSuN1vU0e+uzt7bAN9645E4jPX1g6DIm2vrx2zI+7Z6bqFBAjy18Ploy3bzztEp5f862i0T2ORtVQU8j74G9kZ1CkEBmSuQ0ZlAnpkVo0D0YQygXQZJdI7Jg==
+Received: from PA6PR04MB11909.eurprd04.prod.outlook.com
+ (2603:10a6:102:51c::22) by AM0PR04MB6913.eurprd04.prod.outlook.com
+ (2603:10a6:208:184::24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.17; Fri, 10 Jul
+ 2026 10:08:57 +0000
+Received: from PA6PR04MB11909.eurprd04.prod.outlook.com
+ ([fe80::a4b:fa4e:7fe7:e6a2]) by PA6PR04MB11909.eurprd04.prod.outlook.com
+ ([fe80::a4b:fa4e:7fe7:e6a2%5]) with mapi id 15.21.0181.014; Fri, 10 Jul 2026
+ 10:08:57 +0000
+From: haibo.chen@oss.nxp.com
+Date: Fri, 10 Jul 2026 18:12:20 +0800
+Subject: [PATCH] arm64: dts: imx91-9x9-qsb: add CAN support overlay file
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20260710-dts-imx91-can1-v1-1-c78c9c378e8d@nxp.com>
+X-B4-Tracking: v=1; b=H4sIAIPFUGoC/x3MQQqAIBBA0avErBtwBJO6SrQonWoWWWhEIN49a
+ fkW/2dIHIUTDE2GyI8kOUMFtQ24fQ4bo/hq0Ep3ypJCfyeU4+0J3RwIF2vM6h2RZ4IaXZFXef/
+ hOJXyAZ1Twj9gAAAA
+X-Change-ID: 20260710-dts-imx91-can1-b755fdc11de1
+To: Frank Li <Frank.Li@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Haibo Chen <haibo.chen@nxp.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1783678347; l=3012;
+ i=haibo.chen@nxp.com; s=20250421; h=from:subject:message-id;
+ bh=r4IWS/ej2uTzP7UmQATCdKNsUV3K63QpDrRvgdypHkE=;
+ b=0kFOhTLrdmZ1fz8CfAR3kFS1ZIscCvgwRlepWJuLempnuNclB6xvORdpP68A5tcQ+fQao1Y/l
+ OIiQgHvwGQpCr5/nvAwpczhiTo9PV9ejB8e3HCbSZUp8qPLju/y8DU9
+X-Developer-Key: i=haibo.chen@nxp.com; a=ed25519;
+ pk=HR9LLTuVOg3BUNeAf4/FNOIkMaZvuwVJdNrGpvKDKaI=
+X-ClientProxiedBy: MA5PR01CA0108.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:1d1::18) To PA6PR04MB11909.eurprd04.prod.outlook.com
+ (2603:10a6:102:51c::22)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <6a50169d.41a38e5f.1bb169.a6d5@mx.google.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PA6PR04MB11909:EE_|AM0PR04MB6913:EE_
+X-MS-Office365-Filtering-Correlation-Id: d0c438d0-876d-4e8e-c718-08dede6b4125
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|19092799006|366016|1800799024|376014|7416014|23010399003|18002099003|56012099006|11063799006;
+X-Microsoft-Antispam-Message-Info:
+	I5n3K+nKDOfnwxHuY7uU1mRNRaadJJo1/HP138+YnWXeJLyVzWE6SjexCpu3mmSmvM9M3TAUYvtxor96P3KGGqDBpv+MzLhZQzWeOdf/b3Y/n6QviB5sh9yE2Xudp7EYwys5l6zQhrTvJkO13IqwDgNuKOpl7Q5s+48H85okTjjpV0+qIE0XHueE6HPzLKlVEX7DmK3AQ17ySitmI1pnj69dt14C0A2p1gtKCCclWaXjFriY2vFzl4RQOvvkVjcVZcl8KD2S7qjBsX6OtIYrPCjaV7Skw+uWryKiKIhlsT2BoFIUdY0OypcZ8EsJrLyNEttnjFNJF6/KDlnuUupkWcFsMPTllNw5l9kIW8BFdNZYszOyqSTN8e7VtLOAHsJP2aiCif2dlzsK934jI+CoRWF8Y51bBFGuoR1+FXR3kQ+sQisnmwJPydc+P0M37ZD5gCdrTfYYSQMKkhgVo7V7TahJx9jeca6EjPbckmUNX1ZPCNeiX9dJIoXZoJWxiYFiw269RXyUrWLyvGZip/dbpoYN9a7xnUCUsujH3YBwR30JK9hhakZUARjL+T8aprNt3H/JZ62KyXewG4pEyBFga2qEtXjP2ShifNAafCqPpBpJmZ4D/xP0pDy0/Hd9U8p/
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA6PR04MB11909.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(366016)(1800799024)(376014)(7416014)(23010399003)(18002099003)(56012099006)(11063799006);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?ekJxM3ZpbXlkWFp3SlluMUNNdCt5ZnRzWFhVV1JSaThSd0plR0JXZkFwdTlp?=
+ =?utf-8?B?OWZqTWE1cTMrR2M0UDZad1o3V3M2Y0E4azBnVFZHNTlKcGZWS2ozM0hENlB3?=
+ =?utf-8?B?TUdnOWhCMjlaN1ZNTmVrQTdXR3hBa1owV2Q4QVV0dEJPakFhWGlJeWxlRFdo?=
+ =?utf-8?B?QUhjUjdkdVBLYzJrMU9hcUhMbFdTVXh3Y3JNN0dzd3gzS1E0WkZneDV0MHNE?=
+ =?utf-8?B?bUhnd2g3aDYxaUp1WW9CbjBLY1hRSEpuVXZWZllmNld2Z2MrQVhrSG1mcTdm?=
+ =?utf-8?B?a3ZLMlZxNVVHNlY1MGUzYUMxNVVMTUdFRU8vMzNqQzFEU2NYZGtPMWJLMk91?=
+ =?utf-8?B?aUhTYUw3bHh3Y1dYSk1pN1YxTUpWbXhDYk1NOWwwSkJnQ05WdzRDTXRDKytU?=
+ =?utf-8?B?aUlLMDVwQkpCekRmakNzd0FmQWlHWitnS1VmNkhSeFRDeEhHbFRmWXdyTEFM?=
+ =?utf-8?B?WDc0eTU0d01WL2lCTU5lMlFIZGM3azRKVTRPMm9rSFNGbnlHRlp5R2xHd21U?=
+ =?utf-8?B?R09SYXdVcUVwOGNhaEh1NTNKNmNXTWJXS2NFRUdlSFBQNElrU1NXTDgzV3lS?=
+ =?utf-8?B?c1FvVGR5TDNaeGpua0JZMVZNeHpHdjBQMUpZenkxTS8wZTgvUzFjSTIrZ1dQ?=
+ =?utf-8?B?RE4wcWxWenUxeXlERW8wSmJ5TlpCMHdxUUdVOHdsQ09QbTZ1THlxZlp1M2do?=
+ =?utf-8?B?TDFlUmRCUUVvUjZwV013dmt2S1ZQVFo5d1llK2JiQmYvc2UzL2RsMmNFRWlx?=
+ =?utf-8?B?WG15b2w1VXBtU016bSt4ckRDQ01xRW9DY2F0VnUrSzgxZjZBN2pmNWMyOUdH?=
+ =?utf-8?B?TUp0SWdnR2hETVVIMzBidHI2Z0FzQ2h5eU12Q3NnRFlOWVhaeDRoS3d5QUFP?=
+ =?utf-8?B?ZnB5d1poY3AvSWd4VlZtMjlGNjl0a3Z3TFBlSHNUK0dGTnFyQnhOb3NDVWxD?=
+ =?utf-8?B?Z0s0MGd1Nk5aUVJXbzhmbWgwRVlOYmdkVEtTWnBSMW0zWHdFOWkreXlYVHJM?=
+ =?utf-8?B?WmhjS1pnZXlZSHV4QzJ5MDFlWUZMSnU1TFhxZlA5SmovdG1od0w0UVJmd2tC?=
+ =?utf-8?B?ZlhNZXRoMStWdGhNY1BzeFlFRE90QTJMNFJVcFZQZWhDb1VkZ0VZZEJPOGxy?=
+ =?utf-8?B?RTBjYThQOVRkdXFBYi9PNzVFY2srSjc5UkhKYjlxOStUTTVyNjkxUGxZTXpi?=
+ =?utf-8?B?TXJnVUNPMCtKUUhVTGZKWkRhcFVHSzdReWtuNWhaeHVHQ29kQStFMzJyZXJX?=
+ =?utf-8?B?ZFpwbzRKWW1EMnlVa0ZQL0dpa1VNOTFRbG85dE1Va3JkeSs2OElCbC9JN2Nr?=
+ =?utf-8?B?OFltb1dnSDBsUk9RM2ZjeXppZDlxVDdmTkFvN1BhVWV5ZEZ6dzRIZXF4M1JF?=
+ =?utf-8?B?b0Rsa1dYYnJRNHhrNkNGK3hjS3NWRWRFWHhja2UwaHE1ZTFpa2RsZWZicDNU?=
+ =?utf-8?B?UGxKMk4wUUNWQUlBU3RpWG8vdTJqK3J0NjEvMFQraDIwNjcyZHd1NjRtZGdY?=
+ =?utf-8?B?bEJxSU14QTRBbFp1U2ZIdDFpc2c1MTE5MEIvalN6SWVEUUdWRGpNY04ybW9T?=
+ =?utf-8?B?UmxIbCtnYWlNajl5Z0ZDYW1FOHd3bjJZd0NZTUwvbGcvRC8xV3cyUGlGZzMw?=
+ =?utf-8?B?RkVLVUJVRmFrVUJ6bFJpcXVsNHdNNTJhZE0zUEZwUlIvZklsOUg0a3ZOREtK?=
+ =?utf-8?B?aElmVUJOdmxacCtXODEwcjR5Y2oreXI1cUx2VGR5QzV1cXFEREFXYVJUTSt1?=
+ =?utf-8?B?SVQ0Vy95Z09ETnNBWHpVbElkc1JwNEJ2dXB1Q1BVRmdMR1NReVFhb1QrZFJY?=
+ =?utf-8?B?aWZXazNZcnNYWGh4eFcvdldhYVlzR1Y3ZTJ0T2hnaDc5VDJvRmtpZzU2dVVM?=
+ =?utf-8?B?RG5RQ0hrMTNGK3lMT3FldXNQbHBpVkxIaUZPZzJiNHNjejJnYi80Rm5zaHhG?=
+ =?utf-8?B?THpDbDdRNUo3VnRZQjdoTW91TmZWMWMvWjlBTXpUODJIaXJCTDJDVzBUbmQx?=
+ =?utf-8?B?SWEwUVV2bDVmVWNad3NNUy9ueDZRY1BJVmx5WnhQZjRFNXhKYlZEdDF1UFN5?=
+ =?utf-8?B?TS81SWlVenNTbUxiTDNNWUFla2pJakJ2RDJ0NTVEenVCWHBLTnEvelVWc3dp?=
+ =?utf-8?B?aUhJeHg1UUdwTEJTckJZVUg0bld6VWxDTU1lZTBhYnhvNnRIcHFKNkt1dXhP?=
+ =?utf-8?B?eDZ0NVV5VGxZYS95c1p1ajlvM0hVOTc2WjV3VE81ZlBENnkyK0ZEc2pGZzFm?=
+ =?utf-8?B?cndxWUZUL3JiNEgrTGx6MHJ4end0aDNmTkNYMmtVRzZaZmg3YmpLUEpLRUdG?=
+ =?utf-8?B?TWhVcGJIOUF5QnEyNDU2cFYvSXduYnpSMXcyamJia3A1ZmR5aUNieDFSQjZL?=
+ =?utf-8?Q?f5kEExHFxuQUpo0gskmtQiduZzTazFim2w3bC?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d0c438d0-876d-4e8e-c718-08dede6b4125
+X-MS-Exchange-CrossTenant-AuthSource: PA6PR04MB11909.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jul 2026 10:08:57.2664
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 53e6WWC2KwT2z2ouqf9ExojEVYDULzDTo7xfZ0YMySrndBx3tjawLpD75xa6ir5RRIk9gcMZFsq+2yNXBC5hX2f1dlFsFGgiSSHmeZgdXb8Oycn/DRJUr7rW7yZFGb9C
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB6913
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[intel.com:d:+,kernel.org:s:+];
+X-Spamd-Result: default: False [2.94 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	MID_RHS_MATCH_TO(1.00)[];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[NXP1.onmicrosoft.com:s=selector1-NXP1-onmicrosoft-com];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	DMARC_POLICY_SOFTFAIL(0.10)[nxp.com : SPF not aligned (relaxed), DKIM not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-324358-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[20];
-	RCVD_TLS_LAST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FREEMAIL_TO(0.00)[gmail.com];
-	FORGED_RECIPIENTS(0.00)[m:ansuelsmth@gmail.com,m:gregkh@linuxfoundation.org,m:jirislaby@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:ilpo.jarvinen@linux.intel.com,m:benjamin.larsson@genexis.eu,m:john.ogness@linutronix.de,m:m.felsch@pengutronix.de,m:eg@keba.com,m:jiaxun.yang@flygoat.com,m:rdunlap@infradead.org,m:zhoubinbin@loongson.cn,m:rongrong@oss.cipunited.com,m:lukas@wunner.de,m:lkundrak@v3.sk,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-serial@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[andriy.shevchenko@linux.intel.com,devicetree@vger.kernel.org];
-	HAS_ORG_HEADER(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@linux.intel.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	RCVD_COUNT_FIVE(0.00)[5];
+	FROM_NEQ_ENVFROM(0.00)[haibo.chen@oss.nxp.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS(0.00)[m:Frank.Li@nxp.com,m:s.hauer@pengutronix.de,m:kernel@pengutronix.de,m:festevam@gmail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:imx@lists.linux.dev,m:linux-arm-kernel@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:haibo.chen@nxp.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	FREEMAIL_TO(0.00)[nxp.com,pengutronix.de,gmail.com,kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	FORGED_SENDER(0.00)[haibo.chen@oss.nxp.com,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[lists@lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[NXP1.onmicrosoft.com:+];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	ALIAS_RESOLVED(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	TAGGED_FROM(0.00)[bounces-324357-lists,devicetree=lfdr.de];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,intel.com:dkim,vger.kernel.org:from_smtp,linux.intel.com:from_mime,ashevche-desk.local:mid]
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NO_DN(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,oss.nxp.com:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: BEAD1739830
+X-Rspamd-Queue-Id: 7ADDB739804
 
-On Thu, Jul 09, 2026 at 11:46:02PM +0200, Christian Marangi wrote:
-> On Fri, Jul 10, 2026 at 12:37:48AM +0300, Andy Shevchenko wrote:
-> > On Thu, Jul 09, 2026 at 10:56:51PM +0200, Christian Marangi wrote:
-> > > There is currently some confusion when a new 8250 UART device needs to be
-> > > defined with the related index for uart_config[] to be directly defined in
-> > > UAPI header.
-> > > 
-> > > There isn't any specific reason to define the index directly in UAPI header
-> > > unless it's also needed to be defined for userspace usage.
-> > > 
-> > > To try to address this confusion and making it clear how these specific
-> > > index should be defined and where, create a dedicated enum in 8250.h
-> > > with all the current defined values in UAPI header and document how these
-> > > id should be defined.
-> > > 
-> > > Rename the define in 8250_port.c with the new UART_ prefix.
-> > 
-> > This will bring a wide field for the all possible conflicts and doesn't really
-> > solve the issue. Why not simply kill the UAPI part of the definitions for good?
-> > (Move the all, except the first 13) to be internal to the kernel.
-> 
-> I mean... With correct review from maintainers, conflict won't happen. I don't
-> feel it's that easy to kill UAPI header... userspace stuff and we don't
-> kill userspace.
-> 
-> The previous suggested solution was to stop declaring stuff in UAPI header
-> and start declaring in the internal header making the situation even worse
-> and error prone with id conflict. This can really be prevent only by
-> correct review of the change. (or keep using UAPI)
-> 
-> Maybe other have better ideas on this. On net we have a similar problem and
-> the implementation is mostly similar with duplicated reference and some
-> BUILD_BUG magic.
+From: Haibo Chen <haibo.chen@nxp.com>
 
-The whole point of UAPI list of the supported types of the ports is busted from
-the very first case when we start re-using gaps. Meaning that if there is any
-current userspace software that relies on that information, it's already in a mess
-state. There is a Debian source code browser, you can check how many programs
-use that list for something real (behind the assigning types to the unknown ports).
-I believe none. And the assigning unknown port should not be considered valuable
-these days as we expect to have kernel drivers for most of the modern HW.
-That's why I just recommend to find a great common denominator and leave only
-those (and I think this split is exactly between the files in UAPI) in UAPI
-and hide the rest completely from the user space. Yes, big change on paper,
-but with 99.99% probability no functional change at all at the end of the day.
+On the i.MX91 9x9 QSB, CAN1 and MICFIL share pins. A TMUX1574RSVR
+analog mux controls the routing: when SEL is driven high, CAN1 is
+selected; when SEL is driven low, MICFIL is selected. By default,
+SEL is kept low.
 
-Submit and RFC patch.
+To enable CAN1, SEL must be driven high. This is done via the can_fun
+function defined in the pinctrl-gpiomux node. CAN1 uses the
+TJA1057GT/3 PHY.
 
+Signed-off-by: Haibo Chen <haibo.chen@nxp.com>
+---
+This patch is based on the following patch set:
+https://lore.kernel.org/imx/20260710024204.3462444-1-chancel.liu@oss.nxp.com/T/#t
+---
+ arch/arm64/boot/dts/freescale/Makefile             |  2 +
+ .../boot/dts/freescale/imx91-9x9-qsb-can1.dtso     | 48 ++++++++++++++++++++++
+ 2 files changed, 50 insertions(+)
 
+diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
+index 01d4ddfde0989a2f1ae0ac33d236fe1e2b1c970d..37d158c2de88572e2753ccf9ec518d27cbe8d492 100644
+--- a/arch/arm64/boot/dts/freescale/Makefile
++++ b/arch/arm64/boot/dts/freescale/Makefile
+@@ -577,7 +577,9 @@ dtb-$(CONFIG_ARCH_MXC) += imx91-11x11-frdm.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx91-11x11-frdm-s.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx91-phyboard-segin.dtb
+ 
++imx91-9x9-qsb-can1-dtbs += imx91-9x9-qsb.dtb imx91-9x9-qsb-can1.dtbo
+ imx91-phyboard-segin-peb-av-18-dtbs += imx91-phyboard-segin.dtb imx91-phyboard-segin-peb-av-18.dtbo
++dtb-$(CONFIG_ARCH_MXC) += imx91-9x9-qsb-can1.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx91-phyboard-segin-peb-av-18.dtb
+ 
+ dtb-$(CONFIG_ARCH_MXC) += imx91-tqma9131-mba91xxca.dtb
+diff --git a/arch/arm64/boot/dts/freescale/imx91-9x9-qsb-can1.dtso b/arch/arm64/boot/dts/freescale/imx91-9x9-qsb-can1.dtso
+new file mode 100644
+index 0000000000000000000000000000000000000000..b8343d653e511244c838a2a7add8a8d74398f8a2
+--- /dev/null
++++ b/arch/arm64/boot/dts/freescale/imx91-9x9-qsb-can1.dtso
+@@ -0,0 +1,48 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * Copyright 2026 NXP
++ */
++
++#include <dt-bindings/gpio/gpio.h>
++#include "imx91-pinfunc.h"
++
++/dts-v1/;
++/plugin/;
++
++&{/} {
++	flexcan_phy: can-phy {
++		compatible = "nxp,tja1057";
++		#phy-cells = <0>;
++		max-bitrate = <5000000>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&pinctrl_flexcan_phy>;
++		silent-gpios = <&gpio1 10 GPIO_ACTIVE_HIGH>;
++	};
++};
++
++&flexcan1 {
++	phys = <&flexcan_phy>;
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_flexcan1>, <&can_fun>;
++	status = "okay";
++};
++
++&iomuxc {
++	pinctrl_flexcan_phy: flexcanphygrp {
++		fsl,pins = <
++			MX91_PAD_PDM_BIT_STREAM1__GPIO1_IO10	0x31e
++		>;
++	};
++
++	pinctrl_flexcan1: flexcan1grp {
++		fsl,pins = <
++			MX91_PAD_PDM_CLK__CAN1_TX		0x139e
++			MX91_PAD_PDM_BIT_STREAM0__CAN1_RX	0x139e
++		>;
++	};
++};
++
++/* micfil uses PDM port A pins, conflicts with can1 */
++&micfil {
++	status = "disabled";
++};
+
+---
+base-commit: b9fff21cbd480f47f04debbce6c14f48dd715f0a
+change-id: 20260710-dts-imx91-can1-b755fdc11de1
+
+Best regards,
 -- 
-With Best Regards,
-Andy Shevchenko
-
+Haibo Chen <haibo.chen@nxp.com>
 
 
