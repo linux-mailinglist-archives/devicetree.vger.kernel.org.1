@@ -1,57 +1,59 @@
-Return-Path: <devicetree+bounces-324713-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-324714-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id XsuqMy1/UWo+FgMAu9opvQ
-	(envelope-from <devicetree+bounces-324713-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 11 Jul 2026 01:24:29 +0200
+	id p1jSAAKCUWqCFgMAu9opvQ
+	(envelope-from <devicetree+bounces-324714-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 11 Jul 2026 01:36:34 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 109D573FBD5
-	for <lists+devicetree@lfdr.de>; Sat, 11 Jul 2026 01:24:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 37FAB73FBF2
+	for <lists+devicetree@lfdr.de>; Sat, 11 Jul 2026 01:36:33 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kwiboo.xyz header.s=fe-58e3cb06d0 header.b=DKZciE6R;
-	dmarc=pass (policy=reject) header.from=kwiboo.xyz;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324713-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-324713-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kwiboo.se header.s=fe-e1b5cab7be header.b=OunZyqMa;
+	dmarc=pass (policy=quarantine) header.from=kwiboo.se;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324714-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-324714-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 956D530166FA
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 23:24:27 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id DDCDD3015702
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 23:36:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 019F13C73C9;
-	Fri, 10 Jul 2026 23:24:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CEE7330D43;
+	Fri, 10 Jul 2026 23:36:31 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.forwardemail.net (smtp.forwardemail.net [149.28.215.223])
+Received: from smtp.forwardemail.net (smtp.forwardemail.net [121.127.44.73])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81B643BBA0B
-	for <devicetree@vger.kernel.org>; Fri, 10 Jul 2026 23:24:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 110902E737D
+	for <devicetree@vger.kernel.org>; Fri, 10 Jul 2026 23:36:27 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783725866; cv=none; b=Yjjd28sFjWI1vW9YzLWygH3VLP6B9ijMGkyDF7r0vwEfP8S7z7l+m8MUsJNNoIA2NTPWeInRIu+hmk9vUTY32QCkiC4k2WMyAesxf+gQYLxlDaFwizkT+sscQLB5/tkTvTQxDsi6/nb40fCw868RztkBNCNqdo47Fo61Bfp0cXo=
+	t=1783726591; cv=none; b=BM2a7bAVBeJks+AqZvjnpDNdqvz5p/Lca/Y0kgSmN8eS9N3u6Xza/X3us/qMgczSbxnimuT5XYJ/v0ERcQboEEf7brRAoAEAW93Xe6YJabhG395XMRD2rkdpY6fLJ2AMgEr4pmcZ6L5IfLM3roQztF+S/Xa9UeZRuy1KeQi8h0c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783725866; c=relaxed/simple;
-	bh=MusBBTW78pbqWhH/unnOhuI2VygivvrUki9XivA9SzA=;
+	s=arc-20240116; t=1783726591; c=relaxed/simple;
+	bh=gEiRJ8B3+zfeolELCgH5xqR/7k/42egK9NyF9gPOUvo=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=WJQGttNWbvHX0tLV4NgZFAc8PKl0VJNGFFU/FYSRZ0YoTrO7O73CAHpkH/JjhVEcdJocuhoFhHWOVrpY737RJdPkgyJ5KrsKUpHFn+fN0Gq20y85ATPvN1zoasQNpHKBRGzr+PMDfanZ5k06abmpRKyzgIz7sVGWzJU05YsazYA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=kwiboo.xyz; spf=pass smtp.mailfrom=fe-bounces.kwiboo.xyz; dkim=pass (1024-bit key) header.d=kwiboo.xyz header.i=@kwiboo.xyz header.b=DKZciE6R; arc=none smtp.client-ip=149.28.215.223
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.xyz;
+	 In-Reply-To:Content-Type; b=MYZkxRQcJP25RMRuFnhBtd9GitdKev3aqHP4a8cpC1SADhxtWS9ut88e91bCNme6vbdBGSQetyhmJ0k5SFfIWT3kHgsnM/pm65awipPLtLNnUfO902Lc/ED0c5d8U6fslVmiCgwWB2cNJBz2jKBkNmCdfF4tBNg4N5/KWhnn/aE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=OunZyqMa; arc=none smtp.client-ip=121.127.44.73
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
  h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
  Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
- s=fe-58e3cb06d0; t=1783725864;
- bh=yQvPeODxU0d6J4vdc1cgw/GKu3KH9eDW6Ridf2PV13Q=;
- b=DKZciE6Ren5NF2plGdphEjHgoM2LlWDhXjXtGx98N9gvEkPjsvIORI3dII9d6sa9Bapi6sE4D
- NbAEdKNpluNo9nGv4pGkqISSqrYbwArdXslUGyainYBcuEoZ0yA2OPoaYpnC5Gpzj/WmtApRqH1
- PB29ubK7TZq+jWcRbck0/lA=
-X-Forward-Email-ID: 6a517f25780742a88792fe6b
-X-Forward-Email-Sender: rfc822; jonas@kwiboo.xyz, smtp.forwardemail.net,
- 149.28.215.223
+ s=fe-e1b5cab7be; t=1783726581;
+ bh=qy6HHWYfsX3ILpTu5/JKatJn9FSxJBA142HGAJToDwE=;
+ b=OunZyqMa+OVFcmsPci4sTyOENnYp7GzHwofED7FXSS7TxD51lDpjiFhxCwtXGD+IPIFJ2/HAH
+ HfQRB0vPB3e5eID9v53y8OocfOl+GFaWlTXMToamoMl3htlWqS0dORqp7YFPBNzBdJKQn3m7V3u
+ j4X9lJDYTg+ZSDGOkWcE5SOILJf4LEOCO8hASnR6ztH6rcO4j0UyjpgoB/ho6dO4Tza3E927qBJ
+ cH8rkpxw9UvEMfFmOpl4GTA4Eib2Y3k2CZhR/pjrb+sulQ1dgAbWhENU0sUDvesoUzv1xaw8Axr
+ Ejkygyi0mHHX3fRTknL1NQS2pKPTSUzcYeftN8x2rU+w==
+X-Forward-Email-ID: 6a5181f476cf32b2f5f845e8
+X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
+ 121.127.44.73
 X-Forward-Email-Version: 2.10.2
 X-Forward-Email-Website: https://forwardemail.net
 X-Complaints-To: abuse@forwardemail.net
 X-Report-Abuse: abuse@forwardemail.net
 X-Report-Abuse-To: abuse@forwardemail.net
-Message-ID: <b9a5beb6-b701-430c-b667-44780736dd89@kwiboo.xyz>
-Date: Sat, 11 Jul 2026 01:24:18 +0200
+Message-ID: <ce54c773-22cf-43d2-b831-1ea5355359ca@kwiboo.se>
+Date: Sat, 11 Jul 2026 01:36:17 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,89 +61,134 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 08/12] arm64: dts: rockchip: rk3588s-nanopi: remove
- always-on from vdd_npu_s0 reg
+Subject: Re: [PATCH v2 00/12] arm64: dts: rockchip: Add NanoPi M6 board
 To: joachim.eastwood@gmail.com, Heiko Stuebner <heiko@sntech.de>
 Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
  Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- diederik@cknow-tech.com
+ diederik@cknow-tech.com,
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 References: <20260711-nanopi-m6-v2-0-422675a65402@gmail.com>
- <20260711-nanopi-m6-v2-8-422675a65402@gmail.com>
 Content-Language: en-US
-From: Jonas Karlman <jonas@kwiboo.xyz>
-In-Reply-To: <20260711-nanopi-m6-v2-8-422675a65402@gmail.com>
+From: Jonas Karlman <jonas@kwiboo.se>
+In-Reply-To: <20260711-nanopi-m6-v2-0-422675a65402@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kwiboo.xyz,reject];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
-	R_DKIM_ALLOW(-0.20)[kwiboo.xyz:s=fe-58e3cb06d0];
+	DMARC_POLICY_ALLOW(-0.50)[kwiboo.se,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[kwiboo.se:s=fe-e1b5cab7be];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-324713-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-324714-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:joachim.eastwood@gmail.com,m:heiko@sntech.de,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-rockchip@lists.infradead.org,m:diederik@cknow-tech.com,m:joachimeastwood@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[3];
 	FREEMAIL_TO(0.00)[gmail.com,sntech.de];
 	FORWARDED(0.00)[lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[3];
+	FORGED_RECIPIENTS(0.00)[m:joachim.eastwood@gmail.com,m:heiko@sntech.de,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-rockchip@lists.infradead.org,m:diederik@cknow-tech.com,m:krzysztof.kozlowski@oss.qualcomm.com,m:joachimeastwood@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[jonas@kwiboo.xyz,devicetree@vger.kernel.org];
+	FORGED_SENDER(0.00)[jonas@kwiboo.se,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jonas@kwiboo.xyz,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kwiboo.xyz:+];
-	RCPT_COUNT_SEVEN(0.00)[9];
+	FROM_NEQ_ENVFROM(0.00)[jonas@kwiboo.se,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kwiboo.se:+];
+	RCPT_COUNT_SEVEN(0.00)[10];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TO_DN_SOME(0.00)[]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 109D573FBD5
+X-Rspamd-Queue-Id: 37FAB73FBF2
 
 Hi Joachim,
 
 On 7/11/2026 12:11 AM, Joachim Eastwood via B4 Relay wrote:
-> From: Joachim Eastwood <joachim.eastwood@gmail.com>
+> This patch series add support for the NanoPi M6. This board is very
+> similar to the NanoPi R6C and R6S boards which are already supported.
 > 
-> Since the NPU is hooked up on these the always-on isn't needed anymore.
+> Main differences:
+> * M.2 M-key slot with PCIe (Also present on R6C)
+> * M.2 E-key slot with PCIe and USB (from hub)
+> * 1 additional USB 2.0 port from an on-board USB hub
+> * RT5616 audio CODEC
 > 
-> Signed-off-by: Joachim Eastwood <joachim.eastwood@gmail.com>
-> ---
->  arch/arm64/boot/dts/rockchip/rk3588s-nanopi.dtsi | 1 -
->  1 file changed, 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-nanopi.dtsi b/arch/arm64/boot/dts/rockchip/rk3588s-nanopi.dtsi
-> index bcb2f5d63a61..463cfeddf270 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3588s-nanopi.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk3588s-nanopi.dtsi
-> @@ -258,7 +258,6 @@ vdd_npu_s0: regulator@42 {
->  		regulator-max-microvolt = <950000>;
->  		regulator-ramp-delay = <2300>;
->  		regulator-boot-on;
+> Patch 2 and 3 moves a bit code around. Please let me know if those two
+> should be squashed together.
+> Next few patches adds some missing bits the common nanopi dtsi file.
+> While the final patch adds support for NanoPi M6. Support for M6 has
+> been split into two files one dtsi and one dts file. This is to make
+> it easier to add support to the new M6V2 board at a later stage.
 
-Why is boot-on kept?, NPU is likely not needed until OS has started.
+In my personal opinion I think it would make more sense to sort
+patches in following order:
+- adding/fixing missing bits to the common nanopi-r6 dtsi
+- extract M6/R6 common parts from nanopi-r6 dtsi to nanopi dtsi,
+  nanopi-r6 dtsi includes the nanopi dtsi and no changes to dts files
+- final parts that adds the M6 board
 
-With PD domain-supply the regulator should be enabled automatically, or
-is there some other issue that requires boot firmware to enable this
-regulator before OS is started?
+Should probably make it a little bit easier to cherry-pick and bisect.
 
 Regards,
 Jonas
 
-> -		regulator-always-on;
->  		vin-supply = <&vcc5v0_sys>;
->  
->  		regulator-state-mem {
 > 
+> All changes have been verified using the schematics for M6, R6C and R6S.
+> Only M6 have been boot and runtime tested. Tester for R6x are welcome.
+> 
+> Signed-off-by: Joachim Eastwood <joachim.eastwood@gmail.com>
+> ---
+> Changes in v2:
+> - Organize DT such that adding support to NanoPi M6V2 later is easier
+> - Use correct clk id for I2C mclk out as suggested by Diederik.
+> - Add a couple of acks from Krzysztof Kozlowski.
+> - Link to v1: https://patch.msgid.link/20260703-nanopi-m6-v1-0-8344a1559519@gmail.com
+> 
+> ---
+> Joachim Eastwood (12):
+>       dt-bindings: arm: rockchip: add FriendlyElec NanoPi M6
+>       arm64: dts: rockchip: refactor rk3588s-nanopi* to support M6
+>       arm64: dts: rockchip: move NanoPi R6 code into common dtsi
+>       arm64: dts: rockchip: rk3588s-nanopi: add missing sdmmc cd pinctrl
+>       arm64: dts: rockchip: rk3588s-nanopi: remove pull up on rtc int pin
+>       arm64: dts: rockchip: rk3588s-nanopi: add missing pcie rst pinctrl
+>       arm64: dts: rockchip: rk3588s-nanopi: pcie2x1l2: add clkreq
+>       arm64: dts: rockchip: rk3588s-nanopi: remove always-on from vdd_npu_s0 reg
+>       arm64: dts: rockchip: rk3588s-nanopi: remove useless vcc_3v3_pcie20
+>       arm64: dts: rockchip: rk3588s-nanopi: add gmac1 add phy-supply
+>       arm64: dts: rockchip: rk3588s-nanopi: remove bogus vcc5v0_usb regulator
+>       arm64: dts: rockchip: add support for NanoPi M6 board
+> 
+>  .../devicetree/bindings/arm/rockchip.yaml          |   3 +-
+>  arch/arm64/boot/dts/rockchip/Makefile              |   1 +
+>  .../arm64/boot/dts/rockchip/rk3588s-nanopi-m6.dtsi | 142 ++++
+>  .../boot/dts/rockchip/rk3588s-nanopi-m6v1.dts      |  67 ++
+>  .../arm64/boot/dts/rockchip/rk3588s-nanopi-r6.dtsi | 792 --------------------
+>  .../arm64/boot/dts/rockchip/rk3588s-nanopi-r6c.dts |   1 +
+>  .../arm64/boot/dts/rockchip/rk3588s-nanopi-r6s.dts |   1 +
+>  arch/arm64/boot/dts/rockchip/rk3588s-nanopi.dtsi   | 800 +++++++++++++++++++++
+>  8 files changed, 1014 insertions(+), 793 deletions(-)
+> ---
+> base-commit: dc59e4fea9d83f03bad6bddf3fa2e52491777482
+> change-id: 20260701-nanopi-m6-ffeef7252fd7
+> 
+> Best regards,
+> --  
+> Joachim Eastwood <joachim.eastwood@gmail.com>
+> 
+> 
+> 
+> _______________________________________________
+> Linux-rockchip mailing list
+> Linux-rockchip@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-rockchip
 
 
