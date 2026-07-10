@@ -1,188 +1,192 @@
-Return-Path: <devicetree+bounces-324356-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-324358-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 88KzKpPFUGpd4wIAu9opvQ
-	(envelope-from <devicetree+bounces-324356-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 12:12:35 +0200
+	id GkdIGNPFUGpr4wIAu9opvQ
+	(envelope-from <devicetree+bounces-324358-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 12:13:39 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 59E677397F9
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 12:12:35 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id BEAD1739830
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 12:13:38 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=linaro.org header.s=google header.b=ItQXTRZb;
-	dmarc=pass (policy=none) header.from=linaro.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324356-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-324356-lists+devicetree=lfdr.de@vger.kernel.org";
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=2")
+	dkim=pass header.d=intel.com header.s=Intel header.b="VMM2JGq/";
+	dmarc=pass (policy=none) header.from=intel.com;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324358-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-324358-lists+devicetree=lfdr.de@vger.kernel.org";
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 63E483045E16
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 10:08:36 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id B40623074109
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 10:09:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD92C4028FE;
-	Fri, 10 Jul 2026 10:08:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 799143D0908;
+	Fri, 10 Jul 2026 10:09:23 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A1E33EB115
-	for <devicetree@vger.kernel.org>; Fri, 10 Jul 2026 10:08:30 +0000 (UTC)
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783678112; cv=pass; b=DwUFhbUbE79ni3CTTORm89ODIIp6fCYuMOIz6/fh7GXja94yU8J4PPUHJcADbLQAMY5oUdZllhKGeYhI0hNoiR6k+sOUYv7SMyGK06zbVDHEwsmz0LFsh0ZbCvEmRe98995pURi70rrRv2OshgBiMcQHwR0HUeUvdz6dERzUV5w=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783678112; c=relaxed/simple;
-	bh=pRM2rNgd9MBRVIU9n/6jP1Ntus4fUi+4/1OzQi5Hjs4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=dfQJOW5lYfz4s0w8fzxcrDbq4tp6f1bpczX0khcGQC3q2BV2fPhAForM311DHbsnvKwGa+rQW4NsWjzQIPKVYJ4cP8FCvbUIvBpm1bYLSOMOzEcBGOpbM4qh3bN1WtEI7ejLQWwu1I7hjrXlyzqhgAKZOGdLKpK/yFmF2hQhdKc=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ItQXTRZb; arc=pass smtp.client-ip=209.85.208.45
-Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-6986578d8c0so1012947a12.1
-        for <devicetree@vger.kernel.org>; Fri, 10 Jul 2026 03:08:30 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1783678109; cv=none;
-        d=google.com; s=arc-20260327;
-        b=JMZNWMu0DHXWVQZCqixwlvtggrH5tCje+gGm3nLAEk9xOQSFgNzczlV4fLVqQ6wMUP
-         ndvtdNkpYjHqtvFef1b+x1KNLAH+2rg1MWoL+kea6vq8P9JkgP7lk/CCfIgU0tuvnA5R
-         8laKR7CKlajITuXqO3Cozj2sKAmcX/cd2W4JqfQIJD5yr9VWmOI3RqE0Jrz7ynvwL3bR
-         7fwp1iBndT27pufLjKZ07dxAYK2Is5dF6cZ1rBQ9DbYPdz9b+Mc3AxRLgPbjhYsza+D1
-         AJI4n+Vi+U3i8CI24F2YvTNam0MNbQ/v2sGTEsPO2QxUaa5bP8adZ/q8KpTIfx4xX6pZ
-         Gcmw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:dkim-signature;
-        bh=XQ09WvOdFm9bzQk3hIkyZtzTyrw6fuB4GwRwRjKXZBU=;
-        fh=ReDYTdAKbniAzURosj6QyFNbFlqyRTjmXZhF38raAEA=;
-        b=GTrOuiMR7XLaZyfDNjTCNNeasyEGQGacTUq/oSLPmdbR4zqMJ1egkoJu61iTJuE+23
-         2x3tpSagX1MXMwR/o/5pnsQkDjKoewqnjjngn/0CPqNltVmMudFMJZK98KoAmpP88HUj
-         406VD55UqLilmWjUNf/KOiuxzyPmdjfNWrYMm57AhvizJvo3B+WHUC/qTsjUxUV8jxAo
-         aJztf0QQwVoUWD54uA+Tjz6vAwJ+nOvTAJJwdIyu5Q99ddF7MgZJ06LR2/9mtS3sBqBE
-         o9X+VxtW7tW3wfakLS6k2cwvDlcT5zwZoU7HWoLQNNFJ1gb/xG+LkHD1tidQGqmqiukS
-         nZ7g==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1783678109; x=1784282909; darn=vger.kernel.org;
-        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
-         :references:mime-version:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=XQ09WvOdFm9bzQk3hIkyZtzTyrw6fuB4GwRwRjKXZBU=;
-        b=ItQXTRZbsEq+Y4Iv2yFAOj62T9Cq1YaKqMlbce2lP6q7WO3e0YiRDdP+KePeMwhqMO
-         +fEvbYmMeh09kOTWtVdRc9se4h62qM0u+PzZRRqT/Ei/I+swGGpPVa+0Ji/UQFQ8AYMA
-         Gd3sG8rukUgnIWYfb1TmukZ2Mbt2wMzU6LC8xn4U3IcqOFe8wY9dlvuV2vJKjnikz3rS
-         wh+f4jaZRo4IbgQtWJsLJG/HccqwDY4SAB+GUuL0SOD8z07LxFocdKDs41qwePIf58eb
-         ZUEcfPN4uaM/nSn0eebe1ZJyo5sG0K+m4gd9Amam7qXr+wm1yJlZNrGug7gZsyjPLKH7
-         Iuvg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783678109; x=1784282909;
-        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
-         :references:mime-version:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to:content-type;
-        bh=XQ09WvOdFm9bzQk3hIkyZtzTyrw6fuB4GwRwRjKXZBU=;
-        b=PLeDD5GvRS60MCjVIHUYZcAIjLWSEAUIWtqAJ5A/ox1gVKau2C2dRBfFYeIvIn6aII
-         3XrEpscRaNTF/OybWIk94FELkz/CRJyuWQhBWfu1HMRH34NsbekicSWMCGl9ZoymjSI4
-         Sbo0Rpo/c2cIK+pJo1DJ3yF4xOck3+ADpryIGlnaQ80/AzGBLOkeSibZk0ErlsIDXTRL
-         ehfAPfuiNdrQS8clemdRkt4UgCGkhwmwjTHJ5dPBeNsUEvbcMjnj+thqxayWN1hFKjKQ
-         u25jX5sUVvBrKbXxwlhlLwXzBW6EhHZrrqqGfQTmGj0xwVTOkq8ShEOjXgQk49fg2kyz
-         hMTQ==
-X-Forwarded-Encrypted: i=1; AHgh+RrJnFvcqFiO76ydPSItTueNWQuVK/MOyobVSb2fxPeNXMZCX/BnzG9KVFxcPs4rb4G7WIEUCvpbD42Q@vger.kernel.org
-X-Gm-Message-State: AOJu0YxRLjeEkct11fI4dcxSgVzbtF3PVFCMXKO37T9UKA7GpioTuz+e
-	0hjPsW2D3UxjcGglQBaQhvWoEMhxhIZLK3KLzEz8oM9DctguOPgconQSlCQYF5lb/cCTvK/OqG2
-	ROZHgAGSUwtjttDXGiMSvfGhArLHQP6HUilutf/MKfA==
-X-Gm-Gg: AfdE7cm9X4OfIn6uyXBh6/wEsyUTHf0VLj2sUvXJ6xUVbOsl+LGgJnCoywSYbvtZ+jP
-	qmBQFW2nyj5dpapRxGBjHAZEIaggMJtkYudvkyxTCGeZDBEz5Unwjrv/XibBWouEgNOazfVgt2P
-	bON9bukeGUiq5aW1T08NApoIft80eslBCDXQRxJHFgqYUfAACMyW0hkHnXDCzy4N6+ACIjsUyN6
-	2+LVs+WOx14Pe3kTyGqpwU9vuTiYMUXnwf5zrnw8ZyNvw1uq/UGc0EAvaFzBOI87ncXw0FFR3fk
-	dvLREM/57AqBwdMD8gcZctPUL9vjx48=
-X-Received: by 2002:a05:6402:1f0d:b0:698:52b4:c2c9 with SMTP id
- 4fb4d7f45d1cf-69ab449f56bmr3763583a12.31.1783678109402; Fri, 10 Jul 2026
- 03:08:29 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D61E3C277E;
+	Fri, 10 Jul 2026 10:09:21 +0000 (UTC)
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1783678163; cv=none; b=osZo2pCFwdVTwPrhZSljVG7gTxBc7mrykO3PAPPwP2g0kJF/jWukXQKEfXZsyfK94PBZ9XrvrpEQwzM65FIiEDm/kEo3hzlcAiqsXkOTz+wXUomCm2wrZzAtj3mE09bLTCBrsKHXBKxAtmAtLVoingX7DHxjdf1zpL22oku4v3I=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1783678163; c=relaxed/simple;
+	bh=XR/AKWm9S/bmj9R9xWPMyTJeT0hkkYbgIdFX+BFmVaU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZyZGBrSiGoUzwk/f6q4vw8Jf19bvk8q4d2lbp15u/46nd7EUe+iF8FBu8VeHtG5FqRZgLyRspJSxUD48IkeKgnsJeApUc6yeDfIwEx3eLlgI+GihepeTSR/lZ0DOJ2Vk6WTKqV4jvt3NEL1JvotnfiGxhZALPzF63TvOR+6cWXo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=VMM2JGq/; arc=none smtp.client-ip=192.198.163.7
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1783678162; x=1815214162;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=XR/AKWm9S/bmj9R9xWPMyTJeT0hkkYbgIdFX+BFmVaU=;
+  b=VMM2JGq/nhc5yOiOzHQCg5NdeBW3khGvnk+GHNX57ngiMStO65qQSUSQ
+   he28S/3lUF+9NzlhhetvN3DmegYdDIewrwlSdYO9+nh/Tn29zIlFbwjC1
+   ebp0RJL3zMLzcHQbGCSyYPio4uNP0rqrvJGntxbgwb6lDimQE24KRoozq
+   97uFN681m8hc90aUP6gPOfrZBG0eHw3PCmMrZSoW5RvgdZEc406RMFnO2
+   JA3oIoQURUHeu4AbAZvmiLG7rljKvu9NGHSS5k6/Ohsj8RDiHA0WzMpPt
+   i6Evv43507G9+bKJy30epAKjfcJIt5D8GsOBTZiA9ewrS03Yq/FuZZX/J
+   A==;
+X-CSE-ConnectionGUID: tlvP+TnwTeq2iLsWXkrnlQ==
+X-CSE-MsgGUID: dTSOxMTsR3OWc31Kyxjs3A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11841"; a="109921648"
+X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; 
+   d="scan'208";a="109921648"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Jul 2026 03:09:20 -0700
+X-CSE-ConnectionGUID: lssv4d2ET0CBZjyOXT6OfA==
+X-CSE-MsgGUID: AUwfa79ARf6ngIC2ZTogHQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; 
+   d="scan'208";a="279256841"
+Received: from ettammin-mobl3.ger.corp.intel.com (HELO localhost) ([10.245.244.100])
+  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Jul 2026 03:09:14 -0700
+Date: Fri, 10 Jul 2026 13:09:11 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Ilpo =?iso-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+	Benjamin Larsson <benjamin.larsson@genexis.eu>,
+	John Ogness <john.ogness@linutronix.de>,
+	Marco Felsch <m.felsch@pengutronix.de>,
+	Gerhard Engleder <eg@keba.com>,
+	Jiaxun Yang <jiaxun.yang@flygoat.com>,
+	Randy Dunlap <rdunlap@infradead.org>,
+	Binbin Zhou <zhoubinbin@loongson.cn>,
+	Rong Zhang <rongrong@oss.cipunited.com>,
+	Lukas Wunner <lukas@wunner.de>, Lubomir Rintel <lkundrak@v3.sk>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-serial@vger.kernel.org
+Subject: Re: [PATCH 3/4] serial: 8250: map UAPI port type to internal enum
+Message-ID: <alDExy46n55IVHeN@ashevche-desk.local>
+References: <20260709205656.319531-1-ansuelsmth@gmail.com>
+ <20260709205656.319531-4-ansuelsmth@gmail.com>
+ <alAUrANx15gyOgdZ@ashevche-desk.local>
+ <6a50169d.41a38e5f.1bb169.a6d5@mx.google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <CGME20260627165422epcas5p4e4c6bce0e2daa6d08a9ec18afde9ce0e@epcas5p4.samsung.com>
- <20260627171228.2687857-1-alim.akhtar@samsung.com> <20260627171228.2687857-6-alim.akhtar@samsung.com>
- <CADrjBPqYSTDExrBrYYf2z=23Ci8VqF9zXvbc+njDm1d4Ojrjrg@mail.gmail.com>
- <14cf01dd1052$4de88670$e9b99350$@samsung.com> <9eb6b0ef-cbc1-4b2f-b607-986f28ec46ee@kernel.org>
-In-Reply-To: <9eb6b0ef-cbc1-4b2f-b607-986f28ec46ee@kernel.org>
-From: Peter Griffin <peter.griffin@linaro.org>
-Date: Fri, 10 Jul 2026 11:08:17 +0100
-X-Gm-Features: AUfX_mw_MQovWgLm-SNbZiYq6L-o37seq6gSN5GX96bbQr3I8gkT7hwklMnJXyA
-Message-ID: <CADrjBPp54oxAfJ9i7VTqCVuCJLq3X5mZPh9wMOMgoa-N1e1Ghw@mail.gmail.com>
-Subject: Re: [PATCH v3 5/6] arm64: dts: exynos: add initial support for
- Samsung Exynos8855 smdk
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Alim Akhtar <alim.akhtar@samsung.com>, robh@kernel.org, conor+dt@kernel.org, 
-	linusw@kernel.org, linux-samsung-soc@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, hajun.sung@samsung.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <6a50169d.41a38e5f.1bb169.a6d5@mx.google.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.16 / 15.00];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
-	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+X-Spamd-Result: default: False [-3.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[intel.com:d:+,kernel.org:s:+];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-324356-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER(0.00)[peter.griffin@linaro.org,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS(0.00)[m:krzk@kernel.org,m:alim.akhtar@samsung.com,m:robh@kernel.org,m:conor+dt@kernel.org,m:linusw@kernel.org,m:linux-samsung-soc@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-gpio@vger.kernel.org,m:hajun.sung@samsung.com,m:conor@kernel.org,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-324358-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[20];
+	RCVD_TLS_LAST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
+	FREEMAIL_TO(0.00)[gmail.com];
+	FORGED_RECIPIENTS(0.00)[m:ansuelsmth@gmail.com,m:gregkh@linuxfoundation.org,m:jirislaby@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:ilpo.jarvinen@linux.intel.com,m:benjamin.larsson@genexis.eu,m:john.ogness@linutronix.de,m:m.felsch@pengutronix.de,m:eg@keba.com,m:jiaxun.yang@flygoat.com,m:rdunlap@infradead.org,m:zhoubinbin@loongson.cn,m:rongrong@oss.cipunited.com,m:lukas@wunner.de,m:lkundrak@v3.sk,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-serial@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[andriy.shevchenko@linux.intel.com,devicetree@vger.kernel.org];
+	HAS_ORG_HEADER(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[linaro.org:+];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[peter.griffin@linaro.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@linux.intel.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	MISSING_XM_UA(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,mail.gmail.com:mid,vger.kernel.org:from_smtp,linaro.org:from_mime,linaro.org:dkim]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,intel.com:dkim,vger.kernel.org:from_smtp,linux.intel.com:from_mime,ashevche-desk.local:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 59E677397F9
+X-Rspamd-Queue-Id: BEAD1739830
 
-Hi Krysztof,
+On Thu, Jul 09, 2026 at 11:46:02PM +0200, Christian Marangi wrote:
+> On Fri, Jul 10, 2026 at 12:37:48AM +0300, Andy Shevchenko wrote:
+> > On Thu, Jul 09, 2026 at 10:56:51PM +0200, Christian Marangi wrote:
+> > > There is currently some confusion when a new 8250 UART device needs to be
+> > > defined with the related index for uart_config[] to be directly defined in
+> > > UAPI header.
+> > > 
+> > > There isn't any specific reason to define the index directly in UAPI header
+> > > unless it's also needed to be defined for userspace usage.
+> > > 
+> > > To try to address this confusion and making it clear how these specific
+> > > index should be defined and where, create a dedicated enum in 8250.h
+> > > with all the current defined values in UAPI header and document how these
+> > > id should be defined.
+> > > 
+> > > Rename the define in 8250_port.c with the new UART_ prefix.
+> > 
+> > This will bring a wide field for the all possible conflicts and doesn't really
+> > solve the issue. Why not simply kill the UAPI part of the definitions for good?
+> > (Move the all, except the first 13) to be internal to the kernel.
+> 
+> I mean... With correct review from maintainers, conflict won't happen. I don't
+> feel it's that easy to kill UAPI header... userspace stuff and we don't
+> kill userspace.
+> 
+> The previous suggested solution was to stop declaring stuff in UAPI header
+> and start declaring in the internal header making the situation even worse
+> and error prone with id conflict. This can really be prevent only by
+> correct review of the change. (or keep using UAPI)
+> 
+> Maybe other have better ideas on this. On net we have a similar problem and
+> the implementation is mostly similar with duplicated reference and some
+> BUILD_BUG magic.
 
-On Fri, 10 Jul 2026 at 11:00, Krzysztof Kozlowski <krzk@kernel.org> wrote:
->
-> On 10/07/2026 11:55, Alim Akhtar wrote:
-> >>> ---
-> >>>  arch/arm64/boot/dts/exynos/Makefile           |   1 +
-> >>>  .../boot/dts/exynos/exynos8855-pinctrl.dtsi   | 574 ++++++++++++++++++
-> >>>  .../arm64/boot/dts/exynos/exynos8855-smdk.dts |  32 +
-> >>>  arch/arm64/boot/dts/exynos/exynos8855.dtsi    | 204 +++++++
-> >>>  4 files changed, 811 insertions(+)
-> >>>  create mode 100644 arch/arm64/boot/dts/exynos/exynos8855-pinctrl.dtsi
-> >>>  create mode 100644 arch/arm64/boot/dts/exynos/exynos8855-smdk.dts
-> >>>  create mode 100644 arch/arm64/boot/dts/exynos/exynos8855.dtsi
-> >>> +       };
-> > [snip]
-> >>> +
-> >>> +       oscclk: clock-oscclk {
-> >>> +               compatible = "fixed-clock";
-> >>> +               clock-output-names = "oscclk";
-> >>> +               #clock-cells = <0>;
-> >>> +       };
-> >>
-> >> Small nit, but I believe oscclk node should be ordered alpha-numerically by the
-> >> node name. See https://docs.kernel.org/devicetree/bindings/dts-coding-
-> >> style.html
-> >>
-> > Thanks, will update in v4
->
->
-> The node feels ordered, no? clock before cpu?
+The whole point of UAPI list of the supported types of the ports is busted from
+the very first case when we start re-using gaps. Meaning that if there is any
+current userspace software that relies on that information, it's already in a mess
+state. There is a Debian source code browser, you can check how many programs
+use that list for something real (behind the assigning types to the unknown ports).
+I believe none. And the assigning unknown port should not be considered valuable
+these days as we expect to have kernel drivers for most of the modern HW.
+That's why I just recommend to find a great common denominator and leave only
+those (and I think this split is exactly between the files in UAPI) in UAPI
+and hide the rest completely from the user space. Yes, big change on paper,
+but with 99.99% probability no functional change at all at the end of the day.
 
-Yes, good point. I was looking at the label not the node name.
+Submit and RFC patch.
 
-Peter
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
 
