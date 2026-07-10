@@ -1,238 +1,158 @@
-Return-Path: <devicetree+bounces-324623-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-324625-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id raSrKA85UWr1AwMAu9opvQ
-	(envelope-from <devicetree+bounces-324623-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 20:25:19 +0200
+	id 32VrAgc6UWolBAMAu9opvQ
+	(envelope-from <devicetree+bounces-324625-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 20:29:27 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id F10B273D589
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 20:25:18 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E73E673D5EC
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 20:29:25 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=bootlin.com header.s=dkim header.b=sOHuIbBX;
-	dmarc=pass (policy=reject) header.from=bootlin.com;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324623-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-324623-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=GPJMwJOU;
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324625-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-324625-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E5319304B9B0
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 18:22:38 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 014743007B2B
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 18:29:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8933037CD52;
-	Fri, 10 Jul 2026 18:22:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9109D374A07;
+	Fri, 10 Jul 2026 18:29:20 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC02A37BE85;
-	Fri, 10 Jul 2026 18:22:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75CFB371D13
+	for <devicetree@vger.kernel.org>; Fri, 10 Jul 2026 18:29:19 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783707757; cv=none; b=S1tOf1wO+GU9ocXcmUn2zUB4B1eqk5wjKybsrjXnYfvQeFzT+ANrbA72ERk02W0sE69TW2/cjF/HHuFNGyNDIxfIvpZbhMBkwK25Qzi9PtVXe3s7jy46Ur4wu85ItzYPcpWhi0a+pRRH09kYK3I5TuEFsZG/yJWdWN2Kq5hrpRY=
+	t=1783708160; cv=none; b=Hn2lxHTnqedZHRdEBxXQJzrmPT8q9SuzhwN3vxUL97Nm1xyGFTvg9WnI08DmCqV43i/o19uGl3PNckOLb/syCtJW5K6yIk7tmZJGqHRAQcd3IC4sEt6dVLe2MX78Sc/epb8p4zMe7nAvkBs4aRUB4i+h1CRblOaS9+DaYCjp03Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783707757; c=relaxed/simple;
-	bh=aL5KpwDXKi8VU01kD3qwRMt9USXGuVQTzWDGskskP9o=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=E1BMPV7G763e7+w1+yE/ahyx1Ia10t2KcWv0FmM/uaaGK9vfLUFPpCdD5phPsXWbesp7OZz/droJ5Di/ZZ7XVUD1dTXU4rvDd0W56Bb4Mi1EFrPcngUZjoa4bVVzXx5jbpKsTJ/sIHnxmJLDnbgRLKOim++C3q9nfaQ+fznN18w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=sOHuIbBX; arc=none smtp.client-ip=185.171.202.116
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id 863DBC2C650;
-	Fri, 10 Jul 2026 18:22:47 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id A261560342;
-	Fri, 10 Jul 2026 18:22:32 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 2477211BD2C25;
-	Fri, 10 Jul 2026 20:22:28 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1783707751; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=5VAwh3lyqUj5Vaw5u3vKlNvlRD6QqBhxQWsMOqs917s=;
-	b=sOHuIbBXCBaipjDv/q8zAe+W6BjjedimEYmrh5bBwww7ODcyXWhROdlp1SH+Njcucd3i3q
-	5H0u8yID9sIQH8tgI8aK9MsZRj3yPZCaBPo03JDPAm4k7amDWtt5KO9S+TN+Epd9YnvukI
-	u1LlVTxWGMY/ZPbvQIsAos0dmfe2KoDre9lTs9r4FJBHLUksZRvnMH9w/kH98gFuY9m4Jn
-	J4fY/hfDQHsiilw3du89pQR97zrlE4FjJbv3bvsovJJX1ZrN3fEChkBIZGCoa66P/qjkqA
-	VKHuVqcz83/Avw6DPFLeZ7614OV4Z8iqwdw/SNjQBD8cdg+f6LFK5kyE4SbpIA==
-From: "Miquel Raynal (Schneider Electric)" <miquel.raynal@bootlin.com>
-Date: Fri, 10 Jul 2026 20:22:02 +0200
-Subject: [PATCH v2 7/7] clk: tests: Add Kunit testing for nexus nodes
+	s=arc-20240116; t=1783708160; c=relaxed/simple;
+	bh=ntQqPPEx23o84raPYbsRZlhN1VA991ZkLKwvNzZTqds=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=gpbziPX5omuLaQ1alVxQLNKHDmtNvHE5R9vpWgoDdIPJllss+OeCV1lZ9I7ylCZMrQHEoam/nwUdnJXd4iHh/RetG6N4v/8/kYsDMsxU+u0ZpPibKOrD4one/MpqEMrDEO4x0JzAzGGqxmPSpaGSbvi/3y/NdPcQMK/Xba7sIlk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GPJMwJOU; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BD89C1F000E9;
+	Fri, 10 Jul 2026 18:29:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1783708159;
+	bh=hV6XeIYdq4kp/ILTdf7pwT06XRG0SCFacK+DSSyTsDU=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=GPJMwJOUo1e+YsepHiKrgFJzdDLn3X8KYStBlYRcmDwCjAH2yFS6eIoalXG+10WoC
+	 V2sdOuLPOPLNxmn8AtX3Ll8fUW45+ZGuXzO+ulKfjLt5/dnqt13Elbpb4fa3iknJh7
+	 OTwBRQqe0tePC7VGXkrFMWXV2ox5tmejr+7yDoH8LuMeIsq/mBRy0kRhX7ftlC8fKT
+	 RbWhZMeRkhyA7ynql0b3kl38IsrJfIeqVmdQWs00YVtUHwEDAxzwM/fa1Pre1iCjF/
+	 BdnwL9J87sc5R+iRc5CtbpOZXH84FWY0+bpbZgHRnoYFSZ9UwHdpStGYzYfT1MlThL
+	 w8pomSOEydGcA==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v2 1/7] dt-bindings: clock: Introduce nexus nodes
+Reply-To: sashiko-reviews@lists.linux.dev
+To: =?utf-8?b?TWlxdWVsIFJheW5hbCAoU2NobmVpZGVyIEVsZWN0cmljKQ==?= <miquel.raynal@bootlin.com>
+Cc: devicetree@vger.kernel.org, conor+dt@kernel.org, robh@kernel.org
+In-Reply-To: <20260710-schneider-v7-2-rc1-eip201-upstream-v2-1-b4680787377e@bootlin.com>
+References: <20260710-schneider-v7-2-rc1-eip201-upstream-v2-0-b4680787377e@bootlin.com>
+ <20260710-schneider-v7-2-rc1-eip201-upstream-v2-1-b4680787377e@bootlin.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Fri, 10 Jul 2026 18:29:18 +0000
+Message-Id: <20260710182918.BD89C1F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260710-schneider-v7-2-rc1-eip201-upstream-v2-7-b4680787377e@bootlin.com>
-References: <20260710-schneider-v7-2-rc1-eip201-upstream-v2-0-b4680787377e@bootlin.com>
-In-Reply-To: <20260710-schneider-v7-2-rc1-eip201-upstream-v2-0-b4680787377e@bootlin.com>
-To: Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney@redhat.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Brendan Higgins <brendan.higgins@linux.dev>, David Gow <david@davidgow.net>, 
- Rae Moar <raemoar63@gmail.com>
-Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- Pascal EBERHARD <pascal.eberhard@se.com>, 
- Wolfram Sang <wsa+renesas@sang-engineering.com>, linux-clk@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-kselftest@vger.kernel.org, kunit-dev@googlegroups.com, 
- "Miquel Raynal (Schneider Electric)" <miquel.raynal@bootlin.com>
-X-Mailer: b4 0.14.3
-X-Last-TLS-Session-Version: TLSv1.3
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
+	TO_EXCESS_BASE64(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
-	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-324623-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FREEMAIL_TO(0.00)[baylibre.com,kernel.org,redhat.com,linux.dev,davidgow.net,gmail.com];
-	FORGED_SENDER(0.00)[miquel.raynal@bootlin.com,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	FORGED_RECIPIENTS(0.00)[m:mturquette@baylibre.com,m:sboyd@kernel.org,m:bmasney@redhat.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:brendan.higgins@linux.dev,m:david@davidgow.net,m:raemoar63@gmail.com,m:thomas.petazzoni@bootlin.com,m:pascal.eberhard@se.com,m:wsa+renesas@sang-engineering.com,m:linux-clk@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-kselftest@vger.kernel.org,m:kunit-dev@googlegroups.com,m:miquel.raynal@bootlin.com,m:krzk@kernel.org,m:conor@kernel.org,m:wsa@sang-engineering.com,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-324625-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[miquel.raynal@bootlin.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[bootlin.com:+];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:miquel.raynal@bootlin.com,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	ALIAS_RESOLVED(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	MID_RHS_MATCH_FROM(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,bootlin.com:from_mime,bootlin.com:email,bootlin.com:mid,bootlin.com:dkim]
+	FROM_NO_DN(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	RCPT_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,vger.kernel.org:from_smtp,bootlin.com:email,smtp.kernel.org:mid,lists.linux.dev:replyto,sashiko.dev:url]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: F10B273D589
+X-Rspamd-Queue-Id: E73E673D5EC
 
-Add a nexus node with a child requesting a mapped clock in the fake DT
-overlay to verify that the parsing is also correctly working.
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [Medium] The clock nexus node schema omits standard nexus map properties =
+(`clock-map-mask` and `clock-map-pass-thru`) and `#clock-cells`.
+--
 
-Suggested-by: Stephen Boyd <sboyd@kernel.org>
-Signed-off-by: Miquel Raynal (Schneider Electric) <miquel.raynal@bootlin.com>
----
- drivers/clk/clk_kunit_helpers.c          | 31 +++++++++++++++++++++++++++++++
- drivers/clk/clk_test.c                   | 15 +++++++++++++++
- drivers/clk/kunit_clk_parse_clkspec.dtso | 10 ++++++++++
- include/kunit/clk.h                      |  2 ++
- 4 files changed, 58 insertions(+)
+--- Patch [1]: [PATCH v2 1/7] dt-bindings: clock: Introduce nexus nodes ---
+commit 4092325fdc1397916665dc9c21bd4330df6026ce
+Author: Miquel Raynal (Schneider Electric) <miquel.raynal@bootlin.com>
 
-diff --git a/drivers/clk/clk_kunit_helpers.c b/drivers/clk/clk_kunit_helpers.c
-index 68a28e70bb61..151f62ab57c1 100644
---- a/drivers/clk/clk_kunit_helpers.c
-+++ b/drivers/clk/clk_kunit_helpers.c
-@@ -233,5 +233,36 @@ int of_clk_add_hw_provider_kunit(struct kunit *test, struct device_node *np,
- }
- EXPORT_SYMBOL_GPL(of_clk_add_hw_provider_kunit);
- 
-+KUNIT_DEFINE_ACTION_WRAPPER(of_node_put_wrapper, of_node_put, struct device_node *);
-+
-+/**
-+ * of_find_node_by_name_kunit() - Test managed of_find_node_by_name()
-+ * @test: The test context
-+ * @from: Parent device node to start searching from, or NULL to search from root
-+ * @name: The name string to match against
-+ *
-+ * Just like of_find_node_by_name(), except the device_noded is managed by
-+ * the test case and is automatically put after the test case concludes.
-+ *
-+ * Return: the device_node on success or a negative errno value on failure.
-+ */
-+struct device_node *of_find_node_by_name_kunit(struct kunit *test, struct device_node *from,
-+					       const char *name)
-+{
-+	struct device_node *np;
-+	int ret;
-+
-+	np = of_find_node_by_name(from, name);
-+	if (!np)
-+		return NULL;
-+
-+	ret = kunit_add_action_or_reset(test, of_node_put_wrapper, np);
-+	if (ret)
-+		return ERR_PTR(ret);
-+
-+	return np;
-+}
-+EXPORT_SYMBOL_GPL(of_find_node_by_name_kunit);
-+
- MODULE_LICENSE("GPL");
- MODULE_DESCRIPTION("KUnit helpers for clk providers and consumers");
-diff --git a/drivers/clk/clk_test.c b/drivers/clk/clk_test.c
-index 5f3ffda033c3..bebfd928ab36 100644
---- a/drivers/clk/clk_test.c
-+++ b/drivers/clk/clk_test.c
-@@ -3656,10 +3656,25 @@ static void of_clk_get_parent_name_gets_parent_name(struct kunit *test)
- 			   of_clk_get_parent_name(ctx->cons_np, 0));
- }
- 
-+static void of_clk_get_hw_maps_thru_nexus(struct kunit *test)
-+{
-+	struct clk_parse_clkspec_ctx *ctx = test->priv;
-+	struct clk_hw *expected;
-+	struct device_node *np;
-+
-+	np = of_find_node_by_name_kunit(test, NULL, "kunit-clock-nexus-child");
-+	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, np);
-+	expected = of_clk_get_hw(ctx->cons_np, 1, NULL);
-+	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, expected);
-+
-+	KUNIT_EXPECT_PTR_EQ(test, expected, of_clk_get_hw(np, 0, NULL));
-+}
-+
- static struct kunit_case clk_parse_clkspec_test_cases[] = {
- 	KUNIT_CASE(clk_parse_clkspec_with_correct_index_and_name),
- 	KUNIT_CASE(clk_parse_clkspec_with_incorrect_index_and_name),
- 	KUNIT_CASE(of_clk_get_parent_name_gets_parent_name),
-+	KUNIT_CASE(of_clk_get_hw_maps_thru_nexus),
- 	{}
- };
- 
-diff --git a/drivers/clk/kunit_clk_parse_clkspec.dtso b/drivers/clk/kunit_clk_parse_clkspec.dtso
-index c93feb93e101..a4115216d2aa 100644
---- a/drivers/clk/kunit_clk_parse_clkspec.dtso
-+++ b/drivers/clk/kunit_clk_parse_clkspec.dtso
-@@ -18,4 +18,14 @@ kunit-clock-consumer {
- 		clocks = <&kunit_clock_provider1 0>, <&kunit_clock_provider2 0>;
- 		clock-names = "first_clock", "second_clock";
- 	};
-+
-+	kunit_clock_nexus: kunit-clock-nexus {
-+		clocks = <&kunit_clock_provider2 0>;
-+		clock-map = <&kunit_clock_provider2 0>;
-+		#clock-cells = <0>;
-+
-+		kunit-clock-nexus-child {
-+			clocks = <&kunit_clock_nexus>;
-+		};
-+	};
- };
-diff --git a/include/kunit/clk.h b/include/kunit/clk.h
-index f226044cc78d..ab24f7747516 100644
---- a/include/kunit/clk.h
-+++ b/include/kunit/clk.h
-@@ -29,5 +29,7 @@ int of_clk_hw_register_kunit(struct kunit *test, struct device_node *node,
- int of_clk_add_hw_provider_kunit(struct kunit *test, struct device_node *np,
- 				 struct clk_hw *(*get)(struct of_phandle_args *clkspec, void *data),
- 				 void *data);
-+struct device_node *of_find_node_by_name_kunit(struct kunit *test, struct device_node *from,
-+					       const char *name);
- 
- #endif
+dt-bindings: clock: Introduce nexus nodes
 
--- 
-2.54.0
+This commit introduces a new device tree binding for clock nexus nodes,
+allowing hardware containers to remap clock specifier lists from consumer
+nodes in a generic way. It applies the concept from existing PWM and GPIO
+nexus nodes to clocks.
 
+> diff --git a/Documentation/devicetree/bindings/clock/clock-nexus-node.yam=
+l b/Documentation/devicetree/bindings/clock/clock-nexus-node.yaml
+> new file mode 100644
+> index 0000000000000..ff3283bd5fb11
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/clock/clock-nexus-node.yaml
+[ ... ]
+> +properties:
+> +  clock-map:
+> +    $ref: /schemas/types.yaml#/definitions/uint32-matrix
+
+[Severity: Medium]
+Does this schema omit the definition for #clock-cells and the standard
+nexus map properties like clock-map-mask and clock-map-pass-thru?
+
+Without these properties defined in the properties block, there is no type
+checking for clock-map-mask and clock-map-pass-thru. Furthermore, if a
+consumer device tree node uses them and specifies unevaluatedProperties: fa=
+lse
+in its own binding, could it spuriously fail schema validation during
+dt_binding_check?
+
+> +
+> +dependentRequired:
+> +  clock-map: ['#clock-cells']
+> +
+> +additionalProperties: true
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260710-schneider-=
+v7-2-rc1-eip201-upstream-v2-0-b4680787377e@bootlin.com?part=3D1
 
