@@ -1,190 +1,182 @@
-Return-Path: <devicetree+bounces-324601-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-324597-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id jknxG5AvUWoCAgMAu9opvQ
-	(envelope-from <devicetree+bounces-324601-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 19:44:48 +0200
+	id 1JyEBT8vUWrvAQMAu9opvQ
+	(envelope-from <devicetree+bounces-324597-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 19:43:27 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C659673D15A
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 19:44:47 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 60F4573D13D
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 19:43:26 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=none;
-	dmarc=none;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324601-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-324601-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=rCVXGJPT;
+	dmarc=pass (policy=none) header.from=gmail.com;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324597-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-324597-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 777C8300E61E
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 17:44:46 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id DDF4B3003301
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 17:43:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60669376BFB;
-	Fri, 10 Jul 2026 17:44:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9AB6B376BE2;
+	Fri, 10 Jul 2026 17:43:20 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from fx.arvanta.net (93-87-244-166.static.isp.telekom.rs [93.87.244.166])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C31B83769E9;
-	Fri, 10 Jul 2026 17:44:43 +0000 (UTC)
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1815D3769EF
+	for <devicetree@vger.kernel.org>; Fri, 10 Jul 2026 17:43:18 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783705485; cv=none; b=EVeaBfkrqzeO5VyC6lMXksF/H/keDOsQeHQ1FjstcvQOvwQDh3cVdDVtdbxPh+9ngWNsa+/0lJEo5HM2var6OQCQtOYwEor1z1h7bETX21lgqHAPEFVmrQVKxyEQkiVJaUiV6vhWsJwayy1owStV7oXbrl2mY3Q+5vZfC3fBK0c=
+	t=1783705400; cv=none; b=gVuVumbrx2Z5+pNpmr2Ay1eomNGwmAnm88dz2GBDB2xnajueGUnYGGh8FKKsoNoXC0Un/QPnqanmEXItPST3lRZGr6j3E7DaMVjzDj5vbp3DiH5S8Cl+A1tRAXsGcbD/wIBSGXrPPSrtf2qLIBh5rBu+3lB3WgO9mn1iVQNMv3s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783705485; c=relaxed/simple;
-	bh=bfJbN/i3p8vhV4jRbWd4NRdb0ZEMHuwXU3j0imuckcs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FpZ0gx3bBB/HNSMU7U0lDRFYUui/oFCudx9L7idQg/2sZvYtFlqzUN1mK5cAQ02WZdNECFXbbeuFLonee8ij/7U5P7xvPSIVdOwDe0oAutH126niZkhkJMYbDwsLNqk1U92x01WWXN5cuEt8SpU7KiOg+AGEYg/i+qL9fm2yaw4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=arvanta.net; spf=pass smtp.mailfrom=arvanta.net; arc=none smtp.client-ip=93.87.244.166
-Received: from air.arvanta.net (air.arvanta.net [10.5.1.4])
-	by fx.arvanta.net (Postfix) with ESMTP id ED996CF;
-	Fri, 10 Jul 2026 19:25:06 +0200 (CEST)
-Date: Fri, 10 Jul 2026 19:25:06 +0200
-From: Milan =?utf-8?Q?P=2E_Stani=C4=87?= <mps@arvanta.net>
-To: Shuwei Wu <shuwei.wu@mailbox.org>
-Cc: "Rafael J. Wysocki" <rafael@kernel.org>,
-	Viresh Kumar <viresh.kumar@linaro.org>,
+	s=arc-20240116; t=1783705400; c=relaxed/simple;
+	bh=KJPTUJzhlbeD9LlHd0oNOz5mq5P5fVmXjF0iQMF1Jp4=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=LTXTrKXoEive8FPDDPEeWtRrH7Xzah42eXAC9mBOSt1tTZNx52bWETI+yzk6j3cLF3sbzlJZoeyzuOGNnvO2WKmolM37WxIeDsDrFlluxTEvEd1x674F9MG/g9/tCvlNik9OkdIvCexEWbwqiqpuP67QIPgBuU2/hjHmIXsyI/4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=rCVXGJPT; arc=none smtp.client-ip=209.85.128.45
+Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-493e4cccd8dso5177575e9.2
+        for <devicetree@vger.kernel.org>; Fri, 10 Jul 2026 10:43:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1783705397; x=1784310197; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=8OEOROS/ylUhCcTkJLvcG8rNXSrm9rHJ6h2jWRJDiRI=;
+        b=rCVXGJPTOja6KqCHIafk3ncJXU9x9LLpGiig9EIwpRZgVMNHErrC6Y7FJAdkHpCc17
+         7lLZbCHAUb5mNrdZP9Q4RBsnotV4h5ksHSYc0PTAWYI2FYcBUGGR0NmgAqAiAiHPNZDW
+         d3ID7SsZ4H704LB1zG6vUap2abJNgB5PeQ9MJiP1PSxsAWYDIl2vEdUM9EljiDbQOz16
+         lqtiTAochzfIigW3VSaZFgH2ak3+4XDiDDdwg6f9pxLzVsV4GRqVJLNAVM7vwiC0b+1Y
+         iQFQHqVm7fFvqTdE8H9g31R62BtYwsdvKpr+ce04IQASbHPdfhys617W9aCMLyeOeM5V
+         yb/g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1783705397; x=1784310197;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=8OEOROS/ylUhCcTkJLvcG8rNXSrm9rHJ6h2jWRJDiRI=;
+        b=ST+cIuEe46TLmR8CRtNYOtY3QqUHyTSXxhZvgRJYp8lvSJWqEAjoq+o/AHiiXMLhQH
+         1EVCpMCTStdgMm9/4H+cSwuZevj0ST7YRTyREmmsl6+S28QXik2mdg5YVyqnWoXylenQ
+         7kDHQ1MBjIeQd0WQciv1V3PRhR4niuMHj2/yCxvKV0EbESPtbeycUsJqPbTMmfAY88t5
+         cx5rGDHTsLYIMzwoNR6bZnuKuchAbeEorXH22zf3ZlUqUEv7YAM7iLZ5n2BvlupTZP/E
+         B17+f0fcUwK7Y5u5bLyQNwaIKFjCBbFT6XCcpPjpx8izOB2/SXEJ2/JF715fBeDz0n2P
+         7hYA==
+X-Forwarded-Encrypted: i=1; AHgh+Rq2+YMFI0IoKm0Os6res0bFyMd49iGGVQ6aKDkopMdN/pveSBwsbRzIQimF7twwaHoMxbb6g5vTgiW2@vger.kernel.org
+X-Gm-Message-State: AOJu0YzAvE0UDX+BFoVJ7cd8PzGi0MTp//tnQarwuWcDzdbR4WvQE0Gw
+	yW5TICRlCql95uPQU+WwplGaIn1o+XitJKf7MinVyUAnEwh1uJAK7ODj
+X-Gm-Gg: AfdE7cnr3hh8u3Ii8L3AjVpnt3NW/7mHavCQxO3XsG2yjMBV9rgAmUJ1APN/DMbjOgb
+	4aK1YiIrS2JVCcvtfScTnvRma35FMX0rZVGxw9t+XeNeUvon4lVaa82uIiQSXK6SmMLD5bGwslF
+	d5e1YRplpPc1bBi4tRGTiYx+UpWdrECPiVHxoLFzmBswPh8BoDQoLau7HcIW7vUycN20zZhME0j
+	awYn+YV7dVxwbl987bcOUTi8/V/okCc2TBW0ch6MV695KWIA07x0X26Z/TAn+XDGMBuRt9PQpQl
+	3gvnOSLq++yF9RETl9zH/FbEMxHnB7b8gbnRlDUIZSUA34PQFUSUWWzt9y5Kz+boaEz4SOAy8yF
+	nco0IZ+hDLiCTy49FJ21fZwbH1KYAnd8KzLXpi7trZTRYvEKJYzHLoGGJuCZO+SmCRgkta2ABJL
+	VklZAGIqhj9AcKdBrQSsQyHFX/QsnkfHbplZrNdVcyNX/JCldoG3kw
+X-Received: by 2002:a05:600c:b90:b0:493:e97c:10e0 with SMTP id 5b1f17b1804b1-493e97c10f4mr90835345e9.35.1783705397221;
+        Fri, 10 Jul 2026 10:43:17 -0700 (PDT)
+Received: from GLaDOS.station ([185.81.127.246])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-47a9de1d91bsm67170201f8f.4.2026.07.10.10.43.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 10 Jul 2026 10:43:16 -0700 (PDT)
+From: Stefano Radaelli <stefano.radaelli21@gmail.com>
+X-Google-Original-From: Stefano Radaelli <stefano.r@variscite.com>
+To: linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Cc: pierluigi.p@variscite.com,
+	matthias.p@variscite.com,
+	Stefano Radaelli <stefano.r@variscite.com>,
+	Nishanth Menon <nm@ti.com>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Tero Kristo <kristo@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Yixun Lan <dlan@kernel.org>, linux-pm@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
-	spacemit@lists.linux.dev, devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 0/2] cpufreq: spacemit: Add cpufreq support for K1 SoC
-Message-ID: <20260710172506.GA7260@air.arvanta.net>
-References: <20260626-shadow-deps-v4-0-bba9831f2f1d@mailbox.org>
+	Conor Dooley <conor+dt@kernel.org>,
+	Kees Cook <kees@kernel.org>,
+	Tony Luck <tony.luck@intel.com>,
+	"Guilherme G. Piccoli" <gpiccoli@igalia.com>
+Subject: [PATCH v3 0/3] Add support for Variscite VAR-SOM-AM62 and Symphony board
+Date: Fri, 10 Jul 2026 19:43:06 +0200
+Message-ID: <cover.1783689915.git.stefano.r@variscite.com>
+X-Mailer: git-send-email 2.47.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260626-shadow-deps-v4-0-bba9831f2f1d@mailbox.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.04 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[arvanta.net];
-	FORGED_RECIPIENTS(0.00)[m:shuwei.wu@mailbox.org,m:rafael@kernel.org,m:viresh.kumar@linaro.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:pjw@kernel.org,m:palmer@dabbelt.com,m:aou@eecs.berkeley.edu,m:alex@ghiti.fr,m:dlan@kernel.org,m:linux-pm@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-riscv@lists.infradead.org,m:spacemit@lists.linux.dev,m:devicetree@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER(0.00)[mps@arvanta.net,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	TAGGED_FROM(0.00)[bounces-324601-lists,devicetree=lfdr.de];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	TAGGED_FROM(0.00)[bounces-324597-lists,devicetree=lfdr.de];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:pierluigi.p@variscite.com,m:matthias.p@variscite.com,m:stefano.r@variscite.com,m:nm@ti.com,m:vigneshr@ti.com,m:kristo@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:kees@kernel.org,m:tony.luck@intel.com,m:gpiccoli@igalia.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[mps@arvanta.net,devicetree@vger.kernel.org];
+	FORGED_SENDER(0.00)[stefanoradaelli21@gmail.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	R_DKIM_NA(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[stefanoradaelli21@gmail.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,mailbox.org:email]
+	ALIAS_RESOLVED(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: C659673D15A
+X-Rspamd-Queue-Id: 60F4573D13D
 
-On Fri, 2026-06-26 at 16:10, Shuwei Wu wrote:
-> This series enables CPU DVFS for the SpacemiT K1 SoC using the generic
-> cpufreq-dt driver.
-> 
-> K1 has two CPU clock clusters. The two clusters have separate CPU clocks,
-> so they are represented as two cpufreq policies: policy0 for CPUs 0-3 and
-> policy4 for CPUs 4-7.
-> 
-> The CPU voltage rail is shared between the clusters. To model this with two
-> policies, the OPP entries describe voltage ranges instead of a single fixed
-> voltage, so the shared regulator can keep the rail within a range acceptable
-> for the active OPP constraints.
-> 
-> Tested on Banana Pi BPI-F3:
-> 
-> ~ # cat /sys/devices/system/cpu/online
-> 0-7
-> 
-> ~ # ls /sys/devices/system/cpu/cpufreq/
-> policy0  policy4
-> 
-> ~ # cat /sys/devices/system/cpu/cpufreq/policy0/scaling_driver
-> cpufreq-dt
-> ~ # cat /sys/devices/system/cpu/cpufreq/policy0/affected_cpus
-> 0 1 2 3
-> 
-> ~ # cat /sys/devices/system/cpu/cpufreq/policy4/scaling_driver
-> cpufreq-dt
-> ~ # cat /sys/devices/system/cpu/cpufreq/policy4/affected_cpus
-> 4 5 6 7
-> 
-> Both policies expose the same OPP frequencies:
-> 
-> ~ # cat /sys/devices/system/cpu/cpufreq/policy0/scaling_available_frequencies
-> 614400 819000 1000000 1228800 1600000
-> 
-> ~ # cat /sys/devices/system/cpu/cpufreq/policy4/scaling_available_frequencies
-> 614400 819000 1000000 1228800 1600000
-> 
-> For each policy, scaling_setspeed was set to each supported OPP and the
-> workload was pinned to one CPU covered by that policy with taskset.
-> CPU0 was used for policy0, and CPU4 was used for policy4. The clock rates below
-> are from /sys/kernel/debug/clk/clk_summary.
-> 
-> policy0 / CPU0:
-> ----------------------------------------------------------
-> Frequency    |  cpu_c0_core_clk  |  Real (s)  |  User (s)
-> (kHz)        |  (Hz)             |            |
-> -------------+-------------------+------------+-----------
-> 1,600,000    |  1,600,000,000    |    1.81    |    1.80
-> 1,228,800    |  1,228,800,000    |    2.37    |    2.37
-> 1,000,000    |  1,000,000,000    |    2.89    |    2.89
->   819,000    |    819,200,000    |    3.56    |    3.55
->   614,400    |    614,400,000    |    4.71    |    4.71
-> ----------------------------------------------------------
-> 
-> policy4 / CPU4:
-> ----------------------------------------------------------
-> Frequency    |  cpu_c1_core_clk  |  Real (s)  |  User (s)
-> (kHz)        |  (Hz)             |            |
-> -------------+-------------------+------------+-----------
-> 1,600,000    |  1,600,000,000    |    1.81    |    1.80
-> 1,228,800    |  1,228,800,000    |    2.36    |    2.36
-> 1,000,000    |  1,000,000,000    |    2.89    |    2.89
->   819,000    |    819,200,000    |    3.55    |    3.55
->   614,400    |    614,400,000    |    4.71    |    4.70
-> ----------------------------------------------------------
-> 
-> Signed-off-by: Shuwei Wu <shuwei.wu@mailbox.org>
-> ---
-> Changes in v4:
-> - Represent K1 as two cpufreq-dt policies, one per CPU clock cluster
-> - Use OPP voltage ranges for the shared CPU supply
-> - Link to v3: https://lore.kernel.org/r/20260612-shadow-deps-v3-0-2f3ba88611ff@mailbox.org
-> 
-> Changes in v3:
-> - Add a K1-specific cpufreq driver for the shared-rail, dual-clock topology
-> - Use one shared CPU OPP table and one cpufreq policy for all CPUs
-> - Link to v2: https://lore.kernel.org/r/20260410-shadow-deps-v2-0-4e16b8c0f60e@mailbox.org
-> 
-> Changes in v2:
-> - Move OPP tables to dedicated k1-opp.dtsi
-> - Enable OPP only on BPI-F3 with cpu-supply present
-> - Link to v1: https://lore.kernel.org/r/20260308-shadow-deps-v1-0-0ceb5c7c07eb@mailbox.org
-> 
+The series includes:
+- Device tree bindings documentation
+- SOM device tree with common peripherals
+- Symphony carrier board device tree with board-specific features
 
-Tested on bananapi-F3 and Musebook, works fine.
+The implementation follows the standard SOM + carrier board pattern
+where the SOM dtsi contains only peripherals mounted on the module,
+while carrier-specific interfaces are enabled in the board dts.
 
-Tested-by: Milan P. Stanić <mps@arvanta.net>
+v2->v3:
+ - Add audio_refclk1 clock
+ - Removed pinctrl_vdd_mmc2
+ - Fix reg_sdhc1_vmmc regulator
+ - Add missing properties on pca9534 node
 
-> ---
+v1->v2:
+ - Fix AM62X_MCU_IOPAD macro
+ - Fix OPP table comment
+ - Remove reg_vdd_mmc2 regulator
+ - Fix reg_sdhc1_vmmc pinctrl
+ - Add reg_ov5640_buf_en pinctrl
+
+Stefano Radaelli (3):
+  dt-bindings: arm: ti: Add bindings for Variscite VAR-SOM-AM62
+  arm64: dts: ti: Add support for Variscite VAR-SOM-AM62
+  arm64: dts: ti: var-som-am62: Add support for Variscite Symphony Board
+
+ .../devicetree/bindings/arm/ti/k3.yaml        |   6 +
+ arch/arm64/boot/dts/ti/Makefile               |   1 +
+ .../boot/dts/ti/k3-am625-var-som-symphony.dts | 555 ++++++++++++++++++
+ arch/arm64/boot/dts/ti/k3-am625-var-som.dtsi  | 483 +++++++++++++++
+ 4 files changed, 1045 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am625-var-som-symphony.dts
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am625-var-som.dtsi
+
+
+base-commit: 5c73cd9f0819c1c44e373e3dabb68318b1de1a12
+-- 
+2.47.3
+
 
