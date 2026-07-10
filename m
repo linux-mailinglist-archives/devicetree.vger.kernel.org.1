@@ -1,296 +1,201 @@
-Return-Path: <devicetree+bounces-324208-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-324210-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 0qArNoBgUGozxwIAu9opvQ
-	(envelope-from <devicetree+bounces-324208-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 05:01:20 +0200
+	id xrW5IBhhUGppxwIAu9opvQ
+	(envelope-from <devicetree+bounces-324210-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 05:03:52 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66EDB736E07
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 05:01:20 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1BEA3736E1B
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 05:03:52 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=CG6ZzRJx;
+	dkim=pass header.d=kernel.org header.s=k20201202 header.b=a6UtQSti;
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324208-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-324208-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324210-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-324210-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 78EBF3014260
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 03:01:19 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 3DA8E30179EE
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 03:03:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE88D35836A;
-	Fri, 10 Jul 2026 03:01:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7C1936167E;
+	Fri, 10 Jul 2026 03:03:44 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 811F71A268;
-	Fri, 10 Jul 2026 03:01:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9ACF83246EB;
+	Fri, 10 Jul 2026 03:03:44 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783652476; cv=none; b=QropjA7QF9uSwTqxIL0fZ9AFANfk2wdEMx2dzv6qlCEHiBsAByh+zP1As3trNl34fq2cCdrtc7y3w6bordr3pgl0DpTQQLb2OcG4DYLZZPKKSTGWjXqLJi/uYZvnqFGBTTvzMUeptZTn9A0aj35p1yaiY7GneuFY6Y8tV929Guw=
+	t=1783652624; cv=none; b=uZ2dFAX12LRdvCovcuIsAfjfHSeDzPHUiHP8oQO/ie8W9K8JM1YaxLdrX3eWaQnljfAYtEYJ/OhZGhUE7uyzMYcJhvZx6nhWpnPmnpFkmmVJwfZvcVe4m8NNZ0i5lmdYcrwRqTVj5+nR1SGQhUHlmksQy/ERoj/OVHL4ljm88JQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783652476; c=relaxed/simple;
-	bh=oo++XuOYo7l3icNv3kwFfCLZv0Qm73O4s9a1wGBTIhM=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=Hw9FMIPj1BEyJhaqN6bs7KT4cbvc9NtXMFyE+24Xt0SfoiVCdBNSsPqMfdny9vV1o8e3e+eeXwIIshAs1+vWLb7HKHx6GZxIQEbT3MT2hdwTFazTHk56MJP601E52x8mxl6HDQMc9VfiPXsXwSobMZzEdoSGcAIAPIXakQCa6KU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CG6ZzRJx; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 076FD1F000E9;
-	Fri, 10 Jul 2026 03:01:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783652475;
-	bh=TKKui7vhq2/fmwC4nd9vrFCyZJ7U5YgBkhMA8O9xkrw=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=CG6ZzRJxepUe0CHbgrxmRIkCErGaue3xC52UuXYaTd0W8r1zMpH1pEcvvnPj6PfiS
-	 yMqJzcQnMf79cXVn9tl2j5FUBg11Z5nEuj10XwaIYxXkKVuzYDtPSvvue+Id0Y7cmt
-	 mYn6sfM3llXWpaHP2+NcaRkKWmNUFHboQO6A0fT8dFYxpzAJlpdqrXkG3vwhhKdRS/
-	 UPSoAF2e2gfOeF8Jl69pe7t7PiFt8vJXmODRKIfa1rXXau0qAxomcinMD72e/pKO40
-	 +DN6R2bvg5biNELYEDzdd7ZjY3CCW18D2g1QC0569Cy2foU9+4RspY90fkbDJHWTtK
-	 y4jOZT2lvAPhA==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v3 2/2] thermal/drivers/imx: Add calibration offset
- support
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "HaoNing Cheng" <Haoning.CHENG@cn.bosch.com>
-Cc: devicetree@vger.kernel.org, Frank.Li@kernel.org, imx@lists.linux.dev, conor+dt@kernel.org, robh@kernel.org
-In-Reply-To: <20260710-b4-symana21-11221-imx-thermal-support-upstream-6-18-v3-2-db9fc2947c55@cn.bosch.com>
-References: <20260710-b4-symana21-11221-imx-thermal-support-upstream-6-18-v3-0-db9fc2947c55@cn.bosch.com>
- <20260710-b4-symana21-11221-imx-thermal-support-upstream-6-18-v3-2-db9fc2947c55@cn.bosch.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Fri, 10 Jul 2026 03:01:14 +0000
-Message-Id: <20260710030115.076FD1F000E9@smtp.kernel.org>
+	s=arc-20240116; t=1783652624; c=relaxed/simple;
+	bh=rg4p8WzLCF5HXOkepTKkJwIMDiueeObYYdvXoeSmZdo=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=O99nFq8DwL8miw92fOfa8T6/YOyL6tNUqsP5Jc07cXbGT+HsvfbQxr8s/ibrPs80wokxr7/LW2/jlIxUx/tvOS7TpA+CP1bsggtGrMOCKnhEUQDTAlgXra13sqX2LmqcAuKuwiHvSzhZBpGc37OPi7t7ruMNCpZM4AKmOJhOBWQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=a6UtQSti; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 2BD5CC2BCB7;
+	Fri, 10 Jul 2026 03:03:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1783652624;
+	bh=rg4p8WzLCF5HXOkepTKkJwIMDiueeObYYdvXoeSmZdo=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=a6UtQStiBSUKthlNSqG4rsX++3EBxe4pkFhJXQBD0+gybehUfmZlw9sKf/9jBJoAa
+	 qMsZCrnBVLwfI73Mp19zxsWSp4AFPXJ3rXEEf0St26CtUJoW9Z6Z2K/V3EQcsnPW7P
+	 fe3P3yXHEra03v55C4LkBlNEafq49EwqJm70v1cxcQyny5jwimKiERfSa7jLmuJIY0
+	 XVz8Fna93FHK0pTFrKOFy05d3QV6kT3qB2yKF3aRYiFDbirVsWhVBiRWMd474VBifW
+	 bTxevO4OGonQ36MXqCBy125CUW/ystpJ+g4SV1OID46p5lUTSbIqB9ubJVw3Do8PmH
+	 Qv4jVOcy65JCg==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 059D3C43458;
+	Fri, 10 Jul 2026 03:03:44 +0000 (UTC)
+From: HaoNing Cheng via B4 Relay <devnull+Haoning.CHENG.cn.bosch.com@kernel.org>
+Subject: [PATCH v4 0/2] thermal: imx: Add calibration offset support
+Date: Fri, 10 Jul 2026 11:03:35 +0800
+Message-Id: <20260710-b4-symana21-11221-imx-thermal-support-upstream-6-18-v4-0-1fef97d1c750@cn.bosch.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAdhUGoC/63OQW7DIBAF0KtErDsRYGxDVr1HlQXgoaYqxgJsJ
+ Yp89+BkU1Vdtd2M9KWvef9GMiaPmZwON5Jw9dnHqQbxciB21NM7gh9qJpzyjvZUgRGQr0FPmjN
+ gjNfrwwXKiCnoT8jLPMdUYJlzSagDdMAkaCqFkmJA03ekfp4TOn95qG/nZ86L+UBbdmpvjD6Xm
+ K6PWSvbe39bsDKgQKmT0gmuGmpe7XQ0MdvxaGMg+4iV/wPDn4zruVAtcvED03xhGP0d01RmMMp
+ ZrkRv2/Ybs23bHQleUbfZAQAA
+X-Change-ID: 20260709-b4-symana21-11221-imx-thermal-support-upstream-6-18-a084984deb76
+To: "Rafael J. Wysocki" <rafael@kernel.org>, 
+ Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>, 
+ Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>
+Cc: linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, Haoning CHENG <Haoning.CHENG@cn.bosch.com>
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1783652619; l=3134;
+ i=Haoning.CHENG@cn.bosch.com; s=20260709; h=from:subject:message-id;
+ bh=rg4p8WzLCF5HXOkepTKkJwIMDiueeObYYdvXoeSmZdo=;
+ b=Wr+lu8A6NEKTvfhlm6B9bEU2mQ2TEgmWgt4WzKRSdqeD+HeKiFuTk6heY1jlwfc7pkjC+1wqy
+ 7J4IxjZSNM6AjZhASbYU4CeuWOVrQwK665wjNfzgCdeO17Ib4AcV4BK
+X-Developer-Key: i=Haoning.CHENG@cn.bosch.com; a=ed25519;
+ pk=glQGwad/fosRS5gZUJYbLDPPLGe7rFTrTV2VxY/ySdc=
+X-Endpoint-Received: by B4 Relay for Haoning.CHENG@cn.bosch.com/20260709
+ with auth_id=860
+X-Original-From: HaoNing Cheng <Haoning.CHENG@cn.bosch.com>
+Reply-To: Haoning.CHENG@cn.bosch.com
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
+X-Spamd-Result: default: False [-3.66 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-324210-lists,devicetree=lfdr.de,Haoning.CHENG.cn.bosch.com];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	TAGGED_FROM(0.00)[bounces-324208-lists,devicetree=lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,vger.kernel.org:from_smtp,bosch.com:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,lists.linux.dev:replyto];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:Haoning.CHENG@cn.bosch.com,m:devicetree@vger.kernel.org,m:Frank.Li@kernel.org,m:imx@lists.linux.dev,m:conor+dt@kernel.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS(0.00)[m:rafael@kernel.org,m:daniel.lezcano@linaro.org,m:rui.zhang@intel.com,m:lukasz.luba@arm.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:shawnguo@kernel.org,m:s.hauer@pengutronix.de,m:kernel@pengutronix.de,m:festevam@gmail.com,m:linux-pm@vger.kernel.org,m:devicetree@vger.kernel.org,m:imx@lists.linux.dev,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:Haoning.CHENG@cn.bosch.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[17];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[kernel.org,linaro.org,intel.com,arm.com,pengutronix.de,gmail.com];
 	FORWARDED(0.00)[lists@lfdr.de];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
 	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	RCPT_COUNT_FIVE(0.00)[6];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FROM_NO_DN(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	HAS_REPLYTO(0.00)[Haoning.CHENG@cn.bosch.com]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 66EDB736E07
+X-Rspamd-Queue-Id: 1BEA3736E1B
 
-Thank you for your contribution! Sashiko AI review found 5 potential issue(=
-s) to consider:
+Some i.MX boards need a small per-design correction to align the
+reported CPU temperature with board-level measurements. This series
+adds an optional DT property to specify such a calibration offset
+and implements the corresponding support in the imx_thermal driver.
 
-New issues:
-- [Medium] The patch introduces `fsl,temp-calibration-offset-millicelsius` =
-without bounding its value. For non-IMX7D platforms, an accidentally or mal=
-iciously large calibration offset will cause `alarm_value` (and `critical_v=
-alue`) to exceed their bitmask, corrupting adjacent register fields during =
-the unbounded shift and `REG_SET` operation.
+Patch 1 documents the new fsl,temp-calibration-offset-millicelsius
+property in the i.MX thermal DT binding.
 
-Pre-existing issues:
-- [High] If `pm_runtime_resume_and_get()` fails in probe, the error path le=
-aks the thermal zone device and triggers a double-put of the runtime PM usa=
-ge count. Additionally, `imx_thermal_remove` has an unconditional PM usage =
-count underflow.
-- [High] Early error returns in `imx_get_temp` fail to drop the PM runtime =
-reference, causing a resource leak.
-- [High] A data race on the boolean flag `data->irq_enabled` between `imx_c=
-hange_mode` and the hardirq handler can cause the thermal alarm IRQ to beco=
-me permanently disabled.
-- [High] The thermal alarm IRQ thread can execute after the thermal zone ha=
-s been unregistered and freed during driver removal.
---
+Patch 2 reads this property in the imx_thermal driver and applies
+the offset to the i.MX6/6SX/7D calibration formulas. When the
+property is absent, the default offset remains 0, preserving the
+current behaviour.
 
---- Patch [2]: [PATCH v3 2/2] thermal/drivers/imx: Add calibration offset s=
-upport ---
-commit 311020e0627d8a262b45753877ad91b58881323e
-Author: HaoNing Cheng <Haoning.CHENG@cn.bosch.com>
+Signed-off-by: Haoning CHENG <Haoning.CHENG@cn.bosch.com>
+---
+Changes in v4:
+- dt-bindings: drop maxItems to allow minimum/maximum constraints for
+  temp-calibration-offset-millicelsius
+- Link to v3: https://patch.msgid.link/20260710-b4-symana21-11221-imx-thermal-support-upstream-6-18-v3-0-db9fc2947c55@cn.bosch.com
 
-thermal/drivers/imx: Add calibration offset support
+Changes in v3:
+- dt-bindings: add minimum/maximum (-28580/+28580) for
+  temp-calibration-offset-millicelsius, as suggested by Conor Dooley
+- Link to v2: https://patch.msgid.link/20260709-b4-symana21-11221-imx-thermal-support-upstream-6-18-v2-0-00ff72495e24@cn.bosch.com
 
-This patch introduces a device tree property to apply a small calibration=20
-offset to the reported CPU temperature. It reads the property and applies i=
-t=20
-to the i.MX6/6SX/7D calibration formulas while preserving the default behav=
-ior.
+Changes in v2:
+- dt-bindings: Removed explicit `$ref: /schemas/types.yaml#/definitions/int32`
+  for fsl,temp-calibration-offset-millicelsius; the `-millicelsius` suffix
+  already resolves to int32-array via property-units.yaml (Rob).
+- dt-bindings: Fixed example indentation.
+- driver: Replaced C integer division (/) with DIV_ROUND_CLOSEST() in
+  imx_set_alarm_temp() to prevent off-by-one alarm threshold mismatch that
+  could cause IRQ storms on i.MX7D.
+- driver: Added clamp() bounds check for alarm_value [0, 0x1ff] to avoid
+  corrupting adjacent register fields (PANIC_ALARM).
+- Link to v1: https://patch.msgid.link/20260709-b4-symana21-11221-imx-thermal-support-upstream-6-18-v1-0-00f88f42930b@cn.bosch.com
 
-> diff --git a/drivers/thermal/imx_thermal.c b/drivers/thermal/imx_thermal.c
-> --- a/drivers/thermal/imx_thermal.c
-> +++ b/drivers/thermal/imx_thermal.c
-> @@ -240,10 +241,13 @@ static void imx_set_alarm_temp(struct imx_thermal_d=
-ata *data,
-> =20
->  	data->alarm_temp =3D alarm_temp;
-> =20
-> -	if (data->socdata->version =3D=3D TEMPMON_IMX7D)
-> -		alarm_value =3D alarm_temp / 1000 + data->c1 - 25;
-> -	else
-> +	if (data->socdata->version =3D=3D TEMPMON_IMX7D) {
-> +		alarm_value =3D DIV_ROUND_UP(alarm_temp - data->calibration_offset,
-> +					   1000) + data->c1 - 25;
-> +		alarm_value =3D clamp(alarm_value, 0, 0x1ff);
-> +	} else {
->  		alarm_value =3D (data->c2 - alarm_temp) / data->c1;
-> +	}
-> =20
->  	regmap_write(map, soc_data->high_alarm_ctrl + REG_CLR,
->  		     soc_data->high_alarm_mask);
+To: "Rafael J. Wysocki" <rafael@kernel.org>
+To: Daniel Lezcano <daniel.lezcano@linaro.org>
+To: Zhang Rui <rui.zhang@intel.com>
+To: Lukasz Luba <lukasz.luba@arm.com>
+To: Rob Herring <robh@kernel.org>
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>
+To: Conor Dooley <conor+dt@kernel.org>
+To: Shawn Guo <shawnguo@kernel.org>
+To: Sascha Hauer <s.hauer@pengutronix.de>
+To: Pengutronix Kernel Team <kernel@pengutronix.de>
+To: Fabio Estevam <festevam@gmail.com>
+Cc: linux-pm@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Cc: imx@lists.linux.dev
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-kernel@vger.kernel.org
 
-[Severity: Medium]
-For non-IMX7D platforms, does this code allow an unbounded calibration offs=
-et
-from the device tree to overflow the alarm_value?
+---
+HaoNing Cheng (2):
+      dt-bindings: thermal: imx: Document calibration offset property
+      thermal/drivers/imx: Add calibration offset support
 
-If a large offset is provided, data->c2 will be skewed. This could cause
-alarm_value to exceed its bitmask since it is not clamped in the else branc=
-h.
-Could this corrupt adjacent register fields during the shifted REG_SET
-operation below?
+ .../devicetree/bindings/thermal/imx-thermal.yaml       |  9 +++++++++
+ drivers/thermal/imx_thermal.c                          | 18 +++++++++++++-----
+ 2 files changed, 22 insertions(+), 5 deletions(-)
+---
+base-commit: c50a940dcde35c647e097e89a9150003abd48329
+change-id: 20260709-b4-symana21-11221-imx-thermal-support-upstream-6-18-a084984deb76
 
-> @@ -274,7 +278,7 @@ static int imx_get_temp(struct thermal_zone_device *t=
-z, int *temp)
-> =20
->  	/* See imx_init_calib() for formula derivation */
->  	if (data->socdata->version =3D=3D TEMPMON_IMX7D)
-> -		*temp =3D (n_meas - data->c1 + 25) * 1000;
-> +		*temp =3D (n_meas - data->c1 + 25) * 1000 + data->calibration_offset;
->  	else
->  		*temp =3D data->c2 - n_meas * data->c1;
+Best regards,
+--  
+Haoning CHENG <Haoning.CHENG@cn.bosch.com>
 
-[Severity: High]
-This is a pre-existing issue, but looking earlier in imx_get_temp(), if the
-sensor is busy, the function returns early without dropping the PM runtime
-reference:
 
-drivers/thermal/imx_thermal.c:imx_get_temp() {
-    ret =3D pm_runtime_resume_and_get(data->dev);
-    if (ret < 0)
-        return ret;
-
-    regmap_read(map, soc_data->temp_data, &val);
-
-    if ((val & soc_data->temp_valid_mask) =3D=3D 0)
-        return -EAGAIN;
-    ...
-}
-
-Does this cause a permanent resource leak of the device PM runtime usage
-counter when -EAGAIN is returned?
-
-> @@ -629,6 +633,10 @@ static int imx_thermal_probe(struct platform_device =
-*pdev)
-> =20
->  	platform_set_drvdata(pdev, data);
-> =20
-> +	of_property_read_s32(dev->of_node,
-> +			     "fsl,temp-calibration-offset-millicelsius",
-> +			     &data->calibration_offset);
-> +
->  	if (of_property_present(dev->of_node, "nvmem-cells")) {
->  		ret =3D imx_init_from_nvmem_cells(pdev);
-
-[Severity: High]
-This is a pre-existing issue, but further down in imx_thermal_probe(), if
-pm_runtime_resume_and_get() fails, the error path jumps to disable_runtime_=
-pm:
-
-drivers/thermal/imx_thermal.c:imx_thermal_probe() {
-    ...
-    ret =3D pm_runtime_resume_and_get(data->dev);
-    if (ret < 0)
-        goto disable_runtime_pm;
-    ...
-thermal_zone_unregister:
-    thermal_zone_device_unregister(data->tz);
-disable_runtime_pm:
-    pm_runtime_put_noidle(data->dev);
-    pm_runtime_disable(data->dev);
-    ...
-}
-
-Since the jump bypasses thermal_zone_device_unregister(), and data is devres
-managed, does this leave an orphaned thermal zone registered that will caus=
-e a
-use-after-free when polled? Additionally, since the usage count is already 0
-on resume failure, does the pm_runtime_put_noidle() cause an underflow?
-
-[Severity: High]
-This is a pre-existing issue, but there appears to be a use-after-free duri=
-ng
-driver removal.
-
-In imx_thermal_remove(), thermal_zone_device_unregister(data->tz) is explic=
-itly
-called, but the IRQ thread is devres-managed and continues to be active unt=
-il
-after the remove function returns:
-
-drivers/thermal/imx_thermal.c:imx_thermal_alarm_irq_thread() {
-    ...
-    thermal_zone_device_update(data->tz, THERMAL_EVENT_UNSPECIFIED);
-    ...
-}
-
-Can the devm-managed IRQ fire during module teardown and access the freed
-data->tz pointer here?
-
-[Severity: High]
-This is a pre-existing issue, but there seems to be a data race on the
-data->irq_enabled flag that can permanently disable the thermal alarm IRQ.
-
-If the thermal zone mode is changed via sysfs concurrently with a hardware
-thermal alarm interrupt, both paths check and modify the flag locklessly:
-
-drivers/thermal/imx_thermal.c:imx_change_mode() {
-    if (data->irq_enabled) {
-        disable_irq(data->irq);
-        data->irq_enabled =3D false;
-    }
-    ...
-}
-
-drivers/thermal/imx_thermal.c:imx_thermal_alarm_irq() {
-    ...
-    disable_irq_nosync(irq);
-    data->irq_enabled =3D false;
-    ...
-}
-
-Could both paths execute their disable function, incrementing the IRQ depth
-twice, such that subsequent enables leave the IRQ physically disabled?
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260710-b4-symana2=
-1-11221-imx-thermal-support-upstream-6-18-v3-0-db9fc2947c55@cn.bosch.com?pa=
-rt=3D2
 
