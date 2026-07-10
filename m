@@ -1,205 +1,279 @@
-Return-Path: <devicetree+bounces-324326-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-324328-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id p2NUBzu9UGqM4QIAu9opvQ
-	(envelope-from <devicetree+bounces-324326-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 11:36:59 +0200
+	id wTFbN6a9UGqw4QIAu9opvQ
+	(envelope-from <devicetree+bounces-324328-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 11:38:46 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A666773922B
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 11:36:58 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3205F739293
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 11:38:46 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=FO9TF+w8;
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324326-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-324326-lists+devicetree=lfdr.de@vger.kernel.org";
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
+	dkim=pass header.d=nxp.com header.s=selector1 header.b=nbix4Gdg;
+	dmarc=pass (policy=none) header.from=nxp.com;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324328-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-324328-lists+devicetree=lfdr.de@vger.kernel.org";
+	arc=reject ("cv is fail on i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 1B2A93012B21
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 09:35:32 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 8056030078DB
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 09:36:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3E243DCD85;
-	Fri, 10 Jul 2026 09:35:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24D7C3DC4A4;
+	Fri, 10 Jul 2026 09:36:40 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from AM0PR83CU005.outbound.protection.outlook.com (mail-westeuropeazon11010063.outbound.protection.outlook.com [52.101.69.63])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97C8C3D1AA0
-	for <devicetree@vger.kernel.org>; Fri, 10 Jul 2026 09:35:24 +0000 (UTC)
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783676125; cv=none; b=P1S8ZYxWH7+L2IiAVRZwyCfN4YpSryIeHrkpSoxF2UjYS1eSu4eEX5R0mc8aUtP4GE7iaIxVzpmMe47seBNTqC0dd6OIXGGcHFrUmeoTNB/iePnv87Dq0GHR5Ul2tZhGqtAnKtNPIGcJ4AUckn/wP9KVIjLkiy+Ubx/wpnoQ7v0=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783676125; c=relaxed/simple;
-	bh=2RDSBNbYh/LHDm6yzRDgbu1brhQt2WRjqswQLhQvrCE=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=bHmDnlXqFfGqQ9T+v5qp0OOKwFNvHB4PlF+LSC74rSeK/yvAp4xgHILXFwFCcqaBX21wmdixADSCGZDtXzki8p/nDcgRvMSX6zFa4/ecgaht2PtiJ+Z+io1mGq+/GR63FcRWACmD6XGm3dKnJ8pdTJ0iGkxzjmVH+iGtTg+Qza8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FO9TF+w8; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9D7AD1F000E9;
-	Fri, 10 Jul 2026 09:35:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783676123;
-	bh=53F+ZQyXoz6Um2mqXo+PzRlaC5XPaxb8nvGCLggiSGg=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=FO9TF+w8yfGRZ0I5vAGpRn2UMJw+UZg61/vwsUu/guy9Rr3Y3mbsgAlnKbd+pNTaq
-	 I51HcXL+r8SMhfYqiobCpbnZ4r0eEYAveeOKMMQJTjN+HFxQEz8fzkr5vWdXR1yUiJ
-	 TcNa2F6sPekueOOTBumdC9bxWcZu7TN9MLrCgB2Ml3MRfPheYMgoab1lRNWUDtV6BB
-	 rKWUezHYkAKGPpPJnbv0YigZNYWgDOiHBwx265fXuGmMM8u70oZ7skLJiYcNyEPGqc
-	 iuEMdy4EnrqOvroswGQfVhDLgd9QBNPlaozdhVoDlfkqTvH8qysYTD4To124xT9V2m
-	 mYHkLJTzP0UBQ==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v4 7/7] arm64: dts: qcom: agatti: Add OPE node
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Loic Poulain" <loic.poulain@oss.qualcomm.com>
-Cc: conor+dt@kernel.org, robh@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20260710-camss-isp-ope-v4-7-51207a0319d8@oss.qualcomm.com>
-References: <20260710-camss-isp-ope-v4-0-51207a0319d8@oss.qualcomm.com>
- <20260710-camss-isp-ope-v4-7-51207a0319d8@oss.qualcomm.com>
-Content-Type: text/plain; charset=utf-8
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 621913F165C;
+	Fri, 10 Jul 2026 09:36:38 +0000 (UTC)
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1783676200; cv=fail; b=UwYoETa+D+VXZ5h0LX4Q1bE1VNwLxSz8gaLMJLFtq4IFCIfTgPjIw38u55Ic6ca1WMz/rEFbjTzuLJ6NG+3cXyI0n82y31k00FR75nXXVYLlh7dy1gzel3fd4b46x4EnugPvvwPsLv+wF5ZbwuRJcvB4ysrAJiZg+fpmeOtoCQ4=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1783676200; c=relaxed/simple;
+	bh=cgH7SZVNy7EuuW1je4WMVKXWZur88jfsB5NNPlFSBaM=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=bsRNAxsBpUMXJNotlShk7g8rDJSjpi8v1ysohtDxGREY+TKZqTh2Sp6rGlYY1XzchWWHEa+3IlUQdmOgGYY5W6qOH8QkBW1qbxdbsQSi71z0N1603hvs59BoaFtPLv33te7XhAOV/LIEB4AwtAL8Tw46IUaxAJ+fMs20D034j+Y=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=nbix4Gdg; arc=fail smtp.client-ip=52.101.69.63
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=c633a4cP4oPDTpya8OhBSfQJKxQTzqabPxC3mU4tp0P3nDcHpAKXlt999+JcBnnqlZgK6fwE3LX7Y9VL5AYr6S8Gbc4kLIM4LuOAv5oIDNzaOJ1IjUXvcCbeTSDczkXp194g5MjAvXS10H3L/Bj6ls/2fWdgexdxASPJSyBdi2N6nJ3HXCk/x7VSoXQ5MPKOpGMYemy8ktZFYDWd1MvL9olH3PEwMLJaEQLOWeG4T68dmhsyHUhZfdHAxhgQdBTsnjo2OO1Xzwymzi2RB7QXeTr7NWbUfSapUvDCMu5Z3ZxFV/n1/4lZzSt9gCljgd1JjJI7HJgGnDW4X2ePUUmJjw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Ed4FQzbr4K8JYdnm5mEQLDJ9MYPRFnt6TDhmb9OiYTE=;
+ b=dxszXYELZfqGix27VHVjvhm0bA30BeIezUvMIdFUGvpkb9ct43iMRbUYE4SvQSDyzKoiMxLG3ZX9OGZ2J5/SVhmvDmmBR4Xzur6YfEdS6dCLhXmbkIhZJC3+AiqYVEEmyW/TlCyUFYPxbm+vk3FJn5alGfpgVhQm47xr0MmlOFoed230VDACgWzJHVxjXhw35GJ4DK2F0CIC2ytlqR47MeP1DCyzr0ksi9Rywu/aeL2ehNfeXuMLXcHO1Bh0kQC05d6fcTmUU6pAr6yd5TTKhiwkZPvqfuJshWz5FhkOV9Akw3Pf8sIIXC5qpywr6r9o+roO82nYd4V8WZwxzuu7nQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Ed4FQzbr4K8JYdnm5mEQLDJ9MYPRFnt6TDhmb9OiYTE=;
+ b=nbix4GdgNWlKqvjZUzDD8aibxfa7RWGELZjqzUgwLtbfptAqSnBfyP/7h/mzS/UU7kIKSr+KNokdsn0BJ5Njp7Iv52kDUW7KKEGYKAkSdGS3tFsPNTLevwGzvGnXEAnz3YztRlgXNwYDcqjrr514dj5lmVvJMxrixPtrcTNfb9H1Z10JxAvH3kh2tRCWWMKH7YquExfp2inBjO0xLBAKQudfaZvvUynJ3d1eOPJUXheAF1uvcV3LrxSNT1PLtDR7FyXGH9vu0W9IF+xh4tomjgBR4a2vSgMcqbeJ3uxRPiLa5D6kGbEVLIDTud/88hP8MLpmry3sJuy2SofalxJ8NQ==
+Received: from VI0PR04MB12114.eurprd04.prod.outlook.com
+ (2603:10a6:800:315::13) by PA2PR04MB10422.eurprd04.prod.outlook.com
+ (2603:10a6:102:417::22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.15; Fri, 10 Jul
+ 2026 09:36:31 +0000
+Received: from VI0PR04MB12114.eurprd04.prod.outlook.com
+ ([fe80::feda:fd0e:147f:f994]) by VI0PR04MB12114.eurprd04.prod.outlook.com
+ ([fe80::feda:fd0e:147f:f994%6]) with mapi id 15.21.0181.014; Fri, 10 Jul 2026
+ 09:36:31 +0000
+From: Sherry Sun <sherry.sun@nxp.com>
+To: "sashiko-reviews@lists.linux.dev" <sashiko-reviews@lists.linux.dev>,
+	"Sherry Sun (OSS)" <sherry.sun@oss.nxp.com>
+CC: "imx@lists.linux.dev" <imx@lists.linux.dev>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-pci@vger.kernel.org"
+	<linux-pci@vger.kernel.org>, "robh@kernel.org" <robh@kernel.org>,
+	"Frank.Li@kernel.org" <Frank.Li@kernel.org>, "conor+dt@kernel.org"
+	<conor+dt@kernel.org>
+Subject: RE: [PATCH V5 3/4] Bluetooth: btnxpuart: Add M.2 Bluetooth device
+ support using pwrseq
+Thread-Topic: [PATCH V5 3/4] Bluetooth: btnxpuart: Add M.2 Bluetooth device
+ support using pwrseq
+Thread-Index: AQHdD4uoyHnYTS/QOki32mrTeXWU4LZlA9iAgAF78eA=
+Date: Fri, 10 Jul 2026 09:36:31 +0000
+Message-ID:
+ <VI0PR04MB1211416C8132C947807E26DFC92FD2@VI0PR04MB12114.eurprd04.prod.outlook.com>
+References: <20260709101555.3034853-1-sherry.sun@oss.nxp.com>
+ <20260709101555.3034853-4-sherry.sun@oss.nxp.com>
+ <20260709105535.793EF1F000E9@smtp.kernel.org>
+In-Reply-To: <20260709105535.793EF1F000E9@smtp.kernel.org>
+Accept-Language: zh-CN, en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: VI0PR04MB12114:EE_|PA2PR04MB10422:EE_
+x-ms-office365-filtering-correlation-id: c4a2bea4-5cdd-46bc-9472-08dede66b9a5
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|1800799024|376014|366016|23010399003|19092799006|6133799003|38070700021|18002099003|22082099003|4133799003|11063799006|4143699003|56012099006;
+x-microsoft-antispam-message-info:
+ 9COiiV+FEB1Cmhz0FSf9nimYRsjmf3Dm1rNvrkzmfbt4QtLh+R7M+g15otwyiV3L9JDwJ0fhFOqu5Y0NBRilYBLIPLamdy/amJQI7vggUwH9Rsx7mO7qHaTmu2AL1zBWwtUo+I5NvJOGdRrTJsSXkI4Px+EUxghO0ZsO6N1s5jpYgi1tDMmx49zaWeUycWAgqsgNaJwhP8SWxxSVQWShUnmkD5fcL2iOb7fkg+WlKtr5Tlu+0/gWmtCMDihokXP6f8UanZpBHbEz98IlTkpQR27+tVdZFWODEf60M+DZaS8pXWuElfbaIk9mos/z7OzXaUs9bHJWmpC/hUQ8Evi0YtZ6SDAaHJm+MSx0Gxu9+5xYF+6L+yAnl1Oxhd59SXy4gvmQf7fE3uwRTKmhMlAagJXlJvwOS2Ybz84DBXfW+H/dd/1mMOJuSNxkHHCvCYmaNE0x62MY9hFgdgLz6JH5rrHdPHQlWbHiIXfhZSN7xtt56OU0q1TYMwZM23ZdrJUwD2hJLBZEB/WEa+OSTpz9GMYZp2yzbc7p9YuQqa/aUEJYb+wz6W5VCv4/xiP02/slM8RmBfVT577J5wL1krj3V1x9QXPTBh+AkU6QUdiBUE8I61ctDdnyKXng8GJwfcxbGc8p2nkRa0sMZAtZ00XevACQ9ud3ju6KXK5l2ufXK6c=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI0PR04MB12114.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(366016)(23010399003)(19092799006)(6133799003)(38070700021)(18002099003)(22082099003)(4133799003)(11063799006)(4143699003)(56012099006);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?C30OjIqGi2QoLrWX5lBCQOXAQkxSYUFxSHkwf8oGLOD1+WkbjqzcgB+YUOtl?=
+ =?us-ascii?Q?UYHSp8mEbaCy8n8U40apenVFkKBkC0G0VKjsK2m4/CW2MdgNOyJ1215DjvP7?=
+ =?us-ascii?Q?9J9UXdluGyUfRA6ncL107K3/3cii/EVZJMfqXx4C6B6BTcvJWWzzy5K5YlL3?=
+ =?us-ascii?Q?g+xBHPLNRXHHo+06kpmYndjdfUnZDhwubLWga5f9862+bGhDrP0/Zuo6wvO8?=
+ =?us-ascii?Q?8SXGByeXjP1ZOMxpuEoHg/eJUxD8vHcKgX3RzqI9+acq3lErf22am5/iDNjV?=
+ =?us-ascii?Q?cSs8+67qKe0I+4UcePHTw5tI4b7vmu1sLdCZxdMd5dfIG4VE5nqptcveGBkR?=
+ =?us-ascii?Q?ofrFNyvKXjVIjQtlmzrLyRrMOBEr1uek2BRDoTJ/t78cxGe5Af1CYR2DVVL5?=
+ =?us-ascii?Q?Rqh/V54q6/TL4j5iAAo8dMKFNFdwJd3b/iuGU0GqlacVcWpY8eNb2v6d59XU?=
+ =?us-ascii?Q?c3RqKpemiYp+eaHHqDNPkBXfrFSklSY59B6ztOAKtyxKbazSC9VNpa/5AUMr?=
+ =?us-ascii?Q?3vU8t9K2EzV3KkwBBrJjUkq1gi+kVTv70wwB7G7ENjBVK6PmUFdOaJIaUoVp?=
+ =?us-ascii?Q?Cgxuxqf9Lqv/CZhb8X5+OwggpYQHEYNjS59OpFW+BwUQD9sJv84EDQWEMvaE?=
+ =?us-ascii?Q?kqQqYfGckUUSVeTKhO5mfVYeEk9uIHAb3VUwU4lXJFPA4at9Fu3YJvK/lVWP?=
+ =?us-ascii?Q?BxFp99+MD1lrao9ERhryDfJGL7FIAg/tv9GWqz+sXwUwPuYrXFXPMozz8Jjv?=
+ =?us-ascii?Q?qJM4oD6RkTzXze8qtYByQ2ptvfM/VCDAiiRRjzKvpSoDzQKI8xtxtUwo6Res?=
+ =?us-ascii?Q?g0ms4U1IgmbooR+Kx2B5S9AeSV/Dg1zHCsqvNbsDwhCRw41Envp+11Xovbpb?=
+ =?us-ascii?Q?eGdfm8Bxa4J+QfotJG/kqxIvHWkDwyemzuCjItRXzLL7fqlkNuGWpMWW2s14?=
+ =?us-ascii?Q?I9/WPzclXncGOeG82Dh1wVkTBYetps/KNd71oSidM0eVzucmhmX+7LKCvUQg?=
+ =?us-ascii?Q?j+0ljffXI7L6YkUlAYzg6EcFVxZXEm9iqc1q4ItRc/XZt9d7aPZRCuoXaKFJ?=
+ =?us-ascii?Q?RH34unt7z8SCPmBAitMtf2XZKH9SEJEIcYOEYyMoZtJyuWaUnTjQEalj2Bkg?=
+ =?us-ascii?Q?C9qwNsgySDhNK1BcWhHdNrh6fSgFc8eoQBVZf5VZnaIGuF/degkVlj+Uzdzt?=
+ =?us-ascii?Q?scUDUoGo2MoXoWuD7JvRZciRZQPLG9iM6OLnr3Rc9GKhhCwDIDA2sxG60cTJ?=
+ =?us-ascii?Q?REt7oq01+X2+jyKcK40cGrQi3EwpSCe9+WqyJ2xKwla6EiXzGzNolyCFPRHY?=
+ =?us-ascii?Q?yM44G7l+Un2rqjyA4AkTAQZ7mA3NOdPzK89EVaM4Sm++OITUE0UnjxfITm5I?=
+ =?us-ascii?Q?etsE178xBS5CPjBt2gf8mS3/W3BknCoOjGo/EpISYp/7iyz6lVH5bSqXCBEe?=
+ =?us-ascii?Q?ibHkZ1CAZ4PQMfyjGSreBkpZbJiqXbzVcgBMnlyUAkS0p6dfAQoBE9wRk4KV?=
+ =?us-ascii?Q?NR/+fri5idkuZxMyRhL8X20w5gKrOAUyPCdA3E/uAQKlS2FnnWpGLvnavKHv?=
+ =?us-ascii?Q?jZub1m+TVSV3gq+OTWuWhxzaXJlpmLACWeP7q933Ka3HYWfgTwyn+Ah7V6dL?=
+ =?us-ascii?Q?nx8KcPB7MuqqkUxU0Mtopzea6p6b9i7iJ7iG6Z2ZfiyfOTYg2yY4VQSvQVnW?=
+ =?us-ascii?Q?K/1t0+sMegfhNa8obp161GxXR4eKYUASwGT6OUzsp9BjsxLh?=
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
-Date: Fri, 10 Jul 2026 09:35:23 +0000
-Message-Id: <20260710093523.9D7AD1F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: VI0PR04MB12114.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c4a2bea4-5cdd-46bc-9472-08dede66b9a5
+X-MS-Exchange-CrossTenant-originalarrivaltime: 10 Jul 2026 09:36:31.5839
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: nUVcSueRSYMx3Lu1YQ4I8eztJRaSckroekIrWc9Xhv/Z7XWsuT0/ruvL2rBFt3HAzGSwnVIxyqFlei5Re7C9bQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA2PR04MB10422
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
+	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-324326-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-324328-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:sashiko-reviews@lists.linux.dev,m:sherry.sun@oss.nxp.com,m:imx@lists.linux.dev,m:devicetree@vger.kernel.org,m:linux-pci@vger.kernel.org,m:robh@kernel.org,m:Frank.Li@kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER(0.00)[sherry.sun@nxp.com,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:loic.poulain@oss.qualcomm.com,m:conor+dt@kernel.org,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	RCPT_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	DKIM_TRACE(0.00)[nxp.com:+];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[smtp.kernel.org:mid,vger.kernel.org:from_smtp,sashiko.dev:url,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,qualcomm.com:email,lists.linux.dev:replyto]
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sherry.sun@nxp.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,outlook.com:url,VI0PR04MB12114.eurprd04.prod.outlook.com:mid,nxp.com:from_mime,nxp.com:email,nxp.com:dkim]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: A666773922B
+X-Rspamd-Queue-Id: 3205F739293
 
-Thank you for your contribution! Sashiko AI review found 3 potential issue(=
-s) to consider:
+> Subject: Re: [PATCH V5 3/4] Bluetooth: btnxpuart: Add M.2 Bluetooth devic=
+e
+> support using pwrseq
+>=20
+> Thank you for your contribution! Sashiko AI review found 1 potential issu=
+e(s)
+> to consider:
+> - [High] Calling `devm_pwrseq_get(&serdev->ctrl->dev)` in the child devic=
+e's
+> probe function binds the resource cleanup to the parent UART controller
+> device, causing a permanent resource and memory leak on probe failures or
+> driver unbind.
+> --
+>=20
+> --- Patch [3]: [PATCH V5 3/4] Bluetooth: btnxpuart: Add M.2 Bluetooth dev=
+ice
+> support using pwrseq --- commit
+> e33ed957970d3c81ac733b1991f81b42afce6a94
+> Author: Sherry Sun <sherry.sun@nxp.com>
+>=20
+> Bluetooth: btnxpuart: Add M.2 Bluetooth device support using pwrseq
+>=20
+> Power supply to the M.2 Bluetooth device attached to the host using M.2
+> connector is controlled using the 'uart' pwrseq device. So add support fo=
+r
+> getting the pwrseq device if the OF graph link is present.
+>=20
+> > diff --git a/drivers/bluetooth/btnxpuart.c
+> > b/drivers/bluetooth/btnxpuart.c index 0bb300eef157c..68f84c324113d
+> > 100644
+> > --- a/drivers/bluetooth/btnxpuart.c
+> > +++ b/drivers/bluetooth/btnxpuart.c
+>=20
+> [ ... ]
+>=20
+> > @@ -1872,11 +1875,26 @@ static int nxp_serdev_probe(struct
+> serdev_device *serdev)
+> >  		return err;
+> >  	}
+> >
+> > +	if (of_graph_is_present(dev_of_node(&serdev->ctrl->dev))) {
+> > +		struct pwrseq_desc *pwrseq;
+> > +
+> > +		pwrseq =3D devm_pwrseq_get(&serdev->ctrl->dev, "uart");
+>=20
+> [Severity: High]
+> The commit message notes that the devm cleanup is tied to the UART
+> controller device and adds explicit pwrseq_power_off() calls to compensat=
+e,
+> but does this approach leak memory and pwrseq references during
+> bind/unbind cycles?
+>=20
+> Because devm_pwrseq_get() is called with the parent device (&serdev->ctrl=
+-
+> >dev), each time nxp_serdev_probe() is executed, a new devres entry is
+> allocated and attached to the parent's lifecycle.
+>=20
+> If the probe fails later, or if the driver is unbound and re-bound, the c=
+hild
+> device's devres list is cleaned up, but the parent's devres list retains =
+the
+> accumulated allocations.
+>=20
+> While pwrseq_power_off() balances the power state in the error and remove
+> paths, the pwrseq descriptor itself is never released. Could this prevent=
+ the
+> power sequencer provider module from ever being unloaded due to the
+> leaked references?
 
-New issues:
-- [High] Mismatch in power domain and OPP configurations leading to missing=
- performance state scaling.
-- [Medium] The device tree node for `isp_ope` is missing the `status =3D "d=
-isabled";` property, causing it to probe unconditionally.
+Yes, this is true issue, will fix in V6.
 
-Pre-existing issues:
-- [High] Unchecked return value of `devm_pm_domain_attach_list` masking `-E=
-PROBE_DEFER`.
---
+Best Regards
+Sherry
 
---- Patch [7]: [PATCH v4 7/7] arm64: dts: qcom: agatti: Add OPE node ---
-commit fe76d36b157aaeb53ae7054b89db58abbc4862b7
-Author: Loic Poulain <loic.poulain@oss.qualcomm.com>
+>=20
+> > +		if (IS_ERR(pwrseq))
+> > +			return dev_err_probe(&serdev->dev,
+> PTR_ERR(pwrseq),
+> > +					     "failed to get pwrseq\n");
+> > +
+> > +		nxpdev->pwrseq =3D pwrseq;
+> > +		err =3D pwrseq_power_on(pwrseq);
+> > +		if (err)
+> > +			return err;
+> > +	}
+> > +
+>=20
+> --
+> Sashiko AI
+> review * https://eur01.safelinks.protection.outlook.com/?url=3Dhttps%3A%2=
+F%2
+> Fsashiko.dev%2F%23%2Fpatchset%2F20260709101555.3034853-1-
+> sherry.sun%40oss.nxp.com%3Fpart%3D3&data=3D05%7C02%7Csherry.sun%40
+> nxp.com%7C48b334e953744676329608deddaaa9c6%7C686ea1d3bc2b4c6fa9
+> 2cd99c5c301635%7C0%7C0%7C639191922250049941%7CUnknown%7CTWFp
+> bGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4z
+> MiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&sdata=3DG5jMhoI6
+> dW0e5QpHqX%2FWNupCSiSPwAlkEa0Afo0tzpI%3D&reserved=3D0
 
-arm64: dts: qcom: agatti: Add OPE node
-
-This commit adds the Offline Processing Engine (OPE) device tree node for
-the Agatti platform (QCM2290). The node describes the register regions,
-clocks, interrupts, interconnects, IOMMU mappings, and the OPP table.
-
-> diff --git a/arch/arm64/boot/dts/qcom/agatti.dtsi b/arch/arm64/boot/dts/q=
-com/agatti.dtsi
-> index 8a7337239b1eb..8c1ebf82509f9 100644
-> --- a/arch/arm64/boot/dts/qcom/agatti.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/agatti.dtsi
-> @@ -1931,6 +1931,80 @@ port@1 {
->  			};
->  		};
-> =20
-> +		isp_ope: isp@5c42400 {
-> +			compatible =3D "qcom,qcm2290-camss-ope";
-
-[Severity: Medium]
-Should this node include a status =3D "disabled"; property?
-
-Without it, the device probes unconditionally on all QCM2290 boards, even
-those without camera hardware, which might consume interconnect bandwidth,
-power domains, and clock resources unnecessarily on boot.
-
-> +
-> +			reg =3D <0x0 0x5c42400 0x0 0x200>,
-
-[ ... ]
-
-> +			power-domains =3D <&gcc GCC_CAMSS_TOP_GDSC>,
-> +					<&rpmpd QCM2290_VDDCX>;
-> +			power-domain-names =3D "camss",
-> +					      "cx";
-> +
-> +			ope_opp_table: opp-table {
-> +				compatible =3D "operating-points-v2";
-> +
-> +				opp-19200000 {
-> +					opp-hz =3D /bits/ 64 <19200000>;
-> +					required-opps =3D <&rpmpd_opp_min_svs>;
-
-[Severity: High]
-Does this correctly map the multiple power domains to the OPP table?
-
-The node specifies two power domains (GCC_CAMSS_TOP_GDSC and QCM2290_VDDCX),
-but only provides a single phandle per required-opps rather than an array
-matching the multiple domains.
-
-Since the OPP core drops the performance state request when the main
-device has no power domain (due to being attached as virtual devices),
-could the hardware clock scale up without the required VDDCX voltage and
-cause a system hang?
-
-[ ... ]
-
-[Severity: High]
-This isn't a bug introduced by this patch, but adding this device tree node
-actively triggers a pre-existing issue in the driver's power initialization:
-
-drivers/media/platform/qcom/camss/camss-ope.c:ope_init_power() {
-    ...
-    devm_pm_domain_attach_list(dev, NULL, &pmdomains);
-    ...
-}
-
-Is it safe to ignore the return value of devm_pm_domain_attach_list()?
-
-The function can fail, notably with -EPROBE_DEFER if power domains
-aren't ready.
-
-Ignoring the return value masks the error and proceeds with probing,
-which will lead to the device not powering up correctly at runtime and
-bringing the camera subsystem down.
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260710-camss-isp-=
-ope-v4-0-51207a0319d8@oss.qualcomm.com?part=3D7
 
