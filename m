@@ -1,58 +1,57 @@
-Return-Path: <devicetree+bounces-324211-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-324209-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id sSUjJxthUGprxwIAu9opvQ
-	(envelope-from <devicetree+bounces-324211-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 05:03:55 +0200
+	id 39n5HxRhUGpkxwIAu9opvQ
+	(envelope-from <devicetree+bounces-324209-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 05:03:48 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34DCD736E23
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 05:03:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CFA6A736E10
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 05:03:47 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20201202 header.b=guuDVMBt;
+	dkim=pass header.d=kernel.org header.s=k20201202 header.b=WXJSAp8O;
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324211-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-324211-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324209-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-324209-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 8AE7530151D7
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 03:03:46 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 8FC633015E1D
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 03:03:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCDB3361DDA;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFE973603C7;
 	Fri, 10 Jul 2026 03:03:44 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D87435836A;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A9A531BCAE;
 	Fri, 10 Jul 2026 03:03:44 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783652624; cv=none; b=LeZBcWonFPA8qCsgPv+kOUmPUneEQQx1dH8Olu41vnpVOuGDYCRTzlHsa6EfWe9TXNBjsApTtWy0CCGc0hxaKpKqm3x2et0CMWwUcDLFsCfx7zrqhBGn15JLWzBWxG50tUNd/KuBXwIi1APgfRncPO9dtkZSlDIhGxCsy/9zauM=
+	t=1783652624; cv=none; b=llYmKlhJ3f7ODViqsJuscU51Y+X4tDt9FcQdZkmaBosqN5UWwkMm/moZLYmVriYvMbuQZ53lGjR1JI8CiR6cdZvZzdyVZltzlLV20mXeDYb47gtLZQI6x5YzAUN1ftsLcD0Q3LVWJI8AKN/bcovMt8oGF/zbkbL01DKYgBTeHfE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1783652624; c=relaxed/simple;
-	bh=6affpFqvBOofjMEf10HVi7Yae4GpotoCzw2sYvxUCXE=;
+	bh=TpGJ0HgZLVDPaYc57SOUoH7whSlNEtTx1wMSxT+hVHk=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=KsJTD6R4Q5S4C+6K6uQfFQ40WMwz/Z4RwFwsnTJl0EvavBdN831ZcEwUrrootyom7fIuEL1ygmMaEmsl0LH68YyLMy/rvq5oR3S5twHohq6Ig2if+TqFVIy3HLgC5wEKYGtLjCsOrEi7UPlX4lRQ+Nk8tCpi+CuBtcahHPsY8U4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=guuDVMBt; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 323C3C2BCC6;
+	 In-Reply-To:To:Cc; b=KEmq+iWJQcbvPkFdJcjbSUVTz1hTt0SDpitYCwXOeby7CsE70XArx3Ni0/p+6MMz4e56+H5Wt8EF/+jMoj+S95gqrjwdOPV3Y7uLBwcXz0JA7o/6fblfgKXdfSt0mx1LzOeWzjksHO2/b6fUCLjPJUv12N+xH0DCBuAPUIdSdNY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WXJSAp8O; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 40B5FC2BCC7;
 	Fri, 10 Jul 2026 03:03:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1783652624;
-	bh=6affpFqvBOofjMEf10HVi7Yae4GpotoCzw2sYvxUCXE=;
+	bh=TpGJ0HgZLVDPaYc57SOUoH7whSlNEtTx1wMSxT+hVHk=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=guuDVMBtR79Q5esTBHVfj1k0DMDJYPms2wdN/4ZFD4k7PmllXRQYfkO6xECWCFCNA
-	 9uR3W2lPkjmPbaP/XoqeNtheXnAhjFM4ykLS9WZhjqN0Wxad/0PnkVy0bRFNQZFW7U
-	 D94yTbPReOeA1W2E95ksyZHIN4mypoQ3dFpgX7+Ap+uj3ANI+MkDLiTnM/e6akPTpS
-	 oCP2YroCrQcIOKQg7D/B0KULgPfDv1ukFk9+3wU7pxWSNG95RemtrsPyVeVejocAsp
-	 lIpp8veal2NOurvItEKD/QFG5IfWcbVLDL/FLuYVgBrGeWOlafaCMde8tvaNixaFFi
-	 bhjQjeuk5zXMg==
+	b=WXJSAp8Ohh7cbJUrQnseFHuKhefI3wiUU4hXuEWF81PuMbMLbynE3868gWfoWIHEe
+	 z13aQcyo4blUWdnsm4FLXTpF5pACjjlJYASzXZROD1BXTzBnAvhc1p5rXNCEN+mgTV
+	 lq6Qn8X3r5vj15YT2x73IXgRb+RH+HkCx5PFecCoDXVqnFJqV+BzVKQJjx1oKFGRaG
+	 vUttO+ZLdLVDhLOSQjBdBjW+WtkJ6AROGLU/cX2UV00ndREUOToJ8fUQgX0qiIOS4+
+	 dwx4mtMPfjWkmiGRssUWfHmIWAy+PVjx2YbBxYtIpYqo3ehdz2Zjjc0QhcXbNK9qYP
+	 18a694OGdEd1A==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 142ABC44506;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 22CCBC44501;
 	Fri, 10 Jul 2026 03:03:44 +0000 (UTC)
 From: HaoNing Cheng via B4 Relay <devnull+Haoning.CHENG.cn.bosch.com@kernel.org>
-Date: Fri, 10 Jul 2026 11:03:36 +0800
-Subject: [PATCH v4 1/2] dt-bindings: thermal: imx: Document calibration
- offset property
+Date: Fri, 10 Jul 2026 11:03:37 +0800
+Subject: [PATCH v4 2/2] thermal/drivers/imx: Add calibration offset support
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,8 +59,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260710-b4-symana21-11221-imx-thermal-support-upstream-6-18-v4-1-1fef97d1c750@cn.bosch.com>
+Content-Transfer-Encoding: 8bit
+Message-Id: <20260710-b4-symana21-11221-imx-thermal-support-upstream-6-18-v4-2-1fef97d1c750@cn.bosch.com>
 References: <20260710-b4-symana21-11221-imx-thermal-support-upstream-6-18-v4-0-1fef97d1c750@cn.bosch.com>
 In-Reply-To: <20260710-b4-symana21-11221-imx-thermal-support-upstream-6-18-v4-0-1fef97d1c750@cn.bosch.com>
 To: "Rafael J. Wysocki" <rafael@kernel.org>, 
@@ -76,11 +75,11 @@ Cc: linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
  imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
  linux-kernel@vger.kernel.org, Haoning CHENG <Haoning.CHENG@cn.bosch.com>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1783652619; l=1680;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1783652619; l=2625;
  i=Haoning.CHENG@cn.bosch.com; s=20260709; h=from:subject:message-id;
- bh=no3c9/RAYmA7IHQlD5VdRWEadY5z+AzLg4/XdlxjFiY=;
- b=Qlj5ctN0QxfDIe27Zxs2YnRlhA05aquZhbwuwEOEVYV8U06Y28X+sNOBnx3rnTSy0eaepDfC7
- oJh3ffBKitCB3W3+O/nQiB4blT9a1TrWPVi+nmQPlsqxTLzM0be0qTz
+ bh=MRMJXW3PasN1+vP3XrwOg3tSDMAKHZqZCG42ukJ5xEc=;
+ b=t0rvPqYwHNNOuxzizKCabuptAVW2KUNbtlwhNM03dGoVD2UPZwtO61HhTY5qdN5L1TnA0eg7I
+ Svmq6726CnTBKnAjo0d8NkljNLEdE9lrZSVBj2jd5uKDeINgxa0GDBo
 X-Developer-Key: i=Haoning.CHENG@cn.bosch.com; a=ed25519;
  pk=glQGwad/fosRS5gZUJYbLDPPLGe7rFTrTV2VxY/ySdc=
 X-Endpoint-Received: by B4 Relay for Haoning.CHENG@cn.bosch.com/20260709
@@ -99,7 +98,7 @@ X-Spamd-Result: default: False [-3.66 / 15.00];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-324211-lists,devicetree=lfdr.de,Haoning.CHENG.cn.bosch.com];
+	TAGGED_FROM(0.00)[bounces-324209-lists,devicetree=lfdr.de,Haoning.CHENG.cn.bosch.com];
 	FORGED_RECIPIENTS(0.00)[m:rafael@kernel.org,m:daniel.lezcano@linaro.org,m:rui.zhang@intel.com,m:lukasz.luba@arm.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:shawnguo@kernel.org,m:s.hauer@pengutronix.de,m:kernel@pengutronix.de,m:festevam@gmail.com,m:linux-pm@vger.kernel.org,m:devicetree@vger.kernel.org,m:imx@lists.linux.dev,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:Haoning.CHENG@cn.bosch.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FREEMAIL_TO(0.00)[kernel.org,linaro.org,intel.com,arm.com,pengutronix.de,gmail.com];
 	FORGED_SENDER(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
@@ -109,7 +108,7 @@ X-Spamd-Result: default: False [-3.66 / 15.00];
 	RCPT_COUNT_TWELVE(0.00)[17];
 	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	HAS_REPLYTO(0.00)[Haoning.CHENG@cn.bosch.com];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
@@ -118,58 +117,87 @@ X-Spamd-Result: default: False [-3.66 / 15.00];
 	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,bosch.com:email,cn.bosch.com:mid,cn.bosch.com:replyto]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[bosch.com:email,vger.kernel.org:from_smtp,cn.bosch.com:mid,cn.bosch.com:replyto]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 34DCD736E23
+X-Rspamd-Queue-Id: CFA6A736E10
 
 From: HaoNing Cheng <Haoning.CHENG@cn.bosch.com>
 
 Some boards need a small per-design correction to align the reported CPU
 temperature with board-level measurements.
 
-Document the optional fsl,temp-calibration-offset-millicelsius property,
-a signed offset in millicelsius that is added to the calculated sensor
-temperature. The property is optional and the existing behaviour is kept
-when it is omitted.
-
-Update the binding example to show its usage.
+Read the optional fsl,temp-calibration-offset-millicelsius property from
+DT and apply it to the i.MX6/6SX/7D calibration formulas. When the
+property is not present, the default offset remains 0, preserving the
+current behaviour.
 
 Signed-off-by: HaoNing Cheng <Haoning.CHENG@cn.bosch.com>
 ---
- Documentation/devicetree/bindings/thermal/imx-thermal.yaml | 9 +++++++++
- 1 file changed, 9 insertions(+)
+ drivers/thermal/imx_thermal.c | 18 +++++++++++++-----
+ 1 file changed, 13 insertions(+), 5 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/thermal/imx-thermal.yaml b/Documentation/devicetree/bindings/thermal/imx-thermal.yaml
-index 949b154856c5..b9afffd98f84 100644
---- a/Documentation/devicetree/bindings/thermal/imx-thermal.yaml
-+++ b/Documentation/devicetree/bindings/thermal/imx-thermal.yaml
-@@ -59,6 +59,14 @@ properties:
-   clocks:
-     maxItems: 1
+diff --git a/drivers/thermal/imx_thermal.c b/drivers/thermal/imx_thermal.c
+index 38c993d1bcb3..8062d34ffed8 100644
+--- a/drivers/thermal/imx_thermal.c
++++ b/drivers/thermal/imx_thermal.c
+@@ -207,6 +207,7 @@ struct imx_thermal_data {
+ 	struct regmap *tempmon;
+ 	u32 c1, c2; /* See formula in imx_init_calib() */
+ 	int temp_max;
++	s32 calibration_offset;
+ 	int alarm_temp;
+ 	int last_temp;
+ 	bool irq_enabled;
+@@ -240,10 +241,13 @@ static void imx_set_alarm_temp(struct imx_thermal_data *data,
  
-+  fsl,temp-calibration-offset-millicelsius:
-+    minimum: -28580
-+    maximum: 28580
-+    description:
-+      A signed calibration offset, in millicelsius, added to the calculated
-+      sensor temperature to compensate for board-level measurement
-+      differences. When absent, no offset is applied.
+ 	data->alarm_temp = alarm_temp;
+ 
+-	if (data->socdata->version == TEMPMON_IMX7D)
+-		alarm_value = alarm_temp / 1000 + data->c1 - 25;
+-	else
++	if (data->socdata->version == TEMPMON_IMX7D) {
++		alarm_value = DIV_ROUND_UP(alarm_temp - data->calibration_offset,
++					   1000) + data->c1 - 25;
++		alarm_value = clamp(alarm_value, 0, 0x1ff);
++	} else {
+ 		alarm_value = (data->c2 - alarm_temp) / data->c1;
++	}
+ 
+ 	regmap_write(map, soc_data->high_alarm_ctrl + REG_CLR,
+ 		     soc_data->high_alarm_mask);
+@@ -274,7 +278,7 @@ static int imx_get_temp(struct thermal_zone_device *tz, int *temp)
+ 
+ 	/* See imx_init_calib() for formula derivation */
+ 	if (data->socdata->version == TEMPMON_IMX7D)
+-		*temp = (n_meas - data->c1 + 25) * 1000;
++		*temp = (n_meas - data->c1 + 25) * 1000 + data->calibration_offset;
+ 	else
+ 		*temp = data->c2 - n_meas * data->c1;
+ 
+@@ -413,7 +417,7 @@ static int imx_init_calib(struct platform_device *pdev, u32 ocotp_ana1)
+ 	temp64 *= 1000; /* to get result in °mC */
+ 	do_div(temp64, 15423 * n1 - 4148468);
+ 	data->c1 = temp64;
+-	data->c2 = n1 * data->c1 + 28581;
++	data->c2 = n1 * data->c1 + 28581 + data->calibration_offset;
+ 
+ 	return 0;
+ }
+@@ -629,6 +633,10 @@ static int imx_thermal_probe(struct platform_device *pdev)
+ 
+ 	platform_set_drvdata(pdev, data);
+ 
++	of_property_read_s32(dev->of_node,
++			     "fsl,temp-calibration-offset-millicelsius",
++			     &data->calibration_offset);
 +
-   "#thermal-sensor-cells":
-     const: 0
- 
-@@ -109,6 +117,7 @@ examples:
-             nvmem-cells = <&tempmon_calib>, <&tempmon_temp_grade>;
-             nvmem-cell-names = "calib", "temp_grade";
-             clocks = <&clks IMX6SX_CLK_PLL3_USB_OTG>;
-+            fsl,temp-calibration-offset-millicelsius = <(-6400)>;
-             #thermal-sensor-cells = <0>;
-         };
-     };
+ 	if (of_property_present(dev->of_node, "nvmem-cells")) {
+ 		ret = imx_init_from_nvmem_cells(pdev);
+ 		if (ret)
 
 -- 
 2.43.0
