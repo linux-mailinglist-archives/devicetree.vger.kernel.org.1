@@ -1,168 +1,205 @@
-Return-Path: <devicetree+bounces-324327-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-324326-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id bQR0NXi+UGrf4QIAu9opvQ
-	(envelope-from <devicetree+bounces-324327-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 11:42:16 +0200
+	id p2NUBzu9UGqM4QIAu9opvQ
+	(envelope-from <devicetree+bounces-324326-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 11:36:59 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 245C1739332
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 11:42:16 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id A666773922B
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 11:36:58 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=bootlin.com header.s=dkim header.b=gv9PQac6;
-	dmarc=pass (policy=reject) header.from=bootlin.com;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324327-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-324327-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=FO9TF+w8;
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324326-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-324326-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 1FE5030C4747
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 09:35:34 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 1B2A93012B21
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 09:35:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB9623DCD85;
-	Fri, 10 Jul 2026 09:35:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3E243DCD85;
+	Fri, 10 Jul 2026 09:35:25 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8760C3EF0AC;
-	Fri, 10 Jul 2026 09:35:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97C8C3D1AA0
+	for <devicetree@vger.kernel.org>; Fri, 10 Jul 2026 09:35:24 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783676133; cv=none; b=utuVTK8oTUME6dZaCR0Y91Il+59u+5Pd7T1VViCZ3pUHLcAtjEdqesaX1ZHizWnRyoAykDViifia9Ie5UkfWbDpsSCBaT3Ld9vcFq/azHeVYL4NuG4Jt4u2M3O74oda8BuHcAReF5O7yRmmKgIn1KcFYIdVM0fVsI4Xzu0oMG4w=
+	t=1783676125; cv=none; b=P1S8ZYxWH7+L2IiAVRZwyCfN4YpSryIeHrkpSoxF2UjYS1eSu4eEX5R0mc8aUtP4GE7iaIxVzpmMe47seBNTqC0dd6OIXGGcHFrUmeoTNB/iePnv87Dq0GHR5Ul2tZhGqtAnKtNPIGcJ4AUckn/wP9KVIjLkiy+Ubx/wpnoQ7v0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783676133; c=relaxed/simple;
-	bh=Y7o2uOQnU0O45QUBV45x3iTyOBBL2VrU2Fr3Mt5Lnm4=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=TJeprdZZpCTs+HlfaGmi1llSASJnH7B77GIUYczm48JAj6P5vr4G6wz/y+kU7JIE/v31PThKPvJ9XydZYP//vXdbCo6AG9NEDVJl4gpJRnfMp3lzkVJgAUMLSFFL1wo2El0AYdUV7NEvLWYtWu8rN7Yk8gGRVnUaevcqVphZWfc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=gv9PQac6; arc=none smtp.client-ip=185.171.202.116
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id 71AB0C2F4FE;
-	Fri, 10 Jul 2026 09:35:44 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id B30B560341;
-	Fri, 10 Jul 2026 09:35:29 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id AF11811BD18F0;
-	Fri, 10 Jul 2026 11:35:24 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1783676128; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=04Ye3yuYTISol3ighYQm4DeZ4Ndw6daOs3zln0ZTqVc=;
-	b=gv9PQac6Cswbuf/VoBnruoDjQWwYMTlucUsqx40kUWzZ5ktNrgRd+MPtfW/9l7ubHyUmYZ
-	8u3jkWgGbTY1PfgQM3jRJFJfP8F5AAzafDkptKGIqPzgIeaK2GYk43SUlnxmoUGuEEkY3Z
-	ozRpF3pKamd/OztCVZVQhIb9rir1TtnbS/m8JCL51rdVN0FNNNY8W0TKgQa6rgc/HzMwZU
-	6YObTMvFrC3PIg9gjFy9/znDIb9ciiZ9oAhsUjtOFm4GwOoWyAPi3ZjAW8PouL+cOR3iJQ
-	fJBmYhE9Z4XSNJkuLfMgoIt6bVaTh/aTAATG5PA0H/5jscF/A7q/JM4rTsBqWg==
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: Rob Herring <robh@kernel.org>
-Cc: Michael Turquette <mturquette@baylibre.com>,  Stephen Boyd
- <sboyd@kernel.org>,  Krzysztof Kozlowski <krzk+dt@kernel.org>,  Conor
- Dooley <conor+dt@kernel.org>,  Thomas Gleixner <tglx@kernel.org>,  Olivia
- Mackall <olivia@selenic.com>,  Herbert Xu <herbert@gondor.apana.org.au>,
-  Jayesh Choudhary <j-choudhary@ti.com>,  "David S. Miller"
- <davem@davemloft.net>,  Christian Marangi <ansuelsmth@gmail.com>,  Antoine
- Tenart <atenart@kernel.org>,  Geert Uytterhoeven
- <geert+renesas@glider.be>,  Magnus Damm <magnus.damm@gmail.com>,  Thomas
- Petazzoni <thomas.petazzoni@bootlin.com>,  Pascal EBERHARD
- <pascal.eberhard@se.com>,  Wolfram Sang
- <wsa+renesas@sang-engineering.com>,  linux-clk@vger.kernel.org,
-  devicetree@vger.kernel.org,  linux-kernel@vger.kernel.org,
-  linux-crypto@vger.kernel.org,  linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH 01/16] dt-bindings: clock: Introduce nexus nodes
-In-Reply-To: <20260407192900.GA3531350-robh@kernel.org> (Rob Herring's message
-	of "Tue, 7 Apr 2026 14:29:00 -0500")
-References: <20260327-schneider-v7-0-rc1-crypto-v1-0-5e6ff7853994@bootlin.com>
-	<20260327-schneider-v7-0-rc1-crypto-v1-1-5e6ff7853994@bootlin.com>
-	<20260407192900.GA3531350-robh@kernel.org>
-User-Agent: mu4e 1.12.7; emacs 30.2
-Date: Fri, 10 Jul 2026 11:35:23 +0200
-Message-ID: <874ii7i3vo.fsf@bootlin.com>
+	s=arc-20240116; t=1783676125; c=relaxed/simple;
+	bh=2RDSBNbYh/LHDm6yzRDgbu1brhQt2WRjqswQLhQvrCE=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=bHmDnlXqFfGqQ9T+v5qp0OOKwFNvHB4PlF+LSC74rSeK/yvAp4xgHILXFwFCcqaBX21wmdixADSCGZDtXzki8p/nDcgRvMSX6zFa4/ecgaht2PtiJ+Z+io1mGq+/GR63FcRWACmD6XGm3dKnJ8pdTJ0iGkxzjmVH+iGtTg+Qza8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FO9TF+w8; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9D7AD1F000E9;
+	Fri, 10 Jul 2026 09:35:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1783676123;
+	bh=53F+ZQyXoz6Um2mqXo+PzRlaC5XPaxb8nvGCLggiSGg=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=FO9TF+w8yfGRZ0I5vAGpRn2UMJw+UZg61/vwsUu/guy9Rr3Y3mbsgAlnKbd+pNTaq
+	 I51HcXL+r8SMhfYqiobCpbnZ4r0eEYAveeOKMMQJTjN+HFxQEz8fzkr5vWdXR1yUiJ
+	 TcNa2F6sPekueOOTBumdC9bxWcZu7TN9MLrCgB2Ml3MRfPheYMgoab1lRNWUDtV6BB
+	 rKWUezHYkAKGPpPJnbv0YigZNYWgDOiHBwx265fXuGmMM8u70oZ7skLJiYcNyEPGqc
+	 iuEMdy4EnrqOvroswGQfVhDLgd9QBNPlaozdhVoDlfkqTvH8qysYTD4To124xT9V2m
+	 mYHkLJTzP0UBQ==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v4 7/7] arm64: dts: qcom: agatti: Add OPE node
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Loic Poulain" <loic.poulain@oss.qualcomm.com>
+Cc: conor+dt@kernel.org, robh@kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260710-camss-isp-ope-v4-7-51207a0319d8@oss.qualcomm.com>
+References: <20260710-camss-isp-ope-v4-0-51207a0319d8@oss.qualcomm.com>
+ <20260710-camss-isp-ope-v4-7-51207a0319d8@oss.qualcomm.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Fri, 10 Jul 2026 09:35:23 +0000
+Message-Id: <20260710093523.9D7AD1F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Last-TLS-Session-Version: TLSv1.3
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-1.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
-	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-324327-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:mturquette@baylibre.com,m:sboyd@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:tglx@kernel.org,m:olivia@selenic.com,m:herbert@gondor.apana.org.au,m:j-choudhary@ti.com,m:davem@davemloft.net,m:ansuelsmth@gmail.com,m:atenart@kernel.org,m:geert+renesas@glider.be,m:magnus.damm@gmail.com,m:thomas.petazzoni@bootlin.com,m:pascal.eberhard@se.com,m:wsa+renesas@sang-engineering.com,m:linux-clk@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-crypto@vger.kernel.org,m:linux-renesas-soc@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,m:geert@glider.be,m:magnusdamm@gmail.com,m:wsa@sang-engineering.com,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[miquel.raynal@bootlin.com,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[22];
-	FREEMAIL_CC(0.00)[baylibre.com,kernel.org,selenic.com,gondor.apana.org.au,ti.com,davemloft.net,gmail.com,glider.be,bootlin.com,se.com,sang-engineering.com,vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FROM_HAS_DN(0.00)[];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-324326-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[miquel.raynal@bootlin.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[bootlin.com:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:loic.poulain@oss.qualcomm.com,m:conor+dt@kernel.org,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	ALIAS_RESOLVED(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	MID_RHS_MATCH_FROM(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	RCPT_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[smtp.kernel.org:mid,vger.kernel.org:from_smtp,sashiko.dev:url,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,qualcomm.com:email,lists.linux.dev:replyto]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 245C1739332
+X-Rspamd-Queue-Id: A666773922B
 
-Hello Rob,
+Thank you for your contribution! Sashiko AI review found 3 potential issue(=
+s) to consider:
 
->> +title: Clock Nexus
->> +
->> +description: >
->> +  A nexus node allows to remap a phandle list in a consumer node throug=
-h a
->> +  container or a connector node in a generic way. With this remapping,
->> +  the consumer node needs to know only about the nexus node. Resources
->> +  behind the nexus node are decoupled by the nexus node itself.
->> +
->> +maintainers:
->> +  - Miquel Raynal <miquel.raynal@bootlin.com>
->> +
->> +select: true
->> +
->> +properties:
->> +  '#clock-cells': true
->
-> No need for this.
+New issues:
+- [High] Mismatch in power domain and OPP configurations leading to missing=
+ performance state scaling.
+- [Medium] The device tree node for `isp_ope` is missing the `status =3D "d=
+isabled";` property, causing it to probe unconditionally.
 
-I wasn't sure, I'll drop it.
+Pre-existing issues:
+- [High] Unchecked return value of `devm_pm_domain_attach_list` masking `-E=
+PROBE_DEFER`.
+--
 
->> +  clock-map:
->> +    $ref: /schemas/types.yaml#/definitions/uint32-matrix
->> +
->> +  clock-map-mask:
->> +    $ref: /schemas/types.yaml#/definitions/uint32-array
->> +
->> +  clock-map-pass-thru:
->> +    $ref: /schemas/types.yaml#/definitions/uint32-array
->
-> I think this can be omitted because there aren't common cell definitions=
-=20
-> for clocks like there are for GPIO and PWM.
+--- Patch [7]: [PATCH v4 7/7] arm64: dts: qcom: agatti: Add OPE node ---
+commit fe76d36b157aaeb53ae7054b89db58abbc4862b7
+Author: Loic Poulain <loic.poulain@oss.qualcomm.com>
 
-I agree, same here I wanted to mimic the existing nexus, but I agree it
-is not super useful for clocks. It can be added later anyway, if ever
-needed. I assume you mean here that we must drop both clock-map-mask and
-clock-map-pass-thru, but obviously not clock-map.
+arm64: dts: qcom: agatti: Add OPE node
 
-Thanks,
-Miqu=C3=A8l
+This commit adds the Offline Processing Engine (OPE) device tree node for
+the Agatti platform (QCM2290). The node describes the register regions,
+clocks, interrupts, interconnects, IOMMU mappings, and the OPP table.
+
+> diff --git a/arch/arm64/boot/dts/qcom/agatti.dtsi b/arch/arm64/boot/dts/q=
+com/agatti.dtsi
+> index 8a7337239b1eb..8c1ebf82509f9 100644
+> --- a/arch/arm64/boot/dts/qcom/agatti.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/agatti.dtsi
+> @@ -1931,6 +1931,80 @@ port@1 {
+>  			};
+>  		};
+> =20
+> +		isp_ope: isp@5c42400 {
+> +			compatible =3D "qcom,qcm2290-camss-ope";
+
+[Severity: Medium]
+Should this node include a status =3D "disabled"; property?
+
+Without it, the device probes unconditionally on all QCM2290 boards, even
+those without camera hardware, which might consume interconnect bandwidth,
+power domains, and clock resources unnecessarily on boot.
+
+> +
+> +			reg =3D <0x0 0x5c42400 0x0 0x200>,
+
+[ ... ]
+
+> +			power-domains =3D <&gcc GCC_CAMSS_TOP_GDSC>,
+> +					<&rpmpd QCM2290_VDDCX>;
+> +			power-domain-names =3D "camss",
+> +					      "cx";
+> +
+> +			ope_opp_table: opp-table {
+> +				compatible =3D "operating-points-v2";
+> +
+> +				opp-19200000 {
+> +					opp-hz =3D /bits/ 64 <19200000>;
+> +					required-opps =3D <&rpmpd_opp_min_svs>;
+
+[Severity: High]
+Does this correctly map the multiple power domains to the OPP table?
+
+The node specifies two power domains (GCC_CAMSS_TOP_GDSC and QCM2290_VDDCX),
+but only provides a single phandle per required-opps rather than an array
+matching the multiple domains.
+
+Since the OPP core drops the performance state request when the main
+device has no power domain (due to being attached as virtual devices),
+could the hardware clock scale up without the required VDDCX voltage and
+cause a system hang?
+
+[ ... ]
+
+[Severity: High]
+This isn't a bug introduced by this patch, but adding this device tree node
+actively triggers a pre-existing issue in the driver's power initialization:
+
+drivers/media/platform/qcom/camss/camss-ope.c:ope_init_power() {
+    ...
+    devm_pm_domain_attach_list(dev, NULL, &pmdomains);
+    ...
+}
+
+Is it safe to ignore the return value of devm_pm_domain_attach_list()?
+
+The function can fail, notably with -EPROBE_DEFER if power domains
+aren't ready.
+
+Ignoring the return value masks the error and proceeds with probing,
+which will lead to the device not powering up correctly at runtime and
+bringing the camera subsystem down.
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260710-camss-isp-=
+ope-v4-0-51207a0319d8@oss.qualcomm.com?part=3D7
 
