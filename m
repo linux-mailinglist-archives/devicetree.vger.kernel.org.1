@@ -1,72 +1,78 @@
-Return-Path: <devicetree+bounces-324609-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-324610-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id PcLQCVE1UWozAwMAu9opvQ
-	(envelope-from <devicetree+bounces-324609-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 20:09:21 +0200
+	id +f1qEKw1UWpJAwMAu9opvQ
+	(envelope-from <devicetree+bounces-324610-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 20:10:52 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C18F73D3AA
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 20:09:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D14F173D3E5
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 20:10:51 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=Ko+HQ5mV;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=dkavSFY6;
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324609-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-324609-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324610-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-324610-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2687C303A736
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 18:07:25 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 7B694304E0D6
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 18:07:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC1E437C912;
-	Fri, 10 Jul 2026 18:07:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C703937DAC0;
+	Fri, 10 Jul 2026 18:07:26 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6EBD437B3FE;
-	Fri, 10 Jul 2026 18:07:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D43937B415;
+	Fri, 10 Jul 2026 18:07:23 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783706842; cv=none; b=e4Mo4Ym2zxZy7piMJEbBvcoz5oknPY5IoUbO8l+4Oh1m/A3EWBdxh71ir4pJBg9kEGctGhwvQaBdavCCnl6ozxnbzNuz/eSX9bwdAiKFKJwVGX61HiWHXXAtSzPQjpc7v6RASod5AEArFEAkzvVJ9xD5rpSm5SBxlwgVPp/Oxgk=
+	t=1783706846; cv=none; b=US62I42sZSloN3+dqyhhqZh/ctqp8i6GCVXmvGV35OAVByQecna34zdfImBm4OdXVhEt2D3z5zNgmAnz5vNkuPsqRoBHZmmJn3Etxsm4OlGABh8/D+P77VrA24PWmQs+fZsUKBB7QswMZJwXnrFnG+oX7ICJe72kBu1qUFCDLfM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783706842; c=relaxed/simple;
-	bh=Ea2dc/zQmoNHDSZIjzgfaOeZ+qwH3BXjDCO5+0emuis=;
+	s=arc-20240116; t=1783706846; c=relaxed/simple;
+	bh=lcpICsyTNqKGxTwAISCqIqc1zQK9fexyXV9marLETHk=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Uh+V/EPr0JRGNBO/A0gKkblDGQn3S8022psoaXTY9gIbpFa19bKAEY+ILyuLfPXerZeLneoxkFtWTCxMlQXKvDWD0402UmVt8j1/9HLtN4ZA1wSKwQ0anYSpK5DxI+Wbe65xMLB4NS/ASJG0C2conPj2QDK8Z7oN5sQB8kyE3hQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ko+HQ5mV; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 687DD1F00A3A;
-	Fri, 10 Jul 2026 18:07:19 +0000 (UTC)
+	 MIME-Version:Content-Type; b=NllHFZwTt4CqObPcMlLXDuXfRSr3grbLPnQe3bCYzC9sYOPSAOD9T0pwNtmS7FSpup1PmC559PJYVm/n3MSlGrOxIE0v/UD752WL/5jUajjO5DUUQKgsGA7u0lfoDg+FdSW3G1HOxY+96lufIHeXe2z+i/6hHSR6/RVH4eAMwdI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dkavSFY6; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EEDBA1F00A3F;
+	Fri, 10 Jul 2026 18:07:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783706840;
-	bh=q64mLoIKKO6acehYZpPZaLa/VgE/uGU2tHBrQbnJjHw=;
+	s=k20260515; t=1783706843;
+	bh=4G+nAEbDkSf79QMV/VmVVdOvQKG969j3uYzdvbfr1YQ=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=Ko+HQ5mV6YOD+yBIhB5MOp3yEwOS+SM5J68ioNNDx71Y3gJNlvXGjWmHmSm7p38qo
-	 GIHCXvlIfgVMbMFZ3Dis2HPndxB3gypOoQ3PqmVpPgYOr+Jb5gZDxDzVhUVRg/VczQ
-	 /9qOWtihxB7LiKWVr8iZfyJffSrk49LLvlWqCY3l7X1B1fuRNzoXnTm7Dz1kDpojv4
-	 3pfsBUHHeQUCAR3cw3ogO9glxIDoHt0xNCYpzuPlgQ/t64HrRi4C4E1M5j0HyZ6Sqt
-	 HcZVyMfPpp1+HR55R3E7onMSH1IzL3UsqV/Wc8a30MYsznMQR70gGgrrkQQgT7QfZ9
-	 S3+8T3BUd5p6Q==
+	b=dkavSFY62Auhika3QZ0PRVc9ADe2tkbwq27tSizdqnfHX5gERCYyQe9zNd5RrT88i
+	 P3FzInuzog0a8hTeSNMcLExpSuYi3ftDEtQJabZHKhZE/1SH5CTjylRJKvcorRNlVS
+	 UMWZKqFoldUpyeC9xTgE9wKLkuFXoD0lcwVsC9YmpbJIyFpJe7wifI1CGNuCXak9EF
+	 O9S1FDP5sWdmT4kbRgYr357br2cTvPyY3NtyEuqT7BtleRnlCdGmCDipdLmuFSmRSx
+	 LPYR8OwT/Ga3KBKzZLX3pl0M1w/iVzlG3isCSHWt8V//Dlyk/2hRg5ZLDY6N+zbuHH
+	 fWzRyd2UFwIQw==
 From: Bjorn Andersson <andersson@kernel.org>
-To: krzk+dt@kernel.org,
-	mturquette@baylibre.com,
-	linux-remoteproc@vger.kernel.org,
-	Alexandru Gagniuc <mr.nuke.me@gmail.com>
-Cc: mathieu.poirier@linaro.org,
-	robh@kernel.org,
-	conor+dt@kernel.org,
-	konradybcio@kernel.org,
-	sboyd@kernel.org,
-	p.zabel@pengutronix.de,
+To: Mathieu Poirier <mathieu.poirier@linaro.org>,
+	Nathan Chancellor <nathan@kernel.org>,
+	Nick Desaulniers <nick.desaulniers+lkml@gmail.com>,
+	Bill Wendling <morbo@google.com>,
+	Justin Stitt <justinstitt@google.com>,
+	Val Packett <val@packett.cool>
+Cc: =?UTF-8?q?Matti=20Lehtim=C3=A4ki?= <matti.lehtimaki@gmail.com>,
+	Luca Weiss <luca@lucaweiss.eu>,
+	Vladimir Lypak <vladimir.lypak@gmail.com>,
+	=?UTF-8?q?Barnab=C3=A1s=20Cz=C3=A9m=C3=A1n?= <barnabas.czeman@mainlining.org>,
+	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+	~postmarketos/upstreaming@lists.sr.ht,
+	linux@mainlining.org,
+	phone-devel@vger.kernel.org,
 	linux-arm-msm@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	linux-clk@vger.kernel.org
-Subject: Re: (subset) [PATCH v2 0/9] remoteproc: qcom_q6v5_wcss: add native ipq9574 support
-Date: Fri, 10 Jul 2026 13:07:04 -0500
-Message-ID: <178370682987.2572738.13491033810212556744.b4-ty@kernel.org>
+	linux-remoteproc@vger.kernel.org,
+	llvm@lists.linux.dev
+Subject: Re: [PATCH v2] remoteproc: qcom_wcnss: Fix handling the lack of PD regulators in v3
+Date: Fri, 10 Jul 2026 13:07:07 -0500
+Message-ID: <178370682982.2572738.1804514769753985254.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260109043352.3072933-1-mr.nuke.me@gmail.com>
-References: <20260109043352.3072933-1-mr.nuke.me@gmail.com>
+In-Reply-To: <20260201210230.911220-1-val@packett.cool>
+References: <20260201210230.911220-1-val@packett.cool>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -81,65 +87,58 @@ X-Spamd-Result: default: False [-3.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:krzk+dt@kernel.org,m:mturquette@baylibre.com,m:linux-remoteproc@vger.kernel.org,m:mr.nuke.me@gmail.com,m:mathieu.poirier@linaro.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:konradybcio@kernel.org,m:sboyd@kernel.org,m:p.zabel@pengutronix.de,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-clk@vger.kernel.org,m:krzk@kernel.org,m:mrnukeme@gmail.com,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:mathieu.poirier@linaro.org,m:nathan@kernel.org,m:nick.desaulniers+lkml@gmail.com,m:morbo@google.com,m:justinstitt@google.com,m:val@packett.cool,m:matti.lehtimaki@gmail.com,m:luca@lucaweiss.eu,m:vladimir.lypak@gmail.com,m:barnabas.czeman@mainlining.org,m:konrad.dybcio@oss.qualcomm.com,m:dmitry.baryshkov@oss.qualcomm.com,m:~postmarketos/upstreaming@lists.sr.ht,m:linux@mainlining.org,m:phone-devel@vger.kernel.org,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-remoteproc@vger.kernel.org,m:llvm@lists.linux.dev,m:nickdesaulniers@gmail.com,m:mattilehtimaki@gmail.com,m:vladimirlypak@gmail.com,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[andersson@kernel.org,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	FREEMAIL_TO(0.00)[kernel.org,baylibre.com,vger.kernel.org,gmail.com];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[linaro.org,kernel.org,gmail.com,google.com,packett.cool];
+	TAGGED_FROM(0.00)[bounces-324610-lists,devicetree=lfdr.de];
 	FORWARDED(0.00)[lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-324609-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[20];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[andersson@kernel.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[andersson@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
+	FREEMAIL_CC(0.00)[gmail.com,lucaweiss.eu,mainlining.org,oss.qualcomm.com,lists.sr.ht,vger.kernel.org,lists.linux.dev];
 	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	TAGGED_RCPT(0.00)[devicetree,lkml];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 6C18F73D3AA
+X-Rspamd-Queue-Id: D14F173D3E5
 
 
-On Thu, 08 Jan 2026 22:33:35 -0600, Alexandru Gagniuc wrote:
-> Support loading remoteproc firmware on IPQ9574 with the qcom_q6v5_wcss
-> driver. This firmware is usually used to run ath11k firmware and enable
-> wifi with chips such as QCN5024.
+On Sun, 01 Feb 2026 17:55:03 -0300, Val Packett wrote:
+> The changes introduced to handle single power domain platforms have
+> swapped the info pointer increment from num_pd_vregs to num_pds, which
+> would shift the info pointer past the end of the array for pronto-v3,
+> which does not list power domain regulators in vregs.
 > 
-> When submitting v1, I learned that the firmware can also be loaded by
-> the trustzone firmware. Since TZ is not shipped with the kernel, it
-> makes sense to have the option of a native init sequence, as not all
-> devices come with the latest TZ firmware.
+> This showed up as a difference between GCC- and LLVM-compiled kernels
+> on SDM632 devices, where only with LLVM one would get the
+> "regulator request with no identifier" error, because the out-of-bounds
+> memory ended up being zeroed. Fix by skipping the increment when there
+> are more power domains than regulators.
 > 
 > [...]
 
 Applied, thanks!
 
-[1/9] remoteproc: qcom_q6v5_wcss: drop unused clocks from q6v5 struct
-      commit: 22afc6163c0c7a144d24a09352b87719d64d5f65
-[2/9] dt-bindings: remoteproc: qcom,ipq8074-wcss-pil: convert to DT schema
-      commit: 2a756ac4d98efc97503629fcaddb2e7c46255824
-[4/9] dt-bindings: remoteproc: qcom: add IPQ9574 image loader
-      commit: bc33b5b5e23a389e660c3d696cd2e043fdf33ef7
-[7/9] remoteproc: qcom_q6v5_wcss: support IPQ9574
-      commit: 0149254e603f1fd89cb08aec36174ba7c2f198e3
-[8/9] remoteproc: qcom_q6v5_wcss: support m3 firmware
-      commit: 67804d8274d478ba8d1a84e9437fb340a8d3c26f
-[9/9] remoteproc: qcom_q6v5_wcss: use bulk clk API for q6 clocks in QCS404
-      commit: 920aa0298197a9a116210ac6057f1e880b9edd99
+[1/1] remoteproc: qcom_wcnss: Fix handling the lack of PD regulators in v3
+      commit: 3dbc90b9c22ea96e37bf55f6011e63b5123ec668
 
 Best regards,
 -- 
