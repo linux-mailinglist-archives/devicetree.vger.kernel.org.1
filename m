@@ -1,202 +1,169 @@
-Return-Path: <devicetree+bounces-324270-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-324269-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id t0fFE9KsUGoN3QIAu9opvQ
-	(envelope-from <devicetree+bounces-324270-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 10:26:58 +0200
+	id YsU3EKSsUGoB3QIAu9opvQ
+	(envelope-from <devicetree+bounces-324269-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 10:26:12 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3ACF738700
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 10:26:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E0C8B7386CA
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 10:26:10 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=collabora.com header.s=zohomail header.b=FFnMn0Cf;
-	dmarc=pass (policy=none) header.from=collabora.com;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324270-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-324270-lists+devicetree=lfdr.de@vger.kernel.org";
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=2")
+	dkim=pass header.d=intel.com header.s=Intel header.b=SFqaNAaY;
+	dmarc=pass (policy=none) header.from=intel.com;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324269-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-324269-lists+devicetree=lfdr.de@vger.kernel.org";
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 72164300B453
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 08:20:06 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 0D15530067B2
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 08:20:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 452C33EFFAE;
-	Fri, 10 Jul 2026 08:20:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 923ED3EF0A4;
+	Fri, 10 Jul 2026 08:19:59 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD6713EF0D3;
-	Fri, 10 Jul 2026 08:19:59 +0000 (UTC)
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783671601; cv=pass; b=OqNkPatFlD0NSztCEYPwBfc9YiFRf6xXYoex2ICdvWeUU0cKgeDCKU4zUkJx6cCiVKijobfmSloWPV4cb7NprTg0yNsuVZSoBI6HUYOIt0Y+Ia6VRAMdMghBfT69pFHE15DWwGtsA655AHbaiBKfmct9pnK+HcDauNNXkRbJtYw=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783671601; c=relaxed/simple;
-	bh=A6yuDsR2nZi6+auXXFpGtmRTYQlKL2m32zKzAUWpsuY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=M+BJ55CTh98rrmuc0znOTxtL6W4A0ZrSF/wRnGkj4XJKx4Do6bnyHtC49JUcDKIQm9Y6QPlglWEGLGDKbw/3nfIgBVpltik4Isw56gYlfDEqD5H7keDwEmAJ2E6sbdOIhGduGsmGyA5dXC+jps/Kk4WP1JfiGYTJ2c2dBIgNeMk=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=michael.riesch@collabora.com header.b=FFnMn0Cf; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal: i=1; a=rsa-sha256; t=1783671496; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=n1lilrOhB4g5YW6x6G9IiFkIE7cfPY646RXZhmeBeRU8vt/Xx9bipqzOH437Yw97SoOGWsi6diBYmTI0TYz7Spkgc8HTkBcyOyMzfh59yPBSw05OA6h2azT2bgsLebTK/kztYKqSVt1g4J+Lfr3EC3HBXmEksib7LE6CevODMbI=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1783671496; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=wNhWASr7b/ZTOhcTDo/rAGZJQBNr7Kmww1CuII50ggg=; 
-	b=KzVJV3qeyarguw6hz9kE7z6vCLOBH41NDHxBP60XjAWbYdVyRx4BdzoxPYnBsKXqISCpPpiknHP/lbrKwWbfZSlZj8qPWnerYwHuVZfthM/RiwyHsk1sJsbpbDcruZtep4SIczOrhwHVxxhJF8ObBRv1kKP+7ED7nKrf1V47Ws0=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=michael.riesch@collabora.com;
-	dmarc=pass header.from=<michael.riesch@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1783671496;
-	s=zohomail; d=collabora.com; i=michael.riesch@collabora.com;
-	h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
-	bh=wNhWASr7b/ZTOhcTDo/rAGZJQBNr7Kmww1CuII50ggg=;
-	b=FFnMn0CfDn5F3352XtaZr/QmRsRz8rLmzZocUKukr5Ojp1+hiTHPyc3rbW2Zy+S1
-	bOUZDwihK/kW3HXc+EyDdMZPXBcsEVnrUiNVKyPQWNQCSgGFPDMhHaTIewGDobgikZT
-	oCrvfmpvHCAuKEHCF4PM+K5AHYqHi8YICnThQ1PA=
-Received: by mx.zohomail.com with SMTPS id 1783671494588655.4558382967103;
-	Fri, 10 Jul 2026 01:18:14 -0700 (PDT)
-Message-ID: <66d4ed68-f8b1-4275-96de-83d1125d49c9@collabora.com>
-Date: Fri, 10 Jul 2026 10:18:05 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3D3D3CB907;
+	Fri, 10 Jul 2026 08:19:55 +0000 (UTC)
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1783671599; cv=none; b=kgh6lrGOduDxbtlnAxl9+iJ7nLYwrky7H0Dk6XjLiiZTl0ONtXDqaOOvX0ps/563PpbIdOXAq0F1IZHlhfaT1/yjsREVf4bWKkYwvGjkrOfIevx/I3jzia+SlmyxaNRDUqcOMUMaZH4oY4ynZsCbRNABdcfab6n/D27DMeeNMrI=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1783671599; c=relaxed/simple;
+	bh=Q9e7mqixsLLOGhm6cscuonEBHgxSw6utmXoQtuoEMBw=;
+	h=From:Date:To:cc:Subject:In-Reply-To:Message-ID:References:
+	 MIME-Version:Content-Type; b=BV+MKdKC1VoR7mWHovdOBODx8nsM3Fiz2nts8Z1OJ5siuzG63/ZF1lxAafBklrgaefzxg+o2fcBWi6OKl3uFCv1s87enPCGdtk58E9TLAb7KTkZPvkO1ggnOgwEfO/uExSHDVxQeF9NWOzmZQc5bXVJRzO5jF+URswlQYv0ECaA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=SFqaNAaY; arc=none smtp.client-ip=198.175.65.15
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1783671598; x=1815207598;
+  h=from:date:to:cc:subject:in-reply-to:message-id:
+   references:mime-version;
+  bh=Q9e7mqixsLLOGhm6cscuonEBHgxSw6utmXoQtuoEMBw=;
+  b=SFqaNAaYlIPTCYj/TxMWksFz0t6J6Ss9XKfJbyGB/EoHF5JGWs4nSfLh
+   sBZeS3two7zXxNMp0e1+Pbww2AdJ1iAybLUT2HN0j8Tp+499q1XlbUafw
+   nBILHK/VpAAQSJP5RUX0QkQ7uGmVKlycQ52QvaQKP14MPKj94Ol7B67Jv
+   k/jT8yO4Yb0Pae67Etlur4Zx++fqWArtse+FqYs166YaWXuIxR2xvrYvc
+   kHwrw1QNiTcsAVzUu9fWqHOkRXURdVX+gzhovMzSqSn/Niyx75z1M/dH5
+   dvCbGr16MkN/tc3gKSMn2F33LNXlAqb1XwIpextgt8ILK/luM3dbSpHjY
+   Q==;
+X-CSE-ConnectionGUID: PZLKHi58Sx63jgLqhTfJ7g==
+X-CSE-MsgGUID: LY7oDH/nQ8KRFVc1oW7sLw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11841"; a="88052300"
+X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; 
+   d="scan'208";a="88052300"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Jul 2026 01:19:51 -0700
+X-CSE-ConnectionGUID: P9BM3yqaTaKoiZYP8nQwiA==
+X-CSE-MsgGUID: T1iFFTLTR4q7oYwpCO+/vg==
+X-ExtLoop1: 1
+Received: from conormcd-mobl2.ger.corp.intel.com (HELO localhost) ([10.245.244.169])
+  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Jul 2026 01:19:43 -0700
+From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
+Date: Fri, 10 Jul 2026 11:19:38 +0300 (EEST)
+To: Christian Marangi <ansuelsmth@gmail.com>
+cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+    Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>, 
+    Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+    Conor Dooley <conor+dt@kernel.org>, 
+    Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
+    Benjamin Larsson <benjamin.larsson@genexis.eu>, 
+    John Ogness <john.ogness@linutronix.de>, 
+    Marco Felsch <m.felsch@pengutronix.de>, Gerhard Engleder <eg@keba.com>, 
+    Jiaxun Yang <jiaxun.yang@flygoat.com>, 
+    Randy Dunlap <rdunlap@infradead.org>, Binbin Zhou <zhoubinbin@loongson.cn>, 
+    Rong Zhang <rongrong@oss.cipunited.com>, Lukas Wunner <lukas@wunner.de>, 
+    Lubomir Rintel <lkundrak@v3.sk>, devicetree@vger.kernel.org, 
+    LKML <linux-kernel@vger.kernel.org>, 
+    linux-serial <linux-serial@vger.kernel.org>
+Subject: Re: [PATCH 2/4] serial: 8250: export serial8250_get_baud_rate()
+In-Reply-To: <20260709205656.319531-3-ansuelsmth@gmail.com>
+Message-ID: <25725cc4-f3c9-8153-b400-c36a5099340a@linux.intel.com>
+References: <20260709205656.319531-1-ansuelsmth@gmail.com> <20260709205656.319531-3-ansuelsmth@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/7] media: dt-bindings: video-interface-devices: add
- video-interface-devices.h references
-To: Kieran Bingham <kieran.bingham@ideasonboard.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Jacopo Mondi <jacopo@jmondi.org>,
- Sakari Ailus <sakari.ailus@linux.intel.com>, Jimmy Su <jimmy.su@intel.com>,
- Matthias Fend <matthias.fend@emfend.at>,
- Mikhail Rudenko <mike.rudenko@gmail.com>,
- Daniel Scally <dan.scally@ideasonboard.com>,
- Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
- Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
- Sylvain Petinot <sylvain.petinot@foss.st.com>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Paul Elder <paul.elder@ideasonboard.com>,
- Martin Kepplinger <martin.kepplinger@puri.sm>,
- Quentin Schulz <quentin.schulz@theobroma-systems.com>,
- Tommaso Merciai <tomm.merciai@gmail.com>,
- Svyatoslav Ryhel <clamor95@gmail.com>,
- Richard Acayan <mailingradian@gmail.com>,
- Thierry Reding <thierry.reding@kernel.org>,
- Jonathan Hunter <jonathanh@nvidia.com>, Frank Li <Frank.Li@nxp.com>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Magnus Damm <magnus.damm@gmail.com>, Heiko Stuebner <heiko@sntech.de>
-Cc: linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
- linux@ew.tq-group.com, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
- linux-renesas-soc@vger.kernel.org, linux-rockchip@lists.infradead.org,
- Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-References: <20260628-kbingham-orientation-v3-0-4ed92968aff8@ideasonboard.com>
- <20260628-kbingham-orientation-v3-2-4ed92968aff8@ideasonboard.com>
-Content-Language: en-US
-From: Michael Riesch <michael.riesch@collabora.com>
-In-Reply-To: <20260628-kbingham-orientation-v3-2-4ed92968aff8@ideasonboard.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ZohoMailClient: External
+Content-Type: text/plain; charset=US-ASCII
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-3.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[intel.com:d:+,kernel.org:s:+];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[collabora.com:s=zohomail];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:kieran.bingham@ideasonboard.com,m:mchehab@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:jacopo@jmondi.org,m:sakari.ailus@linux.intel.com,m:jimmy.su@intel.com,m:matthias.fend@emfend.at,m:mike.rudenko@gmail.com,m:dan.scally@ideasonboard.com,m:jacopo.mondi@ideasonboard.com,m:benjamin.mugnier@foss.st.com,m:sylvain.petinot@foss.st.com,m:laurent.pinchart@ideasonboard.com,m:paul.elder@ideasonboard.com,m:martin.kepplinger@puri.sm,m:quentin.schulz@theobroma-systems.com,m:tomm.merciai@gmail.com,m:clamor95@gmail.com,m:mailingradian@gmail.com,m:thierry.reding@kernel.org,m:jonathanh@nvidia.com,m:Frank.Li@nxp.com,m:s.hauer@pengutronix.de,m:kernel@pengutronix.de,m:festevam@gmail.com,m:andersson@kernel.org,m:konradybcio@kernel.org,m:geert+renesas@glider.be,m:magnus.damm@gmail.com,m:heiko@sntech.de,m:linux-kernel@vger.kernel.org,m:linux-media@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-tegra@vger.kernel.org,m:linux@ew.tq-group.com,m:imx@
- lists.linux.dev,m:linux-arm-kernel@lists.infradead.org,m:linux-arm-msm@vger.kernel.org,m:linux-renesas-soc@vger.kernel.org,m:linux-rockchip@lists.infradead.org,m:vladimir.zapolskiy@linaro.org,m:krzk@kernel.org,m:conor@kernel.org,m:mikerudenko@gmail.com,m:tommmerciai@gmail.com,m:geert@glider.be,m:magnusdamm@gmail.com,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-324269-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[ideasonboard.com,kernel.org,jmondi.org,linux.intel.com,intel.com,emfend.at,gmail.com,foss.st.com,puri.sm,theobroma-systems.com,nvidia.com,nxp.com,pengutronix.de,glider.be,sntech.de];
-	FORGED_SENDER(0.00)[michael.riesch@collabora.com,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[43];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[20];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:ansuelsmth@gmail.com,m:gregkh@linuxfoundation.org,m:jirislaby@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:andriy.shevchenko@linux.intel.com,m:benjamin.larsson@genexis.eu,m:john.ogness@linutronix.de,m:m.felsch@pengutronix.de,m:eg@keba.com,m:jiaxun.yang@flygoat.com,m:rdunlap@infradead.org,m:zhoubinbin@loongson.cn,m:rongrong@oss.cipunited.com,m:lukas@wunner.de,m:lkundrak@v3.sk,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-serial@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FREEMAIL_TO(0.00)[gmail.com];
 	FORWARDED(0.00)[lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-324270-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[collabora.com:+];
+	FORGED_SENDER(0.00)[ilpo.jarvinen@linux.intel.com,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[michael.riesch@collabora.com,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[ilpo.jarvinen@linux.intel.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[intel.com:+];
 	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:from_mime,collabora.com:email,collabora.com:mid,collabora.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,ideasonboard.com:email,vger.kernel.org:from_smtp,linaro.org:email,nxp.com:email]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,intel.com:dkim,vger.kernel.org:from_smtp,linux.intel.com:mid,linux.intel.com:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: A3ACF738700
+X-Rspamd-Queue-Id: E0C8B7386CA
 
-Hi Kieran,
+On Thu, 9 Jul 2026, Christian Marangi wrote:
 
-On 6/28/26 12:22, Kieran Bingham wrote:
-> Expand the documentation of the video-interface-devices orientation to
-> reference the include/dt-bindings/media/video-interface-devices.h header
-> which provides human readable defines for the orientation enum, to help
-> avoid hardcoding values in dts.
+> Some driver might need to access the current baud rate to correctly
+> configure it.
 > 
-> Reviewed-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> Reviewed-by: Frank Li <Frank.Li@nxp.com>
-> Signed-off-by: Kieran Bingham <kieran.bingham@ideasonboard.com>
-
-Acked-by: Michael Riesch <michael.riesch@collabora.com>
-
-Thanks and best regards,
-Michael
-
+> Export the serial8250_get_baud_rate() function to limit code duplication.
+> 
+> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
 > ---
->  .../bindings/media/video-interface-devices.yaml         | 17 +++++++++++------
->  1 file changed, 11 insertions(+), 6 deletions(-)
+>  drivers/tty/serial/8250/8250_port.c | 7 ++++---
+>  include/linux/serial_8250.h         | 4 ++++
+>  2 files changed, 8 insertions(+), 3 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/media/video-interface-devices.yaml b/Documentation/devicetree/bindings/media/video-interface-devices.yaml
-> index a81d2a155fe6..c9c3f4f16719 100644
-> --- a/Documentation/devicetree/bindings/media/video-interface-devices.yaml
-> +++ b/Documentation/devicetree/bindings/media/video-interface-devices.yaml
-> @@ -392,17 +392,22 @@ properties:
->        The orientation of a device (typically an image sensor or a flash LED)
->        describing its mounting position relative to the usage orientation of the
->        system where the device is installed on.
-> +      See include/dt-bindings/media/video-interface-devices.h.
-> +
->      $ref: /schemas/types.yaml#/definitions/uint32
->      enum:
-> -        # Front. The device is mounted on the front facing side of the system. For
-> -        # mobile devices such as smartphones, tablets and laptops the front side
-> -        # is the user facing side.
-> +        # MEDIA_ORIENTATION_FRONT
-> +        # The device is mounted on the front facing side of the system. For
-> +        # mobile devices such as smartphones, tablets and laptops the front
-> +        # side is the user facing side.
->        - 0
-> -        # Back. The device is mounted on the back side of the system, which is
-> +        # MEDIA_ORIENTATION_BACK
-> +        # The device is mounted on the back side of the system, which is
->          # defined as the opposite side of the front facing one.
->        - 1
-> -        # External. The device is not attached directly to the system but is
-> -        # attached in a way that allows it to move freely.
-> +        # MEDIA_ORIENTATION_EXTERNAL
-> +        # The device is not attached directly to the system but is attached in
-> +        # a way that allows it to move freely.
->        - 2
+> diff --git a/drivers/tty/serial/8250/8250_port.c b/drivers/tty/serial/8250/8250_port.c
+> index 630deb7dd344..033d8fb8bb23 100644
+> --- a/drivers/tty/serial/8250/8250_port.c
+> +++ b/drivers/tty/serial/8250/8250_port.c
+> @@ -2560,9 +2560,9 @@ static void serial8250_set_divisor(struct uart_port *port, unsigned int baud,
+>  		serial8250_do_set_divisor(port, baud, quot);
+>  }
 >  
->  additionalProperties: true
-> 
+> -static unsigned int serial8250_get_baud_rate(struct uart_port *port,
+> -					     struct ktermios *termios,
+> -					     const struct ktermios *old)
+> +unsigned int serial8250_get_baud_rate(struct uart_port *port,
+> +				      struct ktermios *termios,
+> +				      const struct ktermios *old)
+>  {
+>  	unsigned int tolerance = port->uartclk / 100;
+>  	unsigned int min;
+> @@ -2589,6 +2589,7 @@ static unsigned int serial8250_get_baud_rate(struct uart_port *port,
+>  	 */
+>  	return uart_get_baud_rate(port, termios, old, min, max);
+>  }
+> +EXPORT_SYMBOL_GPL(serial8250_get_baud_rate);
+
+Please put newly exported things into SERIAL_8250 namespace.
+
+-- 
+ i.
 
 
