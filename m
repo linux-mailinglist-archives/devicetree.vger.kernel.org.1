@@ -1,223 +1,191 @@
-Return-Path: <devicetree+bounces-324518-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-324520-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id A3wTGF0LUWoJ+gIAu9opvQ
-	(envelope-from <devicetree+bounces-324518-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 17:10:21 +0200
+	id Xpw/EfcLUWpb+gIAu9opvQ
+	(envelope-from <devicetree+bounces-324520-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 17:12:55 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id A06CC73C190
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 17:10:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 934AD73C1E2
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 17:12:54 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=PZlYfav3;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=fhze5ooB;
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324518-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-324518-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324520-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-324520-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 625D1303F85A
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 15:09:26 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 71F4430166C7
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 15:10:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE80E30D3F7;
-	Fri, 10 Jul 2026 15:09:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81B4D2D738F;
+	Fri, 10 Jul 2026 15:10:38 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C4572DF3DA
-	for <devicetree@vger.kernel.org>; Fri, 10 Jul 2026 15:09:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6902B232395;
+	Fri, 10 Jul 2026 15:10:37 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783696154; cv=none; b=ougTwOqLOjnZIkCCS7y8gczXKWDxZ+nH4na+vrBTwRhVTSsg5DKQsycXwX0a9pJRBS5eysYKfawqScieLfdl5ml0LWK7EpcxKEMR94YTKZXq0lP545XAIWG90Baf0IG6Nqp9zzu2DJq8TR3upeIS8JbS022DLEDVMdGZhNz8JYk=
+	t=1783696238; cv=none; b=LI7z0u5eq9dMV5Ktnxw9lxabzEMZyXdHu/bFjicWLgyfRGUKiRA0pVGTij02cr0tafQowRxlZcM21OWq73/uKw1KyHJlzNc/Ff8yLNHgfhRqK49y0OHmGBnVnSfoGpZCNBSje4Zzs9X3KHJ3DORC3JWCk6Ey9AAUUeYkkictduQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783696154; c=relaxed/simple;
-	bh=RAKWW+0mDWUE3ur7EY7pYPpptmmwDDx0/g30+k3Flco=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=U2qYypYg8cX2hgP8yZDhB5A89OfezFOYg62wKTr+sGTcU3JSteECFnoHglQdhn28NKDUQp7zSfEv8lW7MghRjA8Q1Xac8eSiiDJxLXwA3P8brX+LU2HRa1sWDLjIerMIoVvJI6b3SVzwLhXmz9fwqr2odO3aitI/Xepam5GN6Rg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PZlYfav3; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8ECE11F00A3A;
-	Fri, 10 Jul 2026 15:09:11 +0000 (UTC)
+	s=arc-20240116; t=1783696238; c=relaxed/simple;
+	bh=zTbPFAUykePEI/G+PLtbm8iQRnf6X8bZSSN4Z+V/iwE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=gwr+/F9+Gtv/o9XdYYTOJN9Xt96XXsqI4wDGvJU1h58zRC/Ui9Rgv3K50F4PXUkXbMNSEhHYML1SYiJ7lpztLe0LZFJMjpBemvvcHyPSku1XmZkEe+gvpVl2dD/K6sYM72kvvVrAvI6/caN+v2i1yCTb8fg6MlBdePsAunlPK50=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fhze5ooB; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 352C31F000E9;
+	Fri, 10 Jul 2026 15:10:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783696151;
-	bh=m67S19j3vt51GWgJg4qL7aklsSbHmqBjco9Om3oQXk8=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=PZlYfav3LVqNLVSnSaKjWtEeTx4phzgJKhZ1PusW4b4okVFXs5RGFl+f2IG6k0fVt
-	 5AlB0WGWsWRxpWsFk8o2z/eRXX3UGepiSya3HUXkl5DlXiAuPb5Vj4mkdy1MgmL1N2
-	 b9+L21D4XnWI1mI+iQJDn7aWi8RhMGjsMjb0GVrA2cewKxWUe4yMoJVS0HPJllK8N3
-	 6zScgqDh/RW1tjmPXqz2YVXI9uxqK2igGYBZ7GANSeyqlKdN6SL56Y0CQW0oxSZYAJ
-	 8uO+uF92VmCdeETBSl6FWihZ6w2yGpZX/MbbH5etyn05CTsSNrmqS9+PgUfAireypL
-	 zQjYoNHMrO/Gg==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v2 17/18] clk: mediatek: Add MT8189 scp clock support
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Louis-Alexis Eyraud" <louisalexis.eyraud@collabora.com>
-Cc: conor+dt@kernel.org, robh@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20260709-mt8189-clocks-system-base-v2-17-2926da3db6cf@collabora.com>
-References: <20260709-mt8189-clocks-system-base-v2-0-2926da3db6cf@collabora.com>
- <20260709-mt8189-clocks-system-base-v2-17-2926da3db6cf@collabora.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Fri, 10 Jul 2026 15:09:11 +0000
-Message-Id: <20260710150911.8ECE11F00A3A@smtp.kernel.org>
+	s=k20260515; t=1783696237;
+	bh=gC5jTfqMU+segkDUVBoeanUAbrb2T6l0Jw9afD82M1o=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=fhze5ooBnNbaaZlqkiII5FOcXtz3Y8g64w3sC8oZdBeY/o/btZK79ofmgg2NW5AQt
+	 FIx8V5YuERdJPy9sQbba3etfcSMIxlCCsauN79OU7fSeBjXzKoniUsQKSW9WpNgk/s
+	 79U/IbdvwPAnfggcS7bA05MnAHD6Aacx6ewWqL5M116YFzo+vdK9Imx9gnJ1xZIJtq
+	 nz9lEIkd1aQyoB7HxOtHt1qvcm+zumeEmUvbl8Nx21siK94cuSLHnqhdzEe9fN90Ko
+	 dlaXwjiIsUFsFNv4lDLCmTusSGJChc16wujUbg3km0e+4Z+zLKkWm3FDLgRBXjSp19
+	 qZpCyO8ZRR3Dg==
+Date: Fri, 10 Jul 2026 16:10:31 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Jonas Jelonek <jelonek.jonas@gmail.com>
+Cc: Oleksij Rempel <o.rempel@pengutronix.de>,
+	Kory Maincent <kory.maincent@bootlin.com>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S . Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Daniel Golle <daniel@makrotopia.org>,
+	=?iso-8859-1?Q?Bj=F8rn?= Mork <bjorn@mork.no>
+Subject: Re: [PATCH net-next v6 1/4] dt-bindings: net: pse-pd: add bindings
+ for Realtek PSE MCU
+Message-ID: <20260710-divinely-sharpie-1d415917c850@spud>
+References: <20260709194125.2784507-1-jelonek.jonas@gmail.com>
+ <20260709194125.2784507-2-jelonek.jonas@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="GKgxUeNZUVNU1rRs"
+Content-Disposition: inline
+In-Reply-To: <20260709194125.2784507-2-jelonek.jonas@gmail.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
+X-Spamd-Result: default: False [-5.26 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	MID_RHS_NOT_FQDN(0.50)[];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-324518-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:jelonek.jonas@gmail.com,m:o.rempel@pengutronix.de,m:kory.maincent@bootlin.com,m:andrew+netdev@lunn.ch,m:davem@davemloft.net,m:edumazet@google.com,m:kuba@kernel.org,m:pabeni@redhat.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:netdev@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:daniel@makrotopia.org,m:bjorn@mork.no,m:jelonekjonas@gmail.com,m:andrew@lunn.ch,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:louisalexis.eyraud@collabora.com,m:conor+dt@kernel.org,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	FREEMAIL_TO(0.00)[gmail.com];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	RCVD_TLS_LAST(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	RCPT_COUNT_THREE(0.00)[4];
+	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-324520-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[smtp.kernel.org:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,collabora.com:email,vger.kernel.org:from_smtp,sashiko.dev:url]
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[spud:mid,microchip.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: A06CC73C190
+X-Rspamd-Queue-Id: 934AD73C1E2
 
-Thank you for your contribution! Sashiko AI review found 3 potential issue(=
-s) to consider:
+--GKgxUeNZUVNU1rRs
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-New issues:
-- [High] Incorrect `sta_ofs` in `scp_cg_regs` causes clock state tracking f=
-ailures.
+On Thu, Jul 09, 2026 at 07:41:20PM +0000, Jonas Jelonek wrote:
 
-Pre-existing issues:
-- [High] Missing `of_clk_del_provider()` in the error path of `__mtk_clk_si=
-mple_probe()` leads to a dangling clock provider and subsequent Use-After-F=
-ree.
-- [Medium] Memory leak of the `struct mtk_clk_gate` allocation in `mtk_clk_=
-register_gate()`.
---
+> ---
+>  .../bindings/net/pse-pd/realtek,pse-mcu.yaml  | 176 ++++++++++++++++++
+>  1 file changed, 176 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/net/pse-pd/realtek,=
+pse-mcu.yaml
 
---- Patch [17]: [PATCH v2 17/18] clk: mediatek: Add MT8189 scp clock suppor=
-t ---
-commit 622c7d611c5de5d2297fc568f0bb3702456cb016
-Author: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
+Typically, we want filenames that match the compatibles used within. In
+this case, probably pick the oldest and simplest one?
+>=20
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      # UART
+> +      - items:
+> +          - enum:
+> +              - zyxel,gs1900-10hp-a1-pse
 
-clk: mediatek: Add MT8189 scp clock support
+> +          - const: realtek,pse-mcu-gen1
 
-This commit adds support for the MT8189 scp clock controller. It provides
-clock gate control for the System Control Processor by defining the necessa=
-ry
-gate clocks and registering them with the common clock framework.
+IOW, this. Otherwise,
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
-> diff --git a/drivers/clk/mediatek/clk-mt8189-scp.c b/drivers/clk/mediatek=
-/clk-mt8189-scp.c
-> index 0000000000000..75197cd98b521
-> --- /dev/null
-> +++ b/drivers/clk/mediatek/clk-mt8189-scp.c
-> @@ -0,0 +1,77 @@
-[ ... ]
-> +static const struct mtk_gate_regs scp_cg_regs =3D {
-> +	.set_ofs =3D 0x4,
-> +	.clr_ofs =3D 0x8,
-> +	.sta_ofs =3D 0x4,
-> +};
+pw-bot: changes-requested
 
-[Severity: High]
-Is this sta_ofs correct? Most other MediaTek clock drivers with differing s=
-et
-and clr registers use 0x0 for the sta register. If reading from offset 0x4
-returns garbage or write-only trigger values, could this break the common c=
-lock
-framework's is_enabled checks and cause incorrect reference counting?
+Thanks,
+Conor.
 
-[ ... ]
+> +
+> +      # I2C, SMBus framing
+> +      - items:
+> +          - enum:
+> +              - zyxel,gs1920-24hp-v2-pse
+> +          - const: realtek,pse-mcu-gen1-smbus
+> +
+> +      # UART
+> +      - items:
+> +          - enum:
+> +              - zyxel,gs1900-10hp-b1-pse
+> +              - zyxel,xmg1915-10ep-pse
+> +          - const: realtek,pse-mcu-gen2
+> +
+> +      # I2C, SMBus framing
+> +      - items:
+> +          - enum:
+> +              - zyxel,xs1930-12hp-pse
+> +          - const: realtek,pse-mcu-gen2-smbus
+> +
+> +      # I2C, raw framing
+> +      - items:
+> +          - enum:
+> +              - linksys,lgs328mpc-v2-pse
+> +          - const: realtek,pse-mcu-gen2-i2c
 
+--GKgxUeNZUVNU1rRs
+Content-Type: application/pgp-signature; name=signature.asc
 
-This is a pre-existing issue, but there appears to be a dangling clock prov=
-ider
-in the error path of __mtk_clk_simple_probe():
+-----BEGIN PGP SIGNATURE-----
 
-drivers/clk/mediatek/clk-mtk.c:__mtk_clk_simple_probe() {
-    ...
-	r =3D of_clk_add_hw_provider(node, of_clk_hw_onecell_get, clk_data);
-	if (r)
-		goto unregister_clks;
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCalELZAAKCRB4tDGHoIJi
+0sUMAQDVCOId/+vdce++tqBhHVU9kTHXueZF69RXZNoXQT5GjwD8CaRCWRJvoh9n
+beqWV91JLItPuMTgygZ+aXXlNLxo+wA=
+=ppob
+-----END PGP SIGNATURE-----
 
-	platform_set_drvdata(pdev, clk_data);
-
-	if (mcd->rst_desc) {
-		r =3D mtk_register_reset_controller_with_dev(&pdev->dev,
-							   mcd->rst_desc);
-		if (r)
-			goto unregister_clks;
-    ...
-unregister_clks:
-	if (mcd->clks)
-		mtk_clk_unregister_gates(mcd->clks, mcd->num_clks, clk_data);
-    ...
-}
-
-[Severity: High]
-If mtk_register_reset_controller_with_dev() fails, we jump to unregister_cl=
-ks,
-which unregisters the clocks and frees clk_data. Does this leave the device
-node registered as a clock provider pointing to freed memory, since
-of_clk_del_provider(node) is never called in this error path? Could this le=
-ad
-to a use-after-free when another driver attempts to get a clock?
-
-
-This is another pre-existing issue, but there appears to be a memory leak in
-mtk_clk_register_gate():
-
-drivers/clk/mediatek/clk-gate.c:mtk_clk_register_gate() {
-    ...
-	cg =3D kzalloc_obj(*cg);
-	if (!cg)
-		return ERR_PTR(-ENOMEM);
-
-	init.name =3D gate->name;
-	init.flags =3D gate->flags | CLK_SET_RATE_PARENT;
-	init.parent_names =3D gate->parent_name ? &gate->parent_name : NULL;
-	init.num_parents =3D gate->parent_name ? 1 : 0;
-	init.ops =3D gate->ops;
-	if (mtk_cg_uses_hwv(init.ops) && !regmap_hwv)
-		return dev_err_ptr_probe(
-			dev, -ENXIO,
-			"regmap not found for hardware voter clocks\n");
-    ...
-}
-
-[Severity: Medium]
-If a clock gate requires a hardware voter regmap but none was found, the
-function early-returns an error. Are we leaking the newly allocated cg=20
-structure here by returning directly without freeing it?
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260709-mt8189-clo=
-cks-system-base-v2-0-2926da3db6cf@collabora.com?part=3D17
+--GKgxUeNZUVNU1rRs--
 
