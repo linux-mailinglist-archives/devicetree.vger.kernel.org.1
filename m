@@ -1,165 +1,168 @@
-Return-Path: <devicetree+bounces-324325-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-324327-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id j+LeGxPBUGpP4gIAu9opvQ
-	(envelope-from <devicetree+bounces-324325-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 11:53:23 +0200
+	id bQR0NXi+UGrf4QIAu9opvQ
+	(envelope-from <devicetree+bounces-324327-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 11:42:16 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id A03C673947F
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 11:53:22 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 245C1739332
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 11:42:16 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=geanix.com header.s=protonmail3 header.b=oPpHa34e;
-	dmarc=pass (policy=quarantine) header.from=geanix.com;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324325-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-324325-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=bootlin.com header.s=dkim header.b=gv9PQac6;
+	dmarc=pass (policy=reject) header.from=bootlin.com;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324327-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-324327-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id E31DB30A2900
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 09:34:59 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 1FE5030C4747
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 09:35:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 487683F58F7;
-	Fri, 10 Jul 2026 09:34:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB9623DCD85;
+	Fri, 10 Jul 2026 09:35:33 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-106113.protonmail.ch (mail-106113.protonmail.ch [79.135.106.113])
+Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F6E33F6613;
-	Fri, 10 Jul 2026 09:34:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8760C3EF0AC;
+	Fri, 10 Jul 2026 09:35:31 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783676071; cv=none; b=Nn2HA1nE4iJEoRvrWp8N1/VbYET78yUc3vLKCgLPpzWx1lg1YyFBQbS/fWSwJjVaKv51XGhcBxMYhSF/PWRbRaxDJNdjKgCbuIfqRSiPlSk9YZyQVuzHipHnM3/f7q266uUh66tXWrFx9dmaMWown+EW0A4V6d/EEV6osry0Ob4=
+	t=1783676133; cv=none; b=utuVTK8oTUME6dZaCR0Y91Il+59u+5Pd7T1VViCZ3pUHLcAtjEdqesaX1ZHizWnRyoAykDViifia9Ie5UkfWbDpsSCBaT3Ld9vcFq/azHeVYL4NuG4Jt4u2M3O74oda8BuHcAReF5O7yRmmKgIn1KcFYIdVM0fVsI4Xzu0oMG4w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783676071; c=relaxed/simple;
-	bh=+SSbmdxaiq0J0wa30iE1zuvjGBNzgjfpAoxryIKdcl4=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=WFwOWF7pIi1n3vvbehvyc50GxEVW/NoTMnhXB/ZbEaShstiZiWQVQdo4qcxKTKzTfqqULH6L4Au88n+m5bbiL3Z6g+e4Bn9yXJ9ld7D9seGpd3jSIH+PNc1fNyFxTHXSCawll+ZkWGayF3ZYx24dRr6fC7/LnjVZyxCpxRF+g9I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=geanix.com; spf=pass smtp.mailfrom=geanix.com; dkim=pass (2048-bit key) header.d=geanix.com header.i=@geanix.com header.b=oPpHa34e; arc=none smtp.client-ip=79.135.106.113
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=geanix.com;
-	s=protonmail3; t=1783676056; x=1783935256;
-	bh=qTqD8XHnXnpCzH66fJSE8CBGzOPJsWGe02GIOrSsx/M=;
-	h=From:Date:Subject:Message-Id:To:Cc:From:To:Cc:Date:Subject:
-	 Reply-To:Feedback-ID:Message-ID:BIMI-Selector;
-	b=oPpHa34elIXrWQ2qBDuDchAmHHoC1fHSmb+YsLWiTSpntZaJmK8rMpO2Gxm/DkqaH
-	 13Pv03dCDl50Li3QBPZRBiifPuS61U/wPKrN0O8aROtls5LcBk29+Kfiu4yzbU8yn7
-	 YHsy44XQwBWmNfaIX/P+N+ZtzrTp7RXMqoW7T1euCoXZn2nFzxpuTLDEWO95TST+bA
-	 pHTit8ZtmC87FdVFvVd2hyuxRTzaEOrsjQx9qCb4kSzEnwALyyXAtRRkyUqqGKBm/g
-	 GRGj/KuDzsCNSxOKlOYfFdUzlIivmozJpDxXqcX4Ym97TEFOoLQ/g+4IuZuUyHEtn1
-	 if/dBUj7ZamjA==
-X-Pm-Submission-Id: 4gxRVb0VhTz2ScPc
-From: Esben Haabendal <esben@geanix.com>
-Date: Fri, 10 Jul 2026 11:34:00 +0200
-Subject: [PATCH] arm64: dts: imx8mq: Add dcss node
+	s=arc-20240116; t=1783676133; c=relaxed/simple;
+	bh=Y7o2uOQnU0O45QUBV45x3iTyOBBL2VrU2Fr3Mt5Lnm4=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=TJeprdZZpCTs+HlfaGmi1llSASJnH7B77GIUYczm48JAj6P5vr4G6wz/y+kU7JIE/v31PThKPvJ9XydZYP//vXdbCo6AG9NEDVJl4gpJRnfMp3lzkVJgAUMLSFFL1wo2El0AYdUV7NEvLWYtWu8rN7Yk8gGRVnUaevcqVphZWfc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=gv9PQac6; arc=none smtp.client-ip=185.171.202.116
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-04.galae.net (Postfix) with ESMTPS id 71AB0C2F4FE;
+	Fri, 10 Jul 2026 09:35:44 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id B30B560341;
+	Fri, 10 Jul 2026 09:35:29 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id AF11811BD18F0;
+	Fri, 10 Jul 2026 11:35:24 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1783676128; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=04Ye3yuYTISol3ighYQm4DeZ4Ndw6daOs3zln0ZTqVc=;
+	b=gv9PQac6Cswbuf/VoBnruoDjQWwYMTlucUsqx40kUWzZ5ktNrgRd+MPtfW/9l7ubHyUmYZ
+	8u3jkWgGbTY1PfgQM3jRJFJfP8F5AAzafDkptKGIqPzgIeaK2GYk43SUlnxmoUGuEEkY3Z
+	ozRpF3pKamd/OztCVZVQhIb9rir1TtnbS/m8JCL51rdVN0FNNNY8W0TKgQa6rgc/HzMwZU
+	6YObTMvFrC3PIg9gjFy9/znDIb9ciiZ9oAhsUjtOFm4GwOoWyAPi3ZjAW8PouL+cOR3iJQ
+	fJBmYhE9Z4XSNJkuLfMgoIt6bVaTh/aTAATG5PA0H/5jscF/A7q/JM4rTsBqWg==
+From: Miquel Raynal <miquel.raynal@bootlin.com>
+To: Rob Herring <robh@kernel.org>
+Cc: Michael Turquette <mturquette@baylibre.com>,  Stephen Boyd
+ <sboyd@kernel.org>,  Krzysztof Kozlowski <krzk+dt@kernel.org>,  Conor
+ Dooley <conor+dt@kernel.org>,  Thomas Gleixner <tglx@kernel.org>,  Olivia
+ Mackall <olivia@selenic.com>,  Herbert Xu <herbert@gondor.apana.org.au>,
+  Jayesh Choudhary <j-choudhary@ti.com>,  "David S. Miller"
+ <davem@davemloft.net>,  Christian Marangi <ansuelsmth@gmail.com>,  Antoine
+ Tenart <atenart@kernel.org>,  Geert Uytterhoeven
+ <geert+renesas@glider.be>,  Magnus Damm <magnus.damm@gmail.com>,  Thomas
+ Petazzoni <thomas.petazzoni@bootlin.com>,  Pascal EBERHARD
+ <pascal.eberhard@se.com>,  Wolfram Sang
+ <wsa+renesas@sang-engineering.com>,  linux-clk@vger.kernel.org,
+  devicetree@vger.kernel.org,  linux-kernel@vger.kernel.org,
+  linux-crypto@vger.kernel.org,  linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH 01/16] dt-bindings: clock: Introduce nexus nodes
+In-Reply-To: <20260407192900.GA3531350-robh@kernel.org> (Rob Herring's message
+	of "Tue, 7 Apr 2026 14:29:00 -0500")
+References: <20260327-schneider-v7-0-rc1-crypto-v1-0-5e6ff7853994@bootlin.com>
+	<20260327-schneider-v7-0-rc1-crypto-v1-1-5e6ff7853994@bootlin.com>
+	<20260407192900.GA3531350-robh@kernel.org>
+User-Agent: mu4e 1.12.7; emacs 30.2
+Date: Fri, 10 Jul 2026 11:35:23 +0200
+Message-ID: <874ii7i3vo.fsf@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260710-imx8mq-dcss-device-tree-node-v1-1-fc724dfd574e@geanix.com>
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/yXMQQ6CMBBG4auQWTtJIUGqVzEusPMDQ0LRDhgSw
- t2tuvwW7+1kSAqja7FTwltN55hRngoKQxt7sEo2Va46u6Z0rNPmpxdLMGPJQQAvCeA4C/giXe0
- FztdoKS+eCZ1uv/3t/retjxFh+T7pOD7KPpaCgAAAAA==
-X-Change-ID: 20260710-imx8mq-dcss-device-tree-node-9df58de085ea
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>, 
- Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>
-Cc: devicetree@vger.kernel.org, imx@lists.linux.dev, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Esben Haabendal <esben@geanix.com>
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1783676054; l=1806;
- i=esben@geanix.com; s=20240523; h=from:subject:message-id;
- bh=+SSbmdxaiq0J0wa30iE1zuvjGBNzgjfpAoxryIKdcl4=;
- b=sc+S0NvCxqN9/XLrbs6f0pnZylchIoPD8w2pilECc4TqUMxOnhXBshV4gDioLcjbdkM1qzzXj
- +rIxB3EqvPFAF8bFBRR0O7WMBjzIAswH0IkrMQS5UpuG/5AugIdslMX
-X-Developer-Key: i=esben@geanix.com; a=ed25519;
- pk=PbXoezm+CERhtgVeF/QAgXtEzSkDIahcWfC7RIXNdEk=
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Last-TLS-Session-Version: TLSv1.3
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[geanix.com,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
-	R_DKIM_ALLOW(-0.20)[geanix.com:s=protonmail3];
+	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
+	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:Frank.Li@nxp.com,m:s.hauer@pengutronix.de,m:kernel@pengutronix.de,m:festevam@gmail.com,m:devicetree@vger.kernel.org,m:imx@lists.linux.dev,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:esben@geanix.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-324327-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[kernel.org,nxp.com,pengutronix.de,gmail.com];
-	FORGED_SENDER(0.00)[esben@geanix.com,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	RCVD_COUNT_THREE(0.00)[3];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:mturquette@baylibre.com,m:sboyd@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:tglx@kernel.org,m:olivia@selenic.com,m:herbert@gondor.apana.org.au,m:j-choudhary@ti.com,m:davem@davemloft.net,m:ansuelsmth@gmail.com,m:atenart@kernel.org,m:geert+renesas@glider.be,m:magnus.damm@gmail.com,m:thomas.petazzoni@bootlin.com,m:pascal.eberhard@se.com,m:wsa+renesas@sang-engineering.com,m:linux-clk@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-crypto@vger.kernel.org,m:linux-renesas-soc@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,m:geert@glider.be,m:magnusdamm@gmail.com,m:wsa@sang-engineering.com,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[miquel.raynal@bootlin.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[22];
+	FREEMAIL_CC(0.00)[baylibre.com,kernel.org,selenic.com,gondor.apana.org.au,ti.com,davemloft.net,gmail.com,glider.be,bootlin.com,se.com,sang-engineering.com,vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-324325-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[geanix.com:+];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[esben@geanix.com,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[miquel.raynal@bootlin.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[bootlin.com:+];
 	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[geanix.com:from_mime,geanix.com:email,geanix.com:mid,geanix.com:dkim,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: A03C673947F
+X-Rspamd-Queue-Id: 245C1739332
 
-Add DCSS node for i.MX8MQ based on the example in the bindings
-documentation.
+Hello Rob,
 
-Signed-off-by: Esben Haabendal <esben@geanix.com>
----
- arch/arm64/boot/dts/freescale/imx8mq.dtsi | 21 +++++++++++++++++++++
- 1 file changed, 21 insertions(+)
+>> +title: Clock Nexus
+>> +
+>> +description: >
+>> +  A nexus node allows to remap a phandle list in a consumer node throug=
+h a
+>> +  container or a connector node in a generic way. With this remapping,
+>> +  the consumer node needs to know only about the nexus node. Resources
+>> +  behind the nexus node are decoupled by the nexus node itself.
+>> +
+>> +maintainers:
+>> +  - Miquel Raynal <miquel.raynal@bootlin.com>
+>> +
+>> +select: true
+>> +
+>> +properties:
+>> +  '#clock-cells': true
+>
+> No need for this.
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-index e60872aeeb49..fb99bd3ad7c9 100644
---- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-@@ -1611,6 +1611,27 @@ irqsteer: interrupt-controller@32e2d000 {
- 			};
- 		};
- 
-+		dcss: display-controller@32e00000 {
-+			compatible = "nxp,imx8mq-dcss";
-+			reg = <0x32e00000 0x2d000>, <0x32e2f000 0x1000>;
-+			interrupts = <6>, <8>, <9>;
-+			interrupt-names = "ctxld", "ctxld_kick", "vblank";
-+			interrupt-parent = <&irqsteer>;
-+			clocks = <&clk IMX8MQ_CLK_DISP_APB_ROOT>, <&clk IMX8MQ_CLK_DISP_AXI_ROOT>,
-+			         <&clk IMX8MQ_CLK_DISP_RTRM_ROOT>, <&clk IMX8MQ_VIDEO2_PLL_OUT>,
-+			         <&clk IMX8MQ_CLK_DISP_DTRC>;
-+			clock-names = "apb", "axi", "rtrm", "pix", "dtrc";
-+			assigned-clocks = <&clk IMX8MQ_CLK_DISP_AXI>,
-+			                  <&clk IMX8MQ_CLK_DISP_RTRM>,
-+			                  <&clk IMX8MQ_VIDEO2_PLL1_REF_SEL>;
-+			assigned-clock-parents = <&clk IMX8MQ_SYS1_PLL_800M>,
-+			                         <&clk IMX8MQ_SYS1_PLL_800M>,
-+			                         <&clk IMX8MQ_CLK_27M>;
-+			assigned-clock-rates = <800000000>,
-+			                       <400000000>;
-+			status = "disabled";
-+		};
-+
- 		gpu: gpu@38000000 {
- 			compatible = "vivante,gc";
- 			reg = <0x38000000 0x40000>;
+I wasn't sure, I'll drop it.
 
----
-base-commit: 8cdeaa50eae8dad34885515f62559ee83e7e8dda
-change-id: 20260710-imx8mq-dcss-device-tree-node-9df58de085ea
+>> +  clock-map:
+>> +    $ref: /schemas/types.yaml#/definitions/uint32-matrix
+>> +
+>> +  clock-map-mask:
+>> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+>> +
+>> +  clock-map-pass-thru:
+>> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+>
+> I think this can be omitted because there aren't common cell definitions=
+=20
+> for clocks like there are for GPIO and PWM.
 
-Best regards,
---  
-Esben Haabendal <esben@geanix.com>
+I agree, same here I wanted to mimic the existing nexus, but I agree it
+is not super useful for clocks. It can be added later anyway, if ever
+needed. I assume you mean here that we must drop both clock-map-mask and
+clock-map-pass-thru, but obviously not clock-map.
 
+Thanks,
+Miqu=C3=A8l
 
