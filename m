@@ -1,152 +1,172 @@
-Return-Path: <devicetree+bounces-324306-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-324307-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id LREUN3+6UGpe4AIAu9opvQ
-	(envelope-from <devicetree+bounces-324306-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 11:25:19 +0200
+	id ihSJKTe+UGrQ4QIAu9opvQ
+	(envelope-from <devicetree+bounces-324307-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 11:41:11 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 359A8739018
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 11:25:19 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B6C1C7392FB
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 11:41:10 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=bootlin.com header.s=dkim header.b=aCOsNMFN;
-	dmarc=pass (policy=reject) header.from=bootlin.com;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324306-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-324306-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=egpopu1Y;
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324307-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-324307-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E31103048DFC
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 09:13:18 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id AE0903032972
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 09:14:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58B9C3D8133;
-	Fri, 10 Jul 2026 09:13:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11ECF3DA5CF;
+	Fri, 10 Jul 2026 09:14:10 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F14123D6CB7
-	for <devicetree@vger.kernel.org>; Fri, 10 Jul 2026 09:13:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13DA63D6CB7
+	for <devicetree@vger.kernel.org>; Fri, 10 Jul 2026 09:14:07 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783674798; cv=none; b=dBoHHK7nCmIcRUYBzowiLm/8+fXJvjV0eR0D/WYfFb/gnA0+8/maJkntM5EfwaZVx1jdHrG1OePayEVtVcZk+Zq6FHswwvkxdj5QcGosfWHxWwD1LIiioDSb/F32EFB/q38AwY40zguWctBn/Q3bW84QIPQBNa32ddjJkwatC2s=
+	t=1783674849; cv=none; b=njr5re9jnfsb1U73zm2BWRnp87BEWX/GfY6kV4UJnh5yzoW56Xv12nllPpoYki9JMNqY6LuqMuE5NJIusHr+oM0Ie2YhFHE1X7dJkR2/fFENemjXtWQd6HXmuDz6Uk3IIc4Ed2Q63lItig9uRM9TwP6g6o8UjJi89DM7cG+ytTA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783674798; c=relaxed/simple;
-	bh=Bi7jdPhoSijk8fMT1+N9Z3GA8k77oLKhSuPKJu++n9A=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=XPQ3wscEMbiPuI17xGw5L2MkDAXwnjTgF2pDi8dJ9kBImhE5RIB3Ra+iBfyEufymHcHLm/EeSBqUizhJtVrLAEou67mxI8CLkejzyoIQL1YtQ8eyXqLouXiSnNEz3mFX5AG7+QeYjwjMbkWOEwVNYpwFaSp7dKSQlDifEOJUyYc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=aCOsNMFN; arc=none smtp.client-ip=185.246.85.4
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id 2CC7A4E40D42;
-	Fri, 10 Jul 2026 09:13:14 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id F008A60341;
-	Fri, 10 Jul 2026 09:13:13 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 37D8211BD144F;
-	Fri, 10 Jul 2026 11:13:03 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1783674792; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=+hnMtueO5HvdeOz/acHZQ5idFrOiiproNtY+oH5bOPM=;
-	b=aCOsNMFNwJCz+pqwsKb34jscePr8UTAlP3OTCYZhqZDfpn5Xp2bcz7eM8z71Lebx0Y4Tbr
-	9MqwpZsw8MSn5iqblwJc/tvpxlE/UtDOOv5R+5abHAmfQruyPYGjXjboo8AuGUQv9XE42j
-	3yEYBatBS3YIbd5gQoaU80LSdTbENZ8Es1Nd9SuJTgfSEh2FxB3aeOn+IFbIEXhkF4yBpK
-	GB84ttbxLOtTikvPShhlgJxtaUkWiucn4VMmeF9n4TUAww4qo2vvC0ZdetAdgjnSxtxzRC
-	nDS63qfIatYMgGfnpymBc4f3YTHHeHOUcBcOfgubCit3aLNfWxAsEhKEbeGX+w==
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: Brian Masney <bmasney@redhat.com>
-Cc: Michael Turquette <mturquette@baylibre.com>,  Stephen Boyd
- <sboyd@kernel.org>,  Rob Herring <robh@kernel.org>,  Krzysztof Kozlowski
- <krzk+dt@kernel.org>,  Conor Dooley <conor+dt@kernel.org>,  Thomas
- Gleixner <tglx@kernel.org>,  Olivia Mackall <olivia@selenic.com>,  Herbert
- Xu <herbert@gondor.apana.org.au>,  Jayesh Choudhary <j-choudhary@ti.com>,
-  "David S. Miller" <davem@davemloft.net>,  Christian Marangi
- <ansuelsmth@gmail.com>,  Antoine Tenart <atenart@kernel.org>,  Geert
- Uytterhoeven <geert+renesas@glider.be>,  Magnus Damm
- <magnus.damm@gmail.com>,  Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-  Pascal EBERHARD <pascal.eberhard@se.com>,  Wolfram Sang
- <wsa+renesas@sang-engineering.com>,  linux-clk@vger.kernel.org,
-  devicetree@vger.kernel.org,  linux-kernel@vger.kernel.org,
-  linux-crypto@vger.kernel.org,  linux-renesas-soc@vger.kernel.org,
-  Chen-Yu Tsai <wenst@chromium.org>
-Subject: Re: [PATCH 06/16] clk: tests: Add clk_parse_clkspec() Kunit testing
-In-Reply-To: <ac0j5401vyjIvjCo@redhat.com> (Brian Masney's message of "Wed, 1
-	Apr 2026 09:55:51 -0400")
-References: <20260327-schneider-v7-0-rc1-crypto-v1-0-5e6ff7853994@bootlin.com>
-	<20260327-schneider-v7-0-rc1-crypto-v1-6-5e6ff7853994@bootlin.com>
-	<acqNRVLrPxABvecZ@redhat.com> <87mrzn6opj.fsf@bootlin.com>
-	<ac0j5401vyjIvjCo@redhat.com>
-User-Agent: mu4e 1.12.7; emacs 30.2
-Date: Fri, 10 Jul 2026 11:13:03 +0200
-Message-ID: <87fr1ri4ww.fsf@bootlin.com>
+	s=arc-20240116; t=1783674849; c=relaxed/simple;
+	bh=wvm0Fz8XYIYbczgHms8ZrTvLBWRhMOwJik9BqwmZWZ0=;
+	h=From:In-Reply-To:MIME-Version:References:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=igViBvPrtgOjLRUTraB6fWvWuXrwIx+wvxu0HgFsFoK/6rg4cqXrW5wJVDS06mJO4u3fl1rlNQ272FpaFgQNPcJ59g2ktGYYn92pS4FBEhPoD0yZPbCm4mH1Y5tI7MdVkA1GwUBIFZSTvWi/uwmieTid0tjKVT3eqXErWd4H1DA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=egpopu1Y; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D17581F0155D
+	for <devicetree@vger.kernel.org>; Fri, 10 Jul 2026 09:14:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1783674847;
+	bh=Gisgv0ebT87Te8MKY+33sOY2poYhk37ewFT2aaSfjfo=;
+	h=From:In-Reply-To:References:Date:Subject:To:Cc;
+	b=egpopu1Y8pY6TN8VsDpAnZH0orptIhnNeIXVjr+p9ei3mUzk5FZPCGc9QLimiwDR9
+	 9GreB3RyX6o+Q+/eZ+0xlsGWgwdS5yhsdI50+Ps1v0egAyo57DzH4mdWVbVJrmddIU
+	 tsFUkBmaMjCbM3Bh9MSSX7ZUtQy2R6rf/lZBbPyuHQXlxKu5kbI7Ezg46yaCUdNNIh
+	 06iTfRMJkEsG9m2Xq2oDlEAzVkvIPtRcqj7zFDw7n/s/l48v0Bq9EmTSFWycFNqqhj
+	 usrX7B7as927KJLZmwY3HLUGhuFRb1a+R1aUQEFxlT86fXXXyZWUP2eT13ckJzurny
+	 SO9vqNWBCro5Q==
+Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-5b0117d49dcso655042e87.3
+        for <devicetree@vger.kernel.org>; Fri, 10 Jul 2026 02:14:07 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AHgh+Ro1wxhocaWNBezaMxiUaIjTZ9P1LNoyUINx7pLm8wOEBiFQJCN8ac8zzxLpzDaRly4HqXaBDYhINujg@vger.kernel.org
+X-Gm-Message-State: AOJu0YxDGZSMeR/K3aL/LzQUD7tuhJHn35nXb+eBDeAmAU7D1fzXv8tN
+	ZrYfmKk7XpT93LJv1KeccZLVBppNt0o+X4fyPn8UNdO1gbx7PmKJATNuUQ/yPUSw00sKP5swcm0
+	tyx5AVhDoNTDJpWI0E/k005sFDeANg9/1JeQvH1FwTg==
+X-Received: by 2002:a05:6512:1417:b0:5ae:b861:ac27 with SMTP id
+ 2adb3069b0e04-5b01147ae74mr2483538e87.18.1783674846362; Fri, 10 Jul 2026
+ 02:14:06 -0700 (PDT)
+Received: from 969154062570 named unknown by gmailapi.google.com with
+ HTTPREST; Fri, 10 Jul 2026 02:14:05 -0700
+Received: from 969154062570 named unknown by gmailapi.google.com with
+ HTTPREST; Fri, 10 Jul 2026 02:14:05 -0700
+From: Bartosz Golaszewski <brgl@kernel.org>
+In-Reply-To: <fab734fd-adfe-45b6-a10f-a8a25f7affb1@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Last-TLS-Session-Version: TLSv1.3
+References: <20260709-ipq5018-bluetooth-v5-0-e476c41f03b8@outlook.com>
+ <20260709-ipq5018-bluetooth-v5-5-e476c41f03b8@outlook.com>
+ <11796dd7-11c8-45e3-8f9e-1dc27da0b229@oss.qualcomm.com> <SN7PR19MB673648D6C15A8E15D35F1E5E9DFE2@SN7PR19MB6736.namprd19.prod.outlook.com>
+ <fab734fd-adfe-45b6-a10f-a8a25f7affb1@oss.qualcomm.com>
+Date: Fri, 10 Jul 2026 02:14:05 -0700
+X-Gmail-Original-Message-ID: <CAMRc=MccvtBxJaddbX0PjjMpV+6iwZeYf2ebq953msbMeVN=Aw@mail.gmail.com>
+X-Gm-Features: AVVi8CdKT-87Rn0i992Lmq5_HUcS42coPx89xQWRp9LuWVbKoC0rtNyngcwzlVw
+Message-ID: <CAMRc=MccvtBxJaddbX0PjjMpV+6iwZeYf2ebq953msbMeVN=Aw@mail.gmail.com>
+Subject: Re: [PATCH v5 5/6] arm64: dts: qcom: ipq5018: add node required for
+ Bluetooth support
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: linux-arm-msm@vger.kernel.org, linux-bluetooth@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>, 
+	George Moussalem <george.moussalem@outlook.com>, Bartosz Golaszewski <brgl@kernel.org>, 
+	Marcel Holtmann <marcel@holtmann.org>, Luiz Augusto von Dentz <luiz.dentz@gmail.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Jeff Johnson <jeff.johnson@oss.qualcomm.com>
+Content-Type: text/plain; charset="UTF-8"
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-3.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
-	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-324306-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:bmasney@redhat.com,m:mturquette@baylibre.com,m:sboyd@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:tglx@kernel.org,m:olivia@selenic.com,m:herbert@gondor.apana.org.au,m:j-choudhary@ti.com,m:davem@davemloft.net,m:ansuelsmth@gmail.com,m:atenart@kernel.org,m:geert+renesas@glider.be,m:magnus.damm@gmail.com,m:thomas.petazzoni@bootlin.com,m:pascal.eberhard@se.com,m:wsa+renesas@sang-engineering.com,m:linux-clk@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-crypto@vger.kernel.org,m:linux-renesas-soc@vger.kernel.org,m:wenst@chromium.org,m:krzk@kernel.org,m:conor@kernel.org,m:geert@glider.be,m:magnusdamm@gmail.com,m:wsa@sang-engineering.com,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[miquel.raynal@bootlin.com,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[24];
-	FREEMAIL_CC(0.00)[baylibre.com,kernel.org,selenic.com,gondor.apana.org.au,ti.com,davemloft.net,gmail.com,glider.be,bootlin.com,se.com,sang-engineering.com,vger.kernel.org,chromium.org];
 	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-324307-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:konrad.dybcio@oss.qualcomm.com,m:linux-arm-msm@vger.kernel.org,m:linux-bluetooth@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:bartosz.golaszewski@oss.qualcomm.com,m:george.moussalem@outlook.com,m:brgl@kernel.org,m:marcel@holtmann.org,m:luiz.dentz@gmail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:andersson@kernel.org,m:konradybcio@kernel.org,m:p.zabel@pengutronix.de,m:jeff.johnson@oss.qualcomm.com,m:luizdentz@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER(0.00)[brgl@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[vger.kernel.org,oss.qualcomm.com,outlook.com,kernel.org,holtmann.org,gmail.com,pengutronix.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,qualcomm.com:email,outlook.com:email,vger.kernel.org:from_smtp,mail.gmail.com:mid];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[miquel.raynal@bootlin.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[bootlin.com:+];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[brgl@kernel.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	ALIAS_RESOLVED(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,bootlin.com:from_mime,bootlin.com:dkim,bootlin.com:mid,vger.kernel.org:from_smtp]
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 359A8739018
+X-Rspamd-Queue-Id: B6C1C7392FB
 
-
->> >> +	of_node_put(ctx->prov1_np);
->> >> +	of_node_put(ctx->prov2_np);
->> >
->> > Is there a double free of prov1_np and prov2_np? If this is dropped fr=
-om
->> > the test exit, then they should't need to be in the ctx struct.
->>=20
->> These two calls increment the refcount on the node:
->> - of_find_compatible_node()
->> - of_clk_add_hw_provider()
->>=20
->> However this makes me realize maybe I should call of_clk_del_provider()
->> in the exit() function. In any case, I believe keeping a reference over
->> the nodes during the test is correct and if there is an of_node_put()
->> call to remove, it should be the on in the _init().
+On Thu, 9 Jul 2026 20:40:04 +0200, Konrad Dybcio
+<konrad.dybcio@oss.qualcomm.com> said:
+> On 7/9/26 8:25 PM, George Moussalem wrote:
+>> On 7/9/26 22:17, Konrad Dybcio wrote:
+>>> On 7/9/26 11:18 AM, George Moussalem via B4 Relay wrote:
+>>>> From: George Moussalem <george.moussalem@outlook.com>
+>>>>
+>>>> Add node to enable Bluetooth support on the IPQ5018 platform.
+>>>>
+>>>> Reviewed-by: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
+>>>> Signed-off-by: George Moussalem <george.moussalem@outlook.com>
+>>>> ---
+>>>>  arch/arm64/boot/dts/qcom/ipq5018.dtsi | 16 ++++++++++++++++
+>>>>  1 file changed, 16 insertions(+)
+>>>>
+>>>> diff --git a/arch/arm64/boot/dts/qcom/ipq5018.dtsi b/arch/arm64/boot/dts/qcom/ipq5018.dtsi
+>>>> index 6f8004a22a1f..8c252fa3ff5b 100644
+>>>> --- a/arch/arm64/boot/dts/qcom/ipq5018.dtsi
+>>>> +++ b/arch/arm64/boot/dts/qcom/ipq5018.dtsi
+>>>> @@ -453,6 +453,22 @@ tcsr: syscon@1937000 {
+>>>>  			reg = <0x01937000 0x21000>;
+>>>>  		};
+>>>>
+>>>> +		bluetooth: bluetooth@7000000 {
+>>>> +			compatible = "qcom,ipq5018-bt";
+>>>> +			reg = <0x07000000 0x58000>;
+>>>> +
+>>>> +			firmware-name = "qca/bt_fw_patch.mbn";
+>>>
+>>> Hm, rethinking this, it must have ipq5018 somewhere in the name
+>>
+>> I agree but all QCA BT firmware and rampatches are published in the
+>> /lib/firmware/qca directory, see:
+>> https://git.kernel.org/pub/scm/linux/kernel/git/ath/linux-firmware.git/tree/qca
 >
-> Take a look at drivers/clk/clk_kunit_helpers.c.
-> of_clk_add_hw_provider_kunit() will call of_clk_del_provider() for you
-> via of_clk_del_provider_wrapper.
+> +Jeff, Bartosz?
+>
 
-Nice, I didn't found that helper myself. Thanks for the pointers.
+I'm not sure what the question is. This particular blob doesn't seem to exist
+anywhere in linux-firmware yet. I agree, ideally the platform name should be in
+the firmware name so let's upstream it to linux-firmware as such? Am I missing
+something?
 
-Thanks,
-Miqu=C3=A8l
+Bartosz
 
