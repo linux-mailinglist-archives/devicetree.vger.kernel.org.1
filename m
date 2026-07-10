@@ -1,68 +1,58 @@
-Return-Path: <devicetree+bounces-324612-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-324614-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 4miTNx82UWpwAwMAu9opvQ
-	(envelope-from <devicetree+bounces-324612-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 20:12:47 +0200
+	id hDZYLgE4UWqnAwMAu9opvQ
+	(envelope-from <devicetree+bounces-324614-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 20:20:49 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3811C73D44A
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 20:12:47 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4ED2873D4BF
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 20:20:49 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=c59BW8eg;
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324612-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-324612-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=bootlin.com header.s=dkim header.b=LzpjpMQu;
+	dmarc=pass (policy=reject) header.from=bootlin.com;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324614-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-324614-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C4307306E4CC
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 18:07:35 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id B55213015868
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 18:20:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F28BB3822B7;
-	Fri, 10 Jul 2026 18:07:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9846D349CFE;
+	Fri, 10 Jul 2026 18:20:46 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55C9537C0F6;
-	Fri, 10 Jul 2026 18:07:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 599161A6831
+	for <devicetree@vger.kernel.org>; Fri, 10 Jul 2026 18:20:43 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783706848; cv=none; b=M66oXFrm4kGqJOD/Xa7ZlipeGdPCzwC9/wnZJmKRcPID6/M29uWECAAyaVabvy+El8bzsi5m3OPm9JtWPkbQWlFPLQLpkWJKWF/jaIfW1Jjg8G1ayIm9IWinA5jDZh5pTC2s7Z9ioNeHnlQsTfup3DBZk0g9p2LYMYJN6qvfe6c=
+	t=1783707646; cv=none; b=D3pslj80145i9k4OjE0939zwNeRg1jU2Ztu41HUrL2XNTnf2zZxyk2bYqZiLdnG19PfwZZ4cvgE1YqiOqHBALZoA2d2w33eL1WkcewSgOcD2TOKF9eYHLtuozGk+JSeVhWvB5b/V2TaVwiAkMcknJpnmYBsVJxPy+tL+L8WzVtI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783706848; c=relaxed/simple;
-	bh=Q6wt/h32zDSUjWgfmdr6fSoDRafx4CxAPkUIm3xpkFs=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=S5xvEqr5NhTxZmDY4p3Wghg5dypvLCt4k/DSsc8JxGjdi1AuBP0orPIz1sQouhW386IDIFArRnLNe75Db8pw17p3umhdSkWhnva5CYzE60mKbiNm4ODCA6KsmSE2g8+DumxBaUCDD+OwZOXbTb9lh27l8Ojyy25PeNYcJuIpiNc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=c59BW8eg; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 85F041F00ACF;
-	Fri, 10 Jul 2026 18:07:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783706847;
-	bh=nkV2DbaHgVJj2/IyHSADBCUmwwWfdOmmFIDSoyqP328=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=c59BW8egSe/iCT+/S3F9Ac5W+7YufsoalW/9Is4ju4zE8CxN23RV+qKv3xHiuCPJb
-	 4Rcnkwyf2X4FadHlAglA+aPBFn+XJOKKN9YlqA6aVDcVv2K3YHpGn+C2sHIOc9OecJ
-	 BiKnLaN3KA4a0VKeOifFVU4+168tna5nPZ8N6XC7DBypPoYQeINd0rbafcYO0iAG3C
-	 FvxfhQx9BgfRyjmSUZzwLPCliUX0Eok6KZ5XVelejsM1o8zCnDsBASkd85eAqvBXXC
-	 TT6JLt3TDVqq6eFYDLHsGwrJX50PGJhraLuZ/PtlKvEAzyNV9f7fH++H/vQpovWxMs
-	 qfubzMf+T6gTw==
-From: Bjorn Andersson <andersson@kernel.org>
-To: Mathieu Poirier <mathieu.poirier@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	Yijie Yang <yijie.yang@oss.qualcomm.com>
-Cc: linux-arm-msm@vger.kernel.org,
-	linux-remoteproc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH RESEND] dt-bindings: remoteproc: qcom,sm8550-pas: Add Qualcomm Maili ADSP and CDSP
-Date: Fri, 10 Jul 2026 13:07:12 -0500
-Message-ID: <178370682993.2572738.16116733255201981104.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260615-remoteproc-v1-1-67721b4b052a@oss.qualcomm.com>
-References: <20260615-remoteproc-v1-1-67721b4b052a@oss.qualcomm.com>
+	s=arc-20240116; t=1783707646; c=relaxed/simple;
+	bh=quUhxcI6irdcHSkn3yS8V/qx2dN4wvF15NtmR1BHVU8=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=VA+MH7uj+JPtAvGInr4swPg/zgq42FOgjCnWdoaiZszpV2hKw5KRE1VavSEK9ISXv7vfdmoLNkVgvuRxs0TaalP8GOmnG7h/AX8yGLfQyOHKuDtZT+B71c3OLgniocc20JqocdT3KgxIrzMvyaIsJMLi+G+/cYKBcfV95A5LQeE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=LzpjpMQu; arc=none smtp.client-ip=185.246.84.56
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-02.galae.net (Postfix) with ESMTPS id C28851A0F46;
+	Fri, 10 Jul 2026 18:20:41 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 94FEE60342;
+	Fri, 10 Jul 2026 18:20:41 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 4D62211BD2C18;
+	Fri, 10 Jul 2026 20:20:34 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1783707640; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding; bh=911SMfcP0+qYpn1U0RluG5K8SwviOW20UZzlW2EGqrk=;
+	b=LzpjpMQua4s0Qd7p661sbLcbI+7iujgJgxPv26WxO2vF6zgwAHeKSUp8zHcjLcHX7KREeC
+	q96w/KUN1Zbq3odhJkpKSbzvJJFKOSa/YDtRcHetTypBdqSqm+p1KYq4UaRUqsvbnemsWP
+	VURh2M6niwuYUxN8SSSuYr+lDM6eCWhxBu0Z0jTNEWNk+dAc0WGqN258IHwMTF3dyT8DK7
+	uNCn+yrfaVk1oZcoHaNnxB/D4XEItlGioXyipHnU3K2BS/DNoqSHGiCPGrH2CC3bP+exfL
+	YrucgnZ06S1TijMWzJOlH/PAe1w+iRmz4d+0Pa80+Jo6725+Xx6jrtjZMru9bA==
+From: "Miquel Raynal (Schneider Electric)" <miquel.raynal@bootlin.com>
+Subject: [PATCH v2 0/2] hwrng: Enable EIP-76 on RZ/N1
+Date: Fri, 10 Jul 2026 20:20:31 +0200
+Message-Id: <20260710-schneider-v7-2-rc1-eip76-upstream-v2-0-4eab557b0e70@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,61 +60,89 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/x3NQQrCMBBG4auUWTuQRE3Eq4iLkPy1szCGGS1C6
+ d0NLr/NexsZVGB0nTZSrGLyagPhMFFZcnuApQ5TcCG65B1bWRqkQnlNHFiLZ0hPkT/d3or85FO
+ N+XJ0/jwn0Oh0xSzf/+N23/cfJoGK0nMAAAA=
+X-Change-ID: 20260710-schneider-v7-2-rc1-eip76-upstream-4d6a83015f7e
+To: Olivia Mackall <olivia@selenic.com>, 
+ Herbert Xu <herbert@gondor.apana.org.au>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Jayesh Choudhary <j-choudhary@ti.com>
+Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+ Pascal EBERHARD <pascal.eberhard@se.com>, 
+ Wolfram Sang <wsa+renesas@sang-engineering.com>, 
+ linux-crypto@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ "Miquel Raynal (Schneider Electric)" <miquel.raynal@bootlin.com>
+X-Mailer: b4 0.14.3
+X-Last-TLS-Session-Version: TLSv1.3
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
+	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-324612-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS(0.00)[m:mathieu.poirier@linaro.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:mani@kernel.org,m:yijie.yang@oss.qualcomm.com,m:linux-arm-msm@vger.kernel.org,m:linux-remoteproc@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[andersson@kernel.org,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-324614-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:olivia@selenic.com,m:herbert@gondor.apana.org.au,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:j-choudhary@ti.com,m:thomas.petazzoni@bootlin.com,m:pascal.eberhard@se.com,m:wsa+renesas@sang-engineering.com,m:linux-crypto@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:miquel.raynal@bootlin.com,m:krzk@kernel.org,m:conor@kernel.org,m:wsa@sang-engineering.com,s:lists@lfdr.de];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	FORGED_SENDER(0.00)[miquel.raynal@bootlin.com,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andersson@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NEQ_ENVFROM(0.00)[miquel.raynal@bootlin.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[bootlin.com:+];
+	ALIAS_RESOLVED(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	TO_DN_SOME(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,vger.kernel.org:from_smtp,bootlin.com:from_mime,bootlin.com:email,bootlin.com:mid,bootlin.com:dkim]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 3811C73D44A
+X-Rspamd-Queue-Id: 4ED2873D4BF
 
+The EIP-76 is an block from Inside-Secure which is not at all OMAP
+specific. Make it available on Renesas RZ/N1 where it is present inside
+a container named EIP-150.
 
-On Mon, 15 Jun 2026 16:30:21 +0800, Yijie Yang wrote:
-> Document compatible strings for the ADSP and CDSP Peripheral Authentication
-> Services on the Qualcomm Maili SoC. Both are compatible with the Qualcomm
-> SM8550 PAS and can fallback to SM8550 except for one additional interrupt
-> ("shutdown-ack"). For CDSP, similar to Kaanapali, "global_sync_mem" is
-> not managed by the kernel.
-> 
-> 
-> [...]
+These patches come from a bigger series which I split into meaningful
+patchsets, one per subsystem:
 
-Applied, thanks!
+Link: https://lore.kernel.org/all/20260327-schneider-v7-0-rc1-crypto-v1-0-5e6ff7853994@bootlin.com/
 
-[1/1] dt-bindings: remoteproc: qcom,sm8550-pas: Add Qualcomm Maili ADSP and CDSP
-      commit: d7f6a97be70592cf3906c95428f8f1dbbc9f38dd
+Changes in v2:
+- Patches have been extracted from the bigger series.
+- Rebased on top of v7.2-rc1.
+- Tag from Rob collected.
+
+Signed-off-by: Miquel Raynal (Schneider Electric) <miquel.raynal@bootlin.com>
+---
+Miquel Raynal (Schneider Electric) (2):
+      dt-bindings: rng: Rename the title of the EIP-76 file
+      hwrng: omap: Enable on Renesas RZ/N1D
+
+ Documentation/devicetree/bindings/rng/inside-secure,safexcel-eip76.yaml | 2 +-
+ drivers/char/hw_random/Kconfig                                          | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+---
+base-commit: 7f26e010764df304602f33912a0550dcf46e72c2
+change-id: 20260710-schneider-v7-2-rc1-eip76-upstream-4d6a83015f7e
 
 Best regards,
 -- 
-Bjorn Andersson <andersson@kernel.org>
+Miquel Raynal (Schneider Electric) <miquel.raynal@bootlin.com>
+
 
