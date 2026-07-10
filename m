@@ -1,293 +1,305 @@
-Return-Path: <devicetree+bounces-324357-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-324359-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id oYhbELHFUGph4wIAu9opvQ
-	(envelope-from <devicetree+bounces-324357-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 12:13:05 +0200
+	id 8bGyIWDGUGqX4wIAu9opvQ
+	(envelope-from <devicetree+bounces-324359-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 12:16:00 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7ADDB739804
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 12:13:04 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 33DE77398A7
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 12:16:00 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=NXP1.onmicrosoft.com header.s=selector1-NXP1-onmicrosoft-com header.b=QbTsKMwf;
-	dmarc=fail reason="SPF not aligned (relaxed), DKIM not aligned (relaxed)" header.from=nxp.com (policy=none);
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324357-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-324357-lists+devicetree=lfdr.de@vger.kernel.org";
-	arc=reject ("cv is fail on i=2")
+	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=Yxis0IsE;
+	dmarc=pass (policy=reject) header.from=qualcomm.com;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324359-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-324359-lists+devicetree=lfdr.de@vger.kernel.org";
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id ECFFE3034BC9
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 10:09:02 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 486BF30604CA
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 10:13:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DC0C3F6C4D;
-	Fri, 10 Jul 2026 10:09:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B621403E96;
+	Fri, 10 Jul 2026 10:13:12 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from AM0PR02CU008.outbound.protection.outlook.com (mail-westeuropeazon11013035.outbound.protection.outlook.com [52.101.72.35])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5A8F351C27;
-	Fri, 10 Jul 2026 10:09:00 +0000 (UTC)
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783678142; cv=fail; b=cAUPcD9EmBzhyxY6LsZ1A2a37QV/3TtOcpu7Io6FhsBU/TB+nbdFe/hZa+I9zAJCZD2Vu+zbvA0VXswwYdR6AEI/Q26VgvxXdnvRSYO0TELT3VG+GUUVKADWMQrBl0LJlezR7YpcyBgDaMj2rfeh7pH8u2OsxOwUC91+YN8c8Kg=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783678142; c=relaxed/simple;
-	bh=jI7LKP4SiuaovJsJTO0beFGv2Jk9lJuY+wFUhKe3DTI=;
-	h=From:Date:Subject:Content-Type:Message-Id:To:Cc:MIME-Version; b=eceH7z4ZRnzcIbTwxjXe4BieL5+a4MkYJm6zAw/WhGVAtspOH6e2Hzc7kwXOITwykW4tkLCTAu4Rgv8Nai4/Wkmod1XG58jPCMgAvPNyEL5gDA6ulRvuHQiFYk2uiLoQ9hSkDzBKZy9YWVMXLrzZrOP8aAEDD/E56tBNIGzs0p0=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=QbTsKMwf; arc=fail smtp.client-ip=52.101.72.35
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=UWhkjwDbiAVYr12bBtlJCDcdVW/bkzANIixkZSxrYmMVPKZIK6ULqb7Ht3KHFVvoFoCuXOV0RkbZ/xmuWTgJkGc+cbHva7byl7jX2kyeu9HStYQi3eLuBRJxtiIm8crRcPwoceb1w/0BuVVoTT1XGVQdk8dcAVcJHhyAHfJOfp4i0Gm37t3gdKyn/UBWcVWf8p5JTjORTNDQkImW9ythjP8v6UguUD4bndDTJ1LpGliS+Ke49szIfEu9gd6PAbi4FhsjP1ikg8qanJCh3BnASABLxX1pe3PInfg/Kt4lbKtUCwz0eSFNkYOmoGSWYU7MovGc+TiNU9AaWVnzsuhyFQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=L4KWrzr+YWD0/ZwxErTj48n5Bz6Sdq2e6ah0W6DJcDQ=;
- b=lmwb0yZ/IZWqCMcvR09iyQQg44ZeSlu/2wY6lxNjeUW5XqhNh4JxyqZ1w6tIkZJuzugJIXy3r7Xbg2DR0kpRAIzBxluphK0KPKHylAImLco9Pa9BlOS3ZCEF2fMe8P86ooru9akXYgZHp5uaPthS8sWES/BuT9N33U1RV+WG/G/VqMFUurXzjJ9JqkQAXZrZVV7UcDvhMy9ydTquFSAbkMse2xvhb30HyJFfvSc+6DVlX8fbG605H/opgqSWKuEyz8ZjqZdlqqaPBOt7Vpq6UyvqakPf5nP/3F8Zyf0mN5rCs6rFoyaXlwQOvErnHofUlSE4b21P2MpWlppvNfCeew==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector1-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=L4KWrzr+YWD0/ZwxErTj48n5Bz6Sdq2e6ah0W6DJcDQ=;
- b=QbTsKMwf+smf+IDDSoTT2E4NLBnJImyXLGz5dRGNQeFtcBubxjjw0uBsjQN2ss2SutzwC1Tnj81ZGaYHbNgF66CsGkFlEF3TlnyGPQyJw7cx1kFEAo3UTdYmSPKVyiERBedAEbYGBfAnNumqJTgM2bCvoKf0JAL4QvwBMiegkcKG0os6nrXQBX4AAFstXYdyB/IK7nDZ9q7uOg2VVtkTduHvLmwePzaSuN1vU0e+uzt7bAN9645E4jPX1g6DIm2vrx2zI+7Z6bqFBAjy18Ploy3bzztEp5f862i0T2ORtVQU8j74G9kZ1CkEBmSuQ0ZlAnpkVo0D0YQygXQZJdI7Jg==
-Received: from PA6PR04MB11909.eurprd04.prod.outlook.com
- (2603:10a6:102:51c::22) by AM0PR04MB6913.eurprd04.prod.outlook.com
- (2603:10a6:208:184::24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.17; Fri, 10 Jul
- 2026 10:08:57 +0000
-Received: from PA6PR04MB11909.eurprd04.prod.outlook.com
- ([fe80::a4b:fa4e:7fe7:e6a2]) by PA6PR04MB11909.eurprd04.prod.outlook.com
- ([fe80::a4b:fa4e:7fe7:e6a2%5]) with mapi id 15.21.0181.014; Fri, 10 Jul 2026
- 10:08:57 +0000
-From: haibo.chen@oss.nxp.com
-Date: Fri, 10 Jul 2026 18:12:20 +0800
-Subject: [PATCH] arm64: dts: imx91-9x9-qsb: add CAN support overlay file
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260710-dts-imx91-can1-v1-1-c78c9c378e8d@nxp.com>
-X-B4-Tracking: v=1; b=H4sIAIPFUGoC/x3MQQqAIBBA0avErBtwBJO6SrQonWoWWWhEIN49a
- fkW/2dIHIUTDE2GyI8kOUMFtQ24fQ4bo/hq0Ep3ypJCfyeU4+0J3RwIF2vM6h2RZ4IaXZFXef/
- hOJXyAZ1Twj9gAAAA
-X-Change-ID: 20260710-dts-imx91-can1-b755fdc11de1
-To: Frank Li <Frank.Li@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Haibo Chen <haibo.chen@nxp.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1783678347; l=3012;
- i=haibo.chen@nxp.com; s=20250421; h=from:subject:message-id;
- bh=r4IWS/ej2uTzP7UmQATCdKNsUV3K63QpDrRvgdypHkE=;
- b=0kFOhTLrdmZ1fz8CfAR3kFS1ZIscCvgwRlepWJuLempnuNclB6xvORdpP68A5tcQ+fQao1Y/l
- OIiQgHvwGQpCr5/nvAwpczhiTo9PV9ejB8e3HCbSZUp8qPLju/y8DU9
-X-Developer-Key: i=haibo.chen@nxp.com; a=ed25519;
- pk=HR9LLTuVOg3BUNeAf4/FNOIkMaZvuwVJdNrGpvKDKaI=
-X-ClientProxiedBy: MA5PR01CA0108.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a01:1d1::18) To PA6PR04MB11909.eurprd04.prod.outlook.com
- (2603:10a6:102:51c::22)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B03D3F86F7;
+	Fri, 10 Jul 2026 10:13:10 +0000 (UTC)
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1783678392; cv=none; b=KOIAR4aa2HEheviyboSluqzp/hf6REurLVj3EHF66nc0s0K7PBKdprO0Bnh0G1G2pLYQItfdEbc55tct3Uk9yzD2D2BSWB5jv0JMml0Kg5rmGNHbovekagyPMnC3PPQqOv21zo+MYTYfhLc2DTM0ytM5NkNCiziwwl65v+4rGV8=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1783678392; c=relaxed/simple;
+	bh=gdzghHsVJkX/BeYiGV7j+ToMLP4NKruD9h6gRDju5ig=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=APwVG/ZprVmBaYmI2m4/v8YFZCW1/ekUOhiMTJU3ZkD870cZaqglf6O7sHsDwWI28rcinaUD4UItx7osyAtk2WSxHualsDoulYFCSaukCYOb4Rs5/ElLXm1WuLxIhA9PCx0Z0hSoU4GyvuL4WhyPHqqanfvoh/NW+QhvshvoSiw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Yxis0IsE; arc=none smtp.client-ip=205.220.180.131
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 66A7eeXU092339;
+	Fri, 10 Jul 2026 10:13:04 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	fDaAlLM/vYTFmq4duyZj/0Kvfiq4vCvEiCwsqBWXP30=; b=Yxis0IsEmW4McgPE
+	CtHigz4y7Xn3wzuO/Iyv7/n8BLtQtNOrIx2dMHNKhzTliNifzbIGu1FoA0yll/za
+	dq3ca7Z4sxym3FhB36oR3x/Ra72CSC6rIR4jeMKMYc67Pg7Ki4e5Qx3icjyoDGgc
+	xwO8xaQEsPTcgca3wL4EoO688H6wLBU+3m1ZTPd1qsM6Mq/IlvK5f1ZqdbTfUckH
+	sfynLtsQD3U7UREgkaOKj5daCCtMJVTkbfZxfu2WgYzPoEjgbUPrpxCwnJlXIm/7
+	UydnCT+GRQbUEsBiSzbId58WX4r1LP5n6mP/NG2uXf+5OktfLWp6fyUO/Y6ZZ/K0
+	+PJxMA==
+Received: from apblrppmta02.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4fadvjc5sm-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 10 Jul 2026 10:13:03 +0000 (GMT)
+Received: from pps.filterd (APBLRPPMTA02.qualcomm.com [127.0.0.1])
+	by APBLRPPMTA02.qualcomm.com (8.18.1.7/8.18.1.7) with ESMTP id 66AACxmL030438;
+	Fri, 10 Jul 2026 10:12:59 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 4f6u8mgsjd-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 10 Jul 2026 10:12:59 +0000 (GMT)
+Received: from APBLRPPMTA02.qualcomm.com (APBLRPPMTA02.qualcomm.com [127.0.0.1])
+	by pps.reinject (8.18.1.12/8.18.1.12) with ESMTP id 66AACxWS030433;
+	Fri, 10 Jul 2026 10:12:59 GMT
+Received: from hu-devc-hyd-u22-c.qualcomm.com (hu-kotarake-hyd.qualcomm.com [10.213.97.140])
+	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 66AACwrx030431
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 10 Jul 2026 10:12:59 +0000 (GMT)
+Received: by hu-devc-hyd-u22-c.qualcomm.com (Postfix, from userid 2389607)
+	id 067D0B2D; Fri, 10 Jul 2026 15:42:58 +0530 (+0530)
+Date: Fri, 10 Jul 2026 15:42:58 +0530
+From: Rakesh Kota <rakesh.kota@oss.qualcomm.com>
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        sashiko-reviews@lists.linux.dev,
+        Komal Bajaj <komal.bajaj@oss.qualcomm.com>, robh@kernel.org,
+        linux-phy@lists.infradead.org, neil.armstrong@linaro.org,
+        vkoul@kernel.org, olteanv@gmail.com, krzk+dt@kernel.org,
+        conor+dt@kernel.org, devicetree@vger.kernel.org,
+        Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>
+Subject: Re: [PATCH 3/4] arm64: dts: qcom: Add Shikra CQM SoM platform
+Message-ID: <20260710101258.32srtofmovmxqhh7@hu-kotarake-hyd.qualcomm.com>
+References: <20260514103918.cs5m5kcxcrcgukvx@hu-kamalw-hyd.qualcomm.com>
+ <obdxony34ckfbtsqj66siszw44sgieskcye5hg66ulkisctpwl@fyqczpze5tnw>
+ <20260518114927.edxbzvklqatlntv2@hu-kamalw-hyd.qualcomm.com>
+ <CAO9ioeVMieo8HtpRw+n4ZU9uV-_RQM061q5XfAA1Dtk2fnp4+g@mail.gmail.com>
+ <bvankzuazswuigrm7hvyjqigzfaru5o43wi3zvyphgme2pgqwz@pyspqky3u6cn>
+ <5idu4ljmcvcvzqsr5g73h2roxzs36l6xxc5ju6ovc5aitt3gx4@wmfqueyf2rj6>
+ <20260630124220.4lja4zshpf66kwj3@hu-kotarake-hyd.qualcomm.com>
+ <33c74e59-076a-4877-9e62-83a8ebbf2d54@oss.qualcomm.com>
+ <20260703093035.q5xgljuigpt6zqt6@hu-kotarake-hyd.qualcomm.com>
+ <fku5jad6op5upobwvrphbqteg76zukbovsifzarizz4m3ofuka@gdpaxzzuraee>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PA6PR04MB11909:EE_|AM0PR04MB6913:EE_
-X-MS-Office365-Filtering-Correlation-Id: d0c438d0-876d-4e8e-c718-08dede6b4125
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|19092799006|366016|1800799024|376014|7416014|23010399003|18002099003|56012099006|11063799006;
-X-Microsoft-Antispam-Message-Info:
-	I5n3K+nKDOfnwxHuY7uU1mRNRaadJJo1/HP138+YnWXeJLyVzWE6SjexCpu3mmSmvM9M3TAUYvtxor96P3KGGqDBpv+MzLhZQzWeOdf/b3Y/n6QviB5sh9yE2Xudp7EYwys5l6zQhrTvJkO13IqwDgNuKOpl7Q5s+48H85okTjjpV0+qIE0XHueE6HPzLKlVEX7DmK3AQ17ySitmI1pnj69dt14C0A2p1gtKCCclWaXjFriY2vFzl4RQOvvkVjcVZcl8KD2S7qjBsX6OtIYrPCjaV7Skw+uWryKiKIhlsT2BoFIUdY0OypcZ8EsJrLyNEttnjFNJF6/KDlnuUupkWcFsMPTllNw5l9kIW8BFdNZYszOyqSTN8e7VtLOAHsJP2aiCif2dlzsK934jI+CoRWF8Y51bBFGuoR1+FXR3kQ+sQisnmwJPydc+P0M37ZD5gCdrTfYYSQMKkhgVo7V7TahJx9jeca6EjPbckmUNX1ZPCNeiX9dJIoXZoJWxiYFiw269RXyUrWLyvGZip/dbpoYN9a7xnUCUsujH3YBwR30JK9hhakZUARjL+T8aprNt3H/JZ62KyXewG4pEyBFga2qEtXjP2ShifNAafCqPpBpJmZ4D/xP0pDy0/Hd9U8p/
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA6PR04MB11909.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(366016)(1800799024)(376014)(7416014)(23010399003)(18002099003)(56012099006)(11063799006);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?ekJxM3ZpbXlkWFp3SlluMUNNdCt5ZnRzWFhVV1JSaThSd0plR0JXZkFwdTlp?=
- =?utf-8?B?OWZqTWE1cTMrR2M0UDZad1o3V3M2Y0E4azBnVFZHNTlKcGZWS2ozM0hENlB3?=
- =?utf-8?B?TUdnOWhCMjlaN1ZNTmVrQTdXR3hBa1owV2Q4QVV0dEJPakFhWGlJeWxlRFdo?=
- =?utf-8?B?QUhjUjdkdVBLYzJrMU9hcUhMbFdTVXh3Y3JNN0dzd3gzS1E0WkZneDV0MHNE?=
- =?utf-8?B?bUhnd2g3aDYxaUp1WW9CbjBLY1hRSEpuVXZWZllmNld2Z2MrQVhrSG1mcTdm?=
- =?utf-8?B?a3ZLMlZxNVVHNlY1MGUzYUMxNVVMTUdFRU8vMzNqQzFEU2NYZGtPMWJLMk91?=
- =?utf-8?B?aUhTYUw3bHh3Y1dYSk1pN1YxTUpWbXhDYk1NOWwwSkJnQ05WdzRDTXRDKytU?=
- =?utf-8?B?aUlLMDVwQkpCekRmakNzd0FmQWlHWitnS1VmNkhSeFRDeEhHbFRmWXdyTEFM?=
- =?utf-8?B?WDc0eTU0d01WL2lCTU5lMlFIZGM3azRKVTRPMm9rSFNGbnlHRlp5R2xHd21U?=
- =?utf-8?B?R09SYXdVcUVwOGNhaEh1NTNKNmNXTWJXS2NFRUdlSFBQNElrU1NXTDgzV3lS?=
- =?utf-8?B?c1FvVGR5TDNaeGpua0JZMVZNeHpHdjBQMUpZenkxTS8wZTgvUzFjSTIrZ1dQ?=
- =?utf-8?B?RE4wcWxWenUxeXlERW8wSmJ5TlpCMHdxUUdVOHdsQ09QbTZ1THlxZlp1M2do?=
- =?utf-8?B?TDFlUmRCUUVvUjZwV013dmt2S1ZQVFo5d1llK2JiQmYvc2UzL2RsMmNFRWlx?=
- =?utf-8?B?WG15b2w1VXBtU016bSt4ckRDQ01xRW9DY2F0VnUrSzgxZjZBN2pmNWMyOUdH?=
- =?utf-8?B?TUp0SWdnR2hETVVIMzBidHI2Z0FzQ2h5eU12Q3NnRFlOWVhaeDRoS3d5QUFP?=
- =?utf-8?B?ZnB5d1poY3AvSWd4VlZtMjlGNjl0a3Z3TFBlSHNUK0dGTnFyQnhOb3NDVWxD?=
- =?utf-8?B?Z0s0MGd1Nk5aUVJXbzhmbWgwRVlOYmdkVEtTWnBSMW0zWHdFOWkreXlYVHJM?=
- =?utf-8?B?WmhjS1pnZXlZSHV4QzJ5MDFlWUZMSnU1TFhxZlA5SmovdG1od0w0UVJmd2tC?=
- =?utf-8?B?ZlhNZXRoMStWdGhNY1BzeFlFRE90QTJMNFJVcFZQZWhDb1VkZ0VZZEJPOGxy?=
- =?utf-8?B?RTBjYThQOVRkdXFBYi9PNzVFY2srSjc5UkhKYjlxOStUTTVyNjkxUGxZTXpi?=
- =?utf-8?B?TXJnVUNPMCtKUUhVTGZKWkRhcFVHSzdReWtuNWhaeHVHQ29kQStFMzJyZXJX?=
- =?utf-8?B?ZFpwbzRKWW1EMnlVa0ZQL0dpa1VNOTFRbG85dE1Va3JkeSs2OElCbC9JN2Nr?=
- =?utf-8?B?OFltb1dnSDBsUk9RM2ZjeXppZDlxVDdmTkFvN1BhVWV5ZEZ6dzRIZXF4M1JF?=
- =?utf-8?B?b0Rsa1dYYnJRNHhrNkNGK3hjS3NWRWRFWHhja2UwaHE1ZTFpa2RsZWZicDNU?=
- =?utf-8?B?UGxKMk4wUUNWQUlBU3RpWG8vdTJqK3J0NjEvMFQraDIwNjcyZHd1NjRtZGdY?=
- =?utf-8?B?bEJxSU14QTRBbFp1U2ZIdDFpc2c1MTE5MEIvalN6SWVEUUdWRGpNY04ybW9T?=
- =?utf-8?B?UmxIbCtnYWlNajl5Z0ZDYW1FOHd3bjJZd0NZTUwvbGcvRC8xV3cyUGlGZzMw?=
- =?utf-8?B?RkVLVUJVRmFrVUJ6bFJpcXVsNHdNNTJhZE0zUEZwUlIvZklsOUg0a3ZOREtK?=
- =?utf-8?B?aElmVUJOdmxacCtXODEwcjR5Y2oreXI1cUx2VGR5QzV1cXFEREFXYVJUTSt1?=
- =?utf-8?B?SVQ0Vy95Z09ETnNBWHpVbElkc1JwNEJ2dXB1Q1BVRmdMR1NReVFhb1QrZFJY?=
- =?utf-8?B?aWZXazNZcnNYWGh4eFcvdldhYVlzR1Y3ZTJ0T2hnaDc5VDJvRmtpZzU2dVVM?=
- =?utf-8?B?RG5RQ0hrMTNGK3lMT3FldXNQbHBpVkxIaUZPZzJiNHNjejJnYi80Rm5zaHhG?=
- =?utf-8?B?THpDbDdRNUo3VnRZQjdoTW91TmZWMWMvWjlBTXpUODJIaXJCTDJDVzBUbmQx?=
- =?utf-8?B?SWEwUVV2bDVmVWNad3NNUy9ueDZRY1BJVmx5WnhQZjRFNXhKYlZEdDF1UFN5?=
- =?utf-8?B?TS81SWlVenNTbUxiTDNNWUFla2pJakJ2RDJ0NTVEenVCWHBLTnEvelVWc3dp?=
- =?utf-8?B?aUhJeHg1UUdwTEJTckJZVUg0bld6VWxDTU1lZTBhYnhvNnRIcHFKNkt1dXhP?=
- =?utf-8?B?eDZ0NVV5VGxZYS95c1p1ajlvM0hVOTc2WjV3VE81ZlBENnkyK0ZEc2pGZzFm?=
- =?utf-8?B?cndxWUZUL3JiNEgrTGx6MHJ4end0aDNmTkNYMmtVRzZaZmg3YmpLUEpLRUdG?=
- =?utf-8?B?TWhVcGJIOUF5QnEyNDU2cFYvSXduYnpSMXcyamJia3A1ZmR5aUNieDFSQjZL?=
- =?utf-8?Q?f5kEExHFxuQUpo0gskmtQiduZzTazFim2w3bC?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d0c438d0-876d-4e8e-c718-08dede6b4125
-X-MS-Exchange-CrossTenant-AuthSource: PA6PR04MB11909.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jul 2026 10:08:57.2664
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 53e6WWC2KwT2z2ouqf9ExojEVYDULzDTo7xfZ0YMySrndBx3tjawLpD75xa6ir5RRIk9gcMZFsq+2yNXBC5hX2f1dlFsFGgiSSHmeZgdXb8Oycn/DRJUr7rW7yZFGb9C
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB6913
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <fku5jad6op5upobwvrphbqteg76zukbovsifzarizz4m3ofuka@gdpaxzzuraee>
+X-QCInternal: smtphost
+X-QCInternal: smtphost
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNzEwMDA5OSBTYWx0ZWRfX75PDXj2du02N
+ pSAq0Z/AIuLDA4sJUgg2fUxDmuWmVkYEZthLfBzVh5iHx20Yvx12LyqoijY6BfOLCVxVYadJX+5
+ 2XUuY80CyM6RgelZWlT5bB6UeVShct4atPVw/9rvtPLXjbgkENwqXUGcg+gUtKNSmThvUUFUSNw
+ FbzBbUU4ytR4lRy3PNCszdBvnooSY49KRYFqAWTntd+dG4JTJ1EsqOOiMthrBnLVdErnOkNqqGS
+ oKCMuYkltqL9jJBTveQ7TarSDpfOTWULHt6YeRbnC091Or6e10AtXgxX3oswnxtMjYZhVqiX6xH
+ I7u5uJBKiMlBGcn7E3qbTYCBusmzVvtBWaEctEVzf3IP/gmzJWfszR18atFIXUbYEO5vIkDKsay
+ wOCO28Ea0gQgp4Adyvtty3bIuSttYwqjDnImPQP/4qV7KOd3hSeUE1Hfth3ZUMyhVbD6GJnIWSS
+ 1JU4dY0+IdqCJEJ53OA==
+X-Authority-Analysis: v=2.4 cv=WpIb99fv c=1 sm=1 tr=0 ts=6a50c5af cx=c_pps
+ a=Ou0eQOY4+eZoSc0qltEV5Q==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17
+ a=IkcTkHD0fZMA:10 a=RAioF0-LDSMA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=u7WPNUs3qKkmUXheDGA7:22 a=rJkE3RaqiGZ5pbrm-msn:22 a=VwQbUJbxAAAA:8
+ a=EUspDBNiAAAA:8 a=VBNFWE7bcIDabh-JT7cA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+X-Proofpoint-GUID: C-z7uAMYT63C9wHHvd6mIaQe3zUhmRyV
+X-Proofpoint-Spam-Info: AW1haW4tMjYwNzEwMDA5OSBTYWx0ZWRfXx19kZwwGD1rB
+ U24buVBizs2URxLvTLDcANrnZWgDIioWzCd2Q5rD+huWOVel7717vyPmAi/QM4s8+kN2uE8rnb+
+ RaCJTIZqSau0fqeVey0Q7v3CIxv0Dy4=
+X-Proofpoint-ORIG-GUID: C-z7uAMYT63C9wHHvd6mIaQe3zUhmRyV
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.134,FMLib:17.12.100.49
+ definitions=2026-07-10_02,2026-07-09_04,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 impostorscore=0 adultscore=0 lowpriorityscore=0
+ clxscore=1015 malwarescore=0 phishscore=0 spamscore=0 bulkscore=0
+ suspectscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2606150000
+ definitions=main-2607100099
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [2.94 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_RHS_MATCH_TO(1.00)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[NXP1.onmicrosoft.com:s=selector1-NXP1-onmicrosoft-com];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[nxp.com : SPF not aligned (relaxed), DKIM not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_NEQ_ENVFROM(0.00)[haibo.chen@oss.nxp.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS(0.00)[m:Frank.Li@nxp.com,m:s.hauer@pengutronix.de,m:kernel@pengutronix.de,m:festevam@gmail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:imx@lists.linux.dev,m:linux-arm-kernel@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:haibo.chen@nxp.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	FREEMAIL_TO(0.00)[nxp.com,pengutronix.de,gmail.com,kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	FORGED_SENDER(0.00)[haibo.chen@oss.nxp.com,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[lists@lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[NXP1.onmicrosoft.com:+];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	ALIAS_RESOLVED(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	TAGGED_FROM(0.00)[bounces-324357-lists,devicetree=lfdr.de];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	TAGGED_FROM(0.00)[bounces-324359-lists,devicetree=lfdr.de];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:dmitry.baryshkov@oss.qualcomm.com,m:konrad.dybcio@oss.qualcomm.com,m:kamal.wadhwa@oss.qualcomm.com,m:linux-arm-msm@vger.kernel.org,m:sashiko-reviews@lists.linux.dev,m:komal.bajaj@oss.qualcomm.com,m:robh@kernel.org,m:linux-phy@lists.infradead.org,m:neil.armstrong@linaro.org,m:vkoul@kernel.org,m:olteanv@gmail.com,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:jishnu.prakash@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[rakesh.kota@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[oss.qualcomm.com,vger.kernel.org,lists.linux.dev,kernel.org,lists.infradead.org,linaro.org,gmail.com];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,qualcomm.com:dkim,hu-kotarake-hyd.qualcomm.com:mid,vger.kernel.org:from_smtp,oss.qualcomm.com:from_mime];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NO_DN(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,oss.nxp.com:from_mime]
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[rakesh.kota@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[qualcomm.com:+];
+	ALIAS_RESOLVED(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	RCVD_COUNT_SEVEN(0.00)[10]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 7ADDB739804
+X-Rspamd-Queue-Id: 33DE77398A7
 
-From: Haibo Chen <haibo.chen@nxp.com>
+On Fri, Jul 03, 2026 at 06:32:10PM +0300, Dmitry Baryshkov wrote:
+> On Fri, Jul 03, 2026 at 03:00:35PM +0530, Rakesh Kota wrote:
+> > On Tue, Jun 30, 2026 at 03:50:16PM +0200, Konrad Dybcio wrote:
+> > > On 6/30/26 2:42 PM, Rakesh Kota wrote:
+> > > > On Sun, Jun 28, 2026 at 03:33:23PM +0300, Dmitry Baryshkov wrote:
+> > > >> On Thu, Jun 25, 2026 at 09:11:19PM +0530, Kamal Wadhwa wrote:
+> > > >>> On Wed, Jun 17, 2026 at 03:48:14PM +0300, Dmitry Baryshkov wrote:
+> > > >>>> On Mon, 18 May 2026 at 14:49, Kamal Wadhwa
+> > > >>>> <kamal.wadhwa@oss.qualcomm.com> wrote:
+> > > >>>>>
+> > > >>>>> On Sun, May 17, 2026 at 08:18:15PM +0300, Dmitry Baryshkov wrote:
+> > > >>>>>> On Thu, May 14, 2026 at 04:09:18PM +0530, Kamal Wadhwa wrote:
+> > > >>>>>>> On Wed, May 13, 2026 at 06:14:20PM +0300, Dmitry Baryshkov wrote:
+> > > >>>>>>>> On 13/05/2026 17:29, Rakesh Kota wrote:
+> > > >>>>>>>>> On Wed, May 13, 2026 at 03:01:47PM +0300, Dmitry Baryshkov wrote:
+> > > >>>>>>>>>> On Wed, May 13, 2026 at 04:28:35AM +0000, sashiko-bot@kernel.org wrote:
+> > > >>>>>>>>>>> Thank you for your contribution! Sashiko AI review found 2 potential issue(s) to consider:
+> > > >>>>>>>>>>> - [High] The PMIC regulator definitions omit their required input supply dependencies (e.g., `vdd_s2-supply`, `vdd_l3-supply`), breaking the power hierarchy.
+> > > >>>>>>>>>>> - [Medium] The device tree inaccurately hardcodes the `compatible` string to a different PMIC model (`qcom,rpm-pm2250-regulators`) instead of explicitly identifying the actual hardware (PM4125).
+> > > >>>>>>>>>>> --
+> > > >>>>>>>>>>>> +
+> > > >>>>>>>>>>>> +         pm4125_s2: s2 {
+> > > >>>>>>>>>>>> +                 regulator-min-microvolt = <1000000>;
+> > > >>>>>>>>>>>> +                 regulator-max-microvolt = <1200000>;
+> > > >>>>>>>>>>>> +         };
+> > > >>>>>>>>>>>
+> > > >>>>>>>>>>> Do these regulators need to explicitly define their input supply dependencies
+> > > >>>>>>>>>>> such as vdd_s2-supply?
+> > > >>>>>>>>>>>
+> > > >>>>>>>>>>> Without these properties, the regulator framework might be unaware that the
+> > > >>>>>>>>>>> PMIC regulators draw power from upstream supplies.
+> > > >>>>>>>>>>>
+> > > >>>>>>>>>>> If the kernel dynamically manages the upstream supply and its reference count
+> > > >>>>>>>>>>> drops to zero, could it be disabled, causing an unexpected power loss for
+> > > >>>>>>>>>>> downstream components?
+> > > >>>>>>>>>>
+> > > >>>>>>>>>> And this is a correct comment. Please provide missing supplies.
+> > > >>>>>>>>>>
+> > > >>>>>>>>> As per the Qualcomm system design, the parent-child supply relationship
+> > > >>>>>>>>> is managed by the RPM firmware, not the Linux regulator framework. The
+> > > >>>>>>>>> RPM ensures the parent supply is never disabled until all subsystem
+> > > >>>>>>>>> votes are cleared.
+> > > >>>>>>>>
+> > > >>>>>>>> How is this different from other, previous platforms?
+> > > >>>>>>>
+> > > >>>>>>> This is not different. In the previous platforms too this is taken care from the
+> > > >>>>>>> RPM/RPMH firmware side, the only case where we may need explicit vote to parent
+> > > >>>>>>> is for non-rpmh/rpm regulator rails (like i2c based regulator pm8008), which
+> > > >>>>>>> may have a RPM/RPMH regulator as a parent.
+> > > >>>>>>>
+> > > >>>>>>> Even on those previous targets the parent rail of all RPM/RPMH regulators are
+> > > >>>>>>> internally voted by RPM/RPMH FW at proper voltage with required headroom
+> > > >>>>>>> calculated based on the active child rails. This was done for all the
+> > > >>>>>>> subsystems (including APPS) regulators.
+> > > >>>>>>>
+> > > >>>>>>> So no explicit handling from the APPS is required for parent supply.
+> > > >>>>>>
+> > > >>>>>> You are explaining the driver behaviour. But the question is about the
+> > > >>>>>> hardware description. If there is no difference, please add necessary
+> > > >>>>>> supplies back.
+> > > >>>>>
+> > > >>>>> I understand your concern about descibing the parent-child relation in the
+> > > >>>>> devicetree, and given that we have been almost always followed this for all
+> > > >>>>> the previous targets, it will expected of us to add them.
+> > > >>>>
+> > > >>>> Yes.
+> > > >>>>
+> > > >>>>>
+> > > >>>>> However, we want to avoid the unnecessary access to the parent from APPS.
+> > > >>>>
+> > > >>>> Why? What is the reason? Do we want to do the same for all the
+> > > >>>> platforms? Only for Shikra? Something else?
+> > > >>>>
+> > > >>>>> At the moment, I do not see a way to avoid that, if we add the parent
+> > > >>>>> regulators.
+> > > >>>>
+> > > >>>> That depend on the answer to the previous question. In the end, we can
+> > > >>>> make the driver ignore the parents by removing them from the regulator
+> > > >>>> desc.
+> > > >>>
+> > > >>> Ok, this seems like a good suggestion, so you mean its ok if we define the
+> > > >>> regulator desc's supply column with NULL? And only keep that in the DT?
+> > > >>>
+> > > >>> you mean like this?
+> > > >>> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/regulator/qcom-rpmh-regulator.c?h=v7.1#n1453
+> > > >>>
+> > > >>> (please let me know if i got that right. thanks)
+> > > >>
+> > > >> Yes. Don't forget to explain in the commit message, why you are doing
+> > > >> so.
+> > > > 
+> > > > Currently, Agatti uses the same PMIC, so we cannot set the driver
+> > > > supply name reference to NULL. Since it's an older target,
+> > > > we'll need to run a regression before making any driver-level changes.
+> > > > 
+> > > > Additionally, the child-to-parent regulator ganging differs between
+> > > > Shikra and Agatti:
+> > > > 
+> > > >  - On Agatti, l3 regulator is ganged with vdd_l13_l14_l15_l16
+> > > >  - On Shikra, l3 is ganged with vdd_l2_l3
+> > > 
+> > > Is it configurable on the PMIC level? I was under the impression the
+> > > supply maps are fixed in hardware.  Is there a chance the agatti
+> > > description is just wrong?
+> > 
+> > The supply ganging between child LDOs and parent supplies is not fixed
+> > at the PMIC hardware level — it varies per platform based on system
+> > design requirements. The same LDO can have a different parent supply on
+> > different SoCs.
+> 
+> It can have different power supplies, but the supply is provided through
+> a fixed pin of the PMIC. Please correct me if I'm wrong.
+> 
 
-On the i.MX91 9x9 QSB, CAN1 and MICFIL share pins. A TMUX1574RSVR
-analog mux controls the routing: when SEL is driven high, CAN1 is
-selected; when SEL is driven low, MICFIL is selected. By default,
-SEL is kept low.
+You're right, I apologize for the confusion. The supply rail is fixed in
+hardware via physical pin connections. The differing supply name in the
+Agatti DTS is likely incorrect. 
 
-To enable CAN1, SEL must be driven high. This is done via the can_fun
-function defined in the pinctrl-gpiomux node. CAN1 uses the
-TJA1057GT/3 PHY.
+I'll address this in the next patch series — updating the driver
+to set the parent supply to NULL, and correcting the Agatti and Shikra
+DT parent supply names to match the actual PMIC pin connections,
+since the base change has already been merged.
 
-Signed-off-by: Haibo Chen <haibo.chen@nxp.com>
----
-This patch is based on the following patch set:
-https://lore.kernel.org/imx/20260710024204.3462444-1-chancel.liu@oss.nxp.com/T/#t
----
- arch/arm64/boot/dts/freescale/Makefile             |  2 +
- .../boot/dts/freescale/imx91-9x9-qsb-can1.dtso     | 48 ++++++++++++++++++++++
- 2 files changed, 50 insertions(+)
+https://git.kernel.org/pub/scm/linux/kernel/git/qcom/linux.git/tree/arch/arm64/boot/dts/qcom/shikra-cqm-som.dtsi?h=for-next#n52
 
-diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-index 01d4ddfde0989a2f1ae0ac33d236fe1e2b1c970d..37d158c2de88572e2753ccf9ec518d27cbe8d492 100644
---- a/arch/arm64/boot/dts/freescale/Makefile
-+++ b/arch/arm64/boot/dts/freescale/Makefile
-@@ -577,7 +577,9 @@ dtb-$(CONFIG_ARCH_MXC) += imx91-11x11-frdm.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx91-11x11-frdm-s.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx91-phyboard-segin.dtb
- 
-+imx91-9x9-qsb-can1-dtbs += imx91-9x9-qsb.dtb imx91-9x9-qsb-can1.dtbo
- imx91-phyboard-segin-peb-av-18-dtbs += imx91-phyboard-segin.dtb imx91-phyboard-segin-peb-av-18.dtbo
-+dtb-$(CONFIG_ARCH_MXC) += imx91-9x9-qsb-can1.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx91-phyboard-segin-peb-av-18.dtb
- 
- dtb-$(CONFIG_ARCH_MXC) += imx91-tqma9131-mba91xxca.dtb
-diff --git a/arch/arm64/boot/dts/freescale/imx91-9x9-qsb-can1.dtso b/arch/arm64/boot/dts/freescale/imx91-9x9-qsb-can1.dtso
-new file mode 100644
-index 0000000000000000000000000000000000000000..b8343d653e511244c838a2a7add8a8d74398f8a2
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx91-9x9-qsb-can1.dtso
-@@ -0,0 +1,48 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright 2026 NXP
-+ */
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include "imx91-pinfunc.h"
-+
-+/dts-v1/;
-+/plugin/;
-+
-+&{/} {
-+	flexcan_phy: can-phy {
-+		compatible = "nxp,tja1057";
-+		#phy-cells = <0>;
-+		max-bitrate = <5000000>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_flexcan_phy>;
-+		silent-gpios = <&gpio1 10 GPIO_ACTIVE_HIGH>;
-+	};
-+};
-+
-+&flexcan1 {
-+	phys = <&flexcan_phy>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_flexcan1>, <&can_fun>;
-+	status = "okay";
-+};
-+
-+&iomuxc {
-+	pinctrl_flexcan_phy: flexcanphygrp {
-+		fsl,pins = <
-+			MX91_PAD_PDM_BIT_STREAM1__GPIO1_IO10	0x31e
-+		>;
-+	};
-+
-+	pinctrl_flexcan1: flexcan1grp {
-+		fsl,pins = <
-+			MX91_PAD_PDM_CLK__CAN1_TX		0x139e
-+			MX91_PAD_PDM_BIT_STREAM0__CAN1_RX	0x139e
-+		>;
-+	};
-+};
-+
-+/* micfil uses PDM port A pins, conflicts with can1 */
-+&micfil {
-+	status = "disabled";
-+};
+> > I have verified the Agatti parent-child supply mappings and they are
+> > correct. The difference between Agatti and Shikra is a legitimate
+> > platform-level design difference, not an error in the Agatti DT.
+> 
+> There is an error in the DT. It uses fake PMIC supply names.
+>
+yes, i will correct.
 
----
-base-commit: b9fff21cbd480f47f04debbce6c14f48dd715f0a
-change-id: 20260710-dts-imx91-can1-b755fdc11de1
-
-Best regards,
--- 
-Haibo Chen <haibo.chen@nxp.com>
-
+regards
+Rakesh Kota
 
