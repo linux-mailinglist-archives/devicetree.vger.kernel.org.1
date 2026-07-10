@@ -1,191 +1,182 @@
-Return-Path: <devicetree+bounces-324497-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-324498-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 3ir+Oob9UGqg9gIAu9opvQ
-	(envelope-from <devicetree+bounces-324497-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 16:11:18 +0200
+	id z+K/DZ39UGqp9gIAu9opvQ
+	(envelope-from <devicetree+bounces-324498-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 16:11:41 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66F8973BA45
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 16:11:18 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B6BE73BA61
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 16:11:41 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=linuxfoundation.org header.s=korg header.b=kgmiif0J;
-	dmarc=pass (policy=none) header.from=linuxfoundation.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324497-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-324497-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=Kb6WKvYM;
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324498-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-324498-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 4F2C93034A0E
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 14:09:58 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id B397830267B0
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 14:10:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7696E3126BC;
-	Fri, 10 Jul 2026 14:09:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C91982EB859;
+	Fri, 10 Jul 2026 14:10:50 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C349221D3E4;
-	Fri, 10 Jul 2026 14:09:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A6C32E7369;
+	Fri, 10 Jul 2026 14:10:49 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783692595; cv=none; b=rArj6CV8zmGKEd2KEMM3QjBXRXRz48DKrJ5LQPT+K2oAJVNoCWATGUzox2l54Bq/RwEZiXAVRSJgRY6aXrWgg6nYfCNtdZ+6Y9HHVZbRtnL6JKjeSut+iJHmU3AxqrT+9psMipjXaSioywBwPCn5LMQJeiQ49/ONpGUxkavFgHM=
+	t=1783692650; cv=none; b=MDFKi80aItvduMZd/VEYVhSbBpoSaQDSMDz156LEFyhuakISGSxEuO9g8OwE2ZlHTwU+9o5S5FLU4z4ZR3+8DGIuN6+15praIMFPlwyB7LDuUEC1dghZzE7EiC9Yq6N5ulyHUpQwN2BHimQHbO/DzQa6HUjE9RdndUnaYYlydBk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783692595; c=relaxed/simple;
-	bh=JMhdtMOLaUHWXqPIXTzBNMeZuvaIhZXyYL/o5sxmfz4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ET7QZ2lPgo2Irw7+T/cf+sarPdA+1JVvm1kSlqHZpXOxHYZdeJM0fLrb3B6jf/9IkEAc/28VaBeynhgy2Z9NsVx/7HoZGr6y+ZcarB+p8MLOeaV5svY1SQ2qQE86VhlWiYXqj4+EwGy5Us9aMHcEnZ0qXmixTUNDRkGYp4Sq0Ug=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=kgmiif0J; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6E7411F000E9;
-	Fri, 10 Jul 2026 14:09:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linuxfoundation.org;
-	s=korg; t=1783692593;
-	bh=h1xi3IKQjbdJ53JCv2L+jzRlcSu7ApiSTvfpodjcvtk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=kgmiif0JKq2HSeSzJ7OofwRSlUD94iS3uEV1tKQ943E0Dw5HJBa/NodJ+UjhAlKNH
-	 FGbXFGZ+JEAXY3Dr+tF4ssnWwH8WP2JApHQJxCeAynEVTGBtdWPwSFCDmJ7/fOYkFW
-	 Kncg2+p1T/D/wvPa/3glV7KVkw5wq6sn17XSngyM=
-Date: Fri, 10 Jul 2026 16:09:16 +0200
-From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
-Cc: Lee Jones <lee@kernel.org>,
-	Mark Brown <broonie@opensource.wolfsonmicro.com>,
-	Thierry Reding <thierry.reding@avionic-design.de>,
-	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Srinivas Kandagatla <srini@kernel.org>,
-	Vinod Koul <vkoul@kernel.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Danilo Krummrich <dakr@kernel.org>, Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@kernel.org>,
-	Madhavan Srinivasan <maddy@linux.ibm.com>,
-	Michael Ellerman <mpe@ellerman.id.au>,
-	Nicholas Piggin <npiggin@gmail.com>,
-	"Christophe Leroy (CS GROUP)" <chleroy@kernel.org>,
-	Andi Shyti <andi.shyti@kernel.org>,
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
-	Robin Murphy <robin.murphy@arm.com>,
-	Doug Berger <opendmb@gmail.com>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Ulf Hansson <ulfh@kernel.org>, Frank Li <Frank.Li@nxp.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Matthew Brost <matthew.brost@intel.com>,
-	Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
-	Rodrigo Vivi <rodrigo.vivi@intel.com>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Peter Chen <peter.chen@kernel.org>,
-	Paul Cercueil <paul@crapouillou.net>, Bin Liu <b-liu@ti.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Maximilian Luz <luzmaximilian@gmail.com>,
-	Hans de Goede <hansg@kernel.org>,
-	Ilpo =?iso-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Benjamin Herrenschmidt <benh@kernel.crashing.org>, brgl@kernel.org,
-	linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org, linux-sound@vger.kernel.org,
-	driver-core@lists.linux.dev, devicetree@vger.kernel.org,
-	linuxppc-dev@lists.ozlabs.org, linux-i2c@vger.kernel.org,
-	iommu@lists.linux.dev, linux-pm@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
-	linux-usb@vger.kernel.org, linux-mips@vger.kernel.org,
-	platform-driver-x86@vger.kernel.org, mfd@lists.linux.dev,
-	stable@vger.kernel.org, Manuel Ebner <manuelebner@mailbox.org>,
-	Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Konrad Dybcio <konradybcio@kernel.org>
-Subject: Re: [PATCH v3 00/20] driver core: count references of the platform
- device's fwnode, not OF node
-Message-ID: <2026071001-limelight-stoppable-d7cb@gregkh>
-References: <20260706-pdev-fwnode-ref-v3-0-1ff028e33779@oss.qualcomm.com>
+	s=arc-20240116; t=1783692650; c=relaxed/simple;
+	bh=Wkuzc19WFCE/o9/fESvyZTC6ClK7uynBhtFhl0hfYlU=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=mor7dpLcA7TBAW23c1uW2dffF9550urqYISVBSh9aCepubMvEKOOFRWGEk0an4BwC259JzRupWShh0m5Ak2GUlTEWokLXxAC6jc5XPX/cWrlHQ7j5nWjL6rvZ5/Ug6rrnnIP9m6tSdbIwER9ClMJMVbJbla/mZFlQTVWVyamXko=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Kb6WKvYM; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8A4801F000E9;
+	Fri, 10 Jul 2026 14:10:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1783692649;
+	bh=EO/9BLIAhGfrHXRZfXYV9BmiCgGU/oq2KL/dCQ/YtsM=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=Kb6WKvYMDoHygyO6ctRNvM63jpln6Pp8KXA4AOQohz1zfFhQY0fjPySqQz8BQS1K3
+	 c0gDBZxbWIJ1e781slPBdW+HE+f3OytX2skTv07NhnkOkRDpoWi2hNU5ez5Zx33siP
+	 /jIi903ZGL7OkjqKcLw43ZODLQj/hnP8r5uhBbWFOCHMu+GqXzTXwzRu0b6iwTuYZ7
+	 nORne3nPosoTGQlQRIeZh+2kVHWtJAd9+uEY4NPeUpUl4TM6Sh8cdYzfGXM+LWCrdu
+	 NgHoN/0/AmMg4YwNtSPS/XhXbkVswzUGJkoR48vFmAR/5Eswy//HZhsjZyP401PARJ
+	 VYRlgNiiFBhlQ==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v5 3/4] leds: pca963x: add multicolor LED class support
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Loic Poulain" <loic.poulain@oss.qualcomm.com>
+Cc: robh@kernel.org, devicetree@vger.kernel.org, linux-leds@vger.kernel.org, conor+dt@kernel.org, lee@kernel.org
+In-Reply-To: <20260710-monza-leds-v5-3-a8972d28c28f@oss.qualcomm.com>
+References: <20260710-monza-leds-v5-0-a8972d28c28f@oss.qualcomm.com>
+ <20260710-monza-leds-v5-3-a8972d28c28f@oss.qualcomm.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Fri, 10 Jul 2026 14:10:48 +0000
+Message-Id: <20260710141048.8A4801F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260706-pdev-fwnode-ref-v3-0-1ff028e33779@oss.qualcomm.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [3.84 / 15.00];
-	MID_END_EQ_FROM_USER_PART(4.00)[];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-3.16 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[linuxfoundation.org,none];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[linuxfoundation.org:s=korg];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:bartosz.golaszewski@oss.qualcomm.com,m:lee@kernel.org,m:broonie@opensource.wolfsonmicro.com,m:thierry.reding@avionic-design.de,m:sebastian.hesselbarth@gmail.com,m:andrew+netdev@lunn.ch,m:davem@davemloft.net,m:edumazet@google.com,m:kuba@kernel.org,m:pabeni@redhat.com,m:srini@kernel.org,m:vkoul@kernel.org,m:rafael@kernel.org,m:dakr@kernel.org,m:robh@kernel.org,m:saravanak@kernel.org,m:maddy@linux.ibm.com,m:mpe@ellerman.id.au,m:npiggin@gmail.com,m:chleroy@kernel.org,m:andi.shyti@kernel.org,m:andriy.shevchenko@linux.intel.com,m:joro@8bytes.org,m:will@kernel.org,m:robin.murphy@arm.com,m:opendmb@gmail.com,m:florian.fainelli@broadcom.com,m:bcm-kernel-feedback-list@broadcom.com,m:ulfh@kernel.org,m:Frank.Li@nxp.com,m:s.hauer@pengutronix.de,m:kernel@pengutronix.de,m:festevam@gmail.com,m:matthew.brost@intel.com,m:thomas.hellstrom@linux.intel.com,m:rodrigo.vivi@intel.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:peter.chen@kernel.org,m:paul@crapouillou.net,m:b-liu@ti.com
- ,m:p.zabel@pengutronix.de,m:luzmaximilian@gmail.com,m:hansg@kernel.org,m:ilpo.jarvinen@linux.intel.com,m:krzk@kernel.org,m:benh@kernel.crashing.org,m:brgl@kernel.org,m:linux-kernel@vger.kernel.org,m:netdev@vger.kernel.org,m:linux-arm-msm@vger.kernel.org,m:linux-sound@vger.kernel.org,m:driver-core@lists.linux.dev,m:devicetree@vger.kernel.org,m:linuxppc-dev@lists.ozlabs.org,m:linux-i2c@vger.kernel.org,m:iommu@lists.linux.dev,m:linux-pm@vger.kernel.org,m:imx@lists.linux.dev,m:linux-arm-kernel@lists.infradead.org,m:intel-xe@lists.freedesktop.org,m:dri-devel@lists.freedesktop.org,m:linux-usb@vger.kernel.org,m:linux-mips@vger.kernel.org,m:platform-driver-x86@vger.kernel.org,m:mfd@lists.linux.dev,m:stable@vger.kernel.org,m:manuelebner@mailbox.org,m:wsa+renesas@sang-engineering.com,m:konradybcio@kernel.org,m:sebastianhesselbarth@gmail.com,m:andrew@lunn.ch,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-324498-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-324497-lists,devicetree=lfdr.de];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER(0.00)[gregkh@linuxfoundation.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[kernel.org,opensource.wolfsonmicro.com,avionic-design.de,gmail.com,lunn.ch,davemloft.net,google.com,redhat.com,linux.ibm.com,ellerman.id.au,linux.intel.com,8bytes.org,arm.com,broadcom.com,nxp.com,pengutronix.de,intel.com,ffwll.ch,crapouillou.net,ti.com,kernel.crashing.org,vger.kernel.org,lists.linux.dev,lists.ozlabs.org,lists.infradead.org,lists.freedesktop.org,mailbox.org,sang-engineering.com];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCPT_COUNT_GT_50(0.00)[70];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[gregkh@linuxfoundation.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[linuxfoundation.org:+];
-	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,netdev,renesas];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,lists.linux.dev:replyto,qualcomm.com:email,vger.kernel.org:from_smtp,smtp.kernel.org:mid,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	FORGED_RECIPIENTS(0.00)[m:loic.poulain@oss.qualcomm.com,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:linux-leds@vger.kernel.org,m:conor+dt@kernel.org,m:lee@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ALIAS_RESOLVED(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	PRECEDENCE_BULK(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gregkh:mid,vger.kernel.org:from_smtp,linuxfoundation.org:from_mime,linuxfoundation.org:dkim,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+	MISSING_XM_UA(0.00)[];
+	FROM_NO_DN(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[6]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 66F8973BA45
+X-Rspamd-Queue-Id: 0B6BE73BA61
 
-On Mon, Jul 06, 2026 at 02:44:12PM +0200, Bartosz Golaszewski wrote:
-> Platform device core provides helper interfaces for dealing with
-> dynamically created platform devices. Most users should use
-> platform_device_register_full() which encapsulates most of the
-> operations but some modules will want to use the split approach of
-> calling platform_device_alloc() + platform_device_add() separately for
-> various reasons.
-> 
-> With many platform devices now using dynamic software nodes as their
-> primary firmware nodes and with the platform device interface being
-> extended to also better cover the use-cases of secondary software nodes,
-> I believe it makes sense to switch to counting the references of all
-> kinds of firmware nodes.
-> 
-> To that end, I identified all users of platform_device_alloc() that also
-> assign dev.of_node or dev.fwnode manually. I noticed five cases where
-> the references are not increased as they should (patches 1-5 fix these
-> users) and provided three new functions in platform_device.h that now
-> become the preferred interfaces for assigning firmware nodes to dynamic
-> platform devices (in line with platform_device_add_data(),
-> platform_device_add_resources(), etc.). The bulk of the patches in this
-> series are small driver conversions to port all users to going through
-> the new functions that now encapsulate the refcount logic. With that
-> done, the final patch seamlessly switches to counting the references of
-> all firmware node types.
-> 
-> This effort is prerequisite of removing platform_device_release_full()
-> and unifying the release path for dynamic platform devices using
-> unmanaged software nodes.
-> 
-> Merging strategy: The entire series should go through the driver core
-> tree, possibly with an immutable branch provided to solve any potential
-> conflicts though these are rather unlikely.
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [High] State desynchronization on I2C failure leaves the chip stuck in sl=
+eep mode.
+--
 
-I've added this to the driver-core-testing branch now, thanks!
+--- Patch [3]: [PATCH v5 3/4] leds: pca963x: add multicolor LED class suppo=
+rt ---
+commit 8c03d358e0d33360e4842037176019ecbef4c7b9
+Author: Loic Poulain <loic.poulain@oss.qualcomm.com>
 
-greg k-h
+leds: pca963x: add multicolor LED class support
+
+Allow grouping of individual PCA963x PWM channels into a single
+multicolor LED device by adding support for the LED multicolor class.
+A child node with sub-children is treated as a multicolor group,
+others are treated as single leds, keeping full backwards compatibility.
+
+> diff --git a/drivers/leds/leds-pca963x.c b/drivers/leds/leds-pca963x.c
+> index e3a81c60ee27c..e54a60c7bf282 100644
+> --- a/drivers/leds/leds-pca963x.c
+> +++ b/drivers/leds/leds-pca963x.c
+[ ... ]
+> @@ -221,22 +229,52 @@ static int pca963x_led_set(struct led_classdev *led=
+_cdev,
+[ ... ]
+> +static int pca963x_led_mc_set(struct led_classdev *led_cdev,
+> +			      enum led_brightness value)
+> +{
+> +	struct led_classdev_mc *mc_cdev =3D lcdev_to_mccdev(led_cdev);
+> +	struct pca963x_led *led =3D container_of(mc_cdev, struct pca963x_led, m=
+c_cdev);
+> +	unsigned long cached_leds;
+> +	int ret;
+> +
+> +	led_mc_calc_color_components(mc_cdev, value);
+> +
+> +	guard(mutex)(&led->chip->mutex);
+> +
+> +	cached_leds =3D led->chip->leds_on;
+> +	for (unsigned int i =3D 0; i < mc_cdev->num_colors; i++) {
+> +		led->led_num =3D mc_cdev->subled_info[i].channel;
+> +		ret =3D pca963x_brightness(led, mc_cdev->subled_info[i].brightness);
+> +		if (ret)
+> +			return ret;
+
+[Severity: High]
+If an I2C error occurs here on a subsequent iteration of the loop, could the
+hardware state become desynchronized from the software state?
+
+Earlier iterations of this loop may have successfully completed and called
+pca963x_track_power_state(), which updates the software state in
+led->chip->leds_on. However, returning early here skips the
+pca963x_sync_power_state() call.
+
+If the early return happens when turning on the LEDs, led->chip->leds_on wi=
+ll
+have bits set, but the chip may still be in sleep mode. Future calls to set
+brightness would then incorrectly believe the chip is already awake,
+potentially leaving the hardware unresponsive until userspace explicitly tu=
+rns
+off every LED on the chip to reset the state.
+
+> +
+> +		pca963x_track_power_state(led, mc_cdev->subled_info[i].channel,
+> +					  mc_cdev->subled_info[i].brightness);
+> +	}
+> +
+> +	return pca963x_sync_power_state(led, cached_leds);
+> +}
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260710-monza-leds=
+-v5-0-a8972d28c28f@oss.qualcomm.com?part=3D3
 
