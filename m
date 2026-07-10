@@ -1,358 +1,203 @@
-Return-Path: <devicetree+bounces-324365-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-324368-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 1uxdHNHGUGrR4wIAu9opvQ
-	(envelope-from <devicetree+bounces-324365-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 12:17:53 +0200
+	id pOrdExvHUGrk4wIAu9opvQ
+	(envelope-from <devicetree+bounces-324368-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 12:19:07 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E760F73994A
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 12:17:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 02060739995
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 12:19:07 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
 	dkim=none;
 	dmarc=none;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324365-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-324365-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324368-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-324368-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 0E89830873BB
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 10:14:17 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 713483020EFB
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 10:15:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01C5A404BDD;
-	Fri, 10 Jul 2026 10:14:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DAE843CB2FE;
+	Fri, 10 Jul 2026 10:15:00 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.white.stw.pengutronix.de (mx1.white.stw.pengutronix.de [185.203.200.13])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vs2-f0.google.com (mail-vs2-f0.google.com [74.125.227.0])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9324B3DB96F;
-	Fri, 10 Jul 2026 10:14:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63060402B98
+	for <devicetree@vger.kernel.org>; Fri, 10 Jul 2026 10:14:59 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783678453; cv=none; b=UVmirCrhwtojLMmcGNGXhYxP6RCoKQ5/xrh3pDKUh13ZSIav1Qp+8Tb5odIml8xKxwt5K1CjhFoq+1JPuwATQchWU29sZHpzNpgDbudH6ZF4sHV3X2DFl07PfKM9OXXAZ8KrnkGJERkH9DcguHgd3uXOULvusasHlXi4CJC0tYo=
+	t=1783678500; cv=none; b=ZKMu2Zygl7BbUtldQ/NWNL8UiNVOU9PlKzgib3sWF8ifPIbOVaPumXyZZfUtuSGDvO7Cz0K+CUQK7d2K/ttdyHYQ0bB8O9W7RdRKTUOpAXzBE3hLG490SbpWiU33KW4cqzsec6qbwCfngJ0WvrbfUg3Y1L5CE9b2vK0VQ4QPgUY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783678453; c=relaxed/simple;
-	bh=OVXsziGT2t0ObdUtAd2yeQ3uv+I6GcHQohS+tonYNkc=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=XKX7ptz58+3dhaNBFNcCBm7MIdTdJiinQvM2aJupOiR7HbUbMM43ylMwMcDdSSDkafcc+G7i4CV08e50GGndrYdshT1+c0j3clT1YJ+CnpDB6oN0fpl+VAN903nk4FUna4Qv2Kx7FCGUdniM94VNSeAgMzihC3c1D5DavHn9pPM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.200.13
-Received: from drehscheibe.grey.stw.pengutronix.de (drehscheibe.grey.stw.pengutronix.de [IPv6:2a0a:edc0:0:c01:1d::a2])
-	(Authenticated sender: relay-from-drehscheibe.grey.stw.pengutronix.de)
-	by mx1.white.stw.pengutronix.de (Postfix) with ESMTPSA id 3C66620201C;
-	Fri, 10 Jul 2026 12:14:00 +0200 (CEST)
-Received: from dude04.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::ac] helo=dude04)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <ore@pengutronix.de>)
-	id 1wi8F6-00142D-0G;
-	Fri, 10 Jul 2026 12:14:00 +0200
-Received: from ore by dude04 with local (Exim 4.98.2)
-	(envelope-from <ore@pengutronix.de>)
-	id 1wi8F5-0000000AwDz-41F3;
-	Fri, 10 Jul 2026 12:13:59 +0200
-From: Oleksij Rempel <o.rempel@pengutronix.de>
-To: Guenter Roeck <linux@roeck-us.net>,
-	Lee Jones <lee@kernel.org>,
-	Linus Walleij <linusw@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Peter Rosin <peda@axentia.se>
-Cc: Oleksij Rempel <o.rempel@pengutronix.de>,
-	kernel@pengutronix.de,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-hwmon@vger.kernel.org,
-	linux-gpio@vger.kernel.org,
-	David Jander <david@protonic.nl>
-Subject: [PATCH v15 6/6] mux: add NXP MC33978/MC34978 AMUX driver
-Date: Fri, 10 Jul 2026 12:13:55 +0200
-Message-ID: <20260710101358.2606941-7-o.rempel@pengutronix.de>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20260710101358.2606941-1-o.rempel@pengutronix.de>
-References: <20260710101358.2606941-1-o.rempel@pengutronix.de>
+	s=arc-20240116; t=1783678500; c=relaxed/simple;
+	bh=jStoTu7RQA8BRTqGbaAV34VwUP2BPEMz29vPuO1fGCc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=QOWImEEI4ux9jjGy1KJL7RhwmEy7ZCqVn5HI3fUOJq7GetbC9Lr4oPvSaVwxi8O5dpexf0310QUBpC21dsjej5wGhwTV/ktUeGw98HPXY4yEZnRtz4BCzMVwYKM0PrKxwzxwjpOSQ8k12ZpqESLK090HuUl7yYXdON/6Wdg2XyI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=74.125.227.0
+Received: by mail-vs2-f0.google.com with SMTP id ada2fe7eead31-71f13d1d7b7so164396137.0
+        for <devicetree@vger.kernel.org>; Fri, 10 Jul 2026 03:14:59 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1783678498; x=1784283298;
+        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
+         :references:mime-version:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to:content-type;
+        bh=GbEWAG6xIcV+3P2phIYnj4SrZfkvn8WstI+WFIFJ95k=;
+        b=DkkZN4xTMYzOkFMsGEumQuLc2cN6lS1K83kG2onw4snwwLtCwEQ+gdAF4HeVSlSp44
+         n3nT6W3cAbfQJWx7BOVuPpXdWWvsSnXXCCEcDEQ43NrsTmSy8KHOJN24bfcm/zJKVCUD
+         hx1NgA+KNtl9PZNzuqdIO3+wDNqggdROX6qCkUEgJbgy/4gMhk/EWmPd1FWYMtlGx4BW
+         cAHDEd9E1rxhyxCSf3+WaPlWVY7gD8mWRnn6rAAswGT+oxsNO7OdpGbe0WyTQn2aehRO
+         ziZmLvI/NXRdZewMbOafqwmgqYCkYYIOC8XSthk4fr2R2KpgW+pPUUlIXC0+7RfwglMU
+         rBJg==
+X-Forwarded-Encrypted: i=1; AHgh+RqRxDIhE9P+KVD/iXTBZ8JphNaJ4vRRtYH4cC+sfN0M/7iNbiBvFxr74aMrZG+5mOJBEZn2aloF33t0@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw1l/LVHfMnDMAt49y6gYGO1HEdYie9XpZTjLF+sN9ORH6F03hW
+	dtBN0k3MvBWrSGqeKPSpeSxmwhL+Yj4zkg3hhiwQ2tnBkzN/E6QAaUlGIi4E3pe7bncd1A==
+X-Gm-Gg: AfdE7cmx2BaP1gFefht//cCoo/7/KY0KQwyr0BmF3EeAcDMLFoIpCN197MjfX5Y0zdB
+	YemcneePw2d2UsYQs6DYKYjz/YIVh5Z00ndOE2XPRO/YYb58PfW1vrtncxL/D6rc5tzUEz/kj7g
+	AAl3K6vOHucGY/7UG/Up/KDq3S7f91z1Re6Uo7GT5F+QNsI7tcxuFATVp9xvJMr0+BuKN5AhAXG
+	Q0cdaqhwPiMLHJK3u8px/9HcQsCjiEu1n5IHEdK9Nc0BuCx2yBFg62Yd8BIvGwqMTXkAXYls4P3
+	GsCqFIcxsywVNUv2DWxfpvK6EsoRRCJXQLXU/irYZ39cOdOM/x5YHTLZUz3mqMW4BhFuOMx4MEt
+	P9y2cCP8IXXhWDcHgk0X5x7SuQAEbVfqyOUosTZHCTshc6xDUsLopcxvGuH/9Ebtq1VnDv+bp7i
+	F83HOW455UEnXnVXfxrQexktnf5KmUIJ7e+YW4CyllV8KTGoYnDg==
+X-Received: by 2002:a05:6102:50a8:b0:73e:e4ab:1c84 with SMTP id ada2fe7eead31-7450d0b7eecmr1621831137.5.1783678498423;
+        Fri, 10 Jul 2026 03:14:58 -0700 (PDT)
+Received: from mail-vs1-f54.google.com (mail-vs1-f54.google.com. [209.85.217.54])
+        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-744d6a3eb8esm4836452137.3.2026.07.10.03.14.56
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 10 Jul 2026 03:14:57 -0700 (PDT)
+Received: by mail-vs1-f54.google.com with SMTP id ada2fe7eead31-736eec08c43so661510137.1
+        for <devicetree@vger.kernel.org>; Fri, 10 Jul 2026 03:14:56 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AHgh+Rq/x67acntApXHz29LSnxuw3DsbXxI1LOS6Q/uChYkvN5DbQN7eIk3OgkHaeEBrYLDNMUcEjbnS4oyq@vger.kernel.org
+X-Received: by 2002:a05:6102:40cb:20b0:744:f2bf:44d2 with SMTP id
+ ada2fe7eead31-7450c6bee09mr1278940137.3.1783678496645; Fri, 10 Jul 2026
+ 03:14:56 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20260709182332.876408-1-claudiu.beznea+renesas@tuxon.dev> <20260709182332.876408-3-claudiu.beznea+renesas@tuxon.dev>
+In-Reply-To: <20260709182332.876408-3-claudiu.beznea+renesas@tuxon.dev>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Fri, 10 Jul 2026 12:14:45 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdWeCpR70fQ52NYsB_p+Feth0gewdfjSBCbpLWfUCCDvQw@mail.gmail.com>
+X-Gm-Features: AUfX_mxSD2HzC_Ku4zRdh3S4Ewoz9pnRW_48syvAhXfLnIrebj7osOYA05aUezc
+Message-ID: <CAMuHMdWeCpR70fQ52NYsB_p+Feth0gewdfjSBCbpLWfUCCDvQw@mail.gmail.com>
+Subject: Re: [PATCH v2 2/8] dt-bindings: can: renesas,rcar-canfd: Document
+ RZ/G3S SoC
+To: Claudiu Beznea <claudiu.beznea+renesas@tuxon.dev>
+Cc: mkl@pengutronix.de, mailhol@kernel.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, magnus.damm@gmail.com, 
+	mturquette@baylibre.com, sboyd@kernel.org, bmasney@redhat.com, 
+	biju.das.jz@bp.renesas.com, claudiu.beznea.uj@bp.renesas.com, 
+	fabrizio.castro.jz@renesas.com, claudiu.beznea@tuxon.dev, 
+	linux-can@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [1.54 / 15.00];
+X-Spamd-Result: default: False [0.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-324365-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:linux@roeck-us.net,m:lee@kernel.org,m:linusw@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:peda@axentia.se,m:o.rempel@pengutronix.de,m:kernel@pengutronix.de,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-hwmon@vger.kernel.org,m:linux-gpio@vger.kernel.org,m:david@protonic.nl,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[o.rempel@pengutronix.de,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	DMARC_NA(0.00)[pengutronix.de];
+	TAGGED_FROM(0.00)[bounces-324368-lists,devicetree=lfdr.de];
+	DMARC_NA(0.00)[linux-m68k.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:claudiu.beznea+renesas@tuxon.dev,m:mkl@pengutronix.de,m:mailhol@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:magnus.damm@gmail.com,m:mturquette@baylibre.com,m:sboyd@kernel.org,m:bmasney@redhat.com,m:biju.das.jz@bp.renesas.com,m:claudiu.beznea.uj@bp.renesas.com,m:fabrizio.castro.jz@renesas.com,m:claudiu.beznea@tuxon.dev,m:linux-can@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-renesas-soc@vger.kernel.org,m:linux-clk@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,m:magnusdamm@gmail.com,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	FREEMAIL_CC(0.00)[pengutronix.de,kernel.org,gmail.com,baylibre.com,redhat.com,bp.renesas.com,renesas.com,tuxon.dev,vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[o.rempel@pengutronix.de,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[6];
-	R_DKIM_NA(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	R_DKIM_NA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,pengutronix.de:from_mime,pengutronix.de:email,pengutronix.de:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tuxon.dev:email,linux-m68k.org:from_mime,linux-m68k.org:email,vger.kernel.org:from_smtp,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,renesas.com:email,mail.gmail.com:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: E760F73994A
+X-Rspamd-Queue-Id: 02060739995
 
-Add a mux-control driver for the 24-to-1 analog multiplexer (AMUX)
-embedded in the NXP MC33978/MC34978 Multiple Switch Detection
-Interface (MSDI) devices.
+Hi Claudiu,
 
-Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
----
-changes v14:
-- no changes
-changes v13:
-- no changes
-changes v12:
-- Convert platform_device_id to named initializers (`.name =`)
-  https://lore.kernel.org/all/cover.1778582187.git.u.kleine-koenig@baylibre.com
-changes v11:
-- no changes
-changes v10:
-- no changes
-changes v9:
-- rename mc33978-mux to mux-mc33978 in the Kconfig help
-- fail if fwnode is NULL
-changes v8:
-- no changes
-changes v7:
-- Simplify the return path and local variable assignment in
-  mc33978_mux_set().
-- Change idle_state to a signed integer to properly handle negative MUX
-  subsystem constants.
-- Default to MUX_IDLE_AS_IS when the "idle-state" device tree property
-  is missing.
-- Explicitly reject MUX_IDLE_DISCONNECT since the hardware does not
-  support disconnecting the multiplexer.
-changes v6:
-- parse optional idle-state property
-- validate idle-state against available AMUX channels
-- lower-case probe error messages
-changes v5:
-- no changes
-changes v4:
-- no changes
-changes v3:
-- no changes
-changes v2:
-- Add missing <linux/err.h> include.
-- Add platform_device_id table
----
- drivers/mux/Kconfig       |  14 ++++
- drivers/mux/Makefile      |   2 +
- drivers/mux/mc33978-mux.c | 141 ++++++++++++++++++++++++++++++++++++++
- 3 files changed, 157 insertions(+)
- create mode 100644 drivers/mux/mc33978-mux.c
+On Thu, 9 Jul 2026 at 20:23, Claudiu Beznea
+<claudiu.beznea+renesas@tuxon.dev> wrote:
+> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>
+> The CAN FD controller found on the Renesas RZ/G3S SoC is largely compatible
+> with the variant present on the RZ/G3E SoC. The main differences are:
+> - the RZ/G3S provides only two CAN FD channels
+> - the RZ/G3S supports only CAN FD operation; the Channel n CAN FD
+>   Configuration Register does not implement the bits used to select
+>   classical CAN-only mode (bit 30) or CAN FD-only mode (bit 28);
+>   consequently, bit 31 (CAN FD Frame Distinction Enable) of the same
+>   register is also not implemented
+> - some bits in several registers (mainly reserved or status bits) are
+>   read-write on the RZ/G3S but read-only on the RZ/G3E; their behavior is
+>   otherwise identical: the bits read back as 0 on both SoCs and software
+>   is allowed to write only 0 to them on the RZ/G3S
+> - the RZ/G3S provides 128 acceptance filters, compared to 64 on the
+>   RZ/G3E
+> - the RZ/G3S can use PCLK clock as the CAN FD clock source through an
+>   internal clock divider, while also supporting an external CAN FD clock
+>   source
+>
+> Since:
+> - the SoC clock generator provides to the CAN IP only the peripheral and
+>   the RAM clocks
+> - when sourced from the peripheral clock, the CAN-FD clock is obtained
+>   inside the IP itself by dividing the peripheral clock
+> - the assigned-clocks and assigned-clock-rates properties are specific to
+>   the CAN-FD clock
+> the assigned-clocks and assigned-clock-rates properties were dropped from
+> the required properties list of the Renesas RZ/G3S SoC.
+>
+> Add documentation for the Renesas RZ/G3S SoC.
+>
+> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+> ---
+>
+> Changes in v2:
+> - forbid renesas,no-can-fd and renesas,fd-only since the IP supports
+>   only CAN-FD; for this didn't collect Biju's tag
 
-diff --git a/drivers/mux/Kconfig b/drivers/mux/Kconfig
-index 6d17dfa25dad..51510a74e632 100644
---- a/drivers/mux/Kconfig
-+++ b/drivers/mux/Kconfig
-@@ -56,6 +56,20 @@ config MUX_GPIO
- 	  To compile the driver as a module, choose M here: the module will
- 	  be called mux-gpio.
- 
-+config MUX_MC33978
-+	tristate "NXP MC33978/MC34978 Analog Multiplexer"
-+	depends on MFD_MC33978
-+	help
-+	  MC33978/MC34978 24-to-1 analog multiplexer (AMUX) driver.
-+
-+	  This driver provides mux-control for the analog multiplexer,
-+	  which can route switch voltages, temperature, and battery voltage
-+	  to an external ADC. Typically used with IIO ADC drivers to measure
-+	  analog values from the 22 switch inputs plus temperature and VBATP.
-+
-+	  To compile the driver as a module, choose M here: the module will
-+	  be called mux-mc33978.
-+
- config MUX_MMIO
- 	tristate "MMIO/Regmap register bitfield-controlled Multiplexer"
- 	depends on OF
-diff --git a/drivers/mux/Makefile b/drivers/mux/Makefile
-index 6e9fa47daf56..339c44b4d4f4 100644
---- a/drivers/mux/Makefile
-+++ b/drivers/mux/Makefile
-@@ -7,10 +7,12 @@ mux-core-objs			:= core.o
- mux-adg792a-objs		:= adg792a.o
- mux-adgs1408-objs		:= adgs1408.o
- mux-gpio-objs			:= gpio.o
-+mux-mc33978-objs		:= mc33978-mux.o
- mux-mmio-objs			:= mmio.o
- 
- obj-$(CONFIG_MULTIPLEXER)	+= mux-core.o
- obj-$(CONFIG_MUX_ADG792A)	+= mux-adg792a.o
- obj-$(CONFIG_MUX_ADGS1408)	+= mux-adgs1408.o
- obj-$(CONFIG_MUX_GPIO)		+= mux-gpio.o
-+obj-$(CONFIG_MUX_MC33978)	+= mux-mc33978.o
- obj-$(CONFIG_MUX_MMIO)		+= mux-mmio.o
-diff --git a/drivers/mux/mc33978-mux.c b/drivers/mux/mc33978-mux.c
-new file mode 100644
-index 000000000000..9034d7c3778d
---- /dev/null
-+++ b/drivers/mux/mc33978-mux.c
-@@ -0,0 +1,141 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+// Copyright (c) 2026 Pengutronix, Oleksij Rempel <kernel@pengutronix.de>
-+/*
-+ * MC33978/MC34978 Analog Multiplexer (AMUX) Driver
-+ *
-+ * This driver provides mux-control for the 24-to-1 analog multiplexer.
-+ * The AMUX routes one of the following signals to the external AMUX pin:
-+ * - Channels 0-13: SG0-SG13 switch voltages
-+ * - Channels 14-21: SP0-SP7 switch voltages
-+ * - Channel 22: Internal temperature diode
-+ * - Channel 23: Battery voltage (VBATP)
-+ *
-+ * Consumer drivers (typically IIO ADC drivers) use the mux-control
-+ * subsystem to select which signal to measure.
-+ *
-+ * Architecture:
-+ * The MC33978 does not have an internal ADC. Instead, it routes analog
-+ * signals to an external AMUX pin that must be connected to an external
-+ * ADC (such as the SoC's internal ADC). The IIO subsystem is responsible
-+ * for coordinating the mux selection and ADC sampling.
-+ */
-+
-+#include <linux/device.h>
-+#include <linux/err.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/module.h>
-+#include <linux/mux/driver.h>
-+#include <linux/platform_device.h>
-+#include <linux/property.h>
-+#include <linux/regmap.h>
-+
-+#include <linux/mfd/mc33978.h>
-+
-+/* AMUX_CTRL register field definitions */
-+#define MC33978_AMUX_CTRL_MASK	GENMASK(5, 0)	/* 6-bit channel select */
-+
-+struct mc33978_mux_priv {
-+	struct device *dev;
-+	struct regmap *map;
-+};
-+
-+static int mc33978_mux_set(struct mux_control *mux, int state)
-+{
-+	struct mux_chip *mux_chip = mux->chip;
-+	struct mc33978_mux_priv *priv = mux_chip_priv(mux_chip);
-+	int ret;
-+
-+	if (state < 0 || state >= MC33978_NUM_AMUX_CH)
-+		return -EINVAL;
-+
-+	ret = regmap_update_bits(priv->map, MC33978_REG_AMUX_CTRL,
-+				 MC33978_AMUX_CTRL_MASK, state);
-+	if (ret)
-+		dev_err(priv->dev, "failed to set AMUX channel %d: %d\n",
-+			state, ret);
-+
-+	return ret;
-+}
-+
-+static const struct mux_control_ops mc33978_mux_ops = {
-+	.set = mc33978_mux_set,
-+};
-+
-+static int mc33978_mux_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct mc33978_mux_priv *priv;
-+	struct fwnode_handle *fwnode;
-+	struct mux_chip *mux_chip;
-+	struct mux_control *mux;
-+	s32 idle_state;
-+	int ret;
-+
-+	mux_chip = devm_mux_chip_alloc(dev, 1, sizeof(*priv));
-+	if (IS_ERR(mux_chip))
-+		return dev_err_probe(dev, PTR_ERR(mux_chip), "failed to allocate mux chip\n");
-+
-+	fwnode = dev_fwnode(dev->parent);
-+	if (!fwnode)
-+		return dev_err_probe(dev, -ENODEV, "missing parent firmware node\n");
-+
-+	/* Borrow the parent's firmware node so consumers can find this mux chip */
-+	device_set_node(&mux_chip->dev, fwnode);
-+
-+	priv = mux_chip_priv(mux_chip);
-+	priv->dev = dev;
-+
-+	priv->map = dev_get_regmap(dev->parent, NULL);
-+	if (!priv->map)
-+		return dev_err_probe(dev, -ENODEV, "failed to get parent regmap\n");
-+
-+	mux_chip->ops = &mc33978_mux_ops;
-+
-+	mux = &mux_chip->mux[0];
-+	mux->states = MC33978_NUM_AMUX_CH;
-+
-+	ret = device_property_read_u32(&mux_chip->dev, "idle-state",
-+				       (u32 *)&idle_state);
-+	if (ret < 0 && ret != -EINVAL) {
-+		return dev_err_probe(dev, ret, "failed to parse idle-state\n");
-+	} else if (ret == -EINVAL) {
-+		mux->idle_state = MUX_IDLE_AS_IS;
-+	} else {
-+		if (idle_state == MUX_IDLE_DISCONNECT)
-+			return dev_err_probe(dev, -EINVAL,
-+					     "idle-disconnect not supported by hardware\n");
-+		if (idle_state != MUX_IDLE_AS_IS &&
-+		    (idle_state < 0 || idle_state >= MC33978_NUM_AMUX_CH))
-+			return dev_err_probe(dev, -EINVAL, "invalid idle-state %d\n",
-+					     idle_state);
-+		mux->idle_state = idle_state;
-+	}
-+
-+	ret = devm_mux_chip_register(dev, mux_chip);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "failed to register mux chip\n");
-+
-+	platform_set_drvdata(pdev, mux_chip);
-+
-+	return 0;
-+}
-+
-+static const struct platform_device_id mc33978_mux_id[] = {
-+	{ .name = "mc33978-mux" },
-+	{ .name = "mc34978-mux" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(platform, mc33978_mux_id);
-+
-+static struct platform_driver mc33978_mux_driver = {
-+	.driver = {
-+		.name = "mc33978-mux",
-+	},
-+	.probe = mc33978_mux_probe,
-+	.id_table = mc33978_mux_id,
-+};
-+module_platform_driver(mc33978_mux_driver);
-+
-+MODULE_AUTHOR("Oleksij Rempel <kernel@pengutronix.de>");
-+MODULE_DESCRIPTION("NXP MC33978/MC34978 Analog Multiplexer Driver");
-+MODULE_LICENSE("GPL");
+Thanks for the update!
+
+> --- a/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml
+> +++ b/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml
+> @@ -267,6 +267,7 @@ allOf:
+>            contains:
+>              enum:
+>                - renesas,r9a09g077-canfd
+> +              - renesas,r9a08g045-canfd
+
+Please preserve sort order (alphabetical).
+
+>                - renesas,rcar-gen3-canfd
+>                - renesas,rzg2l-canfd
+>      then:
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
 -- 
-2.47.3
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
