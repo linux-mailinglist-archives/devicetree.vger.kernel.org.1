@@ -1,106 +1,107 @@
-Return-Path: <devicetree+bounces-324296-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-324298-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id feQ1Lgq2UGpb3wIAu9opvQ
-	(envelope-from <devicetree+bounces-324296-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 11:06:18 +0200
+	id cowOCye7UGqN4AIAu9opvQ
+	(envelope-from <devicetree+bounces-324298-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 11:28:07 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 25118738D1C
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 11:06:18 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0048C73908E
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 11:28:05 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=B3MmdWAs;
-	dkim=pass header.d=oss.qualcomm.com header.s=google header.b=Ute0qQLN;
+	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=MSsYgEqo;
+	dkim=pass header.d=oss.qualcomm.com header.s=google header.b=Vg+cli97;
 	dmarc=pass (policy=reject) header.from=qualcomm.com;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324296-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-324296-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324298-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-324298-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id DF4313028B25
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 09:05:02 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 1DE5C30C438A
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 09:05:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 173033D8103;
-	Fri, 10 Jul 2026 09:04:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 186903DCDB5;
+	Fri, 10 Jul 2026 09:05:03 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C4F33D5252
-	for <devicetree@vger.kernel.org>; Fri, 10 Jul 2026 09:04:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 982843DA7D6
+	for <devicetree@vger.kernel.org>; Fri, 10 Jul 2026 09:04:58 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783674298; cv=none; b=o2W4RbHJ6+nTbfCU2gQ16sQR8Qs0FdyHrdAzfi2MOJWPDCDgqHoAqA9toq3O2JRn4HtURPs+u/3WUqM/eCYI1lRvQR7OxnkVe5SwEFGMykBUBVd+u35ahVduBMRgEbVu/uun1cjomAzHFquJXC5E5dMOsxP/pOwZUcDqD6nF1VY=
+	t=1783674302; cv=none; b=RYJrW+S0NlGggznQdq+1wpQfelFGyuzQ8B5y6mLwww7mzs8MPc4Dgn+pqQeoiBKM5qgRUIp5VjmptZ483pntb6i8vhuHJwK1vKGx7XJZLFjaagRp+yJht2Ac20wNOK/mT+lZgAg3I4627hr1figeFyNqkjpNUb8k3OwaEdlz6e8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783674298; c=relaxed/simple;
-	bh=sgYRHAA8IdQaPOz1SqFrkChGOlRvTarETIwlza+HfrI=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=VDkV9MxAoQKOUBKAbWilHfz5A2tkka8Uzzo30MMbjU9OVXiViOlE4kl4DZYZA40z2ScBI2TMrtyaUMn7oxNVabbo0ybbOWSytPqK73kV853AvbrW6wdVzDRio5iXyRIuV3BnKx2HSFij+x828D6Ekv5MqnkVYWBpaN5dqdslXs0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=B3MmdWAs; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=Ute0qQLN; arc=none smtp.client-ip=205.220.180.131
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 66A7eKka190764
-	for <devicetree@vger.kernel.org>; Fri, 10 Jul 2026 09:04:55 GMT
+	s=arc-20240116; t=1783674302; c=relaxed/simple;
+	bh=4EixHxIwIvTdS6db1jIzl2G1P8b1qVfh0RRT47S+Ffo=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=Y3b7u7/ItbPxC6uyX9Qs5kEKeHYMf6WZ9YaakusN7DawoTSxrxw1WLiRefBVLLxn7qTRIVDH/XoeGtgukzBGTt1lyU0DMFlayJgszE4BYw3jpBsxKEkH3QjTpoBrXoB2mMbCVXPFEc/bqMDpYhwAUv2KycP/Sv0hlW7gJoJEIbU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=MSsYgEqo; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=Vg+cli97; arc=none smtp.client-ip=205.220.168.131
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 66A7dSS54156479
+	for <devicetree@vger.kernel.org>; Fri, 10 Jul 2026 09:04:58 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=qcppdkim1; bh=9eRQdmSTaAB/jSbenBeTeY
-	iG0btcLXCQgf9ZqLqJf4g=; b=B3MmdWAsxNYGp6MsDkHYeUQ8iWE15BPpr10nAz
-	NeABU9A/4zdNODEZw3tdHNzLuOirk7Zb/belrwdQLo0FKWPNGX9BvaUM9zk3xI7j
-	+HAUeZTSupijZnTphXR+mo5Y0stXLSeTSa1xGNYFVR/Zl+Hmfsv0tS1f0lXWZFrH
-	x2H5b3Fa3H4sfRFjMVxHXHQZjTlLY9CZI/0m0xdv6UGAS6eB3Q/9Z1PV2h0Far5i
-	uBvgY8PZ9BbauFTT8Zf9zs9eMkhqTJEMjFxdYqZtycanPEN4OxbNlfyuLaxjSKwd
-	2lAYjUBeZBGX8uiVVlwUawoI6v9YEP14kfbAr5PvbcReyvVw==
-Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com [209.85.160.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4fas6n14aa-1
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	Gk7F2deuwS5Hpkt4gopFDx6kPDKlbTgeIq7RxuJd1Ac=; b=MSsYgEqoAmMIswjA
+	zoDcbJUECXBTEnynPhlebOjs0vII5ilyvPd37IMJIr67ScqGjY31mUoGWU+xXUC6
+	M3uvX2pOtuE9r0Uc2qV4VTg2uLHU14wtDIHtuWy/JWVxVVY/e+wNHfn3nGS+A2Ox
+	TCljq0yClp4gF1cmhczWf4NDC8B1ISU6EdrDV9sbA1QMRYtoqlCTSj1MOVekql9W
+	+fTBRaI3TTsXOsS78ZCwPDPO0WPMdKifHBJP9d4IovSzKfJgY0byELPCgUfb3UpG
+	MKJiYFBkHntOnZ6h3wnxh43F1JJM5HVU1q8MvmhGozXiVvfsNCI3GtPOsrT0LBKN
+	Z0skLg==
+Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4fahv8jhg5-1
 	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 10 Jul 2026 09:04:55 +0000 (GMT)
-Received: by mail-qt1-f198.google.com with SMTP id d75a77b69052e-51c075c1e25so5280731cf.3
-        for <devicetree@vger.kernel.org>; Fri, 10 Jul 2026 02:04:55 -0700 (PDT)
+	for <devicetree@vger.kernel.org>; Fri, 10 Jul 2026 09:04:57 +0000 (GMT)
+Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-5174a236220so6774161cf.3
+        for <devicetree@vger.kernel.org>; Fri, 10 Jul 2026 02:04:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1783674294; x=1784279094; darn=vger.kernel.org;
-        h=cc:to:content-transfer-encoding:content-type:mime-version
-         :message-id:date:subject:from:from:to:cc:subject:date:message-id
-         :reply-to:content-type;
-        bh=9eRQdmSTaAB/jSbenBeTeYiG0btcLXCQgf9ZqLqJf4g=;
-        b=Ute0qQLN8BSElBORaH8BiK4p6FFNNdRM5S/htBrXuvcrR85Auzws86BJEi60VeBb11
-         8GKc7GcwdVAE91YEm8+QWRxvO0aHrguBVCE/J/TOHzJewsLl5nZQrUVR3T+6XooV/Hvj
-         XxGJxv7LZx5x8Q0U0Nk188n26EjFW08hItSJJOeTWJQ2481aavNL+2CpFp/1VXUIywbA
-         UZwbBUedyj47dzd+WaqeVUE/4Q9PiEz3AAeT2eBB50cBo9uKRfWfIK0T0xkNGuEKdAl0
-         cVluuhRUSU8YErLQ86AbkV6XilFvg1TCVnm9DZb1giflGvLWO1VEnqShoY2pFFPZacTf
-         rr1w==
+        d=oss.qualcomm.com; s=google; t=1783674297; x=1784279097; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :content-type:mime-version:subject:date:from:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=Gk7F2deuwS5Hpkt4gopFDx6kPDKlbTgeIq7RxuJd1Ac=;
+        b=Vg+cli9729OVnct8Nr9TePS+dLJ66CM4pnmt3HpWzGJKcFx/NNxNtnDfam1TB3tehc
+         7v0dOD9iKek5lNLTuaiFQYQ4udx+ROVntYYIEps9oPEwrVzUHCj2W7lnZXvTgNj07+ct
+         TbDbJgzHxjPICY8Xozaq5W6Pb4RslYBW66Y67K0Q9EdJ/LBgyS2eO5WE1UeAMCfXK+mf
+         t2EvynrBY5WqmZK79/z3/yNRic+jwgTGI6D0MtTkwsL9P5NPSpP025GSFrQLhXOoMxfX
+         F3r3NWc6mHnzElHqousH1WX8QjPrx/cGEaKmP6LojmO0R4B7kThsyyVolWx7qKePXvst
+         6Syw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783674294; x=1784279094;
-        h=cc:to:content-transfer-encoding:content-type:mime-version
-         :message-id:date:subject:from:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to:content-type;
-        bh=9eRQdmSTaAB/jSbenBeTeYiG0btcLXCQgf9ZqLqJf4g=;
-        b=SYHL6CZ0LBaNmXCgh+prY6ebXl6ruzDIaeU9TNsr3EAs+zd5ZonZBayMD/MYptGLRq
-         NGl42ZQWCkk4qKSLCh3q+HKKtO/ZHPXAQNgwE1Tk+zpYCg5uxkGtZB/yS9Chj/Cvp7q1
-         pzbmxUeElzxKEYdRsHKhQe4tdO1Ew/iM37N2MOYsdnwltKt0Lmp9URjUcTpk3yLUlnb2
-         mrvn+iCKyk7nrAK4ROa60bkqqZ0HvU9AHeQSU8l2djTr7TNnin8KEiu2pxb3MZPwLz6X
-         OjZD29v76Sf/bfnTswdWjnVDL3SefzkfBuF+lRxSU7/AbS5dzpJBf6cWpKkFtMG+NWKN
-         lRZA==
-X-Forwarded-Encrypted: i=1; AHgh+RpIWdfU/U47QlhxwqpNCH5/PApaoRG4F/hB5SRvMAi0SvA8XmaLs90W27/O8iwIX1o3MbgAH65Tbzi2@vger.kernel.org
-X-Gm-Message-State: AOJu0YyVgArNXymElnWqn5w6Ik2lBbcezzRTikkGGGtZvgSFBkRkM0JP
-	kjlO90Y88vdox97SfHqsffnUqaCF/GCB+cxwa7g8kSFIC1M7585zDrgwS/Ga6HTxhJ5y0MWNHa3
-	XonvEy4NGfotx9PewZQKLYm786hOitTIJ3qHoSJplea0y6zb9r3fsAk4d5qYpzN/c1AnAKxn9W8
-	0=
-X-Gm-Gg: AfdE7cnat7Tk1CH4gonioq/HIJj3AikpCiPjbU+SjIk0SyuGRGg3w74Wrr/wgDrKihJ
-	0UwWcW+StTDhlDjYd5JKUF/BCx7RVMQKAKc8u7XFoDw5EkrRuylyPsL05mTc2ENzdunkg5GgIZe
-	YzXx0SVsCgWGus1VqipcIeApbiEfmw4SqZuM72JC/PGeNxBvQwdedon+3jC7ss7vsX/xxUbe9sV
-	TzmG3/23Kf4nBvw8gGHQ+Xbozo6QLxvdydkQtx9UqDCaJdsaBGYVVX8wX8CvWWowliGv6dcd47L
-	JFIGi3TlmoZm2pv8TooXOuMqQKVxNzBe9/XYaD5VSKbQyzE8ODWL6+LWkwzlN0zd8EKGQywt8EB
-	SsRjksj3X/SNC3Zfe6z5ekgp0wPIrQIB6tc9nTYtUIqViF9CW8BeYjCtfWoUV6GT79Dl0Dswwqc
-	ym6Oo6LQOKHCb6JMqczjp9k4olZ2zb/eIpS9J+P8fCBNIwiCUu/3e2fEe5ZgmzBg==
-X-Received: by 2002:a05:622a:294:b0:51a:8c9c:7f3f with SMTP id d75a77b69052e-51c8b4fc799mr127639671cf.66.1783674294509;
-        Fri, 10 Jul 2026 02:04:54 -0700 (PDT)
-X-Received: by 2002:a05:622a:294:b0:51a:8c9c:7f3f with SMTP id d75a77b69052e-51c8b4fc799mr127639281cf.66.1783674294034;
-        Fri, 10 Jul 2026 02:04:54 -0700 (PDT)
+        d=1e100.net; s=20251104; t=1783674297; x=1784279097;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :content-type:mime-version:subject:date:from:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=Gk7F2deuwS5Hpkt4gopFDx6kPDKlbTgeIq7RxuJd1Ac=;
+        b=KE2V5SyNwO0fYEUNK3yua7dMA1trAofUFl3+EQNfOaslJQNfRbGwQqK7fJvPmuMDuj
+         shdvtOqF+1AqueJLAvUtntutX/hUobogHL7sVw7zetW1AzKoAmP3zjXRSkkWXDQxg4Fh
+         eB48tpGWeOyp91vpCOXtQszXftb+imOczMU56nnzShH/oQFamgcYhhrtTaVV0apUiAbM
+         ouFO/0DFVAqEUzh4u8Gilavp/gHAMNrRbE5UlJpTFq6GT3wf+zqAGAL/h6BcuNTHAvUk
+         +K1QsSsMGPS16LsUo5GAXYu0EXK+sRgsTBCIdlfBwGLmJ2LKpI8TYYCmRD9n0K0eadUI
+         Jsdg==
+X-Forwarded-Encrypted: i=1; AHgh+Rqqc6yFH5kzJ72G1IHKCgObL6I75Jtsie/DQfwUZZRsteUCCmiK7EuYaX2zUqnyVcIe45hssSTHb/zA@vger.kernel.org
+X-Gm-Message-State: AOJu0YxlEQirewzF1p6JwxR6JfWWgDLrfdfgSalv5I7/ZN0fWplcLODS
+	nX/3pPq6YjFvupY/OC09SZTekNySaqBDOdc7ltPtlyWfzPrPEPNdvcrjFNxi8lj/SqnYPMRUrt7
+	GbHNfigsltgoRuLk3BkyteBinqX7dpop2bMjTmfXbbCpmJVNHXsNVBBQ74Pu6cM7emoJTczTz5z
+	U=
+X-Gm-Gg: AfdE7cmtfKoO5SnjdLiM3A3levEe//H+aTCVbZwgBqtto10bnYAuPCxXEQ9o7538MN6
+	jbWAS4b7XFgZPNKXMmP4Eh7xiYPdSjX4adrMoizDI/edE7TmpzP8+HyZ++5V43Cwunh4rz2ZlEP
+	U4lrH+1U/gtPPZuaTlbv4042O+FatMpbtGCRr45ZZ+lpHgZkUfvKf3KBnj0UlxGZuI17PVJJe1b
+	8yq7kHVIYYhsbypPlJ+BmTkJXmRBy7eqFd4PbVU7jzbusI/UKp5kCWpkbkhekDUS8tKxyiY6rRP
+	BYFNTMSVZb5HsEHW/qyBrMJxVEEkREBNiXAykEPXPR2PHQ/BxRnsdOhfqradrlDyjXOnE3ULrhp
+	vjLtAg9ZelzO8WsDFxkpHd3gTZqbgD8oNsofsy9AevV4YRCy4zcNq5DtirgYAjV0L6DqkPckhE4
+	j8MPY0mnmxNnWtcvo3Gf7gNN6+MAVeBEqIPJU+DBsd2JCIO03LP6lQwq8jXL0z7g==
+X-Received: by 2002:a05:622a:a0b:b0:51c:ebd:fb40 with SMTP id d75a77b69052e-51c8b2e3a0fmr110685301cf.31.1783674296459;
+        Fri, 10 Jul 2026 02:04:56 -0700 (PDT)
+X-Received: by 2002:a05:622a:a0b:b0:51c:ebd:fb40 with SMTP id d75a77b69052e-51c8b2e3a0fmr110684991cf.31.1783674295724;
+        Fri, 10 Jul 2026 02:04:55 -0700 (PDT)
 Received: from QCOM-eG0v1AUPpu.na.qualcomm.com ([82.64.236.198])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-c15dfda815dsm259932266b.36.2026.07.10.02.04.52
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-c15dfda815dsm259932266b.36.2026.07.10.02.04.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 10 Jul 2026 02:04:53 -0700 (PDT)
+        Fri, 10 Jul 2026 02:04:54 -0700 (PDT)
 From: Loic Poulain <loic.poulain@oss.qualcomm.com>
-Subject: [PATCH v4 0/7] media: qcom: camss: CAMSS Offline Processing Engine
- support
-Date: Fri, 10 Jul 2026 11:04:46 +0200
-Message-Id: <20260710-camss-isp-ope-v4-0-51207a0319d8@oss.qualcomm.com>
+Date: Fri, 10 Jul 2026 11:04:47 +0200
+Subject: [PATCH v4 1/7] media: qcom: camss: Add camss-pipeline helper
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -108,12 +109,10 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAK61UGoC/2XOMQ7CMAwF0KugzLhK3IQiJu6BGNLgUkttU+JSg
- VDvToABCRZLf/D7/6GEEpOo3eqhEs0sHIcc7HqlQuuHMwGfclaocaMtVhB8LwIsI8SRwNauck1
- DAemk8s+YqOHb2zscc25S7GFqE/mvUmJp0G3RFmjMxjgw0EUOxRivnedhH0WKy9V3IfZ9kc/Lb
- VmmmO7vmXP50j+W09ufRXMJGuraaOewsrnt3zsuy/IEiwRSlvkAAAA=
-X-Change-ID: 20260427-camss-isp-ope-4b575ffec2ed
+Content-Transfer-Encoding: 8bit
+Message-Id: <20260710-camss-isp-ope-v4-1-51207a0319d8@oss.qualcomm.com>
+References: <20260710-camss-isp-ope-v4-0-51207a0319d8@oss.qualcomm.com>
+In-Reply-To: <20260710-camss-isp-ope-v4-0-51207a0319d8@oss.qualcomm.com>
 To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
         Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
         Loic Poulain <loic.poulain@oss.qualcomm.com>,
@@ -127,63 +126,61 @@ To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
         Konrad Dybcio <konradybcio@kernel.org>
 Cc: linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
         linux-arm-msm@vger.kernel.org, linux-hardening@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>,
-        Hans de Goede <johannes.goede@oss.qualcomm.com>
+        devicetree@vger.kernel.org
 X-Mailer: b4 0.14.2
-X-Proofpoint-Spam-Info: AW1haW4tMjYwNzEwMDA4OCBTYWx0ZWRfX+fOMTBY5PA7o
- CEy2G2xEPL3c2Ze4lmVIYhV+YFrapXYdIUWq3+u25jjdDHFqj1YgJfHvoG4tAzWMyob7txcxJad
- Vsj0Jr68yh5VSsbR48KSsd0sPm+JTc8=
-X-Authority-Analysis: v=2.4 cv=DYgnbPtW c=1 sm=1 tr=0 ts=6a50b5b7 cx=c_pps
- a=mPf7EqFMSY9/WdsSgAYMbA==:117 a=MDeckJw97qnk8wCBExTehA==:17
+X-Proofpoint-GUID: uRg8zfZAKU9qphPnaJUb5SRhnFrWB89q
+X-Proofpoint-ORIG-GUID: uRg8zfZAKU9qphPnaJUb5SRhnFrWB89q
+X-Proofpoint-Spam-Info: AW1haW4tMjYwNzEwMDA4OCBTYWx0ZWRfX1rnrM5XRMTaQ
+ J3gJio4TCkw/7HNiM5HEbUpGdZsdG/TNk4Aorpix2gQzFNVh6dCfI/9NOJHwwmNqCVNbP/xPjpl
+ 6Hdq8oTP2Rnbkzxl5SkG/LQrlGkdBMQ=
+X-Authority-Analysis: v=2.4 cv=funsol4f c=1 sm=1 tr=0 ts=6a50b5b9 cx=c_pps
+ a=EVbN6Ke/fEF3bsl7X48z0g==:117 a=MDeckJw97qnk8wCBExTehA==:17
  a=IkcTkHD0fZMA:10 a=RAioF0-LDSMA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=3WHJM1ZQz_JShphwDgj5:22
- a=NEAV23lmAAAA:8 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=oJE8aRnLwfUkw7FiLPAA:9
- a=QEXdDO2ut3YA:10 a=dawVfQjAaf238kedN5IG:22
-X-Proofpoint-ORIG-GUID: nX8fCmKyUrMpmq-GlCvflg2pW7YMyVXR
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNzEwMDA4OCBTYWx0ZWRfXwdUPgXSvR1gK
- HxB+pJw8UXkPoH9LnMdZ0a9GbMKO7ZGMcSWYkuqdijY60yoM+3cJb2PgKc2IUWsGOG3wq3lX0lD
- SqS4mHu7aKSNOxbIoxx1iXEmeVjN8FN1RAQV5V9Og8jUtezeIi+jrgmg8JzALqkxHviUNSnCqI9
- sdOMCwHUVhv6gO+xhdOq8OgSH4oSvKOfv+uEBwONNz1loWmht6ThSe/h0SUO/+aamubcKFut1wZ
- E2MBplir/Y3utw2/yzwd+Pu93tjTApREY87O0iPa/NKvRr/whw/52Y57jm2LCa/CivNF7po+T8/
- IbX+1jMgdMeUhvOTxwWktL2m7QizZP1M245PIr9bY/RS2ZQLyWRSbbFSbctuiVAttIbS5XdyP86
- 9WO29n/WVDtPtvfjQu5tL+H751SZ+bO63sZGcBSLN94EGyzWEKnpwlXRvwDFWf7ZD+iGDvz31Rn
- zsWi+LYnZ9fuqAoBCZg==
-X-Proofpoint-GUID: nX8fCmKyUrMpmq-GlCvflg2pW7YMyVXR
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=DJpcGTmdVt4CTyJn9g5Z:22
+ a=EUspDBNiAAAA:8 a=nv4yEDu1kATSZ9vQL9cA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=a_PwQJl-kcHnX1M80qC6:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNzEwMDA4OCBTYWx0ZWRfXxN6+NFpc5oqM
+ 7TrmMTsk8f+RTMAa08sD1l84J20Mis/rV73lyGAm+1MGZwHaKpoFrUUFbcbC+BLU0zq/wpziSxc
+ ksPC8xsN1PDaj37J521gldG/QU9ESzUOYVXljRXoqQTLtt94sfWoxmyfjzQ1t3em3ija0L659pN
+ 0tZs++Ku/Jd5gSMP4WV2GmQgHVdGiPiVSn+3h67K9q6cENXwah/XB126f5XvNQA1yW1zERXC1TE
+ gJvRRa3O+7f7FK6D30YZj14UHkP6m4RrSkrFCcxnrczavQMhoSBq1NBwmNcB2KI1feArs0KYYR6
+ FpcIZrcukv7B5xWpVLk0Ad0pK5TXA7ItOaOHIPJ8ccC+WG2sGjHuq0zJwXDEbazbIZY4xm0dveE
+ 9CRYhWDSP15AZrHGG899apB5QeXEy5pAIdAOQSL+bAg4mNdoQ8BzQ9R4DDsdeMXhf2JT7cmv9tj
+ RbGkWvWCn5Hhfc5Bfww==
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.134,FMLib:17.12.100.49
  definitions=2026-07-10_02,2026-07-09_04,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 lowpriorityscore=0 adultscore=0 suspectscore=0 bulkscore=0
- clxscore=1015 phishscore=0 malwarescore=0 spamscore=0 impostorscore=0
+ spamscore=0 phishscore=0 clxscore=1015 lowpriorityscore=0 adultscore=0
+ bulkscore=0 suspectscore=0 malwarescore=0 priorityscore=1501 impostorscore=0
  classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
  reason=mlx scancount=1 engine=8.22.0-2606150000 definitions=main-2607100088
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-324296-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[18];
+	TAGGED_FROM(0.00)[bounces-324298-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[16];
 	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:bryan.odonoghue@linaro.org,m:vladimir.zapolskiy@linaro.org,m:loic.poulain@oss.qualcomm.com,m:mchehab@kernel.org,m:kees@kernel.org,m:gustavoars@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:andersson@kernel.org,m:konradybcio@kernel.org,m:linux-kernel@vger.kernel.org,m:linux-media@vger.kernel.org,m:linux-arm-msm@vger.kernel.org,m:linux-hardening@vger.kernel.org,m:devicetree@vger.kernel.org,m:krzysztof.kozlowski@oss.qualcomm.com,m:johannes.goede@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:bryan.odonoghue@linaro.org,m:vladimir.zapolskiy@linaro.org,m:loic.poulain@oss.qualcomm.com,m:mchehab@kernel.org,m:kees@kernel.org,m:gustavoars@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:andersson@kernel.org,m:konradybcio@kernel.org,m:linux-kernel@vger.kernel.org,m:linux-media@vger.kernel.org,m:linux-arm-msm@vger.kernel.org,m:linux-hardening@vger.kernel.org,m:devicetree@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_SENDER(0.00)[loic.poulain@oss.qualcomm.com,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,qualcomm.com:dkim,vger.kernel.org:from_smtp,oss.qualcomm.com:from_mime,oss.qualcomm.com:dkim,oss.qualcomm.com:mid,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,oss.qualcomm.com:from_mime,oss.qualcomm.com:dkim,oss.qualcomm.com:mid,qualcomm.com:email,qualcomm.com:dkim,vger.kernel.org:from_smtp];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[loic.poulain@oss.qualcomm.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
@@ -191,137 +188,664 @@ X-Spamd-Result: default: False [-2.16 / 15.00];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 25118738D1C
+X-Rspamd-Queue-Id: 0048C73908E
 
-This series introduces support for the Qualcomm CAMSS Offline Processing
-Engine (OPE), as found on Agatti-based platforms. Boards such as Arduino
-UNO-Q use this SoC family and will benefit from hardware-assisted image
-processing enabled by this work.
+Add a declarative MC topology builder for CAMSS offline ISP drivers.
+Drivers describe their entire media graph, entities (video devices,
+subdevs, or base entities), their pads, and the links between them
+in a static descriptor table. The builder validates the table,
+allocates and registers all entities, and creates all MC pad links.
 
-This represents the first step toward enabling image processing beyond
-raw capture on Qualcomm platforms by using hardware blocks for
-operations such as debayering, color correction, and scaling.
-
-The OPE sits outside the live capture pipeline. It operates on frames
-fetched from system memory and writes processed results back to memory.
-Because of this design, the OPE is not tied to any specific capture
-interface: frames may come from CAMSS RDI or PIX paths, or from any
-other producer capable of providing memory-backed buffers.
-
-The hardware can sustain up to 580 megapixels per second, which is
-sufficient to process a 9MPix (4K) stream at 60 fps or to handle
-four parallel 2MPix (HD) streams at 60 fps.
-
-The driver is designed to support multiple processing contexts. At
-present, however, only a single context is instantiated, which is
-created on the first media-pipeline open. This keeps the implementation
-simple while ensuring the design is ready for forthcoming multi-context
-support at the V4L2/media framework level.
-
-The OPE is a standalone device, independent from the CAMSS device. It
-manages its own clocks and power domains (CAMSS GDSC and CX), and does
-not require any change to the core CAMSS driver.
-
-Graph:
-ope_input ----+
-              +--> ope_proc --> ope_disp --> ope_disp_output
-ope_params ---+
-
-Compliance: v4l2-compliance has been executed without any error on
-the media and video devices.
-
-Testing: A camss-isp-m2m tool is available at
-https://github.com/loicpoulain/camss-isp-m2m-test
-The tool can be used to exercise and stress-test the OPE engine,
-as well as to observe performance and latency behavior under
-various operating conditions (resolution, format, buf count, etc).
-
-./camss-isp-m2m -s 3840x2160 -n 5
-
-  Name                            Device            Dir       Type
-  --------------------------------------------------------------
-  ope_input                       /dev/video10      output    video
-  ope_params                      /dev/video11      output    meta
-  ope_disp_output                 /dev/video12      capture   video
-  ope_proc                        /dev/v4l-subdev13  -        subdev
-  ope_disp                        /dev/v4l-subdev14  -        subdev
-
-Test: 3840x2160 RGGB -> 3840x2160 NV12  [5 frames]
-  Input   /dev/video10  3840x2160 RGGB  bpl=3840  size=8294400
-  Output  /dev/video12  3840x2160 NV12  bpl=5760  size=12441600
-
-Buffers:
-  /dev/video10    buf[0]  offset=0x00000000  length=8294400   VA=0xffffbcb87000
-  /dev/video11    buf[0]  offset=0x00000000  length=12441600  VA=0xffffbbfa9000
-
-Streaming  5 frames...
-  seq=0      buf: in=0 out=0   14.833 ms  (67.4 fps)
-  seq=1      buf: in=0 out=0   14.874 ms  (67.2 fps)
-  seq=2      buf: in=0 out=0   14.902 ms  (67.1 fps)
-  seq=3      buf: in=0 out=0   14.960 ms  (66.8 fps)
-  seq=4      buf: in=0 out=0   14.896 ms  (67.1 fps)
-
-Changes in v4:
-- Made OPE a standalone device again, sibling of CAMSS rather than
-  a child node, following maintainer feedback (Bryan)
-- Aligned params with ones suggested by Bryan (when possible) (Bryan)
-- Correct usage of subdevice states for configuration (Hans)
-- Removed the bufq and scheduling helpers (now in ope driver) (Bryan)
-- Moved generic pipeline and params helpers to camms 'core'
-- Fixed Green hue with some downscaling factors (reported by Hans)
-- Fixed ope_enum_fmt_vid_cap (Hans)
-- don't hardcode DT assigned-clock-rates for AXI (Konrad)
-- Link to v3: https://lore.kernel.org/all/20260508-camss-isp-ope-v3-0-bb1055274603@oss.qualcomm.com
-
-Changes in v3:
-- Simplified camss_init_pm_clks()- no clk_get, no rate setting;
-- Added Assigned clock rate in devicetree for CAMSS AXI clock
-- Add Kernel Doc for camss-isp-bufq exported functions
-- Added description explaining the 2-cell for CAMSS bus
-- Reworked OPE media topology with intermediate ope_disp subdev
-- Support for crop and compose in ope_proc sink/source
-- Fixed Write Engine violation with some scaling config
-- Fixed input/output custom-stride issue (Hans)
-- Split uapi header (camss-config.h) into its own dedicated commit
-- Patch reordering to respect dependency in regards to ABI/dt-bindings introduction
-- Link to v2: https://lore.kernel.org/r/20260427-camss-isp-ope-v2-0-f430e7485009@oss.qualcomm.com
-
-Changes in v2:
-- Not an RFC anymore
-- Move from v4l2-m2m to multi-devices design
-- Support for parameters
-- Helpers for pipeline, job scheduling, buf-queues
-- OPE as a child node of CAMSS
-
+Signed-off-by: Loic Poulain <loic.poulain@oss.qualcomm.com>
 ---
-Loic Poulain (7):
-      media: qcom: camss: Add camss-pipeline helper
-      media: qcom: camss: Add camss-params helper
-      media: qcom: camss: Add V4L2 meta format for CAMSS ISP parameters
-      dt-bindings: media: qcom: Add CAMSS Offline Processing Engine (OPE)
-      media: uapi: Add CAMSS ISP configuration definition
-      media: qcom: camss: Add CAMSS Offline Processing Engine driver
-      arm64: dts: qcom: agatti: Add OPE node
+ drivers/media/platform/qcom/camss/Makefile         |   1 +
+ drivers/media/platform/qcom/camss/camss-pipeline.c | 386 +++++++++++++++++++++
+ drivers/media/platform/qcom/camss/camss-pipeline.h | 232 +++++++++++++
+ 3 files changed, 619 insertions(+)
 
- .../bindings/media/qcom,qcm2290-camss-ope.yaml     |  147 +
- arch/arm64/boot/dts/qcom/agatti.dtsi               |   74 +
- drivers/media/platform/qcom/camss/Kconfig          |   18 +
- drivers/media/platform/qcom/camss/Makefile         |    6 +
- drivers/media/platform/qcom/camss/camss-ope.c      | 3245 ++++++++++++++++++++
- drivers/media/platform/qcom/camss/camss-params.c   |   67 +
- drivers/media/platform/qcom/camss/camss-params.h   |   62 +
- drivers/media/platform/qcom/camss/camss-pipeline.c |  386 +++
- drivers/media/platform/qcom/camss/camss-pipeline.h |  232 ++
- drivers/media/v4l2-core/v4l2-ioctl.c               |    3 +
- include/uapi/linux/camss-config.h                  |  161 +
- include/uapi/linux/videodev2.h                     |    3 +
- 12 files changed, 4404 insertions(+)
----
-base-commit: 6b0fbf4352615cc5e542347120f1724ce31837f8
-change-id: 20260427-camss-isp-ope-4b575ffec2ed
+diff --git a/drivers/media/platform/qcom/camss/Makefile b/drivers/media/platform/qcom/camss/Makefile
+index 5e349b4915130c71dbff90e73102e46dfede1520..0d133ddc08be088678994820c0ac64e761884611 100644
+--- a/drivers/media/platform/qcom/camss/Makefile
++++ b/drivers/media/platform/qcom/camss/Makefile
+@@ -27,5 +27,6 @@ qcom-camss-objs += \
+ 		camss-vfe.o \
+ 		camss-video.o \
+ 		camss-format.o \
++		camss-pipeline.o \
+ 
+ obj-$(CONFIG_VIDEO_QCOM_CAMSS) += qcom-camss.o
+diff --git a/drivers/media/platform/qcom/camss/camss-pipeline.c b/drivers/media/platform/qcom/camss/camss-pipeline.c
+new file mode 100644
+index 0000000000000000000000000000000000000000..3cdc0df7123d718efc0ad0c6d01a25fb13cf6ca9
+--- /dev/null
++++ b/drivers/media/platform/qcom/camss/camss-pipeline.c
+@@ -0,0 +1,386 @@
++// SPDX-License-Identifier: GPL-2.0-or-later
++/*
++ * CAMSS ISP pipeline helper — declarative MC topology builder
++ *
++ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
++ */
++
++#include <linux/slab.h>
++
++#include <media/media-device.h>
++#include <media/media-entity.h>
++#include <media/v4l2-dev.h>
++#include <media/v4l2-device.h>
++#include <media/v4l2-subdev.h>
++#include "camss-pipeline.h"
++
++#if !IS_ENABLED(CONFIG_MEDIA_CONTROLLER)
++static inline int media_entity_pads_init(struct media_entity *e, u16 n,
++					 struct media_pad *p) { return 0; }
++static inline void media_entity_remove_links(struct media_entity *e) {}
++static inline int media_create_pad_link(struct media_entity *src, u16 sp,
++					struct media_entity *sink, u16 dp,
++					u32 flags) { return 0; }
++#endif
++
++/* -------- Internal elpers -------- */
++
++static enum vfl_devnode_direction isp_caps_to_vfl_dir(u32 caps)
++{
++	if (caps & (V4L2_CAP_VIDEO_M2M | V4L2_CAP_VIDEO_M2M_MPLANE))
++		return VFL_DIR_M2M;
++	if (caps & (V4L2_CAP_VIDEO_OUTPUT | V4L2_CAP_VIDEO_OUTPUT_MPLANE |
++		    V4L2_CAP_META_OUTPUT | V4L2_CAP_VBI_OUTPUT | V4L2_CAP_SDR_OUTPUT))
++		return VFL_DIR_TX;
++	return VFL_DIR_RX;
++}
++
++static unsigned int isp_count_pads(const struct camss_isp_pad_desc *pads)
++{
++	unsigned int n = 0;
++
++	if (!pads)
++		return 0;
++	while (pads[n].flags)
++		n++;
++	return n;
++}
++
++static struct media_entity *isp_pipeline_media_entity(struct camss_isp_pipeline *pipeline,
++						      unsigned int idx)
++{
++	struct camss_isp_pipeline_entity *slot = &pipeline->entities[idx];
++
++	switch (slot->obj_type) {
++	case MEDIA_ENTITY_TYPE_VIDEO_DEVICE:
++		return &slot->vdev.entity;
++	case MEDIA_ENTITY_TYPE_V4L2_SUBDEV:
++		return &slot->subdev.entity;
++	default:
++		return &slot->entity;
++	}
++}
++
++/* -------- Validation -------- */
++
++static int isp_pipeline_validate(struct device *dev,
++				 const struct camss_isp_entity_desc *descs,
++				 unsigned int num_entities)
++{
++	unsigned int i, pi;
++
++	for (i = 0; i < num_entities; i++) {
++		const struct camss_isp_pad_desc *pads = descs[i].pads;
++		unsigned int num_pads = isp_count_pads(pads);
++
++		for (pi = 0; pi < num_pads; pi++) {
++			const struct camss_isp_pad_desc *pad = &pads[pi];
++			const struct camss_isp_pad_desc *peer_pad;
++			unsigned int peer_num_pads;
++			int peer_ent = pad->peer_entity;
++
++			if (peer_ent < 0)
++				continue;
++
++			if ((unsigned int)peer_ent >= num_entities) {
++				dev_err(dev, "entity[%u].p%u: peer_entity %d out of range\n",
++					i, pi, peer_ent);
++				return -EINVAL;
++			}
++
++			peer_num_pads = isp_count_pads(descs[peer_ent].pads);
++			if (pad->peer_pad >= peer_num_pads) {
++				dev_err(dev, "entity[%u].p%u: peer_pad %u out of range\n",
++					i, pi, pad->peer_pad);
++				return -EINVAL;
++			}
++
++			peer_pad = &descs[peer_ent].pads[pad->peer_pad];
++
++			/* Links are SOURCE->SINK; reject SOURCE->SOURCE or SINK->SINK */
++			if (((pad->flags & MEDIA_PAD_FL_SOURCE) &&
++			     (peer_pad->flags & MEDIA_PAD_FL_SOURCE)) ||
++			    ((pad->flags & MEDIA_PAD_FL_SINK) &&
++			     (peer_pad->flags & MEDIA_PAD_FL_SINK))) {
++				dev_err(dev, "entity[%u].p%u -> entity[%d].p%u: invalid\n",
++					i, pi, peer_ent, pad->peer_pad);
++				return -EINVAL;
++			}
++
++			/* Verify back-reference consistency */
++			if (peer_pad->peer_entity >= 0 &&
++			    ((unsigned int)peer_pad->peer_entity != i ||
++			     peer_pad->peer_pad != pi)) {
++				dev_err(dev, "entity[%u].p%u <-> entity[%d].p%u: mismatch\n",
++					i, pi, peer_ent, pad->peer_pad);
++				return -EINVAL;
++			}
++		}
++	}
++
++	return 0;
++}
++
++/* -------- Allocation / Release -------- */
++
++struct camss_isp_pipeline *camss_isp_pipeline_alloc(unsigned int num_entities)
++{
++	struct camss_isp_pipeline *pipeline;
++
++	pipeline = kzalloc(struct_size(pipeline, entities, num_entities),
++			   GFP_KERNEL);
++	if (!pipeline)
++		return ERR_PTR(-ENOMEM);
++
++	pipeline->num_entities = num_entities;
++	return pipeline;
++}
++EXPORT_SYMBOL_GPL(camss_isp_pipeline_alloc);
++
++void camss_isp_pipeline_free(struct camss_isp_pipeline *pipeline)
++{
++	kfree(pipeline);
++}
++EXPORT_SYMBOL_GPL(camss_isp_pipeline_free);
++
++/* -------- Registration -------- */
++
++void camss_isp_pipeline_unregister(struct camss_isp_pipeline *pipeline)
++{
++	int i;
++
++	/* Unregister entities in reverse order */
++	for (i = (int)pipeline->num_entities - 1; i >= 0; i--) {
++		struct camss_isp_pipeline_entity *slot = &pipeline->entities[i];
++
++		switch (slot->obj_type) {
++		case MEDIA_ENTITY_TYPE_VIDEO_DEVICE:
++			if (slot->vdev.name[0])
++				video_unregister_device(&slot->vdev);
++			break;
++		case MEDIA_ENTITY_TYPE_V4L2_SUBDEV:
++			if (slot->subdev.name[0]) {
++				v4l2_subdev_cleanup(&slot->subdev);
++				v4l2_device_unregister_subdev(&slot->subdev);
++			}
++			break;
++		case MEDIA_ENTITY_TYPE_BASE:
++			if (slot->entity.name) {
++				media_entity_remove_links(&slot->entity);
++				media_device_unregister_entity(&slot->entity);
++			}
++			break;
++		}
++
++		kfree(slot->pads);
++		slot->pads = NULL;
++	}
++
++	pipeline->v4l2_dev = NULL;
++}
++EXPORT_SYMBOL_GPL(camss_isp_pipeline_unregister);
++
++static int isp_register_vdev(struct camss_isp_pipeline_entity *slot,
++			     const struct camss_isp_entity_desc *desc,
++			     struct v4l2_device *v4l2_dev)
++{
++	struct video_device *vdev = &slot->vdev;
++	int ret;
++
++	strscpy(vdev->name, desc->name, sizeof(vdev->name));
++	vdev->vfl_dir     = isp_caps_to_vfl_dir(desc->vdev.caps);
++	vdev->v4l2_dev    = v4l2_dev;
++	vdev->device_caps = desc->vdev.caps | V4L2_CAP_IO_MC;
++	vdev->release     = video_device_release_empty;
++	if (desc->vdev.fops)
++		vdev->fops = desc->vdev.fops;
++	if (desc->vdev.ioctl_ops)
++		vdev->ioctl_ops = desc->vdev.ioctl_ops;
++	if (desc->vdev.entity_ops)
++		vdev->entity.ops = desc->vdev.entity_ops;
++
++	vdev->entity.obj_type = MEDIA_ENTITY_TYPE_VIDEO_DEVICE;
++	vdev->entity.function = desc->function ? desc->function : MEDIA_ENT_F_IO_V4L;
++
++	ret = media_entity_pads_init(&vdev->entity, slot->num_pads, slot->pads);
++	if (ret)
++		return ret;
++
++	ret = video_register_device(vdev, VFL_TYPE_VIDEO, -1);
++	if (ret)
++		return ret;
++
++	video_set_drvdata(vdev, desc->vdev.drvdata);
++
++	return 0;
++}
++
++static int isp_register_subdev(struct camss_isp_pipeline_entity *slot,
++			       const struct camss_isp_entity_desc *desc,
++			       struct v4l2_device *v4l2_dev)
++{
++	struct v4l2_subdev *sd = &slot->subdev;
++	int ret;
++
++	v4l2_subdev_init(sd, desc->subdev.ops);
++	strscpy(sd->name, desc->name, sizeof(sd->name));
++	sd->entity.function = desc->function ?
++			      desc->function : MEDIA_ENT_F_V4L2_SUBDEV_UNKNOWN;
++	/* Create a /dev/v4l-subdevN node so userspace can query pad formats */
++	sd->flags |= V4L2_SUBDEV_FL_HAS_DEVNODE;
++	if (desc->subdev.internal_ops)
++		sd->internal_ops = desc->subdev.internal_ops;
++	if (desc->subdev.entity_ops)
++		sd->entity.ops = desc->subdev.entity_ops;
++
++	ret = media_entity_pads_init(&sd->entity, slot->num_pads, slot->pads);
++	if (ret)
++		return ret;
++
++	ret = v4l2_device_register_subdev(v4l2_dev, sd);
++	if (ret)
++		return ret;
++
++	ret = v4l2_subdev_init_finalize(sd);
++	if (ret) {
++		v4l2_device_unregister_subdev(sd);
++		return ret;
++	}
++
++	return 0;
++}
++
++static int isp_register_base_entity(struct camss_isp_pipeline_entity *slot,
++				    const struct camss_isp_entity_desc *desc,
++				    struct v4l2_device *v4l2_dev)
++{
++	struct media_entity *entity = &slot->entity;
++	int ret;
++
++	entity->obj_type = MEDIA_ENTITY_TYPE_BASE;
++	entity->name     = desc->name;
++	entity->function = desc->function;
++
++	ret = media_entity_pads_init(entity, slot->num_pads, slot->pads);
++	if (ret)
++		return ret;
++
++	return media_device_register_entity(v4l2_dev->mdev, entity);
++}
++
++static int isp_alloc_pads(struct camss_isp_pipeline_entity *slot,
++			  const struct camss_isp_entity_desc *desc)
++{
++	unsigned int num_pads = isp_count_pads(desc->pads);
++	unsigned int i;
++
++	if (!num_pads)
++		goto done;
++
++	slot->pads = kcalloc(num_pads, sizeof(*slot->pads), GFP_KERNEL);
++	if (!slot->pads)
++		return -ENOMEM;
++
++	for (i = 0; i < num_pads; i++)
++		slot->pads[i].flags = desc->pads[i].flags;
++done:
++	slot->num_pads = num_pads;
++	return 0;
++}
++
++int camss_isp_pipeline_register(struct camss_isp_pipeline *pipeline,
++				struct v4l2_device *v4l2_dev,
++				const struct camss_isp_entity_desc *descs,
++				unsigned int num_entities)
++{
++	unsigned int i, pi;
++	int ret;
++
++	if (WARN_ON(num_entities != pipeline->num_entities))
++		return -EINVAL;
++
++	if (WARN_ON(!v4l2_dev || !v4l2_dev->mdev))
++		return -EINVAL;
++
++	ret = isp_pipeline_validate(v4l2_dev->dev, descs, num_entities);
++	if (ret)
++		return ret;
++
++	pipeline->v4l2_dev = v4l2_dev;
++
++	/* Register each entity */
++	for (i = 0; i < num_entities; i++) {
++		const struct camss_isp_entity_desc *desc = &descs[i];
++		struct camss_isp_pipeline_entity *slot = &pipeline->entities[i];
++
++		slot->obj_type = desc->obj_type;
++
++		ret = isp_alloc_pads(slot, desc);
++		if (ret)
++			goto err_unregister;
++
++		switch (desc->obj_type) {
++		case MEDIA_ENTITY_TYPE_VIDEO_DEVICE:
++			ret = isp_register_vdev(slot, desc, v4l2_dev);
++			break;
++		case MEDIA_ENTITY_TYPE_V4L2_SUBDEV:
++			ret = isp_register_subdev(slot, desc, v4l2_dev);
++			break;
++		case MEDIA_ENTITY_TYPE_BASE:
++		default:
++			ret = isp_register_base_entity(slot, desc, v4l2_dev);
++			break;
++		}
++		if (ret)
++			goto err_unregister;
++	}
++
++	/* Create links — only from SOURCE side to avoid duplicates */
++	for (i = 0; i < num_entities; i++) {
++		const struct camss_isp_entity_desc *desc = &descs[i];
++		unsigned int num_pads = isp_count_pads(desc->pads);
++
++		for (pi = 0; pi < num_pads; pi++) {
++			const struct camss_isp_pad_desc *pad = &desc->pads[pi];
++			struct media_entity *src_entity, *sink_entity;
++			unsigned int src_pad_idx, sink_pad_idx;
++			u32 lflags;
++
++			if (!(pad->flags & MEDIA_PAD_FL_SOURCE))
++				continue;
++			if (pad->peer_entity < 0)
++				continue;
++
++			src_entity   = isp_pipeline_media_entity(pipeline, i);
++			sink_entity  = isp_pipeline_media_entity(pipeline,
++								 (unsigned int)pad->peer_entity);
++			src_pad_idx  = pi;
++			sink_pad_idx = pad->peer_pad;
++
++			lflags = pad->link_flags ?
++				 pad->link_flags :
++				 (MEDIA_LNK_FL_IMMUTABLE | MEDIA_LNK_FL_ENABLED);
++
++			ret = media_create_pad_link(src_entity,  src_pad_idx,
++						    sink_entity, sink_pad_idx,
++						    lflags);
++			if (ret)
++				goto err_unregister;
++		}
++	}
++
++	/* Create /dev/v4l-subdevN nodes for all registered subdevs */
++	ret = v4l2_device_register_subdev_nodes(v4l2_dev);
++	if (ret)
++		goto err_unregister;
++
++	return 0;
++
++err_unregister:
++	camss_isp_pipeline_unregister(pipeline);
++	return ret;
++}
++EXPORT_SYMBOL_GPL(camss_isp_pipeline_register);
++
++MODULE_DESCRIPTION("CAMSS ISP pipeline topology builder");
++MODULE_LICENSE("GPL");
+diff --git a/drivers/media/platform/qcom/camss/camss-pipeline.h b/drivers/media/platform/qcom/camss/camss-pipeline.h
+new file mode 100644
+index 0000000000000000000000000000000000000000..e3082fb138a141f0955c6c74200143c4550419ae
+--- /dev/null
++++ b/drivers/media/platform/qcom/camss/camss-pipeline.h
+@@ -0,0 +1,232 @@
++/* SPDX-License-Identifier: GPL-2.0-or-later */
++/*
++ * CAMSS ISP pipeline helper — declarative MC topology builder
++ *
++ * Drivers describe their entire media graph — entities (video devices,
++ * subdevs, or base entities), their pads, and the links between them —
++ * in a single static descriptor table.  The builder validates the table,
++ * allocates and registers all entities, and creates all MC links.
++ *
++ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
++ */
++
++#ifndef _CAMSS_PIPELINE_H
++#define _CAMSS_PIPELINE_H
++
++#include <linux/mutex.h>
++#include <media/media-device.h>
++#include <media/media-entity.h>
++#include <media/v4l2-dev.h>
++#include <media/v4l2-device.h>
++#include <media/v4l2-subdev.h>
++
++/**
++ * struct camss_isp_pad_desc - descriptor for one pad and its optional link
++ *
++ * @flags:       Pad flags: MEDIA_PAD_FL_SINK, MEDIA_PAD_FL_SOURCE,
++ *               MEDIA_PAD_FL_MUST_CONNECT.  A zero @flags value acts as
++ *               the sentinel that terminates the pad list.
++ * @peer_entity: Index of the peer entity in the descriptor array, or -1
++ *               if this pad has no link.
++ * @peer_pad:    Pad index on the peer entity to link to.
++ * @link_flags:  MC link flags (MEDIA_LNK_FL_*).  Defaults to
++ *               MEDIA_LNK_FL_IMMUTABLE | MEDIA_LNK_FL_ENABLED when zero.
++ *
++ * Links are described from both sides (each endpoint references the other),
++ * but the builder only creates each link once — from the SOURCE side.
++ */
++struct camss_isp_pad_desc {
++	u32          flags;
++	int          peer_entity;
++	unsigned int peer_pad;
++	u32          link_flags;
++};
++
++/**
++ * struct camss_isp_entity_desc - descriptor for one entity in the pipeline
++ *
++ * @name:      Human-readable entity name (also used as video device name
++ *             suffix when @obj_type is MEDIA_ENTITY_TYPE_VIDEO_DEVICE).
++ * @obj_type:  MEDIA_ENTITY_TYPE_VIDEO_DEVICE, MEDIA_ENTITY_TYPE_V4L2_SUBDEV,
++ *             or MEDIA_ENTITY_TYPE_BASE.
++ * @function:  MEDIA_ENT_F_* function identifier.
++ * @pads:      Sentinel-terminated (flags == 0) array of pad descriptors.
++ *
++ * Fields used only for MEDIA_ENTITY_TYPE_VIDEO_DEVICE:
++ * @vdev.caps: V4L2_CAP_* device capabilities.
++ *             The video device direction (VFL_DIR_RX/TX/M2M) is derived
++ *             automatically from @caps by the builder.
++ * @vdev.drvdata: Opaque pointer set via video_set_drvdata() after registration.
++ * @vdev.fops:      File operations (may be NULL to use kernel defaults).
++ * @vdev.ioctl_ops: ioctl operations (may be NULL).
++ *
++ * Fields used only for MEDIA_ENTITY_TYPE_V4L2_SUBDEV:
++ * @subdev.ops: Subdev operations (may be NULL).
++ * @subdev.internal_ops: Internal subdev operations (may be NULL).
++ */
++struct camss_isp_entity_desc {
++	const char				*name;
++	u32					obj_type;
++	u32					function;
++	const struct camss_isp_pad_desc		*pads;
++
++	union {
++		/* MEDIA_ENTITY_TYPE_VIDEO_DEVICE */
++		struct {
++			u32					caps;
++			void					*drvdata;
++			const struct v4l2_file_operations	*fops;
++			const struct v4l2_ioctl_ops		*ioctl_ops;
++			const struct media_entity_operations	*entity_ops;
++		} vdev;
++		/* MEDIA_ENTITY_TYPE_V4L2_SUBDEV */
++		struct {
++			const struct v4l2_subdev_ops		*ops;
++			const struct v4l2_subdev_internal_ops	*internal_ops;
++			const struct media_entity_operations	*entity_ops;
++		} subdev;
++	};
++};
++
++/**
++ * struct camss_isp_pipeline_entity - one registered entity slot
++ *
++ * Internal to the pipeline; drivers access entities via the accessor helpers.
++ *
++ * @obj_type: mirrors the descriptor's @obj_type.
++ * @pads:     allocated pad array for this entity.
++ * @num_pads: number of entries in @pads.
++ * @vdev:     valid when @obj_type == MEDIA_ENTITY_TYPE_VIDEO_DEVICE.
++ * @subdev:   valid when @obj_type == MEDIA_ENTITY_TYPE_V4L2_SUBDEV.
++ * @entity:   valid when @obj_type == MEDIA_ENTITY_TYPE_BASE.
++ */
++struct camss_isp_pipeline_entity {
++	u32			 obj_type;
++	struct media_pad	*pads;
++	unsigned int		 num_pads;
++	union {
++		struct video_device  vdev;
++		struct v4l2_subdev   subdev;
++		struct media_entity  entity;
++	};
++};
++
++/**
++ * struct camss_isp_pipeline - registered ISP pipeline topology
++ *
++ * Allocate with camss_isp_pipeline_alloc(), register with
++ * camss_isp_pipeline_register(), tear down with
++ * camss_isp_pipeline_unregister(), free with camss_isp_pipeline_free().
++ *
++ * @v4l2_dev:     Pointer to the caller-provided V4L2 device.
++ * @drv_priv:     Driver-private pointer; not touched by the framework.
++ * @num_entities: Number of entries in @entities.
++ * @entities:     Per-entity state; flexible array.
++ */
++struct camss_isp_pipeline {
++	struct v4l2_device	*v4l2_dev;
++	void			*drv_priv;
++
++	unsigned int		 num_entities;
++	struct camss_isp_pipeline_entity entities[] __counted_by(num_entities);
++};
++
++/**
++ * camss_isp_pipeline_alloc() - allocate a pipeline for @num_entities entities
++ *
++ * Returns a pointer to the new pipeline or ERR_PTR on failure.
++ * Free with camss_isp_pipeline_free() if never registered, or call
++ * camss_isp_pipeline_unregister() followed by camss_isp_pipeline_free().
++ */
++struct camss_isp_pipeline *camss_isp_pipeline_alloc(unsigned int num_entities);
++
++/**
++ * camss_isp_pipeline_free() - free an unregistered pipeline
++ * @pipeline: pipeline to free (may be NULL)
++ */
++void camss_isp_pipeline_free(struct camss_isp_pipeline *pipeline);
++
++/**
++ * camss_isp_pipeline_register() - validate descriptors and register the graph
++ * @pipeline:    pipeline (allocated with camss_isp_pipeline_alloc())
++ * @v4l2_dev:    caller-owned and already-registered V4L2 device; its
++ *               associated media_device (v4l2_dev->mdev) must also be
++ *               initialised and registered before this call.
++ * @descs:       array of @num_entities entity descriptors
++ * @num_entities: number of entities; must equal pipeline->num_entities
++ *
++ * Validates the descriptor table (link direction consistency, index bounds),
++ * then registers all entities into the provided v4l2_device / media_device
++ * and creates all MC pad links.
++ *
++ * Returns 0 on success or a negative error code.
++ */
++int camss_isp_pipeline_register(struct camss_isp_pipeline *pipeline,
++				struct v4l2_device *v4l2_dev,
++				const struct camss_isp_entity_desc *descs,
++				unsigned int num_entities);
++
++/**
++ * camss_isp_pipeline_unregister() - tear down a registered pipeline
++ * @pipeline: pipeline to unregister
++ */
++void camss_isp_pipeline_unregister(struct camss_isp_pipeline *pipeline);
++
++/**
++ * camss_isp_pipeline_get_vdev() - return the video_device for entity @idx
++ * @pipeline: registered pipeline
++ * @idx:      entity index (must be MEDIA_ENTITY_TYPE_VIDEO_DEVICE)
++ *
++ * Returns NULL if @idx is out of range or the entity is not a video device.
++ */
++static inline struct video_device *
++camss_isp_pipeline_get_vdev(struct camss_isp_pipeline *pipeline,
++			    unsigned int idx)
++{
++	if (WARN_ON(idx >= pipeline->num_entities))
++		return NULL;
++	if (WARN_ON(pipeline->entities[idx].obj_type !=
++		    MEDIA_ENTITY_TYPE_VIDEO_DEVICE))
++		return NULL;
++	return &pipeline->entities[idx].vdev;
++}
++
++/**
++ * camss_isp_pipeline_get_subdev() - return the v4l2_subdev for entity @idx
++ * @pipeline: registered pipeline
++ * @idx:      entity index (must be MEDIA_ENTITY_TYPE_V4L2_SUBDEV)
++ *
++ * Returns NULL if @idx is out of range or the entity is not a subdev.
++ */
++static inline struct v4l2_subdev *
++camss_isp_pipeline_get_subdev(struct camss_isp_pipeline *pipeline,
++			      unsigned int idx)
++{
++	if (WARN_ON(idx >= pipeline->num_entities))
++		return NULL;
++	if (WARN_ON(pipeline->entities[idx].obj_type !=
++		    MEDIA_ENTITY_TYPE_V4L2_SUBDEV))
++		return NULL;
++	return &pipeline->entities[idx].subdev;
++}
++
++/**
++ * camss_isp_pipeline_get_entity() - return the media_entity for entity @idx
++ * @pipeline: registered pipeline
++ * @idx:      entity index (must be MEDIA_ENTITY_TYPE_BASE)
++ *
++ * Returns NULL if @idx is out of range or the entity is not a base entity.
++ */
++static inline struct media_entity *
++camss_isp_pipeline_get_entity(struct camss_isp_pipeline *pipeline,
++			      unsigned int idx)
++{
++	if (WARN_ON(idx >= pipeline->num_entities))
++		return NULL;
++	if (WARN_ON(pipeline->entities[idx].obj_type !=
++		    MEDIA_ENTITY_TYPE_BASE))
++		return NULL;
++	return &pipeline->entities[idx].entity;
++}
++
++#endif /* _CAMSS_PIPELINE_H */
 
-Best regards,
 -- 
-Loic Poulain <loic.poulain@oss.qualcomm.com>
+2.34.1
 
 
