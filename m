@@ -1,63 +1,63 @@
-Return-Path: <devicetree+bounces-324517-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-324519-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id daz4JUgLUWoC+gIAu9opvQ
-	(envelope-from <devicetree+bounces-324517-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 17:10:00 +0200
+	id QGv7LnwLUWoT+gIAu9opvQ
+	(envelope-from <devicetree+bounces-324519-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 17:10:52 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18B9973C181
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 17:10:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C86973C1A1
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 17:10:52 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=YXyVnAs9;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=PRb5OY7r;
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324517-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-324517-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324519-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-324519-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 3AA2F302DF77
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 15:09:22 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id C73DA304B27F
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 15:09:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38BD52EAB82;
-	Fri, 10 Jul 2026 15:09:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D53F315793;
+	Fri, 10 Jul 2026 15:09:15 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19E692F549C
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 360DC2DF701
 	for <devicetree@vger.kernel.org>; Fri, 10 Jul 2026 15:09:12 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783696154; cv=none; b=gp4fXYfslCDQaWPKZj2kvMiFCbHJUS8g3Hd3Msfehm2BVqEuNc/P3iWgiZJA/FFT4ijvjL0bEkOqpfZ5QEZ38eiYt1bqm/HbxYTIfg5rOxxqt5p4v8X1yRjqL0EVsWTP0c7MsO1FfMXmr9k2SKOUF7uevVaKUJ98YasGZcyjOyc=
+	t=1783696155; cv=none; b=E4Is82wv/jyuNr4lb7f9FW5DowWGzZkU4CPN4F2azCDj1Gq+hRBvR0VHcGNvjZ5zhH/jvs65LRVyZJgJi92JkX3rpqxjL0CeF7OH0krgmlsu7u08AKois3CEr405E/5xQ55ge8FiU6hxsBosd1lnYVNfyGjHsFLq88h10Ww1I+Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783696154; c=relaxed/simple;
-	bh=Kw5wMeNbO8/UUuz+7qrbV6xoky8svRoD4n47XEKHaYo=;
+	s=arc-20240116; t=1783696155; c=relaxed/simple;
+	bh=ZqXpfsLW+rzk2cqAVG0jYII1lKWrKY6I+Vzt6Meak7M=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=fMBSm0G6n0qy8aJNdQyGYOm46tko8G7LeCAM8xXwXNl5DMEO0f7+axx6kkK2vu/kOs+OZ41UjK45WcuereNThreyGXZ2RbWvqfGfeT8EbqCindsk8tMvZQlqEWl+d4asMDHCe/hK2hn0Eo8OVrwaq9DudWhaSBEqno452sz7j9o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YXyVnAs9; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B0FAC1F0155D;
-	Fri, 10 Jul 2026 15:09:10 +0000 (UTC)
+	 Message-Id; b=M1q8ejZXcI2D7NR4R2twwef29iGe8WolqUlEK5Zl/H4ua/R4z4gOE4ZAAijpPjPxgWBFdRRilnFkxl4AslmZnh4PDeZ36YF1chvyOsANr+YEwxOCUlIMVWu63r7SQ3Nlz0FWj9ZkvwtTiFc+OKpHLpbs+gjNXom22ciMdI9YpMs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PRb5OY7r; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6AD1F1F00A3F;
+	Fri, 10 Jul 2026 15:09:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783696151;
-	bh=fEDWKdw57vOm4IS925rw19f0NqFqBiBXqEjojnZkM0I=;
+	s=k20260515; t=1783696152;
+	bh=VI6byPbPPJ6p5uVtMED65mFTPrIVTyRUHefZ5zfcgWw=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=YXyVnAs91Z9bHFVlkhIQLoKKu2V8fm4MDQW18KoPxoZRh1QbQefHpE8Od28Pq2xp0
-	 RNs7iO3BPDS2VIjsxB5QS4ZMykVrGYYQUMGpz/MIz3sAw55G8TmjLy+DNPi+epwh2V
-	 hQ/nG4qiPoKKTESmK+lg/R1FsDTdSG1xcpOl8b3p0A2mMDuU/hS4m0mifz4EMsmLH5
-	 jrmOlfpQgk0PjwkYhDAmSwRPUO/ANtYNbCgfv9seRz9g82IgkjGILhdvDZG2/B7yYv
-	 QBMTShIEjLrMsRXK843dAcjZcnsIjgSCe3hOoI/7GU68hck7gQ2bvmt2lz2BgiVk/h
-	 5F5HJ51H/Hwvg==
+	b=PRb5OY7r6o/fgXXpFNc6uzwEHwiD+/QJSQ/W3kRwChrbU5URkZaw1CA9TsVd/O//F
+	 Wv5Typ4SleA8xTLf6x+Stm/JYZV19fRzkQXPMgZYRuNE05Xxby6py5qhWxFKqxGyTg
+	 5fBeBHTOKpjHUD18e648f1j3VE+lv4hwXgT6NIXa5nxxYriJ6WMkz/ftbVLHV6Ow8Y
+	 7R0VLUAA34yhtBZn4XyqJRySJiekZKGU5EwMQjxDev2GW52XWiqkZpDBSdrdTtCvSH
+	 81KryH+nAwQno2fKYT9obBFBcn5oY26ZP28kPboCh42yzdHpHpIughq5VzIR9dkV+D
+	 2tgu3QvZynMhg==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v2 15/18] clk: mediatek: Add MT8189 dvfsrc clock support
+Subject: Re: [PATCH v2 18/18] clk: mediatek: Add MT8189 ufs clock support
 Reply-To: sashiko-reviews@lists.linux.dev
 To: "Louis-Alexis Eyraud" <louisalexis.eyraud@collabora.com>
-Cc: devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org
-In-Reply-To: <20260709-mt8189-clocks-system-base-v2-15-2926da3db6cf@collabora.com>
+Cc: robh@kernel.org, devicetree@vger.kernel.org, conor+dt@kernel.org
+In-Reply-To: <20260709-mt8189-clocks-system-base-v2-18-2926da3db6cf@collabora.com>
 References: <20260709-mt8189-clocks-system-base-v2-0-2926da3db6cf@collabora.com>
- <20260709-mt8189-clocks-system-base-v2-15-2926da3db6cf@collabora.com>
+ <20260709-mt8189-clocks-system-base-v2-18-2926da3db6cf@collabora.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Fri, 10 Jul 2026 15:09:10 +0000
-Message-Id: <20260710150910.B0FAC1F0155D@smtp.kernel.org>
+Date: Fri, 10 Jul 2026 15:09:11 +0000
+Message-Id: <20260710150912.6AD1F1F00A3F@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,18 +77,18 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-324517-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-324519-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:louisalexis.eyraud@collabora.com,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:louisalexis.eyraud@collabora.com,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
 	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
 	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	ALIAS_RESOLVED(0.00)[];
@@ -102,51 +102,58 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	RCPT_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[smtp.kernel.org:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,collabora.com:email,vger.kernel.org:from_smtp]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[smtp.kernel.org:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,collabora.com:email,vger.kernel.org:from_smtp,sashiko.dev:url]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 18B9973C181
+X-Rspamd-Queue-Id: 2C86973C1A1
 
 Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
 
 Pre-existing issues:
-- [High] Use-after-free in `__mtk_clk_simple_probe` error path due to missi=
-ng `of_clk_del_provider()`.
+- [High] Missing `of_clk_del_provider()` in the error path of `__mtk_clk_si=
+mple_probe()` leaves a dangling clock provider pointer, leading to a potent=
+ial use-after-free.
 --
 
---- Patch [15]: [PATCH v2 15/18] clk: mediatek: Add MT8189 dvfsrc clock sup=
-port ---
-commit 5ea7dacd6f8e27b2d8c56bae31053477a67a2318
+--- Patch [18]: [PATCH v2 18/18] clk: mediatek: Add MT8189 ufs clock suppor=
+t ---
+commit 9858e88b79ed61ffe0a3b2d09755d7d4f94f084e
 Author: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
 
-clk: mediatek: Add MT8189 dvfsrc clock support
-   =20
-This patch adds support for the MT8189 dvfsrc clock controller. This contro=
-ller
-provides clock gate control for DRAM DVFS.
+clk: mediatek: Add MT8189 ufs clock support
 
-> diff --git a/drivers/clk/mediatek/clk-mt8189-dvfsrc.c b/drivers/clk/media=
-tek/clk-mt8189-dvfsrc.c
+This commit adds support for the MT8189 UFS clock controller, providing clo=
+ck
+gate control for Universal Flash Storage. It introduces a new driver handli=
+ng
+clock sources, dividers, and gates specific to the MT8189 platform.
+
+> diff --git a/drivers/clk/mediatek/clk-mt8189-ufs.c b/drivers/clk/mediatek=
+/clk-mt8189-ufs.c
 > new file mode 100644
-> index 0000000000000..37b81dc0b8824
+> index 0000000000000..85afab04420f8
 > --- /dev/null
-> +++ b/drivers/clk/mediatek/clk-mt8189-dvfsrc.c
-
+> +++ b/drivers/clk/mediatek/clk-mt8189-ufs.c
 [ ... ]
-
-> +static struct platform_driver clk_mt8189_dvfsrc_drv =3D {
-> +	.probe =3D mtk_clk_simple_probe,
+> +static const struct mtk_clk_rst_desc ufscfg_ao_rst_desc =3D {
+> +	.version =3D MTK_RST_SET_CLR,
+> +	.rst_bank_ofs =3D ufscfg_ao_rst_ofs,
+> +	.rst_bank_nr =3D ARRAY_SIZE(ufscfg_ao_rst_ofs),
+> +	.rst_idx_map =3D ufscfg_ao_rst_idx_map,
+> +	.rst_idx_map_nr =3D ARRAY_SIZE(ufscfg_ao_rst_idx_map),
+> +};
+> +
+> +static const struct mtk_clk_desc ufscfg_ao_reg_mcd =3D {
+> +	.clks =3D ufscfg_ao_reg_clks,
+> +	.num_clks =3D ARRAY_SIZE(ufscfg_ao_reg_clks),
+> +	.rst_desc =3D &ufscfg_ao_rst_desc,
 
 [Severity: High]
-This is a pre-existing issue, but does the error path in
-__mtk_clk_simple_probe() leave a dangling pointer?
+This is a pre-existing issue, but does setting .rst_desc here expose a
+potential use-after-free in the probe error path?
 
-When mtk_clk_simple_probe() is called, it wraps __mtk_clk_simple_probe(). If
-the clock provider is successfully added, but resetting the controller fail=
-s:
+Looking at __mtk_clk_simple_probe() in drivers/clk/mediatek/clk-mtk.c:
 
-drivers/clk/mediatek/clk-mtk.c:__mtk_clk_simple_probe() {
-...
 	r =3D of_clk_add_hw_provider(node, of_clk_hw_onecell_get, clk_data);
 	if (r)
 		goto unregister_clks;
@@ -159,30 +166,18 @@ drivers/clk/mediatek/clk-mtk.c:__mtk_clk_simple_probe() {
 		if (r)
 			goto unregister_clks;
 	}
-...
 
-It jumps to unregister_clks which eventually frees the clk_data:
+If mtk_register_reset_controller_with_dev() fails, the code jumps to
+unregister_clks, which frees clk_data without calling of_clk_del_provider().
+Any subsequent attempt to resolve a clock from this node could trigger a
+use-after-free on the freed clock provider pointer.
 
-unregister_clks:
-...
-free_data:
-	mtk_free_clk_data(clk_data);
-...
-}
+Should __mtk_clk_simple_probe() be fixed to cleanly unregister the provider
+before this new driver uses .rst_desc?
 
-Since of_clk_del_provider() is never called in this error path, doesn't this
-leave a freed clk_data pointer in the global of_clk_providers list, leading
-to a use-after-free on the next clock lookup?
-
-> +	.remove =3D mtk_clk_simple_remove,
-> +	.driver =3D {
-> +		.name =3D "clk-mt8189-dvfsrc",
-> +		.of_match_table =3D of_match_clk_mt8189_dvfsrc,
-> +	},
 > +};
-> +module_platform_driver(clk_mt8189_dvfsrc_drv);
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260709-mt8189-clo=
-cks-system-base-v2-0-2926da3db6cf@collabora.com?part=3D15
+cks-system-base-v2-0-2926da3db6cf@collabora.com?part=3D18
 
