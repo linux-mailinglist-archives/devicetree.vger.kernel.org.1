@@ -1,175 +1,132 @@
-Return-Path: <devicetree+bounces-324382-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-324383-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id P4t3INTJUGqO5AIAu9opvQ
-	(envelope-from <devicetree+bounces-324382-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 12:30:44 +0200
+	id 2v7oD4bKUGqu5AIAu9opvQ
+	(envelope-from <devicetree+bounces-324383-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 12:33:42 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id EBCA2739B85
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 12:30:43 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C761739BF5
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 12:33:41 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=K4P0+Ygp;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=E59VEGjD;
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324382-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-324382-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324383-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-324383-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id BD6E7307AD6D
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 10:27:03 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id CE4C5307C46F
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 10:28:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BFBF3F8883;
-	Fri, 10 Jul 2026 10:27:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39966407CD1;
+	Fri, 10 Jul 2026 10:28:17 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18BAE4071F5;
-	Fri, 10 Jul 2026 10:27:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24AEE18CC13;
+	Fri, 10 Jul 2026 10:28:15 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783679223; cv=none; b=hD4Se2YGuTFbxj55pl5CHQAPB8oxdezyxsEp60c0QIEMUDwJPSAigJfRgshy2fKqFtrWOzkTs1fRfeZT4JQJg7TsZS4UHJ/6tzB7q8sseXVXInUXlemaB2LqF3wENAgEUfEyYCvbSPuSOxOxYOcLnqviZGcw8DcqRzAY26X/pA0=
+	t=1783679297; cv=none; b=Ihej2kwColV1u9SyNLpBGnAWcnUZqjMg4cCdW74JoBZKT0xIYX9jalqXUq3PjtrXPYXFhfoIYCn+aenSdUGd9GLaAS9us43XfeZqB97zHiTyMGWD+WsfxIKNcQ/Tyemah1Mjk43rblxtkyHaLrOKqJcQCpdkY4d+WrQrYD7BfG4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783679223; c=relaxed/simple;
-	bh=YtWJ4O4o8yCUPWgsElNe4dhkiE/3uw1HIb9WHwqjt5Q=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=VO/bsL53L6iDxG3vXc5fOJoMwbLxJB2rSIkYQPurSDdlroA1AfkWVq+POQ1wUmXq2khCIKgsAztvucyUSIQViKPIohAjURnfmym9sJU+JBzpLRVoyp0oHAMiRatn7Z2qO8bu3r9IqEOEr2XX0178qBx82/6fcJrnlXWQGNKKcYA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=K4P0+Ygp; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AE5461F000E9;
-	Fri, 10 Jul 2026 10:27:01 +0000 (UTC)
+	s=arc-20240116; t=1783679297; c=relaxed/simple;
+	bh=WEYyzP3BKnY+B51R4z0JfgChQz0KAGXJFEt+nf+VAdM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=opg2u5rQjIyGiwtPDxNjrqmodBlcALBwmCiA5fruo+TdmPrrNTlYzWCBUmWKox5dP5XeH+CJuU6AaLTZj7Y/stFLgreW40LJCk7ZKXiEdh9sdRYMMKAOfcLKn8gwLqoiDuVnLuoQJE/BZHQXcNAfRKLiiJjL/EIyxsXZYrCWotg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=E59VEGjD; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CD9C41F000E9;
+	Fri, 10 Jul 2026 10:28:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783679222;
-	bh=dNAvF+zpebibRMo4mEGZCoLlukBY10ynXDv91NonSeE=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=K4P0+YgpBzecLog82Q5L+HaJgJxrXxWUplQQMnoN+gf1sZPvgWus8wkUFrNd8OFiB
-	 gqp1gdRb1V/ZbUVsNjTqq03xiFfleZRHuyOcpJbEoSm1MeAiaB2q0ee0IxTXa0AP75
-	 l/+UXrpzY9oSDDYuumMVekWV2ymxmaZYNLnN8+mP7Yh5lhBLKBIdbFI57xtEN4YH/p
-	 yfuY5zTBrKzzKxOdV5c025c0+bZbNBmJ5hXNnjROzSsMYlxaZHBTsnlCu3bW2G0mwb
-	 jwswMmUbtfy3ai0b2Wby52EqCtDdA4g+wp9DLq7YXCcnzdW2SXyJiEbzcJLdDvIYQ1
-	 SoeQtlJnHWEWw==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v15 4/6] pinctrl: add NXP MC33978/MC34978 pinctrl driver
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Oleksij Rempel" <o.rempel@pengutronix.de>
-Cc: linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org, conor+dt@kernel.org, robh@kernel.org
-In-Reply-To: <20260710101358.2606941-5-o.rempel@pengutronix.de>
-References: <20260710101358.2606941-1-o.rempel@pengutronix.de>
- <20260710101358.2606941-5-o.rempel@pengutronix.de>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Fri, 10 Jul 2026 10:27:01 +0000
-Message-Id: <20260710102701.AE5461F000E9@smtp.kernel.org>
+	s=k20260515; t=1783679295;
+	bh=BdmbeR+nXP2QOTmJSL448JaWOhpFdJafXIzincBL+Qk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=E59VEGjD2WXB4bUGmJBQC7A1D/xBU5RjYM4hv1oGNHf73wKSUSUgQhTy1N4nDaoBX
+	 BddUzBpETIjpA6lNNhR1qJN1AEWf2QBTyl4kyFEFrT9EO3NW7H+0TM2dTgp93U13nO
+	 DNkMYFMJPkLBG1ezmd+ZFJ38c8HW/ylby25KSP9sMsmyc55zW8REh5t09dmnX3nDYU
+	 2Giy5jGDIYrcBOCVI60C8CwuEttGo5D3aYIQiDgezd2qe9AygAwPJILlBaCVklIz90
+	 23DTG35DsRTwPBotQQv5ENuLuq5JAN5jfOpdcdWGos9UMrdQIEcVm1w3D5y+nAEf1m
+	 /CD0IiuhXfvEw==
+Date: Fri, 10 Jul 2026 12:28:11 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Paul Louvel <paul.louvel@bootlin.com>
+Cc: Qiang Zhao <qiang.zhao@nxp.com>, 
+	"Christophe Leroy (CS GROUP)" <chleroy@kernel.org>, Thomas Gleixner <tglx@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Linus Walleij <linusw@kernel.org>, Bartosz Golaszewski <brgl@kernel.org>, 
+	Madhavan Srinivasan <maddy@linux.ibm.com>, Michael Ellerman <mpe@ellerman.id.au>, 
+	Nicholas Piggin <npiggin@gmail.com>, linuxppc-dev@lists.ozlabs.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, Herve Codina <herve.codina@bootlin.com>
+Subject: Re: [PATCH v2 03/10] dt-bindings: soc: fsl: qe: Convert QE GPIO to
+ DT schema
+Message-ID: <20260710-portable-thoughtful-uakari-4db7be@quoll>
+References: <20260708-qe-pic-gpios-v2-0-1972044cfbd1@bootlin.com>
+ <20260708-qe-pic-gpios-v2-3-1972044cfbd1@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20260708-qe-pic-gpios-v2-3-1972044cfbd1@bootlin.com>
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-3.16 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	MID_RHS_NOT_FQDN(0.50)[];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-324382-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,vger.kernel.org:from_smtp,lists.linux.dev:replyto,smtp.kernel.org:mid,protonic.nl:email];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:o.rempel@pengutronix.de,m:linux-hwmon@vger.kernel.org,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[18];
 	FORWARDED(0.00)[lists@lfdr.de];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	PRECEDENCE_BULK(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:paul.louvel@bootlin.com,m:qiang.zhao@nxp.com,m:chleroy@kernel.org,m:tglx@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linusw@kernel.org,m:brgl@kernel.org,m:maddy@linux.ibm.com,m:mpe@ellerman.id.au,m:npiggin@gmail.com,m:linuxppc-dev@lists.ozlabs.org,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-gpio@vger.kernel.org,m:herve.codina@bootlin.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-324383-lists,devicetree=lfdr.de];
+	FORGED_SENDER(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	RCPT_COUNT_FIVE(0.00)[5];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FROM_NO_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[nxp.com,kernel.org,linux.ibm.com,ellerman.id.au,gmail.com,lists.ozlabs.org,lists.infradead.org,vger.kernel.org,bootlin.com];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[csgroup.eu:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp,quoll:mid,bootlin.com:email,qualcomm.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: EBCA2739B85
+X-Rspamd-Queue-Id: 7C761739BF5
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [Medium] Missing getter support for PIN_CONFIG_DRIVE_STRENGTH_UA breaks p=
-inconf readback symmetry.
---
+On Wed, Jul 08, 2026 at 12:15:16PM +0200, Paul Louvel wrote:
+> From: Christophe Leroy <christophe.leroy@csgroup.eu>
+> 
+> Convert QE GPIO devicetree binding to DT schema. The old binding uses
+> fsl,<chip>-qe-pario-bank because multiple MCP83XX SoC has support for
+> these GPIO banks. The best practice is to list out every <chip> instead.
+> 
+> Signed-off-by: Christophe Leroy <christophe.leroy@csgroup.eu>
+> Signed-off-by: Paul Louvel <paul.louvel@bootlin.com>
+> ---
+>  .../bindings/gpio/fsl,mpc8323-qe-pario-bank.yaml   | 45 ++++++++++++++++++++++
+>  .../bindings/soc/fsl/cpm_qe/qe/par_io.txt          | 26 +------------
+>  2 files changed, 46 insertions(+), 25 deletions(-)
 
---- Patch [4]: [PATCH v15 4/6] pinctrl: add NXP MC33978/MC34978 pinctrl dri=
-ver ---
-commit ac0b5b5ec87f6510c16dfd82ea1f8febfb16aa81
-Author: David Jander <david@protonic.nl>
-Subject: pinctrl: add NXP MC33978/MC34978 pinctrl driver
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
-This commit adds a new pinctrl and GPIO driver for the NXP MC33978/MC34978
-Multiple Switch Detection Interface (MSDI) devices. It provides GPIO read/w=
-rite
-access, emulated outputs, and interrupt routing by exposing the 22 mechanic=
-al
-switch detection inputs as standard GPIOs.
+Best regards,
+Krzysztof
 
-> diff --git a/drivers/pinctrl/pinctrl-mc33978.c b/drivers/pinctrl/pinctrl-=
-mc33978.c
-> new file mode 100644
-> index 0000000000000..4a7ea1bed233c
-> --- /dev/null
-> +++ b/drivers/pinctrl/pinctrl-mc33978.c
-
-[ ... ]
-
-> +static int mc33978_pinconf_get(struct pinctrl_dev *pctldev, unsigned int=
- pin,
-> +			       unsigned long *config)
-> +{
-
-[ ... ]
-
-> +	case PIN_CONFIG_DRIVE_STRENGTH:
-> +		ret =3D mc33978_get_ds(mpc, pin, &data);
-> +		if (ret)
-> +			return ret;
-> +		arg =3D data;
-> +		break;
-
-[Severity: Medium]
-Will this cause debugfs read failures for microamp configurations?
-
-The setter mc33978_pinconf_set() explicitly handles
-PIN_CONFIG_DRIVE_STRENGTH_UA, but it is missing here in the getter.
-Should PIN_CONFIG_DRIVE_STRENGTH_UA be supported here to maintain readback
-symmetry?
-
-> +	default:
-> +		/*
-> +		 * Ignore checkpatch warning: the pinctrl core specifically
-> +		 * expects -ENOTSUPP to silently skip unsupported generic
-> +		 * parameters. Using -EOPNOTSUPP causes debugfs read failures.
-> +		 */
-> +		return -ENOTSUPP;
-> +	}
-> +
-> +	*config =3D pinconf_to_config_packed(param, arg);
-> +
-> +	return 0;
-> +}
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260710101358.2606=
-941-1-o.rempel@pengutronix.de?part=3D4
 
