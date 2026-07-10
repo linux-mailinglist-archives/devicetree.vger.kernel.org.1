@@ -1,85 +1,85 @@
-Return-Path: <devicetree+bounces-324702-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-324705-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 3AQJClF4UWpYFQMAu9opvQ
-	(envelope-from <devicetree+bounces-324702-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 11 Jul 2026 00:55:13 +0200
+	id Ly8NCpB4UWphFQMAu9opvQ
+	(envelope-from <devicetree+bounces-324705-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 11 Jul 2026 00:56:16 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6DD4173FA5F
-	for <lists+devicetree@lfdr.de>; Sat, 11 Jul 2026 00:55:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BA3E973FA73
+	for <lists+devicetree@lfdr.de>; Sat, 11 Jul 2026 00:56:15 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=baylibre.com header.s=google header.b=doQqfdjy;
+	dkim=pass header.d=baylibre.com header.s=google header.b=GqYybi3M;
 	dmarc=none;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324702-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-324702-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324705-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-324705-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 11091305A39C
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 22:52:05 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 2B85A307C261
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 22:52:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFD2140801E;
-	Fri, 10 Jul 2026 22:52:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03183409276;
+	Fri, 10 Jul 2026 22:52:10 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f46.google.com (mail-ot1-f46.google.com [209.85.210.46])
+Received: from mail-ot1-f45.google.com (mail-ot1-f45.google.com [209.85.210.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DFA340960B
-	for <devicetree@vger.kernel.org>; Fri, 10 Jul 2026 22:51:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDCC140B37A
+	for <devicetree@vger.kernel.org>; Fri, 10 Jul 2026 22:52:00 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783723924; cv=none; b=SbmwivFlFBFNrWWqceGpHAAkYwWA6EVH9Dyd3AY09atA493UbNoB21CLjsbh3HPYvM4bN3YYy22mRPyJ50oX+JHHR13ObjeHZXVNt9gg4JvZOKPh6FYh9Cx01DoRBUffx+4Oa/E8eZuKdjnybDrbi9jpBnOHYGOXA/P8RGH4R00=
+	t=1783723929; cv=none; b=T5DKnthBfVJ8lend2nCxg+dYD2ExVRTjyI7Ztu2wracRh5H3otHe39vq3z3XjZomr+NGA3Uc7GApZ+ior/iKe+HUqp2T4w682lGF1vZ2/EOEmKIreejFo04+SIcfU7F2G97OK4mbuFEUsy3qa1Qo2czPRJhoq5Bj7ThAXeQK3Sk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783723924; c=relaxed/simple;
-	bh=J3/qdUa3v4iybQqy0Epz1aQGMaqOS0LO8W7h2HsiRbw=;
+	s=arc-20240116; t=1783723929; c=relaxed/simple;
+	bh=68IgNbDZF+ki2sgwG+rQ8vz/JDjddR1+ELM9L/Ar04w=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=baeTpHES68Ca+/3lCR0YIcUdt/xenH+uOlLePN2ODvK+w/hd4A1e9PZ4yxxwwmVyOHI8e55p3gDpCph0dGFRO9+MQinwfHBzq4BI6g+b9LG5V5ubEu6fwohuE5Tps0bTAS7NHj8rW4bIV4Bm+YF1nZFDWkcefJHPo0/N1r7hF9U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.b=doQqfdjy; arc=none smtp.client-ip=209.85.210.46
-Received: by mail-ot1-f46.google.com with SMTP id 46e09a7af769-7eb64371a2aso1014799a34.0
-        for <devicetree@vger.kernel.org>; Fri, 10 Jul 2026 15:51:59 -0700 (PDT)
+	 In-Reply-To:To:Cc; b=SekVBaWb08CHmq7Tvm0eThoUmgyWNTl47Iq0iogT0yDdD4K08PLEIjou6FjiiMQzFsQeabbINqVJxh1W+IKG3CiIfuStEEBVm9MU7E3vv+aeJWvknS0n1ZPCKPJJ+yAFRsq8HgRZ3WjItJE8yOeOf/v84F/bRQvJnuUoZDDCcVE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.b=GqYybi3M; arc=none smtp.client-ip=209.85.210.45
+Received: by mail-ot1-f45.google.com with SMTP id 46e09a7af769-7e9f1f24cbcso1294801a34.0
+        for <devicetree@vger.kernel.org>; Fri, 10 Jul 2026 15:52:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre.com; s=google; t=1783723918; x=1784328718; darn=vger.kernel.org;
+        d=baylibre.com; s=google; t=1783723920; x=1784328720; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=/+y0rBgM7G+Wc7ACw8ZUZSf7j5cn5UpYz2OGF2cuz18=;
-        b=doQqfdjy7zW98nIJk5O4wZa+f6WS+++/Xg9UGqEKGAJMnzVkqmZnb39pLThY9YL49I
-         MP2lT6fep1o0hOnCG8xi5UQt0fg10V6N4RzksKdcSqTWCg5y2nXQ8WRmo5IoTVivZnUE
-         FzGq3T7FbcX8fTYn+F8IUswWEj3l4o9y5uFa4Z5dx1OpB3GU+3hQLvor7UAUmrue4EB8
-         l2kcRhqAfQg8RiSuICe5zUYZ/vlNlF022M2u2ynkZZ3fi2URJmXxF4icGh5Lu3/8pFEg
-         +EOMjRDjfKzc+PMAwJX35w96ei8qKkdngkSeaA9Qug9+nvWK2U3eTHvWst84RWQ1EHRk
-         jBXA==
+        bh=KL0H0X1C9AYOdHfG302HxDOJWsU9ia+Te2ni4S59j+Y=;
+        b=GqYybi3MpxIJkCp7s21YkcGM7nkcXL51hcV4VuQFQ0n7MtEBB/NACkWjHeANKvncS4
+         KiQepp5ixVN74qyQwYsiJbR1T9PIfvVbmji9y8865+KUv/HfUNeyKsUSx56Eo5b4+P9V
+         YWoXNBWXGwBPON6l+x0w50vbf3U5vCCKdK1ccK2FUgI74cDk7uivvkJYoeprZaXtaadj
+         iK8HjdPKaiCTN7XAF7UmHsRtPmzQVi3mehSJx4BQnzxk/mcDIm+JwyXwfsQd+Szid7i7
+         B8G+vZKf7xV6LXJjKAvTTtDc7TN47UlTgjeU/hVUEyMZhR9A2XYbouUU9rixeVuXou9z
+         QAOw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783723918; x=1784328718;
+        d=1e100.net; s=20251104; t=1783723920; x=1784328720;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=/+y0rBgM7G+Wc7ACw8ZUZSf7j5cn5UpYz2OGF2cuz18=;
-        b=GLAkBA/POFFPqnrG5H5TwGJG4HogxwAIaDGjsO3itX1ZYXxppuB4t8eghAARtKExOR
-         hA/Qra/dabLXJldQWuAdLUFMnwnjti88YAcUWR47Z3HBkUaf5XusL2pSQDiclIYBlXZC
-         BtTkYYrzKU3vtSmDYBvavaJf1Iur6VfzeWQJWJ3gGqOdtAXS6g7j3A7X++6w4BJbuSIq
-         UAN6QMt2El1BfSD6URVUKCw6rpKLMBQQ8ek4L3asH/5NkbU4fvQXd5/prGU1N2A8TDB+
-         oKCl9ViSGsGjcbPtgXAbA7dwjpUvpE1LDSg4zaP6l8q0XmDkfGt5clLb2W+vrM+aXTje
-         1F2Q==
-X-Forwarded-Encrypted: i=1; AFNElJ9FoQIVnpn3lt0lwo/i19ADnWaw9kQ9QuVZ540tcnxACQbulYlzg3ZPOjcxlXGVY/ND4bU+1siUdQL+@vger.kernel.org
-X-Gm-Message-State: AOJu0YzRBSp4hw4r0BB07BVUTBW3Bg0uN13BsY/E5zODm8uI59TIvehn
-	bu++oSW4+5nnqzMR3tG/aJhhnkNpYilEJ2ilyn/F4uIX+885mtLQAkdLsCxBZz//Ru8=
-X-Gm-Gg: AfdE7cmg78yjBXoTVkVwJmLO7tMa2jxE2UlOULNeJxehioWjGiSVXSArelnM7yUDL+p
-	kanQ984vT3Xbv9mFcg4IoWPHd5X6yXgRdyUHLDGthJJPVf4FKH7yeOQuh/iOdN7tBt0YF7Jxw71
-	eVT/91A+nM/gcaFf7pEx+JoJNF/kIX5vzQQugH4kbmjlxBOzYmI9ZywvTDWqgIy9ZqbjZiW7YVL
-	aTU2Yje557sGDaxR7WY4eQ1kKcAvFq3PzCxGdK0g1FqPiMSI9ht9OTFEh3Hf1NZzPCugW0UKBOq
-	w6LD/d9QFxIZwMno/FBcTG3ahd9I4Ah6zRk6NrVW02a1CUfWtrZHZ06msQRtbHCbeOQLPbC3NjE
-	KRfrCVcodjNUDwbav1BjNBP/dbkEkKMecxaaWcOviLph+r18kC0Ahcnyc/Dmnw1HYLp6nukgIRH
-	KUj0Qdy5RyusovF948
-X-Received: by 2002:a05:6830:2b25:b0:7dc:db3c:1d82 with SMTP id 46e09a7af769-7ec0963a968mr512858a34.10.1783723918116;
-        Fri, 10 Jul 2026 15:51:58 -0700 (PDT)
+        bh=KL0H0X1C9AYOdHfG302HxDOJWsU9ia+Te2ni4S59j+Y=;
+        b=DWsed72tdeAv52e1ZmclB9ggtRAvFKVNlAxIn1gIv5auIRTx/t6MtOWrkJWabI6+sO
+         nybWfrASvFXhonkuclllolinGE61jGF01fOShts6QqD8ubtUJIjBVJDoovfdca7l/VGH
+         9xE2LSJjE5sMPDjaxYhQkeDi9mvTyKmvHmqn52F9qnHRp7/kODwuOgJoleD5uevTJnhF
+         I4gj4wTlTQ5rd54mV+yY7o5JNfkImwGqMUTgfrrc9tUsDJsUiy60SbXXPxYrvAyohTES
+         Ks3XNQeCYY6je94bMkjt2t/SC4K2riWHHA4MeL6gxsn1EgNbrxI2lLKqYpbEvW2n0he9
+         f3eg==
+X-Forwarded-Encrypted: i=1; AFNElJ/h7/T/NszxFVAWgD05wYOUvM8wL22+0PJnlq5WCYVloTDFqzQWNWKeFaDNTXjYEshp5vUxXpcPLcHV@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw7iJj/iQPuFo1FOM6UW1Aqd+gk1UQ4By6+aLjO6u2iKfRAWzfT
+	x3cRT+A6DjBScjxp8BvG/MII1Rbt0Q5ZuXupf3mnV8iYhxZOhjZjg7qGU72uzvvUNIM=
+X-Gm-Gg: AfdE7cll6XejcVjXE2XP17+8SQoWUKbWCkbTMuFG/HBPAnNEHiILsvYgwUwZPkOdZH/
+	WaTK81HQANkmSDbYRITCPgiHm1+WbWyyXSvjR16k/Z/RI2p0gVd0J5crA65vcIpVmG24jSTokO5
+	sDrc1WnaYUKOAqmXzc/4QBjkMPNiHa5RGEMKQOhTKpGhXpQrwUEobFdvbDadma3TRHxx/zZzZwk
+	TXBX+KEpDV5q+w2+cCzTjBDkrSdfA93gZqWfeWgE2gCNJGxHIsWVmfwDLaszSJtESv5Y5oL5gvz
+	HdgigL9cx5X/td7x4u+0FjNxLwr4TmARYKxrcIXEFqmTBuj7R75eAnQV7P7AbVWGNN2H4U4IHSe
+	a8xoL8cZ9zKSG0Izlr+2ZewfLMHLre3PW6NKUetPOvwpX6LWyWU2bQdlDML2zxpgDqu3QzqCGzE
+	VN4WTYDSKUhf+ss+WnMqNhGYjV9q8=
+X-Received: by 2002:a05:6830:4997:b0:7e9:dabf:fba0 with SMTP id 46e09a7af769-7ec0a06cb78mr468885a34.15.1783723919616;
+        Fri, 10 Jul 2026 15:51:59 -0700 (PDT)
 Received: from [127.0.1.1] ([2600:8803:e7e4:500:1b03:95c:fbd4:4d00])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7ebcae177c5sm7613512a34.5.2026.07.10.15.51.55
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7ebcae177c5sm7613512a34.5.2026.07.10.15.51.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 10 Jul 2026 15:51:57 -0700 (PDT)
+        Fri, 10 Jul 2026 15:51:59 -0700 (PDT)
 From: "David Lechner (TI)" <dlechner@baylibre.com>
-Date: Fri, 10 Jul 2026 17:50:38 -0500
-Subject: [PATCH v3 5/8] dt-bindings: iio: adc: add ti,ads122c14
+Date: Fri, 10 Jul 2026 17:50:39 -0500
+Subject: [PATCH v3 6/8] iio: adc: add ti-ads112c14 driver
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -87,8 +87,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260710-iio-adc-ti-ads122c14-v3-5-746d52cbf1d0@baylibre.com>
+Content-Transfer-Encoding: 8bit
+Message-Id: <20260710-iio-adc-ti-ads122c14-v3-6-746d52cbf1d0@baylibre.com>
 References: <20260710-iio-adc-ti-ads122c14-v3-0-746d52cbf1d0@baylibre.com>
 In-Reply-To: <20260710-iio-adc-ti-ads122c14-v3-0-746d52cbf1d0@baylibre.com>
 To: Jonathan Cameron <jic23@kernel.org>, 
@@ -101,15 +101,16 @@ Cc: Chris Hall <c-hall@ti.com>, Patrick Edwards <pedwards@ti.com>,
  linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
  linux-kernel@vger.kernel.org, David Lechner <dlechner@baylibre.com>
 X-Mailer: b4 0.16-dev
-X-Developer-Signature: v=1; a=openpgp-sha256; l=7704; i=dlechner@baylibre.com;
- h=from:subject:message-id; bh=J3/qdUa3v4iybQqy0Epz1aQGMaqOS0LO8W7h2HsiRbw=;
- b=owEBbQGS/pANAwAKAcLMIAH/AY/AAcsmYgBqUXdldumgGjL809zKRfzKpI/0jN0xeRmfjyzkP
- LRZql+yjNqJATMEAAEKAB0WIQTsGNmeYg6D1pzYaJjCzCAB/wGPwAUCalF3ZQAKCRDCzCAB/wGP
- wFNeB/9f+ybfT/pS/Rn9lqhLkGZGd4nuux76m/TDx0/zGe0ew1/jXoMNrNzkON/1ZdPPNhWLwzM
- VgtqEP8xjQNdrDBCdYPseZE2a1hjTJ/W9/P8pI1TYCo2BfFp/BuNkiZm+4GjFt1spItJWmjb1P1
- z5u/oqjAtp7K5dpdGEs8JMjD2KUg7hDKPrTQ5V/Gw6bASHgmZIbKiGrlXJSKrNnrgwJJxlMyFwR
- ty+HHJ1z+kyJpHXy7LronbVcbmvF9pSHez4VMQlqb2Xaw9NucY2/qd5W7UhRUnz9MQc2wPt1KTE
- vDUCDV0+2BCPo7UCRvJBctvfJdfz/r6sS7D0AmB0AqaHu6FD
+X-Developer-Signature: v=1; a=openpgp-sha256; l=21747;
+ i=dlechner@baylibre.com; h=from:subject:message-id;
+ bh=68IgNbDZF+ki2sgwG+rQ8vz/JDjddR1+ELM9L/Ar04w=;
+ b=owEBbQGS/pANAwAKAcLMIAH/AY/AAcsmYgBqUXdsGnuCEog6VKHjwKp4EJo2LkeQlc8lM3Jad
+ 1zwzg0kw1GJATMEAAEKAB0WIQTsGNmeYg6D1pzYaJjCzCAB/wGPwAUCalF3bAAKCRDCzCAB/wGP
+ wIELB/9gFtREtpgSdkuCHKtB5ARaXDmCxDK3rWcNYnZKkPt2H9X0tiKC+PI66QFv8Qgh52QeIdn
+ SoaLEJ8Cl9HG1B5B1jhNmhY6W0h7AbA574UtR9DhI0CMn/NEzWnG6lZsfe8guivKBJzgE+ZCfec
+ dk0PU2X05baDW53wWDiQse372+yrSAGyrSuNAIBrfH4l42tr/zt4cyN6dR8ftsmoribPon8UG/f
+ mcyM3CTYF72vrsev1uXU7k6RQzVrYvvFqhNZbGGaIDxnFnDO22PD435AyMUZ+QJ+ffc2X5HfPWJ
+ nRoQKG3BVxh+YRDIuGjfDfM6DucV8uLN9q7B6ge+mTh4FWGC
 X-Developer-Key: i=dlechner@baylibre.com; a=openpgp;
  fpr=8A73D82A6A1F509907F373881F8AF88C82F77C03
 X-Rspamd-Action: no action
@@ -122,7 +123,7 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-324702-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-324705-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS(0.00)[m:jic23@kernel.org,m:nuno.sa@analog.com,m:andy@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:c-hall@ti.com,m:pedwards@ti.com,m:kuurtb@gmail.com,m:zizuzacker@gmail.com,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:dlechner@baylibre.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER(0.00)[dlechner@baylibre.com,devicetree@vger.kernel.org];
@@ -145,281 +146,673 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[baylibre.com:from_mime,baylibre.com:email,baylibre.com:mid,baylibre.com:dkim,ti.com:url,devicetree.org:url,vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,baylibre.com:from_mime,baylibre.com:email,baylibre.com:mid,baylibre.com:dkim,ti.com:url,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 6DD4173FA5F
+X-Rspamd-Queue-Id: BA3E973FA73
 
-Add new bindings for ti,ads122c14 and similar devices.
+Add a new driver for the TI ADS112C14/ADS122C14 ADC chips.
 
-This is an ADC that is primarily intended for use with temperature
-sensors. There are a few unusual properties because of this. In
-particular, the reference voltage source and current output requirements
-can be different for each measurement, so these are included in the
-channel bindings.
+This first step is adding a very basic driver that only supports power
+on/reset and reading the system monitor channels.
 
-The REFP/REFN reference voltage is usually just connected to a resistor
-that is being driven by the ADC's current outputs, so there is special
-property for this case rather than requiring a regulator to be defined
-to represent that.
-
-ti,vref-source is reused from ti,tlv320adcx140.yaml (otherwise might
-have preferred an enum of strings).
+ADS112C14_SYS_MON_CHANNEL_SHORT is the last channel rather than being in
+logical order by address to keep the voltage channels together and in
+case we find we need to add variants of this channel with different
+voltage reference later.
 
 Signed-off-by: David Lechner (TI) <dlechner@baylibre.com>
 ---
+
+A few other notes for review that didn't seem worth putting in the
+commit message:
+* I intentionally did not use bulk regmap because later we may need to
+  get the voltage of the avdd supply.
+* I left some comments in the code where the code might look funny (e.g.
+  to reduce future diff) or does not exactly match the datasheet, in
+  which case later changes will address that.
+
 v3 changes:
-* Fixed channel@ pattern.
-* Adapted to input-chopping property rename.
-* Made sure to use items: on array properties.
-* Added reg to required list.
-* Fixed missing space in example comment.
+* Reordered some things to reudce future diffs.
+* Fixed missing space in comment.
+* Added device ID check.
+* Added ADS112C14_SYS_MON_CHANNEL_BASE macro.
+* Drop linux/mod_devicetable.h import.
 
 v2 changes:
-* Added ti, vendor prefix when appropriate.
-* Others are now standardized properties from adc.yaml.
-* Moved top-level unevaluatedProperties.
-* Fixed some issues with the channel@ matching and reg property.
-* Dropped description on bipolar property.
-* Renamed current-chopping to input-channel-rotation.
-* Drop header file and use string enum instead for reference-sources.
-* Added burn-out-current-nanoamp property.
-* Drop allOf: and just use oneOf: directly.
-* Fix inconsistent indentation in the examples.
+* Add some indent to register field macro defines.
+* Drop ads112c14_internal_ref_uV array (use macros instead).
+* Don't keep pointer to i2c client.
+* Consistently check channel < 100 instead of >= 100 sometimes.
+* Check return of i2c_get_match_data().
+* Fix bug on checking -EREMOTEIO.
+* Don't use &client->dev when we already have dev local variable.
+* Make some changes to reduce diff in later patches.
 ---
- .../devicetree/bindings/iio/adc/ti,ads112c14.yaml  | 207 +++++++++++++++++++++
- MAINTAINERS                                        |   6 +
- 2 files changed, 213 insertions(+)
+ MAINTAINERS                    |   1 +
+ drivers/iio/adc/Kconfig        |  12 +
+ drivers/iio/adc/Makefile       |   1 +
+ drivers/iio/adc/ti-ads112c14.c | 566 +++++++++++++++++++++++++++++++++++++++++
+ 4 files changed, 580 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/iio/adc/ti,ads112c14.yaml b/Documentation/devicetree/bindings/iio/adc/ti,ads112c14.yaml
-new file mode 100644
-index 000000000000..a2ee473c8e61
---- /dev/null
-+++ b/Documentation/devicetree/bindings/iio/adc/ti,ads112c14.yaml
-@@ -0,0 +1,207 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/iio/adc/ti,ads112c14.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Texas Instruments' ADS112C14 and similar ADC chips
-+
-+description: |
-+  Supports the following Texas Instruments' ADC chips:
-+  - ADS112C14 (16-bit)
-+  - ADS122C14 (24-bit)
-+
-+  https://www.ti.com/lit/ds/symlink/ads122c14.pdf
-+
-+  These chips are primarily designed for use with temperature sensors such as
-+  RTDs and thermocouples. The channel bindings reflect this in that each channel
-+  represents the conditions required to make a measurement rather than strictly
-+  just the physical input channels.
-+
-+maintainers:
-+  - David Lechner <dlechner@baylibre.com>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - ti,ads112c14
-+      - ti,ads122c14
-+
-+  reg:
-+    items:
-+      - minimum: 0x40
-+        maximum: 0x47
-+
-+  clocks:
-+    maxItems: 1
-+    description: Optional external clock connected to GPIO3 pin.
-+
-+  avdd-supply: true
-+  dvdd-supply: true
-+
-+  refp-supply: true
-+  refn-supply: true
-+
-+  ti,refp-refn-resistor-ohms:
-+    description:
-+      The resistance of the external resistor between REFP and REFN when using
-+      resistor bridge driven by current outputs for RTD measurements.
-+
-+  interrupts:
-+    minItems: 1
-+    items:
-+      - description: FAULT interrupt (GPIO2 pin)
-+      - description: DRDY interrupt (GPIO3 pin)
-+
-+  interrupt-names:
-+    minItems: 1
-+    maxItems: 2
-+    items:
-+      enum: [fault, drdy]
-+
-+  gpio-controller: true
-+  '#gpio-cells':
-+    const: 2
-+
-+  '#address-cells':
-+    const: 1
-+
-+  '#size-cells':
-+    const: 0
-+
-+patternProperties:
-+  ^channel@[0-9a-f]$:
-+    $ref: adc.yaml
-+
-+    unevaluatedProperties: false
-+
-+    properties:
-+      reg:
-+        items:
-+          - maximum: 15 # arbitrary limit, channel@ can be any combination of AIN0-AIN7
-+
-+      single-channel:
-+        maximum: 7
-+
-+      diff-channels:
-+        items:
-+          maximum: 7
-+
-+      bipolar: true
-+
-+      input-chopping: true
-+
-+      excitation-channels:
-+        maxItems: 2
-+        items:
-+          maximum: 7
-+
-+      excitation-current-nanoamp:
-+        maxItems: 2
-+        items:
-+          enum: [1000, 10000, 20000, 30000, 40000, 50000, 60000, 70000, 80000,
-+                 90000, 100000, 200000, 300000, 400000, 500000, 600000, 700000,
-+                 800000, 900000, 1000000]
-+
-+      burn-out-current-nanoamp:
-+        items:
-+          - enum: [200, 1000, 10000]
-+
-+      reference-sources:
-+        items:
-+          - enum: [internal-2.5v, internal-1.25v, external, avdd]
-+            default: internal-2.5v
-+
-+    dependencies:
-+      excitation-channels: [ excitation-current-nanoamp ]
-+      excitation-current-nanoamp: [ excitation-channels ]
-+
-+    oneOf:
-+      - required: [ single-channel ]
-+      - required: [ diff-channels ]
-+
-+unevaluatedProperties: false
-+
-+required:
-+  - compatible
-+  - reg
-+  - avdd-supply
-+  - dvdd-supply
-+
-+dependencies:
-+  refn-supply: [ refp-supply ]
-+
-+oneOf:
-+  - required: [ refp-supply ]
-+  - required: [ "ti,refp-refn-resistor-ohms" ]
-+  - properties:
-+      refp-supply: false
-+      refn-supply: false
-+      ti,refp-refn-resistor-ohms: false
-+
-+examples:
-+  - |
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        adc@40 {
-+            compatible = "ti,ads112c14";
-+            reg = <0x40>;
-+
-+            avdd-supply = <&avdd>;
-+            dvdd-supply = <&dvdd>;
-+
-+            /* 3-Wire RTD: Two IDACs, One Measurement (AIN1-AIN2) */
-+
-+            ti,refp-refn-resistor-ohms = <500>;
-+
-+            #address-cells = <1>;
-+            #size-cells = <0>;
-+
-+            channel@0 {
-+                reg = <0>;
-+                diff-channels = <1>, <2>;
-+                input-chopping;
-+                excitation-channels = <0>, <3>;
-+                excitation-current-nanoamp = <500000>, <500000>;
-+                reference-sources = "external";
-+                label = "rtd";
-+            };
-+        };
-+    };
-+  - |
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        adc@40 {
-+            compatible = "ti,ads112c14";
-+            reg = <0x40>;
-+
-+            avdd-supply = <&avdd>;
-+            dvdd-supply = <&dvdd>;
-+
-+            /* Resistive Bridge Measurement With a Thermistor for Temperature Compensation */
-+
-+            refp-supply = <&avdd>;
-+
-+            #address-cells = <1>;
-+            #size-cells = <0>;
-+
-+            channel@0 {
-+                reg = <0>;
-+                diff-channels = <6>, <7>;
-+                bipolar;
-+                reference-sources = "external";
-+                label = "bridge";
-+            };
-+
-+            channel@1 {
-+                reg = <1>;
-+                diff-channels = <1>, <2>;
-+                reference-sources = "internal-2.5v";
-+                label = "thermistor";
-+            };
-+        };
-+    };
 diff --git a/MAINTAINERS b/MAINTAINERS
-index 2b1ec46c5919..3e114e0c9c5f 100644
+index 3e114e0c9c5f..7077ed7c9efe 100644
 --- a/MAINTAINERS
 +++ b/MAINTAINERS
-@@ -26958,6 +26958,12 @@ S:	Maintained
- F:	Documentation/devicetree/bindings/iio/adc/ti,ads1119.yaml
- F:	drivers/iio/adc/ti-ads1119.c
+@@ -26963,6 +26963,7 @@ M:	David Lechner <dlechner@baylibre.com>
+ L:	linux-iio@vger.kernel.org
+ S:	Maintained
+ F:	Documentation/devicetree/bindings/iio/adc/ti,ads112c14.yaml
++F:	drivers/iio/adc/ti-ads112c14.c
  
-+TI ADS112C14 ADC DRIVER
-+M:	David Lechner <dlechner@baylibre.com>
-+L:	linux-iio@vger.kernel.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/iio/adc/ti,ads112c14.yaml
-+
  TI ADS1018 ADC DRIVER
  M:	Kurt Borja <kuurtb@gmail.com>
- L:	linux-iio@vger.kernel.org
+diff --git a/drivers/iio/adc/Kconfig b/drivers/iio/adc/Kconfig
+index d1b198cb8a80..642c42b1fae7 100644
+--- a/drivers/iio/adc/Kconfig
++++ b/drivers/iio/adc/Kconfig
+@@ -1798,6 +1798,18 @@ config TI_ADS1119
+          This driver can also be built as a module. If so, the module will be
+          called ti-ads1119.
+ 
++config TI_ADS112C14
++	tristate "Texas Instruments ADS112C14/ADS122C14"
++	depends on I2C
++	select REGMAP
++	select REGMAP_I2C
++	help
++	  If you say yes here you get support for Texas Instruments ADS112C14,
++	  ADS122C14 ADC chips.
++
++	  This driver can also be built as a module. If so, the module will be
++	  called ti-ads112c14.
++
+ config TI_ADS124S08
+ 	tristate "Texas Instruments ADS124S08"
+ 	depends on SPI
+diff --git a/drivers/iio/adc/Makefile b/drivers/iio/adc/Makefile
+index 0f90b75577ff..3778c7b0b8b5 100644
+--- a/drivers/iio/adc/Makefile
++++ b/drivers/iio/adc/Makefile
+@@ -154,6 +154,7 @@ obj-$(CONFIG_TI_ADS1015) += ti-ads1015.o
+ obj-$(CONFIG_TI_ADS1018) += ti-ads1018.o
+ obj-$(CONFIG_TI_ADS1100) += ti-ads1100.o
+ obj-$(CONFIG_TI_ADS1119) += ti-ads1119.o
++obj-$(CONFIG_TI_ADS112C14) += ti-ads112c14.o
+ obj-$(CONFIG_TI_ADS124S08) += ti-ads124s08.o
+ obj-$(CONFIG_TI_ADS1298) += ti-ads1298.o
+ obj-$(CONFIG_TI_ADS131E08) += ti-ads131e08.o
+diff --git a/drivers/iio/adc/ti-ads112c14.c b/drivers/iio/adc/ti-ads112c14.c
+new file mode 100644
+index 000000000000..4d2e7d37be82
+--- /dev/null
++++ b/drivers/iio/adc/ti-ads112c14.c
+@@ -0,0 +1,566 @@
++// SPDX-License-Identifier: GPL-2.0-only
++/*
++ * IIO driver for Texas Instruments ADS112C14 and similar ADCs.
++ *
++ * Copyright (C) 2026 Texas Instruments Incorporated - https://www.ti.com/
++ * Copyright (C) 2026 Baylibre Inc.
++ *
++ * Datasheet: https://www.ti.com/lit/ds/symlink/ads122c14.pdf
++ */
++
++#include <linux/bitfield.h>
++#include <linux/delay.h>
++#include <linux/dev_printk.h>
++#include <linux/i2c.h>
++#include <linux/iio/iio.h>
++#include <linux/math64.h>
++#include <linux/module.h>
++#include <linux/property.h>
++#include <linux/regmap.h>
++#include <linux/regulator/consumer.h>
++#include <linux/sysfs.h>
++#include <linux/time64.h>
++#include <linux/types.h>
++#include <linux/unaligned.h>
++#include <linux/units.h>
++
++/* Datasheet t_d(RST) - time to wait after reset before next I2C use. */
++#define ADS112C14_DELAY_RESET_US 500
++
++#define ADS112C14_CMD_RDATA	0x00
++#define ADS112C14_CMD_RREG	0x40
++#define ADS112C14_CMD_WREG	0x80
++
++#define ADS112C14_REG_DEVICE_ID				0x00
++#define   ADS112C14_DEVICE_ID_BITS			GENMASK(3, 0)
++
++#define ADS112C14_REG_REVISION_ID			0x01
++
++#define ADS112C14_REG_STATUS_MSB			0x02
++#define   ADS112C14_STATUS_MSB_RESETN			BIT(7)
++#define   ADS112C14_STATUS_MSB_AVDD_UVN			BIT(6)
++#define   ADS112C14_STATUS_MSB_REF_UVN			BIT(5)
++#define   ADS112C14_STATUS_MSB_REG_MAP_CRC_FAULTN	BIT(3)
++#define   ADS112C14_STATUS_MSB_MEM_FAULTN		BIT(2)
++#define   ADS112C14_STATUS_MSB_REG_WRITE_FAULTN		BIT(1)
++#define   ADS112C14_STATUS_MSB_DRDY			BIT(0)
++
++#define ADS112C14_REG_STATUS_LSB			0x03
++#define   ADS112C14_STATUS_LSB_CONV_COUNT		GENMASK(7, 4)
++#define   ADS112C14_STATUS_LSB_GPIO3_DAT_IN		BIT(3)
++#define   ADS112C14_STATUS_LSB_GPIO2_DAT_IN		BIT(2)
++#define   ADS112C14_STATUS_LSB_GPIO1_DAT_IN		BIT(1)
++#define   ADS112C14_STATUS_LSB_GPIO0_DAT_IN		BIT(0)
++
++#define ADS112C14_REG_CONVERSION_CTRL			0x04
++#define   ADS112C14_CONVERSION_CTRL_RESET		GENMASK(7, 2)
++#define   ADS112C14_CONVERSION_CTRL_START		BIT(1)
++#define   ADS112C14_CONVERSION_CTRL_STOP		BIT(0)
++
++#define ADS112C14_REG_DEVICE_CFG			0x05
++#define   ADS112C14_DEVICE_CFG_PWDN			BIT(7)
++#define   ADS112C14_DEVICE_CFG_STBY_MODE		BIT(6)
++#define   ADS112C14_DEVICE_CFG_BOCS			GENMASK(5, 4)
++#define   ADS112C14_DEVICE_CFG_CLK_SEL			BIT(3)
++#define   ADS112C14_DEVICE_CFG_CONV_MODE		BIT(2)
++#define   ADS112C14_DEVICE_CFG_SPEED_MODE		GENMASK(1, 0)
++
++#define ADS112C14_REG_DATA_RATE_CFG			0x06
++#define   ADS112C14_DATA_RATE_CFG_DELAY			GENMASK(7, 4)
++#define   ADS112C14_DATA_RATE_CFG_GC_EN			BIT(3)
++#define   ADS112C14_DATA_RATE_CFG_FLTR_OSR		GENMASK(2, 0)
++
++#define ADS112C14_REG_MUX_CFG				0x07
++#define   ADS112C14_MUX_CFG_AINP			GENMASK(7, 4)
++#define   ADS112C14_MUX_CFG_AINN			GENMASK(3, 0)
++
++#define ADS112C14_REG_GAIN_CFG				0x08
++#define   ADS112C14_GAIN_CFG_SPARE			BIT(7)
++#define   ADS112C14_GAIN_CFG_SYS_MON			GENMASK(6, 4)
++#define   ADS112C14_GAIN_CFG_GAIN			GENMASK(3, 0)
++
++#define ADS112C14_REG_REFERENCE_CFG			0x09
++#define   ADS112C14_REFERENCE_CFG_REF_UV_EN		BIT(7)
++#define   ADS112C14_REFERENCE_CFG_REFP_BUF_EN		BIT(5)
++#define   ADS112C14_REFERENCE_CFG_REFN_BUF_EN		BIT(4)
++#define   ADS112C14_REFERENCE_CFG_REF_VAL		BIT(2)
++#define     ADS112C14_REFERENCE_CFG_REF_VAL_1_25V	  0
++#define     ADS112C14_REFERENCE_CFG_REF_VAL_2_5V	  1
++#define   ADS112C14_REFERENCE_CFG_REF_SEL		GENMASK(1, 0)
++#define     ADS112C14_REFERENCE_CFG_REF_SEL_INTERNAL	  0
++#define     ADS112C14_REFERENCE_CFG_REF_SEL_EXTERNAL	  1
++#define     ADS112C14_REFERENCE_CFG_REF_SEL_AVDD	  2
++
++#define ADS112C14_REG_DIGITAL_CFG			0x0A
++#define   ADS112C14_DIGITAL_CFG_REG_MAP_CRC_EN		BIT(6)
++#define   ADS112C14_DIGITAL_CFG_I2C_CRC_EN		BIT(5)
++#define   ADS112C14_DIGITAL_CFG_STATUS_EN		BIT(4)
++#define   ADS112C14_DIGITAL_CFG_FAULT_PIN_BEHAVIOR	BIT(3)
++#define   ADS112C14_DIGITAL_CFG_CODING			BIT(1)
++
++#define ADS112C14_REG_GPIO_CFG				0x0B
++#define   ADS112C14_GPIO_CFG_GPIO3_CFG			GENMASK(7, 6)
++#define   ADS112C14_GPIO_CFG_GPIO2_CFG			GENMASK(5, 4)
++#define   ADS112C14_GPIO_CFG_GPIO1_CFG			GENMASK(3, 2)
++#define   ADS112C14_GPIO_CFG_GPIO0_CFG			GENMASK(1, 0)
++
++#define ADS112C14_REG_GPIO_DATA_OUTPUT			0x0C
++#define   ADS112C14_GPIO_DATA_OUTPUT_GPIO3_SRC		BIT(7)
++#define   ADS112C14_GPIO_DATA_OUTPUT_GPIO2_SRC		BIT(6)
++#define   ADS112C14_GPIO_DATA_OUTPUT_GPIO3_DAT_OUT	BIT(3)
++#define   ADS112C14_GPIO_DATA_OUTPUT_GPIO2_DAT_OUT	BIT(2)
++#define   ADS112C14_GPIO_DATA_OUTPUT_GPIO1_DAT_OUT	BIT(1)
++#define   ADS112C14_GPIO_DATA_OUTPUT_GPIO0_DAT_OUT	BIT(0)
++
++#define ADS112C14_REG_IDAC_MAG_CFG			0x0D
++#define   ADS112C14_IDAC_MAG_CFG_I2MAG			GENMASK(7, 4)
++#define   ADS112C14_IDAC_MAG_CFG_I1MAG			GENMASK(3, 0)
++
++#define ADS112C14_REG_IDAC_MUX_CFG			0x0E
++#define   ADS112C14_IDAC_MUX_CFG_IUNIT			BIT(7)
++#define   ADS112C14_IDAC_MUX_CFG_I2MUX			GENMASK(6, 4)
++#define   ADS112C14_IDAC_MUX_CFG_I1MUX			GENMASK(2, 0)
++
++#define ADS112C14_REG_REG_MAP_CRC			0x0F
++
++#define ADS112C14_INT_REF0_mV				1250
++#define ADS112C14_INT_REF1_mV				2500
++
++struct ads112c14_chip_info {
++	const char *name;
++	u8 device_id;
++	u32 resolution_bits;
++};
++
++/* Fixed channels for system monitor measurements. */
++
++#define ADS112C14_SYS_MON_CHANNEL_BASE 100
++
++enum {
++	ADS112C14_SYS_MON_CHANNEL_TEMP = ADS112C14_SYS_MON_CHANNEL_BASE,
++	ADS112C14_SYS_MON_CHANNEL_EXT_REF,
++	ADS112C14_SYS_MON_CHANNEL_AVDD,
++	ADS112C14_SYS_MON_CHANNEL_DVDD,
++	ADS112C14_SYS_MON_CHANNEL_SHORT,
++};
++
++static const struct iio_chan_spec ads112c14_sys_mon_channels[] = {
++	{
++		.type = IIO_TEMP,
++		.indexed = 1,
++		.channel = ADS112C14_SYS_MON_CHANNEL_TEMP,
++		.address = 2,
++		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW)
++				    | BIT(IIO_CHAN_INFO_SCALE)
++				    | BIT(IIO_CHAN_INFO_OFFSET),
++	},
++	{
++		.type = IIO_VOLTAGE,
++		.indexed = 1,
++		.channel = ADS112C14_SYS_MON_CHANNEL_EXT_REF,
++		.address = 3,
++		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW)
++				    | BIT(IIO_CHAN_INFO_SCALE),
++	},
++	{
++		.type = IIO_VOLTAGE,
++		.indexed = 1,
++		.channel = ADS112C14_SYS_MON_CHANNEL_AVDD,
++		.address = 4,
++		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW)
++				    | BIT(IIO_CHAN_INFO_SCALE),
++	},
++	{
++		.type = IIO_VOLTAGE,
++		.indexed = 1,
++		.channel = ADS112C14_SYS_MON_CHANNEL_DVDD,
++		.address = 5,
++		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW)
++				    | BIT(IIO_CHAN_INFO_SCALE),
++	},
++	{
++		.type = IIO_VOLTAGE,
++		.indexed = 1,
++		.channel = ADS112C14_SYS_MON_CHANNEL_SHORT,
++		.channel2 = ADS112C14_SYS_MON_CHANNEL_SHORT,
++		.differential = 1,
++		.address = 1,
++		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW)
++				    | BIT(IIO_CHAN_INFO_SCALE),
++	},
++};
++
++struct ads112c14_data {
++	const struct ads112c14_chip_info *chip_info;
++	struct regmap *regmap;
++};
++
++static bool ads112c14_writeable_reg(struct device *dev, unsigned int reg)
++{
++	switch (reg) {
++	case ADS112C14_REG_DEVICE_ID:
++	case ADS112C14_REG_REVISION_ID:
++	case ADS112C14_REG_STATUS_LSB:
++		return false;
++	default:
++		return true;
++	}
++}
++
++static bool ads112c14_volatile_reg(struct device *dev, unsigned int reg)
++{
++	switch (reg) {
++	case ADS112C14_REG_STATUS_MSB:
++	case ADS112C14_REG_STATUS_LSB:
++	case ADS112C14_REG_CONVERSION_CTRL:
++		return true;
++	default:
++		return false;
++	}
++}
++
++static const struct reg_default ads112c14_reg_defaults[] = {
++	{ ADS112C14_REG_DEVICE_CFG, 0 },
++	{ ADS112C14_REG_DATA_RATE_CFG, 0 },
++	{ ADS112C14_REG_MUX_CFG, 0 },
++	{ ADS112C14_REG_GAIN_CFG, FIELD_PREP_CONST(ADS112C14_GAIN_CFG_GAIN, 1) },
++	{ ADS112C14_REG_REFERENCE_CFG, 0 },
++	{ ADS112C14_REG_DIGITAL_CFG, 0 },
++	{ ADS112C14_REG_GPIO_CFG, 0 },
++	{ ADS112C14_REG_GPIO_DATA_OUTPUT, 0 },
++	{ ADS112C14_REG_IDAC_MAG_CFG, 0 },
++	{ ADS112C14_REG_IDAC_MUX_CFG, FIELD_PREP_CONST(ADS112C14_IDAC_MUX_CFG_I2MUX, 1) },
++};
++
++static const struct regmap_config ads112c14_regmap_config = {
++	.reg_bits = 8,
++	.val_bits = 8,
++	.read_flag_mask = ADS112C14_CMD_RREG,
++	.write_flag_mask = ADS112C14_CMD_WREG,
++	.max_register = ADS112C14_REG_REG_MAP_CRC,
++	.writeable_reg = ads112c14_writeable_reg,
++	.volatile_reg = ads112c14_volatile_reg,
++	.reg_defaults = ads112c14_reg_defaults,
++	.num_reg_defaults = ARRAY_SIZE(ads112c14_reg_defaults),
++	.cache_type = REGCACHE_MAPLE,
++};
++
++static int ads112c14_prepare_sys_mon_channel(struct ads112c14_data *data,
++					     const struct iio_chan_spec *chan)
++{
++	int ret;
++
++	/* TODO: GAIN is useful for shorted PGA inputs. */
++	/* All SYS_MON channels use GAIN of 1 to keep it simple. */
++	ret = regmap_update_bits(data->regmap, ADS112C14_REG_GAIN_CFG,
++				 ADS112C14_GAIN_CFG_SYS_MON |
++				 ADS112C14_GAIN_CFG_GAIN,
++				 FIELD_PREP(ADS112C14_GAIN_CFG_SYS_MON, chan->address) |
++				 FIELD_PREP(ADS112C14_GAIN_CFG_GAIN, 1));
++	if (ret)
++		return ret;
++
++	/* All SYS_MON channels use signed data to keep it simple. */
++	ret = regmap_clear_bits(data->regmap, ADS112C14_REG_DIGITAL_CFG,
++				ADS112C14_DIGITAL_CFG_CODING);
++	if (ret)
++		return ret;
++
++	/*
++	 * REVISIT: if we implement regulator support for the REFOUT pin, we
++	 * might need to make this voltage match what is required by that. In
++	 * that case, we could also adjust GAIN so that we still get the same
++	 * range.
++	 */
++	/*
++	 * NB: SYS_MON channels ignore REF_SEL except for the shorted input
++	 * channel, so we set it here to internal reference to be consistent.
++	 * If we ever need to make a measurement of shorted input with other
++	 * reference source, we could add additional channels for that.
++	 */
++	ret = regmap_update_bits(data->regmap, ADS112C14_REG_REFERENCE_CFG,
++				 ADS112C14_REFERENCE_CFG_REF_VAL |
++				 ADS112C14_REFERENCE_CFG_REF_SEL,
++				 FIELD_PREP(ADS112C14_REFERENCE_CFG_REF_VAL,
++					    ADS112C14_REFERENCE_CFG_REF_VAL_2_5V) |
++				 FIELD_PREP(ADS112C14_REFERENCE_CFG_REF_SEL,
++					    ADS112C14_REFERENCE_CFG_REF_SEL_INTERNAL));
++	if (ret)
++		return ret;
++
++	return 0;
++}
++
++static int ads112c14_single_conversion(struct ads112c14_data *data,
++				       const struct iio_chan_spec *chan,
++				       u8 *buf)
++{
++	struct i2c_client *client = to_i2c_client(regmap_get_device(data->regmap));
++	u32 reg_val;
++	int ret;
++
++	if (chan->channel < ADS112C14_SYS_MON_CHANNEL_BASE) {
++		/* Not implemented yet. */
++		return -EINVAL;
++	} else {
++		ret = ads112c14_prepare_sys_mon_channel(data, chan);
++		if (ret)
++			return ret;
++	}
++
++	ret = regmap_write(data->regmap, ADS112C14_REG_CONVERSION_CTRL,
++			   ADS112C14_CONVERSION_CTRL_START);
++	if (ret)
++		return ret;
++
++	ret = regmap_read_poll_timeout(data->regmap,
++				       ADS112C14_REG_STATUS_MSB, reg_val,
++				       FIELD_GET(ADS112C14_STATUS_MSB_DRDY, reg_val),
++				       1 * USEC_PER_MSEC, 100 * USEC_PER_MSEC);
++	if (ret)
++		return ret;
++
++	return i2c_smbus_read_i2c_block_data(client, ADS112C14_CMD_RDATA,
++					     BITS_TO_BYTES(data->chip_info->resolution_bits),
++					     buf);
++}
++
++static int ads112c14_read_raw(struct iio_dev *indio_dev,
++			      struct iio_chan_spec const *chan, int *val,
++			      int *val2, long mask)
++{
++	struct ads112c14_data *data = iio_priv(indio_dev);
++	u32 vref_uV, fsr_bits;
++
++	/* Selecting V_REF source is not implemented yet. */
++	vref_uV = ADS112C14_INT_REF1_mV * (MICRO / MILLI);
++
++	if (chan->channel < ADS112C14_SYS_MON_CHANNEL_BASE) {
++		/* Not implemented yet. */
++		return -EINVAL;
++	} else {
++		/* All SYS_MON channels are using signed coding. */
++		fsr_bits = data->chip_info->resolution_bits - 1;
++	}
++
++	switch (mask) {
++	case IIO_CHAN_INFO_RAW: {
++		u8 buf[3];
++		int ret;
++
++		if (!iio_device_claim_direct(indio_dev))
++			return -EBUSY;
++
++		ret = ads112c14_single_conversion(data, chan, buf);
++		iio_device_release_direct(indio_dev);
++		if (ret < 0)
++			return ret;
++
++		switch (data->chip_info->resolution_bits) {
++		case 16:
++			*val = get_unaligned_be16(buf);
++			break;
++		case 24:
++			*val = get_unaligned_be24(buf);
++			break;
++		default:
++			return -EINVAL;
++		}
++
++		*val = sign_extend32(*val, fsr_bits);
++
++		return IIO_VAL_INT;
++	}
++	case IIO_CHAN_INFO_SCALE:
++		if (chan->type == IIO_TEMP) {
++			/* TS_TC (typical) = 405 uV/°C */
++			*val = MILLI * vref_uV / 405;
++			*val2 = fsr_bits;
++			return IIO_VAL_FRACTIONAL_LOG2;
++		}
++
++		*val = vref_uV / (MICRO / MILLI);
++		/*
++		 * Last 3 SYS_MON channels (ext ref, AVDD, DVDD) need to be
++		 * multiplied by 8 to account for internal attenuation of / 8.
++		 */
++		*val2 = fsr_bits - (chan->address >= 3 ? 3 : 0);
++		return IIO_VAL_FRACTIONAL_LOG2;
++	case IIO_CHAN_INFO_OFFSET:
++		/* Only the temperature channel has an offset. */
++		if (chan->type != IIO_TEMP)
++			return -EINVAL;
++		/*
++		 * Die temperature [°C] = 25°C + (Measured voltage – TS_Offset) / TS_TC
++		 * TS_TC (typical) = 405 uV/°C
++		 * TS_Offset (typical) = 119.5 mV
++		 */
++		*val = div_s64((s64)(25 * 405 - 119500) * BIT(fsr_bits), vref_uV);
++		return IIO_VAL_INT;
++	default:
++		return -EINVAL;
++	}
++}
++
++static int ads112c14_read_label(struct iio_dev *indio_dev,
++				struct iio_chan_spec const *chan, char *label)
++{
++	const char *label_source;
++
++	/* System monitor channels. */
++	switch (chan->channel) {
++	case ADS112C14_SYS_MON_CHANNEL_TEMP:
++		label_source = "Internal temperature sensor";
++		break;
++	case ADS112C14_SYS_MON_CHANNEL_EXT_REF:
++		label_source = "External reference";
++		break;
++	case ADS112C14_SYS_MON_CHANNEL_AVDD:
++		label_source = "AVDD";
++		break;
++	case ADS112C14_SYS_MON_CHANNEL_DVDD:
++		label_source = "DVDD";
++		break;
++	case ADS112C14_SYS_MON_CHANNEL_SHORT:
++		label_source = "Internal short (internal reference source)";
++		break;
++	default:
++		return -EINVAL;
++	}
++
++	return sysfs_emit(label, "%s\n", label_source);
++}
++
++static const struct iio_info ads112c14_info = {
++	.read_raw = ads112c14_read_raw,
++	.read_label = ads112c14_read_label,
++};
++
++static int ads112c14_probe(struct i2c_client *client)
++{
++	struct device *dev = &client->dev;
++	const struct ads112c14_chip_info *info;
++	struct iio_dev *indio_dev;
++	struct ads112c14_data *data;
++	u32 reg_val;
++	int ret;
++
++	info = i2c_get_match_data(client);
++	if (!info)
++		return dev_err_probe(dev, -EINVAL, "missing match data\n");
++
++	indio_dev = devm_iio_device_alloc(dev, sizeof(*data));
++	if (!indio_dev)
++		return -ENOMEM;
++
++	data = iio_priv(indio_dev);
++	data->chip_info = info;
++
++	ret = devm_regulator_get_enable(dev, "dvdd");
++	if (ret)
++		return dev_err_probe(dev, ret, "failed to get dvdd regulator\n");
++
++	ret = devm_regulator_get_enable(dev, "avdd");
++	if (ret)
++		return dev_err_probe(dev, ret, "failed to get avdd regulator\n");
++
++	data->regmap = devm_regmap_init_i2c(client, &ads112c14_regmap_config);
++	if (IS_ERR(data->regmap))
++		return dev_err_probe(dev, PTR_ERR(data->regmap),
++				     "failed to init regmap\n");
++
++	/* Write magic reset value (0x16) to ensure known state. */
++	ret = regmap_write(data->regmap, ADS112C14_REG_CONVERSION_CTRL,
++			   FIELD_PREP(ADS112C14_CONVERSION_CTRL_RESET, 0x16));
++	/*
++	 * The reset may cause an -EREMOTEIO error because of failing to get the
++	 * I2C ACK at the end of the message. The device still gets reset so it
++	 * is safe to ignore this error.
++	 */
++	if (ret == -EREMOTEIO)
++		ret = 0;
++	if (ret)
++		return ret;
++
++	fsleep(ADS112C14_DELAY_RESET_US);
++
++	ret = regmap_read(data->regmap, ADS112C14_REG_STATUS_MSB, &reg_val);
++	if (ret)
++		return ret;
++
++	if (FIELD_GET(ADS112C14_STATUS_MSB_RESETN, reg_val))
++		return dev_err_probe(dev, -EIO, "reset failed\n");
++
++	/*
++	 * Clear reset bit to prepare for next probe. And clear AVDD fault since
++	 * that happens on every reset.
++	 */
++	ret = regmap_write(data->regmap, ADS112C14_REG_STATUS_MSB,
++			   ADS112C14_STATUS_MSB_RESETN |
++			   ADS112C14_STATUS_MSB_AVDD_UVN);
++	if (ret)
++		return ret;
++
++	ret = regmap_read(data->regmap, ADS112C14_REG_DEVICE_ID, &reg_val);
++	if (ret)
++		return ret;
++
++	if (FIELD_GET(ADS112C14_DEVICE_ID_BITS, reg_val) != info->device_id)
++		dev_info(dev, "device ID mismatch, expected 0xX%X, got 0x%lX\n",
++			 info->device_id,
++			 FIELD_GET(ADS112C14_DEVICE_ID_BITS, reg_val));
++
++	/* Place in single-shot conversion mode to make ready for raw read. */
++	ret = regmap_set_bits(data->regmap, ADS112C14_REG_DEVICE_CFG,
++			      ADS112C14_DEVICE_CFG_CONV_MODE);
++	if (ret)
++		return ret;
++
++	indio_dev->name = info->name;
++	indio_dev->modes = INDIO_DIRECT_MODE;
++	indio_dev->channels = ads112c14_sys_mon_channels;
++	indio_dev->num_channels = ARRAY_SIZE(ads112c14_sys_mon_channels);
++	indio_dev->info = &ads112c14_info;
++
++	return devm_iio_device_register(dev, indio_dev);
++}
++
++static const struct ads112c14_chip_info ads112c14_chip_info = {
++	.name = "ads112c14",
++	.device_id = 0xE,
++	.resolution_bits = 16,
++};
++
++static const struct ads112c14_chip_info ads122c14_chip_info = {
++	.name = "ads122c14",
++	.device_id = 0xF,
++	.resolution_bits = 24,
++};
++
++static const struct of_device_id ads112c14_of_match[] = {
++	{ .compatible = "ti,ads112c14", .data = &ads112c14_chip_info },
++	{ .compatible = "ti,ads122c14", .data = &ads122c14_chip_info },
++	{ }
++};
++MODULE_DEVICE_TABLE(of, ads112c14_of_match);
++
++static const struct i2c_device_id ads112c14_id[] = {
++	{ .name = "ads112c14", .driver_data = (kernel_ulong_t)&ads112c14_chip_info },
++	{ .name = "ads122c14", .driver_data = (kernel_ulong_t)&ads122c14_chip_info },
++	{ }
++};
++MODULE_DEVICE_TABLE(i2c, ads112c14_id);
++
++static struct i2c_driver ads112c14_driver = {
++	.driver = {
++		.name = "ads112c14",
++		.of_match_table = ads112c14_of_match,
++	},
++	.probe = ads112c14_probe,
++	.id_table = ads112c14_id,
++};
++module_i2c_driver(ads112c14_driver);
++
++MODULE_AUTHOR("David Lechner (TI) <dlechner@baylibre.com>");
++MODULE_DESCRIPTION("TI ADS112C14 I2C ADC driver");
++MODULE_LICENSE("GPL");
 
 -- 
 2.43.0
