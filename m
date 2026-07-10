@@ -1,154 +1,133 @@
-Return-Path: <devicetree+bounces-324374-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-324376-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id spTlBsHHUGoJ5AIAu9opvQ
-	(envelope-from <devicetree+bounces-324374-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 12:21:53 +0200
+	id wL7NFUnIUGok5AIAu9opvQ
+	(envelope-from <devicetree+bounces-324376-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 12:24:09 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE8E1739A09
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 12:21:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D022E739A5B
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 12:24:08 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=LkrgFSkn;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=dYHONvDB;
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324374-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-324374-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324376-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-324376-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 118DC301F8BE
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 10:21:47 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 796BE30188A5
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 10:24:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1EF840757B;
-	Fri, 10 Jul 2026 10:21:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF8E940759F;
+	Fri, 10 Jul 2026 10:24:00 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 427554071E5;
-	Fri, 10 Jul 2026 10:21:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC1EA4071CD;
+	Fri, 10 Jul 2026 10:23:58 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783678904; cv=none; b=XXXsWG+xv6umrQQqT0JqhSS1PSvtTZpTUnCEO3zTpb1/OGYyFVE6YbIj9OD1Zbez4a0fdNeYUZN8SF88SSfsQGsD3Ed+w/h6QRDXhAwOALdMFzdlRCUIsNMmnfNJWYDyBLDFd/6GL74gYVrQ+k9pEuQhwW6X/pT+PjUqCrqteFE=
+	t=1783679040; cv=none; b=MPMI133mq8Y51Rw5UnJXzou5I2ktJ4WERLv7SLx5cLRfAxDFadWHCFkAPHeVbasd5HjDog9F4Ni+Yo2xrN92hVCyxZLtqDP1qt71m/WW+g/yPf7OnA/AqUxAoKWDqgZRt8V2DXTwl2kHIYuwDrOXbD2FzDX4FKrOPAVB7kjAAqE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783678904; c=relaxed/simple;
-	bh=wtmu73QitmzzmosffXemjGVrBxH7cPBF4G0ijzO2o/s=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=H0DP4wugOUjBjwLybJLrTEmeGtSlAwY3kk0hpk3Vpr02qt/1rIuaWNWj9pymetSWVTjrwC8bGrqN9brN7/G5B1TNR3AgT+IgOyrRxuu7UZ1d8M+1uLYb6KmqXuUQdyixtgg6lLjQRqDpHLyzj1aW9jbddRebXnMsXmhHpHmdfNE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LkrgFSkn; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C57251F000E9;
-	Fri, 10 Jul 2026 10:21:40 +0000 (UTC)
+	s=arc-20240116; t=1783679040; c=relaxed/simple;
+	bh=YWdwOv/FECcuwbuvCl/6H70RS+kLkiN4S24Y4v3LDQ0=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=jfDjHohQHZhu/tEEEsdCaHN7AJxzEC1TcBY9C4NPU5Nlj9U4Ru4mXHfOHf8dlfQwAfqCK/PBKFxeWOQvu6SCkoGwAjv1BgB+HDxCshGAOqrIpLVGvK2dHMaqY9CiI2uo4PsjGa2+zn9+d2QzcPoCzwa9vc3gi1s0ur3DC4Tb53g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dYHONvDB; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0D7F21F000E9;
+	Fri, 10 Jul 2026 10:23:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783678901;
-	bh=8h7oqU5VrbSxzMabjyrEsZfFX/tU8T/jpuFUiUgSMj8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=LkrgFSkndzJ/SFPA+4AIzFpW4hbJopqU6uGT/fWHqtusJv4WlDihe1NYGHYkDuMsY
-	 f4pxfLrC5eyxf18xnDiKEqdyLRNq3Cs+m3UA/eR7SfuHwvZNWzlBLxArTfXMnfjsUp
-	 oXKmcrgYrLMO7oTps7t3Wa3qZ7j6ffYAxNJiRgRkSxqorms1GQyturavm3n0sMBAJD
-	 oXrCUP3bSfKEtD5QpHAgh0jfe7nPbFmiiq0i0Nu99iQzg+dXqx9lSahoOIxFrhtSq9
-	 WTjj9L1/duTwfIPnMcQ+8fkKDkwvMbWZHSiu4KFaOqNfqOTsMmhQ14A3BhRldKIIby
-	 oSpOZqUZapKfg==
-Date: Fri, 10 Jul 2026 12:21:38 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: Sudeep Holla <sudeep.holla@kernel.org>, 
-	Cristian Marussi <cristian.marussi@arm.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Saravana Kannan <saravanak@kernel.org>, Ulf Hansson <ulfh@kernel.org>, 
-	"Rafael J . Wysocki" <rafael@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Brian Masney <bmasney@redhat.com>, Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>, 
-	Vinod Koul <vkoul@kernel.org>, Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
-	Kevin Hilman <khilman@baylibre.com>, Florian Fainelli <florian.fainelli@broadcom.com>, 
-	Wolfram Sang <wsa+renesas@sang-engineering.com>, Marek Vasut <marek.vasut+renesas@mailbox.org>, 
-	Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>, arm-scmi@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-pm@vger.kernel.org, linux-clk@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 05/10] dt-bindings: clock: renesas,r8a78000-cpg: Add
- firmware property
-Message-ID: <20260710-adventurous-burgundy-chimera-b2fff9@quoll>
-References: <cover.1783505329.git.geert+renesas@glider.be>
- <49726acff0fee1c3606e83c4f242ef6aad25b4b8.1783505329.git.geert+renesas@glider.be>
+	s=k20260515; t=1783679038;
+	bh=VG0DEz5PkOQ3kpIr0Daidr5wsf5H5nodEeYA3iGfdOY=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=dYHONvDBnoonc8pmbHYgkIledSlv5QOTZAiIml2mKtPI4vH6p5kdhx/rr3SCr17pe
+	 5uB9Bh0H/YzG3sHEYRZ1RWxZhN1We7PwTOOAxnuNu7uLHUctF4RJssjHUpVHUhqd+S
+	 DmxRjIIKaq9vB4PU2IjZ57CjxyUimme8seRiP4GW5iHtrfBRY3YeS27kZABcPLbz9y
+	 l/FRgBmnfmyK2v3Gm8qJgx6TvnboR6vC5TrAdfY/nD/NhBN8ga8jDxjkW4u0r2v+OA
+	 2rPZeGVM4nckKFvepm8PmV0o+gJuDGiIp5pR87eSAg4U/v1xCpPdd+LgJyb7hkj38Y
+	 xOl5KRYRliTHA==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v15 5/6] hwmon: add NXP MC33978/MC34978 driver
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Oleksij Rempel" <o.rempel@pengutronix.de>
+Cc: linux-hwmon@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260710101358.2606941-6-o.rempel@pengutronix.de>
+References: <20260710101358.2606941-1-o.rempel@pengutronix.de>
+ <20260710101358.2606941-6-o.rempel@pengutronix.de>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Fri, 10 Jul 2026 10:23:57 +0000
+Message-Id: <20260710102358.0D7F21F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <49726acff0fee1c3606e83c4f242ef6aad25b4b8.1783505329.git.geert+renesas@glider.be>
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-3.16 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	SUSPICIOUS_RECIPS(1.50)[];
+	MISSING_MIME_VERSION(2.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-324376-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[28];
-	FORGED_RECIPIENTS(0.00)[m:geert+renesas@glider.be,m:sudeep.holla@kernel.org,m:cristian.marussi@arm.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:saravanak@kernel.org,m:ulfh@kernel.org,m:rafael@kernel.org,m:p.zabel@pengutronix.de,m:mturquette@baylibre.com,m:sboyd@kernel.org,m:bmasney@redhat.com,m:bartosz.golaszewski@oss.qualcomm.com,m:vkoul@kernel.org,m:konrad.dybcio@oss.qualcomm.com,m:khilman@baylibre.com,m:florian.fainelli@broadcom.com,m:wsa+renesas@sang-engineering.com,m:marek.vasut+renesas@mailbox.org,m:kuninori.morimoto.gx@renesas.com,m:arm-scmi@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-pm@vger.kernel.org,m:linux-clk@vger.kernel.org,m:linux-renesas-soc@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:geert@glider.be,m:krzk@kernel.org,m:conor@kernel.org,m:wsa@sang-engineering.com,m:marek.vasut@mailbox.org,s:lists@lfdr.de];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[smtp.kernel.org:mid,pengutronix.de:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,lists.linux.dev:replyto,vger.kernel.org:from_smtp];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:o.rempel@pengutronix.de,m:linux-hwmon@vger.kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-324374-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
-	MISSING_XM_UA(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,quoll:mid]
+	RCPT_COUNT_FIVE(0.00)[5];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	FROM_NO_DN(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: BE8E1739A09
+X-Rspamd-Queue-Id: D022E739A5B
 
-On Wed, Jul 08, 2026 at 12:16:23PM +0200, Geert Uytterhoeven wrote:
-> Add a firmware property, for systems where SCMI must be used instead of
-> direct hardware access.
-> 
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> ---
-> v2:
->   - Spin off from "dt-bindings: clock: Document Renesas R-Car X5H Clock
->     Pulse Generator".
-> ---
->  .../devicetree/bindings/clock/renesas,r8a78000-cpg.yaml    | 7 +++++++
->  1 file changed, 7 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/clock/renesas,r8a78000-cpg.yaml b/Documentation/devicetree/bindings/clock/renesas,r8a78000-cpg.yaml
-> index 4e23bba334382346..fc499e7cf52e4f0c 100644
-> --- a/Documentation/devicetree/bindings/clock/renesas,r8a78000-cpg.yaml
-> +++ b/Documentation/devicetree/bindings/clock/renesas,r8a78000-cpg.yaml
-> @@ -35,6 +35,12 @@ properties:
->        <dt-bindings/clock/renesas,r8a78000-cpg.h>.
->      const: 1
->  
-> +  firmware:
+> Add hardware monitoring support for the NXP MC33978/MC34978 Multiple
+> Switch Detection Interface (MSDI).
+>=20
+> The hardware utilizes a clear-on-read FAULT register, but physical
+> faults remain asserted as long as the underlying condition exists. This
+> asserts a global FAULT_STAT bit on the SPI bus. To handle this without
+> trapping the CPU in an interrupt storm, this driver implements the
+> following architecture:
+> - Requests a rising-edge nested IRQ (IRQF_TRIGGER_RISING) from the MFD
+>   core to catch the initial 0 -> 1 transition of the global fault state.
+> - Caches hwmon-specific alarm bits and calculates state edges (XOR) to
+>   isolate alarm transitions from system integrity faults.
+> - Implements a 1Hz delayed workqueue that polls the hardware as long as
+>   any alarm is active. This compensates for the edge-triggered IRQ by
+>   discovering secondary faults that occur without a rising edge, and
+>   detecting when the hardware clears.
+>=20
+> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
 
-RPi is doing similar, but I have doubts. It looks way too close to
-generic "syscon" which is disallowed.
+Sashiko has reviewed this patch and found no issues. It looks great!
 
-I think this should be vendor+purpose specific, e.g.:
-"renesas,scmi-transport" or "renesas,scmi-firmware"
-
-Also we have "firmware" nodes, so this might cause conflicts in dtschema
-validation.  Anyway, the phandle itself is fine for me, just the naming.
-
-I'll ping also Rob to chime in.
-
-Best regards,
-Krzysztof
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260710101358.2606=
+941-1-o.rempel@pengutronix.de?part=3D5
 
 
