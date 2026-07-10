@@ -1,182 +1,194 @@
-Return-Path: <devicetree+bounces-324265-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-324268-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id ADIpLN+qUGqD3AIAu9opvQ
-	(envelope-from <devicetree+bounces-324265-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 10:18:39 +0200
+	id 7BZjL+GqUGqG3AIAu9opvQ
+	(envelope-from <devicetree+bounces-324268-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 10:18:41 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F90D7385C0
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 10:18:39 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43B467385C3
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 10:18:41 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=BP4bd7W6;
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324265-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-324265-lists+devicetree=lfdr.de@vger.kernel.org";
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
+	dkim=pass header.d=collabora.com header.s=zohomail header.b=DiqdUZyB;
+	dmarc=pass (policy=none) header.from=collabora.com;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324268-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-324268-lists+devicetree=lfdr.de@vger.kernel.org";
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 8DFA43007CB2
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 08:12:17 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id B09C3300E61D
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 08:18:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08F493EA942;
-	Fri, 10 Jul 2026 08:12:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A3E93EF0A4;
+	Fri, 10 Jul 2026 08:18:31 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A652F3EB801;
-	Fri, 10 Jul 2026 08:12:14 +0000 (UTC)
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783671136; cv=none; b=jH5P7/bM2OTHUg8ptw9AV+8Zdy8wslaQXcrKqwV1Dwg6q+nAczoEGCimmwvsl02bqsTd5bFtoCf9VXgSPC10/Lz1QLaVpaDC7c0KLs47tz9NtRFP7F0ZjksUU5kdzYGaMnq1VuHJpEDA5RzJeVXBRr+L0xMrQGqUCt0oinCR0y4=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783671136; c=relaxed/simple;
-	bh=EGXmBFOFGPJRCa2KDW3qx68vLK9mF6Uj/kcuDfPy0IQ=;
-	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=T/z65PlXGpEuW+LIX5sVmTsT0XuxaihWeRSNZf73bm7VTP/hIh+uOCUIBgbt5HWchR9zCHA0JvSrLDxcQLhkJTsAQc9J7AYN3zDm7zTu3NLYqhxJe+0psyElCcMX2FhvhX4LuSsyuN+pxkgOLjQl/us1/K3wHzutrRzo+HbPp/8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BP4bd7W6; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7D23D1F000E9;
-	Fri, 10 Jul 2026 08:12:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783671133;
-	bh=h7nDO43+tKnnu6CxuyKnxlviLmUXS03CPGd8nFXhdng=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References;
-	b=BP4bd7W6zNBoI3b8Ib5OZzb2TuuQl527kyh0lxT5H1eBurLMsZ17mx8X+/cD2lq/d
-	 D0PxqKmKSLjAiJTw5dBDbP4hjTSfU96lNIKZsD8HrgnmKxutHHtVASVcAQ/vUpEK6M
-	 cmDIFWwvV90wXoP9v3rQtXBuiXDWk3InlVaJGYuJBXgSykJS4V2gcx3kN8320jPG3Q
-	 yA5nWSurT6o/nvIIUXnqKo1+Yh0UXlO9kqujC5ap1uXeZHKpEQSqhyFyPuCzXPfgLt
-	 GJBWWFxIalOsLx8gE31Eww9QE8SP2mQDXOR2SfTleQNXdLSqNNxAjodwDJOfrpDK6b
-	 BFgkuoDzxpxVQ==
-Received: from sofa.misterjones.org ([185.219.108.64] helo=lobster-girl.misterjones.org)
-	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.98.2)
-	(envelope-from <maz@kernel.org>)
-	id 1wi6LD-00000003aiN-2BIe;
-	Fri, 10 Jul 2026 08:12:11 +0000
-Date: Fri, 10 Jul 2026 09:14:00 +0100
-Message-ID: <87tsq75kjb.wl-maz@kernel.org>
-From: Marc Zyngier <maz@kernel.org>
-To: John <therealgraysky@proton.me>
-Cc: Mark Rutland <mark.rutland@arm.com>,	Daniel Lezcano
- <daniel.lezcano@kernel.org>,	Thomas Gleixner <tglx@kernel.org>,	Rob Herring
- <robh@kernel.org>,	Krzysztof Kozlowski <krzk+dt@kernel.org>,	Conor Dooley
- <conor+dt@kernel.org>,	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Broadcom internal kernel review list
- <bcm-kernel-feedback-list@broadcom.com>,	"Ivan T. Ivanov"
- <iivanov@suse.de>,	Stefan Wahren <wahrenst@gmx.net>,	Andrea della Porta
- <andrea.porta@suse.com>,	Peter Robinson <pbrobinson@gmail.com>,	Stanimir
- Varbanov <svarbanov@suse.de>,	=?UTF-8?B?TWHDrXJh?= Canal
- <mcanal@igalia.com>,	Gregor Herburger <gregor.herburger@linutronix.de>,
-	"linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,	"linux-kernel@vger.kernel.org"
- <linux-kernel@vger.kernel.org>,	"devicetree@vger.kernel.org"
- <devicetree@vger.kernel.org>,	"linux-rpi-kernel@lists.infradead.org"
- <linux-rpi-kernel@lists.infradead.org>
-Subject: Re: [REGRESSION] Raspberry Pi 5 (BCM2712) hangs at boot since d87773de9efe  (arm_arch_timer: default to EL2 virtual timer under VHE)
-In-Reply-To: <vUQ4-RaOlZaTlasD0DLGmWOWcVLQXYYK_yid3Tsqeyi53CPsTCpOvXSGZiz0RAyxsxCzWTXOe4zK8rzOLdtDXiVu-xBjp2VkPz9JRj9QUWA=@proton.me>
-References: <oTZ1wsFlcf4l8zMuD8DYCCvff35nVbFn7gTb5_vrUPSJtjVBSTmGti8S3KnbVdVWJEzP1QRbWma6UYYXyi6v2J0fl61khniPROEhsdxMIz8=@proton.me>
-	<86h5mcp4em.wl-maz@kernel.org>
-	<vUQ4-RaOlZaTlasD0DLGmWOWcVLQXYYK_yid3Tsqeyi53CPsTCpOvXSGZiz0RAyxsxCzWTXOe4zK8rzOLdtDXiVu-xBjp2VkPz9JRj9QUWA=@proton.me>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/30.1
- (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A77613E2AD2;
+	Fri, 10 Jul 2026 08:18:29 +0000 (UTC)
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1783671511; cv=pass; b=QcXGvxyfQ3kLWznEf2fdxcpr9aKH++2Pz0ClBBJMhMCBnEsiR4O5bmNhF72r9bsGzqb9tbOk/Wuf0eYk3qbM8D9yq6cajavfW6aeOLqCyezjmAFYTS6UuYJrm5mJopKxcM3/3zI9sbSjnNRDP31ZdAoyBJMpGneaiIiLQeCxal4=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1783671511; c=relaxed/simple;
+	bh=PaygHYsh7JvipNOc2VdSZVkanKq1uF6olnOC0uw8LW0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=UkhSDq2/oPnYx28jq0K+LhJvneCWGAAmz4mNXg3m/2xLyRDcYoFwwdyv4SsFV7ccWpfIfPnx5s+AxuT8OK79hhIj76mwLl23XnCgcu10okbWrDB6MKJHfN9Q/Kr5uWq4LqAM98KhzCuOfCopHreV5VPwhwc3P2/JZ18DoBkWddc=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=michael.riesch@collabora.com header.b=DiqdUZyB; arc=pass smtp.client-ip=136.143.188.112
+ARC-Seal: i=1; a=rsa-sha256; t=1783671400; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=hEU1+hK03mBD0GkJKd+4YjPtop6IiIlduUlNvcnCvixsKCjnZuX8ySrquelAnKndvFzsFjTVOBBvphrO8YiBNMF/bvyCzlhzWU6qu2hAETnw9PdBdCZmJsEkgdA7n4D0l1zq1NbioDfptdeGQt4VS+dsY3lBkzPh2DsoHQgHHow=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1783671400; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=rkI92P4oFZLwBAMcvNIvSucyUtrRbPAI8UJCMrbR0kw=; 
+	b=FstegeBCK7lXA4g5kux+QV/U+4gUgiMQP+k3V+z5V+ROCzpt0lRwCTLTNn5nmthMxPdAOTw34VR+MLo8VjurtMAnhkN0DFZjbPKd5Z01Ero4dNKscWfeuvz82vFyx7rjrFFFsYTJNpek6ZKcNLu0OEvI0mjtnfojn3sDkSeIFJc=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=michael.riesch@collabora.com;
+	dmarc=pass header.from=<michael.riesch@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1783671400;
+	s=zohomail; d=collabora.com; i=michael.riesch@collabora.com;
+	h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+	bh=rkI92P4oFZLwBAMcvNIvSucyUtrRbPAI8UJCMrbR0kw=;
+	b=DiqdUZyBxiOh3AafmxsPWzjqri9yyMJ/AhMClPpA0Ye/4+remDx6BtQVR942+lvJ
+	udBWWwfa/91qWvPg0hoqlcSBXCyiJZfMJT834Tc+DiZU8lDvnDv1vTgF1/2q63hSlj1
+	HSXXNaik0ikR/PpttlU1NO+DZNzhD0ciJ0xnsG1c=
+Received: by mx.zohomail.com with SMTPS id 1783671397623937.8405431666699;
+	Fri, 10 Jul 2026 01:16:37 -0700 (PDT)
+Message-ID: <7565ba72-5d96-4d0b-9727-df7839f8a010@collabora.com>
+Date: Fri, 10 Jul 2026 10:16:28 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: therealgraysky@proton.me, mark.rutland@arm.com, daniel.lezcano@kernel.org, tglx@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, florian.fainelli@broadcom.com, bcm-kernel-feedback-list@broadcom.com, iivanov@suse.de, wahrenst@gmx.net, andrea.porta@suse.com, pbrobinson@gmail.com, svarbanov@suse.de, mcanal@igalia.com, gregor.herburger@linutronix.de, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/7] dt-bindings: media: Add macros for video interface
+ devices
+To: Kieran Bingham <kieran.bingham@ideasonboard.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Jacopo Mondi <jacopo@jmondi.org>,
+ Sakari Ailus <sakari.ailus@linux.intel.com>, Jimmy Su <jimmy.su@intel.com>,
+ Matthias Fend <matthias.fend@emfend.at>,
+ Mikhail Rudenko <mike.rudenko@gmail.com>,
+ Daniel Scally <dan.scally@ideasonboard.com>,
+ Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
+ Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
+ Sylvain Petinot <sylvain.petinot@foss.st.com>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Paul Elder <paul.elder@ideasonboard.com>,
+ Martin Kepplinger <martin.kepplinger@puri.sm>,
+ Quentin Schulz <quentin.schulz@theobroma-systems.com>,
+ Tommaso Merciai <tomm.merciai@gmail.com>,
+ Svyatoslav Ryhel <clamor95@gmail.com>,
+ Richard Acayan <mailingradian@gmail.com>,
+ Thierry Reding <thierry.reding@kernel.org>,
+ Jonathan Hunter <jonathanh@nvidia.com>, Frank Li <Frank.Li@nxp.com>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Magnus Damm <magnus.damm@gmail.com>, Heiko Stuebner <heiko@sntech.de>
+Cc: linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+ linux@ew.tq-group.com, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+ linux-renesas-soc@vger.kernel.org, linux-rockchip@lists.infradead.org,
+ Conor Dooley <conor.dooley@microchip.com>,
+ Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+References: <20260628-kbingham-orientation-v3-0-4ed92968aff8@ideasonboard.com>
+ <20260628-kbingham-orientation-v3-1-4ed92968aff8@ideasonboard.com>
+Content-Language: en-US
+From: Michael Riesch <michael.riesch@collabora.com>
+In-Reply-To: <20260628-kbingham-orientation-v3-1-4ed92968aff8@ideasonboard.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ZohoMailClient: External
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[collabora.com:s=zohomail];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[arm.com,kernel.org,broadcom.com,suse.de,gmx.net,suse.com,gmail.com,igalia.com,linutronix.de,lists.infradead.org,vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-324265-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[20];
+	FORGED_RECIPIENTS(0.00)[m:kieran.bingham@ideasonboard.com,m:mchehab@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:jacopo@jmondi.org,m:sakari.ailus@linux.intel.com,m:jimmy.su@intel.com,m:matthias.fend@emfend.at,m:mike.rudenko@gmail.com,m:dan.scally@ideasonboard.com,m:jacopo.mondi@ideasonboard.com,m:benjamin.mugnier@foss.st.com,m:sylvain.petinot@foss.st.com,m:laurent.pinchart@ideasonboard.com,m:paul.elder@ideasonboard.com,m:martin.kepplinger@puri.sm,m:quentin.schulz@theobroma-systems.com,m:tomm.merciai@gmail.com,m:clamor95@gmail.com,m:mailingradian@gmail.com,m:thierry.reding@kernel.org,m:jonathanh@nvidia.com,m:Frank.Li@nxp.com,m:s.hauer@pengutronix.de,m:kernel@pengutronix.de,m:festevam@gmail.com,m:andersson@kernel.org,m:konradybcio@kernel.org,m:geert+renesas@glider.be,m:magnus.damm@gmail.com,m:heiko@sntech.de,m:linux-kernel@vger.kernel.org,m:linux-media@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-tegra@vger.kernel.org,m:linux@ew.tq-group.com,m:imx@
+ lists.linux.dev,m:linux-arm-kernel@lists.infradead.org,m:linux-arm-msm@vger.kernel.org,m:linux-renesas-soc@vger.kernel.org,m:linux-rockchip@lists.infradead.org,m:conor.dooley@microchip.com,m:vladimir.zapolskiy@linaro.org,m:krzk@kernel.org,m:conor@kernel.org,m:mikerudenko@gmail.com,m:tommmerciai@gmail.com,m:geert@glider.be,m:magnusdamm@gmail.com,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[maz@kernel.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS(0.00)[m:therealgraysky@proton.me,m:mark.rutland@arm.com,m:daniel.lezcano@kernel.org,m:tglx@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:florian.fainelli@broadcom.com,m:bcm-kernel-feedback-list@broadcom.com,m:iivanov@suse.de,m:wahrenst@gmx.net,m:andrea.porta@suse.com,m:pbrobinson@gmail.com,m:svarbanov@suse.de,m:mcanal@igalia.com,m:gregor.herburger@linutronix.de,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-rpi-kernel@lists.infradead.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[maz@kernel.org,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FREEMAIL_TO(0.00)[ideasonboard.com,kernel.org,jmondi.org,linux.intel.com,intel.com,emfend.at,gmail.com,foss.st.com,puri.sm,theobroma-systems.com,nvidia.com,nxp.com,pengutronix.de,glider.be,sntech.de];
+	FORGED_SENDER(0.00)[michael.riesch@collabora.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[44];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-324268-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[collabora.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[michael.riesch@collabora.com,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp,proton.me:email]
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,linaro.org:email,collabora.com:from_mime,collabora.com:email,collabora.com:mid,collabora.com:dkim]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 0F90D7385C0
+X-Rspamd-Queue-Id: 43B467385C3
 
-On Mon, 06 Jul 2026 16:20:13 +0100,
-John <therealgraysky@proton.me> wrote:
-> 
-> On Monday, July 6th, 2026 at 10:40 AM, Marc Zyngier <maz@kernel.org> wrote:
-> 
-> > On Mon, 06 Jul 2026 15:13:27 +0100,
-> > John <therealgraysky@proton.me> wrote:
-> > >
-> > > Since commit d87773de9efe ("clocksource/drivers/arm_arch_timer: Default to EL2 virtual timer when running VHE"), the Raspberry Pi 5 (BCM2712, arm64) hangs during boot on v7.2-rc1 and later. Reverting that commit on top of v7.2-rc2 boots reliably. Found by bisection.
-> > >
-> > > Environment: - Raspberry Pi 5 Model B, arm64, device-tree boot (no ACPI) - CPUs start at EL2 with VHE - Mainline v7.2-rc1 and v7.2-rc2
-> > >
-> > > Symptom: - Silent hang early in driver probe; no panic or oops. Boot banner shows
-> > >   "arch_timer: cp15 timer running at 54.00MHz (hyp-virt)". The first blocking, timer-backed wait during probe never returns because the EL2 virtual timer's interrupt is not delivered on this SoC, so clockevents are dead. The softlockup/hung-task detectors can't fire either, since they depend on the same dead timer.
-> > >
-> > 
-> > Is that a guess? Or do you know something we don't? Or worse, is this
-> > report entirely AI generated?
-> 
-> Hi Marc - I'm not a programmer, but I can use git. I performed the bisect, and verification steps by hand. I am convinced the bisect is correct based on the restoration of booting.
-> 
-> My RPi5B freezes when booting into d87773de9e and reverting it gives a clean boot.
-> 
-> I used Opus to analyze the result of the bisect in concert with the logs I captured from the serial console. I also used it to summarize everything into a concise bug report. I can't vouch for the accuracy of the interpretation, but I can confirm the problematic commit and restoration of function.
-> 
-> 
-> > Again, how do you know it isn't functional? Could it be, for example,
-> > that the firmware has not configured the interrupt correctly?
-> 
-> I cannot. In the future, when I use these tools, I will scope the ask to just factual content, rather than allowing them to speculate.
-> 
-> > A proposed fix has been posted at [1]. Until we hear from the
-> > implementer about the state of the HW, it is difficult to do anything.
-> > 
-> > 	M.
-> > 
-> > [1] https://lore.kernel.org/all/878q898ulx.wl-maz@kernel.org/
-> 
-> Thank you for linking that! I applied it on top of 7.2-rc2 (with d87773de9efe intact) and got a clean boot.
+Hi Kieran,
 
-FWIW, and in the absence of any feedback from the SoC manufacturer,
-I've posted this patch[2]. There isn't much else I can do for this
-stuff.
+Thanks for your work!
 
-	M.
+On 6/28/26 12:22, Kieran Bingham wrote:
+> Add a new dt-bindings/media/video-interface-devices.h header that
+> defines macros corresponding to the orientation enumeration types from
+> media/video-interface-devices.yaml.
+> 
+> This allows avoiding hardcoded constants in device tree sources.
+> 
+> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> Acked-by: Sakari Ailus <sakari.ailus@linux.intel.com>
+> Reviewed-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+> Reviewed-by: Frank Li <Frank.Li@nxp.com>
+> Signed-off-by: Kieran Bingham <kieran.bingham@ideasonboard.com>
 
-[2] https://lore.kernel.org/all/20260710080958.491620-1-maz@kernel.org/
+Acked-by: Michael Riesch <michael.riesch@collabora.com>
 
--- 
-Jazz isn't dead. It just smells funny.
+Best regards,
+Michael
+
+> ---
+>  include/dt-bindings/media/video-interface-devices.h | 13 +++++++++++++
+>  1 file changed, 13 insertions(+)
+> 
+> diff --git a/include/dt-bindings/media/video-interface-devices.h b/include/dt-bindings/media/video-interface-devices.h
+> new file mode 100644
+> index 000000000000..d2340b457292
+> --- /dev/null
+> +++ b/include/dt-bindings/media/video-interface-devices.h
+> @@ -0,0 +1,13 @@
+> +/* SPDX-License-Identifier: (GPL-2.0-only OR MIT) */
+> +/*
+> + * Copyright (C) 2026 Kieran Bingham <kieran.bingham@ideasonboard.com>
+> + */
+> +
+> +#ifndef __DT_BINDINGS_MEDIA_VIDEO_INTERFACE_DEVICES_H__
+> +#define __DT_BINDINGS_MEDIA_VIDEO_INTERFACE_DEVICES_H__
+> +
+> +#define MEDIA_ORIENTATION_FRONT		0
+> +#define MEDIA_ORIENTATION_BACK		1
+> +#define MEDIA_ORIENTATION_EXTERNAL	2
+> +
+> +#endif /* __DT_BINDINGS_MEDIA_VIDEO_INTERFACE_DEVICES_H__ */
+> 
+
 
