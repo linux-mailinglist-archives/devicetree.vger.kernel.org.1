@@ -1,176 +1,172 @@
-Return-Path: <devicetree+bounces-324278-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-324280-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id ULieGYGtUGpJ3QIAu9opvQ
-	(envelope-from <devicetree+bounces-324278-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 10:29:53 +0200
+	id KcHUCZCvUGrJ3QIAu9opvQ
+	(envelope-from <devicetree+bounces-324280-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 10:38:40 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48E0D7387B8
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 10:29:53 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4526473890E
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 10:38:39 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=N+SX3jrl;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=FndPw3mC;
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324278-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-324278-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324280-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-324280-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id C88B23049206
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 08:28:35 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 2F83F300FEC8
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 08:34:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 174AA3EFFD1;
-	Fri, 10 Jul 2026 08:28:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0ECF3D79F9;
+	Fri, 10 Jul 2026 08:34:27 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C149D3EFFD7;
-	Fri, 10 Jul 2026 08:28:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93579350A05;
+	Fri, 10 Jul 2026 08:34:26 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783672097; cv=none; b=YNeZ8k/I8I45QER+Lp6H72zCw+aND4GnEEEQrg8QqQa5PGprGBc9XjyEhd5FpEGl1uUwHDKVCehahULaLkleR9vm79mJKlIKEALrm4FiG5DnvEruShNw6qFrtuVWB5pFF1pwltc9dh0/QRfTwb+x7EGMYkU4IufP2CpNxCohiJE=
+	t=1783672467; cv=none; b=jZR9x0a6eKTMJphEssc+j1uCDTi2ExhrvP428561rrPUtxQFGYuZI12eH85AmZ9UNhApXhj8LktpxiRDmHCHOqpTD5lY9cXFDYDAadnFAHMfv9H5kTaouME0SraIQEahhpHcaQtYidltjwJIKl6f74xP6D+Tk4rhxaq2uVv3jEs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783672097; c=relaxed/simple;
-	bh=SXhT/IG4Sn1qQjgoVmJGVUCKPwTprjMulXhkXSPMVk8=;
-	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=rixWurDLRJzzr4+j16C4x386za4oDGzXOcH5SCrC3dryCjb/7jAxTfhl089Td6MU00witxBuRiLBbGdfb2Yq21UwoOtKZFS7RBxr2ejep7rwCyOvjMX1HSCdH6o6aIGybvAAgU82wARZUNXDIcYzYCdWxS5y1Ewat+PBV0kRLvw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=N+SX3jrl; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 587891F000E9;
-	Fri, 10 Jul 2026 08:28:15 +0000 (UTC)
+	s=arc-20240116; t=1783672467; c=relaxed/simple;
+	bh=MmIfI3j6A+H6MbxUUARTY4aiTimje4EwkQBFA3k42S8=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=g+EUKwTtspPI6mEdtzKx3yqirNqypAETmBGhOQDzzOz9hZ9GLRvkWDD/jHDdzccmMORJrFCrgHfs/txPutM2GQlKRX/ASMxbea94i5B+OCvjcrXPVAoTbKJk4Ecn+yD2Nf0QVR0GZeAsr1gVzZfqJ1/CzI7c2Fa3yOPOHUuoegY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FndPw3mC; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B7EB11F000E9;
+	Fri, 10 Jul 2026 08:34:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783672095;
-	bh=F6KudrFDGEDQqOhegar75aieWQMc2k5wBts8J2fU69w=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References;
-	b=N+SX3jrlYmsL5bMWiQ1GMDeRKxW9iAigjmPFC06Wz319fosORES2zhht2QaH/6qFq
-	 DwmmN17OAX/kzxh+a2JI+o4ifiTmNWEPHKxuiUuX0B0MULGUhJi0t3Fevbi0OiDEXz
-	 A7laFPH8WbFKGhOC36Yygn6qAz+sNpKGn9pdookoPdWdYqt+2MlTojVKF+9R54TIcR
-	 /FYacKL0pAatQHo3G/oFCy5hp54dc69KxWmNbAxfdmpv20n+KQyxYbVLNn/aCzECBJ
-	 3dUBpVjy1o7y2Roi5/yQdpsZn102AV8KToXzOnO+/W/q0dLmu64YnwWJiju6W4aqJU
-	 lmzAH9Fcl7WeQ==
-Received: from sofa.misterjones.org ([185.219.108.64] helo=lobster-girl.misterjones.org)
-	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.98.2)
-	(envelope-from <maz@kernel.org>)
-	id 1wi6aj-00000003b2r-1kdZ;
-	Fri, 10 Jul 2026 08:28:13 +0000
-Date: Fri, 10 Jul 2026 09:30:02 +0100
-Message-ID: <87qzlb5jsl.wl-maz@kernel.org>
-From: Marc Zyngier <maz@kernel.org>
-To: Marek Vasut <marek.vasut+renesas@mailbox.org>
-Cc: linux-pci@vger.kernel.org,	kernel test robot <lkp@intel.com>,	Krzysztof
- =?UTF-8?B?V2lsY3p5xYRza2k=?= <kwilczynski@kernel.org>,	Bjorn Helgaas
- <bhelgaas@google.com>,	Catalin Marinas <catalin.marinas@arm.com>,	Conor
- Dooley <conor+dt@kernel.org>,	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,	Lorenzo Pieralisi
- <lpieralisi@kernel.org>,	Manivannan Sadhasivam <mani@kernel.org>,	Rob
- Herring <robh@kernel.org>,	Yoshihiro Shimoda
- <yoshihiro.shimoda.uh@renesas.com>,	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,	linux-doc@vger.kernel.org,
-	linux-kernel@vger.kernel.org,	linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH] PCI: rcar-gen4: Inline GIC_TRANSLATER offset macro
-In-Reply-To: <20260709201103.90162-1-marek.vasut+renesas@mailbox.org>
-References: <20260709201103.90162-1-marek.vasut+renesas@mailbox.org>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/30.1
- (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+	s=k20260515; t=1783672466;
+	bh=M6VEkS/wUAxRCYRHM7crNYfnXmrRKcUSQW7PeKQCd+s=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=FndPw3mCgdlwKrX+U8i5YH1pS8laTCZovoJEaw1pMKYAJQitn4mp1UBcnggVet6Mi
+	 re5YvlZy+R2oeriRC6o1OFksdIKlrtNryN/yr3ashOvpSlV4EmL2AOr3JA0M8VDUBc
+	 jpzSDiWBDziQbtaxQBslEefxUq3z3ozUQAtwEn99H3wahbP+2A9QNazkDKuupB+cS1
+	 mpGIMa7M4joZ39klYMAp6mZ+ztYo5suN30ecXXXsIxFA9yyVEYHTMMv/nG/uivKwUE
+	 4H+k0EYyHYpc783NOgYSFcqL0Vdjm9tZCUtYOmQZU42y11vONWS6JHlH6I6AU59ArI
+	 kAG+bEFMOkeXQ==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v3 2/2] dt-bindings: display: sn65dsi83: Add output
+ data-lanes
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Wojciech Dubowik" <wojciech.dubowik@mt.com>
+Cc: dri-devel@lists.freedesktop.org, imx@lists.linux.dev, devicetree@vger.kernel.org, Frank.Li@kernel.org, robh@kernel.org, conor+dt@kernel.org
+In-Reply-To: <20260710082630.394040-4-wojciech.dubowik@mt.com>
+References: <20260710082630.394040-1-wojciech.dubowik@mt.com>
+ <20260710082630.394040-4-wojciech.dubowik@mt.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Fri, 10 Jul 2026 08:34:25 +0000
+Message-Id: <20260710083425.B7EB11F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: marek.vasut+renesas@mailbox.org, linux-pci@vger.kernel.org, lkp@intel.com, kwilczynski@kernel.org, bhelgaas@google.com, catalin.marinas@arm.com, conor+dt@kernel.org, geert+renesas@glider.be, krzk+dt@kernel.org, lpieralisi@kernel.org, mani@kernel.org, robh@kernel.org, yoshihiro.shimoda.uh@renesas.com, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.66 / 15.00];
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-324278-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[18];
+	RCVD_COUNT_THREE(0.00)[4];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-324280-lists,devicetree=lfdr.de];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:wojciech.dubowik@mt.com,m:dri-devel@lists.freedesktop.org,m:imx@lists.linux.dev,m:devicetree@vger.kernel.org,m:Frank.Li@kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:marek.vasut+renesas@mailbox.org,m:linux-pci@vger.kernel.org,m:lkp@intel.com,m:kwilczynski@kernel.org,m:bhelgaas@google.com,m:catalin.marinas@arm.com,m:conor+dt@kernel.org,m:geert+renesas@glider.be,m:krzk+dt@kernel.org,m:lpieralisi@kernel.org,m:mani@kernel.org,m:robh@kernel.org,m:yoshihiro.shimoda.uh@renesas.com,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-doc@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-renesas-soc@vger.kernel.org,m:marek.vasut@mailbox.org,m:conor@kernel.org,m:geert@glider.be,m:krzk@kernel.org,s:lists@lfdr.de];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[maz@kernel.org,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[maz@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[7];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+	MISSING_XM_UA(0.00)[];
+	FROM_NO_DN(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sashiko.dev:url,smtp.kernel.org:mid,mt.com:email,lists.linux.dev:replyto,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 48E0D7387B8
+X-Rspamd-Queue-Id: 4526473890E
 
-On Thu, 09 Jul 2026 21:10:03 +0100,
-Marek Vasut <marek.vasut+renesas@mailbox.org> wrote:
->=20
-> Instead of pulling in the whole linux/irqchip/arm-gic-v3.h , copy the
-> one GITS_TRANSLATER register offset macro directly into the driver.
-> This repairs the ability to build the driver on non-ARM non-GIC targets
-> the way it was possible until now, which retains good build test coverage.
->=20
-> Reported-by: kernel test robot <lkp@intel.com>
-> Closes: https://lore.kernel.org/oe-kbuild-all/202607100310.iQw5m9Uo-lkp@i=
-ntel.com/
-> Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
-> ---
-> Cc: "Krzysztof Wilczy=C5=84ski" <kwilczynski@kernel.org>
-> Cc: Bjorn Helgaas <bhelgaas@google.com>
-> Cc: Catalin Marinas <catalin.marinas@arm.com>
-> Cc: Conor Dooley <conor+dt@kernel.org>
-> Cc: Geert Uytterhoeven <geert+renesas@glider.be>
-> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-> Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>
-> Cc: Manivannan Sadhasivam <mani@kernel.org>
-> Cc: Marc Zyngier <maz@kernel.org>
-> Cc: Rob Herring <robh@kernel.org>
-> Cc: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-> Cc: devicetree@vger.kernel.org
-> Cc: linux-arm-kernel@lists.infradead.org
-> Cc: linux-doc@vger.kernel.org
-> Cc: linux-kernel@vger.kernel.org
-> Cc: linux-pci@vger.kernel.org
-> Cc: linux-renesas-soc@vger.kernel.org
-> ---
-> Note: The alternative I could think of would be ifdeffery which
->       is not nice and thwarts the build coverage, or limit the
->       driver to ARM/ARM64 in Kconfig which also thwarts the build
->       coverage. I could also split off the register macros in
->       linux/irqchip/arm-gic-v3.h into some separate header
->       linux/irqchip/arm-gic-v3-regs.h and include that which
->       might be OKish and avoids duplication. Thoughts ?
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [Medium] Mismatch between device tree schema and driver implementation fo=
+r the `data-lanes` property.
+--
 
-No, I'm not hacking something that is purely architecture specific for
-the purpose of a bizarre integration quirk that should be handled by
-the boot firmware, and not Linux.
+--- Patch [2]: [PATCH v3 2/2] dt-bindings: display: sn65dsi83: Add output d=
+ata-lanes ---
+commit 98aea58cd5128c6a4b72efd4a5f9ec088fd30dca
+Author: Wojciech Dubowik <Wojciech.Dubowik@mt.com>
 
-Add whatever you want to the PCI glue code, limit this to arm64 (which
-is the only architecture this can ever be used on, and the build
-coverage argument really doesn't hold), but please leave the GIC code
-alone.
+dt-bindings: display: sn65dsi83: Add output data-lanes
 
-	M.
+This commit adds an optional output LVDS data lanes property with two allow=
+ed
+values. It supports the standard layout <1 2 3 4> and reversed layout <4 3 =
+2 1>
+for output channels.
+
+> diff --git a/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi8=
+3.yaml b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
+> index e69b6343a8ebb..4431f113bb9cd 100644
+> --- a/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
+> +++ b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
+> @@ -86,10 +86,52 @@ properties:
+>          description: Video port for LVDS Channel-A output (panel or brid=
+ge).
+>          $ref: '#/$defs/lvds-port'
+> =20
+> +        properties:
+> +          data-lanes:
+> +            $ref: /schemas/types.yaml#/definitions/uint32-array
+
+[Severity: Medium]
+Does this schema change place data-lanes at the correct level in the
+device tree hierarchy?
+
+The schema defines data-lanes as a direct property of the port node,
+but standard OF graph rules and the driver implementation parse it from the
+endpoint node:
+
+drivers/gpu/drm/bridge/ti-sn65dsi83.c:sn65dsi83_parse_lvds_endpoint() {
+    ...
+    ret_data =3D of_property_read_u32_array(endpoint, "data-lanes", data_la=
+nes,
+                    ARRAY_SIZE(data_lanes));
+    ...
+}
+
+Because the driver reads from the endpoint node rather than the port node,
+will it silently fail to find the configuration and fall back to the default
+layout on affected hardware?
+
+> +            description: |
+> +              Array of physical LVDS data lane indexes
+> +            oneOf:
+
+[ ... ]
 
 --=20
-Jazz isn't dead. It just smells funny.
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260710082630.3940=
+40-1-wojciech.dubowik@mt.com?part=3D2
 
