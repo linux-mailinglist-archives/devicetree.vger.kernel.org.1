@@ -1,282 +1,225 @@
-Return-Path: <devicetree+bounces-324657-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-324659-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id OO9ZBlphUWoNDgMAu9opvQ
-	(envelope-from <devicetree+bounces-324657-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 23:17:14 +0200
+	id TnyZGLxgUWrpDQMAu9opvQ
+	(envelope-from <devicetree+bounces-324659-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 23:14:36 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 633D273EB29
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 23:17:13 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5473C73EAEA
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 23:14:35 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=S1qbpZIx;
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324657-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-324657-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=sXkbxj2n;
+	dmarc=pass (policy=none) header.from=gmail.com;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324659-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-324659-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D395E302528B
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 21:14:02 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 630923006825
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 21:14:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C5673B2FE4;
-	Fri, 10 Jul 2026 21:14:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3DBE3B3BE5;
+	Fri, 10 Jul 2026 21:14:29 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f172.google.com (mail-yw1-f172.google.com [209.85.128.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 347EB3B38B5
-	for <devicetree@vger.kernel.org>; Fri, 10 Jul 2026 21:14:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4BCAA3B2FE6
+	for <devicetree@vger.kernel.org>; Fri, 10 Jul 2026 21:14:28 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783718042; cv=none; b=O5Lfi1kxAdCkCDg4zPJW6VbAGvjRezqYQxj/Wzym5E7hQ6ZNm8pS4D1lUzVXeoq90zk9+VAJsIWiRytp2Uujlqm5wXvB2b5TMDY5bEkiibKu3OQFj/eN6kKI9JiYmUuFt2uykTMjNnP1MQ9q8mNt6PFrEqDJVjXoOCkoNQCzeMI=
+	t=1783718069; cv=none; b=lpDPQo3lhdPZAHoxzyz8eG9J4kOItxUEYXsO71Zw+ntvBCE56iPLxJsQ1dYMpUv+T4w4B0wHyP4UsUQZ6btW1HpGE1cgIaMw7jW9jk/5cZjK1QPWSLd1i4CHVtq2ptF9cOXcJnBl5hqCqmDDXqs8HB3e4X4Kfimiac5ACIhEmbk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783718042; c=relaxed/simple;
-	bh=gR9ajInfYVrkzz1ma9n6rOKK7T9ZfBsFBWksWGiA4nM=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=owLyEF13J4lfYRpi1mYgtVFXJSLSxIFA8Ornp71RqEeHh2B28xo8yqZJlH/nFeZWtdReoLvY0y7D9JwlD/bxfbv1d4RNbIwD/k9x+miOrneULy6qayExyzCpcACXNSDTxi+CuoFBuRN8Zw3bQpnsmNYafm6Y8ZjW0WfUJxVzPWQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=S1qbpZIx; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5E31D1F00A3A;
-	Fri, 10 Jul 2026 21:14:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783718040;
-	bh=CwD8Ztb2o9SS2vVIEmowMswkxd/fpIpEdpaFfd7i7DE=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=S1qbpZIx7qJE8PL8f80S1RP4hsSgrKHpNI7vCzxXilcLyuW+nZu/UyjuaJzxNubtq
-	 +ANQVAUJSYrK0VLM/6dTVgyJIrRLZRGPOZ6aiP6jPL7+o3T/M8Y9JyroO6P98d+Omw
-	 yu2x2UUkPCriiKWdpUfe43Y9VUV2ELZUuQScQh2VCAIh0Pg2hjOkqre3/8ICFRA6mA
-	 ohilu5O/cMYDGhACXxWHoovBSHZ4Lfj9zBSzl9FknJIOXLSX66yR3MBQQMPbuFDDRO
-	 5maAwFNlJt5GEnCniQUJcTwq71xFi13yJ/RRf9UckTkz+3Po7E8eKBPyL4Dxn4NsJD
-	 3H+RorNnASmlg==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v12 10/36] phy: rockchip: usbdp: Add missing mode_change
- update
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Sebastian Reichel" <sebastian.reichel@collabora.com>
-Cc: olteanv@gmail.com, linux-phy@lists.infradead.org, vkoul@kernel.org, neil.armstrong@linaro.org, robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20260710-rockchip-usbdp-cleanup-v12-10-8b41a9a9bef0@collabora.com>
-References: <20260710-rockchip-usbdp-cleanup-v12-0-8b41a9a9bef0@collabora.com>
- <20260710-rockchip-usbdp-cleanup-v12-10-8b41a9a9bef0@collabora.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Fri, 10 Jul 2026 21:13:59 +0000
-Message-Id: <20260710211400.5E31D1F00A3A@smtp.kernel.org>
+	s=arc-20240116; t=1783718069; c=relaxed/simple;
+	bh=/MHLEQNMWxLpfWTWwhvlzLz4+MIMJenat62fWPKTec8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=QAaRI7k2eS/0C+u6DztcwrwYBUwo027O7ecSUSQjcQamlQQy4KeQHUOT9ssET8gReOxV8mfn7kxr+fCbNKtPtcwrx+jieEqlFtsotckjJ83PPLqmAE7ho4YjJvoNjjsmKuNL9+/5UhErzvzhymNvg8i7Iwn4ZcNDh6IZtPBjW20=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=sXkbxj2n; arc=none smtp.client-ip=209.85.128.172
+Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-81dfdbd86d1so14354687b3.1
+        for <devicetree@vger.kernel.org>; Fri, 10 Jul 2026 14:14:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1783718067; x=1784322867; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:from:date:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=Ito17Ylev/a9CxopzLHejL/a08tEt9HCGC3Am4P7UkE=;
+        b=sXkbxj2n/ObHQcCcJCCA1tfoItqTuWw65cdLixSsv5Gyiml3rHI6f4e8Mi5d2T1uE4
+         5Hk90FaVMs5XPte6l6JRwaLW8ULOZ5gfIdze5VbZL/58DYgcvZfKD/9m0oDqfAh3YNZw
+         SJ7MYCToxqfvO0GIVe8b/oYy2Ng4NrxkfOwbWYPR/ewYDvOItqgsRUNhutpfgADnV0DF
+         0IYeAAU3ve2R1u2q4tIcgAeDl0QvCrQQFDBUO7qnl07fISE5UOHcRRiAEBQxfkbLS9si
+         cEDIcDRvTeJYVUg7lt6BXh32o0ezkc7c8poJzAUtjfkaO0lj9c1qkYqLIEyXv9bbvV+M
+         jGjg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1783718067; x=1784322867;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:from:date:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=Ito17Ylev/a9CxopzLHejL/a08tEt9HCGC3Am4P7UkE=;
+        b=IQdFoTcsHkrgFNVpCymekMuj+Jotf9KktLVjc1W5HkpuaGVxnwO+Qv2nTRLlEfINzR
+         l2wQjpuJowx/5m9KGbH7LQoddSB9szXKqoWhrmkt2WKDx9famAQEfxpRDipxE/goNfkl
+         X5aJa8SMDNGfbig3jfiq36glMvYT+vtw0i+m0wW8M1lixJA2n0psuvzxNYfb31wpB0Gl
+         PGUDO/5z8FqgJAv0x/SeGXaLK1nJHy85puegzudgwG3pidBxst+Nl2l8/Yxd9OZsw/hD
+         gF3JrFJwltsQvySNoqfiRLnx6/+Fn+ThEFOsNbIA0ckTV8R5QZ+uMpvtz0lYitfMPiC4
+         3KEw==
+X-Forwarded-Encrypted: i=1; AHgh+Rq2ktfOkQEhW1nUrlp024FETfK1Qft8YYDSKlL1aLuy3VJxOY6B7NLNR80/AQMmowIDVUHCdjcOGTAB@vger.kernel.org
+X-Gm-Message-State: AOJu0YyCwzp+Y+390D8nv4tMS87HXSmy8PuPBAbwUJgWvr7YyJMt9qzM
+	gN98YlrPFEsSCn9/VWeU1yIxKfU3SeStNQFqoyuXSOPwiEb5P385+nbD
+X-Gm-Gg: AfdE7clS+6kGUTUrWqRR15XaU1mr/drCYDV3r8TPGkYvld5m8NqmUhs7gWh/9W9WVQV
+	kSnffDES9Ls0jlTUhF/OeBhZ9uaNPAGkv0QL7zUCzL5TvSZZf3ctWUMQdM/89rDVFempBw9+0Le
+	sv6U62CNPz72YKo8a9mfxFZC5OfXAS0lc9hyFufimYO63jEGHIJdsKYMowheb2l5Yt1hgaTcg1R
+	TeuB8Pba8La1ibOYK9uGFzw78hjmD+cdqBnl4YwtFh1Ay/J0z55XhLmsQmgkqpZ0WV9gJDPDoXW
+	eXk+QGKIJ0cKLfg1Lz7hru70vM7vaVKFRAqFLPMjTf8Pbo+FkIPsBUkrizt8DPKMuwqIcooeB5u
+	+xM1oo7tn/oXXNRp8bESMEn13M5kAHBz8Kb6FEgGnUsf93Yszw9UQTqmztOxX+aYjDk2A9oYyet
+	qK8mx0faGEiv6amEnR0fGS3A==
+X-Received: by 2002:a05:690c:638a:b0:81e:6a3a:a562 with SMTP id 00721157ae682-81e9003dde0mr4858867b3.17.1783718067290;
+        Fri, 10 Jul 2026 14:14:27 -0700 (PDT)
+Received: from localhost ([2804:30c:1f09:b400:47f8:7933:2105:dd41])
+        by smtp.gmail.com with ESMTPSA id 00721157ae682-81e6c212f14sm56630587b3.42.2026.07.10.14.14.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 10 Jul 2026 14:14:26 -0700 (PDT)
+Date: Fri, 10 Jul 2026 18:15:21 -0300
+From: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
+To: sashiko-reviews@lists.linux.dev
+Cc: Marcelo Schmitt <marcelo.schmitt@analog.com>,
+	devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org
+Subject: Re: [PATCH v6 3/4] iio: adc: ltc2378: Enable high-speed data capture
+Message-ID: <alFg6RVbM4ohZLsi@debian-BULLSEYE-live-builder-AMD64>
+References: <cover.1783629101.git.marcelo.schmitt@analog.com>
+ <4d4b5cac52b6f4a341d97bd41562a451e8e757f7.1783629101.git.marcelo.schmitt@analog.com>
+ <20260709232444.40EE11F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260709232444.40EE11F000E9@smtp.kernel.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-324657-lists,devicetree=lfdr.de];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:sebastian.reichel@collabora.com,m:olteanv@gmail.com,m:linux-phy@lists.infradead.org,m:vkoul@kernel.org,m:neil.armstrong@linaro.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-324659-lists,devicetree=lfdr.de];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	FORGED_SENDER(0.00)[marceloschmitt1@gmail.com,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FORGED_RECIPIENTS(0.00)[m:sashiko-reviews@lists.linux.dev,m:marcelo.schmitt@analog.com,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	TO_DN_SOME(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FREEMAIL_CC(0.00)[gmail.com,lists.infradead.org,kernel.org,linaro.org,vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[5];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[marceloschmitt1@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	ALIAS_RESOLVED(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[smtp.kernel.org:mid,collabora.com:email,lists.linux.dev:replyto,sashiko.dev:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,debian-BULLSEYE-live-builder-AMD64:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 633D273EB29
+X-Rspamd-Queue-Id: 5473C73EAEA
 
-Thank you for your contribution! Sashiko AI review found 4 potential issue(=
-s) to consider:
+On 07/09, sashiko-bot@kernel.org wrote:
+> > +	/*
+> > +	 * Configure SPI offload PWM trigger.
+> > +	 * The trigger should fire after tBUSYLH + tCONV + tDSDOBUSYL.
+> > +	 * Minimum time needed: TBUSYLH (13ns) + TCONV (part-specific) + TDSDOBUSYL (5ns)
+> > +	 *
+> > +	 * Use the same period as CNV PWM to avoid timing issues.
+> > +	 * Convert back from period to frequency for the SPI offload API.
+> > +	 */
+> > +	offload_period_ns = cnv_wf.period_length_ns;
+> > +	config->periodic.frequency_hz = DIV_ROUND_UP(HZ_PER_GHZ, offload_period_ns);
+> > +	min_read_offset = LTC2378_TBUSYLH_NS + st->info->tconv_ns + LTC2378_TDSDOBUSYL_NS;
+> > +	offload_offset_ns = min_read_offset;
+> > +	count = 100;
+> > +	do {
+> > +		config->periodic.offset_ns = offload_offset_ns;
+> > +		ret = spi_offload_trigger_validate(st->offload_trigger, config);
+> > +		if (ret)
+> > +			return ret;
+> 
+> [Severity: High]
+> Does modifying config directly leave the device state out of sync if
+> validation fails?
+> 
+> Here config aliases to &st->offload_trigger_config, and its frequency_hz and
+> offset_ns fields are mutated. If spi_offload_trigger_validate() returns an
+> error, the function returns without restoring the old configuration.
+> 
+> However, st->cnv_wf is only updated at the end of the function. If the
+> buffer is later enabled, could this result in the PWM running with the old
+> frequency while the SPI offload engine tries to use the new, rejected
+> frequency?
+> 
+Ok, v7 will come with a local variable to hold offload trigger configuration
+until all checks pass and both st->offload_trigger_config and st->cnv_wf can
+be updated.
 
-Pre-existing issues:
-- [High] PHY mode updates in `rk_udphy_typec_mux_set` are incorrectly gated=
- by DP Alt Mode and HPD status, breaking USB lane restoration when exiting =
-Alt Mode.
-- [High] The USB3 port remains permanently disabled in the GRF after dynami=
-cally returning from 4-lane DP mode.
-- [High] HPD events received from the Type-C TCPM before the DisplayPort co=
-ntroller initializes the PHY are cached but never flushed, dropping the hot=
--plug event.
-- [High] The driver leaks the `UDPHY_MODE_USB` bit in `udphy->status` when =
-dynamically switching from DP+USB mode to DP-only mode.
---
+> > +		offload_offset_ns += 10;
+> > +	} while (count-- && config->periodic.offset_ns < min_read_offset);
+> > +
+> > +	/* Check the minimum CNV to SCLK delay is met */
+> > +	if (config->periodic.offset_ns < min_read_offset)
+> > +		return -EDOM;
+> > +
+> > +	/* Check the PWM periods remain the same */
+> > +	offload_period_ns = div64_u64(HZ_PER_GHZ, config->periodic.frequency_hz);
+> > +	if (cnv_wf.period_length_ns != offload_period_ns)
+> > +		return -EDOM;
+> 
+> [Severity: Medium]
+> Could this strict equality check unintentionally reject valid sample
+> frequencies due to integer math rounding?
+> 
+> If a requested frequency produces a period (cnv_wf.period_length_ns) that
+> does not perfectly divide 1,000,000,000, DIV_ROUND_UP() might round the
+> frequency up. Converting that frequency back to a period via div64_u64()
+> would yield a slightly smaller period.
+> 
+> For example, 133,333 Hz yields a 7500 ns period. 10^9 / 7500 = 133333.33,
+> which rounds up to 133334. Then 10^9 / 133334 = 7499 ns. Since 7500 != 7499,
+> this check would fail and return -EDOM.
 
---- Patch [10]: [PATCH v12 10/36] phy: rockchip: usbdp: Add missing mode_ch=
-ange update ---
-commit 1907d9e7af04f2c28df8bf00ded6a9b5a290664a
-Author: Sebastian Reichel <sebastian.reichel@collabora.com>
+The setup for SPI offload support uses two PWM sources. One PWM drives CNV to
+periodically start new conversions, the other signals to the SPI controller when
+it can start fetching data. CNV and trigger PWMs must be offset by some ns. In
+addition to that, the PWM sources must be synchronized such that the PWM
+connected to the controller doesn't fire too early nor too late. And, finally,
+the user might want to run the data capture for an arbitrarily long period of
+time, requiring the PWM sources to remain synchronized to be able to
+consistently read valid samples.
 
-phy: rockchip: usbdp: Add missing mode_change update
+Those requirements pretty much imply the PWM sources to have the same period.
+Though, our peripheral device driver only knows about the SPI controller
+PWM through the offload_trigger abstraction. After spi_offload_trigger_validate(),
+the client driver has no way to know whether the new frequency value is a result
+of integer rounding or PWM hardware not supporting the requested period/frequency.
+Even though the divergence in the provided example seems to be caused by integer
+rounding, it might not always be the case.
 
-rk_udphy_set_typec_default_mapping() updates the available modes,
-but does not set the mode_change as required. This results in
-missing re-initialization and thus non-working DisplayPort.
-
-> diff --git a/drivers/phy/rockchip/phy-rockchip-usbdp.c b/drivers/phy/rock=
-chip/phy-rockchip-usbdp.c
-> index 982315535caf7..7540c897dde13 100644
-> --- a/drivers/phy/rockchip/phy-rockchip-usbdp.c
-> +++ b/drivers/phy/rockchip/phy-rockchip-usbdp.c
-
-[ ... ]
-
-> @@ -1361,10 +1370,7 @@ static int rk_udphy_typec_mux_set(struct typec_mux=
-_dev *mux,
->  			usleep_range(750, 800);
->  			rk_udphy_dp_hpd_event_trigger(udphy, true);
->  		} else if (data->status & DP_STATUS_HPD_STATE) {
-> -			if (udphy->mode !=3D mode) {
-> -				udphy->mode =3D mode;
-> -				udphy->mode_change =3D true;
-> -			}
-> +			rk_udphy_mode_set(udphy, mode);
-
-[Severity: High]
-This is a pre-existing issue, but are PHY mode updates incorrectly gated by
-DP Alt Mode and HPD status here?
-
-When the Type-C manager tears down DP Alt Mode, it calls typec_mux_set()
-with state->mode =3D TYPEC_STATE_SAFE and state->alt =3D NULL. The function
-computes mode =3D UDPHY_MODE_DP_USB, but this rk_udphy_mode_set() call is
-nested inside:
-
-drivers/phy/rockchip/phy-rockchip-usbdp.c:rk_udphy_typec_mux_set() {
-    ...
-    if (state->alt && state->alt->svid =3D=3D USB_TYPEC_DP_SID) {
-    ...
-        } else if (data->status & DP_STATUS_HPD_STATE) {
-            rk_udphy_mode_set(udphy, mode);
-    ...
-}
-
-Does this incorrectly restrict PHY mode updates to DP Alt Mode, completely
-missing state teardown paths where state->alt is NULL? This appears to break
-USB lane restoration when exiting Alt Mode, causing USB to fail after
-unplugging a DisplayPort adapter or exiting Alt Mode without a replug.
-
->  			rk_udphy_dp_hpd_event_trigger(udphy, true);
->  		} else {
->  			rk_udphy_dp_hpd_event_trigger(udphy, false);
-
-[Severity: High]
-This isn't a bug introduced by this patch, but does the USB3 port remain
-permanently disabled in the GRF after dynamically returning from 4-lane DP
-mode?
-
-When dynamically switching from 4-lane DP mode back to DP+USB mode,
-rk_udphy_power_on() executes the following block to reinitialize the PHY:
-
-drivers/phy/rockchip/phy-rockchip-usbdp.c:rk_udphy_power_on() {
-    ...
-    } else if (udphy->mode_change) {
-        if (udphy->mode =3D=3D UDPHY_MODE_DP)
-            rk_udphy_u3_port_disable(udphy, true);
-
-        ret =3D rk_udphy_init(udphy);
-    ...
-}
-
-While this block correctly disables the U3 port for DP-only mode via
-rk_udphy_u3_port_disable(udphy, true), it lacks the inverse
-rk_udphy_u3_port_disable(udphy, false) call for restoring DP+USB mode.
-
-Could this prevent the DWC3 controller from communicating with the USB3 PHY
-when returning to DP+USB mode, resulting in non-working USB3?
-
-[Severity: High]
-This is a pre-existing issue, but are HPD events dropped if they are receiv=
-ed
-from the Type-C TCPM before the DisplayPort controller initializes the PHY?
-
-If the TCPM fires an HPD event before the DP consumer probes and calls
-rk_udphy_dp_phy_init(), rk_udphy_dp_hpd_event_trigger() caches the state in
-udphy->dp_sink_hpd_cfg because udphy->dp_in_use is false.
-
-When the DP consumer finally initializes the PHY, dp_in_use is set to true:
-
-drivers/phy/rockchip/phy-rockchip-usbdp.c:rk_udphy_dp_phy_init() {
-    ...
-    mutex_lock(&udphy->mutex);
-
-    udphy->dp_in_use =3D true;
-
-    mutex_unlock(&udphy->mutex);
-    ...
-}
-
-However, the cached dp_sink_hpd_cfg is never written to the hardware
-registers via rk_udphy_grfreg_write(). Can this drop the hot-plug event
-and cause the display to remain completely undetected until the cable is
-replugged?
-
-[Severity: High]
-This is a pre-existing issue, but does the driver leak the UDPHY_MODE_USB b=
-it
-in udphy->status when dynamically switching from DP+USB mode to DP-only mod=
-e?
-
-When the type-c mux switches mode from UDPHY_MODE_DP_USB to UDPHY_MODE_DP,
-udphy->mode is updated immediately. Later, when the USB subsystem processes
-the disconnect and calls rk_udphy_usb3_phy_exit(), it checks the new mux mo=
-de
-rather than the currently active status:
-
-drivers/phy/rockchip/phy-rockchip-usbdp.c:rk_udphy_usb3_phy_exit() {
-    ...
-    /* DP only or high-speed */
-    if (!(udphy->mode & UDPHY_MODE_USB) || udphy->hs)
-        goto unlock;
-
-    rk_udphy_power_off(udphy, UDPHY_MODE_USB);
-    ...
-}
-
-This condition evaluates to true because the mode was already changed,
-skipping rk_udphy_power_off(udphy, UDPHY_MODE_USB).
-
-Furthermore, the overarching rk_udphy_power_off() shares this identical
-flawed check:
-
-drivers/phy/rockchip/phy-rockchip-usbdp.c:rk_udphy_power_off() {
-    ...
-    if (!(udphy->mode & mode)) {
-        dev_info(udphy->dev, "mode 0x%02x is not support\n", mode);
-        return;
-    }
-    ...
-}
-
-Could this secondary check return early if the new mode lacks the bit the
-caller is legitimately trying to power off, preventing the mode bit from ev=
-er
-being cleared from udphy->status? This appears to leave PHY resources
-(clocks, resets) unreleased on teardown, corrupting state tracking and
-leaking power.
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260710-rockchip-u=
-sbdp-cleanup-v12-0-8b41a9a9bef0@collabora.com?part=3D10
+> 
+> > +
+> > +	st->cnv_wf = cnv_wf;
+> > +	st->cnv_Hz = DIV_ROUND_CLOSEST_ULL(HZ_PER_GHZ, cnv_wf.period_length_ns);
+> > +
+> > +	return 0;
+> > +}
+The other comments seem to make sense.
 
