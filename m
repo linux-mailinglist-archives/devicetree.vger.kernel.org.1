@@ -1,373 +1,334 @@
-Return-Path: <devicetree+bounces-324399-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-324401-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id F7WKOjXSUGoy5gIAu9opvQ
-	(envelope-from <devicetree+bounces-324399-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 13:06:29 +0200
+	id H66GAe/TUGp05gIAu9opvQ
+	(envelope-from <devicetree+bounces-324401-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 13:13:51 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3EB43739F8A
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 13:06:29 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id E4B3D73A046
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 13:13:49 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=f+4Sy4F9;
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324399-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-324399-lists+devicetree=lfdr.de@vger.kernel.org";
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
+	dkim=pass header.d=ti.com header.s=proofpoint-05-2026 header.b=qpsDBXHW;
+	dkim=pass header.d=ti.com header.s=selector1 header.b=h8WWADm+;
+	dmarc=pass (policy=quarantine) header.from=ti.com;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324401-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-324401-lists+devicetree=lfdr.de@vger.kernel.org";
+	arc=reject ("cv is fail on i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E544030036F8
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 11:02:50 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 81B853022F7B
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 11:13:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FD94411699;
-	Fri, 10 Jul 2026 11:02:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 727B6411687;
+	Fri, 10 Jul 2026 11:13:46 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from mx0b-0002e601.pphosted.com (mx0b-0002e601.pphosted.com [148.163.154.28])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7F78412263;
-	Fri, 10 Jul 2026 11:02:47 +0000 (UTC)
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783681370; cv=none; b=dNaUYn10xAEZ6Oyjs8IgNy74jZHtvmfyCSen4PLRaONAQJaA8s8pIvvEVZlQuk7LsNvtrkcdJyO8GS61Fgg1qKB6A4b1uNjckuGs3vdPj2upzbaEcKi/nGW/I0Pe3THCHVkB+JHRa39RrqaKWDlhP4p9XUSKdAznVAFKc9wp5S4=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783681370; c=relaxed/simple;
-	bh=SuQWSvu8dH4MYsJ6BjXKHu6h2Bpplj1IM+WZMfFybB0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=unU4a1OnIVgfFEhyOKPWN/jwQBYQbO6dzkx4CzZjnOlcWKl8Ngs9kNm01P4gLH9IReJbbuWZcAK9y8vaBn5QOwZhoSexEKZH5TWMW7RSpCllxvaQ6gWoUw9yZexn0Uxjsmwev9eXT+/E35452sihBXvDNTYyqd6u95PbZAIgKpQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=f+4Sy4F9; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with UTF8SMTPSA id 15F381F000E9;
-	Fri, 10 Jul 2026 11:02:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783681367;
-	bh=eVRsx3hBBJH/Va+OHfcN9cN1H7LyCaNlLfEaKAQnK3s=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=f+4Sy4F9sL0hz+yEPS8HqKB/0afaTNBkCgQrHHJAEd1j27jzS3D8zxzNZpxU2Tai2
-	 2r442TR4HOvLL+s00Yu9iAkKHO9skq4AGRDFO3Zm8KrYHCHVLoA7Il67yfSJ6vE7d2
-	 3FK3ivhh/XEg/yzY5RV++aZWJj4YKI5WzUc0PocQLLejibOcPWSifNn8KfD9n0r/ZA
-	 VcEm/lIj7jUZDP/wZYVhLslbau+0gq0BboStJVvBr2Q/T70moKwENeOBrM9atTJPEv
-	 9lLgBWRvb2rc9R0B2E8nhA1N5DpqDfNkaaZlZqc3kBve9XFtwk0Wds/m6JfzoOhB+c
-	 MifZ0UOzJHd/A==
-Date: Fri, 10 Jul 2026 13:02:45 +0200
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
-To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Heiko Stuebner <heiko@sntech.de>, Lee Jones <lee@kernel.org>, 
-	William Breathitt Gray <wbg@kernel.org>, Damon Ding <damon.ding@rock-chips.com>, kernel@collabora.com, 
-	Jonas Karlman <jonas@kwiboo.se>, Alexey Charkov <alchark@gmail.com>, 
-	linux-rockchip@lists.infradead.org, linux-pwm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org
-Subject: Re: [PATCH v5 3/6] pwm: Add rockchip PWMv4 driver
-Message-ID: <alDK7JahbqYpwQmZ@monoceros>
-References: <20260420-rk3576-pwm-v5-0-ae7cfbbe5427@collabora.com>
- <20260420-rk3576-pwm-v5-3-ae7cfbbe5427@collabora.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B7F8410D32;
+	Fri, 10 Jul 2026 11:13:43 +0000 (UTC)
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1783682026; cv=fail; b=Bo7d+NiGz6LGlYTSn8zycerudeTChfHyVEj/Q6Xw8iCnjoP5I/Tq7kAMuf+Jc9z08zn7FZ4iR0AGnOrx2cEJ8SSHD+mKq1AoYdXR4BSze47AYPvn/AwFbofH2KO5Gh4BRZmtAy9awZx7SHJx0AZVRw5yYvFgRiG2oghlQ+m++bE=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1783682026; c=relaxed/simple;
+	bh=S6spQyI206EExSEvqFa4ThIxKWasIfjTOkByxunwPrY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=Krawxw034/1/PF/15pxnrCzZvXpDdQRCb7aLjH1NDg/TnBx41UNFUw0bxbU58Bz5ueqMEd0+3aCYqWXY3gNXXZm/IhNzJ/09X38EJ5tLVM7XOo9GvkzkzqzQYRbch9rYIisLqd//Iwz0nPRK3y9TIHlqTNC6yJwx1Uxx4Xv3PIM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (2048-bit key) header.d=ti.com header.i=@ti.com header.b=qpsDBXHW; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=h8WWADm+; arc=fail smtp.client-ip=148.163.154.28
+Received: from pps.filterd (m0374956.ppops.net [127.0.0.1])
+	by mx0b-0002e601.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 66AAjuZh3678619;
+	Fri, 10 Jul 2026 06:13:35 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; h=cc
+	:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=
+	proofpoint-05-2026; bh=kM/m42YV0DYfcWZUaLfc/6VVkEiM0W5A4O/mwmE2L
+	9A=; b=qpsDBXHWAQww8/zMHTm7o5ewhgO8PSWL5kAVhEl0cDvgU+oInQJNZqdR7
+	x0d5ERu663DaGAM4TecTLX7KQfjI0Jn4yVEn+US0zW7aPJWCJQdkjPDwjPoMbJ2m
+	0YCWnuGokeJYnmVZnWES5AU76VXePtrKkaUw+PXyqpbGOFTD65h1t0P8iDTOLfkO
+	3r/jQsaTiVQkAYWr/Qrv0I7mwYuy7oJMXecC5UYhHeU/9HWOiq8SfqrXONPXDfDh
+	oKuaEM9vLO0XVKB1EM0X9VmM0n2hXmGWxVFFVya62y7NSzVmNX8ML/SBZJYmHM+v
+	9/3UTK7/4+2cY0Ypg4L9U3hWhNTdw==
+Received: from cy7pr03cu001.outbound.protection.outlook.com (mail-westcentralusazon11010046.outbound.protection.outlook.com [40.93.198.46])
+	by mx0b-0002e601.pphosted.com (PPS) with ESMTPS id 4faskvhtx0-1
+	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
+	Fri, 10 Jul 2026 06:13:34 -0500 (CDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=AInp0CfG1ooJMVde9Xm1zhvZpXeMeAAc8urSKhh6lgEXc/WHG+05BAQK8PAEHcYlhn5j5P0B3WdCTkOsu9PrkJSrlssVSWnYQEA6OZ5HZfgrp9Hrn8N/i29aFHURbiX1MhEgMgGFeCpoxKOBBvtrPpL6BfT3WroZ9f4EwVRz9oMps6Q4Tma2oWTP65x9CDR072V61rTv2N8QKL+v76TPscUDlWlBd/o+CSwUsJxISvYKnpvI4lYtz57A2nPYD+pWotrpxu2OJ/KDtcnzaqRXtUQUgsOesqrlehdRuUEOFbp9GSnaDH8T0u11HpYuJNavMXLD2B2wzS5jWfPsrW87rA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=kM/m42YV0DYfcWZUaLfc/6VVkEiM0W5A4O/mwmE2L9A=;
+ b=tA+YvK3NvsTB3pggr/hPOM7yENSZY1xw0oOMLMfK7rfkEIcHIN7mTjBAzDaPxF0mGrJ/Ql1fNWqWORmjeWqvpdFvpZyTslUM3vJSQwonbNeArIppmbAtg+Ohx885FDBqH0jXWobNoxjs4UvgvEk22pnAIoLWBITegd84vUXZef0fuEJQjEpk8NpeSWK2YaSefrf4Mb7FYb+9MAbRrC0gXuJLbPyyr9ocBkc3Mt0eZ4cbBsq6QP5CcAX51xjIrUvvKDnaVNHDXAZ9QhpuMosv/c015R02EYq4OlalgPo76uM0zRcBnrtmj58ViCQxopC/76hQij6o5Avk4imfIfhmPw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 198.47.23.194) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=ti.com;
+ dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=kM/m42YV0DYfcWZUaLfc/6VVkEiM0W5A4O/mwmE2L9A=;
+ b=h8WWADm+nXVy8gUBACB+mZbJX0jZEmvmhEyHrINVo/NK6iotEzP4PEhKW+DxOO63lyoZcVEacom5eok+eO7zMGn+z+L0xJlaRMt00SloQWNCELKcoL1xjVZUkrWG4lLyR9nHdl/TTBo8Bc3kLH8Xy+7854GrqfjEdMOVKX195iw=
+Received: from SJ0PR03CA0003.namprd03.prod.outlook.com (2603:10b6:a03:33a::8)
+ by BL3PR10MB6017.namprd10.prod.outlook.com (2603:10b6:208:3b0::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.16; Fri, 10 Jul
+ 2026 11:13:31 +0000
+Received: from MWH0EPF000C6187.namprd02.prod.outlook.com
+ (2603:10b6:a03:33a:cafe::4) by SJ0PR03CA0003.outlook.office365.com
+ (2603:10b6:a03:33a::8) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.181.8 via Frontend Transport; Fri, 10
+ Jul 2026 11:13:31 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.194)
+ smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
+ action=none header.from=ti.com;
+Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
+ 198.47.23.194 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.23.194; helo=lewvzet200.ext.ti.com; pr=C
+Received: from lewvzet200.ext.ti.com (198.47.23.194) by
+ MWH0EPF000C6187.mail.protection.outlook.com (10.167.249.119) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.181.6 via Frontend Transport; Fri, 10 Jul 2026 11:13:30 +0000
+Received: from DLEE209.ent.ti.com (157.170.170.98) by lewvzet200.ext.ti.com
+ (10.4.14.103) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.37; Fri, 10 Jul
+ 2026 06:13:30 -0500
+Received: from DLEE212.ent.ti.com (157.170.170.114) by DLEE209.ent.ti.com
+ (157.170.170.98) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.37; Fri, 10 Jul
+ 2026 06:13:30 -0500
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE212.ent.ti.com
+ (157.170.170.114) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.37 via Frontend
+ Transport; Fri, 10 Jul 2026 06:13:30 -0500
+Received: from [10.24.52.205] (a0512632.dhcp.ti.com [10.24.52.205])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 66ABDNtq3551611;
+	Fri, 10 Jul 2026 06:13:24 -0500
+Message-ID: <a427d796-63c2-4bc9-a3ce-d4b1b527f3c1@ti.com>
+Date: Fri, 10 Jul 2026 16:43:23 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="zmapr4d5j6nd5icv"
-Content-Disposition: inline
-In-Reply-To: <20260420-rk3576-pwm-v5-3-ae7cfbbe5427@collabora.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] arm64: dts: ti: k3-am62l: Add HDMI & DSI support
+To: "Kumar, Udit" <u-kumar1@ti.com>, <nm@ti.com>, <vigneshr@ti.com>,
+        <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <tomi.valkeinen@ideasonboard.com>
+CC: <r-sharma3@ti.com>, <devarsht@ti.com>, <praneeth@ti.com>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20260528133529.3476499-1-s-jain1@ti.com>
+ <cb4c1b80-40c0-4e63-bfa8-65a68c577999@ti.com>
+Content-Language: en-US
+From: Swamil Jain <s-jain1@ti.com>
+In-Reply-To: <cb4c1b80-40c0-4e63-bfa8-65a68c577999@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MWH0EPF000C6187:EE_|BL3PR10MB6017:EE_
+X-MS-Office365-Filtering-Correlation-Id: 9df0a03a-c23c-4a9e-563e-08dede744643
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|36860700016|376014|82310400026|23010399003|13003099007|22082099003|18002099003|3023799007|6133799003|56012099006|4143699003;
+X-Microsoft-Antispam-Message-Info:
+	VPd2RNJoMW4MkAFLbp98wn1rtD0qMHhf1p/IgWyxwYyHEg+JZWPcvAkpDu6uBtIVdncZQCUxwIaLfH++W6dc3/6M5IP3NLFBa5wVOAIBz0C1mSbmTiz2znvsdFNoaPhB1zNqSnzbB9jXfyl4NOW1lwuKOhAg8GCzXnJCar/awZlv2kMqSeQwCn8cKmYt8mr4jNp9swSZiv7kR9LyQVahcize8MjQSQtEknO/aBcUpvJLT/tpb7zrW1W8wYpWGOC1OQaSil8rWR7aiy/ekCHcl53O51EX3iobSAKnK5YGHnyDHWk+Ir8incjWYrLiSDiQDHzILyl++fANI0NwxJ/Qb3sXW78jc2/LZknZGCMUN3qnBWsnklOhC8bp+Z5yYmgmS/IiN5l8Kkz8rAMeuI74V8fTJMmhsk3iZV9HZzErElv+PZKa22v9l8GMKnBC5BU7WxPkdPZbH82FdFxrd8IWCANpHAeTU9YnPzO5FJftBaBU4MtIZPo/HmEvdQFUCZ6YkFxCkfxodhPZ2D8f3TLajcip5mN/CqPaS/SmO01ecaBO3oNEVm38PaQoubk86eKnGxn2mkQ7NyT9mf9LK4zbuxH9QkOYT0WbQqSzTV/xkEuJnrZY+r4zFDpNDXH+AGCBB1qTl7kXJtMjHeh5TIlXdl3MadHWJmY1dyeCmnZwDGU7yiMhCWVTh0MHSE4xxkSnYtju8e7ucjb0NNZVvJfwqw==
+X-Forefront-Antispam-Report:
+	CIP:198.47.23.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet200.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(36860700016)(376014)(82310400026)(23010399003)(13003099007)(22082099003)(18002099003)(3023799007)(6133799003)(56012099006)(4143699003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	OYaQLIT7QE0NiFcTVimKAZsStBqjZ3f0inlhQwSTqG14Q1Vwsdyacg1H69fvqJzpqwTk5LzJmeIu1bqroMhGkHbhMA2zGZTG0VSF9TgS3gyCGpRiICZZv7Af9Qbb4VhPN2ZspvbFykU/l2+D1llpUveaCmCB2/m8Ke8YhjVhL+6iVQdUzOLHgdnibGJDSpGVpZdL0RSt7QTQyX9bCaOTX6Urfkm8htRcilq/dbsRIBmIrme0lBA95DYLBqJbjgmyXGNegq7WHQjk0vQMVBaLg+2Xu9yeU2CoaUbtKC4UYhRMRAF1DJDczVAlMl8u3W6s8dLtAq3ZCE4uYpRHQbaIaQSOjExKYxIO6evz3ukA8dZyTi09MT0LVhGUSnvHAdheJp3AKEQzHaoiU/BumGIOCy1np7KpxtwjW/Lq4RxN4YBG+NICTjePKPvd0eCwjXgx
+X-Exchange-RoutingPolicyChecked:
+	AUXztGU2wMwR/+UlRNE0PlxunISqX6hwj7lzuDKCAadlMdUQYlO9rj/obuslglEdI89K0grB7V9UMi8eF6R65HkNixVu0GJ+1co7OpQE+u0Nn3gZU8tk1vibcR/Pg9mVAhiPJSPkAxXoiBp7mhlUGB5+8Kjv29GNxiB/qOszrYkh1SEDT6ykIqPtonj6xcC730hvaKhzTYWtGHgAx40f95ZtOD6NI+654tUbEHZbvTrpq5XTxSLSvf4Mlmadc9zqWbr22KCrSnFFl9vWQ9udZaJT2yJWXOKEtlHbNMj28gE8lpWaBaI0MXaelAidS2KDeEMSlBGVxchk3jqUyk134Q==
+X-OriginatorOrg: ti.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jul 2026 11:13:30.8262
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9df0a03a-c23c-4a9e-563e-08dede744643
+X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.194];Helo=[lewvzet200.ext.ti.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	MWH0EPF000C6187.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL3PR10MB6017
+X-Proofpoint-ORIG-GUID: dA86P8WXtgbLpwiXrFE7-DCQ99y-F91z
+X-Authority-Analysis: v=2.4 cv=AeOB2XXG c=1 sm=1 tr=0 ts=6a50d3de cx=c_pps
+ a=HD8lxhnvDrzpkXyYnuuseQ==:117 a=WotqVVQAdb04rnGuttW3Kw==:17
+ a=6eWqkTHjU83fiwn7nKZWdM+Sl24=:19 a=IkcTkHD0fZMA:10 a=RAioF0-LDSMA:10
+ a=s63m1ICgrNkA:10 a=V5UXEbMT0ywA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=Z8NIEmU8O1QQgoT56wFK:22 a=jwouBfj2j3NM8CExmVVE:22 a=sozttTNsAAAA:8
+ a=VwQbUJbxAAAA:8 a=11sOcgTRacJIbtiZYdwA:9 a=QEXdDO2ut3YA:10
+X-Proofpoint-Spam-Info: AW1haW4tMjYwNzEwMDExMSBTYWx0ZWRfX/2Y8XrAlJjzu
+ K3s6JkogbZWRMYCZEmMiAQume/uL8NKVvxcChII09Uq5+iyKxYAl+ysIYymqDDKEbTqDtjYBnIc
+ 5+jwAxDNg5EmsrxVJITB0gnW4CxKecc=
+X-Proofpoint-GUID: dA86P8WXtgbLpwiXrFE7-DCQ99y-F91z
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNzEwMDExMSBTYWx0ZWRfXy0QQVtMi7tEJ
+ sT98bqMmKur3MK+MzAMizqz933yecuozIr2Po8tYAcDT6wcQClY/poPnWiJ6qaKWUH9zvY4ZagU
+ QHJGqjHDZGSN/pncxLnJgXXCAXEAtDypoVi+DFsky07nPSwf2dXFlygRKiS1ql0Aca1Tcv4PZxl
+ sj348vvFxeOmEw6pJpZfk0T4cR/SbA2Zor8pz4A+P6lYgBJb8TAZljZbldNMHHTn/k/aocuQ0Rd
+ xsZ57Bs2KdWaPOkHNRuk2k+TpxX1Nn8NmO3h6BWEjSfWuXXVIc02mJlq+h3pFk1++JV8XbN9T5A
+ ubUWF+0ZZ/gwhQc6DLDv1elUy8YE2+gAAIXmaNx6wmdEniy2sPthmJLrbAuPLDD15Wcula3fRYH
+ vcxbqEv7faHLL57ixLaILe6u40zylfnywHt8jeim/GfvdovFcwwJryGTn+GxJqgDCUjyVdXYC3Y
+ rks5J2Vd1NFzjFy83WQ==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.134,FMLib:17.12.100.49
+ definitions=2026-07-10_03,2026-07-09_04,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 impostorscore=0 suspectscore=0 lowpriorityscore=0
+ priorityscore=1501 bulkscore=0 malwarescore=0 adultscore=0 phishscore=0
+ spamscore=0 classifier=typeunknown authscore=0 authtc= authcc= route=outbound
+ adjust=0 reason=mlx scancount=1 engine=8.22.0-2606150000
+ definitions=main-2607100111
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-5.26 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	SIGNED_PGP(-2.00)[];
+X-Spamd-Result: default: False [1.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	DMARC_POLICY_ALLOW(-0.50)[ti.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[ti.com:s=proofpoint-05-2026,ti.com:s=selector1];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:nicolas.frattaroli@collabora.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:heiko@sntech.de,m:lee@kernel.org,m:wbg@kernel.org,m:damon.ding@rock-chips.com,m:kernel@collabora.com,m:jonas@kwiboo.se,m:alchark@gmail.com,m:linux-rockchip@lists.infradead.org,m:linux-pwm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:linux-iio@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FROM_HAS_DN(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	TAGGED_FROM(0.00)[bounces-324401-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	FORGED_SENDER(0.00)[ukleinek@kernel.org,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:u-kumar1@ti.com,m:nm@ti.com,m:vigneshr@ti.com,m:kristo@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:tomi.valkeinen@ideasonboard.com,m:r-sharma3@ti.com,m:devarsht@ti.com,m:praneeth@ti.com,m:linux-arm-kernel@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORWARDED(0.00)[lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-324399-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FORGED_SENDER(0.00)[s-jain1@ti.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
+	RCVD_COUNT_TWELVE(0.00)[12];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ukleinek@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[kernel.org,sntech.de,rock-chips.com,collabora.com,kwiboo.se,gmail.com,lists.infradead.org,vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[s-jain1@ti.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[ti.com:+];
+	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp,monoceros:mid]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,vger.kernel.org:from_smtp,ti.com:dkim,ti.com:mid,ti.com:from_mime,ti.com:url,ti.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 3EB43739F8A
+X-Rspamd-Queue-Id: E4B3D73A046
+
+Hi Udit,
+
+On 5/29/26 14:28, Kumar, Udit wrote:
+> 
+> 
+> On 5/28/2026 7:05 PM, Swamil Jain wrote:
+>> From: Devarsh Thakkar <devarsht@ti.com>
+>>
+>> Add DSS, DSI, DPHY, and HDMI bridge nodes to enable DPI-to-HDMI output
+>> on AM62L[1]. The DSS uses parallel DPI interface with pinctrl
+>> configuration to drive an external SiI9022 HDMI bridge.
+>>
+>> DSI and DPHY nodes are added but remain disabled, as the AM62L shares a
+>> single video port for DPI and DSI output.
+>>
+>> DSI functionality can be enabled via overlays when required.
+>>
+>> [1]: https://www.ti.com/product/AM62L
+>>
+>> Signed-off-by: Devarsh Thakkar <devarsht@ti.com>
+>> Signed-off-by: Swamil Jain <s-jain1@ti.com>
+>> ---
+>> Changelog:
+>> v1->v2:
+>> - Update the commit message to elaborate more about the patch.
+>> - Add dpi-pinctrl configuration.
+>> - Update the interrupt routing index for HDMI interrupt line
+>>
+>> Link to v1: https://lore.kernel.org/all/20260513210942.692269-1-s-jain1@ti.com/
+>> ---
+>>   arch/arm64/boot/dts/ti/k3-am62l-main.dtsi | 47 +++++++++++
+>>   arch/arm64/boot/dts/ti/k3-am62l3-evm.dts  | 95 +++++++++++++++++++++++
+>>   2 files changed, 142 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/ti/k3-am62l-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62l-main.dtsi
+>> index 80615ca1e01a..1d255c9138db 100644
+>> --- a/arch/arm64/boot/dts/ti/k3-am62l-main.dtsi
+>> +++ b/arch/arm64/boot/dts/ti/k3-am62l-main.dtsi
+>> @@ -584,4 +584,51 @@ scmi_shmem: sram@0 {
+>>   			bootph-all;
+>>   		};
+>>   	};
+>> +
+>> +	dss: dss@30200000 {
+>> +		compatible = "ti,am62l-dss";
+>> +		reg = <0x00 0x30200000 0x00 0x1000>, /* common */
+>> +		      <0x00 0x30202000 0x00 0x1000>, /* vidl1 */
+>> +		      <0x00 0x30207000 0x00 0x1000>, /* ovr1 */
+>> +		      <0x00 0x3020a000 0x00 0x1000>, /* vp1 */
+>> +		      <0x00 0x30201000 0x00 0x1000>; /* common1 */
+>> +		reg-names = "common", "vidl1", "ovr1", "vp1", "common1";
+>> +		power-domains = <&scmi_pds 39>;
+>> +		clocks = <&scmi_clk 162>,
+>> +			 <&scmi_clk 161>;
+>> +		clock-names = "fck", "vp1";
+>> +		interrupts = <GIC_SPI 60 IRQ_TYPE_LEVEL_HIGH>;
+>> +		status = "disabled";
+>> +
+>> +		dss_ports: ports {
+>> +			#address-cells = <1>;
+>> +			#size-cells = <0>;
+>> +		};
+>> +	};
+>> +
+>> +	dphy_tx0: phy@301c0000 {
+>> +		compatible = "ti,j721e-dphy";
+>> +		reg = <0x0 0x301c0000 0x0 0x1000>;
+>> +		clocks = <&scmi_clk 348>, <&scmi_clk 343>;
+>> +		clock-names = "psm", "pll_ref";
+>> +		#phy-cells = <0>;
+>> +		power-domains = <&scmi_pds 86>;
+>> +		assigned-clocks = <&scmi_clk 343>;
+>> +		assigned-clock-parents = <&scmi_clk 341>;
+>> +		assigned-clock-rates = <25000000>;
+>> +		status = "disabled";
+>> +	};
+>> +
+>> +	dsi0: dsi@30500000 {
+>> +		compatible = "ti,j721e-dsi";
+>> +		reg = <0x0 0x30500000 0x0 0x100000>, <0x0 0x30270000 0x0 0x100>;
+>> +		clocks = <&scmi_clk 155>, <&scmi_clk 158>;
+>> +		clock-names = "dsi_p_clk", "dsi_sys_clk";
+>> +		power-domains = <&scmi_pds 38>;
+>> +		interrupt-parent = <&gic500>;
+>> +		interrupts = <GIC_SPI 57 IRQ_TYPE_LEVEL_HIGH>;
+>> +		phys = <&dphy_tx0>;
+>> +		phy-names = "dphy";
+>> +		status = "disabled";
+> 
+> 
+> I think you should add port information for dsi as well
+> see DSI node in other SOC (J721E, J721S2, J784s4) for reference.
+>
+
+Sure, will add ports info. in the next rev.
+
+Regards,
+Swamil.
 
 
---zmapr4d5j6nd5icv
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Subject: Re: [PATCH v5 3/6] pwm: Add rockchip PWMv4 driver
-MIME-Version: 1.0
+> 
+>> +	};
+>>   };
+>> diff --git a/arch/arm64/boot/dts/ti/k3-am62l3-evm.dts b/arch/arm64/boot/dts/ti/k3-am62l3-evm.dts
+>> index a1af4571a815..9b04fa6d2cba 100644
+>> --- a/arch/arm64/boot/dts/ti/k3-am62l3-evm.dts
+>> +++ b/arch/arm64/boot/dts/ti/k3-am62l3-evm.dts
+>> @@ -119,6 +119,18 @@ vcc_1v8: regulator-3 {
+>>   		regulator-always-on;
+>>   		regulator-boot-on;
+>>   	};
+>> +
+> [..]
 
-Hello Nicolas,
-
-On Mon, Apr 20, 2026 at 03:52:40PM +0200, Nicolas Frattaroli wrote:
-> [...]
-> +/**
-> + * rockchip_pwm_v4_round_single - convert a PWM parameter to hardware
-> + * @rate: clock rate of the PWM clock, as per clk_get_rate
-> + *        Assumed to be <= 1GHz for overflow considerations
-> + * @in_val: parameter in nanoseconds to convert
-> + *
-> + * Returns the rounded value, saturating at U32_MAX if too large
-> + */
-> +static u32 rockchip_pwm_v4_round_single(unsigned long rate, u64 in_val)
-
-very picky: if you name this function rockchip_pwm_v4_ns_to_ticks it
-becomes clearer what the purpose is.
-
-> +{
-> +	u64 tmp;
-> +
-> +	tmp = mul_u64_u64_div_u64(rate, in_val, NSEC_PER_SEC);
-> +	if (tmp > U32_MAX)
-> +		tmp = U32_MAX;
-> +
-> +	return tmp;
-> +}
-> +
-> +/**
-> + * rockchip_pwm_v4_round_params - convert PWM parameters to hardware
-> + * @rate: PWM clock rate to do the calculations at
-> + * @wf: pointer to the generic &struct pwm_waveform input parameters
-> + * @wfhw: pointer to the hardware-specific &struct rockchip_pwm_v4_wf output
-> + *        parameters that the results will be stored in
-> + *
-> + * Convert nanosecond-based duty/period/offset parameters to the PWM hardware's
-> + * native rounded representation in number of cycles at clock rate @rate. Should
-> + * any of the input parameters be out of range for the hardware, the
-> + * corresponding output parameter is the maximum permissible value for said
-> + * parameter with considerations to the others.
-> + */
-> +static void rockchip_pwm_v4_round_params(unsigned long rate,
-> +					 const struct pwm_waveform *wf,
-> +					 struct rockchip_pwm_v4_wf *wfhw)
-> +{
-> +	wfhw->period = rockchip_pwm_v4_round_single(rate, wf->period_length_ns);
-> +
-> +	wfhw->duty = rockchip_pwm_v4_round_single(rate, wf->duty_length_ns);
-> +
-> +	/* As per TRM, PWM_OFFSET: "The value ranges from 0 to (period-duty)" */
-
-Have you tried what happens if you break this rule? That seems like a
-very arbitrary restriction that might just originate from the
-documentation author.
-
-> +	wfhw->offset = rockchip_pwm_v4_round_single(rate, wf->duty_offset_ns);
-> +	if (!wfhw->period) /* Don't underflow when pwm disabled */
-> +		wfhw->offset = 0;
-> +	else if (wfhw->offset > wfhw->period - wfhw->duty)
-> +		wfhw->offset = wfhw->period - wfhw->duty;
-
-You don't enforce wfhw->period >= wfhw->duty, which however seems like a
-reasonable restriction. When knowing that you can drop the explicit
-check for !wfhw->period and just keep the else-if branch.
-
-> +}
-> [...]
-> +static int rockchip_pwm_v4_write_wf(struct pwm_chip *chip, struct pwm_device *pwm,
-> +				    const void *_wfhw)
-> +{
-> +	struct rockchip_pwm_v4 *pc = to_rockchip_pwm_v4(chip);
-> +	const struct rockchip_pwm_v4_wf *wfhw = _wfhw;
-> +	bool was_enabled;
-> +	int ret;
-> +
-> +	ret = mfpwm_acquire(pc->pwmf);
-> +	if (ret)
-> +		return ret;
-> +
-> +	was_enabled = rockchip_pwm_v4_is_enabled(mfpwm_reg_read(pc->pwmf->base,
-> +								PWMV4_REG_ENABLE));
-> +
-> +	/*
-> +	 * "But Nicolas", you ask with valid concerns, "why would you enable the
-> +	 * PWM before setting all the parameter registers?"
-> +	 *
-> +	 * Excellent question, Mr. Reader M. Strawman! The RK3576 TRM Part 1
-> +	 * Section 34.6.3 specifies that this is the intended order of writes.
-> +	 * Doing the PWM_EN and PWM_CLK_EN writes after the params but before
-> +	 * the CTRL_UPDATE_EN, or even after the CTRL_UPDATE_EN, results in
-> +	 * erratic behaviour where repeated turning on and off of the PWM may
-> +	 * not turn it off under all circumstances. This is also why we don't
-> +	 * use relaxed writes; it's not worth the footgun.
-
-I wonder if it's worth however to delay setting PWMV4_CTRL_UPDATE_EN
-until after the clkrate is handled to (maybe) prevent glitches?
-
-> +	 */
-> +	if (wfhw->rate)
-> +		mfpwm_reg_write(pc->pwmf->base, PWMV4_REG_ENABLE,
-> +				FIELD_PREP_WM16(PWMV4_EN_BOTH_MASK,
-> +						PWMV4_EN_BOTH_MASK));
-> +	else
-> +		mfpwm_reg_write(pc->pwmf->base, PWMV4_REG_ENABLE,
-> +				FIELD_PREP_WM16(PWMV4_EN_BOTH_MASK, 0));
-> +
-> +	mfpwm_reg_write(pc->pwmf->base, PWMV4_REG_PERIOD, wfhw->period);
-> +	mfpwm_reg_write(pc->pwmf->base, PWMV4_REG_DUTY, wfhw->duty);
-> +	mfpwm_reg_write(pc->pwmf->base, PWMV4_REG_OFFSET, wfhw->offset);
-> +
-> +	mfpwm_reg_write(pc->pwmf->base, PWMV4_REG_CTRL, PWMV4_CTRL_CONT_FLAGS);
-> +
-> +	/* Commit new configuration to hardware output. */
-> +	mfpwm_reg_write(pc->pwmf->base, PWMV4_REG_ENABLE,
-> +			PWMV4_CTRL_UPDATE_EN);
-> +
-> +	if (wfhw->rate) {
-> +		if (!was_enabled) {
-> +			dev_dbg(&chip->dev, "Enabling PWM output\n");
-> +			ret = clk_enable(pc->pwmf->core);
-> +			if (ret)
-> +				goto err_mfpwm_release;
-> +			ret = clk_set_rate_exclusive(pc->pwmf->core, wfhw->rate);
-> +			if (ret) {
-> +				clk_disable(pc->pwmf->core);
-> +				goto err_mfpwm_release;
-> +			}
-> +
-> +			/*
-> +			 * Output should be on now, acquire device to guarantee
-> +			 * exclusion with other device functions while it's on.
-> +			 *
-> +			 * It's highly unlikely that this fails, as mfpwm has
-> +			 * already been acquired before, and this is just a
-> +			 * usage counter increase. Not worth the added
-> +			 * complexity of clearing the PWMV4_REG_ENABLE again,
-> +			 * especially considering the CTRL_UPDATE_EN behaviour.
-> +			 */
-> +			ret = mfpwm_acquire(pc->pwmf);
-> +			if (ret) {
-> +				clk_rate_exclusive_put(pc->pwmf->core);
-> +				clk_disable(pc->pwmf->core);
-> +				goto err_mfpwm_release;
-> +			}
-> +		}
-
-Can it happen that we have
-
-	wfhw->rate && was_enabled && wfhw->rate != clk_get_rate()
-
-?
-
-> +	} else if (was_enabled) {
-> +		dev_dbg(&chip->dev, "Disabling PWM output\n");
-> +		clk_rate_exclusive_put(pc->pwmf->core);
-> +		clk_disable(pc->pwmf->core);
-> +		/* Output is off now, extra release to balance extra acquire */
-> +		mfpwm_release(pc->pwmf);
-> +	}
-> +
-> +err_mfpwm_release:
-> +	mfpwm_release(pc->pwmf);
-> +
-> +	return ret;
-> +}
-> [...]
-> +static int rockchip_pwm_v4_probe(struct platform_device *pdev)
-> +{
-> +	struct rockchip_mfpwm_func *pwmf = dev_get_platdata(&pdev->dev);
-> +	struct rockchip_pwm_v4 *pc;
-> +	struct pwm_chip *chip;
-> +	struct device *dev = &pdev->dev;
-> +	int ret;
-> +
-> +	/*
-> +	 * For referencing the PWM in the DT to work, we need the parent MFD
-> +	 * device's OF node.
-> +	 */
-> +	dev->of_node_reused = true;
-> +	device_set_node(dev, of_fwnode_handle(dev->parent->of_node));
-> +
-> +	chip = devm_pwmchip_alloc(dev, 1, sizeof(*pc));
-> +	if (IS_ERR(chip))
-> +		return PTR_ERR(chip);
-> +
-> +	pc = to_rockchip_pwm_v4(chip);
-> +	pc->pwmf = pwmf;
-> +
-> +	ret = mfpwm_acquire(pwmf);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "Couldn't acquire mfpwm in probe\n");
-> +
-> +	if (!rockchip_pwm_v4_on_and_continuous(pc))
-> +		mfpwm_release(pwmf);
-> +	else {
-> +		dev_dbg(dev, "PWM was already on at probe time\n");
-> +		ret = clk_enable(pwmf->core);
-> +		if (ret) {
-> +			dev_err_probe(dev, ret, "Enabling pwm clock failed\n");
-> +			goto err_mfpwm_release;
-> +		}
-> +		ret = clk_rate_exclusive_get(pc->pwmf->core);
-> +		if (ret) {
-> +			dev_err_probe(dev, ret, "Protecting pwm clock failed\n");
-> +			goto err_clk_disable;
-> +		}
-> +	}
-> +
-> +	platform_set_drvdata(pdev, chip);
-
-This is unused.
-
-> +
-> +	chip->ops = &rockchip_pwm_v4_ops;
-> +
-> +	ret = devm_pwmchip_add(dev, chip);
-> +	if (ret) {
-> +		dev_err_probe(dev, ret, "Failed to add PWM chip\n");
-> +		if (rockchip_pwm_v4_on_and_continuous(pc))
-> +			goto err_rate_put;
-> +
-> +		return ret;
-> +	}
-> +
-> +	return 0;
-> +
-> +err_rate_put:
-> +	clk_rate_exclusive_put(pwmf->core);
-> +err_clk_disable:
-> +	clk_disable(pwmf->core);
-> +err_mfpwm_release:
-> +	mfpwm_release(pwmf);
-> +
-> +	return ret;
-> +}
-
-Best regards
-Uwe
-
---zmapr4d5j6nd5icv
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmpQ0VMACgkQj4D7WH0S
-/k69Qwf6AyqNQlbHdAGwyu6A+raBNgAyVC7XDQIzx5BWj1Cd8NCNT88Bij7SPu2Z
-nOf7fFzlSl4mnbEW76bJxTM4/eowUyhnsL5Ml4Vqdu2qmUeuCeDsFfFiOvbSbERk
-O1fFf+xb8aVtNPwSmDBa+E4FW23I7n6+odYUZ2ooWBaARv0r6HF5f2CazdfVP5qL
-eDSV1+ezGU3h90Ocs4uYBZtkhlBMO4Ucz4ypbk5/DWkhH+Pp25GLZkdzkrPyfuOO
-ulkdT76++QD3uu+AelwsF23yW8KH3NMWkomaed/N+iWFC4R4RJqLbSWcxSJxfPl9
-twerZ2j85gHUQGzI8QOIgsxIhfzq+Q==
-=WOc0
------END PGP SIGNATURE-----
-
---zmapr4d5j6nd5icv--
 
