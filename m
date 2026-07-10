@@ -1,269 +1,346 @@
-Return-Path: <devicetree+bounces-324277-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-324279-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id g4ouO8CtUGpb3QIAu9opvQ
-	(envelope-from <devicetree+bounces-324277-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 10:30:56 +0200
+	id Eo/7LeyuUGqc3QIAu9opvQ
+	(envelope-from <devicetree+bounces-324279-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 10:35:56 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88EE57387EF
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 10:30:56 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 06A0D73889F
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 10:35:56 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=mt.com header.s=selector2 header.b=prBqacXb;
-	dmarc=pass (policy=reject) header.from=mt.com;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324277-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-324277-lists+devicetree=lfdr.de@vger.kernel.org";
-	arc=reject ("cv is fail on i=2")
+	dkim=pass header.d=chromium.org header.s=google header.b=DG5NuFOx;
+	dmarc=pass (policy=none) header.from=chromium.org;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324279-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-324279-lists+devicetree=lfdr.de@vger.kernel.org";
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id D0DDB306A38F
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 08:27:01 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 4A5EF30454BA
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 08:29:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 819343F0A9F;
-	Fri, 10 Jul 2026 08:26:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C27A73E0255;
+	Fri, 10 Jul 2026 08:29:20 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from MRWPR03CU001.outbound.protection.outlook.com (mail-francesouthazon11011046.outbound.protection.outlook.com [40.107.130.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yx1-f44.google.com (mail-yx1-f44.google.com [74.125.224.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C95D53F0A81;
-	Fri, 10 Jul 2026 08:26:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 732D33E274C
+	for <devicetree@vger.kernel.org>; Fri, 10 Jul 2026 08:29:18 +0000 (UTC)
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783672015; cv=fail; b=muwT2LR5Oy9vaIEZsxtKjK61yN7tNCiKgF5ZqZnHrnBI+SjEH7NWfUgFrkqHxSmHC1lp/DysMI8EWgWVC2wu2N94tlaf0DAXFP58OSIZd8s49pBGWs4HtKNeTLBfRJNyNW59kwj2iWkWriWHIxcVtK63bRK3uOeWEFR4ZAkqbWU=
+	t=1783672160; cv=pass; b=S/uCN4aiSTTaHJIuC9zQTr+h3h04uRCJey9HLVlVBuIjfDua1eAWpthaBwwmXvcIL8H7pbgIsjpEJYI7/RyepH6bmbbC4ClsqN0LhLOOawMjdVTXo6OC2KriE6c32Y4dt3sdLYTy2yH3mBj3XzGkuA4eE6/I1ThNpZE6pyZnubY=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783672015; c=relaxed/simple;
-	bh=Pt6mYqy0jhbwDVJNq2P+2UJRJF21Ka4anz3cHsVtBiA=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=Y8Wm75qAXN1HD3CI/xP7nOBqVKsI9et/l/roYZ2uMsRSSRol0PtBKkcxvehlF7AvM48p1ydvJmu/xDIbEjNG2z+qG0KJQKEUbiu5YvWxC/Ta/sDIBNLdy7LQL1saSmwOQSeu9ZOE+/SzgDuQRLtI65NDc9BCrybEnj+PBhmKH4Q=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mt.com; spf=fail smtp.mailfrom=mt.com; dkim=pass (2048-bit key) header.d=mt.com header.i=@mt.com header.b=prBqacXb; arc=fail smtp.client-ip=40.107.130.46
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=XnqHzgs5M3oeOGwzGmUFkxSkdJJnc3MYr4mgCIZtW7e2lhMwGPhenZTacYX5G+DqOLi0z1G7Q0II/X2NpEJI42d7qDD8+zpvO6pQCirLDnw1fQ1CbGQou1DPjPcvoVj7gb+35Zk4PakkGNb29xx1mAnxaDo5nBhCYpT5RwBvio7fc0JiMm4yAkOmlZNgff695eK7f3gOQE7QfkRTHJGWdr7A/QqZ4g6VjMvBGDbboX3aov9xdxd4QPtG1mRNyt0kXCv9WWcAfyvGtwdsAxnDQRGtmRk46XJSw9F0eMU9UZhVPdqJN+KKEqssOX+ADkd0CkZvxblc1L/VFB8tgV+P8w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=oXCZexwMMh6Ir/LSRmykd59PQpEf3pr9BCcsxsbQyQw=;
- b=H0CNzpGTen9G7Vob4ODbBMhFAAoZM+Gvujv88IKZsEocbwoYEEGK0+Dzh/tkYCT/ZTAu/49Q65UC8wp8/tBCzwik9Ls/7L+bxa1L8gq4Nk4odo0hfo0e3GnxukpLf1YxnqA0nrRYGddKt1w3j1eMJkRxOtvUw9azpo4S49AlW9tOohRrAvHxuxCMmzbMljJ9+HXOWQKRYShW+NAYEPzL1TKZSTQI+fZxmXxKHS3XvCMkOCQqrIb6qWvltYpuKiF9gH7qDlQl6bj6o/Cn431hqOgmuu67dEG+S5FpbxKnfgg08kFexAuck7sedpeWAx1UmuAzOlVLSrwCHNJhn0jg4w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=mt.com; dmarc=pass action=none header.from=mt.com; dkim=pass
- header.d=mt.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mt.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=oXCZexwMMh6Ir/LSRmykd59PQpEf3pr9BCcsxsbQyQw=;
- b=prBqacXbQpuFdjT1h4VCPhHr117D8rINRdiLsqsJGlVDENM+rAPZf5TxQLE/rNr8dgF+gG2KbkYY21FWDpinIWjQapcpYhOX8SPuveTiMY80K0ND6kNr/0KQiI7rmrPa4jLJ82GEASBLd2eCtB0CWepMWYuSztUsMbOPfzrZ4It/DUvYva8PiOV/nevyOT3ynYdcYY54qJ5y6qo277StwLdjCTvpFMsryv+G/6qBXG5/ObLQffzjjORfCttYdnvftgFpaKC81+1pM8yhjb6hcW1bTjuaR5l2BoPLDT2rW4e+4P/UFy557X3WO2FRJMRbsYhZdWAmEhHN+n4useWK4A==
-Received: from DB9PR03MB7180.eurprd03.prod.outlook.com (2603:10a6:10:22d::13)
- by DU0PR03MB9731.eurprd03.prod.outlook.com (2603:10a6:10:44d::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.15; Fri, 10 Jul
- 2026 08:26:45 +0000
-Received: from DB9PR03MB7180.eurprd03.prod.outlook.com
- ([fe80::6fd2:12a9:4423:8ddc]) by DB9PR03MB7180.eurprd03.prod.outlook.com
- ([fe80::6fd2:12a9:4423:8ddc%6]) with mapi id 15.21.0181.016; Fri, 10 Jul 2026
- 08:26:45 +0000
-From: Wojciech Dubowik <wojciech.dubowik@mt.com>
-To: linux-kernel@vger.kernel.org
-Cc: Wojciech Dubowik <Wojciech.Dubowik@mt.com>,
-	Andrzej Hajda <andrzej.hajda@intel.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Robert Foss <rfoss@kernel.org>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>,
-	Simona Vetter <simona@ffwll.ch>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Frank Li <Frank.Li@nxp.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Marek Vasut <marex@denx.de>,
-	dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v3 2/2] dt-bindings: display: sn65dsi83: Add output data-lanes
-Date: Fri, 10 Jul 2026 10:26:29 +0200
-Message-ID: <20260710082630.394040-4-wojciech.dubowik@mt.com>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20260710082630.394040-1-wojciech.dubowik@mt.com>
-References: <20260710082630.394040-1-wojciech.dubowik@mt.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: ZR0P278CA0028.CHEP278.PROD.OUTLOOK.COM
- (2603:10a6:910:1c::15) To DB9PR03MB7180.eurprd03.prod.outlook.com
- (2603:10a6:10:22d::13)
+	s=arc-20240116; t=1783672160; c=relaxed/simple;
+	bh=p0/dPgVbPuapVdCqzOBsxdrszU2WBAq4JUc01Bho6Ys=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=uKRyOcaacMxd2+JnWOkBqLBXlt+XOt6w9sDlMhTH8SjkNtwCPYBh9lj+ak/VFkW+3GxDR5x+tHHlb5yw+PExOeqza0jydFLD6Q2553wZU+wmrxXgoq0kHDyzaWBeEZG4wK2pgS2Zy7S064Qmt5JSyukEVRWQf6vhB6LY1EMg1ks=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=DG5NuFOx; arc=pass smtp.client-ip=74.125.224.44
+Received: by mail-yx1-f44.google.com with SMTP id 956f58d0204a3-6676fc59e59so936643d50.2
+        for <devicetree@vger.kernel.org>; Fri, 10 Jul 2026 01:29:18 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1783672157; cv=none;
+        d=google.com; s=arc-20260327;
+        b=Aq90e0zRh0Y4eE24mYUkoreAWXRC//72sTos0Ajo1UJnfmq9bxgkEIsg29XA0VnUgd
+         8egDZde2kB8GUPjCEq8f8tdEtr8pKDFPwFt4LEDxs9EDQjJz71mgOd/tSLaidFGlwj7E
+         ThdVdsEu41Qiecq72SNIafQQTOAFYHIjVWjYoJfeml5T5fL7rGbaKi+XEBfSPcILkC8+
+         cGRPra3thq6CtWuOfVcoIS9xii/xFGya+LAfuzQuN+9+5LuvwyB8cVL4eIAQSwDAgPTI
+         jJbFdO8p8PbOhXUPvSDia1RiVK0IZcCDHdLR36RetXx2HhdcA3PH73ie5/Cz91ci9Xd6
+         Jt8w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=Yg3WIUMjqkv5biKdZK6h43CMAQuq2sky4pwK8+fCYuk=;
+        fh=noB+HTn8YIA8Ex7Zfd5qogjOrBj66hvgaLKtfXEB7Qk=;
+        b=irPiV1tNMJOOS1ea58TgYoi65qa9xoNjsEyVt44uRLilXV1vmN/BS15oGDy0QiXYwZ
+         tDuOz3QQUYTx1zRhNpGdxfi8xSvE4fCHho/7Aq79ZT2SRqqH0KdkrCBQRpq9bRSOAU50
+         t/NhdJBHAgNNv4bTMhiR61aEuToAbYENyUcfyXr2oaO0cwNt68dRTRGpS+6ELOSdIsXQ
+         r5Yp0VyeLvgqoOpvFVH6xI6d/e3j2En6KcFhsv7JAggSq2dXdOjVuMHpZ/KQXX0BopDT
+         x0v0osgKFNfgIIu9t92rF14LtvDiliKGv51cjIv4Ni80VzwmzO8IXZ0PnGgZRNBJnKsY
+         Vlvg==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1783672157; x=1784276957; darn=vger.kernel.org;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=Yg3WIUMjqkv5biKdZK6h43CMAQuq2sky4pwK8+fCYuk=;
+        b=DG5NuFOxH0D8+moeU0jCbuvptoyhgKE2aUoGgv3JFafCTDg/V9SBwliFjvsfs3ZDpc
+         b6OgsZekkjNdtrbQZYh/rTvz0t1AJj6oL5M7S6BbHDZXlB63NFRRzFwICX5aNLn++IiK
+         5egf1r9kPNDAVhWwzguFZ7DV8Oll2xvs8Pkh8=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1783672157; x=1784276957;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=Yg3WIUMjqkv5biKdZK6h43CMAQuq2sky4pwK8+fCYuk=;
+        b=hKZKi3Gdtov0gja/Avtn6cg68+2XS7XY3r2/D6qLqSpDxeKSV7OrSmQ14fACgn7nkw
+         Pa1mFruiMWw9BscFtj+/wwo5IZbwahU7P+CoGwExxfBKGKc67EbB058Ek1SjjJyPPYME
+         HbgIaUT5f04Fw2KfYi+tP0SJgZfnLGT1klnTtI7MG92FUm2Q/jNLBZc6+pRmvxZ6cvJJ
+         EPw9Q43N51t4P/MATOsUfG2VkHgkIUMq9rizPke4GHH9o5VAFoWr0IZnMQwaDeWoO0tA
+         TEfBsOtyRBJq3FXNgJuvl1Jn58WHijpOYGnqxFx6J+UncsQBD298Y9jcBidjtbDOsVPH
+         XmjA==
+X-Forwarded-Encrypted: i=1; AHgh+RoG4xHmROyuO4gn1MFbmQt0TOyxrrvaMsFqigAfXC9xZkTiQndxeON6Icxejbenoq4EGpOVNUb0jJvX@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw3xqt+Z2oSk62UGxT1+Ft3DeUMlyrxgHS2p+PWTZuh+4Zoevtl
+	GtUgIsUtn3T4CEYWPbrdce3NRKktAa6lI2wrTh0jo3UILSsxdf4EhwFW768zq3PY+9UD/AoZN5c
+	pGpNLwJfHhHck6c58NzTrlsKQuGsp8gKPcHvSHX+L
+X-Gm-Gg: AfdE7cnbRRANxnbFjKdT7w6UkxeWlgzTHWf776PVQmxO2bs3LEhbvjZLz1J+sN1UP2M
+	ZTJcgChf2nlBa54U9OnOl5VmX25zkLgelF7mBPNemCztTO7zYlRw9guWM7XbA2BmWxa6VUHFswO
+	s4TLuEzf1GpmU4gl/MoFcZzZt9HSMdzFIgUVU7kU9iLmXqSzRzugotfpcimdiLcxduwukjSQJiT
+	3LHm9qMKtavpkHbr80S+hsRQHNzb+g8so5Vc1sVaW8C3NogdZUuyEGTRFYtktl9z44lKdaq/Qo=
+X-Received: by 2002:a05:690e:d44:b0:667:8a32:fae1 with SMTP id
+ 956f58d0204a3-6679f0a52dcmr6501916d50.41.1783672157223; Fri, 10 Jul 2026
+ 01:29:17 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DB9PR03MB7180:EE_|DU0PR03MB9731:EE_
-X-MS-Office365-Filtering-Correlation-Id: f680c878-6d98-4386-f8c0-08dede5cfaa6
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|366016|23010399003|376014|7416014|19092799006|1800799024|56012099006|3023799007|18002099003|22082099003;
-X-Microsoft-Antispam-Message-Info:
-	sZ0GWgBQ9f4sp7PJ8rp3bWy3xqygi7SbLd04t/uOjBpPZSefCO/gxkaV8i2tPHcAe+DsSeuEhnwY1dus8+7WZi+5KC3M82B6XZE7nf4fwKVQQZNOH3juT14WZzDvfp/HYW43riFdLvZ55EMvvGkIBKCIAO+zjAcIAHp3QMjtC0aNKXgx/9Opr+j3H+TcROW1uJJXHJiknfyVSPdGUsbEsnpRT6hJubtTobAew/RQY7n+QTz5rB/WvFRVAu67wPP+A7O3GOUw5dr76BIY+EhrDks0x/rUXEez0spccwmZ7vGEW2DWIfx4Ln2nZKait5wSaOrKIBbrWVVCsA+EfHNs/S3mFVBckIruTmJ7TTu2jWxy/1xroRJkQRma2lg9PatBGtbpHZ+aMu26qEkNWzOK3Ur+PlniBzWktUGBBS+FuCG0XcWYVeFIOf+lcmoIlvYJ8Hpsqf0mimC4Wtl6Pw2XtQTsxJ/LIJAJTq08GuNOEEo5h1XHNdthnMjntAe15HK2r/0Unjuye4BRmiFrapJ6sF53dYiEjeIPVtuOm3vKVckt07e+hgCN0esf/L9opFAfMW8czMdUHOxp8mzBTgQI5L7T3v6WlWA0BKRF1nNpkvjkrJjrIjdtcaBuJ1W5UqsiO8EV4oaQyDsiage24u+hRSlDoDMHT912WE5Q/g+cxRc=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB9PR03MB7180.eurprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(23010399003)(376014)(7416014)(19092799006)(1800799024)(56012099006)(3023799007)(18002099003)(22082099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?nyLm56JHVZEceuZ61Pcm8kdbgCMcIJiT3LDFnTYJ7+9qtIOddLU94Umvy3qW?=
- =?us-ascii?Q?TSQ/zUHxEB9JuBjUU4PE7g7vAEdlVu7iHFfH4I5tNTwzZr0jZjcHCZ1c02PB?=
- =?us-ascii?Q?OsBeFR+CORwqVtVpAULxYU8mmSmbH6ENb1hfe/2DGUbPAkUpQgLxWO43qrpq?=
- =?us-ascii?Q?eC+F2ha/ZMjuAmdB92eDnB+MjesWdk2omKMD4yNDv5DGIsg5ANU9XTqNHipg?=
- =?us-ascii?Q?tqfWLANufnMpCI/lEyYg/Yj67A6nD3gNQLkU4ZJeCdJjRKwxamJGiENwxpnn?=
- =?us-ascii?Q?1heKZqA8d9C4Pg47ZkGhoMetFm01se6FHFIs9bN1gb5Heou+vxUI35O5uGIW?=
- =?us-ascii?Q?24lp5XKczceqAP4GEBBKX2MDmTOxHFaDH+pmg/1396Qu7uG4VHXgx6EzbkP2?=
- =?us-ascii?Q?HPCfC9cJ8GGleFXoDpZK+J7bQ7jIzc8tGa6jdlWLf9pvzKhxU9waixH+yHIN?=
- =?us-ascii?Q?5FgwaBAfkldc9f+Rp3DGDqk5QMGETXMLdzM75/QnI2khqY10niydTCdeYee/?=
- =?us-ascii?Q?cpbI5NksotsqV5ZsH7/DuQOnkDupo3JP2MvB3ApLa4uESNxNeMChQ+9t0ggZ?=
- =?us-ascii?Q?+ZRsZHgh/MC1YIDjnmVC/vRMZoLE17D586UYiQNJpk+RJ4DOlTUKYNYTI7yQ?=
- =?us-ascii?Q?Euvjm6axjjrm53N8k/uOr28NZhVj7hZYY6r8DgHohYYXkJdlHUVamkkb6DvR?=
- =?us-ascii?Q?3jzuNmS29SDxO9ho5YG8l9UE81aaaZ6ixnWM0bpnW+CqGXHbrbijlGBJzyYT?=
- =?us-ascii?Q?aTNGcDQleDJqF6xwMfSPRMxEMbIhYDeOQN07FQsDIBPqPsFGv0yQQBuFNDLF?=
- =?us-ascii?Q?oZS7JW38Bs2Hya2xj5RVscBZ1kQgUHW0BbBxOSWu2/ZET9Pp37RBtIyubt3i?=
- =?us-ascii?Q?RwB2u8mZ/zWnEtQW+et+ESLMGFWDpmc+XR7bRO3fkPUHl9r/7jzgWyhxGMUF?=
- =?us-ascii?Q?6n7bfABfwK57o2SWt46v9EHlbEgr8ugwsTneKsl9OtRqor2Rd2a9sgIts5Xk?=
- =?us-ascii?Q?308R4ygNJzp81gMqq1nmF6tEMb3FmguHwYxZDbyEYieFQK+B5RDOscVj8NoK?=
- =?us-ascii?Q?X4j1czeFXbr6dHpLEMhhorOurBKiNS4ifTSu5sslcSDW1rxuljdEuYZW9N9P?=
- =?us-ascii?Q?CphdiMkae3ZRvS3uZ4qgpGc6HCCKBIb2SkaPWMsDpSS5CFdS6GtpElLQEwNK?=
- =?us-ascii?Q?VW32U6TDm5srrF3z1cv9E0xoQ7CBidXURlo6TyiwOg4imAEa7ZDwMistM6lT?=
- =?us-ascii?Q?aPqS02sWTC2/dpVb+zj3i7nhkSHY82D8WsMkErsSFYZw9Mqc5v/JSqIclM6E?=
- =?us-ascii?Q?KrKWHDHLEdJVH9S2YAo4cyBCoQhF/YjosCjo1e3J+zUFXJc8jgoPVTs7gOP4?=
- =?us-ascii?Q?tfFeDJEvbpPiSpHQcrh+yZqW3tbjmnrvRL8AKxdgXUYdCoXR2LTWawTJxZuK?=
- =?us-ascii?Q?pMo79ajxD7Fp4hPBVkHVs0EgBioBmCM57xlpgpzpOQbQVjgV6DUz2xE+JQVe?=
- =?us-ascii?Q?+r4WQIoeYxtv0+ZYKrLjDmaCb0WcZa9QiKfVVv91HY2DRcCzFT/s8mJItve4?=
- =?us-ascii?Q?5ljVcjJwh4DNFDwgriC1X9JIO1H7EvbSPKfSIi+O7TaYNa3nBeHdKaBI2bKO?=
- =?us-ascii?Q?TFpQRNdtBruEzfQOSXkcxHLBpPbEhFnPZ1KB/fCDbz9mJ0082+uE250biMgf?=
- =?us-ascii?Q?0a6TOuRWkCbLGAWMA+c84KIKzxw0MfHJ4ZL10gikByDle5N8xx0BweE4PQax?=
- =?us-ascii?Q?bVPkYUjn3w=3D=3D?=
-X-OriginatorOrg: mt.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f680c878-6d98-4386-f8c0-08dede5cfaa6
-X-MS-Exchange-CrossTenant-AuthSource: DB9PR03MB7180.eurprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jul 2026 08:26:45.7630
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: fb4c0aee-6cd2-482f-a1a5-717e7c02496b
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: z9ZjsTQsH3uPg8h0rEtCnBRQycg59aDXxWA+3wCwdzc4JBX8dyG2x8u+o6E8s4DfSAZD6pN58GQudQVaJxS8BQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU0PR03MB9731
+References: <20260709081928.612294-1-wenst@chromium.org> <20260709083024.330381F000E9@smtp.kernel.org>
+ <CAGXv+5HO5eWaJ-AhH9JG=aZ9f_se8L8Ebz-NRHfKMsNXvGnQTg@mail.gmail.com> <be903cb1-8184-4112-9672-ea262716e5b9@collabora.com>
+In-Reply-To: <be903cb1-8184-4112-9672-ea262716e5b9@collabora.com>
+From: Chen-Yu Tsai <wenst@chromium.org>
+Date: Fri, 10 Jul 2026 16:29:06 +0800
+X-Gm-Features: AVVi8CckLfX-jPmLiB6-FBxM08KapSlFQ-lWffFShhwa4hHsSl2udMCCyyq6MUY
+Message-ID: <CAGXv+5Ey+hvVZP-wu3-5oSwXQ9Rdxr8kf9BuiA-Qr3_px7uPGg@mail.gmail.com>
+Subject: Re: [PATCH v2] arm64: dts: mediatek: mt8188-geralt: Add MT6319 PMIC
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+	Mark Brown <broonie@kernel.org>
+Cc: sashiko-reviews@lists.linux.dev, devicetree@vger.kernel.org, 
+	conor+dt@kernel.org, robh@kernel.org, 
+	"moderated list:ARM/Mediatek SoC support" <linux-mediatek@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [2.84 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[mt.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[mt.com:s=selector2];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[chromium.org,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[chromium.org:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[26];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:linux-kernel@vger.kernel.org,m:Wojciech.Dubowik@mt.com,m:andrzej.hajda@intel.com,m:neil.armstrong@linaro.org,m:rfoss@kernel.org,m:Laurent.pinchart@ideasonboard.com,m:jonas@kwiboo.se,m:jernej.skrabec@gmail.com,m:luca.ceresoli@bootlin.com,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:Frank.Li@nxp.com,m:s.hauer@pengutronix.de,m:kernel@pengutronix.de,m:festevam@gmail.com,m:marex@denx.de,m:dri-devel@lists.freedesktop.org,m:devicetree@vger.kernel.org,m:imx@lists.linux.dev,m:linux-arm-kernel@lists.infradead.org,m:jernejskrabec@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-324277-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-324279-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER(0.00)[wenst@chromium.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS(0.00)[m:angelogioacchino.delregno@collabora.com,m:broonie@kernel.org,m:sashiko-reviews@lists.linux.dev,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:robh@kernel.org,m:linux-mediatek@lists.infradead.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORWARDED(0.00)[lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[wojciech.dubowik@mt.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[mt.com,intel.com,linaro.org,kernel.org,ideasonboard.com,kwiboo.se,gmail.com,bootlin.com,linux.intel.com,suse.de,ffwll.ch,nxp.com,pengutronix.de,denx.de,lists.freedesktop.org,vger.kernel.org,lists.linux.dev,lists.infradead.org];
-	DKIM_TRACE(0.00)[mt.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[wojciech.dubowik@mt.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[wenst@chromium.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[chromium.org:+];
+	RCPT_COUNT_SEVEN(0.00)[7];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,vger.kernel.org:from_smtp,mt.com:from_mime,mt.com:email,mt.com:mid,mt.com:dkim]
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp,sashiko.dev:url,mail.gmail.com:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 88EE57387EF
+X-Rspamd-Queue-Id: 06A0D73889F
 
-From: Wojciech Dubowik <Wojciech.Dubowik@mt.com>
+On Thu, Jul 9, 2026 at 6:52=E2=80=AFPM AngeloGioacchino Del Regno
+<angelogioacchino.delregno@collabora.com> wrote:
+>
+> On 7/9/26 11:27, Chen-Yu Tsai wrote:
+> > On Thu, Jul 9, 2026 at 4:30=E2=80=AFPM <sashiko-bot@kernel.org> wrote:
+> >>
+> >> Thank you for your contribution! Sashiko AI review found 2 potential i=
+ssue(s) to consider:
+> >> - [High] The MT6319 PMIC fallback compatible triggers incorrect MT6315=
+_PP mode ganging in the regulator driver, causing silent cross-talk between=
+ the CPU and EMI VDDQ regulators.
+> >> - [Low] Grammatical error in the comment explaining the firmware worka=
+round.
+> >> --
+> >>
+> >> --- Patch [1]: [PATCH v2] arm64: dts: mediatek: mt8188-geralt: Add MT6=
+319 PMIC ---
+> >> commit 0ff94c6622559a57199ed1f2d1f4063c6c911df1
+> >> Author: Chen-Yu Tsai <wenst@chromium.org>
+> >>
+> >> arm64: dts: mediatek: mt8188-geralt: Add MT6319 PMIC
+> >>
+> >> The Geralt design uses a MT6319 PMIC to power the big cores and LPDDR4=
+X
+> >> DRAM.
+> >>
+> >>> diff --git a/arch/arm64/boot/dts/mediatek/mt8188-geralt.dtsi b/arch/a=
+rm64/boot/dts/mediatek/mt8188-geralt.dtsi
+> >>> index 8e423504ec052..af05315092f53 100644
+> >>> --- a/arch/arm64/boot/dts/mediatek/mt8188-geralt.dtsi
+> >>> +++ b/arch/arm64/boot/dts/mediatek/mt8188-geralt.dtsi
+> >> [ ... ]
+> >>> @@ -1225,6 +1235,70 @@ &spi2 {
+> >>>        status =3D "okay";
+> >>>   };
+> >>>
+> >>> +&spmi {
+> >>> +     pinctrl-names =3D "default";
+> >>> +     pinctrl-0 =3D <&spmi_pins>;
+> >>> +     #address-cells =3D <2>;
+> >>> +     #size-cells =3D <0>;
+> >>> +     status =3D "okay";
+> >>> +
+> >>> +     pmic@6 {
+> >>> +             compatible =3D "mediatek,mt6319-regulator", "mediatek,m=
+t6315-regulator";
+> >>> +             reg =3D <0x6 SPMI_USID>;
+> >>
+> >> [Severity: High]
+> >> Does this fallback compatible trigger incorrect mode ganging?
+> >>
+> >> The mt6315-regulator driver maps USID 6 to the MT6315_PP variant, whic=
+h
+> >> hardcodes mode ganging for vbuck1, vbuck2, and vbuck4. On the MT8188
+> >> Geralt's MT6319, vbuck4 is wired as an independent regulator for
+> >> pp0600_emi_vddq.
+> >>
+> >> If a mode change happens on vbuck1 (which is allowed by the
+> >> regulator-allowed-modes property), the driver will apply the ganged
+> >> mask and silently overwrite vbuck4's mode bits in the PMIC, potentiall=
+y
+> >> forcing the RAM supply into an unexpected mode.
+> >>
+> >> Could this silent cross-talk between the CPU and EMI VDDQ regulators
+> >> lead to memory voltage instability?
+> >
+> > This discrepency is actually bigger than Sashiko mentions. The ganging
+> > supported by the driver only applies to the PMICs in the Asuarada desig=
+n:
+> >
+> >    - SPMI ID 6 has 1+2 (GPU); 3 and 4 are unused
+> >    - SPMI ID 7 has 1+2+4 (big cores) and 3 (little cores)
+> >
+> > On the Cherry design we have:
+> >
+> >    - SPMI ID 6 has 1+2 (GPU); 3 and 4 are unused
+> >    - SPMI ID 7 has 1+2+3+4 (big cores)
+> >
+> > On the Corsola designs with beefier chips:
+> >
+> >    - SPMI ID 6 has 1+2 (big cores); 3 and 4 are unused
+> >
+> > On the Geralt design (this one):
+> >
+> >    - SPMI ID 7 has 1+2 (big cores); 3 (DRAM); 4 (DRAM)
+> >
+> > Any ideas on what to do about this mess?
+>
+> wenst, I think that the only way to fix that properly is to add generic s=
+upport
+> for buck phases ganging in the regulator API... because AFAIK there's not=
+hing
+> right now.
+>
+>  From what I remember from last time I looked, MediaTek PMICs wouldn't be=
+ the
+> only ones, there's something else that also has ganged bucks, and again i=
+f I
+> remember correctly, I remember seeing one platform data struct for each o=
+f the
+> ganging combinations in that driver.
 
-Add an optional output lvds data lanes property with
-two allowed values. The array <1 2 3 4> for standard
-layout and <4 3 2 1> for reversed lvds output lanes.
-The latter informs the driver that reverse lvds config
-option has to be set in config register for the respective
-output channel.
+Grepping through the kernel tree, I see LP8755 and TPS6594 having multiphas=
+e
+settings. Not sure which one you saw. Also, some of the X-powers PMICs used
+with Allwinner Socs also support multiphase. For these we currently just
+read out the multi-phase setting from the PMIC and don't register the
+regulators for the secondary phases; however it seems with some recent
+project, we actually need to program the ganging from the kernel [1].
 
-Signed-off-by: Wojciech Dubowik <Wojciech.Dubowik@mt.com>
----
- .../bindings/display/bridge/ti,sn65dsi83.yaml | 42 +++++++++++++++++++
- 1 file changed, 42 insertions(+)
+> So.. especially because MTK wouldn't be the first, I think the addition o=
+f some
+> kind of generic properties (and callbacks) for this kind of configuration=
+ in
+> the API would be both profitable and welcome.
+>
+> Mark, any considerations?
 
-diff --git a/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
-index e69b6343a8eb..4431f113bb9c 100644
---- a/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
-+++ b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
-@@ -86,10 +86,52 @@ properties:
-         description: Video port for LVDS Channel-A output (panel or bridge).
-         $ref: '#/$defs/lvds-port'
- 
-+        properties:
-+          data-lanes:
-+            $ref: /schemas/types.yaml#/definitions/uint32-array
-+            description: |
-+              Array of physical LVDS data lane indexes
-+            oneOf:
-+              - items:
-+                  - const: 1
-+                  - const: 2
-+                  - const: 3
-+                  - const: 4
-+                description: |
-+                  This is the default layout
-+              - items:
-+                  - const: 4
-+                  - const: 3
-+                  - const: 2
-+                  - const: 1
-+                description: |
-+                  This is the reversed layout
-+
-       port@3:
-         description: Video port for LVDS Channel-B output (panel or bridge).
-         $ref: '#/$defs/lvds-port'
- 
-+        properties:
-+          data-lanes:
-+            $ref: /schemas/types.yaml#/definitions/uint32-array
-+            description: |
-+              Array of physical LVDS data lane indexes
-+            oneOf:
-+              - items:
-+                  - const: 1
-+                  - const: 2
-+                  - const: 3
-+                  - const: 4
-+                description: |
-+                  This is the default layout
-+              - items:
-+                  - const: 4
-+                  - const: 3
-+                  - const: 2
-+                  - const: 1
-+                description: |
-+                  This is the reversed layout
-+
-     required:
-       - port@0
-       - port@2
--- 
-2.47.3
+Quoting Mark's response:
 
+> > Unlike separate regulators that are ganged together, in the AXP PMICs i=
+t
+> > seems that when buck outputs are ganged, only the controls for the firs=
+t
+> > output have any actual effect. In such cases I don't know if we should
+> > just ignore / leave out the secondary outputs from both the description
+> > and the runtime state.
+>
+> This is very common, I would expect any regulators that are ganged
+> together into a single regulator like this to simply not appear in the
+> DT.
+
+So if specifying polyphase settings from the DT is needed, it would
+probably be some custom property, either under the primary phase, or
+at the chip level. (Because the secondary phases would be absent from
+the DT, one can't just reference them using a generic property.)
+
+
+ChenYu
+
+
+[1] https://lore.kernel.org/linux-sunxi/20250919000020.16969-1-andre.przywa=
+ra@arm.com/
+
+> Cheers,
+> Angelo
+>
+> >
+> > Another thing is that I kind of wonder why the mode configuration regis=
+ter
+> > setting isn't ganged in hardware like the enable and voltage settings.
+> >
+> >
+> > Thanks
+> > ChenYu
+> >
+> >>> +             pvdd1-supply =3D <&pp4200_s5>;
+> >>> +             pvdd2-supply =3D <&pp4200_s5>;
+> >>> +             pvdd3-supply =3D <&pp4200_s5>;
+> >>> +             pvdd4-supply =3D <&pp4200_s5>;
+> >>> +
+> >>> +             regulators {
+> >>> +                     /*
+> >>> +                      * vbuck1 is the cpu-supply for CPU6 and CPU7.
+> >>> +                      *
+> >>> +                      * However, this device originally shipped with=
+ a broken
+> >>> +                      * firmware that causes register reads over SPM=
+I fail.
+> >>> +                      * This is fixed in firmware version 15842.175.=
+0, which
+> >>> +                      * is included in ChromeOS releases R150-16700.=
+22.0 or
+> >>> +                      * R151-16721.0.0 and later.
+> >>> +                      *
+> >>> +                      * Assigning the cpu-supply properties for CPU6=
+ and CPU7
+> >>> +                      * without the fix will likely cause CPU DVFS t=
+o stop
+> >>> +                      * working. Hence the assignment is left out to=
+ avoid a
+> >>> +                      * regression of the function. If the user is c=
+onfident
+> >>> +                      * that their system has the fix, they can adde=
+d the
+> >>
+> >> [Severity: Low]
+> >> This isn't a bug, but there is a typo in this comment. It should say
+> >> "they can add the property themselves".
+> >>
+> >>> +                      * property themselves.
+> >>> +                      */
+> >>
+> >> --
+> >> Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260709081928=
+.612294-1-wenst@chromium.org?part=3D1
+>
 
