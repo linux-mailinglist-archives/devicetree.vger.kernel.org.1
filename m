@@ -1,162 +1,132 @@
-Return-Path: <devicetree+bounces-324607-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-324608-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id KVb/NBwyUWqJAgMAu9opvQ
-	(envelope-from <devicetree+bounces-324607-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 19:55:40 +0200
+	id nY7WNec0UWoaAwMAu9opvQ
+	(envelope-from <devicetree+bounces-324608-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 20:07:35 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 33F8F73D21B
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 19:55:40 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5350873D366
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 20:07:35 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=miOCZoGt;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=EzlBFd0f;
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324607-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-324607-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324608-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-324608-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 3E8D63012BFE
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 17:55:39 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 795E530180AF
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 18:07:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3D7E3C1992;
-	Fri, 10 Jul 2026 17:55:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DECD137B030;
+	Fri, 10 Jul 2026 18:07:18 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B281C36C0AB
-	for <devicetree@vger.kernel.org>; Fri, 10 Jul 2026 17:55:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9F57379C2C;
+	Fri, 10 Jul 2026 18:07:17 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783706138; cv=none; b=MPt72PRRiTsRYLF2lbxQSplneuHVt1x3xeMeAhzZjirOeBqKsBNLq1vpfqAbIN1eZtv1avV4/FcUAp0E/oginZFOBqHmQ2OQH++cUXBbj7e971qTXe/KNh9pFZOWR0WOb/mULHgThb1a42JtlO4gA2v50TCq9GPmubbBiXxnCK8=
+	t=1783706838; cv=none; b=u9OxNRRkLUck7gA54KaYrM+76DtViBn2wkbW0Ssg9vtScnt+lA6zyOZ8EuhXx+U+eag8ER95EgZf1iig0bIKb+6iIze4WXiZ+NDfJyfPERAZw/0zWSQwPVsKJNGXIGanPV24cumnae5zY2wx/jmHts9cZXOdPb5UmfBHb33FMfM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783706138; c=relaxed/simple;
-	bh=TNe1wpIURKjw2jQYt6lQaMw364mQpTedpVeH0C5zjd8=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=Kj0Zc44eOVvchFTMORahb5o+e1cneS8VsdcBG4jHQy7wqEFyFlSbWJE5isQLaYamoAmRcC33HSueKfeyI48Acesaqx7tCs1aPlSZ1/nsZexvsLA1fVWCHb3SIIhN8S/D9I9jCAi7zlxPBERfaN+VSMOBwhzAbvUNomsFj+utdqY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=miOCZoGt; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 112AA1F000E9;
-	Fri, 10 Jul 2026 17:55:37 +0000 (UTC)
+	s=arc-20240116; t=1783706838; c=relaxed/simple;
+	bh=5hfWkMQjBvkp0sDhFKQROeOs2F9Dh+I/JnMmB6tzGf8=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=qFbMIyy3RkuQp4XKohdeKJSGVZCSrNXMRsvGyTrvFFvbCy2PKgSaoxa8mCSmuRwsJiT5AYKgnUkxpdDNWvnsyUadUsSFJM2/duX13NIUHpzsPgSQpdSDJDHsuoM+FnY5ViQXKm/ouhFbwgDNh/HRjM8PECy83iqJDxi89ffl6gc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EzlBFd0f; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 48EC21F00A3A;
+	Fri, 10 Jul 2026 18:07:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783706137;
-	bh=IKpsYSdUgmDOOjHDq69KgtY8F6r6RVeEKg1Y5sljBIs=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=miOCZoGtdICUWoCwity3JzYOCtDiJLEtuhjtegZlCZN3Z4ZMeehdHazjo6q38P7WI
-	 ZjAMa74RhK8AdcI8LibQCoasqMbi0rKUhBsXdgBj24j7+xH9zsQO+YIMMpe49vObed
-	 DX1Rv8bv+klS7pz6rvqcZ6Js9n5VbzFWaEUlmy0vgJ6sIRAyEDo3SAgcuqAchekAKv
-	 NBHwvGE0GMmFSBk8DQH/D9gXsUXTXIXDA+L6lva+iwXBMScFVoC4ixacHM1FjlU6zS
-	 6uJUJ3k+7Nq3zYoeZ698YhF7YdHbGx4pZwAxpTmIwRuOC/ieoXy3dc5iEDcZkEQ3AO
-	 Hdytu9GUIGeeA==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v3 2/3] arm64: dts: ti: Add support for Variscite
- VAR-SOM-AM62
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Stefano Radaelli" <stefano.radaelli21@gmail.com>
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, robh@kernel.org
-In-Reply-To: <ed1d477de1855fa8de3d88a491aa489a3bdbb7f7.1783689915.git.stefano.r@variscite.com>
-References: <cover.1783689915.git.stefano.r@variscite.com>
- <ed1d477de1855fa8de3d88a491aa489a3bdbb7f7.1783689915.git.stefano.r@variscite.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Fri, 10 Jul 2026 17:55:36 +0000
-Message-Id: <20260710175537.112AA1F000E9@smtp.kernel.org>
+	s=k20260515; t=1783706837;
+	bh=Ozh/kwtiKoe0UfBKKDmEoXd93E2RGvEe/JnfRWJp8kc=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References;
+	b=EzlBFd0fuYnzdCa6mAnuVhcax9AiQJyImO+M5nN08IE6HE3jFMFb7qUl0SXZG/2so
+	 acpUcRrtAIhMOoGCxRmIYGCEdsFivlnYDq0tEXE39APq8TqQkjGXerQux3ReOLOgCQ
+	 +7XCGoxOl3sGFmEDek7cLApBesAaQlS40iPdzSaxYuT6H51qshpoqc0qkTQhfkiGAZ
+	 0sihFggLabD2gk0fk7GYN3huH+coElzGx6A++T8WBajYwT4gKJFeYsBxM8xItZ3SS7
+	 icEoeNWyRK5ugA9PcCXPNfcYBB6+WtY41b2YlHaD1WnfBzAFYK6Jqr5Sc2gG0B5xJZ
+	 Rwgo8fG0M5m+w==
+From: Bjorn Andersson <andersson@kernel.org>
+To: Konrad Dybcio <konradybcio@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Mathieu Poirier <mathieu.poirier@linaro.org>,
+	Ananthu C V <ananthu.cv@oss.qualcomm.com>
+Cc: linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-remoteproc@vger.kernel.org,
+	Sibi Sankar <sibi.sankar@oss.qualcomm.com>
+Subject: Re: (subset) [PATCH v5 0/3] Add remoteproc PAS loader for SoCCP on Glymur DT
+Date: Fri, 10 Jul 2026 13:07:00 -0500
+Message-ID: <178370682990.2572738.12787488653478230672.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20260707-glymur-soccp-v5-0-053993f0c6fe@oss.qualcomm.com>
+References: <20260707-glymur-soccp-v5-0-053993f0c6fe@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.16 / 15.00];
+X-Spamd-Result: default: False [-5.16 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TO_DN_SOME(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-324607-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[gmail.com];
+	TAGGED_FROM(0.00)[bounces-324608-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:konradybcio@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:mathieu.poirier@linaro.org,m:ananthu.cv@oss.qualcomm.com,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-remoteproc@vger.kernel.org,m:sibi.sankar@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER(0.00)[andersson@kernel.org,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORWARDED(0.00)[lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:stefano.radaelli21@gmail.com,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:stefanoradaelli21@gmail.com,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andersson@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	RCPT_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[variscite.com:url,variscite.com:email,vger.kernel.org:from_smtp,sashiko.dev:url,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,lists.linux.dev:replyto,smtp.kernel.org:mid]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 33F8F73D21B
+X-Rspamd-Queue-Id: 5350873D366
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [Medium] The `main_i2c3` interface is enabled by default in the SOM devic=
-e tree without any attached SOM-specific child peripherals, contradicting t=
-he commit message's design rule.
---
 
---- Patch [2]: [PATCH v3 2/3] arm64: dts: ti: Add support for Variscite VAR=
--SOM-AM62 ---
-commit b50e7e0d210badd0bd12a9c466cdaf9cdf2bfcaf
-Author: Stefano Radaelli <stefano.r@variscite.com>
+On Tue, 07 Jul 2026 03:12:43 -0700, Ananthu C V wrote:
+> The SoC Control Processor (SoCCP) is a small RISC-V MCU that controls
+> USB Type-C, battery charging and various other functions on Qualcomm SoCs.
+> This series add the nodes required to enable SoCCP on Glymur/Mahua SoCs.
+> 
+> It also introduces the needs_tzmem flag which would cover for certain edge
+> cases by serving as an alternate trigger to the PAS helpers to ensure that
+> SHM bridge is established on SoCs running non-Gunyah based Hypervisors. This
+> change is required for SSR to work on SoCCP on Glymur.
+> 
+> [...]
 
-arm64: dts: ti: Add support for Variscite VAR-SOM-AM62
+Applied, thanks!
 
-Add device tree support for the Variscite VAR-SOM-AM62 system on module.
-This SOM is designed to be used with various carrier boards.
+[1/3] remoteproc: qcom: pas: add needs_tzmem flag to trigger shmbridge creation
+      commit: 9921555b96532137df16df5bd3badef2e8caabf3
 
-Link: https://variscite.com/system-on-module-som/ti-sitara-am62x/var-som-am=
-62/
-
-> diff --git a/arch/arm64/boot/dts/ti/k3-am625-var-som.dtsi b/arch/arm64/bo=
-ot/dts/ti/k3-am625-var-som.dtsi
-> new file mode 100644
-> index 0000000000000..c2daa56c35e17
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/ti/k3-am625-var-som.dtsi
-
-[ ... ]
-
-> +&main_i2c3 {
-> +	pinctrl-names =3D "default";
-> +	pinctrl-0 =3D <&pinctrl_i2c3>;
-> +	clock-frequency =3D <400000>;
-> +	status =3D "okay";
-> +};
-> +
-
-[Severity: Medium]
-The commit message states: "Only SOM-specific peripherals are enabled by
-default. Carrier board specific interfaces are left disabled to be enabled =
-in
-the respective carrier board device trees."
-
-However, main_i2c3 is enabled here with no SOM-specific child peripherals
-attached. Should this interface be left disabled by default to allow carrier
-boards to use these pins (e.g., for UART0 CTS/RTS) without having to explic=
-itly
-disable main_i2c3 first?
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/cover.1783689915.gi=
-t.stefano.r@variscite.com?part=3D2
+Best regards,
+-- 
+Bjorn Andersson <andersson@kernel.org>
 
