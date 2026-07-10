@@ -1,79 +1,81 @@
-Return-Path: <devicetree+bounces-324395-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-324396-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id teRjI+rQUGr05QIAu9opvQ
-	(envelope-from <devicetree+bounces-324395-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 13:00:58 +0200
+	id hfwYIAfRUGoJ5gIAu9opvQ
+	(envelope-from <devicetree+bounces-324396-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 13:01:27 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id D82EE739EE3
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 13:00:57 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id CDED4739F18
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 13:01:26 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=ohSWk+9m;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=FCBvAtwX;
 	dmarc=pass (policy=none) header.from=gmail.com;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324395-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-324395-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324396-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-324396-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 808C7302DF79
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 10:54:43 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C4E4430454A3
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 10:54:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D747409298;
-	Fri, 10 Jul 2026 10:54:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 775213F6C2D;
+	Fri, 10 Jul 2026 10:54:52 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f48.google.com (mail-pj1-f48.google.com [209.85.216.48])
+Received: from mail-pj1-f49.google.com (mail-pj1-f49.google.com [209.85.216.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDB3A404BF7
-	for <devicetree@vger.kernel.org>; Fri, 10 Jul 2026 10:54:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 300D123FC5A
+	for <devicetree@vger.kernel.org>; Fri, 10 Jul 2026 10:54:51 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783680882; cv=none; b=hmBnC+1LKLFiBTnyWYgcHn/UECfe0L2oo+N6YOfAydYTPNt4jCc6B2WQeAD1Z5lprtkVRHuqsyBKwDgGb+LKc8uuvmEPqe06RnmzXTx1I5QK2pFyfCI/Ii139Bkppk8whmn+PLgGMPi20LCjr3opAm+9rONwI+LuZ86YAb8ufOU=
+	t=1783680892; cv=none; b=PUJCIjuJjC6GuTk2tgbakO8wHbnJSvFiii3it2EwWU5EtkUNXDQrxjJxvcjJWJGp/bI1PSiEm9sD5HdMVRLsOk4qj9dXcTpwyELlVvY8kspTt6B3KmvezlI1BAFrR1M1Z0Rck+x5eWFQwhhTL5yiW81SM9Y/xCIXIsfmKdEPmvg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783680882; c=relaxed/simple;
-	bh=vN8Gplg3HKboYHhrh53h0TgVjNq08Q48tb7ZFBm/Nag=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=nzIgDZpz1HsDVS42gyG3GQVHcwXRHLSYiyYHOn42f6JPsySuColRbLBeHY1raRKOi+Fj7WkoBiilhuoweZvrDFNgjJZFkK9lSXeKNocqA2qrKah00W9tVaSz6T2ZXmfx6mtz+ewPLm9/ZcWYEhHbCVNuh/ib6/hHlma+FD8hi8o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ohSWk+9m; arc=none smtp.client-ip=209.85.216.48
-Received: by mail-pj1-f48.google.com with SMTP id 98e67ed59e1d1-37df72c9984so1304986a91.3
-        for <devicetree@vger.kernel.org>; Fri, 10 Jul 2026 03:54:40 -0700 (PDT)
+	s=arc-20240116; t=1783680892; c=relaxed/simple;
+	bh=NWU/L9LyNdI3jkcdYcdQ0x+UBiKXh5qxqTH73c/fPpo=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=TxGOJHy9TVe9PLBwBqVuvBodm4ZpfAjc4Z0cP+9SF5xDgCsoSWSrJtaqcZeV1R2C5tY4YkTohHNUSlmSl6QL3H14reJANdn6/tXTseZ4r2sBWxM9FP7tvVK7IOYDOYQS43l00C/lh7zdVPrg4DPaDGQjYy1oEfK23F6yDS19ojQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FCBvAtwX; arc=none smtp.client-ip=209.85.216.49
+Received: by mail-pj1-f49.google.com with SMTP id 98e67ed59e1d1-37ff8e0ad0fso1008249a91.2
+        for <devicetree@vger.kernel.org>; Fri, 10 Jul 2026 03:54:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1783680880; x=1784285680; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=j4ZVGeRqKMU3nyf6nzNvRFsoeF/EGxON3z9J6rKtVAk=;
-        b=ohSWk+9moSZZ5EDWEhLYvlLf358g21eZnPOK3Q0HD0zKwl3ESSU0ue7XwFVJzAG2Gr
-         w6sMaEzKUvtdcUy/+3LU3lzS02uwQyA7oHvqHfmbM74Er5ODrM67qV55s9tGVpxWl+6L
-         8AQ6Q8o+vDJ3YP88wuUdCNs/QBBkCms7sZDk9ybAYoqXgVed/F5L84NJYYLHdLu1mL3F
-         fwN5pOEWAm1NBoNHtvVyQeQZjppg3siATA12ejYeDlnzkhBGjKGjnh1aCV26QLYi3pUa
-         uFSmbgBkpKxXhFVHPslVrLseeIu/IfGRRbe+758FnGwJnjuOnOUOUtvTxk86dgWOY0Fo
-         yRuw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783680880; x=1784285680;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        d=gmail.com; s=20251104; t=1783680891; x=1784285691; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=j4ZVGeRqKMU3nyf6nzNvRFsoeF/EGxON3z9J6rKtVAk=;
-        b=o9tvd65zZ/zpypo2daTqNZ0/1d5uGsBjObySpW15EF2M9qUXH2OUrxFtDoKvM0QEPz
-         zcjWRYqv6DSYCHofXCC91HpLBlC0rk2hf3X4YW1LpX38p+5o8QOh31UH1dZLRPDcVr/1
-         Wxq5fbB3xckjPmtrjXO9IAySSu4UomXap6Js+EqDMuf/1Q6FlwveUlJ2KFJ41Ngtlmqy
-         CpOHBIRoaFOMi8BKhB0w8b/TXHGLj/9gTKYE0z4CbNs/6bctdycfDOr1jI9sUwKwghzC
-         ayrecWhPwsmDqE0Y58lfRnz/NnyA59et+2KhLMUpE+cLz6CfTFxh6DYn5LmyMiM4pqZz
-         6RgQ==
-X-Forwarded-Encrypted: i=1; AHgh+Rp2Jg3p6Ato1gt5nPSUcO8lsLvvnxH3j01jEiZ0qf6EPKuszvgno+wmHWJmUGo6w1/Gx4NL7FSRzMIs@vger.kernel.org
-X-Gm-Message-State: AOJu0YzcYllPz3hsmA90Xij7G84sY6eJbxqbrK1IUQ5UVtWryI3Gogfn
-	D3kLr7vFiuVbsbyN8MnYsTavbpzY6XFqiZBgy/rQJHljo2C4GDhz8uGv
-X-Gm-Gg: AfdE7clP439Dsfd00KTOTk6nu0Cu18o22kPWDjyWwZu4Hij5goGPIZysGwXlrQl3kby
-	Qulrm5FqSenHIQw1Wb4v7aXqko+M+t3jdj/96pBCZPLeQKKXaWLvwLqZplim8mZMg1AR9apcTfZ
-	c1KgmkTQj8Ljxa2mWooFhtagUHQ+01Mvwfa20mCXnYn7ffaubGQ1tQavc8Oarot/6SbekeJ/c0y
-	AMaKRn91+wnPqn1iBMi7jzAcpY40E1HxaTOB5/iek6n+t6mxqdBJ7V+Z9NXmKCjbQ7oChzjL33y
-	MiCSvFTWOBVJ1sHb1045p1LufjLb4tsPXn5KVkxaO+1ooq9D9VltHdm2EM7IWtV7nEQfppCJjF9
-	GW+SZZUcgq8GFErE/BARsSLVB9rO7Cux6Ixkq0jEG/8B4F7XF1riGkPkX/OCpDq2Sq07q70/xZH
-	gr9y4bkBdf69x+6ZIPdHbl
-X-Received: by 2002:a05:6a20:3d0c:b0:3c0:9c1a:8936 with SMTP id adf61e73a8af0-3c0bcc4068emr13266820637.62.1783680880360;
-        Fri, 10 Jul 2026 03:54:40 -0700 (PDT)
+        bh=9M4o3iN5nWztVryd5NG1m3lFycIITbNkOd3Ijgz0aSY=;
+        b=FCBvAtwXMkiTTP3tThQa0+LS4rS+Wh9++a6sJwjqnZlKjw0LJ6Y7n0yopFTmRvCS3P
+         +tlaWwaMBWWdA0UN4p5MHsrW1FF1I71YxivknNqB0bmhlS/g21D+MyQNIT5Ruae0dQY8
+         daCqy00Cx0bhcjpGvGRqcXuIEbA1Iblrxl24D7T/dRFZwEyEQwD626TJAo2sKbRcsREQ
+         ldYl+siDVWiqkI9uYa3CgHxHzUAZAgEicT5OUzhwrMv9iBWq4gz9n0xspyHOYLz1BG1E
+         cG2ik2YFsHxR+voH3Pj/L+G3N7t4CPRgWYo2L9w3siAyRCqgq1CwRSTkJj/IusRsRJcu
+         OO7w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1783680891; x=1784285691;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to:content-type;
+        bh=9M4o3iN5nWztVryd5NG1m3lFycIITbNkOd3Ijgz0aSY=;
+        b=Ww2jiDwlcVYeu0D6mM1XIT6xNGvFQzDZdsCP7cjfwvw0qDLEV6qcOScM+s9qFxo2FE
+         9SPhN6pw2iESZGjWRfzFj077Ki6axM32zzao8lNayYMr067NFZsqxBxFi9lsXhObaPph
+         spnT74F6u6w7qRgobSOHdv76Y/wGSSo0Upts+8pse8CjTdoittZO3U0fnznGiiReI//U
+         RHOthlmCzAPvbqgTNCDzVBGbOl2m66BY1+RMv6eORqK89g4d5t5ylGldmIXz6KgxYGfR
+         b4oI2dW7sfL/WhVmc0FbjLmAeAP/A02m/tG5T9vcY/UFPVdrB/2MP8fgMzclRwHrsW/K
+         3cGw==
+X-Forwarded-Encrypted: i=1; AHgh+Ro4HsxyvncqSO/eHkSKD4rFRDxbV5rBQSxadw6DKOaBL6z36nEG5Fhw55A1R0I5LWjbeOh28E47Lzd8@vger.kernel.org
+X-Gm-Message-State: AOJu0YzAg4mo1N+CQBPAlgLshNv8oaIQSV4sk3MTxTHm1TwHMQjPIrte
+	tHOazsQEGqhcLNntTrNRERcrsvWXR8f6hvmfn4iqiPZ6dJNoyFY6ypEl
+X-Gm-Gg: AfdE7cn5eMXuQwYuzzguw8gsk8h4ZkRAzuMXnDQfWXWM69ttFedjwcQ4EzDgjj/p1EG
+	J9kc83Ge3eI0An8lOW18A+Ek2LnUxASY5fO8gtsYGFXuhURjcw+0Fc9Op9yHRCSyWNdh1OMGmu2
+	+ffgv6gTfOEtIHVqqJtBrsEPFie0xmerWmBg4NYjx4giWakUQhHzNvWaoFEdUZJxxuEDKr/oWDj
+	c+cF7tyzTZ0aRUJTCHKuG8QQDyL7ZpAzy1mQgTMz7p6Fv3HQhhhhqacB0+G5SWdsUhBWPkC+pmV
+	sIek/ScQ76Jkt8kwHUGxdYlzJUTN6d+Glr2NpMUOlrk5/ATUZEc5Bkbf3xqnPg9YKXvPKav0fl0
+	YRPSS4giiTggybY119PAys9ukRNKFoZbar0gR0PBc+1GWs0UibyE2gU+DjkI7W5NeDxnqBENBqA
+	lScfjRWpueVL7U5ppKgMbz
+X-Received: by 2002:a05:6a20:4304:b0:3bf:e24e:3afe with SMTP id adf61e73a8af0-3c0bd206c10mr13691119637.43.1783680890615;
+        Fri, 10 Jul 2026 03:54:50 -0700 (PDT)
 Received: from DESKTOP-TIT0J8O.dm.ae ([49.47.198.15])
-        by smtp.gmail.com with ESMTPSA id a92af1059eb24-13b659c8572sm40752937c88.9.2026.07.10.03.54.33
+        by smtp.gmail.com with ESMTPSA id a92af1059eb24-13b659c8572sm40752937c88.9.2026.07.10.03.54.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 10 Jul 2026 03:54:40 -0700 (PDT)
+        Fri, 10 Jul 2026 03:54:50 -0700 (PDT)
 From: Ahmed Naseef <naseefkm@gmail.com>
 To: netdev@vger.kernel.org
 Cc: =?UTF-8?q?Ar=C4=B1n=C3=A7=20=C3=9CNAL?= <arinc.unal@arinc9.com>,
@@ -99,10 +101,12 @@ Cc: =?UTF-8?q?Ar=C4=B1n=C3=A7=20=C3=9CNAL?= <arinc.unal@arinc9.com>,
 	linux-kernel@vger.kernel.org,
 	linux-mediatek@lists.infradead.org,
 	Ahmed Naseef <naseefkm@gmail.com>
-Subject: [PATCH net-next 0/2] net: dsa: mt7530: add EcoNet EN7528 built-in switch support
-Date: Fri, 10 Jul 2026 14:54:22 +0400
-Message-Id: <cover.1783680864.git.naseefkm@gmail.com>
+Subject: [PATCH net-next 1/2] dt-bindings: net: dsa: mediatek,mt7530: add econet,en7528-switch
+Date: Fri, 10 Jul 2026 14:54:23 +0400
+Message-Id: <68e85666b6dfedab719aaa388450eb86312eccd0.1783680864.git.naseefkm@gmail.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <cover.1783680864.git.naseefkm@gmail.com>
+References: <cover.1783680864.git.naseefkm@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -117,12 +121,12 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-324395-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-324396-lists,devicetree=lfdr.de];
 	FORGED_SENDER(0.00)[naseefkm@gmail.com,devicetree@vger.kernel.org];
 	FREEMAIL_CC(0.00)[arinc9.com,davemloft.net,lunn.ch,collabora.com,kernel.org,gmail.com,makrotopia.org,google.com,mediatek.com,redhat.com,armlinux.org.uk,vger.kernel.org,lists.infradead.org];
 	FREEMAIL_FROM(0.00)[gmail.com];
@@ -141,34 +145,51 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	DKIM_TRACE(0.00)[gmail.com:+];
 	RCVD_COUNT_FIVE(0.00)[5];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	ALIAS_RESOLVED(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: D82EE739EE3
+X-Rspamd-Queue-Id: CDED4739F18
 
-The EcoNet EN7528 is a MIPS SoC whose platform support is already
-upstream. It integrates an MT7530 switch, memory-mapped like the built-in
-switches of the MediaTek MT7988 and Airoha EN7581/AN7583 SoCs, but with a
-true MT7530 core, four Gigabit PHYs on ports 1-4 and a CPU port at a fixed
-1000 Mbps full duplex link.
+The EcoNet EN7528 MIPS SoC integrates an MT7530 Gigabit switch,
+memory-mapped in the SoC register space like the built-in switches of
+the MediaTek MT7988 and Airoha EN7581/AN7583 SoCs. Its four user ports
+are connected to integrated Gigabit PHYs and its CPU port is connected
+internally to the SoC Ethernet MAC.
 
-Patch 1 documents the compatible, patch 2 adds the driver support.
+Add the econet,en7528-switch compatible, with the same constraints as
+the other built-in switches.
 
-Ahmed Naseef (2):
-  dt-bindings: net: dsa: mediatek,mt7530: add econet,en7528-switch
-  net: dsa: mt7530: add EN7528 support
+Signed-off-by: Ahmed Naseef <naseefkm@gmail.com>
+---
+ .../devicetree/bindings/net/dsa/mediatek,mt7530.yaml         | 5 +++++
+ 1 file changed, 5 insertions(+)
 
- .../bindings/net/dsa/mediatek,mt7530.yaml     |  5 ++
- drivers/net/dsa/mt7530-mmio.c                 |  1 +
- drivers/net/dsa/mt7530.c                      | 56 ++++++++++++++++++-
- drivers/net/dsa/mt7530.h                      |  1 +
- 4 files changed, 62 insertions(+), 1 deletion(-)
-
-
-base-commit: fe3e786ef4eb6e47d2901f568a27bd920477bbe9
+diff --git a/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml b/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
+index 815a90808901..90b3582b7619 100644
+--- a/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
++++ b/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
+@@ -100,6 +100,10 @@ properties:
+           Built-in switch of the Airoha AN7583 SoC
+         const: airoha,an7583-switch
+ 
++      - description:
++          Built-in switch of the EcoNet EN7528 SoC
++        const: econet,en7528-switch
++
+   reg:
+     maxItems: 1
+ 
+@@ -318,6 +322,7 @@ allOf:
+             - mediatek,mt7988-switch
+             - airoha,en7581-switch
+             - airoha,an7583-switch
++            - econet,en7528-switch
+     then:
+       $ref: "#/$defs/builtin-dsa-port"
+       properties:
 -- 
 2.34.1
 
