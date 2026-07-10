@@ -1,1110 +1,205 @@
-Return-Path: <devicetree+bounces-324224-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-324220-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 4KueIxaIUGpq0wIAu9opvQ
-	(envelope-from <devicetree+bounces-324224-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 07:50:14 +0200
+	id t443IruHUGpG0wIAu9opvQ
+	(envelope-from <devicetree+bounces-324220-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 07:48:43 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id D01CD7376A7
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 07:50:13 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id EFC94737681
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 07:48:42 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=Nvidia.com header.s=selector2 header.b=TRM31SOI;
-	dmarc=pass (policy=reject) header.from=nvidia.com;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324224-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-324224-lists+devicetree=lfdr.de@vger.kernel.org";
-	arc=reject ("cv is fail on i=2")
+	dkim=pass header.d=kernel.org header.s=k20201202 header.b="pn/cbiwN";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324220-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-324220-lists+devicetree=lfdr.de@vger.kernel.org";
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 97C5D3010C1F
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 05:50:12 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id A6A463028CAB
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 05:48:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D6A438228C;
-	Fri, 10 Jul 2026 05:50:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70A173955D0;
+	Fri, 10 Jul 2026 05:48:11 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from BN8PR05CU002.outbound.protection.outlook.com (mail-eastus2azon11011001.outbound.protection.outlook.com [52.101.57.1])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 043FF233958;
-	Fri, 10 Jul 2026 05:50:09 +0000 (UTC)
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783662612; cv=fail; b=bkJBWhRh46o7BXD1RnilbOZBN6CbVCBgI9eVUdN2y6oJg/EdOn4JiNjOS5Bi+hfHc19T0t2y/S4sj07vJsoQvR2va2tUsnCMDis21mjMFyo+HanYLCtudT87C93Fx3shaLpy19iqMObuRAVs5qmmGos6nD7b8CDKq5bM2o680Zk=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783662612; c=relaxed/simple;
-	bh=4KQKsZX0B1QmS7Sp1KhVxZA89OZ71TpHH3iwMs6BS6o=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=JKtBCjo52tQPUbPHkP3KStSHwYf2GdjoL/KNFGrDUtTxH1DTgSWJBumKqMKzzoXQynQczr29NEjX7APLSQ4SqlyUZKh2sRalA8Mtoc4xXoKWcOgljv7tIPj0trmWIjrUqjwR166EMMjzDenLQgMKo/jSu7faOlxRxH/XRnRRCm8=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=TRM31SOI; arc=fail smtp.client-ip=52.101.57.1
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=SRksKs36vko018DHVXKnRxTMOig1mc0jm0bevL3Q7o+UwBXAztp+rkIJtiuPMWrfFV1p8Au6EVVCizf86raYbFt4Di+2Sw5kkTaJmpvsagntIKZwTyc6P1ZU3t0lhMRBLRpCp9xGhnuwKNfCmYDGON26rVr3kRicaVwXM70ee5ENmsaFUzFHf+X6UgBtgxXc0IUBGRTdNUYMrqnHfkk/e/G/itknhn21bCJVxzx8FHXIckW8SkatuCSBeFltmzY8q2FBcrofaedzwlncJpp+ikP5DvlhYc+57wYkd9VnXKrvhzcyUaqwFElEEAOmh5pdBNTnKGGFt6Mn5C4AOrDjHA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=HB5m/p7iSwhmm5reInIR98Q9qv8vwwv0Oz0FNCDet/A=;
- b=NvZIkx41HXle55JyDyV4wiv12PxfslVg2+w17Z8uxi9fgvo0Sco2NBvNY+M11yXwj/9DSunCwb8DYJ5GpbpF3ZaJkXnYpWZ5Nn0OuI/XFtC4VNkF+hr392tQK+GNC9QZTsJY6jfpgO09AbhHWDSd9xlBFx+FR6NbQkcWbH+XSgWdxIni6Xn9Y0QATs0xEsJ4GG54wk23OOTIWY0Y5q+u+lpwDKEfTTtHUFgFYqm3aypB2vh06a8WXyocNY/FUNhUf/8orRulEanjk6GAKYm1/r81O6kf2Qp+Di9SRXpaLT48B4WwIWgIFSasyS3nXrc2OxlN8v+0HLfIiaSDp9/Ydw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.117.160) smtp.rcpttodomain=codeconstruct.com.au
- smtp.mailfrom=nvidia.com; dmarc=pass (p=reject sp=reject pct=100) action=none
- header.from=nvidia.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=HB5m/p7iSwhmm5reInIR98Q9qv8vwwv0Oz0FNCDet/A=;
- b=TRM31SOIwJdRI2Mbw9vRHQHUenD0BCzkAF2xO0N2FNEP83i/Vn/vaPDMJkb+Lq+cACNbRFpjpBiHzpXzVDIBEFtWUd0M3dXozfbX+ZxUvt/WptCCljP8kOWn1QiFJJQYcuXBmqgGd9XvHVXVhce90heCV4s4yqlXpEZzyZFcZ0G3ltxBcMfa/zlUxOtO7vhreocdO50osjUfBVAQbvhIwBIWf0WR8O4kR8dcPoRBPI+din4mQGm4ZalsnURiflafeZ3M/6S9+T4RgtQ3Z4cZ2IVbTrwsBYI8Cmt8MOIKPcYxx7Q9xoYrVeQVC7CHqkBDexYD4P3K+Zaw4ZCtQy/GLA==
-Received: from CH0PR03CA0279.namprd03.prod.outlook.com (2603:10b6:610:e6::14)
- by SA1PR12MB7221.namprd12.prod.outlook.com (2603:10b6:806:2bd::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.10; Fri, 10 Jul
- 2026 05:49:56 +0000
-Received: from CH3PEPF00000016.namprd21.prod.outlook.com
- (2603:10b6:610:e6:cafe::1) by CH0PR03CA0279.outlook.office365.com
- (2603:10b6:610:e6::14) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.202.12 via Frontend Transport; Fri,
- 10 Jul 2026 05:49:56 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.160)
- smtp.mailfrom=nvidia.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.117.160 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.117.160; helo=mail.nvidia.com; pr=C
-Received: from mail.nvidia.com (216.228.117.160) by
- CH3PEPF00000016.mail.protection.outlook.com (10.167.244.121) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.223.0 via Frontend Transport; Fri, 10 Jul 2026 05:49:55 +0000
-Received: from rnnvmail201.nvidia.com (10.129.68.8) by mail.nvidia.com
- (10.129.200.66) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Thu, 9 Jul
- 2026 22:49:41 -0700
-Received: from nvidia.com (10.126.231.37) by rnnvmail201.nvidia.com
- (10.129.68.8) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Thu, 9 Jul
- 2026 22:49:39 -0700
-From: Jacky Huang <jackyhuang@nvidia.com>
-To: <andrew@codeconstruct.com.au>, <joel@jms.id.au>, <robh@kernel.org>,
-	<krzysztof.kozlowski@oss.qualcomm.com>, <conor+dt@kernel.org>,
-	<andrew@lunn.ch>
-CC: <devicetree@vger.kernel.org>, <linux-aspeed@lists.ozlabs.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	<openbmc@lists.ozlabs.org>, Jacky Huang <jackyhuang@nvidia.com>
-Subject: [PATCH v3 2/2] ARM: dts: aspeed: Add NVIDIA VR-NVL BMC
-Date: Fri, 10 Jul 2026 14:46:56 +0900
-Message-ID: <20260710054849.3178747-3-jackyhuang@nvidia.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260710054849.3178747-1-jackyhuang@nvidia.com>
-References: <20260710054849.3178747-1-jackyhuang@nvidia.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 421E037881D;
+	Fri, 10 Jul 2026 05:48:11 +0000 (UTC)
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1783662491; cv=none; b=AaxK1r9faNFUv8lgza+Xo4bU0Du289uHbPaScijIA5nv0hI1MEXmo3hmJawBkw4T9kg/dAynHWjg7RcQwBTxjHRQyLEoW3CSXnYhnv4VelDeoQoN1yIIjRGiROBhmQXGcAE/Q49b3cWTbg/M2dEcZQzIMsvRrshN9eRxfcE/o48=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1783662491; c=relaxed/simple;
+	bh=z3pHePbjn5THsI3EDo76LPycLmDQReOlyueKvBzMWeA=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=YDGiwUGPXpp6Oih0J8VjDpUJfp+r1XVulvLu+RpB5TzHjlkCGAXsJI3HvTH7hNdgxerGR5jI08uMNnPm+RZGJblfs/mHW33ZiJuOPyQ9OK/kab8ZI2bA3ZKBEojLlqGKhQNehf4V/UN9I0/+t66wIF9zGy6biHf1CQpX4ZqbvrI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pn/cbiwN; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id CD560C2BCB8;
+	Fri, 10 Jul 2026 05:48:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1783662490;
+	bh=z3pHePbjn5THsI3EDo76LPycLmDQReOlyueKvBzMWeA=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=pn/cbiwNmnY97diM/KtUwPgrb0IScwW/qPd784hf6d3zRn7XWHkKjCZIBIS4r4mt4
+	 n1IATu35oP1yBmsJ5njRox55RB42fFaNQpB0Sa3n7SojuPs4Xm/y7gUC7aly/YW/3y
+	 AXg3XR/StlQ8e/TzmGmNEp7JSUWYzNwTtagWmKEK4hfAMi7xmQnRYVSuWMKsCwwqjh
+	 vKHYxBRl2/Vb2mS6rlTjmeKseeiD3Z1LIAZo/lRcIqKJBimbEOAJ/F3ls/scl0GcAY
+	 RoPVg7RmbWbLowIRAAdJb0DUnmQRmTv1x4e0FMxYpzmF8DQP46BWzXZNwzqew+yrc5
+	 iMEYQhT5gIRJA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A895FC43458;
+	Fri, 10 Jul 2026 05:48:10 +0000 (UTC)
+From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
+Subject: [PATCH v10 0/3] Add Amlogic general DMA
+Date: Fri, 10 Jul 2026 05:48:05 +0000
+Message-Id: <20260710-amlogic-dma-v10-0-ff4deae837e7@amlogic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: rnnvmail203.nvidia.com (10.129.68.9) To
- rnnvmail201.nvidia.com (10.129.68.8)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH3PEPF00000016:EE_|SA1PR12MB7221:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8b49e450-d564-4373-aa3a-08dede471216
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|36860700016|7416014|376014|23010399003|82310400026|1800799024|11063799006|6133799003|56012099006|22082099003|18002099003|13003099007;
-X-Microsoft-Antispam-Message-Info:
-	NMA0kinlAqM31+RzDDUO8qvPYIfeBBuIJaOPdqj8cclPouRfVqeol3M+JVPLEcRuIL+7apRIsAMJi42XXWz6r2Gqu0F2jHq8QYqhRM7FZa9LPKocTiQgqGOt5hZvVOnIWjd4gjOQeKgh1ZVcETCQ8Uq5iMPlq+FoaPxCyn025qKydAoxh0ivXBQiv41XNZ0H/eosFRumtyDIS8lhL8wFfCnvTt78emN5z1lrVxotITy8+iDX72jgEpJQrJNMgd2UmVmCwZoUByL01oslkz5cTMvzAUejHv/uyy4iOrHkOvva7Uk+ouL8v3ovLsBuMk8/Zowp07ErD4kpc+lRaSbuD2Fd6s58bOSfiDaHyR+rGz8UCJ8v3W+SZlyBpjh6BqCZwlN7IktamiE2I0grPsP1NfvVxLfAucq5VF9YilFkisaraLiI9jHQa9Kr9muc8HPBfggBOyMRHI0kbrY+l7imrC31Kaks7LwX4X+buGCJ2gTfvW2uwibvu+ZTVFYUTi6lXs2isZdL4lmNx9srtwpJbekSoKFI68ta/P1dTV71209PufRMHAq0SU9WekPAoy6X73LuRgUTyEBIWrBXL4QZUcmM1/tKqkO4PIcrDfBhg1vmNR56kTlPT4c3dF7y/tqOSeijKQBH3Jh0VtHVKHLPbHD8zOAIXs03Prvl7nBK7ZndEYoNJt+87iN7+H6HgC+DAa81Y39Tc4TaWGIyOklkGQ==
-X-Forefront-Antispam-Report:
-	CIP:216.228.117.160;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge1.nvidia.com;CAT:NONE;SFS:(13230040)(36860700016)(7416014)(376014)(23010399003)(82310400026)(1800799024)(11063799006)(6133799003)(56012099006)(22082099003)(18002099003)(13003099007);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	khP5cGNvwGGB+aiqAsPsdY9HDTK0w6L6Pj6RB/vhpKWtggdPSTyk7ldzPI2K3YMx86SVR/TUwAoetry6tHQVH1Ivm++Ffo6at0nG21E2IzKpw8rM0p6lH1j7zWQXVDFdBFPX4k9MVn+/uRA8EcopyOOO7V+IgFfpwTPGfZH01J5KiVLFBK/ZBVLW6Q/f97H7HzK7wvQAS0CzGNzByn8yDhvN6a62o6BinhHbhWGXYwL4F0Xqpyy8YUTdGtZ1MM3Ppt4zQYmaGisgjIi1AOUtOYrCb+ShHxRdMqSB0lKyyIDkF1Vsb/5+tcxO5e4n1wsO/OFvsoaJPzN7Wg4zad/rBzD7N+AtdWzSyLEQiZiOOJWYEBgWhDTx8j62rmPbQ4tkv25F53KZpNrDTdqlD2a04bEPk/5z1rVrA2vY0F/MYJZ0ovTEDEM4+IED/CB4rTcK
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jul 2026 05:49:55.9062
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8b49e450-d564-4373-aa3a-08dede471216
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.160];Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	CH3PEPF00000016.namprd21.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB7221
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAJWHUGoC/23QzWrDMAwH8FcpPi8jliU72mnvMXZwbKU1rE1JR
+ tgoefc5ZSVfPUri95fQTfXSJenV2+GmOhlSn9pLLnT5clDh5C9HKVLMDQUlkAZNhT9/tccUinj
+ 2hWN0LlKIYFFlce2kST/3uI/PXJ9S/912v/f0QU/dR45d5Qy6KAuBioWcsPXu/X/6GtqzmpIGe
+ GhbanBrDVkjAUUDLjqMe21mDeVmt8mabFNzQywRYK9xobe7MesGSNBqFK6fXE6zNiWuNWXtPZK
+ JGpuIZq/tUvNa26ytMcgRTB2x3mu30LDZ7abLq5q1iGYIeq+rWRPota6yrmwIEIRR45Ov8awtb
+ H7O08+pitZBQM+01uM4/gGQ5kaRmQIAAA==
+X-Change-ID: 20251215-amlogic-dma-79477d5cd264
+To: Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Kees Cook <kees@kernel.org>, 
+ "Gustavo A. R. Silva" <gustavoars@kernel.org>, 
+ Frank Li <Frank.Li@kernel.org>
+Cc: linux-amlogic@lists.infradead.org, dmaengine@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-hardening@vger.kernel.org, Xianwei Zhao <xianwei.zhao@amlogic.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>, 
+ Frank Li <Frank.Li@nxp.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1783662489; l=3115;
+ i=xianwei.zhao@amlogic.com; s=20251216; h=from:subject:message-id;
+ bh=z3pHePbjn5THsI3EDo76LPycLmDQReOlyueKvBzMWeA=;
+ b=oJeoCJ0P+EdApXLCUbGChP5fW9JCvE/HSh4TUH/mt+k7IuhI0Pb1mVOPNaLZONPLlSoFd7Rdw
+ qyh2o1pjjRHD8Qvu9WlN1zEShM8KUN7UGiZUE5cCJvXWjYFNIBoGDoV
+X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
+ pk=dWwxtWCxC6FHRurOmxEtr34SuBYU+WJowV/ZmRJ7H+k=
+X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20251216 with
+ auth_id=578
+X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Reply-To: xianwei.zhao@amlogic.com
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-4.16 / 15.00];
-	WHITELIST_DMARC(-7.00)[nvidia.com:D:+];
+X-Spamd-Result: default: False [-3.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	DMARC_POLICY_ALLOW(-0.50)[nvidia.com,reject];
-	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[Nvidia.com:s=selector2];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-324220-lists,devicetree=lfdr.de,xianwei.zhao.amlogic.com];
+	FORGED_RECIPIENTS(0.00)[m:vkoul@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:kees@kernel.org,m:gustavoars@kernel.org,m:Frank.Li@kernel.org,m:linux-amlogic@lists.infradead.org,m:dmaengine@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-hardening@vger.kernel.org,m:xianwei.zhao@amlogic.com,m:krzysztof.kozlowski@oss.qualcomm.com,m:Frank.Li@nxp.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-324224-lists,devicetree=lfdr.de];
-	FORGED_SENDER(0.00)[jackyhuang@nvidia.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS(0.00)[m:andrew@codeconstruct.com.au,m:joel@jms.id.au,m:robh@kernel.org,m:krzysztof.kozlowski@oss.qualcomm.com,m:conor+dt@kernel.org,m:andrew@lunn.ch,m:devicetree@vger.kernel.org,m:linux-aspeed@lists.ozlabs.org,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:openbmc@lists.ozlabs.org,m:jackyhuang@nvidia.com,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jackyhuang@nvidia.com,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[Nvidia.com:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,Nvidia.com:dkim,nvidia.com:from_mime,nvidia.com:email,nvidia.com:mid,vger.kernel.org:from_smtp];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	HAS_REPLYTO(0.00)[xianwei.zhao@amlogic.com];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[8]
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,amlogic.com:replyto,amlogic.com:mid,amlogic.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: D01CD7376A7
+X-Rspamd-Queue-Id: EFC94737681
 
-Add the device tree for the Aspeed AST2600 BMC for NVIDIA's Vera
-Rubin NVL compute platform.
+Add DMA driver and bindigns for the Amlogic SoCs.
 
-MAC0 uses phy-mode = "rgmii-id" because the on-board PHY supplies
-both RGMII internal delays.  The matching U-Boot device tree does not
-enable SoC-side MAC clock delays, leaving the MAC internal delay at
-zero so the PHY-provided delay is not doubled by the MAC controller.
-
-The corresponding U-Boot change has been submitted to openbmc/u-boot:
-Link: https://lore.kernel.org/all/20260629105202.1417679-1-jackyhuang@nvidia.com/
-
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
-Signed-off-by: Jacky Huang <jackyhuang@nvidia.com>
+Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
 ---
-v3: reword the &mac0 comment per Andrew Lunn's feedback.
+Changes in v10:
+- Free dma memory in workqueue.
+- Deal with zero len sg (not consume sg_link),and reset status to DMA_COMPLETE when terminal channel.
+- Add desc for #dma-cells in dt-bindings.
+- Link to v9: https://lore.kernel.org/r/20260626-amlogic-dma-v9-0-558d672c4a95@amlogic.com
 
- arch/arm/boot/dts/aspeed/Makefile             |   1 +
- .../aspeed/aspeed-bmc-nvidia-vr-nvl-bmc.dts   | 901 ++++++++++++++++++
- 2 files changed, 902 insertions(+)
- create mode 100644 arch/arm/boot/dts/aspeed/aspeed-bmc-nvidia-vr-nvl-bmc.dts
+Changes in v9:
+- Use each transmission request sg_link mem instead of the loop mem get.
+- Fix some hidden issues which reviewed by ai robot.
+- Link to v8: https://lore.kernel.org/r/20260521-amlogic-dma-v8-0-86cc2ce94142@amlogic.com
 
-diff --git a/arch/arm/boot/dts/aspeed/Makefile b/arch/arm/boot/dts/aspeed/Makefile
-index 6b68671f9379..07e10083a8bd 100644
---- a/arch/arm/boot/dts/aspeed/Makefile
-+++ b/arch/arm/boot/dts/aspeed/Makefile
-@@ -65,6 +65,7 @@ dtb-$(CONFIG_ARCH_ASPEED) += \
- 	aspeed-bmc-microsoft-olympus.dtb \
- 	aspeed-bmc-nvidia-gb200nvl-bmc.dtb \
- 	aspeed-bmc-nvidia-msx4-bmc.dtb \
-+	aspeed-bmc-nvidia-vr-nvl-bmc.dtb \
- 	aspeed-bmc-opp-lanyang.dtb \
- 	aspeed-bmc-opp-mowgli.dtb \
- 	aspeed-bmc-opp-nicole.dtb \
-diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-nvidia-vr-nvl-bmc.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-nvidia-vr-nvl-bmc.dts
-new file mode 100644
-index 000000000000..197f6c5a95fe
---- /dev/null
-+++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-nvidia-vr-nvl-bmc.dts
-@@ -0,0 +1,901 @@
-+// SPDX-License-Identifier: GPL-2.0
-+// Copyright (c) 2026 NVIDIA Corporation
-+
-+/dts-v1/;
-+
-+#include "aspeed-g6.dtsi"
-+#include <dt-bindings/gpio/aspeed-gpio.h>
-+#include <dt-bindings/i2c/i2c.h>
-+#include <dt-bindings/interrupt-controller/irq.h>
-+#include <dt-bindings/leds/common.h>
-+
-+/ {
-+	model = "AST2600 VR NVL BMC";
-+	compatible = "nvidia,vr-nvl-bmc", "aspeed,ast2600";
-+
-+	aliases {
-+		i2c16 = &i2c_usbhub;
-+		i2c17 = &i2c_tpm;
-+		i2c18 = &i2c_dp;
-+		serial2 = &uart3;
-+		serial4 = &uart5;
-+	};
-+
-+	chosen {
-+		stdout-path = &uart5;
-+	};
-+
-+	memory@80000000 {
-+		device_type = "memory";
-+		reg = <0x80000000 0x80000000>;
-+	};
-+
-+	reserved-memory {
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		ranges;
-+
-+		vga_memory: framebuffer@9f000000 {
-+			no-map;
-+			reg = <0x9f000000 0x01000000>;	/* 16 MiB */
-+		};
-+
-+		ramoops@a0000000 {
-+			compatible = "ramoops";
-+			reg = <0xa0000000 0x100000>;	/* 1 MiB */
-+			record-size = <0x10000>;	/* 64 KiB */
-+			max-reason = <2>;		/* KMSG_DUMP_OOPS */
-+		};
-+
-+		gfx_memory: framebuffer {
-+			compatible = "shared-dma-pool";
-+			size = <0x01000000>;
-+			alignment = <0x01000000>;
-+			reusable;
-+		};
-+
-+		video_engine_memory: jpegbuffer {
-+			compatible = "shared-dma-pool";
-+			size = <0x02000000>;		/* 32 MiB */
-+			alignment = <0x01000000>;
-+			reusable;
-+		};
-+	};
-+
-+	standby_power_regulator: regulator-standby-power {
-+		compatible = "regulator-fixed";
-+		regulator-name = "standby_power";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		gpios = <&gpio0 ASPEED_GPIO(M, 3) GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		led-0 {
-+			label = "uid_led";
-+			gpios = <&exp4 10 GPIO_ACTIVE_LOW>;
-+		};
-+
-+		led-1 {
-+			label = "fault_led";
-+			gpios = <&exp4 12 GPIO_ACTIVE_LOW>;
-+		};
-+
-+		led-2 {
-+			label = "power_led";
-+			gpios = <&exp4 8 GPIO_ACTIVE_LOW>;
-+		};
-+	};
-+};
-+
-+&ehci1 {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	status = "okay";
-+
-+	hub@1 {
-+		reg = <1>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		hub@1 {
-+			reg = <1>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			hub@4 {
-+				reg = <4>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				/* port 1: BlueField-4 SMA management interface */
-+				device@1 {
-+					reg = <1>;
-+					#address-cells = <2>;
-+					#size-cells = <0>;
-+
-+					interface@1 {
-+						reg = <1 1>;
-+					};
-+				};
-+
-+				cp2112g: device@2 {
-+					reg = <2>;
-+					gpio-controller;
-+					#gpio-cells = <2>;
-+					interrupt-controller;
-+					#interrupt-cells = <2>;
-+					gpio-line-names =
-+						"BF4_USB_MCU_RECOVERY_L",
-+						"BF4_USB_MCU_RST_L",
-+						"BF4_USB_FORCE_FNP_L",
-+						"BF4_GLOBAL_WP",
-+						"BF4_FORCE_POR_L",
-+						"BF4_BMC_EROT_RST_L",
-+						"BF4_BMC_EROT_RECOVERY_L",
-+						"BF4_THERM_SHUTDOWN";
-+				};
-+			};
-+		};
-+
-+		hub@2 {
-+			reg = <2>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			hub@1 {
-+				reg = <1>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				hub@3 {
-+					reg = <3>;
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+					device@1 {
-+						reg = <1>;
-+						#address-cells = <2>;
-+						#size-cells = <0>;
-+
-+						iob1_sma: interface@1 {
-+							reg = <1 1>;
-+
-+							gpio-controller;
-+							#gpio-cells = <2>;
-+							interrupt-controller;
-+							#interrupt-cells = <2>;
-+						};
-+					};
-+
-+					cp2112c: device@2 {
-+						reg = <2>;
-+						gpio-controller;
-+						#gpio-cells = <2>;
-+						interrupt-controller;
-+						#interrupt-cells = <2>;
-+						gpio-line-names =
-+							"IOB1_MCP_P0_2-B",
-+							"IOB1_MCU_RST_L-O",
-+							"IOB1_MCU_RECOVERY_L-O",
-+							"IOB1_GLOBAL_WP-O",
-+							"IOB1_GLOBAL_ADDR_L_R-O",
-+							"IOB1_GLOBAL_ADDR_U_D-O",
-+							"IOB1_PWR_EN-O",
-+							"IOB1_MCU_READY_STATUS-I";
-+					};
-+				};
-+
-+				hub@4 {
-+					reg = <4>;
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+					device@1 {
-+						reg = <1>;
-+						#address-cells = <2>;
-+						#size-cells = <0>;
-+
-+						iob0_sma: interface@1 {
-+							reg = <1 1>;
-+
-+							gpio-controller;
-+							#gpio-cells = <2>;
-+							interrupt-controller;
-+							#interrupt-cells = <2>;
-+						};
-+					};
-+
-+					cp2112d: device@2 {
-+						reg = <2>;
-+						gpio-controller;
-+						#gpio-cells = <2>;
-+						interrupt-controller;
-+						#interrupt-cells = <2>;
-+						gpio-line-names =
-+							"IOB0_MCP_P0_2-B",
-+							"IOB0_MCU_RST_L-O",
-+							"IOB0_MCU_RECOVERY_L-O",
-+							"IOB0_GLOBAL_WP-O",
-+							"IOB0_GLOBAL_ADDR_L_R-O",
-+							"IOB0_GLOBAL_ADDR_U_D-O",
-+							"IOB0_PWR_EN-O",
-+							"IOB0_MCU_READY_STATUS-I";
-+					};
-+				};
-+
-+				device@1 {
-+					reg = <1>;
-+					#address-cells = <2>;
-+					#size-cells = <0>;
-+
-+					cp2112a: interface@1 {
-+						reg = <1 1>;
-+						gpio-controller;
-+						#gpio-cells = <2>;
-+						interrupt-controller;
-+						#interrupt-cells = <2>;
-+					};
-+				};
-+			};
-+
-+			hub@2 {
-+				reg = <2>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				hub@3 {
-+					reg = <3>;
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+					device@1 {
-+						reg = <1>;
-+						#address-cells = <2>;
-+						#size-cells = <0>;
-+
-+						iob2_sma: interface@1 {
-+							reg = <1 1>;
-+
-+							gpio-controller;
-+							#gpio-cells = <2>;
-+							interrupt-controller;
-+							#interrupt-cells = <2>;
-+						};
-+					};
-+
-+					cp2112e: device@2 {
-+						reg = <2>;
-+						gpio-controller;
-+						#gpio-cells = <2>;
-+						interrupt-controller;
-+						#interrupt-cells = <2>;
-+						gpio-line-names =
-+							"IOB2_MCP_P0_2-B",
-+							"IOB2_MCU_RST_L-O",
-+							"IOB2_MCU_RECOVERY_L-O",
-+							"IOB2_GLOBAL_WP-O",
-+							"IOB2_GLOBAL_ADDR_L_R-O",
-+							"IOB2_GLOBAL_ADDR_U_D-O",
-+							"IOB2_PWR_EN-O",
-+							"IOB2_MCU_READY_STATUS-I";
-+					};
-+				};
-+
-+				hub@4 {
-+					reg = <4>;
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+					device@1 {
-+						reg = <1>;
-+						#address-cells = <2>;
-+						#size-cells = <0>;
-+
-+						iob3_sma: interface@1 {
-+							reg = <1 1>;
-+
-+							gpio-controller;
-+							#gpio-cells = <2>;
-+							interrupt-controller;
-+							#interrupt-cells = <2>;
-+						};
-+					};
-+
-+					cp2112f: device@2 {
-+						reg = <2>;
-+						gpio-controller;
-+						#gpio-cells = <2>;
-+						interrupt-controller;
-+						#interrupt-cells = <2>;
-+						gpio-line-names =
-+							"IOB3_MCP_P0_2-B",
-+							"IOB3_MCU_RST_L-O",
-+							"IOB3_MCU_RECOVERY_L-O",
-+							"IOB3_GLOBAL_WP-O",
-+							"IOB3_GLOBAL_ADDR_L_R-O",
-+							"IOB3_GLOBAL_ADDR_U_D-O",
-+							"IOB3_PWR_EN-O",
-+							"IOB3_MCU_READY_STATUS-I";
-+					};
-+				};
-+
-+				device@1 {
-+					reg = <1>;
-+					#address-cells = <2>;
-+					#size-cells = <0>;
-+
-+					cp2112b: interface@1 {
-+						reg = <1 1>;
-+						gpio-controller;
-+						#gpio-cells = <2>;
-+						interrupt-controller;
-+						#interrupt-cells = <2>;
-+					};
-+				};
-+			};
-+		};
-+	};
-+};
-+
-+&fmc {
-+	status = "okay";
-+
-+	flash@0 {
-+		label = "bmc";
-+		status = "okay";
-+
-+		partitions {
-+			compatible = "fixed-partitions";
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+
-+			partition@0 {
-+				reg = <0x0 0xe0000>;		/* 896 KiB */
-+				label = "u-boot";
-+			};
-+
-+			partition@100000 {
-+				reg = <0x100000 0x900000>;	/* 9 MiB */
-+				label = "kernel";
-+			};
-+
-+			partition@a00000 {
-+				/*
-+				 * extends to end of 64 MiB - 4 KiB; last
-+				 * 4 KiB reserved for EROT image
-+				 */
-+				reg = <0xa00000 0x35ff000>;
-+				label = "rofs";
-+			};
-+		};
-+	};
-+};
-+
-+&gpio0 {
-+	gpio-line-names =
-+		/* A0-A7 */ "", "", "", "", "", "", "", "",
-+		/* B0-B7 */ "", "", "", "", "", "", "", "",
-+		/* C0-C7 */ "", "BF4_USB_RST_L-O", "", "", "", "", "", "",
-+		/* D0-D7 */ "", "", "", "", "", "FPGA_PEX_RST_L", "", "",
-+		/* E0-E7 */ "RTL8221_PHY_RST_L-O", "RTL8211_PHY_INT_L-I",
-+			    "", "", "", "", "", "MUX_SGPIO_SEL-O",
-+		/* F0-F7 */ "", "", "", "", "", "", "", "",
-+		/* G0-G7 */ "", "", "", "", "", "", "", "",
-+		/* H0-H7 */ "", "", "", "", "", "", "", "",
-+		/* I0-I7 */ "", "", "", "", "", "QSPI2_RST_L-O",
-+			    "GLOBAL_WP_BMC-I", "BMC_DDR4_TEN-O",
-+		/* J0-J7 */ "", "", "", "", "", "", "", "",
-+		/* K0-K7 */ "", "", "", "", "", "", "", "",
-+		/* L0-L7 */ "", "", "", "", "", "", "", "",
-+		/* M0-M7 */ "USB_HUB_RST_N-O", "BMC_FRU_WP-O",
-+			    "", "HMC_STBY_POWER_EN-O", "STBY_POWER_PG-I",
-+			    "PCIE_EP_RST_L-O", "", "",
-+		/* N0-N7 */ "", "", "", "", "", "", "", "",
-+		/* O0-O7 */ "", "", "", "", "", "", "", "",
-+		/* P0-P7 */ "", "", "", "", "", "", "", "",
-+		/* Q0-Q7 */ "", "", "", "", "", "", "", "",
-+		/* R0-R7 */ "", "SP0_AP_INTR_N-I", "", "", "", "", "", "",
-+		/* S0-S7 */ "", "", "", "", "", "", "", "",
-+		/* T0-T7 */ "", "", "", "", "", "", "", "",
-+		/* U0-U7 */ "", "", "", "", "", "", "", "",
-+		/* V0-V7 */ "", "", "", "", "",
-+			    "PCB_TEMP_ALERT-I", "", "",
-+		/* W0-W7 */ "", "", "", "", "", "", "", "CPU_RST_L-I",
-+		/* X0-X7 */ "", "", "", "", "", "", "", "",
-+		/* Y0-Y7 */ "", "", "", "EMMC_RST-O", "", "", "", "",
-+		/* Z0-Z7 */ "HMC_EROT_SPI_INT_L-I",
-+			    "", "", "", "", "", "", "";
-+};
-+
-+&gpio1 {
-+	gpio-line-names =
-+		/* A0-A7 */ "", "", "", "", "", "", "", "",
-+		/* B0-B7 */ "", "", "", "", "AP_EROT_REQ-O",
-+			    "EROT_AP_GNT-I", "IO_EXPANDER_INT_L-I", "",
-+		/* C0-C7 */ "", "", "", "", "", "", "", "",
-+		/* D0-D7 */ "", "", "", "", "", "", "",
-+			    "I2C_SSIF_ALERT_L-I",
-+		/* E0-E7 */ "", "", "", "", "", "", "", "";
-+};
-+
-+/* SSIF (CPU0 host IPMI) */
-+&i2c0 {
-+	clock-frequency = <400000>;
-+	status = "okay";
-+};
-+
-+/* BMC <-> HMC management (FRU proxy) */
-+&i2c1 {
-+	clock-frequency = <400000>;
-+	status = "okay";
-+};
-+
-+&i2c2 {
-+	clock-frequency = <400000>;
-+	status = "okay";
-+
-+	exp0: gpio@20 {
-+		compatible = "nxp,pca9555";
-+		reg = <0x20>;
-+		interrupt-parent = <&gpio1>;
-+		interrupts = <ASPEED_GPIO(B, 6) IRQ_TYPE_LEVEL_LOW>;
-+		interrupt-controller;
-+		#interrupt-cells = <2>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+		vcc-supply = <&standby_power_regulator>;
-+		gpio-line-names =
-+			"B0_M0_SHDN_FORCE_L-O",
-+			"B0_M0_STBY_POWER_PG-I",
-+			"B0_M0_THERM_OVERT_L-I",
-+			"B0_M0_THERM_WARN_L-I",
-+			"B0_M0_GLOBAL_WP-O",
-+			"B0_M0_USB_HUB0_RST_L-O",
-+			"B0_M0_PRE_SYS_RST_L-O",
-+			"B0_M0_LEAK_DETECT_ALERT_L-I",
-+			"B0_M0_RUN_POWER_EN-O",
-+			"B0_M0_RUN_POWER_PG-I",
-+			"B0_M0_CPU_CHIPTHROT_L-O",
-+			"B0_M0_SHDN_REQ_L-O",
-+			"B0_M0_CPU_SHDN_OK_L-I",
-+			"B0_M0_CPLD_READY-I",
-+			"B0_M0_PWR_BRAKE_L-O",
-+			"B0_M0_PWR_BRAKE_STATUS_L-I";
-+	};
-+
-+	exp1: gpio@21 {
-+		compatible = "nxp,pca9555";
-+		reg = <0x21>;
-+		interrupt-parent = <&gpio1>;
-+		interrupts = <ASPEED_GPIO(B, 6) IRQ_TYPE_LEVEL_LOW>;
-+		interrupt-controller;
-+		#interrupt-cells = <2>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+		vcc-supply = <&standby_power_regulator>;
-+		gpio-line-names =
-+			"B0_M0_I2C_BUS_MUX_RESET_L-O",
-+			"B0_M0_HPM_MCU_OK-I",
-+			"B0_M0_CPU_L0_RST_IND_L-O",
-+			"B0_M0_C0_SOCAMM_DAC_SEL0-O",
-+			"B0_M0_C1_SOCAMM_DAC_SEL1-O",
-+			"B0_M0_C0_SOCAMM_I2C_SEL_R-O",
-+			"B0_M0_C1_SOCAMM_I2C_SEL_R-O",
-+			"B0_M0_EEPROM_POWER_DISABLE-O",
-+			"B0_M0_L0L1_RST_L-I",
-+			"B0_M0_L2_RST_L-I",
-+			"B0_M0_BRD_ID_0-I",
-+			"B0_M0_BRD_ID_1-I",
-+			"B0_M0_BMC_LEAK_TEST_L-O",
-+			"B0_M0_MCU_BMC_ALERT_L-I",
-+			"B0_M0_CPU_BOOT_COMPLETE_3V3-I",
-+			"B0_M0_BMC_TO_GPU_MCU_I2C_EN-O";
-+	};
-+};
-+
-+/* HMC virtual EEPROM / sensor proxy */
-+&i2c3 {
-+	clock-frequency = <400000>;
-+	status = "okay";
-+};
-+
-+/* MCIO expansion connector (HPM board 0) */
-+&i2c4 {
-+	clock-frequency = <400000>;
-+	status = "okay";
-+};
-+
-+&i2c5 {
-+	clock-frequency = <400000>;
-+	status = "okay";
-+
-+	exp4: gpio@20 {
-+		compatible = "nxp,pca9555";
-+		reg = <0x20>;
-+		interrupt-parent = <&gpio1>;
-+		interrupts = <ASPEED_GPIO(B, 6) IRQ_TYPE_LEVEL_LOW>;
-+		interrupt-controller;
-+		#interrupt-cells = <2>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+		gpio-line-names =
-+			"HMC_RST_R_L-O",
-+			"HMC_RECOVERY_R-O",
-+			"HMC_SPI_MUX_R_SEL-O",
-+			"GLOBAL_WP-O",
-+			"HMC_READY-I",
-+			"HMC_PRSNT_R-I",
-+			"BMC_SELF_PWR_CYCLE-O",
-+			"EEDO_LED2-O",
-+			"PWR_LED_L-O",
-+			"PWR_BTN_L-I",
-+			"UID_LED_L-O",
-+			"UID_BTN_L-I",
-+			"FAULT_LED_L-O",
-+			"USB2_HUB_RST_L-O",
-+			"IOX_GPIO_P16_TP",
-+			"WARN_LED_L-O";
-+	};
-+
-+	exp5: gpio@21 {
-+		compatible = "nxp,pca9555";
-+		reg = <0x21>;
-+		interrupt-parent = <&gpio1>;
-+		interrupts = <ASPEED_GPIO(B, 6) IRQ_TYPE_LEVEL_LOW>;
-+		interrupt-controller;
-+		#interrupt-cells = <2>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+		gpio-line-names =
-+			"BMC_HMC_MUX_SEL-O",
-+			"BMC_TPM_MUX_SEL-O",
-+			"BMC_USB2_MUX_SEL-O",
-+			"HMC_PGOOD_3V3-I",
-+			"BF3_AOC_NCSI_PRSNT_L-I",
-+			"HDR_SPI_PRSNT_L-I",
-+			"SW_NRESET_R_L-O",
-+			"MUX_I2C_ESPI_SEL-O",
-+			"I2C_BUS_MUX_RESET_L-O",
-+			"USB_MUX_EN-O",
-+			"PDB_TRAY_RST-O",
-+			"USB_PWR_EN-O",
-+			"RTC_CLR_L-O",
-+			"I2C_RTC_ALERT_L-I",
-+			"X86_TPM_RST_SEL_L-O",
-+			"BMC_MUX_PI3DP_SEL-O";
-+	};
-+};
-+
-+&i2c6 {
-+	clock-frequency = <400000>;
-+	status = "okay";
-+
-+	exp19: gpio@20 {
-+		compatible = "ti,tca6408";
-+		reg = <0x20>;
-+		interrupt-parent = <&gpio1>;
-+		interrupts = <ASPEED_GPIO(B, 6) IRQ_TYPE_LEVEL_LOW>;
-+		interrupt-controller;
-+		#interrupt-cells = <2>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+		gpio-line-names =
-+			"", "",
-+			"HMC_EROT_FATAL_ERROR_L-I", "",
-+			"", "HMC_EROT_RECOVERY_L-O",
-+			"HMC_EROT_RESET_L-O", "";
-+	};
-+
-+	i2c-mux@70 {
-+		compatible = "nxp,pca9546";
-+		reg = <0x70>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		i2c-mux-idle-disconnect;
-+
-+		/* USB hub sideband */
-+		i2c_usbhub: i2c@0 {
-+			reg = <0>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+		};
-+
-+		/* optional TPM mux (unused; primary TPM is SPI) */
-+		i2c_tpm: i2c@1 {
-+			reg = <1>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+		};
-+
-+		/* DisplayPort/USB-C crossbar */
-+		i2c_dp: i2c@2 {
-+			reg = <2>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+		};
-+	};
-+};
-+
-+&i2c7 {
-+	clock-frequency = <400000>;
-+	status = "okay";
-+
-+	exp2: gpio@20 {
-+		compatible = "nxp,pca9555";
-+		reg = <0x20>;
-+		interrupt-parent = <&gpio1>;
-+		interrupts = <ASPEED_GPIO(B, 6) IRQ_TYPE_LEVEL_LOW>;
-+		interrupt-controller;
-+		#interrupt-cells = <2>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+		vcc-supply = <&standby_power_regulator>;
-+		gpio-line-names =
-+			"B1_M0_SHDN_FORCE_L-O",
-+			"B1_M0_STBY_POWER_PG-I",
-+			"B1_M0_THERM_OVERT_L-I",
-+			"B1_M0_THERM_WARN_L-I",
-+			"B1_M0_GLOBAL_WP-O",
-+			"B1_M0_USB_HUB0_RST_L-O",
-+			"B1_M0_PRE_SYS_RST_L-O",
-+			"B1_M0_LEAK_DETECT_ALERT_L-I",
-+			"B1_M0_RUN_POWER_EN-O",
-+			"B1_M0_RUN_POWER_PG-I",
-+			"B1_M0_CPU_CHIPTHROT_L-O",
-+			"B1_M0_SHDN_REQ_L-O",
-+			"B1_M0_CPU_SHDN_OK_L-I",
-+			"B1_M0_CPLD_READY-I",
-+			"B1_M0_PWR_BRAKE_L-O",
-+			"B1_M0_PWR_BRAKE_STATUS_L-I";
-+	};
-+
-+	exp3: gpio@21 {
-+		compatible = "nxp,pca9555";
-+		reg = <0x21>;
-+		interrupt-parent = <&gpio1>;
-+		interrupts = <ASPEED_GPIO(B, 6) IRQ_TYPE_LEVEL_LOW>;
-+		interrupt-controller;
-+		#interrupt-cells = <2>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+		vcc-supply = <&standby_power_regulator>;
-+		gpio-line-names =
-+			"B1_M0_I2C_BUS_MUX_RESET_L-O",
-+			"B1_M0_HPM_MCU_OK-I",
-+			"B1_M0_CPU_L0_RST_IND_L-O",
-+			"B1_M0_C0_SOCAMM_DAC_SEL0-O",
-+			"B1_M0_C1_SOCAMM_DAC_SEL1-O",
-+			"B1_M0_C0_SOCAMM_I2C_SEL_R-O",
-+			"B1_M0_C1_SOCAMM_I2C_SEL_R-O",
-+			"B1_M0_EEPROM_POWER_DISABLE-O",
-+			"B1_M0_L0L1_RST_L-I",
-+			"B1_M0_L2_RST_L-I",
-+			"B1_M0_BRD_ID_0-I",
-+			"B1_M0_BRD_ID_1-I",
-+			"B1_M0_BMC_LEAK_TEST_L-O",
-+			"B1_M0_MCU_BMC_ALERT_L-I",
-+			"B1_M0_CPU_BOOT_COMPLETE_3V3-I",
-+			"B1_M0_BMC_TO_GPU_MCU_I2C_EN-O";
-+	};
-+};
-+
-+/* SSIF (CPU1 host IPMI) */
-+&i2c8 {
-+	clock-frequency = <400000>;
-+	status = "okay";
-+};
-+
-+&i2c9 {
-+	clock-frequency = <400000>;
-+	status = "okay";
-+
-+	exp6: gpio@20 {
-+		compatible = "nxp,pca9555";
-+		reg = <0x20>;
-+		interrupt-parent = <&gpio1>;
-+		interrupts = <ASPEED_GPIO(B, 6) IRQ_TYPE_LEVEL_LOW>;
-+		interrupt-controller;
-+		#interrupt-cells = <2>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+		gpio-line-names =
-+			"PDB_STRAP-I",
-+			"STBY_POWER_EN-O",
-+			"STBY_PWR_OK-I",
-+			"", "",
-+			"MAIN_PWR_EN-O",
-+			"MAIN_PWR_OK-I",
-+			"PDB_GLB_WP-O",
-+			"PDB_PWR_BRK_L-I",
-+			"FAN_PRSNT-I",
-+			"", "",
-+			"HSC4_S5_OR_S0_N-O",
-+			"", "", "";
-+	};
-+
-+	eeprom@50 {
-+		compatible = "atmel,24c02";
-+		reg = <0x50>;
-+		pagesize = <8>;
-+	};
-+
-+	exp7: gpio@75 {
-+		compatible = "nxp,pca9539";
-+		reg = <0x75>;
-+		interrupt-parent = <&gpio1>;
-+		interrupts = <ASPEED_GPIO(B, 6) IRQ_TYPE_LEVEL_LOW>;
-+		interrupt-controller;
-+		#interrupt-cells = <2>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+		gpio-line-names =
-+			"SNN_PDB_RUN_IO0_A_R_PG-I",
-+			"RST_STBY_R_L-O",
-+			"SNN_PDB_RUN_IO0_B_R_EN-O",
-+			"PSU1_PRSNT_R_N-O",
-+			"PSU2_PRSNT_R_N-O",
-+			"PSU3_PRSNT_R_N-O",
-+			"PSU4_PRSNT_R_N-O",
-+			"PDB_12V_PG_R-I",
-+			"PDB_12V_2_PG_R-I",
-+			"PDB_12V_2_EN_R-O",
-+			"PDB_12V_EN_N_R-O",
-+			"",
-+			"HSC_PG_VIN_PG_R-I",
-+			"PDB_PSU_SMB_ALERT_L_R-O",
-+			"SNN_JSB2_17_R-I",
-+			"TRAY_RST_L_R-I";
-+	};
-+};
-+
-+&i2c10 {
-+	clock-frequency = <400000>;
-+	status = "okay";
-+
-+	eeprom@50 {
-+		compatible = "atmel,24c02";
-+		reg = <0x50>;
-+		pagesize = <8>;
-+	};
-+};
-+
-+/* Realtek Ethernet switch config EEPROM */
-+&i2c11 {
-+	clock-frequency = <400000>;
-+	status = "okay";
-+};
-+
-+/* BMC EROT */
-+&i2c12 {
-+	clock-frequency = <400000>;
-+	status = "okay";
-+};
-+
-+&i2c13 {
-+	clock-frequency = <400000>;
-+	multi-master;
-+	mctp-controller;
-+	status = "okay";
-+
-+	mctp-controller@18 {
-+		compatible = "mctp-i2c-controller";
-+		reg = <(0x18 | I2C_OWN_SLAVE_ADDRESS)>;
-+	};
-+
-+	exp18: gpio@38 {
-+		compatible = "nxp,pca9554";
-+		reg = <0x38>;
-+		interrupt-parent = <&gpio1>;
-+		interrupts = <ASPEED_GPIO(B, 6) IRQ_TYPE_LEVEL_LOW>;
-+		interrupt-controller;
-+		#interrupt-cells = <2>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+		gpio-line-names =
-+			"SSD0_PRSNT_L-I",
-+			"E1S_PWR_EN-O",
-+			"SSD0_PWRDIS-O",
-+			"I2C_PDB_ALERT_L-I",
-+			"BMC_SSD0_RST_L-O",
-+			"GLOBAL_WP_E1S-O",
-+			"12V_SSD0_PGD-I",
-+			"SSD0_LED-O";
-+	};
-+};
-+
-+/* MCIO expansion connector (HPM board 1) */
-+&i2c14 {
-+	clock-frequency = <400000>;
-+	status = "okay";
-+};
-+
-+/* USB-C PD controller */
-+&i2c15 {
-+	clock-frequency = <400000>;
-+	status = "okay";
-+};
-+
-+&mac0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_rgmii1_default>;
-+	/*
-+	 * The on-board PHY uses both the RX and TX RGMII internal
-+	 * delays. Declare "rgmii-id" so the MAC does not add
-+	 * additional delay. The same setting is applied in the
-+	 * matching u-boot DTS to keep early-boot networking working.
-+	 */
-+	phy-mode = "rgmii-id";
-+	phy-handle = <&ethphy0>;
-+	status = "okay";
-+};
-+
-+&mdio0 {
-+	status = "okay";
-+
-+	ethphy0: ethernet-phy@0 {
-+		compatible = "ethernet-phy-ieee802.3-c22";
-+		reg = <0>;
-+	};
-+};
-+
-+&spi2 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_spi2_default>;
-+	status = "okay";
-+
-+	flash@0 {
-+		label = "config";
-+		status = "okay";
-+
-+		partitions {
-+			compatible = "fixed-partitions";
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+
-+			partition@0 {
-+				reg = <0x0 0x40000>;	/* 256 KiB */
-+				label = "u-boot-env";
-+			};
-+
-+			partition@40000 {
-+				reg = <0x40000 0x1000000>;	/* 16 MiB */
-+				label = "rwfs";
-+			};
-+
-+			partition@1040000 {
-+				reg = <0x1040000 0x2800000>;	/* 40 MiB */
-+				label = "log";
-+			};
-+		};
-+	};
-+};
-+
-+/* BMC <-> host CPU UART */
-+&uart1 {
-+	status = "okay";
-+};
-+
-+/* Serial-over-LAN */
-+&uart3 {
-+	status = "okay";
-+};
-+
-+/* BMC debug console */
-+&uart5 {
-+	status = "okay";
-+};
-+
-+&uart_routing {
-+	status = "okay";
-+};
-+
-+&vhub {
-+	status = "okay";
-+};
-+
-+&video {
-+	memory-region = <&video_engine_memory>;
-+	status = "okay";
-+};
+Changes in v8:
+- Use kzalloc instead of kmalloc.
+- Initialize the temporary variable and fix a spelling mistake.
+- Link to v7: https://lore.kernel.org/r/20260324-amlogic-dma-v7-0-f8b91ee192c1@amlogic.com
+
+Changes in v7:
+- Take use vchan to support mltiple txns.
+- Link to v6: https://lore.kernel.org/r/20260309-amlogic-dma-v6-0-63349d23bd4b@amlogic.com
+
+Changes in v6:
+- Some minor modifications according to Frank's suggestion.
+- Link to v5: https://lore.kernel.org/r/20260304-amlogic-dma-v5-0-aa453d14fd43@amlogic.com
+
+Changes in v5:
+- Rename head file and rename macro definition.
+- Rename the subject in [2/3] from "dma" to "dmaengine".
+- Link to v4: https://lore.kernel.org/r/20260227-amlogic-dma-v4-0-f25e4614e9b7@amlogic.com
+
+Changes in v4:
+- Support split transfer when data len > MAX_LEN.
+- When a module fails or exits, perform de-initialization.
+- Some other minor modifications.
+- Link to v3: https://lore.kernel.org/r/20260206-amlogic-dma-v3-0-56fb9f59ed22@amlogic.com
+
+Changes in v3:
+- Adjust the format of binding according to Frank's suggestion.
+- Some code format modified according to Frank's suggestion.
+- Support one prep_sg and one submit, drop multi prep_sg and one submit.
+- Keep pre state when resume from pause status.
+- Link to v2: https://lore.kernel.org/r/20260127-amlogic-dma-v2-0-4525d327d74d@amlogic.com
+
+Changes in v2:
+- Introduce what the DMA is used for in the A9 SoC.
+- Some minor modifications were made according to Krzysztof's suggestions.
+- Some modifications were made according to Neil's suggestions.
+- Fix a build error.
+- Link to v1: https://lore.kernel.org/r/20251216-amlogic-dma-v1-0-e289e57e96a7@amlogic.com
+
+---
+Xianwei Zhao (3):
+      dt-bindings: dma: Add Amlogic A9 SoC DMA
+      dmaengine: amlogic: Add general DMA driver for A9
+      MAINTAINERS: Add an entry for Amlogic DMA driver
+
+ .../devicetree/bindings/dma/amlogic,a9-dma.yaml    |  68 ++
+ MAINTAINERS                                        |   7 +
+ drivers/dma/Kconfig                                |  10 +
+ drivers/dma/Makefile                               |   1 +
+ drivers/dma/amlogic-dma.c                          | 723 +++++++++++++++++++++
+ include/dt-bindings/dma/amlogic,a9-dma.h           |   8 +
+ 6 files changed, 817 insertions(+)
+---
+base-commit: f53b2c30a192b35064be2584df7a800a8e6ac710
+change-id: 20251215-amlogic-dma-79477d5cd264
+
+Best regards,
 -- 
-2.43.0
+Xianwei Zhao <xianwei.zhao@amlogic.com>
+
 
 
