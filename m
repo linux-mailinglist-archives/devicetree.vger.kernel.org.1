@@ -1,58 +1,58 @@
-Return-Path: <devicetree+bounces-324685-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-324682-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id p5PCK1VuUWonEwMAu9opvQ
-	(envelope-from <devicetree+bounces-324685-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 11 Jul 2026 00:12:37 +0200
+	id FSzRMkxuUWofEwMAu9opvQ
+	(envelope-from <devicetree+bounces-324682-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 11 Jul 2026 00:12:28 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4BCCC73F670
-	for <lists+devicetree@lfdr.de>; Sat, 11 Jul 2026 00:12:37 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C32473F64F
+	for <lists+devicetree@lfdr.de>; Sat, 11 Jul 2026 00:12:28 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20201202 header.b=BqjcZL4P;
+	dkim=pass header.d=kernel.org header.s=k20201202 header.b=sEQXZLWq;
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324685-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-324685-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324682-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-324682-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 8B8F7303924C
+	by sin.lore.kernel.org (Postfix) with ESMTP id 29E89300BEAF
 	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 22:12:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0366C3D3D0C;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0186A3D3CE2;
 	Fri, 10 Jul 2026 22:12:13 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D22E03D1715
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D218A3D0923
 	for <devicetree@vger.kernel.org>; Fri, 10 Jul 2026 22:12:12 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783721532; cv=none; b=NvFD0wehlJ+qC1Eq4Z4E+2XnSOdKcS6YJjMMHrQia6Y05s9MVWISNJUlcvhTz0HSgaRgk011+yyNybniS/1n6v+I6/sX1EmLpTjAKOjD5G2V0OxrfwRm8h3cudSNev/hfpRJjJ2iWLsSckgbn6OFGpx/B9Y6HRaQm/QzGCFQErU=
+	t=1783721532; cv=none; b=D/sEbimGfsfgRu/oJnr8kKjMEYyKWn1NW31MO6vuhZExwq0hQtqnBiktpTg69d+tbyFucdCcdEpTpowPdyC4GNRwgmAnQxtJbpdKx8a5karrt7c266i2itQ9qQwYLiBMouq+XjSiggKjJnKoRWpR6LEIa07n1Hwv4OrtY57WFes=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1783721532; c=relaxed/simple;
-	bh=p8WO4o/I480NES+b3qaNouXk4eoGUbReu9hZJqx0uvE=;
+	bh=ott/e/PsVQ7ftOVMoDZvH/I1/494RVUTk6InVE/vBKQ=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=sN879Rwwy1deJieHchnHmNP8gThAUjozJTTLJJInZAO2Tt0re9Q91u5a+8bNOKCQYzYn6r5D6ehXx/B6x89PH9s9t/4UPmg975BmlK5KAu+YLPwehx6x34rWmiAzT0e4+UoZP0Y+lPfNYQ3Li4USAQHCVDLOHwz2BS1MP01kGDc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BqjcZL4P; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 9AEA0C2BCF4;
+	 In-Reply-To:To:Cc; b=Gzf7thLFGpS+NDzUPTky9YqdZMzmHa3jFK/uQhy5r9m13h8mrcL09jLJoGq5PQcpToQH3vmueEzbI4jQ5kFXT0AaU+fXtM8g5GSBo/MTPKDfI/1mXq+z87D2cuFmUcaadp3MMsxuR2F5HZqrRg8yvc1JBCIjNVKTJKlOMsG/uq8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sEQXZLWq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id A54ECC2BCFB;
 	Fri, 10 Jul 2026 22:12:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1783721532;
-	bh=p8WO4o/I480NES+b3qaNouXk4eoGUbReu9hZJqx0uvE=;
+	bh=ott/e/PsVQ7ftOVMoDZvH/I1/494RVUTk6InVE/vBKQ=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=BqjcZL4Pny7CHMtlEBxXtBkq+ZhOd7YGmSjPe9/JATBW1P6MP4l2PB1i6fOgFCu0A
-	 P6478dMdxX8TeqHO5zNjQtiKF9oIq4tdDNeRsdNoKHzshX+DJTFcQNGaUMGVY0PklP
-	 BAXWFuRSnPG86uHPG0Hm8Fa2Y//cLNMA4Jf+kmCjOBe0UF9nl/59KgUThCDju/A4u9
-	 akK79klWCuFAGIqN+tyKsOtkTe1rF85IDsz1k7h0XQpGtUKIDxHIYAs5IZFDnz8aoV
-	 suqAjNWVAJQDI5vUT6zPQp4xjxMGn1QW81oCy+ouwDR0oAh8dtat/ymsT0w8dW4k4z
-	 2GldbSuWCEBFg==
+	b=sEQXZLWqLW5vYRDAWn84S/o7AoYejDbMbC24tsv0i1RNnUkwzGTW/myv8o1xklpCC
+	 kdvXNr1HYGFOufYRKMi5q1DmoFFwpqSFcoBQ0nU70LjNCiVQxLO809uI4qN/SzSKak
+	 TTnH3Mqw5/RiDJpywkKthfZ1xN/90wRKm2lUk5NXJCMyTVweaqXUAOEgH6JZsOVkdc
+	 Abfu/T4HspmETMW2vQ1SNCZsL9C0jopOtsk+nbW8hpUA3sS5BuRjIYg8O3+OGA/nOQ
+	 uLMF7HUKGM1CzI5ALNWsjuJe5/RC1lT9eNKa0IAhtGtskohytZn6WDkbqi+1e1/3Vj
+	 ajEE0BLr3k8CA==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 7DDC9C44501;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8B263C44509;
 	Fri, 10 Jul 2026 22:12:12 +0000 (UTC)
 From: Joachim Eastwood via B4 Relay <devnull+joachim.eastwood.gmail.com@kernel.org>
-Date: Sat, 11 Jul 2026 00:11:52 +0200
-Subject: [PATCH v2 03/12] arm64: dts: rockchip: move NanoPi R6 code into
- common dtsi
+Date: Sat, 11 Jul 2026 00:11:53 +0200
+Subject: [PATCH v2 04/12] arm64: dts: rockchip: rk3588s-nanopi: add missing
+ sdmmc cd pinctrl
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,7 +61,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260711-nanopi-m6-v2-3-422675a65402@gmail.com>
+Message-Id: <20260711-nanopi-m6-v2-4-422675a65402@gmail.com>
 References: <20260711-nanopi-m6-v2-0-422675a65402@gmail.com>
 In-Reply-To: <20260711-nanopi-m6-v2-0-422675a65402@gmail.com>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -70,11 +70,11 @@ Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-rockchip@lists.infradead.org, diederik@cknow-tech.com, 
  Joachim Eastwood <joachim.eastwood@gmail.com>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1783721530; l=6924;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1783721530; l=1037;
  i=joachim.eastwood@gmail.com; s=20260701; h=from:subject:message-id;
- bh=l+IoGL0+AR8uHVcN+bVq+UedJE3QXtq5gzvflNswvyo=;
- b=otyvpGReSdJaqxJ7SY0Tq/+rUJIHKP8tAQExm37YA2dqkndZh5+4MldsyZRfWX4WDstongo0o
- DRI5Uv+xTRWDFuyXjLg0Ue74qJSBFgxZhsBAjQ2vdow4GVmlKtERSnm
+ bh=RwYpiB/RtND/z6LPjHWK2wsSxC8Q0Qs9K3NgIPhkNgo=;
+ b=vf/Y8zLgiYl3go5kstqi32Zq0hQTDbxjmUtlU+j5TfU7hIRJiITMKwB+iApmAdzaIupgsCO4q
+ 0UsbMNg3MpJCwLxbnmNqfgtkb05cAOLwUHCNpaDuzOTx8wlWL0waNOE
 X-Developer-Key: i=joachim.eastwood@gmail.com; a=ed25519;
  pk=ZN/8xWtdYaSd5oEfloYSZ1a+/ri0n0VZqjlEeHlbXFU=
 X-Endpoint-Received: by B4 Relay for joachim.eastwood@gmail.com/20260701
@@ -88,12 +88,12 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-324685-lists,devicetree=lfdr.de,joachim.eastwood.gmail.com];
+	TAGGED_FROM(0.00)[bounces-324682-lists,devicetree=lfdr.de,joachim.eastwood.gmail.com];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:heiko@sntech.de,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-rockchip@lists.infradead.org,m:diederik@cknow-tech.com,m:joachim.eastwood@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:joachimeastwood@gmail.com,s:lists@lfdr.de];
 	FORGED_SENDER(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
@@ -116,278 +116,45 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	HAS_REPLYTO(0.00)[joachim.eastwood@gmail.com];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 4BCCC73F670
+X-Rspamd-Queue-Id: 0C32473F64F
 
 From: Joachim Eastwood <joachim.eastwood@gmail.com>
 
-Move NanoPi R6C and R6S specific DT into its own file.
+The cd (card detect) pin is used, but not reserved through pinctrl.
 
 Signed-off-by: Joachim Eastwood <joachim.eastwood@gmail.com>
 ---
- .../arm64/boot/dts/rockchip/rk3588s-nanopi-r6.dtsi | 96 ++++++++++++++++++++++
- .../arm64/boot/dts/rockchip/rk3588s-nanopi-r6c.dts |  1 +
- .../arm64/boot/dts/rockchip/rk3588s-nanopi-r6s.dts |  1 +
- arch/arm64/boot/dts/rockchip/rk3588s-nanopi.dtsi   | 89 --------------------
- 4 files changed, 98 insertions(+), 89 deletions(-)
+ arch/arm64/boot/dts/rockchip/rk3588s-nanopi.dtsi | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-nanopi-r6.dtsi b/arch/arm64/boot/dts/rockchip/rk3588s-nanopi-r6.dtsi
-new file mode 100644
-index 000000000000..2f8c580afc2b
---- /dev/null
-+++ b/arch/arm64/boot/dts/rockchip/rk3588s-nanopi-r6.dtsi
-@@ -0,0 +1,96 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+
-+/ {
-+	gpio-keys {
-+		compatible = "gpio-keys";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&key1_pin>;
-+
-+		button-user {
-+			label = "User";
-+			linux,code = <BTN_1>;
-+			gpios = <&gpio1 RK_PC0 GPIO_ACTIVE_LOW>;
-+			debounce-interval = <50>;
-+		};
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		sys_led: led-0 {
-+			label = "sys_led";
-+			gpios = <&gpio1 RK_PC1 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger = "heartbeat";
-+			pinctrl-names = "default";
-+			pinctrl-0 = <&sys_led_pin>;
-+		};
-+
-+		wan_led: led-1 {
-+			label = "wan_led";
-+			gpios = <&gpio1 RK_PC2 GPIO_ACTIVE_HIGH>;
-+			pinctrl-names = "default";
-+			pinctrl-0 = <&wan_led_pin>;
-+		};
-+
-+		lan1_led: led-2 {
-+			label = "lan1_led";
-+			gpios = <&gpio1 RK_PC3 GPIO_ACTIVE_HIGH>;
-+			pinctrl-names = "default";
-+			pinctrl-0 = <&lan1_led_pin>;
-+		};
-+
-+		lan2_led: led-3 {
-+			gpios = <&gpio1 RK_PC4 GPIO_ACTIVE_HIGH>;
-+			pinctrl-names = "default";
-+			pinctrl-0 = <&lan2_led_pin>;
-+		};
-+	};
-+
-+	vcc5v0_usb_otg0: regulator-vcc5v0-usb-otg0 {
-+		compatible = "regulator-fixed";
-+		enable-active-high;
-+		gpios = <&gpio1 RK_PD2 GPIO_ACTIVE_HIGH>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&typec5v_pwren>;
-+		regulator-name = "vcc5v0_usb_otg0";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		vin-supply = <&vcc5v0_usb>;
-+	};
-+};
-+
-+&pinctrl {
-+	gpio-key {
-+		key1_pin: key1-pin {
-+			rockchip,pins = <1 RK_PC0 RK_FUNC_GPIO &pcfg_pull_up>;
-+		};
-+	};
-+
-+	gpio-leds {
-+		sys_led_pin: sys-led-pin {
-+			rockchip,pins =
-+				<1 RK_PC1 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+
-+		wan_led_pin: wan-led-pin {
-+			rockchip,pins =
-+				<1 RK_PC2 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+
-+		lan1_led_pin: lan1-led-pin {
-+			rockchip,pins =
-+				<1 RK_PC3 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+
-+		lan2_led_pin: lan2-led-pin {
-+			rockchip,pins =
-+				<1 RK_PC4 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+
-+	usb {
-+		typec5v_pwren: typec5v-pwren {
-+			rockchip,pins = <1 RK_PD2 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-nanopi-r6c.dts b/arch/arm64/boot/dts/rockchip/rk3588s-nanopi-r6c.dts
-index 77fef2662ca5..90922c55da37 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588s-nanopi-r6c.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3588s-nanopi-r6c.dts
-@@ -3,6 +3,7 @@
- /dts-v1/;
- 
- #include "rk3588s-nanopi.dtsi"
-+#include "rk3588s-nanopi-r6.dtsi"
- 
- / {
- 	model = "FriendlyElec NanoPi R6C";
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-nanopi-r6s.dts b/arch/arm64/boot/dts/rockchip/rk3588s-nanopi-r6s.dts
-index f8993418a122..8b318561342c 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588s-nanopi-r6s.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3588s-nanopi-r6s.dts
-@@ -3,6 +3,7 @@
- /dts-v1/;
- 
- #include "rk3588s-nanopi.dtsi"
-+#include "rk3588s-nanopi-r6.dtsi"
- 
- / {
- 	model = "FriendlyElec NanoPi R6S";
 diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-nanopi.dtsi b/arch/arm64/boot/dts/rockchip/rk3588s-nanopi.dtsi
-index 91b6eefd7abf..d41c49716fa2 100644
+index d41c49716fa2..a8f32b994b10 100644
 --- a/arch/arm64/boot/dts/rockchip/rk3588s-nanopi.dtsi
 +++ b/arch/arm64/boot/dts/rockchip/rk3588s-nanopi.dtsi
-@@ -33,19 +33,6 @@ button-maskrom {
+@@ -336,6 +336,10 @@ rtc_int: rtc-int {
+ 	};
+ 
+ 	sdmmc {
++		sdmmc_det_pin: sdmmc-det-pin {
++			rockchip,pins = <0 RK_PA4 RK_FUNC_GPIO &pcfg_pull_none>;
++		};
++
+ 		sd_s0_pwr: sd-s0-pwr {
+ 			rockchip,pins = <4 RK_PB4 RK_FUNC_GPIO &pcfg_pull_up>;
  		};
- 	};
- 
--	gpio-keys {
--		compatible = "gpio-keys";
--		pinctrl-names = "default";
--		pinctrl-0 = <&key1_pin>;
--
--		button-user {
--			label = "User";
--			linux,code = <BTN_1>;
--			gpios = <&gpio1 RK_PC0 GPIO_ACTIVE_LOW>;
--			debounce-interval = <50>;
--		};
--	};
--
- 	hdmi-con {
- 		compatible = "hdmi-connector";
- 		type = "a";
-@@ -57,38 +44,6 @@ hdmi_con_in: endpoint {
- 		};
- 	};
- 
--	leds {
--		compatible = "gpio-leds";
--
--		sys_led: led-0 {
--			label = "sys_led";
--			gpios = <&gpio1 RK_PC1 GPIO_ACTIVE_HIGH>;
--			linux,default-trigger = "heartbeat";
--			pinctrl-names = "default";
--			pinctrl-0 = <&sys_led_pin>;
--		};
--
--		wan_led: led-1 {
--			label = "wan_led";
--			gpios = <&gpio1 RK_PC2 GPIO_ACTIVE_HIGH>;
--			pinctrl-names = "default";
--			pinctrl-0 = <&wan_led_pin>;
--		};
--
--		lan1_led: led-2 {
--			label = "lan1_led";
--			gpios = <&gpio1 RK_PC3 GPIO_ACTIVE_HIGH>;
--			pinctrl-names = "default";
--			pinctrl-0 = <&lan1_led_pin>;
--		};
--
--		lan2_led: led-3 {
--			gpios = <&gpio1 RK_PC4 GPIO_ACTIVE_HIGH>;
--			pinctrl-names = "default";
--			pinctrl-0 = <&lan2_led_pin>;
--		};
--	};
--
- 	vcc5v0_sys: regulator-vcc5v0-sys {
- 		compatible = "regulator-fixed";
- 		regulator-name = "vcc5v0_sys";
-@@ -151,18 +106,6 @@ vcc5v0_usb: regulator-vcc5v0-usb {
- 		vin-supply = <&vcc5v0_sys>;
- 	};
- 
--	vcc5v0_usb_otg0: regulator-vcc5v0-usb-otg0 {
--		compatible = "regulator-fixed";
--		enable-active-high;
--		gpios = <&gpio1 RK_PD2 GPIO_ACTIVE_HIGH>;
--		pinctrl-names = "default";
--		pinctrl-0 = <&typec5v_pwren>;
--		regulator-name = "vcc5v0_usb_otg0";
--		regulator-min-microvolt = <5000000>;
--		regulator-max-microvolt = <5000000>;
--		vin-supply = <&vcc5v0_usb>;
--	};
--
- 	vcc5v0_host_20: regulator-vcc5v0-host-20 {
- 		compatible = "regulator-fixed";
- 		enable-active-high;
-@@ -380,34 +323,6 @@ &pd_npu {
- };
- 
- &pinctrl {
--	gpio-key {
--		key1_pin: key1-pin {
--			rockchip,pins = <1 RK_PC0 RK_FUNC_GPIO &pcfg_pull_up>;
--		};
--	};
--
--	gpio-leds {
--		sys_led_pin: sys-led-pin {
--			rockchip,pins =
--				<1 RK_PC1 RK_FUNC_GPIO &pcfg_pull_none>;
--		};
--
--		wan_led_pin: wan-led-pin {
--			rockchip,pins =
--				<1 RK_PC2 RK_FUNC_GPIO &pcfg_pull_none>;
--		};
--
--		lan1_led_pin: lan1-led-pin {
--			rockchip,pins =
--				<1 RK_PC3 RK_FUNC_GPIO &pcfg_pull_none>;
--		};
--
--		lan2_led_pin: lan2-led-pin {
--			rockchip,pins =
--				<1 RK_PC4 RK_FUNC_GPIO &pcfg_pull_none>;
--		};
--	};
--
- 	hdmi {
- 		hdmi0_tx_on_h: hdmi0-tx-on-h {
- 			rockchip,pins = <4 RK_PB6 RK_FUNC_GPIO &pcfg_pull_none>;
-@@ -427,10 +342,6 @@ sd_s0_pwr: sd-s0-pwr {
- 	};
- 
- 	usb {
--		typec5v_pwren: typec5v-pwren {
--			rockchip,pins = <1 RK_PD2 RK_FUNC_GPIO &pcfg_pull_none>;
--		};
--
- 		vcc5v0_host20_en: vcc5v0-host20-en {
- 			rockchip,pins = <4 RK_PB5 RK_FUNC_GPIO &pcfg_pull_none>;
- 		};
+@@ -407,6 +411,8 @@ &sdmmc {
+ 	no-mmc;
+ 	no-sdio;
+ 	sd-uhs-sdr104;
++	pinctrl-names = "default";
++	pinctrl-0 = <&sdmmc_bus4 &sdmmc_clk &sdmmc_cmd &sdmmc_det_pin>;
+ 	vmmc-supply = <&vcc_3v3_sd_s0>;
+ 	vqmmc-supply = <&vccio_sd_s0>;
+ 	status = "okay";
 
 -- 
 2.55.0
