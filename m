@@ -1,197 +1,212 @@
-Return-Path: <devicetree+bounces-324548-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-324549-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id J7IwLUYbUWrY/QIAu9opvQ
-	(envelope-from <devicetree+bounces-324548-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 18:18:14 +0200
+	id BMxtMeIbUWr0/QIAu9opvQ
+	(envelope-from <devicetree+bounces-324549-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 18:20:50 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50CB673C84F
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 18:18:14 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9468F73C895
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 18:20:50 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=XOquKgoC;
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324548-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-324548-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=baylibre.com header.s=google header.b=kwHLHFq5;
+	dmarc=none;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324549-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-324549-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id C34133004D2E
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 16:18:13 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 1A59130194BE
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 16:20:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A96836921E;
-	Fri, 10 Jul 2026 16:18:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BE40364943;
+	Fri, 10 Jul 2026 16:20:40 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A04EB368957;
-	Fri, 10 Jul 2026 16:18:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C275A368D69
+	for <devicetree@vger.kernel.org>; Fri, 10 Jul 2026 16:20:32 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783700291; cv=none; b=lrBDw+e4vgZM6bX0gs2K/KUbXADAD5x3GRU+Ihgm2xDQOcQNLrcdyUkZqxKTp1jMnxc+bbAA+FLm12sSbcgAovJtJXvOjBLQiI4dYldB8f/pq6G4ft/81zAIQoyTAM6kzcXutmZkaeCkywGaBERYzwiQfk5PJckG6Al9h5edoo4=
+	t=1783700438; cv=none; b=A7LnUkxbyX2jEaREOMgHGnMObJ8a0hqGxx5olAo90rdAfkLg+RZ08wY3M5Cp0Lbqj00ViRPffW0CaakgRX6U51HiHsrIxw3Cw1zpmVcHX7hZ32Y+fmfF/ztYrnIyCuyDjsR+MM93t+rQdx4pbyfldAsFGOWxa7U6ppkxXMcswKU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783700291; c=relaxed/simple;
-	bh=yHO9LHmXL00lTgCqTetKK3+7jZ6BLoqg/vlXs8MBWRg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CnNh56iyv2FabubZTaKRyZnYnc0XdN/D3flniLkhPBqDan9ELVh0Z12KWgW5H6tHGP1sGyh1yZewGo23ck+XfwtgJ3QM7+P1BzhE1JgK88YswQae0mh/B3k4jN77J1YtJA7p2tCvA97pWTGyI/dA58UUAIzye6jotZz9VgSE9Eg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XOquKgoC; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B435C1F000E9;
-	Fri, 10 Jul 2026 16:18:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783700287;
-	bh=+87cri3jOCre4gN5g3PJi59fqdvefMnbXISUfYiK2HI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=XOquKgoCaxsnb/bbVs7Q+TqE+IqITlwbiPXeb27zeCjMGRVbVtUPSOK1EjNemhgeQ
-	 grvSfNq025jnbDCqDHlFf9QOOrRf57k/GC2kgLcaNpCr3jkziAl+AnKXDDoiiur3kB
-	 ZYARdkxCAE0/pmvZakCFb2dyGwmp8ERHxRWdXepzZdoK1phg2gOEArwE4JJdrivzej
-	 Kj97PFaBAwBEErgWV6FGr+YnHO/QJUzG+qs9NK1TpOz8jsvcImSDSkWLNxsgxbst45
-	 lqAoSu2Sffo+7hEG6FHTG3bEZt3DoSMcS9rt4PC0yMPcmrasBhkqfOaS44H/6VTV/6
-	 ujUHPks4zzxPg==
-Date: Fri, 10 Jul 2026 17:18:00 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Ahmed Naseef <naseefkm@gmail.com>
-Cc: netdev@vger.kernel.org,
-	=?utf-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
-	"Chester A. Unal" <chester.a.unal@arinc9.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Andrew Lunn <andrew@lunn.ch>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	DENG Qingfang <dqfext@gmail.com>,
-	Daniel Golle <daniel@makrotopia.org>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Landen Chao <Landen.Chao@mediatek.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
-	Russell King <linux@armlinux.org.uk>,
-	Sean Wang <sean.wang@mediatek.com>,
-	Vladimir Oltean <olteanv@gmail.com>, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH net-next 1/2] dt-bindings: net: dsa: mediatek,mt7530: add
- econet,en7528-switch
-Message-ID: <20260710-coil-clothes-d316a54585aa@spud>
-References: <cover.1783680864.git.naseefkm@gmail.com>
- <68e85666b6dfedab719aaa388450eb86312eccd0.1783680864.git.naseefkm@gmail.com>
+	s=arc-20240116; t=1783700438; c=relaxed/simple;
+	bh=b9mQ07bmNf6UR+5kD6c06+iQHs9slUIKumO/aQn894c=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=ZLV67nXDIbveiCkKcuFGBIPnupxpbsVg7Zqz12nHR559IVr+itXaJaL60cIktaKdwQQF+1sirQVKf/EHl4ZDLOwWFFroxu0ekTk3zPAc/MhZq7Kjux89sfL05GXl60Y/LTu1Sg53kLJwQQlnW23x/iHHDA1zOswMYeKnUHGrNoE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.b=kwHLHFq5; arc=none smtp.client-ip=209.85.128.50
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-493f6de72faso3276335e9.0
+        for <devicetree@vger.kernel.org>; Fri, 10 Jul 2026 09:20:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre.com; s=google; t=1783700429; x=1784305229; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:content-type:mime-version
+         :message-id:date:subject:from:from:to:cc:subject:date:message-id
+         :reply-to:content-type;
+        bh=+oK09CtVciKAJMrFWWYRF7B4ymx4hLjxRDpKjGKu7Ag=;
+        b=kwHLHFq5vQFMdfKyJnDg2ilG6bX0xI0Jh+C+3QIahiBaS0pnbnhNjFLKKe4XAaApFI
+         NpqdjzwOCLhwk9XwbfXMXKBRrJE60OY2/S5seG4MlWwiaZLKsL8SiNHGP7u20SCrtg7v
+         vIrviBdVzvM2gabHnQ7XeyOz0lyl3Uj/ynaz6Aj1BnEp+5XPxAVENJveanwEr67oEBxD
+         JK85uSRm89L1rYIHZX+JSWf+lkqK6lQ+jYezSfVFKkhvobaY3mRynXUxeqRl78nXhGec
+         IAXwZbDCP0WZeybKdH5bbdxy2SjEISQZEQNMjWnkpiGL3E3T//Ch/pafCJ872d2uxxf4
+         vNig==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1783700429; x=1784305229;
+        h=cc:to:content-transfer-encoding:content-type:mime-version
+         :message-id:date:subject:from:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to:content-type;
+        bh=+oK09CtVciKAJMrFWWYRF7B4ymx4hLjxRDpKjGKu7Ag=;
+        b=TSThYlxIwCtJDtAWsVDmsLP9rG/GbI4bjxTJXr26UnIaUqa1nLIoxyO7B7ncEImf8g
+         xDCvTM3GfgdVy3oUGDOczLREQITsNU9NhmQnS7wR48zy8/KmIW1upXWOzdeow7t6z16w
+         eBF7d1nvByUqeuuDgBrW8W4EneA5+9j5LVNftMqpYdpivyvEB0ezl5LpsLWKHNd0dpwk
+         91WIMiGbAlxs+QTkE818eHKdGqT3liqvwZZxdxJBKYPp70FHpTr4utFTgVJyT3iO03Oh
+         xvqyU8rZhqfVLJrR9Otq+3btgjeld05kR34GDqWEDfB+gTFsHVZyaS8F1G5eTmd2ekkv
+         5Ukw==
+X-Gm-Message-State: AOJu0YzVTZnWp+zyJp58AGtk3aTm2hKvz1HvO9esgIBDZoW6mZaCJb1j
+	qCQU/1LGFYkXSWM7n0758e/DJcKQSkz7XkFLFXB/3anGD+f44AbGJGc4D3sNAsoAnys=
+X-Gm-Gg: AfdE7cn6jUp1ZUvGEZ6DZQmlDWi/Nc4inJqYzVOoXaNvfr94V+Meivr+6qBQy0yg4NP
+	fLBcZLK8W7pOgAVKYdV4FpWfIBIYZpHM4bBpS/aKzP1Eqv+T6lBHwqD0uP9kF9V1bCPJf4aovGX
+	6cYZC5vA0K5erWy1IyeakH/cECzre3Z77l3qkmHCeQmGTgN8/SiLmAajVWuCub+sbnKHQMVnFdc
+	n6oLa/qnc3/JDBfdSZ8rgsm3+oeFItC0BocBGhsP9cK7bBW7uZkaHv0lNAjs+Lh6z++wEUcDGWC
+	V7YrnreHwQYuJjk/pET+gGXI2zm8bA4aKF6rmmiRQlf+z0g78ImGT1zq9RP9SfGtB1jBf68Ykdz
+	9cDZi7nYOsEAJZbzQ18jJUntWGA0lYUkZ0Yw6cLotrbW+cpJx6v3EkQ4fFihTsk8BlWdWUyBL5B
+	KKis8vESPrn+w=
+X-Received: by 2002:a05:600d:8445:20b0:493:e963:e671 with SMTP id 5b1f17b1804b1-493f2b24ce5mr34094395e9.3.1783700429200;
+        Fri, 10 Jul 2026 09:20:29 -0700 (PDT)
+Received: from localhost ([2a01:e0a:3c5:5fb1:5e43:31e8:5645:d4e0])
+        by smtp.gmail.com with UTF8SMTPSA id 5b1f17b1804b1-493eb73b161sm133508055e9.9.2026.07.10.09.20.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 10 Jul 2026 09:20:28 -0700 (PDT)
+From: Jerome Brunet <jbrunet@baylibre.com>
+Subject: [PATCH v2 0/3] regulator: Add X-Powers AXP318W PMIC support
+Date: Fri, 10 Jul 2026 18:19:24 +0200
+Message-Id: <20260710-axp318-regulator-v2-0-ee5f1c56b49f@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="neuiONwNeDF1oEBK"
-Content-Disposition: inline
-In-Reply-To: <68e85666b6dfedab719aaa388450eb86312eccd0.1783680864.git.naseefkm@gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAIwbUWoC/zWNQQ6CMBBFr0K6tqTTAior72FcjGWAGqFkCooS7
+ m7RuHzJ++8vIhA7CqJMFsH0cMH5PoLeJcK22DckXRVZaKULtQclcR4MHCRTM91x9Cwzk2e5JaM
+ LqEWcDUy1m7/J8+XHYbreyI5bZzNq9p0cWyb8p3NQGgC0ApPq+HJURoLEvmJKB36/nsh4Qu5S6
+ zuxrh89WQ6XtgAAAA==
+X-Change-ID: 20260710-axp318-regulator-43545ce3261f
+To: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@kernel.org>, 
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Andre Przywara <andre.przywara@arm.com>, 
+ Conor Dooley <conor.dooley@microchip.com>, 
+ Jerome Brunet <jbrunet@baylibre.com>
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2417; i=jbrunet@baylibre.com;
+ h=from:subject:message-id; bh=b9mQ07bmNf6UR+5kD6c06+iQHs9slUIKumO/aQn894c=;
+ b=owEBbQKS/ZANAwAKAeb8Dxw38tqFAcsmYgBqURu9A+Qx1upkLOgUHDXcsiATs28I8XqI+DoWF
+ R0wOlgFKLeJAjMEAAEKAB0WIQT04VmuGPP1bV8btxvm/A8cN/LahQUCalEbvQAKCRDm/A8cN/La
+ hSiPEACW1gF0TK51QJbk5++c7n9MT9o6yTDUMjNQhDUl4pjEdZcqiEmIA9MOzEDBp5ovpC5fNjz
+ 7x6ZlZQidve/3ZtzSnqjtI9WXOMApDIv+Mbh2mcfkkOT3B25yxW3e0LLfZ1TSmtWvYl/ALimRcV
+ XuW9gdBy76oeUkF4bAN4aI3iOOzoB8dleluFwnLW1Kca+MZSszu9vk3FWb90Dsag5Bw3nTxh6jY
+ 0iteCPvQuzYXiDMQv2HHjXd8O2dS+7djf0j7n/e0o4WBySIvHx1kIdGAB2bcaumzjLc3CnfCFbt
+ TYdslZN20+hWMIZBRTupmApAj+e5ncFVPHnPDjroMB1pwgiH8B64RhYQLDv4H/iPLr0FVm/9rM5
+ V+pKINhJ/P/jPrEe4O1qfmqu1s4zO84MHZ9nNvRD8jt2r9lzzoc/gIt8tnyytsxIUcPoNXENAQO
+ EHIM9TLT10uinFgEQXTgXahnfXoxg2dw4LFI5hs9q8YkBxBOOxdb3sOuTVl4KplZWxVvzo1wqNr
+ kgqJueBctJ0+S1+wdbvK1wxMngnbvgOsymFpusLspBalfEQs772m6qCpDKMGBVa/ARh+gZ1bK8z
+ NICoj8KoXPq9eABxNvDeMSxFQnoE2ClLb30U7ruSoaMm5ciMw9LHKLGDfj0+zvUKOta9mb5Qlk1
+ an7lB6wwCwGzKzg==
+X-Developer-Key: i=jbrunet@baylibre.com; a=openpgp;
+ fpr=F29F26CF27BAE1A9719AE6BDC3C92AAF3E60AED9
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-5.26 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	SIGNED_PGP(-2.00)[];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_DKIM_ALLOW(-0.20)[baylibre.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:naseefkm@gmail.com,m:netdev@vger.kernel.org,m:arinc.unal@arinc9.com,m:chester.a.unal@arinc9.com,m:davem@davemloft.net,m:andrew@lunn.ch,m:angelogioacchino.delregno@collabora.com,m:conor+dt@kernel.org,m:dqfext@gmail.com,m:daniel@makrotopia.org,m:edumazet@google.com,m:kuba@kernel.org,m:krzk+dt@kernel.org,m:Landen.Chao@mediatek.com,m:matthias.bgg@gmail.com,m:pabeni@redhat.com,m:robh@kernel.org,m:linux@armlinux.org.uk,m:sean.wang@mediatek.com,m:olteanv@gmail.com,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:linux-mediatek@lists.infradead.org,m:conor@kernel.org,m:krzk@kernel.org,m:matthiasbgg@gmail.com,s:lists@lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[24];
-	FREEMAIL_TO(0.00)[gmail.com];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	RCVD_TLS_LAST(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:lee@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:wens@kernel.org,m:lgirdwood@gmail.com,m:broonie@kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:andre.przywara@arm.com,m:conor.dooley@microchip.com,m:jbrunet@baylibre.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FREEMAIL_TO(0.00)[kernel.org,gmail.com];
+	FORGED_SENDER(0.00)[jbrunet@baylibre.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	DMARC_NA(0.00)[baylibre.com];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-324548-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_FROM(0.00)[bounces-324549-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[vger.kernel.org,arinc9.com,davemloft.net,lunn.ch,collabora.com,kernel.org,gmail.com,makrotopia.org,google.com,mediatek.com,redhat.com,armlinux.org.uk,lists.infradead.org];
+	FROM_NEQ_ENVFROM(0.00)[jbrunet@baylibre.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[baylibre.com:+];
+	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[baylibre.com:from_mime,baylibre.com:dkim,baylibre.com:mid,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,linux-sunxi.org:url,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 50CB673C84F
+X-Rspamd-Queue-Id: 9468F73C895
 
---neuiONwNeDF1oEBK
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+This patch series adds support for the X-Powers AXP318W PMIC, which is
+used recently on new boards with Allwinner SoCs (the A733).
 
-On Fri, Jul 10, 2026 at 02:54:23PM +0400, Ahmed Naseef wrote:
-> The EcoNet EN7528 MIPS SoC integrates an MT7530 Gigabit switch,
-> memory-mapped in the SoC register space like the built-in switches of
-> the MediaTek MT7988 and Airoha EN7581/AN7583 SoCs. Its four user ports
-> are connected to integrated Gigabit PHYs and its CPU port is connected
-> internally to the SoC Ethernet MAC.
+The PMIC features 9 DCDC buck converters and 28 LDOs, plus the usual ADC,
+interrupts, and power key components.
+A datasheet can be found linked in this Wiki table:
+https://linux-sunxi.org/AXP_PMICs
 
-Please note what actually makes this different from the other devices
-such that it cannot use a fallback. It's not clear from this description
-if the described features are shared with other devices or unique.
-pw-bot: changes-requested
+Patch 1 adds the compatible string to the binding document, and adds
+the additional input supply properties.
+Patch 2 is the MFD part, describing the regmap and all the interrupts.
+So far we support the regulator and power key devices, the ADC and
+other pieces will follow later.
+Patch 3 adds the voltage regulator rails, this part is crucial to enable
+any board using this PMIC, as we depend on those rails even for basic
+devices.
 
-Thanks,
-Conor.
+There was an unclosed topic regarding the handling of LDOs output
+voltage being limited to input voltage being provided by the supply.
+Chen-Yu noted the min_dropout_uV would be a good fit for that but
+the actual minimal dropout value was unknown. I've arbitrarily picked
+1uV because it is the minimum the framework supports. Realistically a low
+dropout regulator is bound to have some dropout. This choice
+is very likely optimistic but does the trick for now.
 
->=20
-> Add the econet,en7528-switch compatible, with the same constraints as
-> the other built-in switches.
->=20
-> Signed-off-by: Ahmed Naseef <naseefkm@gmail.com>
-> ---
->  .../devicetree/bindings/net/dsa/mediatek,mt7530.yaml         | 5 +++++
->  1 file changed, 5 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.ya=
-ml b/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
-> index 815a90808901..90b3582b7619 100644
-> --- a/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
-> +++ b/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
-> @@ -100,6 +100,10 @@ properties:
->            Built-in switch of the Airoha AN7583 SoC
->          const: airoha,an7583-switch
-> =20
-> +      - description:
-> +          Built-in switch of the EcoNet EN7528 SoC
-> +        const: econet,en7528-switch
-> +
->    reg:
->      maxItems: 1
-> =20
-> @@ -318,6 +322,7 @@ allOf:
->              - mediatek,mt7988-switch
->              - airoha,en7581-switch
->              - airoha,an7583-switch
-> +            - econet,en7528-switch
->      then:
->        $ref: "#/$defs/builtin-dsa-port"
->        properties:
-> --=20
-> 2.34.1
->=20
+If anyone has problems because the dropout is actually higher
+* it is arguably an HW design error
+* it is a good time to let us know what the actual dropout is :P
 
---neuiONwNeDF1oEBK
-Content-Type: application/pgp-signature; name=signature.asc
+Changes in v2:
+* Droped _NUM_VOLTAGES macros
+* Use min_dropout_uV to limit LDO voltage to supplies
+* Add bypass mode for EDLO4/5
+* Prevent crossing 1.54V threshold for DCDC6/7/8/9
+* Link to v1: https://lore.kernel.org/r/20251021112013.2710903-1-andre.przywara@arm.com
 
------BEGIN PGP SIGNATURE-----
+---
+Andre Przywara (3):
+      dt-bindings: mfd: x-powers,axp152: Document AXP318W
+      mfd: axp20x: Add support for AXP318W PMIC
+      regulator: axp20x: add support for the AXP318W
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCalEbOAAKCRB4tDGHoIJi
-0kIhAQCUBiplgyxEntk6QyhZt9CXKwFJOJ7gva/4BQwVdFxyiwD8D6hZszUurWV/
-K0wbb9440qRylthWGC8R34zydOrj4QE=
-=0iY3
------END PGP SIGNATURE-----
+ .../devicetree/bindings/mfd/x-powers,axp152.yaml   |  28 +-
+ drivers/mfd/axp20x-i2c.c                           |   2 +
+ drivers/mfd/axp20x.c                               |  84 ++++++
+ drivers/regulator/axp20x-regulator.c               | 298 ++++++++++++++++++++-
+ include/linux/mfd/axp20x.h                         | 129 +++++++++
+ 5 files changed, 532 insertions(+), 9 deletions(-)
+---
+base-commit: dc59e4fea9d83f03bad6bddf3fa2e52491777482
+change-id: 20260710-axp318-regulator-43545ce3261f
 
---neuiONwNeDF1oEBK--
+Best regards,
+--  
+Jerome
+
 
