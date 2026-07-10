@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-324526-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-324529-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id UqWRNoQQUWqk+wIAu9opvQ
-	(envelope-from <devicetree+bounces-324526-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 17:32:20 +0200
+	id kJCyEtAQUWq/+wIAu9opvQ
+	(envelope-from <devicetree+bounces-324529-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 17:33:36 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4162873C45D
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 17:32:20 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E7E3C73C4A1
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 17:33:35 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=bootlin.com header.s=dkim header.b=JweXbF0p;
+	dkim=pass header.d=bootlin.com header.s=dkim header.b=hwAgVCeP;
 	dmarc=pass (policy=reject) header.from=bootlin.com;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324526-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-324526-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324529-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-324529-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 82052301A523
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 15:32:12 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id BDDBA3046C68
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 15:32:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA36B42DA5B;
-	Fri, 10 Jul 2026 15:32:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF72542F6F2;
+	Fri, 10 Jul 2026 15:32:18 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
+Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83B942DCC1F;
-	Fri, 10 Jul 2026 15:32:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C13B842E8D3;
+	Fri, 10 Jul 2026 15:32:16 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783697527; cv=none; b=lIQ8raavPXz2cGuWcj/G9MzjAjsp/V/eLO69hNWfi3dDiz7x0asa+kf4vAU0bPvEGOB3h1q8jzqrvCZtxcy7s+AtyHDkFoOdI8QpfKwLLkGYqu8XHqZzZhKC0dmRdoPVhU8cLW20px0M3+UCYk+xu9OZqRdobdXsZzhgwaOOglI=
+	t=1783697538; cv=none; b=ks3QzgEy1dZwQng0WaB53bewHN9sh1cKdfu16MHsOQR2sf8uQ6TU5Lf48VWwG+5B7XPVOaNcFog+VNsqJaVOlYnI0/MCBi2icoKrz1xvArGN+WcTyd+1C2EA4ONr+//tTMuKgDqgco+0j3/dRyntC9CiZRvJmWpDg3KX0Tbx6yg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783697527; c=relaxed/simple;
-	bh=tMINuLjLJ6HDyHzWHhXF+F/0+DLwvl+f1K67mHj7CM8=;
+	s=arc-20240116; t=1783697538; c=relaxed/simple;
+	bh=BiSi1t1NUOIhyg6vwnL1alqPw0iJySL8ICnheLp+aN0=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=WQWeZuBJktyh3a7bUKCrpdnNo9rAV9gnEq+2UQvpeUR6qoPPcB7gg80jDRxUBAdDxbnQaL/qnns5rxS8DzhWe6z6JuI25E3O0OQaRZg1zFEkn5hur65LGuBJJwpidnRLmcmQyva3sOM2FR9Y7UZ+nMP9iHkbnaqIjCbXX5yT0oo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=JweXbF0p; arc=none smtp.client-ip=185.246.84.56
+	 In-Reply-To:To:Cc; b=tUHgl9uZ0XLbwSaaSZu9CAHxjIzuv++VHVlWRvtMutaNL5VuPH01O0IWescsnuF6HYv6T34/sMZTM0dBcGsGMgaq9NIhs24qTyTMAAgeCbw37v014p7Qzo5UXkT5V/dr6VkuPUhcTCgwGLS+dvSFu04re78RGWwTuV27fJY97n4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=hwAgVCeP; arc=none smtp.client-ip=185.171.202.116
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id 3E8A01A0F44;
-	Fri, 10 Jul 2026 15:32:04 +0000 (UTC)
+	by smtpout-04.galae.net (Postfix) with ESMTPS id CB210C2C64E;
+	Fri, 10 Jul 2026 15:32:29 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 0A30960345;
-	Fri, 10 Jul 2026 15:32:04 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 5CB8111BD1A6A;
-	Fri, 10 Jul 2026 17:31:59 +0200 (CEST)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 7AED560346;
+	Fri, 10 Jul 2026 15:32:07 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id D4AF511BD1C34;
+	Fri, 10 Jul 2026 17:32:02 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1783697522; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	t=1783697525; h=from:subject:date:message-id:to:cc:mime-version:content-type:
 	 content-transfer-encoding:in-reply-to:references;
-	bh=f5fTdgEeWJWIqqdOx484hH91tnkn5FQXkKW5S5qABMo=;
-	b=JweXbF0pcF3lJ16gDTz5t6xkecvGbda8586WSisqEmVbjC0kOq89RTi8EdxKqd49s2iAwa
-	l6Te3WhMJl9y9KUgzHOaokgWDbhQWPEKTSbzbRRcphvjDA+c2Z6RJ7BUwAaIYlSDwTcz2N
-	hLy+iBZy2cs/BqZIKnI2VZbnFjOf54+MvtQ/Jg+21ULeKlNx8pKdbqb+KNdbKAhxEnnqL6
-	jX/p8JpWNbBOtiaQ7dGhdXqB220VVRsdkiPECmWBpB7OtKo/flD8N2s+8dC22Yy4TSmX8E
-	DyyvRjtV7RqMzcDD9EVfruerACQUk4mTrbKw8Y4p79tzuCqsNmIbv/ltLEOVGQ==
+	bh=tijUZy13OY+lpBLDlS9vMkTfAAXJmYkbRtFLhtiaaxU=;
+	b=hwAgVCePQDdOl38e0eOljEd89vJodZTSjMwAfyub0tBhi8wgL60YINarvPdFNifjqc4Hay
+	ceTIpKzHnDfeMeR7wY9RSh8WhGXVm7XIz58C6OL4aDAUCnFSyU48ccp9aha3S0r+NnqWaq
+	XJmICvJiAZMcNDUtr7YVoDyC3LMFY3C4C7YnI2erAPvvoc3KC6iL7m/PEgS2Op5y9JKkBH
+	2TBm2+HY35tPscFdW+23yUxaS+9c994VCDlpJ1fZx7Z0RaVHIB7nslZMbxewNvHmI6G+yq
+	n6baH/qqOlkmwRsFVE91KvPmjOUAwyIVzwY8OHwLM6TN99Eb/DTOV7CpVuFXEA==
 From: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
-Date: Fri, 10 Jul 2026 17:31:34 +0200
-Subject: [PATCH 1/5] arm64: dts: freescale: Import optee node from u-boot
- device trees
+Date: Fri, 10 Jul 2026 17:31:35 +0200
+Subject: [PATCH 2/5] arm: dts: st: Import optee node from u-boot device
+ trees
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,7 +63,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260710-mathieu-uboot-dts-import-v1-1-ffe0210e50c9@bootlin.com>
+Message-Id: <20260710-mathieu-uboot-dts-import-v1-2-ffe0210e50c9@bootlin.com>
 References: <20260710-mathieu-uboot-dts-import-v1-0-ffe0210e50c9@bootlin.com>
 In-Reply-To: <20260710-mathieu-uboot-dts-import-v1-0-ffe0210e50c9@bootlin.com>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -84,11 +84,11 @@ Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
  Tom Rini <trini@konsulko.com>, Peter Robinson <pbrobinson@gmail.com>, 
  Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1783697511; l=7005;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1783697511; l=1640;
  i=mathieu.dubois-briand@bootlin.com; s=20241219; h=from:subject:message-id;
- bh=tMINuLjLJ6HDyHzWHhXF+F/0+DLwvl+f1K67mHj7CM8=;
- b=p4TnV3T1XPtN3EsK55Xihkn4CYcplvwLwi+99X+LyT+PDsy/6wBOXSJ+NaY9Vqk9nb95sCpg2
- M+1n8ELDbKFBBoxX0YKkL6Qw8ASb26OKyxfNSxTw36WxhB0Kt/JhiKx
+ bh=BiSi1t1NUOIhyg6vwnL1alqPw0iJySL8ICnheLp+aN0=;
+ b=B4vFTHfXQRbCBa4gp7JA6+tDIx0+dgYq3zVpsg/Yp9hnGhSOdseawTAnqzSZuqSmUUGkfkp9Z
+ RLTUNtyzpweBZkiGIDn9hSzDhROdWHjROLOt7/ttWZPDtmoqRT6FT7y
 X-Developer-Key: i=mathieu.dubois-briand@bootlin.com; a=ed25519;
  pk=1PVTmzPXfKvDwcPUzG0aqdGoKZJA3b9s+3DqRlm0Lww=
 X-Last-TLS-Session-Version: TLSv1.3
@@ -97,13 +97,13 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	FROM_HAS_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-324526-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-324529-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	RECEIVED_HELO_LOCALHOST(0.00)[];
 	FREEMAIL_TO(0.00)[kernel.org,nxp.com,pengutronix.de,gmail.com,foss.st.com,hisilicon.com,codeconstruct.com.au,google.com];
@@ -123,185 +123,44 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	DKIM_TRACE(0.00)[bootlin.com:+];
 	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,bootlin.com:from_mime,bootlin.com:email,bootlin.com:mid,bootlin.com:dkim]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 4162873C45D
+X-Rspamd-Queue-Id: E7E3C73C4A1
 
 U-Boot is importing kernel device trees for these platforms, but adding
 a firmware node to enable communication with OP-TEE. Importing
 changes here will allow to remove these additions in U-Boot.
 
+Also import the corresponding reserved-memory region.
+
 Signed-off-by: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
 ---
- arch/arm64/boot/dts/freescale/imx8mm.dtsi                | 7 +++++++
- arch/arm64/boot/dts/freescale/imx8mn.dtsi                | 7 +++++++
- arch/arm64/boot/dts/freescale/imx8mp.dtsi                | 7 +++++++
- arch/arm64/boot/dts/freescale/imx91-11x11-evk.dts        | 7 +++++++
- arch/arm64/boot/dts/freescale/imx91-11x11-frdm.dts       | 7 +++++++
- arch/arm64/boot/dts/freescale/imx91-phyboard-segin.dts   | 7 +++++++
- arch/arm64/boot/dts/freescale/imx93-11x11-evk.dts        | 7 +++++++
- arch/arm64/boot/dts/freescale/imx93-9x9-qsb.dts          | 7 +++++++
- arch/arm64/boot/dts/freescale/imx93-kontron-bl-osm-s.dts | 7 +++++++
- arch/arm64/boot/dts/freescale/imx93-phyboard-segin.dts   | 7 +++++++
- arch/arm64/boot/dts/freescale/imx93-var-som-symphony.dts | 7 +++++++
- 11 files changed, 77 insertions(+)
+ arch/arm/boot/dts/st/stm32mp157a-dk1.dts | 17 +++++++++++++++++
+ arch/arm/boot/dts/st/stm32mp157c-ed1.dts | 12 ++++++++++++
+ 2 files changed, 29 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm.dtsi b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-index 5cf2998d396d..4a55464e8a6f 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-@@ -233,6 +233,13 @@ timer {
- 		arm,no-tick-in-suspend;
+diff --git a/arch/arm/boot/dts/st/stm32mp157a-dk1.dts b/arch/arm/boot/dts/st/stm32mp157a-dk1.dts
+index 0da3667ab1e0..236da589eb90 100644
+--- a/arch/arm/boot/dts/st/stm32mp157a-dk1.dts
++++ b/arch/arm/boot/dts/st/stm32mp157a-dk1.dts
+@@ -22,4 +22,21 @@ aliases {
+ 	chosen {
+ 		stdout-path = "serial0:115200n8";
  	};
- 
-+	firmware {
-+		optee: optee {
-+			compatible = "linaro,optee-tz";
-+			method = "smc";
++
++	reserved-memory {
++		bootph-pre-ram;
++
++		optee@de000000 {
++			reg = <0xde000000 0x02000000>;
++			no-map;
++			bootph-pre-ram;
 +		};
 +	};
-+
- 	thermal_zones: thermal-zones {
- 		cpu-thermal {
- 			polling-delay-passive = <250>;
-diff --git a/arch/arm64/boot/dts/freescale/imx8mn.dtsi b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
-index 79b169b07c4f..c3b4560ec9b4 100644
---- a/arch/arm64/boot/dts/freescale/imx8mn.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
-@@ -265,6 +265,13 @@ timer {
- 		arm,no-tick-in-suspend;
- 	};
- 
-+	firmware {
-+		optee: optee {
-+			compatible = "linaro,optee-tz";
-+			method = "smc";
-+		};
-+	};
-+
- 	soc: soc@0 {
- 		compatible = "fsl,imx8mn-soc", "simple-bus";
- 		#address-cells = <1>;
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-index 5ce2825182fd..285b98384255 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-@@ -404,6 +404,13 @@ timer {
- 		arm,no-tick-in-suspend;
- 	};
- 
-+	firmware {
-+		optee: optee {
-+			compatible = "linaro,optee-tz";
-+			method = "smc";
-+		};
-+	};
-+
- 	soc: soc@0 {
- 		compatible = "fsl,imx8mp-soc", "simple-bus";
- 		#address-cells = <1>;
-diff --git a/arch/arm64/boot/dts/freescale/imx91-11x11-evk.dts b/arch/arm64/boot/dts/freescale/imx91-11x11-evk.dts
-index 5716febb5a50..c7050bafacae 100644
---- a/arch/arm64/boot/dts/freescale/imx91-11x11-evk.dts
-+++ b/arch/arm64/boot/dts/freescale/imx91-11x11-evk.dts
-@@ -110,6 +110,13 @@ linux,cma {
- 		};
- 	};
- 
-+	firmware {
-+		optee: optee {
-+			compatible = "linaro,optee-tz";
-+			method = "smc";
-+		};
-+	};
-+
- 	sound-wm8962 {
- 		compatible = "fsl,imx-audio-wm8962";
- 		model = "wm8962-audio";
-diff --git a/arch/arm64/boot/dts/freescale/imx91-11x11-frdm.dts b/arch/arm64/boot/dts/freescale/imx91-11x11-frdm.dts
-index c25561574d3f..c0156921414f 100644
---- a/arch/arm64/boot/dts/freescale/imx91-11x11-frdm.dts
-+++ b/arch/arm64/boot/dts/freescale/imx91-11x11-frdm.dts
-@@ -152,6 +152,13 @@ linux,cma {
- 		};
- 	};
- 
-+	firmware {
-+		optee: optee {
-+			compatible = "linaro,optee-tz";
-+			method = "smc";
-+		};
-+	};
-+
- 	soc@0 {
- 		bootph-all;
- 		bootph-pre-ram;
-diff --git a/arch/arm64/boot/dts/freescale/imx91-phyboard-segin.dts b/arch/arm64/boot/dts/freescale/imx91-phyboard-segin.dts
-index 022e9c6841ef..62b6eff013f1 100644
---- a/arch/arm64/boot/dts/freescale/imx91-phyboard-segin.dts
-+++ b/arch/arm64/boot/dts/freescale/imx91-phyboard-segin.dts
-@@ -35,6 +35,13 @@ chosen {
- 		stdout-path = &lpuart1;
- 	};
- 
-+	firmware {
-+		optee: optee {
-+			compatible = "linaro,optee-tz";
-+			method = "smc";
-+		};
-+	};
-+
- 	flexcan1_tc: can-phy0 {
- 		/* TI SN65HVD234D CAN-CC 1MBit/s */
- 		compatible = "ti,tcan1043";
-diff --git a/arch/arm64/boot/dts/freescale/imx93-11x11-evk.dts b/arch/arm64/boot/dts/freescale/imx93-11x11-evk.dts
-index c6db9c85f2ac..0bea169d7029 100644
---- a/arch/arm64/boot/dts/freescale/imx93-11x11-evk.dts
-+++ b/arch/arm64/boot/dts/freescale/imx93-11x11-evk.dts
-@@ -42,6 +42,13 @@ reg_usdhc3_vmmc: regulator-usdhc3 {
- 		enable-active-high;
- 	};
- 
-+	firmware {
-+		optee: optee {
-+			compatible = "linaro,optee-tz";
-+			method = "smc";
-+		};
-+	};
-+
- 	usdhc3_pwrseq: usdhc3_pwrseq {
- 		compatible = "mmc-pwrseq-simple";
- 		reset-gpios = <&pcal6524 12 GPIO_ACTIVE_LOW>;
-diff --git a/arch/arm64/boot/dts/freescale/imx93-9x9-qsb.dts b/arch/arm64/boot/dts/freescale/imx93-9x9-qsb.dts
-index 01c11c517986..6b99c0594125 100644
---- a/arch/arm64/boot/dts/freescale/imx93-9x9-qsb.dts
-+++ b/arch/arm64/boot/dts/freescale/imx93-9x9-qsb.dts
-@@ -147,6 +147,13 @@ reg_usdhc3_vmmc: regulator-usdhc3 {
- 		enable-active-high;
- 	};
- 
-+	firmware {
-+		optee: optee {
-+			compatible = "linaro,optee-tz";
-+			method = "smc";
-+		};
-+	};
-+
- 	sound-bt-sco {
- 		compatible = "simple-audio-card";
- 		simple-audio-card,name = "bt-sco-audio";
-diff --git a/arch/arm64/boot/dts/freescale/imx93-kontron-bl-osm-s.dts b/arch/arm64/boot/dts/freescale/imx93-kontron-bl-osm-s.dts
-index 4620c070f4d7..b8fa0cda33b2 100644
---- a/arch/arm64/boot/dts/freescale/imx93-kontron-bl-osm-s.dts
-+++ b/arch/arm64/boot/dts/freescale/imx93-kontron-bl-osm-s.dts
-@@ -62,6 +62,13 @@ reg_vcc_panel: regulator-vcc-panel {
- 		regulator-min-microvolt = <3300000>;
- 		regulator-name = "VCC_PANEL";
- 	};
 +
 +	firmware {
 +		optee: optee {
@@ -310,44 +169,29 @@ index 4620c070f4d7..b8fa0cda33b2 100644
 +		};
 +	};
  };
- 
- &eqos { /* Second ethernet (OSM-S ETH_B) */
-diff --git a/arch/arm64/boot/dts/freescale/imx93-phyboard-segin.dts b/arch/arm64/boot/dts/freescale/imx93-phyboard-segin.dts
-index d929aa9ff255..e96b8437f922 100644
---- a/arch/arm64/boot/dts/freescale/imx93-phyboard-segin.dts
-+++ b/arch/arm64/boot/dts/freescale/imx93-phyboard-segin.dts
-@@ -36,6 +36,13 @@ chosen {
- 		stdout-path = &lpuart1;
- 	};
- 
-+	firmware {
-+		optee: optee {
-+			compatible = "linaro,optee-tz";
-+			method = "smc";
-+		};
-+	};
-+
- 	flexcan1_tc: can-phy0 {
- 		compatible = "ti,tcan1043";
- 		#phy-cells = <0>;
-diff --git a/arch/arm64/boot/dts/freescale/imx93-var-som-symphony.dts b/arch/arm64/boot/dts/freescale/imx93-var-som-symphony.dts
-index 409c7e74ffe3..20eaabc23b49 100644
---- a/arch/arm64/boot/dts/freescale/imx93-var-som-symphony.dts
-+++ b/arch/arm64/boot/dts/freescale/imx93-var-som-symphony.dts
-@@ -125,6 +125,13 @@ ele_reserved: ele-reserved@87de0000 {
+diff --git a/arch/arm/boot/dts/st/stm32mp157c-ed1.dts b/arch/arm/boot/dts/st/stm32mp157c-ed1.dts
+index 49dd555cc228..7da726035086 100644
+--- a/arch/arm/boot/dts/st/stm32mp157c-ed1.dts
++++ b/arch/arm/boot/dts/st/stm32mp157c-ed1.dts
+@@ -70,6 +70,18 @@ retram: retram@38000000 {
+ 			reg = <0x38000000 0x10000>;
+ 			no-map;
  		};
- 	};
- 
++
++		optee@fe000000 {
++			reg = <0xfe000000 0x02000000>;
++			no-map;
++		};
++	};
++
 +	firmware {
 +		optee: optee {
 +			compatible = "linaro,optee-tz";
 +			method = "smc";
 +		};
-+	};
-+
- 	gpio-keys {
- 		compatible = "gpio-keys";
+ 	};
  
+ 	led {
 
 -- 
 2.47.3
