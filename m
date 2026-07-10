@@ -1,57 +1,58 @@
-Return-Path: <devicetree+bounces-324681-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-324684-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id DJVVIkduUWoaEwMAu9opvQ
-	(envelope-from <devicetree+bounces-324681-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 11 Jul 2026 00:12:23 +0200
+	id SSGTLkZuUWoXEwMAu9opvQ
+	(envelope-from <devicetree+bounces-324684-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 11 Jul 2026 00:12:22 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A00273F639
-	for <lists+devicetree@lfdr.de>; Sat, 11 Jul 2026 00:12:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E71A73F631
+	for <lists+devicetree@lfdr.de>; Sat, 11 Jul 2026 00:12:22 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20201202 header.b=h+hGy3jW;
+	dkim=pass header.d=kernel.org header.s=k20201202 header.b=SBs5JC4V;
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324681-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-324681-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324684-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-324684-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id E1F193020669
+	by sto.lore.kernel.org (Postfix) with ESMTP id 730BA3020017
 	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 22:12:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0170C3D3334;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 022F73D3D09;
 	Fri, 10 Jul 2026 22:12:13 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D20ED3CFF69
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D223F3D16F4
 	for <devicetree@vger.kernel.org>; Fri, 10 Jul 2026 22:12:12 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783721532; cv=none; b=FYfnjrK2AwqDXGJD+DopGgMr/z0pY9QYN0bIBw64uIGlFx+mVzGCqliZ9X7rcSqCo/HQZQUkURquYQHr7ryNb+CIL6kWhoh/+GnQz/DMQr9KEDwiBXL5q9CI0vEacc4MniYgOZtIux5pIXwhVQ1yEPr0jqUk3wQvqUiQMUhI8XQ=
+	t=1783721532; cv=none; b=a+WDpn+IYSNLXVnq4qWgzhGa42Q058gVB/4SN0sBXmfrZr5UapK8QyCoeUBLkdpxeE3gL/QE+ZeiSfnoJFsW1Xrmj+6avjQ5lZ9Gf/9FyDJmE9AnwDJPUIDSTo5leC3cHnsNm2wNpkjuw9p1h2mTtqDa9Bgt7sT+7zVeDLAfZ3U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1783721532; c=relaxed/simple;
-	bh=VOXS061+i4B6rTq/FKv/O4sEPS77Y6p/9W3TknowL+Q=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=a3PcLN603vMrLHtMD2vR2ocRiOz0tbFh84d9LYzFb58I/MJRXcA5MjTHpa7UCt0rLM3IdtOFwE8BVN7RLzGOdmDWgesBS7u4Uf9ncdXtbBulWB6u8aQfPt1l1eXUb8c8rVF+YmOnmstxyXjijoODIDek/PUyWJVXOAi5SQw0X2A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=h+hGy3jW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 78B8AC2BCC6;
+	bh=NNUsKF0uE2YbWdCskm3pzO4Lh7nn4gEIrvNWUJi0rL8=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=OufKqsZ4QOR/KL15U65eLvk4gJpVh+HicwvHqWiBl9VqsoBbz+6JYmXvQUBLnPwLr/Q1U/oApLumfP/g7OD8TiqK9bdhy/B6F0gz7e8YLwCW9kVClCFl0YBp5L6kGM0I0P7ngQrAy846VC5HRr+AzStCVxcEMJ4QLpKky9yKuQI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SBs5JC4V; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 820A3C2BCB8;
 	Fri, 10 Jul 2026 22:12:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1783721532;
-	bh=VOXS061+i4B6rTq/FKv/O4sEPS77Y6p/9W3TknowL+Q=;
-	h=From:Subject:Date:To:Cc:Reply-To:From;
-	b=h+hGy3jWacBIJXxRAbS4yZbrvSbG4XU414OR40JSx2yhR3Ref8Yz81Oaid8yhWFwc
-	 FQUUaftn7oHyPExdkY9OiJc9Bs2Xl2BqPnmzZbBTF9tMJGpWbkiJ/NeWZ92Crynvls
-	 oq72IfgeUtPI67P8kzboI2PuZyjmpTjeFb0Vg3Q2QJMuwHnPwNy+VB+LaQS3Ao6b8E
-	 g0voGArY8Hd6n7dOTtw8SrD08MVUyFCzNSZw3ZVNVpes0T8jwWUWqVH+XAVfiFyp94
-	 XtTqTGutsb5Ehh1pAvNiMT8SALQDoS8wD+FSgOo4nPonVEKXFs+P9+sJ8H1JK9GSjL
-	 rdpNPAS9Bcu4w==
+	bh=NNUsKF0uE2YbWdCskm3pzO4Lh7nn4gEIrvNWUJi0rL8=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
+	b=SBs5JC4VNI9D6WZqyaRi8qttvXj5zjp0C9fMrwktruRNTNB1v2Ouymgb7PMELZwKn
+	 cKLArQ1vagpFCNRtmR5xzVh9gb5fHTzS1VZqIh/Ay9WN362ljvRElh/zBp3vLTD7w3
+	 BQUzUN1WR1e6OLwPfqiaJnhHSaPW7ZRak7FHb+afV2qjyoX64EpttFLQPkt3gz1088
+	 vIeTHWNEzbfGIb3cMd0VsbHOSVWxFXnlcZyK7EexwNiMHO5rKh8bALPvOGrkR903sn
+	 XfYnpr7Bgc3mh/P8xdZtTXk09EsqqZjrdLbSbkEaWI3OYUlVcR4RAYbMnCtgDys63k
+	 XZ9QQKVNiAaPg==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 56D47C43458;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 64448C44506;
 	Fri, 10 Jul 2026 22:12:12 +0000 (UTC)
 From: Joachim Eastwood via B4 Relay <devnull+joachim.eastwood.gmail.com@kernel.org>
-Subject: [PATCH v2 00/12] arm64: dts: rockchip: Add NanoPi M6 board
-Date: Sat, 11 Jul 2026 00:11:49 +0200
-Message-Id: <20260711-nanopi-m6-v2-0-422675a65402@gmail.com>
+Date: Sat, 11 Jul 2026 00:11:50 +0200
+Subject: [PATCH v2 01/12] dt-bindings: arm: rockchip: add FriendlyElec
+ NanoPi M6
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,11 +61,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/02NQQ6CMBAAv0L2bE1bKIgn/2E4VNjCGmlJi42G9
- O8CxsTjJJOZBQJ6wgDnbAGPkQI5u4I8ZNAO2vbIqFsZJJclr7hgVls3ERtLZgyiqaSSpqtg9Se
- Phl5769p8OTxvd2znLbAZA4XZ+fc+i2Lzft38rxsF4+yUF4UWStVK1Jd+1PQ4tm6EJqX0AQCxr
- Eq0AAAA
-X-Change-ID: 20260701-nanopi-m6-ffeef7252fd7
+Message-Id: <20260711-nanopi-m6-v2-1-422675a65402@gmail.com>
+References: <20260711-nanopi-m6-v2-0-422675a65402@gmail.com>
+In-Reply-To: <20260711-nanopi-m6-v2-0-422675a65402@gmail.com>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
 Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
@@ -72,11 +71,11 @@ Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  Joachim Eastwood <joachim.eastwood@gmail.com>, 
  Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1783721530; l=2868;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1783721530; l=1140;
  i=joachim.eastwood@gmail.com; s=20260701; h=from:subject:message-id;
- bh=VOXS061+i4B6rTq/FKv/O4sEPS77Y6p/9W3TknowL+Q=;
- b=2tOGs1JKJXsFraC6tYtOa24VTiPzRAZebPeA2bVTGxNavJ94mkWA9VK17zNIAeiWv8NbUjNLc
- WV+BrP5C0p+Dd8Ar/ILhIPJLn/IjF1ByDQcw9KQzeX0GRnd+I7bwj59
+ bh=0ONGW218GQPBB3ga5TfqmUyan3oaycKJh9VLj31bcMQ=;
+ b=2M/cAoVxhUpPF5TIViVSsNdgF3JgOe/HO9gWEoR3uVhFLk7P5HKDKS8YR37JtLW55jgo50KhA
+ U6V4r0gd0nWAtoKe+ID7ZYDAMTnYLd4g8C/JTtd5mCrMesgu0pikQeD
 X-Developer-Key: i=joachim.eastwood@gmail.com; a=ed25519;
  pk=ZN/8xWtdYaSd5oEfloYSZ1a+/ri0n0VZqjlEeHlbXFU=
 X-Endpoint-Received: by B4 Relay for joachim.eastwood@gmail.com/20260701
@@ -95,7 +94,7 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-324681-lists,devicetree=lfdr.de,joachim.eastwood.gmail.com];
+	TAGGED_FROM(0.00)[bounces-324684-lists,devicetree=lfdr.de,joachim.eastwood.gmail.com];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:heiko@sntech.de,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-rockchip@lists.infradead.org,m:diederik@cknow-tech.com,m:joachim.eastwood@gmail.com,m:krzysztof.kozlowski@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,m:joachimeastwood@gmail.com,s:lists@lfdr.de];
 	FORGED_SENDER(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
@@ -105,7 +104,7 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	ALIAS_RESOLVED(0.00)[];
@@ -117,71 +116,44 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	HAS_REPLYTO(0.00)[joachim.eastwood@gmail.com];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,qualcomm.com:email,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 2A00273F639
+X-Rspamd-Queue-Id: 6E71A73F631
 
-This patch series add support for the NanoPi M6. This board is very
-similar to the NanoPi R6C and R6S boards which are already supported.
+From: Joachim Eastwood <joachim.eastwood@gmail.com>
 
-Main differences:
-* M.2 M-key slot with PCIe (Also present on R6C)
-* M.2 E-key slot with PCIe and USB (from hub)
-* 1 additional USB 2.0 port from an on-board USB hub
-* RT5616 audio CODEC
+Add device tree binding documentation for FriendlyElec NanoPi M6,
+a single-board computer based on the Rockchip RK3588S SoC. Very
+similar to NanoPi R6C and R6S.
 
-Patch 2 and 3 moves a bit code around. Please let me know if those two
-should be squashed together.
-Next few patches adds some missing bits the common nanopi dtsi file.
-While the final patch adds support for NanoPi M6. Support for M6 has
-been split into two files one dtsi and one dts file. This is to make
-it easier to add support to the new M6V2 board at a later stage.
-
-All changes have been verified using the schematics for M6, R6C and R6S.
-Only M6 have been boot and runtime tested. Tester for R6x are welcome.
-
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 Signed-off-by: Joachim Eastwood <joachim.eastwood@gmail.com>
 ---
-Changes in v2:
-- Organize DT such that adding support to NanoPi M6V2 later is easier
-- Use correct clk id for I2C mclk out as suggested by Diederik.
-- Add a couple of acks from Krzysztof Kozlowski.
-- Link to v1: https://patch.msgid.link/20260703-nanopi-m6-v1-0-8344a1559519@gmail.com
+ Documentation/devicetree/bindings/arm/rockchip.yaml | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
----
-Joachim Eastwood (12):
-      dt-bindings: arm: rockchip: add FriendlyElec NanoPi M6
-      arm64: dts: rockchip: refactor rk3588s-nanopi* to support M6
-      arm64: dts: rockchip: move NanoPi R6 code into common dtsi
-      arm64: dts: rockchip: rk3588s-nanopi: add missing sdmmc cd pinctrl
-      arm64: dts: rockchip: rk3588s-nanopi: remove pull up on rtc int pin
-      arm64: dts: rockchip: rk3588s-nanopi: add missing pcie rst pinctrl
-      arm64: dts: rockchip: rk3588s-nanopi: pcie2x1l2: add clkreq
-      arm64: dts: rockchip: rk3588s-nanopi: remove always-on from vdd_npu_s0 reg
-      arm64: dts: rockchip: rk3588s-nanopi: remove useless vcc_3v3_pcie20
-      arm64: dts: rockchip: rk3588s-nanopi: add gmac1 add phy-supply
-      arm64: dts: rockchip: rk3588s-nanopi: remove bogus vcc5v0_usb regulator
-      arm64: dts: rockchip: add support for NanoPi M6 board
+diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
+index 1a9dde18626d..6ba512964c25 100644
+--- a/Documentation/devicetree/bindings/arm/rockchip.yaml
++++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
+@@ -344,9 +344,10 @@ properties:
+               - friendlyarm,nanopi-r5s
+           - const: rockchip,rk3568
+ 
+-      - description: FriendlyElec NanoPi R6 series boards
++      - description: FriendlyElec NanoPi6 series boards
+         items:
+           - enum:
++              - friendlyarm,nanopi-m6
+               - friendlyarm,nanopi-r6c
+               - friendlyarm,nanopi-r6s
+           - const: rockchip,rk3588s
 
- .../devicetree/bindings/arm/rockchip.yaml          |   3 +-
- arch/arm64/boot/dts/rockchip/Makefile              |   1 +
- .../arm64/boot/dts/rockchip/rk3588s-nanopi-m6.dtsi | 142 ++++
- .../boot/dts/rockchip/rk3588s-nanopi-m6v1.dts      |  67 ++
- .../arm64/boot/dts/rockchip/rk3588s-nanopi-r6.dtsi | 792 --------------------
- .../arm64/boot/dts/rockchip/rk3588s-nanopi-r6c.dts |   1 +
- .../arm64/boot/dts/rockchip/rk3588s-nanopi-r6s.dts |   1 +
- arch/arm64/boot/dts/rockchip/rk3588s-nanopi.dtsi   | 800 +++++++++++++++++++++
- 8 files changed, 1014 insertions(+), 793 deletions(-)
----
-base-commit: dc59e4fea9d83f03bad6bddf3fa2e52491777482
-change-id: 20260701-nanopi-m6-ffeef7252fd7
-
-Best regards,
---  
-Joachim Eastwood <joachim.eastwood@gmail.com>
+-- 
+2.55.0
 
 
 
