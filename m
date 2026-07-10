@@ -1,154 +1,202 @@
-Return-Path: <devicetree+bounces-324267-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-324270-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id EJqGOeGqUGqH3AIAu9opvQ
-	(envelope-from <devicetree+bounces-324267-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 10:18:41 +0200
+	id t0fFE9KsUGoN3QIAu9opvQ
+	(envelope-from <devicetree+bounces-324270-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 10:26:58 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1FEC7385C4
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 10:18:41 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id A3ACF738700
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 10:26:57 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=CXE3LBRh;
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324267-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-324267-lists+devicetree=lfdr.de@vger.kernel.org";
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
+	dkim=pass header.d=collabora.com header.s=zohomail header.b=FFnMn0Cf;
+	dmarc=pass (policy=none) header.from=collabora.com;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324270-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-324270-lists+devicetree=lfdr.de@vger.kernel.org";
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 9BDB0303B9D2
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 08:17:03 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 72164300B453
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 08:20:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DADBB3EFD30;
-	Fri, 10 Jul 2026 08:15:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 452C33EFFAE;
+	Fri, 10 Jul 2026 08:20:01 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B18E3F4858
-	for <devicetree@vger.kernel.org>; Fri, 10 Jul 2026 08:15:49 +0000 (UTC)
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783671350; cv=none; b=mi1bumfFbt/NnsottBUXsMQ63tV9xEoUTw+UCa2JijHg7utlazLI/mGuRgxdcdCYMeU4jz3DH1ggFgrw9nnly3LwPyxjDgL7wB7xBovGXcY8/TnUJ0NukpKmtxXpFQPRy3/2oycNcAedMA/PKcyByDJBt9mzUgpYkm0+Lk4OibI=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783671350; c=relaxed/simple;
-	bh=kexMBKbGS1SzLIzm2gGn7cjqN/31yyN8XNL05KR6yfQ=;
-	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=mSqzB2boeRtdIXrBg6sNoOkVoUXQCOdcfbHfrB0CtXCeRnaxks1kkmmxPfdqzGKi2u6+/aycBd1TO/KIqF6VeW2QwCkZtKWBq5flFIfb9V6a3w6gISAgvSu9tJjGdcc0flcSWxwg+TY9C9T0tg2IX+IiPIsSqSV2Lbm5sSV5xTI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CXE3LBRh; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6F4751F000E9;
-	Fri, 10 Jul 2026 08:15:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783671349;
-	bh=h0COKXEEYymJBrJDtjckV5FdK9onJUUM9uwAdfWV1lw=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References;
-	b=CXE3LBRhZatFXTJq9EuH11+w/ZrBuEKZIGXuSo3DggmFHQe+jiULmT+FuHD6Sn0fo
-	 PuVltdIkWyCwZ9x3ub6SmQJ5kbXyOZFJJlQYLlgr+KsFLWwfK9UBPqK+i1k/ezREeK
-	 UZ8I3KuTXiwkRAWlq/+PdEaWkT1Nq2s3oKEUw7lVApFt/WvMWOfrKWSLRVFflENRKS
-	 nJ1PWeXBV5TE2yCsJdo4hAY3QtSFH+wHCjJ8tNb5iT2tc+B36qwDLvMIV+oJOmoAHG
-	 nQZLRzuhMjE9rKdmu/ohZLEOfYauoE3B7n8Ih7/ioLHJdgN9JJ2qLfkur6gri7SNpz
-	 6TzyLAVHE++iw==
-Received: from sofa.misterjones.org ([185.219.108.64] helo=lobster-girl.misterjones.org)
-	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.98.2)
-	(envelope-from <maz@kernel.org>)
-	id 1wi6Oh-00000003amd-12wl;
-	Fri, 10 Jul 2026 08:15:47 +0000
-Date: Fri, 10 Jul 2026 09:17:36 +0100
-Message-ID: <87se5r5kdb.wl-maz@kernel.org>
-From: Marc Zyngier <maz@kernel.org>
-To: Florian Fainelli <florian.fainelli@broadcom.com>
-Cc: Daniel Drake <dan@reactivated.net>,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	bcm-kernel-feedback-list@broadcom.com,
-	devicetree@vger.kernel.org,
-	linux-rpi-kernel@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	m.szyprowski@samsung.com,
-	andrea.porta@suse.com
-Subject: Re: [PATCH] arm64: dts: broadcom: bcm2712: Remove non-functional EL2 virtual timer
-In-Reply-To: <f25e0d6e-941e-416f-8c80-2c48e1b90498@broadcom.com>
-References: <20260619204832.586079-1-dan@reactivated.net>
-	<878q898ulx.wl-maz@kernel.org>
-	<223cd514-41b3-45b9-8617-b54d379d5091@broadcom.com>
-	<fc88dfa5-30e2-4e94-907c-58de0cd8447d@reactivated.net>
-	<f25e0d6e-941e-416f-8c80-2c48e1b90498@broadcom.com>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/30.1
- (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD6713EF0D3;
+	Fri, 10 Jul 2026 08:19:59 +0000 (UTC)
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1783671601; cv=pass; b=OqNkPatFlD0NSztCEYPwBfc9YiFRf6xXYoex2ICdvWeUU0cKgeDCKU4zUkJx6cCiVKijobfmSloWPV4cb7NprTg0yNsuVZSoBI6HUYOIt0Y+Ia6VRAMdMghBfT69pFHE15DWwGtsA655AHbaiBKfmct9pnK+HcDauNNXkRbJtYw=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1783671601; c=relaxed/simple;
+	bh=A6yuDsR2nZi6+auXXFpGtmRTYQlKL2m32zKzAUWpsuY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=M+BJ55CTh98rrmuc0znOTxtL6W4A0ZrSF/wRnGkj4XJKx4Do6bnyHtC49JUcDKIQm9Y6QPlglWEGLGDKbw/3nfIgBVpltik4Isw56gYlfDEqD5H7keDwEmAJ2E6sbdOIhGduGsmGyA5dXC+jps/Kk4WP1JfiGYTJ2c2dBIgNeMk=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=michael.riesch@collabora.com header.b=FFnMn0Cf; arc=pass smtp.client-ip=136.143.188.112
+ARC-Seal: i=1; a=rsa-sha256; t=1783671496; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=n1lilrOhB4g5YW6x6G9IiFkIE7cfPY646RXZhmeBeRU8vt/Xx9bipqzOH437Yw97SoOGWsi6diBYmTI0TYz7Spkgc8HTkBcyOyMzfh59yPBSw05OA6h2azT2bgsLebTK/kztYKqSVt1g4J+Lfr3EC3HBXmEksib7LE6CevODMbI=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1783671496; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=wNhWASr7b/ZTOhcTDo/rAGZJQBNr7Kmww1CuII50ggg=; 
+	b=KzVJV3qeyarguw6hz9kE7z6vCLOBH41NDHxBP60XjAWbYdVyRx4BdzoxPYnBsKXqISCpPpiknHP/lbrKwWbfZSlZj8qPWnerYwHuVZfthM/RiwyHsk1sJsbpbDcruZtep4SIczOrhwHVxxhJF8ObBRv1kKP+7ED7nKrf1V47Ws0=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=michael.riesch@collabora.com;
+	dmarc=pass header.from=<michael.riesch@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1783671496;
+	s=zohomail; d=collabora.com; i=michael.riesch@collabora.com;
+	h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+	bh=wNhWASr7b/ZTOhcTDo/rAGZJQBNr7Kmww1CuII50ggg=;
+	b=FFnMn0CfDn5F3352XtaZr/QmRsRz8rLmzZocUKukr5Ojp1+hiTHPyc3rbW2Zy+S1
+	bOUZDwihK/kW3HXc+EyDdMZPXBcsEVnrUiNVKyPQWNQCSgGFPDMhHaTIewGDobgikZT
+	oCrvfmpvHCAuKEHCF4PM+K5AHYqHi8YICnThQ1PA=
+Received: by mx.zohomail.com with SMTPS id 1783671494588655.4558382967103;
+	Fri, 10 Jul 2026 01:18:14 -0700 (PDT)
+Message-ID: <66d4ed68-f8b1-4275-96de-83d1125d49c9@collabora.com>
+Date: Fri, 10 Jul 2026 10:18:05 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: florian.fainelli@broadcom.com, dan@reactivated.net, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, bcm-kernel-feedback-list@broadcom.com, devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org, linux-arm-kernel@lists.infradead.org, m.szyprowski@samsung.com, andrea.porta@suse.com
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/7] media: dt-bindings: video-interface-devices: add
+ video-interface-devices.h references
+To: Kieran Bingham <kieran.bingham@ideasonboard.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Jacopo Mondi <jacopo@jmondi.org>,
+ Sakari Ailus <sakari.ailus@linux.intel.com>, Jimmy Su <jimmy.su@intel.com>,
+ Matthias Fend <matthias.fend@emfend.at>,
+ Mikhail Rudenko <mike.rudenko@gmail.com>,
+ Daniel Scally <dan.scally@ideasonboard.com>,
+ Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
+ Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
+ Sylvain Petinot <sylvain.petinot@foss.st.com>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Paul Elder <paul.elder@ideasonboard.com>,
+ Martin Kepplinger <martin.kepplinger@puri.sm>,
+ Quentin Schulz <quentin.schulz@theobroma-systems.com>,
+ Tommaso Merciai <tomm.merciai@gmail.com>,
+ Svyatoslav Ryhel <clamor95@gmail.com>,
+ Richard Acayan <mailingradian@gmail.com>,
+ Thierry Reding <thierry.reding@kernel.org>,
+ Jonathan Hunter <jonathanh@nvidia.com>, Frank Li <Frank.Li@nxp.com>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Magnus Damm <magnus.damm@gmail.com>, Heiko Stuebner <heiko@sntech.de>
+Cc: linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+ linux@ew.tq-group.com, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+ linux-renesas-soc@vger.kernel.org, linux-rockchip@lists.infradead.org,
+ Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+References: <20260628-kbingham-orientation-v3-0-4ed92968aff8@ideasonboard.com>
+ <20260628-kbingham-orientation-v3-2-4ed92968aff8@ideasonboard.com>
+Content-Language: en-US
+From: Michael Riesch <michael.riesch@collabora.com>
+In-Reply-To: <20260628-kbingham-orientation-v3-2-4ed92968aff8@ideasonboard.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ZohoMailClient: External
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[collabora.com:s=zohomail];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-324267-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[maz@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS(0.00)[m:kieran.bingham@ideasonboard.com,m:mchehab@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:jacopo@jmondi.org,m:sakari.ailus@linux.intel.com,m:jimmy.su@intel.com,m:matthias.fend@emfend.at,m:mike.rudenko@gmail.com,m:dan.scally@ideasonboard.com,m:jacopo.mondi@ideasonboard.com,m:benjamin.mugnier@foss.st.com,m:sylvain.petinot@foss.st.com,m:laurent.pinchart@ideasonboard.com,m:paul.elder@ideasonboard.com,m:martin.kepplinger@puri.sm,m:quentin.schulz@theobroma-systems.com,m:tomm.merciai@gmail.com,m:clamor95@gmail.com,m:mailingradian@gmail.com,m:thierry.reding@kernel.org,m:jonathanh@nvidia.com,m:Frank.Li@nxp.com,m:s.hauer@pengutronix.de,m:kernel@pengutronix.de,m:festevam@gmail.com,m:andersson@kernel.org,m:konradybcio@kernel.org,m:geert+renesas@glider.be,m:magnus.damm@gmail.com,m:heiko@sntech.de,m:linux-kernel@vger.kernel.org,m:linux-media@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-tegra@vger.kernel.org,m:linux@ew.tq-group.com,m:imx@
+ lists.linux.dev,m:linux-arm-kernel@lists.infradead.org,m:linux-arm-msm@vger.kernel.org,m:linux-renesas-soc@vger.kernel.org,m:linux-rockchip@lists.infradead.org,m:vladimir.zapolskiy@linaro.org,m:krzk@kernel.org,m:conor@kernel.org,m:mikerudenko@gmail.com,m:tommmerciai@gmail.com,m:geert@glider.be,m:magnusdamm@gmail.com,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:florian.fainelli@broadcom.com,m:dan@reactivated.net,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:bcm-kernel-feedback-list@broadcom.com,m:devicetree@vger.kernel.org,m:linux-rpi-kernel@lists.infradead.org,m:linux-arm-kernel@lists.infradead.org,m:m.szyprowski@samsung.com,m:andrea.porta@suse.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	FREEMAIL_TO(0.00)[ideasonboard.com,kernel.org,jmondi.org,linux.intel.com,intel.com,emfend.at,gmail.com,foss.st.com,puri.sm,theobroma-systems.com,nvidia.com,nxp.com,pengutronix.de,glider.be,sntech.de];
+	FORGED_SENDER(0.00)[michael.riesch@collabora.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[43];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-324270-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[collabora.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[maz@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NEQ_ENVFROM(0.00)[michael.riesch@collabora.com,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,vger.kernel.org:from_smtp,broadcom.com:email]
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:from_mime,collabora.com:email,collabora.com:mid,collabora.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,ideasonboard.com:email,vger.kernel.org:from_smtp,linaro.org:email,nxp.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: A1FEC7385C4
+X-Rspamd-Queue-Id: A3ACF738700
 
-On Thu, 09 Jul 2026 14:18:58 +0100,
-Florian Fainelli <florian.fainelli@broadcom.com> wrote:
+Hi Kieran,
+
+On 6/28/26 12:22, Kieran Bingham wrote:
+> Expand the documentation of the video-interface-devices orientation to
+> reference the include/dt-bindings/media/video-interface-devices.h header
+> which provides human readable defines for the orientation enum, to help
+> avoid hardcoding values in dts.
 > 
+> Reviewed-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Reviewed-by: Frank Li <Frank.Li@nxp.com>
+> Signed-off-by: Kieran Bingham <kieran.bingham@ideasonboard.com>
+
+Acked-by: Michael Riesch <michael.riesch@collabora.com>
+
+Thanks and best regards,
+Michael
+
+> ---
+>  .../bindings/media/video-interface-devices.yaml         | 17 +++++++++++------
+>  1 file changed, 11 insertions(+), 6 deletions(-)
 > 
+> diff --git a/Documentation/devicetree/bindings/media/video-interface-devices.yaml b/Documentation/devicetree/bindings/media/video-interface-devices.yaml
+> index a81d2a155fe6..c9c3f4f16719 100644
+> --- a/Documentation/devicetree/bindings/media/video-interface-devices.yaml
+> +++ b/Documentation/devicetree/bindings/media/video-interface-devices.yaml
+> @@ -392,17 +392,22 @@ properties:
+>        The orientation of a device (typically an image sensor or a flash LED)
+>        describing its mounting position relative to the usage orientation of the
+>        system where the device is installed on.
+> +      See include/dt-bindings/media/video-interface-devices.h.
+> +
+>      $ref: /schemas/types.yaml#/definitions/uint32
+>      enum:
+> -        # Front. The device is mounted on the front facing side of the system. For
+> -        # mobile devices such as smartphones, tablets and laptops the front side
+> -        # is the user facing side.
+> +        # MEDIA_ORIENTATION_FRONT
+> +        # The device is mounted on the front facing side of the system. For
+> +        # mobile devices such as smartphones, tablets and laptops the front
+> +        # side is the user facing side.
+>        - 0
+> -        # Back. The device is mounted on the back side of the system, which is
+> +        # MEDIA_ORIENTATION_BACK
+> +        # The device is mounted on the back side of the system, which is
+>          # defined as the opposite side of the front facing one.
+>        - 1
+> -        # External. The device is not attached directly to the system but is
+> -        # attached in a way that allows it to move freely.
+> +        # MEDIA_ORIENTATION_EXTERNAL
+> +        # The device is not attached directly to the system but is attached in
+> +        # a way that allows it to move freely.
+>        - 2
+>  
+>  additionalProperties: true
 > 
-> On 7/6/2026 11:49 PM, Daniel Drake wrote:
-> > Hi Florian,
-> > 
-> > On 21/06/2026 21:03, Florian Fainelli wrote:
-> >> We have an internal bug tracker item pertaining exactly to the
-> >> virtual timer interrupt connection however it affected a sister
-> >> chip (77122) and not 2712 AFAICT, now checking with the design team
-> >> whether the same happened on 2712.
-> > Did you receive any update on this for 2712?
-> 
-> Not yet, no.
 
-I've posted this:
-
-https://lore.kernel.org/all/20260710080958.491620-1-maz@kernel.org/
-
-as we can't leave users with non-functional HW much longer.
-
-	M.
-
--- 
-Jazz isn't dead. It just smells funny.
 
