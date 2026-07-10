@@ -1,293 +1,202 @@
-Return-Path: <devicetree+bounces-324237-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-324240-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 2o56JM6TUGqP1wIAu9opvQ
-	(envelope-from <devicetree+bounces-324237-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 08:40:14 +0200
+	id Cs5FJ3SUUGrA1wIAu9opvQ
+	(envelope-from <devicetree+bounces-324240-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 08:43:00 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4BED2737C46
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 08:40:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id ECC2E737C97
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 08:42:59 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=fy163lwy;
-	dkim=pass header.d=oss.qualcomm.com header.s=google header.b="HtJ//J/D";
-	dmarc=pass (policy=reject) header.from=qualcomm.com;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324237-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-324237-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=ZdoON+KV;
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324240-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-324240-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id BC7A4302292D
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 06:39:57 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id A1821301589A
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 06:42:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D5F33B42E1;
-	Fri, 10 Jul 2026 06:39:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5B633AFD0D;
+	Fri, 10 Jul 2026 06:42:50 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28D8D3B27F0
-	for <devicetree@vger.kernel.org>; Fri, 10 Jul 2026 06:39:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B1A53A48ED
+	for <devicetree@vger.kernel.org>; Fri, 10 Jul 2026 06:42:49 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783665595; cv=none; b=V31JiEoiT/g6nIXYQDDAztyC41HuzJFy05oFyst6ItUE3jtkkOapbzQwOk/8OKNAA0zWZBZWoWESK8Gn6d2Ajk5U4zAXglJUHQaokakVUXtgcuhcOdhnN7m/inx7FNA4ei4r9EYlARk3tWnGm3lbqYoK0PuftfMsVG7DjvCGTfg=
+	t=1783665770; cv=none; b=a/+/Wmc/19xCoNT2UOQRvFtXYw14eNz8637AfBaguPU3B+UZyGNJVMx6X4wnLA4w1c20rJrdzF8YjMMctGZs6xfgGExxKoIrSwuAh06COiGSOhJZgS4B3WDz1GTOGfAm4747FuWGAezSsjWJF+Caf2W5Kdv0bjHFjUUbNW1gOUQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783665595; c=relaxed/simple;
-	bh=uIKuN2DhESGYYTSnWLEE+bvH28nd60e+rRXXW3rLDZ4=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=IDzmkBBOpl9i+TUoTl92vSf4BEmJRjhcJ1HyXz0+f+rdA1wGihDS8SH+kxDnFpgTjrxoeB1La8MNwcQslv8/36U1EWKqgSVSg8ym+R4NT/vlQ7WI33B+RVlJVDcDb35OVaBnyIp9+CfmWezkKoSVNk0U7yp2tisUs89rzpILhIs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=fy163lwy; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=HtJ//J/D; arc=none smtp.client-ip=205.220.168.131
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 66A3n18F3722077
-	for <devicetree@vger.kernel.org>; Fri, 10 Jul 2026 06:39:52 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	tpTDJUt/VZMP2HnF71tbN+Re+WLiYWZrbfb4/qMHWNc=; b=fy163lwy+GS4k5xh
-	bYymREjX7aaH5R37PxuPYMS+/Ki/jtCWFJ6AIo7y5vP71DOZ8i/eJRe9ot/bqHcW
-	a8xdeu7YpFkaYAK7lSjvIvvYmct/a06PaeRsf5bOOuzCc1CvRE1esHq+21IOUMN1
-	z3EZvzAZsu5kcgJbjU5eXYVhPDDin1DKG12BisJH1UNw1Y8irRA0DRntVc2wGII9
-	devdoLZFCCHCtS58uK/7V7lzhBijIvN6ZNn2xFyzXEhu1dAUbgngoIV1uR6GWPPN
-	V6+57SAZkIIUdt9XD+buvfqWadEzNo3tNeMaqNTYScZUizpF3tnO7/jcQliImxAp
-	TuKBFA==
-Received: from mail-pg1-f200.google.com (mail-pg1-f200.google.com [209.85.215.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4fajwt9r31-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 10 Jul 2026 06:39:52 +0000 (GMT)
-Received: by mail-pg1-f200.google.com with SMTP id 41be03b00d2f7-c894c1c4aa9so942487a12.0
-        for <devicetree@vger.kernel.org>; Thu, 09 Jul 2026 23:39:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1783665592; x=1784270392; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :content-type:mime-version:subject:date:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=tpTDJUt/VZMP2HnF71tbN+Re+WLiYWZrbfb4/qMHWNc=;
-        b=HtJ//J/DCPvMyog7Lwg/4NDAH6TMuUpfwMQrOP1Bo8mKdarxUnxzCM01TzWQdCHhcQ
-         sngLA4L772sRlXRn1WKx1cYt948WpzaGoUrmdfqTqlT6l5+0Jj2GRArMO2oR9VAOlT90
-         yrO8Rlo6wyXDvtbsPXZJvDqfjvvNk4OlAN19D84y1D2/hQ+O1oTznQjO5fUjl57SKxC6
-         ho9fkDLIyFmKEwWTWP81dOFQXjmUHoNHiZOPQCJXcfY8KkfkgTgnSXGDO82dm9N4o3XO
-         9tKXgaHpRXucQgpFNc2pWDB6JpxdpRfFJIj2yXbhNLMxPpwEPYrYMuFnKTGQb2MJW5y2
-         dyJg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783665592; x=1784270392;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :content-type:mime-version:subject:date:from:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=tpTDJUt/VZMP2HnF71tbN+Re+WLiYWZrbfb4/qMHWNc=;
-        b=A4shwTv8plwbIPHHz+5lH2zRPhOfMKtbS7e2rEHBGvaaSE7lpyY3BeE/7kIXckBY1Q
-         bzTS2zDRbraymdyeVNYkG6EIr6NP1EH/Irn9NdFXEZd9CLBYS7TAij/ymCtlHe5DCfM/
-         dm4Km/jCv3pNbC42zWI+N40M4nE7KMqtyYTqNTChio7+m2sOD5WvPqQRP6SqyvuqGAAI
-         tRndv34hzwWcMqm/xTNbuoWdLuAUuZMVQT5pRI1ZBPcp9tJLBql4/pgVxyJ0KejrmzhS
-         HLbi0HMXxTOCD+8zfSCyr+fl+nLvlRQR6H3z1f7UmVMe5AAmtCMXXfz8Ve0DbipY3A1V
-         bYyg==
-X-Forwarded-Encrypted: i=1; AHgh+Rp8E5DNSjWpHjQYRu5e8z9VxrV0VhAnjqFuGD1F5S5LimJthtK4nwj7b49M8V2Y1LrDO8YmHg+vCjgq@vger.kernel.org
-X-Gm-Message-State: AOJu0YxB7JisDD1JWVKml6I8H+PzB/6BhCbxTcPrVwaghmrz1INOHbiH
-	n6H4FVcEHHPXDlpeu1nr9aiQ1bOX2DBFh61YL67og1X08mPvzeOwe5YZ+o4x9scFvDo110ZDhFg
-	43c1zF1j6jrTA+cpqESeMlmVEQrX0o23tKCXL+0UiWNuO0DFW2jyZy+xgukw/oH6B
-X-Gm-Gg: AfdE7cnk8Zo7rQS3LMAEniWIqPbLBRx0w1xTFA5AHYxmLzsxzK3A16/kyhH/D+fv/ma
-	Lzxmi15206GPqWAjam6jhh+UPcJ7H1eo8LXFAIcvmGB8K6ai7cqnsDDIvvWLQLUcVU6+RGLFcNS
-	+wdNZthESIDs/9L4GOxFSHZsrV6v+QJuMOLQmeienoTRF9pyhwrW7lgaPCJu/ZlN+TpTcKC9B9i
-	KfxBhbOVRECLtg0JnhA+hWCf8zPRnxyTYT5C0k1zXV77GdjjYjeeIuQR/CyGS+plm0E30FXDoeN
-	q6L/Yu6AgcVtMR8337mhZhz4EUAwxTCObm2lZsEaHLsG8uVY++iS/D7L50+pV+h8V5gDDIvO+hj
-	ORm7Cb1BS5NM6dzZbBCVQI6v4iErxlF/MVpC9/er3SRQKeVzyhfM7Qv4jN/T3
-X-Received: by 2002:a05:6a20:a123:b0:3bf:97e8:a026 with SMTP id adf61e73a8af0-3c0bced45eamr12612786637.25.1783665591633;
-        Thu, 09 Jul 2026 23:39:51 -0700 (PDT)
-X-Received: by 2002:a05:6a20:a123:b0:3bf:97e8:a026 with SMTP id adf61e73a8af0-3c0bced45eamr12612757637.25.1783665591150;
-        Thu, 09 Jul 2026 23:39:51 -0700 (PDT)
-Received: from hu-anancv-lv.qualcomm.com (Global_NAT1.qualcomm.com. [129.46.96.20])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-313af819732sm3578090eec.16.2026.07.09.23.39.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Jul 2026 23:39:50 -0700 (PDT)
-From: Ananthu C V <ananthu.cv@oss.qualcomm.com>
-Date: Thu, 09 Jul 2026 23:39:45 -0700
-Subject: [PATCH v6 4/4] arm64: dts: qcom: add SoCCP DT node for Glymur
+	s=arc-20240116; t=1783665770; c=relaxed/simple;
+	bh=B8CIc9IIjmwSAUTMlj4E2gYzVAuJsqIe9Vwkh5ILfZU=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=tIo+aoMZwF/JVLKxuG2PlCyvwTcb3eZ3Za0YB8BHCmwhdFkZPtGPCwFvr6M/hI+bWjbxwwY2hks4rcALaLEjXaFScCp0vqYzX9rvZK84p4APErDN3bBLl19+PXIYov/GMaOzColSXR8UW30EMzM3+Hj4mWiLRG5j3DePetlmJJA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZdoON+KV; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E5CC71F00A3A;
+	Fri, 10 Jul 2026 06:42:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1783665769;
+	bh=LrQtp1UthSnQzI4eCCBcQmdiU3dPqGhn5J1BsdTUkN8=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=ZdoON+KV9Bj/813uPxvDXYstAD/ro5Z826+vN3m9C6P8h4/MXQX/r2RLM/n9EGk59
+	 yKu5/dAlv5321P2ZNovlm95osFjzgHxC/YYvradLR5YMkHk8g1ZJNJAP5j/No/vwx3
+	 4effJ5Qh20tP1tEFfL4TRZMZ3CY4817mFZbZKqOwPbvCmV3PSLxoFk0uL6zKrA8Q4V
+	 XhOVZEt3e2nALrmLEFyMxpkfZcX71rlGeBXyc00fC6Zfq6Z1J4M4hxvPOz3ESsgkaB
+	 vyM//BArEx+mcfUSsz3/p3zIkQYez/iD8AagMeRHLSF5oKmBCAGCHO9ao6rOUYU9DC
+	 hAXsbQRUvXssg==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH net-next v4 3/8] net: phy: add
+ (*notify_phy_attach/detach)() hooks to struct mii_bus
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Markus Stockhausen" <markus.stockhausen@gmx.de>
+Cc: conor+dt@kernel.org, robh@kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260709064157.2865063-4-markus.stockhausen@gmx.de>
+References: <20260709064157.2865063-1-markus.stockhausen@gmx.de>
+ <20260709064157.2865063-4-markus.stockhausen@gmx.de>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Fri, 10 Jul 2026 06:42:48 +0000
+Message-Id: <20260710064248.E5CC71F00A3A@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260709-glymur-soccp-v6-4-16f70227547d@oss.qualcomm.com>
-References: <20260709-glymur-soccp-v6-0-16f70227547d@oss.qualcomm.com>
-In-Reply-To: <20260709-glymur-soccp-v6-0-16f70227547d@oss.qualcomm.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Jingyi Wang <jingyi.wang@oss.qualcomm.com>,
-        Taniya Das <taniya.das@oss.qualcomm.com>,
-        Maulik Shah <maulik.shah@oss.qualcomm.com>,
-        Abel Vesa <abelvesa@kernel.org>, Qiang Yu <qiang.yu@oss.qualcomm.com>,
-        Sibi Sankar <sibi.sankar@oss.qualcomm.com>,
-        Pankaj Patil <pankaj.patil@oss.qualcomm.com>,
-        Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-remoteproc@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>,
-        Jyothi Kumar Seerapu <jyothi.seerapu@oss.qualcomm.com>,
-        Raviteja Laggyshetty <raviteja.laggyshetty@oss.qualcomm.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-        Ananthu C V <ananthu.cv@oss.qualcomm.com>
-X-Mailer: b4 0.15.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1783665586; l=2804;
- i=ananthu.cv@oss.qualcomm.com; s=20260327; h=from:subject:message-id;
- bh=GuTuG7Z8xppC3L/Jo0WpEG16+Uij7ANSxrp2vi6Xp50=;
- b=DgflpKW8sSQw++S91xTR8dJ8xziNWrOytCBtRhTUOMKYtoAZUUt89aJQZvQbAgYQXqYUgx+aE
- 3lpEyPqYx76BGFs0ETy1spU+EcQ+ozcxosFViUau+tq+l7J1WnCm1a6
-X-Developer-Key: i=ananthu.cv@oss.qualcomm.com; a=ed25519;
- pk=Yyv4ldZGagB5zyqtlYRdUX/L9FZ6y/INQAXO9L3wfl4=
-X-Authority-Analysis: v=2.4 cv=XOYAjwhE c=1 sm=1 tr=0 ts=6a5093b8 cx=c_pps
- a=oF/VQ+ItUULfLr/lQ2/icg==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=IkcTkHD0fZMA:10 a=RAioF0-LDSMA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=_K5XuSEh1TEqbUxoQ0s3:22
- a=EUspDBNiAAAA:8 a=VnJQUHybGrZeNF6u4BcA:9 a=+jEqtf1s3R9VXZ0wqowq2kgwd+I=:19
- a=QEXdDO2ut3YA:10 a=3WC7DwWrALyhR5TkjVHa:22
-X-Proofpoint-GUID: _oV4MgbWMgvhVUqDT5Yj137AfLd-H-kT
-X-Proofpoint-Spam-Info: AW1haW4tMjYwNzEwMDA2MiBTYWx0ZWRfX+WlyUdat72Uy
- ho9iGFxnDDKpwghe08TzohYFoKUr0DH759r9PX8VzpB/MwncGHXqG/uhOyIt6ChQfvSdMBT8zzt
- lPDGi2Hhzzml0xeskIeAy+5NJPtmiy0=
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNzEwMDA2MiBTYWx0ZWRfX63RbiRDqA/zo
- VnyLe1S6z9UXhqmdbLCCadiVv1lwGuypa4+KmmPMv4Wcv+y3nwaJXPkE7CdG+6Wrvarblg6DS3z
- LEt0Bw1CW87x1DHk3+jH1FZMamYCjy0r/4ylSmiFtMCC8fiBpBWhP5nxKlvY0CAXS4KkewTzBoT
- xgl16o2xGL9EFz8WWhR8VvXsCeGURe/JKhNYtiK+jiAM2erGUBX8UJaVBS4jEMs0u5ls1EXaH0V
- EnWhimPxide/8C/OxCZ8R+NVPMq96wOgpc4sN8NyDf40QMxtAq52mdXrgT5k2Y/jv6QgmdS5qwL
- 7lhRgnzPygjuEwtwvSFQuaKIcY3A6YiH5lRKXeMdnPpo9njYpz98nq3pXXWHH11cXv0pytgDEu3
- 6XEoNYD3+1BlN1+uBk1XA3+e41ABRaOhmsELtVxDM7xGDKdzUGHIOfs2LEoETBiSmpGRrqtThjh
- CicxxR489QqpVHJvkDg==
-X-Proofpoint-ORIG-GUID: _oV4MgbWMgvhVUqDT5Yj137AfLd-H-kT
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.134,FMLib:17.12.100.49
- definitions=2026-07-10_01,2026-07-09_04,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0 malwarescore=0 suspectscore=0 adultscore=0 bulkscore=0
- spamscore=0 priorityscore=1501 clxscore=1015 phishscore=0 impostorscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2606150000 definitions=main-2607100062
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-1.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-324237-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[23];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_TLS_LAST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:andersson@kernel.org,m:konradybcio@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:mathieu.poirier@linaro.org,m:jingyi.wang@oss.qualcomm.com,m:taniya.das@oss.qualcomm.com,m:maulik.shah@oss.qualcomm.com,m:abelvesa@kernel.org,m:qiang.yu@oss.qualcomm.com,m:sibi.sankar@oss.qualcomm.com,m:pankaj.patil@oss.qualcomm.com,m:jishnu.prakash@oss.qualcomm.com,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-remoteproc@vger.kernel.org,m:krzysztof.kozlowski@oss.qualcomm.com,m:jyothi.seerapu@oss.qualcomm.com,m:raviteja.laggyshetty@oss.qualcomm.com,m:dmitry.baryshkov@oss.qualcomm.com,m:ananthu.cv@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[ananthu.cv@oss.qualcomm.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,vger.kernel.org:from_smtp,oss.qualcomm.com:from_mime,oss.qualcomm.com:dkim,oss.qualcomm.com:mid,qualcomm.com:email,qualcomm.com:dkim];
+	TAGGED_FROM(0.00)[bounces-324240-lists,devicetree=lfdr.de];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[gmx.de];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:markus.stockhausen@gmx.de,m:conor+dt@kernel.org,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ananthu.cv@oss.qualcomm.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	ALIAS_RESOLVED(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	FROM_NO_DN(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	RCPT_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,vger.kernel.org:from_smtp,smtp.kernel.org:mid,makrotopia.org:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 4BED2737C46
+X-Rspamd-Queue-Id: ECC2E737C97
 
-From: Sibi Sankar <sibi.sankar@oss.qualcomm.com>
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
+s) to consider:
 
-The SoC Control Processor (SoCCP) is a small RISC-V MCU that controls
-USB Type-C, battery charging, and various other functions on Qualcomm SoCs.
+New issues:
+- [High] The notify_phy_detach hook is called unconditionally in phy_detach=
+(), even if notify_phy_attach() was never called or previously failed.
 
-Add the nodes required to enable SoCCP on Glymur/Mahua SoCs.
+Pre-existing issues:
+- [High] phy_attach_direct() incorrectly tears down existing legitimate PHY=
+ attachments when returning -EBUSY.
+--
 
-Signed-off-by: Sibi Sankar <sibi.sankar@oss.qualcomm.com>
-Co-developed-by: Ananthu C V <ananthu.cv@oss.qualcomm.com>
-Signed-off-by: Ananthu C V <ananthu.cv@oss.qualcomm.com>
----
- arch/arm64/boot/dts/qcom/glymur-crd.dtsi |  5 ++++
- arch/arm64/boot/dts/qcom/glymur.dtsi     | 44 ++++++++++++++++++++++++++++++++
- 2 files changed, 49 insertions(+)
+--- Patch [3]: [PATCH net-next v4 3/8] net: phy: add (*notify_phy_attach/de=
+tach)() hooks to struct mii_bus ---
+commit 18f2ffc9e99b8190c4b5f1090de719a18f114275
+Author: Daniel Golle <daniel@makrotopia.org>
 
-diff --git a/arch/arm64/boot/dts/qcom/glymur-crd.dtsi b/arch/arm64/boot/dts/qcom/glymur-crd.dtsi
-index e784b538f42e..d728478f0a11 100644
---- a/arch/arm64/boot/dts/qcom/glymur-crd.dtsi
-+++ b/arch/arm64/boot/dts/qcom/glymur-crd.dtsi
-@@ -585,6 +585,11 @@ &remoteproc_cdsp {
- 	status = "okay";
- };
- 
-+&remoteproc_soccp {
-+	firmware-name = "qcom/glymur/soccp.mbn",
-+			"qcom/glymur/soccp_dtb.mbn";
-+};
-+
- &tlmm {
- 	gpio-reserved-ranges = <4 4>, /* EC TZ Secure I3C */
- 			       <10 2>, /* OOB UART */
-diff --git a/arch/arm64/boot/dts/qcom/glymur.dtsi b/arch/arm64/boot/dts/qcom/glymur.dtsi
-index 9ec7c256b80a..f4569d49dedc 100644
---- a/arch/arm64/boot/dts/qcom/glymur.dtsi
-+++ b/arch/arm64/boot/dts/qcom/glymur.dtsi
-@@ -2297,6 +2297,50 @@ &config_noc SLAVE_QUP_0 QCOM_ICC_TAG_ALWAYS>,
- 			};
- 		};
- 
-+		remoteproc_soccp: remoteproc@d00000 {
-+			compatible = "qcom,glymur-soccp-pas";
-+			reg = <0x0 0x00d00000 0x0 0x200000>;
-+
-+			interrupts-extended = <&intc GIC_SPI 167 IRQ_TYPE_EDGE_RISING>,
-+					      <&soccp_smp2p_in 0 IRQ_TYPE_EDGE_RISING>,
-+					      <&soccp_smp2p_in 1 IRQ_TYPE_EDGE_RISING>,
-+					      <&soccp_smp2p_in 2 IRQ_TYPE_EDGE_RISING>,
-+					      <&soccp_smp2p_in 3 IRQ_TYPE_EDGE_RISING>,
-+					      <&soccp_smp2p_in 9 IRQ_TYPE_EDGE_RISING>;
-+			interrupt-names = "wdog",
-+					  "fatal",
-+					  "ready",
-+					  "handover",
-+					  "stop-ack",
-+					  "pong";
-+
-+			clocks = <&rpmhcc RPMH_CXO_CLK>;
-+			clock-names = "xo";
-+
-+			power-domains = <&rpmhpd RPMHPD_CX>,
-+					<&rpmhpd RPMHPD_MX>;
-+			power-domain-names = "cx",
-+					     "mx";
-+
-+			memory-region = <&soccp_mem>,
-+					<&soccpdtb_mem>;
-+
-+			qcom,smem-states = <&soccp_smp2p_out 0>,
-+					   <&soccp_smp2p_out 8>;
-+			qcom,smem-state-names = "stop",
-+						"ping";
-+
-+			glink-edge {
-+				interrupts-extended = <&ipcc IPCC_MPROC_SOCCP
-+							     IPCC_MPROC_SIGNAL_GLINK_QMP
-+							     IRQ_TYPE_EDGE_RISING>;
-+				mboxes = <&ipcc IPCC_MPROC_SOCCP
-+						IPCC_MPROC_SIGNAL_GLINK_QMP>;
-+				qcom,remote-pid = <19>;
-+				label = "soccp";
-+			};
-+		};
-+
- 		usb_hs_phy: phy@fa0000 {
- 			compatible = "qcom,glymur-m31-eusb2-phy",
- 				     "qcom,sm8750-m31-eusb2-phy";
+net: phy: add (*notify_phy_attach/detach)() hooks to struct mii_bus
 
--- 
-2.43.0
+This commit introduces notify_phy_attach and notify_phy_detach hooks to
+struct mii_bus. These hooks allow the MDIO bus driver to perform
+initialization and teardown steps when a PHY is attached or detached.
 
+Link: https://github.com/openwrt/openwrt/pull/21515#discussion_r2714069716
+Link: https://lore.kernel.org/netdev/cover.1769053496.git.daniel@makrotopia=
+.org/
+
+> diff --git a/drivers/net/phy/phy_device.c b/drivers/net/phy/phy_device.c
+> index 0615228459ef4..676cbf183350d 100644
+> --- a/drivers/net/phy/phy_device.c
+> +++ b/drivers/net/phy/phy_device.c
+> @@ -1876,6 +1876,12 @@ int phy_attach_direct(struct net_device *dev, stru=
+ct phy_device *phydev,
+>  	if (err)
+>  		goto error;
+> =20
+> +	if (phydev->mdio.bus->notify_phy_attach) {
+> +		err =3D phydev->mdio.bus->notify_phy_attach(phydev);
+> +		if (err)
+> +			goto error;
+
+[Severity: High]
+This is a pre-existing issue, but I noticed something about the error
+handling here and earlier in the function.
+
+If phy_attach_direct() detects the PHY is already attached:
+
+	if (phydev->attached_dev) {
+		dev_err(&dev->dev, "PHY already attached\n");
+		err =3D -EBUSY;
+		goto error;
+	}
+
+The error label unconditionally calls phy_detach().
+
+Will this tear down the active, legitimate attachment state of the original
+owner instead of just aborting the current failed attach attempt?
+
+> +	}
+> +
+>  	phy_resume(phydev);
+> =20
+>  	/**
+> @@ -1919,6 +1925,9 @@ void phy_detach(struct phy_device *phydev)
+>  	struct module *ndev_owner =3D NULL;
+>  	struct mii_bus *bus;
+> =20
+> +	if (phydev->mdio.bus->notify_phy_detach)
+> +		phydev->mdio.bus->notify_phy_detach(phydev);
+> +
+
+[Severity: High]
+If phy_attach_direct() fails early and jumps to the error label, it calls
+phy_detach(), which completely bypasses notify_phy_attach() but
+unconditionally invokes notify_phy_detach().
+
+It also appears that if notify_phy_attach() itself returns an error,
+phy_detach() will be called immediately.
+
+Could this cause MDIO bus drivers to receive unbalanced detach events for a
+PHY that was never successfully attached? Might this lead to NULL pointer
+dereferences or double frees if the bus driver relies on the attach hook
+to initialize state?
+
+>  	if (phydev->devlink) {
+>  		device_link_del(phydev->devlink);
+>  		phydev->devlink =3D NULL;
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260709064157.2865=
+063-1-markus.stockhausen@gmx.de?part=3D3
 
