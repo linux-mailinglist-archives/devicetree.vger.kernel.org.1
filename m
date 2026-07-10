@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-324281-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-324282-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id iq7DDOavUGrY3QIAu9opvQ
-	(envelope-from <devicetree+bounces-324281-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 10:40:06 +0200
+	id AHkKK1qyUGpa3gIAu9opvQ
+	(envelope-from <devicetree+bounces-324282-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 10:50:34 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E9BF738943
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 10:40:05 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id A1C5F738A93
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 10:50:33 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=QY70Pa0u;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=bW+5z7z+;
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324281-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-324281-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324282-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-324282-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id EB1D63038B84
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 08:36:23 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 6389C301C18F
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 08:37:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A51083D170C;
-	Fri, 10 Jul 2026 08:36:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C06833D8133;
+	Fri, 10 Jul 2026 08:37:39 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62767350A05
-	for <devicetree@vger.kernel.org>; Fri, 10 Jul 2026 08:36:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95ED23A63EF;
+	Fri, 10 Jul 2026 08:37:38 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783672582; cv=none; b=ML4QDI/CVwsBP66HRnIri9dxVR2yK/ElCunX/+bb9Kk8xGlfnZw8ekYdp0dOWoAekdfwtY2pGRLpobabsyUOLHNPyGkC+ijwhr4Pgi2I+7sf77xawBV1ZgjcvnMGK6ySlUJEsHzkMNkennzV+Fz/trOI5SkheCCSlqX9dnkuPfo=
+	t=1783672659; cv=none; b=fBOhL0u7/2r7KqrdndpPi+Tbj6+ssSX5BCnITIqZaqDHvqn8p+l1zLipuapTU1FVJtZOFXeie7kgme5vm3OXBz7SsY10XNHJKwRUdbg+JwyHLwxMpW2tsOKXBf532nndMZWaJKLMQ3PM81vRmByArS2/a8oFZMVgFYe23TpIsX8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783672582; c=relaxed/simple;
-	bh=ED3u1XAd2ot59S60y5+AinqaepMD446p1yXJsrYbEd0=;
+	s=arc-20240116; t=1783672659; c=relaxed/simple;
+	bh=NWAlUNHbNdxAmVW1GD1fI7FsllHCdwn5ym4wQCmc3Og=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=CZ9lpWlOcX8+I87xV0hnuPnkviqoInqLz7Gv/GxvnCWAH8C6GWW/qrmCTaSjGBxOW85vOl65dVUuiQR6CGEhr+ZsbsWAlYgQ9wwTtPPl0ojKlaU058yPSAnAyjlqrHCwxjFt+RxuwuCVeI9gKX8crb3UPmyFlr+p836AcL2h5Ik=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QY70Pa0u; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CB2A71F000E9;
-	Fri, 10 Jul 2026 08:36:20 +0000 (UTC)
+	 Message-Id; b=O1QR2cqTvtT6CXM8xFv6oZPaUseYrU4TOG/Y68FnMy6C9dXy34fTVNbNGW4lsYb4DgyVfJ5gVb5XMhqLLLsN2ecVKk7a4kXbLPRCAk5cFkMZDTHcyiV3XW2FuaFMidskyB/Myq7OQ2K1aIgEho3Ok3MP+LYZIm01p66WtoyXFtU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bW+5z7z+; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BD1CB1F000E9;
+	Fri, 10 Jul 2026 08:37:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783672581;
-	bh=4a/tbZ6CsnvCYicgjPp50OJp1XSxP2ax0SKKZ2bC1YQ=;
+	s=k20260515; t=1783672658;
+	bh=lA9Z16hJ38ZHTm5yh17D3L9U6TZvuj8iQ329kHZ2sgg=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=QY70Pa0u05qchZ+gOKPBGYMfALv+q6z8hEiqHo/xI9Hyivvqbzr9Z5EdOAPZ/vsVL
-	 sx1488zfjY5FqEHHR1l4Wxe2/Itotc93hP0FocMDE5BLJFF58YzojKMf6tCDVLQ5Uh
-	 MPHVNPp06EfgDJx9cusMxLmy+eMLYbZ9GXrpayb/a0ETrR7T1iuPYeefEkfnIuR11N
-	 x6O7sO/C4GZZAq2Ydhg2F7O6LtJraqUFIabv8rLe+xjGb+wH40r2PlcdB3RVh/2eER
-	 +jTvVfPGHqZaJEpJk79P+UZSWhX2mz0rGF6ckdNzW1ctdNn7mGsjtzP/3FbkYKqm2k
-	 bRsjzd6VFyJkA==
+	b=bW+5z7z+/eSCCNuHz5Jn6HcwS/ZxrxJ/TKI26cUgsnkR+R2odHwYaG34krwn5lDHN
+	 F/nCutW3f8JBumV5sP86ijl0i+Ray0WzrGZa/7ZzvvR9NRS6OE+nVo7kSCYYszdzoC
+	 jBVTh+kgL8Kd2AEbL3VOICnh07OQAaJlO+iOBk5l9iuaAC0hTkmjzTkxUVVSLX+Jc/
+	 A84N+BQdj00G3caj1/JwDTOYhBdseFqPEAEyqU5gsesSdP6EgseE4y8tVsTbvR0OH+
+	 mEvoZ+ldQALqlN57vmwnZA2gTYXvLgBWbItkngdl7MN0QmgMfyNfmSQFaCYOtxB2Bd
+	 55dclk5oMvblQ==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 2/2] thermal/drivers/loongson2: Add thermal driver
- support for Loongson-2K0300
+Subject: Re: [PATCH v3 1/2] drm/bridge: ti-sn65dsi83: Add reversed lvds
+ lanes support
 Reply-To: sashiko-reviews@lists.linux.dev
-To: "Binbin Zhou" <zhoubinbin@loongson.cn>
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, robh@kernel.org
-In-Reply-To: <e5a574b2ae0e5e0ec32fe81c0ccd03eb3ad5a164.1783670011.git.zhoubinbin@loongson.cn>
-References: <cover.1783670011.git.zhoubinbin@loongson.cn>
- <e5a574b2ae0e5e0ec32fe81c0ccd03eb3ad5a164.1783670011.git.zhoubinbin@loongson.cn>
+To: "Wojciech Dubowik" <wojciech.dubowik@mt.com>
+Cc: imx@lists.linux.dev, robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org, Frank.Li@kernel.org, dri-devel@lists.freedesktop.org
+In-Reply-To: <20260710082630.394040-3-wojciech.dubowik@mt.com>
+References: <20260710082630.394040-1-wojciech.dubowik@mt.com>
+ <20260710082630.394040-3-wojciech.dubowik@mt.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Fri, 10 Jul 2026 08:36:20 +0000
-Message-Id: <20260710083620.CB2A71F000E9@smtp.kernel.org>
+Date: Fri, 10 Jul 2026 08:37:37 +0000
+Message-Id: <20260710083737.BD1CB1F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,188 +72,122 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-324281-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:zhoubinbin@loongson.cn,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-324282-lists,devicetree=lfdr.de];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:wojciech.dubowik@mt.com,m:imx@lists.linux.dev,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:Frank.Li@kernel.org,m:dri-devel@lists.freedesktop.org,m:conor@kernel.org,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[7];
 	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCPT_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,vger.kernel.org:from_smtp,loongson.cn:email,smtp.kernel.org:mid,lists.linux.dev:replyto,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+	FROM_NO_DN(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,vger.kernel.org:from_smtp,sashiko.dev:url,smtp.kernel.org:mid,lists.linux.dev:replyto,mt.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 6E9BF738943
+X-Rspamd-Queue-Id: A1C5F738A93
 
-Thank you for your contribution! Sashiko AI review found 4 potential issue(=
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-
-New issues:
-- [High] Incorrect extraction mask and sign-evaluation for `chip_id0` calib=
-ration data breaks negative temperature calibration.
-- [High] The loongson2_thermal_set_trips function programs invalid Celsius =
-thresholds into the raw ADC comparator for the LS2K0300 sensor.
-- [High] Dynamic 'old fuse' detection dangerously masks legitimate critical=
- thermal events during a real thermal runaway.
-
-Pre-existing issues:
-- [High] Inverted error handling in the thermal zone registration loop pass=
-es an `ERR_PTR` to subsequent IRQ and sysfs setup.
+- [High] Probe definitively fails on valid legacy 3-lane or 0-indexed devic=
+e trees due to rigid array bounds.
 --
 
---- Patch [2]: [PATCH 2/2] thermal/drivers/loongson2: Add thermal driver su=
-pport for Loongson-2K0300 ---
-commit 95ad3fc965f2e0fee5a82b9e68fbe20931624b5a
-Author: Binbin Zhou <zhoubinbin@loongson.cn>
+--- Patch [1]: [PATCH v3 1/2] drm/bridge: ti-sn65dsi83: Add reversed lvds l=
+anes support ---
+commit 47fc41c5744e78e6f8072b1226e9548c69361da5
+Author: Wojciech Dubowik <Wojciech.Dubowik@mt.com>
 
-thermal/drivers/loongson2: Add thermal driver support for Loongson-2K0300
+drm/bridge: ti-sn65dsi83: Add reversed lvds lanes support
 
-This commit adds support for the Loongson-2K0300 thermal sensor, introducin=
-g a
-new temperature calculation formula based on a hardware version compensation
-value read from a chip ID register. It also includes a fallback mechanism
-for early chips with invalid fuses.
+The chip supports output lvds lanes in two orders, default <1 2 3 4>
+and <4 3 2 1>. Add parsing of an optional output lvds data-lanes
+property so we can inform chip that the lanes have been reversed.
 
-> diff --git a/drivers/thermal/loongson2_thermal.c b/drivers/thermal/loongs=
-on2_thermal.c
-> index ea4dd2fb1f473..a7eb87070aa9f 100644
-> --- a/drivers/thermal/loongson2_thermal.c
-> +++ b/drivers/thermal/loongson2_thermal.c
-
+> diff --git a/drivers/gpu/drm/bridge/ti-sn65dsi83.c b/drivers/gpu/drm/brid=
+ge/ti-sn65dsi83.c
+> --- a/drivers/gpu/drm/bridge/ti-sn65dsi83.c
+> +++ b/drivers/gpu/drm/bridge/ti-sn65dsi83.c
 [ ... ]
-
-> +#define LS2K0300_ID0_VAL_MASK		GENMASK(31, 20)
-> +#define LS2K0300_ID1_VAL_MASK		GENMASK(15, 0)
-> +
-> +#define LS2K0300_COMP_VAL_MASK		GENMASK(14, 0)
-> +#define LS2K0300_COMP_SIGN_BIT		BIT(15)
-
-[ ... ]
-
-> +static int loongson2_2k0300_get_temp(struct thermal_zone_device *tz, int=
- *temp)
-> +{
-
-[ ... ]
-
-> +	if (chip_id0 & LS2K0300_EXTERN_ID)
-> +		calib_data =3D FIELD_GET(LS2K0300_ID1_VAL_MASK, chip_id1);
-> +	else
-> +		calib_data =3D FIELD_GET(LS2K0300_ID0_VAL_MASK, chip_id0);
-> +
-> +	calib_offset =3D FIELD_GET(LS2K0300_COMP_VAL_MASK, calib_data);
-> +	if (calib_data & LS2K0300_COMP_SIGN_BIT)
-> +		calib_offset =3D -calib_offset;
+> @@ -854,6 +873,37 @@ static int sn65dsi83_parse_lvds_endpoint(struct sn65=
+dsi83 *ctx, int channel)
+>  		goto exit;
+>  	}
+> =20
+> +	ret_data =3D of_property_read_u32_array(endpoint, "data-lanes", data_la=
+nes,
+> +			ARRAY_SIZE(data_lanes));
+> +	if (ret_data !=3D 0 && ret_data !=3D -EINVAL) {
 
 [Severity: High]
-Is this sign check mathematically possible for chip_id0?
+Does this code break valid legacy device trees that define fewer than 4 lan=
+es?
 
-LS2K0300_ID0_VAL_MASK extracts a 12-bit value using GENMASK(31, 20). If
-calib_data is populated from chip_id0, checking against BIT(15) will always
-evaluate to false. Does this mean negative calibration offsets will never be
-applied for this case?
+If a device tree has a data-lanes property on the LVDS endpoint with fewer
+than 4 lanes (e.g., <1 2 3>), of_property_read_u32_array() will return
+-EOVERFLOW because it rigidly expects exactly ARRAY_SIZE(data_lanes) elemen=
+ts.
+This will immediately abort the probe, breaking previously working displays.
 
+> +		ret =3D ret_data;
+> +		goto exit;
+> +	}
 > +
-> +	temp_mc =3D (raw_adc + calib_offset) * 570 - 394700;
+> +	if (!ret_data) {
+> +		for (i =3D 0; i < ARRAY_SIZE(supported_data_lane_mapping); i++) {
+> +			for (j =3D 0; j < DATA_LANES_COUNT; j++) {
+> +				if (data_lanes[j] !=3D supported_data_lane_mapping[i][j])
+> +					break;
+> +			}
 > +
-> +	/* For old fuse which can not read right thermal data */
-> +	if (temp_mc < LS2K0300_LOWEST_VALID_TEMP || temp_mc > LS2K0300_HIGHEST_=
-VALID_TEMP) {
-> +		dev_warn_once(tdata->dev, "It's an old fuse, thermal %d is not right\n=
-", temp_mc);
-> +		temp_mc =3D raw_adc * 569 - 394700;
+> +			if (j =3D=3D DATA_LANES_COUNT)
+> +				break;
+> +		}
+> +
+> +		switch (i) {
+> +		case NORMAL_LANE_MAPPING:
+> +			break;
+> +		case REVERSE_LANE_MAPPING:
+> +			ctx->lvds_reverse_lanes_conf[channel] =3D true;
+> +			break;
+> +		default:
+> +			dev_err(dev, "invalid data lanes mapping\n");
+> +			ret =3D -EINVAL;
+
+[Severity: High]
+Will this cause the probe to fail on 0-indexed device tree configurations?
+
+The array comparison logic above this switch strictly checks for 1-indexed
+mappings. If the device tree uses a valid 0-indexed scheme (e.g., <0 1 2 3>=
+),
+it falls through to this default case, causing the probe to fail with -EINV=
+AL.
+
+> +			goto exit;
+> +		}
 > +	}
 
-[Severity: High]
-Could this dynamic bounds check mask a legitimate thermal runaway?
-
-If the system genuinely overheats and exceeds LS2K0300_HIGHEST_VALID_TEMP
-(125 C), this check assumes an old fuse and discards the calib_offset. If
-that offset was positive, discarding it will suddenly drop the reported
-temperature during severe heating. Might this hide the true severity from t=
-he
-OS and prevent the system from reaching the critical trip points needed for=
- an
-emergency shutdown?
-
-> +	*temp =3D temp_mc;
-> +
-> +	return 0;
-> +}
-
-[ ... ]
-
-> +static const struct thermal_zone_device_ops loongson2_2k0300_of_thermal_=
-ops =3D {
-> +	.get_temp =3D loongson2_2k0300_get_temp,
-> +	.set_trips =3D loongson2_thermal_set_trips,
-> +};
-
-[Severity: High]
-Does loongson2_thermal_set_trips write invalid threshold data for this new
-sensor?
-
-That function adds 100 to the Celsius threshold via loongson2_set_ctrl_regs,
-which matches the older LS2K1000 scale. Since the LS2K0300 uses an 11-bit A=
-DC
-format and a completely different calculation formula, wouldn't writing
-Celsius + 100 into its hardware comparator cause an immediate threshold
-mismatch and a potential interrupt storm?
-
-[ ... ]
-
-> @@ -160,7 +219,7 @@ static int loongson2_thermal_probe(struct platform_de=
-vice *pdev)
->  	loongson2_thermal_set(data, 0, 0, false);
-> =20
->  	for (i =3D 0; i <=3D LOONGSON2_MAX_SENSOR_SEL_NUM; i++) {
-> -		tzd =3D devm_thermal_of_zone_register(dev, i, data, thermal_ops);
-> +		tzd =3D devm_thermal_of_zone_register(dev, i, data, data->chip_data->t=
-hermal_ops);
-> =20
->  		if (!IS_ERR(tzd))
->  			break;
-> =20
->  		if (PTR_ERR(tzd) !=3D -ENODEV)
->  			continue;
-> =20
->  		return dev_err_probe(dev, PTR_ERR(tzd), "failed to register");
->  	}
-
-[Severity: High]
-This is a pre-existing issue, but does this error handling logic inadverten=
-tly
-pass an error pointer on fatal errors?
-
-By continuing the loop when PTR_ERR(tzd) !=3D -ENODEV, critical errors like
--ENOMEM are ignored. If all sensors fail to register, the loop terminates
-with tzd holding an error pointer. This pointer is then blindly passed to
-devm_request_threaded_irq and devm_thermal_add_hwmon_sysfs right after the
-loop, potentially causing a kernel oops when dereferenced.
-
 --=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/cover.1783670011.gi=
-t.zhoubinbin@loongson.cn?part=3D2
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260710082630.3940=
+40-1-wojciech.dubowik@mt.com?part=3D1
 
