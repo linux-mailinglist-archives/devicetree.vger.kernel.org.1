@@ -1,58 +1,58 @@
-Return-Path: <devicetree+bounces-324691-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-324692-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id rTdLK2RuUWoxEwMAu9opvQ
-	(envelope-from <devicetree+bounces-324691-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 11 Jul 2026 00:12:52 +0200
+	id lXMyM2tuUWo0EwMAu9opvQ
+	(envelope-from <devicetree+bounces-324692-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 11 Jul 2026 00:12:59 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67A2073F692
-	for <lists+devicetree@lfdr.de>; Sat, 11 Jul 2026 00:12:52 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E8AEC73F69F
+	for <lists+devicetree@lfdr.de>; Sat, 11 Jul 2026 00:12:58 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20201202 header.b=HTU3kkjQ;
+	dkim=pass header.d=kernel.org header.s=k20201202 header.b=CHahTPvE;
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324691-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-324691-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324692-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-324692-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 02CC83036708
+	by sin.lore.kernel.org (Postfix) with ESMTP id 6347C300AD60
 	for <lists+devicetree@lfdr.de>; Fri, 10 Jul 2026 22:12:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59EC93DA5DC;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A79F3DA7C4;
 	Fri, 10 Jul 2026 22:12:13 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D0F03D6CBA
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21D123D7D80
 	for <devicetree@vger.kernel.org>; Fri, 10 Jul 2026 22:12:13 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783721533; cv=none; b=V9H0Pge0SQnYG+L2Iy2uskvYrN/0zZqKAdwFG4MFV7EtFSnh3TpraMbhS4oq9KSkEU5vnt+TmRbWs+2j0Nv5NXHKICYhnaRsWzwhEpxU/C+dX5i7UIpC/gnCuAJqLNm9kT412LzuBmcb/Z6gfwG/rRyWuJbBBI3Bj9/t0eWXD7I=
+	t=1783721533; cv=none; b=gNoSd0J3BM/3wjfYrnw4py+QRaiy271F3q8yXEecLTdLNGTyi33KGfRYyxN2aGeC7JM4D3131HkG5WpFKsgJzceTHdwNH3UbyZO+G3IkH/7VlIUDDro+Gjy65QILiSuU3rggqrV30suUGqA2SZIioZYjLetznaCAh3VejnqXKow=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1783721533; c=relaxed/simple;
-	bh=hXyDaGOydTctsYzcs0yrBjLBB6HYhhz/fnaoymcEWeA=;
+	bh=ifBmL7CBYeZ2JMmG9zIKt75hHLF50y1l97KcTZIGHsk=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=jbAs/1cvmqi1fM8jMNQp+VvUz0Bnpvj0lsf3vqnCdVlmYsYKlCkM/7UC2p8dYxQsLGHfp5PI9ufnzFrWjYolYj/o7uDZ34jaZlfnIC37EpmnamEjDcUZrCcu6zEEl86ry3mEssfR33iiPdCyoLfSMfCPCtb+chextHjCX756loM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HTU3kkjQ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id E6FDDC2BD04;
+	 In-Reply-To:To:Cc; b=kEn/srxh31b2xi5QCaemA36CrkRlP8N21OguXf/i/DmG5XQvfN+4M25PW1jwtX/Kdy+gRyw8xtxxrJLorGh4mAnyrv/9FL1823wYf7nfNsv5KqR5Nj71EPjHSYW5yQetcGWcfAETIag59drQELrDDgQjb/pl7ihcZ8Ka3vOlDdg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CHahTPvE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id F407CC2BCB8;
 	Fri, 10 Jul 2026 22:12:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1783721532;
-	bh=hXyDaGOydTctsYzcs0yrBjLBB6HYhhz/fnaoymcEWeA=;
+	s=k20201202; t=1783721533;
+	bh=ifBmL7CBYeZ2JMmG9zIKt75hHLF50y1l97KcTZIGHsk=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=HTU3kkjQ/jJQxMRHNaTSj3vUhvakobrddpK8UXdKaX4MxLJtH2NoknnNPywMbfAuO
-	 UIK0asci8vStypsxoY/HP6rtytFjRYJMIiRHxub0O53j0SKGGMU26u1hqF74mXimd3
-	 mfgkzfCIdP+5Y+/BDwyIBzjnsEsVe9RgLZUYRBoLJ44/7HfHt90KaGYPqCQH/QIBVR
-	 gRAgvwm8/uDuhW9lkvTMK6MFoDsVJgnzoDYt3WfAMUUxd8ygOjAHLwcU2vluO2g1uj
-	 /cv8/HhDIj04/C+LRykBe9lf6w+GlQU2KVaRBruJCn6om131kAOVQXqB866cmgM0qn
-	 EeMZjbw6/6QOw==
+	b=CHahTPvE04LbQJHCmtuC42gNp53lzo6npvcrV2cUz4Xgc/6sKQ7WKh25DvbxTnGUL
+	 wH177WV56AouiETOeMSfaK35H2sUFqZVowHd1onaTnbu+b2DDrgSsxGBcKcAjPF4g2
+	 s9R6fuc91Qvy6iKnHUg8ux6282r7hiR/f8Dn0NiqNGl3yNYYR5orxCNlGYgeQzpMIk
+	 8kTMwJdiSxeXb8rKm6cMa4Z4JiOAsSxAC29TDQbhte8G3RM8OWNaIKYV+A3mEEBYmT
+	 UbCaK4cFE/pcEMS6vj0My0NEg10JUpjxzZhVQNNLO6E3FILtbnRtCdegGfWSeTCDrt
+	 sBy8FgNMZYpcQ==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D5AD0C43458;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E2EFDC44506;
 	Fri, 10 Jul 2026 22:12:12 +0000 (UTC)
 From: Joachim Eastwood via B4 Relay <devnull+joachim.eastwood.gmail.com@kernel.org>
-Date: Sat, 11 Jul 2026 00:11:59 +0200
-Subject: [PATCH v2 10/12] arm64: dts: rockchip: rk3588s-nanopi: add gmac1
- add phy-supply
+Date: Sat, 11 Jul 2026 00:12:00 +0200
+Subject: [PATCH v2 11/12] arm64: dts: rockchip: rk3588s-nanopi: remove
+ bogus vcc5v0_usb regulator
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,7 +61,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260711-nanopi-m6-v2-10-422675a65402@gmail.com>
+Message-Id: <20260711-nanopi-m6-v2-11-422675a65402@gmail.com>
 References: <20260711-nanopi-m6-v2-0-422675a65402@gmail.com>
 In-Reply-To: <20260711-nanopi-m6-v2-0-422675a65402@gmail.com>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -70,11 +70,11 @@ Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-rockchip@lists.infradead.org, diederik@cknow-tech.com, 
  Joachim Eastwood <joachim.eastwood@gmail.com>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1783721530; l=729;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1783721530; l=1952;
  i=joachim.eastwood@gmail.com; s=20260701; h=from:subject:message-id;
- bh=gBMET+DbG+jwN0qr/elYvKg3AjYOtdT2r4WKrOud/RA=;
- b=IuKyPvfhXNslByk1jK5xmmwoen/bUYZpX3zi1ek05uKjgV+9AeayQ462IUG1PaOfupCsRmf7+
- 12UMJfRza2LDBtLf4kELVxtv3pQwObU+Pi2NGoereneAD5ykbAf0Isd
+ bh=8PrbzKOpxO3XzEdB28Mc6h9tcQrxFXD2YWBlft/s02o=;
+ b=ST7FKUC8WtotGMHB6tGAsnU9piVLZ0CFEJRMguhI6dQpyYwUdupy4ARWDx01SjTfItzRzT5GL
+ T/ohzTAwRetDdL5w65iGn6qKJdJaRpkHskhXojuKkKIQIpmH9Ib4/d2
 X-Developer-Key: i=joachim.eastwood@gmail.com; a=ed25519;
  pk=ZN/8xWtdYaSd5oEfloYSZ1a+/ri0n0VZqjlEeHlbXFU=
 X-Endpoint-Received: by B4 Relay for joachim.eastwood@gmail.com/20260701
@@ -88,12 +88,12 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-324691-lists,devicetree=lfdr.de,joachim.eastwood.gmail.com];
+	TAGGED_FROM(0.00)[bounces-324692-lists,devicetree=lfdr.de,joachim.eastwood.gmail.com];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:heiko@sntech.de,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-rockchip@lists.infradead.org,m:diederik@cknow-tech.com,m:joachim.eastwood@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:joachimeastwood@gmail.com,s:lists@lfdr.de];
 	FORGED_SENDER(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
@@ -116,33 +116,66 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	HAS_REPLYTO(0.00)[joachim.eastwood@gmail.com];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 67A2073F692
+X-Rspamd-Queue-Id: E8AEC73F69F
 
 From: Joachim Eastwood <joachim.eastwood@gmail.com>
 
-The RTL8211F Ethernet phy is power from the VCC_3V3_S3 rail.
+All USB regulators (power switches) are feed from the main vcc5v0
+supply. There is no regulator or switch in between.
 
 Signed-off-by: Joachim Eastwood <joachim.eastwood@gmail.com>
 ---
- arch/arm64/boot/dts/rockchip/rk3588s-nanopi.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+ arch/arm64/boot/dts/rockchip/rk3588s-nanopi-r6.dtsi |  2 +-
+ arch/arm64/boot/dts/rockchip/rk3588s-nanopi.dtsi    | 12 +-----------
+ 2 files changed, 2 insertions(+), 12 deletions(-)
 
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-nanopi-r6.dtsi b/arch/arm64/boot/dts/rockchip/rk3588s-nanopi-r6.dtsi
+index 2f8c580afc2b..ff579f75d8d3 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3588s-nanopi-r6.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3588s-nanopi-r6.dtsi
+@@ -55,7 +55,7 @@ vcc5v0_usb_otg0: regulator-vcc5v0-usb-otg0 {
+ 		regulator-name = "vcc5v0_usb_otg0";
+ 		regulator-min-microvolt = <5000000>;
+ 		regulator-max-microvolt = <5000000>;
+-		vin-supply = <&vcc5v0_usb>;
++		vin-supply = <&vcc5v0_sys>;
+ 	};
+ };
+ 
 diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-nanopi.dtsi b/arch/arm64/boot/dts/rockchip/rk3588s-nanopi.dtsi
-index e4900af9822a..596b5a64c191 100644
+index 596b5a64c191..43b9342bbf14 100644
 --- a/arch/arm64/boot/dts/rockchip/rk3588s-nanopi.dtsi
 +++ b/arch/arm64/boot/dts/rockchip/rk3588s-nanopi.dtsi
-@@ -153,6 +153,7 @@ &gmac1 {
- 	clock_in_out = "output";
- 	phy-handle = <&rgmii_phy1>;
- 	phy-mode = "rgmii-rxid";
-+	phy-supply = <&vcc_3v3_s3>;
- 	pinctrl-0 = <&gmac1_miim
- 		     &gmac1_tx_bus2
- 		     &gmac1_rx_bus2
+@@ -86,16 +86,6 @@ vcc_3v3_sd_s0: regulator-vcc-3v3-sd-s0 {
+ 		vin-supply = <&vcc_3v3_s3>;
+ 	};
+ 
+-	vcc5v0_usb: regulator-vcc5v0-usb {
+-		compatible = "regulator-fixed";
+-		regulator-name = "vcc5v0_usb";
+-		regulator-always-on;
+-		regulator-boot-on;
+-		regulator-min-microvolt = <5000000>;
+-		regulator-max-microvolt = <5000000>;
+-		vin-supply = <&vcc5v0_sys>;
+-	};
+-
+ 	vcc5v0_host_20: regulator-vcc5v0-host-20 {
+ 		compatible = "regulator-fixed";
+ 		enable-active-high;
+@@ -105,7 +95,7 @@ vcc5v0_host_20: regulator-vcc5v0-host-20 {
+ 		regulator-name = "vcc5v0_host_20";
+ 		regulator-min-microvolt = <5000000>;
+ 		regulator-max-microvolt = <5000000>;
+-		vin-supply = <&vcc5v0_usb>;
++		vin-supply = <&vcc5v0_sys>;
+ 	};
+ };
+ 
 
 -- 
 2.55.0
