@@ -1,359 +1,288 @@
-Return-Path: <devicetree+bounces-324723-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-324739-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id gNCcGsvYUWosJgMAu9opvQ
-	(envelope-from <devicetree+bounces-324723-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 11 Jul 2026 07:46:51 +0200
+	id d8M7BdHdUWoZJwMAu9opvQ
+	(envelope-from <devicetree+bounces-324739-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 11 Jul 2026 08:08:17 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 081F07406B8
-	for <lists+devicetree@lfdr.de>; Sat, 11 Jul 2026 07:46:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 590AF74088F
+	for <lists+devicetree@lfdr.de>; Sat, 11 Jul 2026 08:08:16 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=lKdLSv3u;
-	dkim=pass header.d=oss.qualcomm.com header.s=google header.b=MtycTzj2;
-	dmarc=pass (policy=reject) header.from=qualcomm.com;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324723-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-324723-lists+devicetree=lfdr.de@vger.kernel.org";
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
+	dkim=pass header.d=goldelico.com header.s=strato-dkim-0002 header.b="Jv/FjH7Q";
+	dkim=pass header.d=goldelico.com header.s=strato-dkim-0003 header.b=VQOxmGic;
+	dmarc=pass (policy=quarantine) header.from=goldelico.com;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324739-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-324739-lists+devicetree=lfdr.de@vger.kernel.org";
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id DF8673012EB5
-	for <lists+devicetree@lfdr.de>; Sat, 11 Jul 2026 05:46:48 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 36A993050CB3
+	for <lists+devicetree@lfdr.de>; Sat, 11 Jul 2026 06:05:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21CD22FBE1F;
-	Sat, 11 Jul 2026 05:46:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD3C331BCAE;
+	Sat, 11 Jul 2026 06:05:27 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mo4-p02-ob.smtp.rzone.de (mo4-p02-ob.smtp.rzone.de [85.215.255.84])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82DFE14B950
-	for <devicetree@vger.kernel.org>; Sat, 11 Jul 2026 05:46:46 +0000 (UTC)
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783748808; cv=none; b=qt4jPd51Y1mCnHkR8GqWucmWLiR7lqjNePMYCWRBsGn1dByFSwD/6j8m4h2nozOF6O2iIBb5FjSM+35a/rHq3e55uGGPFrK9ZfoyEv7/IiT+1623ArsXXJN6AWicuDeb/jP8TVRng9PF3242WTRK38Kx/4SMGF2iepULyGXf7So=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783748808; c=relaxed/simple;
-	bh=KdwWMKt9xEN3xDtoDCATPMzZIWVY48mme+8NbD8tZCQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=AjtQ/K4HsyikIY597DV/oMgfH20MeWl1jSluhEVq+ZwQGXBZV82A0aU/Vl6EdkKwPFydP6wRE/97w92sytugKCGoIy/lhxHxkcpmVfba1E6chvDBq4Ght/hY1IzFaQ4LpAaz1Ak73MFVos2h/9E+CjLlsZsxNdROwcF7flbD8+Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=lKdLSv3u; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=MtycTzj2; arc=none smtp.client-ip=205.220.168.131
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 66B54t6H2808991
-	for <devicetree@vger.kernel.org>; Sat, 11 Jul 2026 05:46:45 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	gevgTNUs9RHgkaUGheSyiQ8zKdBVGGi1fUkWXs8Qot0=; b=lKdLSv3ufnyHePk8
-	t9OJTg5Utyn+lWFHsXShB2UmSqXPgXtY+jwBr43owVpAxTiDjxXY6H/pTAKFTwQ4
-	7NlZIlP5+wpiNecH3NkFD+nxiAQLv0T5j/ZqVmY2t+PXGCpkubkxjEeYHoMRBXJC
-	OHk7Ele1xaAGjvpiBAeHsPvy8QnlkvgEoAGjJR6mbmfb0SjxXKBkeQygXybzwcEM
-	2xMFRSlQkF+y4fsP6zPXqiqi3nJBrgmkKsROISmnlQrCtRXQLAfhA7uIWVCOwpWH
-	5GG7Tt2FCTKIVh8tW3vyU31r1cKZ7xSLXVz7awBvY+tBITj3tS+1Aso+3wmrT7GI
-	EjAYvw==
-Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4fbf48032f-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Sat, 11 Jul 2026 05:46:45 +0000 (GMT)
-Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-51c1a97644aso16839591cf.2
-        for <devicetree@vger.kernel.org>; Fri, 10 Jul 2026 22:46:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1783748805; x=1784353605; darn=vger.kernel.org;
-        h=content-transfer-encoding:content-type:in-reply-to:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=gevgTNUs9RHgkaUGheSyiQ8zKdBVGGi1fUkWXs8Qot0=;
-        b=MtycTzj2J+UuPZ3Isrzz2FSwzudfXRtx9HkeWkgaKfn10NfT38Bs0exrIOuTQbgSwi
-         QCKmJIv7UQwPtoDHT7F6cltEslrJTswXNxpaPcDEMIg93f5e0EVwrX30xSWEHcZpPR+s
-         exXJYOeoy3BOapf7I6XmdKvqRj6BBDHh7W77TB2eH8GZkx9RCxHljn26r/q36/czHDDR
-         KKjGqX0+w72f6UMyALnscatMgHnQldTTDE5GY0bu0KpdO+RSFl6ggdlJkc+EH9Ys9pZO
-         snEGOH7Ggaw/qvU4K5/AfMKDPA5Djp5/0kX/Fby8IJ/Aih5XSpvOqdgnSahiB1ZxQNOz
-         87hQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783748805; x=1784353605;
-        h=content-transfer-encoding:content-type:in-reply-to:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=gevgTNUs9RHgkaUGheSyiQ8zKdBVGGi1fUkWXs8Qot0=;
-        b=VwSrU1MFimjQpzfqJFtX3VN124YLdbQMZlm/jgpTDvtBJcKENFlsRdEbD/UeX9nWCU
-         BMN6SNIj5iY3sfHFrLny87k0+FONrHLMy8dKE4nyxKJhXoLhVOsN6dFtpw1wR4CBoETj
-         z6gsILoh9DWwG3+76hHJnYM7Fv5NkrgLoMhhirjxraQVMSakSywZlfggyO+jrYKmkuZe
-         jGUuJM7Oga7Mw3XySb2EF4Bum2qcONXVOefbL47EHK+3WMM0YeWxgoiEfBic1spm5tif
-         2IYB3h40YvyYoT9qk6cyqz1VQK/IEeAk7BMzaLTicc7WsvTL64PnbYsb21cwsJQwMEXk
-         sQDw==
-X-Forwarded-Encrypted: i=1; AHgh+Rq7DpwP9I2yVIMVhdbLddZ9SOZf82w2k9BRZh/iVFpMEv7b6snyizbGlSmlJ1emqjcv7pdGn5NSrzuX@vger.kernel.org
-X-Gm-Message-State: AOJu0YyFTdYwPhG5Z2R2wHpgglzZ9vTxarUzoxKMY+qR97kkka2bD6Rc
-	8h1+D7rmvb7pvmlAKs0Y288t6YaYqyuw3JHmvFbQkGMyqgHKz7huM93QvF836rDWx51CVoPCcqN
-	E3bxO0E1vwfbSRvOYZHhmISWAIkRCOvkmChXt7/D7krp/mooWDABG3hhANivRp+AB
-X-Gm-Gg: AfdE7ckFYv8iPatJs42Z1oODRHH7dT/33EiwKxP4wpZlGeNkJbGc6fhi+s7AkmSQ4tQ
-	g8PnKz77JI5kX//G1pU3zCm3yygedKl6xOb8UpLcE7BzG6joizFL3Wv1rCZhUyZQStoLpuMpinO
-	Z8I8lBxj1gTVeKc0H5rumrVCagGWTznTutCP7Ku1SRSgam/b5Mk8Cm9IVPpcKbHtpY1CjRasCal
-	W8vv9G9ryouPVRp17M4Aa1VSohH+JrTyq6wEqH/TBLKfeyBaalfIx+tJ8Lu9lULRO4MheCagj/T
-	eBLneNPNBeKomkJDp7JXBqMjpoigxXoybTHF8G4UTE6yDWiL3iWrSTiNXenEdUDjkU9av5FYY0o
-	F6+uxFjjp5MkiGXiMUm33OxXa7xe2G7qqGnWpKAAhCVgt
-X-Received: by 2002:a05:622a:2616:b0:517:9095:c329 with SMTP id d75a77b69052e-51cbf1fef01mr18790511cf.45.1783748804651;
-        Fri, 10 Jul 2026 22:46:44 -0700 (PDT)
-X-Received: by 2002:a05:622a:2616:b0:517:9095:c329 with SMTP id d75a77b69052e-51cbf1fef01mr18790251cf.45.1783748804101;
-        Fri, 10 Jul 2026 22:46:44 -0700 (PDT)
-Received: from [192.168.0.172] ([49.205.248.46])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-c15d81bbceesm457348966b.41.2026.07.10.22.46.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 10 Jul 2026 22:46:41 -0700 (PDT)
-Message-ID: <71733afc-732e-47f9-8497-b09600f93612@oss.qualcomm.com>
-Date: Sat, 11 Jul 2026 11:16:31 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3D1C31D362;
+	Sat, 11 Jul 2026 06:05:24 +0000 (UTC)
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1783749927; cv=pass; b=f6KjP/WY4uj6RbeuaCOfh4N7mWKkUxavUFwXozeJUNUvZwvF0Js3Yn1IS3wpYvi/6cmOFY0odK43m09jL4xu+tvnolfQc+SpBQm+zkbz4RFZM53cMoX3Ak1/6SLSLGGp0sIXKPGQ9Gt6Py/pF1yqInT3E9fNMwsg30pff3shsaI=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1783749927; c=relaxed/simple;
+	bh=P+CaOCyDEINLPIaTX0fosPO4YvbyfYcjNCNziZbOa1U=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=mReLmpVSoofg4TMtZP+UeTjPbkJ3ugasSVhn1c8aLgsT082To+hqFpSF8pmBfTzESCd1gewPpiNrYgxNEGrgHAUH6eUwTycO4BUSXnJpVxVcjCm0Xz/ddqFiwIfEWyzG9BZQE5VUirrni+ShIu8f8q/00zZP0Ms+mF3qt/8u4TY=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=goldelico.com; spf=pass smtp.mailfrom=goldelico.com; dkim=pass (2048-bit key) header.d=goldelico.com header.i=@goldelico.com header.b=Jv/FjH7Q; dkim=permerror (0-bit key) header.d=goldelico.com header.i=@goldelico.com header.b=VQOxmGic; arc=pass smtp.client-ip=85.215.255.84
+ARC-Seal: i=1; a=rsa-sha256; t=1783749726; cv=none;
+    d=strato.com; s=strato-dkim-0002;
+    b=R1xy+vjV5qGJrZp3bx10t+TOSl93Iw/vG76b8g20LekJuqGlCtnQVAs6vaKz1vBe9G
+    vs7zukbaccMv3BIwll4TDG6SEbJBmv1Shaz/Q1Y9jEgXbLMGeVCHhdPXRrHtlk3At0xR
+    D6hvmhEjziT3ND82R4Fr8Fyhrw66VHWAUXb+jiDdFVjcq0Mfcu/OL/O1jVW2uR8q8F29
+    cOEMBGHY4f0WQkTjfjlqsr5iNfuNJfK7gfCBJFcC2Wb4WgeLDZ9Wf1c39bT0XxtChp8u
+    hCM2brIcZyCdO2iyfc5kAr63e2/fhYHy4qKFbg2LDOq/LFh0L0xy8VWCnD2hCkf1pOt/
+    Bgtw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1783749726;
+    s=strato-dkim-0002; d=strato.com;
+    h=Message-ID:Date:Subject:Cc:To:From:Cc:Date:From:Subject:Sender;
+    bh=55SlABL8sC4/v91Mc2l87z9dg40TyXcYAN1WaabwtgA=;
+    b=QoYeJb9+wBLMRfWj+jYkjq7jsoxyOht91kWkbtZKkPLRwYozYvc8mrS19LOxdMAGW6
+    6du5JmRGvMyrN6cPg+MvWC9o+c12+ie5ZyxfmUOdPosQimyGVV3+8AiI/+zI/l5pZ0JB
+    swZnhbntxVIqpF7wgKvIceCcuZzObRlPI8sNzb35mG7OhALO1bQAaqUK7hbrxohWeAZM
+    syWX/ry7fLJnE2tOoPPYHlHe58NwP0QkIrCmfhjiBtUqYuirx5kQJ9kn05mByJyA2/iE
+    42s8GFhSCGCg/dANzUnhz4kmVnDpfZ96aCTvrEqkbgFxndovBSXirQ3L63urQ9u0JBhi
+    +/FA==
+ARC-Authentication-Results: i=1; strato.com;
+    arc=none;
+    dkim=none
+X-RZG-CLASS-ID: mo02
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1783749726;
+    s=strato-dkim-0002; d=goldelico.com;
+    h=Message-ID:Date:Subject:Cc:To:From:Cc:Date:From:Subject:Sender;
+    bh=55SlABL8sC4/v91Mc2l87z9dg40TyXcYAN1WaabwtgA=;
+    b=Jv/FjH7QzkuyigtT8XXK2dwQ2vGQcHzBu9aWuIeAgyAcdv6gxMxDSqiY6pwaSNJSzw
+    wD2mal/H8htwmWvXrBI45troLrwAstuv3kZz1eJxIVeItPL+Vvm97abhVZm5INH+QShk
+    S0fUmJbprZy/3RkBB3MkiZRQ34wLkfGTrf8xfj7rXfWb43fT4pOIHl52srVxlFM8t34Q
+    VV/NNaa61kBSf932uC+GrazstytyFbgtDINJPqWbK34DWd6P48uJ545YS5eMNhFk/pfP
+    bTcZ7nqqj5AfKnM421S/6MOaLGGPxfuOEtxHmEG65+SquAM8oT8yTEJk1VmDvnKKmCwY
+    qBFg==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1783749726;
+    s=strato-dkim-0003; d=goldelico.com;
+    h=Message-ID:Date:Subject:Cc:To:From:Cc:Date:From:Subject:Sender;
+    bh=55SlABL8sC4/v91Mc2l87z9dg40TyXcYAN1WaabwtgA=;
+    b=VQOxmGicLvbfDiAUwz97zqTfaoLdmVuKV/V2cinZ5idzgW5WRVnp5mS1n7P6/55AvT
+    Yge9NQzSyXvQXRFfSHDA==
+X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMhflhwDubTJ9qVpwcQVkPW4I1HrT35oLmciNszeF4HOToVDOd6S1gdjuILE2MKVd"
+Received: from iMac.fritz.box
+    by smtp.strato.de (RZmta 55.5.6 AUTH)
+    with ESMTPSA id Q4b76426B624Ghk
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+	(Client did not present a certificate);
+    Sat, 11 Jul 2026 08:02:04 +0200 (CEST)
+From: "H. Nikolaus Schaller" <hns@goldelico.com>
+To: Grond <grond66@riseup.net>,
+	Stefan Leichter <sle85276@gmx.de>,
+	"H . Nikolaus Schaller" <hns@goldelico.com>,
+	Grazvydas Ignotas <notasas@gmail.com>,
+	Tony Lindgren <tony@atomide.com>,
+	Ethan Nelson-Moore <enelsonmoore@gmail.com>,
+	Jarkko Nikula <jarkko.nikula@bitmer.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Andreas Kemnade <andreas@kemnade.info>,
+	Lee Jones <lee@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Aaro Koskinen <aaro.koskinen@iki.fi>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Roger Quadros <rogerq@kernel.org>,
+	Russell King <linux@armlinux.org.uk>,
+	Daniel Thompson <danielt@kernel.org>,
+	Jingoo Han <jingoohan1@gmail.com>,
+	Helge Deller <deller@gmx.de>,
+	Jaroslav Kysela <perex@perex.cz>,
+	Takashi Iwai <tiwai@suse.com>,
+	Sen Wang <sen@ti.com>,
+	Richard Fitzgerald <rf@opensource.cirrus.com>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>,
+	Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+	Charles Keepax <ckeepax@opensource.cirrus.com>,
+	Niranjan H Y <niranjan.hy@ti.com>
+Cc: letux-kernel@openphoenux.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-sound@vger.kernel.org,
+	linux-omap@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	dri-devel@lists.freedesktop.org,
+	linux-fbdev@vger.kernel.org,
+	kernel@pyra-handheld.com,
+	mfd@lists.linux.dev
+Subject: [PATCH 00/16] ARM: omap3: pandora: Modernize audio and backlight to Device Tree to finally remove pdata-quirks
+Date: Sat, 11 Jul 2026 08:01:47 +0200
+Message-ID: <cover.1783749722.git.hns@goldelico.com>
+X-Mailer: git-send-email 2.50.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH 01/11] dt-bindings: media: qcom,sm8550-iris: Add vpu
- sub nodes
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Dikshita Agarwal <dikshita.agarwal@oss.qualcomm.com>,
-        Abhinav Kumar <abhinav.kumar@linux.dev>,
-        Bryan O'Donoghue <bod@kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, linux-media@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Vishnu Reddy <busanna.reddy@oss.qualcomm.com>
-References: <20260709-vpu_iommu_iova_handling-v1-0-72bb62cb2dfd@oss.qualcomm.com>
- <20260709-vpu_iommu_iova_handling-v1-1-72bb62cb2dfd@oss.qualcomm.com>
- <h3kbrpbz7naivqv2urba6ai4sd7kpaqz7s7vxuxuktoc5q2ojx@u6zngnmrbenb>
- <201e8354-fc34-4d2a-89d5-8661a3a66133@oss.qualcomm.com>
- <b6rhqjdjzmwme4obo6qdffg6pf6zgcjf7a25kneie44bucge3y@kr3v4ylsspfv>
-Content-Language: en-US
-From: Vikash Garodia <vikash.garodia@oss.qualcomm.com>
-In-Reply-To: <b6rhqjdjzmwme4obo6qdffg6pf6zgcjf7a25kneie44bucge3y@kr3v4ylsspfv>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Info: AW1haW4tMjYwNzExMDA1MSBTYWx0ZWRfX9Ey08H2q6Ohv
- FmPYyd34OGiMTEMqY0TagXWJduIari1PngTT/Ag62v3l+gmWTlSoSBIPfXThUuc0OSepatIg0zz
- Z1pZLOen/b1rUPrFDP/d2Z+4URzzz58=
-X-Authority-Analysis: v=2.4 cv=OsJ/DS/t c=1 sm=1 tr=0 ts=6a51d8c5 cx=c_pps
- a=WeENfcodrlLV9YRTxbY/uA==:117 a=wRxn6a4LM5KCmfMgYXCo/g==:17
- a=IkcTkHD0fZMA:10 a=RAioF0-LDSMA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=YMgV9FUhrdKAYTUUvYB2:22
- a=e5mUnYsNAAAA:8 a=EUspDBNiAAAA:8 a=2_L87j3xYGeytyR3NxoA:9 a=QEXdDO2ut3YA:10
- a=kacYvNCVWA4VmyqE58fU:22 a=Vxmtnl_E_bksehYqCbjh:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNzExMDA1MSBTYWx0ZWRfX73UAY/f54fvP
- Okw3wy68u0JZlAdnrvFA2uQ52kXnt815tIK95bAAdLGCzuJ+W0sQoP3K2t72EnvgykFXvL04UfD
- yuFyXr1Kbtu7EcXn/C9oXwcwP5i2MVE/awOGRzvoi8FqreYes83LJw3Hkb7cl05LYmwItCtfxjy
- H10B9RXMfC24Q8egrCtuFA8zRrQUgmhYMyo5xTm8/wdwLhj2YP93unKJlbMePAu2VJ0X6FnvFkR
- zexfkTQIaSHXz1xAX7bgZ8lQL2DPjxXbU53h/JIIj7yvCw0GpKTumk0JAi0qbYcoXqFxOSLS5EV
- YAUxgwb2uBzB8byNWw8gDSmjZtCVYH9ZIymXUmji0IaqpJoIRkbsVmqiaeBWmD3t7kW7BDR6ZHV
- AKMElqX2FSCnEiE9JxVTTdZTHwUM8JCeNAzI/k8UEh2Sow1jvG063X7lm6xcTOpv0yyxxZcquaj
- OH3z8bJ8zskDVi+D4ig==
-X-Proofpoint-GUID: RnEBL8iJMI_5nxbHwmwKzrmm5AOyvvo1
-X-Proofpoint-ORIG-GUID: RnEBL8iJMI_5nxbHwmwKzrmm5AOyvvo1
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.134,FMLib:17.12.100.49
- definitions=2026-07-11_01,2026-07-10_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 spamscore=0 clxscore=1015 impostorscore=0 phishscore=0
- adultscore=0 lowpriorityscore=0 bulkscore=0 suspectscore=0 malwarescore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2606150000 definitions=main-2607110051
+Content-Type: text/plain; charset=UTF8
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.16 / 15.00];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+X-Spamd-Result: default: False [0.34 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[goldelico.com,quarantine];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_DKIM_ALLOW(-0.20)[goldelico.com:s=strato-dkim-0002,goldelico.com:s=strato-dkim-0003];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-324723-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS(0.00)[m:grond66@riseup.net,m:sle85276@gmx.de,m:hns@goldelico.com,m:notasas@gmail.com,m:tony@atomide.com,m:enelsonmoore@gmail.com,m:jarkko.nikula@bitmer.com,m:s.hauer@pengutronix.de,m:andreas@kemnade.info,m:lee@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:lgirdwood@gmail.com,m:broonie@kernel.org,m:aaro.koskinen@iki.fi,m:khilman@baylibre.com,m:rogerq@kernel.org,m:linux@armlinux.org.uk,m:danielt@kernel.org,m:jingoohan1@gmail.com,m:deller@gmx.de,m:perex@perex.cz,m:tiwai@suse.com,m:sen@ti.com,m:rf@opensource.cirrus.com,m:arnd@arndb.de,m:srinivas.kandagatla@oss.qualcomm.com,m:kuninori.morimoto.gx@renesas.com,m:ckeepax@opensource.cirrus.com,m:niranjan.hy@ti.com,m:letux-kernel@openphoenux.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-sound@vger.kernel.org,m:linux-omap@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:dri-devel@lists.freedesktop.org,m:linux-fbdev@vger.kernel.org,m:kernel@pyra-handheld.com,m:mfd@l
+ ists.linux.dev,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:dmitry.baryshkov@oss.qualcomm.com,m:dikshita.agarwal@oss.qualcomm.com,m:abhinav.kumar@linux.dev,m:bod@kernel.org,m:mchehab@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:andersson@kernel.org,m:konradybcio@kernel.org,m:linux-media@vger.kernel.org,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:busanna.reddy@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[vikash.garodia@oss.qualcomm.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[vikash.garodia@oss.qualcomm.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FREEMAIL_TO(0.00)[riseup.net,gmx.de,goldelico.com,gmail.com,atomide.com,bitmer.com,pengutronix.de,kemnade.info,kernel.org,iki.fi,baylibre.com,armlinux.org.uk,perex.cz,suse.com,ti.com,opensource.cirrus.com,arndb.de,oss.qualcomm.com,renesas.com];
+	FORGED_SENDER(0.00)[hns@goldelico.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[41];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-324739-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[goldelico.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[hns@goldelico.com,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gmx.de:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,riseup.net:email,vger.kernel.org:from_smtp,goldelico.com:from_mime,goldelico.com:email,goldelico.com:mid,goldelico.com:dkim,marc.info:url]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 081F07406B8
+X-Rspamd-Queue-Id: 590AF74088F
+
+PATCH V1 2026-07-11 08:02:02:
+This series modernizes the OpenPandora handheld support by converting the 
+sound subsystem and backlight control to proper platform drivers and Device 
+Tree definitions.
+
+The primary goal is the complete removal of omap3_pandora_legacy_init() 
+and the elimination of the last remaining user of machine_is_omap3_pandora().
+
+History and Context
+===================
+The necessity of this cleanup was highlighted in several recent discussions:
+
+1. Tony Lindgren noted that machine_is_omap3_pandora() checks never succeed 
+   on Device Tree-booted machines, leaving the audio subsystem functionally 
+   broken since the DT conversion years ago:
+   https://marc.info/?l=alsa-devel&m=165632351319716&w=2
+
+2. Ethan Nelson-Moore submitted a patch to replace the macro with DT 
+   compatibility checks (accepted as commit 45efb8fbdae3 in v7.2-rc1):
+   https://marc.info/?l=linux-omap&m=177841578110704&w=2
+
+3. Sascha Hauer pointed out that the entire omap3pandora driver fundamentally 
+   depended on this broken machine ID check:
+   https://marc.info/?l=linux-omap&m=178048982272252&w=2
+
+Design Choices and Implementation
+=================================
+Based on these discussions and a long-standing and working out-of-tree solution,
+we initially attempted a migration to generic frameworks like simple-audio-card 
+or audio-graph-card. However, the hardware routing peculiarities of the 
+OpenPandora introduced too many functional gaps. Replacing omap3pandora.c 
+entirely with pure DT definitions proved unfeasible. 
+
+Therefore, we opted to base a new proposal on the out-of-tree rewrite of
+the old-style sound board file kernel driver (sound/soc/ti/omap3pandora.c)
+into a proper platform driver that cleanly fetches its resources from the
+Device Tree, while adding specific handling for the twl4030-regen output
+and adapting the pandora device tree files.
+
+Series Structure
+================
+* Patches 01–06 (Preparation): Move highly specific legacy code to its proper 
+  infrastructure (TWL4030 regulator regeneration and codec handling).
+* Patch 07-08 (New Driver): Introduce a dedicated platform driver for the 
+  PCM1773 audio DAC.
+* Patches 09-14 (Audio Core): Rewrite the omap3pandora ASoC fabric driver 
+  and update the respective Device Tree nodes.
+* Patches 14–15 (Backlight): Remove the custom, legacy Pandora backlight driver,
+  convert it to generic Device Tree nodes
+* Patch 16: (Cleanup) safely delete the obsolete omap3_pandora_legacy_init().
+
+Notes & Testing
+===============
+* Testing: This series has been tested on real OpenPandora hardware.
+
+Credits
+=======
+This work is a collaborative effort by multiple authors over several years:
+* Grond <grond66@riseup.net>
+* Stefan Leichter <sle85276@gmx.de>
+* H. Nikolaus Schaller <hns@goldelico.com>
 
 
-On 7/10/2026 9:23 PM, Dmitry Baryshkov wrote:
-> On Fri, Jul 10, 2026 at 11:32:20AM +0530, Vikash Garodia wrote:
->>
->> On 7/9/2026 6:20 PM, Dmitry Baryshkov wrote:
->>> On Thu, Jul 09, 2026 at 06:05:47PM +0530, Vikash Garodia wrote:
->>>> VPU hardwares have a limitation where VPU streams are associated with
->>>> dedicated addressable address range, as illustrated below
->>>>
->>>>       +-----------------------------------------------------------+
->>>>       | Stream A reserved region (600 MB)                         |
->>>>       | 0x00000000 - 0x25800000                                   |
->>>>       +-----------------------------------------------------------+
->>>>       | Stream B reserved region (3.5 GB)                         |
->>>>       | 0x00000000 - 0xe0000000                                   |
->>>>       +-----------------------------------------------------------+
->>>>       | Other reserved regions                                    |
->>>>       +-----------------------------------------------------------+
->>>>
->>>> Mapping a stream outside its expected range can cause unintended
->>>> behavior, including device crashes, as reported at:
->>>> https://gitlab.freedesktop.org/drm/msm/-/work_items/100
->>>>
->>>> To address this limitation, the subset of stream/s are now represented as
->>>> sub nodes, so that they can be associated to the respective addressable
->>>> range.
->>>> The limitation could be exposed when running usecase like concurrent
->>>> video sessions. The binding have been validated with higher concurrent
->>>> sessions across the SOCs supported under this schema.
->>>>
->>>> Co-developed-by: Vishnu Reddy <busanna.reddy@oss.qualcomm.com>
->>>> Signed-off-by: Vishnu Reddy <busanna.reddy@oss.qualcomm.com>
->>>> Signed-off-by: Vikash Garodia <vikash.garodia@oss.qualcomm.com>
->>>> ---
->>>>    .../bindings/media/qcom,sm8550-iris.yaml           | 66 +++++++++++++++++++++-
->>>>    1 file changed, 63 insertions(+), 3 deletions(-)
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/media/qcom,sm8550-iris.yaml b/Documentation/devicetree/bindings/media/qcom,sm8550-iris.yaml
->>>> index 0400ca1bff05dcef6b742c3fbf77e38adca9f280..bf4d24ce90bd38666704274390b98be450f708c0 100644
->>>> --- a/Documentation/devicetree/bindings/media/qcom,sm8550-iris.yaml
->>>> +++ b/Documentation/devicetree/bindings/media/qcom,sm8550-iris.yaml
->>>> @@ -91,6 +91,51 @@ properties:
->>>>      opp-table:
->>>>        type: object
->>>> +  '#address-cells':
->>>> +    const: 2
->>>> +
->>>> +  '#size-cells':
->>>> +    const: 2
->>>> +
->>>> +  non-pixel:
->>>> +    type: object
->>>> +    description:
->>>> +      Non pixel context bank is needed when video hardware have distinct iommus for non pixel
->>>> +      buffers. Non pixel buffers are compressed and internal buffers.
->>>> +    properties:
->>>> +      iommus:
->>>> +        maxItems: 1
->>>> +      memory-region:
->>>> +        maxItems: 1
->>>> +    required:
->>>> +      - iommus
->>>> +      - memory-region
->>>> +    additionalProperties: false
->>>> +
->>>> +  pixel:
->>>> +    type: object
->>>> +    description:
->>>> +      Pixel context bank is needed when video hardware have distinct iommus for pixel buffers.
->>>> +      Pixel buffers are uncompressed buffers.
->>>> +    properties:
->>>> +      iommus:
->>>> +        maxItems: 1
->>>> +    required:
->>>> +      - iommus
->>>> +    additionalProperties: false
->>>> +
->>>> +  firmware:
->>>> +    type: object
->>>> +    description:
->>>> +      Firmware context bank represents the firmware processing domain of the VPU. Required to boot
->>>> +      VPU when no hypervisor is present.
->>>> +    properties:
->>>> +      iommus:
->>>> +        maxItems: 1
->>>> +    required:
->>>> +      - iommus
->>>> +    additionalProperties: false
->>>> +
->>>>    required:
->>>>      - compatible
->>>>      - power-domain-names
->>>> @@ -98,9 +143,15 @@ required:
->>>>      - interconnect-names
->>>>      - resets
->>>>      - reset-names
->>>> -  - iommus
->>>>      - dma-coherent
->>>> +oneOf:
->>>> +  - required:
->>>> +      - iommus
->>>> +  - required:
->>>> +      - non-pixel
->>>> +      - pixel
->>>> +
->>>>    allOf:
->>>>      - if:
->>>>          properties:
->>>> @@ -177,12 +228,21 @@ examples:
->>>>            resets = <&gcc GCC_VIDEO_AXI0_CLK_ARES>;
->>>>            reset-names = "bus";
->>>> -        iommus = <&apps_smmu 0x1940 0x0000>,
->>>> -                 <&apps_smmu 0x1947 0x0000>;
->>>>            dma-coherent;
->>>>            operating-points-v2 = <&iris_opp_table>;
->>>> +        #address-cells = <2>;
->>>> +        #size-cells = <2>;
->>>
->>> I think you need "ranges;" here. Also an empty line before the subnodes.
->>
->> Could you please elaborate on what would be the use of "ranges;" in this
->> case ?
-> 
-> That the subblock has the same address space as the parent. I might be
-> completely wrong here.
+Grond (8):
+  dt-bindings: twl-regulator: Add bindings for exposing ti,twl4030-regen
+  regulator: twl: Expose the TWL4030's REGEN signal as a regulator
+  arm: dts: twl4030: add twl4030-regen child
+  arm: dts: omap3pandora: Populate DT data for the TWL4030's REGEN
+    regulator
+  arm: dts: omap3pandora: Don't use DMA channels for unused SPI masters
+  ASoC: twl4030-codec: Allow setting APLL rate through the .set_sysclk()
+    interface
+  ASoC: pcm1773-codec: write a driver for the PCM1773 chip from TI
+  arm: dts: omap3pandora: Add device node for PCM1773 codec
 
-Yes, i explored with the same definition of "ranges", but could not see 
-a use of it in our case. I am dropping this for now, unless there are 
-suggestion on this on applicability of it in this case.
+H. Nikolaus Schaller (5):
+  ASoC: dt-bindings: add TI PCM1773
+  ASoC: dt-bindings: add OpenPandora Sound Card
+  arm: dts: omap3-pandora-common: backlight: switch to twl4030 pwm and
+    pwm_bl
+  backlight: remove pandora_bl
+  arm: omap2: remove remaining pdata-quirks for pandora legacy devices
 
-> 
->>
->>>
->>>> +        iris_non_pixel: non-pixel {
->>>
->>> Drop useless labels.
->>
->> Ack, labels can be dropped from schema.
->>
->>>
->>>> +            iommus = <&apps_smmu 0x1940 0x0000>;
->>>> +            memory-region = <&iris_resv>;
->>>> +        };
->>>> +
->>>> +        iris_pixel: pixel {
->>>> +            iommus = <&apps_smmu 0x1947 0x0000>;
->>>> +        };
->>>> +
->>>>            iris_opp_table: opp-table {
->>>>                compatible = "operating-points-v2";
->>>>
->>>> -- 
->>>> 2.34.1
->>>>
->>>
->>
->> Regards,
->> Vikash
->>
-> 
+Stefan Leichter (3):
+  ASoC: omap3pandora: Rewrite sound card driver as a platform driver
+    with DT
+  ARM: dts: omap3-pandora-common: Enable audio in/out (mcbsp4/2)
+  arm: dts: omap3pandora: create new DT node for the sound card
+
+ .../devicetree/bindings/mfd/ti,twl.yaml       |   1 +
+ .../sound/openpandora,omap3pandora-sound.yaml |  94 ++++
+ .../devicetree/bindings/sound/pcm1773.yaml    |  32 ++
+ .../dts/ti/omap/omap3-pandora-common.dtsi     |  84 ++++
+ arch/arm/boot/dts/ti/omap/twl4030.dtsi        |  14 +
+ arch/arm/mach-omap2/pdata-quirks.c            |  23 -
+ drivers/regulator/twl-regulator.c             |  52 ++
+ drivers/video/backlight/Kconfig               |   7 -
+ drivers/video/backlight/Makefile              |   1 -
+ drivers/video/backlight/pandora_bl.c          | 159 ------
+ include/linux/mfd/twl.h                       |   3 +
+ include/linux/mfd/twl4030-audio.h             |   3 +
+ sound/soc/codecs/Kconfig                      |   5 +
+ sound/soc/codecs/pcm1773.c                    | 149 ++++++
+ sound/soc/codecs/twl4030.c                    | 140 ++++--
+ sound/soc/ti/omap3pandora.c                   | 454 ++++++++++++------
+ 16 files changed, 855 insertions(+), 366 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/sound/openpandora,omap3pandora-sound.yaml
+ create mode 100644 Documentation/devicetree/bindings/sound/pcm1773.yaml
+ delete mode 100644 drivers/video/backlight/pandora_bl.c
+ create mode 100644 sound/soc/codecs/pcm1773.c
+
+-- 
+2.50.1 (Apple Git-155)
 
 
