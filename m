@@ -1,81 +1,81 @@
-Return-Path: <devicetree+bounces-324851-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-324853-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id KMgCMWN0UmobQAMAu9opvQ
-	(envelope-from <devicetree+bounces-324851-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 11 Jul 2026 18:50:43 +0200
+	id b6M3EH50UmokQAMAu9opvQ
+	(envelope-from <devicetree+bounces-324853-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 11 Jul 2026 18:51:10 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6ACE3742465
-	for <lists+devicetree@lfdr.de>; Sat, 11 Jul 2026 18:50:43 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id B7FA5742475
+	for <lists+devicetree@lfdr.de>; Sat, 11 Jul 2026 18:51:09 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=ZJZXCd52;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b="qnb2V/4B";
 	dmarc=pass (policy=none) header.from=gmail.com;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324851-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-324851-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324853-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-324853-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 60FD23048DDF
-	for <lists+devicetree@lfdr.de>; Sat, 11 Jul 2026 16:48:38 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id DA9B2304EA1D
+	for <lists+devicetree@lfdr.de>; Sat, 11 Jul 2026 16:48:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 225043CBE6D;
-	Sat, 11 Jul 2026 16:48:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55B233CC7CE;
+	Sat, 11 Jul 2026 16:48:39 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9F2B3CB2D0
-	for <devicetree@vger.kernel.org>; Sat, 11 Jul 2026 16:48:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C7B13CAE76
+	for <devicetree@vger.kernel.org>; Sat, 11 Jul 2026 16:48:37 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783788518; cv=none; b=U9tKEOoyi9DPe2FtvEqlPUuiSoa0tG+3/XY6CqsDDOI+aTe1zx/E19qidg8kyNhHe2/hjVhkeTDzsIhImL1nUUiRD3DggIqQCUPRzz1PB/YZrSE3zhqnRnsNGd22z/wjiXjckLdf/ROYbB6C3WxGiPIZ3az+8kiCZl72n0LIcZ0=
+	t=1783788519; cv=none; b=a3kiitzCHX2sqS4ivS2Hg47qIRQoKPusmRnbGwu70wVl/F2E1x3aLSDa7fqcNXzia2oVKL0LjeQzvkVHffL81HsB1Aa657LTXXORalLkPH/CRJuE4+KJ4zRu6JnXdiW07g/8gZH+IYzukUGOORxso48CUrWBDbtedEGS6cgWO6E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783788518; c=relaxed/simple;
-	bh=8gu660Q0u7C0W8t7xo2+vLeynZsPh27OtCchUb5pAFU=;
+	s=arc-20240116; t=1783788519; c=relaxed/simple;
+	bh=yVMP8UAtXlu981/AZfXfuu6ntdCZq3l09RETxP3vnIQ=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=G2ONHMTDljJiigQ2IK6ROaSVUN60SdPPPYp+EZ9cDVmCipDaHypugL2kHzs+ggjPn0PHcZ/HM3N7apj27TTGCBeNFyFtl6GHhMB7vRqUqe/vP5eYQQrslq7J7ShYvza6Z//CYu53Zb1DbSorHmsVqUqrEq+f3E+ILgZcBD7h78g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZJZXCd52; arc=none smtp.client-ip=209.85.128.49
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-493f75f7172so9078965e9.1
-        for <devicetree@vger.kernel.org>; Sat, 11 Jul 2026 09:48:35 -0700 (PDT)
+	 MIME-Version; b=WS1VeGpp9incUuYPxd/IxOzGZr0lbHMWDrEoTl7GxHiH/3+BUoFZzoZGnJTRuG4IWrMYvZehKsOl/31ru8L35IkpiKraN/k0UP14Sh12wsb23c8ajxyyXz8dcnoiCm6yffN4wcHrw+Fm+WYbm5dxaqAEUiQS0lP/5LNYYMcxem0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=qnb2V/4B; arc=none smtp.client-ip=209.85.128.54
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-493f4638f4aso18370555e9.3
+        for <devicetree@vger.kernel.org>; Sat, 11 Jul 2026 09:48:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1783788514; x=1784393314; darn=vger.kernel.org;
+        d=gmail.com; s=20251104; t=1783788516; x=1784393316; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=PhreuQjpg77ctdkAec2a78pglE74GvXVMC9BSorqz4I=;
-        b=ZJZXCd526PBGcsE275x8ElVB5+6uBnUiTv3kfpyHPiijdrzPAx48m6xnrLoysjOu8B
-         CP35OhHD4nHawYQ2f1pBtMWeO99FknQCV8GUERmnQQZ1xqPSp7A8ijJ6MZXIK4KdeS2d
-         kWwSEc4kOwG2x9cS4SO20/YWls86G2DOY5BqRgB3ERlDCcSd0St2dA4JnpZA0eaucKor
-         NzSL1othtzt2aPKwKhVChHHy/4josABg1EAfSmVTKxDoDx/QvF5GZLqTpIkmon6Hsp8L
-         Td9BhysOGZ3PL2Ikr2Rb3YGoozgbokUWpY83R1PvvYCHl8f9GjzmJYkUlTPzRYq8HpcQ
-         L5Vg==
+        bh=VDpn6H9slILEKuaZA30ay5+GU6mS2ER9t41k8f7Sm/c=;
+        b=qnb2V/4BHecTg/Bstd2nMyetg96JxjdqwwEPGpBQV5kC4m6oim5hvw2ownjnEQoxYH
+         EM13pqUiExGCOUWveiovV5Pg48IAbgut8sqqnJT1ALmvnN2KD87IcZCFd9ImEvkfXxmn
+         Doi5wQsapjWOtcNS9F8g1TKg8Pyi1wllbLirUo2oHlNM/nli0n97PJydxOhtrLmE8wed
+         hdCSoFHJBZWA2Zo0IDzpfwIi9CgJStbrG4wfrHeYTtW3TPyYJbZhXEhJ5SJgWmChmn03
+         II5dudICvCtO3WqRhour/Sp9RQ/Apou673hl1XN0cR7SJPXMEnuGTo9+3d/XHS4k/ZAi
+         +G8A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783788514; x=1784393314;
+        d=1e100.net; s=20251104; t=1783788516; x=1784393316;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=PhreuQjpg77ctdkAec2a78pglE74GvXVMC9BSorqz4I=;
-        b=PlOR6lGueoIKZaC91O5aSAp/UywJMsTVOGrjASDengf49ZNIuOpDY/orDzVEN7YyGJ
-         sA9WhFe9mHOeZr0RBnWzB4Q48WcHlziUW6cd+PtM4zoy7Wgdj5XuLgh1tiJwbwCPJbZd
-         dFeAw+S+9EGCT0YAJxBHmmts4VB59FYdlvogm/mIhuNEhJrYdXIW2zyoSr7hk04VFjCo
-         MP3dPOObJGUfs9w4oPK97gs+UqBfLE7LplktHp0KZA5yy3RKufJYssELTVfjW0dtEdbp
-         x/kZ1d1MKuHvIsgkr/TZPc0UUI1eaP/xPW+dJbRlBIbDJuTT2WugYcLfn80ueaOLgm6y
-         dJXQ==
-X-Forwarded-Encrypted: i=1; AHgh+RqEl9679FiELlxhQFb9WOUHZKPWapOvVWlldy99tpvPcpy37057gEMsaFO02ibJrmNygeigprBlDdPP@vger.kernel.org
-X-Gm-Message-State: AOJu0YyMXqF5rLa8m7pLzwvka8xStDYdRc62tFHHipF3vW3ki14nEp9N
-	P72uqE9VAC9Fb2a3sY9WTv39i55UfNs3/YDiBf1E8pUSkEhOfJ1mSWQJ
-X-Gm-Gg: AfdE7cnl8bIK00Z1h4ykuBbVYwSv8/2WkfoLBtVcGbzAIOdNl3plcjok4XJBb3K3P16
-	1YtuEHUr0Q4vegti6Cg/hYkVt3mSEwSG9ME+rpLBtqHdETcHDqIzSOs5PdZtoEycCbTTwg5+zrZ
-	Twh4cgLKKScnGzyyjkA9ZU3v36XIzQ2uKl35MRyIcpyfh8mOhwfzjQtnQ27habNCeel4u3E5SqX
-	WknbvtI7Mtx21atNKdeY7zNBCV7mUR0Aorr2GqBzktlrAj8+/pfCIz9lau3s6lbDBcwSJhe54Dc
-	TC8u/m59R5YJvM1Hfr0GDRRm870JZtorKzQPHCBelXSGeOnL0RYa2y0J+YUmHrEhIRB0PANCTAZ
-	oaAb5IwcHngTlHpnwjpG9I8RiPkqPJLL2GvZCpMZ4isd4g3T2oEVObOssioVv/8f+Wtj9Edcmne
-	B3Jfygtd7P3uangqpmWxxavWwmurFhlutsocp1HhaX4qEF
-X-Received: by 2002:a05:600c:19c7:b0:493:fa7d:56a0 with SMTP id 5b1f17b1804b1-493fa7d589cmr22554885e9.13.1783788514279;
-        Sat, 11 Jul 2026 09:48:34 -0700 (PDT)
+        bh=VDpn6H9slILEKuaZA30ay5+GU6mS2ER9t41k8f7Sm/c=;
+        b=WcHDWV01bxxp3MX0U41BlcO6J08zfHlMItLl/oZoI3W1Htxljkl4nSnE/WrI7f9Ra0
+         /4Pduyiw+/uf7AMnTWkxjzKOr1gfs/3z9Pea3R2PeRCvBj2X2HnEBmRe83xK6vsKCMOO
+         N4FwRlGiyunQgpTXaGkq1B+IhNHL1Qefx1XprGJXRO5v0bLWsfgFF3LUSVk2epQKdnQV
+         ++yuEPje6hF1oDj3uRMPuJZZKk3zzXYk1WkYf9iGe3BP2RKskj+ObDLXOdfJ8toWPeTg
+         x/gucoDwgq5vbu0OE7NcjISpTTbFDHG/2xADmDtvUX07NotW6kIfwiGGBaDIeh9xb0xL
+         8Q6Q==
+X-Forwarded-Encrypted: i=1; AHgh+RoCdfkkc/Utoz3nLGhHJC9R+xahvv7rs0CowvX8zdT7J8x1iS9b8LqX2FQmhg9E0nW+82oCVQAiMSWg@vger.kernel.org
+X-Gm-Message-State: AOJu0YwA/mVVHMZgjg9VN1aNLUKXo/j7AWrAEnhKh3KcHb7X+tmXFgj1
+	MRjFreGQhpm07gqbazgOLyx/gQUmRqDIEjzJJm2F+5biqIETuUihJahE
+X-Gm-Gg: AfdE7cl4Iv/SmprFWMhKIiGRIinrpTTK+HDwQ4tngzx8gDj1oPcOBWFKvMEGZk3HYvg
+	2sRRRMdGTGsubi65VOrZlatKAG9H5VxqmufaHSEwFiqc4yTEk8sKb9yFH59/aY0NZROJzKFyoVt
+	Wa4hNv+KeNWz0Xk4OLHWG2c0pKEq4hkrbEnh9/Muw6NsnQgRrU4cwVkjslZJNK7yllOR0QJHBgA
+	7iopkUm2iEBoozs5vfIsskV+H8m3VuUWWYwSzyYxqW8DnDyvwmPY50jz4TW3NoWTFxo1UytUGAa
+	EYNlOsT1nGIK5KWi7XUHGv6ofZyWQikxdVvVWbru0NYF09dUP25jRlXCTDA1g7zrqabowxm7dGd
+	dP+uWO2ntP3gDCVK98BIHvuaD0ZSJZeK7PPrGo3NFxIc4g4liCLcjJewcGQl/lDU+boqI6r6qNz
+	WGcI2+h+RDfvUzDptXaprYC5XxSSpemNsOmQ==
+X-Received: by 2002:a5d:5c89:0:b0:476:cfa0:a976 with SMTP id ffacd0b85a97d-47f2dcb60fcmr3613474f8f.5.1783788515836;
+        Sat, 11 Jul 2026 09:48:35 -0700 (PDT)
 Received: from localhost.localdomain ([95.43.220.235])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-47a9e4d83bdsm69152875f8f.13.2026.07.11.09.48.32
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-47a9e4d83bdsm69152875f8f.13.2026.07.11.09.48.34
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 11 Jul 2026 09:48:33 -0700 (PDT)
+        Sat, 11 Jul 2026 09:48:35 -0700 (PDT)
 From: Ivaylo Dimitrov <ivo.g.dimitrov.75@gmail.com>
 To: Vinod Koul <vkoul@kernel.org>,
 	Neil Armstrong <neil.armstrong@linaro.org>,
@@ -95,9 +95,9 @@ To: Vinod Koul <vkoul@kernel.org>,
 	linux-omap@vger.kernel.org,
 	linux-gpio@vger.kernel.org
 Cc: Ivaylo Dimitrov <ivo.g.dimitrov.75@gmail.com>
-Subject: [PATCH v4 5/6] ARM: dts: ti: cpcap-mapphone: add charger detection interrupt for CPCAP USB PHY
-Date: Sat, 11 Jul 2026 19:47:53 +0300
-Message-Id: <20260711164754.185565-6-ivo.g.dimitrov.75@gmail.com>
+Subject: [PATCH v4 6/6] ARM: dts: ti: cpcap-mapphone: add USB safe pinctrl state
+Date: Sat, 11 Jul 2026 19:47:54 +0300
+Message-Id: <20260711164754.185565-7-ivo.g.dimitrov.75@gmail.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20260711164754.185565-1-ivo.g.dimitrov.75@gmail.com>
 References: <20260711164754.185565-1-ivo.g.dimitrov.75@gmail.com>
@@ -115,13 +115,13 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FREEMAIL_FROM(0.00)[gmail.com];
-	TAGGED_FROM(0.00)[bounces-324851-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-324853-lists,devicetree=lfdr.de];
 	RCPT_COUNT_TWELVE(0.00)[18];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS(0.00)[m:vkoul@kernel.org,m:neil.armstrong@linaro.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:aaro.koskinen@iki.fi,m:andreas@kemnade.info,m:khilman@baylibre.com,m:rogerq@kernel.org,m:tony@atomide.com,m:linusw@kernel.org,m:brgl@kernel.org,m:--cc=linux-phy@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-omap@vger.kernel.org,m:linux-gpio@vger.kernel.org,m:ivo.g.dimitrov.75@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:ivogdimitrov75@gmail.com,s:lists@lfdr.de];
@@ -129,7 +129,7 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	FORGED_SENDER(0.00)[ivogdimitrov75@gmail.com,devicetree@vger.kernel.org];
 	FREEMAIL_CC(0.00)[gmail.com];
 	FORWARDED(0.00)[lists@lfdr.de];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
@@ -145,36 +145,62 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 6ACE3742465
+X-Rspamd-Queue-Id: B7FA5742475
 
-Update the CPCAP USB PHY interrupt mapping to use the charger
-detection interrupt and corresponding "chrg_det" interrupt name.
+Add a pinctrl state that configures the USB interface pins into a safe
+GPIO configuration. This allows the CPCAP USB PHY driver to place the
+pins into a defined state whenever the USB interface is not active.
 
 Signed-off-by: Ivaylo Dimitrov <ivo.g.dimitrov.75@gmail.com>
 ---
- arch/arm/boot/dts/ti/omap/motorola-cpcap-mapphone.dtsi | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+ .../dts/ti/omap/motorola-cpcap-mapphone.dtsi  |  3 ++-
+ .../dts/ti/omap/motorola-mapphone-common.dtsi | 19 +++++++++++++++++++
+ 2 files changed, 21 insertions(+), 1 deletion(-)
 
 diff --git a/arch/arm/boot/dts/ti/omap/motorola-cpcap-mapphone.dtsi b/arch/arm/boot/dts/ti/omap/motorola-cpcap-mapphone.dtsi
-index 6b1195c2a768..51a858021541 100644
+index 51a858021541..368cb539997f 100644
 --- a/arch/arm/boot/dts/ti/omap/motorola-cpcap-mapphone.dtsi
 +++ b/arch/arm/boot/dts/ti/omap/motorola-cpcap-mapphone.dtsi
-@@ -125,11 +125,13 @@ cpcap_usb2_phy: phy {
+@@ -120,7 +120,8 @@ cpcap_usb2_phy: phy {
+ 			pinctrl-1 = <&usb_ulpi_pins>;
+ 			pinctrl-2 = <&usb_utmi_pins>;
+ 			pinctrl-3 = <&uart3_pins>;
+-			pinctrl-names = "default", "ulpi", "utmi", "uart";
++			pinctrl-4 = <&usb_safe_pins>;
++			pinctrl-names = "default", "ulpi", "utmi", "uart", "safe";
+ 			#phy-cells = <0>;
  			interrupts-extended =
  				<&cpcap 15 0>, <&cpcap 14 0>, <&cpcap 28 0>,
- 				<&cpcap 19 0>, <&cpcap 18 0>, <&cpcap 17 0>,
--				<&cpcap 16 0>, <&cpcap 49 0>, <&cpcap 48 0>;
-+				<&cpcap 16 0>, <&cpcap 49 0>, <&cpcap 48 0>,
-+				<&cpcap 13 0>;
- 			interrupt-names =
- 				"id_ground", "id_float", "se0conn",
- 				"vbusvld", "sessvld", "sessend",
--				"se1", "dm", "dp";
-+				"se1", "dm", "dp",
-+				"chrg_det";
- 			mode-gpios = <&gpio2 28 GPIO_ACTIVE_HIGH>,
- 				     <&gpio1 0 GPIO_ACTIVE_HIGH>;
- 			io-channels = <&cpcap_adc 2>, <&cpcap_adc 7>;
+diff --git a/arch/arm/boot/dts/ti/omap/motorola-mapphone-common.dtsi b/arch/arm/boot/dts/ti/omap/motorola-mapphone-common.dtsi
+index acac3c243c7a..475ffe678e76 100644
+--- a/arch/arm/boot/dts/ti/omap/motorola-mapphone-common.dtsi
++++ b/arch/arm/boot/dts/ti/omap/motorola-mapphone-common.dtsi
+@@ -352,6 +352,25 @@ OMAP4_IOPAD(0x1c8, PIN_INPUT_PULLUP | MUX_MODE7)
+ 		>;
+ 	};
+ 
++	usb_safe_pins: usb-safe-pins {
++		pinctrl-single,pins = <
++		OMAP4_IOPAD(0x196, MUX_MODE7)
++		OMAP4_IOPAD(0x198, MUX_MODE7)
++		OMAP4_IOPAD(0x1b2, PIN_INPUT_PULLUP | MUX_MODE7)
++		OMAP4_IOPAD(0x1b4, PIN_INPUT_PULLUP | MUX_MODE7)
++		OMAP4_IOPAD(0x1b6, PIN_INPUT_PULLUP | MUX_MODE7)
++		OMAP4_IOPAD(0x1b8, PIN_INPUT_PULLUP | MUX_MODE7)
++		OMAP4_IOPAD(0x1ba, PIN_INPUT_PULLUP | MUX_MODE7)
++		OMAP4_IOPAD(0x1bc, PIN_INPUT_PULLUP | MUX_MODE7)
++		OMAP4_IOPAD(0x1be, PIN_INPUT_PULLUP | MUX_MODE7)
++		OMAP4_IOPAD(0x1c0, PIN_INPUT_PULLUP | MUX_MODE7)
++		OMAP4_IOPAD(0x1c2, PIN_INPUT_PULLUP | MUX_MODE7)
++		OMAP4_IOPAD(0x1c4, PIN_INPUT_PULLUP | MUX_MODE7)
++		OMAP4_IOPAD(0x1c6, PIN_INPUT_PULLUP | MUX_MODE7)
++		OMAP4_IOPAD(0x1c8, PIN_INPUT_PULLUP | MUX_MODE7)
++		>;
++	};
++
+ 	/*
+ 	 * Note that the v3.0.8 stock userspace dynamically remuxes uart1
+ 	 * rts pin probably for PM purposes to PIN_INPUT_PULLUP | MUX_MODE7
 -- 
 2.39.5
 
