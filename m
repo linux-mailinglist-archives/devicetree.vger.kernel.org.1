@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-324745-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-324746-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id aes9HcreUWpLJwMAu9opvQ
-	(envelope-from <devicetree+bounces-324745-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 11 Jul 2026 08:12:26 +0200
+	id C+NNCwHfUWpTJwMAu9opvQ
+	(envelope-from <devicetree+bounces-324746-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 11 Jul 2026 08:13:21 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 019737408F1
-	for <lists+devicetree@lfdr.de>; Sat, 11 Jul 2026 08:12:25 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 733997408FF
+	for <lists+devicetree@lfdr.de>; Sat, 11 Jul 2026 08:13:20 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=RSXgJAF2;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=oTnxTwgf;
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324745-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-324745-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324746-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-324746-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 511A3301C2C5
-	for <lists+devicetree@lfdr.de>; Sat, 11 Jul 2026 06:12:25 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id C628A300250A
+	for <lists+devicetree@lfdr.de>; Sat, 11 Jul 2026 06:13:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65CC532B118;
-	Sat, 11 Jul 2026 06:12:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C89AF331EA1;
+	Sat, 11 Jul 2026 06:13:15 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3105832D7C7;
-	Sat, 11 Jul 2026 06:12:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F8C9282F0C;
+	Sat, 11 Jul 2026 06:13:13 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783750343; cv=none; b=IRDKDNR07KVx/d9Tru12rMbT4STQuiY4YW3bI9iNi04zpV/0uau250iDpWBvPH5FVaZLe1WTNIV2MRD2GoyvLcsuESqDbNryS+dgZLvbTiBbV4YEQPjsQq4czYuWFe4xUiCnmnCmgRzhp3z5e+PIxponNh/NSU9SCwlk9A+9DpA=
+	t=1783750395; cv=none; b=I1MMyVmF3cnQlUyvBdGL0lE3kkUEBaz+o4Gc1Z4SaUuPYpUasmvCjWFdNVHuX6g2RGXPuSKLxCdvkZ4phHlls4pF+J+cUKDIpLmna17poN+JGswaehsHp86h3nFaeIeYj8pdVEFFPl0AgJYwbewH5tm4cQUh0BWrScM0GenBanM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783750343; c=relaxed/simple;
-	bh=ikKB9K29DCxIAdBLTdCldzXYeQ/7AIsKNVLSBT6mGp4=;
+	s=arc-20240116; t=1783750395; c=relaxed/simple;
+	bh=it+oYZ5v0yCTmLV9Pvin6MNvwGCKJHsdbn7h5XwmXu8=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=AdYkYgeQ51LECDK3A6fVeL/oy8INFt2w0kEUZkko+NbDi0xETj8lumdwr3Q7PQ+lW2QzVBxT0KzsS31huipMYHTrZFZoP5DIY2dQ+Wd7xOyrsqSWOWJ+y1itaH5kL9F3dtfAcmjNtL6hQz7AlW6Fc8ZmB0a9BCw0FV+VuvkB85Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RSXgJAF2; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A7D3F1F000E9;
-	Sat, 11 Jul 2026 06:12:20 +0000 (UTC)
+	 Message-Id; b=NOD8GiO0Tv5NW6gGgoiHp7EC6PxpZNBc3ltlcRbr94Iq9Bw83idbq2sxmYeNKqqYhdkYm1drlIRfLacfIrUsl8alE1b1m3FTtPPreRODKn/Ab8+LBpJWNLsE/kKt62FNcLsAEOrLDWaLNuGRHxa9Qhoudu1DlmsRF2bX6hpUj2Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oTnxTwgf; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 66D941F000E9;
+	Sat, 11 Jul 2026 06:13:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783750341;
-	bh=Ue++4tEje5OlkE7liOfBIL1ANaalVmys113Ckduq/PY=;
+	s=k20260515; t=1783750393;
+	bh=it+oYZ5v0yCTmLV9Pvin6MNvwGCKJHsdbn7h5XwmXu8=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=RSXgJAF2yJ8PTzLZEZtlD9Q0dR8cTAQWAnnQWeVNDUJzw+fFR5ryiSO2by0pEXdMq
-	 PT5y4wNRoiJYjDbPSFCREQ6m02mOEqHE+dTGLj6uxeHtno0+m9CAjm5xFmG+jJ6RGD
-	 PonFLRfh/mpKJCk7BJE6iWlNuMryZH1kK53v8RPcIEKW1Shd8JRE+i7jh+HmgdH4Fe
-	 RNwTH7K+HAS1jvQTAerAQ8orKHnLBLD2DTxhfiTLG6RxDlqW0+SaFYowUXTkl31FXP
-	 Y6SLM8FyvayTy+6EOPcg1QLEYinM61q5wHXswSFyoozHPjVnDTHD0iHNsoPOE/xtw8
-	 qbLlnR5xSkW1A==
+	b=oTnxTwgfhkvjT7YP7ausmO+U4DunkS/96yD982GkHx1109Yu2BU1g+JzGNwBVlyR8
+	 CQ8803CP10jvRZDqCEJvgqPnlj7Q9NtrupIhRfoqQkoqAvj60FWS0WV8gC8kXTIPKh
+	 HRiP4x0FTmMMil4PLqRlFjVa1pPjWLCUFME30Knhq5NmfPi8cv2hqVj7axedLyruu1
+	 8lzCJqf3AC4fZ8CLCFiHkDa5qmG2lMiIxKQGHqZeQPCoKjaowyoqvClIVhJm2t7qTG
+	 oeAwNRZYVEtZ9bX42C3EBLNz7Ei+EZAp3E2LV3duGkjDnbMSLfiiahVUexvQbDVXfS
+	 YJqJE4rIcOvKg==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 06/16] ASoC: twl4030-codec: Allow setting APLL rate
- through the .set_sysclk() interface
+Subject: Re: [PATCH 16/16] arm: omap2: remove remaining pdata-quirks for
+ pandora legacy devices
 Reply-To: sashiko-reviews@lists.linux.dev
 To: "H. Nikolaus Schaller" <hns@goldelico.com>
-Cc: mfd@lists.linux.dev, lee@kernel.org, robh@kernel.org, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, conor+dt@kernel.org
-In-Reply-To: <7ea589f951baf1e217c7169ae21c0bf510672ecf.1783749722.git.hns@goldelico.com>
+Cc: robh@kernel.org, dri-devel@lists.freedesktop.org, conor+dt@kernel.org, devicetree@vger.kernel.org, mfd@lists.linux.dev, lee@kernel.org
+In-Reply-To: <d380941287c655a3d205ee8b08516d364c0ddec9.1783749722.git.hns@goldelico.com>
 References: <cover.1783749722.git.hns@goldelico.com>
- <7ea589f951baf1e217c7169ae21c0bf510672ecf.1783749722.git.hns@goldelico.com>
+ <d380941287c655a3d205ee8b08516d364c0ddec9.1783749722.git.hns@goldelico.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Sat, 11 Jul 2026 06:12:20 +0000
-Message-Id: <20260711061220.A7D3F1F000E9@smtp.kernel.org>
+Date: Sat, 11 Jul 2026 06:13:12 +0000
+Message-Id: <20260711061313.66D941F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,18 +72,18 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-324745-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-324746-lists,devicetree=lfdr.de];
 	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:hns@goldelico.com,m:mfd@lists.linux.dev,m:lee@kernel.org,m:robh@kernel.org,m:dri-devel@lists.freedesktop.org,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:hns@goldelico.com,m:robh@kernel.org,m:dri-devel@lists.freedesktop.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:mfd@lists.linux.dev,m:lee@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
@@ -97,120 +97,26 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
 	FROM_NO_DN(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[smtp.kernel.org:mid,riseup.net:email,sashiko.dev:url,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,lists.linux.dev:replyto]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[smtp.kernel.org:mid,sashiko.dev:url,lists.linux.dev:replyto,goldelico.com:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 019737408F1
+X-Rspamd-Queue-Id: 733997408FF
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
-s) to consider:
-- [High] Missing cleanup on write failure in `twl4030_perform_writes()` lea=
-ves the codec permanently disabled.
-- [Medium] `twl4030_hw_params()` completely ignores the return value of bat=
-ch register writes, masking hardware configuration failures.
---
+> After updating the pandora-backligt setup and removing the omap3pandora
+> sound system and defining related gpios by device tree, we can remove
+> omap3_pandora_legacy_init() and the related legacy devices completely.
+>=20
+> Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
 
---- Patch [6]: [PATCH 06/16] ASoC: twl4030-codec: Allow setting APLL rate t=
-hrough the .set_sysclk() interface ---
-commit db9973d614eb8b37cb4d8a6cf9cada8e9b6d1cf8
-Author: Grond <grond66@riseup.net>
-Subject: ASoC: twl4030-codec: Allow setting APLL rate through the .set_sysc=
-lk() interface
-
-This patch allows setting the APLL rate through the .set_sysclk() interface
-for devices where the APLL drives audio clocks, but playback bypasses the
-standard .hw_params() path. It extracts the APLL rate calculation into a
-helper and introduces batch register write functions.
-
-> diff --git a/sound/soc/codecs/twl4030.c b/sound/soc/codecs/twl4030.c
-> index 9476cdfd4dde9..ff36679166e20 100644
-> --- a/sound/soc/codecs/twl4030.c
-> +++ b/sound/soc/codecs/twl4030.c
-> @@ -198,6 +198,38 @@ static void twl4030_codec_enable(struct snd_soc_comp=
-onent *component, int enable
->  	udelay(10);
->  }
-> =20
-> +static int twl4030_perform_writes(struct snd_soc_component *component,
-> +				  const unsigned int *regs,
-> +				  const unsigned int *vals,
-> +				  unsigned int n)
-> +{
-> +	struct twl4030_priv *twl4030 =3D snd_soc_component_get_drvdata(componen=
-t);
-> +	int reboot_codec =3D twl4030->codec_powered;
-> +	unsigned int i;
-> +	int ret;
-> +
-> +	if (reboot_codec)
-> +		twl4030_codec_enable(component, 0);
-> +
-> +	for (i =3D 0; i < n; ++i) {
-> +		ret =3D twl4030_write(component, regs[i], vals[i]);
-> +		if (ret)
-> +			return ret;
-
-[Severity: High]
-If twl4030_write() fails and returns early, will it leave the codec permane=
-ntly
-disabled because we skip the twl4030_codec_enable(component, 1) call? This
-seems to cause a hardware state mismatch where the ALSA core considers the
-codec powered on, but it remains physically powered off.
-
-> +	}
-> +
-> +	if (reboot_codec)
-> +		twl4030_codec_enable(component, 1);
-> +
-> +	return 0;
-> +}
-
-[ ... ]
-
-> @@ -1775,20 +1824,12 @@ static int twl4030_hw_params(struct snd_pcm_subst=
-ream *substream,
->  		return -EINVAL;
->  	}
-> =20
-> -	if (format !=3D old_format || mode !=3D old_mode) {
-> -		if (twl4030->codec_powered) {
-> -			/*
-> -			 * If the codec is powered, than we need to toggle the
-> -			 * codec power.
-> -			 */
-> -			twl4030_codec_enable(component, 0);
-> -			twl4030_write(component, TWL4030_REG_CODEC_MODE, mode);
-> -			twl4030_write(component, TWL4030_REG_AUDIO_IF, format);
-> -			twl4030_codec_enable(component, 1);
-> -		} else {
-> -			twl4030_write(component, TWL4030_REG_CODEC_MODE, mode);
-> -			twl4030_write(component, TWL4030_REG_AUDIO_IF, format);
-> -		}
-> +	if (format !=3D old_format || s) {
-> +		regs[0] =3D TWL4030_REG_CODEC_MODE;
-> +		vals[0] =3D mode;
-> +		regs[1] =3D TWL4030_REG_AUDIO_IF;
-> +		vals[1] =3D format;
-> +		twl4030_perform_writes(component, regs, vals, ARRAY_SIZE(regs));
-
-[Severity: Medium]
-Does this code ignore the return value of twl4030_perform_writes()?
-If the batch register writes fail, it seems the hardware remains unconfigur=
-ed
-but the function will still return 0 (success) and falsely advance the stre=
-am
-state.
-
->  	}
-> =20
->  	/* Store the important parameters for the DAI configuration and set
+Sashiko has reviewed this patch and found no issues. It looks great!
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/cover.1783749722.gi=
-t.hns@goldelico.com?part=3D6
+t.hns@goldelico.com?part=3D16
+
 
