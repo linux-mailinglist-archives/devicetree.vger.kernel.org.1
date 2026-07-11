@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-324874-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-324878-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id odUmHWiRUmpgRAMAu9opvQ
-	(envelope-from <devicetree+bounces-324874-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 11 Jul 2026 20:54:32 +0200
+	id OoUHFhuSUmp7RAMAu9opvQ
+	(envelope-from <devicetree+bounces-324878-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 11 Jul 2026 20:57:31 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7DEF742A63
-	for <lists+devicetree@lfdr.de>; Sat, 11 Jul 2026 20:54:31 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id A4A72742A99
+	for <lists+devicetree@lfdr.de>; Sat, 11 Jul 2026 20:57:30 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=TjdZ0o1O;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=HLZdHNlm;
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324874-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-324874-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324878-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-324878-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5404F300F501
-	for <lists+devicetree@lfdr.de>; Sat, 11 Jul 2026 18:54:30 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id EFDFA301DEFF
+	for <lists+devicetree@lfdr.de>; Sat, 11 Jul 2026 18:57:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7EE9925B0AB;
-	Sat, 11 Jul 2026 18:54:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FA5C30E827;
+	Sat, 11 Jul 2026 18:57:17 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49DB41A268
-	for <devicetree@vger.kernel.org>; Sat, 11 Jul 2026 18:54:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32F902E11C7
+	for <devicetree@vger.kernel.org>; Sat, 11 Jul 2026 18:57:15 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783796069; cv=none; b=fSKDzn23u+KcxGZLBAqH9pMMs17DRMFmwM8HGDnsyjzqlrZt3u5lGay1gqfTw4TCucvQzLR29k5E7Er2/JwZf6czICyVeDBsoxqJ/4aR9rJ7Zd/pLtDvSsFajs9tQUN/ilBUmW94hJidHvndtnfvGaryGksBKRYh7xFbHM2Oe2Y=
+	t=1783796237; cv=none; b=S0UT+s9d1RpKJL2RTtHZMPcAN68MckUDe0uDxATa8p/fJgnhfoBTgDrV6WT9D9NTr9Qi1cpGAVSeNVwxl3bcBax1GajGYa0sztYUPoDGfeEj0Bj0PwAjDVoQJXXWbmpRgC2XpdYt5hXIrUAGTKFQjv/pzbIZqEzv4gyuLMgd2L8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783796069; c=relaxed/simple;
-	bh=GvJNY/n5cgBsECNxrK4fV06AxgY/2EQ0DiPjG/ioH/8=;
+	s=arc-20240116; t=1783796237; c=relaxed/simple;
+	bh=O+fJLmfDil9zG4Pq3EDtMyIu+sxNWskfJN6iq2Hf4Bk=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=FkJZouhRpRyj4dQ9sBDtpFRGUGQrm2JOwbqa4v8sx1CwxTszcukdcF5v/ZAAD3ydZ1/CKCGdr+LgMxGD927G4naREzPWsF03j7K7tknnzHhLH+tXLGFp4HPPXWOGXYm/DufAqLGBRhNHLc/69coJp5nt3IvsQsOMvoCPOk3j/eo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TjdZ0o1O; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A2AF51F000E9;
-	Sat, 11 Jul 2026 18:54:27 +0000 (UTC)
+	 Message-Id; b=AzQk4Ugy7EEMtVDS3ekoWpuKx0DzmmEzVNCFpT8NZAEFJWanmtmqavGy1bRiceu9pF6RPL4JRWdZxvWT10H9N1Lcm5s6SNcyT/jXJnakL8FfBM9ki4PAU3EqB6HWQuC0Xgt7CfuICz84miZo+6qZoBxx+ZjIA1Jr7DVB6r4zg+4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HLZdHNlm; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 76DA01F000E9;
+	Sat, 11 Jul 2026 18:57:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783796067;
-	bh=VdJ8yWJU+95BSxXNoTJG2qiw+AzXOTcF2Ko+a3gaWBY=;
+	s=k20260515; t=1783796235;
+	bh=CylZtgliIRqf//vPoFL+gSSkv4wJNXi6Hf3n44DsExc=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=TjdZ0o1ONNZJ3b1si12xPfI+Byu0C8ejqHj5ranwaRoct2x9t/FTwCzIspdQv2MfU
-	 eZVhg6SGWPMzUOM800P3YxaY/eJVwmw1ZSNqwDQa0i+zUq0hYWpZmFaonJ++hv4B0P
-	 3FzfeLJjgnITKmtUHL/nLtnUaTSuqnfcDYF2aAiWBJ0RKYDMHPLXzetKPe9t0Kw1Te
-	 Mg17U75+JO9zCDtQxjtc+vQNAf8eKmaLaiYTU12NI420cQOVXoe1uxxCGlYVH7rnaY
-	 mdhc0RaWRf3eukdcMsxnaQcNr5tBPlt7KKHXZRZ8LTSiPm9d47gcAZMQ7FeI+Pki/p
-	 13sL8YC6s/zgQ==
+	b=HLZdHNlm/qo24Hy+8KgYfC8iq0FC+41V76/QfFx5zsjLOvtkxit4jNORSKCmrw0jW
+	 zNGUb2kQVVYyGiWyqM3Fi5kMB5wY/M537QN5NI5dAWYiZlXGoheRsDePshfXfe7Osj
+	 aaNGyPtbgLRe4g5NLYvpV1mkXarQAMekzf2cETPwwH2B5Es+MQxvJyMXlvuIN3jNHd
+	 5DyVhny+0TTWcXpRW7L/hSsok3ynarDJ1LvXCY9THqhTBRSK+2cpahAp6S5Amn4u9/
+	 CWdS9maLDGPOca4RzJp40POcGSMfuZxbgFA31n5QK5/Wd7me6iAHGp92fUvhCKdoWi
+	 ghxFsWye+h/UA==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v6 1/3] iio: adc: Fix incorrect reading when datarate
- changed in single mode
+Subject: Re: [PATCH v6 3/3] iio: adc: Add ti-ads1110 support to ti-ads1100
+ driver
 Reply-To: sashiko-reviews@lists.linux.dev
 To: "Jakub Szczudlo" <jakubszczudlo40@gmail.com>
-Cc: devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org
-In-Reply-To: <20260711184414.1013686-2-jakubszczudlo40@gmail.com>
+Cc: conor+dt@kernel.org, robh@kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260711184414.1013686-4-jakubszczudlo40@gmail.com>
 References: <20260711184414.1013686-1-jakubszczudlo40@gmail.com>
- <20260711184414.1013686-2-jakubszczudlo40@gmail.com>
+ <20260711184414.1013686-4-jakubszczudlo40@gmail.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Sat, 11 Jul 2026 18:54:27 +0000
-Message-Id: <20260711185427.A2AF51F000E9@smtp.kernel.org>
+Date: Sat, 11 Jul 2026 18:57:14 +0000
+Message-Id: <20260711185715.76DA01F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,24 +72,24 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-324874-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-324878-lists,devicetree=lfdr.de];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FREEMAIL_TO(0.00)[gmail.com];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:jakubszczudlo40@gmail.com,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:jakubszczudlo40@gmail.com,m:conor+dt@kernel.org,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
 	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
@@ -99,97 +99,164 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FROM_NO_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	RCPT_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,lists.linux.dev:replyto,smtp.kernel.org:mid]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: B7DEF742A63
+X-Rspamd-Queue-Id: A4A72742A99
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+Thank you for your contribution! Sashiko AI review found 5 potential issue(=
 s) to consider:
-- [High] The newly introduced polling mechanism in `ads1100_poll_data_ready=
-` uses an inverted wait condition that guarantees failure, silently swallow=
-s I2C errors, and incorrectly relies on a status bit that is always zero in=
- continuous mode.
+- [High] Incorrect polling condition in `readx_poll_timeout` causes prematu=
+re loop termination and timeouts.
+- [Medium] Negative error codes from `regulator_get_voltage` are propagated=
+ without checks, leaking to userspace as valid scale values.
+- [Medium] The IIO device name is hardcoded to "ads1100", ignoring the newl=
+y introduced `name` field in `ads1100_config`.
+- [Low] The Kconfig help text erroneously claims the device speeds are in '=
+MSPS' rather than 'SPS'.
+- [Low] Typo in function name: `ads1100_get_vref_milivolts` instead of `mil=
+livolts`.
 --
 
---- Patch [1]: [PATCH v6 1/3] iio: adc: Fix incorrect reading when datarate=
- changed in single mode ---
-commit 9efe89d3c5acb6ee87bd34da568f0f0c50cd6e20
+--- Patch [3]: [PATCH v6 3/3] iio: adc: Add ti-ads1110 support to ti-ads110=
+0 driver ---
+commit 28295190b9a9db57f2e01d15ded56ba73c22d69b
 Author: Jakub Szczudlo <jakubszczudlo40@gmail.com>
 
-iio: adc: Fix incorrect reading when datarate changed in single mode
+iio: adc: Add ti-ads1110 support to ti-ads1100 driver
 
-When device is suspended and it is in single mode then changing
-datarate doesn't make it actual wait for new measurement, so to
-be sure that read after change is correct functions that changes
-datarate and gain will wait for new data.
+Add ADS1110 support that have faster datarate than ADS1100, it also uses
+internal voltage reference of 2.048V for measurement.
+
+> diff --git a/drivers/iio/adc/Kconfig b/drivers/iio/adc/Kconfig
+> index 1c663c98c6c96..2459ff2af1050 100644
+> --- a/drivers/iio/adc/Kconfig
+> +++ b/drivers/iio/adc/Kconfig
+> @@ -1765,11 +1765,14 @@ config TI_ADS1018
+>           called ti-ads1018.
+> =20
+>  config TI_ADS1100
+> -	tristate "Texas Instruments ADS1100 and ADS1000 ADC"
+> +	tristate "Texas Instruments ADS1100 and similar single channel I2C ADC"
+>  	depends on I2C
+>  	help
+> -	  If you say yes here you get support for Texas Instruments ADS1100 and
+> -	  ADS1000 ADC chips.
+> +	  If you say yes here you get support for TI single channel I2C Analog
+> +	  Devices.
+> +	  * ADS1000 12-Bit, 128 MSPS Analog-to-Digital Converter
+> +	  * ADS1100 16-Bit, 128 MSPS Analog-to-Digital Converter
+> +	  * ADS1110 16-Bit, 240 MSPS Analog-to-Digital Converter
+
+[Severity: Low]
+Does this code use the correct units for the datarate?
+
+The ADS1100 and similar hardware typically operate at 8 to 240 SPS
+(Samples Per Second). MSPS implies millions of samples per second,
+which seems too high.
 
 > diff --git a/drivers/iio/adc/ti-ads1100.c b/drivers/iio/adc/ti-ads1100.c
+> index 6ad80d42d390a..06892ebc593d0 100644
 > --- a/drivers/iio/adc/ti-ads1100.c
 > +++ b/drivers/iio/adc/ti-ads1100.c
+> @@ -90,6 +114,20 @@ static int ads1100_set_config_bits(struct ads1100_dat=
+a *data, u8 mask, u8 value)
+>  	return 0;
+>  };
+> =20
+> +static int ads1100_get_vref_milivolts(struct ads1100_data *data)
 
-[ ... ]
+[Severity: Low]
+This isn't a bug, but there is a typo in the function name
+ads1100_get_vref_milivolts (milivolts instead of millivolts).
 
-> +static bool ads1100_new_data_not_ready(struct ads1100_data *data)
 > +{
-> +	u8 buffer[3];
-> +	int ret;
+> +	int voltage_uV;
 > +
-> +	ret =3D i2c_master_recv(data->client, (char *)&buffer, sizeof(buffer));
-> +	if (ret < 0) {
-> +		dev_err(&data->client->dev, "I2C read fail: %d\n", ret);
-> +		return true;
-
-[Severity: High]
-If an I2C read error occurs, this returns true. Since the polling condition
-below checks for non-zero, won't this cause the poll to exit immediately and
-silently treat the hardware failure as a successful wait?
-
-> +	}
+> +	if (data->ads_config->has_internal_vref_only)
+> +		return ADS1110_INTERNAL_REF_mV;
 > +
-> +	return FIELD_GET(ADS1100_CFG_ST_BSY, buffer[2]);
+> +	voltage_uV =3D regulator_get_voltage(data->reg_vdd);
+> +	if (voltage_uV < 0)
+> +		return voltage_uV;
+
+[Severity: Medium]
+Does this leak negative error codes to callers?
+
+If regulator_get_voltage() fails, it returns a negative error code
+like -EINVAL. Callers like ads1100_read_raw() and ads1100_calc_scale_avail()
+appear to use the return value from ads1100_get_vref_milivolts() without
+checking for errors. This could expose negative scale values to userspace.
+
+> +
+> +	return voltage_uV / (MICRO / MILLI);
 > +}
-> +
-> +static int ads1100_poll_data_ready(struct ads1100_data *data)
-> +{
-> +	int data_rate_Hz =3D ads1100_data_rate[FIELD_GET(ADS1100_DR_MASK, data-=
+> =20
+
+> @@ -144,7 +182,8 @@ static bool ads1100_new_data_not_ready(struct ads1100=
+_data *data)
+> =20
+>  static int ads1100_poll_data_ready(struct ads1100_data *data)
+>  {
+> -	int data_rate_Hz =3D ads1100_data_rate[FIELD_GET(ADS1100_DR_MASK, data-=
 >config)];
-> +	/* To be sure we wait 5 times more than data rate */
-> +	unsigned long wait_time_us =3D DIV_ROUND_CLOSEST(USEC_PER_SEC, 5 * data=
+> +	int data_rate_index =3D FIELD_GET(ADS1100_DR_MASK, data->config);
+> +	int data_rate_Hz =3D data->ads_config->available_data_rate_hz[data_rate=
+_index];
+>  	/* To be sure we wait 5 times more than data rate */
+>  	unsigned long wait_time_us =3D DIV_ROUND_CLOSEST(USEC_PER_SEC, 5 * data=
 _rate_Hz);
-> +	bool data_ready;
-> +	u8 buffer[3];
-> +	int ret;
-> +
-> +	/* To be sure that polled value will have value after config change */
-> +	ret =3D i2c_master_recv(data->client, (char *)&buffer, sizeof(buffer));
-> +	if (ret < 0) {
-> +		dev_err(&data->client->dev, "I2C read fail: %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	return readx_poll_timeout(ads1100_new_data_not_ready, data,
-> +				 data_ready, data_ready !=3D 0,
-> +				 wait_time_us, ADS1100_MAX_DRDY_TIMEOUT_US);
+>  	bool data_ready;
 
 [Severity: High]
-Is this condition inverted? The readx_poll_timeout macro stops polling when
-the condition evaluates to true. With data_ready !=3D 0, it stops immediate=
-ly
-if the device is busy, and spins until timeout if the device is ready.
+Does this function terminate polling prematurely?
 
-Additionally, because acquiring PM runtime resumes the device into continuo=
-us
-mode, the ST/BSY bit is always 0. Does this mean every write to the scale or
-data rate attributes will hang for 7.5 seconds and return -ETIMEDOUT?
+When readx_poll_timeout() is called later in ads1100_poll_data_ready()
+to wait for the conversion:
 
-> +}
+    return readx_poll_timeout(ads1100_new_data_not_ready, data,
+                 data_ready, data_ready !=3D 0,
+                 wait_time_us, ADS1100_MAX_DRDY_TIMEOUT_US);
+
+The termination condition used is data_ready !=3D 0. However, the polled
+function ads1100_new_data_not_ready() reads the busy bit and returns true
+(non-zero) when the device is still busy, and false (zero) when the data
+is ready.
+
+Does this cause readx_poll_timeout() to immediately return success when
+the device is busy, or loop until a timeout occurs if the device is ready?
+
+> > @@ -397,6 +432,11 @@ static int ads1100_probe(struct i2c_client *client)
+>  	if (ret)
+>  		return ret;
+> =20
+> +	data->ads_config =3D i2c_get_match_data(client);
+> +	if (!data->ads_config)
+> +		return dev_err_probe(dev, -EINVAL,
+> +				     "Can't get device data from firmware\n");
+> +
+
+[Severity: Medium]
+Is the IIO device name hardcoded to ads1100 instead of using the
+name from ads1100_config?
+
+Earlier in ads1100_probe(), the code sets:
+
+    indio_dev->name =3D "ads1100";
+
+Since the newly introduced ads1100_config struct adds a name field
+(e.g. ads1110), does hardcoding the name ignore the config and
+potentially break userspace device matching for the ADS1110?
+
+>  	ret =3D ads1100_setup(data);
+>  	if (ret)
+>  		return dev_err_probe(dev, ret,
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260711184414.1013=
-686-1-jakubszczudlo40@gmail.com?part=3D1
+686-1-jakubszczudlo40@gmail.com?part=3D3
 
