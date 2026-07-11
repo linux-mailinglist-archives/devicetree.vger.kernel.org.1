@@ -1,260 +1,274 @@
-Return-Path: <devicetree+bounces-324925-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-324926-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id mLiFEUGzUmrVSQMAu9opvQ
-	(envelope-from <devicetree+bounces-324925-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 11 Jul 2026 23:18:57 +0200
+	id syfCLAS5Umq9SgMAu9opvQ
+	(envelope-from <devicetree+bounces-324926-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 11 Jul 2026 23:43:32 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 29250742ECE
-	for <lists+devicetree@lfdr.de>; Sat, 11 Jul 2026 23:18:56 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 09D42742F17
+	for <lists+devicetree@lfdr.de>; Sat, 11 Jul 2026 23:43:32 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=YCYCCKMd;
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324925-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-324925-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=collabora.com header.s=mail header.b=oLHqB8gT;
+	dmarc=pass (policy=none) header.from=collabora.com;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324926-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-324926-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 3A87A3004D9E
-	for <lists+devicetree@lfdr.de>; Sat, 11 Jul 2026 21:18:53 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6A1763014BF3
+	for <lists+devicetree@lfdr.de>; Sat, 11 Jul 2026 21:43:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FC3A3128D7;
-	Sat, 11 Jul 2026 21:18:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADFC830FC03;
+	Sat, 11 Jul 2026 21:43:29 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0FB6F2773E5
-	for <devicetree@vger.kernel.org>; Sat, 11 Jul 2026 21:18:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8B2E29BD9A;
+	Sat, 11 Jul 2026 21:43:27 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783804731; cv=none; b=NjipU5plmEmWAf2fa/jiF3IThMPZJ06izjtvxo54sPwt0lJtkRCGw67FJfy1xgcQUPybPQ/JP6hzTwtUWvNnIPS5fDSEZU7GjwayAYGNm9Z+N3Ys7KH8V4sr7OHb67ZNVLEgO7yx3xFKhPbEXHEWWBGzOOQOz6aoy1+LILDBZuU=
+	t=1783806209; cv=none; b=AK5IjoA/R5GDqnVlHp0wbB8ti1dHbr1/GJqhLmBcIapKDRvRSc52VDbVeKN81+cM4fAFPoyu8Hw9TG5CkdZn8LpWevObKFuPwCtizRSlyC5jf4EGdtShAasTtj8B47N401S5+BJ2JNyRRlYNZsNSlTfFt0pan6k3ivtJX7mKDAI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783804731; c=relaxed/simple;
-	bh=PPXxnfnVZeN3kjKs/DEvJXTVdEdNRlYgi0sLQ164mIM=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=QNPPDo1bJUX6StD6NzlHBP7xLziImjhtAStb4GSOFV3dXlwKuqi7tiLe435vdshUx9ojJoBZaR3rjiS8impF5K3SjHjaALDehp1Pr+QoKKiDEKBo7ukaoTy8gQzjAqus2zgfCB2J07JGc5P51Cy+HHf4pzCuUDIbiRGwyWx9U6E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YCYCCKMd; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B03571F000E9;
-	Sat, 11 Jul 2026 21:18:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783804729;
-	bh=qMxy7XmOFwetPcRijfI4OzBcmke++sF6HjWtH0eu2hg=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=YCYCCKMd33gwG5m9nPpfJd5cA6f4Jp/AS5ZPqEp/b0qProydXL9cNArr25/4khcgg
-	 VeF0Rf0eJ3DX4ccLc/SdboxBJxv7KPO7GLryyk0zsh2SJ2mUo/8Qlw2QQBdBaRUcEI
-	 N3SyXSot5vzsni1qacXpYy0tlaDhrB9vUbEIwKa9psDGsIaYtXEdmVyEDxBt7TII5l
-	 8iHcf4rYXwGcTcvFvgEzdztEaHuEKEHurwRqim+e5YWlm0n7k3GMuf5PImMKqJgpxO
-	 YxrKapeyQIa1w60i0oYkm1Gh5ZrOdq9h/fMJ8o6wHGxDI2Nh92DAGSCz9kF5chKpFL
-	 zVa4EGUpCJATQ==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 09/10] arm64: dts: st: Add support for DH electronics
- STM32MP23xx/STM32MP25xx DHCOS SoM and Breakout Board and DHSBC
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Marek Vasut" <marex@nabladev.com>
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, robh@kernel.org
-In-Reply-To: <20260711210131.236025-10-marex@nabladev.com>
-References: <20260711210131.236025-1-marex@nabladev.com>
- <20260711210131.236025-10-marex@nabladev.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Sat, 11 Jul 2026 21:18:49 +0000
-Message-Id: <20260711211849.B03571F000E9@smtp.kernel.org>
+	s=arc-20240116; t=1783806209; c=relaxed/simple;
+	bh=5iyh145oPbVi0/Y2eokUBvMwzT4NqhE95qIzSK3Ghxs=;
+	h=Message-ID:Subject:From:To:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=jsXMIl7WTXaXGtQ+uKTY1iJoV+IzeDwLR0TOGjfR8gMd1x6tTVizDPsTiq0kW+irws1eSXhVcwQVVhNcs4mgsocvI39iXQYGipeVGiICuwqioLJd1fCyk/92nkckGgxNDXzWgyPg/F7r/FOOI8ESpZLt718tXtYeQgrv+kmvmwM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=oLHqB8gT; arc=none smtp.client-ip=148.251.105.195
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1783806200;
+	bh=5iyh145oPbVi0/Y2eokUBvMwzT4NqhE95qIzSK3Ghxs=;
+	h=Subject:From:To:Date:In-Reply-To:References:From;
+	b=oLHqB8gTjFdC6EVn3NxVA+q6ljo4sR9yi82DgznHeWf9j8SzbVfu4kWfaSclB+y84
+	 DmEdssphelKp5fsUdXW5RXK6pxJXgVYt+L/qBs5NiOKR+z/+jAbNBwzoP2V17+b2hF
+	 k076x491QnSa/FX4bc6yL4sX5BhAMYGLqhwRMZAB226sr0txLCgJVAo3IKMKeL8ENg
+	 +YmihcA8k1NaErlLRW4/p7UHYkD1wkWGBI0U4vTQZqsS8BI/l+1GdO7PmN4iIr6G4w
+	 QbagbQ+VTKXOcz9OMTPTI7v8q5wCXo/6RWnlgOoGU4VlAVJ6LcK6vERnwBgvvGCZnE
+	 U+wMGUAV5zr/A==
+Received: from [100.64.0.214] (unknown [100.64.0.214])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange secp256r1 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: nicolas)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id CD82217E0076;
+	Sat, 11 Jul 2026 23:43:18 +0200 (CEST)
+Message-ID: <29b98aee357ea1ff49939c47eaca3cb4a01c8d72.camel@collabora.com>
+Subject: Re: [PATCH v15 01/12] media: mediatek: jpeg: fix jpeg cores'
+ amounts setting
+From: Nicolas Dufresne <nicolas.dufresne@collabora.com>
+To: Kyrie Wu <kyrie.wu@mediatek.com>, Hans Verkuil
+ <hverkuil-cisco@xs4all.nl>,  Mauro Carvalho Chehab	 <mchehab@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski	 <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Matthias Brugger	
+ <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno	
+ <angelogioacchino.delregno@collabora.com>, linux-media@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
+Date: Sat, 11 Jul 2026 17:43:16 -0400
+In-Reply-To: <20260702072614.10373-2-kyrie.wu@mediatek.com>
+References: <20260702072614.10373-1-kyrie.wu@mediatek.com>
+	 <20260702072614.10373-2-kyrie.wu@mediatek.com>
+Autocrypt: addr=nicolas.dufresne@collabora.com; prefer-encrypt=mutual;
+ keydata=mDMEaCN2ixYJKwYBBAHaRw8BAQdAM0EHepTful3JOIzcPv6ekHOenE1u0vDG1gdHFrChD
+ /e0J05pY29sYXMgRHVmcmVzbmUgPG5pY29sYXNAbmR1ZnJlc25lLmNhPoicBBMWCgBEAhsDBQsJCA
+ cCAiICBhUKCQgLAgQWAgMBAh4HAheABQkJZfd1FiEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrjo
+ CGQEACgkQ2UGUUSlgcvQlQwD/RjpU1SZYcKG6pnfnQ8ivgtTkGDRUJ8gP3fK7+XUjRNIA/iXfhXMN
+ abIWxO2oCXKf3TdD7aQ4070KO6zSxIcxgNQFtDFOaWNvbGFzIER1ZnJlc25lIDxuaWNvbGFzLmR1Z
+ nJlc25lQGNvbGxhYm9yYS5jb20+iJkEExYKAEECGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4
+ AWIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaCyyxgUJCWX3dQAKCRDZQZRRKWBy9ARJAP96pFmLffZ
+ smBUpkyVBfFAf+zq6BJt769R0al3kHvUKdgD9G7KAHuioxD2v6SX7idpIazjzx8b8rfzwTWyOQWHC
+ AAS0LU5pY29sYXMgRHVmcmVzbmUgPG5pY29sYXMuZHVmcmVzbmVAZ21haWwuY29tPoiZBBMWCgBBF
+ iEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrGYCGwMFCQll93UFCwkIBwICIgIGFQoJCAsCBBYCAw
+ ECHgcCF4AACgkQ2UGUUSlgcvRObgD/YnQjfi4+L8f4fI7p1pPMTwRTcaRdy6aqkKEmKsCArzQBAK8
+ bRLv9QjuqsE6oQZra/RB4widZPvphs78H0P6NmpIJ
+Organization: Collabora Canada
+Content-Type: multipart/signed; micalg="pgp-sha512";
+	protocol="application/pgp-signature"; boundary="=-SowlojmCUCUWFxgrmrfW"
+User-Agent: Evolution 3.60.2 (3.60.2-1.fc44) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [-2.76 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
+	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-324925-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-324926-lists,devicetree=lfdr.de];
+	FORGED_SENDER(0.00)[nicolas.dufresne@collabora.com,devicetree@vger.kernel.org];
 	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:kyrie.wu@mediatek.com,m:hverkuil-cisco@xs4all.nl,m:mchehab@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:matthias.bgg@gmail.com,m:angelogioacchino.delregno@collabora.com,m:linux-media@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-mediatek@lists.infradead.org,m:krzk@kernel.org,m:conor@kernel.org,m:matthiasbgg@gmail.com,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	HAS_ORG_HEADER(0.00)[];
+	FREEMAIL_TO(0.00)[mediatek.com,xs4all.nl,kernel.org,gmail.com,collabora.com,vger.kernel.org,lists.infradead.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS(0.00)[m:marex@nabladev.com,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ALIAS_RESOLVED(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	RCPT_COUNT_THREE(0.00)[4];
+	FROM_NEQ_ENVFROM(0.00)[nicolas.dufresne@collabora.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[collabora.com:+];
+	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
+	TO_DN_SOME(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 29250742ECE
+X-Rspamd-Queue-Id: 09D42742F17
 
-Thank you for your contribution! Sashiko AI review found 3 potential issue(=
-s) to consider:
-- [High] SoC hardware mismatch between included DTSI and root compatible st=
-ring
-- [High] Incorrect SPI chip select polarity (GPIO_ACTIVE_HIGH) breaks SPI c=
-ommunication
-- [Low] Dangling uart8 alias in common DTSI file
---
 
---- Patch [9]: [PATCH 09/10] arm64: dts: st: Add support for DH electronics=
- STM32MP23xx/STM32MP25xx DHCOS SoM and Breakout Board and DHSBC ---
-commit 703b623c315fcfbe4a6aecf3454ed4e9fa856d0e
-Author: Marek Vasut <marex@nabladev.com>
+--=-SowlojmCUCUWFxgrmrfW
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-arm64: dts: st: Add support for DH electronics STM32MP23xx/STM32MP25xx DHCO=
-S SoM and Breakout Board and DHSBC
+Hi,
 
-This commit adds device tree definitions for the DH electronics DHCOS=20
-system-on-module based on STM32MP25xx and STM32MP23xx SoCs. It also include=
-s=20
-support for the corresponding Breakout Board and DHSBC carrier boards.
+Le jeudi 02 juillet 2026 =C3=A0 15:26 +0800, Kyrie Wu a =C3=A9crit=C2=A0:
+> Different ICs have different amounts of cores,
+> use a variable to set the cores' amounts.
+>=20
+> Fixes: 934e8bccac95 ("mtk-jpegenc: support jpegenc multi-hardware")
+> Fixes: 0fa49df4222f ("media: mtk-jpegdec: support jpegdec multi-hardware"=
+)
+> Signed-off-by: Kyrie Wu <kyrie.wu@mediatek.com>
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collab=
+ora.com>
+> ---
+> =C2=A0drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c=C2=A0=C2=A0 | =
+8 ++++----
+> =C2=A0drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.h=C2=A0=C2=A0 | =
+2 ++
+> =C2=A0drivers/media/platform/mediatek/jpeg/mtk_jpeg_dec_hw.c | 1 +
+> =C2=A0drivers/media/platform/mediatek/jpeg/mtk_jpeg_enc_hw.c | 1 +
+> =C2=A04 files changed, 8 insertions(+), 4 deletions(-)
+>=20
+> diff --git a/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c b/drive=
+rs/media/platform/mediatek/jpeg/mtk_jpeg_core.c
+> index d147ec483081..1e014fd698ae 100644
+> --- a/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c
+> +++ b/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c
+> @@ -1462,7 +1462,7 @@ static int mtk_jpegenc_get_hw(struct mtk_jpeg_ctx *=
+ctx)
+> =C2=A0	int i;
+> =C2=A0
+> =C2=A0	spin_lock_irqsave(&jpeg->hw_lock, flags);
+> -	for (i =3D 0; i < MTK_JPEGENC_HW_MAX; i++) {
+> +	for (i =3D 0; i < jpeg->max_hw_count; i++) {
+> =C2=A0		comp_jpeg =3D jpeg->enc_hw_dev[i];
+> =C2=A0		if (comp_jpeg->hw_state =3D=3D MTK_JPEG_HW_IDLE) {
+> =C2=A0			hw_id =3D i;
+> @@ -1509,7 +1509,7 @@ static int mtk_jpegdec_get_hw(struct mtk_jpeg_ctx *=
+ctx)
+> =C2=A0	int i;
+> =C2=A0
+> =C2=A0	spin_lock_irqsave(&jpeg->hw_lock, flags);
+> -	for (i =3D 0; i < MTK_JPEGDEC_HW_MAX; i++) {
+> +	for (i =3D 0; i < jpeg->max_hw_count; i++) {
+> =C2=A0		comp_jpeg =3D jpeg->dec_hw_dev[i];
+> =C2=A0		if (comp_jpeg->hw_state =3D=3D MTK_JPEG_HW_IDLE) {
+> =C2=A0			hw_id =3D i;
+> @@ -1592,7 +1592,7 @@ static void mtk_jpegenc_worker(struct work_struct *=
+work)
+> =C2=A0		jpeg_work);
+> =C2=A0	struct mtk_jpeg_dev *jpeg =3D ctx->jpeg;
+> =C2=A0
+> -	for (i =3D 0; i < MTK_JPEGENC_HW_MAX; i++)
+> +	for (i =3D 0; i < jpeg->max_hw_count; i++)
+> =C2=A0		comp_jpeg[i] =3D jpeg->enc_hw_dev[i];
+> =C2=A0	i =3D 0;
+> =C2=A0
+> @@ -1687,7 +1687,7 @@ static void mtk_jpegdec_worker(struct work_struct *=
+work)
+> =C2=A0	struct mtk_jpeg_fb fb;
+> =C2=A0	unsigned long flags;
+> =C2=A0
+> -	for (i =3D 0; i < MTK_JPEGDEC_HW_MAX; i++)
+> +	for (i =3D 0; i < jpeg->max_hw_count; i++)
+> =C2=A0		comp_jpeg[i] =3D jpeg->dec_hw_dev[i];
+> =C2=A0	i =3D 0;
+> =C2=A0
+> diff --git a/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.h b/drive=
+rs/media/platform/mediatek/jpeg/mtk_jpeg_core.h
+> index 02ed0ed5b736..6be5cf30dea1 100644
+> --- a/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.h
+> +++ b/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.h
+> @@ -212,6 +212,7 @@ struct mtk_jpegdec_comp_dev {
+> =C2=A0 * @reg_decbase:	jpg decode register base addr
+> =C2=A0 * @dec_hw_dev:	jpg decode hardware device
+> =C2=A0 * @hw_index:		jpg hw index
+> + * @max_hw_count:	jpeg hw-core count
+> =C2=A0 */
+> =C2=A0struct mtk_jpeg_dev {
+> =C2=A0	struct mutex		lock;
+> @@ -234,6 +235,7 @@ struct mtk_jpeg_dev {
+> =C2=A0	void __iomem *reg_decbase[MTK_JPEGDEC_HW_MAX];
+> =C2=A0	struct mtk_jpegdec_comp_dev *dec_hw_dev[MTK_JPEGDEC_HW_MAX];
+> =C2=A0	atomic_t hw_index;
+> +	u32 max_hw_count;
+> =C2=A0};
+> =C2=A0
+> =C2=A0/**
+> diff --git a/drivers/media/platform/mediatek/jpeg/mtk_jpeg_dec_hw.c b/dri=
+vers/media/platform/mediatek/jpeg/mtk_jpeg_dec_hw.c
+> index 32372781daf5..4534caeb104f 100644
+> --- a/drivers/media/platform/mediatek/jpeg/mtk_jpeg_dec_hw.c
+> +++ b/drivers/media/platform/mediatek/jpeg/mtk_jpeg_dec_hw.c
+> @@ -664,6 +664,7 @@ static int mtk_jpegdec_hw_probe(struct platform_devic=
+e *pdev)
+> =C2=A0	master_dev->dec_hw_dev[i] =3D dev;
+> =C2=A0	master_dev->reg_decbase[i] =3D dev->reg_base;
+> =C2=A0	dev->master_dev =3D master_dev;
+> +	master_dev->max_hw_count++;
 
-> diff --git a/arch/arm64/boot/dts/st/stm32mp23xx-dhcos-bb.dts b/arch/arm64=
-/boot/dts/st/stm32mp23xx-dhcos-bb.dts
-> new file mode 100644
-> index 0000000000000..125c76fe3e7be
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/st/stm32mp23xx-dhcos-bb.dts
-> @@ -0,0 +1,15 @@
-[ ... ]
-> +#include "stm32mp235.dtsi"
-> +#include "stm32mp23xc.dtsi"
-> +#include "stm32mp23xx-dhcos-som.dtsi"
-> +
-> +/ {
-> +	model =3D "DH electronics STM32MP23xx DHCOS Breakout Board";
-> +	compatible =3D "dh,stm32mp231a-dhcos-bb", "dh,stm32mp231a-dhcos-som", "=
-st,stm32mp231";
+Just one question, can the mtk_jpegenc_worker() starts before all cores hav=
+e
+been probed ?
 
-[Severity: High]
-Does this compatible string mismatch the included DTSI?
+Nicolas
 
-This file includes stm32mp235.dtsi, which usually defines additional hardwa=
-re=20
-capabilities like secondary CPUs, but sets the root compatible to st,stm32m=
-p231.=20
-If the board physically has a single-core SoC, could the kernel attempt to=
-=20
-initialize non-existent hardware and fail?
+> =C2=A0
+> =C2=A0	platform_set_drvdata(pdev, dev);
+> =C2=A0	pm_runtime_enable(&pdev->dev);
+> diff --git a/drivers/media/platform/mediatek/jpeg/mtk_jpeg_enc_hw.c b/dri=
+vers/media/platform/mediatek/jpeg/mtk_jpeg_enc_hw.c
+> index b6f5b2249f1f..2765dafab4ad 100644
+> --- a/drivers/media/platform/mediatek/jpeg/mtk_jpeg_enc_hw.c
+> +++ b/drivers/media/platform/mediatek/jpeg/mtk_jpeg_enc_hw.c
+> @@ -386,6 +386,7 @@ static int mtk_jpegenc_hw_probe(struct platform_devic=
+e *pdev)
+> =C2=A0	master_dev->enc_hw_dev[i] =3D dev;
+> =C2=A0	master_dev->reg_encbase[i] =3D dev->reg_base;
+> =C2=A0	dev->master_dev =3D master_dev;
+> +	master_dev->max_hw_count++;
+> =C2=A0
+> =C2=A0	platform_set_drvdata(pdev, dev);
+> =C2=A0	pm_runtime_enable(&pdev->dev);
 
-> +};
+--=-SowlojmCUCUWFxgrmrfW
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+Content-Transfer-Encoding: 7bit
 
-> diff --git a/arch/arm64/boot/dts/st/stm32mp255c-dhcos-dhsbc.dts b/arch/ar=
-m64/boot/dts/st/stm32mp255c-dhcos-dhsbc.dts
-> new file mode 100644
-> index 0000000000000..1d750d2787d6f
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/st/stm32mp255c-dhcos-dhsbc.dts
-[ ... ]
-> +&spi1 {
-> +	pinctrl-names =3D "default", "sleep";
-> +	pinctrl-0 =3D <&spi1_pins_a>;
-> +	pinctrl-1 =3D <&spi1_sleep_pins_a>;
-> +	cs-gpios =3D <&gpioh 3 0>;
+-----BEGIN PGP SIGNATURE-----
 
-[Severity: High]
-Does this cs-gpios definition use the correct polarity?
+iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCalK49AAKCRDZQZRRKWBy
+9HWWAQDDsuWnz7IVhMvOVrf9+q+gNoZaKZHoJS1aycgNmMVL6wEAnR9zNR4HqAgV
+y7qMxsxMRmPkPjtDJs09kLp3SKauxAY=
+=nWlY
+-----END PGP SIGNATURE-----
 
-The value 0 (GPIO_ACTIVE_HIGH) is specified, but standard SPI devices,=20
-including the st33htpm-spi TPM attached below, typically require an active-=
-low=20
-chip select. Could this active-high polarity break communication with the T=
-PM?
-
-> +	status =3D "okay";
-> +
-> +	st33htph: tpm@0 {
-> +		compatible =3D "st,st33htpm-spi", "tcg,tpm_tis-spi";
-> +		reg =3D <0>;
-[ ... ]
-> +&spi8 {
-> +	pinctrl-names =3D "default", "sleep";
-> +	pinctrl-0 =3D <&spi8_pins_b>;
-> +	pinctrl-1 =3D <&spi8_sleep_pins_b>;
-> +	cs-gpios =3D <&gpioz 6 0>;
-
-[Severity: High]
-Is the chip select polarity correct here as well?
-
-This also specifies 0 (GPIO_ACTIVE_HIGH) for the SPI8 chip select.
-
-> +};
-
-> diff --git a/arch/arm64/boot/dts/st/stm32mp25xx-dhcos-bb.dts b/arch/arm64=
-/boot/dts/st/stm32mp25xx-dhcos-bb.dts
-> new file mode 100644
-> index 0000000000000..cf66e8e48c99a
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/st/stm32mp25xx-dhcos-bb.dts
-> @@ -0,0 +1,15 @@
-[ ... ]
-> +#include "stm32mp255.dtsi"
-> +#include "stm32mp25xc.dtsi"
-> +#include "stm32mp25xx-dhcos-som.dtsi"
-> +
-> +/ {
-> +	model =3D "DH electronics STM32MP25xx DHCOS Breakout Board";
-> +	compatible =3D "dh,stm32mp251a-dhcos-bb", "dh,stm32mp251a-dhcos-som", "=
-st,stm32mp251";
-
-[Severity: High]
-Does this compatible string mismatch the included DTSI?
-
-Similar to the mp23xx board, this includes stm32mp255.dtsi but declares the
-compatible string as st,stm32mp251.
-
-> +};
-
-> diff --git a/arch/arm64/boot/dts/st/stm32mp2xxx-dhcos-som.dtsi b/arch/arm=
-64/boot/dts/st/stm32mp2xxx-dhcos-som.dtsi
-> new file mode 100644
-> index 0000000000000..330c7c6768b6c
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/st/stm32mp2xxx-dhcos-som.dtsi
-> @@ -0,0 +1,442 @@
-> +// SPDX-License-Identifier: (GPL-2.0-only OR BSD-3-Clause)
-> +/*
-> + * Copyright (C) 2025-2026 Marek Vasut <marex@nabladev.com>
-> + */
-> +
-> +/ {
-> +	aliases {
-> +		mmc0 =3D &sdmmc2;
-> +		mmc1 =3D &sdmmc3;
-> +		serial0 =3D &usart6;
-> +		serial1 =3D &uart8;
-
-[Severity: Low]
-Does this create a dangling alias on STM32MP23xx platforms?
-
-Since this is a common DTSI file included by stm32mp23xx-dhcos-som.dtsi,=20
-assigning serial1 to uart8 might be problematic if uart8 does not exist on=
-=20
-STM32MP23xx SoCs.
-
-> +		eeprom0 =3D &eeprom0;
-> +		eeprom0wl =3D &eeprom0wl;
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260711210131.2360=
-25-1-marex@nabladev.com?part=3D9
+--=-SowlojmCUCUWFxgrmrfW--
 
