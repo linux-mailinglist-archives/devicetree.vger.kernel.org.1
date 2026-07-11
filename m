@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-324752-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-324753-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id HgFCNdbfUWp1JwMAu9opvQ
-	(envelope-from <devicetree+bounces-324752-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 11 Jul 2026 08:16:54 +0200
+	id hMIsFOjfUWp8JwMAu9opvQ
+	(envelope-from <devicetree+bounces-324753-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 11 Jul 2026 08:17:12 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E24374093C
-	for <lists+devicetree@lfdr.de>; Sat, 11 Jul 2026 08:16:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A925E740946
+	for <lists+devicetree@lfdr.de>; Sat, 11 Jul 2026 08:17:11 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=NbUG+UxP;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b="Or/8Li9+";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324752-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-324752-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324753-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-324753-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E32693013A63
-	for <lists+devicetree@lfdr.de>; Sat, 11 Jul 2026 06:16:52 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 64C1E3013AB7
+	for <lists+devicetree@lfdr.de>; Sat, 11 Jul 2026 06:17:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BBFA31F9A2;
-	Sat, 11 Jul 2026 06:16:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00D0B2E266C;
+	Sat, 11 Jul 2026 06:17:10 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A0062DB7B7;
-	Sat, 11 Jul 2026 06:16:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A94601F4C8E;
+	Sat, 11 Jul 2026 06:17:08 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783750612; cv=none; b=EkWXFRULwsz3VdvVDrP0WYlsdJx+I3Xy3iy4srrjquJuz6xPqz00w9ymTXdlSBnrTrok9E8ioeK+XQR1T9DsK5PrBjHnCAgS2pevdcIxDuBfFvXKL9BWs04i1/ocxfpu7GXlk4vefHW+j1wlfXzVPnUZO2kG3a1lNmewTNJZzgc=
+	t=1783750629; cv=none; b=qFkaKbRKB9j810ybA5M+5KA2TuLCAcDV0NOiFhbyx/qTKfTVn+8A+mFjesgDRo/3EVqtkWPDihFRMPuhPLk4q0Azay8JKOVb8kBkFwyB4m/hZ5sEaBxlO8BdQoKgAHJHhdQqGD5B1bBLreqV8sMgdjUxOMX/3LcXPspYxRWpVqM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783750612; c=relaxed/simple;
-	bh=To1IEqc+id3HKvZR8etQmOzS21D2SxPxQZdxkYdine4=;
+	s=arc-20240116; t=1783750629; c=relaxed/simple;
+	bh=uMVk/TUMoAAUfuUNzCUvQw9Qa3qnOStf8zI36gFiM38=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=Ow6+SLcTWe/uQUjBfYMIRtCPHDftiJoL/rfPbNLVZyiZ5V8PSLrC6H/+mtF8w/2oyXsPzqobrxkz5s1/eylqyGB/fPAvm9yloM/dbY2oTuanK8/51VUDO7kndLshvpeFrID41Skx+XDp0aE6rVd3SqfWcdTaaQUr2OQaqw4fAqs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NbUG+UxP; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 98C311F000E9;
-	Sat, 11 Jul 2026 06:16:50 +0000 (UTC)
+	 Message-Id; b=F+pU0UN5TRT6BiiH1cPSrDHeDngjlMiBpt0AsHeKsK3RBRXisjq0K8EZBhGCVyoKZvjg4hEWdW8aTsNoCicvrsR76wQWXnajhd3ydydxXqIjMVy16iLg9jQrnpRmBp3hfSYmVCMbefjqKru/ee585KmVEozYDFUbMMiqHpevYYo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Or/8Li9+; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E89BC1F000E9;
+	Sat, 11 Jul 2026 06:17:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783750611;
-	bh=bbRcXIdZQ0Qdx6AX/x2KCedJWmaRmvN6j2/QCo9a5Ao=;
+	s=k20260515; t=1783750628;
+	bh=UD7smZADEiY1VZwooZUtPRCUSB+BCbV0dxOF6bSATKc=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=NbUG+UxPg5Lzk6+2QVBiPqA1KI1HVH7v9P7tl635XqxisY95cDFcxyRR9Ez//G5T+
-	 D6dR7dOUCDV/f8aluQYDE8EhBe5PbLCdD/VHOG3vM1rvqgLymLaQLTLyPPP/HM5Fjq
-	 r0yD2EHrmWgK3CPDq8OgKWsbcjG2A/tMWqMD/aTTfAWCj3V40HeKgIdwrwMpeayPmo
-	 WLusjXAo92gPF4LkXtbAXW6gcZyvlok6DlYSfDGgYuX2s6jeFB+jD+91bceG0Jo3t8
-	 0nuO/gZTQ4NR1cbGopt59Vk0FXuLKN7kSz1e2eEXgtAWmaCYaixMCDRJ7j+fSNijI8
-	 nzkoQ7OqLKqGg==
+	b=Or/8Li9+El8vdoBQMs/6Pk8knhOrwolZ3kJZJ3kmiG6g4d4fgN7HlqbDLPMfqT55K
+	 cYSz3+pri6qBO5hNFeFr7wPGpnzeSUOO2KVaAAxIcKZD2k0t89TOO2FXAokFDRVubP
+	 l4BZ9FsS/rWFEV8ogKKtFPVyuNJiUY0lxd/FiJCSNIcz4M/9jLvSvjdzBjl235UsCX
+	 gnb/+jGOz2QDXgUAcxEhC/H9fKvfXPVdlHVqT2oRL0rIIE4g+bh7iDqGdKiC2+bJJk
+	 qHs7rvlZ7ewfvpBGD/D0rqgVLOUJ2uie5addub/3gJ1pVfMfgOVg3rLEmlPrLxhZiv
+	 AC/A0G/tq7xnA==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 02/16] regulator: twl: Expose the TWL4030's REGEN signal
- as a regulator
+Subject: Re: [PATCH 13/16] arm: dts: omap3pandora: create new DT node for
+ the sound card
 Reply-To: sashiko-reviews@lists.linux.dev
 To: "H. Nikolaus Schaller" <hns@goldelico.com>
-Cc: mfd@lists.linux.dev, lee@kernel.org, dri-devel@lists.freedesktop.org, robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <1746667e5c17e2d39fc0747d7e098b32b3d7b479.1783749722.git.hns@goldelico.com>
+Cc: devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org, mfd@lists.linux.dev, lee@kernel.org, conor+dt@kernel.org, robh@kernel.org
+In-Reply-To: <e21be70f6ac6691c4a42808693215ed2f58eace2.1783749722.git.hns@goldelico.com>
 References: <cover.1783749722.git.hns@goldelico.com>
- <1746667e5c17e2d39fc0747d7e098b32b3d7b479.1783749722.git.hns@goldelico.com>
+ <e21be70f6ac6691c4a42808693215ed2f58eace2.1783749722.git.hns@goldelico.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Sat, 11 Jul 2026 06:16:49 +0000
-Message-Id: <20260711061650.98C311F000E9@smtp.kernel.org>
+Date: Sat, 11 Jul 2026 06:17:07 +0000
+Message-Id: <20260711061707.E89BC1F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -79,11 +79,11 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-324752-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-324753-lists,devicetree=lfdr.de];
 	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:hns@goldelico.com,m:mfd@lists.linux.dev,m:lee@kernel.org,m:dri-devel@lists.freedesktop.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:hns@goldelico.com,m:devicetree@vger.kernel.org,m:dri-devel@lists.freedesktop.org,m:mfd@lists.linux.dev,m:lee@kernel.org,m:conor+dt@kernel.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
@@ -103,69 +103,171 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	MISSING_XM_UA(0.00)[];
 	FROM_NO_DN(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[smtp.kernel.org:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,sashiko.dev:url,lists.linux.dev:replyto,vger.kernel.org:from_smtp,riseup.net:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[smtp.kernel.org:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,lists.linux.dev:replyto,gmx.de:email,devicetree.org:url,vger.kernel.org:from_smtp,sashiko.dev:url]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 1E24374093C
+X-Rspamd-Queue-Id: A925E740946
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+Thank you for your contribution! Sashiko AI review found 4 potential issue(=
 s) to consider:
-- [Low] Unnecessarily strict DT property enforcement causes probe failure.
+- [High] Double decrement of sample_rate_users on hw_params error path.
+- [High] Using `IS_BUILTIN()` to change CPU and Platform component names br=
+eaks DAI linking for built-in driver initialization.
+- [Medium] Incorrect `$id` and `$schema` fields in the newly added audio DT=
+ bindings.
+- [Medium] The `ti,pcm1773` binding schema does not document necessary prop=
+erties and sets `additionalProperties: false`, causing DT validation failur=
+es.
 --
 
---- Patch [2]: [PATCH 02/16] regulator: twl: Expose the TWL4030's REGEN sig=
-nal as a regulator ---
-commit d13717da4f5b51bb52a516562b40db8ac7694aad
-Author: Grond <grond66@riseup.net>
+--- Patch [13]: [PATCH 13/16] arm: dts: omap3pandora: create new DT node fo=
+r the sound card ---
+commit 9dab89ea3f463775080f6924b99e5cea84e88df3
+Author: Stefan Leichter <sle85276@gmx.de>
 
-regulator: twl: Expose the TWL4030's REGEN signal as a regulator
+arm: dts: omap3pandora: create new DT node for the sound card
 
-This commit exposes the TWL4030 REGEN signal as a regulator. This functiona=
-lity
-is needed on some boards where REGEN is used to drive external regulators.
+This means that the sound card driver (snd-soc-omap3pandora) will get
+loaded by default. To make this work, we also add dac pcm1773-codec and
+widgets and routing as needed.
 
-> diff --git a/drivers/regulator/twl-regulator.c b/drivers/regulator/twl-re=
-gulator.c
-> index 5bacfcebf59aa..d883ee8abec32 100644
-> --- a/drivers/regulator/twl-regulator.c
-> +++ b/drivers/regulator/twl-regulator.c
+> diff --git a/Documentation/devicetree/bindings/sound/openpandora,omap3pan=
+dora-sound.yaml b/Documentation/devicetree/bindings/sound/openpandora,omap3=
+pandora-sound.yaml
+> new file mode 100644
+> index 0000000000000..d3c747e5c58d6
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/sound/openpandora,omap3pandora-so=
+und.yaml
+> @@ -0,0 +1,94 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org
+> +$schema: http://devicetree.org
+
+[Severity: Medium]
+Are these $id and $schema paths correct? The $id field breaks the schema
+cross-reference system if it doesn't include the full path, and could cause
+dt_binding_check to report misleading errors or skip validation.
 
 [ ... ]
 
-> @@ -615,6 +647,26 @@ static int twlreg_probe(struct platform_device *pdev)
->  	case TWL4030_REG_VINTANA2:
->  	case TWL4030_REG_VINTDIG:
->  		c->always_on =3D true;
-> +		break;
-> +	case TWL4030_REG_REGEN:
+> diff --git a/Documentation/devicetree/bindings/sound/pcm1773.yaml b/Docum=
+entation/devicetree/bindings/sound/pcm1773.yaml
+> new file mode 100644
+> index 0000000000000..f3e640705bf70
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/sound/pcm1773.yaml
+> @@ -0,0 +1,32 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/bindings/sound/pcm1773.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+
+[Severity: Medium]
+Should this $id field omit the extraneous bindings/ directory to match the
+standard path format?
 
 [ ... ]
 
-> +		info->desc.fixed_uV =3D c->min_uV;
+> +properties:
+> +  compatible:
+> +    const: ti,pcm1773
 > +
-> +		ret =3D of_property_read_u32(pdev->dev.of_node, "startup-delay-us",
-> +					   &info->desc.enable_time);
-> +		if (ret) {
-> +			dev_err(&pdev->dev, "no valid startup delay set in DT: %d\n", ret);
+> +required:
+> +  - compatible
+> +
+> +additionalProperties: false
+
+[Severity: Medium]
+Since additionalProperties is set to false but only the compatible string is
+documented, won't valid device tree nodes that use properties like
+vcc-supply, enable-gpio, status, and #sound-dai-cells fail validation?
+
+[ ... ]
+
+> diff --git a/sound/soc/ti/omap3pandora.c b/sound/soc/ti/omap3pandora.c
+> index 6c9c184cd9d6f..d3509473f5df0 100644
+> --- a/sound/soc/ti/omap3pandora.c
+> +++ b/sound/soc/ti/omap3pandora.c
+[ ... ]
+> +static int omap3pandora_playback_hw_params(struct snd_pcm_substream *sub=
+stream,
+> +					   struct snd_pcm_hw_params *params)
+> +{
+[ ... ]
+> +	if (!ctx->playback_stream) {
+> +		ctx->playback_stream =3D substream;
+> +		ret =3D grab_sample_rate(ctx, substream, params);
+> +		if (ret)
 > +			return ret;
-> +		}
+> +	}
 
-[Severity: Low]
-This isn't a bug, but does this code need to fail the probe if the
-startup-delay-us property is missing?
+[Severity: High]
+If grab_sample_rate() returns an error, it drops sample_rate_users back
+down, but ctx->playback_stream remains set to this substream.
 
-Since enable_time already defaults to 0 in the template structure, could th=
-is
-be treated as an optional property similar to standard fixed-regulator
-behavior, rather than strictly enforcing its presence and returning an erro=
-r?
+When this stream is subsequently closed, omap3pandora_playback_hw_free()
+will see ctx->playback_stream is set and call release_sample_rate() again.
 
+Will this result in a double decrement of sample_rate_users that could
+prematurely unlock constraints for an active stream?
+
+[ ... ]
+
+> +static int omap3pandora_capture_hw_params(struct snd_pcm_substream *subs=
+tream,
+> +					  struct snd_pcm_hw_params *params)
+> +{
+[ ... ]
+> +	if (!ctx->capture_stream) {
+> +		ctx->capture_stream =3D substream;
+> +		ret =3D grab_sample_rate(ctx, substream, params);
+> +		if (ret)
+> +			return ret;
+> +	}
+
+[Severity: High]
+Similarly, does this have the same double decrement issue if
+grab_sample_rate() fails, leaving ctx->capture_stream set for
+omap3pandora_capture_hw_free() to clean up later?
+
+[ ... ]
+
+> +#if IS_BUILTIN(CONFIG_SND_SOC_OMAP3_PANDORA)
+>  SND_SOC_DAILINK_DEFS(out,
+>  	DAILINK_COMP_ARRAY(COMP_CPU("omap-mcbsp.2")),
+> -	DAILINK_COMP_ARRAY(COMP_CODEC("twl4030-codec", "twl4030-hifi")),
+> +	DAILINK_COMP_ARRAY(COMP_CODEC("pcm1773-codec", "pcm1773-hifi")),
+>  	DAILINK_COMP_ARRAY(COMP_PLATFORM("omap-mcbsp.2")));
+> =20
+>  SND_SOC_DAILINK_DEFS(in,
+>  	DAILINK_COMP_ARRAY(COMP_CPU("omap-mcbsp.4")),
+>  	DAILINK_COMP_ARRAY(COMP_CODEC("twl4030-codec", "twl4030-hifi")),
+>  	DAILINK_COMP_ARRAY(COMP_PLATFORM("omap-mcbsp.4")));
+> +#else /* IS_BUILTIN(CONFIG_SND_SOC_OMAP3_PANDORA) */
+> +SND_SOC_DAILINK_DEFS(out,
+> +	DAILINK_COMP_ARRAY(COMP_CPU("49022000.mcbsp")),
+> +	DAILINK_COMP_ARRAY(COMP_CODEC("pcm1773-codec", "pcm1773-hifi")),
+> +	DAILINK_COMP_ARRAY(COMP_PLATFORM("49022000.mcbsp")));
 > +
-> +		break;
->  	default:
->  		break;
->  	}
+> +SND_SOC_DAILINK_DEFS(in,
+> +	DAILINK_COMP_ARRAY(COMP_CPU("49026000.mcbsp")),
+> +	DAILINK_COMP_ARRAY(COMP_CODEC("twl4030-codec", "twl4030-hifi")),
+> +	DAILINK_COMP_ARRAY(COMP_PLATFORM("49026000.mcbsp")));
+> +#endif /* IS_BUILTIN(CONFIG_SND_SOC_OMAP3_PANDORA) */
+
+[Severity: High]
+Does this IS_BUILTIN() check break DAI linking when the driver is built into
+the kernel?
+
+Since the McBSP devices are populated via the Device Tree and use unit
+addresses (like 49022000.mcbsp) regardless of the driver's compilation
+state, could ALSA fail to find omap-mcbsp.2 when probing the built-in
+driver?
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/cover.1783749722.gi=
-t.hns@goldelico.com?part=3D2
+t.hns@goldelico.com?part=3D13
 
