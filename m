@@ -1,160 +1,223 @@
-Return-Path: <devicetree+bounces-324863-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-324864-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 1722M615Umo+QQMAu9opvQ
-	(envelope-from <devicetree+bounces-324863-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 11 Jul 2026 19:13:17 +0200
+	id F0cFOEN6UmpJQQMAu9opvQ
+	(envelope-from <devicetree+bounces-324864-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 11 Jul 2026 19:15:47 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F7287425E6
-	for <lists+devicetree@lfdr.de>; Sat, 11 Jul 2026 19:13:17 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 333BA742601
+	for <lists+devicetree@lfdr.de>; Sat, 11 Jul 2026 19:15:47 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=TXuxx41b;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=cxKJN5qB;
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324863-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-324863-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324864-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-324864-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 1FBE33016BAE
-	for <lists+devicetree@lfdr.de>; Sat, 11 Jul 2026 17:13:16 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 70F4E3013682
+	for <lists+devicetree@lfdr.de>; Sat, 11 Jul 2026 17:14:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7FE03CAA52;
-	Sat, 11 Jul 2026 17:13:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 282BC3CC314;
+	Sat, 11 Jul 2026 17:14:34 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C141C255E43;
-	Sat, 11 Jul 2026 17:13:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E536D3CAA52
+	for <devicetree@vger.kernel.org>; Sat, 11 Jul 2026 17:14:32 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783789992; cv=none; b=JVrPGHzGhAdYWkASePBoeeO9DSM8ZMHULgM573q6Gfmzln1JaTRO60+JTJ4Xse+y4Uyui2/iNh3SiEBH5NM8DLekTnFyOAYY+G0B99diDSQPiaiQb8us4gig4hrtkbPa4s6fQcQ2or88Y8y24IgLv+eXXEMQeVqFqxRPEP+KST8=
+	t=1783790074; cv=none; b=sbxdZRV87ekjzIErVtcZsfXKEoI/QLV4M8Yr8NQcVtl4iwHUAKmh6vprbLT98Nce5zWAKHHcdmyrR4ZE4Q64vfyGbPo+Hj7pY3DGmCco/+tss9YXPlniDsTBfo6ezLMV3gpXc7rfz4ImRDM4R/Elop34nsm99O4vdemvEDC9P84=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783789992; c=relaxed/simple;
-	bh=dUGVzjsWPMYjciRFNvVCmxbi5ProNzFrf8m0/AealFs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Ij/OZN0Bln015jiAHphW1+NLrHUwlI7QUWbkpAYN3Ybir7gFmih/eoWXtqCTrsDbAWXj1KD/hgKB31P+hrGHISSbVKC7xfOqp1/qQQFfgFl3WUo0Hw0EEDXr52k9uZSkxyxdZ/UXjob8MpCBLKl/EdC6D4NmsMkM23CE8QA4ExY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TXuxx41b; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C48AB1F000E9;
-	Sat, 11 Jul 2026 17:13:09 +0000 (UTC)
+	s=arc-20240116; t=1783790074; c=relaxed/simple;
+	bh=fV/n2Djoj48Pj22BodXIAAYSOy8lEdhA+K6p4gtHoHc=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=Sh3/k6etCSy5Nz33DHWmAIqaoymnlIIOK6cv8qVUMJ6OZ68EiqmuBxe+NYkLmrJMhIkQtOfcA/xVQKl+bC5eRdepQZKqkIRsxoPdSNQRXcpuXuiHMJV5gOfQW6tKgKz2ih+xfCkt+i3ZSyWM7UXen4hPx3GwMZt/KZokNoGtE2Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cxKJN5qB; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 670041F000E9;
+	Sat, 11 Jul 2026 17:14:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783789991;
-	bh=l1dWx3uS7E3Egkf9EcvQ1+n2SBdIse+VJNTtCKAeaDY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=TXuxx41bpY0aBm/FUCTAaiE45R+HUO3ocWn4AI0LYU0+IjiGSG4jZhvlSZ78tNqSx
-	 T/qKRijmm5gaTH3ee/w7dUANG7wkO/LuaLhgG7GEU3S3iAT/w5/dj/WAuwtHlTp63L
-	 Dtp4c98TeXf5ade6M08duX/EY4sB8hI69aad9CYkuVSvTHfWZf9FlEcGFeGs5Tb5Le
-	 bn0rxkc+Dz3vVgiQlduQ9x8UsZLg/xyjUcLbwKdjQ6LmAum47wyIx0Lj//vdfeAOcY
-	 IU6OHFxI8VPRQUSsqV+1dkN+bgcbxWrGdSoF6YLAJgdKKHRQiy3gSRRXG8CJ6aaIdF
-	 pBE1a9DjLRjRg==
-Date: Sat, 11 Jul 2026 19:13:06 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Mattijs Korpershoek <mkorpershoek@kernel.org>
-Cc: Vinod Koul <vkoul@kernel.org>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Maxime Ripard <mripard@kernel.org>, linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: phy: qcom,sc8280xp-qmp-usb3-uni: Add
- SA8255P USB PHY
-Message-ID: <20260711-infallible-mottled-waxbill-beae3c@quoll>
-References: <20260709-phy-qcom-qmp-usb-8255-v2-0-3b6c26a45788@kernel.org>
- <20260709-phy-qcom-qmp-usb-8255-v2-1-3b6c26a45788@kernel.org>
+	s=k20260515; t=1783790072;
+	bh=hvnalrBrz7i25/1/ePJ4MowKK0ECNIieiQuBXigipO8=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=cxKJN5qB9qc0seAXVGKftyhVjq8t9PchyYuu4c/VnQ7TEXm6aGqfMbh4l4ef7ve5X
+	 wb5XFVgk3HCCu39hRDBgdgdayj9G7t+aLFJuN1kEVcLef0xWo35oNozoAMLt4wRISo
+	 tKn4AbTuCwU/6UfJWA7ZvfHrb/WfpHt9VZM99QNCu/3cn63XiRSo721hNYTvFEoDam
+	 /ch1f7HlE7Qy1fu8qIXxFSSZeLnSqewlP+duz3DKNfHJ2rTPGiAh9wjYhnRKz/Nmps
+	 ygwVR/zfUjc2Zf7laECH3yYUpgdZKg4CstK9a4bxrqeeKWBQssmTkIqBr0sJpJgrRV
+	 lqgdsvHo/D6Pw==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v4 4/6] phy: cpcap-usb: add extcon support
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Ivaylo Dimitrov" <ivo.g.dimitrov.75@gmail.com>
+Cc: olteanv@gmail.com, linux-phy@lists.infradead.org, conor+dt@kernel.org, vkoul@kernel.org, robh@kernel.org, devicetree@vger.kernel.org, neil.armstrong@linaro.org
+In-Reply-To: <20260711164754.185565-5-ivo.g.dimitrov.75@gmail.com>
+References: <20260711164754.185565-1-ivo.g.dimitrov.75@gmail.com>
+ <20260711164754.185565-5-ivo.g.dimitrov.75@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Sat, 11 Jul 2026 17:14:31 +0000
+Message-Id: <20260711171432.670041F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20260709-phy-qcom-qmp-usb-8255-v2-1-3b6c26a45788@kernel.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.16 / 15.00];
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-324863-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:mkorpershoek@kernel.org,m:vkoul@kernel.org,m:neil.armstrong@linaro.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:mripard@kernel.org,m:linux-arm-msm@vger.kernel.org,m:linux-phy@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-324864-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:ivo.g.dimitrov.75@gmail.com,m:olteanv@gmail.com,m:linux-phy@lists.infradead.org,m:conor+dt@kernel.org,m:vkoul@kernel.org,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:neil.armstrong@linaro.org,m:ivogdimitrov75@gmail.com,m:conor@kernel.org,s:lists@lfdr.de];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FREEMAIL_CC(0.00)[gmail.com,lists.infradead.org,kernel.org,vger.kernel.org,linaro.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,lists.linux.dev:replyto,vger.kernel.org:from_smtp,sashiko.dev:url,smtp.kernel.org:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 2F7287425E6
+X-Rspamd-Queue-Id: 333BA742601
 
-On Thu, Jul 09, 2026 at 04:52:09PM +0200, Mattijs Korpershoek wrote:
-> diff --git a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb3-uni-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb3-uni-phy.yaml
-> index 01342823e57f..80b04b7f7584 100644
-> --- a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb3-uni-phy.yaml
-> +++ b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb3-uni-phy.yaml
-> @@ -26,6 +26,7 @@ properties:
->                - qcom,msm8996-qmp-usb3-phy
->                - qcom,qcs8300-qmp-usb3-uni-phy
->                - qcom,qdu1000-qmp-usb3-uni-phy
-> +              - qcom,sa8255p-qmp-usb3-uni-phy
->                - qcom,sa8775p-qmp-usb3-uni-phy
->                - qcom,sc8180x-qmp-usb3-uni-phy
->                - qcom,sc8280xp-qmp-usb3-uni-phy
-> @@ -54,7 +55,13 @@ properties:
->      maxItems: 5
->  
->    power-domains:
-> -    maxItems: 1
-> +    minItems: 1
-> +    maxItems: 2
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
+s) to consider:
+
+New issues:
+- [Medium] The ordering of extcon state updates exposes invalid intermediat=
+e cable states to userspace.
+
+Pre-existing issues:
+- [High] Pre-existing UAF: Delayed work can be re-armed after cancel_delaye=
+d_work_sync() during driver removal due to an IRQ thread race.
+--
+
+--- Patch [4]: [PATCH v4 4/6] phy: cpcap-usb: add extcon support ---
+commit 5fa6aab542d92a2c79fbe5195a861859976507b6
+Author: Ivaylo Dimitrov <ivo.g.dimitrov.75@gmail.com>
+
+phy: cpcap-usb: add extcon support
+
+This commit registers an Extcon device and reports the detected USB cable
+state. It exports this state through the Extcon framework so other drivers
+can consume it using standard kernel interfaces.
+
+> diff --git a/drivers/phy/motorola/phy-cpcap-usb.c b/drivers/phy/motorola/=
+phy-cpcap-usb.c
+> index d4eb8086b6000..8f9bea1d8a212 100644
+> --- a/drivers/phy/motorola/phy-cpcap-usb.c
+> +++ b/drivers/phy/motorola/phy-cpcap-usb.c
+[ ... ]
+> @@ -226,6 +239,46 @@ static void cpcap_usb_try_musb_mailbox(struct cpcap_=
+phy_ddata *ddata,
+>  		__func__, error);
+>  }
+> =20
+> +static void cpcap_usb_set_extcon(struct cpcap_phy_ddata *ddata)
+> +{
+> +	int cable;
 > +
-> +  power-domain-names:
-> +    items:
-> +      - const: usb_transfer
-> +      - const: usb_core
+> +	switch (ddata->mode) {
+[ ... ]
+> +	if (cable =3D=3D ddata->cable)
+> +		return;
+> +
+> +	if (ddata->cable =3D=3D EXTCON_CHG_USB_SDP)
+> +		extcon_set_state_sync(ddata->edev, EXTCON_USB, false);
+> +	else if (cable =3D=3D EXTCON_CHG_USB_SDP)
+> +		extcon_set_state_sync(ddata->edev, EXTCON_USB, true);
+> +
+> +	if (ddata->cable !=3D EXTCON_NONE)
+> +		extcon_set_state_sync(ddata->edev, ddata->cable, false);
 
-usb_ feels redundant, since this is USB phy.
+[Severity: Medium]
+Could this ordering expose invalid intermediate cable states to userspace?
 
->  
->    resets:
->      maxItems: 2
-> @@ -82,14 +89,6 @@ properties:
->  required:
->    - compatible
->    - reg
-> -  - clocks
-> -  - clock-names
-> -  - resets
-> -  - reset-names
-> -  - vdda-phy-supply
-> -  - vdda-pll-supply
-> -  - "#clock-cells"
-> -  - clock-output-names
->    - "#phy-cells"
+When transitioning to a new cable state (specifically EXTCON_CHG_USB_SDP),
+the new state's associated EXTCON_USB state is enabled before the old
+ddata->cable state is cleared.
 
-Just like in all other saXXXX cases, same review: move to a separate
-binding file.
+Because extcon_set_state_sync() immediately notifies consumers and emits a
+uevent, consumers might briefly observe overlapping, mutually exclusive
+states (such as both DCP and SDP active simultaneously).
 
-Best regards,
-Krzysztof
+Would it be safer to completely clear the old states before asserting any
+new states?
 
+> +
+> +	if (cable !=3D EXTCON_NONE)
+> +		extcon_set_state_sync(ddata->edev, cable, true);
+> +
+> +	ddata->cable =3D cable;
+> +}
+[ ... ]
+
+
+[Severity: High]
+This is a pre-existing issue, but I noticed a potential use-after-free race
+involving the delayed work during driver unbind. Does this execution sequen=
+ce
+leave the work queued after removal?
+
+If the IRQ thread checks ddata->active and gets preempted before calling
+schedule_delayed_work():
+
+cpcap_phy_irq_thread() {
+    ...
+    if (atomic_read(&ddata->active))
+        ... <preempted here> ...
+
+cpcap_usb_phy_remove() can concurrently set active to 0 and call
+cancel_delayed_work_sync(). Since the work isn't queued yet, the
+cancellation completes immediately:
+
+cpcap_usb_phy_remove() {
+    ...
+    atomic_set(&ddata->active, 0);
+    cancel_delayed_work_sync(&ddata->detect_work);
+    ...
+
+During devres cleanup, free_irq() waits for the IRQ thread to finish.
+The thread then resumes, unconditionally calls schedule_delayed_work(),
+and exits:
+
+        schedule_delayed_work(&ddata->detect_work, msecs_to_jiffies(1));
+}
+
+After free_irq() completes, devres frees ddata. The delayed work will
+subsequently execute and access the freed memory.
+
+Could this be prevented by disabling IRQs prior to cancelling the work?
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260711164754.1855=
+65-1-ivo.g.dimitrov.75@gmail.com?part=3D4
 
