@@ -1,362 +1,177 @@
-Return-Path: <devicetree+bounces-325118-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-325121-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 7JeJK+/pU2qygAMAu9opvQ
-	(envelope-from <devicetree+bounces-325118-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 12 Jul 2026 21:24:31 +0200
+	id GU9BITn2U2qzgQMAu9opvQ
+	(envelope-from <devicetree+bounces-325121-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 12 Jul 2026 22:16:57 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0812C745BD1
-	for <lists+devicetree@lfdr.de>; Sun, 12 Jul 2026 21:24:31 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id C8131745CE1
+	for <lists+devicetree@lfdr.de>; Sun, 12 Jul 2026 22:16:56 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=Iqp0KSOP;
-	dmarc=pass (policy=none) header.from=gmail.com;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-325118-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-325118-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=tenstorrent.com header.s=google header.b=WiNtvB6V;
+	dmarc=pass (policy=reject) header.from=tenstorrent.com;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-325121-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-325121-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A74BF302C5FE
-	for <lists+devicetree@lfdr.de>; Sun, 12 Jul 2026 19:23:17 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 4C7E2300CBF1
+	for <lists+devicetree@lfdr.de>; Sun, 12 Jul 2026 20:16:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 382763B47FF;
-	Sun, 12 Jul 2026 19:23:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61C343B2FF7;
+	Sun, 12 Jul 2026 20:16:48 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
+Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com [209.85.128.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C43C93B4432
-	for <devicetree@vger.kernel.org>; Sun, 12 Jul 2026 19:23:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 931BA242D84
+	for <devicetree@vger.kernel.org>; Sun, 12 Jul 2026 20:16:45 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783884195; cv=none; b=RMANpisgnoieQDzxvuvP/qlO/ArsxkTD83tw7mhUyvf7jcLyMjg2UkSxqRULp1uOrQmLUEY6JNaD0xMJCldrhsuentaMKTriULYYHlFLHPC6K8tGP4jNVhQ8yncfsvYzW4g4HdAtINiJ79bjoig9mrUoFhhlbc6HlJKu45iv4ro=
+	t=1783887408; cv=none; b=ZvtNF6Mw5Cdozff+1DrnOfGOLfBnOIOFGM9JI3Ja0c2NXwPpR0gI9sJiR3va6jQqcJTTFA3qLGCkgRSFh/tJc4Lua+fmfk91r9eeWAbd9zX4iaGqbwNiDgUTyYWhkopGfSs0LiQTPMcpchkPTbV5dN3qWonKPl1pf8PSGTVHgko=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783884195; c=relaxed/simple;
-	bh=kvonpFLppWt3EG2ku5zOStCczhkU6e3nySZRO6n1Cy8=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=o9FqQAxBJSFiDH8JmDS4czwfHs0bpqRRX0F+DGit+bMey9hsx9v5DCHKZHkcaqWnBllg9l86nAcEI0rG/7bLbhE3teHqjssLfBRk9D3ztssavBUcBuA4WT+yBSgeb4kUyCBOvTi+utj4oNF9IVdVF4eMjwf1RdlEyci5N4pKQXQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Iqp0KSOP; arc=none smtp.client-ip=209.85.221.44
-Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-470174001a0so1419355f8f.0
-        for <devicetree@vger.kernel.org>; Sun, 12 Jul 2026 12:23:12 -0700 (PDT)
+	s=arc-20240116; t=1783887408; c=relaxed/simple;
+	bh=3QLR3KK8Id6mI23Kry/sbc3hYjkLOFnlNehgggqEwkk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=aiC+ZQIIBrx4aayB/XcZUaLDB1OioRcJUXswYiZ5srdOnw/4QttImEZvmbaOATbBC2qe0sp8FmkwWD1ESMwVJBwu5DXh0YosMgrLj8oYnV7zPSlhb/135SiEGQslOySaDLcVNNcen+vSH98W7U+xOBVgISoe6MFrBSgAM9b3l4E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.tenstorrent.com; spf=pass smtp.mailfrom=tenstorrent.com; dkim=pass (2048-bit key) header.d=tenstorrent.com header.i=@tenstorrent.com header.b=WiNtvB6V; arc=none smtp.client-ip=209.85.128.181
+Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-81e86df8987so24107237b3.3
+        for <devicetree@vger.kernel.org>; Sun, 12 Jul 2026 13:16:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1783884191; x=1784488991; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=kmkCfCVcJf/e74Vwsd4fyP9kYyWZyTGmNUWtIAly0aI=;
-        b=Iqp0KSOPxa9MG3uC20tdnGedmZUyIfmshsvhc0Os65sZoG9UQqI/0rNaIgnI9e1ubJ
-         7TegHru5ljgUifOdMwUySPHBSajfY67rhcLUvx+orCkVxHG9eF4sqNmWhcE1b3cI3EWX
-         PKQBKPHUFe7fjW+nbM/Ru9/tyGHrb3ArE5mnaq0L9kJdCGYWNbBRclTrqv93qYz+NkDa
-         KMLQlvFCk/qZzGn9U4WDpf645g7a7wwJQEFkWvauVtSQJb2hLhAd/DdM262d7m/EafVK
-         Vd4KNca4HRdXj1Y60lAfrCuyuV/8F6RFYVyrC1MQlZJ0B6V0F6Xy8hh5cdbq961LibLb
-         CieQ==
+        d=tenstorrent.com; s=google; t=1783887404; x=1784492204; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:from:date:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=Sexe2OJDiMkFGhURClJc1NsMoa58P5WaL0Byl520pbw=;
+        b=WiNtvB6VOqUyBMNBFIfKB7RbXWlRSxzqtOwrhRon4lL7K8XxCApY+/SJ7ba0nxDLIC
+         lozPBy/7nEqv41IuNdpht84WFu1S0SmgtopoWXtdShRV8szRnwKzHBNmVglVU7K5ODnv
+         7CKt41No6cvWST0+1ZMlYjoy0auu+FWQVuYwlIHHkDlaBMfNQeNnYGiOWI1uMxieKrrq
+         oFbyRt4MWZ5tpi8WVK1RWbYJHGCYwhflkKImif7K5Ez8TazAE/7L6Azb4RObxD947/nn
+         GUnBSZ8ldoXcQLTNyufvy5bX4/Xsc7p6cwgKp1l6RUtUmnqHxzbvdL/QTSE3P2iupsY+
+         NSMw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783884191; x=1784488991;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=kmkCfCVcJf/e74Vwsd4fyP9kYyWZyTGmNUWtIAly0aI=;
-        b=FhMvETe8qpoXnXKbtR4M0erJmxBdHZOrgkWRAkO8RhMezGfBugdg4S4QBU9AWboDIh
-         Nuko0AfIMh0u5NkOGeFoxiTS1gQbeG/qM5zjXEgX4dCFkrKsTIYXh5+/14RzYPCwOSPM
-         lugRXZLMa4h1W5oWO0ULCQQ/za7ggXoFF+KwAgYYi5OqVWORHOuatDng1cJO7fiacs0a
-         GJJXpBkP258d7e1GYDrTO6jsD6nX6RbfNWgVyk5oOhP1hkodzJdfNPMKOJZn1Ia8TdAA
-         sOXmC+7+l1SV9fdptEymdA9aI8T6+IkYdR0AX756qyHrUzIRzjCgVRIJNqjxMTjEzCao
-         iIUw==
-X-Forwarded-Encrypted: i=1; AHgh+RoGRwosfG+RO8hhDUJj6WZDoX74gXGlxitFci7sj0tHx4YIfzlM8I1KJtZvoShAOlhrRcyng50EDKOs@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxb9rUryIj47V2KWhqlNBujacPif/4fd5B0xYRYPEz2IPWPYXyW
-	Gibq3x0pOdUG1P1H5Br4c2ivYf3J6oigNg/KZDOCQ8wEoMDNgi4kgxnF
-X-Gm-Gg: AfdE7cmHhQx88J3sGIMJGCfoynHhiZMqfM5v7hcjXdmCd4URNXkVUaCxyTJkKsV972w
-	haREWNKK1ZH7a5vX1UVz8zgvZDLqKA4p5iWls1LD6wJdFO/wQEG/NnClHW0uUojyvaVhjDtUku+
-	ZQWolAELFeywAfNbXUhiXLDLOigEpsrOHMPXMwgTzJqkP/i6ODxVd4I5wuMAh7btgo2fwmL6SZt
-	0JYdVRHUUZV922KtbJYgz9KGBv0QZux2ELZcNd1GX3Yoexh/MJNKxa3m6pI9+4q/I+OjufI5lVW
-	6eSXm++/vd6WYouLhWE3D6+OScwcFC8F5PmrSCv84H2+eIbgCmmIRWfR8CFZKxu77uEHXL/ZWXp
-	49ZozitrkKXz2D89UlwzIgRAUlRjtFH9jYNAUxNoGVF6Z4jFgioaDxj8PVBPIOtjjeZ3TU9+vn/
-	AGp0hZxvRQ79TvNJA=
-X-Received: by 2002:a05:6000:2011:b0:470:2fb1:3dca with SMTP id ffacd0b85a97d-47f2dcd7487mr7314225f8f.30.1783884191172;
-        Sun, 12 Jul 2026 12:23:11 -0700 (PDT)
-Received: from builder ([2001:9e8:f120:f516:be24:11ff:fe30:5d85])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-47df6a31dd5sm34883190f8f.16.2026.07.12.12.23.10
+        d=1e100.net; s=20251104; t=1783887404; x=1784492204;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:from:date:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=Sexe2OJDiMkFGhURClJc1NsMoa58P5WaL0Byl520pbw=;
+        b=i8H0K02Zn35kHrF8dRIt9vATs7I3mzZ3AocZL1h7OYH17YWWNZHZg2YPYPtZkCJoUr
+         ZvURwJ54hK1SxlFwIw6cWT/uY3OuMUH1ktsx6xzocyHcPu0xnxm9efRwt5UxqguVc4C9
+         3b/sqrC+t2fLDYWZG4Zlh2Yy4xG77Itg77bbY/GueubIj+9l9q9XTh48IKCyGjGgMVk9
+         vlPy3k5xOPUrGE82R37aQ87pZiJy2oIKG9kAye5z14K1Rp+fJpYlXyeN9rNthWUDwS0+
+         iNJ9yud+F3Pmx+CEg4Ikk0MbDF6A2sWDXWDpDV7eWoF6mr8b+ARE9bA9gIR2XAj0W5TB
+         RiTA==
+X-Forwarded-Encrypted: i=1; AHgh+Rpl9EyMdY1JyFGu321UWyBRSI71uFENF02AXmnNjSRqz/JCw3BJE4dOGku7ACFEWvIjf7CUE5Mc3fq3@vger.kernel.org
+X-Gm-Message-State: AOJu0Yztv2xhljsOGXfNFa8lhi9DocMAgKyR70NLiFhGOvFKfTbzN8NC
+	12MAeul0CxoB/Ra5QyE/Mm+AewhKlIFPpiRDIMTvwB2P7UsuYrIVKsZhMNeG0kZqYz0=
+X-Gm-Gg: AfdE7ckJEpzyT0jSeYWH5h9mMNvnef+gwq426z7ZU7Lu3h/ESCoX3Y1zJNM3IIOAG1u
+	kpe4LhD2BWuGdII+EWErwoUjnkZsLcOHnBGPSvEOorR152zACRhheiqykGxQjG+ovPcZuqJU+Ry
+	G5DuiRaQ3CbzkyP9bgqIUbEWE0BAgOlSbxUTtmqdO4SFfYp8FWZINxhAz5crOaGhnj4CRECKf4r
+	WcbEd0/il5AiNhFJBDQml/tJhDHXKTa4AIyGi4xtGDsPD/qDh/57b6ICiuNJ0N3nFqVT4PYzmIe
+	XBFvqPaKNzb95TzexVAMXabT+zo8N6NcGTRrGGysB7lj3SPceo7nsoFtPdObIaEInB8BuyCE8vV
+	G53cEBlEdDoJDZeBbSd9IYm0jWCsKgaPMn7QWHCVBAQ3p69KBJ97vjwR99ockVSttHX68PfL90X
+	SOb/33r7HnCFSGbjCV1OsMj6Eu37a6pNsyaSHrWAFyjHlwlrqqvyRNTenhWhklMMjtMEAW
+X-Received: by 2002:a05:690c:250a:b0:81e:68a2:89d5 with SMTP id 00721157ae682-81e901b3d89mr51627807b3.55.1783887404652;
+        Sun, 12 Jul 2026 13:16:44 -0700 (PDT)
+Received: from toolbox ([2600:1700:220:59e0:5e9b:73c6:ee82:165e])
+        by smtp.gmail.com with ESMTPSA id 00721157ae682-81e6c1f11bbsm98699367b3.35.2026.07.12.13.16.42
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 12 Jul 2026 12:23:10 -0700 (PDT)
-From: Jonas Jelonek <jelonek.jonas@gmail.com>
-To: Oleksij Rempel <o.rempel@pengutronix.de>,
-	Kory Maincent <kory.maincent@bootlin.com>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S . Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: netdev@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Daniel Golle <daniel@makrotopia.org>,
-	=?UTF-8?q?Bj=C3=B8rn=20Mork?= <bjorn@mork.no>,
-	Jonas Jelonek <jelonek.jonas@gmail.com>
-Subject: [PATCH net-next v7 4/4] net: pse-pd: realtek-pse-mcu: add UART transport
-Date: Sun, 12 Jul 2026 19:22:50 +0000
-Message-ID: <20260712192251.1413279-5-jelonek.jonas@gmail.com>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260712192251.1413279-1-jelonek.jonas@gmail.com>
-References: <20260712192251.1413279-1-jelonek.jonas@gmail.com>
+        Sun, 12 Jul 2026 13:16:43 -0700 (PDT)
+Date: Sun, 12 Jul 2026 15:16:40 -0500
+From: Anirudh Srinivasan <asrinivasan@oss.tenstorrent.com>
+To: Yixun Lan <dlan@kernel.org>
+Cc: Alim Akhtar <alim.akhtar@samsung.com>, 
+	Avri Altman <avri.altman@sandisk.com>, Bart Van Assche <bvanassche@acm.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, "James E.J. Bottomley" <James.Bottomley@hansenpartnership.com>, 
+	"Martin K. Petersen" <martin.petersen@oracle.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
+	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, linux-scsi@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, spacemit@lists.linux.dev, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/3] scsi: ufs: spacemit: k3: Add UFS Host Controller
+ driver
+Message-ID: <7x3b4sttnc4oxkuvxmpkihfi76lkapjcigo7khgcgfytvol7w2@v5ykuyrk2z3m>
+References: <20260702-08-k3-ufs-support-v1-0-1a64a3ab128f@kernel.org>
+ <20260702-08-k3-ufs-support-v1-2-1a64a3ab128f@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260702-08-k3-ufs-support-v1-2-1a64a3ab128f@kernel.org>
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[tenstorrent.com,reject];
+	R_DKIM_ALLOW(-0.20)[tenstorrent.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	TAGGED_FROM(0.00)[bounces-325118-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[16];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:o.rempel@pengutronix.de,m:kory.maincent@bootlin.com,m:andrew+netdev@lunn.ch,m:davem@davemloft.net,m:edumazet@google.com,m:kuba@kernel.org,m:pabeni@redhat.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:netdev@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:daniel@makrotopia.org,m:bjorn@mork.no,m:jelonek.jonas@gmail.com,m:andrew@lunn.ch,m:krzk@kernel.org,m:conor@kernel.org,m:jelonekjonas@gmail.com,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-325121-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	FORGED_SENDER(0.00)[asrinivasan@oss.tenstorrent.com,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER(0.00)[jelonekjonas@gmail.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[vger.kernel.org,makrotopia.org,mork.no,gmail.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FORGED_RECIPIENTS(0.00)[m:dlan@kernel.org,m:alim.akhtar@samsung.com,m:avri.altman@sandisk.com,m:bvanassche@acm.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:James.Bottomley@hansenpartnership.com,m:martin.petersen@oracle.com,m:p.zabel@pengutronix.de,m:pjw@kernel.org,m:palmer@dabbelt.com,m:aou@eecs.berkeley.edu,m:alex@ghiti.fr,m:linux-scsi@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-riscv@lists.infradead.org,m:spacemit@lists.linux.dev,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jelonekjonas@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	FROM_NEQ_ENVFROM(0.00)[asrinivasan@oss.tenstorrent.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[tenstorrent.com:+];
 	ALIAS_RESOLVED(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[v5ykuyrk2z3m:mid,tenstorrent.com:dkim,oss.tenstorrent.com:from_mime,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 0812C745BD1
+X-Rspamd-Queue-Id: C8131745CE1
 
-Add the serdev (UART) transport for the Realtek PSE MCU core. It registers
-the MCU as a serdev device and provides the send/recv callbacks the core
-uses to exchange the 12-byte frames, receiving asynchronously via the
-serdev receive_buf callback.
+On Thu, Jul 02, 2026 at 02:31:36AM +0000, Yixun Lan wrote:
+> SpacemiT K3 SoC consist of UFS (Universal Flash Storage) Host Controller
+> which has features compatible with JEDEC UFS 2.2, MIPI UniPro v1.61 and
+> M-PHY v3.0 standard.
+> 
+> Signed-off-by: Yixun Lan <dlan@kernel.org>
+> ---
+>  drivers/ufs/host/Kconfig        |  12 +
+>  drivers/ufs/host/Makefile       |   1 +
+>  drivers/ufs/host/ufs-spacemit.c | 931 ++++++++++++++++++++++++++++++++++++++++
+>  drivers/ufs/host/ufs-spacemit.h |  90 ++++
+>  4 files changed, 1034 insertions(+)
+> 
+> diff --git a/drivers/ufs/host/Kconfig b/drivers/ufs/host/Kconfig
+> index ff170c0b6da0..4f53b7f7688f 100644
+> --- a/drivers/ufs/host/Kconfig
+> +++ b/drivers/ufs/host/Kconfig
+> @@ -132,6 +132,18 @@ config SCSI_UFS_VARIABLE_SG_ENTRY_SIZE
+>  	bool
+>  	default y if SCSI_UFS_EXYNOS && SCSI_UFS_CRYPTO
+>  
+> +config SCSI_UFS_SPACEMIT
+> +	tristate "SpacemiT UFS controller driver"
+> +	depends on SCSI_UFSHCD_PLATFORM && ARCH_SPACEMIT
 
-The baud rate defaults to 19200 and can be overridden per board with the
-"current-speed" property.
+Can you add SCSI_UFSHCD_PLATFORM and SCSI_UFS_SPACEMIT as modules to
+riscv defconfig (or just add the former and add a default y if
+ARCH_SPACEMIT in this Kconfig entry). This will let defconfig kernels
+to boot with persistant rootfs on these devices.
 
-Signed-off-by: Jonas Jelonek <jelonek.jonas@gmail.com>
----
- drivers/net/pse-pd/Kconfig                |  11 ++
- drivers/net/pse-pd/Makefile               |   1 +
- drivers/net/pse-pd/realtek-pse-mcu-uart.c | 155 ++++++++++++++++++++++
- 3 files changed, 167 insertions(+)
- create mode 100644 drivers/net/pse-pd/realtek-pse-mcu-uart.c
-
-diff --git a/drivers/net/pse-pd/Kconfig b/drivers/net/pse-pd/Kconfig
-index 6d14c8832e8b..a0f2ae668c67 100644
---- a/drivers/net/pse-pd/Kconfig
-+++ b/drivers/net/pse-pd/Kconfig
-@@ -30,6 +30,17 @@ config PSE_REALTEK_MCU_I2C
- 	  PSE silicon is not accessed directly. To compile this driver as a
- 	  module, choose M here: the module will be called realtek-pse-mcu-i2c.
- 
-+config PSE_REALTEK_MCU_UART
-+	tristate "Realtek PSE MCU driver (UART transport)"
-+	depends on SERIAL_DEV_BUS
-+	select PSE_REALTEK_MCU
-+	help
-+	  Driver for the microcontroller (MCU) that fronts the PSE
-+	  hardware on various Realtek-based managed switches, attached
-+	  via UART. The MCU exposes a message-based protocol; the actual PSE
-+	  silicon is not accessed directly. To compile this driver as a
-+	  module, choose M here: the module will be called realtek-pse-mcu-uart.
-+
- config PSE_REGULATOR
- 	tristate "Regulator based PSE controller"
- 	help
-diff --git a/drivers/net/pse-pd/Makefile b/drivers/net/pse-pd/Makefile
-index ef869bba5ed9..9cca5900fe34 100644
---- a/drivers/net/pse-pd/Makefile
-+++ b/drivers/net/pse-pd/Makefile
-@@ -5,6 +5,7 @@ obj-$(CONFIG_PSE_CONTROLLER) += pse_core.o
- 
- obj-$(CONFIG_PSE_REALTEK_MCU) += realtek-pse-mcu-core.o
- obj-$(CONFIG_PSE_REALTEK_MCU_I2C) += realtek-pse-mcu-i2c.o
-+obj-$(CONFIG_PSE_REALTEK_MCU_UART) += realtek-pse-mcu-uart.o
- obj-$(CONFIG_PSE_REGULATOR) += pse_regulator.o
- obj-$(CONFIG_PSE_PD692X0) += pd692x0.o
- obj-$(CONFIG_PSE_SI3474) += si3474.o
-diff --git a/drivers/net/pse-pd/realtek-pse-mcu-uart.c b/drivers/net/pse-pd/realtek-pse-mcu-uart.c
-new file mode 100644
-index 000000000000..91cadb5569ab
---- /dev/null
-+++ b/drivers/net/pse-pd/realtek-pse-mcu-uart.c
-@@ -0,0 +1,155 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+
-+#include <linux/cleanup.h>
-+#include <linux/completion.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/pse-pd/pse.h>
-+#include <linux/serdev.h>
-+#include <linux/spinlock.h>
-+#include <linux/string.h>
-+
-+#include "realtek-pse-mcu.h"
-+
-+#define RTPSE_MCU_UART_BAUD_DEFAULT	19200
-+#define RTPSE_MCU_UART_TX_TIMEOUT	msecs_to_jiffies(100)
-+#define RTPSE_MCU_UART_RX_TIMEOUT	msecs_to_jiffies(RTPSE_MCU_RESPONSE_MAX_MS)
-+
-+struct rtpse_mcu_uart {
-+	struct rtpse_mcu_ctrl pse;
-+	struct serdev_device *serdev;
-+	struct completion rx_done;
-+	spinlock_t rx_lock;		/* protects rx_buf and rx_len */
-+	size_t rx_len;
-+	u8 rx_buf[RTPSE_MCU_MSG_SIZE];
-+};
-+
-+#define to_rtpse_mcu_uart(p)  container_of(p, struct rtpse_mcu_uart, pse)
-+
-+/*
-+ * No framing is done here: a glitched frame costs one transaction, then
-+ * the next _send re-frames from rx_len 0. Resync works by returning count
-+ * (not take), dropping any overflow so serdev keeps no leftover to bleed
-+ * into the next frame.
-+ */
-+static size_t rtpse_mcu_uart_receive(struct serdev_device *serdev,
-+				     const u8 *buf, size_t count)
-+{
-+	struct rtpse_mcu_uart *ctx = serdev_device_get_drvdata(serdev);
-+	size_t take;
-+
-+	scoped_guard(spinlock_irqsave, &ctx->rx_lock) {
-+		take = min(count, sizeof(ctx->rx_buf) - ctx->rx_len);
-+		if (take) {
-+			memcpy(ctx->rx_buf + ctx->rx_len, buf, take);
-+			ctx->rx_len += take;
-+			if (ctx->rx_len == sizeof(ctx->rx_buf))
-+				complete(&ctx->rx_done);
-+		}
-+	}
-+
-+	/* consume all to avoid desync/misalignment */
-+	return count;
-+}
-+
-+static const struct serdev_device_ops rtpse_mcu_uart_serdev_ops = {
-+	.receive_buf = rtpse_mcu_uart_receive,
-+	.write_wakeup = serdev_device_write_wakeup,
-+};
-+
-+static int rtpse_mcu_uart_send(struct rtpse_mcu_ctrl *pse, const struct rtpse_mcu_msg *req)
-+{
-+	struct rtpse_mcu_uart *ctx = to_rtpse_mcu_uart(pse);
-+	int written;
-+
-+	/* clear any leftover rx state before transmitting */
-+	scoped_guard(spinlock_irqsave, &ctx->rx_lock) {
-+		reinit_completion(&ctx->rx_done);
-+		ctx->rx_len = 0;
-+	}
-+
-+	written = serdev_device_write(ctx->serdev, (const u8 *)req, sizeof(*req),
-+				      RTPSE_MCU_UART_TX_TIMEOUT);
-+	if (written < 0)
-+		return written;
-+	if (written != sizeof(*req))
-+		return -EIO;
-+
-+	return 0;
-+}
-+
-+static int rtpse_mcu_uart_recv(struct rtpse_mcu_ctrl *pse,
-+			       const struct rtpse_mcu_msg *req,
-+			       struct rtpse_mcu_msg *resp)
-+{
-+	struct rtpse_mcu_uart *ctx = to_rtpse_mcu_uart(pse);
-+
-+	if (!wait_for_completion_timeout(&ctx->rx_done, RTPSE_MCU_UART_RX_TIMEOUT))
-+		return -ETIMEDOUT;
-+
-+	scoped_guard(spinlock_irqsave, &ctx->rx_lock) {
-+		if (ctx->rx_len != sizeof(*resp))
-+			return -EIO;
-+
-+		memcpy(resp, ctx->rx_buf, sizeof(*resp));
-+	}
-+	return 0;
-+}
-+
-+static const struct rtpse_mcu_transport_ops rtpse_mcu_uart_transport_ops = {
-+	.send = rtpse_mcu_uart_send,
-+	.recv = rtpse_mcu_uart_recv,
-+};
-+
-+static int rtpse_mcu_uart_probe(struct serdev_device *serdev)
-+{
-+	u32 speed = RTPSE_MCU_UART_BAUD_DEFAULT;
-+	struct device *dev = &serdev->dev;
-+	struct rtpse_mcu_uart *ctx;
-+	int ret;
-+
-+	ctx = devm_kzalloc(dev, sizeof(*ctx), GFP_KERNEL);
-+	if (!ctx)
-+		return -ENOMEM;
-+
-+	ctx->serdev = serdev;
-+	ctx->pse.dev = dev;
-+	ctx->pse.pcdev.owner = THIS_MODULE;
-+	ctx->pse.transport = &rtpse_mcu_uart_transport_ops;
-+	init_completion(&ctx->rx_done);
-+	spin_lock_init(&ctx->rx_lock);
-+
-+	serdev_device_set_drvdata(serdev, ctx);
-+	serdev_device_set_client_ops(serdev, &rtpse_mcu_uart_serdev_ops);
-+
-+	ret = devm_serdev_device_open(dev, serdev);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "failed to open serdev\n");
-+
-+	fwnode_property_read_u32(dev_fwnode(dev), "current-speed", &speed);
-+	serdev_device_set_baudrate(serdev, speed);
-+	serdev_device_set_flow_control(serdev, false);
-+	serdev_device_set_parity(serdev, SERDEV_PARITY_NONE);
-+
-+	return rtpse_mcu_register(&ctx->pse);
-+}
-+
-+static const struct of_device_id rtpse_mcu_uart_of_match[] = {
-+	{ .compatible = "realtek,pse-mcu-gen1", .data = &rtpse_mcu_gen1_data },
-+	{ .compatible = "realtek,pse-mcu-gen2", .data = &rtpse_mcu_gen2_data },
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, rtpse_mcu_uart_of_match);
-+
-+static struct serdev_device_driver rtpse_mcu_uart_driver = {
-+	.driver = {
-+		.name = "realtek-pse-mcu-uart",
-+		.of_match_table = rtpse_mcu_uart_of_match,
-+	},
-+	.probe  = rtpse_mcu_uart_probe,
-+};
-+module_serdev_device_driver(rtpse_mcu_uart_driver);
-+
-+MODULE_AUTHOR("Jonas Jelonek <jelonek.jonas@gmail.com>");
-+MODULE_DESCRIPTION("Realtek PSE MCU driver (UART transport)");
-+MODULE_LICENSE("GPL");
--- 
-2.53.0
-
+> 
+> -- 
+> 2.54.0
+> 
 
