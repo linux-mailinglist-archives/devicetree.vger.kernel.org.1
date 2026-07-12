@@ -1,63 +1,63 @@
-Return-Path: <devicetree+bounces-324972-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-324973-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id H5lwBI4RU2o4WgMAu9opvQ
-	(envelope-from <devicetree+bounces-324972-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 12 Jul 2026 06:01:18 +0200
+	id W81IM5QRU2o6WgMAu9opvQ
+	(envelope-from <devicetree+bounces-324973-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 12 Jul 2026 06:01:24 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D34B3743BB9
-	for <lists+devicetree@lfdr.de>; Sun, 12 Jul 2026 06:01:16 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 56C89743BC1
+	for <lists+devicetree@lfdr.de>; Sun, 12 Jul 2026 06:01:24 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=pigmoral.tech header.s=zmail header.b=l2S7Hmft;
+	dkim=pass header.d=pigmoral.tech header.s=zmail header.b=NJwhDzrx;
 	dmarc=none;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324972-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-324972-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324973-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-324973-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 892E830166C3
-	for <lists+devicetree@lfdr.de>; Sun, 12 Jul 2026 04:01:15 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id EF4A63007490
+	for <lists+devicetree@lfdr.de>; Sun, 12 Jul 2026 04:01:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0EDB52C21F7;
-	Sun, 12 Jul 2026 04:01:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A30B2D592C;
+	Sun, 12 Jul 2026 04:01:19 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-op-o15.zoho.com (sender4-op-o15.zoho.com [136.143.188.15])
+Received: from sender4-op-o12.zoho.com (sender4-op-o12.zoho.com [136.143.188.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F72621255A;
-	Sun, 12 Jul 2026 04:01:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B80621255A;
+	Sun, 12 Jul 2026 04:01:17 +0000 (UTC)
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783828872; cv=pass; b=HqXn3u8wR1qn94fo8AcQ4gDq20OVz/EvDE+6CkO5rNXDCp4LnO7PV81WudTdI12ELSl4QsMqZ9/HfHgGm0/EkijmDHwhMmnQ3Uf2vSXurimxyzp/ggc4z1Rdl+ahmSjmGqe9iS6TCokNHGSHrk4bdPcckC6a7I0nxwD+KuHB+UA=
+	t=1783828878; cv=pass; b=RnH2epw4DvTWCYpC5AjfJERYapJua7rLs35+8OJGYOkXIEfG3jPVobFIrWT2N97S26jPus3CpvLEDi7o/MB/rXORRqou1LsMvXZPTKYSmK0p0dBV1MNVk+QxArZ6Qtp7tvzmyrXSDjJPZhtMkLNouVsnH3kjMf6TOZgNYjE5GMk=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783828872; c=relaxed/simple;
-	bh=O03rd95rLTU1Dxveo4k6sEWLV/W7qWnJWqsuUvJW/Zk=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Jy2jUhOLIqo9VgOwA4Fv6a2HJo6eG3LOikXEMk5MlMep0lz4AK3wVGc8iUfnP3nDqIuKETausv8qcaLwvBToj4BoLXKXVHIZiz5YmvRkY+zfd9KaU0XJTA554u0bfN93T2gOzIkUCearCdqclAO2qRi1gAul+T5HZgizNjssF5s=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pigmoral.tech; spf=pass smtp.mailfrom=pigmoral.tech; dkim=pass (1024-bit key) header.d=pigmoral.tech header.i=junhui.liu@pigmoral.tech header.b=l2S7Hmft; arc=pass smtp.client-ip=136.143.188.15
-ARC-Seal: i=1; a=rsa-sha256; t=1783828839; cv=none; 
+	s=arc-20240116; t=1783828878; c=relaxed/simple;
+	bh=L4I6HPJwdArISHcwslrK/IW2jWyiR3OIIY2y81slq6U=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=kjhl8R6ip4//0TbcakPWe57c9hP1m1lyC03Kf4M5SOakD7arPD7l7/6mdLfyUm68Mru9K5Y/jf0kjBhM01FseB4Iy/51nr3oANN62EebGIS8mK+yGXfyux9WZAUCu1dfgw2pmTJJYZONyXR8yVYaMiKkiV1pzcTKLWvUp18vOnU=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pigmoral.tech; spf=pass smtp.mailfrom=pigmoral.tech; dkim=pass (1024-bit key) header.d=pigmoral.tech header.i=junhui.liu@pigmoral.tech header.b=NJwhDzrx; arc=pass smtp.client-ip=136.143.188.12
+ARC-Seal: i=1; a=rsa-sha256; t=1783828851; cv=none; 
 	d=zohomail.com; s=zohoarc; 
-	b=AoIicxmLV6OUnyp0cFxOOjHslEVx3rB07tTxvdFjhw74lx720FeqKYjocfzFE/ujdL4urHG38iq12LMt4shTGflGuN+G7c7xLuir4Ek/rTf2m+W04hVwWf+//YyTUDhv3bZuZp2ObR8/WCfG/njL6sj8Aq0CB9e57SgKMwoGm78=
+	b=h/XnjM658Nayk9mXPOaxsITQOGzSqVIpARpS9XT0pmImWLEBHQu2ipNB+1wM3eGhLUeZCyVRzeGi6CTckvhIsZwxa9g1zZ5WxBKj5p/CCjGkyKv/Ub6hhZjJ8wJfU4nnp56cc5ukEd+7Xqzge89cEODB8Ejkfx99CQm5XNgCupk=
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1783828839; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=sxgMUK4leE9QWcjxVwljumsqOPffhM1uKVFIxXk15jM=; 
-	b=LHyh7drvGCjYnFXK15mBzkP88TC4qu5dyTfLR7E8xTUVsYomU5/HSm+ZY6ECD0CPGtq1UPqf4eHRYdQT9o6rmlFqhIC33qOdmSclWimFZ3cw9Di7XvVx+tItu4qEGu+KK/EdUbYEbKzj+TIKiE6nlMsWh+WL/GIme9y2TtuEfg4=
+	t=1783828851; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=CBuhzYSYJIgaFs6XQcVdMRF4R/1PuJ0AoLQ4+jP3JRA=; 
+	b=gSPQOEZ4PBiBay3zZe6rTHADS+J4keBpLvQ35Hw8n5GVpQcvnDGwBDpdiXELoknxtNRqQd7XcBjoLMuFRvsppN+kr/i0nIosBADxK9UH8wjTPlBZBX1bL9OF9xm8BlfGKzDCMiCDkJP7nU0qtKL8xbCh/8l1XAknOYFcrOu2mHs=
 ARC-Authentication-Results: i=1; mx.zohomail.com;
 	dkim=pass  header.i=pigmoral.tech;
 	spf=pass  smtp.mailfrom=junhui.liu@pigmoral.tech;
 	dmarc=pass header.from=<junhui.liu@pigmoral.tech>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1783828839;
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1783828851;
 	s=zmail; d=pigmoral.tech; i=junhui.liu@pigmoral.tech;
-	h=From:From:Subject:Subject:Date:Date:Message-Id:Message-Id:MIME-Version:Content-Type:Content-Transfer-Encoding:To:To:Cc:Cc:Reply-To;
-	bh=sxgMUK4leE9QWcjxVwljumsqOPffhM1uKVFIxXk15jM=;
-	b=l2S7Hmft+4LQBWykqqWShcAXyzlWZI0Glx5oWLGMajMmGONhMlLYRuZzdrlYnlcR
-	WkgWXIHh/l67Ajy/FnJ6HBxe7z1/Vif8/oqi/tbO/F0uOdfugLp/xolSr5qgBrShXD9
-	pZwWtn8yaHLWh+d+ApFKdjj09MLvskaq2sHbyF0c=
-Received: by mx.zohomail.com with SMTPS id 1783828837085345.73913355068294;
-	Sat, 11 Jul 2026 21:00:37 -0700 (PDT)
+	h=From:From:Date:Date:Subject:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-Id:Message-Id:References:In-Reply-To:To:To:Cc:Cc:Reply-To;
+	bh=CBuhzYSYJIgaFs6XQcVdMRF4R/1PuJ0AoLQ4+jP3JRA=;
+	b=NJwhDzrxObo8PEAAuYea0jJb70tujElMgmyW6S+383LEk3N8FXzHz1yGNZyzEg/q
+	2kbi868PWst9j3RccW6KjMn5exEJQz+QtEvxRdI6z7jPrIcLyYRP785ZkjushY8pMak
+	z6eXPBw/xoIECFDeby+9eN0ev0lDQBH3O0CGsiaU=
+Received: by mx.zohomail.com with SMTPS id 1783828848851646.121581141173;
+	Sat, 11 Jul 2026 21:00:48 -0700 (PDT)
 From: Junhui Liu <junhui.liu@pigmoral.tech>
-Subject: [PATCH v3 0/3] spacemit: k1: Add support for Banana Pi BPI-CM6 IO
- board
-Date: Sun, 12 Jul 2026 12:00:00 +0800
-Message-Id: <20260712-bpi-cm6-v3-0-8d1e2045179d@pigmoral.tech>
+Date: Sun, 12 Jul 2026 12:00:01 +0800
+Subject: [PATCH v3 1/3] dt-bindings: riscv: spacemit: Add Banana Pi BPI-CM6
+ compatible
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,11 +66,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/2WNyw6CMBBFf4XM2po+Ig9X/odxUcoUJpFXi42G8
- O8WXGB0eW7mnJnBoyP0cE5mcBjIU99FUIcETKO7GhlVkUFymfKTlKwciJk2ZZVRuS0EKosG4vX
- g0NJzK11vH3Y4PmJw2seG/NS71/YtiHX9DwfBOMt4hlYUItOKXwaq297p+3FC08DaCfLbzXdXR
- rfiWCorVWpQ/7rLsrwByFNphPMAAAA=
-X-Change-ID: 20260522-bpi-cm6-dc38f91e3fec
+Message-Id: <20260712-bpi-cm6-v3-1-8d1e2045179d@pigmoral.tech>
+References: <20260712-bpi-cm6-v3-0-8d1e2045179d@pigmoral.tech>
+In-Reply-To: <20260712-bpi-cm6-v3-0-8d1e2045179d@pigmoral.tech>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@kernel.org>, 
  Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, 
@@ -80,14 +78,13 @@ To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
 Cc: devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
  spacemit@lists.linux.dev, linux-kernel@vger.kernel.org, 
  Junhui Liu <junhui.liu@pigmoral.tech>, 
- Conor Dooley <conor.dooley@microchip.com>, 
- Michael Opdenacker <michael.opdenacker@rootcommit.com>
+ Conor Dooley <conor.dooley@microchip.com>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1783828822; l=2474;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1783828822; l=1249;
  i=junhui.liu@pigmoral.tech; s=20251228; h=from:subject:message-id;
- bh=O03rd95rLTU1Dxveo4k6sEWLV/W7qWnJWqsuUvJW/Zk=;
- b=xx0DNzPTLuQ1kJQCbT8D2D8FunRl9hCmDJtpOmAD4JmJjRaB56Pcf22rOu2beVES1uAKHqrLo
- /CS2qpMvJxqB0c+zMnNMsf0IEsK6mIjFJ/bw8V9ddqMg/7BV7hSm1yb
+ bh=L4I6HPJwdArISHcwslrK/IW2jWyiR3OIIY2y81slq6U=;
+ b=05tmEBYZjO7PZMUzrRXciH5oal6OpRL83COJVtNI9lhWu+FuzDh5zGjJgomzLv5/2yvR1iBct
+ OaMGxaR1X+TD11FFIjS/y3PVmqk0KLmRgvseSGpQYCD19+PCZGIry/W
 X-Developer-Key: i=junhui.liu@pigmoral.tech; a=ed25519;
  pk=3vU0qIPJAH8blXmLyqBhKx+nLOjcLwwYhZXelEpw7h4=
 X-ZohoMailClient: External
@@ -96,21 +93,21 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
 	R_DKIM_ALLOW(-0.20)[pigmoral.tech:s=zmail];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	FROM_HAS_DN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:dlan@kernel.org,m:pjw@kernel.org,m:palmer@dabbelt.com,m:aou@eecs.berkeley.edu,m:alex@ghiti.fr,m:guodong@riscstar.com,m:cyy@cyyself.name,m:wangruikang@iscas.ac.cn,m:pabeni@redhat.com,m:devicetree@vger.kernel.org,m:linux-riscv@lists.infradead.org,m:spacemit@lists.linux.dev,m:linux-kernel@vger.kernel.org,m:junhui.liu@pigmoral.tech,m:conor.dooley@microchip.com,m:michael.opdenacker@rootcommit.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:dlan@kernel.org,m:pjw@kernel.org,m:palmer@dabbelt.com,m:aou@eecs.berkeley.edu,m:alex@ghiti.fr,m:guodong@riscstar.com,m:cyy@cyyself.name,m:wangruikang@iscas.ac.cn,m:pabeni@redhat.com,m:devicetree@vger.kernel.org,m:linux-riscv@lists.infradead.org,m:spacemit@lists.linux.dev,m:linux-kernel@vger.kernel.org,m:junhui.liu@pigmoral.tech,m:conor.dooley@microchip.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER(0.00)[junhui.liu@pigmoral.tech,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[19];
+	RCPT_COUNT_TWELVE(0.00)[18];
 	DMARC_NA(0.00)[pigmoral.tech];
 	MIME_TRACE(0.00)[0:+];
 	FORWARDED(0.00)[lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-324972-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-324973-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
@@ -120,63 +117,45 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[pigmoral.tech:from_mime,pigmoral.tech:email,pigmoral.tech:mid,pigmoral.tech:dkim,vger.kernel.org:from_smtp,microchip.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: D34B3743BB9
+X-Rspamd-Queue-Id: 56C89743BC1
 
-This adds initial support for the Banana Pi BPI-CM6 IO board. The
-BPI-CM6 is an industrial-grade RISC-V compute module powered by the
-SpacemiT K1 SoC, featuring board-to-board connectors similar to the
-Raspberry Pi CM4 form factor. For evaluation and development, the module
-is paired with a companion IO carrier board.
+The Banana Pi BPI-CM6 IO board consists of the BPI-CM6 compute module
+plugged into an IO carrier board, which is used for evaluation and
+development.
 
-During the board bring-up, GPIO45 and GPIO46 were found to be used by
-the BPI-CM6 hardware as Ethernet PHY reset GPIOs, while the common K1
-GMAC pinctrl groups currently mux them as optional GMAC reference clock
-pins. Since the reference clock pins are not required on all K1 boards,
-the second patch separates them into independent pinctrl groups so board
-DTS files can select them only when the signal is actually wired.
+The core CM6 module is based on the SpacemiT K1 SoC and provides PMIC,
+DDR, the eth0 PHY and wireless connectivity. The carrier board extends
+this by adding the eth1 PHY and external interfaces including Ethernet,
+PCIe M.2, USB, MicroSD, QSPI, and serial console connectivity.
 
-Link: https://docs.banana-pi.org/en/BPI-CM6/BananaPi_BPI-CM6
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 Signed-off-by: Junhui Liu <junhui.liu@pigmoral.tech>
 ---
-Changes in v3:
-- Remove uncontrolled always-on intermediate fixed regulators to
-  reduce device tree bloat
-- Rebase to v7.2-rc1
-- Link to v2: https://lore.kernel.org/r/20260528-bpi-cm6-v2-0-d0eb3f236cea@pigmoral.tech
+ Documentation/devicetree/bindings/riscv/spacemit.yaml | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-Changes in v2:
-- Keep gmac_clk_ref pinctrl groups referenced on existing boards where
-  the pins are routed to optional PHY refclk paths
-- Remove duplicate vpcie3v3-supply property from pcie1 and pcie2 nodes
-- Collect tags
-- Link to v1: https://lore.kernel.org/r/20260522-bpi-cm6-v1-0-707ef1917a30@pigmoral.tech
+diff --git a/Documentation/devicetree/bindings/riscv/spacemit.yaml b/Documentation/devicetree/bindings/riscv/spacemit.yaml
+index 311bbccba0ba..4ee9c88984b4 100644
+--- a/Documentation/devicetree/bindings/riscv/spacemit.yaml
++++ b/Documentation/devicetree/bindings/riscv/spacemit.yaml
+@@ -19,6 +19,11 @@ properties:
+     const: '/'
+   compatible:
+     oneOf:
++      - items:
++          - enum:
++              - bananapi,bpi-cm6-io
++          - const: bananapi,bpi-cm6
++          - const: spacemit,k1
+       - items:
+           - enum:
+               - bananapi,bpi-f3
 
----
-Junhui Liu (3):
-      dt-bindings: riscv: spacemit: Add Banana Pi BPI-CM6 compatible
-      riscv: dts: spacemit: k1: Split gmac_clk_ref into independent pinctrl groups
-      riscv: dts: spacemit: k1: Add Banana Pi BPI-CM6 IO board
-
- .../devicetree/bindings/riscv/spacemit.yaml        |   5 +
- arch/riscv/boot/dts/spacemit/Makefile              |   1 +
- .../riscv/boot/dts/spacemit/k1-bananapi-cm6-io.dts | 177 +++++++++++++++++
- arch/riscv/boot/dts/spacemit/k1-bananapi-cm6.dtsi  | 217 +++++++++++++++++++++
- arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts    |   4 +-
- arch/riscv/boot/dts/spacemit/k1-milkv-jupiter.dts  |   4 +-
- arch/riscv/boot/dts/spacemit/k1-musepi-pro.dts     |   2 +-
- arch/riscv/boot/dts/spacemit/k1-orangepi-r2s.dts   |   4 +-
- arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi       |  24 ++-
- 9 files changed, 427 insertions(+), 11 deletions(-)
----
-base-commit: dc59e4fea9d83f03bad6bddf3fa2e52491777482
-change-id: 20260522-bpi-cm6-dc38f91e3fec
-
-Best regards,
---  
-Junhui Liu <junhui.liu@pigmoral.tech>
+-- 
+2.54.0
 
 
