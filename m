@@ -1,358 +1,190 @@
-Return-Path: <devicetree+bounces-324948-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-324949-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id M/vTJSn5UmpUVwMAu9opvQ
-	(envelope-from <devicetree+bounces-324948-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 12 Jul 2026 04:17:13 +0200
+	id wHaPLer5UmprVwMAu9opvQ
+	(envelope-from <devicetree+bounces-324949-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 12 Jul 2026 04:20:26 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2B87743890
-	for <lists+devicetree@lfdr.de>; Sun, 12 Jul 2026 04:17:12 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 025F97438A6
+	for <lists+devicetree@lfdr.de>; Sun, 12 Jul 2026 04:20:25 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=JKX1gEis;
-	dmarc=pass (policy=none) header.from=gmail.com;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324948-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-324948-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=JtcvAv9q;
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324949-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-324949-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C205D305E19A
-	for <lists+devicetree@lfdr.de>; Sun, 12 Jul 2026 02:13:23 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id AC6D6301653B
+	for <lists+devicetree@lfdr.de>; Sun, 12 Jul 2026 02:20:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF420367293;
-	Sun, 12 Jul 2026 02:13:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E77552C1594;
+	Sun, 12 Jul 2026 02:20:23 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f48.google.com (mail-pj1-f48.google.com [209.85.216.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10C5E367296
-	for <devicetree@vger.kernel.org>; Sun, 12 Jul 2026 02:13:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BECF73A1DB;
+	Sun, 12 Jul 2026 02:20:22 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783822402; cv=none; b=kRFdK/f6FbItSDhUy9jn7S/E/wkFzSnXWhZuyUOPD7zEWkql54OYEfJb9MiwyT2cfHjTGA7ZRPLDoGxMfsEQ4TsfAZYnlOp6zYYZr2M0Jh3fH4L1G2QyULs311W9dFYssjdVp8lLn0dW1FEAn1L1CEMbVcA5JZADnJPA8HLTYhw=
+	t=1783822823; cv=none; b=vCclq3A+FMQ9AG6ET+D0Yhy3Fa4eRdL914Dt0My8nKyYjcDfbY7cLB/4nyoY1g4Bk6NbPnLZ0Rfy1dFSyNFx7ueG4PPW+z9wcgtbTjPBELKNLD1gnHUqPG9vtxPlCGbIanRfWxCHhgKtS3blUjcJyiAIBh12vzt5bfBgQJCCkHQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783822402; c=relaxed/simple;
-	bh=EYs1cAQYrxKtJFmAc2+/heSToHPC1pab4g1v6irxLGE=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=E7p4YClE3kcWED9oduQNzDw8difFE2031/rQXXtk554rsjU0Povbbe6+VXQFZUZN4IUvKm6NSPqSeRud00JUY6aUhpj9HQoJrvKySuTxPEatV8NpCeNvULGK1QWcTaiE7rlyoN2Yf73NrpCsiUhmQOvPYRFVI9NL4TBHcaEQmQw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JKX1gEis; arc=none smtp.client-ip=209.85.216.48
-Received: by mail-pj1-f48.google.com with SMTP id 98e67ed59e1d1-38d489b6b71so1864615a91.0
-        for <devicetree@vger.kernel.org>; Sat, 11 Jul 2026 19:13:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1783822399; x=1784427199; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :content-type:mime-version:subject:date:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=5AFVwN6iVzF4B4uVu1QcDeH3p0cXhfS2t6vqHL4txKQ=;
-        b=JKX1gEisD6+DPf0N22IU55YgCHw26SBj8lUF+6kIuj8/2cwKiC4YqBoMmt/jl5PDJn
-         ieShNco9qSSNODx4iWxzRC3Lksl3rdRNPlgUCjUSgWNvJmavEYGkE63qND1Seb0dWIGu
-         Fjk2JTfbsXgrYSHBYQ5uGc6kw7/ai3v2BQGnHyNJIBCGfAn1kHx8j21c79NA1F4IfsRU
-         ffw6Fu81WH26VX/cBl4JB0YDzukLT3OgnzAZnwCg2NYBweqw1RaSFuMw3IH+yQGa1PkZ
-         jB3WnD/ah89HHyhkQB11uM+odLkhhKoKdsWJHsfrw3j8Bp8ujRleB959KNsrodtw0/zO
-         amyg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783822399; x=1784427199;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :content-type:mime-version:subject:date:from:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=5AFVwN6iVzF4B4uVu1QcDeH3p0cXhfS2t6vqHL4txKQ=;
-        b=InM/QfxfHukYNJGldcB+PeRj66rL49GYEwZGBir4l9msvoM4d/uBBP9osegRWig/X6
-         b7zOos79XhEt3Xr5Pse/Dv3Q4GJN5zMrocG+Ug5Gp2iXr96dMWjpGatWC+l/gaIvWVJY
-         lyiZE+ct/1IL/gKWgxsagYFrJVQ3HSdxi7BxedEHhbkONRmt2BybxqbrAdj50YUxLHmq
-         WwZ5vG81ZAqSPqo62HTPzRkSUF+Lh88jXLwYmIdKJKOhesn3PNt4KFhLMUi01kTgQIJP
-         aEcvmpmOVEuoKaL9DFliOP1Sezvb/f9Bj7iDmGBTww6tSj8+CLcRNdGDPPFPpwZhNMT2
-         Tntw==
-X-Forwarded-Encrypted: i=1; AHgh+RqKvlx427tSekVbL+8jmIqX3qkqSvtzzeMvO6vuuGOTiWFf/3HfilusJxBzfdBxiMyPT8Ogwj7tU+TP@vger.kernel.org
-X-Gm-Message-State: AOJu0YzXrnYZFbzEW7Q8C2kARRfVilA6zDzM0pQIu+1uq1C5Td9vbrij
-	o0EA1uCxRB3bSlewwwvvp/Mvo6hITcWdlR5wpEoGQ+eiqKEZplDb845f
-X-Gm-Gg: AfdE7cmS6l7ylC4oldM7ZORsx4xn5XTgNUAnsYnqI/01k6LDfKYC3SL/oz6oG3gUAcs
-	r/ETEFsOP+VJqc0w56CpuFfiC15Ca1fjFUYFtaPATAjaNMYdzSRs3B9vdb5Jgk0H7SAcP+KcaLG
-	M2RDoRhY12nZzPBFOsCBtBtLNpaCcxhYhrvsTH7XvpypXeiaeQaxs7yssJ7zUAM4j5Jv/0DwGrz
-	v5xwSJLP1KZW04HYluhmY4x6DWJa7ijZ6F8wtBtzMWKriLs+EeFkzEaSmgTgEiz2HXzA/x1qgSz
-	ZWJK6cknWcKt6n/XPilU1C1piuN+AW0mVP7gH3M6ieDH/gexmecYtoejZKXGMyESDNIha2uzxaS
-	zkL3Ayo7sYLv3wwEA6ItbkuMsngkeacGiYZwI/LPOWDwEXFlfbeoZYyzLplWLF8tA1oMMPKJsk3
-	bDs6ijvMUgdoyaeVjpapALy4xyNBr4oLKmQPZGsUgx3VAc1sb/Yq3GY+NZDxzsD1Zv/cwEWZbYP
-	BBQOU0k7teQew==
-X-Received: by 2002:a17:90b:2641:b0:387:e0cb:7f4 with SMTP id 98e67ed59e1d1-38dc783efacmr4605750a91.40.1783822399368;
-        Sat, 11 Jul 2026 19:13:19 -0700 (PDT)
-Received: from dtor-ws.sjc.corp.google.com ([2a00:79e0:2ebe:8:c63e:9756:a95c:c75])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-3117d847e17sm54796692eec.18.2026.07.11.19.13.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 11 Jul 2026 19:13:18 -0700 (PDT)
-From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Date: Sat, 11 Jul 2026 19:12:51 -0700
-Subject: [PATCH v3 10/10] ARM: s3c: crag6410: convert remaining GPIO lookup
- tables to property entries
+	s=arc-20240116; t=1783822823; c=relaxed/simple;
+	bh=UEwSnQrc0GNNxPQ2OPlcG3g+wLgSUjmNF9m4rA1RmSI=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=OEKdpm08ruoY0GsCH14gvrTkgK9+3xKWXU+TwivtUgb5kFIMZchbGHCf4ELgjI6ItVRgtchWUg5eGIFhxwkbnjlTpP4oPdUaBRjGADj7W3xfLzaN0NsS2d9J79Iu86AlPUPN3B84JCFx6Jmy0YNZTVbBTg5se6awBudM3M1Hzyk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JtcvAv9q; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E022D1F000E9;
+	Sun, 12 Jul 2026 02:20:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1783822822;
+	bh=V9vudyrkc+/SJFAx6PZQZqWLDoFIx7qC14Tm8rZKvf4=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=JtcvAv9quCN34jXr+kD8nk0p33z/XFu4+EnTYZfROTJsIEvZ4KD5NxHXTJrQ1/FUf
+	 yovMAEE5AIDzk87jMQVtEQDDcS2tYtSv+YjATBwrImfDw1xoa0Wyr1YMTmEX5OnisA
+	 5+AvUFAaPdAlY3k/PL9SAO416O0XkMeQ/pNA6IEiHBj74aJiWHSNKuys4WeXXEO4NS
+	 3MEgW1tOKAgWy7/tWhwElE3m36YDIUCk8lqIUp5TsGfYD1DpJMQ55dLBBbfhSaseUQ
+	 XjpdsH9AtjbNaIsnKpfKmDytnuctT1dFF1VMXy7FcBXAIBiL3gdtV6hKcowbldhJvN
+	 k6wyfizjgPkyQ==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v3 07/10] mfd: wm831x: support software nodes for DCDC
+ regulators
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Dmitry Torokhov" <dmitry.torokhov@gmail.com>
+Cc: conor+dt@kernel.org, robh@kernel.org, dmitry.torokhov@gmail.com, linux-input@vger.kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260711-samsung-kp-v3-7-b2fcaba77aff@gmail.com>
+References: <20260711-samsung-kp-v3-0-b2fcaba77aff@gmail.com>
+ <20260711-samsung-kp-v3-7-b2fcaba77aff@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Sun, 12 Jul 2026 02:20:21 +0000
+Message-Id: <20260712022021.E022D1F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260711-samsung-kp-v3-10-b2fcaba77aff@gmail.com>
-References: <20260711-samsung-kp-v3-0-b2fcaba77aff@gmail.com>
-In-Reply-To: <20260711-samsung-kp-v3-0-b2fcaba77aff@gmail.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Peter Griffin <peter.griffin@linaro.org>, 
- Alim Akhtar <alim.akhtar@samsung.com>, Russell King <linux@armlinux.org.uk>, 
- Mark Brown <broonie@kernel.org>, Linus Walleij <linusw@kernel.org>, 
- Charles Keepax <ckeepax@opensource.cirrus.com>, 
- Sam Protsenko <semen.protsenko@linaro.org>, Arnd Bergmann <arnd@arndb.de>, 
- Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, linux-input@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
- patches@opensource.cirrus.com, 
- Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
-X-Mailer: b4 0.16-dev-b242f
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-1.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[20];
-	TAGGED_FROM(0.00)[bounces-324948-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-324949-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:dmitry.torokhov@gmail.com,m:conor+dt@kernel.org,m:robh@kernel.org,m:linux-input@vger.kernel.org,m:devicetree@vger.kernel.org,m:dmitrytorokhov@gmail.com,m:conor@kernel.org,s:lists@lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,sashiko.dev:url,vger.kernel.org:from_smtp];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER(0.00)[dmitrytorokhov@gmail.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:peter.griffin@linaro.org,m:alim.akhtar@samsung.com,m:linux@armlinux.org.uk,m:broonie@kernel.org,m:linusw@kernel.org,m:ckeepax@opensource.cirrus.com,m:semen.protsenko@linaro.org,m:arnd@arndb.de,m:brgl@bgdev.pl,m:krzk@kernel.org,m:linux-input@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-samsung-soc@vger.kernel.org,m:patches@opensource.cirrus.com,m:bartosz.golaszewski@oss.qualcomm.com,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dmitrytorokhov@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,vger.kernel.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	ALIAS_RESOLVED(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	TO_DN_SOME(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,qualcomm.com:email]
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	PRECEDENCE_BULK(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NO_DN(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[6];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: F2B87743890
+X-Rspamd-Queue-Id: 025F97438A6
 
-Static property entries support defining GPIOs and are more similar to
-device tree properties and are not prone to losing link between device
-and a lookup table because of changes in device name. Convert the board
-to use them for WM1250 and SPI0 devices.
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
+s) to consider:
+- [Medium] The patch dynamically duplicates and modifies an `mfd_cell` arra=
+y to inject software nodes, directly violating MFD subsystem guidelines.
+- [Low] The commit message description starts with a lowercase letter, viol=
+ating MFD subsystem formatting rules.
+--
 
-This also fixes issue with recent conversion to GPIO descriptors
-where GPIO lookup tables were specifying incorrect GPIO chip name
-("GPIO<N>" vs "GP<N>").
+--- Patch [7]: [PATCH v3 07/10] mfd: wm831x: support software nodes for DCD=
+C regulators ---
+commit 3d69bbb3a9fcf1555157438b7a85ed2a2744e94b
+Author: Dmitry Torokhov <dmitry.torokhov@gmail.com>
 
-Fixes: 10a366f36e2a ("ASoC: wm1250-ev1: Convert to GPIO descriptors")
-Fixes: a45cf3cc72dd ("spi: s3c64xx: Convert to use GPIO descriptors")
-Assisted-by: Antigravity:gemini-3.5-flash
-Acked-by: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
-Signed-off-by: Dmitry Torokhov <dmitry.torokhov@gmail.com>
----
- arch/arm/mach-s3c/devs.c          | 35 -----------------
- arch/arm/mach-s3c/devs.h          |  1 -
- arch/arm/mach-s3c/mach-crag6410.c | 83 ++++++++++++++++++++++++++++-----------
- 3 files changed, 59 insertions(+), 60 deletions(-)
+mfd: wm831x: support software nodes for DCDC regulators
 
-diff --git a/arch/arm/mach-s3c/devs.c b/arch/arm/mach-s3c/devs.c
-index 0237307b9238..d1125316043b 100644
---- a/arch/arm/mach-s3c/devs.c
-+++ b/arch/arm/mach-s3c/devs.c
-@@ -335,38 +335,3 @@ void __init dwc2_hsotg_set_platdata(struct dwc2_hsotg_plat *pd)
- 		npd->phy_exit = s3c_usb_phy_exit;
- }
- #endif /* CONFIG_S3C_DEV_USB_HSOTG */
--
--#ifdef CONFIG_S3C64XX_DEV_SPI0
--static struct resource s3c64xx_spi0_resource[] = {
--	[0] = DEFINE_RES_MEM(S3C_PA_SPI0, SZ_256),
--	[1] = DEFINE_RES_IRQ(IRQ_SPI0),
--};
--
--struct platform_device s3c64xx_device_spi0 = {
--	.name		= "s3c6410-spi",
--	.id		= 0,
--	.num_resources	= ARRAY_SIZE(s3c64xx_spi0_resource),
--	.resource	= s3c64xx_spi0_resource,
--	.dev = {
--		.dma_mask		= &samsung_device_dma_mask,
--		.coherent_dma_mask	= DMA_BIT_MASK(32),
--	},
--};
--
--void __init s3c64xx_spi0_set_platdata(int src_clk_nr, int num_cs)
--{
--	struct s3c64xx_spi_info pd;
--
--	/* Reject invalid configuration */
--	if (!num_cs || src_clk_nr < 0) {
--		pr_err("%s: Invalid SPI configuration\n", __func__);
--		return;
--	}
--
--	pd.num_cs = num_cs;
--	pd.src_clk_nr = src_clk_nr;
--	pd.cfg_gpio = s3c64xx_spi0_cfg_gpio;
--
--	s3c_set_platdata(&pd, sizeof(pd), &s3c64xx_device_spi0);
--}
--#endif /* CONFIG_S3C64XX_DEV_SPI0 */
-diff --git a/arch/arm/mach-s3c/devs.h b/arch/arm/mach-s3c/devs.h
-index 2737990063b1..90a86ade3570 100644
---- a/arch/arm/mach-s3c/devs.h
-+++ b/arch/arm/mach-s3c/devs.h
-@@ -27,7 +27,6 @@ extern struct platform_device *s3c24xx_uart_src[];
- 
- extern struct platform_device s3c64xx_device_iis0;
- extern struct platform_device s3c64xx_device_iis1;
--extern struct platform_device s3c64xx_device_spi0;
- 
- extern struct platform_device s3c_device_fb;
- extern struct platform_device s3c_device_hsmmc0;
-diff --git a/arch/arm/mach-s3c/mach-crag6410.c b/arch/arm/mach-s3c/mach-crag6410.c
-index 1ba3d47d85b7..9f4756898a78 100644
---- a/arch/arm/mach-s3c/mach-crag6410.c
-+++ b/arch/arm/mach-s3c/mach-crag6410.c
-@@ -443,7 +443,6 @@ static struct platform_device *crag6410_devs0[] __initdata = {
- 
- static struct platform_device *crag6410_devs1[] __initdata = {
- 	&crag6410_dm9k_device,
--	&s3c64xx_device_spi0,
- 	&crag6410_lcd_powerdev,
- 	&crag6410_backlight_device,
- 	&speyside_device,
-@@ -777,17 +776,22 @@ static struct wm831x_pdata glenfarclas_pmic_pdata = {
- 	.disable_touch = true,
- };
- 
--static struct gpiod_lookup_table crag_wm1250_ev1_gpiod_table = {
--	/* The WM1250-EV1 is device 0027 on I2C bus 1 */
--	.dev_id = "1-0027",
--	.table = {
--		GPIO_LOOKUP("GPION", 12, "clk-ena", GPIO_ACTIVE_HIGH),
--		GPIO_LOOKUP("GPIOL", 12, "clk-sel0", GPIO_ACTIVE_HIGH),
--		GPIO_LOOKUP("GPIOL", 13, "clk-sel1", GPIO_ACTIVE_HIGH),
--		GPIO_LOOKUP("GPIOL", 14, "osr", GPIO_ACTIVE_HIGH),
--		GPIO_LOOKUP("GPIOL", 8, "master", GPIO_ACTIVE_HIGH),
--		{ },
--	},
-+static const struct property_entry crag_wm1250_ev1_properties[] = {
-+	PROPERTY_ENTRY_GPIO("clk-ena-gpios",
-+			    SAMSUNG_GPIO_NODE('N'), 12, GPIO_ACTIVE_HIGH),
-+	PROPERTY_ENTRY_GPIO("clk-sel0-gpios",
-+			    SAMSUNG_GPIO_NODE('L'), 12, GPIO_ACTIVE_HIGH),
-+	PROPERTY_ENTRY_GPIO("clk-sel1-gpios",
-+			    SAMSUNG_GPIO_NODE('L'), 13, GPIO_ACTIVE_HIGH),
-+	PROPERTY_ENTRY_GPIO("osr-gpios",
-+			    SAMSUNG_GPIO_NODE('L'), 14, GPIO_ACTIVE_HIGH),
-+	PROPERTY_ENTRY_GPIO("master-gpios",
-+			    SAMSUNG_GPIO_NODE('L'), 8, GPIO_ACTIVE_HIGH),
-+	{ }
-+};
-+
-+static const struct software_node crag_wm1250_ev1_swnode = {
-+	.properties = crag_wm1250_ev1_properties,
- };
- 
- static struct i2c_board_info i2c_devs1[] = {
-@@ -800,7 +804,8 @@ static struct i2c_board_info i2c_devs1[] = {
- 	{ I2C_BOARD_INFO("wlf-gf-module", 0x24) },
- 	{ I2C_BOARD_INFO("wlf-gf-module", 0x25) },
- 	{ I2C_BOARD_INFO("wlf-gf-module", 0x26) },
--	{ I2C_BOARD_INFO("wm1250-ev1", 0x27), },
-+	{ I2C_BOARD_INFO("wm1250-ev1", 0x27),
-+	  .swnode = &crag_wm1250_ev1_swnode, },
- };
- 
- static struct s3c2410_platform_i2c i2c1_pdata = {
-@@ -904,15 +909,48 @@ static void __init crag6410_setup_leds(void)
- 
- static struct dwc2_hsotg_plat crag6410_hsotg_pdata;
- 
--static struct gpiod_lookup_table crag_spi0_gpiod_table = {
--	.dev_id = "s3c6410-spi.0",
--	.table = {
--		GPIO_LOOKUP_IDX("GPIOC", 3, "cs", 0, GPIO_ACTIVE_LOW),
--		GPIO_LOOKUP_IDX("GPION", 5, "cs", 1, GPIO_ACTIVE_LOW),
--		{ },
--	},
-+static const struct software_node_ref_args crag6410_spi0_gpio_refs[] = {
-+	SOFTWARE_NODE_REFERENCE(SAMSUNG_GPIO_NODE('C'), 3, GPIO_ACTIVE_LOW),
-+	SOFTWARE_NODE_REFERENCE(SAMSUNG_GPIO_NODE('N'), 5, GPIO_ACTIVE_LOW),
-+};
-+
-+static const struct property_entry crag6410_spi0_properties[] __initconst = {
-+	PROPERTY_ENTRY_REF_ARRAY("cs-gpios", crag6410_spi0_gpio_refs),
-+	{ }
-+};
-+
-+static const struct resource crag6410_spi0_resource[] __initconst = {
-+	[0] = DEFINE_RES_MEM(S3C_PA_SPI0, SZ_256),
-+	[1] = DEFINE_RES_IRQ(IRQ_SPI0),
-+};
-+
-+static const struct s3c64xx_spi_info crag6410_spi0_platform_data __initconst = {
-+	.num_cs = 2,
-+	.cfg_gpio = s3c64xx_spi0_cfg_gpio,
- };
- 
-+static const struct platform_device_info crag6410_spi0_info __initconst = {
-+	.name		= "s3c6410-spi",
-+	.id		= 0,
-+	.res		= crag6410_spi0_resource,
-+	.num_res	= ARRAY_SIZE(crag6410_spi0_resource),
-+	.data		= &crag6410_spi0_platform_data,
-+	.size_data	= sizeof(crag6410_spi0_platform_data),
-+	.dma_mask	= DMA_BIT_MASK(32),
-+	.properties	= crag6410_spi0_properties,
-+};
-+
-+static void __init crag6410_setup_spi0(void)
-+{
-+	struct platform_device *pd;
-+	int err;
-+
-+	pd = platform_device_register_full(&crag6410_spi0_info);
-+	err = PTR_ERR_OR_ZERO(pd);
-+	if (err)
-+		pr_err("failed to create spi0 device: %d\n", err);
-+}
-+
- static void __init crag6410_machine_init(void)
- {
- 	/* Open drain IRQs need pullups */
-@@ -941,18 +979,15 @@ static void __init crag6410_machine_init(void)
- 
- 	software_node_register(&crag_dcdc1_swnode);
- 	i2c_register_board_info(0, i2c_devs0, ARRAY_SIZE(i2c_devs0));
--	gpiod_add_lookup_table(&crag_wm1250_ev1_gpiod_table);
- 	i2c_register_board_info(1, i2c_devs1, ARRAY_SIZE(i2c_devs1));
- 
--	gpiod_add_lookup_table(&crag_spi0_gpiod_table);
--	s3c64xx_spi0_set_platdata(0, 2);
--
- 	pwm_add_table(crag6410_pwm_lookup, ARRAY_SIZE(crag6410_pwm_lookup));
- 	platform_add_devices(crag6410_devs0, ARRAY_SIZE(crag6410_devs0));
- 	platform_device_register_full(&crag6410_mmgpio_devinfo);
- 
- 	crag6410_setup_keypad();
- 	crag6410_setup_gpio_keys();
-+	crag6410_setup_spi0();
- 
- 	platform_add_devices(crag6410_devs1, ARRAY_SIZE(crag6410_devs1));
- 	crag6410_setup_leds();
+This commit allows passing software nodes to wm831x DCDC regulators via PMIC
+platform data. It adds dcdc_swnodes to the PMIC platform data and dynamical=
+ly
+assigns these software nodes to the buckv cells during device addition.
 
--- 
-2.55.0.795.g602f6c329a-goog
+> mfd: wm831x: support software nodes for DCDC regulators
 
+[Severity: Low]
+This isn't a bug, but should the description after the subsystem prefix be
+capitalized? The MFD subsystem conventions generally expect:
+"mfd: wm831x: Support software nodes for DCDC regulators".
+
+> diff --git a/drivers/mfd/wm831x-core.c b/drivers/mfd/wm831x-core.c
+> --- a/drivers/mfd/wm831x-core.c
+> +++ b/drivers/mfd/wm831x-core.c
+
+[ ... ]
+
+> @@ -1449,6 +1450,32 @@ const struct of_device_id wm831x_of_match[] =3D {
+>  };
+>  EXPORT_SYMBOL_GPL(wm831x_of_match);
+> =20
+> +static int wm831x_add_devices(struct wm831x *wm831x, int wm831x_num,
+> +			      const struct mfd_cell *cells, int num_cells)
+> +{
+> +	struct wm831x_pdata *pdata =3D &wm831x->pdata;
+> +	int i;
+> +
+> +	struct mfd_cell *local_cells __free(kfree) =3D
+> +		kmemdup_array(cells, num_cells, sizeof(*cells), GFP_KERNEL);
+
+[Severity: Medium]
+Does this code dynamically duplicate the mfd_cell array to amend it?
+
+The MFD subsystem guidelines advise that mfd_cell arrays should remain stat=
+ic
+references, and we should avoid creating local copies for dynamic amendment=
+s.
+Is there an alternative way to pass the software nodes without allocating a=
+nd
+modifying a duplicated cell array?
+
+> +	if (!local_cells)
+> +		return -ENOMEM;
+> +
+> +	for (i =3D 0; i < num_cells; i++) {
+> +		struct mfd_cell *cell =3D &local_cells[i];
+> +
+> +		if (strcmp(cell->name, "wm831x-buckv") =3D=3D 0) {
+> +			int id =3D cell->id - 1;
+> +
+> +			if (id >=3D 0 && id < WM831X_MAX_DCDC)
+> +				cell->swnode =3D pdata->dcdc_swnodes[id];
+> +		}
+> +	}
+> +
+> +	return mfd_add_devices(wm831x->dev, wm831x_num, local_cells, num_cells,
+> +			       NULL, 0, NULL);
+> +}
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260711-samsung-kp=
+-v3-0-b2fcaba77aff@gmail.com?part=3D7
 
