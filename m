@@ -1,176 +1,220 @@
-Return-Path: <devicetree+bounces-325127-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-325147-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id gqDcAtUAVGohgwMAu9opvQ
-	(envelope-from <devicetree+bounces-325127-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 12 Jul 2026 23:02:13 +0200
+	id 8FxBMiMWVGqlhwMAu9opvQ
+	(envelope-from <devicetree+bounces-325147-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 00:33:07 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB4AF745E52
-	for <lists+devicetree@lfdr.de>; Sun, 12 Jul 2026 23:02:11 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C6447462F2
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 00:33:07 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b="cy7/dwwz";
-	dmarc=pass (policy=none) header.from=gmail.com;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-325127-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-325127-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=fail ("headers rsa verify failed") header.d=reactivated.net header.s=default header.b="jpq2/aFN";
+	dmarc=none;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-325147-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-325147-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id BFA9A3002524
-	for <lists+devicetree@lfdr.de>; Sun, 12 Jul 2026 21:02:08 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id CDE83301F5CF
+	for <lists+devicetree@lfdr.de>; Sun, 12 Jul 2026 22:32:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6ECE82C21FF;
-	Sun, 12 Jul 2026 21:02:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A628B381E91;
+	Sun, 12 Jul 2026 22:32:47 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from out16-31.antispamcloud.com (out16-31.antispamcloud.com [185.201.18.31])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1CB02472B6
-	for <devicetree@vger.kernel.org>; Sun, 12 Jul 2026 21:02:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07F6B381EAE;
+	Sun, 12 Jul 2026 22:32:45 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783890125; cv=none; b=dSgDHMGUUkwI5rhnZWpMYu625NgRT8VTXzrANpnM/IkUm73GVqWRw7fMsYDxhR6Xm8Njcz+QUeLcZq9ZWSzb3LQfTR8SCstDUbuHZmSPUEIJlCrNMe85DAIrFOFGusBBjrCyfklBQbf9Qg5US+FNlqNVgyn0LpdZK6sKS/7PD8k=
+	t=1783895567; cv=none; b=Ixli2gqfQw9e23ce6YBcuWfcwKaevKRQS2sGgLEOc8YfR1Y8fFsVP8urJ6sbl/4oUX4e1EWimbCG16/SEf2fM24GLYc+VdyzdnjKldzD/rHG5iaagm+9FAVV1B/Odk1jYVICLWJqBTnOyOpTAnA65HUzOi3a0datX4dWzHfRKTg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783890125; c=relaxed/simple;
-	bh=T28gBk8PpRiPyrUVn/AV0hFvwxFNY2+cfEko7TjUCSs=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=B2iy7WNVmqvUiQ61z7Vzu+NafwpznvMw2eDmKFR9YBEeKxjQzniyFTq4z/rttX68M/uBflsq4vfiEUwo6WPY01nRZlfZH/PxqNPrLyYheKRLQFJOybMHXNWqpRTFL/2Q8lpwNvI/aFfwNqoQNfUFEMsRDcYPhTCmye2GmwiIMC8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=cy7/dwwz; arc=none smtp.client-ip=209.85.218.42
-Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-c12614b81c9so449013266b.3
-        for <devicetree@vger.kernel.org>; Sun, 12 Jul 2026 14:02:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1783890122; x=1784494922; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=MkOwj6BpgCPRb3iQcJNzYz3de1+iZ+z6XiAk9dzhA/Y=;
-        b=cy7/dwwzPxMTtlw3cBF0h3Ax4cpmgx13Y4zYoURprm6Vn+kMsOqWR5DLnF/jU4rff4
-         XIb9iYtiQGGTaupApt5f5lKejuobSckjqZyCkD0SuN6QrnzsYTvm8OUxxydcVZuGK9mR
-         SMrqzQ/0P2P4ah+Qaz1SFwBLWH4g8r8zVb5D3PWBG7EfEjzVA4DK6xJlNYGGxwCTCa6y
-         JzvUpSIkvL2e1g7xfJa6nwWQPktjQsn2dcnuYW8RHHp6TDgdb+PhL9sYausaitTDW1Eg
-         Nz45wNUS6w8NQJNg0pLVeFfT+1rf6Gx2St+AzM6lawzWe83LhZoEhNZyPM7wsg3eWNvJ
-         61Nw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783890122; x=1784494922;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=MkOwj6BpgCPRb3iQcJNzYz3de1+iZ+z6XiAk9dzhA/Y=;
-        b=QhAiIZUEGV91LFm+L2jzUp3zxIgpWp6MQNeL8dLd8iyP5YTIJOKdZscSQNv0Qqm/5N
-         uLqCcfQ9PRAx3A80jWZLhoHJNnp6kNPmWr/toyT9u1uor42Bngin5TTJNclbI1mOwsX0
-         vWEPoJor4hLdVvv0cCF2PFpAVgdo45jnyG+mkbtN5iDNlDX0X3wcDWJ0+wL7h5cB9zFe
-         SPD3JjY7gq3TS73fxaGgZiZO+Ti2292orcidLrdTf5H56/2r1n25tYejN+DTMGIje/6j
-         S6avFcXTeJMdoXx8mrR46oK/0LUDODUtRQvj74o5hZAIS1X8Ad+hHvTNY3QKZN5BiDsD
-         SY1w==
-X-Forwarded-Encrypted: i=1; AHgh+RqgZa704ph673chSVHARQTBrHeZxWbnVVO7GjCgx9iRZHnWATU0BT5KWwL0baAnAzMNeYLacuBeWYwy@vger.kernel.org
-X-Gm-Message-State: AOJu0YxTWvkEi1TY8EVeJsrP56pRLWnvadCd1f7pLJ4+y+QI0vf+M3O9
-	lKdXPCrVBpWhsRqg/mZFF+9+WpdxZ0lXVrdh3hYnmm7ZlqnlAV1NpFS7
-X-Gm-Gg: AfdE7ckhtVVNAdM5Ag+RhLp0l9DP3CLsbB1EI00H4b1ptYFznvPAPafyityOiqpYtiA
-	QD3I7qbO0U72G7BIPGu3jH7HkUVDi8UnG3kDFcqSMkxa9CePyQdd4MU3il0/iWy66hwmhOezQEW
-	EyM7rt2xI2J6D1LQr2yPwqgVAXmt7jYHT34QDFsQfY0Z3dtWSkPJoAdVzpoPWnx9k4VyiF0oshx
-	vDVYpEhXFBmcF2y7DsuzZVXNl/aK8WQL2XalNSsqXRn9Jl71OK9f3CqXJ/wRXAyg+DnxmFez750
-	gN0+6egi/L2/0DM3EGdFdAdQxN+4TNLF4OX647fGkMWoFiu1PJljg8KQeyG6BGs/1+WDvPLDtSL
-	1xFqW0eaZYZEZVlv/7JWZgO3YdsAsb0eG8zKOnSZ9Du4P+8zJvA8GHe99zCeT9kKn24fLkqXX7/
-	p2N8BTm7rAKHD3BJ2HCWp3DSpFdX72Zg==
-X-Received: by 2002:a17:907:bc87:b0:c16:e54:9cbb with SMTP id a640c23a62f3a-c161ea62321mr271109066b.25.1783890122065;
-        Sun, 12 Jul 2026 14:02:02 -0700 (PDT)
-Received: from unknown.tail46804.ts.net ([2a02:b027:14:a57f:d586:c83b:e719:c2ed])
-        by smtp.googlemail.com with ESMTPSA id a640c23a62f3a-c15cd42b336sm721045266b.38.2026.07.12.14.01.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 12 Jul 2026 14:02:01 -0700 (PDT)
-From: Gianluca Boiano <morf3089@gmail.com>
-To: "Krzysztof Kozlowski" <krzk@kernel.org>
-Cc: Gianluca Boiano <morf3089@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jaroslav Kysela <perex@perex.cz>,
-	Takashi Iwai <tiwai@suse.com>,
-	Shenghao Ding <shenghao-ding@ti.com>,
-	Kevin Lu <kevin-lu@ti.com>,
-	Baojun Xu <baojun.xu@ti.com>,
-	"Wang, Sen" <sen@ti.com>,
-	linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: sound: add Texas Instruments TAS2557
-Date: Sun, 12 Jul 2026 23:01:47 +0200
-Message-ID: <20260712210148.384870-1-morf3089@gmail.com>
-X-Mailer: git-send-email 2.55.0
-In-Reply-To: <20260712-cyber-gorilla-of-acumen-19070e@quoll>
-References: <20260712-cyber-gorilla-of-acumen-19070e@quoll>
+	s=arc-20240116; t=1783895567; c=relaxed/simple;
+	bh=b6yve9aEc+Q+0pzabuJh6fdGiA5iEnw+8+BiskybXN0=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=ag+ahsqtyt0ufWLwCNTU2z+JKJ0upATJSblpDhTthGzUInsHHQwWIl3J+THCjbHyXe4wPn7dhJDmzp/fWI918SSU2Lk3TZ+ZYd770EEjwZAyasTDU0Bd3aas/qU+QpwgCkc0eXiuVX+x3u/vJVf+9XtoUF+mrPGNTkESxbWyJZ8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=reactivated.net; spf=pass smtp.mailfrom=reactivated.net; dkim=pass (2048-bit key) header.d=reactivated.net header.i=@reactivated.net header.b=jpq2/aFN; arc=none smtp.client-ip=185.201.18.31
+Received: from s1041.use1.mysecurecloudhost.com ([192.250.231.249])
+	by mx195.antispamcloud.com with esmtps  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <dan@reactivated.net>)
+	id 1wj1Zq-00GoJg-CM; Sun, 12 Jul 2026 23:19:11 +0200
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=reactivated.net; s=default; h=Cc:To:Content-Transfer-Encoding:Content-Type:
+	MIME-Version:Message-Id:Date:Subject:From:Sender:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=c2LZCTFPqGTGuPKDo/ZNl32LqOczqdxWlzYpEghp2XU=; b=jpq2/aFNzL3ShD0RFS09By1MZc
+	1nDhKHtJuUeW71oU6Z6/qx0/1SAZB4SMe3i0rmvDfkPsjzS1tRWmSlbUdI2RKeLlvrZBaDW+GLqQl
+	RUFlnhNZq4QjRzc6y51Y3kNrlY7xj38d45X+7oZfOCvlC5X14X3NXotWQ8wrYV09nk82PCtNZaHQI
+	WuHl15W5I0U/j5Cd8S/MAinsCxDO20qr+ao1ZDQnlioDZk9rTVgDHvthme8LBDRwXHHTjSKPKGZCl
+	eu1BKlbtPyUBAgbaxiFIjw8mX5SF9+Fb7nV8kPUJFgeDvcwgd6UnSZAeXSoSVl12twajXVbi8fGdd
+	+3whIefg==;
+Received: from [188.251.249.2] (port=43526 helo=[192.168.1.123])
+	by s1041.use1.mysecurecloudhost.com with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.99.4)
+	(envelope-from <dan@reactivated.net>)
+	id 1wj1Zi-0000000D6jk-0luD;
+	Sun, 12 Jul 2026 21:18:58 +0000
+From: Daniel Drake <dan@reactivated.net>
+Subject: [PATCH 0/6] Add support for Broadcom BCM2712 IOMMU driver
+ (Raspberry Pi 5)
+Date: Sun, 12 Jul 2026 22:18:50 +0100
+Message-Id: <20260712-bcm2712-iommu-submit-v1-0-80e10cdde2ea@reactivated.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/1WMMQ6DMAwAv4I811JiUdr0KxVDkpriIaGKoaqE+
+ DuhG9PphrsVlIuwwqNZofBXVKZcxV4aiKPPb0Z5VQcy1JmbJQwx0UGZUlpQl5BkRmLj7s5xd40
+ t1PRTeJDff/vsqwevjKH4HMdjdmotbNsO2FD0rocAAAA=
+X-Change-ID: 20260712-bcm2712-iommu-submit-2e09899e65c4
+To: "Joerg Roedel (AMD)" <joro@8bytes.org>, Will Deacon <will@kernel.org>, 
+ Robin Murphy <robin.murphy@arm.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Florian Fainelli <florian.fainelli@broadcom.com>, 
+ Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
+ Daniel Drake <dan@reactivated.net>
+Cc: iommu@lists.linux.dev, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org, 
+ linux-arm-kernel@lists.infradead.org, nick.hollinghurst@raspberrypi.com, 
+ Jason Gunthorpe <jgg@ziepe.ca>
+X-Mailer: b4 0.14.3
+X-Get-Message-Sender-Via: s1041.use1.mysecurecloudhost.com: authenticated_id: dan@reactivated.net
+X-Authenticated-Sender: s1041.use1.mysecurecloudhost.com: dan@reactivated.net
+X-Spampanel-Domain: s1041.use1.mysecurecloudhost.com
+X-Spampanel-Username: 192.250.231.249
+X-Spampanel-Outgoing-Class: ham
+X-Spampanel-Outgoing-Evidence: SB/global_tokens (0.0036886121706)
+X-Recommended-Action: accept
+X-Filter-ID: 9kzQTOBWQUFZTohSKvQbgI7ZDo5ubYELi59AwcWUnuVv5cfN8YhlyjwLMsQQzllMEv6lei9F9Dil
+ zrPpcCYURSu2SmbhJN1U9FKs8X3+Nt06bFpPrNOlRAlE9AVLwR4uGVjKNnzF3nQoDoQtBifM84JL
+ M0i5ZAms0EHrvcCaVINZthhKjTv0yp3Sc+AC3FHpGnT3EFAinyrilm9zau/FuzkQt9Nb4Ml7QXdk
+ EetczWCulNo0fvnzmZPW3MC2/ZtQeB7itP8hgjDRserKv4bhb3RyZlCL9i3kc+ehInPHgYZWBb39
+ uS1TjWG2Inx+Ts2QrtVmombMJ4e2pn5C0yBMHZ0fE47nEjvubMSTLAkKCKefuLbx+lGq0svfyhth
+ j0R6Iny++hg9dJLqN5zmWqF/oHgMZXS6X/fIHYslsKU0yPHM4JpSMI47HiFQBsGlm5AyPIv7c2tg
+ uiTnO7hoWdxS2Euf+eM3l5KPnbp/eQthjVPLCh11+xKgET3fXj754wkhoRweeXUyelEFumxqJC98
+ W2Chcvueb7X9IVOP0nXi5ScUGZbDvQNAWVsKTgEVkGFZkrTBb08hz2+hQWIE/jMJBRjlXAPIIi6r
+ dxgy5Mnu2cDsZps7XJtkUNhIi117bsGJ7ren9RtRNyYim5e3GD8LGd17Yt5uvWRLqYZ7YcWBwuaj
+ bB9FLgbTIobDkucCu6K1Qts6ESwZ+TRkjY5CmPXd4fzFwV5PA+Zo1HkEWshOrnfOczv/Rq1TfV/y
+ 9sPCUZ0yjBqTnQMt5W0GKvZ5TPS+0sUsSnvAz6a57TzpYAKZxAOMmYkwXP3g8rtJn6lRuSHjV8Jw
+ 2Fxq1Vd7xIu/TP3zxxtadaYgn3OIzsUC2wDRiPKWwieZyauFYqHkIbFa+ipFHuOywN1cBSoAw5Iq
+ u8uD6H9vRamlPbOxG7rXq5Czwgf6xGEuqjPYHqCiHsRpKiyawVZCoGB4EfDx2fRuW8Y0o7OCze69
+ 5wqpq4Ow1lDfcfvX9sw5VBsaDF9CxNBjABkH3hTMjGc3lQAtuckU+MNQlLpWhjjykqbde3UjWoF9
+ cBo9q3T2iWmfFRW/Psbz8QFVy0V5rN3M2TZ9grsaBV7hOgCSkfEzb1aIdlnbLZp4DCYOuNFQ+5eG
+ III/qgXB3gv2NI/ukWuQBNrXV+EmIqM8SxKOhcObZXWnkEw+6F9CGyYC9AhR1ZLKC40YaZQ+trtn
+ Eh9wUysc4uCrhmcWLql8THOdSiHAgggGfXRKw3BTrmSizxFc684o/A69h/CvHI/GeXW8oEyu47TQ
+ DqTi6GKwcIp24VOsP5eu885wo+t+ynT3Y80OmAux3oN13+ztUzneZGHdcUfaxYq0ZH+Cc9iqnocR
+ WxNUEo38DE53aa5lZFsy2onypIM6qetbKE/25wcByQHccqPF2ZbyJan8j4Gywd51C0ZuDFMORrKj
+ fElM485r3Z1SFe+4OrB9Rro7EpOy1Um2iVRPSUxhtw3wz3yqYcOpyKA69LF1Ge2GaGfxmfp09oMS
+ l8c4ShQ//ve+MHzjs9MOb3HXByN6cty/LT6lgOv2AzRyYGlsi3xQeIJ6TM5o5F89lTjPCn99uwfA
+ g5wm8t3Xj/LzZ5s/OJg1L2asZ/4te3BTDYEBZZ1yPQnIH5IVn/pKnch3lmmwSrgldH+Ps9MOb3HX
+ ByN6cty/LT6lgO+c9AHZZ12442bv/l3jZJg=
+X-Report-Abuse-To: spam@quarantine16.antispamcloud.com
+X-Complaints-To: abuse@master.antispamcloud.com
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [1.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_DKIM_REJECT(1.00)[reactivated.net:s=default];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-325127-lists,devicetree=lfdr.de];
-	FORGED_SENDER(0.00)[morf3089@gmail.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[gmail.com,kernel.org,perex.cz,suse.com,ti.com,vger.kernel.org];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[15];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:krzk@kernel.org,m:morf3089@gmail.com,m:broonie@kernel.org,m:lgirdwood@gmail.com,m:robh@kernel.org,m:conor+dt@kernel.org,m:perex@perex.cz,m:tiwai@suse.com,m:shenghao-ding@ti.com,m:kevin-lu@ti.com,m:baojun.xu@ti.com,m:sen@ti.com,m:linux-sound@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORWARDED(0.00)[lists@lfdr.de];
+	DMARC_NA(0.00)[reactivated.net];
+	TAGGED_FROM(0.00)[bounces-325147-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:joro@8bytes.org,m:will@kernel.org,m:robin.murphy@arm.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:florian.fainelli@broadcom.com,m:bcm-kernel-feedback-list@broadcom.com,m:dan@reactivated.net,m:iommu@lists.linux.dev,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-rpi-kernel@lists.infradead.org,m:linux-arm-kernel@lists.infradead.org,m:nick.hollinghurst@raspberrypi.com,m:jgg@ziepe.ca,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	HAS_X_GMSV(0.00)[dan@reactivated.net];
+	FORGED_SENDER(0.00)[dan@reactivated.net,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	HAS_X_AS(0.00)[dan@reactivated.net];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[morf3089@gmail.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
 	RCVD_COUNT_FIVE(0.00)[5];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[dan@reactivated.net,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[reactivated.net:-];
 	ALIAS_RESOLVED(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[reactivated.net:from_mime,reactivated.net:email,reactivated.net:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: CB4AF745E52
+X-Rspamd-Queue-Id: 2C6447462F2
 
-> +  ti,channel:
->
-> ti,audio-channel
->
-> Most speakers do not need such property, especially that what do you do
-> in 4-speaker configuration? I found only two references: awinic,aw87390
-> and awinic,aw88395.yaml.
+Hi,
 
-Dropped in v3. A node now takes a `reg` array of 1 or 2 addresses;
-the device at each index applies that half (DEV_A/DEV_B) of the
-stereo firmware. Device order is the only configuration needed - no
-property. This matches tas2781.c/tas2781-fmwlib.c's architecture for
-the same firmware toolchain.
+This series adds a driver for the Broadcom BCM2712 IOMMU found on
+Raspberry Pi 5, and hooks up the display controller IOMMU for efficient
+management of graphics memory. This is adapted from the downstream driver
+from Raspberry Pi (original author Nick Hollinghurst), with main changes:
+ - Implement the page table management using generic_pt
+ - Implement brcm,iova-window and brcm,iommu-cache as standards-compliant
+   DT property names, while maintaining compatibility with existing
+   shipped RPi firmware
+ - Drop the dma-iova-offset hack, used to work around some issue seen with
+   dma-ranges. This will need to be investigated separately and solved
+   properly. (It's not needed for display controller iommu support included
+   here.)
+ - Misc simplifications/standardisations/cleanups
+ 
+The IOMMU works strictly with 4KB pages. This means that unfortunately
+when the kernel is compiled with PAGE_SIZE=16KB (the Raspberry Pi 5
+kernel default), 12KB is wasted in each page that is allocated for page
+tables. I plan to address this in followup work.
 
-`reg` is capped at two because the firmware container itself only
-defines two device types (DEV_A/DEV_B). A 4-speaker board would need
-two independent stereo pairs on two nodes, same as with tas2781.
+It has been tested on Raspberry Pi 5 using a 3D-accelerated graphical
+environment which causes plenty of IOMMU maps & unmaps.
 
-> +    $ref: /schemas/types.yaml#/definitions/string
->
-> Wrong type - there is basically no syntax like that (except a few
-> left-overs which I remove now), so please kindly do not upstrem some old
-> code. Drop.
->
-> You need maxItems.
+Feedback and testing welcome!
 
-Fixed in v3: maxItems: 1.
+---
+Daniel Drake (6):
+      generic_pt: allow missing sw bit in DMA_INCOHERENT case
+      iommupt: allow full-table contiguous leaves in unit tests
+      dt-bindings: iommu: Add Broadcom BCM2712 IOMMU
+      iommu/generic_pt: Add Broadcom BCM2712 page table format
+      iommu: Add Broadcom BCM2712 IOMMU driver
+      arm64: dts: broadcom: bcm2712: Add GPU IOMMU and IOMMU cache nodes
 
-Gianluca
+ .../bindings/iommu/brcm,bcm2712-iommu.yaml         |  65 +++
+ .../bindings/iommu/brcm,bcm2712-iommuc.yaml        |  35 ++
+ arch/arm64/boot/dts/broadcom/bcm2712.dtsi          |  15 +
+ drivers/iommu/Kconfig                              |  15 +
+ drivers/iommu/Makefile                             |   1 +
+ drivers/iommu/bcm2712-iommu-cache.c                |  73 +++
+ drivers/iommu/bcm2712-iommu-cache.h                |   9 +
+ drivers/iommu/bcm2712-iommu.c                      | 587 +++++++++++++++++++++
+ drivers/iommu/generic_pt/.kunitconfig              |   1 +
+ drivers/iommu/generic_pt/Kconfig                   |  10 +
+ drivers/iommu/generic_pt/fmt/Makefile              |   2 +
+ drivers/iommu/generic_pt/fmt/bcm2712.h             | 259 +++++++++
+ drivers/iommu/generic_pt/fmt/defs_bcm2712.h        |  18 +
+ drivers/iommu/generic_pt/fmt/iommu_bcm2712.c       |  10 +
+ drivers/iommu/generic_pt/kunit_generic_pt.h        |  39 +-
+ drivers/iommu/generic_pt/pt_fmt_defaults.h         |  13 +
+ include/linux/generic_pt/common.h                  |   7 +
+ include/linux/generic_pt/iommu.h                   |  13 +
+ 18 files changed, 1147 insertions(+), 25 deletions(-)
+---
+base-commit: f4fb100039e96211609dfc44fb24b9e4a8a0f2f9
+change-id: 20260712-bcm2712-iommu-submit-2e09899e65c4
+
+Best regards,
+-- 
+Daniel Drake <dan@reactivated.net>
+
 
