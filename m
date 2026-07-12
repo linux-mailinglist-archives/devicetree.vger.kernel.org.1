@@ -1,58 +1,63 @@
-Return-Path: <devicetree+bounces-324970-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-324972-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id pynULU8GU2qSWAMAu9opvQ
-	(envelope-from <devicetree+bounces-324970-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 12 Jul 2026 05:13:19 +0200
+	id H5lwBI4RU2o4WgMAu9opvQ
+	(envelope-from <devicetree+bounces-324972-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 12 Jul 2026 06:01:18 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F152743ABE
-	for <lists+devicetree@lfdr.de>; Sun, 12 Jul 2026 05:13:19 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D34B3743BB9
+	for <lists+devicetree@lfdr.de>; Sun, 12 Jul 2026 06:01:16 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20201202 header.b=U0w6p5Mm;
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324970-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-324970-lists+devicetree=lfdr.de@vger.kernel.org";
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
+	dkim=pass header.d=pigmoral.tech header.s=zmail header.b=l2S7Hmft;
+	dmarc=none;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324972-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-324972-lists+devicetree=lfdr.de@vger.kernel.org";
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C5A18301D304
-	for <lists+devicetree@lfdr.de>; Sun, 12 Jul 2026 03:12:45 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 892E830166C3
+	for <lists+devicetree@lfdr.de>; Sun, 12 Jul 2026 04:01:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 299DE36A03F;
-	Sun, 12 Jul 2026 03:12:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0EDB52C21F7;
+	Sun, 12 Jul 2026 04:01:13 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from sender4-op-o15.zoho.com (sender4-op-o15.zoho.com [136.143.188.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84078313E34;
-	Sun, 12 Jul 2026 03:12:43 +0000 (UTC)
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783825963; cv=none; b=VRXjVFVSWyQRgIUdz1bWCh+2KOG7xfubAXxtGbuNiRr4zjEyy4ecQ5XHpDrjxkLALftV2IL58woqms/hICjuSV6d6193+yDDPwkWHTJCgDvOzOtOE3qoHUCNdtdi342gqjjfOeXpsJH4pP8bcpRxv+jUbrIU6KYTjE8Ddqn6PVo=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783825963; c=relaxed/simple;
-	bh=540jWl1AxpLCfe0j/auVKISieH2sqdBaIOXvTByk7sM=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=iOe7QVMmhathC++X/cmKQMMAqGi4HxQKIPE5Z5t5PHJ3nttmzYeZXT9zafaTQdZ0djGBor7+LWifA3nR3fTt+KsYf3/pakNk+iqYrza1WhDMctr9bwJ+toLOQz/jWXFaCzDmfMMp+/rMHkd+i2WltB0djDWT3rFNToplvl5TugY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=U0w6p5Mm; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 2B22AC2BCF5;
-	Sun, 12 Jul 2026 03:12:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1783825963;
-	bh=540jWl1AxpLCfe0j/auVKISieH2sqdBaIOXvTByk7sM=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=U0w6p5MmJhBdPiheMaAfyhtqNknVOb/SjAMFdYCHIXBOhk0lU6JKGuvqP0lV/yeao
-	 2twPxTjZTCHmouLtgFI7hEa8Isjz12nkl0gPpSw0TNIZc+NV1AlB97PrrLD+Y624Vb
-	 pnuRPFZHZnoihXPDpfWxbiExJCt3ytGuWwPCrfP9cYS4IkHeTTvWZ5jKR2cA31uWt1
-	 u9dSMJ3nXAXgO2AKXNQ3OYeFFIU5GZO331k3mulBnRQ3M+NYJqSw6gNk9jAe/g5Ssg
-	 7S2DchDAPHiVuXBKcFMup3Cl33UmJxqh4MMItv4JlvbYxVb1aspGYtzcEfBaZqROzE
-	 G/DSFzSg1OPdg==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 0FE91C44507;
-	Sun, 12 Jul 2026 03:12:43 +0000 (UTC)
-From: Esteban Urrutia via B4 Relay <devnull+esteuwu.proton.me@kernel.org>
-Date: Sat, 11 Jul 2026 23:12:28 -0400
-Subject: [PATCH v2 2/2] arm64: dts: qcom: sm8450: Add mode-switch property
- to qmpphy
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F72621255A;
+	Sun, 12 Jul 2026 04:01:11 +0000 (UTC)
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1783828872; cv=pass; b=HqXn3u8wR1qn94fo8AcQ4gDq20OVz/EvDE+6CkO5rNXDCp4LnO7PV81WudTdI12ELSl4QsMqZ9/HfHgGm0/EkijmDHwhMmnQ3Uf2vSXurimxyzp/ggc4z1Rdl+ahmSjmGqe9iS6TCokNHGSHrk4bdPcckC6a7I0nxwD+KuHB+UA=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1783828872; c=relaxed/simple;
+	bh=O03rd95rLTU1Dxveo4k6sEWLV/W7qWnJWqsuUvJW/Zk=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Jy2jUhOLIqo9VgOwA4Fv6a2HJo6eG3LOikXEMk5MlMep0lz4AK3wVGc8iUfnP3nDqIuKETausv8qcaLwvBToj4BoLXKXVHIZiz5YmvRkY+zfd9KaU0XJTA554u0bfN93T2gOzIkUCearCdqclAO2qRi1gAul+T5HZgizNjssF5s=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pigmoral.tech; spf=pass smtp.mailfrom=pigmoral.tech; dkim=pass (1024-bit key) header.d=pigmoral.tech header.i=junhui.liu@pigmoral.tech header.b=l2S7Hmft; arc=pass smtp.client-ip=136.143.188.15
+ARC-Seal: i=1; a=rsa-sha256; t=1783828839; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=AoIicxmLV6OUnyp0cFxOOjHslEVx3rB07tTxvdFjhw74lx720FeqKYjocfzFE/ujdL4urHG38iq12LMt4shTGflGuN+G7c7xLuir4Ek/rTf2m+W04hVwWf+//YyTUDhv3bZuZp2ObR8/WCfG/njL6sj8Aq0CB9e57SgKMwoGm78=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1783828839; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=sxgMUK4leE9QWcjxVwljumsqOPffhM1uKVFIxXk15jM=; 
+	b=LHyh7drvGCjYnFXK15mBzkP88TC4qu5dyTfLR7E8xTUVsYomU5/HSm+ZY6ECD0CPGtq1UPqf4eHRYdQT9o6rmlFqhIC33qOdmSclWimFZ3cw9Di7XvVx+tItu4qEGu+KK/EdUbYEbKzj+TIKiE6nlMsWh+WL/GIme9y2TtuEfg4=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=pigmoral.tech;
+	spf=pass  smtp.mailfrom=junhui.liu@pigmoral.tech;
+	dmarc=pass header.from=<junhui.liu@pigmoral.tech>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1783828839;
+	s=zmail; d=pigmoral.tech; i=junhui.liu@pigmoral.tech;
+	h=From:From:Subject:Subject:Date:Date:Message-Id:Message-Id:MIME-Version:Content-Type:Content-Transfer-Encoding:To:To:Cc:Cc:Reply-To;
+	bh=sxgMUK4leE9QWcjxVwljumsqOPffhM1uKVFIxXk15jM=;
+	b=l2S7Hmft+4LQBWykqqWShcAXyzlWZI0Glx5oWLGMajMmGONhMlLYRuZzdrlYnlcR
+	WkgWXIHh/l67Ajy/FnJ6HBxe7z1/Vif8/oqi/tbO/F0uOdfugLp/xolSr5qgBrShXD9
+	pZwWtn8yaHLWh+d+ApFKdjj09MLvskaq2sHbyF0c=
+Received: by mx.zohomail.com with SMTPS id 1783828837085345.73913355068294;
+	Sat, 11 Jul 2026 21:00:37 -0700 (PDT)
+From: Junhui Liu <junhui.liu@pigmoral.tech>
+Subject: [PATCH v3 0/3] spacemit: k1: Add support for Banana Pi BPI-CM6 IO
+ board
+Date: Sun, 12 Jul 2026 12:00:00 +0800
+Message-Id: <20260712-bpi-cm6-v3-0-8d1e2045179d@pigmoral.tech>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,90 +66,117 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260711-sm8450-qol-dts-v2-2-5eb2e86468c5@proton.me>
-References: <20260711-sm8450-qol-dts-v2-0-5eb2e86468c5@proton.me>
-In-Reply-To: <20260711-sm8450-qol-dts-v2-0-5eb2e86468c5@proton.me>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org, 
- Esteban Urrutia <esteuwu@proton.me>
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/2WNyw6CMBBFf4XM2po+Ig9X/odxUcoUJpFXi42G8
+ O8WXGB0eW7mnJnBoyP0cE5mcBjIU99FUIcETKO7GhlVkUFymfKTlKwciJk2ZZVRuS0EKosG4vX
+ g0NJzK11vH3Y4PmJw2seG/NS71/YtiHX9DwfBOMt4hlYUItOKXwaq297p+3FC08DaCfLbzXdXR
+ rfiWCorVWpQ/7rLsrwByFNphPMAAAA=
+X-Change-ID: 20260522-bpi-cm6-dc38f91e3fec
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@kernel.org>, 
+ Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, 
+ Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, 
+ Guodong Xu <guodong@riscstar.com>, Yangyu Chen <cyy@cyyself.name>, 
+ Vivian Wang <wangruikang@iscas.ac.cn>, Paolo Abeni <pabeni@redhat.com>
+Cc: devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
+ spacemit@lists.linux.dev, linux-kernel@vger.kernel.org, 
+ Junhui Liu <junhui.liu@pigmoral.tech>, 
+ Conor Dooley <conor.dooley@microchip.com>, 
+ Michael Opdenacker <michael.opdenacker@rootcommit.com>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1783825961; l=627;
- i=esteuwu@proton.me; s=20260622; h=from:subject:message-id;
- bh=/uZn04C0kV47S2j5bmHfyQGfe1zYRTmHGF4aZTBxrpI=;
- b=0y+nRtRBoDAdvBLUykNBy/aaD/2cK4MgWbAcUDXX1FBWEBEkayA70cmwmjrhkqyVEE5QTrFoZ
- M85G6G3cnffCQprIRLZYg6/s3Xyay/K6IVkNlb3R4vMC3c/7sGLBWam
-X-Developer-Key: i=esteuwu@proton.me; a=ed25519;
- pk=wToFt4mOAWkzbqb15Ye1hrhevI13vK9BcMUFiQ/me1M=
-X-Endpoint-Received: by B4 Relay for esteuwu@proton.me/20260622 with
- auth_id=835
-X-Original-From: Esteban Urrutia <esteuwu@proton.me>
-Reply-To: esteuwu@proton.me
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1783828822; l=2474;
+ i=junhui.liu@pigmoral.tech; s=20251228; h=from:subject:message-id;
+ bh=O03rd95rLTU1Dxveo4k6sEWLV/W7qWnJWqsuUvJW/Zk=;
+ b=xx0DNzPTLuQ1kJQCbT8D2D8FunRl9hCmDJtpOmAD4JmJjRaB56Pcf22rOu2beVES1uAKHqrLo
+ /CS2qpMvJxqB0c+zMnNMsf0IEsK6mIjFJ/bw8V9ddqMg/7BV7hSm1yb
+X-Developer-Key: i=junhui.liu@pigmoral.tech; a=ed25519;
+ pk=3vU0qIPJAH8blXmLyqBhKx+nLOjcLwwYhZXelEpw7h4=
+X-ZohoMailClient: External
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-5.16 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	R_DKIM_ALLOW(-0.20)[pigmoral.tech:s=zmail];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-324970-lists,devicetree=lfdr.de,esteuwu.proton.me];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:andersson@kernel.org,m:konradybcio@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:phone-devel@vger.kernel.org,m:esteuwu@proton.me,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:dlan@kernel.org,m:pjw@kernel.org,m:palmer@dabbelt.com,m:aou@eecs.berkeley.edu,m:alex@ghiti.fr,m:guodong@riscstar.com,m:cyy@cyyself.name,m:wangruikang@iscas.ac.cn,m:pabeni@redhat.com,m:devicetree@vger.kernel.org,m:linux-riscv@lists.infradead.org,m:spacemit@lists.linux.dev,m:linux-kernel@vger.kernel.org,m:junhui.liu@pigmoral.tech,m:conor.dooley@microchip.com,m:michael.opdenacker@rootcommit.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER(0.00)[junhui.liu@pigmoral.tech,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	DMARC_NA(0.00)[pigmoral.tech];
 	MIME_TRACE(0.00)[0:+];
 	FORWARDED(0.00)[lists@lfdr.de];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	TAGGED_FROM(0.00)[bounces-324972-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NEQ_ENVFROM(0.00)[junhui.liu@pigmoral.tech,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[pigmoral.tech:+];
 	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	HAS_REPLYTO(0.00)[esteuwu@proton.me];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp,proton.me:replyto,proton.me:mid,proton.me:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 0F152743ABE
+X-Rspamd-Queue-Id: D34B3743BB9
 
-From: Esteban Urrutia <esteuwu@proton.me>
+This adds initial support for the Banana Pi BPI-CM6 IO board. The
+BPI-CM6 is an industrial-grade RISC-V compute module powered by the
+SpacemiT K1 SoC, featuring board-to-board connectors similar to the
+Raspberry Pi CM4 form factor. For evaluation and development, the module
+is paired with a companion IO carrier board.
 
-USB QMP PHY is a possible handler of altmode switching, so add this
-property.
+During the board bring-up, GPIO45 and GPIO46 were found to be used by
+the BPI-CM6 hardware as Ethernet PHY reset GPIOs, while the common K1
+GMAC pinctrl groups currently mux them as optional GMAC reference clock
+pins. Since the reference clock pins are not required on all K1 boards,
+the second patch separates them into independent pinctrl groups so board
+DTS files can select them only when the signal is actually wired.
 
-Signed-off-by: Esteban Urrutia <esteuwu@proton.me>
+Link: https://docs.banana-pi.org/en/BPI-CM6/BananaPi_BPI-CM6
+Signed-off-by: Junhui Liu <junhui.liu@pigmoral.tech>
 ---
- arch/arm64/boot/dts/qcom/sm8450.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+Changes in v3:
+- Remove uncontrolled always-on intermediate fixed regulators to
+  reduce device tree bloat
+- Rebase to v7.2-rc1
+- Link to v2: https://lore.kernel.org/r/20260528-bpi-cm6-v2-0-d0eb3f236cea@pigmoral.tech
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-index cf7c8f831fb0..e51babc1cf7a 100644
---- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-@@ -2654,6 +2654,7 @@ usb_1_qmpphy: phy@88e8000 {
- 			#clock-cells = <1>;
- 			#phy-cells = <1>;
- 
-+			mode-switch;
- 			orientation-switch;
- 
- 			status = "disabled";
+Changes in v2:
+- Keep gmac_clk_ref pinctrl groups referenced on existing boards where
+  the pins are routed to optional PHY refclk paths
+- Remove duplicate vpcie3v3-supply property from pcie1 and pcie2 nodes
+- Collect tags
+- Link to v1: https://lore.kernel.org/r/20260522-bpi-cm6-v1-0-707ef1917a30@pigmoral.tech
 
--- 
-2.55.0
+---
+Junhui Liu (3):
+      dt-bindings: riscv: spacemit: Add Banana Pi BPI-CM6 compatible
+      riscv: dts: spacemit: k1: Split gmac_clk_ref into independent pinctrl groups
+      riscv: dts: spacemit: k1: Add Banana Pi BPI-CM6 IO board
 
+ .../devicetree/bindings/riscv/spacemit.yaml        |   5 +
+ arch/riscv/boot/dts/spacemit/Makefile              |   1 +
+ .../riscv/boot/dts/spacemit/k1-bananapi-cm6-io.dts | 177 +++++++++++++++++
+ arch/riscv/boot/dts/spacemit/k1-bananapi-cm6.dtsi  | 217 +++++++++++++++++++++
+ arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts    |   4 +-
+ arch/riscv/boot/dts/spacemit/k1-milkv-jupiter.dts  |   4 +-
+ arch/riscv/boot/dts/spacemit/k1-musepi-pro.dts     |   2 +-
+ arch/riscv/boot/dts/spacemit/k1-orangepi-r2s.dts   |   4 +-
+ arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi       |  24 ++-
+ 9 files changed, 427 insertions(+), 11 deletions(-)
+---
+base-commit: dc59e4fea9d83f03bad6bddf3fa2e52491777482
+change-id: 20260522-bpi-cm6-dc38f91e3fec
+
+Best regards,
+--  
+Junhui Liu <junhui.liu@pigmoral.tech>
 
 
