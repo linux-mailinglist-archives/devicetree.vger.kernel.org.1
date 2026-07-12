@@ -1,53 +1,53 @@
-Return-Path: <devicetree+bounces-324963-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-324961-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id YciDGsUDU2ozWAMAu9opvQ
-	(envelope-from <devicetree+bounces-324963-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 12 Jul 2026 05:02:29 +0200
+	id T8dwE2gDU2odWAMAu9opvQ
+	(envelope-from <devicetree+bounces-324961-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 12 Jul 2026 05:00:56 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7369743A10
-	for <lists+devicetree@lfdr.de>; Sun, 12 Jul 2026 05:02:28 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE3D57439D2
+	for <lists+devicetree@lfdr.de>; Sun, 12 Jul 2026 05:00:55 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=OYM8XCBb;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=EkARuxZy;
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324963-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-324963-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324961-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-324961-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id DC33B3017020
-	for <lists+devicetree@lfdr.de>; Sun, 12 Jul 2026 03:00:50 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 7A208300914F
+	for <lists+devicetree@lfdr.de>; Sun, 12 Jul 2026 03:00:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23FDF370AD2;
-	Sun, 12 Jul 2026 03:00:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB5D22EDD40;
+	Sun, 12 Jul 2026 03:00:26 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91E3C36A342;
-	Sun, 12 Jul 2026 03:00:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C37D21E0E14;
+	Sun, 12 Jul 2026 03:00:22 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783825226; cv=none; b=TQDPrTUlkqDQr2QR70uhhWln0SnH33ZMqnHY0jDL59wImrehR9d3N1C6XK5wJUlrXX6LKNvz4myh9x9lTIt6MnYVIaBvVuqIyKu9dBPbyEcq4QuGqeOfzWecpzqznnJIDPO7VhS8DlqA0GkT0tZI3Pnih+O0HaxOUyPZF30qdYQ=
+	t=1783825225; cv=none; b=YE8YI8kC7HxnUHcLiUbKkprlBuFZWidCcoxUhSPAXCkWU77JEN+eEAQ5XT2LTpXRFPRy1J54mD5PO5h4iyWhs6PHedduawxkwBJ1cV56CjJmaBFgk+7oWmlIFUmJlHD+NImKImz4HDl4xr07QfuaWoQymZOXhdV5OkOZ7rcCnqI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783825226; c=relaxed/simple;
-	bh=gW2V/cjtn2yP9PlGPvyWgig9cbcM95cWOOpoDOZuA24=;
+	s=arc-20240116; t=1783825225; c=relaxed/simple;
+	bh=Vsplpc8zh8LJvWm986vVSNt4N+Il8O2d2af6uSuHqCE=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Smxg1/dXN17/PMngXi9qfl21mbdXTCQu/grNgNtt2fTiN9AGiFGhGHcbaR4sTEyJrGO9cnlQdQB4m89nfgVje5p+6ERN1k39r7fyFwUvonr99QdhkIilUhBD/M9nXWNvxCwBZX2zJ0K6Y6JOOqMuSAsUyOvX5HpfgzGgRysH/mk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OYM8XCBb; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EF64D1F00ACA;
-	Sun, 12 Jul 2026 03:00:16 +0000 (UTC)
+	 MIME-Version; b=Szt96tKRcZfGqdsAMhOlOs8qYdfvwdpwEGCsk8/cCDO/Nk1Z2QTV9xA/Kjqxh75hqTqUHIcv+LnDjJk9WCa3W19yXqvgyOuy4QGYlt8FduRfpg69ethvq9nXzU3zG1zkhvx54t18lY7lRqMaLS24BZQQefZLbbWhHgNhuQ5vPsY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EkARuxZy; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1150E1F00ACF;
+	Sun, 12 Jul 2026 03:00:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
 	s=k20260515; t=1783825217;
-	bh=pzarCo0PiGEntl4cqzxyei11Yp87WevMdKTnQJP6EnQ=;
+	bh=dLNyCbS1Qr51ll3Io/f0Su8Vsd8z8WzVVb12Br+N0SA=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=OYM8XCBbxH2+vtUBrUayX17GxvMN8/27b2gaHlDRqN4BFjlUSiSfcyRcyW2TF8L+C
-	 vJ/S7W5M2KREywFteL4VjSd0hyKmPkQLDRlnsfmSJEanKbffe/hgGc2A4R1+jwEXak
-	 Rm04jfGDdXLNsyiNVXV7FiOS4PGmd9p3PLOomY5JxFC+x1eQmRWshRJxb1cFPD2+8H
-	 4O4aMvip/0wXtkLaXk34Z3fGGxj8exBqW1dsOcrAtkmYJu56IT/aUtWi0aVtbQmkg7
-	 Gn/1q/xI0kevfc2inifGuVog2LzxvhHUyLWvX9wbF8gcCSzT+j+Gp4PvvrY8KN1SkP
-	 nCaqGfOWmlRjQ==
+	b=EkARuxZyse0llGypKEzJKuSEfsbA29DP/ZzpQFqgxawUc1L5xAM/ZCt9n6qRlzgT2
+	 DNaoR9nqihZcx0x4g7zfdBppHgiudJ1itdU/hVHGNb1Fr5mTERqQ7lOmn458jFAM4q
+	 aJtkMJ/ndBtiR5MqxCqR/4+tkbM/Rbhvet41LntyITFR9yQFWt/O1JbUSZO8yRno9h
+	 14vDehaQ+3OEH2q7znowLawvzqUnB2DzTUipANPRFOHxfH204fh7p3wkkcqtb8EHRf
+	 HZgxrX6CObBNmXywW6znUFaxw9DfZoY/HjwRSX3C9h9zU55EInl6EADkfVB4ZYxDvq
+	 8zrFSnlEfFesA==
 Received: by wens.tw (Postfix, from userid 1000)
-	id 1BABE60169; Sun, 12 Jul 2026 11:00:13 +0800 (CST)
+	id 290AA6019F; Sun, 12 Jul 2026 11:00:13 +0800 (CST)
 From: Chen-Yu Tsai <wens@kernel.org>
 To: Maxime Ripard <mripard@kernel.org>,
 	Paul Kocialkowski <paulk@sys-base.io>,
@@ -58,17 +58,18 @@ To: Maxime Ripard <mripard@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+Cc: Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
 	linux-media@vger.kernel.org,
 	linux-staging@lists.linux.dev,
 	devicetree@vger.kernel.org,
 	linux-sunxi@lists.linux.dev,
 	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
-	Jernej Skrabec <jernej.skrabec@gmail.com>
-Subject: [PATCH v3 6/7] arm64: dts: allwinner: sun50i-h6: Add missing IOMMU for video engine
-Date: Sun, 12 Jul 2026 11:00:09 +0800
-Message-ID: <20260712030011.3778169-7-wens@kernel.org>
+	Andre Przywara <andre.przywara@arm.com>
+Subject: [PATCH v3 7/7] arm64: dts: allwinner: sun50i-h616: Add video engine
+Date: Sun, 12 Jul 2026 11:00:10 +0800
+Message-ID: <20260712030011.3778169-8-wens@kernel.org>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <20260712030011.3778169-1-wens@kernel.org>
 References: <20260712030011.3778169-1-wens@kernel.org>
@@ -87,19 +88,19 @@ X-Spamd-Result: default: False [-2.16 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-324963-lists,devicetree=lfdr.de];
-	FREEMAIL_CC(0.00)[linuxfoundation.org,vger.kernel.org,lists.linux.dev,lists.infradead.org,gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[17];
+	TAGGED_FROM(0.00)[bounces-324961-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[gmail.com,linuxfoundation.org,vger.kernel.org,lists.linux.dev,lists.infradead.org,arm.com];
+	RCPT_COUNT_TWELVE(0.00)[18];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER(0.00)[wens@kernel.org,devicetree@vger.kernel.org];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:mripard@kernel.org,m:paulk@sys-base.io,m:mchehab@kernel.org,m:wens@kernel.org,m:jernej@kernel.org,m:samuel@sholland.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:gregkh@linuxfoundation.org,m:linux-media@vger.kernel.org,m:linux-staging@lists.linux.dev,m:devicetree@vger.kernel.org,m:linux-sunxi@lists.linux.dev,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:jernej.skrabec@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:jernejskrabec@gmail.com,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:mripard@kernel.org,m:paulk@sys-base.io,m:mchehab@kernel.org,m:wens@kernel.org,m:jernej@kernel.org,m:samuel@sholland.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:jernej.skrabec@gmail.com,m:gregkh@linuxfoundation.org,m:linux-media@vger.kernel.org,m:linux-staging@lists.linux.dev,m:devicetree@vger.kernel.org,m:linux-sunxi@lists.linux.dev,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:andre.przywara@arm.com,m:krzk@kernel.org,m:conor@kernel.org,m:jernejskrabec@gmail.com,s:lists@lfdr.de];
 	FORWARDED(0.00)[lists@lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
@@ -110,41 +111,54 @@ X-Spamd-Result: default: False [-2.16 / 15.00];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	RCVD_COUNT_FIVE(0.00)[5];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	ALIAS_RESOLVED(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: B7369743A10
+X-Rspamd-Queue-Id: CE3D57439D2
 
-The video engine on the H6 actually has two IOMMU ports. The one already
-listed is simply named "VE" in the user manual. The missing one is named
-"VE_R" and is probably either read-only or used for reference frames.
-Either way, it should be listed.
+From: Jernej Skrabec <jernej.skrabec@gmail.com>
 
-Add a reference to the "VE_R" IOMMU port to the video engine node.
+The H616 SoC has a video engine, and two SRAM regions needed by it.
 
-Fixes: 62a8ccf3a248 ("arm64: dts: allwinner: h6: Fix Cedrus IOMMU usage")
-Reviewed-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+Add the video engine to the dtsi file.
+
+Signed-off-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+[wens@kernel.org: Add VE SRAM region and commit message]
+Reviewed-by: Andre Przywara <andre.przywara@arm.com>
 Signed-off-by: Chen-Yu Tsai <wens@kernel.org>
 ---
- arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Changes since v1:
+- Corrected second IOMMU port
+---
+ arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
-index 88c6e3e105c0..48c771223af4 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
-@@ -206,7 +206,7 @@ video-codec@1c0e000 {
- 			resets = <&ccu RST_BUS_VE>;
- 			interrupts = <GIC_SPI 89 IRQ_TYPE_LEVEL_HIGH>;
- 			allwinner,sram = <&ve_sram 1>, <&de2_sram 1>;
--			iommus = <&iommu 3>;
-+			iommus = <&iommu 3>, <&iommu 1>;
+diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
+index 1598e86259ab..c6b3a3f8359a 100644
+--- a/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
++++ b/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
+@@ -175,6 +175,18 @@ crypto: crypto@1904000 {
+ 			resets = <&ccu RST_BUS_CE>;
  		};
  
- 		gpu: gpu@1800000 {
++		video-codec@1c0e000 {
++			compatible = "allwinner,sun50i-h616-video-engine";
++			reg = <0x01c0e000 0x2000>;
++			clocks = <&ccu CLK_BUS_VE>, <&ccu CLK_VE>,
++				 <&ccu CLK_MBUS_VE>;
++			clock-names = "ahb", "mod", "ram";
++			resets = <&ccu RST_BUS_VE>;
++			interrupts = <GIC_SPI 93 IRQ_TYPE_LEVEL_HIGH>;
++			iommus = <&iommu 3>, <&iommu 2>;
++			allwinner,sram = <&ve_sram 1>, <&sram_c 1>;
++		};
++
+ 		syscon: syscon@3000000 {
+ 			compatible = "allwinner,sun50i-h616-system-control";
+ 			reg = <0x03000000 0x1000>;
 -- 
 2.47.3
 
