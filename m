@@ -1,66 +1,65 @@
-Return-Path: <devicetree+bounces-325149-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-325128-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id /2dgIwsYVGoCiAMAu9opvQ
-	(envelope-from <devicetree+bounces-325149-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 00:41:15 +0200
+	id S3NeF+AEVGrWgwMAu9opvQ
+	(envelope-from <devicetree+bounces-325128-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 12 Jul 2026 23:19:28 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1AF074633B
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 00:41:14 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id F095A745F08
+	for <lists+devicetree@lfdr.de>; Sun, 12 Jul 2026 23:19:27 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=fail ("headers rsa verify failed") header.d=reactivated.net header.s=default header.b=gZ5xC8nT;
+	dkim=fail ("headers rsa verify failed") header.d=reactivated.net header.s=default header.b=DV7yCnlp;
 	dmarc=none;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-325149-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-325149-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-325128-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-325128-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 7F9B6300DDEF
-	for <lists+devicetree@lfdr.de>; Sun, 12 Jul 2026 22:41:13 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 767B73003369
+	for <lists+devicetree@lfdr.de>; Sun, 12 Jul 2026 21:19:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EED7A3859E2;
-	Sun, 12 Jul 2026 22:41:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C60633F5A5;
+	Sun, 12 Jul 2026 21:19:25 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from out13-173.antispamcloud.com (out13-173.antispamcloud.com [185.201.17.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40550384CF0;
-	Sun, 12 Jul 2026 22:41:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78E5F35E930;
+	Sun, 12 Jul 2026 21:19:23 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783896072; cv=none; b=mfbM+vruJVTJSCHaf7t703wi5s5H4dPTfwrJ/D6wSKLN+3wlduZ4Yi6jWrPNF4DYCncgYj2HQvGY3df9CnmqJFEt3/OySGQfD7N5OL7+Ale1ocDUxqW/0BblP8UhIMdxLDLib0OHsnne1/jthLn9H4jSLvY8N1nkSes4FLIa7JE=
+	t=1783891165; cv=none; b=NiUkDQpoTltfXjl7dcHienAcwDrKzX4dqK1skgO/V9DRh0YHddDgXN5tnE8d1ncBQfb9aog1Cw6BgyS2dnUijvW1xV/KD5uBzXVEA07t3Y3Ex6/mlD5Eqml+CLbNUURFeCtme5my73x7jtZGKypfds4o8CDlFN0XVVTS7pvbBAw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783896072; c=relaxed/simple;
-	bh=miEDg0CZsfHPnHjA+ZUjMb9OSGcKFHtdWhiZyEEFe60=;
+	s=arc-20240116; t=1783891165; c=relaxed/simple;
+	bh=QJ/vzn1Oja8eZ3GalWvgiUTZ4cPgSoO2DB6bv+DpObI=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=CZk9ygLVDdEY/aAjpD3ZNTTQv3h8qDx4SkSNY7817OZWU1uut9XXsw3ItbnqQeCkZtEPzJnKu7h5asta997vAHEe2M08lFwQvFHOZ+Lp5+gArxW7vaJNgiGCxQm7vyaxyhyWcFIUb6tN6q5cqlCKrHxhGHYn0AVMrrCSqgwRDD0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=reactivated.net; spf=pass smtp.mailfrom=reactivated.net; dkim=pass (2048-bit key) header.d=reactivated.net header.i=@reactivated.net header.b=gZ5xC8nT; arc=none smtp.client-ip=185.201.17.173
+	 In-Reply-To:To:Cc; b=m2uvUyI6ZTGT9verEc4BjAgWmT+ZRjAWEVhMZo/aDkQE7O4OaataGbTabOoQArdXZVugAXJzIU83qi8QjPiSmQaDzvUNqn0xX9aV6GK90buqme2MXqsM+IdIsw305QaQvOJpaqpt3X9GWmfTStv8QyhzqppJSaFpwrHPX5kvpDc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=reactivated.net; spf=pass smtp.mailfrom=reactivated.net; dkim=pass (2048-bit key) header.d=reactivated.net header.i=@reactivated.net header.b=DV7yCnlp; arc=none smtp.client-ip=185.201.17.173
 Received: from s1041.use1.mysecurecloudhost.com ([192.250.231.249])
 	by mx195.antispamcloud.com with esmtps  (TLS1.3) tls TLS_AES_256_GCM_SHA384
 	(Exim 4.94.2)
 	(envelope-from <dan@reactivated.net>)
-	id 1wj1Zt-00GoOi-3N; Sun, 12 Jul 2026 23:19:11 +0200
+	id 1wj1Zx-00GoSN-M0; Sun, 12 Jul 2026 23:19:20 +0200
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=reactivated.net; s=default; h=Cc:To:In-Reply-To:References:Message-Id:
 	Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:From:Sender:
 	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
 	:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
 	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=DDNXuZBAqjn/E8x//VWR9RhMVgZnkLggONWA/HHqhig=; b=gZ5xC8nTiujbtnalGoOBB6xjLB
-	Dfm8Lq/kZRnPstVeYqFgWGLMJi+AXdUxvKU3JaraQ8MmzEHc8ElMHRmsJ4OLgVDQi91L7uN160glM
-	bxxguiQEmUG5qEJW9NpY4tGHcDug5U375z9DixRzwzhNwbXg4kZWd/iSHsMZhZ0c1JmkGzZLTH/5E
-	ZN/bYnX05JlT8zMcW7XuD9RIiCS+9mg6dYSdFxKVgNzhJv891IqCB/shb6zdybw67WmGULXDoEHQP
-	KD+Wze9dWrVrMxqzdbdNLC0XzkXih1oDr1+M4wIkBAWYH6OYiYQ/dkdO5WfnvqBgqV4gcGmj/jor/
-	qmc+41QQ==;
+	bh=1Mj67QcVmqs6wmRW2naVhRw1o1ZfYr/QnTH9zrVrifs=; b=DV7yCnlpn/0mTP4kaVCvoX0bvK
+	q/StrZFkYRAG4qJwh9bb1GtCjQBZPH1lpeSDiIIr74szX6BiaxY89rWXF7avxAT6PyNaTkwqwHUox
+	5slzsAghwP5/WClbQTpTFH6fZJOGaHiy5Oj0S2i1OyoI25sE/qVm+VxzA0owKOi58QzbBIGhLObl9
+	+lWxXtFm040f19qrc4RAjCC8cIDwRgL/ZYUrcIsNTva+WX+th2eg2u0nMufoZ48JzlaQK8KYUS4TE
+	a/HU8U+QAidog5jlAyDbrfn0L1MLYmW8VpwSQy58yMAupBtF+46FaW5QQRJoEjhV7wBCPr1WiFNpR
+	TD123p2Q==;
 Received: from [188.251.249.2] (port=43526 helo=[192.168.1.123])
 	by s1041.use1.mysecurecloudhost.com with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
 	(Exim 4.99.4)
 	(envelope-from <dan@reactivated.net>)
-	id 1wj1Zq-0000000D6jk-0raK;
-	Sun, 12 Jul 2026 21:19:06 +0000
+	id 1wj1Zu-0000000D6jk-38Hd;
+	Sun, 12 Jul 2026 21:19:11 +0000
 From: Daniel Drake <dan@reactivated.net>
-Date: Sun, 12 Jul 2026 22:18:52 +0100
-Subject: [PATCH 2/6] iommupt: allow full-table contiguous leaves in unit
- tests
+Date: Sun, 12 Jul 2026 22:18:53 +0100
+Subject: [PATCH 3/6] dt-bindings: iommu: Add Broadcom BCM2712 IOMMU
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,7 +68,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260712-bcm2712-iommu-submit-v1-2-80e10cdde2ea@reactivated.net>
+Message-Id: <20260712-bcm2712-iommu-submit-v1-3-80e10cdde2ea@reactivated.net>
 References: <20260712-bcm2712-iommu-submit-v1-0-80e10cdde2ea@reactivated.net>
 In-Reply-To: <20260712-bcm2712-iommu-submit-v1-0-80e10cdde2ea@reactivated.net>
 To: "Joerg Roedel (AMD)" <joro@8bytes.org>, Will Deacon <will@kernel.org>, 
@@ -89,31 +88,31 @@ X-Authenticated-Sender: s1041.use1.mysecurecloudhost.com: dan@reactivated.net
 X-Spampanel-Domain: s1041.use1.mysecurecloudhost.com
 X-Spampanel-Username: 192.250.231.249
 X-Spampanel-Outgoing-Class: ham
-X-Spampanel-Outgoing-Evidence: Combined (0.01)
+X-Spampanel-Outgoing-Evidence: SB/global_tokens (0.00198314465392)
 X-Recommended-Action: accept
-X-Filter-ID: 9kzQTOBWQUFZTohSKvQbgI7ZDo5ubYELi59AwcWUnuVJ1hybdgXAyR4gyvwoLberAVSXKZ1AHPG6
- BTrVnKc75yu2SmbhJN1U9FKs8X3+Nt06bFpPrNOlRAlE9AVLwR4uGVjKNnzF3nQoDoQtBifM84JL
- M0i5ZAms0EHrvcCaVIMl6kNTi5f5Ljs8M8nl33UbGnT3EFAinyrilm9zau/FuzkQt9Nb4Ml7QXdk
+X-Filter-ID: 9kzQTOBWQUFZTohSKvQbgI7ZDo5ubYELi59AwcWUnuVII5Q6oPCuB9qu4EA3zhr96uX8i5dKehwf
+ KC2SaWwUYSu2SmbhJN1U9FKs8X3+Nt06bFpPrNOlRAlE9AVLwR4uGVjKNnzF3nQoDoQtBifM84JL
+ M0i5ZAms0EHrvcCaVIPXALmPA8d+BGIw6ynmMqunGnT3EFAinyrilm9zau/FuzkQt9Nb4Ml7QXdk
  EetczWCulNo0fvnzmZPW3MC2/ZtQeB7itP8hgjDRserKv4bhb3RyZlCL9i3kc+ehInPHgYZWBb39
- uS1TjWG2Inx+Ts2QrtVmombMJ4e2pn5C0yBMHZ0fE47nEjvubMSTLAkKCKclZzoe+TZdeH39wA4E
- grA4pE2PuLHIFQdBY9qb1rRWgyz0f29FZkQs6Ir87R/YNAtVzCPMWB8YiCVMyNt8jc1XYCTwuapY
- HJC4Tg2AsI28yi/dAa2TOnnczQuRE5msdQvx7x6TyzQygoCqslGluZauEuYXMjE4hTY0I3yya8U2
- jiBi1+p615Zso12vM2KCXe+L+BWU3diRaOYz9oc1tEKKEEfmr+ndqHTRP8aRGVatgmq6HzuQCGnn
- Tr3mO80I+WGf3He7jw4SoVhmTJ/3eP9OK8gYxuf4cLtZNp2k2WPcLin5ZMVYU7yNzdI5xqOV/A3g
- I76KIb/qJBMhevARlsatJqEylk1bBhjIWUVQpiEaCSJav4VkFrk/gqlx5FextQtEBRpnK9diwaq6
- f6CydGvDt3K1cl7mca7sWC/TjRz/cJYxsQRt/d4lhqv4oGXrB8ohU2BXFG8+WkvtZVo+JtxTPVht
- kelGIuyBfLEgNwn2D8zbg4Paoa3pNVQ0zl7t/+UIhlD770gsG4NDLnuybwGB6H1bOhFowpwrz0y/
- WpAnxs5pZJhOUQY/VSc1PV9silww77YaJhiT+NFWJZPoD/NF86TgtruyOWQA4kTJivF4YMLqzhpS
- 0znDaGCPRF8atS6+/IVQTbUJupnRiHmHNLRPMKbVSbsDMLsDJjzehgqGk6S9HXdEGxiktrX59Amx
- O5gvPpyylyRksDtvh9EglVwlXarBbY/5t7CstIBQE8o/YSFDpQ3A7hHzYZTDTFQbY0uqoOhT9kj8
- 8PvWZJaonRQv++DuIQUs/5JJj4C/n4CILhif+3TxP9sd7y15THR2QZyGg3EQOEtB6O5zAxbwt8f8
- OMYGUgbNMUWTOHN+J/NrZnOVLbMF4pTjWB0otgBwB1GjG9/7eW4VzmKFOpkivUGpcgYFRrqmiqIy
- cv2/2+nkpYsEMysPur9wmiDBurOy6iR92AkV20DuvQ+xF0HoW5AQikKYGfM1Wxpi+aM7bRAnIOLo
- KQ0J9yQ0dfrf1qMUYpnxHriJz7Z9ZB5zQq6r8umW4yWfyKeLns0rLmGoFmUivONn/VZF/HyORicl
- 1WGsneIWpF1Xu3oZ/FZQiE2Ny7dG9R/2gMGq0KWAzmMf+ibVDnUBndNaXaq/kyxZOii4y6zwY127
- 8R9pzC31fkjBqL4nASEz1JNCESIPL2LJqBM7qaqIrXo0c6G6fvFF//i6zRUhEWyJzIkwSFAW0Pw8
- uiKeSByqtznmWyRPJzMvReGPtOJKZj6+qwdjWpxBAv2JzzLwY1278R9pzC31fkjBqL4n6ihrjW1z
- DU0jv8+sl3B5Xg==
+ uS1TjWG2Inx+Ts2QrtVmombMJ4e2pn5C0yBMHZ0fE47nEjvubMSTLAkKCKefuLbx+lGq0svfyhth
+ j0R6Iny++hg9dJLqN5zmWqF/oHgMZXS6X/fIHYslsKU0yPHM4JpSMI47HiFQBsGlm5AyPIv7c2tg
+ uiTnO7hoWdxS2Euf+eM3l5KPnbp/eQthjVPLCh11+xKgET3fXj754wkhoRweeXUyelEFumxqJC98
+ W2Chcvueb7X9IVOP0nXi5ScUGZbDvQNAWVsKTgEVkGFZkrTBb08hz2+hQWIE/jMJBRjlXAPIIi6r
+ dxgy5Mnu2cDsZps7XJtkUNhIi117bsGJ7ren9RtRNyYim5e3GD8LGd17Yt5uvWRLqYZ7YcWBwuaj
+ bB9FLgbTIobDkucCu6K1Qts6ESwZ+TRkjY5CmPXd4fzFwV5PA+Zo1HkEWshOrnfOczv/Rq1TfV/y
+ 9sPCUZ0yjBqTnQMt5W0GKvZ5TPS+0sUsSnvAz6a57TzpYAKZxAOMmYkwXP3g8rtJn6lRuSHjV8Jw
+ 2Fxq1Vd7xIu/TP3zxxtadaYgn3OIzsUC2wDRiPKWwieZyauFYqHkIbFa+ipFHuOywN1cBSoAw5Iq
+ u8uD6H9vRamlPbOxG7rXq5Czwgf6xGEuqjPYHqCiHsRpKiyawVZCoGB4EfDx2fRuW8Y0o7OCze69
+ 5wqpq4Ow1lDfcfvX9sw5VBsaDF9CxNBjABkH3hTMjGc3lQAtuckU+MNQlLpWhjjykqbde3UjWoF9
+ cBo9q3T2iWmfFRW/Psbz8QFVy0V5rN3M2TZ9grsaBV7hOgCSkfEzb1aIdlnbLZp4DCYOuNFQ+5eG
+ III/qgXB3gv2NI/ukWuQBNrXV+EmIqM8SxKOhcObZXWnkEw+6F9CGyYC9AhR1ZLKC40YaZQ+trtn
+ Eh9wUysc4uCrhmcWLql8TBcwc7MLvLLf36yri656/naizxFc684o/A69h/CvHI/GeXW8oEyu47TQ
+ DqTi6GKwcIp24VOsP5eu885wo+t+ynT3Y80OmAux3oN13+ztUzneZGHdcUfaxYq0ZH+Cc9iqnocR
+ WxNUEo38DE53aa5lZFsy2onypIM6qetbKE/25wcBE3dCizsqYfBnHUM3oFa+qdoVIihnVzbm4Qzx
+ fUxUyvhr3Z1SFe+4OrB9Rro7EpOy1Um2iVRPSUxhtw3wz3yqYcOpyKA69LF1Ge2GaGfxmfp09oMS
+ l8c4ShQ//ve+MHzjs9MOb3HXByN6cty/LT6lgOv2AzRyYGlsi3xQeIJ6TM5o5F89lTjPCn99uwfA
+ g5wm8t3Xj/LzZ5s/OJg1L2asZ/4te3BTDYEBZZ1yPQnIH5IVn/pKnch3lmmwSrgldH+Ps9MOb3HX
+ ByN6cty/LT6lgO+c9AHZZ12442bv/l3jZJg=
 X-Report-Abuse-To: spam@quarantine16.antispamcloud.com
 X-Complaints-To: abuse@master.antispamcloud.com
 X-Rspamd-Action: no action
@@ -121,13 +120,13 @@ X-Spamd-Result: default: False [1.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	R_DKIM_REJECT(1.00)[reactivated.net:s=default];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
 	DMARC_NA(0.00)[reactivated.net];
-	TAGGED_FROM(0.00)[bounces-325149-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-325128-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS(0.00)[m:joro@8bytes.org,m:will@kernel.org,m:robin.murphy@arm.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:florian.fainelli@broadcom.com,m:bcm-kernel-feedback-list@broadcom.com,m:dan@reactivated.net,m:iommu@lists.linux.dev,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-rpi-kernel@lists.infradead.org,m:linux-arm-kernel@lists.infradead.org,m:nick.hollinghurst@raspberrypi.com,m:jgg@ziepe.ca,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	HAS_X_GMSV(0.00)[dan@reactivated.net];
 	FORGED_SENDER(0.00)[dan@reactivated.net,devicetree@vger.kernel.org];
@@ -146,115 +145,138 @@ X-Spamd-Result: default: False [1.04 / 15.00];
 	DKIM_TRACE(0.00)[reactivated.net:-];
 	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,reactivated.net:from_mime,reactivated.net:email,reactivated.net:mid,vger.kernel.org:from_smtp]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: D1AF074633B
+X-Rspamd-Queue-Id: F095A745F08
 
-The generic_pt tests currently assume that a format should never support
-a contiguous page size that spans the entire mapping range of the table
-it resides in.
+Add bindings for the Broadcom BCM2712 IOMMU and its shared TLB cache.
 
-This assumption breaks for BCM2712, which has a 2-level page table.
-Level 1 entries cover 4MB of memory via their corresponding Level 0
-table pages. There is a concept of a 4MB largepage, but that is
-represented as a Level 1 entry pointing at a Level 0 table with the 1024
-usual PTEs with an additional largepage hint applied (for TLB
-optimization purposes). Unlike typical IOMMUs, it is not possible to have
-the Level 1 entry point directly at a 4MB chunk without the need for
-Level 0 mapping.
-
-This BCM2712 format is well supported by generic_pt: SZ_4M can be
-advertised as a possible size at Level 0 (so that the iommu core feeds
-it 4MB-aligned mapping requests where possible), and drivers can also
-advertise that *all* leaf entries are installed at Level 0. This indicates
-that the tests are overly strict.
-
-Transform the test to become a validation of the driver's routing intent:
-for every advertised page size, check that pt_pgsz_lg2_to_level() maps that
-size back to the table level under test. This is roughly what the original
-tests were doing, but also allows the BCM2712 case to pass.
+Include compatibility with the cache phandle used in existing firmware
+shipped on Raspberry Pi 5, and also allow the iova-window to be omitted,
+which similarly will maintain compatibility with existing RPi5 firmware.
 
 Signed-off-by: Daniel Drake <dan@reactivated.net>
 ---
- drivers/iommu/generic_pt/kunit_generic_pt.h | 39 +++++++++++------------------
- 1 file changed, 14 insertions(+), 25 deletions(-)
+ .../bindings/iommu/brcm,bcm2712-iommu.yaml         | 65 ++++++++++++++++++++++
+ .../bindings/iommu/brcm,bcm2712-iommuc.yaml        | 35 ++++++++++++
+ 2 files changed, 100 insertions(+)
 
-diff --git a/drivers/iommu/generic_pt/kunit_generic_pt.h b/drivers/iommu/generic_pt/kunit_generic_pt.h
-index ef2c90b6d6af..7f4e172ef08b 100644
---- a/drivers/iommu/generic_pt/kunit_generic_pt.h
-+++ b/drivers/iommu/generic_pt/kunit_generic_pt.h
-@@ -419,40 +419,35 @@ static void test_table_radix(struct kunit *test)
- 	}
- }
- 
--static unsigned int safe_pt_num_items_lg2(const struct pt_state *pts)
--{
--	struct pt_range top_range = pt_top_range(pts->range->common);
--	struct pt_state top_pts = pt_init_top(&top_range);
--
--	/*
--	 * Avoid calling pt_num_items_lg2() on the top, instead we can derive
--	 * the size of the top table from the top range.
--	 */
--	if (pts->level == top_range.top_level)
--		return ilog2(pt_range_to_end_index(&top_pts));
--	return pt_num_items_lg2(pts);
--}
--
- static void test_lvl_possible_sizes(struct kunit *test, struct pt_state *pts,
- 				    void *arg)
- {
--	unsigned int num_items_lg2 = safe_pt_num_items_lg2(pts);
- 	pt_vaddr_t pgsize_bitmap = pt_possible_sizes(pts);
- 	/* Matches get_info() */
- 	pt_vaddr_t limited_pgsize_bitmap =
- 		log2_mod(pgsize_bitmap, pts->range->common->max_vasz_lg2 - 1);
- 	unsigned int isz_lg2 = pt_table_item_lg2sz(pts);
-+	unsigned int sz_lg2;
- 
- 	if (!pt_can_have_leaf(pts)) {
- 		KUNIT_ASSERT_EQ(test, pgsize_bitmap, 0);
- 		return;
- 	}
- 
--	/* No bits for sizes that would be outside this table */
-+	/* A page size cannot be smaller than the span of a single entry. */
- 	KUNIT_ASSERT_EQ(test, log2_mod(pgsize_bitmap, isz_lg2), 0);
--	KUNIT_ASSERT_EQ(
--		test,
--		fvalog2_div(limited_pgsize_bitmap, num_items_lg2 + isz_lg2), 0);
+diff --git a/Documentation/devicetree/bindings/iommu/brcm,bcm2712-iommu.yaml b/Documentation/devicetree/bindings/iommu/brcm,bcm2712-iommu.yaml
+new file mode 100644
+index 000000000000..0d91c513afc4
+--- /dev/null
++++ b/Documentation/devicetree/bindings/iommu/brcm,bcm2712-iommu.yaml
+@@ -0,0 +1,65 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/iommu/brcm,bcm2712-iommu.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+	/*
-+	 * Ensure every page size claimed to be supported at this level
-+	 * actually routes back to this level
-+	 */
-+	for (sz_lg2 = 0; sz_lg2 < PT_VADDR_MAX_LG2; sz_lg2++) {
-+		if (limited_pgsize_bitmap & log2_to_int(sz_lg2)) {
-+			KUNIT_ASSERT_EQ(test,
-+				pt_pgsz_lg2_to_level(pts->range->common, sz_lg2),
-+				pts->level);
-+		}
-+	}
- 
- 	/*
- 	 * Non contiguous must be supported. AMDv1 has a HW bug where it does
-@@ -463,12 +458,6 @@ static void test_lvl_possible_sizes(struct kunit *test, struct pt_state *pts,
- 		KUNIT_ASSERT_TRUE(test, pgsize_bitmap & log2_to_int(isz_lg2));
- 	else
- 		KUNIT_ASSERT_NE(test, pgsize_bitmap, 0);
--
--	/* A contiguous entry should not span the whole table */
--	if (num_items_lg2 + isz_lg2 != PT_VADDR_MAX_LG2)
--		KUNIT_ASSERT_FALSE(
--			test, limited_pgsize_bitmap &
--					log2_to_int(num_items_lg2 + isz_lg2));
- }
- 
- static void test_entry_possible_sizes(struct kunit *test)
++title: Broadcom BCM2712 IOMMU
++
++maintainers:
++  - Daniel Drake <dan@reactivated.net>
++
++description: |
++  The BCM2712 IOMMU provides address translation for various hardware blocks
++  on the BCM2712 SoC, such as the VC6 display pipeline.
++
++properties:
++  compatible:
++    const: brcm,bcm2712-iommu
++
++  reg:
++    maxItems: 1
++
++  '#iommu-cells':
++    const: 0
++
++  brcm,iommu-cache:
++    $ref: /schemas/types.yaml#/definitions/phandle
++    description: Phandle to the shared IOMMU cache (IOMMUC).
++
++  cache:
++    $ref: /schemas/types.yaml#/definitions/phandle
++    description: Deprecated. Use brcm,iommu-cache instead.
++    deprecated: true
++
++  brcm,iova-window:
++    $ref: /schemas/types.yaml#/definitions/uint64-array
++    description: |
++      An array of two 64-bit integers specifying the IOVA aperture start
++      address and the aperture size. IOMMU mappings will be created inside
++      this aperture. All preceding address space is in identity/bypass mode.
++      The aperture start address must be 4GB-aligned.
++      Should be considered a required property, but it is technically optional
++      in order to maintain compatibility with historical firmware versions.
++      If absent, defaults to a 4GB window at 40GiB (0xa00000000).
++    items:
++      - description: IOVA window start address
++      - description: IOVA window size
++
++required:
++  - compatible
++  - reg
++  - '#iommu-cells'
++  - brcm,iommu-cache
++
++additionalProperties: false
++
++examples:
++  - |
++    iommu@5200 {
++        compatible = "brcm,bcm2712-iommu";
++        reg = <0x5200 0x80>;
++        brcm,iommu-cache = <&iommuc>;
++        #iommu-cells = <0>;
++        brcm,iova-window = /bits/ 64 <0xa00000000 0x100000000>;
++    };
+diff --git a/Documentation/devicetree/bindings/iommu/brcm,bcm2712-iommuc.yaml b/Documentation/devicetree/bindings/iommu/brcm,bcm2712-iommuc.yaml
+new file mode 100644
+index 000000000000..f22e9be2c473
+--- /dev/null
++++ b/Documentation/devicetree/bindings/iommu/brcm,bcm2712-iommuc.yaml
+@@ -0,0 +1,35 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/iommu/brcm,bcm2712-iommuc.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Broadcom BCM2712 Shared IOMMU Cache (IOMMUC)
++
++maintainers:
++  - Daniel Drake <dan@reactivated.net>
++
++description: |
++  The BCM2712 IOMMU Cache (IOMMUC) provides a shared Translation Lookaside
++  Buffer (TLB) cache used by the primary BCM2712 IOMMUs to speed up address
++  translations.
++
++properties:
++  compatible:
++    const: brcm,bcm2712-iommuc
++
++  reg:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    iommuc: iommu-cache@1001000 {
++        compatible = "brcm,bcm2712-iommuc";
++        reg = <0x1001000 0x100>;
++    };
 
 -- 
 2.55.0
