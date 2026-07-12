@@ -1,66 +1,66 @@
-Return-Path: <devicetree+bounces-325146-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-325149-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 0REIEg4WVGqchwMAu9opvQ
-	(envelope-from <devicetree+bounces-325146-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 00:32:46 +0200
+	id /2dgIwsYVGoCiAMAu9opvQ
+	(envelope-from <devicetree+bounces-325149-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 00:41:15 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A6F87462E5
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 00:32:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D1AF074633B
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 00:41:14 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=fail ("headers rsa verify failed") header.d=reactivated.net header.s=default header.b="a/IB9eia";
+	dkim=fail ("headers rsa verify failed") header.d=reactivated.net header.s=default header.b=gZ5xC8nT;
 	dmarc=none;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-325146-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-325146-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-325149-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-325149-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 4C93D3009147
-	for <lists+devicetree@lfdr.de>; Sun, 12 Jul 2026 22:32:44 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 7F9B6300DDEF
+	for <lists+devicetree@lfdr.de>; Sun, 12 Jul 2026 22:41:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA66B380FE6;
-	Sun, 12 Jul 2026 22:32:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EED7A3859E2;
+	Sun, 12 Jul 2026 22:41:12 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from out13-173.antispamcloud.com (out13-173.antispamcloud.com [185.201.17.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26D4522D792;
-	Sun, 12 Jul 2026 22:32:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40550384CF0;
+	Sun, 12 Jul 2026 22:41:11 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783895563; cv=none; b=cpWtXeVzv4nACSap3bGT9b33i9cFD2penhqbER9Vvn8Cr/zz5NoRDu9+Ien+XkfbcSIbQLCX9UVrMSpOA+2gL9EYS9h3F0iURQ/54Ssli/zc3ck2JFRTkUqx59val/aP4gQNtIyhsCW+LLqV9i+wXcxbrgWQV5FZxprqqfM8NbI=
+	t=1783896072; cv=none; b=mfbM+vruJVTJSCHaf7t703wi5s5H4dPTfwrJ/D6wSKLN+3wlduZ4Yi6jWrPNF4DYCncgYj2HQvGY3df9CnmqJFEt3/OySGQfD7N5OL7+Ale1ocDUxqW/0BblP8UhIMdxLDLib0OHsnne1/jthLn9H4jSLvY8N1nkSes4FLIa7JE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783895563; c=relaxed/simple;
-	bh=YPG617zMyV2rjYCiW5rahdVGD1+8qBHRMMWTU2I4cro=;
+	s=arc-20240116; t=1783896072; c=relaxed/simple;
+	bh=miEDg0CZsfHPnHjA+ZUjMb9OSGcKFHtdWhiZyEEFe60=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=ZiAPLpGYAeGyD23fp6fyg8I/XD2VTiI4QNNdChOQ+dAC6mRA53GBFghGFWug0+YQdL+FaBFaeTzBfo055QqZmJ5Kn6Y9alHHvyQAo2Tqh0e0Wa5ywgJ8y4wmpFdmljxFqfGoM4mzysv/86YeFUfdY2QpQRQj1yIztToBkBJQfyU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=reactivated.net; spf=pass smtp.mailfrom=reactivated.net; dkim=pass (2048-bit key) header.d=reactivated.net header.i=@reactivated.net header.b=a/IB9eia; arc=none smtp.client-ip=185.201.17.173
+	 In-Reply-To:To:Cc; b=CZk9ygLVDdEY/aAjpD3ZNTTQv3h8qDx4SkSNY7817OZWU1uut9XXsw3ItbnqQeCkZtEPzJnKu7h5asta997vAHEe2M08lFwQvFHOZ+Lp5+gArxW7vaJNgiGCxQm7vyaxyhyWcFIUb6tN6q5cqlCKrHxhGHYn0AVMrrCSqgwRDD0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=reactivated.net; spf=pass smtp.mailfrom=reactivated.net; dkim=pass (2048-bit key) header.d=reactivated.net header.i=@reactivated.net header.b=gZ5xC8nT; arc=none smtp.client-ip=185.201.17.173
 Received: from s1041.use1.mysecurecloudhost.com ([192.250.231.249])
 	by mx195.antispamcloud.com with esmtps  (TLS1.3) tls TLS_AES_256_GCM_SHA384
 	(Exim 4.94.2)
 	(envelope-from <dan@reactivated.net>)
-	id 1wj1Zq-00GoMi-Bf; Sun, 12 Jul 2026 23:19:11 +0200
+	id 1wj1Zt-00GoOi-3N; Sun, 12 Jul 2026 23:19:11 +0200
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=reactivated.net; s=default; h=Cc:To:In-Reply-To:References:Message-Id:
 	Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:From:Sender:
 	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
 	:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
 	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=WU6K0l6pgqJ4tQYRgEPvrPUUwevNJ3/EYlqoRBVOvhA=; b=a/IB9eiafELEGAZvhAVH2Z43Ri
-	6d1y7ifmCm01i9RsPFL/zEqs3FbZrtPYI7m15C0vnLLc204hXxZkfKFdaWAy5G5PFoOp0N9oYdAuL
-	1mftaf5VAESsAtleI+bENErRf4UH4zrTZZ8pwvUzWeNY5aCkyBJ0cXf1kcKjSpVuBXwbA8xDO+4Kx
-	7GbLeaU6UXYN+33u4866qkQQ5Rvb4M1q/cCSzS0m4gxNOvjhae34UHwLixHHTHu34yj4JXEapqhBT
-	3ZzDZZrB4YT74ogD67BLAZ8Md1hCVHgvAgRJQ2ENb8SA15O0q09PPtSX6S8kwWXYy+lJ6LqSGYEJD
-	bUcCTlJg==;
+	bh=DDNXuZBAqjn/E8x//VWR9RhMVgZnkLggONWA/HHqhig=; b=gZ5xC8nTiujbtnalGoOBB6xjLB
+	Dfm8Lq/kZRnPstVeYqFgWGLMJi+AXdUxvKU3JaraQ8MmzEHc8ElMHRmsJ4OLgVDQi91L7uN160glM
+	bxxguiQEmUG5qEJW9NpY4tGHcDug5U375z9DixRzwzhNwbXg4kZWd/iSHsMZhZ0c1JmkGzZLTH/5E
+	ZN/bYnX05JlT8zMcW7XuD9RIiCS+9mg6dYSdFxKVgNzhJv891IqCB/shb6zdybw67WmGULXDoEHQP
+	KD+Wze9dWrVrMxqzdbdNLC0XzkXih1oDr1+M4wIkBAWYH6OYiYQ/dkdO5WfnvqBgqV4gcGmj/jor/
+	qmc+41QQ==;
 Received: from [188.251.249.2] (port=43526 helo=[192.168.1.123])
 	by s1041.use1.mysecurecloudhost.com with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
 	(Exim 4.99.4)
 	(envelope-from <dan@reactivated.net>)
-	id 1wj1Zm-0000000D6jk-1kWW;
-	Sun, 12 Jul 2026 21:19:02 +0000
+	id 1wj1Zq-0000000D6jk-0raK;
+	Sun, 12 Jul 2026 21:19:06 +0000
 From: Daniel Drake <dan@reactivated.net>
-Date: Sun, 12 Jul 2026 22:18:51 +0100
-Subject: [PATCH 1/6] generic_pt: allow missing sw bit in DMA_INCOHERENT
- case
+Date: Sun, 12 Jul 2026 22:18:52 +0100
+Subject: [PATCH 2/6] iommupt: allow full-table contiguous leaves in unit
+ tests
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,7 +69,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260712-bcm2712-iommu-submit-v1-1-80e10cdde2ea@reactivated.net>
+Message-Id: <20260712-bcm2712-iommu-submit-v1-2-80e10cdde2ea@reactivated.net>
 References: <20260712-bcm2712-iommu-submit-v1-0-80e10cdde2ea@reactivated.net>
 In-Reply-To: <20260712-bcm2712-iommu-submit-v1-0-80e10cdde2ea@reactivated.net>
 To: "Joerg Roedel (AMD)" <joro@8bytes.org>, Will Deacon <will@kernel.org>, 
@@ -89,31 +89,31 @@ X-Authenticated-Sender: s1041.use1.mysecurecloudhost.com: dan@reactivated.net
 X-Spampanel-Domain: s1041.use1.mysecurecloudhost.com
 X-Spampanel-Username: 192.250.231.249
 X-Spampanel-Outgoing-Class: ham
-X-Spampanel-Outgoing-Evidence: SB/global_tokens (0.00760531874771)
+X-Spampanel-Outgoing-Evidence: Combined (0.01)
 X-Recommended-Action: accept
-X-Filter-ID: 9kzQTOBWQUFZTohSKvQbgI7ZDo5ubYELi59AwcWUnuVm61tCxVcDzOdvOz23cNvJYpZ17O5Cs1PC
- LegHyxalOSu2SmbhJN1U9FKs8X3+Nt06bFpPrNOlRAlE9AVLwR4uGVjKNnzF3nQoDoQtBifM84JL
- M0i5ZAms0EHrvcCaVIPGvhmpFjxC7HO0xZ1sgnmgGnT3EFAinyrilm9zau/FuzkQt9Nb4Ml7QXdk
+X-Filter-ID: 9kzQTOBWQUFZTohSKvQbgI7ZDo5ubYELi59AwcWUnuVJ1hybdgXAyR4gyvwoLberAVSXKZ1AHPG6
+ BTrVnKc75yu2SmbhJN1U9FKs8X3+Nt06bFpPrNOlRAlE9AVLwR4uGVjKNnzF3nQoDoQtBifM84JL
+ M0i5ZAms0EHrvcCaVIMl6kNTi5f5Ljs8M8nl33UbGnT3EFAinyrilm9zau/FuzkQt9Nb4Ml7QXdk
  EetczWCulNo0fvnzmZPW3MC2/ZtQeB7itP8hgjDRserKv4bhb3RyZlCL9i3kc+ehInPHgYZWBb39
- uS1TjWG2Inx+Ts2QrtVmombMJ4e2pn5C0yBMHZ0fE47nEjvubMSTLAkKCKefuLbx+lGq0svfyhth
- j0R6Iny++hg9dJLqN5zmWqF/oHgMZXS6X/fIHYslsKU0yPHM4JpSMI47HiFQBsGlm5AyPIv7c2tg
- uiTnO7hoWdxS2Euf+eM3l5KPnbp/eQthjVPLCh11+xKgET3fXj754wkhoRweeXUyelEFumxqJC98
- W2Chcvueb7X9IVOP0nXi5ScUGZbDvQNAWVsKTgEVkGFZkrTBb08hz2+hQWIE/jMJBRjlXAPIIi6r
- dxgy5Mnu2cDsZps7XJtkUNhIi117bsGJ7ren9RtRNyYim5e3GD8LGd17Yt5uvWRLqYZ7YcWBwuaj
- bB9FLgbTIobDkucCu6K1Qts6ESwZ+TRkjY5CmPXd4fzFwV5PA+Zo1HkEWshOrnfOczv/Rq1TfV/y
- 9sPCUZ0yjBqTnQMt5W0GKvZ5TPS+0sUsSnvAz6a57TzpYAKZxAOMmYkwXP3g8rtJn6lRuSHjV8Jw
- 2Fxq1Vd7xIu/TP3zxxtadaYgn3OIzsUC2wDRiPKWwieZyauFYqHkIbFa+ipFHuOywN1cBSoAw5Iq
- u8uD6H9vRamlPbOxG7rXq5Czwgf6xGEuqjPYHqCiHsRpKiyawVZCoGB4EfDx2fRuW8Y0o7OCze69
- 5wqpq4Ow1lDfcfvX9sw5VBsaDF9CxNBjABkH3hTMjGc3lQAtuckU+MNQlLpWhjjykqbde3UjWoF9
- cBo9q3T2iWmfFRW/Psbz8QFVy0V5rN3M2TZ9grsaBV7hOgCSkfEzb1aIdlnbLZp4DCYOuNFQ+5eG
- III/qgXB3gv2NI/ukWuQBNrXV+EmIqM8SxKOhcObZXWnkEw+6F9CGyYC9AhR1ZLKC40YaZQ+trtn
- Eh9wUysc4uCrhmcWLql8TI/3DtpogqvULFO+LE7qqHyizxFc684o/A69h/CvHI/GeXW8oEyu47TQ
- DqTi6GKwcIp24VOsP5eu885wo+t+ynT3Y80OmAux3oN13+ztUzneZGHdcUfaxYq0ZH+Cc9iqnocR
- WxNUEo38DE53aa5lZFsy2onypIM6qetbKE/25wcB/G1/I6v3VuCfuuxebDW9m67rCRcaqNp40+Vg
- uPVAld1r3Z1SFe+4OrB9Rro7EpOy1Um2iVRPSUxhtw3wz3yqYcOpyKA69LF1Ge2GaGfxmfp09oMS
- l8c4ShQ//ve+MHzjs9MOb3HXByN6cty/LT6lgOv2AzRyYGlsi3xQeIJ6TM5o5F89lTjPCn99uwfA
- g5wm8t3Xj/LzZ5s/OJg1L2asZ/4te3BTDYEBZZ1yPQnIH5IVn/pKnch3lmmwSrgldH+Ps9MOb3HX
- ByN6cty/LT6lgO+c9AHZZ12442bv/l3jZJg=
+ uS1TjWG2Inx+Ts2QrtVmombMJ4e2pn5C0yBMHZ0fE47nEjvubMSTLAkKCKclZzoe+TZdeH39wA4E
+ grA4pE2PuLHIFQdBY9qb1rRWgyz0f29FZkQs6Ir87R/YNAtVzCPMWB8YiCVMyNt8jc1XYCTwuapY
+ HJC4Tg2AsI28yi/dAa2TOnnczQuRE5msdQvx7x6TyzQygoCqslGluZauEuYXMjE4hTY0I3yya8U2
+ jiBi1+p615Zso12vM2KCXe+L+BWU3diRaOYz9oc1tEKKEEfmr+ndqHTRP8aRGVatgmq6HzuQCGnn
+ Tr3mO80I+WGf3He7jw4SoVhmTJ/3eP9OK8gYxuf4cLtZNp2k2WPcLin5ZMVYU7yNzdI5xqOV/A3g
+ I76KIb/qJBMhevARlsatJqEylk1bBhjIWUVQpiEaCSJav4VkFrk/gqlx5FextQtEBRpnK9diwaq6
+ f6CydGvDt3K1cl7mca7sWC/TjRz/cJYxsQRt/d4lhqv4oGXrB8ohU2BXFG8+WkvtZVo+JtxTPVht
+ kelGIuyBfLEgNwn2D8zbg4Paoa3pNVQ0zl7t/+UIhlD770gsG4NDLnuybwGB6H1bOhFowpwrz0y/
+ WpAnxs5pZJhOUQY/VSc1PV9silww77YaJhiT+NFWJZPoD/NF86TgtruyOWQA4kTJivF4YMLqzhpS
+ 0znDaGCPRF8atS6+/IVQTbUJupnRiHmHNLRPMKbVSbsDMLsDJjzehgqGk6S9HXdEGxiktrX59Amx
+ O5gvPpyylyRksDtvh9EglVwlXarBbY/5t7CstIBQE8o/YSFDpQ3A7hHzYZTDTFQbY0uqoOhT9kj8
+ 8PvWZJaonRQv++DuIQUs/5JJj4C/n4CILhif+3TxP9sd7y15THR2QZyGg3EQOEtB6O5zAxbwt8f8
+ OMYGUgbNMUWTOHN+J/NrZnOVLbMF4pTjWB0otgBwB1GjG9/7eW4VzmKFOpkivUGpcgYFRrqmiqIy
+ cv2/2+nkpYsEMysPur9wmiDBurOy6iR92AkV20DuvQ+xF0HoW5AQikKYGfM1Wxpi+aM7bRAnIOLo
+ KQ0J9yQ0dfrf1qMUYpnxHriJz7Z9ZB5zQq6r8umW4yWfyKeLns0rLmGoFmUivONn/VZF/HyORicl
+ 1WGsneIWpF1Xu3oZ/FZQiE2Ny7dG9R/2gMGq0KWAzmMf+ibVDnUBndNaXaq/kyxZOii4y6zwY127
+ 8R9pzC31fkjBqL4nASEz1JNCESIPL2LJqBM7qaqIrXo0c6G6fvFF//i6zRUhEWyJzIkwSFAW0Pw8
+ uiKeSByqtznmWyRPJzMvReGPtOJKZj6+qwdjWpxBAv2JzzLwY1278R9pzC31fkjBqL4n6ihrjW1z
+ DU0jv8+sl3B5Xg==
 X-Report-Abuse-To: spam@quarantine16.antispamcloud.com
 X-Complaints-To: abuse@master.antispamcloud.com
 X-Rspamd-Action: no action
@@ -121,13 +121,13 @@ X-Spamd-Result: default: False [1.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	R_DKIM_REJECT(1.00)[reactivated.net:s=default];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
 	DMARC_NA(0.00)[reactivated.net];
-	TAGGED_FROM(0.00)[bounces-325146-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-325149-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS(0.00)[m:joro@8bytes.org,m:will@kernel.org,m:robin.murphy@arm.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:florian.fainelli@broadcom.com,m:bcm-kernel-feedback-list@broadcom.com,m:dan@reactivated.net,m:iommu@lists.linux.dev,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-rpi-kernel@lists.infradead.org,m:linux-arm-kernel@lists.infradead.org,m:nick.hollinghurst@raspberrypi.com,m:jgg@ziepe.ca,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	HAS_X_GMSV(0.00)[dan@reactivated.net];
 	FORGED_SENDER(0.00)[dan@reactivated.net,devicetree@vger.kernel.org];
@@ -152,71 +152,109 @@ X-Spamd-Result: default: False [1.04 / 15.00];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,reactivated.net:from_mime,reactivated.net:email,reactivated.net:mid,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 8A6F87462E5
+X-Rspamd-Queue-Id: D1AF074633B
 
-When working with a iommu with PT_FEAT_DMA_INCOHERENT set, generic_pt
-will attempt to use a spare "SW" bit in the hardware page tables to
-denote when a thread has flushed the CPU cache after modifying an entry.
+The generic_pt tests currently assume that a format should never support
+a contiguous page size that spans the entire mapping range of the table
+it resides in.
 
-This means that other threads know that they are not working with
-cached/unflushed data, if they come across the same entry.
+This assumption breaks for BCM2712, which has a 2-level page table.
+Level 1 entries cover 4MB of memory via their corresponding Level 0
+table pages. There is a concept of a 4MB largepage, but that is
+represented as a Level 1 entry pointing at a Level 0 table with the 1024
+usual PTEs with an additional largepage hint applied (for TLB
+optimization purposes). Unlike typical IOMMUs, it is not possible to have
+the Level 1 entry point directly at a 4MB chunk without the need for
+Level 0 mapping.
 
-In the case where no SW bit is available, two things happen:
+This BCM2712 format is well supported by generic_pt: SZ_4M can be
+advertised as a possible size at Level 0 (so that the iommu core feeds
+it 4MB-aligned mapping requests where possible), and drivers can also
+advertise that *all* leaf entries are installed at Level 0. This indicates
+that the tests are overly strict.
 
-1. __map_range() defensively flushes every time it reads the PT.
-   This ensures all data that may have just been manipulated by another
-   thread gets flushed and made iommu-visible immediately.
-
-2. An undefined reference to __pt_no_sw_bit() is created, causing a
-   linker error in order to alert the developer that they are going
-   to suffer a performance penalty in the previous point.
-
-The BCM2712 IOMMU appears to be the first device supported by generic_pt
-that hits this case. The prod to check for sw bits is appreciated,
-but in this case there are no known bits that can be used, so we need
-to acknowledge and accept the performance penalty without a linker error.
-
-Adding an empty __pt_no_sw_bit() symbol to iommu_bcm2712 would be
-problematic because if a second IOMMU were to have the same constraint,
-this would result in a symbol clash in the global namespace. Also, the
-kunit build creates and builds a 2nd variant of the same code and hits
-this exact collision.
-
-Add an opt-in PT_SW_BIT_NOT_PRESENT flag to avoid this. This prevents
-the undefined reference from being created, allowing drivers like bcm2712
-to acknowledge the situation and accept the performance penalty of the
-defensive flushing.
+Transform the test to become a validation of the driver's routing intent:
+for every advertised page size, check that pt_pgsz_lg2_to_level() maps that
+size back to the table level under test. This is roughly what the original
+tests were doing, but also allows the BCM2712 case to pass.
 
 Signed-off-by: Daniel Drake <dan@reactivated.net>
 ---
- drivers/iommu/generic_pt/pt_fmt_defaults.h | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+ drivers/iommu/generic_pt/kunit_generic_pt.h | 39 +++++++++++------------------
+ 1 file changed, 14 insertions(+), 25 deletions(-)
 
-diff --git a/drivers/iommu/generic_pt/pt_fmt_defaults.h b/drivers/iommu/generic_pt/pt_fmt_defaults.h
-index 69fb7c2314ca..cc57106c87d1 100644
---- a/drivers/iommu/generic_pt/pt_fmt_defaults.h
-+++ b/drivers/iommu/generic_pt/pt_fmt_defaults.h
-@@ -249,7 +249,20 @@ static inline unsigned int pt_max_sw_bit(struct pt_common *common)
- 	return 0;
+diff --git a/drivers/iommu/generic_pt/kunit_generic_pt.h b/drivers/iommu/generic_pt/kunit_generic_pt.h
+index ef2c90b6d6af..7f4e172ef08b 100644
+--- a/drivers/iommu/generic_pt/kunit_generic_pt.h
++++ b/drivers/iommu/generic_pt/kunit_generic_pt.h
+@@ -419,40 +419,35 @@ static void test_table_radix(struct kunit *test)
+ 	}
  }
  
-+/*
-+ * In the DMA_INCOHERENT case, if no SW bit has been defined, produce a linker
-+ * error (undefined symbol __pt_no_sw_bit) to alert the developer that they
-+ * will suffer a performance penalty due to defensive flushing. The driver
-+ * can either implement pt_sw_bit (if supported by the hardware) for optimal
-+ * performance, or otherwise set PT_SW_BIT_NOT_PRESENT to acknowledge the
-+ * performance penalty.
-+ */
-+#ifdef PT_SW_BIT_NOT_PRESENT
-+static inline void __pt_no_sw_bit(void) {}
-+#else
- extern void __pt_no_sw_bit(void);
-+#endif
-+
- static inline bool pt_test_sw_bit_acquire(struct pt_state *pts,
- 					  unsigned int bitnr)
+-static unsigned int safe_pt_num_items_lg2(const struct pt_state *pts)
+-{
+-	struct pt_range top_range = pt_top_range(pts->range->common);
+-	struct pt_state top_pts = pt_init_top(&top_range);
+-
+-	/*
+-	 * Avoid calling pt_num_items_lg2() on the top, instead we can derive
+-	 * the size of the top table from the top range.
+-	 */
+-	if (pts->level == top_range.top_level)
+-		return ilog2(pt_range_to_end_index(&top_pts));
+-	return pt_num_items_lg2(pts);
+-}
+-
+ static void test_lvl_possible_sizes(struct kunit *test, struct pt_state *pts,
+ 				    void *arg)
  {
+-	unsigned int num_items_lg2 = safe_pt_num_items_lg2(pts);
+ 	pt_vaddr_t pgsize_bitmap = pt_possible_sizes(pts);
+ 	/* Matches get_info() */
+ 	pt_vaddr_t limited_pgsize_bitmap =
+ 		log2_mod(pgsize_bitmap, pts->range->common->max_vasz_lg2 - 1);
+ 	unsigned int isz_lg2 = pt_table_item_lg2sz(pts);
++	unsigned int sz_lg2;
+ 
+ 	if (!pt_can_have_leaf(pts)) {
+ 		KUNIT_ASSERT_EQ(test, pgsize_bitmap, 0);
+ 		return;
+ 	}
+ 
+-	/* No bits for sizes that would be outside this table */
++	/* A page size cannot be smaller than the span of a single entry. */
+ 	KUNIT_ASSERT_EQ(test, log2_mod(pgsize_bitmap, isz_lg2), 0);
+-	KUNIT_ASSERT_EQ(
+-		test,
+-		fvalog2_div(limited_pgsize_bitmap, num_items_lg2 + isz_lg2), 0);
++
++	/*
++	 * Ensure every page size claimed to be supported at this level
++	 * actually routes back to this level
++	 */
++	for (sz_lg2 = 0; sz_lg2 < PT_VADDR_MAX_LG2; sz_lg2++) {
++		if (limited_pgsize_bitmap & log2_to_int(sz_lg2)) {
++			KUNIT_ASSERT_EQ(test,
++				pt_pgsz_lg2_to_level(pts->range->common, sz_lg2),
++				pts->level);
++		}
++	}
+ 
+ 	/*
+ 	 * Non contiguous must be supported. AMDv1 has a HW bug where it does
+@@ -463,12 +458,6 @@ static void test_lvl_possible_sizes(struct kunit *test, struct pt_state *pts,
+ 		KUNIT_ASSERT_TRUE(test, pgsize_bitmap & log2_to_int(isz_lg2));
+ 	else
+ 		KUNIT_ASSERT_NE(test, pgsize_bitmap, 0);
+-
+-	/* A contiguous entry should not span the whole table */
+-	if (num_items_lg2 + isz_lg2 != PT_VADDR_MAX_LG2)
+-		KUNIT_ASSERT_FALSE(
+-			test, limited_pgsize_bitmap &
+-					log2_to_int(num_items_lg2 + isz_lg2));
+ }
+ 
+ static void test_entry_possible_sizes(struct kunit *test)
 
 -- 
 2.55.0
