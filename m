@@ -1,270 +1,178 @@
-Return-Path: <devicetree+bounces-325133-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-325135-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 9v00It4IVGrlhAMAu9opvQ
-	(envelope-from <devicetree+bounces-325133-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 12 Jul 2026 23:36:30 +0200
+	id uh0pKYcOVGr0hQMAu9opvQ
+	(envelope-from <devicetree+bounces-325135-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 00:00:39 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6E4074609B
-	for <lists+devicetree@lfdr.de>; Sun, 12 Jul 2026 23:36:29 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 56883746162
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 00:00:36 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b="gON25A/m";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-325133-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-325133-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=ziepe.ca header.s=google header.b=GzBDB7Eg;
+	dmarc=none;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-325135-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-325135-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id EB8283004C06
-	for <lists+devicetree@lfdr.de>; Sun, 12 Jul 2026 21:36:28 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id BAB2F3002B08
+	for <lists+devicetree@lfdr.de>; Sun, 12 Jul 2026 22:00:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1053437756A;
-	Sun, 12 Jul 2026 21:36:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BA8937A82D;
+	Sun, 12 Jul 2026 22:00:34 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qt1-f171.google.com (mail-qt1-f171.google.com [209.85.160.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BEC8B222582
-	for <devicetree@vger.kernel.org>; Sun, 12 Jul 2026 21:36:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E2292472B6
+	for <devicetree@vger.kernel.org>; Sun, 12 Jul 2026 22:00:32 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783892188; cv=none; b=eMHmgpL6bSt3r6vgPprJzU6ZhCie35FkcT7r9+qFqr0jyexEvV7736Luu3+EHQRZW8QK2SfLEdwb8r0yPThvE49Jr+rHwa98C45I/ysiT6SntdO/4Kr4YbEsj32ByBzZ0PweWaKCDzQjREah+wWlXm7oZN+BkpZ6olDCYahjnBM=
+	t=1783893634; cv=none; b=jsLlpdU88uzBCOyVf/ebO+IMu8r1yH6liS6LUw5ImYTye2TtJATej4OrEOZWxiwn/JSCkk/sfSZEHAyTuxdClkMFLFiH7sqHCT6+jIUyoGkrJyqNs6LXFq6h2g9hrAkTjKjzR5+aq5LIvGprYkUMb8FFyBUFgkyP2ZF8CO0r0MA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783892188; c=relaxed/simple;
-	bh=wCCF0fNdDZiRazrmg46ZzKRIaPJMN1o6eFbSBpkH5uY=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=mEylEG22EJ5ro8S7nbaPODzYy3aaEo/HSpFv4lNtjZFh6U5aAULVI7oqtwJ0MTk65WRP7HEllPAFl6uZajc8YyuIbeSkKQ/O3yl8ydq5i4CsEQ4Tup9jePxFcyRhqiOTtazrAsVdxCf3bavtGKeRr71hW4D077A/mKac2DQcX7I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gON25A/m; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1D8D41F000E9;
-	Sun, 12 Jul 2026 21:36:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783892186;
-	bh=8MvS+TNdwRUudgAAevK0uUHtB759qaVgUEvz5UuBciU=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=gON25A/mZBA/yfZldfEL3p5+lwtbblVAOCJTh3MZlfnK/o1sXkxZwvHIz5KSNGLYv
-	 yKX01OnJkD/qBgq8/KSQqsE49auz17YbXOdOupe1zZPLghIp5hMTliihTrfyw7GUJb
-	 E1ceITtfo5bTzgXXLYIMlXugXNC0oaB9lFCV5tpX5XN2vBAj6RBEE1nWc4913x3TL5
-	 Ln37l4B8OfNgwn7b0U9p75EnA3JQqWIjr9LFKaefbJIiQbspWgSlsyoWtMUyGZwmoX
-	 XbPhMS/iWX5u8UE2ibgZM9EdfnP7uHji8P6wIhrfO/6XIagVQsMeoBMjbPMrLJvK8h
-	 S9+BGVurSPbdA==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 4/6] iommu/generic_pt: Add Broadcom BCM2712 page table
- format
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Daniel Drake" <dan@reactivated.net>
-Cc: devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org
-In-Reply-To: <20260712-bcm2712-iommu-submit-v1-4-80e10cdde2ea@reactivated.net>
+	s=arc-20240116; t=1783893634; c=relaxed/simple;
+	bh=veaiSq7II/ruoHT1xIwCXs1Q8DVtMWJs8KGBIWEYhoE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=M0EPaDgHXyzdCAA3IyoGMpyWW+KEHyv+8CRLCvrwfjSoECe7iVety9l4SxwqIoLjerDgDC8MqdpaZ9YnV0f3m/265luPVwmRlz1Qp7f6vn0M+tajjDVbhvTizVOnJvpMiRQOJXa/MUAjzc4ovNWdejc+GYgII5M9iixPZ+zz0LY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ziepe.ca; spf=pass smtp.mailfrom=ziepe.ca; dkim=pass (2048-bit key) header.d=ziepe.ca header.i=@ziepe.ca header.b=GzBDB7Eg; arc=none smtp.client-ip=209.85.160.171
+Received: by mail-qt1-f171.google.com with SMTP id d75a77b69052e-51bfb91795eso18963071cf.1
+        for <devicetree@vger.kernel.org>; Sun, 12 Jul 2026 15:00:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ziepe.ca; s=google; t=1783893631; x=1784498431; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:from:date:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=Mw42W47cvCq48JjABnRIE5S9vXRaDxPhdeJG1XHceJQ=;
+        b=GzBDB7EgwR+uWR/88EDVRQkJ2FQhHnHCbfIzu0oGMx4ad6SHJOBhlssMQHP97kNxoO
+         sVj326qMQjHqDIcwLCWOn412uAST0XMbX6sABGtoX9H+e1Wr+LFZvSZaB3oNY7/+/2Je
+         HrOue2VycEt4vJBpG/MYBpWrpphHL06qrrO4Nr8Y+CpaoUnWryqRvuEMinwcFAUfn96k
+         pROSTWh1f4Ks5DIzF9XbfJcJ5YmmAOksHt4zZ09Fd27/lbiHYYtI7L3yNdsAdaxfAaLJ
+         gpZHPkS57y55S91xGV1m7LtFWoK+1fjmDDPvrEqNvtu53nl+GHxePtWD/fjYUpIqkCiq
+         0w5A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1783893631; x=1784498431;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:from:date:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=Mw42W47cvCq48JjABnRIE5S9vXRaDxPhdeJG1XHceJQ=;
+        b=VQq33CEV7hfv9lq9mckgBtzAR7Bx1kkBqAxnLdrEBgc1dG8V+l+UUc8nF5b+a5RMUi
+         UJmRgRm3EUqyOxkd0hCJi9z5TS19sd5ixXgIY4rVM9aiiJ8E2WyX9wE0UAHOhDNDWoRi
+         MRpWpebRDMJdivl+CQEdREDyEc2ypW65HnjZISUTlKXzSddFoS3mM3tIIk1Qdse1nQE+
+         ySLzbwwZ6a2QAWVwb1r4b/HgF2BIHZHV9rQIYxnx9IauNmsOZuYWfcv+NxEvVwg4ol0w
+         sBWgPcwZntgT72s5n5yR7TshlsBRAbRns1EAcn3UcWeza1fs7dvYuQEnzJaHyHhG2NbL
+         TYOg==
+X-Forwarded-Encrypted: i=1; AHgh+RoInhVJG6fPf9r7Klnh1z0wNJL3a3UTbKI8F/2NEhrhBwVLfbMd9fvqw6UCJpIaXlu2XxRXvShN2Dy8@vger.kernel.org
+X-Gm-Message-State: AOJu0YyVpzTe6hpD+3UJY7ckr/8D7/9bHulcCmTKFG+0Ru6gGSGEkRSv
+	TBOufvKXnZsrNOkYIqxeW8NE+7zQpor5zn0XO4RKMlSeT0T4g/42V+ZVO9Fy1hrzTmJYIO0HhuF
+	bO79/
+X-Gm-Gg: AfdE7cn1ENk8hzEH8G2cDfyMAecDjIbOuoHzXqsKfLW/16ES/Cz/EphHD02kLDWWPAf
+	XRzqUvwNBgSMAIsG2ZGff2v4Pd4FcrF/ORaG6bVLXyZ4FKzb+G9LLH7VEE4R6cPU82VPAMS7L5Z
+	h+uAgl9nWva4x9kcKaFBz1n8P+fmGBKfPoFwV/cy5Sk+ikHpzuCETJ7wTjb2uYRPCkclBAIX7YX
+	gGORQEywtmSYoF2xn1HCUzAieHaSe6i6yTXA+corwlZyimLDsaUNFCiaSHb6PGTNGVXbNpSfOoG
+	DBJSIemx7ywMcnTYWOyYBriTfAO4r3Rtf1LkP+SQFfCzpwDEktmlXq7GCwrzh4sIFvdLFUBONTd
+	nnE9eNSqU6YsYo57oKyfh1QEJLAVUpV1PaPKjw2yZToc62cusqtJ2RCS1coil
+X-Received: by 2002:a05:622a:ce:b0:51c:8fb:fa54 with SMTP id d75a77b69052e-51cbf1f5fa9mr66777941cf.57.1783893631369;
+        Sun, 12 Jul 2026 15:00:31 -0700 (PDT)
+Received: from ziepe.ca ([159.2.72.92])
+        by smtp.gmail.com with ESMTPSA id d75a77b69052e-51caae2068asm68895591cf.17.2026.07.12.15.00.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 12 Jul 2026 15:00:30 -0700 (PDT)
+Received: from jgg by wakko with local (Exim 4.97)
+	(envelope-from <jgg@ziepe.ca>)
+	id 1wj2Dt-0000000BnC3-044j;
+	Sun, 12 Jul 2026 19:00:29 -0300
+Date: Sun, 12 Jul 2026 19:00:29 -0300
+From: Jason Gunthorpe <jgg@ziepe.ca>
+To: Daniel Drake <dan@reactivated.net>
+Cc: "Joerg Roedel (AMD)" <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+	Robin Murphy <robin.murphy@arm.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	iommu@lists.linux.dev, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	nick.hollinghurst@raspberrypi.com
+Subject: Re: [PATCH 1/6] generic_pt: allow missing sw bit in DMA_INCOHERENT
+ case
+Message-ID: <20260712220029.GA1835788@ziepe.ca>
 References: <20260712-bcm2712-iommu-submit-v1-0-80e10cdde2ea@reactivated.net>
- <20260712-bcm2712-iommu-submit-v1-4-80e10cdde2ea@reactivated.net>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Sun, 12 Jul 2026 21:36:25 +0000
-Message-Id: <20260712213626.1D8D41F000E9@smtp.kernel.org>
+ <20260712-bcm2712-iommu-submit-v1-1-80e10cdde2ea@reactivated.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260712-bcm2712-iommu-submit-v1-1-80e10cdde2ea@reactivated.net>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[ziepe.ca:s=google];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-325133-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:dan@reactivated.net,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-325135-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:dan@reactivated.net,m:joro@8bytes.org,m:will@kernel.org,m:robin.murphy@arm.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:florian.fainelli@broadcom.com,m:bcm-kernel-feedback-list@broadcom.com,m:iommu@lists.linux.dev,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-rpi-kernel@lists.infradead.org,m:linux-arm-kernel@lists.infradead.org,m:nick.hollinghurst@raspberrypi.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER(0.00)[jgg@ziepe.ca,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	DMARC_NA(0.00)[ziepe.ca];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	RCPT_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	DKIM_TRACE(0.00)[ziepe.ca:+];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[reactivated.net:email,smtp.kernel.org:mid,lists.linux.dev:replyto,vger.kernel.org:from_smtp,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,sashiko.dev:url]
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jgg@ziepe.ca,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	TO_DN_SOME(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: E6E4074609B
+X-Rspamd-Queue-Id: 56883746162
 
-Thank you for your contribution! Sashiko AI review found 4 potential issue(=
-s) to consider:
-- [High] Physical addresses for page tables are silently truncated if they =
-exceed 40 bits.
-- [High] Installing a contiguous block for an unsupported page size results=
- in mismatched PAGESIZE hints and partial unmapping.
-- [Low] Unnecessary Kconfig dependency on !GENERIC_ATOMIC64 restricts compi=
-lation on 32-bit architectures.
-- [Low] Missing module test dependency in IOMMU_PT_KUNIT_TEST.
---
+On Sun, Jul 12, 2026 at 10:18:51PM +0100, Daniel Drake wrote:
+> When working with a iommu with PT_FEAT_DMA_INCOHERENT set, generic_pt
+> will attempt to use a spare "SW" bit in the hardware page tables to
+> denote when a thread has flushed the CPU cache after modifying an entry.
+> 
+> This means that other threads know that they are not working with
+> cached/unflushed data, if they come across the same entry.
+> 
+> In the case where no SW bit is available, two things happen:
+> 
+> 1. __map_range() defensively flushes every time it reads the PT.
+>    This ensures all data that may have just been manipulated by another
+>    thread gets flushed and made iommu-visible immediately.
+> 
+> 2. An undefined reference to __pt_no_sw_bit() is created, causing a
+>    linker error in order to alert the developer that they are going
+>    to suffer a performance penalty in the previous point.
 
---- Patch [4]: [PATCH 4/6] iommu/generic_pt: Add Broadcom BCM2712 page tabl=
-e format ---
-commit de6027129434bac44f0964115b67d7adb9dca294
-Author: Daniel Drake <dan@reactivated.net>
+Ah, actually this is all setup like this because it doesn't have an
+implementation for supporting no-SW bit versions right now. That a
+mandatory flush happens is not something I thought about, my original
+plan was to put the SW bit into the struct page memory instead and
+have some extra barriers..
 
-iommu/generic_pt: Add Broadcom BCM2712 page table format
+It would be better to not call the SW bit code at all if
+PT_SW_BIT_NOT_PRESENT so we have a clear algorithm that explains how
+it is intended to work (ie mandatory flush) in this case instead of
+disabling the linker safety check of using SW bit without support
 
-The BCM2712 IOMMU implements a 2-level page table format. It is relatively
-simple, with one unusual aspect: leaf entries can only be installed at
-Level 0.
-
-> diff --git a/drivers/iommu/generic_pt/Kconfig b/drivers/iommu/generic_pt/=
-Kconfig
-> index f4ed1add58b74..5c01cebb365fa 100644
-> --- a/drivers/iommu/generic_pt/Kconfig
-> +++ b/drivers/iommu/generic_pt/Kconfig
-[ ... ]
-> +config IOMMU_PT_BCM2712
-> +	tristate "IOMMU page table for Broadcom BCM2712"
-> +	depends on !GENERIC_ATOMIC64 # for cmpxchg64
-
-[Severity: Low]
-Is this dependency necessary? The bcm2712 format appears to use 32-bit entr=
-ies
-(pt_bcm2712_entry_t) and pt_table_install32(), which only requires standard
-32-bit cmpxchg.
-
-It doesn't seem to use cmpxchg64, and this dependency artificially restricts
-compilation on 32-bit architectures during COMPILE_TEST.
-
-> +	help
-> +	  iommu_domain implementation for the Broadcom BCM2712 IOMMU found on
-> +	  Raspberry Pi 5. It supports 4K page sizes over a 2-level page table
-> +	  format.
-> +
-> +	  Selected automatically by an IOMMU driver that uses this format.
-> +
->  config IOMMU_PT_KUNIT_TEST
->  	tristate "IOMMU Page Table KUnit Test" if !KUNIT_ALL_TESTS
->  	depends on KUNIT
-
-[Severity: Low]
-Does this test need a conditional dependency for the new BCM2712 format?
-
-If IOMMU_PT_BCM2712 is compiled as a module, but this test is built-in (=3D=
-y),
-it might cause a linker failure. Other formats typically have a dependency
-list like "depends on IOMMU_PT_X86_64 || !IOMMU_PT_X86_64" to ensure the te=
-st
-degrades to a module if any supported format is a module.
-
-> diff --git a/drivers/iommu/generic_pt/fmt/bcm2712.h b/drivers/iommu/gener=
-ic_pt/fmt/bcm2712.h
-> new file mode 100644
-> index 0000000000000..e62d59181bfe5
-> --- /dev/null
-> +++ b/drivers/iommu/generic_pt/fmt/bcm2712.h
-[ ... ]
-> +static inline void
-> +bcm2712pt_install_leaf_entry(struct pt_state *pts, pt_oaddr_t oa,
-> +			     unsigned int oasz_lg2,
-> +			     const struct pt_write_attrs *attrs)
-> +{
-[ ... ]
-> +	if (oasz_lg2 =3D=3D PT_GRANULE_LG2SZ) {
-> +		WRITE_ONCE(tablep[pts->index], entry);
-> +		pts->entry =3D entry;
-> +	} else {
-> +		struct pt_bcm2712 *table =3D
-> +			common_to_bcm2712pt(pts->range->common);
-> +		u32 *end;
-> +
-> +		tablep +=3D pts->index;
-> +		end =3D tablep + log2_to_int(oasz_lg2 - PT_GRANULE_LG2SZ);
-> +
-> +		/*
-> +		 * Leaf entries can contain hints indicating multi-page
-> +		 * contiguous mappings, presumably to permit TLB optimization
-> +		 */
-> +		if (oasz_lg2 =3D=3D ilog2(SZ_4M))
-> +			entry |=3D FIELD_PREP(BCM2712PT_PAGESIZE, 3);
-> +		else if (oasz_lg2 =3D=3D table->superpage_lg2)
-> +			entry |=3D FIELD_PREP(BCM2712PT_PAGESIZE, 2);
-> +		else if (oasz_lg2 =3D=3D table->bigpage_lg2)
-> +			entry |=3D FIELD_PREP(BCM2712PT_PAGESIZE, 1);
-> +
-> +		pts->entry =3D entry;
-> +		for (; tablep !=3D end; tablep++, entry++)
-> +			WRITE_ONCE(*tablep, entry);
-> +	}
-> +}
-
-[Severity: High]
-If a driver requests a contiguous leaf entry for an unsupported size, does
-this logic leave the PAGESIZE hint as 0 while still writing the full block
-of PTEs?
-
-If the layout is initialized with an incoming cfg->pgsize_bitmap containing
-sizes this format cannot encode, the hint is never set here. Later, when
-unmapping, bcm2712pt_entry_num_contig_lg2() will read the 0 hint, assume it
-is a single 4KB page, and fail to clear the remainder of the block.
-
-Could this result in stale mappings remaining active in the hardware and
-causing memory corruption or use-after-free via DMA?
-
-[ ... ]
-> +static inline bool bcm2712pt_install_table(struct pt_state *pts,
-> +					   pt_oaddr_t table_pa,
-> +					   const struct pt_write_attrs *attrs)
-> +{
-> +	pt_bcm2712_entry_t entry =3D
-> +		BCM2712PT_VALID |
-> +		FIELD_PREP(BCM2712PT_PFN,
-> +			   oalog2_div(table_pa, PT_GRANULE_LG2SZ));
-> +
-> +	return pt_table_install32(pts, entry);
-> +}
-
-[Severity: High]
-Can this silently truncate physical addresses larger than 40 bits?
-
-The framework allocates page tables using standard GFP_KERNEL memory, which
-can exceed 1TB on generic ARM64 kernels. Since the BCM2712 format encodes
-a 28-bit PFN, and FIELD_PREP silently masks out upper bits, an address
-above 1TB could be truncated. This could result in programming an incorrect
-physical address into the hardware table.
-
-[ ... ]
-> +static inline int bcm2712_pt_fmt_init(struct pt_iommu_table *fmt_table,
-> +				      const struct pt_iommu_bcm2712_cfg *cfg)
-> +{
-> +	fmt_table->bcm2712pt.pgsize_bitmap =3D cfg->pgsize_bitmap;
-> +	fmt_table->bcm2712pt.bigpage_lg2 =3D cfg->bigpage_lg2;
-> +	fmt_table->bcm2712pt.superpage_lg2 =3D cfg->superpage_lg2;
-> +	pt_top_set_level(&fmt_table->bcm2712pt.common, PT_MAX_TOP_LEVEL);
-> +	return 0;
-> +}
-
-[Severity: High]
-Should this pgsize_bitmap be sanitized or masked against the specific sizes
-the bcm2712 format can actually encode (4K, bigpage, superpage, 4M)?
-
-Implicitly trusting the incoming configuration is what allows the unsupport=
-ed
-page size issue in bcm2712pt_install_leaf_entry() to occur.
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260712-bcm2712-io=
-mmu-submit-v1-0-80e10cdde2ea@reactivated.net?part=3D4
+Jason
 
