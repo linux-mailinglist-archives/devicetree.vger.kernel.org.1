@@ -1,177 +1,134 @@
-Return-Path: <devicetree+bounces-325121-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-325123-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id GU9BITn2U2qzgQMAu9opvQ
-	(envelope-from <devicetree+bounces-325121-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 12 Jul 2026 22:16:57 +0200
+	id TcLlK1j6U2ogggMAu9opvQ
+	(envelope-from <devicetree+bounces-325123-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 12 Jul 2026 22:34:32 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8131745CE1
-	for <lists+devicetree@lfdr.de>; Sun, 12 Jul 2026 22:16:56 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id A2815745D70
+	for <lists+devicetree@lfdr.de>; Sun, 12 Jul 2026 22:34:31 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=tenstorrent.com header.s=google header.b=WiNtvB6V;
-	dmarc=pass (policy=reject) header.from=tenstorrent.com;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-325121-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-325121-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=sntech.de header.s=gloria202408 header.b=oVOaDuhQ;
+	dmarc=pass (policy=quarantine) header.from=sntech.de;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-325123-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-325123-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 4C7E2300CBF1
-	for <lists+devicetree@lfdr.de>; Sun, 12 Jul 2026 20:16:49 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 73AB93002505
+	for <lists+devicetree@lfdr.de>; Sun, 12 Jul 2026 20:34:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61C343B2FF7;
-	Sun, 12 Jul 2026 20:16:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73ABE3B38BD;
+	Sun, 12 Jul 2026 20:34:27 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com [209.85.128.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 931BA242D84
-	for <devicetree@vger.kernel.org>; Sun, 12 Jul 2026 20:16:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C7F33537F6;
+	Sun, 12 Jul 2026 20:34:24 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783887408; cv=none; b=ZvtNF6Mw5Cdozff+1DrnOfGOLfBnOIOFGM9JI3Ja0c2NXwPpR0gI9sJiR3va6jQqcJTTFA3qLGCkgRSFh/tJc4Lua+fmfk91r9eeWAbd9zX4iaGqbwNiDgUTyYWhkopGfSs0LiQTPMcpchkPTbV5dN3qWonKPl1pf8PSGTVHgko=
+	t=1783888467; cv=none; b=OPWa8uMATzSWB7JefaEFa0QsoJTd+BPra0lVyZFG33jVOAAAuUwgnHu/a2NvRFaroN5QNyOZKczWFJh622UlHZFR9gooBi6dk42PQBGh0hGuOCoWZ5l8TfniqYqhdhNPs1fDCpsz6trFEINR6c57LvkzxsMCGMPkljQUdW/LPJY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783887408; c=relaxed/simple;
-	bh=3QLR3KK8Id6mI23Kry/sbc3hYjkLOFnlNehgggqEwkk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=aiC+ZQIIBrx4aayB/XcZUaLDB1OioRcJUXswYiZ5srdOnw/4QttImEZvmbaOATbBC2qe0sp8FmkwWD1ESMwVJBwu5DXh0YosMgrLj8oYnV7zPSlhb/135SiEGQslOySaDLcVNNcen+vSH98W7U+xOBVgISoe6MFrBSgAM9b3l4E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.tenstorrent.com; spf=pass smtp.mailfrom=tenstorrent.com; dkim=pass (2048-bit key) header.d=tenstorrent.com header.i=@tenstorrent.com header.b=WiNtvB6V; arc=none smtp.client-ip=209.85.128.181
-Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-81e86df8987so24107237b3.3
-        for <devicetree@vger.kernel.org>; Sun, 12 Jul 2026 13:16:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tenstorrent.com; s=google; t=1783887404; x=1784492204; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:content-type:mime-version
-         :references:message-id:subject:cc:to:from:date:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=Sexe2OJDiMkFGhURClJc1NsMoa58P5WaL0Byl520pbw=;
-        b=WiNtvB6VOqUyBMNBFIfKB7RbXWlRSxzqtOwrhRon4lL7K8XxCApY+/SJ7ba0nxDLIC
-         lozPBy/7nEqv41IuNdpht84WFu1S0SmgtopoWXtdShRV8szRnwKzHBNmVglVU7K5ODnv
-         7CKt41No6cvWST0+1ZMlYjoy0auu+FWQVuYwlIHHkDlaBMfNQeNnYGiOWI1uMxieKrrq
-         oFbyRt4MWZ5tpi8WVK1RWbYJHGCYwhflkKImif7K5Ez8TazAE/7L6Azb4RObxD947/nn
-         GUnBSZ8ldoXcQLTNyufvy5bX4/Xsc7p6cwgKp1l6RUtUmnqHxzbvdL/QTSE3P2iupsY+
-         NSMw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783887404; x=1784492204;
-        h=in-reply-to:content-disposition:content-type:mime-version
-         :references:message-id:subject:cc:to:from:date:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=Sexe2OJDiMkFGhURClJc1NsMoa58P5WaL0Byl520pbw=;
-        b=i8H0K02Zn35kHrF8dRIt9vATs7I3mzZ3AocZL1h7OYH17YWWNZHZg2YPYPtZkCJoUr
-         ZvURwJ54hK1SxlFwIw6cWT/uY3OuMUH1ktsx6xzocyHcPu0xnxm9efRwt5UxqguVc4C9
-         3b/sqrC+t2fLDYWZG4Zlh2Yy4xG77Itg77bbY/GueubIj+9l9q9XTh48IKCyGjGgMVk9
-         vlPy3k5xOPUrGE82R37aQ87pZiJy2oIKG9kAye5z14K1Rp+fJpYlXyeN9rNthWUDwS0+
-         iNJ9yud+F3Pmx+CEg4Ikk0MbDF6A2sWDXWDpDV7eWoF6mr8b+ARE9bA9gIR2XAj0W5TB
-         RiTA==
-X-Forwarded-Encrypted: i=1; AHgh+Rpl9EyMdY1JyFGu321UWyBRSI71uFENF02AXmnNjSRqz/JCw3BJE4dOGku7ACFEWvIjf7CUE5Mc3fq3@vger.kernel.org
-X-Gm-Message-State: AOJu0Yztv2xhljsOGXfNFa8lhi9DocMAgKyR70NLiFhGOvFKfTbzN8NC
-	12MAeul0CxoB/Ra5QyE/Mm+AewhKlIFPpiRDIMTvwB2P7UsuYrIVKsZhMNeG0kZqYz0=
-X-Gm-Gg: AfdE7ckJEpzyT0jSeYWH5h9mMNvnef+gwq426z7ZU7Lu3h/ESCoX3Y1zJNM3IIOAG1u
-	kpe4LhD2BWuGdII+EWErwoUjnkZsLcOHnBGPSvEOorR152zACRhheiqykGxQjG+ovPcZuqJU+Ry
-	G5DuiRaQ3CbzkyP9bgqIUbEWE0BAgOlSbxUTtmqdO4SFfYp8FWZINxhAz5crOaGhnj4CRECKf4r
-	WcbEd0/il5AiNhFJBDQml/tJhDHXKTa4AIyGi4xtGDsPD/qDh/57b6ICiuNJ0N3nFqVT4PYzmIe
-	XBFvqPaKNzb95TzexVAMXabT+zo8N6NcGTRrGGysB7lj3SPceo7nsoFtPdObIaEInB8BuyCE8vV
-	G53cEBlEdDoJDZeBbSd9IYm0jWCsKgaPMn7QWHCVBAQ3p69KBJ97vjwR99ockVSttHX68PfL90X
-	SOb/33r7HnCFSGbjCV1OsMj6Eu37a6pNsyaSHrWAFyjHlwlrqqvyRNTenhWhklMMjtMEAW
-X-Received: by 2002:a05:690c:250a:b0:81e:68a2:89d5 with SMTP id 00721157ae682-81e901b3d89mr51627807b3.55.1783887404652;
-        Sun, 12 Jul 2026 13:16:44 -0700 (PDT)
-Received: from toolbox ([2600:1700:220:59e0:5e9b:73c6:ee82:165e])
-        by smtp.gmail.com with ESMTPSA id 00721157ae682-81e6c1f11bbsm98699367b3.35.2026.07.12.13.16.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 12 Jul 2026 13:16:43 -0700 (PDT)
-Date: Sun, 12 Jul 2026 15:16:40 -0500
-From: Anirudh Srinivasan <asrinivasan@oss.tenstorrent.com>
-To: Yixun Lan <dlan@kernel.org>
-Cc: Alim Akhtar <alim.akhtar@samsung.com>, 
-	Avri Altman <avri.altman@sandisk.com>, Bart Van Assche <bvanassche@acm.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, "James E.J. Bottomley" <James.Bottomley@hansenpartnership.com>, 
-	"Martin K. Petersen" <martin.petersen@oracle.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, linux-scsi@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, spacemit@lists.linux.dev, 
+	s=arc-20240116; t=1783888467; c=relaxed/simple;
+	bh=n/MZs0TuoRYJSXw670fFFTjsIp/X92i9iJFBSSHN99Y=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=BLHyYPbL28sk+X/uN1mmxKm2h6UhqeNBujxrJpKoMkYEZ6AApUdT6vyMEjyQbLwSrUbt2zMiD+bbc1FEt3sdTt1+g5Bbu4f/QKcMvS7HvEAw6IX71BPiMeyenr32AS9EL4oWvv4JY1mkKYTR8iGOjWDFuTLSnFa3W4VnhKBstrM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=oVOaDuhQ; arc=none smtp.client-ip=185.11.138.130
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
+	bh=seILppKGTil9XvVHz2w8WcGUv3ZDPAQ7sc+x9QORmZY=; b=oVOaDuhQWudRoQ1btoqyzMjwZr
+	Ih8XqMdJdiPg0lwZTHw2qHwAYZfdPgCLS6yDrgOgcy+iLZwgX0OrFM7RGO7Pm63rvjLn7dmUMr0jp
+	E7ruvubyhDcJ2+5Z/saUlyVokTaP5XqQ+klKy09x++PUa0qEs7jkpgK27444FapNGXt03v++0IuMA
+	OAjQm5GZGJGlHLH0choKlZ3uAdTlmoZNrWqhuVJM25asp8PDZHRpix+Agvxz08QvlmbUcnqsi4ed/
+	ev6j2VoyzLP8ortF56dCfvDAPoKlEPWkVT5PKUqdCAoPzmP1EUdW+2Dk3N+VJFBeUbwHER7DU49NU
+	K8VVuhAQ==;
+From: Heiko Stuebner <heiko@sntech.de>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Dragan Simic <dsimic@manjaro.org>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Coia Prant <coiaprant@gmail.com>
+Cc: Heiko Stuebner <heiko@sntech.de>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
 	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/3] scsi: ufs: spacemit: k3: Add UFS Host Controller
- driver
-Message-ID: <7x3b4sttnc4oxkuvxmpkihfi76lkapjcigo7khgcgfytvol7w2@v5ykuyrk2z3m>
-References: <20260702-08-k3-ufs-support-v1-0-1a64a3ab128f@kernel.org>
- <20260702-08-k3-ufs-support-v1-2-1a64a3ab128f@kernel.org>
+Subject: Re: [PATCH v5 0/3] Add devicetree for the Graperain G3568 v2
+Date: Sun, 12 Jul 2026 22:33:55 +0200
+Message-ID: <178388833988.1396294.17990564182339450982.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.47.3
+In-Reply-To: <20260702204628.2407308-2-coiaprant@gmail.com>
+References: <20260702204628.2407308-2-coiaprant@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260702-08-k3-ufs-support-v1-2-1a64a3ab128f@kernel.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[tenstorrent.com,reject];
-	R_DKIM_ALLOW(-0.20)[tenstorrent.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[sntech.de,quarantine];
+	R_DKIM_ALLOW(-0.20)[sntech.de:s=gloria202408];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-325121-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	FORGED_SENDER(0.00)[asrinivasan@oss.tenstorrent.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-325123-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:dsimic@manjaro.org,m:jonas@kwiboo.se,m:coiaprant@gmail.com,m:heiko@sntech.de,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-rockchip@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FREEMAIL_TO(0.00)[kernel.org,manjaro.org,kwiboo.se,gmail.com];
+	FORGED_SENDER(0.00)[heiko@sntech.de,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:dlan@kernel.org,m:alim.akhtar@samsung.com,m:avri.altman@sandisk.com,m:bvanassche@acm.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:James.Bottomley@hansenpartnership.com,m:martin.petersen@oracle.com,m:p.zabel@pengutronix.de,m:pjw@kernel.org,m:palmer@dabbelt.com,m:aou@eecs.berkeley.edu,m:alex@ghiti.fr,m:linux-scsi@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-riscv@lists.infradead.org,m:spacemit@lists.linux.dev,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[asrinivasan@oss.tenstorrent.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[tenstorrent.com:+];
-	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[heiko@sntech.de,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[sntech.de:+];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[v5ykuyrk2z3m:mid,tenstorrent.com:dkim,oss.tenstorrent.com:from_mime,vger.kernel.org:from_smtp]
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,sntech.de:from_mime,sntech.de:email,sntech.de:mid,sntech.de:dkim]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: C8131745CE1
+X-Rspamd-Queue-Id: A2815745D70
 
-On Thu, Jul 02, 2026 at 02:31:36AM +0000, Yixun Lan wrote:
-> SpacemiT K3 SoC consist of UFS (Universal Flash Storage) Host Controller
-> which has features compatible with JEDEC UFS 2.2, MIPI UniPro v1.61 and
-> M-PHY v3.0 standard.
-> 
-> Signed-off-by: Yixun Lan <dlan@kernel.org>
-> ---
->  drivers/ufs/host/Kconfig        |  12 +
->  drivers/ufs/host/Makefile       |   1 +
->  drivers/ufs/host/ufs-spacemit.c | 931 ++++++++++++++++++++++++++++++++++++++++
->  drivers/ufs/host/ufs-spacemit.h |  90 ++++
->  4 files changed, 1034 insertions(+)
-> 
-> diff --git a/drivers/ufs/host/Kconfig b/drivers/ufs/host/Kconfig
-> index ff170c0b6da0..4f53b7f7688f 100644
-> --- a/drivers/ufs/host/Kconfig
-> +++ b/drivers/ufs/host/Kconfig
-> @@ -132,6 +132,18 @@ config SCSI_UFS_VARIABLE_SG_ENTRY_SIZE
->  	bool
->  	default y if SCSI_UFS_EXYNOS && SCSI_UFS_CRYPTO
->  
-> +config SCSI_UFS_SPACEMIT
-> +	tristate "SpacemiT UFS controller driver"
-> +	depends on SCSI_UFSHCD_PLATFORM && ARCH_SPACEMIT
 
-Can you add SCSI_UFSHCD_PLATFORM and SCSI_UFS_SPACEMIT as modules to
-riscv defconfig (or just add the former and add a default y if
-ARCH_SPACEMIT in this Kconfig entry). This will let defconfig kernels
-to boot with persistant rootfs on these devices.
+On Fri, 03 Jul 2026 04:46:26 +0800, Coia Prant wrote:
+> Changes in v2:
+> - Fix trailing whitespaces and other formatting issues.
+> 
+> Changes in v3:
+> - Picked up Acked-by tag for patch 1.
+> - Fixed text wrapping in the commit message of patch 2.
+> - Replace the legacy 'gpio' label with 'gpios'.
+> - Add the basic WiFi child node.
+> - Add the Bluetooth UART child node.
+> 
+> [...]
 
-> 
-> -- 
-> 2.54.0
-> 
+Applied, thanks!
+
+[1/3] dt-bindings: vendor-prefixes: Add graperain
+      commit: 8885a00d305166fd6e1ba0699228d015424d3bca
+[2/3] dt-bindings: arm: rockchip: Add Graperain G3568 series
+      commit: 441baa62ea364c168dac79b804022154abab2ded
+[3/3] arm64: dts: rockchip: Add devicetree for the Graperain G3568 v2
+      commit: efca3937b84cbcbcccf88b26a54fb8efaf8bea73
+
+Best regards,
+-- 
+Heiko Stuebner <heiko@sntech.de>
 
