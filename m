@@ -1,98 +1,101 @@
-Return-Path: <devicetree+bounces-325029-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-325031-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id vnHfMNV8U2pObQMAu9opvQ
-	(envelope-from <devicetree+bounces-325029-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 12 Jul 2026 13:39:01 +0200
+	id emwiOPN/U2q2bQMAu9opvQ
+	(envelope-from <devicetree+bounces-325031-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 12 Jul 2026 13:52:19 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E3A474485A
-	for <lists+devicetree@lfdr.de>; Sun, 12 Jul 2026 13:39:01 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 44D59744897
+	for <lists+devicetree@lfdr.de>; Sun, 12 Jul 2026 13:52:19 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=UHFgC2SH;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=ahZzkFIb;
 	dmarc=pass (policy=none) header.from=gmail.com;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-325029-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-325029-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-325031-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-325031-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 6D66D3009575
-	for <lists+devicetree@lfdr.de>; Sun, 12 Jul 2026 11:39:00 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 1C008302E41A
+	for <lists+devicetree@lfdr.de>; Sun, 12 Jul 2026 11:51:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60CB43A6418;
-	Sun, 12 Jul 2026 11:38:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FACD3A8FEA;
+	Sun, 12 Jul 2026 11:51:57 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE06239E9DD
-	for <devicetree@vger.kernel.org>; Sun, 12 Jul 2026 11:38:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E64C83A3E60
+	for <devicetree@vger.kernel.org>; Sun, 12 Jul 2026 11:51:55 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783856337; cv=none; b=e2Y64XyAFhRh0XuE8ld1SMt3r3UFqZpT0QupmO5KptUy/dbbeNlTIhsroqlDQN181XnYMqwiQybh8BdB9QD6qsoySiQCVJgElLzPTAfQ2lu/CT6BinTmy6AH/Z/eMJjjCoo3u6Juu7tfX6Un6WgpgCaxX3CCaH2EykgYZjbZdLI=
+	t=1783857117; cv=none; b=Hn8PbrpRt3YNJUsOQkM166xgsnNaYG6SrUXXqcZJqqm/UrfRXt0rzZoec+DMocGcApNj4hal7VvR/1Ko9korrgyHmO2pDJZjyJb9Hp14oty2ClRCYEZCghwj+NEKEU7MBFNQw3uCSWJd/IsM9w2C+8GQ1BIZBd9KjKF5qILXE90=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783856337; c=relaxed/simple;
-	bh=p4ux/JOtLVj+8Spq10nglexIKmCAq+as35tOKbOSNLw=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=rFIrlGhrZ56kpN5/3zWQQUkoYQCtl30Qg3EkeHfztVJsoiUf4nA5JjSD0V32+VtO2PMYH54GFOOd2bf/h4+cfqCNuFRicJYmiqEhhJKvV2IKQYmi8qGYLut2aIX2VGSykJCGtm/12vnm+vpaxpSaNsdt/vAKu9vWmfgJkxsAPdo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UHFgC2SH; arc=none smtp.client-ip=209.85.128.53
-Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-493f25d47dcso17188525e9.1
-        for <devicetree@vger.kernel.org>; Sun, 12 Jul 2026 04:38:55 -0700 (PDT)
+	s=arc-20240116; t=1783857117; c=relaxed/simple;
+	bh=6+TZszz08ANN8+9ofoYjUJ5lkEzumu4XH0cVK7Cerfw=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=OXRRpHVOQxHw30zvHjsmf5Pyc/sk2d+mIa7jcgNXnvadr/L7NY+m4Jzl2t+ukRmy5OEjMRUA2lC1u05nosOqm/h84kT9dU1OSixTX58lzvGuEKsnFzVcIaEHW1jdgMeAXojU7ZO4940mqgqlVNCNzqNQNSGA7EcFnN3kDY3+Gbw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ahZzkFIb; arc=none smtp.client-ip=209.85.214.175
+Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-2cc7ef7ec27so24350075ad.1
+        for <devicetree@vger.kernel.org>; Sun, 12 Jul 2026 04:51:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1783856334; x=1784461134; darn=vger.kernel.org;
+        d=gmail.com; s=20251104; t=1783857115; x=1784461915; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=WWPMJKQKJ9jSlDsOvT4j32pSDv2XKOE/cyJYUajvG3Y=;
-        b=UHFgC2SH3kUYx8zDS+G7d8whjEWgLiQbrOeYLd8Et/SD7R78m2XbmpRtuW20xMXCuX
-         E4fDFE+O+4PCzStWrjADHI95/+J8YzwSEUPpJMVognLd0Rj7UbsS5RJnCqw0giaPELsf
-         alU8j7Y4WQg/dnCL/IQkexQOP7lb7vZoWr92AfI7xwRVOyQnI6OFKR6Cyd4SAVePHGWk
-         ithTycrvkOqG7OuqJrzm3iZMJfpuWTseynuraC3xKzCohfRE/Ia6T7TvfH1bfkeG8G6D
-         xvbAsuZCtzo186aRYpGWw18H4xVCWWKyByXrr5MNRmWWsFzPCAbypL+0W9tujcb3dQH2
-         pzgg==
+        bh=4Utm4P1WbP2lIpaXwLG1JxwvoUEmp6e9qMX5dfGldD8=;
+        b=ahZzkFIb7RNV6bXWLHbMYcxAxsTw2U/LC8/4hN/7qTqLtsZODyq6/Q0pTtYeWnJU1c
+         YxVgwzGfdX87fJxUclz9MEme2ze1ICFkC0I1xZFsYz+leeiKtkuCW05TTTDef5YaIJ5c
+         WMqi23LIXsU7BQ+xDc4KbUExhQOdj0eMt4r3tIiC3hcGbvvfGHhEMsbPQpV3sl4csPxR
+         MK5ibDnrPqXJQUtzKV3tOxdu5juTPJh9H0NQSm/CP7dSX+N/Een+OwfRriQRw9NvTNMi
+         lXHsYkSaAEWzuAnueJIUDiHkNWt0Zi2z4c6IS6aHwRQk9ttN1iSOHjTl3O5lPKxgo0kh
+         LsKQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783856334; x=1784461134;
+        d=1e100.net; s=20251104; t=1783857115; x=1784461915;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=WWPMJKQKJ9jSlDsOvT4j32pSDv2XKOE/cyJYUajvG3Y=;
-        b=TzSj/GxNvCvxQRLZdDxhdyU7PqJ0U3zdVyMlLOtFGzDr5cJqwgufUk6YCNcc56xZk8
-         Sx4Fv2EGahpX1HtRgMVeUfAGAyL+w7DA8RKbGoXmJngDsCHhKI6x6Cc2yqke3CzXI9GH
-         gBYyeQoJFLnwm2cXnEAXJKtsUrcRBlo+VOEEa0whHOyZHFHnXORG0oCHuhBSjThzhN9w
-         7eP88gyg0uUKbFOSuivGVNs00PiEcgUuoYq57XKMWe99e1hXdwuuQ2YNzricQavFeTgi
-         1v3FdrBQZ8MORMPYEA1xy4bT8BvjZszeRd6xwtjm7jDIMV2g0FrnVkJ9jlFQKqMynyQ7
-         jPoA==
-X-Forwarded-Encrypted: i=1; AHgh+RpA34ST9FH6LIctWguPSgtNEuGV1Z6GqvsB1SuLPy3o2oQfo4SiFkVEVMNqNoCs62d7g96uPeOPw1uT@vger.kernel.org
-X-Gm-Message-State: AOJu0YyammEKeZXqagGBFhpq44hhEtMoKiwf8FxXwznyjNyuxNivrjqY
-	akHiSEqWtqfKlKWxy1Y/rEAn6UtYpXounJgN1EgbktXMBIILKnHC5gSZ
-X-Gm-Gg: AfdE7ckWzxnk0jQMkcEX6IUmFB/3Hg60M81vqM4D3GG0KV8v0avYBg1/C4sfkVvPlhw
-	cfCBynlUPCcvKJE0iC2pyN89KO2NXasZV94LpNYrBRpn3VCszejhAOQ/K+td6lv3WaBJktijvEG
-	ldxr1cb/tT/PRSw7lEntqcAnPpM/gbB+UuzAXDYZsY4Xd9CgbRASqufZmDdXNbMgEdYm72Oq6Es
-	J2c7okcdEosulJ2enP/F3pQEV+35Rz50sZWqzyXHR+D84dbMv17uVMdGft/AvwFMMDk+ovbVhWf
-	Np6SBYaOtc+lsr31BbFn6bNnyQUD8vGU54c7VtTnqYkuyxtBbphYr0HCSbqg6PlQJ8OFFWh4n7m
-	6aqduLC9XUywimBXV3EdroqbjFf0cwxR7zfFuoKO/q+iYGYJkKL/YQBP5WbezKjUZPadp+jfO+6
-	BrbZdP8Q==
-X-Received: by 2002:a7b:c019:0:b0:493:aab3:c09c with SMTP id 5b1f17b1804b1-493f8828e20mr33926235e9.28.1783856333825;
-        Sun, 12 Jul 2026 04:38:53 -0700 (PDT)
-Received: from avermoal ([185.13.178.252])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-493eb74b3edsm329219065e9.15.2026.07.12.04.38.50
+        bh=4Utm4P1WbP2lIpaXwLG1JxwvoUEmp6e9qMX5dfGldD8=;
+        b=KmnnepnC1/XxXA7jawcwu1NSwZhEEOAiuwHwZBjbGQVD5FiTv7MXvQ8Dtf4SNsfgXq
+         oEbsbgCjzv8m4l8P3i2w+w+Tqp6MqBYAMBZ4BsiWcdg2lYWavrW5jMQ7om5PMsbAEbpo
+         ynAdt6+mFcRd5Q9OrTOAyyNMbsjY9ltWZ1h1AqpiS+uA1bKhvJVFVAeBtk+gcvrxrb9s
+         rt+bMgFWm6ymPlhfGUQiJrWTcJ2vtEx8hZhAZn/PEZTpFAUgW94KNa918lx3qpEaIkJM
+         RN9jl1LCS1n3DAwHNhpqlEjycCi8ttUa9MWI9LFcJwq2sXwKC9DHut72PkrrNt8WXB4N
+         /HCQ==
+X-Gm-Message-State: AOJu0YwwqlnfAPuPKLnC+M5s2aGe09auxYgSTDn1dIMEksVGXPFPK1dd
+	4WYQwPaMctk2gM6lEz3w/rm3TK/pAo24W149YZbmOYimOPKOcJaucURj
+X-Gm-Gg: AfdE7cnBn5OAZw7/hQLcyf7YK3lhuWfHkIooskZ1AM0oLxeN1/yexkFrGJ5n3Q73vl9
+	OlqFr+ztPj5JIoy5eLIWYFiO+u7E3l8SCdT9Vou4fTHc31JygYavovr1XD7TGMhWZATXzNZ2SUH
+	kTF18oAXhAkLm+EHr0jG4n32eHEfOny2C0O73hFrDSaBPHd4EBlSmZ1bH60PfbFT9TSCLFQ0Lt2
+	+4Pk8uQ7sud08uGfCoedNVf/+5TWwQ6YSSS5Y1rI8Yk41Y/PVHeRBhsiJu4ka8/5i6vkaDEfA7t
+	Q9qm6ZjpzdEFIcbqAD8k07uDgEJAVukJh1x6nFieDZD4r5dnNDSay9rT30umuR3mLHiBjaLUuQy
+	yMk/QJvKx3fLyviXuxmAL8UAN8/SJUGYGJSRaVZnmkug4tUHtPGRA6OrNkC26jeZPs8aAQJj2ES
+	lnwQWGtYI6ikU/IjYjbBfYz5MPsTzjlPlFzyj9hFIGCy57YZnyLg==
+X-Received: by 2002:a17:903:4b47:b0:2c9:ff83:41fa with SMTP id d9443c01a7336-2ce9ee1890amr53777765ad.24.1783857115288;
+        Sun, 12 Jul 2026 04:51:55 -0700 (PDT)
+Received: from nuvole ([144.202.86.13])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2ccc9bfe040sm84538295ad.31.2026.07.12.04.51.47
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 12 Jul 2026 04:38:53 -0700 (PDT)
-From: Mikhail Lukianchikov <avermoal@gmail.com>
-To: Thangaraj.S@microchip.com,
-	Rengarajan.S@microchip.com
-Cc: avermoal@gmail.com,
-	andrew+netdev@lunn.ch,
-	conor+dt@kernel.org,
-	davem@davemloft.net,
-	devicetree@vger.kernel.org,
-	edumazet@google.com,
-	krzk+dt@kernel.org,
-	kuba@kernel.org,
+        Sun, 12 Jul 2026 04:51:54 -0700 (PDT)
+From: Pengyu Luo <mitltlatltl@gmail.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Frank Li <Frank.Li@nxp.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Martin Kepplinger-Novakovic <martink@posteo.de>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Hans Verkuil <hverkuil@kernel.org>,
+	Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>
+Cc: devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
-	netdev@vger.kernel.org,
-	pabeni@redhat.com,
-	robh@kernel.org
-Subject: [PATCH v4] dt-bindings: net: microchip,lan78xx: convert to DT schema
-Date: Sun, 12 Jul 2026 17:38:21 +0600
-Message-ID: <20260712113821.12543-1-avermoal@gmail.com>
-X-Mailer: git-send-email 2.52.0
+	linux-media@vger.kernel.org,
+	Pengyu Luo <mitltlatltl@gmail.com>
+Subject: [PATCH v5 0/5] fix and improve for Hi846
+Date: Sun, 12 Jul 2026 19:50:07 +0800
+Message-ID: <20260712115012.91600-1-mitltlatltl@gmail.com>
+X-Mailer: git-send-email 2.54.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -105,229 +108,84 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	FREEMAIL_CC(0.00)[gmail.com,lunn.ch,kernel.org,davemloft.net,vger.kernel.org,google.com,redhat.com];
-	TAGGED_FROM(0.00)[bounces-325029-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-325031-lists,devicetree=lfdr.de];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:Frank.Li@nxp.com,m:s.hauer@pengutronix.de,m:kernel@pengutronix.de,m:festevam@gmail.com,m:sakari.ailus@linux.intel.com,m:martink@posteo.de,m:mchehab@kernel.org,m:hverkuil@kernel.org,m:sebastian.krzyszkowiak@puri.sm,m:devicetree@vger.kernel.org,m:imx@lists.linux.dev,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:linux-media@vger.kernel.org,m:mitltlatltl@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FREEMAIL_TO(0.00)[kernel.org,nxp.com,pengutronix.de,gmail.com,linux.intel.com,posteo.de,puri.sm];
 	FORWARDED(0.00)[lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:Thangaraj.S@microchip.com,m:Rengarajan.S@microchip.com,m:avermoal@gmail.com,m:andrew+netdev@lunn.ch,m:conor+dt@kernel.org,m:davem@davemloft.net,m:devicetree@vger.kernel.org,m:edumazet@google.com,m:krzk+dt@kernel.org,m:kuba@kernel.org,m:linux-kernel@vger.kernel.org,m:netdev@vger.kernel.org,m:pabeni@redhat.com,m:robh@kernel.org,m:andrew@lunn.ch,m:conor@kernel.org,m:krzk@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[avermoal@gmail.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER(0.00)[mitltlatltl@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[avermoal@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	TO_DN_NONE(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[mitltlatltl@gmail.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lists.linux.dev,lists.infradead.org,gmail.com];
 	ALIAS_RESOLVED(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
 	FROM_HAS_DN(0.00)[]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 7E3A474485A
+X-Rspamd-Queue-Id: 44D59744897
 
-Convert the Microchip LAN78xx family (LAN7800, LAN7801, LAN7850) binding
-documentation from plain text to DT schema.
+This series fixes errors blocking Hi846 driver function, fixes
+link frequency and supports 6MP and 8MP modes on Hi846.
 
-Restoring a mistakenly deleted email in MAINTAINERS file and fixing
-microchip,lan7800.yaml.
-
-Signed-off-by: Mikhail Lukianchikov <avermoal@gmail.com>
+Signed-off-by: Pengyu Luo <mitltlatltl@gmail.com>
 ---
+Changes in v5:
+- Use separated fields instead of raw register values for PLL cfg (Sakari)
+- Use mul_u64_u32_div() to avoid loss of pricision and u64/u32 issues (Sakari)
+- Use v4l2_find_nearest_size_conditional() to filter for different lane cases. (Sakari)
+- Drop line break (Sakari)
+- Rename post_div to mipi_clk_div
+- Correct div1 number from 1 to 2
+- Link to v4: https://lore.kernel.org/linux-media/20260511103927.279550-1-mitltlatltl@gmail.com
+
+Changes in v4:
+- Correct default lane cfg in commit for 'fix link frequency handling'
+- Fix messed header (the Media CI robot)
+- Move constant to the right side when comparsion (the Media CI robot)
+- Link to v3: https://lore.kernel.org/linux-media/20260511090924.269106-1-mitltlatltl@gmail.com
+
 Changes in v3:
-  - Restoring an erroneously deleted email in a MAINTAINERS file.
-  - The local-mac-address was deleted.
-  - The missing email was added to the maintainers section.
+- Fix modes handling for different lane cases (Sebastian)
+- Fix header missing (the Media CI robot)
+- Link to v2: https://lore.kernel.org/linux-media/20260501095433.1609309-1-mitltlatltl@gmail.com
 
-Link to v3: https://lore.kernel.org/netdev/20260711105537.11065-2-avermoal@gmail.com
+Changes in v2:
+- Remove uncessary `else` (Sakari)
+- Fix link frequency (Sakari)
+- Correct link frequency for DT
+- Link to v1: https://lore.kernel.org/linux-media/20260429070351.1307204-1-mitltlatltl@gmail.com
 
- .../bindings/net/microchip,lan7800.yaml       | 89 +++++++++++++++++++
- .../bindings/net/microchip,lan78xx.txt        | 53 -----------
- MAINTAINERS                                   |  2 +-
- 3 files changed, 90 insertions(+), 54 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/net/microchip,lan7800.yaml
- delete mode 100644 Documentation/devicetree/bindings/net/microchip,lan78xx.txt
 
-diff --git a/Documentation/devicetree/bindings/net/microchip,lan7800.yaml b/Documentation/devicetree/bindings/net/microchip,lan7800.yaml
-new file mode 100644
-index 000000000000..cb3927215dfc
---- /dev/null
-+++ b/Documentation/devicetree/bindings/net/microchip,lan7800.yaml
-@@ -0,0 +1,89 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/net/microchip,lan7800.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Microchip LAN7800/LAN7801/LAN7850 Gigabit Ethernet controller
-+
-+maintainers:
-+  - Thangaraj Samynathan <Thangaraj.S@microchip.com>
-+  - Rengarajan Sundararajan <Rengarajan.S@microchip.com>
-+
-+description:
-+  The LAN7800/LAN7801/LAN7850 devices are usually configured by
-+  programming their OTP or with an external EEPROM, but some
-+  platforms (e.g. Raspberry Pi 3 B+) have neither. The Device Tree
-+  properties, if present, override the OTP and EEPROM.
-+
-+allOf:
-+  - $ref: /schemas/usb/usb-device.yaml#
-+  - $ref: /schemas/net/ethernet-controller.yaml#
-+
-+properties:
-+  compatible:
-+    enum:
-+      - usb424,7800
-+      - usb424,7801
-+      - usb424,7850
-+
-+  reg:
-+    maxItems: 1
-+    description: USB port number
-+
-+  mdio:
-+    $ref: /schemas/net/mdio.yaml#
-+    unevaluatedProperties: false
-+
-+    patternProperties:
-+      "^ethernet-phy(@[0-9a-f]+)?$":
-+        $ref: /schemas/net/ethernet-phy.yaml#
-+        unevaluatedProperties: false
-+        type: object
-+
-+        properties:
-+          microchip,led-modes:
-+            $ref: /schemas/types.yaml#/definitions/uint32-array
-+            minItems: 1
-+            maxItems: 4
-+            description:
-+              Array of LED mode values for each of up to 4 LEDs.
-+              Omitted LEDs are turned off. Allowed values are defined
-+              in include/dt-bindings/net/microchip-lan78xx.h.
-+
-+        required:
-+          - reg
-+
-+required:
-+  - compatible
-+  - reg
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/net/microchip-lan78xx.h>
-+
-+    usb {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        ethernet@1 {
-+            compatible = "usb424,7800";
-+            reg = <1>;
-+            local-mac-address = [00 11 22 33 44 55];
-+
-+            mdio {
-+                #address-cells = <1>;
-+                #size-cells = <0>;
-+                ethernet-phy@1 {
-+                    reg = <1>;
-+                    microchip,led-modes = <
-+                        LAN78XX_LINK_1000_ACTIVITY
-+                        LAN78XX_LINK_10_100_ACTIVITY
-+                    >;
-+                };
-+            };
-+        };
-+    };
-+...
-diff --git a/Documentation/devicetree/bindings/net/microchip,lan78xx.txt b/Documentation/devicetree/bindings/net/microchip,lan78xx.txt
-deleted file mode 100644
-index 11a679530ae6..000000000000
---- a/Documentation/devicetree/bindings/net/microchip,lan78xx.txt
-+++ /dev/null
-@@ -1,53 +0,0 @@
--Microchip LAN78xx Gigabit Ethernet controller
--
--The LAN78XX devices are usually configured by programming their OTP or with
--an external EEPROM, but some platforms (e.g. Raspberry Pi 3 B+) have neither.
--The Device Tree properties, if present, override the OTP and EEPROM.
--
--Required properties:
--- compatible: Should be one of "usb424,7800", "usb424,7801" or "usb424,7850".
--
--The MAC address will be determined using the optional properties
--defined in ethernet.txt.
--
--Optional properties of the embedded PHY:
--- microchip,led-modes: a 0..4 element vector, with each element configuring
--  the operating mode of an LED. Omitted LEDs are turned off. Allowed values
--  are defined in "include/dt-bindings/net/microchip-lan78xx.h".
--
--Example:
--
--/* Based on the configuration for a Raspberry Pi 3 B+ */
--&usb {
--	usb-port@1 {
--		compatible = "usb424,2514";
--		reg = <1>;
--		#address-cells = <1>;
--		#size-cells = <0>;
--
--		usb-port@1 {
--			compatible = "usb424,2514";
--			reg = <1>;
--			#address-cells = <1>;
--			#size-cells = <0>;
--
--			ethernet: ethernet@1 {
--				compatible = "usb424,7800";
--				reg = <1>;
--				local-mac-address = [ 00 11 22 33 44 55 ];
--
--				mdio {
--					#address-cells = <0x1>;
--					#size-cells = <0x0>;
--					eth_phy: ethernet-phy@1 {
--						reg = <1>;
--						microchip,led-modes = <
--							LAN78XX_LINK_1000_ACTIVITY
--							LAN78XX_LINK_10_100_ACTIVITY
--						>;
--					};
--				};
--			};
--		};
--	};
--};
-diff --git a/MAINTAINERS b/MAINTAINERS
-index f37a81950e25..5de154167b33 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -27931,7 +27931,7 @@ M:	Rengarajan Sundararajan <Rengarajan.S@microchip.com>
- M:	UNGLinuxDriver@microchip.com
- L:	netdev@vger.kernel.org
- S:	Maintained
--F:	Documentation/devicetree/bindings/net/microchip,lan78xx.txt
-+F:	Documentation/devicetree/bindings/net/microchip,lan7800.yaml
- F:	drivers/net/usb/lan78xx.*
- F:	include/dt-bindings/net/microchip-lan78xx.h
- 
+Pengyu Luo (5):
+  media: hi846: fix hi846_write_reg_16 handling
+  media: hi846: Fix link frequency handling
+  media: hi846: fix modes handling for different lane cases
+  media: hi846: Add 6MP and 8MP modes support
+  arm64: dts: imx8mq-librem5: Correct link frequency list
+
+ .../boot/dts/freescale/imx8mq-librem5.dtsi    |   2 +-
+ drivers/media/i2c/hi846.c                     | 296 +++++++++++++-----
+ 2 files changed, 227 insertions(+), 71 deletions(-)
+
 -- 
-2.52.0
+2.54.0
 
 
