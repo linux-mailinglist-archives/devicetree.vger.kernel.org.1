@@ -1,66 +1,66 @@
-Return-Path: <devicetree+bounces-325147-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-325146-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 8FxBMiMWVGqlhwMAu9opvQ
-	(envelope-from <devicetree+bounces-325147-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 00:33:07 +0200
+	id 0REIEg4WVGqchwMAu9opvQ
+	(envelope-from <devicetree+bounces-325146-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 00:32:46 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C6447462F2
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 00:33:07 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A6F87462E5
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 00:32:45 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=fail ("headers rsa verify failed") header.d=reactivated.net header.s=default header.b="jpq2/aFN";
+	dkim=fail ("headers rsa verify failed") header.d=reactivated.net header.s=default header.b="a/IB9eia";
 	dmarc=none;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-325147-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-325147-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-325146-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-325146-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id CDE83301F5CF
-	for <lists+devicetree@lfdr.de>; Sun, 12 Jul 2026 22:32:47 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 4C93D3009147
+	for <lists+devicetree@lfdr.de>; Sun, 12 Jul 2026 22:32:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A628B381E91;
-	Sun, 12 Jul 2026 22:32:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA66B380FE6;
+	Sun, 12 Jul 2026 22:32:43 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from out16-31.antispamcloud.com (out16-31.antispamcloud.com [185.201.18.31])
+Received: from out13-173.antispamcloud.com (out13-173.antispamcloud.com [185.201.17.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07F6B381EAE;
-	Sun, 12 Jul 2026 22:32:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26D4522D792;
+	Sun, 12 Jul 2026 22:32:41 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783895567; cv=none; b=Ixli2gqfQw9e23ce6YBcuWfcwKaevKRQS2sGgLEOc8YfR1Y8fFsVP8urJ6sbl/4oUX4e1EWimbCG16/SEf2fM24GLYc+VdyzdnjKldzD/rHG5iaagm+9FAVV1B/Odk1jYVICLWJqBTnOyOpTAnA65HUzOi3a0datX4dWzHfRKTg=
+	t=1783895563; cv=none; b=cpWtXeVzv4nACSap3bGT9b33i9cFD2penhqbER9Vvn8Cr/zz5NoRDu9+Ien+XkfbcSIbQLCX9UVrMSpOA+2gL9EYS9h3F0iURQ/54Ssli/zc3ck2JFRTkUqx59val/aP4gQNtIyhsCW+LLqV9i+wXcxbrgWQV5FZxprqqfM8NbI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783895567; c=relaxed/simple;
-	bh=b6yve9aEc+Q+0pzabuJh6fdGiA5iEnw+8+BiskybXN0=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=ag+ahsqtyt0ufWLwCNTU2z+JKJ0upATJSblpDhTthGzUInsHHQwWIl3J+THCjbHyXe4wPn7dhJDmzp/fWI918SSU2Lk3TZ+ZYd770EEjwZAyasTDU0Bd3aas/qU+QpwgCkc0eXiuVX+x3u/vJVf+9XtoUF+mrPGNTkESxbWyJZ8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=reactivated.net; spf=pass smtp.mailfrom=reactivated.net; dkim=pass (2048-bit key) header.d=reactivated.net header.i=@reactivated.net header.b=jpq2/aFN; arc=none smtp.client-ip=185.201.18.31
+	s=arc-20240116; t=1783895563; c=relaxed/simple;
+	bh=YPG617zMyV2rjYCiW5rahdVGD1+8qBHRMMWTU2I4cro=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=ZiAPLpGYAeGyD23fp6fyg8I/XD2VTiI4QNNdChOQ+dAC6mRA53GBFghGFWug0+YQdL+FaBFaeTzBfo055QqZmJ5Kn6Y9alHHvyQAo2Tqh0e0Wa5ywgJ8y4wmpFdmljxFqfGoM4mzysv/86YeFUfdY2QpQRQj1yIztToBkBJQfyU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=reactivated.net; spf=pass smtp.mailfrom=reactivated.net; dkim=pass (2048-bit key) header.d=reactivated.net header.i=@reactivated.net header.b=a/IB9eia; arc=none smtp.client-ip=185.201.17.173
 Received: from s1041.use1.mysecurecloudhost.com ([192.250.231.249])
 	by mx195.antispamcloud.com with esmtps  (TLS1.3) tls TLS_AES_256_GCM_SHA384
 	(Exim 4.94.2)
 	(envelope-from <dan@reactivated.net>)
-	id 1wj1Zq-00GoJg-CM; Sun, 12 Jul 2026 23:19:11 +0200
+	id 1wj1Zq-00GoMi-Bf; Sun, 12 Jul 2026 23:19:11 +0200
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=reactivated.net; s=default; h=Cc:To:Content-Transfer-Encoding:Content-Type:
-	MIME-Version:Message-Id:Date:Subject:From:Sender:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+	d=reactivated.net; s=default; h=Cc:To:In-Reply-To:References:Message-Id:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:From:Sender:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
 	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=c2LZCTFPqGTGuPKDo/ZNl32LqOczqdxWlzYpEghp2XU=; b=jpq2/aFNzL3ShD0RFS09By1MZc
-	1nDhKHtJuUeW71oU6Z6/qx0/1SAZB4SMe3i0rmvDfkPsjzS1tRWmSlbUdI2RKeLlvrZBaDW+GLqQl
-	RUFlnhNZq4QjRzc6y51Y3kNrlY7xj38d45X+7oZfOCvlC5X14X3NXotWQ8wrYV09nk82PCtNZaHQI
-	WuHl15W5I0U/j5Cd8S/MAinsCxDO20qr+ao1ZDQnlioDZk9rTVgDHvthme8LBDRwXHHTjSKPKGZCl
-	eu1BKlbtPyUBAgbaxiFIjw8mX5SF9+Fb7nV8kPUJFgeDvcwgd6UnSZAeXSoSVl12twajXVbi8fGdd
-	+3whIefg==;
+	bh=WU6K0l6pgqJ4tQYRgEPvrPUUwevNJ3/EYlqoRBVOvhA=; b=a/IB9eiafELEGAZvhAVH2Z43Ri
+	6d1y7ifmCm01i9RsPFL/zEqs3FbZrtPYI7m15C0vnLLc204hXxZkfKFdaWAy5G5PFoOp0N9oYdAuL
+	1mftaf5VAESsAtleI+bENErRf4UH4zrTZZ8pwvUzWeNY5aCkyBJ0cXf1kcKjSpVuBXwbA8xDO+4Kx
+	7GbLeaU6UXYN+33u4866qkQQ5Rvb4M1q/cCSzS0m4gxNOvjhae34UHwLixHHTHu34yj4JXEapqhBT
+	3ZzDZZrB4YT74ogD67BLAZ8Md1hCVHgvAgRJQ2ENb8SA15O0q09PPtSX6S8kwWXYy+lJ6LqSGYEJD
+	bUcCTlJg==;
 Received: from [188.251.249.2] (port=43526 helo=[192.168.1.123])
 	by s1041.use1.mysecurecloudhost.com with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
 	(Exim 4.99.4)
 	(envelope-from <dan@reactivated.net>)
-	id 1wj1Zi-0000000D6jk-0luD;
-	Sun, 12 Jul 2026 21:18:58 +0000
+	id 1wj1Zm-0000000D6jk-1kWW;
+	Sun, 12 Jul 2026 21:19:02 +0000
 From: Daniel Drake <dan@reactivated.net>
-Subject: [PATCH 0/6] Add support for Broadcom BCM2712 IOMMU driver
- (Raspberry Pi 5)
-Date: Sun, 12 Jul 2026 22:18:50 +0100
-Message-Id: <20260712-bcm2712-iommu-submit-v1-0-80e10cdde2ea@reactivated.net>
+Date: Sun, 12 Jul 2026 22:18:51 +0100
+Subject: [PATCH 1/6] generic_pt: allow missing sw bit in DMA_INCOHERENT
+ case
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,10 +69,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/1WMMQ6DMAwAv4I811JiUdr0KxVDkpriIaGKoaqE+
- DuhG9PphrsVlIuwwqNZofBXVKZcxV4aiKPPb0Z5VQcy1JmbJQwx0UGZUlpQl5BkRmLj7s5xd40
- t1PRTeJDff/vsqwevjKH4HMdjdmotbNsO2FD0rocAAAA=
-X-Change-ID: 20260712-bcm2712-iommu-submit-2e09899e65c4
+Message-Id: <20260712-bcm2712-iommu-submit-v1-1-80e10cdde2ea@reactivated.net>
+References: <20260712-bcm2712-iommu-submit-v1-0-80e10cdde2ea@reactivated.net>
+In-Reply-To: <20260712-bcm2712-iommu-submit-v1-0-80e10cdde2ea@reactivated.net>
 To: "Joerg Roedel (AMD)" <joro@8bytes.org>, Will Deacon <will@kernel.org>, 
  Robin Murphy <robin.murphy@arm.com>, Rob Herring <robh@kernel.org>, 
  Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -90,11 +89,11 @@ X-Authenticated-Sender: s1041.use1.mysecurecloudhost.com: dan@reactivated.net
 X-Spampanel-Domain: s1041.use1.mysecurecloudhost.com
 X-Spampanel-Username: 192.250.231.249
 X-Spampanel-Outgoing-Class: ham
-X-Spampanel-Outgoing-Evidence: SB/global_tokens (0.0036886121706)
+X-Spampanel-Outgoing-Evidence: SB/global_tokens (0.00760531874771)
 X-Recommended-Action: accept
-X-Filter-ID: 9kzQTOBWQUFZTohSKvQbgI7ZDo5ubYELi59AwcWUnuVv5cfN8YhlyjwLMsQQzllMEv6lei9F9Dil
- zrPpcCYURSu2SmbhJN1U9FKs8X3+Nt06bFpPrNOlRAlE9AVLwR4uGVjKNnzF3nQoDoQtBifM84JL
- M0i5ZAms0EHrvcCaVINZthhKjTv0yp3Sc+AC3FHpGnT3EFAinyrilm9zau/FuzkQt9Nb4Ml7QXdk
+X-Filter-ID: 9kzQTOBWQUFZTohSKvQbgI7ZDo5ubYELi59AwcWUnuVm61tCxVcDzOdvOz23cNvJYpZ17O5Cs1PC
+ LegHyxalOSu2SmbhJN1U9FKs8X3+Nt06bFpPrNOlRAlE9AVLwR4uGVjKNnzF3nQoDoQtBifM84JL
+ M0i5ZAms0EHrvcCaVIPGvhmpFjxC7HO0xZ1sgnmgGnT3EFAinyrilm9zau/FuzkQt9Nb4Ml7QXdk
  EetczWCulNo0fvnzmZPW3MC2/ZtQeB7itP8hgjDRserKv4bhb3RyZlCL9i3kc+ehInPHgYZWBb39
  uS1TjWG2Inx+Ts2QrtVmombMJ4e2pn5C0yBMHZ0fE47nEjvubMSTLAkKCKefuLbx+lGq0svfyhth
  j0R6Iny++hg9dJLqN5zmWqF/oHgMZXS6X/fIHYslsKU0yPHM4JpSMI47HiFQBsGlm5AyPIv7c2tg
@@ -108,10 +107,10 @@ X-Filter-ID: 9kzQTOBWQUFZTohSKvQbgI7ZDo5ubYELi59AwcWUnuVv5cfN8YhlyjwLMsQQzllMEv6
  5wqpq4Ow1lDfcfvX9sw5VBsaDF9CxNBjABkH3hTMjGc3lQAtuckU+MNQlLpWhjjykqbde3UjWoF9
  cBo9q3T2iWmfFRW/Psbz8QFVy0V5rN3M2TZ9grsaBV7hOgCSkfEzb1aIdlnbLZp4DCYOuNFQ+5eG
  III/qgXB3gv2NI/ukWuQBNrXV+EmIqM8SxKOhcObZXWnkEw+6F9CGyYC9AhR1ZLKC40YaZQ+trtn
- Eh9wUysc4uCrhmcWLql8THOdSiHAgggGfXRKw3BTrmSizxFc684o/A69h/CvHI/GeXW8oEyu47TQ
+ Eh9wUysc4uCrhmcWLql8TI/3DtpogqvULFO+LE7qqHyizxFc684o/A69h/CvHI/GeXW8oEyu47TQ
  DqTi6GKwcIp24VOsP5eu885wo+t+ynT3Y80OmAux3oN13+ztUzneZGHdcUfaxYq0ZH+Cc9iqnocR
- WxNUEo38DE53aa5lZFsy2onypIM6qetbKE/25wcByQHccqPF2ZbyJan8j4Gywd51C0ZuDFMORrKj
- fElM485r3Z1SFe+4OrB9Rro7EpOy1Um2iVRPSUxhtw3wz3yqYcOpyKA69LF1Ge2GaGfxmfp09oMS
+ WxNUEo38DE53aa5lZFsy2onypIM6qetbKE/25wcB/G1/I6v3VuCfuuxebDW9m67rCRcaqNp40+Vg
+ uPVAld1r3Z1SFe+4OrB9Rro7EpOy1Um2iVRPSUxhtw3wz3yqYcOpyKA69LF1Ge2GaGfxmfp09oMS
  l8c4ShQ//ve+MHzjs9MOb3HXByN6cty/LT6lgOv2AzRyYGlsi3xQeIJ6TM5o5F89lTjPCn99uwfA
  g5wm8t3Xj/LzZ5s/OJg1L2asZ/4te3BTDYEBZZ1yPQnIH5IVn/pKnch3lmmwSrgldH+Ps9MOb3HX
  ByN6cty/LT6lgO+c9AHZZ12442bv/l3jZJg=
@@ -122,13 +121,13 @@ X-Spamd-Result: default: False [1.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	R_DKIM_REJECT(1.00)[reactivated.net:s=default];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
 	DMARC_NA(0.00)[reactivated.net];
-	TAGGED_FROM(0.00)[bounces-325147-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-325146-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS(0.00)[m:joro@8bytes.org,m:will@kernel.org,m:robin.murphy@arm.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:florian.fainelli@broadcom.com,m:bcm-kernel-feedback-list@broadcom.com,m:dan@reactivated.net,m:iommu@lists.linux.dev,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-rpi-kernel@lists.infradead.org,m:linux-arm-kernel@lists.infradead.org,m:nick.hollinghurst@raspberrypi.com,m:jgg@ziepe.ca,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	HAS_X_GMSV(0.00)[dan@reactivated.net];
 	FORGED_SENDER(0.00)[dan@reactivated.net,devicetree@vger.kernel.org];
@@ -147,74 +146,79 @@ X-Spamd-Result: default: False [1.04 / 15.00];
 	DKIM_TRACE(0.00)[reactivated.net:-];
 	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[reactivated.net:from_mime,reactivated.net:email,reactivated.net:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,reactivated.net:from_mime,reactivated.net:email,reactivated.net:mid,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 2C6447462F2
+X-Rspamd-Queue-Id: 8A6F87462E5
 
-Hi,
+When working with a iommu with PT_FEAT_DMA_INCOHERENT set, generic_pt
+will attempt to use a spare "SW" bit in the hardware page tables to
+denote when a thread has flushed the CPU cache after modifying an entry.
 
-This series adds a driver for the Broadcom BCM2712 IOMMU found on
-Raspberry Pi 5, and hooks up the display controller IOMMU for efficient
-management of graphics memory. This is adapted from the downstream driver
-from Raspberry Pi (original author Nick Hollinghurst), with main changes:
- - Implement the page table management using generic_pt
- - Implement brcm,iova-window and brcm,iommu-cache as standards-compliant
-   DT property names, while maintaining compatibility with existing
-   shipped RPi firmware
- - Drop the dma-iova-offset hack, used to work around some issue seen with
-   dma-ranges. This will need to be investigated separately and solved
-   properly. (It's not needed for display controller iommu support included
-   here.)
- - Misc simplifications/standardisations/cleanups
+This means that other threads know that they are not working with
+cached/unflushed data, if they come across the same entry.
+
+In the case where no SW bit is available, two things happen:
+
+1. __map_range() defensively flushes every time it reads the PT.
+   This ensures all data that may have just been manipulated by another
+   thread gets flushed and made iommu-visible immediately.
+
+2. An undefined reference to __pt_no_sw_bit() is created, causing a
+   linker error in order to alert the developer that they are going
+   to suffer a performance penalty in the previous point.
+
+The BCM2712 IOMMU appears to be the first device supported by generic_pt
+that hits this case. The prod to check for sw bits is appreciated,
+but in this case there are no known bits that can be used, so we need
+to acknowledge and accept the performance penalty without a linker error.
+
+Adding an empty __pt_no_sw_bit() symbol to iommu_bcm2712 would be
+problematic because if a second IOMMU were to have the same constraint,
+this would result in a symbol clash in the global namespace. Also, the
+kunit build creates and builds a 2nd variant of the same code and hits
+this exact collision.
+
+Add an opt-in PT_SW_BIT_NOT_PRESENT flag to avoid this. This prevents
+the undefined reference from being created, allowing drivers like bcm2712
+to acknowledge the situation and accept the performance penalty of the
+defensive flushing.
+
+Signed-off-by: Daniel Drake <dan@reactivated.net>
+---
+ drivers/iommu/generic_pt/pt_fmt_defaults.h | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
+
+diff --git a/drivers/iommu/generic_pt/pt_fmt_defaults.h b/drivers/iommu/generic_pt/pt_fmt_defaults.h
+index 69fb7c2314ca..cc57106c87d1 100644
+--- a/drivers/iommu/generic_pt/pt_fmt_defaults.h
++++ b/drivers/iommu/generic_pt/pt_fmt_defaults.h
+@@ -249,7 +249,20 @@ static inline unsigned int pt_max_sw_bit(struct pt_common *common)
+ 	return 0;
+ }
  
-The IOMMU works strictly with 4KB pages. This means that unfortunately
-when the kernel is compiled with PAGE_SIZE=16KB (the Raspberry Pi 5
-kernel default), 12KB is wasted in each page that is allocated for page
-tables. I plan to address this in followup work.
++/*
++ * In the DMA_INCOHERENT case, if no SW bit has been defined, produce a linker
++ * error (undefined symbol __pt_no_sw_bit) to alert the developer that they
++ * will suffer a performance penalty due to defensive flushing. The driver
++ * can either implement pt_sw_bit (if supported by the hardware) for optimal
++ * performance, or otherwise set PT_SW_BIT_NOT_PRESENT to acknowledge the
++ * performance penalty.
++ */
++#ifdef PT_SW_BIT_NOT_PRESENT
++static inline void __pt_no_sw_bit(void) {}
++#else
+ extern void __pt_no_sw_bit(void);
++#endif
++
+ static inline bool pt_test_sw_bit_acquire(struct pt_state *pts,
+ 					  unsigned int bitnr)
+ {
 
-It has been tested on Raspberry Pi 5 using a 3D-accelerated graphical
-environment which causes plenty of IOMMU maps & unmaps.
-
-Feedback and testing welcome!
-
----
-Daniel Drake (6):
-      generic_pt: allow missing sw bit in DMA_INCOHERENT case
-      iommupt: allow full-table contiguous leaves in unit tests
-      dt-bindings: iommu: Add Broadcom BCM2712 IOMMU
-      iommu/generic_pt: Add Broadcom BCM2712 page table format
-      iommu: Add Broadcom BCM2712 IOMMU driver
-      arm64: dts: broadcom: bcm2712: Add GPU IOMMU and IOMMU cache nodes
-
- .../bindings/iommu/brcm,bcm2712-iommu.yaml         |  65 +++
- .../bindings/iommu/brcm,bcm2712-iommuc.yaml        |  35 ++
- arch/arm64/boot/dts/broadcom/bcm2712.dtsi          |  15 +
- drivers/iommu/Kconfig                              |  15 +
- drivers/iommu/Makefile                             |   1 +
- drivers/iommu/bcm2712-iommu-cache.c                |  73 +++
- drivers/iommu/bcm2712-iommu-cache.h                |   9 +
- drivers/iommu/bcm2712-iommu.c                      | 587 +++++++++++++++++++++
- drivers/iommu/generic_pt/.kunitconfig              |   1 +
- drivers/iommu/generic_pt/Kconfig                   |  10 +
- drivers/iommu/generic_pt/fmt/Makefile              |   2 +
- drivers/iommu/generic_pt/fmt/bcm2712.h             | 259 +++++++++
- drivers/iommu/generic_pt/fmt/defs_bcm2712.h        |  18 +
- drivers/iommu/generic_pt/fmt/iommu_bcm2712.c       |  10 +
- drivers/iommu/generic_pt/kunit_generic_pt.h        |  39 +-
- drivers/iommu/generic_pt/pt_fmt_defaults.h         |  13 +
- include/linux/generic_pt/common.h                  |   7 +
- include/linux/generic_pt/iommu.h                   |  13 +
- 18 files changed, 1147 insertions(+), 25 deletions(-)
----
-base-commit: f4fb100039e96211609dfc44fb24b9e4a8a0f2f9
-change-id: 20260712-bcm2712-iommu-submit-2e09899e65c4
-
-Best regards,
 -- 
-Daniel Drake <dan@reactivated.net>
+2.55.0
 
 
