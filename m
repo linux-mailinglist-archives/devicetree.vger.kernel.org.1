@@ -1,200 +1,209 @@
-Return-Path: <devicetree+bounces-325068-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-325072-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id qfNKLkKiU2pDcgMAu9opvQ
-	(envelope-from <devicetree+bounces-325068-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 12 Jul 2026 16:18:42 +0200
+	id 03OHN62nU2rNcwMAu9opvQ
+	(envelope-from <devicetree+bounces-325072-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 12 Jul 2026 16:41:49 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C83D744F4D
-	for <lists+devicetree@lfdr.de>; Sun, 12 Jul 2026 16:18:42 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id C4E42745042
+	for <lists+devicetree@lfdr.de>; Sun, 12 Jul 2026 16:41:48 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=M2EyTsvb;
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-325068-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-325068-lists+devicetree=lfdr.de@vger.kernel.org";
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
+	dkim=pass header.d=pigmoral.tech header.s=zmail header.b=pzyy9pAT;
+	dmarc=none;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-325072-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-325072-lists+devicetree=lfdr.de@vger.kernel.org";
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 970E0300D156
-	for <lists+devicetree@lfdr.de>; Sun, 12 Jul 2026 14:18:40 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 72C6A300253D
+	for <lists+devicetree@lfdr.de>; Sun, 12 Jul 2026 14:41:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22E3F13D8B1;
-	Sun, 12 Jul 2026 14:18:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61F03261B92;
+	Sun, 12 Jul 2026 14:41:44 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from sender4-op-o12.zoho.com (sender4-op-o12.zoho.com [136.143.188.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E84D12E414
-	for <devicetree@vger.kernel.org>; Sun, 12 Jul 2026 14:18:38 +0000 (UTC)
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783865920; cv=none; b=XPxmqFjvPCQZw5HOmKFWpdLzvXNI5Jsmi3iM+fWMESDQyX+HOceYjyPs7meu2qQodFNPa6HijTZ2MU7oVxkwLhZqTiO7X8gjmDSJiJEuzh26Bihau2Bb5r5Pz3frTiIrN5U5fkXBjNn1A5mdXl3OGd6WnC0/rMBznuin8alaSCs=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783865920; c=relaxed/simple;
-	bh=4FojxHMe+VTR1kjfu67UB94iNF+WXwtqZgnCgizrJLs=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=qtgboZ9l5opN137wo7xRyAFbYLGVrhyXt8pLlusRVm7YJbVoLnOlYFYjwE5XlxkqqYsfsHene6G+T4IXwc9bvc08y7zMoe4ilFvf5wqn120erPgsesxen3AnnRQKoUsMb/HpZlCD8T/KWjE/7UdURO3xwzFulpEqMIkzwP3LnVQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=M2EyTsvb; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 518EA1F000E9;
-	Sun, 12 Jul 2026 14:18:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783865918;
-	bh=HgIUrzDTaE46GVoDIRyzn+SQ9Sf2xKMF3LTUmPd7nLs=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=M2EyTsvblpLyd/W078jm7ZA8xCyajt/YBhvFUfWe3b7QN/R62PZp3gFW02MwBqdVT
-	 iyNpGUZn2CMiLuFw6RqocCCfstvtjaJeOCelZugRQZFoBmN0eqHh+InmGsQJFkZvXc
-	 6dh58YBA+JvdNItpLqBXNFJiUD0NwB06jhssT6JRAGpL+V9o0tRVR/am9wfjIwjSmP
-	 meqaeO9pLmpM9QzRQPQe1sO/m7D9rUIHmbHy1vEPJWvg7Y4U0CFrYP/u3XWRLZhM+k
-	 zxpsuBGSp23Q/MZYhDoa8KfEvkIph7x1zpK9ScVG4JM6f1w0X69JMEnkUoyXH38k8g
-	 NY9DoQpMS3VFw==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v4 3/3] arm64: dts: ti: var-som-am62: Add support for
- Variscite Symphony Board
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Stefano Radaelli" <stefano.radaelli21@gmail.com>
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, robh@kernel.org
-In-Reply-To: <42decef4f84db8fc0474675a23e157b68b3b1a1b.1783864932.git.stefano.r@variscite.com>
-References: <cover.1783864932.git.stefano.r@variscite.com>
- <42decef4f84db8fc0474675a23e157b68b3b1a1b.1783864932.git.stefano.r@variscite.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Sun, 12 Jul 2026 14:18:37 +0000
-Message-Id: <20260712141838.518EA1F000E9@smtp.kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9E392236F0;
+	Sun, 12 Jul 2026 14:41:41 +0000 (UTC)
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1783867304; cv=pass; b=hnRRLpmmvZ0+dVmCoYzE0NoNTeGY4EBHhxEE1YGFx7doW25/tJ1p1PXZJcCPXKrAFYCpg7pmQOajTw9eXP1UQtY7C2RmFzXpX3Myn/bW452TFwNuMZKKZuHcxGex2lB4ak46wlDFRoE60AHvYQbNHV7yRHBgs4h5EiptSPPZ1nE=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1783867304; c=relaxed/simple;
+	bh=2QI14BvAQb8oCfoBa/frHwYgMG9GD4XppKxhMN+gQWM=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=ajIQPeNqUdJObraciQUBxFUVutNk5kBRJkKqy1/jLHgFsOClfuf08YwZ1XpRm8rtG+9Fuo/0v9c8xqkgL7Zk9nW5XyY3M9ggdsvfNFfRlptBVYFXtwHc0zSweZfDjwnvgby/bZ0Iko2klptzez80o4jJhXcbA1hbHqaCes19l+4=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pigmoral.tech; spf=pass smtp.mailfrom=pigmoral.tech; dkim=pass (1024-bit key) header.d=pigmoral.tech header.i=junhui.liu@pigmoral.tech header.b=pzyy9pAT; arc=pass smtp.client-ip=136.143.188.12
+ARC-Seal: i=1; a=rsa-sha256; t=1783867266; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=Ua0hV+q9YwWdierF0d3tTHArRa58XYI355ifeJIbWW4LZtaawtl20H96TbVmRQjqbSO56vOFPYpJkcOKAnwZLk41DUgWI6NBLxOKHS150cqIcbguHE/i2Dzfl7xsESTR2Xl8qHs1jZdr2oxv9KJGh3bWnllNWCTo8cThhDSAgrA=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1783867266; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=SLS/kMhYXvqtbxCJZsqYcevLj6Cy5NnjgCrCPkzJMk8=; 
+	b=aoh2WX9UcchPAoc6jZ2+7rUQ8S2O8lFa6QhYvdJ5DUkNr3W4qYNoX4JyGeP0uu6v9ZLglioPjgdNlVGRuy4VhhpqbgTU2hdFFv6MeypNTb7xTlgIQs5KDxKeFIUdmMH9uRKh6Vn6vNplJt9nOVb8yn+nBh+d0PJyEFPEXDJNDxI=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=pigmoral.tech;
+	spf=pass  smtp.mailfrom=junhui.liu@pigmoral.tech;
+	dmarc=pass header.from=<junhui.liu@pigmoral.tech>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1783867266;
+	s=zmail; d=pigmoral.tech; i=junhui.liu@pigmoral.tech;
+	h=Mime-Version:Content-Transfer-Encoding:Content-Type:Date:Date:Message-Id:Message-Id:Cc:Cc:Subject:Subject:From:From:To:To:References:In-Reply-To:Reply-To;
+	bh=SLS/kMhYXvqtbxCJZsqYcevLj6Cy5NnjgCrCPkzJMk8=;
+	b=pzyy9pATPvLJ5OdbAKgQIexqjPkcTp36x4ezLL3ngOF7JnVnEZGnT1j/CZzlbiP2
+	WSEhCCeBy8H27PBqBkn7L4Eby5OjedwYGAs9h65RhVrIkJzg5gpa1jjN3r5EtAYLrbt
+	6LGBXRYBXx1IwS0pbyTPypDBB5SSeHGDPQNuQAuQ=
+Received: by mx.zohomail.com with SMTPS id 1783866353179481.00549749606785;
+	Sun, 12 Jul 2026 07:25:53 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Sun, 12 Jul 2026 22:25:39 +0800
+Message-Id: <DJWNUAW00DTS.1L26UVJEYHZ0L@pigmoral.tech>
+Cc: <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-arm-kernel@lists.infradead.org>, <linux-sunxi@lists.linux.dev>,
+ <linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
+ <netdev@vger.kernel.org>, "Jerome Brunet" <jbrunet@baylibre.com>
+Subject: Re: [PATCH v2 6/8] clk: sunxi-ng: a733: Add mod clocks support
+From: "Junhui Liu" <junhui.liu@pigmoral.tech>
+To: "Junhui Liu" <junhui.liu@pigmoral.tech>, "Michael Turquette"
+ <mturquette@baylibre.com>, "Stephen Boyd" <sboyd@kernel.org>, "Brian
+ Masney" <bmasney@redhat.com>, "Rob Herring" <robh@kernel.org>, "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>,
+ "Chen-Yu Tsai" <wens@kernel.org>, "Jernej Skrabec"
+ <jernej.skrabec@gmail.com>, "Samuel Holland" <samuel@sholland.org>,
+ "Philipp Zabel" <p.zabel@pengutronix.de>, "Paul Walmsley" <pjw@kernel.org>,
+ "Palmer Dabbelt" <palmer@dabbelt.com>, "Albert Ou" <aou@eecs.berkeley.edu>,
+ "Alexandre Ghiti" <alex@ghiti.fr>, "Richard Cochran"
+ <richardcochran@gmail.com>
+X-Mailer: aerc 0.21.0
+References: <20260711-a733-clk-v2-0-974d188cbe0c@pigmoral.tech>
+ <20260711-a733-clk-v2-6-974d188cbe0c@pigmoral.tech>
+In-Reply-To: <20260711-a733-clk-v2-6-974d188cbe0c@pigmoral.tech>
+X-ZohoMailClient: External
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.16 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+X-Spamd-Result: default: False [0.34 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	MV_CASE(0.50)[];
+	R_DKIM_ALLOW(-0.20)[pigmoral.tech:s=zmail];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TO_DN_SOME(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:linux-clk@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-sunxi@lists.linux.dev,m:linux-kernel@vger.kernel.org,m:linux-riscv@lists.infradead.org,m:netdev@vger.kernel.org,m:jbrunet@baylibre.com,m:junhui.liu@pigmoral.tech,m:mturquette@baylibre.com,m:sboyd@kernel.org,m:bmasney@redhat.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:wens@kernel.org,m:jernej.skrabec@gmail.com,m:samuel@sholland.org,m:p.zabel@pengutronix.de,m:pjw@kernel.org,m:palmer@dabbelt.com,m:aou@eecs.berkeley.edu,m:alex@ghiti.fr,m:richardcochran@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:jernejskrabec@gmail.com,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	DMARC_NA(0.00)[pigmoral.tech];
+	FORGED_SENDER(0.00)[junhui.liu@pigmoral.tech,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[24];
+	FREEMAIL_TO(0.00)[pigmoral.tech,baylibre.com,kernel.org,redhat.com,gmail.com,sholland.org,pengutronix.de,dabbelt.com,eecs.berkeley.edu,ghiti.fr];
+	MIME_TRACE(0.00)[0:+];
 	FORWARDED(0.00)[lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-325068-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[gmail.com];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:stefano.radaelli21@gmail.com,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:stefanoradaelli21@gmail.com,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	DKIM_TRACE(0.00)[pigmoral.tech:+];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCPT_COUNT_THREE(0.00)[4];
+	FROM_NEQ_ENVFROM(0.00)[junhui.liu@pigmoral.tech,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-325072-lists,devicetree=lfdr.de];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.linux.dev:replyto,variscite.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,smtp.kernel.org:mid,vger.kernel.org:from_smtp,variscite.it:url,sashiko.dev:url]
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,pigmoral.tech:from_mime,pigmoral.tech:dkim,pigmoral.tech:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 0C83D744F4D
+X-Rspamd-Queue-Id: C4E42745042
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
-s) to consider:
-- [High] Driver probe failure due to unsupported interrupt trigger type
-- [Medium] Pinmux configuration error for RGMII2 transmit pins
---
+On Sat Jul 11, 2026 at 4:10 PM CST, Junhui Liu wrote:
 
---- Patch [3]: [PATCH v4 3/3] arm64: dts: ti: var-som-am62: Add support for=
- Variscite Symphony Board ---
-commit eae5a6eae63323e628c7dec958171ae3d0b8c5fd
-Author: Stefano Radaelli <stefano.r@variscite.com>
+[...]
 
-arm64: dts: ti: var-som-am62: Add support for Variscite Symphony Board
+> +static SUNXI_CCU_MP_DATA_WITH_MUX_GATE(timer0_clk, "timer0", timer_paren=
+ts, 0x800,
 
-Add device tree support for the Variscite Symphony carrier board with
-the VAR-SOM-AM62 system on module.
+I will update these to SUNXI_CCU_P_DATA_WITH_MUX_GATE in next version.
 
-Link: https://www.variscite.it/product/single-board-computers/symphony-boar=
-d/
+> +				       0, 0,		/* no M */
+> +				       0, 3,		/* P */
+> +				       24, 3,		/* mux */
+> +				       BIT(31),		/* gate */
+> +				       0);
+> +static SUNXI_CCU_MP_DATA_WITH_MUX_GATE(timer1_clk, "timer1", timer_paren=
+ts, 0x804,
+> +				       0, 0,		/* no M */
+> +				       0, 3,		/* P */
+> +				       24, 3,		/* mux */
+> +				       BIT(31),		/* gate */
+> +				       0);
+> +static SUNXI_CCU_MP_DATA_WITH_MUX_GATE(timer2_clk, "timer2", timer_paren=
+ts, 0x808,
+> +				       0, 0,		/* no M */
+> +				       0, 3,		/* P */
+> +				       24, 3,		/* mux */
+> +				       BIT(31),		/* gate */
+> +				       0);
+> +static SUNXI_CCU_MP_DATA_WITH_MUX_GATE(timer3_clk, "timer3", timer_paren=
+ts, 0x80c,
+> +				       0, 0,		/* no M */
+> +				       0, 3,		/* P */
+> +				       24, 3,		/* mux */
+> +				       BIT(31),		/* gate */
+> +				       0);
+> +static SUNXI_CCU_MP_DATA_WITH_MUX_GATE(timer4_clk, "timer4", timer_paren=
+ts, 0x810,
+> +				       0, 0,		/* no M */
+> +				       0, 3,		/* P */
+> +				       24, 3,		/* mux */
+> +				       BIT(31),		/* gate */
+> +				       0);
+> +static SUNXI_CCU_MP_DATA_WITH_MUX_GATE(timer5_clk, "timer5", timer_paren=
+ts, 0x814,
+> +				       0, 0,		/* no M */
+> +				       0, 3,		/* P */
+> +				       24, 3,		/* mux */
+> +				       BIT(31),		/* gate */
+> +				       0);
+> +static SUNXI_CCU_MP_DATA_WITH_MUX_GATE(timer6_clk, "timer6", timer_paren=
+ts, 0x818,
+> +				       0, 0,		/* no M */
+> +				       0, 3,		/* P */
+> +				       24, 3,		/* mux */
+> +				       BIT(31),		/* gate */
+> +				       0);
+> +static SUNXI_CCU_MP_DATA_WITH_MUX_GATE(timer7_clk, "timer7", timer_paren=
+ts, 0x81c,
+> +				       0, 0,		/* no M */
+> +				       0, 3,		/* P */
+> +				       24, 3,		/* mux */
+> +				       BIT(31),		/* gate */
+> +				       0);
+> +static SUNXI_CCU_MP_DATA_WITH_MUX_GATE(timer8_clk, "timer8", timer_paren=
+ts, 0x820,
+> +				       0, 0,		/* no M */
+> +				       0, 3,		/* P */
+> +				       24, 3,		/* mux */
+> +				       BIT(31),		/* gate */
+> +				       0);
+> +static SUNXI_CCU_MP_DATA_WITH_MUX_GATE(timer9_clk, "timer9", timer_paren=
+ts, 0x824,
+> +				       0, 0,		/* no M */
+> +				       0, 3,		/* P */
+> +				       24, 3,		/* mux */
+> +				       BIT(31),		/* gate */
+> +				       0);
 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am625-var-som-symphony.dts b/arch/=
-arm64/boot/dts/ti/k3-am625-var-som-symphony.dts
-> new file mode 100644
-> index 0000000000000..24e67a131a7ec
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/ti/k3-am625-var-som-symphony.dts
-
-[ ... ]
-
-> +&main_i2c0 {
-> +	pinctrl-names =3D "default";
-> +	pinctrl-0 =3D <&pinctrl_i2c0>;
-> +	clock-frequency =3D <400000>;
-> +	status =3D "okay";
-> +
-> +	/* GPIO expander */
-> +	pca9534: gpio@20 {
-> +		compatible =3D "nxp,pca9534";
-> +		reg =3D <0x20>;
-> +		pinctrl-names =3D "default";
-> +		pinctrl-0 =3D <&pinctrl_pca9534>;
-> +		#gpio-cells =3D <2>;
-> +		gpio-controller;
-> +		interrupt-controller;
-> +		#interrupt-cells =3D <2>;
-> +		interrupt-parent =3D <&main_gpio1>;
-> +		interrupts =3D <30 IRQ_TYPE_LEVEL_LOW>;
-
-[Severity: High]
-Will this interrupt trigger type cause the pca9534 probe to fail?
-
-The parent interrupt controller main_gpio1 uses the gpio-davinci driver, wh=
-ich
-only supports edge triggers in its gpio_irq_type() callback. Requesting a
-level-low trigger here will return -EINVAL during IRQ setup.
-
-If the probe fails, could it also break the secondary Ethernet PHY
-(cpsw3g_phy1) since it relies on this expander for its reset GPIO?
-
-[ ... ]
-
-> +	pinctrl_rgmii2: main-rgmii2-default-pins {
-> +		bootph-all;
-> +		pinctrl-single,pins =3D <
-> +			AM62X_IOPAD(0x184, PIN_INPUT, 0) /* (AE23) RGMII2_RD0 */
-> +			AM62X_IOPAD(0x188, PIN_INPUT, 0) /* (AB20) RGMII2_RD1 */
-> +			AM62X_IOPAD(0x18c, PIN_INPUT, 0) /* (AC21) RGMII2_RD2 */
-> +			AM62X_IOPAD(0x190, PIN_INPUT, 0) /* (AE22) RGMII2_RD3 */
-> +			AM62X_IOPAD(0x180, PIN_INPUT, 0) /* (AD23) RGMII2_RXC */
-> +			AM62X_IOPAD(0x17c, PIN_INPUT, 0) /* (AD22) RGMII2_RX_CTL */
-> +			AM62X_IOPAD(0x16c, PIN_INPUT, 0) /* (Y18) RGMII2_TD0 */
-> +			AM62X_IOPAD(0x170, PIN_INPUT, 0) /* (AA18) RGMII2_TD1 */
-> +			AM62X_IOPAD(0x174, PIN_INPUT, 0) /* (AD21) RGMII2_TD2 */
-> +			AM62X_IOPAD(0x178, PIN_INPUT, 0) /* (AC20) RGMII2_TD3 */
-> +			AM62X_IOPAD(0x168, PIN_INPUT_PULLDOWN, 0) /* (AE21) RGMII2_TXC */
-> +			AM62X_IOPAD(0x164, PIN_INPUT, 0) /* (AA19) RGMII2_TX_CTL */
-
-[Severity: Medium]
-Should the RGMII2 transmit pins (TD0-TD3, TXC, TX_CTL) be configured as
-outputs rather than inputs?
-
-Using PIN_INPUT_PULLDOWN on RGMII2_TXC enables an active pull-down resistor
-on the 125MHz transmit clock. Does this force the MAC output driver to
-constantly fight the pull-down and degrade the high-speed signal integrity?
-
-> +		>;
-> +	};
+[...]
 
 --=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/cover.1783864932.gi=
-t.stefano.r@variscite.com?part=3D3
+Best regards,
+Junhui Liu
+
 
