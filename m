@@ -1,86 +1,86 @@
-Return-Path: <devicetree+bounces-325137-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-325139-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id HMOLEM0PVGpZhgMAu9opvQ
-	(envelope-from <devicetree+bounces-325137-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 00:06:05 +0200
+	id saiaDBYRVGqKhgMAu9opvQ
+	(envelope-from <devicetree+bounces-325139-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 00:11:34 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D28C074619E
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 00:06:04 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1CE3C7461CA
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 00:11:33 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=ziepe.ca header.s=google header.b=QU11+5Md;
+	dkim=pass header.d=ziepe.ca header.s=google header.b="ZTfD/Az3";
 	dmarc=none;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-325137-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-325137-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-325139-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-325139-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id DB57E3004611
-	for <lists+devicetree@lfdr.de>; Sun, 12 Jul 2026 22:06:03 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 2CCCE3001A6D
+	for <lists+devicetree@lfdr.de>; Sun, 12 Jul 2026 22:11:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04B1B37BE98;
-	Sun, 12 Jul 2026 22:05:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1872037B00C;
+	Sun, 12 Jul 2026 22:11:29 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f171.google.com (mail-qk1-f171.google.com [209.85.222.171])
+Received: from mail-qv1-f47.google.com (mail-qv1-f47.google.com [209.85.219.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 894B335E930
-	for <devicetree@vger.kernel.org>; Sun, 12 Jul 2026 22:05:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A10BB37A82F
+	for <devicetree@vger.kernel.org>; Sun, 12 Jul 2026 22:11:27 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783893958; cv=none; b=QMOB940G7l2OnPvbrJ2dF9Ql8YD8FOp51ebpmnoKRM3G1HuFJDBASv2Kl7a7oVgS+GQCAhujKphJbA84D0lBFeWpNvNcHgpak2w4PpaZWD4wkVNkHoL5ytWXzKj4FB1FhqMTDsXuTO8NjkRLO2scGmtMH27J0BniTJZqAHnmRDw=
+	t=1783894289; cv=none; b=AUcyCFcxJ14yHNs/XPMpHh6ZSIn5bwp0pxJZvHx/MX3tVFdJNttvlrDdaQl/blKhJm7xRrJyRZtpQFQ+DE5pzSp8dZwUd+PLr2XRq9aQpUn/Rd2tVMVDtlxFYp8xfMOdS9ETJBJHPItgf1/jDJmtPfSdY8a1XTIq/GZw9yZbOv4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783893958; c=relaxed/simple;
-	bh=MyWENG1m9gbrfCTNQdsyzcqoLVZg6C/T4NBlYiaTdrM=;
+	s=arc-20240116; t=1783894289; c=relaxed/simple;
+	bh=vICjuJZMyL8ox/LroketggeEi023fKRGGXjlLd3/YVk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VD4bBv4+N2gSQk5mkssoHEDE3gYx3b9+n0ODzX9KGXpK1WFm6lRpLIbb8CK5MpGrzPzkB33+/CnvMIkOl1guW6OeeacY0Z+WLlKINw9dMjVgU6Pwu7b68e03YHmpYUGU0ounXgxgjVC6TOvXUcYg/z0dHmdvbotuTmLG6hT3mJs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ziepe.ca; spf=pass smtp.mailfrom=ziepe.ca; dkim=pass (2048-bit key) header.d=ziepe.ca header.i=@ziepe.ca header.b=QU11+5Md; arc=none smtp.client-ip=209.85.222.171
-Received: by mail-qk1-f171.google.com with SMTP id af79cd13be357-92e53581361so158627185a.1
-        for <devicetree@vger.kernel.org>; Sun, 12 Jul 2026 15:05:56 -0700 (PDT)
+	 Content-Type:Content-Disposition:In-Reply-To; b=BZctkeKo8flFsubtFnTkyBOX0nENjuDaTcbU9r6Xh1aN1zLVR11a97oQYAvuBzEu6a+Srbpb/MQnqb01cBUfcyjlj8dnn3yAlaKHUlIlEYJy5rkVwKZUUbr78jDyUSyoK0qciszd0KMyyIsIcihzj5k2itEFtNUk+cAh3KVNf/s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ziepe.ca; spf=pass smtp.mailfrom=ziepe.ca; dkim=pass (2048-bit key) header.d=ziepe.ca header.i=@ziepe.ca header.b=ZTfD/Az3; arc=none smtp.client-ip=209.85.219.47
+Received: by mail-qv1-f47.google.com with SMTP id 6a1803df08f44-8ff5d1b0f91so14637356d6.2
+        for <devicetree@vger.kernel.org>; Sun, 12 Jul 2026 15:11:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ziepe.ca; s=google; t=1783893955; x=1784498755; darn=vger.kernel.org;
+        d=ziepe.ca; s=google; t=1783894286; x=1784499086; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:content-type:mime-version
          :references:message-id:subject:cc:to:from:date:from:to:cc:subject
          :date:message-id:reply-to:content-type;
-        bh=kivqKCD/+dlHoNCjZOlMrMIExYZ3y1i62zZem0Ylilc=;
-        b=QU11+5Mda0KnlV+JXIYTbipbVqopaiyE1DdXF8cBaWf5+rMSCYfsQpux4OPVHeYPvG
-         6skVRJdCm7XbI64NyE2zwRzFwt72h9sSDjFBIm2Uudv1di3k9JqfCPUlJzzYTQkF9Awe
-         tBCLj6NSbxtkD4jUSfKL/NqJQKXuNp49L1A8SPOcG+5c0Ii8N49sFymkPGLd5LKf8DY6
-         Ha9k4Dc5wWgjKkbP+P2VgGffUKJR8xLbwul/L8z/iwgU6n3337ODMBsBEZ90zfXfTrs3
-         vdXxeOE4psrnA0vVTNnxCiz2beHPmbCnsWZmxSOs/Z54+AAkhxVab0OkXK8Euz0iSG36
-         DCKg==
+        bh=egnmCxbrpH7UR+MZJeffNbFqc9tcIYQZ6W/rYZyeos8=;
+        b=ZTfD/Az33NRTsDpAMPJkFousSSL5hVhynBEYuyfStFhCaqzRx3fuTQ0Oocle9uK0Df
+         Q0RE/ILH4ZpwnKbtvNIywkMfj3ZUw0U/g38lKHr2Wh1rRGhGj4yFxQ/SXgsDxPJPmGFQ
+         wl6BFvTW7VVsh3HxhLjYTXAawHHlDgO0o+Ftnkw9TKyGVz6eGIzcrYH810N4AWkhKBFi
+         dN92zfY9AlRrSvOjizjgcAw+EpNNqfq1ipo1k44jCOTGf0CSBnIQXownnwOXAnoi+a8W
+         S/lWyT0g618Gtw/LZwVBvclRCqL20XNGsu8fEoZcTcRJ2snBubX6ieiArjOk33FNqg6V
+         e/Mw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783893955; x=1784498755;
+        d=1e100.net; s=20251104; t=1783894286; x=1784499086;
         h=in-reply-to:content-disposition:content-type:mime-version
          :references:message-id:subject:cc:to:from:date:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=kivqKCD/+dlHoNCjZOlMrMIExYZ3y1i62zZem0Ylilc=;
-        b=OD7CZJr85HkY18k0Psrs6LhLL1cKYCcFTp4xor228m5bAQoe7nq1EbJ02oQmA5FTd+
-         JSCKx/Tu+yt5JO+Nq4jYu2on+4hYoPLS2AIgQG21THfQNRfqMpIMewoRXGljBGvjg5f7
-         i3rLjhMSGJzqi6cZqwqvWZ/nQl5whuZjJ/FM2FclX/KEr+lCFcTXAJkhJkf1k07XvMgp
-         DGhggCQK5LmwFoQZW4KRUjCjF1wDUvMzmFvz6tgmRLqQ78xoNy6EaqFHNuhYP1nnkjjL
-         iAKKbpWxRT96X6ESf4lGYoEp9vE5qxT15Ooxllz7bfdLQGfuwMJMmc0eBUVkpDrq9h2z
-         17Ug==
-X-Forwarded-Encrypted: i=1; AHgh+Rpfnmr8QIoJ+Wbe+XSlWAqYdHRY045RUAXnLKG4yHGlc6A1ybxlm/PH/TIZ6ahdOLvC48nWAGB25xXm@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw371uRAyy0Ga5FYI+YkXC4cOpwcVR/LuBXmqugg8qiibto1sFM
-	F2zbJDsxnoKfnwhyZnJwxXv0loE94Vr6pAHc9SDLby1SzsGgDAbf955aMrUyXrJh1uA=
-X-Gm-Gg: AfdE7cmskKIZbCbql+Z4CJZoYvYYnAQwfUu5lrzSn5IazsUzhxoC/mdmXdl0BUHewR2
-	e5+I6MEqPiHfGCBLLAx7/Xl8pkI06J6I8TjNUTvUgTF+g3L9QhokJgG07up6vvEvBEXU7dWjqP8
-	O9TqW2VmJiYbzQKTGwbeKVJXRCWqOrDuSQgBvjnZKWdTAGPQbpUK6Se77DiIqUgMHwcj4g5VjGb
-	ZoMRfUb7Lxckt+vUMwaCFpKDaLKusbmqBbTzT6cbYgb6B3pH48JZxkkhmX7R3rveS8LOPm/aNSh
-	9xhmlB7zK6sOnptDJjQQhf/agq8WwIJbBGOixLSVSvVPmcJeWlIp0SiZD5VPPrlUsgxt82QGJbf
-	LDerLJyoxB0qLDDC2J3C0moOMaAc/fqVxPQcWmJAhPbI7/xF4/wcisQxIUze4
-X-Received: by 2002:a05:620a:43a8:b0:92f:c78:559e with SMTP id af79cd13be357-92f0c785768mr97967985a.35.1783893955496;
-        Sun, 12 Jul 2026 15:05:55 -0700 (PDT)
+        bh=egnmCxbrpH7UR+MZJeffNbFqc9tcIYQZ6W/rYZyeos8=;
+        b=kQrop+L7RBkwXi9u5dCti387QvuxcRGoA604pSKUKpVRxs85O/5WYW8G/sPhE7g6Ri
+         +pdfgM+NK0PEjiyLPMXOdi7ViI0iPVMarLhCitvJWcp+MdrbVGBLL2IbAmM8ZUT2+d1f
+         FTCmDZ5u6420PnE08lgzCyiZgMm8z7yYq6kpwXX7Z6wpCNkFJyxYe7MUP7W9RSTNpeur
+         Bx3Agt9b3sPWCFTQSuOcGWNJj2wb0uHo3zqrUlPkQu4PFkEvduB7zoOfHcrFSF2PJJKK
+         87ezsWcFsYAGNZ54IXEDhyjiSLutd5LnXn0xHiCvPmwO3Hl+phCjPNEbEbul3BM8vsVm
+         3g3A==
+X-Forwarded-Encrypted: i=1; AHgh+RoLzeaAHCBZ9nui62u93M8j+75jNPTP4pDdttPiWvuajYF5dhHUp1v8/TVfL5wqaILXIxgn7lrkCukJ@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywgxo3/mvRzCGR3e/pLyjrjFG8vO/cRtKXB8rjIA5u7jxscTvgl
+	fSutcKZJlActyjtebaic2I8kIXH5h46IbBIPsO6Swu9Eqw1Cd4oZDYBR0pFU0Wm+OZI=
+X-Gm-Gg: AfdE7cko40Z627XlFP2KbupDGgIlluuoeB6RnQIrlrXUKG79ZV3DGDMFJs0XFb05E7o
+	xo61oeYcNAiWivPZOAFTy4JJKyYmCqelpWkQoXnf3lXxgZoOXl2zqn++osBhgox7Ju6Joar3CLK
+	kao+XXtpBsfnh/UGaVPMZum3I+2mtiebwB7p4/2Pldy/87u+sgp4aUhB3LvKVJS+afvMjMNapkv
+	g/IM1Lp5p91rptYRhq7jR6W7bSbP/syrmBzotcR4GrUb350KVu8tiTF69kyVMSJVJ6qiq6eC+lc
+	aQALjXg3i/aoyF5TVPaDImRSDgTKeht+W3xmp9f6eW5MK8UNomJ281V4DU4ghgoDg+GiHqddaIs
+	CwpNt1altKQmcLVphxwPo9LChNjngTbqFDv0fvgptMlFHMAHott0UMqpxuuWE
+X-Received: by 2002:ad4:5dc3:0:b0:8f1:440c:7f81 with SMTP id 6a1803df08f44-903fe450e71mr71838966d6.4.1783894286578;
+        Sun, 12 Jul 2026 15:11:26 -0700 (PDT)
 Received: from ziepe.ca ([159.2.72.92])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-92ee5baaab7sm953864085a.19.2026.07.12.15.05.54
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-8ffd50e10f4sm113814616d6.1.2026.07.12.15.11.26
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 12 Jul 2026 15:05:55 -0700 (PDT)
+        Sun, 12 Jul 2026 15:11:26 -0700 (PDT)
 Received: from jgg by wakko with local (Exim 4.97)
 	(envelope-from <jgg@ziepe.ca>)
-	id 1wj2J8-0000000BnY7-1ro6;
-	Sun, 12 Jul 2026 19:05:54 -0300
-Date: Sun, 12 Jul 2026 19:05:54 -0300
+	id 1wj2OT-0000000Bo42-2Ctj;
+	Sun, 12 Jul 2026 19:11:25 -0300
+Date: Sun, 12 Jul 2026 19:11:25 -0300
 From: Jason Gunthorpe <jgg@ziepe.ca>
 To: Daniel Drake <dan@reactivated.net>
 Cc: "Joerg Roedel (AMD)" <joro@8bytes.org>, Will Deacon <will@kernel.org>,
@@ -93,11 +93,10 @@ Cc: "Joerg Roedel (AMD)" <joro@8bytes.org>, Will Deacon <will@kernel.org>,
 	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
 	linux-arm-kernel@lists.infradead.org,
 	nick.hollinghurst@raspberrypi.com
-Subject: Re: [PATCH 4/6] iommu/generic_pt: Add Broadcom BCM2712 page table
- format
-Message-ID: <20260712220554.GC1835788@ziepe.ca>
+Subject: Re: [PATCH 5/6] iommu: Add Broadcom BCM2712 IOMMU driver
+Message-ID: <20260712221125.GD1835788@ziepe.ca>
 References: <20260712-bcm2712-iommu-submit-v1-0-80e10cdde2ea@reactivated.net>
- <20260712-bcm2712-iommu-submit-v1-4-80e10cdde2ea@reactivated.net>
+ <20260712-bcm2712-iommu-submit-v1-5-80e10cdde2ea@reactivated.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -106,18 +105,18 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260712-bcm2712-iommu-submit-v1-4-80e10cdde2ea@reactivated.net>
+In-Reply-To: <20260712-bcm2712-iommu-submit-v1-5-80e10cdde2ea@reactivated.net>
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	R_DKIM_ALLOW(-0.20)[ziepe.ca:s=google];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-325137-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-325139-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS(0.00)[m:dan@reactivated.net,m:joro@8bytes.org,m:will@kernel.org,m:robin.murphy@arm.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:florian.fainelli@broadcom.com,m:bcm-kernel-feedback-list@broadcom.com,m:iommu@lists.linux.dev,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-rpi-kernel@lists.infradead.org,m:linux-arm-kernel@lists.infradead.org,m:nick.hollinghurst@raspberrypi.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER(0.00)[jgg@ziepe.ca,devicetree@vger.kernel.org];
@@ -127,7 +126,7 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
 	DKIM_TRACE(0.00)[ziepe.ca:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	MISSING_XM_UA(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[6];
@@ -140,33 +139,68 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,ziepe.ca:from_mime,ziepe.ca:dkim,ziepe.ca:mid,vger.kernel.org:from_smtp]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,ziepe.ca:from_mime,ziepe.ca:dkim,ziepe.ca:mid,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: D28C074619E
+X-Rspamd-Queue-Id: 1CE3C7461CA
 
-On Sun, Jul 12, 2026 at 10:18:54PM +0100, Daniel Drake wrote:
-> The BCM2712 IOMMU implements a 2-level page table format. It is relatively
-> simple, with one unusual aspect: leaf entries can only be installed at
-> Level 0.
-> 
-> Adapted from Raspberry Pi's downstream bcm2712-iommu driver (original
-> author Nick Hollinghurst).
-> 
-> Signed-off-by: Daniel Drake <dan@reactivated.net>
-> ---
->  drivers/iommu/generic_pt/.kunitconfig        |   1 +
->  drivers/iommu/generic_pt/Kconfig             |  10 ++
->  drivers/iommu/generic_pt/fmt/Makefile        |   2 +
->  drivers/iommu/generic_pt/fmt/bcm2712.h       | 259 +++++++++++++++++++++++++++
->  drivers/iommu/generic_pt/fmt/defs_bcm2712.h  |  18 ++
->  drivers/iommu/generic_pt/fmt/iommu_bcm2712.c |  10 ++
->  include/linux/generic_pt/common.h            |   7 +
->  include/linux/generic_pt/iommu.h             |  13 ++
->  8 files changed, 320 insertions(+)
+On Sun, Jul 12, 2026 at 10:18:55PM +0100, Daniel Drake wrote:
+> +static int bcm2712_iommu_of_xlate(struct device *dev,
+> +				  const struct of_phandle_args *args)
+> +{
+> +	struct platform_device *iommu_dev = of_find_device_by_node(args->np);
+> +	struct bcm2712_iommu *mmu = platform_get_drvdata(iommu_dev);
+> +
+> +	dev_iommu_priv_set(dev, mmu);
+> +	return 0;
+> +}
 
-Looks straightforward to me!
+Any chance this could work the way that smmuv3 does? I view it as the
+more modern example..
 
-Reviewed-by: Jason Gunthorpe <jgg@nvidia.com>
+> +static int bcm2712_iommu_map_pages(struct iommu_domain *domain,
+> +				   unsigned long iova, phys_addr_t paddr,
+> +				   size_t pgsize, size_t pgcount, int prot,
+> +				   gfp_t gfp, size_t *mapped)
+> +{
+> +	struct bcm2712_iommu_domain *mydomain = to_bcm2712_domain(domain);
+> +	struct pt_iommu *pt = &mydomain->pt.iommu;
+> +
+> +	return pt->ops->map_range(pt, bcm2712_iova_to_offset(mydomain, iova),
+> +				  paddr, pgsize * pgcount, prot, gfp, mapped);
+> +}
+
+These ops should not be present, the iommpt provides the ops directly
+through a macro;
+
+> +static const struct iommu_ops bcm2712_iommu_ops = {
+> +	.identity_domain = &bcm2712_identity_domain,
+> +	.domain_alloc_paging = bcm2712_iommu_domain_alloc,
+> +	.probe_device = bcm2712_iommu_probe_device,
+> +	.device_group = generic_single_device_group,
+> +	.of_xlate = bcm2712_iommu_of_xlate,
+> +	.default_domain_ops = &(const struct iommu_domain_ops) {
+> +		.attach_dev	 = bcm2712_iommu_attach_dev,
+> +		.iotlb_sync      = bcm2712_iommu_sync,
+> +		.iotlb_sync_map  = bcm2712_iommu_sync_map,
+> +		.flush_iotlb_all = bcm2712_iommu_sync_all,
+> +		.free		 = bcm2712_iommu_domain_free,
+> +		.map_pages       = bcm2712_iommu_map_pages,
+> +		.unmap_pages     = bcm2712_iommu_unmap_pages,
+> +		.iova_to_phys    = bcm2712_iova_to_phys,
+> +	},
+
+"default_domain_ops" should ideally be split out to a "paging domain
+ops" static and set directly during alloc_paging. They are not really
+"default" anymore if the driver has unique ops for every domain type.
+
+Then use something like:
+
+		IOMMU_PT_DOMAIN_OPS(bcm2712),
+
+To define all the page table related ops automatically.
+
+Any chace the HW can do a blocking_domain, or is the only way to do
+that with an empty paging domain?
 
 Jason
 
