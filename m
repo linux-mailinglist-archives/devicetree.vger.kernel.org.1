@@ -1,63 +1,63 @@
-Return-Path: <devicetree+bounces-324999-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-325001-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 4WtHG7lMU2qhZgMAu9opvQ
-	(envelope-from <devicetree+bounces-324999-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 12 Jul 2026 10:13:45 +0200
+	id L5XlArtMU2qmZgMAu9opvQ
+	(envelope-from <devicetree+bounces-325001-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 12 Jul 2026 10:13:47 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 247A674420B
-	for <lists+devicetree@lfdr.de>; Sun, 12 Jul 2026 10:13:45 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9CC2F744210
+	for <lists+devicetree@lfdr.de>; Sun, 12 Jul 2026 10:13:46 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=Ju3xlUyq;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b="dklxL/7q";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324999-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-324999-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-325001-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-325001-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 9C8C1300F7AF
-	for <lists+devicetree@lfdr.de>; Sun, 12 Jul 2026 08:13:43 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 37F12300F1BF
+	for <lists+devicetree@lfdr.de>; Sun, 12 Jul 2026 08:13:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 675233750D5;
-	Sun, 12 Jul 2026 08:13:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F40233750D5;
+	Sun, 12 Jul 2026 08:13:44 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E615371CF1;
-	Sun, 12 Jul 2026 08:13:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A41C6373C04;
+	Sun, 12 Jul 2026 08:13:43 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783844023; cv=none; b=VGZIl1/2kp4AqsVr4xlYHe0PHJ9gMSayBksN9sBBpl8B7Va5GuzrwtiLrK6ic/FTrWWI0VKnpsRtaNAdxbf8BTSHf6lkXAIz40q+sSXGdv0BhbEQz1oBrQfo2obi36bnLzzy/Ha35qTAXgePWxx+DlUGrcYSx6Ilw0lZLp4tbhY=
+	t=1783844024; cv=none; b=XZRzPvhle6F67sWj4FWWsWTdI0yJUGQkz6Wxfu5HGeiaUpmeHi2W2kQyxVh7wL56zLwLC4xwbtcDVuoV6r+uftRzxnj0t++kfPJWOOVqIZ8VtZge/XI89HmtFU4PNqSfwNq0lpse0EdAQ70XOB1mjcL2Cv1SbW9GYOwtNTmtddY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783844023; c=relaxed/simple;
-	bh=gZWb52QPZWxYQTbNzsQUr1vVVChCeHo9WsttryOoIVI=;
+	s=arc-20240116; t=1783844024; c=relaxed/simple;
+	bh=t4SMFRSKdev+HmqIKiFS+bCRef17Y6dE94cicaMl8h0=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=T8sDzlJoToBZWDV9y1eZjpOdoeA9CYIxgej8eOf78kR+GZuGWZryRmc3V8DVotwaV/jnxJyhMwUW5zncGSiFIgFIeTzbgzFODYeR1Q3YX9qDXd/quP/sDsgAWxR2ceAadC0aJmyEv/CSUy3KoTzbASDSHXSjQ+mu0MsVc9fGchA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ju3xlUyq; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9D1431F00A3D;
-	Sun, 12 Jul 2026 08:13:41 +0000 (UTC)
+	 Message-Id; b=JqgzJAlSnZhocDZBmtVYnXfcGNsv2c7zLvZJf+GEk86aLZ2baExHbICK9MndYbr7jrtO6f/jBzGen3QEZoyMOa7m7Iy+Z/Jn1IelfIY49RcgziWN1cHiXtKZB7lXhK9B30LgS/YxdSKhp8jCPMoWjyO1jts2+WJGb7QxylIV4DQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dklxL/7q; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1D52F1F000E9;
+	Sun, 12 Jul 2026 08:13:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783844021;
-	bh=uApPunQJFafcL1qpS82F6SOpISP09oAP+/QsYr6Eohs=;
+	s=k20260515; t=1783844023;
+	bh=KAMLB8idJldxO4UfkNuZP+DXYoxEzVS/SUI1n7dxka4=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=Ju3xlUyqqWiplxO+MiATXo39NEHlShvAorYAwex11UMUtC0dH2U5j6lHWmCV6bnhp
-	 7b08z7aEFD71D5SPVb8uo6oyaQZuGRysxLaIMggRnLPVYOuTgSnu8qfs3QDCjHsgbx
-	 JtcoLnAvmjdJgZYS9lFqS3ySS7XYtz5jjrr2CmgBVNWRNBKY9yeIlD/+LBrO2tRHMh
-	 8txrWO/NI0dpEY+WqN8Ra9+4l8rK/WwkBaPdL9TmJcI7EUrkBPUmJPjwIZht7Xfw6i
-	 DrMFaD4bezZ3ixIBtMbio8FFyB1xH9ZRMAch5gylnAJGLdjko2qUJXYzahzQXo4kiG
-	 XC03iHBwXXAig==
+	b=dklxL/7qSb8hO9HkM9kTyvzC8y2+s+zcB5PJPz/LGdf1XODDLUkDpuFTxzJ6wa6IZ
+	 8q40C7cZzgwzaf4RRWjvhRFtLihUl5KdZyf/QroYiDSTHxE3IyyXOxDi4Hw9Cwsm+a
+	 /Qn1kZM7qiXmZNfZjTTMf4vBOPrBgijp7a4CQbiQvcIrJGwwyiSziyDisyMPuNPmAw
+	 SpjNVizJ/IL8sKUJEwEuNwWkBcTWQj4oy46Wx1S1digtOvMGdBtZY+ClZtkEjwO6PB
+	 v6t/ZK0X4F1HmtsEvWxmUCidxp93P6lbnKlOABvnLp3zuspkzCA26ubSwYgf0l2gtK
+	 Cf/6kOdHO6KLw==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v2 5/8] clk: sunxi-ng: a733: Add bus clocks support
+Subject: Re: [PATCH v2 6/8] clk: sunxi-ng: a733: Add mod clocks support
 Reply-To: sashiko-reviews@lists.linux.dev
 To: "Junhui Liu" <junhui.liu@pigmoral.tech>
-Cc: robh@kernel.org, conor+dt@kernel.org, linux-sunxi@lists.linux.dev, devicetree@vger.kernel.org
-In-Reply-To: <20260711-a733-clk-v2-5-974d188cbe0c@pigmoral.tech>
+Cc: linux-sunxi@lists.linux.dev, conor+dt@kernel.org, robh@kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260711-a733-clk-v2-6-974d188cbe0c@pigmoral.tech>
 References: <20260711-a733-clk-v2-0-974d188cbe0c@pigmoral.tech>
- <20260711-a733-clk-v2-5-974d188cbe0c@pigmoral.tech>
+ <20260711-a733-clk-v2-6-974d188cbe0c@pigmoral.tech>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Sun, 12 Jul 2026 08:13:41 +0000
-Message-Id: <20260712081341.9D1431F00A3D@smtp.kernel.org>
+Date: Sun, 12 Jul 2026 08:13:42 +0000
+Message-Id: <20260712081343.1D52F1F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,18 +71,18 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	TAGGED_FROM(0.00)[bounces-324999-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-325001-lists,devicetree=lfdr.de];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.linux.dev:replyto,vger.kernel.org:from_smtp,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,pigmoral.tech:email,sashiko.dev:url];
 	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:junhui.liu@pigmoral.tech,m:robh@kernel.org,m:conor+dt@kernel.org,m:linux-sunxi@lists.linux.dev,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:junhui.liu@pigmoral.tech,m:linux-sunxi@lists.linux.dev,m:conor+dt@kernel.org,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
@@ -96,7 +96,7 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	PRECEDENCE_BULK(0.00)[];
 	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
@@ -104,97 +104,82 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	RCPT_COUNT_FIVE(0.00)[5]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 247A674420B
+X-Rspamd-Queue-Id: 9CC2F744210
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
 
 Pre-existing issues:
-- [Critical] Defining `mbus_clk` with a 0-width `P` prescaler causes undefi=
-ned behavior in `ccu_mp_set_rate()`, leading to the critical memory bus clo=
-ck register being completely cleared.
-- [High] The MBUS clock requires an update bit to commit rate changes, but =
-it is defined using `ccu_mp` operations which completely ignore the `CCU_FE=
-ATURE_UPDATE_BIT` flag.
+- [Critical] Undefined Behavior in ccu_mp_set_rate() due to GENMASK(-1, 0) =
+silently clears clock registers.
 --
 
---- Patch [5]: [PATCH v2 5/8] clk: sunxi-ng: a733: Add bus clocks support -=
+--- Patch [6]: [PATCH v2 6/8] clk: sunxi-ng: a733: Add mod clocks support -=
 --
-commit 40f96b18647c7ab7dc42f9a7456046beab510ac6
+commit 9fae602071158ab4bb78bf12e40f53a7e4b2f550
 Author: Junhui Liu <junhui.liu@pigmoral.tech>
 
-clk: sunxi-ng: a733: Add bus clocks support
-
-This commit adds the essential bus clocks in the Allwinner A733 CCU,
-including AHB, APB0, APB1, APB_UART, and MBUS. It also marks the MBUS
-clock as critical to ensure the memory bus remains operational.
+clk: sunxi-ng: a733: Add mod clocks support
+   =20
+Add the module clocks found in the Allwinner A733 SoC, including video,
+storage, interfaces and others. This implementation accounts for changes
+in register offsets and introduces support for new modules.
 
 > diff --git a/drivers/clk/sunxi-ng/ccu-sun60i-a733.c b/drivers/clk/sunxi-n=
 g/ccu-sun60i-a733.c
+> index c42619afb52e3..bf26e310f08a9 100644
 > --- a/drivers/clk/sunxi-ng/ccu-sun60i-a733.c
 > +++ b/drivers/clk/sunxi-ng/ccu-sun60i-a733.c
-
 [ ... ]
-
-> +static const struct clk_parent_data mbus_parents[] =3D {
-> +	{ .hw =3D &sys_24M_clk.hw },
-> +	{ .hw =3D &pll_periph1_600M_clk.hw },
-> +	{ .hw =3D &pll_ddr_clk.common.hw },
-> +	{ .hw =3D &pll_periph1_480M_clk.common.hw },
-> +	{ .hw =3D &pll_periph1_400M_clk.hw },
-> +	{ .hw =3D &pll_npu_clk.common.hw },
-> +};
-> +static SUNXI_CCU_MP_DATA_WITH_MUX_GATE_FEAT(mbus_clk, "mbus", mbus_paren=
-ts, 0x588,
-> +					    0, 5,	/* M */
-> +					    0, 0,	/* no P */
+> +static SUNXI_CCU_MP_DATA_WITH_MUX_GATE(timer0_clk, "timer0", timer_paren=
+ts, 0x800,
+> +				       0, 0,		/* no M */
+> +				       0, 3,		/* P */
+> +				       24, 3,		/* mux */
+> +				       BIT(31),		/* gate */
+> +				       0);
 
 [Severity: Critical]
-This is a pre-existing issue in the framework, but does defining mbus_clk
-with a 0-width P prescaler cause undefined behavior when the rate is set?
+This is a pre-existing issue, but won't specifying a width of 0 for the
+M divider cause undefined behavior in the CCU framework?
 
-When ccu_mp_set_rate() is called in drivers/clk/sunxi-ng/ccu_mp.c, it
-evaluates the mask for the P prescaler:
+When a driver or the clock framework calls clk_set_rate() on these newly
+introduced clocks (e.g., timer0_clk through timer9_clk, mbus_clk),
+ccu_mp_set_rate() clears the M and P divider fields:
 
 drivers/clk/sunxi-ng/ccu_mp.c:ccu_mp_set_rate() {
-    ...
-    reg &=3D ~GENMASK(cmp->p.width + cmp->p.shift - 1, cmp->p.shift);
-    ...
+	...
+	reg &=3D ~GENMASK(cmp->m.width + cmp->m.shift - 1, cmp->m.shift);
+	reg &=3D ~GENMASK(cmp->p.width + cmp->p.shift - 1, cmp->p.shift);
+	...
 }
 
-Since p.width is 0, this expands to GENMASK(-1, 0). On 64-bit architectures,
-the shift by 64 is masked to 0, which makes ~GENMASK evaluate to 0 and clea=
-rs
-the entire mbus_clk register, including the critical clock gate bit.
+Because these clocks are instantiated with width =3D 0, this evaluates to
+~GENMASK(-1, 0) at runtime. GENMASK(-1, 0) computes ~0UL >> 64. On ARM64
+hardware, the dynamic shift amount is read from the bottom 6 bits of the
+register (64 & 63 =3D=3D 0), resulting in a shift of 0, leaving the value as
+~0UL (all ones).
 
-Could this lead to a system crash during boot or runtime frequency scaling?
+The ~GENMASK thus evaluates to 0, which completely zeroes the hardware
+register, including the clock gate bit (BIT(31)).
 
+[ ... ]
+> +static SUNXI_CCU_MP_DATA_WITH_MUX_GATE_FEAT(dram0_clk, "dram0", dram_par=
+ents, 0xc00,
+> +					    0, 4,	/* M */
+> +					    0, 0,	/* no P */
 > +					    24, 3,	/* mux */
 > +					    BIT(31),	/* gate */
 > +					    CLK_IS_CRITICAL,
 > +					    CCU_FEATURE_UPDATE_BIT);
 
-[Severity: High]
-This is also a pre-existing issue in the framework, but will the hardware
-actually commit rate changes for this clock?
-
-The commit message notes that the hardware requires bit 27 to be set for
-the configuration to take effect. However, ccu_mp_set_rate() does not
-process the CCU_FEATURE_UPDATE_BIT flag before writing the register:
-
-drivers/clk/sunxi-ng/ccu_mp.c:ccu_mp_set_rate() {
-    ...
-    writel(reg, cmp->common.base + cmp->common.reg);
-
-    spin_unlock_irqrestore(cmp->common.lock, flags);
-    ...
-}
-
-Since the update bit is never toggled by the ccu_mp operations, does this
-leave the software state permanently out of sync with the hardware state
-when the mbus_clk rate is configured?
+[Severity: Critical]
+This isn't a bug introduced by this patch, but dram0_clk is instantiated
+with a P width of 0. Calling set_rate on it will trigger ~GENMASK(-1, 0)
+and wipe its register. Since this is the DRAM clock, won't disabling it
+instantly hang the system?
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260711-a733-clk-v=
-2-0-974d188cbe0c@pigmoral.tech?part=3D5
+2-0-974d188cbe0c@pigmoral.tech?part=3D6
 
