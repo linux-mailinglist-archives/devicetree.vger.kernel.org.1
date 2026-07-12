@@ -1,170 +1,233 @@
-Return-Path: <devicetree+bounces-325025-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-325026-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id nZT9J39kU2oJagMAu9opvQ
-	(envelope-from <devicetree+bounces-325025-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 12 Jul 2026 11:55:11 +0200
+	id bIXVDuVmU2pmagMAu9opvQ
+	(envelope-from <devicetree+bounces-325026-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 12 Jul 2026 12:05:25 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0121744530
-	for <lists+devicetree@lfdr.de>; Sun, 12 Jul 2026 11:55:10 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6903174454C
+	for <lists+devicetree@lfdr.de>; Sun, 12 Jul 2026 12:05:24 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=cowN1ABH;
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-325025-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-325025-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=gmail.com header.s=20251104 header.b="dQHff5z/";
+	dmarc=pass (policy=none) header.from=gmail.com;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-325026-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-325026-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 17253300EFA9
-	for <lists+devicetree@lfdr.de>; Sun, 12 Jul 2026 09:55:09 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 04CC8300DDDA
+	for <lists+devicetree@lfdr.de>; Sun, 12 Jul 2026 10:05:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7B6C375F82;
-	Sun, 12 Jul 2026 09:55:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 363D6372670;
+	Sun, 12 Jul 2026 10:05:22 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE21D374182
-	for <devicetree@vger.kernel.org>; Sun, 12 Jul 2026 09:55:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2DE32D739C
+	for <devicetree@vger.kernel.org>; Sun, 12 Jul 2026 10:05:20 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783850108; cv=none; b=J/wvzoZ/3ZUbuaCio9RPUCkGsIdqgHs09htUZMXGLO5ucdhuWN85PNVdpAGKMpny1raHPh1NXYarpDouE9uVQQFPw0qfy9e7K/00Q/FytHdasOQw4gC6NB1nf3A8auWDjxKQ9pUWeywfwFEppkqw8OJIWwUBHkCtJQ2h8DrwXE4=
+	t=1783850722; cv=none; b=GVW//mAgNZYkZ5TmAOcie2d1EThkbJrHHJEbH+V9oBwnl6BRJMsKmSS9t50lH0oXOjqEHH1JAus2KFXevRniPD2QvtwW0XJRrYoev5uU4bGOEO2rNAcP/IWXwbZd2jGgrVNoEXkUZXBwtc1+2qsDcj4HX2BDdNlTSOPZ/+aS+Pw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783850108; c=relaxed/simple;
-	bh=RRw9RYm5aESqKt650V56nDYDtftjVq55dmhn9ZX0Izc=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=rIi8IMS8JoqVd0MwZ6TTYvkvD2b7Ib3HHs37a7Yvin3ABxsyFaYXEp3DLEuUwobJ2Rwl1+y6gFzZWT4LL63JG/njFTewSYmVFQ9QHdPLbkhb2CQY9qkeUUIHRe1gWs458Spaf5GvcJAC15jq6HNdGuxzEKeWXfyiEaIMEnNszj0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cowN1ABH; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6C0D21F000E9;
-	Sun, 12 Jul 2026 09:55:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783850107;
-	bh=eaqTWT98Z1JAnj5lHg8+0T9LOP7n37NYcXuxnWq+aiA=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=cowN1ABH2/s49euI+w6BhRNLXka5bqfIFrqa0qxrwoL5lmYasvAaFCmly8Lv9YkJB
-	 L3Lg0JL7oEPONKDgk6K8UR9IzaRAToX5bZelGnTatCB53o8yhuZRncyH35aw7pUHwp
-	 zechxZI9DbXMSmeaGTnCSZXWl8IlPZq5LDC36AVcyrqZlmu06HYXi5yxsxqT40id8e
-	 kcvTEUQBnE5ZLiVBOJt4P2JcGONNM+eyQHDUr8lv+W3SC8gKOrwWF6hMBcfbGAcbuM
-	 OdCXXIa0/iARjxUjo39WhpOgPkdJzbN0zQCuhBpRnc1+6ynaidJwfWql0fle7GWg54
-	 9c0sD+oZTc0Hg==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 02/12] arm64: dts: apple: t8103: Add SMC hwmon node
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "James Calligeros" <jcalligeros99@gmail.com>
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, robh@kernel.org
-In-Reply-To: <20260712-smc-subdev-dt-v1-2-7763006d57c7@gmail.com>
-References: <20260712-smc-subdev-dt-v1-0-7763006d57c7@gmail.com>
- <20260712-smc-subdev-dt-v1-2-7763006d57c7@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Sun, 12 Jul 2026 09:55:06 +0000
-Message-Id: <20260712095507.6C0D21F000E9@smtp.kernel.org>
+	s=arc-20240116; t=1783850722; c=relaxed/simple;
+	bh=mtNrxxMixLSJ5IBYSZLOCEDNhvuQ+B9NEif7MbnZofM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=TonEn9amzOuPySSPcYwb1d8dkVn/e0nxCuFWXN7JacbqxVnJvX5u2W3LwP5wHHbU6Twgtm/zW11HB3NAxVGsHzj49oogjScYOpnjJ4V6hxzO0nO2SXre15gUsxlg63lBEJGGExnTBAWEKXE9SCtSiERjGilLYv8tHPx4prgjmdI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dQHff5z/; arc=none smtp.client-ip=209.85.214.171
+Received: by mail-pl1-f171.google.com with SMTP id d9443c01a7336-2cc891373e0so22225295ad.2
+        for <devicetree@vger.kernel.org>; Sun, 12 Jul 2026 03:05:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1783850720; x=1784455520; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:from:date:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=vtBVbtAq8/J9WfLZAmtmwFvAK1PPs6W2XE0Zv0PL61A=;
+        b=dQHff5z/H3bHMzRewQ0dlp6gDitHW8Zd75KBRsfTr7P/u4qAA2ekwyb8+47w1zc4Ai
+         Yl7ej/B1ghM5RrF9YDkBkM9NaBcytk+89SnKUhK+iWuT7+QdoAG1HAh5SsU/hHC2tvjF
+         +62vR23J8Pb6F/bs+57bqCmuzHRL/w+ZEB4sAseTLaVDmuqtFpyE7mo7XJG20fbcGqQw
+         3fyN2vPcIs3iloX9JzSimTTXdLEyBSSg9TPMWOHAb1vKf3Qg5Riu9Odj5AJ+sFao6GVc
+         3Lbbh0ygdRJBqAdB+UVOICLbant29cZQ+jAl6hhpDg9R88y9lBKIXnvyrziqg3ySMla6
+         JT6A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1783850720; x=1784455520;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:from:date:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=vtBVbtAq8/J9WfLZAmtmwFvAK1PPs6W2XE0Zv0PL61A=;
+        b=XmTpJVGV5vWJJUWXczsMCQFhNtL978XHF5xihz/LLNsqUHDiHU/8tpX5V64Ic5aQ4B
+         MESEojGcSa+zUrC8zNiANg1/zH0YLlBpBTtTQdRlGoPoLtCv8rpJ1W8mfl1ErKZs3mC0
+         lpw5LvkooQfwaqDGCnrgGT5AeUAQ07HqtYSF31YDnL1uqyZW1OIzrc7us/Qxp8tlI7JH
+         MRa2j9+6+aSszmEcCfdBNZ//LUBuf+/ZGmW8kssXbzrW06slvw7dMmovDNaniY7hovEI
+         6h5WnIZlvcLzXr/6M3Q/u+Fj9GPVmY32Q2C3wA8GIpP/LEsHXwWh2bq6WSf6wX47V+Is
+         zOYg==
+X-Forwarded-Encrypted: i=1; AHgh+RpoH54pW/1LO5XLvixNpQ/96v+JcE0MZBc9r1lZJn6vAAjYtwODe0S1DMRV90kjlc02A4NHMCoRFcMh@vger.kernel.org
+X-Gm-Message-State: AOJu0YxiuCq0ahlCJtgT+j7ebiI32BoCV2j33EGtwwjMS3yVzuSdGhc4
+	4wDPmra1AwYpwAnTxT3yvLkVUCtEnaarFtpApB9FsNi6cL8cJnqzdUdP
+X-Gm-Gg: AfdE7cnii+L77tiQ5/K5LCPPjKrKBc5mj6KiI7KXrcUFz0wttVyEj0TNielM6folmi6
+	HShRByYaZPh83jSZP3dvdcP+pYDRJ+Quq9WHJJYLIUWQTjsi/XwphtwdLZLWWW70AD4RVCqph9g
+	NqWtgw3aCDvzX0DxiFbKnUg1Gay0TuRXrJDoJz/ijrf9r1phQVpFCoGGQg5wPRs1hdqhW/oZIsi
+	bZtN31+Fi5Keh6JAizYlgaW0JPp8yG3ETik7AwWK4RvHL5R1sKzDvFAptjLJF9AEXwNJVxpbLkR
+	pxWnSioZFfAtDJnN/bU4S1ipxumoBRo62LR+Ef2H1hkd8fvM14zZ7GOnkRb7WNqY/fLrbiJ57/r
+	A9PKjsXA8Rq74k1C5dOFiXAuS09wXybZjaD6SiWeb3VJkPmUyJyUZkP9o2YnEYkdK
+X-Received: by 2002:a17:902:d987:b0:2cc:ae2b:b6d2 with SMTP id d9443c01a7336-2ce9eac1d98mr54983735ad.15.1783850720120;
+        Sun, 12 Jul 2026 03:05:20 -0700 (PDT)
+Received: from localhost ([2001:da8:7001:11::cb])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2ccc9bf77e4sm83401535ad.22.2026.07.12.03.05.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 12 Jul 2026 03:05:19 -0700 (PDT)
+Date: Sun, 12 Jul 2026 18:04:35 +0800
+From: Inochi Amaoto <inochiama@gmail.com>
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
+	Inochi Amaoto <inochiama@gmail.com>
+Cc: Jingoo Han <jingoohan1@gmail.com>, 
+	Manivannan Sadhasivam <mani@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
+	Lorenzo Pieralisi <lpieralisi@kernel.org>, Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@kernel.org>, Paul Walmsley <pjw@kernel.org>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+	Alexandre Ghiti <alex@ghiti.fr>, Christian Bruel <christian.bruel@foss.st.com>, 
+	Frank Li <Frank.Li@nxp.com>, Nam Cao <namcao@linutronix.de>, 
+	Qiang Yu <qiang.yu@oss.qualcomm.com>, Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>, 
+	Xincheng Zhang <zhangxincheng@ultrarisc.com>, Alex Elder <elder@riscstar.com>, 
+	Siddharth Vadapalli <s-vadapalli@ti.com>, Vidya Sagar <vidyas@nvidia.com>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Gustavo Pimentel <gustavo.pimentel@synopsys.com>, 
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev, Yixun Lan <dlan@gentoo.org>, 
+	Longbin Li <looong.bin@gmail.com>
+Subject: Re: [PATCH v4 2/6] PCI: spacemit-k1: Add multiple PHY handles support
+Message-ID: <alNjykt9ERnMXTZ7@inochi.infowork>
+References: <20260709040027.958400-1-inochiama@gmail.com>
+ <20260709040027.958400-3-inochiama@gmail.com>
+ <ak9KzNFF26B0Kttz@ashevche-desk.local>
+ <alBNXgMAwXPKwiJ2@inochi.infowork>
+ <alCoTEDUY8AO9OzD@ashevche-desk.local>
+ <alDNlfb0_T9g-ATO@inochi.infowork>
+ <alI6ml4xQboFOgxG@ashevche-desk.local>
+ <alMmkHrfgWoN8RqS@inochi.infowork>
+ <alNf1OoBtscauPXV@ashevche-desk.local>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <alNf1OoBtscauPXV@ashevche-desk.local>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-325025-lists,devicetree=lfdr.de];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[gmail.com];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:jcalligeros99@gmail.com,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-325026-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:andriy.shevchenko@linux.intel.com,m:inochiama@gmail.com,m:jingoohan1@gmail.com,m:mani@kernel.org,m:bhelgaas@google.com,m:lpieralisi@kernel.org,m:kwilczynski@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:dlan@kernel.org,m:pjw@kernel.org,m:palmer@dabbelt.com,m:aou@eecs.berkeley.edu,m:alex@ghiti.fr,m:christian.bruel@foss.st.com,m:Frank.Li@nxp.com,m:namcao@linutronix.de,m:qiang.yu@oss.qualcomm.com,m:krishna.chundru@oss.qualcomm.com,m:zhangxincheng@ultrarisc.com,m:elder@riscstar.com,m:s-vadapalli@ti.com,m:vidyas@nvidia.com,m:neil.armstrong@linaro.org,m:gustavo.pimentel@synopsys.com,m:linux-pci@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-riscv@lists.infradead.org,m:spacemit@lists.linux.dev,m:dlan@gentoo.org,m:looong.bin@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:looongbin@gmail.com,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[inochiama@gmail.com,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FREEMAIL_TO(0.00)[linux.intel.com,gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[33];
+	FORWARDED(0.00)[lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	TO_DN_SOME(0.00)[];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCVD_COUNT_FIVE(0.00)[5];
 	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCPT_COUNT_THREE(0.00)[4];
+	FROM_NEQ_ENVFROM(0.00)[inochiama@gmail.com,devicetree@vger.kernel.org];
+	PRECEDENCE_BULK(0.00)[];
+	FREEMAIL_CC(0.00)[gmail.com,kernel.org,google.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,foss.st.com,nxp.com,linutronix.de,oss.qualcomm.com,ultrarisc.com,riscstar.com,ti.com,nvidia.com,linaro.org,synopsys.com,vger.kernel.org,lists.infradead.org,lists.linux.dev,gentoo.org];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,lists.linux.dev:replyto]
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,gnu.org:url,vger.kernel.org:from_smtp,inochi.infowork:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: E0121744530
+X-Rspamd-Queue-Id: 6903174454C
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [Medium] Adding an empty `smc_hwmon` node without `status =3D "disabled"`=
- causes the `macsmc_hwmon` driver to fail its probe and print a `dev_err` o=
-n every boot for all t8103 devices.
---
+On Sun, Jul 12, 2026 at 12:35:16PM +0300, Andy Shevchenko wrote:
+> On Sun, Jul 12, 2026 at 01:41:25PM +0800, Inochi Amaoto wrote:
+> > On Sat, Jul 11, 2026 at 03:44:10PM +0300, Andy Shevchenko wrote:
+> > > On Fri, Jul 10, 2026 at 06:55:10PM +0800, Inochi Amaoto wrote:
+> > > > On Fri, Jul 10, 2026 at 11:07:40AM +0300, Andy Shevchenko wrote:
+> > > > > On Fri, Jul 10, 2026 at 09:57:05AM +0800, Inochi Amaoto wrote:
+> > > > > > On Thu, Jul 09, 2026 at 10:16:28AM +0300, Andy Shevchenko wrote:
+> > > > > > > On Thu, Jul 09, 2026 at 12:00:22PM +0800, Inochi Amaoto wrote:
+> 
+> ...
+> 
+> > > Then the counted_by will be incorrect as it may access valid memory, but
+> > > unused by the driver.
+> > 
+> > After some search I found a requirement in GCC patch:
+> > https://gcc.gnu.org/pipermail/gcc-patches/2024-May/653123.html
+> > 
+> > It seems like the array can have more elements than the counter.
+> > Some I guess the reallocation is not necessary and the counter
+> > is still correct. Correct me if I am wrong.
+> 
+> There will be no problem from memory accesses point of view, but there are two
+> disadvantages:
+> - the waste of memory for unused items
+> - the memory accesses beyond used items, which may lead to or show the subtle
+>   issues in the code elsewhere
+> 
+> Better to be correct. It might help debugging as well in some other cases.
+> 
+For correct number, I guess using "fwnode_property_get_reference_args"
+is a idea, it is kind of ugly, but it does provide some function for
+use to get the phy numbers. It is more like "of_clk_get_parent_count"
+and "reset_control_get_count" in the clk/reset subsystems. 
 
---- Patch [2]: [PATCH 02/12] arm64: dts: apple: t8103: Add SMC hwmon node -=
---
-commit 537fe4eb204476276f256c169a803f44dce48ec8
-Author: James Calligeros <jcalligeros99@gmail.com>
+I think adding a function like the above one is a good start point for
+the phy array/bulk. At least this phy function is implementable for me,
+since it is quite simple and straightforward.
 
-arm64: dts: apple: t8103: Add SMC hwmon node
+Regards,
+Inochi
 
-This commit adds the SMC hwmon subdevice node to the t8103 device tree.
-
-> diff --git a/arch/arm64/boot/dts/apple/t8103.dtsi b/arch/arm64/boot/dts/a=
-pple/t8103.dtsi
-> --- a/arch/arm64/boot/dts/apple/t8103.dtsi
-> +++ b/arch/arm64/boot/dts/apple/t8103.dtsi
-[ ... ]
-> @@ -918,6 +918,10 @@ smc_reboot: reboot {
->  					"boot_error_count", "panic_count";
->  			};
-> =20
-> +			smc_hwmon: hwmon {
-> +				compatible =3D "apple,smc-hwmon";
-> +			};
-
-[Severity: Medium]
-Will this empty hwmon node cause a spurious error message on boot for all
-t8103 devices?
-
-When the macsmc_hwmon driver probes this node without any child sensor nodes
-defined, it evaluates the empty node, finds 0 sensors, and prints an error:
-
-drivers/hwmon/macsmc-hwmon.c:macsmc_hwmon_probe() {
-    ...
-    if (!hwmon->curr.count && !hwmon->fan.count &&
-        !hwmon->power.count && !hwmon->temp.count &&
-        !hwmon->volt.count) {
-        dev_err(hwmon->dev,
-            "No valid sensors found of any supported type\n");
-        return -ENODEV;
-    }
-    ...
-}
-
-Should this node include status =3D "disabled" by default to prevent the dr=
-iver
-from failing its probe and polluting the kernel log?
-
-> +
->  			rtc {
->  				compatible =3D "apple,smc-rtc";
->  				nvmem-cells =3D <&rtc_offset>;
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260712-smc-subdev=
--dt-v1-0-7763006d57c7@gmail.com?part=3D2
+> ...
+> 
+> > > > > > > > +	for (i = 0; i < k1->phy_count; i++)
+> > > > > > > 
+> > > > > > > 	for (unsigned int i = 0; i < k1->phy_count; i++)
+> > > > > > 
+> > > > > > I agree with the unsigned int, but I guess this definition is not
+> > > > > > allowed in linux.
+> > > > > 
+> > > > > It's allowed and it's encouraged even by Linus. As long as iterator is local,
+> > > > > use this syntax sugar and reduce its scope. It hardens the code.
+> > > > 
+> > > > Could you give me a reference url to check,
+> > > 
+> > > Sure, there are two (one for integers and one for pointers)
+> > > https://lore.kernel.org/lkml/CAHk-=wiCOTW5UftUrAnvJkr6769D29tF7Of79gUjdQHS_TkF5A@mail.gmail.com/
+> > > https://lore.kernel.org/lkml/CAHk-=wgy8p4is8ApEQCT5NS7XFb+NXeo-TKz7jRRZVksLLBSrQ@mail.gmail.com/
+> > > 
+> > > > I have not found this on the coding-style.
+> > > > https://www.kernel.org/doc/html/latest/process/coding-style.html
+> > > 
+> > > Feel free to update the documentation.
+> > 
+> > Good to know thanks.
+> 
+> Are you going to update documentation? I can review it.
+> 
+> > > > > > > > +		phy_exit(k1->phy[i]);
+> 
+> -- 
+> With Best Regards,
+> Andy Shevchenko
+> 
+> 
 
