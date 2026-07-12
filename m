@@ -1,175 +1,184 @@
-Return-Path: <devicetree+bounces-324955-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-324957-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id VxkXLOP8UmqrVwMAu9opvQ
-	(envelope-from <devicetree+bounces-324955-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 12 Jul 2026 04:33:07 +0200
+	id b62HGF8DU2oWWAMAu9opvQ
+	(envelope-from <devicetree+bounces-324957-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 12 Jul 2026 05:00:47 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id A7339743962
-	for <lists+devicetree@lfdr.de>; Sun, 12 Jul 2026 04:33:06 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id BB9307439C0
+	for <lists+devicetree@lfdr.de>; Sun, 12 Jul 2026 05:00:46 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=S75jUjQR;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=bkVxiSuT;
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324955-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-324955-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324957-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-324957-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id A81CF3002D0B
-	for <lists+devicetree@lfdr.de>; Sun, 12 Jul 2026 02:33:03 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id BC6FC301D6A9
+	for <lists+devicetree@lfdr.de>; Sun, 12 Jul 2026 03:00:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BFFC368D4D;
-	Sun, 12 Jul 2026 02:33:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4A8127A476;
+	Sun, 12 Jul 2026 03:00:22 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31AE436895D;
-	Sun, 12 Jul 2026 02:32:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB13DCA52;
+	Sun, 12 Jul 2026 03:00:16 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783823582; cv=none; b=qZtTHqM/4azMQyudaBJwn+QJ2Zb3AwvG4Z6D7xw8DOMcFwJ61KLzrEBdYqH3RCx8D2w0ObgaSiXFVBMK8hqGzxWQJ0qYnT26i3XE/T46/oYsNIEEV2ck9OjhKhXoa6YXzsrj7nRNA9SU+6NM7Fhx0BzLjvRIGJ6H0gaafMRZftc=
+	t=1783825221; cv=none; b=au6kpQkQvKB93z69Imc5w4lP4qpGTthRFWdbdG6xc2GxGLuUExjaAPeCaU9XTtnIYZyAqIqU7QFmn7zZXghWy03r/s/JdXbsnLQIAZJjyzeWYsyom9TtJrOmbAx1PoSYJMNNPr2YujRAdBbIe+cjjsbGrxcTiXZ2Dx0thxwC9Mw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783823582; c=relaxed/simple;
-	bh=3MEcxEEnR1dzqIk1rT7Vg51fawrb4GR0Vl54FGds7D8=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=DRNm31qT0J9uz68uCJvyMOlH86Pn9ar0VmTno2Vtx7vrnqFCCE5Kratwl+2urVXg0E3x3kIoN8cAHhQvpm9LFXhIx25AD7BHKpKrwnM8mqQqpkwVIGZkOLwTuBIn3vQ1jeLSCFn5bj+tpLOilWtMH56/DG7KcVMRFkm4i81UntU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=S75jUjQR; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0BAA41F000E9;
-	Sun, 12 Jul 2026 02:32:54 +0000 (UTC)
+	s=arc-20240116; t=1783825221; c=relaxed/simple;
+	bh=A/ywmB7DXuB0nsapi5LzDPQVxCX9fGZDB1EHQ7pxL2M=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=lQF//rSyu9j9YUh6zqvJsAz6mBWyRyvyfrysZjFpJWgGEq52pmIaGTkZrIr7TPKlVxIAhNlOyNpNYcBU9cvQVqoqHhfdZRzJ4EX2Dgp9TbB3zprwqjJVwtWPznw4Bbx76seJPCtio94EUxHNTZ/UaFKFBk9s/I1AeAxv36dU35M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bkVxiSuT; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 060991F00A3A;
+	Sun, 12 Jul 2026 03:00:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783823576;
-	bh=nqjTaKp//lqAHj0pBUZIH3R9fN//5aELSSg3oQ88xkc=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=S75jUjQRjAgwT1UmrXoZT6R+7puYJPuhw7YR18uHq8D1v1fdpFNXAKTFTxJM7SfP3
-	 kKHcWWAxBAERUvfHj8yq/xEJ5rsnUp+hhyARwQpkd94WEfWoKBx/gAFe+qyakNa8Lp
-	 yHjDCK7BD6mC9fJmWIvDrefV8tafKUGPwadlBQQ3aERsgXyG5sgJkEE1oCyqB/YYRO
-	 3o1vT9CNnEqgZ12idH+vdrSlCCAn43nG4choLIZhOPsRNKHxDpP3r13bMi3CHzaoZT
-	 HzDBFYEKJFoQ9GPgeBvOg8sj+RbGkoYb+TQ3xpiKoYBRyjlIZcRXcqBfQ+u3CEUXQu
-	 YwN1DdrBBN6pQ==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v3 08/10] ARM: s3c: crag6410: convert PMIC DVS GPIO to
- software properties
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Dmitry Torokhov" <dmitry.torokhov@gmail.com>
-Cc: dmitry.torokhov@gmail.com, conor+dt@kernel.org, linux-input@vger.kernel.org, devicetree@vger.kernel.org, robh@kernel.org
-In-Reply-To: <20260711-samsung-kp-v3-8-b2fcaba77aff@gmail.com>
-References: <20260711-samsung-kp-v3-0-b2fcaba77aff@gmail.com>
- <20260711-samsung-kp-v3-8-b2fcaba77aff@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Sun, 12 Jul 2026 02:32:54 +0000
-Message-Id: <20260712023255.0BAA41F000E9@smtp.kernel.org>
+	s=k20260515; t=1783825215;
+	bh=pPMB1E9mxY98sJzlxRNQcBMbjxdnpUE7XN7dpLMKjA0=;
+	h=From:To:Cc:Subject:Date;
+	b=bkVxiSuT++4UcUJpwBGKoHrUTiEU37RsXgTTE0IJKdT48S2k9fExAiTIbQzTXllGr
+	 ygvejOln/yhZalFw0kdMOnUH2iiCntFPT+m0pmdWCWEEVKitGFSmTIQV6kYF4VzWIy
+	 RZ8kmiWRQFVScYk1KvR8xnXH+k2NftNUTgSuPE4q0zqp9ljWN6qRPxrVYOGa9vX3Xr
+	 nyzUBHZlFvh7aNe55/C+IFfv+y43SqmMLuQQO1IyQy5hOZQyRD3i30w40TlvwwnC2A
+	 c2/W9E9gcIes3wV7x1JBMbetmS3BxuVPRfGAGlRfaEFduRZvBU0OyXkPL2GvDuLRO8
+	 UgY6zPYEDtyZA==
+Received: by wens.tw (Postfix, from userid 1000)
+	id CCC695FDD4; Sun, 12 Jul 2026 11:00:12 +0800 (CST)
+From: Chen-Yu Tsai <wens@kernel.org>
+To: Maxime Ripard <mripard@kernel.org>,
+	Paul Kocialkowski <paulk@sys-base.io>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Chen-Yu Tsai <wens@kernel.org>,
+	Jernej Skrabec <jernej@kernel.org>,
+	Samuel Holland <samuel@sholland.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	linux-media@vger.kernel.org,
+	linux-staging@lists.linux.dev,
+	devicetree@vger.kernel.org,
+	linux-sunxi@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v3 0/7] arm64: allwinner: h616: Support Video Engine
+Date: Sun, 12 Jul 2026 11:00:03 +0800
+Message-ID: <20260712030011.3778169-1-wens@kernel.org>
+X-Mailer: git-send-email 2.47.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-324955-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:dmitry.torokhov@gmail.com,m:conor+dt@kernel.org,m:linux-input@vger.kernel.org,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:dmitrytorokhov@gmail.com,m:conor@kernel.org,s:lists@lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[smtp.kernel.org:mid,vger.kernel.org:from_smtp,sashiko.dev:url,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,lists.linux.dev:replyto];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
+	TAGGED_FROM(0.00)[bounces-324957-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[16];
 	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER(0.00)[wens@kernel.org,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:mripard@kernel.org,m:paulk@sys-base.io,m:mchehab@kernel.org,m:wens@kernel.org,m:jernej@kernel.org,m:samuel@sholland.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:gregkh@linuxfoundation.org,m:linux-media@vger.kernel.org,m:linux-staging@lists.linux.dev,m:devicetree@vger.kernel.org,m:linux-sunxi@lists.linux.dev,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FREEMAIL_CC(0.00)[gmail.com,kernel.org,vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	PRECEDENCE_BULK(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[wens@kernel.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCVD_COUNT_FIVE(0.00)[5];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[6]
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ALIAS_RESOLVED(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: A7339743962
+X-Rspamd-Queue-Id: BB9307439C0
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [Medium] Dynamic amendment of mfd_cell array using kmemdup_array violates=
- MFD guidelines.
---
+Hi folks,
 
---- Patch [8]: [PATCH v3 08/10] ARM: s3c: crag6410: convert PMIC DVS GPIO t=
-o software properties ---
-commit 71a506655ae9f68a5ef7d764d51d6d48703e4dcb
-Author: Dmitry Torokhov <dmitry.torokhov@gmail.com>
 
-ARM: s3c: crag6410: convert PMIC DVS GPIO to software properties
+This is v3 of my Allwinner H616 Cedrus series. The series is ready to be
+merged.
 
-Convert the PMIC DVS GPIO configuration from a legacy lookup table to
-software properties. We use the new 'dcdc_swnodes' field in 'struct
-wm831x_pdata' to pass the software node to the regulator driver.
+Changes since v2:
+- Dropped "drivers:" from cedrus driver patch subject
 
-> diff --git a/arch/arm/mach-s3c/mach-crag6410.c b/arch/arm/mach-s3c/mach-c=
-rag6410.c
-> index 757c0f383ff1e..1abf08fdb543c 100644
-> --- a/arch/arm/mach-s3c/mach-crag6410.c
-> +++ b/arch/arm/mach-s3c/mach-crag6410.c
+Changes since v1:
+- Fixed IOMMU ports on H616 (patch 7)
+- Updated comment about VP9 on H616
 
-[ ... ]
 
-> @@ -633,6 +644,9 @@ static struct wm831x_pdata crag_pmic_pdata =3D {
->  		&vddint,  /* DCDC2 */
->  		&vddmem,  /* DCDC3 */
->  	},
-> +	.dcdc_swnodes =3D {
-> +		&crag_dcdc1_swnode,
-> +	},
+This series adds support for the Cedar video engine found in the
+Allwinner H616 SoC. On the way, it also fixes some issues with the
+DT representation for the Allwinner H6 SoC.
 
-[Severity: Medium]
-Is it possible that populating the new 'dcdc_swnodes' field relies on the M=
-FD
-core dynamically allocating and amending the mfd_cell array at runtime?
+Patch 1 fixes the video engine's number of IOMMU endpoints on the
+H6 in the DT binding.
 
-Looking at wm831x_add_devices() in drivers/mfd/wm831x-core.c, passing
-these software nodes causes the core driver to dynamically copy the cell
-array to inject the pointers:
+Patch 2 fixes the video engine's number of SRAM regions on the
+H6 in the DT binding.
 
-drivers/mfd/wm831x-core.c:wm831x_add_devices() {
-    ...
-	struct mfd_cell *local_cells __free(kfree) =3D
-		kmemdup_array(cells, num_cells, sizeof(*cells), GFP_KERNEL);
-    ...
-}
+Patch 3 adds a new compatible for the H616's video engine.
 
-The MFD subsystem guidelines explicitly state: "For mfd_cells, do not create
-local copies for dynamic amendments; always use static references." Could t=
-his
-approach be violating the subsystem's architectural rules against dynamic c=
-ell
-amendments?
+Patch 4 adds the new compatible for the H616's video engine to the
+cedrus driver.
 
-> =20
->  	.ldo =3D {
->  		&vddsys,   /* LDO1 */
+Patch 5 adds the video engine's missing SRAM region to the H6 dtsi.
 
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260711-samsung-kp=
--v3-0-b2fcaba77aff@gmail.com?part=3D8
+Patch 6 adds the video engine's missing IOMMU endpoint to the H6 dtsi.
+
+Patch 7 adds a device node for the video engine to the H616 dtsi.
+
+
+Patches 1-4 should go through the media tree, while patches 5-7 will go
+through the soc tree via the sunxi tree.
+
+
+Please have a look.
+
+
+Thanks
+ChenYu
+
+
+Chen-Yu Tsai (6):
+  dt-bindings: media: sun4i-a10-video-engine: Fix IOMMU count for H6
+  dt-bindings: media: sun4i-a10-video-engine: Fix SRAM count for H6
+  dt-bindings: media: sun4i-a10-video-engine: Add H616 compatible
+  staging: media: sunxi: cedrus: add H616 variant
+  arm64: dts: allwinner: sun50i-h6: Add missing SRAM region for video
+    engine
+  arm64: dts: allwinner: sun50i-h6: Add missing IOMMU for video engine
+
+Jernej Skrabec (1):
+  arm64: dts: allwinner: sun50i-h616: Add video engine
+
+ .../allwinner,sun4i-a10-video-engine.yaml     | 45 ++++++++++++++++++-
+ arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi  |  4 +-
+ .../arm64/boot/dts/allwinner/sun50i-h616.dtsi | 12 +++++
+ drivers/staging/media/sunxi/cedrus/cedrus.c   |  4 ++
+ 4 files changed, 61 insertions(+), 4 deletions(-)
+
+-- 
+2.47.3
+
 
