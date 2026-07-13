@@ -1,903 +1,421 @@
-Return-Path: <devicetree+bounces-325526-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-325529-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id dljsKN/hVGqNgQAAu9opvQ
-	(envelope-from <devicetree+bounces-325526-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 15:02:23 +0200
+	id bc2OHaziVGrIgQAAu9opvQ
+	(envelope-from <devicetree+bounces-325529-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 15:05:48 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 083CC74B39D
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 15:02:23 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 852A674B426
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 15:05:47 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=collabora.com header.s=mail header.b=GlzWsLTQ;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-325526-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-325526-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=collabora.com;
+	dkim=pass header.d=linaro.org header.s=google header.b=iDvbb1Ze;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-325529-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-325529-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=linaro.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 7DB9E3036E40
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 13:01:34 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 713463008D34
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 13:05:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B59EF412275;
-	Mon, 13 Jul 2026 13:01:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1402414DF8;
+	Mon, 13 Jul 2026 13:05:35 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47880412286;
-	Mon, 13 Jul 2026 13:01:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A4E3413D86
+	for <devicetree@vger.kernel.org>; Mon, 13 Jul 2026 13:05:33 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783947692; cv=none; b=PqrSIJh9NhNCZD3c2JEcSJqJCzc5/2xQhjYxIobxwt83EBl04H7ZOHiHofuJzBvteZGaA5Pfe4oKbKa6ngN1LBg4Iiy9CYNN6L0GA+MMKIk7pj+R4pPSJXfaT/hs/pNMPy+Y+2VGEw+WcMlk2Ib7pfTcJGz1HMY3kgVdHUA06Ds=
+	t=1783947935; cv=none; b=do2TsgnH5KQmCc+ZdYx3dUzWj1/s4S2eS29hMkdx48MnWg5HD7Id2qpvO901ocrFBqXH/DMp6zLoEI2mb7cnlQS/nb2iHcdv7E53hsyAMbqqB1JxozNq9eUkRxWDkQ6KqccBR3N4yRxHxCYOVx0OuCG78Un1nSKePyViengELHo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783947692; c=relaxed/simple;
-	bh=X9NBFHSXxIWGHJH1LidpKQO1At3RnCRubQ8DBELxmEY=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=WR8jaxMVfwTRqHCsSmFGhcrzOx2wt32BZXtKStqPjawmx9eDSgTMrsrbCpaOZ8y2WxlJCjUN1rUTo6M3K6Y8y9V7diiQ8ofkBiqG8q2y/6e+GSOM8zYDClKcWtwX3HUAsbvV0v98uQhBcpVmFLlH2ZLSFsIaqSzw6xgs5hVpiBM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=GlzWsLTQ; arc=none smtp.client-ip=148.251.105.195
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1783947683;
-	bh=X9NBFHSXxIWGHJH1LidpKQO1At3RnCRubQ8DBELxmEY=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=GlzWsLTQONHOhJ07cjgvymNswfXNNgtTc7Wtryawj6SDATdvjJLTznB4H9HqYAKxh
-	 MMgGJBCtjt7YhJfFnrfhdEutypc4X6by6prlGopk4q9wW8N7Cw8HaTiNuGnPTgzP2I
-	 OuSWOsMbZC8aZVb4DBZnKkF9PhWE/+sbIJSSS2gX3jvgqv9iP5yF8jDmzZdotbZ2sY
-	 V7r0EbnL2FCTgbI7SJCIo2JklPBfV3O5hPv/4Pmoio3pqMXXaosy2OnStd1yiEVHos
-	 MrA0AcfkuZAESp8BdeimeqTGqF0bZRa8rOnPpmxZgivvX4sgg6sRhlKlxHEivyOjin
-	 b0M3vmrJKfS3w==
-Received: from IcarusMOD.eternityproject.eu (unknown [100.64.1.21])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id F178917E0E95;
-	Mon, 13 Jul 2026 15:01:21 +0200 (CEST)
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-To: chunkuang.hu@kernel.org
-Cc: p.zabel@pengutronix.de,
-	maarten.lankhorst@linux.intel.com,
-	mripard@kernel.org,
-	tzimmermann@suse.de,
-	airlied@gmail.com,
-	simona@ffwll.ch,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	matthias.bgg@gmail.com,
-	angelogioacchino.delregno@collabora.com,
-	jitao.shi@mediatek.com,
-	dri-devel@lists.freedesktop.org,
-	linux-mediatek@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	kernel@collabora.com,
-	justin.yeh@mediatek.com,
-	jason-jh.lin@mediatek.com
-Subject: [PATCH v3 10/10] drm/mediatek: Add Write DMA (WDMA) Engine for Writeback support
-Date: Mon, 13 Jul 2026 15:01:03 +0200
-Message-ID: <20260713130103.34654-11-angelogioacchino.delregno@collabora.com>
-X-Mailer: git-send-email 2.54.0
-In-Reply-To: <20260713130103.34654-1-angelogioacchino.delregno@collabora.com>
-References: <20260713130103.34654-1-angelogioacchino.delregno@collabora.com>
+	s=arc-20240116; t=1783947935; c=relaxed/simple;
+	bh=LOLjznPspC1I6dtqAHg1MsPIrAzR512HbwBbzv+G9xg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=LO8gaihuQpbaIxOq0FBbwLhws7x6aY4H0zP0bPh/RKzrmVog1tYJBeOaOFNCuDE5rO4RKRO/CZ/Paqn2+J1dTMeNFS78tJ/q+qPm4RVWSVYFO2bj194Wz/LD/qUqj4ZIMm+cJDiK0F90QyJQGoQtZl/DZUo6gjJ1oQIPLD49Ieg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=iDvbb1Ze; arc=none smtp.client-ip=209.85.208.47
+Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-69c19a37eeaso6163203a12.2
+        for <devicetree@vger.kernel.org>; Mon, 13 Jul 2026 06:05:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1783947932; x=1784552732; darn=vger.kernel.org;
+        h=content-transfer-encoding:content-type:in-reply-to:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=i1I9AnCFa8eH6fsCvMzP+tR/LftoRmjX+2dMhPeaMT8=;
+        b=iDvbb1Ze+M+KacQPFmdPkWfnmNs+Jekyf9FohTnP5RTyM2DzFiXh19oXUpB8a5e/wl
+         tkVZbMpa3T2fQRa17U8Wporvang7SevgbqMpCesGO1dn4+pOhlHqszLtPTtM04opCZWR
+         QzOcAA/rnw+xdSjQ1+dNXI8M+49PoKTDFDaCgCzmPrpm5SUNdNrYmfGAa6fKDp5HMigY
+         zO3J5laMfgqXQZZdtfbnSZmN9EGvwa3Hu0sz0KSijgRj6CFMj1OLuPDNV0ssjQUhROtK
+         X0hk2m2s0SS1aTDx5+EH4x4zeSSRUIVk4sNe9Jx8zAouLApo9yjUkgIaQi6Sq3cLGZ9i
+         I68g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1783947932; x=1784552732;
+        h=content-transfer-encoding:content-type:in-reply-to:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=i1I9AnCFa8eH6fsCvMzP+tR/LftoRmjX+2dMhPeaMT8=;
+        b=khgkdC7Gs4ClI9q1lc8PZqZ/A+rF9ibIWpMcFOFTevnMsK2FUJG5aqgud7CrpI6w3u
+         AqXI4Ijchf+YbYZyBMvyCyaJNB+trKMu135WoRvf0tUWljeEYSGZqZ5CPt4X9QYWrOT/
+         RckGZ2OOTgQzj3apG2l2iAELCwZRqwIhxNZZDX15TSQchwRJtm+KHTaB+DL9S/eCsIfb
+         bn29t35VbSaNe5s6EzOXkX/DNTAvMVY7pObsfrtE6tvCh+UaAnO+HIkbTryZKAUVjFBi
+         UvV5YA5ZKMdqJs5KWk/nfrJy29DzXotiYZMgimbGQ+lMeo97X8FQUL5W/S3c6ATg1nyu
+         kcdg==
+X-Forwarded-Encrypted: i=1; AHgh+RoRi0fv8/Q2tIkzNyURnHKxzaptW3IC/FFFhonxU0ZGpi4BrLZQnO1RWnS+uh3St/ZSfjxU4T9kMMBX@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy8hh2GNMERzBfMT7R8DBfYSWriIz3H1gZDvgO6gEYFzQoNMipr
+	5x6IsSOvifJOxL7ODnhW4i1HcTYIFrBOfjdEX+EDdkqJcENrAzORNIeEHYa8qxTmWAY=
+X-Gm-Gg: AfdE7claz8AceMDuHH2a9VEwfZrBq6YbB+NDBrBZV7XjrO8Gm9hdiVjzpbC4guTZZ/C
+	OV09JBSt4vGyTonECzwDuOVvUuCtJeC35cYK5UFHGGwTk3sOKysDFbsLX7jHJcYbylL+oHnMinE
+	p1OOyi/4Dbl958rmZVjA3ShfCiBssOvxozGbdY+ggnMuHP4qugBd80hU7vdB6eVwbAOfsunFP8K
+	or26nOzg/48VNZdjwpYfNP0qfznoJB0tOpuBn8W2AswIH0dED8gTETdfC+jovKKYyGHwSNpS/h+
+	e0yRDQZ+oOkkGQqWkiXnGGw/kN9Drmm0Rrl4Tdaw7Oyqr+FZOnhkOOY+9OKFg38k0rdHJRZx6Sl
+	QwJfFe7t2HTTwRL021YWyK+QPp0N/aFJKUhuywQcaYFB1o9RQ6iclM/fQqe23vR0jBPzhIR5IYV
+	/KMqJHaqpxzFpT+Iq6kOxsbZc=
+X-Received: by 2002:a05:6402:2b8c:b0:698:a9e0:4386 with SMTP id 4fb4d7f45d1cf-69c5f12dc29mr3676164a12.29.1783947931935;
+        Mon, 13 Jul 2026 06:05:31 -0700 (PDT)
+Received: from [192.168.0.167] ([109.77.2.191])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-69a19ce4b4fsm14880852a12.10.2026.07.13.06.05.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 13 Jul 2026 06:05:30 -0700 (PDT)
+Message-ID: <da70ed94-fd76-4105-8071-1ed8d8e41d84@linaro.org>
+Date: Mon, 13 Jul 2026 14:05:29 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 6/7] media: qcom: camss: Add CAMSS Offline Processing
+ Engine driver
+To: Loic Poulain <loic.poulain@oss.qualcomm.com>,
+ Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Kees Cook <kees@kernel.org>,
+ "Gustavo A. R. Silva" <gustavoars@kernel.org>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, linux-hardening@vger.kernel.org,
+ devicetree@vger.kernel.org, Hans de Goede <johannes.goede@oss.qualcomm.com>
+References: <20260710-camss-isp-ope-v4-0-51207a0319d8@oss.qualcomm.com>
+ <20260710-camss-isp-ope-v4-6-51207a0319d8@oss.qualcomm.com>
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Content-Language: en-GB
+In-Reply-To: <20260710-camss-isp-ope-v4-6-51207a0319d8@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.84 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
-	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORWARDED(0.00)[lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-325529-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[16];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[pengutronix.de,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,collabora.com,mediatek.com,lists.freedesktop.org,lists.infradead.org,vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-325526-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:loic.poulain@oss.qualcomm.com,m:vladimir.zapolskiy@linaro.org,m:mchehab@kernel.org,m:kees@kernel.org,m:gustavoars@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:andersson@kernel.org,m:konradybcio@kernel.org,m:linux-kernel@vger.kernel.org,m:linux-media@vger.kernel.org,m:linux-arm-msm@vger.kernel.org,m:linux-hardening@vger.kernel.org,m:devicetree@vger.kernel.org,m:johannes.goede@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[angelogioacchino.delregno@collabora.com,devicetree@vger.kernel.org];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:chunkuang.hu@kernel.org,m:p.zabel@pengutronix.de,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:matthias.bgg@gmail.com,m:angelogioacchino.delregno@collabora.com,m:jitao.shi@mediatek.com,m:dri-devel@lists.freedesktop.org,m:linux-mediatek@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:kernel@collabora.com,m:justin.yeh@mediatek.com,m:jason-jh.lin@mediatek.com,m:krzk@kernel.org,m:conor@kernel.org,m:matthiasbgg@gmail.com,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[bryan.odonoghue@linaro.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[linaro.org:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[21];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[angelogioacchino.delregno@collabora.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[collabora.com:+];
-	TO_DN_NONE(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[bryan.odonoghue@linaro.org,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	ALIAS_RESOLVED(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,vger.kernel.org:from_smtp,collabora.com:from_mime,collabora.com:mid,collabora.com:email,collabora.com:dkim]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,vger.kernel.org:from_smtp,linaro.org:from_mime,linaro.org:dkim,linaro.org:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 083CC74B39D
+X-Rspamd-Queue-Id: 852A674B426
 
-Add a basic driver for the Write DMA Engine and initial compatible
-for the MediaTek MT8173 and MediaTek Dimensity 1200 MT6893, and
-hook it up to the mtk_ddp_comp and mtk_drm_drv in order for it to
-probe.
+On 10/07/2026 10:04, Loic Poulain wrote:
+> Add an image processing driver for the Qualcomm Offline Processing Engine
+> (OPE). OPE is a memory-to-memory ISP block that converts raw Bayer
+> frames to YUV, performing white balance, demosaic, chroma enhancement,
+> color correction and downscaling.
+> 
+> The hardware architecture consists of Fetch Engines and Write Engines,
+> connected through intermediate pipeline modules for pix processing.
+> 
+> The driver exposes three video nodes per pipeline instance:
+>    - ope_input: Bayer RAW input (V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE)
+>    - ope_disp_output: YUV output     (V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE)
+>    - ope_params: ISP parameters (V4L2_BUF_TYPE_META_OUTPUT)
+> 
+> Hardware features:
+>    - Stripe-based processing (up to 336 pixels wide per stripe)
+>    - White balance (CLC_WB)
+>    - Demosaic / Bayer-to-RGB (CLC_DEMO)
+>    - RGB-to-YUV conversion (CLC_CHROMA_ENHAN)
+>    - Color correction matrix (CLC_CC)
+>    - MN downscaler for chroma and luma planes
+> 
+> Default configuration values are based on public standards such as BT.601.
+> 
+> Processing Model:
+> OPE processes frames in stripes of up to 336 pixels. Therefore, frames must
+> be split into stripes for processing. Each stripe is configured after the
+> previous one has been acquired (double buffered registers). To minimize
+> inter-stripe latency, stripe configurations are generated ahead of time.
+> 
+> Signed-off-by: Loic Poulain <loic.poulain@oss.qualcomm.com>
+> Co-developed-by: Hans de Goede <johannes.goede@oss.qualcomm.com>
+> Signed-off-by: Hans de Goede <johannes.goede@oss.qualcomm.com>
+> ---
+>   drivers/media/platform/qcom/camss/Kconfig     |   18 +
+>   drivers/media/platform/qcom/camss/Makefile    |    4 +
+>   drivers/media/platform/qcom/camss/camss-ope.c | 3245 +++++++++++++++++++++++++
 
-This display controller component is used to enable the writeback
-engine that can be used for faster display image capturing in the
-userspace (for example, screenshots and screen recording).
+I think this should be in a sub-directory.
 
-Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+>   3 files changed, 3267 insertions(+)
+> 
+> diff --git a/drivers/media/platform/qcom/camss/Kconfig b/drivers/media/platform/qcom/camss/Kconfig
+> index 4eda48cb1adf049a7fb6cb59b9da3c0870fe57f4..895fc57a679655fcb6f308be1565dc6b77bbbd67 100644
+> --- a/drivers/media/platform/qcom/camss/Kconfig
+> +++ b/drivers/media/platform/qcom/camss/Kconfig
+> @@ -7,3 +7,21 @@ config VIDEO_QCOM_CAMSS
+>   	select VIDEO_V4L2_SUBDEV_API
+>   	select VIDEOBUF2_DMA_SG
+>   	select V4L2_FWNODE
+> +
+> +config VIDEO_QCOM_CAMSS_OPE
+> +	tristate "Qualcomm Offline Processing Engine (OPE) driver"
+> +	depends on VIDEO_QCOM_CAMSS
+> +	depends on V4L_PLATFORM_DRIVERS
+> +	depends on VIDEO_DEV
+> +	depends on (ARCH_QCOM && IOMMU_DMA) || COMPILE_TEST
+> +	select V4L2_ISP
+> +	select VIDEOBUF2_DMA_CONTIG
+> +	select VIDEOBUF2_VMALLOC
+> +	help
+> +	  Enable support for the Qualcomm Offline Processing Engine (OPE).
+> +	  OPE is a memory-to-memory ISP block that converts raw Bayer frames
+> +	  to YUV, performing white balance, demosaic, chroma enhancement and
+> +	  downscaling. Found on QCM2290 and related SoCs.
+> +
+> +	  To compile this driver as a module, choose M here: the module
+> +	  will be called qcom-camss-ope.
+> diff --git a/drivers/media/platform/qcom/camss/Makefile b/drivers/media/platform/qcom/camss/Makefile
+> index 5678621efb6780b67a043ec8a2e914cce02d9b98..422eebc0a86301de3f39c743fbc06c437b17ac9a 100644
+> --- a/drivers/media/platform/qcom/camss/Makefile
+> +++ b/drivers/media/platform/qcom/camss/Makefile
+> @@ -31,3 +31,7 @@ qcom-camss-objs += \
+>   		camss-params.o \
+>   
+>   obj-$(CONFIG_VIDEO_QCOM_CAMSS) += qcom-camss.o
+> +
+> +qcom-camss-ope-objs := camss-ope.o
+> +
+> +obj-$(CONFIG_VIDEO_QCOM_CAMSS_OPE) += qcom-camss-ope.o
+> diff --git a/drivers/media/platform/qcom/camss/camss-ope.c b/drivers/media/platform/qcom/camss/camss-ope.c
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..2c0d68cf1a637c998ebe4d3afb1fa6dbdb68f029
+> --- /dev/null
+> +++ b/drivers/media/platform/qcom/camss/camss-ope.c
+> @@ -0,0 +1,3245 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * camss-ope.c
+> + *
+> + * Qualcomm MSM Camera Subsystem - Offline Processing Engine
+> + *
+> + * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+> + */
+> +
+> +/*
+> + * This driver provides driver implementation for the Qualcomm Offline
+> + * Processing Engine (OPE). OPE is a memory-to-memory hardware block
+> + * designed for image processing on a source frame. Typically, the input
+> + * frame originates from the SoC CSI capture path, though not limited to.
+> + *
+> + * The hardware architecture consists of Fetch Engines and Write Engines,
+> + * connected through intermediate pipeline modules:
+> + *   [FETCH ENGINES] => [Pipeline Modules] => [WRITE ENGINES]
+> + *
+> + * Current Configuration:
+> + *     Fetch Engine: One fetch engine is used for Bayer frame input.
+> + *     Write Engines: Two display write engines for Y and UV planes output.
+> + *
+> + * Only a subset of the pipeline modules are enabled:
+> + *   CLC_WB: White balance for channel gain configuration
+> + *   CLC_DEMO: Demosaic for Bayer to RGB conversion
+> + *   CLC_CC: Color Correct, coefficient based RGB correction
+> + *   CLC_CHROMA_ENHAN: for RGB to YUV conversion
+> + *   CLC_DOWNSCALE*: Downscaling for UV (YUV444 -> YUV422/YUV420) and YUV planes
+> + *
+> + * Default configuration values are based on public standards such as BT.601.
+> + *
+> + * Processing Model:
+> + * OPE processes frames in stripes of up to 336 pixels. Therefore, frames must
+> + * be split into stripes for processing. Each stripe is configured after the
+> + * previous one has been acquired (double buffered registers). To minimize
+> + * inter-stripe latency, the stripe configurations are generated ahead of time.
+> + */
+> +
+> +#include <linux/bitfield.h>
+> +#include <linux/cleanup.h>
+> +#include <linux/clk.h>
+> +#include <linux/completion.h>
+> +#include <linux/delay.h>
+> +#include <linux/dma-mapping.h>
+> +#include <linux/interconnect.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/io.h>
+> +#include <linux/iopoll.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/pm_clock.h>
+> +#include <linux/pm_domain.h>
+> +#include <linux/pm_opp.h>
+> +#include <linux/pm_runtime.h>
+> +#include <linux/slab.h>
+> +#include <linux/units.h>
+> +
+> +#include <media/v4l2-device.h>
+> +#include <media/media-device.h>
+> +#include <media/v4l2-ctrls.h>
+> +#include <media/v4l2-event.h>
+> +#include <media/v4l2-fh.h>
+> +#include <media/v4l2-ioctl.h>
+> +#include <media/v4l2-rect.h>
+> +
+> +#include "camss-pipeline.h"
+> +
+> +#include <media/videobuf2-dma-contig.h>
+> +#include <media/videobuf2-vmalloc.h>
+> +
+> +#include <uapi/linux/camss-config.h>
+> +
+> +#include "camss-params.h"
+> +
+> +#define OPE_NAME	"qcom-camss-ope"
+> +
+> +/* Format descriptor */
+> +struct ope_fmt {
+> +	u32		fourcc;
+> +	unsigned int	depth;
+> +	unsigned int	align;
+> +	unsigned int	num_planes;
+> +	u32		mbus_code;
+> +	unsigned int	c_hsub;
+> +	unsigned int	c_vsub;
+> +};
+> +
+> +/* Per-queue format state */
+> +struct ope_fmt_state {
+> +	const struct ope_fmt	*fmt;
+> +	unsigned int		width;
+> +	unsigned int		height;
+> +	struct v4l2_rect	crop;
+> +	unsigned int		bytesperline;
+> +	unsigned int		sizeimage;
+> +	enum v4l2_colorspace	colorspace;
+> +	enum v4l2_xfer_func	xfer_func;
+> +	enum v4l2_ycbcr_encoding	ycbcr_enc;
+> +	enum v4l2_quantization	quantization;
+> +	unsigned int		sequence;
+> +	struct v4l2_fract	timeperframe;
+> +};
+> +
+> +/* -------- Register layout -------- */
+> +
+> +#define OPE_TOP_HW_VERSION					0x000
+> +#define		OPE_TOP_HW_VERSION_STEP		GENMASK(15, 0)
+> +#define		OPE_TOP_HW_VERSION_REV		GENMASK(27, 16)
+> +#define		OPE_TOP_HW_VERSION_GEN		GENMASK(31, 28)
+> +#define OPE_TOP_RESET_CMD					0x004
+> +#define		OPE_TOP_RESET_CMD_HW		BIT(0)
+> +#define		OPE_TOP_RESET_CMD_SW		BIT(1)
+> +#define OPE_TOP_IRQ_STATUS					0x014
+> +#define OPE_TOP_IRQ_MASK					0x018
+> +#define		OPE_TOP_IRQ_STATUS_RST_DONE	BIT(0)
+> +#define		OPE_TOP_IRQ_STATUS_WE		BIT(1)
+> +#define		OPE_TOP_IRQ_STATUS_FE		BIT(2)
+> +#define		OPE_TOP_IRQ_STATUS_VIOL		BIT(3)
+> +#define		OPE_TOP_IRQ_STATUS_IDLE		BIT(4)
+> +#define OPE_TOP_IRQ_CLEAR					0x01c
+> +#define OPE_TOP_IRQ_CMD						0x024
+> +#define		OPE_TOP_IRQ_CMD_CLEAR		BIT(0)
+> +#define OPE_TOP_VIOLATION_STATUS				0x028
+> +
+> +/* Fetch engine */
+> +#define OPE_BUS_RD_INPUT_IF_IRQ_MASK				0x00c
+> +#define OPE_BUS_RD_INPUT_IF_IRQ_CLEAR				0x010
+> +#define OPE_BUS_RD_INPUT_IF_IRQ_CMD				0x014
+> +#define		OPE_BUS_RD_INPUT_IF_IRQ_CMD_CLEAR	BIT(0)
+> +#define OPE_BUS_RD_INPUT_IF_IRQ_STATUS				0x018
+> +#define OPE_BUS_RD_INPUT_IF_CMD					0x01c
+> +#define		OPE_BUS_RD_INPUT_IF_CMD_GO_CMD		BIT(0)
+> +#define OPE_BUS_RD_CLIENT_0_CORE_CFG				0x050
+> +#define		OPE_BUS_RD_CLIENT_0_CORE_CFG_EN	BIT(0)
+> +#define OPE_BUS_RD_CLIENT_0_CCIF_META_DATA			0x054
+> +#define		OPE_BUS_RD_CLIENT_0_CCIF_MD_PIX_PATTERN GENMASK(7, 2)
+> +#define OPE_BUS_RD_CLIENT_0_ADDR_IMAGE				0x058
+> +#define OPE_BUS_RD_CLIENT_0_RD_BUFFER_SIZE			0x05c
+> +#define OPE_BUS_RD_CLIENT_0_RD_STRIDE				0x060
+> +#define OPE_BUS_RD_CLIENT_0_UNPACK_CFG_0			0x064
+> +
+> +/* Write engines */
+> +#define OPE_BUS_WR_INPUT_IF_IRQ_MASK_0				0x018
+> +#define OPE_BUS_WR_INPUT_IF_IRQ_MASK_1				0x01c
+> +#define OPE_BUS_WR_INPUT_IF_IRQ_CLEAR_0				0x020
+> +#define OPE_BUS_WR_INPUT_IF_IRQ_STATUS_0			0x028
+> +#define		OPE_BUS_WR_INPUT_IF_IRQ_STATUS_0_RUP_DONE	BIT(0)
+> +#define		OPE_BUS_WR_INPUT_IF_IRQ_STATUS_0_BUF_DONE	BIT(8)
+> +#define		OPE_BUS_WR_INPUT_IF_IRQ_STATUS_0_CONS_VIOL	BIT(28)
+> +#define		OPE_BUS_WR_INPUT_IF_IRQ_STATUS_0_VIOL		BIT(30)
+> +#define		OPE_BUS_WR_INPUT_IF_IRQ_STATUS_0_IMG_SZ_VIOL	BIT(31)
+> +#define OPE_BUS_WR_INPUT_IF_IRQ_CMD				0x030
+> +#define		OPE_BUS_WR_INPUT_IF_IRQ_CMD_CLEAR	BIT(0)
+> +#define OPE_BUS_WR_VIOLATION_STATUS				0x064
+> +#define OPE_BUS_WR_IMAGE_SIZE_VIOLATION_STATUS			0x070
+> +#define OPE_BUS_WR_CLIENT_CFG(c)				(0x200 + (c) * 0x100)
+> +#define		OPE_BUS_WR_CLIENT_CFG_EN		BIT(0)
+> +#define		OPE_BUS_WR_CLIENT_CFG_AUTORECOVER	BIT(4)
+> +#define OPE_BUS_WR_CLIENT_ADDR_IMAGE(c)				(0x204 + (c) * 0x100)
+> +#define OPE_BUS_WR_CLIENT_IMAGE_CFG_0(c)			(0x20c + (c) * 0x100)
+> +#define OPE_BUS_WR_CLIENT_IMAGE_CFG_1(c)			(0x210 + (c) * 0x100)
+> +#define OPE_BUS_WR_CLIENT_IMAGE_CFG_2(c)			(0x214 + (c) * 0x100)
+> +#define OPE_BUS_WR_CLIENT_PACKER_CFG(c)				(0x218 + (c) * 0x100)
+> +#define OPE_BUS_WR_CLIENT_MAX	4
+> +
+> +/* Pipeline modules */
+> +#define OPE_PP_CLC_WB_GAIN_MODULE_CFG				(0x200 + 0x60)
+
+Can you just map the individual blocks so that we can interrogate 
+HW_VERSION HW_STATUS and friends ? Those regs usually come first. I can 
+see useful debugfs and/or dev_dbg() usages of those data.
+> +#define		OPE_PP_CLC_WB_GAIN_MODULE_CFG_EN	BIT(0)
+> +#define OPE_PP_CLC_WB_GAIN_WB_CFG(ch)				(0x200 + 0x68 + 4 * (ch))
+> +#define		OPE_PP_CLC_WB_GAIN_WB_CFG_GAIN		GENMASK(14, 0)
+> +#define OPE_PP_CLC_WB_GAIN_WB_SUB_CFG(ch)			(0x200 + 0x74 + 4 * (ch))
+> +#define		OPE_PP_CLC_WB_GAIN_WB_SUB_CFG_VAL	GENMASK(31, 20)
+> +#define OPE_PP_CLC_WB_GAIN_WB_ADD_CFG(ch)			(0x200 + 0x80 + 4 * (ch))
+> +#define		OPE_PP_CLC_WB_GAIN_WB_ADD_CFG_VAL	GENMASK(31, 20)
+> +
+> +#define OPE_PP_CLC_CC_BASE					0x400
+
+Is this actually the correct register base for CCM ?
+
+I think you should check again.
+
+Same comment for each of these blocks HW_VERSION should be the first 
+register.
+
 ---
- drivers/gpu/drm/mediatek/Makefile        |   1 +
- drivers/gpu/drm/mediatek/mtk_ddp_comp.c  |  21 +-
- drivers/gpu/drm/mediatek/mtk_disp_drv.h  |  20 +
- drivers/gpu/drm/mediatek/mtk_disp_wdma.c | 617 +++++++++++++++++++++++
- drivers/gpu/drm/mediatek/mtk_drm_drv.c   |   4 +
- drivers/gpu/drm/mediatek/mtk_drm_drv.h   |   1 +
- 6 files changed, 662 insertions(+), 2 deletions(-)
- create mode 100644 drivers/gpu/drm/mediatek/mtk_disp_wdma.c
-
-diff --git a/drivers/gpu/drm/mediatek/Makefile b/drivers/gpu/drm/mediatek/Makefile
-index 03b3470ea5b5..8079962597c8 100644
---- a/drivers/gpu/drm/mediatek/Makefile
-+++ b/drivers/gpu/drm/mediatek/Makefile
-@@ -11,6 +11,7 @@ mediatek-drm-y := mtk_crtc.o \
- 		  mtk_disp_ovl.o \
- 		  mtk_disp_ovl_adaptor.o \
- 		  mtk_disp_rdma.o \
-+		  mtk_disp_wdma.o \
- 		  mtk_drm_drv.o \
- 		  mtk_dsi.o \
- 		  mtk_dpi.o \
-diff --git a/drivers/gpu/drm/mediatek/mtk_ddp_comp.c b/drivers/gpu/drm/mediatek/mtk_ddp_comp.c
-index 13aaf12ecbe5..94b356da6de7 100644
---- a/drivers/gpu/drm/mediatek/mtk_ddp_comp.c
-+++ b/drivers/gpu/drm/mediatek/mtk_ddp_comp.c
-@@ -357,6 +357,22 @@ static const struct mtk_ddp_comp_funcs ddp_rdma = {
- 	.get_num_formats = mtk_rdma_get_num_formats,
- };
- 
-+static const struct mtk_ddp_comp_funcs ddp_wdma = {
-+	.clk_enable = mtk_wdma_clk_enable,
-+	.clk_disable = mtk_wdma_clk_disable,
-+	.config = mtk_wdma_config,
-+	.start = mtk_wdma_start,
-+	.stop = mtk_wdma_stop,
-+	.register_vblank_cb = mtk_wdma_register_vblank_cb,
-+	.unregister_vblank_cb = mtk_wdma_unregister_vblank_cb,
-+	.enable_vblank = mtk_wdma_enable_vblank,
-+	.disable_vblank = mtk_wdma_disable_vblank,
-+	.layer_nr = mtk_wdma_layer_nr,
-+	.layer_config = mtk_wdma_layer_config,
-+	.get_formats = mtk_wdma_get_formats,
-+	.get_num_formats = mtk_wdma_get_num_formats,
-+};
-+
- static const struct mtk_ddp_comp_funcs ddp_ufoe = {
- 	.clk_enable = mtk_ddp_clk_enable,
- 	.clk_disable = mtk_ddp_clk_disable,
-@@ -460,8 +476,8 @@ static const struct mtk_ddp_comp_match mtk_ddp_matches[DDP_COMPONENT_DRM_ID_MAX]
- 	[DDP_COMPONENT_RDMA2]		= { MTK_DISP_RDMA,		2, &ddp_rdma },
- 	[DDP_COMPONENT_RDMA4]		= { MTK_DISP_RDMA,		4, &ddp_rdma },
- 	[DDP_COMPONENT_UFOE]		= { MTK_DISP_UFOE,		0, &ddp_ufoe },
--	[DDP_COMPONENT_WDMA0]		= { MTK_DISP_WDMA,		0, NULL },
--	[DDP_COMPONENT_WDMA1]		= { MTK_DISP_WDMA,		1, NULL },
-+	[DDP_COMPONENT_WDMA0]		= { MTK_DISP_WDMA,		0, &ddp_wdma },
-+	[DDP_COMPONENT_WDMA1]		= { MTK_DISP_WDMA,		1, &ddp_wdma },
- };
- 
- static bool mtk_ddp_comp_find(struct device *dev,
-@@ -642,6 +658,7 @@ int mtk_ddp_comp_init(struct device *dev, struct device_node *node, struct mtk_d
- 	    type == MTK_DISP_OVL_2L ||
- 	    type == MTK_DISP_PWM ||
- 	    type == MTK_DISP_RDMA ||
-+	    type == MTK_DISP_WDMA ||
- 	    type == MTK_DPI ||
- 	    type == MTK_DP_INTF ||
- 	    type == MTK_DSI)
-diff --git a/drivers/gpu/drm/mediatek/mtk_disp_drv.h b/drivers/gpu/drm/mediatek/mtk_disp_drv.h
-index 5e2d8748120a..e0c30c6c7cc8 100644
---- a/drivers/gpu/drm/mediatek/mtk_disp_drv.h
-+++ b/drivers/gpu/drm/mediatek/mtk_disp_drv.h
-@@ -181,6 +181,26 @@ void mtk_mdp_rdma_config(struct device *dev, struct mtk_mdp_rdma_cfg *cfg,
- const u32 *mtk_mdp_rdma_get_formats(struct device *dev);
- size_t mtk_mdp_rdma_get_num_formats(struct device *dev);
- 
-+int mtk_wdma_clk_enable(struct device *dev);
-+void mtk_wdma_clk_disable(struct device *dev);
-+void mtk_wdma_config(struct device *dev, unsigned int width,
-+		     unsigned int height, unsigned int vrefresh,
-+		     unsigned int bpc, struct cmdq_pkt *cmdq_pkt);
-+unsigned int mtk_wdma_layer_nr(struct device *dev);
-+void mtk_wdma_layer_config(struct device *dev, unsigned int idx,
-+			   struct mtk_plane_state *state,
-+			   struct cmdq_pkt *cmdq_pkt);
-+void mtk_wdma_start(struct device *dev);
-+void mtk_wdma_stop(struct device *dev);
-+void mtk_wdma_register_vblank_cb(struct device *dev,
-+				 void (*vblank_cb)(void *),
-+				 void *vblank_cb_data);
-+void mtk_wdma_unregister_vblank_cb(struct device *dev);
-+void mtk_wdma_enable_vblank(struct device *dev);
-+void mtk_wdma_disable_vblank(struct device *dev);
-+const u32 *mtk_wdma_get_formats(struct device *dev);
-+size_t mtk_wdma_get_num_formats(struct device *dev);
-+
- int mtk_padding_clk_enable(struct device *dev);
- void mtk_padding_clk_disable(struct device *dev);
- void mtk_padding_start(struct device *dev);
-diff --git a/drivers/gpu/drm/mediatek/mtk_disp_wdma.c b/drivers/gpu/drm/mediatek/mtk_disp_wdma.c
-new file mode 100644
-index 000000000000..057fbe298de1
---- /dev/null
-+++ b/drivers/gpu/drm/mediatek/mtk_disp_wdma.c
-@@ -0,0 +1,617 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Copyright (c) 2021 MediaTek Inc.
-+ * Copyright (c) 2025 Collabora Ltd
-+ *                    AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-+ */
-+
-+#include <drm/drm_atomic.h>
-+#include <drm/drm_atomic_helper.h>
-+#include <drm/drm_connector.h>
-+#include <drm/drm_edid.h>
-+#include <drm/drm_fourcc.h>
-+#include <drm/drm_framebuffer.h>
-+#include <drm/drm_gem_dma_helper.h>
-+#include <drm/drm_probe_helper.h>
-+#include <drm/drm_writeback.h>
-+
-+#include <linux/align.h>
-+#include <linux/clk.h>
-+#include <linux/component.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/platform_device.h>
-+#include <linux/pm_runtime.h>
-+#include <linux/soc/mediatek/mtk-cmdq.h>
-+#include <linux/wordpart.h>
-+
-+#include "mtk_crtc.h"
-+#include "mtk_ddp_comp.h"
-+#include "mtk_disp_drv.h"
-+#include "mtk_drm_drv.h"
-+
-+#define DISP_REG_WDMA_INT_ENABLE		0x000
-+ #define WDMA_FRAME_COMPLETE_INT		BIT(0)
-+#define DISP_REG_WDMA_INT_STATUS		0x004
-+#define DISP_REG_WDMA_EN			0x008
-+ #define WDMA_ENGINE_EN				BIT(0)
-+#define DISP_REG_WDMA_CFG			0x014
-+ #define WDMA_CFG_OUT_FMT			GENMASK(7, 4)
-+  #define WDMA_OUT_FMT_RGB565			0
-+  #define WDMA_OUT_FMT_RGB888			1
-+  #define WDMA_OUT_FMT_RGBA8888			2
-+  #define WDMA_OUT_FMT_ARGB8888			3
-+  #define WDMA_OUT_FMT_UYVY			4
-+  #define WDMA_OUT_FMT_YUY2			5
-+  #define WDMA_OUT_FMT_P010			6
-+  #define WDMA_OUT_FMT_Y_ONLY			7
-+  #define WDMA_OUT_FMT_I420			8
-+  #define WDMA_OUT_FMT_ARGB2101010		11
-+  #define WDMA_OUT_FMT_NV12			12
-+ #define WDMA_CT_EN				BIT(11)
-+ #define WDMA_CFG_SWAP				BIT(16)
-+ #define WDMA_UFO_DCP_ENABLE			BIT(17)
-+ #define WDMA_INT_MTX_SEL			GENMASK(27, 23)
-+  #define WDMA_CT_COEF_RGB_TO_JPEG		0
-+  #define WDMA_CT_COEF_JPEG_TO_RGB		4
-+#define DISP_REG_WDMA_SRC_SIZE			0x018
-+#define DISP_REG_WDMA_CLIP_SIZE			0x01c
-+ #define WDMA_HEIGHT_PX				GENMASK(29, 16)
-+ #define WDMA_WIDTH_PX				GENMASK(13, 0)
-+#define DISP_REG_WDMA_CLIP_COORD		0x020
-+ #define WDMA_CLIP_Y_COORD			GENMASK(29, 16)
-+ #define WDMA_CLIP_X_COORD			GENMASK(13, 0)
-+#define DISP_REG_WDMA_SHADOW_CTRL		0x024
-+ #define WDMA_FORCE_COMMIT			BIT(0)
-+ #define WDMA_BYPASS_SHADOW			BIT(1)
-+#define DISP_REG_WDMA_DST_W_IN_BYTE		0x028
-+#define DISP_REG_WDMA_DST_UV_PITCH		0x078
-+ #define WDMA_UV_DST_W_IN_BYTE			GENMASK(15, 0)
-+#define DISP_REG_WDMA_DST_ADDR_LSB		0xf00
-+#define DISP_REG_WDMA_DST_ADDR_MSB_MT6893	0xf20
-+#define DISP_REG_WDMA_DST_ADDRX(r, x)		(r + (x * 0x4))
-+
-+static const u32 mtk_wdma_wb_output_formats[] = {
-+	DRM_FORMAT_RGB888
-+};
-+
-+static const u32 mt6893_formats[] = {
-+	DRM_FORMAT_XRGB8888,
-+	DRM_FORMAT_ARGB8888,
-+	DRM_FORMAT_BGRX8888,
-+	DRM_FORMAT_BGRA8888,
-+	DRM_FORMAT_ABGR8888,
-+	DRM_FORMAT_XBGR8888,
-+	DRM_FORMAT_RGB888,
-+	DRM_FORMAT_BGR888,
-+	DRM_FORMAT_RGB565,
-+	DRM_FORMAT_YUV420,
-+	DRM_FORMAT_YVU420,
-+	DRM_FORMAT_UYVY,
-+	DRM_FORMAT_YUYV,
-+};
-+
-+struct mtk_disp_wdma_data {
-+	u32 reg_wdma_dst_addr0_msb;
-+	const u32 *formats;
-+	size_t num_formats;
-+};
-+
-+struct mtk_disp_wdma {
-+	struct device			*dev;
-+	struct clk			*clk;
-+	void __iomem			*regs;
-+	struct cmdq_client_reg		cmdq_reg;
-+	const struct mtk_disp_wdma_data	*data;
-+	void				(*vblank_cb)(void *data);
-+	void				*vblank_cb_data;
-+	int				irq;
-+	struct drm_writeback_connector	wb_connector;
-+	bool				wb_pending;
-+};
-+
-+static inline struct mtk_disp_wdma *connector_to_wdma(struct drm_connector *connector)
-+{
-+	return container_of(connector, struct mtk_disp_wdma, wb_connector.base);
-+}
-+
-+static irqreturn_t mtk_disp_wdma_irq_handler(int irq, void *dev_id)
-+{
-+	struct mtk_disp_wdma *wdma = dev_id;
-+
-+	/* Clear frame completion interrupt */
-+	writel(0x0, wdma->regs + DISP_REG_WDMA_INT_STATUS);
-+
-+	if (wdma->vblank_cb)
-+		wdma->vblank_cb(wdma->vblank_cb_data);
-+
-+	/* TODO: Move completion signaling to CMDQ interrupt callback */
-+	if (wdma->wb_pending) {
-+		drm_writeback_signal_completion(&wdma->wb_connector, 0);
-+		wdma->wb_pending = false;
-+	}
-+
-+	return IRQ_HANDLED;
-+}
-+
-+static void wdma_update_bits(struct device *dev, unsigned int reg,
-+			     unsigned int mask, unsigned int val)
-+{
-+	struct mtk_disp_wdma *wdma = dev_get_drvdata(dev);
-+	unsigned int tmp = readl(wdma->regs + reg);
-+
-+	tmp = (tmp & ~mask) | (val & mask);
-+	writel(tmp, wdma->regs + reg);
-+}
-+
-+void mtk_wdma_register_vblank_cb(struct device *dev,
-+				 void (*vblank_cb)(void *),
-+				 void *vblank_cb_data)
-+{
-+	struct mtk_disp_wdma *wdma = dev_get_drvdata(dev);
-+
-+	wdma->vblank_cb = vblank_cb;
-+	wdma->vblank_cb_data = vblank_cb_data;
-+}
-+
-+void mtk_wdma_unregister_vblank_cb(struct device *dev)
-+{
-+	struct mtk_disp_wdma *wdma = dev_get_drvdata(dev);
-+
-+	wdma->vblank_cb = NULL;
-+	wdma->vblank_cb_data = NULL;
-+}
-+
-+void mtk_wdma_enable_vblank(struct device *dev)
-+{
-+	wdma_update_bits(dev, DISP_REG_WDMA_INT_ENABLE, WDMA_FRAME_COMPLETE_INT,
-+			 WDMA_FRAME_COMPLETE_INT);
-+}
-+
-+void mtk_wdma_disable_vblank(struct device *dev)
-+{
-+	wdma_update_bits(dev, DISP_REG_WDMA_INT_ENABLE, WDMA_FRAME_COMPLETE_INT, 0);
-+}
-+
-+const u32 *mtk_wdma_get_formats(struct device *dev)
-+{
-+	struct mtk_disp_wdma *wdma = dev_get_drvdata(dev);
-+
-+	return wdma->data->formats;
-+}
-+
-+size_t mtk_wdma_get_num_formats(struct device *dev)
-+{
-+	struct mtk_disp_wdma *wdma = dev_get_drvdata(dev);
-+
-+	return wdma->data->num_formats;
-+}
-+
-+int mtk_wdma_clk_enable(struct device *dev)
-+{
-+	struct mtk_disp_wdma *wdma = dev_get_drvdata(dev);
-+
-+	return clk_prepare_enable(wdma->clk);
-+}
-+
-+void mtk_wdma_clk_disable(struct device *dev)
-+{
-+	struct mtk_disp_wdma *wdma = dev_get_drvdata(dev);
-+
-+	clk_disable_unprepare(wdma->clk);
-+}
-+
-+void mtk_wdma_start(struct device *dev)
-+{
-+	wdma_update_bits(dev, DISP_REG_WDMA_EN, WDMA_ENGINE_EN,
-+			 WDMA_ENGINE_EN);
-+}
-+
-+void mtk_wdma_stop(struct device *dev)
-+{
-+	struct mtk_disp_wdma *wdma = dev_get_drvdata(dev);
-+
-+	if (wdma->wb_pending) {
-+		drm_writeback_signal_completion(&wdma->wb_connector, 0);
-+		wdma->wb_pending = false;
-+	}
-+
-+	wdma_update_bits(dev, DISP_REG_WDMA_EN, WDMA_ENGINE_EN, 0);
-+}
-+
-+void mtk_wdma_config(struct device *dev, unsigned int width,
-+		     unsigned int height, unsigned int vrefresh,
-+		     unsigned int bpc, struct cmdq_pkt *cmdq_pkt)
-+{
-+	struct mtk_disp_wdma *wdma = dev_get_drvdata(dev);
-+
-+	writel(WDMA_FORCE_COMMIT | WDMA_BYPASS_SHADOW,
-+	       wdma->regs + DISP_REG_WDMA_SHADOW_CTRL);
-+}
-+
-+static u32 wdma_fmt_convert(unsigned int fmt)
-+{
-+	switch (fmt) {
-+	default:
-+	case DRM_FORMAT_RGB565:
-+		return FIELD_PREP(WDMA_CFG_OUT_FMT, WDMA_OUT_FMT_RGB565);
-+	case DRM_FORMAT_BGR565:
-+		return FIELD_PREP(WDMA_CFG_OUT_FMT, WDMA_OUT_FMT_RGB565) | WDMA_CFG_SWAP;
-+	case DRM_FORMAT_RGB888:
-+		return FIELD_PREP(WDMA_CFG_OUT_FMT, WDMA_OUT_FMT_RGB888);
-+	case DRM_FORMAT_BGR888:
-+		return FIELD_PREP(WDMA_CFG_OUT_FMT, WDMA_OUT_FMT_RGB888) | WDMA_CFG_SWAP;
-+	case DRM_FORMAT_RGBX8888:
-+	case DRM_FORMAT_RGBA8888:
-+		return FIELD_PREP(WDMA_CFG_OUT_FMT, WDMA_OUT_FMT_RGBA8888);
-+	case DRM_FORMAT_BGRX8888:
-+	case DRM_FORMAT_BGRA8888:
-+		return FIELD_PREP(WDMA_CFG_OUT_FMT, WDMA_OUT_FMT_RGBA8888) | WDMA_CFG_SWAP;
-+	case DRM_FORMAT_XRGB8888:
-+	case DRM_FORMAT_ARGB8888:
-+		return FIELD_PREP(WDMA_CFG_OUT_FMT, WDMA_OUT_FMT_ARGB8888);
-+	case DRM_FORMAT_XBGR8888:
-+	case DRM_FORMAT_ABGR8888:
-+		return FIELD_PREP(WDMA_CFG_OUT_FMT, WDMA_OUT_FMT_ARGB8888) | WDMA_CFG_SWAP;
-+	case DRM_FORMAT_UYVY:
-+		return FIELD_PREP(WDMA_CFG_OUT_FMT, WDMA_OUT_FMT_UYVY);
-+	case DRM_FORMAT_YUYV:
-+		return FIELD_PREP(WDMA_CFG_OUT_FMT, WDMA_OUT_FMT_YUY2);
-+	case DRM_FORMAT_YUV420:
-+		return FIELD_PREP(WDMA_CFG_OUT_FMT, WDMA_OUT_FMT_I420);
-+	case DRM_FORMAT_YVU420:
-+		return FIELD_PREP(WDMA_CFG_OUT_FMT, WDMA_OUT_FMT_I420) | WDMA_CFG_SWAP;
-+	}
-+}
-+
-+unsigned int mtk_wdma_layer_nr(struct device *dev)
-+{
-+	return 1;
-+}
-+
-+static void mtk_wdma_ddp_write_dst_addr(struct cmdq_pkt *cmdq_pkt, u64 val,
-+					u8 reg_id, struct mtk_disp_wdma *wdma)
-+{
-+	mtk_ddp_write(cmdq_pkt, lower_32_bits(val), &wdma->cmdq_reg, wdma->regs,
-+		      DISP_REG_WDMA_DST_ADDRX(DISP_REG_WDMA_DST_ADDR_LSB, reg_id));
-+
-+	if (wdma->data->reg_wdma_dst_addr0_msb == 0)
-+		return;
-+
-+	mtk_ddp_write(cmdq_pkt, upper_32_bits(val), &wdma->cmdq_reg, wdma->regs,
-+		      DISP_REG_WDMA_DST_ADDRX(wdma->data->reg_wdma_dst_addr0_msb, reg_id));
-+}
-+
-+static void mtk_wdma_format_config(struct mtk_disp_wdma *wdma,
-+				   struct mtk_plane_pending_state *pending,
-+				   const struct drm_format_info *fmt_info,
-+				   struct cmdq_pkt *cmdq_pkt)
-+{
-+	unsigned int u_off, u_stride, u_size, v_off;
-+	u32 val;
-+
-+	/*
-+	 * For RGB formats, this sets the image destination address;
-+	 * For YUV formats, this sets the Y component destination address.
-+	 */
-+	mtk_wdma_ddp_write_dst_addr(cmdq_pkt, pending->addr, 0, wdma);
-+
-+	if (!fmt_info->is_yuv) {
-+		/* Disable color transform matrix and data compression */
-+		mtk_ddp_write_mask(cmdq_pkt, 0, &wdma->cmdq_reg, wdma->regs,
-+				   DISP_REG_WDMA_CFG,
-+				   WDMA_UFO_DCP_ENABLE | WDMA_CT_EN);
-+		return;
-+	}
-+
-+	/* Additional format config required only for 420 sampling */
-+	if (!drm_format_info_is_yuv_sampling_420(fmt_info))
-+		return;
-+
-+	u_off = pending->pitch * pending->height;
-+	u_stride = pending->pitch / 2;
-+
-+	if (drm_format_info_is_yuv_planar(fmt_info)) {
-+		/* YUV420 or YVU420 */
-+		u_stride = ALIGN(u_stride, 16);
-+		u_size = u_stride * pending->height / 2;
-+		v_off = u_off + u_size;
-+	} else {
-+		/* NV12 or NV21 */
-+		u_size = u_stride * pending->height / 2;
-+		v_off = 0;
-+	}
-+
-+	/* Set U and V components destination addresses */
-+	mtk_wdma_ddp_write_dst_addr(cmdq_pkt, pending->addr + u_off, 1, wdma);
-+	mtk_wdma_ddp_write_dst_addr(cmdq_pkt, pending->addr + v_off, 2, wdma);
-+
-+	mtk_ddp_write(cmdq_pkt, FIELD_PREP(WDMA_UV_DST_W_IN_BYTE, u_stride),
-+		      &wdma->cmdq_reg, wdma->regs, DISP_REG_WDMA_DST_UV_PITCH);
-+
-+	/* Color transform coefficient selection */
-+	val = FIELD_PREP_CONST(WDMA_INT_MTX_SEL, WDMA_CT_COEF_JPEG_TO_RGB);
-+	mtk_ddp_write_mask(cmdq_pkt, val, &wdma->cmdq_reg, wdma->regs,
-+			   DISP_REG_WDMA_CFG, WDMA_INT_MTX_SEL);
-+
-+	/* Enable color transform matrix, disable data compression */
-+	mtk_ddp_write_mask(cmdq_pkt, WDMA_CT_EN, &wdma->cmdq_reg, wdma->regs,
-+			   DISP_REG_WDMA_CFG, WDMA_UFO_DCP_ENABLE | WDMA_CT_EN);
-+}
-+
-+void mtk_wdma_layer_config(struct device *dev, unsigned int idx,
-+			   struct mtk_plane_state *state,
-+			   struct cmdq_pkt *cmdq_pkt)
-+{
-+	struct mtk_disp_wdma *wdma = dev_get_drvdata(dev);
-+	struct mtk_plane_pending_state *pending = &state->pending;
-+	unsigned int pitch = pending->pitch & 0xffff;
-+	unsigned int fmt = pending->format;
-+	unsigned int con = wdma_fmt_convert(fmt);
-+	const struct drm_format_info *fmt_info = drm_format_info(fmt);
-+	u16 clip_sz_h = pending->height;
-+	u16 clip_sz_w = pending->width;
-+	u32 val;
-+
-+	val = FIELD_PREP(WDMA_HEIGHT_PX, pending->height);
-+	val |= FIELD_PREP(WDMA_WIDTH_PX, pending->width);
-+	mtk_ddp_write(cmdq_pkt, val, &wdma->cmdq_reg, wdma->regs,
-+		      DISP_REG_WDMA_SRC_SIZE);
-+
-+	val = FIELD_PREP(WDMA_HEIGHT_PX, pending->y);
-+	val |= FIELD_PREP(WDMA_WIDTH_PX, pending->x);
-+	mtk_ddp_write(cmdq_pkt, val, &wdma->cmdq_reg, wdma->regs,
-+		      DISP_REG_WDMA_CLIP_COORD);
-+
-+	if (fmt_info->is_yuv) {
-+		if ((pending->y + pending->height) % 2)
-+			clip_sz_h--;
-+
-+		if ((pending->x + pending->width) % 2)
-+			clip_sz_w--;
-+	}
-+	val = FIELD_PREP(WDMA_HEIGHT_PX, clip_sz_h);
-+	val |= FIELD_PREP(WDMA_WIDTH_PX, clip_sz_w);
-+	mtk_ddp_write(cmdq_pkt, val, &wdma->cmdq_reg, wdma->regs,
-+		      DISP_REG_WDMA_CLIP_SIZE);
-+
-+	mtk_ddp_write(cmdq_pkt, con, &wdma->cmdq_reg, wdma->regs,
-+		      DISP_REG_WDMA_CFG);
-+	mtk_ddp_write(cmdq_pkt, pitch, &wdma->cmdq_reg, wdma->regs,
-+		      DISP_REG_WDMA_DST_W_IN_BYTE);
-+
-+	mtk_wdma_format_config(wdma, pending, fmt_info, cmdq_pkt);
-+
-+	drm_writeback_queue_job(&wdma->wb_connector, wdma->wb_connector.base.state);
-+}
-+
-+static enum drm_connector_status
-+mtk_wdma_wb_connector_detect(struct drm_connector *connector, bool force)
-+{
-+	return connector_status_connected;
-+}
-+
-+static const struct drm_connector_funcs mtk_wdma_wb_connector_funcs = {
-+	.detect = mtk_wdma_wb_connector_detect,
-+	.fill_modes = drm_helper_probe_single_connector_modes,
-+	.destroy = drm_connector_cleanup,
-+	.reset = drm_atomic_helper_connector_reset,
-+	.atomic_duplicate_state = drm_atomic_helper_connector_duplicate_state,
-+	.atomic_destroy_state = drm_atomic_helper_connector_destroy_state,
-+};
-+
-+static int mtk_wdma_wb_atomic_check(struct drm_encoder *encoder,
-+				    struct drm_crtc_state *crtc_state,
-+				    struct drm_connector_state *conn_state)
-+{
-+	const struct drm_display_mode *mode = &crtc_state->mode;
-+	struct drm_framebuffer *fb;
-+	int i;
-+
-+	if (!conn_state->writeback_job || !conn_state->writeback_job->fb)
-+		return 0;
-+
-+	fb = conn_state->writeback_job->fb;
-+	if (fb->width != mode->hdisplay || fb->height != mode->vdisplay)
-+		return -EINVAL;
-+
-+	for (i = 0; i < ARRAY_SIZE(mtk_wdma_wb_output_formats); i++) {
-+		if (fb->format->format == mtk_wdma_wb_output_formats[i])
-+			return 0;
-+	}
-+
-+	return -EINVAL;
-+}
-+
-+static const struct drm_encoder_helper_funcs mtk_wdma_wb_encoder_helper_funcs = {
-+	.atomic_check = mtk_wdma_wb_atomic_check,
-+};
-+
-+static int mtk_wdma_wb_connector_get_modes(struct drm_connector *connector)
-+{
-+	struct drm_device *dev = connector->dev;
-+
-+	return drm_add_modes_noedid(connector, dev->mode_config.max_width,
-+				    dev->mode_config.max_height);
-+}
-+
-+static enum drm_mode_status
-+mtk_wdma_wb_connector_mode_valid(struct drm_connector *connector,
-+				 const struct drm_display_mode *mode)
-+{
-+	struct drm_device *dev = connector->dev;
-+	struct drm_mode_config *mode_config = &dev->mode_config;
-+	int w = mode->hdisplay, h = mode->vdisplay;
-+
-+	if (w < mode_config->min_width || w > mode_config->max_width)
-+		return MODE_BAD_HVALUE;
-+
-+	if (h < mode_config->min_height || h > mode_config->max_height)
-+		return MODE_BAD_VVALUE;
-+
-+	return MODE_OK;
-+}
-+
-+static void mtk_wdma_wb_connector_atomic_commit(struct drm_connector *connector,
-+						struct drm_atomic_commit *state)
-+{
-+	struct drm_connector_state *conn_state =
-+		drm_atomic_get_new_connector_state(state, connector);
-+	struct mtk_disp_wdma *wdma = connector_to_wdma(connector);
-+	struct drm_framebuffer *fb;
-+	struct drm_gem_object *gem;
-+	struct drm_gem_dma_object *dma_obj;
-+	dma_addr_t addr;
-+
-+	if (WARN_ON(!conn_state->writeback_job))
-+		return;
-+
-+	fb = conn_state->writeback_job->fb;
-+	gem = fb->obj[0];
-+	dma_obj = to_drm_gem_dma_obj(gem);
-+	addr = dma_obj->dma_addr;
-+
-+	/* Store writeback pending state before queuing the job */
-+	wdma->wb_pending = true;
-+
-+	mtk_wdma_ddp_write_dst_addr(NULL, addr, 0, wdma);
-+	drm_writeback_queue_job(&wdma->wb_connector, conn_state);
-+}
-+
-+static const struct drm_connector_helper_funcs mtk_wdma_wb_connector_helper_funcs = {
-+	.get_modes = mtk_wdma_wb_connector_get_modes,
-+	.mode_valid = mtk_wdma_wb_connector_mode_valid,
-+	.atomic_commit = mtk_wdma_wb_connector_atomic_commit,
-+};
-+
-+static int mtk_disp_wdma_bind(struct device *dev, struct device *master,
-+			      void *data)
-+{
-+	struct mtk_disp_wdma *wdma = dev_get_drvdata(dev);
-+	struct drm_device *drm_dev = data;
-+	int crtcs, ret;
-+
-+	crtcs = mtk_find_possible_crtcs(drm_dev, wdma->dev);
-+	if (crtcs < 0)
-+		return crtcs;
-+
-+	drm_connector_helper_add(&wdma->wb_connector.base,
-+				 &mtk_wdma_wb_connector_helper_funcs);
-+
-+	ret = drm_writeback_connector_init(drm_dev, &wdma->wb_connector,
-+					   &mtk_wdma_wb_connector_funcs,
-+					   &mtk_wdma_wb_encoder_helper_funcs,
-+					   mtk_wdma_wb_output_formats,
-+					   ARRAY_SIZE(mtk_wdma_wb_output_formats),
-+					   crtcs);
-+	if (ret)
-+		return ret;
-+
-+	/* Disable and clear pending interrupts */
-+	pm_runtime_get_sync(dev);
-+	writel(0x0, wdma->regs + DISP_REG_WDMA_INT_ENABLE);
-+	writel(0x0, wdma->regs + DISP_REG_WDMA_INT_STATUS);
-+	pm_runtime_put(dev);
-+
-+	enable_irq(wdma->irq);
-+	return 0;
-+}
-+
-+static void mtk_disp_wdma_unbind(struct device *dev, struct device *master,
-+				 void *data)
-+{
-+	struct mtk_disp_wdma *wdma = dev_get_drvdata(dev);
-+
-+	disable_irq(wdma->irq);
-+}
-+
-+static const struct component_ops mtk_disp_wdma_component_ops = {
-+	.bind	= mtk_disp_wdma_bind,
-+	.unbind = mtk_disp_wdma_unbind,
-+};
-+
-+static int mtk_disp_wdma_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct mtk_disp_wdma *priv;
-+	struct resource *res;
-+	int ret;
-+
-+	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
-+
-+	priv->dev = dev;
-+
-+	priv->irq = platform_get_irq(pdev, 0);
-+	if (priv->irq < 0)
-+		return priv->irq;
-+
-+	priv->clk = devm_clk_get(dev, NULL);
-+	if (IS_ERR(priv->clk))
-+		return dev_err_probe(dev, PTR_ERR(priv->clk),
-+				     "failed to get wdma clk\n");
-+
-+	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-+	priv->regs = devm_ioremap_resource(dev, res);
-+	if (IS_ERR(priv->regs))
-+		return dev_err_probe(dev, PTR_ERR(priv->regs),
-+				     "failed to ioremap wdma\n");
-+#if IS_REACHABLE(CONFIG_MTK_CMDQ)
-+	ret = cmdq_dev_get_client_reg(dev, &priv->cmdq_reg, 0);
-+	if (ret)
-+		dev_dbg(dev, "get mediatek,gce-client-reg fail!\n");
-+#endif
-+
-+	priv->data = of_device_get_match_data(dev);
-+	platform_set_drvdata(pdev, priv);
-+
-+	ret = devm_request_irq(dev, priv->irq, mtk_disp_wdma_irq_handler,
-+			       IRQF_NO_AUTOEN, dev_name(dev), priv);
-+	if (ret < 0)
-+		return dev_err_probe(dev, ret, "Failed to request irq\n");
-+
-+	ret = devm_pm_runtime_enable(dev);
-+	if (ret)
-+		return ret;
-+
-+	ret = component_add(dev, &mtk_disp_wdma_component_ops);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Failed to add component\n");
-+
-+	return 0;
-+}
-+
-+static void mtk_disp_wdma_remove(struct platform_device *pdev)
-+{
-+	component_del(&pdev->dev, &mtk_disp_wdma_component_ops);
-+
-+	pm_runtime_disable(&pdev->dev);
-+}
-+
-+static const struct mtk_disp_wdma_data mt6893_wdma_driver_data = {
-+	.reg_wdma_dst_addr0_msb = DISP_REG_WDMA_DST_ADDR_MSB_MT6893,
-+	.formats = mt6893_formats,
-+	.num_formats = ARRAY_SIZE(mt6893_formats),
-+};
-+
-+static const struct mtk_disp_wdma_data mt8173_wdma_driver_data = {
-+	.formats = mt6893_formats,
-+	.num_formats = ARRAY_SIZE(mt6893_formats),
-+};
-+
-+static const struct of_device_id mtk_disp_wdma_driver_dt_match[] = {
-+	{ .compatible = "mediatek,mt6893-disp-wdma", .data = &mt6893_wdma_driver_data },
-+	{ .compatible = "mediatek,mt8173-disp-wdma", .data = &mt8173_wdma_driver_data },
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, mtk_disp_wdma_driver_dt_match);
-+
-+struct platform_driver mtk_disp_wdma_driver = {
-+	.probe		= mtk_disp_wdma_probe,
-+	.remove		= mtk_disp_wdma_remove,
-+	.driver		= {
-+		.name	= "mediatek-disp-wdma",
-+		.of_match_table = mtk_disp_wdma_driver_dt_match,
-+	},
-+};
-diff --git a/drivers/gpu/drm/mediatek/mtk_drm_drv.c b/drivers/gpu/drm/mediatek/mtk_drm_drv.c
-index 9a4c59849c4b..e54f0654f2f9 100644
---- a/drivers/gpu/drm/mediatek/mtk_drm_drv.c
-+++ b/drivers/gpu/drm/mediatek/mtk_drm_drv.c
-@@ -796,6 +796,8 @@ static const struct of_device_id mtk_ddp_comp_dt_ids[] = {
- 	  .data = (void *)MTK_DISP_RDMA },
- 	{ .compatible = "mediatek,mt8173-disp-ufoe",
- 	  .data = (void *)MTK_DISP_UFOE },
-+	{ .compatible = "mediatek,mt6893-disp-wdma",
-+	  .data = (void *)MTK_DISP_WDMA },
- 	{ .compatible = "mediatek,mt8173-disp-wdma",
- 	  .data = (void *)MTK_DISP_WDMA },
- 	{ .compatible = "mediatek,mt2701-dpi",
-@@ -1173,6 +1175,7 @@ static int mtk_drm_probe(struct platform_device *pdev)
- 		    comp_type == MTK_DISP_OVL_2L ||
- 		    comp_type == MTK_DISP_OVL_ADAPTOR ||
- 		    comp_type == MTK_DISP_RDMA ||
-+		    comp_type == MTK_DISP_WDMA ||
- 		    comp_type == MTK_DP_INTF ||
- 		    comp_type == MTK_DPI ||
- 		    comp_type == MTK_DSI) {
-@@ -1281,6 +1284,7 @@ static struct platform_driver * const mtk_drm_drivers[] = {
- 	&mtk_disp_ovl_adaptor_driver,
- 	&mtk_disp_ovl_driver,
- 	&mtk_disp_rdma_driver,
-+	&mtk_disp_wdma_driver,
- 	&mtk_dpi_driver,
- 	&mtk_drm_platform_driver,
- 	&mtk_dsi_driver,
-diff --git a/drivers/gpu/drm/mediatek/mtk_drm_drv.h b/drivers/gpu/drm/mediatek/mtk_drm_drv.h
-index 43aac2d956e7..8b5c51d93f72 100644
---- a/drivers/gpu/drm/mediatek/mtk_drm_drv.h
-+++ b/drivers/gpu/drm/mediatek/mtk_drm_drv.h
-@@ -77,6 +77,7 @@ extern struct platform_driver mtk_disp_merge_driver;
- extern struct platform_driver mtk_disp_ovl_adaptor_driver;
- extern struct platform_driver mtk_disp_ovl_driver;
- extern struct platform_driver mtk_disp_rdma_driver;
-+extern struct platform_driver mtk_disp_wdma_driver;
- extern struct platform_driver mtk_dpi_driver;
- extern struct platform_driver mtk_dsi_driver;
- extern struct platform_driver mtk_ethdr_driver;
--- 
-2.54.0
-
+bod
 
