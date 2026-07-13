@@ -1,348 +1,156 @@
-Return-Path: <devicetree+bounces-325758-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-325761-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id BkGvEBNFVWovmQAAu9opvQ
-	(envelope-from <devicetree+bounces-325758-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 22:05:39 +0200
+	id bS0WAvFGVWqWmQAAu9opvQ
+	(envelope-from <devicetree+bounces-325761-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 22:13:37 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3634F74EF1A
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 22:05:38 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4326974F002
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 22:13:36 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20201202 header.b=VaptUl05;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-325758-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-325758-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b="V/0oYJaK";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-325761-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-325761-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 3636330086BE
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 20:05:35 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 37DB130A2361
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 20:13:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AC6435A952;
-	Mon, 13 Jul 2026 20:05:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F2FA351C25;
+	Mon, 13 Jul 2026 20:13:06 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA4A32D46B3;
-	Mon, 13 Jul 2026 20:05:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A8822F745D
+	for <devicetree@vger.kernel.org>; Mon, 13 Jul 2026 20:13:03 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783973134; cv=none; b=BUyzfodJfDRdzOQUDewBflRftNxvx5U6a/JeGqPb6z3oND24aSDrssJ8KE1lB7sH5sOywZ5oAbegylXxKZXPPi7dgUJ561uJkWT8V53go0AwBT4GPli5lk2DZ2nUpp+M6nVN4cWe8q1mmVR7gm2T/H11iVUBlGuDmyTREw9OSOE=
+	t=1783973586; cv=none; b=j4FchNufr6+LSjSBUL7IB8iDi14RqdG/E+3CdiHKHGnsxPBehfIkTLdLWx5Nb/RRiCJEfS9xsdwJnf7Zyf9Jez6kh/OT8Twp6NwJ4pWqhwwpY8s8IOBNr/MI8LPc6m2nTO4MihnR1ev0XwSpOX5ov1gs5WGCeWzQ9SRMyf30lJs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783973134; c=relaxed/simple;
-	bh=8c5WwOhY3CXvoJT4w0whyVKwCKAi3oCOYGRu/091b30=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=ipVkwt3lt5Zo8UMYsy4eftVIzVB0ZnX3rS2Cqz1oETsrE3hLXXLKT+6o4slCXTvftJYWvdD7dDSqI1LG4YSr2SpTha9jpe2QqpH1k8nDgIVtl690zb5Te+rNT/yLAhHBBNFec8QhYcgZZv2oreN68bBlh+Ez7TddlcZhW0SsDVQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VaptUl05; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id A0863C2BCF5;
-	Mon, 13 Jul 2026 20:05:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1783973133;
-	bh=8c5WwOhY3CXvoJT4w0whyVKwCKAi3oCOYGRu/091b30=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=VaptUl05dzjZhMKvxVrB9xY4+QGXTaiGJzdZp83HQZhcQqXMwac9iEtBSxJQkO268
-	 m24gY2HiCSLo3pPbTpMm5RINQtJxQJ0BEdkIrylK2I8GKOU1RlW9AeytlXLnnaIFnu
-	 OeNu920yaggKUVJeiwr/42Kw2w7ZvKA06lH1colRbNvjmU2xCpCieSVoUkCd2YZUtU
-	 OD1OrtPTpSLLnTgJImDF3/ySQdhBw5reIy9X9rQlhDW0U2Pxnva8BJdVV18cWsyKeu
-	 ciRqwm6EW81x2yU86sT1AnZvM8QNTVJl/0KrgUc1KCmV3PFqg9DeCBwvc2jNm1rJJR
-	 S6zpBFaLbb+TA==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 7F37DC44508;
-	Mon, 13 Jul 2026 20:05:33 +0000 (UTC)
-From: Sarath Ganapathiraju via B4 Relay <devnull+sarath.ganapathiraju.oss.qualcomm.com@kernel.org>
-Date: Tue, 14 Jul 2026 01:35:33 +0530
-Subject: [PATCH 2/2] ASoC: Add LPASS VA CSR heartbeat pulse clock
+	s=arc-20240116; t=1783973586; c=relaxed/simple;
+	bh=DRSTSZKlzjAFcQ1iHSI6JYo8sUBwYj7h89w8FoHR7S8=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=uAN0Jg0czkIPwD5YsnZPUSTwVzLvTKHcj55qbGOH4WF/G6qDnXeOYocbNyFpBk532ZFjEmiyN2/qqR2ttzH1tuUxGS9MRTYtbW6EkOtbQBmOT6qjBMWmD0pGOMlQoURdKs1mocuDHh2TyRBkQFaG2LTrdSvQqiky8Qmoc5JnXzU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=V/0oYJaK; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3D22A1F000E9;
+	Mon, 13 Jul 2026 20:13:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1783973583;
+	bh=J1m5xnj1VNsVr1XwV3+zZ+xpCOqqiWa2ClFJlsla8Oc=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=V/0oYJaKWOV3SrNH7/dNI6o1CkAC5T1tGFtOLnAtT9ZQ//fbWuAG7YCQ1xHR8p9nq
+	 6AelUjCawWZxbxn3/6fGBnxJ/7bL9/x3svcY5MolKMKF+WT/48u0EFf0naVPFGBChg
+	 knz3K6SrLmeNuYr96gSz9cUKpC3+F4LMu7fWCHAusELZh0JRFds0OM7AEvcCGDxbrl
+	 0YHwkzT00wz2LFuWpHwQYfThAB477l/aZCWJmAHKWgSJk5Xtv1S2jZRw1iEJB0kSAz
+	 6RYBhdNhe3Db1pEBG0Cop4cHfa+loYfPncvjq5dLwu21tZq6hJnJDYC8FZR2LFHKqg
+	 h8GqN1iPc1xTg==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH 1/2] ASoC: dt-bindings: qcom,lpass-va-csr: Add HeartBeat
+ pulse clock
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Sarath Ganapathiraju" <sarath.ganapathiraju@oss.qualcomm.com>
+Cc: devicetree@vger.kernel.org, conor+dt@kernel.org, robh@kernel.org
+In-Reply-To: <20260714-master-v1-1-1ebe5993225e@oss.qualcomm.com>
+References: <20260714-master-v1-0-1ebe5993225e@oss.qualcomm.com>
+ <20260714-master-v1-1-1ebe5993225e@oss.qualcomm.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Mon, 13 Jul 2026 20:13:02 +0000
+Message-Id: <20260713201303.3D22A1F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260714-master-v1-2-1ebe5993225e@oss.qualcomm.com>
-References: <20260714-master-v1-0-1ebe5993225e@oss.qualcomm.com>
-In-Reply-To: <20260714-master-v1-0-1ebe5993225e@oss.qualcomm.com>
-To: Srinivas Kandagatla <srini@kernel.org>, 
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>, 
- Takashi Iwai <tiwai@suse.com>
-Cc: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>, 
- linux-sound@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- prasad.kumpatla@oss.qualcomm.com, 
- Sarath Ganapathiraju <sarath.ganapathiraju@oss.qualcomm.com>
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1783973132; l=6958;
- i=sarath.ganapathiraju@oss.qualcomm.com; s=default;
- h=from:subject:message-id;
- bh=ypNbWhmhzRsGcz5RvLQ5KhScCqzC7URlIIzBE8KzUXI=;
- b=jWXpRi8qLEsCDpGs2R6QKLBtDQk4IyUTfcDPlrAlxRTTyCCZ928q3c0qQxjMrF4WR4+pz5iXF
- JUKHA4nbeKHBchnSagbHeaPQ8gxJSjduHsSAb8bDp2qnSFVGguuddYQ
-X-Developer-Key: i=sarath.ganapathiraju@oss.qualcomm.com; a=ed25519;
- pk=4p2FWGXM+F2sir13Lu5stw5aKX5trUymK/ttESvgxQg=
-X-Endpoint-Received: by B4 Relay for
- sarath.ganapathiraju@oss.qualcomm.com/default with auth_id=870
-X-Original-From: Sarath Ganapathiraju <sarath.ganapathiraju@oss.qualcomm.com>
-Reply-To: sarath.ganapathiraju@oss.qualcomm.com
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.66 / 15.00];
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-325758-lists,devicetree=lfdr.de,sarath.ganapathiraju.oss.qualcomm.com];
-	FORGED_RECIPIENTS(0.00)[m:srini@kernel.org,m:lgirdwood@gmail.com,m:broonie@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:perex@perex.cz,m:tiwai@suse.com,m:srinivas.kandagatla@oss.qualcomm.com,m:linux-sound@vger.kernel.org,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:prasad.kumpatla@oss.qualcomm.com,m:sarath.ganapathiraju@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FREEMAIL_TO(0.00)[kernel.org,gmail.com,perex.cz,suse.com];
-	FORGED_SENDER(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
-	FORWARDED(0.00)[lists@lfdr.de];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	HAS_REPLYTO(0.00)[sarath.ganapathiraju@oss.qualcomm.com];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:mid,oss.qualcomm.com:replyto,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,vger.kernel.org:from_smtp,qualcomm.com:email]
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-325761-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS(0.00)[m:sarath.ganapathiraju@oss.qualcomm.com,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ALIAS_RESOLVED(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NO_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCPT_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 3634F74EF1A
+X-Rspamd-Queue-Id: 4326974F002
 
-From: Sarath Ganapathiraju <sarath.ganapathiraju@oss.qualcomm.com>
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [Low] Schema validation failure in example due to missing #address-cells =
+and #size-cells parent node
+--
 
-The HeartBeat Pulse (also known as RateGen Pulse) synchronizes the
-start of the DMAs and Codec Interfaces for the audio usecases
-and can serve as a periodic wakeup source for the DSP.
+--- Patch [1]: [PATCH 1/2] ASoC: dt-bindings: qcom,lpass-va-csr: Add HeartB=
+eat pulse clock ---
+commit 9f770d5091cc6e0fe9a0f15696b43becc2db0bc2
+Author: Sarath Ganapathiraju <sarath.ganapathiraju@oss.qualcomm.com>
+ASoC: dt-bindings: qcom,lpass-va-csr: Add HeartBeat pulse clock
 
-Add the LPASS VA CSR driver that models the rate generator as a clock
-provider so it is enabled and disabled automatically alongside the
-other clocks during runtime PM resume and suspend.
+This commit adds the Qualcomm LPASS VA CSR rate generator node binding to
+expose the heartbeat pulse clock. It also extends the qcom,lpass-va-macro
+binding to incorporate this new clock as a constraint.
 
-Signed-off-by: Sarath Ganapathiraju <sarath.ganapathiraju@oss.qualcomm.com>
----
- sound/soc/codecs/Kconfig        |  13 ++++
- sound/soc/codecs/Makefile       |   2 +
- sound/soc/codecs/lpass-va-csr.c | 143 ++++++++++++++++++++++++++++++++++++++++
- 3 files changed, 158 insertions(+)
+> diff --git a/Documentation/devicetree/bindings/sound/qcom,lpass-va-csr.ya=
+ml b/Documentation/devicetree/bindings/sound/qcom,lpass-va-csr.yaml
+> new file mode 100644
+> index 0000000000000..794da92adcf88
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/sound/qcom,lpass-va-csr.yaml
 
-diff --git a/sound/soc/codecs/Kconfig b/sound/soc/codecs/Kconfig
-index a41d0f508..e898c34a6 100644
---- a/sound/soc/codecs/Kconfig
-+++ b/sound/soc/codecs/Kconfig
-@@ -2902,11 +2902,24 @@ config SND_SOC_LPASS_WSA_MACRO
- 	select SND_SOC_LPASS_MACRO_COMMON
- 	tristate "Qualcomm WSA Macro in LPASS(Low Power Audio SubSystem)"
- 
-+config SND_SOC_LPASS_VA_CSR
-+	depends on COMMON_CLK
-+	select REGMAP_MMIO
-+	tristate "Qualcomm LPASS VA CSR heartbeat pulse clock provider"
-+	help
-+	  Qualcomm LPASS VA CSR block contains the rate generator hardware
-+	  that produces the HeartBeat Pulse (also known as RateGen Pulse).
-+	  This driver models the rate generator as a clock provider so
-+	  that consumers can enable or disable it via the common clock
-+	  framework, and it can be used to synchronize the start of DMAs
-+	  and Codec Interfaces or as a periodic wakeup source for the DSP.
-+
- config SND_SOC_LPASS_VA_MACRO
- 	depends on COMMON_CLK
- 	depends on PM_CLK
- 	select REGMAP_MMIO
- 	select SND_SOC_LPASS_MACRO_COMMON
-+	select SND_SOC_LPASS_VA_CSR
- 	tristate "Qualcomm VA Macro in LPASS(Low Power Audio SubSystem)"
- 
- config SND_SOC_LPASS_RX_MACRO
-diff --git a/sound/soc/codecs/Makefile b/sound/soc/codecs/Makefile
-index aa0396e5b..3e86c1bbf 100644
---- a/sound/soc/codecs/Makefile
-+++ b/sound/soc/codecs/Makefile
-@@ -163,6 +163,7 @@ snd-soc-lpass-rx-macro-y := lpass-rx-macro.o
- snd-soc-lpass-tx-macro-y := lpass-tx-macro.o
- snd-soc-lpass-wsa-macro-y := lpass-wsa-macro.o
- snd-soc-lpass-va-macro-y := lpass-va-macro.o
-+snd-soc-lpass-va-csr-y := lpass-va-csr.o
- snd-soc-madera-y := madera.o
- snd-soc-max9759-y := max9759.o
- snd-soc-max9768-y := max9768.o
-@@ -886,6 +887,7 @@ obj-$(CONFIG_SND_SOC_TPA6130A2)	+= snd-soc-tpa6130a2.o
- obj-$(CONFIG_SND_SOC_LPASS_MACRO_COMMON)	+= snd-soc-lpass-macro-common.o
- obj-$(CONFIG_SND_SOC_LPASS_WSA_MACRO)	+= snd-soc-lpass-wsa-macro.o
- obj-$(CONFIG_SND_SOC_LPASS_VA_MACRO)	+= snd-soc-lpass-va-macro.o
-+obj-$(CONFIG_SND_SOC_LPASS_VA_CSR)	+= snd-soc-lpass-va-csr.o
- obj-$(CONFIG_SND_SOC_LPASS_RX_MACRO)	+= snd-soc-lpass-rx-macro.o
- obj-$(CONFIG_SND_SOC_LPASS_TX_MACRO)	+= snd-soc-lpass-tx-macro.o
- 
-diff --git a/sound/soc/codecs/lpass-va-csr.c b/sound/soc/codecs/lpass-va-csr.c
-new file mode 100644
-index 000000000..14aec8f94
---- /dev/null
-+++ b/sound/soc/codecs/lpass-va-csr.c
-@@ -0,0 +1,143 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
-+ */
-+
-+#include <linux/clk-provider.h>
-+#include <linux/device.h>
-+#include <linux/module.h>
-+#include <linux/of_clk.h>
-+#include <linux/platform_device.h>
-+#include <linux/regmap.h>
-+
-+#define LPASS_RATE_GEN_CTRL		0xD000
-+#define LPASS_RATE_GEN_COUNTER_0	0xD004
-+#define LPASS_RATE_GEN_DELAY		0xD010
-+
-+#define LPASS_RATE_GEN_MAX_REG		LPASS_RATE_GEN_DELAY
-+
-+#define LPASS_RG_CTRL_EN		BIT(0)
-+
-+struct lpass_va_csr_data {
-+	u32 counter_0;
-+	u32 delay;
-+};
-+
-+static const struct lpass_va_csr_data hawi_csr_data = {
-+	.counter_0 = 0x960,
-+	.delay = 0x16,
-+};
-+
-+static const struct regmap_config lpass_rate_gen_regmap_config = {
-+	.name = "lpass_rate_gen",
-+	.reg_bits = 32,
-+	.val_bits = 32,
-+	.reg_stride = 4,
-+	.max_register = LPASS_RATE_GEN_MAX_REG,
-+	.cache_type = REGCACHE_MAPLE,
-+};
-+
-+struct lpass_va_csr {
-+	struct regmap *regmap;
-+	const struct lpass_va_csr_data *data;
-+	struct clk_hw hb_hw;
-+};
-+
-+#define to_lpass_va_csr(_hw) container_of(_hw, struct lpass_va_csr, hb_hw)
-+
-+static int heartbeat_pulse_enable(struct clk_hw *hw)
-+{
-+	struct lpass_va_csr *csr = to_lpass_va_csr(hw);
-+
-+	regmap_write(csr->regmap, LPASS_RATE_GEN_COUNTER_0, csr->data->counter_0);
-+	regmap_write(csr->regmap, LPASS_RATE_GEN_DELAY, csr->data->delay);
-+	regmap_update_bits(csr->regmap, LPASS_RATE_GEN_CTRL,
-+			   LPASS_RG_CTRL_EN, LPASS_RG_CTRL_EN);
-+
-+	return 0;
-+}
-+
-+static void heartbeat_pulse_disable(struct clk_hw *hw)
-+{
-+	struct lpass_va_csr *csr = to_lpass_va_csr(hw);
-+
-+	regmap_update_bits(csr->regmap, LPASS_RATE_GEN_CTRL,
-+			   LPASS_RG_CTRL_EN, 0);
-+}
-+
-+static int heartbeat_pulse_is_enabled(struct clk_hw *hw)
-+{
-+	struct lpass_va_csr *csr = to_lpass_va_csr(hw);
-+	unsigned int val;
-+
-+	regmap_read(csr->regmap, LPASS_RATE_GEN_CTRL, &val);
-+
-+	return !!(val & LPASS_RG_CTRL_EN);
-+}
-+
-+static const struct clk_ops heartbeat_pulse_ops = {
-+	.enable = heartbeat_pulse_enable,
-+	.disable = heartbeat_pulse_disable,
-+	.is_enabled = heartbeat_pulse_is_enabled,
-+};
-+
-+static int lpass_va_csr_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct lpass_va_csr *csr;
-+	struct clk_init_data init = {
-+		.name = "lpass_heartbeat_pulse",
-+		.ops = &heartbeat_pulse_ops,
-+	};
-+	void __iomem *base;
-+	int ret;
-+
-+	csr = devm_kzalloc(dev, sizeof(*csr), GFP_KERNEL);
-+	if (!csr)
-+		return -ENOMEM;
-+
-+	csr->data = of_device_get_match_data(dev);
-+	if (!csr->data)
-+		return dev_err_probe(dev, -EINVAL, "no variant data for compatible\n");
-+
-+	base = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(base))
-+		return PTR_ERR(base);
-+
-+	csr->regmap = devm_regmap_init_mmio(dev, base,
-+					    &lpass_rate_gen_regmap_config);
-+	if (IS_ERR(csr->regmap))
-+		return dev_err_probe(dev, PTR_ERR(csr->regmap),
-+				     "failed to init regmap\n");
-+
-+	csr->hb_hw.init = &init;
-+
-+	ret = devm_clk_hw_register(dev, &csr->hb_hw);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "failed to register heartbeat clock\n");
-+
-+	ret = devm_of_clk_add_hw_provider(dev, of_clk_hw_simple_get, &csr->hb_hw);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "failed to add clock provider\n");
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id lpass_va_csr_dt_match[] = {
-+	{ .compatible = "qcom,hawi-lpass-va-csr", .data = &hawi_csr_data },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(of, lpass_va_csr_dt_match);
-+
-+static struct platform_driver lpass_va_csr_driver = {
-+	.driver = {
-+		.name = "qcom-lpass-va-csr",
-+		.of_match_table = lpass_va_csr_dt_match,
-+	},
-+	.probe = lpass_va_csr_probe,
-+};
-+
-+module_platform_driver(lpass_va_csr_driver);
-+
-+MODULE_DESCRIPTION("Qualcomm LPASS VA CSR heartbeat pulse clock provider");
-+MODULE_LICENSE("GPL");
+[ ... ]
 
--- 
-2.34.1
+> +examples:
+> +  - |
+> +    va-csr@7ee0000 {
+> +      compatible =3D "qcom,hawi-lpass-va-csr";
+> +      reg =3D <0x0 0x07ee0000 0x0 0xe000>;
 
+[Severity: Low]
+Will this example fail dt_binding_check validation?
 
+By default, the root node in DT schema examples assumes #address-cells =3D =
+<1>
+and #size-cells =3D <1>. Because of this, the 4-cell reg property here pars=
+es
+as two items (two address/size pairs of 1 cell each).
+
+Since the schema explicitly constrains reg with maxItems: 1 earlier in the
+file, does this need a dummy parent node specifying #address-cells =3D <2>
+and #size-cells =3D <2> to pass validation?
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260714-master-v1-=
+0-1ebe5993225e@oss.qualcomm.com?part=3D1
 
