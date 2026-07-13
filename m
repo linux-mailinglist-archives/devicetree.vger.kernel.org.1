@@ -1,64 +1,65 @@
-Return-Path: <devicetree+bounces-325223-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-325224-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id RQDmITiVVGpnnwMAu9opvQ
-	(envelope-from <devicetree+bounces-325223-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 09:35:20 +0200
+	id B6gfC5SVVGqBnwMAu9opvQ
+	(envelope-from <devicetree+bounces-325224-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 09:36:52 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id E092B748351
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 09:35:19 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id A96EA7483A5
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 09:36:51 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=WSNCksPf;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=H0Qkb32s;
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-325223-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-325223-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-325224-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-325224-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id B72C6305D363
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 07:29:09 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E3D6430378A1
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 07:31:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4756371D13;
-	Mon, 13 Jul 2026 07:29:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31E7D38E8C7;
+	Mon, 13 Jul 2026 07:31:06 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 873642DC32C;
-	Mon, 13 Jul 2026 07:29:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11FD038E133;
+	Mon, 13 Jul 2026 07:31:04 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783927748; cv=none; b=lIWsCghrDQ/OrNKLvYk0/lKFp1ujjNQu+ErDdrVdL5bV+AKgZ9tRwogO5kE3KV0K29j2Vkt5tYZXpY09bKCwVLOtu4VdPI4vhEGxoLxKxc+Ai+SKzoD3h10nx1g6lUwndobPAS0kXj5cVrMuBqpaWmfRW5qLQia1w3KX93pivCk=
+	t=1783927866; cv=none; b=SURasnmvNZH6VsW/D4JbsqF2A+/IZG2jfc8TJKEe1Ph+ajj5SoVEIbN86+SnBP72EbFJHU8TCWPPgszTGaztQOE8S6T42jKpEGMmMdolTgzay2k0gHlg4ClPsK11FT2eeJYVNY/bEmqySyZDfoP7rvaF8TYti4Se8yrXplFGhqQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783927748; c=relaxed/simple;
-	bh=QZryj75baiRfBnWWWhy/q/bDFrIOd6fvuO2IJHZefNI=;
+	s=arc-20240116; t=1783927866; c=relaxed/simple;
+	bh=uUPmojSvRJjdxDTfSrqL6xDcavcrxh1FCKzLi5plkO0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=imb5tLhnSGztUO95xMP8nZ7HQOJZMhHYA1ySLMfvrgueLbez2E9KzFaGbP3BEyiK1Zg7m/o6a/GmP8wnuakj1WRtPyOlDd5UHx8d/1FA9kOwhbx0AASPxAcQtHvBKRXhqhiH70RK135Tz6JP4HEWSqGvSLsDMqVQKoTL61a4rJc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WSNCksPf; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 338851F000E9;
-	Mon, 13 Jul 2026 07:29:06 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=svJCNJs/aLVHIEWJ6woDhG+vi4g5QVgtUQMrKfmCoihiwTj+bTWK7r5XzLiO1COk6oZjSDh0vUqFdjr0XZAWwF6safkU7fqfKHBYPBTYxG/ZB43e6UZbUvHT36fuBG4gePWIPw+M5l7L2G8PJrVs/UIxUpLH7GDDn19MFg5KR58=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=H0Qkb32s; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5CC1E1F000E9;
+	Mon, 13 Jul 2026 07:31:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783927747;
-	bh=q1A9eF+k7sM0DhedSIhGHmF2na9e3afM7t2StqoDgjg=;
+	s=k20260515; t=1783927864;
+	bh=KCDs4r72wm4+aWixawv9t2EtC+MrFNUw/QnmSNHgASI=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=WSNCksPffc72LeGiYWYJ5h8jlyuGi28/AgqtGJaxw/JzVRYkwsZhGyThTKq2xvLf2
-	 II7+wxPobG9kNz/f1vVReib1wFu0Jfj2lXkZXgg+MLu7F01ZNjsmjuPDHHWJus+2qa
-	 d0/SFBh6nxnOfSU/Ahitextzxyad1fOI/Edwq0PZyjB6nhH/5H/6S2Axme1vahGgIu
-	 VYvinLy99dbhvnUEEDVHJXpN9uLGWDORShVyo+kqK25IO8VpguDBEvxrpnOLJv8v80
-	 2OLlI0wyycsD5YCuFmNJXox3Ytk/gpdQnmCAUnNGtm9SUesQAG+uAKNvs257yP2x+O
-	 Rm5H0WU3o8I+Q==
-Date: Mon, 13 Jul 2026 09:29:03 +0200
+	b=H0Qkb32scuMJAg6lmDTHcHLtDE0tieBnUEl8BJeU4fNX6ixwSiQONL+YF5sN89wTf
+	 dPidT1mgtFrIe6V41jfYLuqZ4YP6lrvjco0YJMhteZIZVhuLaEfrvMHcyjl/T3qxR3
+	 JIgDQC/Bxr60+TWFS8IxSCOFj4FH9Keqp/sIuvXQad63gUqp+FIrW4MfhxVpPvTyDV
+	 ViCrt34viGfJ4YoH4Zqe/A6ZORbzx5QisSdOXS4/JB12r0KOBHDl56B0keP+olmTmg
+	 J/RYyjK+pxj9hUkF/Dhh9XDZsytNs2V+hyjdTOoSnnkmOPUL18O4mKXU4AIuSL7P+G
+	 n6hLplKChsa/A==
+Date: Mon, 13 Jul 2026 09:31:00 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Frank.Li@oss.nxp.com
-Cc: Peter Chen <peter.chen@kernel.org>, 
-	Pawel Laszczak <pawell@cadence.com>, Roger Quadros <rogerq@kernel.org>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Rob Herring <robh@kernel.org>, 
+To: Luca Weiss <luca.weiss@fairphone.com>
+Cc: Georgi Djakov <djakov@kernel.org>, Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	"open list:CADENCE USB3 DRD IP DRIVER" <linux-usb@vger.kernel.org>, 
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>, imx@lists.linux.dev, 
-	Frank Li <Frank.Li@nxp.com>
-Subject: Re: [PATCH 1/1] dt-bindings: usb: cdns3: allow iommus property
-Message-ID: <20260713-chubby-honeybee-of-excitement-1af4a0@quoll>
-References: <20260709205331.636449-1-Frank.Li@oss.nxp.com>
+	Sibi Sankar <sibi.sankar@oss.qualcomm.com>, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Alexander Koskovich <akoskovich@pm.me>, 
+	~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+	linux-pm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/4] dt-bindings: interconnect: OSM L3: Document Milos
+ OSM L3 compatible
+Message-ID: <20260713-intrepid-archetypal-malamute-eaaca7@quoll>
+References: <20260710-milos-cpu-opp-v1-0-ae7f4b09bc77@fairphone.com>
+ <20260710-milos-cpu-opp-v1-1-ae7f4b09bc77@fairphone.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,7 +68,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260709205331.636449-1-Frank.Li@oss.nxp.com>
+In-Reply-To: <20260710-milos-cpu-opp-v1-1-ae7f4b09bc77@fairphone.com>
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-3.16 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
@@ -75,7 +76,7 @@ X-Spamd-Result: default: False [-3.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
@@ -84,12 +85,12 @@ X-Spamd-Result: default: False [-3.16 / 15.00];
 	RCVD_COUNT_THREE(0.00)[4];
 	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	FORGED_RECIPIENTS(0.00)[m:Frank.Li@oss.nxp.com,m:peter.chen@kernel.org,m:pawell@cadence.com,m:rogerq@kernel.org,m:gregkh@linuxfoundation.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-usb@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:imx@lists.linux.dev,m:Frank.Li@nxp.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	FORGED_RECIPIENTS(0.00)[m:luca.weiss@fairphone.com,m:djakov@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:sibi.sankar@oss.qualcomm.com,m:andersson@kernel.org,m:konradybcio@kernel.org,m:akoskovich@pm.me,m:~postmarketos/upstreaming@lists.sr.ht,m:phone-devel@vger.kernel.org,m:linux-arm-msm@vger.kernel.org,m:linux-pm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-325223-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-325224-lists,devicetree=lfdr.de];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
@@ -101,18 +102,18 @@ X-Spamd-Result: default: False [-3.16 / 15.00];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,qualcomm.com:email,quoll:mid]
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,quoll:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,qualcomm.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: E092B748351
+X-Rspamd-Queue-Id: A96EA7483A5
 
-On Thu, Jul 09, 2026 at 04:53:30PM -0400, Frank.Li@oss.nxp.com wrote:
-> From: Frank Li <Frank.Li@nxp.com>
+On Fri, Jul 10, 2026 at 11:22:39AM +0200, Luca Weiss wrote:
+> Document the OSM L3 found in the Qualcomm Milos SoC.
 > 
-> Some SoC such as i.MX8QM have iommu support. Add optional property iommus.
-> 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
 > ---
+>  Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 
 Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
