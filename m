@@ -1,292 +1,223 @@
-Return-Path: <devicetree+bounces-325292-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-325294-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id mHTtJayjVGqLogMAu9opvQ
-	(envelope-from <devicetree+bounces-325292-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 10:37:00 +0200
+	id 4OKuHcCiVGpFogMAu9opvQ
+	(envelope-from <devicetree+bounces-325294-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 10:33:04 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4B4A748C81
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 10:36:59 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id E1311748BAE
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 10:33:03 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=Tl5ACkCq;
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-325292-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-325292-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=oHw0H6+J;
+	dkim=pass header.d=oss.qualcomm.com header.s=google header.b=CygGUTYw;
+	dmarc=pass (policy=reject) header.from=qualcomm.com;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-325294-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-325294-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E938C30DBA3F
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 08:30:54 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id CD0EF301EC46
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 08:32:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C56F13AA1A7;
-	Mon, 13 Jul 2026 08:30:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD0083B1EF1;
+	Mon, 13 Jul 2026 08:32:53 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DDAC347FFE
-	for <devicetree@vger.kernel.org>; Mon, 13 Jul 2026 08:30:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B6473B19B1
+	for <devicetree@vger.kernel.org>; Mon, 13 Jul 2026 08:32:52 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783931454; cv=none; b=IwBJwbXwagrSckPSwkECISs8o4GfyHX5dkIlwm7/C7TbIxrF2gCNNcGGBMZ4srxTEi+pklLIC1dDdvSh2WWD7oIW+6sNYgx66X+PVwYsLbFyrbcH6B18fA8nfAeQZPPWUUDIlKklWUIezvzfTHO+DyVNxI6V4nrVxzXkVH6KwfE=
+	t=1783931573; cv=none; b=g8YmjmPbZz0JNMGS8f/+YPJAZ8K9rHMqDOM3yb3rBPhQ3rclMFPrBsuCqe5afriVz0xiPdzkw/Xdsh83HWwwr+OOx72nGZe7doUyXWfvbVjyaY6oFvkT1bezhfDGG//iOqkvi3sHrF6Ccf3WWuayCgjA7WnYsRqYCqViOM9WEgA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783931454; c=relaxed/simple;
-	bh=x8pYtEFEs5YSqMTm1gG5ExN4sE7Ks+t6B9OuOkTtB7w=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=PPvp7C2zJfoWQbGDUrTG8Er6j29208sUDWVdooIQvcRAtIR0Qow05/T0GlxbglPPL99oD1VZkFUSqeSEpo2Tvn9ymwAv/3Kd97V0jXjLlh3P9jo6DIS16Tmxxk/SNdjFfKF1WRggOb8E0FNkOVJvGH2APnecPUeObDfd0xc0mHc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Tl5ACkCq; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 536341F000E9;
-	Mon, 13 Jul 2026 08:30:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783931452;
-	bh=OB/XCRuPMGlwD1EjTMT+B7ySU22bmxDladMzvW3oMw4=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=Tl5ACkCqlxHs6W2/T2GIqWQ0GcvfRNNyTk8Jn61OKG1l3HojHQ0BjdZ84fvoWWxqg
-	 pT3qrqe53Qt78hG1OJfarU5d1CbNfFst7nRhUJ2M8oD6bTZVlNcVTnuM6h6uzJNMV+
-	 mYfP774K49F/2sz7NP8EhLF3uZ+yzdLA98bPAUDwRdqQddsCPLF+y13y6ZZO7K3tbY
-	 l4WbAiaTAUAG+6bYBuPkjjCpwFp9+AGXcb7rsAKUsO69IoyCsiXSjJ6NnJxFM3Qb5t
-	 aWkpohxJPu+sELqa9lu4dFxLyoIEZvFqf8tEnnDHaF7YJVWf1sNK8bfSGrTVdlkeba
-	 9JyKDQjLACyAA==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v2 2/2] iio: adc: Add Nuvoton MA35D1 EADC driver
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Chi-Wen Weng" <cwweng.linux@gmail.com>
-Cc: devicetree@vger.kernel.org, conor+dt@kernel.org, robh@kernel.org
-In-Reply-To: <20260713081127.115197-3-cwweng.linux@gmail.com>
-References: <20260713081127.115197-1-cwweng.linux@gmail.com>
- <20260713081127.115197-3-cwweng.linux@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Mon, 13 Jul 2026 08:30:51 +0000
-Message-Id: <20260713083052.536341F000E9@smtp.kernel.org>
+	s=arc-20240116; t=1783931573; c=relaxed/simple;
+	bh=izT7iG+kaH0m4tu0+8NdueVzy/iX/EoTNiE5/rPw5JY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ojqI9cOurWBoLFlxkH580aRg1OnadMfyPilVIU68Eae5FdO5Gm6ZCkRVw0umr7/fVcR0o3Q0lFkj47KCW8hUIVJkd+8MdmmT75Rmwkh+fqBBV1zu/IpYZJNkkyl+Rq2QrLv0QDo14TnGtlSETMvpbJHkIXBnqMWcBABdGYXYIeI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=oHw0H6+J; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=CygGUTYw; arc=none smtp.client-ip=205.220.180.131
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 66D7YmXP794265
+	for <devicetree@vger.kernel.org>; Mon, 13 Jul 2026 08:32:51 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	orA8N+rUfuLziWiAdmDsk+WxJbTynnYWZ3oIdn7j9VA=; b=oHw0H6+J5xZGv9/H
+	cYcjHa9QkeP6GovccH1Im00OpuN2zO2QZqbmUty7t0bcfod0fATzhPRkxGOaJluZ
+	hSncl3RP84NXmP3QuVXOCVSLydo0nVawL9QgU+VEL/LxgsQvjA9hVWzwiwi6xcop
+	9fWbCIwmscuPBQwP+w0zQL86A2egMhXtiT77aF2hQM//tnk5GxBfWCeguPAbQ2td
+	Y5p92RpyFWZLJAbzC33iBy4g4ocLkODhi84WnoxHmGnlzIpteIiyCf4YLqYEA+6s
+	4DCBpp0kLOJSu3Y5Z/lZesngIuC/e6CuA6rfl2rcxOd2vPE7s6mCRnJ+OUxxJnhI
+	RMAiHQ==
+Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com [209.85.219.70])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4fcurn06mf-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 13 Jul 2026 08:32:51 +0000 (GMT)
+Received: by mail-qv1-f70.google.com with SMTP id 6a1803df08f44-8f0ed4fe79aso68567206d6.0
+        for <devicetree@vger.kernel.org>; Mon, 13 Jul 2026 01:32:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1783931571; x=1784536371; darn=vger.kernel.org;
+        h=content-transfer-encoding:content-type:in-reply-to:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=orA8N+rUfuLziWiAdmDsk+WxJbTynnYWZ3oIdn7j9VA=;
+        b=CygGUTYwOLXTWaHIPdpd60eKRw5/2KHxXhOIXtbD7hld9d8KhwW7LBFiJ412nDXHUO
+         m2kzXGsB8deVT1x0cnYZT0/EBr6OARNluMqXtONFw9ege+1tzBYqj4VVYBJ7R1odgNdg
+         RXAj0SQC8wYqM5+4Q4n6oCHkHmJ0EbUBAmpFmmytR4aEir3ykg9SDCgvjMkK7Sqi0PzR
+         yV4BjcOnGTJic+Z9n385bll4PN7eqUeOPe8TuR97ff/FcCDJk3K6XW+jPiJnstIX0NB4
+         2SUdowMHA2mDt49NxvDwEXDk6TyFA99nWoBDJl3b6FBinyP+VyrB3CZMs9d8NzVX2A8S
+         BbUQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1783931571; x=1784536371;
+        h=content-transfer-encoding:content-type:in-reply-to:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=orA8N+rUfuLziWiAdmDsk+WxJbTynnYWZ3oIdn7j9VA=;
+        b=eF/Pfn7VJcBEEjKu3FeerCT7dW3JAKtyzEjuvKgfBGh1xVxvq4gyMJNWo+NeZiJ/7/
+         pyA+3FWXo2TJuweHeik71NngxGTLV6dzOAu58EwXL+rhw6T3xr/7qntqfzGf6pOKBHPX
+         pO08xs3RUxPHA4VkP01bTNyAnIfe+0CtYYdVxPDfSRsRjR5K9Nf/rfNeLVce/A7s4Aw3
+         HqigJF3uTz9N72Gcbo0p05e8FCDNFf0uEz7yuqPs0IpwcmiqaED+TPIETlFTGvWUA4Zy
+         owvt0OxXpf3v+qaTP6GwchXyCdVnr64A8U+GyxTCftwxUMw4MxO/ap9Am/uDz85NZm5t
+         z+dg==
+X-Forwarded-Encrypted: i=1; AHgh+RoYxyF7p6zoX5SZFhD12F0OO8gE7eDgxQgVRv4aIvrlnq5RygsxoWJtMKrtVFZaDdamdP82e/ZJJqlm@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyf8/pdRiLktOs7CZR6G/mAbBU5tpeZ2fxXFRxbJoC9PCX1Y0Lq
+	sdTZLtJOzfY6l6c2V+4MIHzHLwH9KyKzP38rRVuEIIT0TmIIJVO2F4HYRBsBfdH3kUIHiYWrqVc
+	j+ZJmfmAFw3ub8My9vppnwFUV+YJx4jUC2ZBR17NXhpMVLhLxT5cy5XDwb8WvNfZk
+X-Gm-Gg: AfdE7cmbrd7i3O9cgvw2M/hWG9TCeM13rTD5If+PXiYB6tmuKsf5YhicYwmKOeDMloH
+	UEc5t7SCYYLai46qebD+6sy0lDBgtUDRO0m4woam+3pzYEgvq68sl5wQ2cPCTSwGHcH0L+Ijmrz
+	agn1mFCshZi9qnRTT0Na7tg2B3HoFSz5+/7YUqBBOaJppq8+01GPFJAWdxugxLLPImh1nF+U/dI
+	Xe2Q7pWqjOv81qwF5OOrdc66U2DqI6joVFkZS5ZTFM9TBTEXaky/D/fhb+e3brxBxQBnkYGQcI4
+	ACxmmo/SA42bsKcG3zXRjcw2YomkFqbMSWZ8f+x+/JAiDH01IPJc/cE3uY6wkG4oIGvACjfwJBN
+	/QwLx/f+syIg5AaUicdPo/eqiPMGF9mTbVVj3skHMEOA=
+X-Received: by 2002:a05:622a:34b:b0:51c:88b:d7e3 with SMTP id d75a77b69052e-51cbf0c4b4cmr79278261cf.3.1783931570536;
+        Mon, 13 Jul 2026 01:32:50 -0700 (PDT)
+X-Received: by 2002:a05:622a:34b:b0:51c:88b:d7e3 with SMTP id d75a77b69052e-51cbf0c4b4cmr79278101cf.3.1783931570178;
+        Mon, 13 Jul 2026 01:32:50 -0700 (PDT)
+Received: from [192.168.1.73] ([92.247.57.178])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-c15bb51af39sm858900666b.29.2026.07.13.01.32.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 13 Jul 2026 01:32:49 -0700 (PDT)
+Message-ID: <30a35954-4d0c-479e-8918-9f7a3a049a5c@oss.qualcomm.com>
+Date: Mon, 13 Jul 2026 11:32:48 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 0/5] Add Qualcomm JPEG V4L2 encoder for SM8250
+To: Krzysztof Kozlowski <krzk@kernel.org>, linux-media@vger.kernel.org
+Cc: bryan.odonoghue@linaro.org, vladimir.zapolskiy@linaro.org,
+        loic.poulain@oss.qualcomm.com, mchehab@kernel.org, robh@kernel.org,
+        krzk+dt@kernel.org, conor+dt@kernel.org, andersson@kernel.org,
+        konradybcio@kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20260706071113.383215-1-atanas.filipov@oss.qualcomm.com>
+ <7479fb60-e14a-4c00-94bd-ecd5a493bec8@kernel.org>
+Content-Language: en-US
+From: Atanas Filipov <atanas.filipov@oss.qualcomm.com>
+In-Reply-To: <7479fb60-e14a-4c00-94bd-ecd5a493bec8@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-ORIG-GUID: bMSQMAJybO-HjAE-jMoLXPThduIPvRFJ
+X-Authority-Analysis: v=2.4 cv=IcK3n2qa c=1 sm=1 tr=0 ts=6a54a2b3 cx=c_pps
+ a=oc9J++0uMp73DTRD5QyR2A==:117 a=ybD9qRDIDfZaXNPQ7Ca20A==:17
+ a=IkcTkHD0fZMA:10 a=RAioF0-LDSMA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=ZpdpYltYx_vBUK5n70dp:22
+ a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=-YhuI8MAAc7Bk1R6834A:9 a=QEXdDO2ut3YA:10
+ a=iYH6xdkBrDN1Jqds4HTS:22
+X-Proofpoint-Spam-Info: AW1haW4tMjYwNzEzMDA4NyBTYWx0ZWRfX+rEZ+sLWdspW
+ aQ9rLC0fRFv0AlsK2OCKSMhxLezPW2FQTSMvE849VS30KNnX6EJeUox+XXrlyHH2en8uNL8F2wW
+ ZyKjSUQWPrRxIzhsGI0XLXUrPrbwf0g=
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNzEzMDA4NyBTYWx0ZWRfX8vVUkuSvrRkt
+ j2298iqtPwHIF36444jhpsixyr9PA6snfYjwz2r5DwxtXMRqYy9oNGD0ndoJzpDLXRgVS4JDi0K
+ 7TmkVVBgapf6+8US3LNkQQXhgW76e41YFyoyaL8O7GB28YaTfWrAXuUKkL/TRorqMB+Y71Iyqj7
+ m9lAMweTdhmSTtIEGvpY0e4+MLigvMhYjBIQnxtCKj0fUfWG/daLeh2wLAmoM+8qgmVyhygdkIq
+ pHawAhQLfPplzxh0SF0qSNbaxtE0I9NLd4RcK/yjSbHQHkZCpV2n6IyY5RXoT5enTgf84+Vg9ba
+ ISDCcF3XeXykYBRt/3HD2JI2juXkVKGkhebQHW5mgwB1bZtPR7zrA3LXThHQCk5yx4V7oe2FEBI
+ /kq5JMRK2YhJBh8KPI82sR1wrGAk9LWrQvxJTF9ZotWZXSm47UBwup+gANVdG9POQlSMqMxonEM
+ e6rL+sHwzfnFV7Zzxiw==
+X-Proofpoint-GUID: bMSQMAJybO-HjAE-jMoLXPThduIPvRFJ
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.134,FMLib:17.12.100.49
+ definitions=2026-07-13_02,2026-07-10_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 spamscore=0 lowpriorityscore=0 phishscore=0 bulkscore=0
+ clxscore=1015 impostorscore=0 suspectscore=0 malwarescore=0 adultscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2606150000 definitions=main-2607130087
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.16 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TO_DN_SOME(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-325292-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[gmail.com];
+	TAGGED_FROM(0.00)[bounces-325294-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:krzk@kernel.org,m:linux-media@vger.kernel.org,m:bryan.odonoghue@linaro.org,m:vladimir.zapolskiy@linaro.org,m:loic.poulain@oss.qualcomm.com,m:mchehab@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:andersson@kernel.org,m:konradybcio@kernel.org,m:linux-arm-msm@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:cwweng.linux@gmail.com,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:robh@kernel.org,m:cwwenglinux@gmail.com,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FORGED_SENDER(0.00)[atanas.filipov@oss.qualcomm.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ALIAS_RESOLVED(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,qualcomm.com:dkim,vger.kernel.org:from_smtp,oss.qualcomm.com:from_mime,oss.qualcomm.com:dkim,oss.qualcomm.com:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCPT_COUNT_THREE(0.00)[4];
+	FROM_NEQ_ENVFROM(0.00)[atanas.filipov@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[nuvoton.com:email,lists.linux.dev:replyto,sashiko.dev:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: E4B4A748C81
+X-Rspamd-Queue-Id: E1311748BAE
 
-Thank you for your contribution! Sashiko AI review found 6 potential issue(=
-s) to consider:
-- [High] `ma35d1_adc_update_scan_mode` incorrectly rejects valid scan masks=
- that include the timestamp channel.
-- [High] A timed-out conversion can leave a pending ISR that spuriously com=
-pletes the next conversion, leading to stale data.
-- [Low] The driver uses non-existent macros `IIO_DEV_ACQUIRE_DIRECT_MODE` a=
-nd `IIO_DEV_ACQUIRE_FAILED`.
-- [Low] The driver attempts to assign to a non-existent `format` field in `=
-struct iio_scan_type`.
-- [Low] The `MA35D1_EADC` Kconfig entry lacks an architecture or `COMPILE_T=
-EST` dependency.
-- [Low] Mixing `guard()` with `goto` for error handling violates `cleanup.h=
-` rules.
---
+On 7/6/2026 3:24 PM, Krzysztof Kozlowski wrote:
+> On 06/07/2026 09:11, Atanas Filipov wrote:
+>> This series adds support for the Qualcomm JPEG V4L2 mem2mem encoder on SM8250.
+>>
+>> The goal is to upstream a standards-based JPEG encode path using the V4L2 M2M
+>> framework, with DT-described hardware resources and SoC DTS integration.
+>>
+> 
+> 1. Here was NAK for v2:
+> https://lore.kernel.org/all/20260625133828.3221781-1-atanas.filipov@oss.qualcomm.com/
+> 
+> When I asked to implement previous comments.
+> 
+> Did you implement them? No.
+> 
+> 2. At v2-1 version I already asked you to implement comments:
+> https://lore.kernel.org/all/c9006b67-aa43-41d3-8b13-f20dd2e544c6@kernel.org/
+> 
+> Basically now, THIRD TIME, you send the same and you still do not
+> implement the comments I asked you at v1.
+> 
+> I treat it as deliberate action to ignore review. Me asking the same for
+> the third time and expecting different results goes towards insanity, so
+> let's avoid me becoming insane and consider all future submissions also
+> NAK-ed:
+> 
+> Nacked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+> 
+> Best regards,
+> Krzysztof
 
---- Patch [2]: [PATCH v2 2/2] iio: adc: Add Nuvoton MA35D1 EADC driver ---
-commit e4312453e3f2955d13e6052b2ffd1d6a2a5739a1
-Author: Chi-Wen Weng <cwweng@nuvoton.com>
+Apologies for the repeated failures. It was not deliberate. Inline
+replies to all your v1, v2 and v4 comments have now been sent. v5
+will address all of them without exception.
 
-iio: adc: Add Nuvoton MA35D1 EADC driver
-   =20
-This commit adds an IIO driver for the Nuvoton MA35D1 Enhanced ADC
-controller. It supports direct raw reads and triggered buffered capture
-using an external IIO trigger.
-
-> diff --git a/drivers/iio/adc/Kconfig b/drivers/iio/adc/Kconfig
-> index ea3ba13973928..c657b3627a11a 100644
-> --- a/drivers/iio/adc/Kconfig
-> +++ b/drivers/iio/adc/Kconfig
-[ ... ]
-> @@ -844,6 +844,18 @@ config LTC2497
->  	  To compile this driver as a module, choose M here: the module will be
->  	  called ltc2497.
-> =20
-> +config MA35D1_EADC
-> +	tristate "Nuvoton MA35D1 EADC driver"
-
-[Severity: Low]
-Is this missing a dependency on the architecture or COMPILE_TEST?
-Without something like depends on ARCH_MA35 || COMPILE_TEST, this will
-prompt users during kernel configuration on all architectures.
-
-> +	select IIO_BUFFER
-> +	select IIO_TRIGGERED_BUFFER
-> +	select REGMAP_MMIO
-[ ... ]
-> diff --git a/drivers/iio/adc/ma35d1_eadc.c b/drivers/iio/adc/ma35d1_eadc.c
-> new file mode 100644
-> index 0000000000000..b2733e816c49d
-> --- /dev/null
-> +++ b/drivers/iio/adc/ma35d1_eadc.c
-[ ... ]
-> +static int ma35d1_adc_read_conversion(struct ma35d1_adc *adc,
-> +				      const struct iio_chan_spec *chan, u16 *raw)
-> +{
-[ ... ]
-> +	timeout =3D wait_for_completion_timeout(&adc->completion,
-> +					      MA35D1_EADC_TIMEOUT);
-> +
-> +	ret =3D ma35d1_adc_disable_irq(adc);
-> +	if (ret)
-> +		return ret;
-> +
-> +	if (!timeout)
-> +		return -ETIMEDOUT;
-
-[Severity: High]
-Does this timeout path need a call to synchronize_irq()?
-
-If the hardware interrupt fires right as the timeout expires, the completion
-could be signalled by the delayed ISR after we return -ETIMEDOUT. The next
-conversion would call reinit_completion(), but the pending ISR might
-immediately complete it, returning stale data or failing.
-
-> +
-> +	ret =3D regmap_read(adc->regmap, MA35D1_EADC_DAT(0), &val);
-[ ... ]
-> +static int ma35d1_adc_read_raw(struct iio_dev *indio_dev,
-> +			       const struct iio_chan_spec *chan,
-> +			       int *val, int *val2, long mask)
-> +{
-> +	struct ma35d1_adc *adc =3D iio_priv(indio_dev);
-> +	u16 raw;
-> +	int ret;
-> +
-> +	switch (mask) {
-> +	case IIO_CHAN_INFO_RAW: {
-> +		IIO_DEV_ACQUIRE_DIRECT_MODE(indio_dev, claim);
-> +
-> +		if (IIO_DEV_ACQUIRE_FAILED(claim))
-> +			return -EBUSY;
-
-[Severity: Low]
-Will this compile? The IIO_DEV_ACQUIRE_DIRECT_MODE and IIO_DEV_ACQUIRE_FAIL=
-ED
-macros do not appear to exist in the IIO subsystem.=20
-
-Should this use iio_device_claim_direct_mode() or=20
-iio_device_claim_direct_scoped() instead?
-
-> +
-> +		guard(mutex)(&adc->lock);
-> +		if (adc->suspended)
-[ ... ]
-> +static int ma35d1_adc_update_scan_mode(struct iio_dev *indio_dev,
-> +				       const unsigned long *scan_mask)
-> +{
-> +	struct ma35d1_adc *adc =3D iio_priv(indio_dev);
-> +	const struct iio_chan_spec *scan_chan =3D NULL;
-> +	unsigned long bit;
-> +	unsigned int count;
-> +
-> +	count =3D 0;
-> +	for_each_set_bit(bit, scan_mask, indio_dev->masklength) {
-> +		scan_chan =3D &indio_dev->channels[bit];
-> +		count++;
-> +	}
-> +
-> +	if (count !=3D 1 || scan_chan->type !=3D IIO_VOLTAGE)
-> +		return -EINVAL;
-
-[Severity: High]
-Does this logic unintentionally reject valid scan masks that include the
-timestamp channel?
-
-If a userspace application enables one voltage channel and the timestamp
-channel, the mask will have 2 bits set. The loop will increment count
-for both, causing count !=3D 1 to trigger and reject the configuration.
-
-> +
-> +	adc->scan_chan =3D scan_chan;
-[ ... ]
-> +static irqreturn_t ma35d1_adc_trigger_handler(int irq, void *p)
-> +{
-> +	struct iio_poll_func *pf =3D p;
-> +	struct iio_dev *indio_dev =3D pf->indio_dev;
-> +	struct ma35d1_adc *adc =3D iio_priv(indio_dev);
-> +	IIO_DECLARE_BUFFER_WITH_TS(u16, scan, 1) =3D { };
-> +	u16 raw;
-> +	int ret;
-> +
-> +	guard(mutex)(&adc->lock);
-> +	if (adc->suspended || !adc->scan_chan)
-> +		goto done;
-
-[Severity: Low]
-This isn't a runtime bug, but does this violate the cleanup.h guidelines?
-
-The documentation for cleanup helpers states that we should never mix
-goto-based error handling with guard() declarations in the same function.
-
-> +
-> +	ret =3D ma35d1_adc_read_conversion(adc, adc->scan_chan, &raw);
-[ ... ]
-> +static void ma35d1_adc_init_channel(struct iio_chan_spec *chan, u32 vinp,
-> +				    u32 vinn, unsigned int scan_index,
-> +				    bool differential)
-> +{
-> +	chan->type =3D IIO_VOLTAGE;
-> +	chan->indexed =3D 1;
-> +	chan->channel =3D vinp;
-> +	chan->scan_index =3D scan_index;
-> +	chan->info_mask_separate =3D BIT(IIO_CHAN_INFO_RAW) |
-> +					 BIT(IIO_CHAN_INFO_SCALE);
-> +	chan->scan_type.format =3D differential ? IIO_SCAN_FORMAT_SIGNED_INT :
-> +					      IIO_SCAN_FORMAT_UNSIGNED_INT;
-
-[Severity: Low]
-Does struct iio_scan_type have a format field?=20
-
-It looks like the IIO API uses a char sign field instead, and
-IIO_SCAN_FORMAT_SIGNED_INT does not exist. This will likely cause a build
-failure.
-
-> +	chan->scan_type.realbits =3D 12;
-> +	chan->scan_type.storagebits =3D 16;
-> +	chan->scan_type.endianness =3D IIO_CPU;
-> +
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260713081127.1151=
-97-1-cwweng.linux@gmail.com?part=3D2
+Best regards,
+Atanas
 
