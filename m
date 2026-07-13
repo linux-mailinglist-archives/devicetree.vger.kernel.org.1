@@ -1,185 +1,173 @@
-Return-Path: <devicetree+bounces-325528-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-325514-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id g3w2NnPiVGq6gQAAu9opvQ
-	(envelope-from <devicetree+bounces-325528-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 15:04:51 +0200
+	id eRphKLfgVGotgQAAu9opvQ
+	(envelope-from <devicetree+bounces-325514-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 14:57:27 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6669674B404
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 15:04:51 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 40CF174B2AE
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 14:57:27 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=abscue.de header.s=dkim header.b=TfnRqYCj;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-325528-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-325528-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=none;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=WbOvPafB;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-325514-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-325514-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 0384E304950C
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 13:02:15 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 30F25300D762
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 12:57:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B77CF4189B1;
-	Mon, 13 Jul 2026 13:01:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03E7340D56A;
+	Mon, 13 Jul 2026 12:57:23 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from srv01.abscue.de (abscue.de [89.58.28.240])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C99E416CE2;
-	Mon, 13 Jul 2026 13:01:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7D193E7BB6
+	for <devicetree@vger.kernel.org>; Mon, 13 Jul 2026 12:57:21 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783947700; cv=none; b=AlSFtCeiZHpsCMH2D0vyhLTVWMNUrnvi74mJdidNSVva5Z3fiZGATgGBRygYLVli29LWN3NYzZ65SJVTpPOikkxFCe7AB14S9jJ53XrFYZdfSFiuKhStJaMFNa5/pwTJ4oC+Dctuj2pmkZ3/NvIYm38X2Akd8epKIqF3r2Pnmcc=
+	t=1783947442; cv=none; b=NOyg0M43Xnem5HtLUUfzzkASmUQquX3nV7pOLP98YEiO/8Yhn9oFYLq7YloDEkQd+LpPENI1SgQP+FEpW9w2tijdfoInM5rEarCxrwYAMqkxTEhURlQDQlfBgobMMtINkrxLtezFzG6r+I6jXrJdylEl1SaNxY3ZxzC6n90pRj4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783947700; c=relaxed/simple;
-	bh=BwrO3/MsLOx0N0sI+Mj+GfChy3yrdeQ+2EJMwPhwp2s=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Rs7fCJvN7YaTzvSDklDWlAsMXp2TApsvQWudE9iPyySiJp57XGtuqwYCC45/+ETyK5di9otO7JqpxApCexjo9Xp6/Wz6AF++aWYJnGzNCPX7dtvfik6OhGpd670ZhZMBplNryU1cy6nCj5DU2ZatxhBF3/uoyOyb8EAryCzteCs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=abscue.de; spf=pass smtp.mailfrom=abscue.de; dkim=pass (2048-bit key) header.d=abscue.de header.i=@abscue.de header.b=TfnRqYCj; arc=none smtp.client-ip=89.58.28.240
-Message-ID: <2d34c3f6-5f66-4b60-b9a2-180163964552@abscue.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=abscue.de; s=dkim;
-	t=1783947103;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=jzVe8atkrU+j+S9mStRrtWyJtCiaN5tTvQ4xvIGKY4g=;
-	b=TfnRqYCjfBvrXj255IPTjN/a+2WqhfzYlNYRwwgkTzsAZghsBX+j+IFD3Sm0Jm1J253j8C
-	LIFgZHSnhERrtO5gD1FtHfosFOl217I05vxwWIjmR1ereLDLyLq2rgkdVDF1r2Pc1WoaXS
-	8phx60lWlBl8U7HmgzV9b0HzZVB3Tdv8GdzHwWF5YcFXkGAB/CN4vVLFLcKtvPCi63Uq50
-	KqcmE/hMF05vOd3Fqm81umPnyewCDTJTxAqukIiOJ06c2wE8KaAaxb16H5qYQ/tQR+CLth
-	1SzGtzdImvS/B2sG8uANcSpQsk0UK1nvZ4hTlKjA/b1foUCa8SiPjQCL0LhOTQ==
-Date: Mon, 13 Jul 2026 14:51:40 +0200
+	s=arc-20240116; t=1783947442; c=relaxed/simple;
+	bh=YOiXvMCucobhwj3Rj2D5DNezoxKilfQPKbTsYG+faj0=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=GJ4tvHRokIRWy1giK3+FNXduFiTkeFW70foZrY9597YjfeFJLtFmYr1qrqprCt/W7uX5tMPrcHsiLorp0ui32GLhz8K894wuRTdxxaGxw/BVo/aANuvHsasmC9yDqWWTV5MZhacS24bvxnhW6AqH3HtZmulbY8r15TWkuv59jdU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WbOvPafB; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2E22D1F00A3A;
+	Mon, 13 Jul 2026 12:57:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1783947441;
+	bh=Auuw8MfqBH9cYQU4s+GcamNQRKXsZhL+vsU2xpoK9ks=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=WbOvPafB6pNUW9A2v2nGTfln+6saAGSFTZwknRFo56c/d81T9QZscOl9EiO3/nNYe
+	 GIMVptHEFl+tibY+1DegIzoRaHn4VDwN7T48f3LCff7PkAqtfeuYgogL5zzMtcSVto
+	 nmqJlaQTZ54CHcL5eY48kdKTA7oBOdYnVBUJVSgKQjQ6AZNjAVPZeZAS6m1on1zkKG
+	 pCNng+43Ew8msPOVis5IcMokwWcB2jTintelwrwVE1j8Xw9dBbRTYgmbeuNAtMNA9W
+	 oGqjT0PgNihwu/zomEhrJ8UX3JlzhblKmmpsCa7y70hVajWrF8T7JPmIvePaSGeXU4
+	 eF2L9YDQuLuGw==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH] dt-bindings: pinctrl: ti,dra7-iodelay: Convert to DT
+ schema
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Bhargav Joshi" <j.bhargav.u@gmail.com>
+Cc: robh@kernel.org, devicetree@vger.kernel.org, conor+dt@kernel.org
+In-Reply-To: <20260713-ti-iodelay-v1-1-5f06d36c4aac@gmail.com>
+References: <20260713-ti-iodelay-v1-1-5f06d36c4aac@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Mon, 13 Jul 2026 12:57:20 +0000
+Message-Id: <20260713125721.2E22D1F00A3A@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] pinctrl: mediatek: Add driver for MT6858
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, nikolai.burov@jolla.com,
- Linus Walleij <linusw@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
- Sean Wang <sean.wang@kernel.org>
-References: <20260710-mt6858-pinctrl-v1-0-f75ab558f0df@jolla.com>
- <20260710-mt6858-pinctrl-v1-2-f75ab558f0df@jolla.com>
- <89e4eb3d-a61c-410e-8ad5-e845b07f8029@collabora.com>
-Content-Language: en-US
-From: Nikolai Burov <nikolai.burov+review@abscue.de>
-In-Reply-To: <89e4eb3d-a61c-410e-8ad5-e845b07f8029@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-3.16 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[abscue.de:s=dkim];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TO_DN_SOME(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:angelogioacchino.delregno@collabora.com,m:linux-gpio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-mediatek@lists.infradead.org,m:nikolai.burov@jolla.com,m:linusw@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:matthias.bgg@gmail.com,m:sean.wang@kernel.org,m:krzk@kernel.org,m:conor@kernel.org,m:matthiasbgg@gmail.com,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[3];
-	FORGED_SENDER(0.00)[nikolai.burov@abscue.de,devicetree@vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-325528-lists,devicetree=lfdr.de,review];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	DMARC_NA(0.00)[abscue.de];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-325514-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[gmail.com];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[abscue.de:+];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:j.bhargav.u@gmail.com,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:jbhargavu@gmail.com,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[nikolai.burov@abscue.de,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,jolla.com,kernel.org,gmail.com];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	RCPT_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.linux.dev:replyto,smtp.kernel.org:mid,sashiko.dev:url,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 6669674B404
+X-Rspamd-Queue-Id: 40CF174B2AE
 
-On 7/13/26 10:01 AM, AngeloGioacchino Del Regno wrote:
-[...]
->> +	[PINCTRL_PIN_REG_MODE] = MTK_RANGE(mt6858_pin_mode_range),
->> +	[PINCTRL_PIN_REG_DIR] = MTK_RANGE(mt6858_pin_dir_range),
->> +	[PINCTRL_PIN_REG_DI] = MTK_RANGE(mt6858_pin_di_range),
->> +	[PINCTRL_PIN_REG_DO] = MTK_RANGE(mt6858_pin_do_range),
->> +	[PINCTRL_PIN_REG_SR] = MTK_RANGE(mt6858_pin_dir_range),
-> 
-> This is Slew Rate, not Direction... And I think this is wrong.
-> 
-> If you don't know where the slew rate registers are, or if that is an 
-> unsupported operation, just omit PINCTRL_PIN_REG_SR.
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
+s) to consider:
+- [Medium] The child node regex `^mmc.*_conf$` arbitrarily restricts I/O de=
+lay configuration nodes to those starting with 'mmc', even though the contr=
+oller is generic.
+- [Medium] The `pinctrl-pin-array` property is not marked as required withi=
+n the child node schema.
+--
 
-Thanks for noticing this! This seems to be a mistake in the downstream 
-driver that I unintentionally copied over. I will remove the slew rate.
+--- Patch [1]: [PATCH] dt-bindings: pinctrl: ti,dra7-iodelay: Convert to DT=
+ schema ---
+commit 59d5959fa2ce86d89ce637daf5f846ce2bedcb0d
+Author: Bhargav Joshi <j.bhargav.u@gmail.com>
 
-> 
->> +	[PINCTRL_PIN_REG_SMT] = MTK_RANGE(mt6858_pin_smt_range),
->> +	[PINCTRL_PIN_REG_IES] = MTK_RANGE(mt6858_pin_ies_range),
->> +	[PINCTRL_PIN_REG_PU] = MTK_RANGE(mt6858_pin_pu_range),
->> +	[PINCTRL_PIN_REG_PD] = MTK_RANGE(mt6858_pin_pd_range),
->> +	[PINCTRL_PIN_REG_DRV] = MTK_RANGE(mt6858_pin_drv_range),
->> +	[PINCTRL_PIN_REG_PUPD] = MTK_RANGE(mt6858_pin_pupd_range),
->> +	[PINCTRL_PIN_REG_R0] = MTK_RANGE(mt6858_pin_r0_range),
->> +	[PINCTRL_PIN_REG_R1] = MTK_RANGE(mt6858_pin_r1_range),
->> +	[PINCTRL_PIN_REG_DRV_ADV] = MTK_RANGE(mt6858_pin_drv_adv_range),
->> +	[PINCTRL_PIN_REG_RSEL] = MTK_RANGE(mt6858_pin_rsel_range),
->> +};
->> +
->> +static const char * const mt6858_pinctrl_register_base_names[] = {
->> +	"base", "lm", "rb", "bm2", "bm", "bm1", "lt", "lt1", "rt", "rt1",
-> 
-> Fix ordering:
-> 
-> "base", "lm", "rb", "bm", "bm1", "bm2", "lt", "lt1", "rt", "rt1",
+dt-bindings: pinctrl: ti,dra7-iodelay: Convert to DT schema
 
-The bases are already in ascending address order. I don't know what the 
-1 and 2 suffixes in the names of the iocfg regions mean, they may just 
-be a historical leftover. Are the names more important than the 
-addresses here?
+This commit converts the TI IODELAY controller bindings from plain text
+to DT schema. It also adds documentation for child properties missing
+from the original text bindings.
 
-[...]
->> +static const struct of_device_id mt6858_pinctrl_of_match[] = {
->> +	{ .compatible = "mediatek,mt6858-pinctrl", .data = &mt6858_data },
->> +	{ }
-> 
->      { /* sentinel */ }
+> diff --git a/Documentation/devicetree/bindings/pinctrl/ti,dra7-iodelay.ya=
+ml b/Documentation/devicetree/bindings/pinctrl/ti,dra7-iodelay.yaml
+> new file mode 100644
+> index 0000000000000..a399946ae8172
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pinctrl/ti,dra7-iodelay.yaml
 
-Thanks!
+[ ... ]
 
-[...]
->> +	MTK_EINT_PIN(119, 0, 72, 0),
->> +	MTK_EINT_PIN(120, 0, 73, 0),
->> +	MTK_EINT_PIN(121, 0, 74, 0),
-> 
-> Looks like you're missing ~70 pins here?
-> 
-> If those have no EINT support, you can declare them as
-> 
->      MTK_EINT_PIN(122, EINT_INVALID_BASE, 0, 0),
-> 
-> ...or you can add a macro to add a (sequential) range of pins with no 
-> EINT support.
+> +patternProperties:
+> +  ^mmc.*_conf$:
 
-Adding a variable number of mtk_eint_pin structs (with a different pin 
-number inside each struct) doesn't seem possible using a single macro, 
-so I'll just manually add all of them to the list.
+[Severity: Medium]
+Looking at the patternProperties definition, does this regression arbitrari=
+ly
+restrict delay configuration nodes to only those starting with mmc?
 
-While writing this, I was looking at the mt6878 driver, which also omits 
-a range of pins. Should that be fixed as well?
+The commit message mentions that mmc pins are just an example of pins
+needing dynamic configuration. If a device tree dynamically configures delay
+for other pins, will this reject them as invalid?
 
--- 
-Best regards,
-Nikolai
+Would it be better to use a more generic pattern?
+
+> +    type: object
+> +    additionalProperties: false
+> +    properties:
+> +      pinctrl-pin-array:
+> +        $ref: /schemas/types.yaml#/definitions/uint32-array
+> +        description: |
+> +          An array of 32-bit integers defining the pin delay configurati=
+on.
+
+[Severity: Medium]
+Could this regression allow incomplete configuration nodes to pass schema
+validation?
+
+Since pinctrl-pin-array is not marked as required, an empty child node would
+pass dt_binding_check, but the driver expects this property to be present
+to initialize the mapping. Should it be added to a required list within the
+patternProperties block?
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260713-ti-iodelay=
+-v1-1-5f06d36c4aac@gmail.com?part=3D1
 
