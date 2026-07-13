@@ -1,210 +1,193 @@
-Return-Path: <devicetree+bounces-325409-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-325799-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id XakGMi2/VGpfqgMAu9opvQ
-	(envelope-from <devicetree+bounces-325409-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 12:34:21 +0200
+	id dHaGGF90VWp8ogAAu9opvQ
+	(envelope-from <devicetree+bounces-325799-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 01:27:27 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E219749DDA
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 12:34:21 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id DD81F74FB3C
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 01:27:26 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=OlFiZV6H;
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-325409-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-325409-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=nabladev.com header.s=dkim header.b=fUzXAIaS;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-325799-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-325799-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=reject) header.from=nabladev.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A15AF300952B
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 10:32:48 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 2F0B7304DC96
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 23:27:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9C2E380FCC;
-	Mon, 13 Jul 2026 10:32:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DEA743D6479;
+	Mon, 13 Jul 2026 23:27:11 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from mx.nabladev.com (mx.nabladev.com [178.251.229.89])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2DC7937F727
-	for <devicetree@vger.kernel.org>; Mon, 13 Jul 2026 10:32:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42A5B395ACB;
+	Mon, 13 Jul 2026 23:27:10 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783938767; cv=none; b=iCjxyAwl0OVyVL6E0Zn+rWWdS8Qk6z9qE4oacVcxIC5xof421QhcJdA2Mf8NFSceykS3+8khHvRKoczBQOphb/nrj+2MTIXuV9qDVSrAU2+Je5AAjGken+3wdwsnPoWn9Yf5iPB0VDu0+0dzaWVZbdKb9HurJGuVw73CswxJwWo=
+	t=1783985231; cv=none; b=kRVKHKWbU5fWlDTiXlJw8FsvjJWPde/RYOwNSgJWFWdNsdJKW6O+TTlAbiaGEWvJZj7U9Kqi1FWZuBfsQ4zu4dxeZdIbJlrN12mcDUbtdKSntZ8Fh9B478IRk3QyBRapMxVWXFOTy1Q9xZ35zwFegJSPn5XQ+dyw2734V9IMXjc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783938767; c=relaxed/simple;
-	bh=Gq/IKh6U63DM5DnP2Bdjjtjdx1lxagenvVxlRS40xVw=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=GTkrrGnAKpJ61NLxQuCn/CVZxpgieqcxpMQBAD2fTx5fDiCxSnideN6ANYu+1AQWJ12ljLa5drf2QV4HVqe/OduO9GgeAM+9WOfEHxc4AlEmHHnrAzE91EBxeqCFwIqwPitu0nBeNWLCjCJ087pVxXHZyZSVdrgEtK+EzSOuKQw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OlFiZV6H; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0E37C1F000E9;
-	Mon, 13 Jul 2026 10:32:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783938763;
-	bh=5Dz+t3Wdm4GaqxoQWFG0bDZjkowP7rv++fG1N/ZnYUk=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=OlFiZV6HQSV3MRGlNbsU7DBAge7FSP/fOzEIbvsnqj8zT1kI7H7BFHtDw1p5XX8/h
-	 XFEjK+mxnND9ErxmRAFDmJ4jxmghGGc9bNWuhXw2TZ7LwiWQLYZM3ui6ngOMg0IKZo
-	 L8YY9ekTT7WBzSyAvzb0QMhOj44tWcVWYciEbXLKnrOUhHqbdQ+oTMrDLodS0IqoCV
-	 pCajFg+EvQwEEGcpcvXDk2GS8t3/uJeAtkM1wuxzz3YEF4z+5eb/+RyjZqwMsl8Hho
-	 6WiS0Vpvh32SBN+EKgznQtSU/t582+zxA6Hk/d2ks1c3R4kG3ANJ5b8+RJC7P6Nw6u
-	 WYYfCCgjqgqig==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v2 2/2] phy: mediatek: Add support for MT8196 MIPI DSI
- PHY
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "AngeloGioacchino Del Regno" <angelogioacchino.delregno@collabora.com>
-Cc: devicetree@vger.kernel.org, vkoul@kernel.org, olteanv@gmail.com, neil.armstrong@linaro.org, robh@kernel.org, conor+dt@kernel.org, dri-devel@lists.freedesktop.org, linux-phy@lists.infradead.org
-In-Reply-To: <20260713102322.21782-3-angelogioacchino.delregno@collabora.com>
-References: <20260713102322.21782-1-angelogioacchino.delregno@collabora.com>
- <20260713102322.21782-3-angelogioacchino.delregno@collabora.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Mon, 13 Jul 2026 10:32:42 +0000
-Message-Id: <20260713103243.0E37C1F000E9@smtp.kernel.org>
+	s=arc-20240116; t=1783985231; c=relaxed/simple;
+	bh=7qo4Fd1LcGckAE3slJyezM1uRHAPu9pnZY4Fz48b8ig=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=sgltQGY4hDg/4nyal1mr85knogcygYImW/6XY6aHlHu3Wth8lsDs9mQyQB54qdrJ4Iig9+CJi3VliMEycLwGafCXAuaJCmYauQGPhnSe2arIUGMf/AdcNzaI/cIbu7HsQnED0aoElUQ1myHiermJgmG+6g6c52p4Q5LRzGsrAsw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nabladev.com; spf=pass smtp.mailfrom=nabladev.com; dkim=pass (2048-bit key) header.d=nabladev.com header.i=@nabladev.com header.b=fUzXAIaS; arc=none smtp.client-ip=178.251.229.89
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 6C4A21199D6;
+	Tue, 14 Jul 2026 01:27:07 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nabladev.com;
+	s=dkim; t=1783985228;
+	h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:content-language:in-reply-to:references;
+	bh=wkoq468eULIdSiAa93TheBL4sQoUuAbGk8pmYh3mGOs=;
+	b=fUzXAIaSuCh0oLPMva5wnofUcYh/u51JZN3FvET/4kCQJLdmKG3HlfRe7x0gCpHXzOogRX
+	15xvwUwAu3zbyLZto9isihoLwjwkb3NsO1R0qxFLsyYTYHBzioOy82PKkquo5O0nahn8ia
+	/H6Rhz37FuMchcDLUMZKCm78dZuZp3a/6dFdrGjlXUpyrFNvpFAlp3Khnekk8F4HLRFJwf
+	54kSvAOTIHjuSJJx+bMJwzLVMqsvgs/1Z2qXyJOEPOUoxHlDiTCD88rkTel5SrMQ9Yh9gu
+	vWg1bBFNXt2UWeqGaaLN//bfhV/n6PxulHNZCRcl71tBhwPzVLoQYoXPvc+wgg==
+Message-ID: <47178bf9-1fc7-4585-aa17-37ec07152b01@nabladev.com>
+Date: Mon, 13 Jul 2026 12:33:02 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 02/10] dt-bindings: gpio: pca95xx: Document Kinetic
+ KTS1622
+To: Bartosz Golaszewski <brgl@kernel.org>
+Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Linus Walleij <linusw@kernel.org>,
+ Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+ kernel@dh-electronics.com, linux-gpio@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org
+References: <20260711210131.236025-1-marex@nabladev.com>
+ <20260711210131.236025-3-marex@nabladev.com>
+ <CAMRc=Mds7FAg=e-JGWxK=9vn5A0sdYDhpZ7Wvo3eCKV1tyNpKw@mail.gmail.com>
+Content-Language: en-US
+From: Marek Vasut <marex@nabladev.com>
+In-Reply-To: <CAMRc=Mds7FAg=e-JGWxK=9vn5A0sdYDhpZ7Wvo3eCKV1tyNpKw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Last-TLS-Session-Version: TLSv1.3
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[nabladev.com,reject];
+	R_DKIM_ALLOW(-0.20)[nabladev.com:s=dkim];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-325799-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:brgl@kernel.org,m:alexandre.torgue@foss.st.com,m:conor+dt@kernel.org,m:krzk+dt@kernel.org,m:linusw@kernel.org,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:kernel@dh-electronics.com,m:linux-gpio@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-stm32@st-md-mailman.stormreply.com,m:linux-arm-kernel@lists.infradead.org,m:conor@kernel.org,m:krzk@kernel.org,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	FORGED_SENDER(0.00)[marex@nabladev.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	RCVD_COUNT_THREE(0.00)[4];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-325409-lists,devicetree=lfdr.de];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:angelogioacchino.delregno@collabora.com,m:devicetree@vger.kernel.org,m:vkoul@kernel.org,m:olteanv@gmail.com,m:neil.armstrong@linaro.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:dri-devel@lists.freedesktop.org,m:linux-phy@lists.infradead.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,gmail.com,linaro.org,lists.freedesktop.org,lists.infradead.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[marex@nabladev.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[nabladev.com:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp,smtp.kernel.org:mid,sashiko.dev:url,lists.linux.dev:replyto,collabora.com:email]
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,st.com:email,infradead.org:email,nabladev.com:from_mime,nabladev.com:mid,nabladev.com:email,nabladev.com:dkim,dh-electronics.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 0E219749DDA
+X-Rspamd-Queue-Id: DD81F74FB3C
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
-s) to consider:
-- [High] Sleeping in Atomic Context
-- [Low] Dead Code / Hardware Capability Restriction
---
-
---- Patch [2]: [PATCH v2 2/2] phy: mediatek: Add support for MT8196 MIPI DS=
-I PHY ---
-commit 290d9427c436e302c4aba5a26f5e3e1e9bb728f5
-Author: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-
-phy: mediatek: Add support for MT8196 MIPI DSI PHY
-
-Add support for the MIPI DSI PHY found in the MediaTek MT8196 SoC
-and its variants. This PHY has a different register layout and provides
-support for more hardware features compared to the previous generation.
-
-> diff --git a/drivers/phy/mediatek/phy-mtk-mipi-dsi-mt8196.c b/drivers/phy=
-/mediatek/phy-mtk-mipi-dsi-mt8196.c
-> new file mode 100644
-> index 0000000000000..273f236fa7e9e
-> --- /dev/null
-> +++ b/drivers/phy/mediatek/phy-mtk-mipi-dsi-mt8196.c
-> @@ -0,0 +1,196 @@
-[ ... ]
-> +static int mtk_mipi_tx_pll_enable(struct clk_hw *hw)
-> +{
-> +	struct mtk_mipi_tx *mipi_tx =3D mtk_mipi_tx_from_clk_hw(hw);
-> +	void __iomem *base =3D mipi_tx->regs;
-> +	u32 voltage =3D RG_DSI_PRD_REF_MINI;
-> +	u32 pres =3D MIPITX_PRESERVED_MINI;
-> +	unsigned long long pcw_calc;
-> +	unsigned int txdiv, txdiv0;
-> +	u32 pcw;
-> +
-> +	dev_dbg(mipi_tx->dev, "enable: %u bps\n", mipi_tx->data_rate);
-> +
-> +	if (mipi_tx->data_rate >=3D 2000000000) {
-> +		/* Select higher signaling voltage for fast data rates */
-> +		voltage =3D RG_DSI_PRD_REF_DEF;
-
-[Severity: Low]
-Is this block reachable? Later in mtk_mipi_tx_pll_determine_rate(),
-req->rate is clamped to a maximum of 1,600,000,000 Hz. If the hardware
-supports rates above 2.0 GHz, does the clamp limit need to be increased,
-or is this dead code?
-
-> +		pres =3D MIPITX_PRESERVED_DEF;
-> +		txdiv =3D 1;
-> +		txdiv0 =3D 0;
-> +	} else if (mipi_tx->data_rate >=3D 1000000000) {
-[ ... ]
-> +	mtk_phy_set_bits(base + MIPITX_PLL_PWR, AD_DSI_PLL_SDM_PWR_ON);
-> +	mtk_phy_clear_bits(base + MIPITX_PLL_CON1, RG_DSI_PLL_EN);
-> +	usleep_range(30, 60);
-
-[Severity: High]
-Does this code sleep in an atomic context?
-
-The mtk_mipi_tx_pll_enable() function is registered as the .enable
-callback in mtk_mipi_tx_pll_ops below. The Common Clock Framework invokes
-.enable under an enable_lock spinlock with interrupts disabled.
-
-Calling usleep_range() here, which internally calls schedule(), will lead
-to scheduling while atomic. Should this use an atomic-safe delay like
-udelay(30), or should this logic be moved to the sleepable .prepare
-callback?
-
-> +
-> +	mtk_phy_clear_bits(base + MIPITX_PLL_PWR, AD_DSI_PLL_SDM_ISO_EN);
-> +	writel(pcw, base + MIPITX_PLL_CON0);
-> +	mtk_phy_update_field(base + MIPITX_PLL_CON1, RG_DSI_PLL_POSDIV, txdiv0);
-> +	usleep_range(30, 60);
-> +
-> +	mtk_phy_set_bits(base + MIPITX_PLL_CON1, RG_DSI_PLL_EN);
-> +	usleep_range(30, 60);
-> +
-> +	return 0;
-> +}
-[ ... ]
-> +static int mtk_mipi_tx_pll_determine_rate(struct clk_hw *hw,
-> +					  struct clk_rate_request *req)
-> +{
-> +	req->rate =3D clamp_val(req->rate, 125000000, 1600000000);
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct clk_ops mtk_mipi_tx_pll_ops =3D {
-> +	.enable =3D mtk_mipi_tx_pll_enable,
-> +	.disable =3D mtk_mipi_tx_pll_disable,
-> +	.determine_rate =3D mtk_mipi_tx_pll_determine_rate,
-> +	.set_rate =3D mtk_mipi_tx_pll_set_rate,
-> +	.recalc_rate =3D mtk_mipi_tx_pll_recalc_rate,
-> +};
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260713102322.2178=
-2-1-angelogioacchino.delregno@collabora.com?part=3D2
+On 7/13/26 10:36 AM, Bartosz Golaszewski wrote:
+> On Sat, 11 Jul 2026 22:59:31 +0200, Marek Vasut <marex@nabladev.com> said:
+>> The Kinetic Technologies KTS1622 is a 16-bit general-purpose I/O
+>> expander via the I2C bus for microcontrollers when additional I/Os
+>> are needed while keeping interconnections to the minimum. Datasheet
+>> comparison suggests that it is compatible with TCAL6416, add the
+>> compatible string and TCAL6416 as a fallback compatible.
+>>
+>> Signed-off-by: Marek Vasut <marex@nabladev.com>
+>> ---
+>> Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>
+>> Cc: Bartosz Golaszewski <brgl@kernel.org>
+>> Cc: Conor Dooley <conor+dt@kernel.org>
+>> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+>> Cc: Linus Walleij <linusw@kernel.org>
+>> Cc: Rob Herring <robh@kernel.org>
+>> Cc: devicetree@vger.kernel.org
+>> Cc: kernel@dh-electronics.com
+>> Cc: linux-arm-kernel@lists.infradead.org
+>> Cc: linux-gpio@vger.kernel.org
+>> Cc: linux-kernel@vger.kernel.org
+>> Cc: linux-stm32@st-md-mailman.stormreply.com
+>> ---
+>>   Documentation/devicetree/bindings/gpio/gpio-pca95xx.yaml | 3 +++
+>>   1 file changed, 3 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/gpio/gpio-pca95xx.yaml b/Documentation/devicetree/bindings/gpio/gpio-pca95xx.yaml
+>> index 4f955f855e1ab..4631388a7d914 100644
+>> --- a/Documentation/devicetree/bindings/gpio/gpio-pca95xx.yaml
+>> +++ b/Documentation/devicetree/bindings/gpio/gpio-pca95xx.yaml
+>> @@ -22,6 +22,9 @@ properties:
+>>         - items:
+>>             - const: diodes,pi4ioe5v6534q
+>>             - const: nxp,pcal6534
+>> +      - items:
+>> +          - const: kinetic,kts1622
+>> +          - const: ti,tcal6416
+>>         - items:
+>>             - enum:
+>>                 - exar,xra1202
+>> --
+>> 2.53.0
+>>
+>>
+> 
+> I applied this. I would have sent a b4 notification but got this instead:
+> 
+> $ b4 ty -all
+> Auto-thankanating commits in gpio/for-next
+> Found 9 of your commits since 1.week
+> Calculating patch hashes, may take a moment...
+>    Located: [PATCH 00/10] arm64: dts: st: Add support for DH
+> electronics STM32MP23xx/STM32MP25xx DHCOS SoM and Breakout Board and
+> DHSBC
+> ---
+> Generating 1 thank-you letters
+>    Writing: ./marex_nabladev_com_patch_00_10_arm64_dts_st_add_support_for_dh_electronics_stm32mp23xx_stm32mp25xx_dhcos_som_and_breakout_board_and_dhsbc.thanks
+> Traceback (most recent call last):
+>    File "/usr/bin/b4", line 8, in <module>
+>      sys.exit(cmd())
+>               ~~~^^
+>    File "/usr/lib/python3/dist-packages/b4/command.py", line 417, in cmd
+>      cmdargs.func(cmdargs)
+>      ~~~~~~~~~~~~^^^^^^^^^
+>    File "/usr/lib/python3/dist-packages/b4/command.py", line 113, in cmd_ty
+>      b4.ty.main(cmdargs)
+>      ~~~~~~~~~~^^^^^^^^^
+>    File "/usr/lib/python3/dist-packages/b4/ty.py", line 681, in main
+>      auto_thankanator(cmdargs)
+>      ~~~~~~~~~~~~~~~~^^^^^^^^^
+>    File "/usr/lib/python3/dist-packages/b4/ty.py", line 386, in auto_thankanator
+>      send_messages(applied, wantbranch, cmdargs)
+>      ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>    File "/usr/lib/python3/dist-packages/b4/ty.py", line 452, in send_messages
+>      with open(outfile, 'wb') as fh:
+>           ~~~~^^^^^^^^^^^^^^^
+> OSError: [Errno 36] File name too long:
+> './marex_nabladev_com_patch_00_10_arm64_dts_st_add_support_for_dh_electronics_stm32mp23xx_stm32mp25xx_dhcos_som_and_breakout_board_and_dhsbc.thanks'
+B4 bug ?
 
