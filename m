@@ -1,174 +1,196 @@
-Return-Path: <devicetree+bounces-325797-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-325805-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id QJSMC8dzVWpiogAAu9opvQ
-	(envelope-from <devicetree+bounces-325797-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 01:24:55 +0200
+	id jRB9MqN0VWqSogAAu9opvQ
+	(envelope-from <devicetree+bounces-325805-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 01:28:35 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8866F74FB14
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 01:24:54 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5BDEB74FB73
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 01:28:35 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=nabladev.com header.s=dkim header.b=U5795kMQ;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-325797-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-325797-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=reject) header.from=nabladev.com;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=FHqlKbVq;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-325805-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-325805-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=gmail.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 7444D3013EC2
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 23:24:53 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id C3CE330058D3
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 23:28:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9D433921E6;
-	Mon, 13 Jul 2026 23:24:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A76A03D3D09;
+	Mon, 13 Jul 2026 23:28:32 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx.nabladev.com (mx.nabladev.com [178.251.229.89])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f51.google.com (mail-pj1-f51.google.com [209.85.216.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9386F2773E5;
-	Mon, 13 Jul 2026 23:24:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 555A2347514
+	for <devicetree@vger.kernel.org>; Mon, 13 Jul 2026 23:28:31 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783985090; cv=none; b=Tg+vapfOh4qNCo0Bw+Utd5ZzTcU+s8uFSIMMi6GHTYGHSHQI/IueH5zzEuXUCZcv/HEbIJEY1j+3golBvtNpf2uXEs0KjULhAYKzU9uhvZmQVvBS2qNJaAGOLHA1Hu14z8l7EUCwU7lGbcBLxBav1JX0uNCcCR73fJu7dGN8AAc=
+	t=1783985312; cv=none; b=qVZH7lMzBorf9IqAyf7WfNscfp2QSfxijIjfz324H92E8GhGXSggaXmSBuyAC2pP7CbgOudHFan765YMjMK8TBNrV5/rRO/jQmzA/FvYo8vP1M42ZU7uzi9GY0SHvQ/SZPaa98M2cmtBpTFrGTGjhFm39xvV8EXxEq+fz3+ed8o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783985090; c=relaxed/simple;
-	bh=AR+ygJAN1X8s8PvIme5xSYlKh0EeUNREH4C2ayUe8WQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=C5gVsDg0X4ogmpzkSwY8WhTSNXxdAOvay2Nb+z3tSPT1dOHPFj19UxM0p+L7vC0MTGjH1SVP9MiGzdtPRscbkwCPtChnxn/ufV0pRNKlqeg8STwVN7Gzb2PTpIWe0c8c/22tiC8Cnxh0sAjE2xOadGg7egokl5o/Y5jMfZl4Avk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nabladev.com; spf=pass smtp.mailfrom=nabladev.com; dkim=pass (2048-bit key) header.d=nabladev.com header.i=@nabladev.com header.b=U5795kMQ; arc=none smtp.client-ip=178.251.229.89
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 561171196C5;
-	Tue, 14 Jul 2026 01:24:42 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nabladev.com;
-	s=dkim; t=1783985085; h=from:subject:date:message-id:to:cc:mime-version:
-	 content-transfer-encoding; bh=D6FpAA0f5GvH9oji0ZuMNzR+AIzfJerxYl2OMl3rvs4=;
-	b=U5795kMQb/YxqVlP+VrW8AAHX91phweIR9P+oF5Zi4J2ZNwbVFi/W9JQIiIa5M2T7pwcII
-	2FmHPVyl7Ga4sGFUcqU6k0GvhOQJLj/OoBFJ7ayu/vtgkzMD5HYzwu0alcS72yuUebP45m
-	dnDLHYNbeJunqcRatGdBHgTNKUpvQxDcf81SJXkh+BS2AFyXiB8nFSFPK/Sh2HMpYQycxd
-	BGzx8rzweg+pilbP6CvVEy9baJHrv1AOL2AXOP/ddmiI4YLKifucKp9MwkKH2e7x+k62vH
-	x77xyTVztxhxFSQILYN4IZy4lJCU/jm+uQBp3osJ4dVT9NSQBZQCkz+R/5vaQw==
-From: Marek Vasut <marex@nabladev.com>
-To: linux-arm-kernel@lists.infradead.org
-Cc: Marek Vasut <marex@nabladev.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Bartosz Golaszewski <brgl@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Linus Walleij <linusw@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	devicetree@vger.kernel.org,
-	kernel@dh-electronics.com,
-	linux-gpio@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com
-Subject: [PATCH] dt-bindings: arm: stm32: Sort the document
-Date: Tue, 14 Jul 2026 01:24:14 +0200
-Message-ID: <20260713232440.120352-1-marex@nabladev.com>
-X-Mailer: git-send-email 2.53.0
+	s=arc-20240116; t=1783985312; c=relaxed/simple;
+	bh=DwO6y+Ab0cx+SrTxwPQilr6LVoLTkmY/M+Nb0LYw8Yk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=sGrJuCSM9GhdYAUrAE6K+KzH1KsQJnt4hG6qOWwStjau1SiV8UvbdruQ8QW50kJ3FtTslRJeNggZEypCw7m+TFPo8nTylPotL86GHPQxLjVidT5N1BitqH1yLeT/ZZ9N9WdrLzkPFQBg4GF90VxQV4A+9Yv4uoez8t2AH3/L9jc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FHqlKbVq; arc=none smtp.client-ip=209.85.216.51
+Received: by mail-pj1-f51.google.com with SMTP id 98e67ed59e1d1-38df94d4dd8so285688a91.2
+        for <devicetree@vger.kernel.org>; Mon, 13 Jul 2026 16:28:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1783985311; x=1784590111; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:from:date:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=MbmA7lPtg8lHve0ezKTNG03RsW6RcvxCYabLXJ2hr7U=;
+        b=FHqlKbVq+t0yECzCAxWIuLv3XhObgGhbLkLH6v5x+QgA8NklRsZ8j8BY8J/PaGceGx
+         V0obtKTtfdeR7gxwhuAftx1n4KURarSFt3oA3GXliYmtT7FFcD1AhkAEh/JoS/rEd65J
+         5NCkALHCqqrZpYGR9RtkJxESLwGqgjMGruP15Gwu7f4Gmt2N4Ki1OpO3QvyPd6tw3vNA
+         N/8g3gB2qCU+UrTeWw07+ebH3R7beXw9ijD5ux00bS+kOmPwHSRgB+9wH2GiY3Z5IAVO
+         6PAWt3hpqzslab38mJv3/1E/VMQgplFEzDPz0kE7TReRRbRVU7jaq4fOMeZvChRHWR/v
+         kyOw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1783985311; x=1784590111;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:from:date:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=MbmA7lPtg8lHve0ezKTNG03RsW6RcvxCYabLXJ2hr7U=;
+        b=OlzikosZ1SGosVp0oxou/fcw693raN6fSCXHbQx7m6N6fy0t1plOXQWOvS/NhTFXo6
+         oEPlGuJZj/2vQTLyb18CRGi7hqtaZ42lKVhHPdqCGutjdpwh1Sw8F8U6tHQAgcmOo8d8
+         18g2DzoO54rTI3ieLXywWFGJJssTTPSojT+LNGcFSVOR8SOtME0lFW+SH8R7KsOQ9XrE
+         5Q8j+NwnjH6mA3371fU0aCEXNRqDqbnUirEF8AGfuAI5lG1mgBUFRdwdvvcd4M6vKiLV
+         wlmxNEqtjavXhtIS/Vq4/VIKgqkpkN8tVVHdqlpb0DHN/S7dKRBAUjVA6qwh/wXaoBxh
+         dnKg==
+X-Forwarded-Encrypted: i=1; AHgh+Rp4RwdH1Rj3iYXsvW7JHezd1JdvHVIjdMQhe7LbCq6+70cY75UP8sD43XsQk412dHs0U3OEdsr9Q4Se@vger.kernel.org
+X-Gm-Message-State: AOJu0Yziregvx/Gv5j2zjx8AqcXuKVFB+WTaJR3Yl/yeXdPh4O8ZWGC5
+	E8gczsyREH4pR3mxdEqhlCZRLZszfdzNtIHp10EzHPRqZfL5TR2iA1QW
+X-Gm-Gg: AfdE7cl5KBfl9MwLA4qVH2Anj7ASs4kOIDGyI5ukM/DWoEKlWXR1GElGc9x7hFZyvvR
+	ksmDIN++pgBkjaF5r7Q1P+88t6JIUoeymMfgyQgW9vUNQmLzABwu6Uqh59jBNk5ZDJnEe43izIH
+	bNR3MAgWkLUFhMvrZ4BeMHC7bs5nha2iJYj2sDriqXoy+rnarsnL4j5yAXkzcDzgCZbY8/f6mB+
+	3M2zmxb6Uw4wWCxumLlr4cfCQLlAXhQFVBrS8YasRj9qJP77TJ89Rqcn0TuIkf9gQU/BIEIT+Lg
+	6hYUL0S2LgSAVw6d11AEq32HkANbpCAX5ArNkz0bJb/7xCFTgtZz2cUQ+PB1k0AzTZvbcj+AI9f
+	y762X/evkvUihAOKpA5mVqeMk7Qqono43jhw44sLY5krmJ6jKUiQD6lRsN3VT6gkqiRGl6MUqY1
+	MylZjhHafOEqaUGiKhq7lvipmzhNQ2DO5svBVo59juFSgWe2hWMJWU2A==
+X-Received: by 2002:a05:6a20:244d:b0:3c0:b766:750c with SMTP id adf61e73a8af0-3c110b751b0mr11657167637.58.1783985310413;
+        Mon, 13 Jul 2026 16:28:30 -0700 (PDT)
+Received: from google.com ([2a00:79e0:2ebe:8:e15f:5d5f:580b:f2e9])
+        by smtp.gmail.com with ESMTPSA id a92af1059eb24-13b987fc629sm28553811c88.0.2026.07.13.16.28.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 13 Jul 2026 16:28:29 -0700 (PDT)
+Date: Mon, 13 Jul 2026 16:28:26 -0700
+From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Peter Griffin <peter.griffin@linaro.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
+	Russell King <linux@armlinux.org.uk>, Mark Brown <broonie@kernel.org>, 
+	Linus Walleij <linusw@kernel.org>, Charles Keepax <ckeepax@opensource.cirrus.com>, 
+	Sam Protsenko <semen.protsenko@linaro.org>, Arnd Bergmann <arnd@arndb.de>, 
+	Bartosz Golaszewski <brgl@bgdev.pl>, linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-samsung-soc@vger.kernel.org, patches@opensource.cirrus.com, 
+	Conor Dooley <conor.dooley@microchip.com>, Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
+Subject: Re: [PATCH v3 00/10] Remove support for platform data from samsung
+ keypad
+Message-ID: <alVyvlknt7HaRgs4@google.com>
+References: <20260711-samsung-kp-v3-0-b2fcaba77aff@gmail.com>
+ <20260712-musical-shrimp-of-fruition-b921df@quoll>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260712-musical-shrimp-of-fruition-b921df@quoll>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[nabladev.com,reject];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[nabladev.com:s=dkim];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	RCPT_COUNT_TWELVE(0.00)[21];
+	TAGGED_FROM(0.00)[bounces-325805-lists,devicetree=lfdr.de];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-325797-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[13];
 	MIME_TRACE(0.00)[0:+];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER(0.00)[dmitrytorokhov@gmail.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS(0.00)[m:krzk@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:peter.griffin@linaro.org,m:alim.akhtar@samsung.com,m:linux@armlinux.org.uk,m:broonie@kernel.org,m:linusw@kernel.org,m:ckeepax@opensource.cirrus.com,m:semen.protsenko@linaro.org,m:arnd@arndb.de,m:brgl@bgdev.pl,m:linux-input@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-samsung-soc@vger.kernel.org,m:patches@opensource.cirrus.com,m:conor.dooley@microchip.com,m:bartosz.golaszewski@oss.qualcomm.com,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[marex@nabladev.com,devicetree@vger.kernel.org];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:linux-arm-kernel@lists.infradead.org,m:marex@nabladev.com,m:alexandre.torgue@foss.st.com,m:brgl@kernel.org,m:conor+dt@kernel.org,m:krzk+dt@kernel.org,m:linusw@kernel.org,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:kernel@dh-electronics.com,m:linux-gpio@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-stm32@st-md-mailman.stormreply.com,m:conor@kernel.org,m:krzk@kernel.org,s:lists@lfdr.de];
-	DKIM_TRACE(0.00)[nabladev.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[marex@nabladev.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[dmitrytorokhov@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	ALIAS_RESOLVED(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,vger.kernel.org:from_smtp,dh-electronics.com:email,st.com:email,infradead.org:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 8866F74FB14
+X-Rspamd-Queue-Id: 5BDEB74FB73
 
-Sort the document, place STM32MP21 before STM32MP23, and STM32MP23
-before STM32MP25 . No functional change.
+On Sun, Jul 12, 2026 at 02:30:50PM +0200, Krzysztof Kozlowski wrote:
+> On Sat, Jul 11, 2026 at 07:12:41PM -0700, Dmitry Torokhov wrote:
+> > Hi,
+> > 
+> > This series converts the Samsung keypad driver and the Cragganmore 6410
+> > board to generic device properties, allowing the removal of legacy platform
+> > data and GPIO lookup tables.
+> > 
+> > We rework the Samsung keypad driver to stop using platform data, utilizing
+> > a new compact matrix keypad binding. To support this on the Cragganmore
+> > board, we add infrastructure to associate software nodes with Samsung
+> > gpio_chips, and add software node propagation support to the wm831x MFD
+> > core to route DVS GPIO to the PMIC regulator.
+> > 
+> > Finally, we convert all peripherals on the Cragganmore board (including
+> > keypad, GPIO keys, PMIC, WM1250, SPI0, basic-mmio-gpio, and LEDs) to
+> > software properties. This allows us to eliminate all legacy GPIO lookup
+> > tables and fixes incorrect GPIO chip names from previous conversions.
+> > 
+> > Mark, it would be great if you could give this a spin on Cragganmore.
+> > 
+> > The majority of changes are in arch/board code, with a couple of input
+> > matches and one for MFD. If everyone agrees maybe we can merge it all
+> > through the soc tree?
+> 
+> Yes, I could take it via samsung-soc. I assume I have your acks for
+> unput parts.
 
-Signed-off-by: Marek Vasut <marex@nabladev.com>
----
-Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>
-Cc: Bartosz Golaszewski <brgl@kernel.org>
-Cc: Conor Dooley <conor+dt@kernel.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: Linus Walleij <linusw@kernel.org>
-Cc: Rob Herring <robh@kernel.org>
-Cc: devicetree@vger.kernel.org
-Cc: kernel@dh-electronics.com
-Cc: linux-arm-kernel@lists.infradead.org
-Cc: linux-gpio@vger.kernel.org
-Cc: linux-kernel@vger.kernel.org
-Cc: linux-stm32@st-md-mailman.stormreply.com
----
- .../devicetree/bindings/arm/stm32/stm32.yaml       | 14 +++++++-------
- 1 file changed, 7 insertions(+), 7 deletions(-)
+Yes, of course.
 
-diff --git a/Documentation/devicetree/bindings/arm/stm32/stm32.yaml b/Documentation/devicetree/bindings/arm/stm32/stm32.yaml
-index c6af3a46364fc..af87661ccca41 100644
---- a/Documentation/devicetree/bindings/arm/stm32/stm32.yaml
-+++ b/Documentation/devicetree/bindings/arm/stm32/stm32.yaml
-@@ -193,28 +193,28 @@ properties:
- 
-       - description: Ultratronik STM32MP1 SBC based Boards
-         items:
-           - const: ultratronik,stm32mp157c-ultra-fly-sbc
-           - const: st,stm32mp157
- 
--      - description: ST STM32MP257 based Boards
-+      - description: ST STM32MP215 based Boards
-         items:
-           - enum:
--              - st,stm32mp257f-dk
--              - st,stm32mp257f-ev1
--          - const: st,stm32mp257
-+              - st,stm32mp215f-dk
-+          - const: st,stm32mp215
- 
-       - description: ST STM32MP235 based Boards
-         items:
-           - enum:
-               - st,stm32mp235f-dk
-           - const: st,stm32mp235
- 
--      - description: ST STM32MP215 based Boards
-+      - description: ST STM32MP257 based Boards
-         items:
-           - enum:
--              - st,stm32mp215f-dk
--          - const: st,stm32mp215
-+              - st,stm32mp257f-dk
-+              - st,stm32mp257f-ev1
-+          - const: st,stm32mp257
- 
- additionalProperties: true
- 
- ...
+Regarding Sashiko review:
+
+- IRQ concerns are pre-existing and will be addressed in a separate
+  series
+
+- TOCTOU with device tree overlay changing DT properties in the middle
+  of the probe I will not attempt to address. If this is a real concern
+  it should be addressed globally 
+
+- Introduction of 5ms default debounce on proximity and suspend seem
+  harmless
+
+- Copying of MFD cells is necessary because we need to "mix in" software
+  nodes from platform data. I originally tried to handle this is the
+  regulator, but the result was worse as it needed to add software node
+  to the device after it was created. Doing it in the core is much
+  cleaner overall.
+
+Thanks.
+
 -- 
-2.53.0
-
+Dmitry
 
