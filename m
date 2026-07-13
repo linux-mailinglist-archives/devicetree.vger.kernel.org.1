@@ -1,317 +1,452 @@
-Return-Path: <devicetree+bounces-325686-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-325687-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id KJP8C1MNVWqvjQAAu9opvQ
-	(envelope-from <devicetree+bounces-325686-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 18:07:47 +0200
+	id 70+vMtANVWrFjQAAu9opvQ
+	(envelope-from <devicetree+bounces-325687-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 18:09:52 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B21974D6C3
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 18:07:46 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 259C074D713
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 18:09:52 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=suse.de header.s=susede2_rsa header.b=kMVA4bcU;
-	dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=dcZw7hjA;
-	dkim=pass header.d=suse.de header.s=susede2_rsa header.b=FaH+x4J9;
-	dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b="1sRd/hFC";
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-325686-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-325686-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=suse.de;
+	dkim=pass header.d=intel.com header.s=Intel header.b=lzw+3Muu;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-325687-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-325687-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=intel.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 396953031C0F
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 16:02:40 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id F348330DA4BA
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 16:04:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9620F3090C2;
-	Mon, 13 Jul 2026 16:02:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FFB53290AF;
+	Mon, 13 Jul 2026 16:04:22 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF2CD2848A7
-	for <devicetree@vger.kernel.org>; Mon, 13 Jul 2026 16:02:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B70D31E823;
+	Mon, 13 Jul 2026 16:04:20 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783958558; cv=none; b=c8E2v62uF3B7QrgUKIfjlSvfUKgPWOn7CYOD4BlNmZPSyeLlBqPIS9iJ+wGCoTuSX/sfhdjv2q7iePXOzLzGmAaM9iiha5gibnhux+jV4wOu06GLe5WNzbHHJAXSO2bg/kDxj8DEFnsm04lmvGwOf1gFoS8qjEb/Wz/n/aYAhGM=
+	t=1783958662; cv=none; b=NUAfJIr2VSzE3GBWTeiuVZAKtXUm3mm4LWcpvAA0frfL2vLg8UOOfWkjbS8DQeb2taBacgMJTJEUxTuGBZOqb5DS8fOgMT80MCYZdhk00QYlWFAHDwNEIwKGrkbWyUlHTb1sBWLn/mhHvzRJAc3TGThf3hf0g30fV0zmBnGYMDc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783958558; c=relaxed/simple;
-	bh=ClIEoMdepOT7JMzzsUOaM8m9cJgQZ4Pzk4xj2WOGatc=;
+	s=arc-20240116; t=1783958662; c=relaxed/simple;
+	bh=AQ6kRwFWlLHQFJShZ44mfxM8160cGsODfIThMj0Os3M=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jLDsFaxc2UsH7XgXIZs+IYJnmpkAHmFTGRVCp+qWeN3rsfjTVTcuOfaiQw9mO0bZQRAQsi9ai8q8MQjNfbB+FKfQ4nVlXD26KUTEK/zpWL4a7EjymnkGPrijc/MYEuUHSwasmwLxe5GmhqSYEbml1ec27btECu/i9xzztkkGLUk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de; spf=pass smtp.mailfrom=suse.de; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=kMVA4bcU; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=dcZw7hjA; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=FaH+x4J9; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=1sRd/hFC; arc=none smtp.client-ip=195.135.223.131
-Received: from kunlun.suse.cz (unknown [IPv6:2a07:de40:b306:2000::2])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-out2.suse.de (Postfix) with ESMTPS id 910343DFC;
-	Mon, 13 Jul 2026 16:02:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1783958555; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=MGgu+CaOtcKoy1gxSjcO4Zf6uMbnGEq/XPb9LJCgoJk=;
-	b=kMVA4bcUNX22GtjClknA4KZ3fswlnAFGsZYKs0uwwH1VrgIL2+ORMYrArV9ujyIHjLC14k
-	SGzvcu7HbBhHWN3bF1cRKzrIUtBwRshU0nLnAUSCR4N93D05xfgHrEr3NmSSTo6/qlTgxx
-	vtdSZBsuWczRq9NBJphkoevwqZ5skDk=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1783958555;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=MGgu+CaOtcKoy1gxSjcO4Zf6uMbnGEq/XPb9LJCgoJk=;
-	b=dcZw7hjAGevDvneRyQ1wY82SJEjy1wW1W8fPidRDgniuImvtEZ/Wrgnx6psFw+vUq4sEPB
-	WZrd8C20us+TxLBA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1783958553; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=MGgu+CaOtcKoy1gxSjcO4Zf6uMbnGEq/XPb9LJCgoJk=;
-	b=FaH+x4J9MKhf1OgVVyTDE0Yl+c5P1Q7hpBjJ7kAFs0XsGN2gTO5a9BjxDXnL3r/gA5NsRj
-	oCLkzRFVhAk5DNDGmMYRazGe7bYWoTpftPK1DWs+1hxSs7mN9y0usho/1Xf2Xuenoev8yW
-	CaWVqK+NqdKRwSW1LUsivR1ZB5uBPgI=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1783958553;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=MGgu+CaOtcKoy1gxSjcO4Zf6uMbnGEq/XPb9LJCgoJk=;
-	b=1sRd/hFCLT/gl1Z2ed/ali1OABoveak0agl2hPKbpsb6FYMjd5wsFLj8zcpuLkulfyZgfs
-	97P2c2Q7xYgWMOCA==
-Date: Mon, 13 Jul 2026 18:02:32 +0200
-From: Michal =?iso-8859-1?Q?Such=E1nek?= <msuchanek@suse.de>
-To: Andre Przywara <andre.przywara@arm.com>
-Cc: Mark Rutland <mark.rutland@arm.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Sudeep Holla <sudeep.holla@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, vsethi@nvidia.com,
-	Salman Nabi <salman.nabi@arm.com>, Rob Herring <robh@kernel.org>,
-	linux-kernel@vger.kernel.org, Varun Wadekar <vwadekar@nvidia.com>,
-	Trilok Soni <trilokkumar.soni@oss.qualcomm.com>,
-	devicetree@vger.kernel.org, Nirmoy Das <nirmoyd@nvidia.com>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=qvjKydPqlA4qsW6mUJS/M0ouKaSXAElwsehfe8g3sfHbfFqajF/h55TbjmgqZHPN8aV9q3p/MTbtrv8QH2GeqY6u1NWYsR/IfNXM0tJSSR2BcbRIIdVuHBoCng0K5BY5mSxt7IvXjLp/OLkdBiTt1OpPgWnlkdmov0A2alBrpGY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=lzw+3Muu; arc=none smtp.client-ip=192.198.163.15
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1783958661; x=1815494661;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=AQ6kRwFWlLHQFJShZ44mfxM8160cGsODfIThMj0Os3M=;
+  b=lzw+3Muu8N8uHaQJfPDEHG9VZAs7ppeGSsybeOBevwuEfP/CaIaYUI5H
+   hO58QUDnfVBdt6aqaIrYkmxvClvwrYYNTob0VrmCoFR/wOnLA2UmU41mV
+   7Q+VjgqFVLJXpFF5djfoZGZy/E8e/IyabKQYOUhwIDXPlGSPmmJEtXvXx
+   EpfuteITIm7zuvt9RcR2kkWRcSz2ItcQV9yb46ugk8N5/L5c0TpD4c1wH
+   Buc+w5mvtMBINC6STmmrdXpsREdpz+lKZV7mxWw7Bu2JqYNBH7qbyZpYC
+   fUh/iQFTojqkuUvB7UO27MAIOiXI44nI9RvAECk+JvdVQ17AYICThLDtK
+   A==;
+X-CSE-ConnectionGUID: gN1C5y9nSRmTTblKmF+0Jw==
+X-CSE-MsgGUID: gS3fNHt8Qhy59deuBkVxuQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11841"; a="84687829"
+X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; 
+   d="scan'208";a="84687829"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Jul 2026 09:04:20 -0700
+X-CSE-ConnectionGUID: /42MMHaGReOvsuxIOuImdA==
+X-CSE-MsgGUID: HgAmR3frT2KuXpcNrd1pCQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; 
+   d="scan'208";a="259444898"
+Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost) ([10.245.245.88])
+  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Jul 2026 09:04:16 -0700
+Date: Mon, 13 Jul 2026 19:04:14 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Stefan Popa <stefan.popa@analog.com>
+Cc: Jonathan Cameron <jic23@kernel.org>, linux-iio@vger.kernel.org,
+	David Lechner <dlechner@baylibre.com>, Nuno Sa <nuno.sa@analog.com>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v3 0/8] Arm Live Firmware Activation (LFA) support
-Message-ID: <alUMGCJzVG6U3Ggm@kunlun.suse.cz>
-References: <20260706134455.132091-1-andre.przywara@arm.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Siratul Islam <siratul.islam@linux.dev>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@baylibre.com>,
+	Ciprian Hegbeli <ciprian.hegbeli@analog.com>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] iio: adc: add MAX40080 current-sense amplifier
+ driver
+Message-ID: <alUMfpXGVa9CYxlT@ashevche-desk.local>
+References: <20260703102941.1141341-1-stefan.popa@analog.com>
+ <20260713120226.90303-1-stefan.popa@analog.com>
+ <20260713120226.90303-3-stefan.popa@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260706134455.132091-1-andre.przywara@arm.com>
-X-Spam-Flag: NO
-X-Spam-Level: ***
-X-Spamd-Bar: +++
-X-Spam-Score: 3.99
+In-Reply-To: <20260713120226.90303-3-stefan.popa@analog.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-5.16 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[intel.com:d:+,kernel.org:s:+];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[suse.de,none];
-	R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:andre.przywara@arm.com,m:mark.rutland@arm.com,m:lpieralisi@kernel.org,m:sudeep.holla@kernel.org,m:conor+dt@kernel.org,m:vsethi@nvidia.com,m:salman.nabi@arm.com,m:robh@kernel.org,m:linux-kernel@vger.kernel.org,m:vwadekar@nvidia.com,m:trilokkumar.soni@oss.qualcomm.com,m:devicetree@vger.kernel.org,m:nirmoyd@nvidia.com,m:krzk+dt@kernel.org,m:linux-arm-kernel@lists.infradead.org,m:conor@kernel.org,m:krzk@kernel.org,s:lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-325686-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER(0.00)[msuchanek@suse.de,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-325687-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:stefan.popa@analog.com,m:jic23@kernel.org,m:linux-iio@vger.kernel.org,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:siratul.islam@linux.dev,m:u.kleine-koenig@baylibre.com,m:ciprian.hegbeli@analog.com,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	RCVD_COUNT_THREE(0.00)[4];
+	HAS_ORG_HEADER(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	FORGED_SENDER(0.00)[andriy.shevchenko@linux.intel.com,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
 	FORWARDED(0.00)[lists@lfdr.de];
+	DKIM_TRACE(0.00)[intel.com:+];
+	MISSING_XM_UA(0.00)[];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@linux.intel.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[msuchanek@suse.de,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[suse.de:+];
-	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCVD_COUNT_FIVE(0.00)[5];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,arm.com:url,kunlun.suse.cz:mid,suse.de:from_mime,suse.de:dkim]
+	ALIAS_RESOLVED(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[ashevche-desk.local:mid,intel.com:dkim,vger.kernel.org:from_smtp,linux.intel.com:from_mime,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 9B21974D6C3
+X-Rspamd-Queue-Id: 259C074D713
 
-On Mon, Jul 06, 2026 at 03:44:40PM +0200, Andre Przywara wrote:
-> Hi all,
+On Mon, Jul 13, 2026 at 03:02:26PM +0300, Stefan Popa wrote:
+> The MAX40080 is a bidirectional current-sense amplifier with an
+> integrated 12-bit ADC and an I2C/SMBus interface. It measures the
+> voltage across an external shunt resistor and the input bus voltage,
+> storing the results in an internal FIFO.
 > 
-> this is version 3 of the Live Firmware Activation kernel support. The
-> device part of the code now relies on Aneesh's SMCCC bus patches[1],
-> which solves some problems rather nicely. I also added the formerly
-> missing sysfs ABI documentation. Based on v7.2-rc1, plus the first
-> two patches from Aneesh's series. More detailed changelog below.
-> ==============================
+> No existing IIO driver covers this device or a register-compatible part.
+> The closest relatives target different silicon with incompatible register
+> maps and feature sets: max9611 is a unidirectional high-side sensor with a
+> die-temperature channel and MUX-selected gain and no FIFO/PEC, while
+> max34408 is an 8-bit multi-channel current monitor. The MAX40080 has a
+> device-specific register map with bidirectional 13-bit current, a 64-entry
+> FIFO, PEC, a single-measurement mode triggered by an SMBus Quick Command,
+> and two selectable input ranges, so it warrants its own driver.
 > 
-> This series implements the kernel side support of the Arm Live
-> Firmware Activation (LFA) specification [2]. LFA enables the activation
-> of updated firmware components without requiring a system reboot,
-> reducing downtime and allowing quicker deployment of critical bug fixes
-> in environments such as data centers and hyperscale systems.
-> It requires explicit firmware support, both via an agent running in EL3
-> (for instance in TF-A, already merged), but also in the firmware
-> component to be activated. TF-RMM recently merged support for this.
-> 
-> Unlike the usual firmware update process (which may use tools like
-> fwupd), LFA focuses solely on the activation of an already updated
-> firmware component, called "pending activation" in LFA lingo. This works
-> by signalling the LFA agent (part of the EL3 runtime firmware) via an
-> SMC call, which then does the heavy lifting of the live update, in
-> cooperation with the to-be-updated firmware component.
-> 
-> Key features of the driver:
-> * Detects LFA support in system firmware (EL3).
-> * Lists all firmware components that support live activation, identified
->   by their GUID.
-> * Exposes component attributes (e.g., activation capability, and
->   activation pending) via sysfs under /sys/firmware/lfa/<GUID>/.
-> * Provides interfaces to:
->   - Trigger activation of an updated firmware component.
->   - Cancel an ongoing activation if required.
-> A more detailed list of features can be found in patch 2/8.
-> Based on v7.2-rc1.
-> 
-> This work is conceptually similar to Intel’s Platform Firmware Runtime
-> Update and telemetry (PFRUT) [3] and TDX module updates [4], but
-> targets Arm platforms. The driver has been used to successfully activate
-> a Realm Management Monitor (RMM) firmware image in a controlled test
-> environment. RMM is analogous to Intel’s TDX module.
-> 
-> There is effort on similar work from the OCP [5]. Future work may
-> include integration with utilities like fwupd to automatically select
-> the appropriate driver, based on platform architecture, for Live/Runtime
-> firmware updates.
-> 
-> Please have a look, test and comment!
+> Add a direct-mode IIO driver exposing the current and voltage channels
+> with raw and scale attributes, a configurable oversampling (digital
+> averaging) ratio, and PEC-protected register access. The two selectable
+> current-sense ranges are exposed through scale/scale_available; the
+> current scale is derived from the shunt-resistor-micro-ohms device-tree
+> property.
 
-Hello,
+...
 
-booting a kernel with v2 of this patchset applied the module does not
-get autoloaded. Loading it manually I get
+> +#include <linux/bitops.h>
+> +#include <linux/cleanup.h>
+> +#include <linux/i2c.h>
+> +#include <linux/iopoll.h>
+> +#include <linux/math64.h>
 
-[ 1972.957282] [   T5195] Arm LFA: Live Firmware Activation: detected v1.0
-[ 1972.958620] [   T5195] Arm LFA: registered LFA ACPI notification
+> +#include <linux/mod_devicetable.h>
 
-Is this expected?
+Should be not used since Uwe's rework of this header.
 
-I would expect the driver to load automatically.
+> +#include <linux/module.h>
+> +#include <linux/mutex.h>
+> +#include <linux/pm.h>
+> +#include <linux/property.h>
+> +#include <linux/time.h>
+> +#include <linux/types.h>
+> +#include <linux/unaligned.h>
+> +#include <linux/units.h>
 
-I do not see anything in the v3 changelog obviously addressing
-autoloading but changing to using a bus might affect that.
+...
 
-I will try to update to v3 later.
+> +/* CFG.range field values */
+> +#define MAX40080_CFG_RANGE_50mV		0
+> +#define MAX40080_CFG_RANGE_10mV		1
+> +
+> +/* FIFO_CFG.store_iv field values */
+> +#define MAX40080_FIFO_CFG_STORE_I_V	0x02
+> +
+> +#define MAX40080_ADC_RES		4096
+> +#define MAX40080_INTER_VREF_MV		1250
 
-Thanks
+Let's also use _mV here.
 
-Michal
+> +#define MAX40080_V_BUFF_GAIN		30
+> +#define MAX40080_CSA_50MV_GAIN		25
+> +#define MAX40080_CSA_10MV_GAIN		125
+
+And here.
+
+...
+
+> +#define MAX40080_NUM_RANGES	ARRAY_SIZE(max40080_csa_gain)
+
+I think I commented on this already. This hides the information, I think
+the better way is to avoid using this macro.
+
+...
+
+> +static int max40080_read_iv(struct max40080_state *st, u32 *iv)
+> +{
+> +	int ret, io_ret;
+> +
+> +	guard(mutex)(&st->lock);
+> +
+> +	ret = max40080_trigger_measurement(st);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	/*
+> +	 * Wait for the conversion to complete by polling the FIFO valid bit
+> +	 * (or bail out on an I2C error). Polling the device's own status makes
+> +	 * this independent of the actual conversion time, which varies with the
+> +	 * oversampling ratio and the bus speed. The timeout is only a safety
+> +	 * ceiling: the worst case is the maximum 128x averaging on both the
+> +	 * current and voltage channels at the slowest 15 ksps base rate plus the
+> +	 * inter-channel switching time, i.e. roughly 20 ms; 50 ms leaves ample
+> +	 * margin.
+> +	 */
+> +	ret = read_poll_timeout(max40080_read_iv_once, io_ret,
+> +				io_ret || (*iv & MAX40080_IV_VALID_MSK),
+> +				1 * USEC_PER_MSEC, 50 * USEC_PER_MSEC,
+> +				false, st, iv);
+> +	if (ret)
+> +		return ret;
+
+Even in case of error the value in iv will be updated. Is it deliberately?
+
+> +	return io_ret;
+> +}
+
+...
+
+> +static int max40080_get_oversampling_ratio(struct max40080_state *st, int *val)
+> +{
+> +	int tmp;
+> +	u8 filter;
+
+Keep reversed xmas tree order.
+
+> +	tmp = i2c_smbus_read_word_data(st->client, MAX40080_REG_CFG);
+> +	if (tmp < 0)
+> +		return tmp;
+> +
+> +	filter = FIELD_GET(MAX40080_CFG_FILTER_MSK, tmp);
+> +	*val = max40080_oversampling_avail[filter];
+> +
+> +	return 0;
+> +}
+
+...
+
+> +static int max40080_set_oversampling_ratio(struct max40080_state *st, int val)
+> +{
+> +	int ret, filter = max40080_oversampling_to_filter(val);
+
+This style is discouraged. First of all, it's a mix of semantically different
+variables. Second, the assignment of the variable that is going to be validated
+might lead to subtle issues in the future.
+
+> +	if (filter < 0)
+> +		return filter;
+
+So, Do just
+
+	int filter;
+	int ret;
+
+	filter = max40080_oversampling_to_filter(val);
+	if (filter < 0)
+		return filter;
+
+> +	ret = max40080_update_bits(st, MAX40080_REG_CFG, MAX40080_CFG_FILTER_MSK,
+> +				   FIELD_PREP(MAX40080_CFG_FILTER_MSK, filter));
+> +	if (ret)
+> +		return ret;
+> +
+> +	st->oversampling_ratio = val;
+> +
+> +	return 0;
+> +}
+
+...
+
+> +static int max40080_read_raw(struct iio_dev *indio_dev,
+> +			     struct iio_chan_spec const *chan,
+
+> +			     int *val,
+> +			     int *val2,
+
+At least these two may be on a single line.
+
+> +			     long mask)
+
+...
+
+> +static int max40080_write_raw(struct iio_dev *indio_dev,
+> +			      struct iio_chan_spec const *chan,
+> +			      int val, int val2, long mask)
+
+You see, like here.
+
+...
+
+> +		*vals = (int *)st->current_scale;
+
+Why not const int?
+
+> +		*length = MAX40080_NUM_RANGES * 2;
+> +		*type = IIO_VAL_INT_PLUS_NANO;
+
+...
+
+> +static int max40080_init(struct max40080_state *st)
+> +{
+> +	u16 fifo_cfg, cfg;
+> +	int ret, filter;
+
+Here is better, but see above.
+
+> +	filter = max40080_oversampling_to_filter(st->oversampling_ratio);
+> +	if (filter < 0)
+> +		return filter;
+> +
+> +	/*
+> +	 * Put the device in standby before (re)configuring the FIFO: the FIFO
+> +	 * configuration register can only be written while the device is not
+> +	 * converting.
+> +	 */
+> +	cfg = FIELD_PREP(MAX40080_CFG_MODE_MSK, MAX40080_CFG_MODE_STDBY) |
+> +	      FIELD_PREP(MAX40080_CFG_PEC_EN_MSK, 1);
+> +	ret = i2c_smbus_write_word_data(st->client, MAX40080_REG_CFG, cfg);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* Store a matched current+voltage pair per conversion. */
+> +	fifo_cfg = FIELD_PREP(MAX40080_FIFO_CFG_STORE_IV_MSK, MAX40080_FIFO_CFG_STORE_I_V);
+> +	ret = i2c_smbus_write_word_data(st->client, MAX40080_REG_FIFO_CFG,
+> +					fifo_cfg);
+
+Previous line is long enough to justify this one to be also a single line.
+
+> +	if (ret)
+> +		return ret;
+> +
+> +	/*
+> +	 * Use single-measurement mode: the device stays idle and converts once
+> +	 * per SMBus Quick Command (see max40080_trigger_measurement()), so each
+> +	 * read returns a fresh sample rather than a queued FIFO entry.
+> +	 */
+> +	cfg = FIELD_PREP(MAX40080_CFG_MODE_MSK, MAX40080_CFG_MODE_SINGLE) |
+> +	      FIELD_PREP(MAX40080_CFG_PEC_EN_MSK, 1) |
+> +	      FIELD_PREP(MAX40080_CFG_RANGE_MSK, st->range) |
+> +	      FIELD_PREP(MAX40080_CFG_FILTER_MSK, filter);
+
+> +	ret = i2c_smbus_write_word_data(st->client, MAX40080_REG_CFG, cfg);
+> +	if (ret)
+> +		return ret;
+> +
+> +	return 0;
+
+Just
+
+	return i2c_smbus_write_word_data(st->client, MAX40080_REG_CFG, cfg);
+
+?
+
+> +}
+
+...
+
+> +static int max40080_probe(struct i2c_client *client)
+> +{
+> +	struct device *dev = &client->dev;
+> +	struct max40080_state *st;
+> +	struct iio_dev *indio_dev;
+> +	int ret;
+> +
+> +	/*
+> +	 * The device powers up with PEC enabled (CFG POR = 0x0060) and rejects
+> +	 * unprotected transactions, so PEC support is mandatory, along with word
+> +	 * access, the I2C block read used for the current/voltage pair, and the
+> +	 * Quick Command used to trigger a conversion.
+> +	 */
+> +	if (!i2c_check_functionality(client->adapter,
+> +				     I2C_FUNC_SMBUS_WORD_DATA |
+> +				     I2C_FUNC_SMBUS_I2C_BLOCK |
+> +				     I2C_FUNC_SMBUS_QUICK |
+> +				     I2C_FUNC_SMBUS_PEC))
+> +		return -EOPNOTSUPP;
+> +
+> +	client->flags |= I2C_CLIENT_PEC;
+> +
+> +	indio_dev = devm_iio_device_alloc(dev, sizeof(*st));
+> +	if (!indio_dev)
+> +		return -ENOMEM;
+> +
+> +	st = iio_priv(indio_dev);
+> +	st->client = client;
+> +
+> +	ret = devm_mutex_init(dev, &st->lock);
+> +	if (ret)
+> +		return ret;
+
+> +	st->shunt_resistor_uohm = 1 * MICRO;
+> +	device_property_read_u32(dev, "shunt-resistor-micro-ohms",
+> +				 &st->shunt_resistor_uohm);
+> +	if (!st->shunt_resistor_uohm)
+> +		return dev_err_probe(dev, -EINVAL,
+> +				     "shunt-resistor-micro-ohms must be non-zero\n");
+
+We now establish better approach for optional values
+
+	const char *propname;
+
+	propname = "shunt-resistor-micro-ohms";
+	if (device_property_present(dev, propname)) {
+		ret = device_property_read_u32(dev, propname, &st->shunt_resistor_uohm);
+		if (ret)
+			return dev_err_probe(dev, ret, "can't read %s\n", propname);
+		if (!st->shunt_resistor_uohm)
+			return dev_err_probe(dev, -EINVAL, "%s must be non-zero\n", propname);
+	} else {
+		st->shunt_resistor_uohm = 1 * MICRO;
+	}
+
+> +	max40080_calc_current_scale(st);
+> +
+> +	/* Defaults: 50 mV range (index 0), no averaging. */
+> +	st->range = 0;
+> +	st->oversampling_ratio = 1;
+> +
+> +	indio_dev->name = "max40080";
+> +	indio_dev->info = &max40080_info;
+> +	indio_dev->modes = INDIO_DIRECT_MODE;
+> +	indio_dev->channels = max40080_channels;
+> +	indio_dev->num_channels = ARRAY_SIZE(max40080_channels);
+> +
+> +	ret = max40080_init(st);
+> +	if (ret)
+> +		return ret;
+> +
+> +	return devm_iio_device_register(dev, indio_dev);
+> +}
+
+-- 
+With Best Regards,
+Andy Shevchenko
 
 
-> 
-> Best regards,
-> Salman and Andre
-> 
-> Changes in v3:
-> - change node name in DT binding example
-> - move SMCCC function identifiers into generic SMCCC header
-> - rework to use the new SMCCC bus instead of a using a faux device
-> - add missing workqueue cleanup in probe() routine
-> - squash former patch v2 3/8 into base patch
-> - use get_image_name() more consistently
-> - also consider -LFA_BUSY return in activate call
-> 
-> Changes in v2:
-> - restrict build to arm64 (the LFA spec only supports AArch64)
-> - rename and extend central data structure to fw_image
-> - use separate GPR register sets for some SMC calls
-> - provide wrapper for error messages to prevent out-of-bound access
-> - return GUID in the "name" sysfs file when image is unknown
-> - fix wrong attribute in pending version number show function
-> - add missing include files and order them properly
-> - fix memory leaks in error cleanup paths
-> - handle lifetime using embedded kobjects and a kset
-> - drop global lfa_lock, use kset list lock and kobject refcount instead
-> - add DT binding documentation
-> - add timeout and watchdog re-arming (contributed by Veda)
-> - relax timeout period and do not block while waiting
-> - register ACPI notification (contributed by Veda) and DT interrupt 
-> - refactor ACPI notification code to allow sharing with DT code
-> - use faux device instead of platform driver
-> - add auto_activate file to control automatic activation
-> - introduce rwsem mutex to prevent using stale sequence ID
-> - use labels and goto instead of infinite loop when retrying activation
-> - initialise workqueue only once (thanks to Nirmoy)
-> - various cleanups on reported messages and code formatting
-> - rebase on top of v7.0-rc1
-> 
-> Changes in v1:
-> - Updated SMCCC version 1.1 to 1.2 per the LFA specification requirement.
-> - Changed "image_props" array to a linked list to support the dynamic
->   removal and addition of firmware images.
-> - Added code to refresh firmware images following a successful activation.
-> - Added a work_queue to handle the removal of firmware image attribute
->   from it's respective kobject "_store" handle.
-> - Refactored prime and activate into separate functions.
-> - Kernel config for LFA now defaults to "y" i.e. included by default.
-> - Added individual kernel attribute files removal when removing the
->   respective kobjects using kobject_put().
-> - mutex_lock added to activate_fw_image() and prime_fw_image() calls.
-> - Renamed create_fw_inventory to update_fw_image_node.
-> - Renamed create_fw_images_tree to update_fw_images_tree.
-> - Added two more attributes due to specs update from bet0 to bet1:
->   current_version: For retrieval of the current firmware's version info.
->   pending_version: For retrieval of the pending firmware's version info.
-> - Minor changes such as, improved firmware image names, and code comments.
-> - do...while loops refactored to for(;;) loops.
-> 
-> [1] https://lore.kernel.org/linux-arm-kernel/20260611130429.295516-1-aneesh.kumar@kernel.org/
-> [2] https://developer.arm.com/documentation/den0147/latest/
-> [3] https://lore.kernel.org/all/cover.1631025237.git.yu.c.chen@intel.com/
-> [4] https://lore.kernel.org/all/20250523095322.88774-1-chao.gao@intel.com/
-> [5] https://www.opencompute.org/documents/hyperscale-cpu-impactless-firmware-updates-requirements-specification-v0-7-9-29-2025-pdf
-> 
-> Andre Przywara (5):
->   dt-bindings: arm: Add Live Firmware Activation
->   firmware: smccc: lfa: Add auto_activate sysfs file
->   firmware: smccc: lfa: Register DT interrupt
->   firmware: smccc: lfa: introduce SMC access lock
->   firmware: smccc: lfa: add sysfs ABI documentation
-> 
-> Salman Nabi (1):
->   firmware: smccc: Add support for Live Firmware Activation (LFA)
-> 
-> Vedashree Vidwans (2):
->   firmware: smccc: lfa: Add timeout and trigger watchdog
->   firmware: smccc: lfa: Register ACPI notification
-> 
->  Documentation/ABI/testing/sysfs-firmware-lfa  | 106 ++
->  .../devicetree/bindings/arm/arm,lfa.yaml      |  45 +
->  drivers/firmware/smccc/Kconfig                |  10 +
->  drivers/firmware/smccc/Makefile               |   1 +
->  drivers/firmware/smccc/lfa_fw.c               | 988 ++++++++++++++++++
->  drivers/firmware/smccc/smccc.c                |   5 +
->  include/linux/arm-smccc.h                     |  15 +
->  7 files changed, 1170 insertions(+)
->  create mode 100644 Documentation/ABI/testing/sysfs-firmware-lfa
->  create mode 100644 Documentation/devicetree/bindings/arm/arm,lfa.yaml
->  create mode 100644 drivers/firmware/smccc/lfa_fw.c
-> 
-> 
-> base-commit: dc59e4fea9d83f03bad6bddf3fa2e52491777482
-> prerequisite-patch-id: 64fa2209c9eee2084861ba13f0bdfdac312b19b0
-> prerequisite-patch-id: fe1ca1a9aeb94623c79bf66366c76bfb8645b581
-> -- 
-> 2.43.0
-> 
-> 
 
