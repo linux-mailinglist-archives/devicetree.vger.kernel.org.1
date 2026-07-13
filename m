@@ -1,57 +1,85 @@
-Return-Path: <devicetree+bounces-325645-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-325632-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id lGsRBc4BVWoviwAAu9opvQ
-	(envelope-from <devicetree+bounces-325645-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 17:18:38 +0200
+	id 6eXQDZMDVWqYiwAAu9opvQ
+	(envelope-from <devicetree+bounces-325632-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 17:26:11 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5289874CECF
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 17:18:37 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5CDE474D013
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 17:26:06 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20201202 header.b=GABsGShK;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-325645-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-325645-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=VbvrIdli;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-325632-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-325632-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=gmail.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 99A5930CFE2F
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 15:09:26 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id F1AB331D7829
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 15:06:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0212374A1A;
-	Mon, 13 Jul 2026 15:07:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6CBF337B81;
+	Mon, 13 Jul 2026 15:06:54 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB37F34029E;
-	Mon, 13 Jul 2026 15:07:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3272D315785
+	for <devicetree@vger.kernel.org>; Mon, 13 Jul 2026 15:06:53 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783955273; cv=none; b=rxqhSoyNKZ188cO3yGU/TWliYGrZHFCPPiihRWCDch1RWC5mq2pdJJfnOaysI1rmpo4AQe7YPGa3cVZgOFoNYzU3wvoQz4lgcjQgIG3NK25itKIa13rEPYL8BLiQ7yutMk9XjHzV7rz7p/cq3gw6MBPB3Uvm1vGQquy2JU1lAYo=
+	t=1783955214; cv=none; b=jyYDj3CU8DGeD7DvbuS2w2R+7Wpmc1mMAWkK0fYyJ+MeExhvnMGQJp80pt/uhTJHNZqrG5g/C9a5FLiFL6WgIkrRgIaypRPRWGX9pID5VUmCgQx7TBghCEs/FnqWjiIMwfzc3HTw9YGDKuJ+bYCEwBV9YtnqUn9Kz6vUA26Xq6Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783955273; c=relaxed/simple;
-	bh=pWuRmK/lvCohXgAZnOXGTEEgVS8UJF27uDGMTJ9a2Nc=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=B1K/O7GfDnu0TiEVDRwWGS48g2Oxhr5rpbV5qM/Tr7jd9PwLKpBxHsxXJl164VIHhVKNOD+7oNSWbswdd3CkFMwEIta4J3XYa6CtuTOPHklwHHp4xYFgxg2pSxiWNMu4HU0BoCME9rjCh/mYdDZtcEqDs9OAP2dANOoNhMy3Vd0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GABsGShK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 54C65C2BCB9;
-	Mon, 13 Jul 2026 15:07:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1783955273;
-	bh=pWuRmK/lvCohXgAZnOXGTEEgVS8UJF27uDGMTJ9a2Nc=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=GABsGShKY9RyB+crazCaCxFiTyJyvOLdU7zOdxwilN+9SkJEgrEOmxCIO+VoQiL/o
-	 mHWOzsdTy6CTdGwAETi3WaMA0mSIidRRj/KC27wsuQo52hxd294S0jZDr7m506XGzs
-	 f5/HR8AuIpCDahQ3psd6JhRaNNHZtnLKOHadAj4M9tzYdAolNrzsdW5cqsM0y2Xhvc
-	 49BKpWzExT+WwLUVh2SZ0nLeZB6jza3Y2famF52WUHYMkmvaBGMMLv3kHw6GVrN1Ns
-	 MK+tb6nHwydY1emRh2SB6PDD+BBuxo2yasmuFu+bOCeD56HeyNFJ2miauJQQXbe32w
-	 81qqEaX7NB7wQ==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 3C05AC44501;
-	Mon, 13 Jul 2026 15:07:53 +0000 (UTC)
-From: Nikolai Burov via B4 Relay <devnull+nikolai.burov.jolla.com@kernel.org>
-Date: Mon, 13 Jul 2026 18:06:21 +0300
-Subject: [PATCH v2 1/3] dt-bindings: pinctrl: mediatek: Add MT6858
+	s=arc-20240116; t=1783955214; c=relaxed/simple;
+	bh=ZezuEM413hS1NPQM3ReCINFc8m8MlFvhuKOknbM4Vjk=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=r1oQFlVGNRE/8/zmH4bB/3i2taWxtl74T3b+3a3KnQiLMR42N8AwypWD9JsXB/y9+ZlAjTpykt2yLUBZ5BxxZNyIxGSanB/R2m7vCy097zAc3WWJFwMpbjsfU57jhiBdGUdBdQaD/NIVdlMiDV+O8n82IyqPUN6N+K41rU3jX64=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VbvrIdli; arc=none smtp.client-ip=209.85.221.41
+Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-47f3e6cc44aso1110467f8f.3
+        for <devicetree@vger.kernel.org>; Mon, 13 Jul 2026 08:06:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1783955212; x=1784560012; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:content-type:mime-version
+         :message-id:date:subject:from:from:to:cc:subject:date:message-id
+         :reply-to:content-type;
+        bh=9S1PRlH/iqWvGeBsKfAMCNUYuSclIYuofwpciyu1Yoo=;
+        b=VbvrIdlieBOsYUkhhVZKdM3Zs5r7V7cclzXt0+1oYUkxUnf/3NPaubn1vQebVgb56N
+         HHfvCGCAQJAgYY5xtaxPOsikgm7WBGnhWFt/ZR2drrkabl/8vkUbwZXhvp8xE6S0iZAt
+         ym7JzFOzy4dFfLUDofVRS459R+XhAdJBWKFumRrWPCZ+q38GQKUK2XBxckhCKM/37gru
+         jyX6sGNIZconAMNgB5wltlmJ0ojuRrID74HdVYHEwswYvsO1GL20fxvT17MohN2gEcBZ
+         3bnd1XPqaGTLPq/XUTWtLKXYe+R7bF9fMCzMYYyUiFaEuFGARXmp6vIVb3bktqGuU6/6
+         ZkPA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1783955212; x=1784560012;
+        h=cc:to:content-transfer-encoding:content-type:mime-version
+         :message-id:date:subject:from:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to:content-type;
+        bh=9S1PRlH/iqWvGeBsKfAMCNUYuSclIYuofwpciyu1Yoo=;
+        b=Z3qZVp5fxgJE5BY48Ogl2efobImvnjVdURh+elZUxIVdEBxgrQg9PqXeYy2DjcKTLe
+         mmBdMTXNJyjt4sJl3K9XGu5TU3y7loymxlN62rEH8NnQDgnE2T6zO8t40Jh0Z+G2UCNY
+         j6NP0ZyzlxqMq9Nct0K1weAJehMMoVapO241kkVZqvy2vjuwqo5oecvpuq9WR5mW12HL
+         zcHicAFyWCsxrkG7rhA/7njDb8g1VPMOy/izv/PLSNwchEzEKy1SR4oxe40A+uEu1v2M
+         S1wnYAEhrRAFY0KyfZ0ZdOlBMBVXiYFKCJf6HxECX2WJ2ifKb/282lCJPgMy10JZfV7W
+         KZeQ==
+X-Forwarded-Encrypted: i=1; AHgh+RozZK0+Vqj86DRWY/CAqb6F8hp2lTyFYYYThb9EzT4PtX3XCroMOprmO4BFZ9ANUTp+rQuMqmkYsLsv@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzy+V232mKXwhec9FRuvK/08aaFaIBVIr/sTv8+YdshcSfjhX/I
+	tsshUJF5wxEnQTO0H9KDEZ7k2sefSgevS2dZrD3FMNj0RcEKAlipnj/t
+X-Gm-Gg: AfdE7ckGHCKd39+dTL9+WLZPIvN3DcXpubq4hHXqYyEsYL90+KM0M6ihOjuxo7b5FWO
+	kLZUuhBg2JicwpsrO4vAmbyubM3P3kgbzELvJ8PugXNDK4sPzYswya08+iCuJ+vbxFL/tMBJ5mF
+	bzuDiwYpAKMzMVXbswrQL+t9E4owmkMcDr72gXLWs6Vyu6ZoduSa+joQbNrO5VK1/GsNgwvHH7o
+	Ku+z7rkEcCpNDK/1A3NnVxfX4Ua7lynCXxEUFFOOiTAWtuY6dt9tuUD7YpzkBnauQclmG1B4Y8t
+	BMGYSq/yR13PALXx8zypjaVvcr9mFDMjrWlaa10Ji42X4FvAKKBkatclQz7EFmONXpMeVH4CKTm
+	DqshWb7iDYgplygOsF7kdtsqHZCYiSZ0KMJbjRVax/XPvqRCc0lwK2FKclK4aMAmEsi+PhcoA7V
+	dk1qJEfTtDCmA/61MKIhmi2zlUXdt9+eB3WX42m4jGwUtad61dDu2ZWQVfYCha0pIopyd9O5L8c
+	mQc1/gjHFvtG5o0
+X-Received: by 2002:a05:6000:400c:b0:475:a4ae:e630 with SMTP id ffacd0b85a97d-47f2dcd71f2mr11505336f8f.37.1783955211246;
+        Mon, 13 Jul 2026 08:06:51 -0700 (PDT)
+Received: from ernest.hoecke-nb (248.201.173.83.static.wline.lns.sme.cust.swisscom.ch. [83.173.201.248])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-47f4635a5d7sm19389f8f.10.2026.07.13.08.06.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 13 Jul 2026 08:06:50 -0700 (PDT)
+From: Ernest Van Hoecke <ernestvanhoecke@gmail.com>
+Subject: [PATCH 0/8] arm64: dts: freescale: Add Verdin iMX8M Mini overlays
+Date: Mon, 13 Jul 2026 17:06:21 +0200
+Message-Id: <20260713-v1-verdin-imx8mm-dtbos-v1-0-4acd63db4504@toradex.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,281 +88,109 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260713-mt6858-pinctrl-v2-1-1bd072e3206c@jolla.com>
-References: <20260713-mt6858-pinctrl-v2-0-1bd072e3206c@jolla.com>
-In-Reply-To: <20260713-mt6858-pinctrl-v2-0-1bd072e3206c@jolla.com>
-To: Linus Walleij <linusw@kernel.org>, Rob Herring <robh@kernel.org>, 
+X-B4-Tracking: v=1; b=H4sIAO3+VGoC/x3MQQqAIBBA0avErBtQC42uEi1Kp5qFFhoShHdPW
+ r7F/y8kikwJxuaFSJkTn6FCtg3YYwk7IbtqUEJpYYTBLDFTdByQ/TN4j+5ez4RLp7TstdXK9lD
+ jK9LGzz+e5lI+RpD16mgAAAA=
+To: Frank Li <Frank.Li@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>, Rob Herring <robh@kernel.org>, 
  Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Sean Wang <sean.wang@kernel.org>
-Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-mediatek@lists.infradead.org, Nikolai Burov <nikolai.burov@jolla.com>, 
- Nikolai Burov <nikolai.burov+review@abscue.de>, 
- Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1783955270; l=6302;
- i=nikolai.burov@jolla.com; s=20260707; h=from:subject:message-id;
- bh=TxSc8fJL7HQZpyDdZ/01rMbgxyEamqNF+r+0Zh0YQ4s=;
- b=Zzq7ZEcY/26R8jSsDZTbjJKeEeDgJLQJSj6ogHIxBeLq25+vbLGu9tcfZEQe1Q+ge6FjZfujh
- zmmV/SpCGJ2B90dThTIZ0bLAs6ajtBlz+0lsBseVINPBeyqdjHNHycP
-X-Developer-Key: i=nikolai.burov@jolla.com; a=ed25519;
- pk=yzpa+PD+ovHUFMIOBA9o2QqGwI110jM6hdGHLc7jtoQ=
-X-Endpoint-Received: by B4 Relay for nikolai.burov@jolla.com/20260707 with
- auth_id=859
-X-Original-From: Nikolai Burov <nikolai.burov@jolla.com>
-Reply-To: nikolai.burov@jolla.com
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Francesco Dolcini <francesco.dolcini@toradex.com>, imx@lists.linux.dev, 
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ Ernest Van Hoecke <ernest.vanhoecke@toradex.com>
+X-Mailer: b4 0.13.0
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	FORGED_RECIPIENTS(0.00)[m:Frank.Li@nxp.com,m:s.hauer@pengutronix.de,m:kernel@pengutronix.de,m:festevam@gmail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:francesco.dolcini@toradex.com,m:imx@lists.linux.dev,m:linux-arm-kernel@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:ernest.vanhoecke@toradex.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-325645-lists,devicetree=lfdr.de,nikolai.burov.jolla.com];
-	FORGED_RECIPIENTS(0.00)[m:linusw@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:matthias.bgg@gmail.com,m:angelogioacchino.delregno@collabora.com,m:sean.wang@kernel.org,m:linux-gpio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-mediatek@lists.infradead.org,m:nikolai.burov@jolla.com,m:nikolai.burov+review@abscue.de,m:krzysztof.kozlowski@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,m:matthiasbgg@gmail.com,m:nikolai.burov@abscue.de,s:lists@lfdr.de];
-	FREEMAIL_TO(0.00)[kernel.org,gmail.com,collabora.com];
-	FORGED_SENDER(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
-	FORWARDED(0.00)[lists@lfdr.de];
-	TO_DN_SOME(0.00)[];
+	TAGGED_FROM(0.00)[bounces-325632-lists,devicetree=lfdr.de];
+	FORGED_SENDER(0.00)[ernestvanhoecke@gmail.com,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FREEMAIL_TO(0.00)[nxp.com,pengutronix.de,gmail.com,kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	FORWARDED(0.00)[lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	HAS_REPLYTO(0.00)[nikolai.burov@jolla.com];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[ernestvanhoecke@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,review];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,jolla.com:mid,jolla.com:email,jolla.com:replyto,vger.kernel.org:from_smtp,qualcomm.com:email,devicetree.org:url]
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,toradex.com:email,toradex.com:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 5289874CECF
+X-Rspamd-Queue-Id: 5CDE474D013
 
-From: Nikolai Burov <nikolai.burov@jolla.com>
+This series adds device tree overlays for the Toradex Verdin iMX8M Mini
+SoM. The overlays cover audio configuration, display adapters, DSI
+displays, OV5640 CSI camera modules, and Cortex-M4F integration.
 
-Add new DT bindings for the pin controller found in the MT6858
-(MediaTek Dimensity 7100) SoC.
+The series adds support for:
+- NAU8822 Bridge Tied Load configuration on the Verdin Development Board
+- DSI-to-HDMI adapter based on the Lontium LT8912B bridge
+- DSI-to-LVDS adapter based on the TI SN65DSI84 bridge, combined with the
+  Toradex Capacitive Touch Display 10.1" LVDS
+- Toradex Capacitive Touch Display 7" and 10.1" DSI variants
+- Toradex OV5640 CSI camera variants with 27 MHz and 24 MHz oscillators
+- Cortex-M4F remoteproc support
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-Signed-off-by: Nikolai Burov <nikolai.burov@jolla.com>
+Cortex-M4F support is split between the SoM description and an optional
+UART_4 overlay. The SoM dtsi describes the remote processor and RPMsg
+reserved-memory regions, while the overlay reserves Verdin UART_4 for
+Cortex-M4F firmware use.
+
+The Makefile entries build the standalone overlays as DTBOs, add
+ready-to-use composed DTBs for selected carrier board and accessory
+combinations, and add representative composed DTBs for build-time
+coverage.
+
+Signed-off-by: Ernest Van Hoecke <ernest.vanhoecke@toradex.com>
 ---
- .../bindings/pinctrl/mediatek,mt6858-pinctrl.yaml  | 190 +++++++++++++++++++++
- 1 file changed, 190 insertions(+)
+Ernest Van Hoecke (8):
+      arm64: dts: freescale: imx8mm-verdin: Add NAU8822 Bridge Tied Load
+      arm64: dts: freescale: imx8mm-verdin: Add DSI to HDMI adapter overlay
+      arm64: dts: freescale: imx8mm-verdin: Add Toradex DSI to LVDS adapter with 10.1" display
+      arm64: dts: freescale: imx8mm-verdin: Add Toradex Capacitive Touch Display 10.1" DSI
+      arm64: dts: freescale: imx8mm-verdin: Add Toradex Capacitive Touch Display 7" DSI
+      arm64: dts: freescale: imx8mm-verdin: Add Toradex OV5640 CSI Cameras
+      arm64: dts: freescale: imx8mm-verdin: Add Cortex-M4F remoteproc
+      arm64: dts: freescale: imx8mm-verdin: Add Cortex-M4F UART_4 overlay
 
-diff --git a/Documentation/devicetree/bindings/pinctrl/mediatek,mt6858-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/mediatek,mt6858-pinctrl.yaml
-new file mode 100644
-index 000000000000..9b834e87afde
---- /dev/null
-+++ b/Documentation/devicetree/bindings/pinctrl/mediatek,mt6858-pinctrl.yaml
-@@ -0,0 +1,190 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/pinctrl/mediatek,mt6858-pinctrl.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: MediaTek MT6858 Pin Controller
-+
-+maintainers:
-+  - Nikolai Burov <nikolai.burov@jolla.com>
-+
-+description:
-+  The MediaTek's MT6858 Pin controller is used to control SoC pins.
-+
-+properties:
-+  compatible:
-+    const: mediatek,mt6858-pinctrl
-+
-+  reg:
-+    items:
-+      - description: gpio base
-+      - description: lm group IO
-+      - description: rb group IO
-+      - description: bm2 group IO
-+      - description: bm group IO
-+      - description: bm1 group IO
-+      - description: lt group IO
-+      - description: lt1 group IO
-+      - description: rt group IO
-+      - description: rt1 group IO
-+      - description: eint south group IO
-+      - description: eint west group IO
-+      - description: eint east group IO
-+      - description: eint center group IO
-+
-+  reg-names:
-+    items:
-+      - const: base
-+      - const: lm
-+      - const: rb
-+      - const: bm2
-+      - const: bm
-+      - const: bm1
-+      - const: lt
-+      - const: lt1
-+      - const: rt
-+      - const: rt1
-+      - const: eint0
-+      - const: eint1
-+      - const: eint2
-+      - const: eint3
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  interrupt-controller: true
-+
-+  '#interrupt-cells':
-+    const: 2
-+
-+  gpio-controller: true
-+
-+  '#gpio-cells':
-+    const: 2
-+
-+  gpio-ranges:
-+    maxItems: 1
-+
-+  gpio-line-names: true
-+
-+# PIN CONFIGURATION NODES
-+patternProperties:
-+  '-pins$':
-+    type: object
-+    additionalProperties: false
-+
-+    patternProperties:
-+      '^pins':
-+        type: object
-+        $ref: /schemas/pinctrl/pincfg-node.yaml
-+        additionalProperties: false
-+        description:
-+          A pinctrl node should contain at least one subnodes representing the
-+          pinctrl groups available on the machine. Each subnode will list the
-+          pins it needs, and how they should be configured, with regard to muxer
-+          configuration, pullups, drive strength, input enable/disable and input
-+          schmitt.
-+
-+        properties:
-+          pinmux:
-+            description:
-+              Integer array, represents gpio pin number and mux setting.
-+              Supported pin number and mux varies for different SoCs, and are
-+              defined as macros in arch/arm64/boot/dts/mediatek/mt6858-pinfunc.h
-+              for this SoC.
-+
-+          drive-strength:
-+            enum: [2, 4, 6, 8, 10, 12, 14, 16]
-+
-+          bias-pull-down:
-+            oneOf:
-+              - type: boolean
-+                description: normal pull down.
-+              - enum: [100, 101, 102, 103]
-+                description: PUPD/R1/R0 pull down type. See MTK_PUPD_SET_R1R0_
-+                  defines in dt-bindings/pinctrl/mt65xx.h.
-+              - enum: [200, 201, 202, 203]
-+                description: RSEL pull down type. See MTK_PULL_SET_RSEL_ defines
-+                  in dt-bindings/pinctrl/mt65xx.h.
-+
-+          bias-pull-up:
-+            oneOf:
-+              - type: boolean
-+                description: normal pull up.
-+              - enum: [100, 101, 102, 103]
-+                description: PUPD/R1/R0 pull up type. See MTK_PUPD_SET_R1R0_
-+                  defines in dt-bindings/pinctrl/mt65xx.h.
-+              - enum: [200, 201, 202, 203]
-+                description: RSEL pull up type. See MTK_PULL_SET_RSEL_ defines
-+                  in dt-bindings/pinctrl/mt65xx.h.
-+
-+          bias-disable: true
-+
-+          output-high: true
-+
-+          output-low: true
-+
-+          input-enable: true
-+
-+          input-disable: true
-+
-+          input-schmitt-enable: true
-+
-+          input-schmitt-disable: true
-+
-+        required:
-+          - pinmux
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - interrupt-controller
-+  - '#interrupt-cells'
-+  - gpio-controller
-+  - '#gpio-cells'
-+  - gpio-ranges
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/pinctrl/mt65xx.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #define PINMUX_GPIO149__FUNC_SCL5 (MTK_PIN_NO(149) | 1)
-+    #define PINMUX_GPIO150__FUNC_SDA5 (MTK_PIN_NO(150) | 1)
-+
-+    pio: pinctrl@10005000 {
-+        compatible = "mediatek,mt6858-pinctrl";
-+        reg = <0x10005000 0x1000>,
-+              <0x11b20000 0x1000>,
-+              <0x11c10000 0x1000>,
-+              <0x11d10000 0x1000>,
-+              <0x11d30000 0x1000>,
-+              <0x11d40000 0x1000>,
-+              <0x11e20000 0x1000>,
-+              <0x11e30000 0x1000>,
-+              <0x11ed0000 0x1000>,
-+              <0x11ee0000 0x1000>,
-+              <0x11b00000 0x1000>,
-+              <0x11e60000 0x1000>,
-+              <0x11e80000 0x1000>,
-+              <0x1c01e000 0x1000>;
-+        reg-names = "base", "lm", "rb", "bm2", "bm", "bm1", "lt", "lt1",
-+                    "rt", "rt1", "eint0", "eint1", "eint2", "eint3";
-+        gpio-controller;
-+        #gpio-cells = <2>;
-+        gpio-ranges = <&pio 0 0 197>;
-+        interrupt-controller;
-+        interrupts = <GIC_SPI 239 IRQ_TYPE_LEVEL_HIGH 0>;
-+        #interrupt-cells = <2>;
-+
-+        i2c5-pins {
-+            pins {
-+                pinmux = <PINMUX_GPIO149__FUNC_SCL5>,
-+                         <PINMUX_GPIO150__FUNC_SDA5>;
-+                bias-disable;
-+            };
-+        };
-+    };
+ arch/arm64/boot/dts/freescale/Makefile             |  41 +++++++
+ .../freescale/imx8mm-verdin-dev-nau8822-btl.dtso   |  14 +++
+ .../dts/freescale/imx8mm-verdin-dsi-to-hdmi.dtso   |  88 ++++++++++++++
+ ...-verdin-dsi-to-lvds-panel-cap-touch-10inch.dtso | 104 +++++++++++++++++
+ .../dts/freescale/imx8mm-verdin-ov5640-24mhz.dtso  |  17 +++
+ .../boot/dts/freescale/imx8mm-verdin-ov5640.dtsi   |  78 +++++++++++++
+ .../boot/dts/freescale/imx8mm-verdin-ov5640.dtso   |  18 +++
+ .../imx8mm-verdin-panel-cap-touch-10inch-dsi.dtso  | 129 +++++++++++++++++++++
+ .../imx8mm-verdin-panel-cap-touch-7inch-dsi.dtso   | 129 +++++++++++++++++++++
+ .../dts/freescale/imx8mm-verdin-uart4-mcu.dtso     |  14 +++
+ arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi   |  33 ++++++
+ 11 files changed, 665 insertions(+)
+---
+base-commit: 10e06b5bd4be88cc89375227c31467734f6658de
+change-id: 20260707-v1-verdin-imx8mm-dtbos-a326146c62c4
 
+Best regards,
 -- 
-2.54.0
-
+Ernest Van Hoecke <ernest.vanhoecke@toradex.com>
 
 
