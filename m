@@ -1,63 +1,64 @@
-Return-Path: <devicetree+bounces-325539-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-325540-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id /+MrELrlVGrbggAAu9opvQ
-	(envelope-from <devicetree+bounces-325539-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 15:18:50 +0200
+	id Pz6XO73lVGrcggAAu9opvQ
+	(envelope-from <devicetree+bounces-325540-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 15:18:54 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 313F174B748
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 15:18:49 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id E51CC74B74B
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 15:18:52 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=etrzTFq1;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-325539-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-325539-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=V4P7dMN4;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-325540-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-325540-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 35FC1303068F
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 13:13:40 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 0B4483030DE6
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 13:13:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C818419303;
-	Mon, 13 Jul 2026 13:13:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CB9C41C2FE;
+	Mon, 13 Jul 2026 13:13:26 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 626CF41B36C
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0126541C2E2
 	for <devicetree@vger.kernel.org>; Mon, 13 Jul 2026 13:13:24 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783948405; cv=none; b=IXSKRJ50C7DcKg9gZiQ5VxG/uhQgUdMwSqcnucGn2T+5lpqShcwhzUhxjuDSVERvh8qP2ocNSDMYXjBKOKlLhjUWjZEZRhgJKsXN/fKLIasS6NfqJz4Me/DhqgGK1Fn6zHk6yjpeGGH7dmRUI5PONMWCjAKgMSR+trIR054MsHE=
+	t=1783948406; cv=none; b=rohvJXxlRWHpMJfVouhbaTtN2sMTz4teOI11ukkXjWlrc0FHep/UUpUOZ/DzNJKXUazc42fq0si3NwTgMjZxGL/AeDJ7ut14x38WHualLOBQoE3IegYeUjUVX5XWjLNhLc5c7of4zbmk/xXZS88KQmQ4MyTV6WSCWcEzfOB1R0c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783948405; c=relaxed/simple;
-	bh=BcI/23zzadA5mupTxa0BQ4cgvrlZod9sJZuwjllqBOw=;
+	s=arc-20240116; t=1783948406; c=relaxed/simple;
+	bh=+xxGO5oYPaJXeNDMjXfBCTHi+4QNniobaaSoCgy6huk=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=ZLik5B+fYi9Z3UnqUXHpIgAnq4RhW7K1Pm9ud+mn2mQgldFhn54r9sFKg/GKQs/0oyORvety4l57wpcRCnSKIzwfUiRgXS7nXgP2CTVMUL8zwiREm/rUrIS/yXbPUZD5qm+WVoO2II8AEOxZZRlDKUx2GGV38hlAWtoOZao47ug=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=etrzTFq1; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9F1B31F000E9;
-	Mon, 13 Jul 2026 13:13:23 +0000 (UTC)
+	 Message-Id; b=GhlR1s1UDm8iDAsWxvuCdD6WKUUXT/dT3LvzSPuNdQsc2NxZpVehPU+R7OYgI22WX9PAuj7sqvRLKOHoioJSBzBjiPFJGFsSze6DSg+SIms5ktyFVBWE9i3D+FONjuz+5JeeQhhF/18+KG/E1sLNle5DcDfKHUccNknU7Bt2RGc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=V4P7dMN4; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 79CAC1F00A3A;
+	Mon, 13 Jul 2026 13:13:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
 	s=k20260515; t=1783948404;
-	bh=nPPbVfeBDtFBts62tQhN/as11CFK0syN/en3nddvyuU=;
+	bh=xKuLx5hdwNwogybYGDWzfQB8Wq9jPzMMcdqfYTlkphs=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=etrzTFq1dSmpmfZXwogFya7nUTs5i/r9/KLlbWzwuA+9kSQ0Ev52A6BBUG9uvHNtm
-	 XUHP0CE1xr6We7HP1/y5hALn8ob4OhwuSab7xl34lsEYKw9w1XrINl+qvaL5do9r1q
-	 3CgAq8blgWeez33TN0GCcV2AzH7ODyyDtRJ5pO9frHygw8ClfXXdq8nm27W6sTBLHf
-	 BocY1b4a6R1Q47DilzyoWerfuS3NxuWRjwSq+R7TH0w9bcjadoMJa4hM9K+zO3nx+A
-	 G4AlX1yhsCB5/Sk+R4REkJn56uuxsP7x9Epibi4p8ffwDlPQybet2TpxX+kcAIC2W3
-	 a3EkMwySs5Tgg==
+	b=V4P7dMN4+SnP/AYl7Wg0RQ2q9//dRnVig+vkWMMrjOqi9dJRBPuIkEsOXxlelIBlw
+	 kanUyjRZMzXvy56O0y+/GoZld+SD5y1/CaSfHovlhJ99uMbOL8PLmxFZap9cK7Pq0+
+	 KdTcye0N9rCg9m435CwYSzXBT7BHCUjXjMhJeEnRMVlcXcNEODYBDMkK0k4rGPxF+z
+	 7ydoWT+sw4+OD53Ol4ugXXoFekFOtAwOl+b5g9jRPRfGEIugPgNlTQFDAF5xNVvhJ+
+	 /+kVD1KbGE2zut37wP4kUuagMYdFdUu2M4eDJCtuynLucC7huTxn4DAgNgntClI9Sb
+	 HVwDtXEE0AOWw==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v3 06/10] drm/mediatek: mtk_dsi: Add support for MT8189
+Subject: Re: [PATCH v3 04/10] drm/mediatek: mtk_dsi: Enable interrupt at
+ component bind time
 Reply-To: sashiko-reviews@lists.linux.dev
 To: "AngeloGioacchino Del Regno" <angelogioacchino.delregno@collabora.com>
-Cc: robh@kernel.org, devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org, conor+dt@kernel.org
-In-Reply-To: <20260713130103.34654-7-angelogioacchino.delregno@collabora.com>
+Cc: conor+dt@kernel.org, robh@kernel.org, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org
+In-Reply-To: <20260713130103.34654-5-angelogioacchino.delregno@collabora.com>
 References: <20260713130103.34654-1-angelogioacchino.delregno@collabora.com>
- <20260713130103.34654-7-angelogioacchino.delregno@collabora.com>
+ <20260713130103.34654-5-angelogioacchino.delregno@collabora.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Mon, 13 Jul 2026 13:13:23 +0000
-Message-Id: <20260713131323.9F1B31F000E9@smtp.kernel.org>
+Date: Mon, 13 Jul 2026 13:13:24 +0000
+Message-Id: <20260713131324.79CAC1F00A3A@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,18 +72,18 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	TAGGED_FROM(0.00)[bounces-325539-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-325540-lists,devicetree=lfdr.de];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,collabora.com:email,sashiko.dev:url,smtp.kernel.org:mid];
 	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:angelogioacchino.delregno@collabora.com,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:dri-devel@lists.freedesktop.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:angelogioacchino.delregno@collabora.com,m:conor+dt@kernel.org,m:robh@kernel.org,m:dri-devel@lists.freedesktop.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
@@ -96,7 +97,7 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	PRECEDENCE_BULK(0.00)[];
 	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
@@ -104,84 +105,120 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	RCPT_COUNT_FIVE(0.00)[5]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 313F174B748
+X-Rspamd-Queue-Id: E51CC74B74B
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+Thank you for your contribution! Sashiko AI review found 3 potential issue(=
 s) to consider:
-- [High] DSI link bandwidth and clock rate calculations ignore DSC (Display=
- Stream Compression), incorrectly rejecting valid high-resolution modes and=
- configuring the PHY clock out of spec.
+
+Pre-existing issues:
+- [High] Enabling the DSI IRQ before hardware clocks are enabled, or leavin=
+g it enabled while clocks are disabled, risks bus hangs from spurious or pe=
+nding interrupts.
+- [High] Unprotected read-modify-write operations on `dsi->irq_data` can le=
+ad to lost interrupts and spurious timeouts.
+- [High] Signal interruptions during DSI transfers are incorrectly treated =
+as successful completions, potentially leaking stale hardware register data.
 --
 
---- Patch [6]: [PATCH v3 06/10] drm/mediatek: mtk_dsi: Add support for MT81=
-89 ---
-commit 89dc8fbb4f8f90dfbd3c155b69311aad3902771f
+--- Patch [4]: [PATCH v3 04/10] drm/mediatek: mtk_dsi: Enable interrupt at =
+component bind time ---
+commit 9bfbf9137c89977bfb322670b9598bed791b5832
 Author: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+drm/mediatek: mtk_dsi: Enable interrupt at component bind time
 
-drm/mediatek: mtk_dsi: Add support for MT8189
-
-This commit adds support for the DSI IP in the MT8189 SoC. It increases the
-maximum link rate to 2.5Gbps and introduces a max_link_rate_mbps parameter
-to replace hardcoded values. It also casts calculations to u64 to avoid
-overflows with higher pixel clock rates.
+This patch changes the DSI interrupt initialization by requesting it with
+IRQF_NO_AUTOEN during probe. The interrupt is then explicitly enabled
+during component bind and disabled during unbind. This prevents spurious
+interrupts and storms before the hardware engine is fully initialized.
 
 > diff --git a/drivers/gpu/drm/mediatek/mtk_dsi.c b/drivers/gpu/drm/mediate=
 k/mtk_dsi.c
-> index 4d5cb91c788f6..dffb6befc749e 100644
+> index ec5b94f7fa68e..bdb9ea2e7b6f6 100644
 > --- a/drivers/gpu/drm/mediatek/mtk_dsi.c
 > +++ b/drivers/gpu/drm/mediatek/mtk_dsi.c
-> @@ -924,7 +926,7 @@ static int mtk_dsi_poweron(struct mtk_dsi *dsi)
->  	}
->  	bit_per_pixel =3D ret;
-> =20
-> -	dsi->data_rate =3D DIV_ROUND_UP_ULL(dsi->vm.pixelclock * bit_per_pixel,
-> +	dsi->data_rate =3D DIV_ROUND_UP_ULL((u64)dsi->vm.pixelclock * bit_per_p=
-ixel,
->  					  dsi->lanes);
-> =20
->  	ret =3D clk_set_rate(dsi->hs_clk, dsi->data_rate);
-
-[Severity: High]
-Does this code ignore Display Stream Compression (DSC) when calculating the
-PHY clock rate? The calculation uses the uncompressed bits per pixel, which
-might set the DSI hardware PHY clock far higher than the actual compressed
-link rate requires.
 
 [ ... ]
 
-> @@ -1099,13 +1101,21 @@ mtk_dsi_bridge_mode_valid(struct drm_bridge *brid=
-ge,
->  			  const struct drm_display_mode *mode)
->  {
->  	struct mtk_dsi *dsi =3D bridge_to_dsi(bridge);
-> +	const struct mtk_dsi_driver_data *data =3D dsi->driver_data;
-> +	u64 wanted_link_rate, max_link_rate;
->  	int bpp;
+> @@ -1088,7 +1089,13 @@ static int mtk_dsi_bind(struct device *dev, struct=
+ device *master, void *data)
+>  	if (ret)
+>  		return ret;
 > =20
->  	bpp =3D mipi_dsi_pixel_format_to_bpp(dsi->format);
->  	if (bpp < 0)
->  		return MODE_ERROR;
-> =20
-> -	if (mode->clock * bpp / dsi->lanes > 1500000)
-> +	wanted_link_rate =3D mode->clock;
-> +	wanted_link_rate *=3D bpp;
-> +	max_link_rate =3D data->max_link_rate_mbps;
-> +	max_link_rate *=3D dsi->lanes;
-> +	max_link_rate *=3D KILO;
+> -	return device_reset_optional(dev);
+> +	ret =3D device_reset_optional(dev);
+> +	if (ret)
+> +		return ret;
 > +
-> +	if (wanted_link_rate > max_link_rate)
->  		return MODE_CLOCK_HIGH;
+> +	enable_irq(dsi->irq);
 
 [Severity: High]
-Does this calculation also ignore DSC?=20
+This is a pre-existing issue, but does enabling the IRQ here risk a bus
+hang if an interrupt fires before the hardware clocks are fully enabled?
 
-The wanted_link_rate is calculated using the uncompressed bpp instead of the
-compressed bits per pixel. This could incorrectly reject valid high-resolut=
-ion
-display modes if their uncompressed bandwidth exceeds the DSI link's maximum
-capacity.
+Looking at mtk_dsi_bind(), the IRQ is unmasked here, but the engine_clk
+and digital_clk are not enabled until mtk_dsi_poweron() is called later.
+If a spurious or pending interrupt fires during this window, the handler:
+
+mtk_dsi_irq()
+    status =3D readl(dsi->regs + DSI_INTSTA) & flag;
+
+will access clock-gated registers, which can cause an unrecoverable system
+error or bus stall on MediaTek SoCs. A similar window seems to exist in
+mtk_dsi_poweroff() where clocks are disabled without masking the IRQ.
+
+> +
+> +	return 0;
+>  }
+
+[ ... ]
+
+> @@ -1372,17 +1380,15 @@ static int mtk_dsi_probe(struct platform_device *=
+pdev)
+> =20
+>  	platform_set_drvdata(pdev, dsi);
+> =20
+> +	ret =3D devm_request_irq(&pdev->dev, dsi->irq, mtk_dsi_irq,
+> +			       IRQF_NO_AUTOEN, dev_name(&pdev->dev), dsi);
+
+[Severity: High]
+This isn't a bug introduced by this patch, but are there data races in how
+the interrupt handler updates the status flags?
+
+The irq_data field is modified concurrently by process context and hardirq
+context without locking:
+
+Process context:
+mtk_dsi_irq_data_clear()
+    dsi->irq_data &=3D ~irq_bit;
+
+Hardirq context:
+mtk_dsi_irq_data_set()
+    dsi->irq_data |=3D irq_bit;
+
+If mtk_dsi_irq() fires between the non-atomic load and store in process
+context, the flag set by the interrupt handler would be overwritten and los=
+t,
+potentially causing spurious timeouts.
+
+[Severity: High]
+This is a pre-existing issue, but does the wait condition correctly handle
+signals?
+
+When waiting for the interrupt:
+
+mtk_dsi_host_send_cmd()
+    if (!mtk_dsi_wait_for_irq_done(dsi, flag, 2000))
+        return -ETIME;
+    else
+        return 0;
+
+If wait_event_interruptible_timeout() in mtk_dsi_wait_for_irq_done() is
+interrupted by a signal, it returns -ERESTARTSYS. Since !negative evaluates
+to false (0), the error check is bypassed and it returns 0 (success). This
+could cause the driver to read uninitialized RX data from DSI registers and
+corrupt the communication state machine.
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260713130103.3465=
-4-1-angelogioacchino.delregno@collabora.com?part=3D6
+4-1-angelogioacchino.delregno@collabora.com?part=3D4
 
