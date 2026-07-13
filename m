@@ -1,69 +1,62 @@
-Return-Path: <devicetree+bounces-325217-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-325218-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id I3rtCY6QVGqdnQMAu9opvQ
-	(envelope-from <devicetree+bounces-325217-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 09:15:26 +0200
+	id X/a8CYmSVGpingMAu9opvQ
+	(envelope-from <devicetree+bounces-325218-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 09:23:53 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3DD0747EA2
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 09:15:25 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6EB2B7480AA
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 09:23:52 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=Zoof87+i;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=nHFyHMkJ;
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-325217-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-325217-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-325218-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-325218-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 54E4F301BA77
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 07:15:07 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E245D304B2BD
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 07:17:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E3A8368D59;
-	Mon, 13 Jul 2026 07:15:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FD52370AE7;
+	Mon, 13 Jul 2026 07:17:34 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8951369D59;
-	Mon, 13 Jul 2026 07:15:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59B2036F8F0;
+	Mon, 13 Jul 2026 07:17:32 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783926906; cv=none; b=DfMqdphk7akNyCXJsmHrna79X4D2cYrLAkeMT2TbqM6zB5up5CzSr37Q2LhECcgL2pAljnUWgM4BsglUnXuCX2mEEH+bVNGLvsdEt/shZQ7r96ZUEbqz0nqkGx9xLmiWxn/k4p25jDV/LUtzaXoPT/aNv0gWLJOKZXZbKLTeexo=
+	t=1783927054; cv=none; b=u94Pjl9gO0KZ6TT69SQNT6sAHUz/rg8w2qwWGmrRT9VzfAu2140NLI8fnF1opnT9L7VnIn5qafPGldhLQkabAie1UIytYgYPLl9H8DGk7yuClP7igdDqhKPEyTHRYk7/QnJAXASBHLYh1TYFjLz0pnkl2ze+mv7TmtGDO3GUTOQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783926906; c=relaxed/simple;
-	bh=qt/ciUhbyJcgydhGc5DaXdaEqvPSjo0LGG//q/JJ3S4=;
+	s=arc-20240116; t=1783927054; c=relaxed/simple;
+	bh=vyybhEh8PKk3vyT4oI4jCm9a19ruelsebq4ZoJG6dJ4=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=OnfRXX4m8GERiUlKyLqEk2q8oyboc4TxhpV51jZcgDLcadATPOJhwy1zCx1SBeko/qom56e+dJinJeySTeFAauCT/o+marM/462kUQPJ9jtWr7G0kYXEJF26hC15nvPmhepk0jZVuuNqD7JXhOzTanyD8rMXwJdyrzT28x6Nkdk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Zoof87+i; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5FC821F000E9;
-	Mon, 13 Jul 2026 07:15:00 +0000 (UTC)
+	 MIME-Version:Content-Type; b=YuuzcVrUqZgI9CUcTmme37QPWLbiW2CcL1mA/n2altGuV7kwPvXx9xrUevMrCObHcPdaJTAhp95atE/pacmpu2CWP26RBblrGNWWDo+bbmenmqgqcZ+WiGRxOfi4g4KOdxx/7PEv4zhHoXRhh+t6SPj9J/ogdvluDmd6bjS1H5E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nHFyHMkJ; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F1C491F000E9;
+	Mon, 13 Jul 2026 07:17:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783926905;
-	bh=eLb36tVfJEOKQMQt3uvFaLwJzBn1n6sVBLny6umONd0=;
+	s=k20260515; t=1783927052;
+	bh=/AAvWdg2tf7XP0ClRJ7QU4XdfQ70zfzUpBK5iJU8WwM=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Date;
-	b=Zoof87+itqVZwOMFUw+cS/Xefo1n3/ceC5P4IE47TXgULDYw5nLqzuvf2E9FYS+iP
-	 pXLyyWbrJN5CvmtLB6z01L9XC9UxYU1n5roWqCK1q8zPPZMgSLLPTIxzev1+QEzCmY
-	 WmnK2e5cDEOPrDAnP74TEPeww1bYljsh9Amp42Tumb4tSzseFuXXW1arTrqqVjoDqi
-	 frMAGJ8gU4KQdtqhd/oB7KPt+u1pXvt/PcgSa/zd4cB2Y5w5usAYyaOyp3nTW5wNbP
-	 D3z60chlJfH1xaj3QHzEnnXUUW2lfV2w9+t/XAi816L+E007Xyt2eSpMoiqiRL0R9n
-	 uI3XSKyzQ7qSw==
+	b=nHFyHMkJP2WBYIOdOxc0UBT0Ihj/u5mg9JK7iZbPdOZcBPMx9K92N7r6UHN2pXRG6
+	 TsiD0GeqmCY7B79z0R4GUEkqis1tasFpHsNuBr9LisGw4Ao6Ukos5MYagXHVnM315V
+	 Ma6h8YkqIeT1O8GKOGJIWId2ZiM35RcjJxGXpwXDx0qitUOS8/D6U1T3jttFYYXX9h
+	 LbY2psslNEOJGn1cAVKD96rO/K4KAIIsj5LaW9fcbi6XQhuYCnwGZA/2xnuh3esJ2e
+	 MCgdqC4U3n2YZL9dHTsogxBNYYRCRLyeBQATWMGsD74DAm/bXf3goK6Nzv6BMRAiYV
+	 5PEyeo4rWMj4A==
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Sylwester Nawrocki <s.nawrocki@samsung.com>, 
- Chanwoo Choi <cw00.choi@samsung.com>, 
- Peter Griffin <peter.griffin@linaro.org>, 
- Alim Akhtar <alim.akhtar@samsung.com>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney@redhat.com>, 
- Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
- Denzeel Oliva <wachiturroxd150@gmail.com>
-Cc: linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-kernel@vger.kernel.org
-In-Reply-To: <20260613-exynos990-peris-fix-v3-v3-0-2b230db78ae4@gmail.com>
-References: <20260613-exynos990-peris-fix-v3-v3-0-2b230db78ae4@gmail.com>
-Subject: Re: [PATCH v3 0/3] clk: samsung: exynos990: Fix PERIS gate clock
- parents and add TMU_SUB
-Message-Id: <178392689997.24587.17631243111899566920.b4-ty@b4>
-Date: Mon, 13 Jul 2026 09:14:59 +0200
+To: peter.griffin@linaro.org, robh@kernel.org, conor+dt@kernel.org, 
+ linusw@kernel.org, Alim Akhtar <alim.akhtar@samsung.com>
+Cc: linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-gpio@vger.kernel.org, 
+ hajun.sung@samsung.com
+In-Reply-To: <20260627171228.2687857-1-alim.akhtar@samsung.com>
+References: <20260627171228.2687857-1-alim.akhtar@samsung.com>
+Subject: Re: (subset) [PATCH v3 0/6] Add minimal Exynos8855 SoC support
+Message-Id: <178392704864.26180.1741165766885448528.b4-ty@b4>
+Date: Mon, 13 Jul 2026 09:17:28 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -74,58 +67,62 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
 X-Mailer: b4 0.15.2
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.16 / 15.00];
+X-Spamd-Result: default: False [-4.66 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:s.nawrocki@samsung.com,m:cw00.choi@samsung.com,m:peter.griffin@linaro.org,m:alim.akhtar@samsung.com,m:mturquette@baylibre.com,m:sboyd@kernel.org,m:bmasney@redhat.com,m:robh@kernel.org,m:conor+dt@kernel.org,m:wachiturroxd150@gmail.com,m:linux-samsung-soc@vger.kernel.org,m:linux-clk@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[samsung.com,linaro.org,baylibre.com,kernel.org,redhat.com,gmail.com];
-	FORWARDED(0.00)[lists@lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:peter.griffin@linaro.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:linusw@kernel.org,m:alim.akhtar@samsung.com,m:linux-samsung-soc@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-gpio@vger.kernel.org,m:hajun.sung@samsung.com,m:conor@kernel.org,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_SENDER(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-325218-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-325217-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
+	RCPT_COUNT_SEVEN(0.00)[10];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: A3DD0747EA2
+X-Rspamd-Queue-Id: 6EB2B7480AA
 
 
-On Sat, 13 Jun 2026 07:36:15 -0500, Denzeel Oliva wrote:
-> Fix several PERIS CMU clock parent mismatches and add the missing
-> TMU_SUB_PCLK gate clock.  The dt-bindings patch adds the new clock
-> ID.  The second patch adds the TMU_SUB_PCLK gate.  The third patch
-> corrects eight gate clock parents and reorders the GIC mux parents.
+On Sat, 27 Jun 2026 22:42:22 +0530, Alim Akhtar wrote:
+> This series adds initial support for the Exynos8855 SoC and also
+> initial SMDK board support.
+> 
+> Exynos8855 is octa-core CPUs, a combination of Cortex-A720 and Cortex-A520,
+> arranged in 3 clusters. And other peripheral for mobile application.
+> 
+> This initial support consists of CPUs, pinctrl and related nodes
+> needed for initial kernel boot.
+> 
+> [...]
 
 Applied, thanks!
 
-[1/3] dt-bindings: clock: exynos990: Add CLK_GOUT_PERIS_TMU_SUB_PCLK
-      https://git.kernel.org/krzk/linux/c/d5083527908a994496519f5b9098b33460f365d6
-[2/3] clk: samsung: exynos990: Add PERIS TMU_SUB_PCLK gate
-      https://git.kernel.org/krzk/linux/c/b7d6221aa44fc523c3418ecd94c582eea6e6d53a
-[3/3] clk: samsung: exynos990: Fix PERIS gate clock parents
-      https://git.kernel.org/krzk/linux/c/a016e89781478e4b756fbf104945d037d0cdc809
+[2/6] dt-binding: pinctrl: samsung: Add exynos8855-pinctrl compatible
+      https://git.kernel.org/pinctrl/samsung/c/8e8bad1e2ab599174c21dd2d0ba6fcf5f82dafa5
+[3/6] pinctrl: samsung: Add Exynos8855 pinctrl configuration
+      https://git.kernel.org/pinctrl/samsung/c/d441836c9d704d0f3db5dbf44df87af2ba7a9d26
+[4/6] dt-bindings: pinctrl: samsung: Add exynos8855-wakeup-eint compatible
+      https://git.kernel.org/pinctrl/samsung/c/7cd3475913736239696e0111d4d5845d9e0a79b6
 
 Best regards,
 -- 
