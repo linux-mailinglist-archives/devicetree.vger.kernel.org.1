@@ -1,56 +1,56 @@
-Return-Path: <devicetree+bounces-325391-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-325392-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id WcapC9C9VGrRqQMAu9opvQ
-	(envelope-from <devicetree+bounces-325391-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 12:28:32 +0200
+	id uOAHBwe+VGrqqQMAu9opvQ
+	(envelope-from <devicetree+bounces-325392-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 12:29:27 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6FBC5749D1A
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 12:28:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C508749D4D
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 12:29:26 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=collabora.com header.s=mail header.b=QlvaLdaZ;
+	dkim=pass header.d=collabora.com header.s=mail header.b="ZvZvIn/K";
 	dmarc=pass (policy=none) header.from=collabora.com;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-325391-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-325391-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-325392-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-325392-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D2DEB3064477
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 10:23:31 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E4917306B7BA
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 10:23:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7726C3E8323;
-	Mon, 13 Jul 2026 10:23:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 108733E95AB;
+	Mon, 13 Jul 2026 10:23:31 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF7203E5EC0;
-	Mon, 13 Jul 2026 10:23:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C1C93E7BB6;
+	Mon, 13 Jul 2026 10:23:28 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783938209; cv=none; b=Uhx5/yNx2ml27Aw3ZpKePtEZ+XWac5mewAydaHHxA74cke8b8GjsguYsHvM8jKdrnUa4o6srh4zCQkx0QTBItT2NkhsX7PLzmBjyhkzi1ytVzk3z37jR7ZV1LnvJWmBe3Tg8b7omWTSa73Ngtdt7dqw3EEIV1twXbDJH3B2xkGQ=
+	t=1783938210; cv=none; b=BC183Dg+RadMcFeEFwbqyGNhqLx/eR+acRrcwGBEbZdwTTIUzEjt7xLUDJnLyWMIfwvn1zWpUx8Pa8w7bFb1md7TsY6979MhZymi8e+iHt6kxNW+YxWaGhQMQjQqL0oxbmyrULz1qAfuQuUDz7C6HMOUnCAQ1DF6eQA9wgdeETs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783938209; c=relaxed/simple;
-	bh=j5lGbsuNrMuX2/MBNskiphqCbXX2IsyCVQqLudRvkx8=;
+	s=arc-20240116; t=1783938210; c=relaxed/simple;
+	bh=e6EW3G1noluvUbsf4mXKsPJ8a0ez3clxF+2eHH/FFqg=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=ZNHXaeV+lqYqz3uYEyzyCZYreRK+ZRRrETlaJaoHQhJ+GwTQ0woC0q/cHHMJG/GzwL6EnSXvVf6SPAUzX4YHqAo7IfhRc5JtCC5ibd0S0rBoDr+EUBqF6RqpUQYaomMqjmNZmxtybJ1BOGCG/KApqTTvOHZ0Vc9ffpWRKV7wQsM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=QlvaLdaZ; arc=none smtp.client-ip=148.251.105.195
+	 MIME-Version; b=CIjA8pXWOWUMwAX3Q9oB00T5VNuLvmzoPYzllk/PSvbFPLaew1u5u1q7hFUjulRr2o5vJ9vIlTsXpq/PlrBXLrMNkJWJUhX8V/7xtlChJQALk2UAS2b8FlG9lf5rGPWq/ffdXzBf4a/SWU4W5W7nBz+SWH31UAu+VJBgkjqgicY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=ZvZvIn/K; arc=none smtp.client-ip=148.251.105.195
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1783938206;
-	bh=j5lGbsuNrMuX2/MBNskiphqCbXX2IsyCVQqLudRvkx8=;
+	s=mail; t=1783938207;
+	bh=e6EW3G1noluvUbsf4mXKsPJ8a0ez3clxF+2eHH/FFqg=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=QlvaLdaZEBeRW7dwrdcnWrTa9DPXwR5AhBRQcRE+r6kaqY9PKHkBKy5ZVDzERn7UA
-	 RgeMOltIU+N086KXrviYIf77ibrv211knZ8wIuyi18C5eux+4DlaED27eqop6KpoB6
-	 9+/8Dyma80EYvByIW2Cwnf8eahRWnl8Dg49A5Kyjq05au4elofqcxldjO2lI+P3AyG
-	 Yc8MGmotVJ9VWitbfs4OMVfmPUpnvpr7fjCvgGPrc2j0VNaRKtdKqy6Ysa4bkEGnOS
-	 FiTZTDsGsT10BJdWoWpu1ZGn52iAzHQMrvmp2TpZmAcV85BQqgX31vwCkBz2u0oLIF
-	 EGCQz7IYChvuw==
+	b=ZvZvIn/K20LMUklJ5R2g85ND+bvgYQRUr6X1Kahvy6RsateTMQbNPTNdkySXFIOLq
+	 DU5m0jIoWgPko7AfNhJwbfSVjqR358RAzxaSl/WiMxW3mX5wGA80IBZozpp3H7G7no
+	 J2wykpuXVraFpr08UWD9eKtFS7eAulLmqW/qv7QWyLM79tKUIGwla3c8+oJEznEH0p
+	 0jfLKtqNyk+KHVaSSOaUkTLPHfJ0jeagwlrS7/VWIzdJer5NXKukcxPcIvI8xddrBr
+	 +xFZpAAzPZOXYTPGHtu3gJ3sqtPVipxwnm4vFVOrM8lB2gvBAS4hOo0l+nIQDgB9yp
+	 jdtVet+n8d1XQ==
 Received: from IcarusMOD.eternityproject.eu (unknown [100.64.1.21])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
 	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id D108517E01AC;
-	Mon, 13 Jul 2026 12:23:25 +0200 (CEST)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id AFF4F17E023C;
+	Mon, 13 Jul 2026 12:23:26 +0200 (CEST)
 From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 To: chunfeng.yun@mediatek.com
 Cc: vkoul@kernel.org,
@@ -69,11 +69,10 @@ Cc: vkoul@kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	dri-devel@lists.freedesktop.org,
-	kernel@collabora.com,
-	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-Subject: [PATCH v2 1/2] dt-bindings: phy: mediatek,dsi-phy: Add support for MT8196
-Date: Mon, 13 Jul 2026 12:23:21 +0200
-Message-ID: <20260713102322.21782-2-angelogioacchino.delregno@collabora.com>
+	kernel@collabora.com
+Subject: [PATCH v2 2/2] phy: mediatek: Add support for MT8196 MIPI DSI PHY
+Date: Mon, 13 Jul 2026 12:23:22 +0200
+Message-ID: <20260713102322.21782-3-angelogioacchino.delregno@collabora.com>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20260713102322.21782-1-angelogioacchino.delregno@collabora.com>
 References: <20260713102322.21782-1-angelogioacchino.delregno@collabora.com>
@@ -87,8 +86,8 @@ Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
 	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
@@ -96,55 +95,287 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-325391-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER(0.00)[angelogioacchino.delregno@collabora.com,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	FORGED_RECIPIENTS(0.00)[m:chunfeng.yun@mediatek.com,m:vkoul@kernel.org,m:neil.armstrong@linaro.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:chunkuang.hu@kernel.org,m:p.zabel@pengutronix.de,m:matthias.bgg@gmail.com,m:angelogioacchino.delregno@collabora.com,m:justin.yeh@mediatek.com,m:linux-arm-kernel@lists.infradead.org,m:linux-mediatek@lists.infradead.org,m:linux-phy@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:dri-devel@lists.freedesktop.org,m:kernel@collabora.com,m:krzysztof.kozlowski@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,m:matthiasbgg@gmail.com,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FREEMAIL_CC(0.00)[kernel.org,linaro.org,pengutronix.de,gmail.com,collabora.com,mediatek.com,lists.infradead.org,vger.kernel.org,lists.freedesktop.org,oss.qualcomm.com];
-	DKIM_TRACE(0.00)[collabora.com:+];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[kernel.org,linaro.org,pengutronix.de,gmail.com,collabora.com,mediatek.com,lists.infradead.org,vger.kernel.org,lists.freedesktop.org];
+	TAGGED_FROM(0.00)[bounces-325392-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[angelogioacchino.delregno@collabora.com,devicetree@vger.kernel.org];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:chunfeng.yun@mediatek.com,m:vkoul@kernel.org,m:neil.armstrong@linaro.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:chunkuang.hu@kernel.org,m:p.zabel@pengutronix.de,m:matthias.bgg@gmail.com,m:angelogioacchino.delregno@collabora.com,m:justin.yeh@mediatek.com,m:linux-arm-kernel@lists.infradead.org,m:linux-mediatek@lists.infradead.org,m:linux-phy@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:dri-devel@lists.freedesktop.org,m:kernel@collabora.com,m:krzk@kernel.org,m:conor@kernel.org,m:matthiasbgg@gmail.com,s:lists@lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[18];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[angelogioacchino.delregno@collabora.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	DKIM_TRACE(0.00)[collabora.com:+];
+	TO_DN_NONE(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ALIAS_RESOLVED(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,collabora.com:from_mime,collabora.com:email,collabora.com:mid,collabora.com:dkim,vger.kernel.org:from_smtp]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:from_mime,collabora.com:email,collabora.com:mid,collabora.com:dkim,vger.kernel.org:from_smtp,mediatek.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 6FBC5749D1A
+X-Rspamd-Queue-Id: 6C508749D4D
 
-Add support for the MediaTek Kompanio Ultra (MT8196) SoC: this
-chip features a DSI PHY that is similar to the one found in the
-MT8183 SoC, but is a new (incremental) revision with a different
-register layout.
+Add support for the MIPI DSI PHY found in the MediaTek MT8196 SoC
+and its variants.
+This PHY has a different register layout and provides support for
+more hardware features compared to the previous generation.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+This initial driver only adds support for basic functionality that
+is necessary to drive MIPI DSI displays as a D-PHY.
+
+Feature additions like lane-swap, DPHY/CPHY switching, dual-port,
+and others, may be done in the future.
+
 Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 ---
- Documentation/devicetree/bindings/phy/mediatek,dsi-phy.yaml | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/phy/mediatek/Makefile                 |   1 +
+ .../phy/mediatek/phy-mtk-mipi-dsi-mt8196.c    | 196 ++++++++++++++++++
+ drivers/phy/mediatek/phy-mtk-mipi-dsi.c       |   1 +
+ drivers/phy/mediatek/phy-mtk-mipi-dsi.h       |   2 +-
+ 4 files changed, 199 insertions(+), 1 deletion(-)
+ create mode 100644 drivers/phy/mediatek/phy-mtk-mipi-dsi-mt8196.c
 
-diff --git a/Documentation/devicetree/bindings/phy/mediatek,dsi-phy.yaml b/Documentation/devicetree/bindings/phy/mediatek,dsi-phy.yaml
-index c6d0bbdbe0e2..9df1dbe1253b 100644
---- a/Documentation/devicetree/bindings/phy/mediatek,dsi-phy.yaml
-+++ b/Documentation/devicetree/bindings/phy/mediatek,dsi-phy.yaml
-@@ -39,6 +39,7 @@ properties:
-       - const: mediatek,mt2701-mipi-tx
-       - const: mediatek,mt8173-mipi-tx
-       - const: mediatek,mt8183-mipi-tx
-+      - const: mediatek,mt8196-mipi-tx
- 
-   reg:
-     maxItems: 1
+diff --git a/drivers/phy/mediatek/Makefile b/drivers/phy/mediatek/Makefile
+index 1b8088df71e8..ed0da708759b 100644
+--- a/drivers/phy/mediatek/Makefile
++++ b/drivers/phy/mediatek/Makefile
+@@ -21,4 +21,5 @@ obj-$(CONFIG_PHY_MTK_MIPI_CSI_0_5)	+= phy-mtk-mipi-csi-0-5.o
+ phy-mtk-mipi-dsi-drv-y			:= phy-mtk-mipi-dsi.o
+ phy-mtk-mipi-dsi-drv-y			+= phy-mtk-mipi-dsi-mt8173.o
+ phy-mtk-mipi-dsi-drv-y			+= phy-mtk-mipi-dsi-mt8183.o
++phy-mtk-mipi-dsi-drv-y			+= phy-mtk-mipi-dsi-mt8196.o
+ obj-$(CONFIG_PHY_MTK_MIPI_DSI)		+= phy-mtk-mipi-dsi-drv.o
+diff --git a/drivers/phy/mediatek/phy-mtk-mipi-dsi-mt8196.c b/drivers/phy/mediatek/phy-mtk-mipi-dsi-mt8196.c
+new file mode 100644
+index 000000000000..273f236fa7e9
+--- /dev/null
++++ b/drivers/phy/mediatek/phy-mtk-mipi-dsi-mt8196.c
+@@ -0,0 +1,196 @@
++// SPDX-License-Identifier: GPL-2.0
++/*
++ * Copyright (c) 2019 MediaTek Inc.
++ * Author: jitao.shi <jitao.shi@mediatek.com>
++ *
++ * Copyright (c) 2026 Collabora Ltd.
++ *                    AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
++ */
++
++#include "phy-mtk-io.h"
++#include "phy-mtk-mipi-dsi.h"
++
++#define MIPITX_LANE_CON		0x0004
++#define RG_DSI_CPHY_T1DRV_EN		BIT(0)
++#define RG_DSI_ANA_CK_SEL		BIT(1)
++#define RG_DSI_PHY_CK_SEL		BIT(2)
++#define RG_DSI_CPHY_EN			BIT(3)
++#define RG_DSI_PHYCK_INV_EN		BIT(4)
++#define RG_DSI_PWR04_EN			BIT(5)
++#define RG_DSI_BG_LPF_EN		BIT(6)
++#define RG_DSI_BG_CORE_EN		BIT(7)
++#define RG_DSI_PAD_TIEL_SEL		BIT(8)
++
++#define MIPITX_VOLTAGE_SEL	0x0008
++#define RG_DSI_HSTX_LDO_REF_SEL		GENMASK(9, 6)
++#define RG_DSI_PRD_REF_SEL		GENMASK(5, 0)
++#define RG_DSI_PRD_REF_MINI		0
++#define RG_DSI_PRD_REF_DEF		4
++#define RG_DSI_PRD_REF_MAX		7
++
++#define MIPITX_PRESERVED	0x000c
++#define MIPITX_PRESERVED_DEF		0xffff0040
++#define MIPITX_PRESERVED_MINI		0xffff00f0
++
++#define MIPITX_PLL_PWR		0x0028
++#define AD_DSI_PLL_SDM_PWR_ON		BIT(0)
++#define AD_DSI_PLL_SDM_ISO_EN		BIT(1)
++#define MIPITX_PLL_CON0		0x002c
++#define MIPITX_PLL_CON1		0x0030
++#define RG_DSI_PLL_EN			BIT(0)
++#define RG_DSI_PLL_POSDIV		GENMASK(10, 8)
++#define MIPITX_PLL_CON2		0x0034
++#define MIPITX_PLL_CON3		0x0038
++#define MIPITX_PLL_CON4		0x003c
++#define RG_DSI_PLL_IBIAS		GENMASK(11, 10)
++
++#define MIPITX_D2_SW_CTL_EN	0x015c
++#define MIPITX_D0_SW_CTL_EN	0x025c
++#define MIPITX_CK_CKMODE_EN	0x0320
++#define DSI_CK_CKMODE_EN		BIT(0)
++#define MIPITX_CK_SW_CTL_EN	0x035c
++#define MIPITX_D1_SW_CTL_EN	0x045c
++#define MIPITX_D3_SW_CTL_EN	0x055c
++#define DSI_SW_CTL_EN			BIT(0)
++
++#define DSI_PHY_XTAL_CLK_HZ		26000000
++
++static int mtk_mipi_tx_pll_enable(struct clk_hw *hw)
++{
++	struct mtk_mipi_tx *mipi_tx = mtk_mipi_tx_from_clk_hw(hw);
++	void __iomem *base = mipi_tx->regs;
++	u32 voltage = RG_DSI_PRD_REF_MINI;
++	u32 pres = MIPITX_PRESERVED_MINI;
++	unsigned long long pcw_calc;
++	unsigned int txdiv, txdiv0;
++	u32 pcw;
++
++	dev_dbg(mipi_tx->dev, "enable: %u bps\n", mipi_tx->data_rate);
++
++	if (mipi_tx->data_rate >= 2000000000) {
++		/* Select higher signaling voltage for fast data rates */
++		voltage = RG_DSI_PRD_REF_DEF;
++		pres = MIPITX_PRESERVED_DEF;
++		txdiv = 1;
++		txdiv0 = 0;
++	} else if (mipi_tx->data_rate >= 1000000000) {
++		txdiv = 2;
++		txdiv0 = 1;
++	} else if (mipi_tx->data_rate >= 500000000) {
++		txdiv = 4;
++		txdiv0 = 2;
++	} else if (mipi_tx->data_rate > 250000000) {
++		txdiv = 8;
++		txdiv0 = 3;
++	} else if (mipi_tx->data_rate >= 125000000) {
++		txdiv = 16;
++		txdiv0 = 4;
++	} else {
++		return -EINVAL;
++	}
++
++	pcw_calc = ((u64)(mipi_tx->data_rate / 2) * txdiv) << 24;
++	pcw_calc = div_u64(pcw_calc, DSI_PHY_XTAL_CLK_HZ);
++
++	if (pcw_calc > U32_MAX) {
++		dev_err(mipi_tx->dev, "Calculated PCW=%llu overflow!\n", pcw_calc);
++		return -EINVAL;
++	}
++	pcw = (u32)pcw_calc;
++
++	mtk_phy_update_field(base + MIPITX_VOLTAGE_SEL, RG_DSI_PRD_REF_SEL, voltage);
++	writel(pres, base + MIPITX_PRESERVED);
++
++	mtk_phy_set_bits(base + MIPITX_PLL_PWR, AD_DSI_PLL_SDM_PWR_ON);
++	mtk_phy_clear_bits(base + MIPITX_PLL_CON1, RG_DSI_PLL_EN);
++	usleep_range(30, 60);
++
++	mtk_phy_clear_bits(base + MIPITX_PLL_PWR, AD_DSI_PLL_SDM_ISO_EN);
++	writel(pcw, base + MIPITX_PLL_CON0);
++	mtk_phy_update_field(base + MIPITX_PLL_CON1, RG_DSI_PLL_POSDIV, txdiv0);
++	usleep_range(30, 60);
++
++	mtk_phy_set_bits(base + MIPITX_PLL_CON1, RG_DSI_PLL_EN);
++	usleep_range(30, 60);
++
++	return 0;
++}
++
++static void mtk_mipi_tx_pll_disable(struct clk_hw *hw)
++{
++	struct mtk_mipi_tx *mipi_tx = mtk_mipi_tx_from_clk_hw(hw);
++	void __iomem *base = mipi_tx->regs;
++
++	mtk_phy_clear_bits(base + MIPITX_PLL_CON1, RG_DSI_PLL_EN);
++
++	mtk_phy_set_bits(base + MIPITX_PLL_PWR, AD_DSI_PLL_SDM_ISO_EN);
++	mtk_phy_clear_bits(base + MIPITX_PLL_PWR, AD_DSI_PLL_SDM_PWR_ON);
++}
++
++static int mtk_mipi_tx_pll_determine_rate(struct clk_hw *hw,
++					  struct clk_rate_request *req)
++{
++	req->rate = clamp_val(req->rate, 125000000, 1600000000);
++
++	return 0;
++}
++
++static const struct clk_ops mtk_mipi_tx_pll_ops = {
++	.enable = mtk_mipi_tx_pll_enable,
++	.disable = mtk_mipi_tx_pll_disable,
++	.determine_rate = mtk_mipi_tx_pll_determine_rate,
++	.set_rate = mtk_mipi_tx_pll_set_rate,
++	.recalc_rate = mtk_mipi_tx_pll_recalc_rate,
++};
++
++static void mtk_mipi_tx_power_on_signal(struct phy *phy)
++{
++	struct mtk_mipi_tx *mipi_tx = phy_get_drvdata(phy);
++	void __iomem *base = mipi_tx->regs;
++
++	/* BG_LPF_EN / BG_CORE_EN */
++	writel(RG_DSI_PAD_TIEL_SEL | RG_DSI_BG_CORE_EN, base + MIPITX_LANE_CON);
++	/* Wait for MIPI core to enable */
++	usleep_range(30, 100);
++	writel(RG_DSI_BG_CORE_EN | RG_DSI_BG_LPF_EN, base + MIPITX_LANE_CON);
++
++	/* Switch OFF each Lane */
++	mtk_phy_clear_bits(base + MIPITX_D0_SW_CTL_EN, DSI_SW_CTL_EN);
++	mtk_phy_clear_bits(base + MIPITX_D1_SW_CTL_EN, DSI_SW_CTL_EN);
++	mtk_phy_clear_bits(base + MIPITX_D2_SW_CTL_EN, DSI_SW_CTL_EN);
++	mtk_phy_clear_bits(base + MIPITX_D3_SW_CTL_EN, DSI_SW_CTL_EN);
++	mtk_phy_clear_bits(base + MIPITX_CK_SW_CTL_EN, DSI_SW_CTL_EN);
++
++	/*
++	 * The MIPI TX drive strength is in the range of 3000 ~ 6000 microamps:
++	 * RG_DSI_HSTX_LDO_REF_SEL expresses an offset from the minimum drive
++	 * strength (3000uA) and can add a maximum offset of 3000uA, reaching a
++	 * maximum drive strength of 3000+3000=6000uA.
++	 */
++	mtk_phy_update_field(base + MIPITX_VOLTAGE_SEL, RG_DSI_HSTX_LDO_REF_SEL,
++			     (mipi_tx->mipitx_drive - 3000) / 200);
++
++	mtk_phy_set_bits(base + MIPITX_CK_CKMODE_EN, DSI_CK_CKMODE_EN);
++}
++
++static void mtk_mipi_tx_power_off_signal(struct phy *phy)
++{
++	struct mtk_mipi_tx *mipi_tx = phy_get_drvdata(phy);
++	void __iomem *base = mipi_tx->regs;
++
++	/* Switch ON each lane one by one */
++	mtk_phy_set_bits(base + MIPITX_D0_SW_CTL_EN, DSI_SW_CTL_EN);
++	mtk_phy_set_bits(base + MIPITX_D1_SW_CTL_EN, DSI_SW_CTL_EN);
++	mtk_phy_set_bits(base + MIPITX_D2_SW_CTL_EN, DSI_SW_CTL_EN);
++	mtk_phy_set_bits(base + MIPITX_D3_SW_CTL_EN, DSI_SW_CTL_EN);
++	mtk_phy_set_bits(base + MIPITX_CK_SW_CTL_EN, DSI_SW_CTL_EN);
++
++	writel(RG_DSI_PAD_TIEL_SEL | RG_DSI_BG_CORE_EN, base + MIPITX_LANE_CON);
++	writel(RG_DSI_PAD_TIEL_SEL, base + MIPITX_LANE_CON);
++}
++
++const struct mtk_mipitx_data mt8196_mipitx_data = {
++	.mipi_tx_clk_ops = &mtk_mipi_tx_pll_ops,
++	.mipi_tx_enable_signal = mtk_mipi_tx_power_on_signal,
++	.mipi_tx_disable_signal = mtk_mipi_tx_power_off_signal,
++};
+diff --git a/drivers/phy/mediatek/phy-mtk-mipi-dsi.c b/drivers/phy/mediatek/phy-mtk-mipi-dsi.c
+index 065ea626093a..46f0cb3ac096 100644
+--- a/drivers/phy/mediatek/phy-mtk-mipi-dsi.c
++++ b/drivers/phy/mediatek/phy-mtk-mipi-dsi.c
+@@ -183,6 +183,7 @@ static const struct of_device_id mtk_mipi_tx_match[] = {
+ 	{ .compatible = "mediatek,mt2701-mipi-tx", .data = &mt2701_mipitx_data },
+ 	{ .compatible = "mediatek,mt8173-mipi-tx", .data = &mt8173_mipitx_data },
+ 	{ .compatible = "mediatek,mt8183-mipi-tx", .data = &mt8183_mipitx_data },
++	{ .compatible = "mediatek,mt8196-mipi-tx", .data = &mt8196_mipitx_data },
+ 	{ /* sentinel */ }
+ };
+ MODULE_DEVICE_TABLE(of, mtk_mipi_tx_match);
+diff --git a/drivers/phy/mediatek/phy-mtk-mipi-dsi.h b/drivers/phy/mediatek/phy-mtk-mipi-dsi.h
+index 5d4876f1dc95..e6f967078e3b 100644
+--- a/drivers/phy/mediatek/phy-mtk-mipi-dsi.h
++++ b/drivers/phy/mediatek/phy-mtk-mipi-dsi.h
+@@ -42,5 +42,5 @@ unsigned long mtk_mipi_tx_pll_recalc_rate(struct clk_hw *hw,
+ extern const struct mtk_mipitx_data mt2701_mipitx_data;
+ extern const struct mtk_mipitx_data mt8173_mipitx_data;
+ extern const struct mtk_mipitx_data mt8183_mipitx_data;
+-
++extern const struct mtk_mipitx_data mt8196_mipitx_data;
+ #endif
 -- 
 2.54.0
 
