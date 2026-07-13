@@ -1,310 +1,226 @@
-Return-Path: <devicetree+bounces-325712-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-325801-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id fuvzBhgVVWoWjwAAu9opvQ
-	(envelope-from <devicetree+bounces-325712-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 18:40:56 +0200
+	id cgDCJVx0VWp6ogAAu9opvQ
+	(envelope-from <devicetree+bounces-325801-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 01:27:24 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7DD4574DAF2
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 18:40:55 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0199774FB39
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 01:27:24 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amd.com header.s=selector1 header.b=LuGZfSNU;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-325712-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-325712-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=amd.com;
-	arc=reject ("cv is fail on i=2")
+	dkim=pass header.d=nabladev.com header.s=dkim header.b=gMJEvuUq;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-325801-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-325801-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=reject) header.from=nabladev.com;
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 204D9303CA5A
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 16:38:28 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id EDF893017FAD
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 23:27:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 384E2438015;
-	Mon, 13 Jul 2026 16:38:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C4433D3D1D;
+	Mon, 13 Jul 2026 23:27:22 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from CH5PR02CU005.outbound.protection.outlook.com (mail-northcentralusazon11012003.outbound.protection.outlook.com [40.107.200.3])
+Received: from mx.nabladev.com (mx.nabladev.com [178.251.229.89])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88BCD3382F1;
-	Mon, 13 Jul 2026 16:38:25 +0000 (UTC)
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783960707; cv=fail; b=SEN+TMTuWmgFiOHldsYNpv9VXdfoIpsKXs8GcQxgJ/KKi8jFDg88M5Huk0DnalePpeDokxpFKfJdBRgx9Pa4EfLzB5znpKn7s4Btu9z/3IQ89qXNfc00oy4Yxb5aoKA3+kPSm8jiEUmC6/BNKGwu/BCjCOq7FpUz3+QLakllm7o=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783960707; c=relaxed/simple;
-	bh=6pA1x4hy1S5BrvbPcwsR+HBw0/UjS/cu+7r2SyMOzUA=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=FAtIHD3FcOadyvb9vBWqmo0PT9b9cNoKbtIRjh9829swGPD3QcCbaZCt+cgWa/me7cdY0iri7lgf16oFCYn8PsSvk+OhKIt0Q5pD4VU6nr2LX2aewrLU3VdFwCAKOf6P3ww+XJyHHf1gneU7a4cAJ3VCgcZFCs55Aoy53ygDYeQ=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=LuGZfSNU; arc=fail smtp.client-ip=40.107.200.3
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=L1vAhvMXrgynBDXhdK/ais5Fuv2poCf9VRLlj1vTR7cCnzEBVptR5KWLCjICtQDzloDI/A7FmAk487xYzbrL9YuoCU1gpURzoQa541VHQUGIuOV0EBSSwNRJb9eRLe5HqedaI5aYn+gEgKQmIAGKTe8SclOjmdUh6P4MU4KH65f3GIBBAiz6WYh+qzbF7YvgXv0/a6nr1EAYy+92Q7r4WWRwwhasklzOeCPjToIY1iHhqWslVBq9oL/P+uay40pMg1e73JprDLg7IPdM6EHmv+cs5PgyaqHJTIn7RQ8vvvgL1nlgu5ZQG0g/uCrdd1kXf2Op3OPFbsfRhVyMIpAyJg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=1Q/en/7ckSEXraxMygO/NvLcwDhwUznwW94J4pPpTUg=;
- b=wfxoQUKxAkjByu0ozScrsGLM/+gHDIuTmIaJIGGL3Nn/NfqVwarU0Mtkykp6imIFPmUT73iulE+D/w/dxl5HW+qkgx8KA4CjSifEprAsA1CWzXxyOn2kleZxdgCBtR5mGrYpjNObe6kHmrCqyVKILeIXkdsW/zlMENOdVNahe/0qrqrKW5BICJMIZblnpGY3XmsejTiM2srkgQDbQA5U5bMTvWEhWKJHS1uSLFArVSMtJUEU9XkgRrdOdhtRy7PM3nA2DIIO+CczgRrN7DY3nN5bezg7xkuZi1rCkTzvwSWdszXG1aKDG2wyQO/yBsiFD+zpkbZ5KdEu0nNVn/ZaeQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=1Q/en/7ckSEXraxMygO/NvLcwDhwUznwW94J4pPpTUg=;
- b=LuGZfSNUJy5XLgbmujn9u4bUQjiM6AG5cZI9jniQJahtYkQvPFvV8XiiirokaNu4appEjHstbFSYRvy1cxipcoLx3EdtZ/xGLUUN4Mtm968luXe6kqX3LjCIb/kneqGl5DQEYt5cz6Qy2Qn+KO5kLFmvxENUHyqIMcc1nIPkFLg=
-Received: from CY1PR12MB9697.namprd12.prod.outlook.com (2603:10b6:930:107::6)
- by IA1PR12MB6532.namprd12.prod.outlook.com (2603:10b6:208:3a3::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.202.18; Mon, 13 Jul
- 2026 16:38:17 +0000
-Received: from CY1PR12MB9697.namprd12.prod.outlook.com
- ([fe80::3a41:55a0:8203:596d]) by CY1PR12MB9697.namprd12.prod.outlook.com
- ([fe80::3a41:55a0:8203:596d%5]) with mapi id 15.21.0202.014; Mon, 13 Jul 2026
- 16:38:17 +0000
-Message-ID: <02ccf4e3-8193-4ba7-931a-e5bf2dde3f12@amd.com>
-Date: Mon, 13 Jul 2026 22:08:03 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v10 1/2] dt-bindings: i3c: Add AMD I3C master controller
- support
-To: Shubham Patil <shubhamsanjay.patil@amd.com>, git@amd.com,
- michal.simek@amd.com, alexandre.belloni@bootlin.com, Frank.Li@nxp.com,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, pgaj@cadence.com,
- wsa+renesas@sang-engineering.com, tommaso.merciai.xr@bp.renesas.com,
- arnd@arndb.de, quic_msavaliy@quicinc.com, Shyam-sundar.S-k@amd.com,
- sakari.ailus@linux.intel.com, billy_tsai@aspeedtech.com, kees@kernel.org,
- gustavoars@kernel.org, jarkko.nikula@linux.intel.com,
- jorge.marques@analog.com, linux-i3c@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arch@vger.kernel.org, linux-hardening@vger.kernel.org
-Cc: radhey.shyam.pandey@amd.com, srinivas.goud@amd.com,
- shubhrajyoti.datta@amd.com,
- Manikanta Guntupalli <manikanta.guntupalli@amd.com>
-References: <20260709064233.1451482-1-shubhamsanjay.patil@amd.com>
- <20260709064233.1451482-2-shubhamsanjay.patil@amd.com>
-Content-Language: en-US
-From: "Pandey, Radhey Shyam" <radheys@amd.com>
-In-Reply-To: <20260709064233.1451482-2-shubhamsanjay.patil@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: PN3PR01CA0125.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:c01:96::11) To CY1PR12MB9697.namprd12.prod.outlook.com
- (2603:10b6:930:107::6)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 889CE396D2E
+	for <devicetree@vger.kernel.org>; Mon, 13 Jul 2026 23:27:20 +0000 (UTC)
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1783985242; cv=none; b=REH7onThelSIptDvSfylgt3CmuhvmxX1Y73mZNkRRv7QNK8MZKkvHLbq5Tgvkb5UYoXD4JqubW9H4wjlKulNLpKZLiJpJMla53jiXLzIBY5/lnwRPXF0cJQzqO6fLbh4T8yGElPci6XCiOP0QxN+n5SPdVBaI6APlZVKFJJHzkU=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1783985242; c=relaxed/simple;
+	bh=XJf98y7AoS4YfUWnQO9snJ/cXMlzoIoxg3AYArm9QYg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=kA0q65b1cvE0KwhzE10YUpm8PAusaA3EL5JOX+zNgxcXWg0a7ao7qIBJDYwRQaYf6Oz91QEqbYl2/XcFRS6gVhEBDb6oFW5lRNs70GsuIIWWtcXWcNDE+7KC2k6ZBqx0j5rJbImk1lfZHFAxpTsV3wvScB2S8dwuUC9IbA+iqjU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nabladev.com; spf=pass smtp.mailfrom=nabladev.com; dkim=pass (2048-bit key) header.d=nabladev.com header.i=@nabladev.com header.b=gMJEvuUq; arc=none smtp.client-ip=178.251.229.89
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id B96471199D6;
+	Tue, 14 Jul 2026 01:27:18 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nabladev.com;
+	s=dkim; t=1783985239;
+	h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:content-language:in-reply-to:references;
+	bh=o/GWt+QYwjps3nuPm/JnZPXVZxL4jie70yU+1vvQkXQ=;
+	b=gMJEvuUqg81bjNsTgnh035UVY7LVDJJ10izi42gcm5MqLgScHqnlrL94Sqsu7Dd/qlDrgG
+	BdFv2bv0ghsc9Vahy2lYASm/Q4TSVxDf2oGv9y+e8KUzif9cFxzJ9wgCtgKyUCY4wLz/f6
+	wkLg7/LeY3DQfXMwQDJFtnWR9yGSUbSoXgoak/QOl8pGe/p/aX/TzFn076rsXed4505q02
+	/9qRGm5iqObje5ilJCmnP/SpTw0rQeg2X6r6aUEJTfbvVuF38mIDeEWn04OkaSSY7pdi4P
+	sWARCur1GDh+AIFrl15OHEtM1yIGRjQguqJkqLHixaJcYNq6yZc9c66nWRcLoQ==
+Message-ID: <aa134d00-df3d-4f0a-a598-4aea512d3cd0@nabladev.com>
+Date: Mon, 13 Jul 2026 18:41:02 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY1PR12MB9697:EE_|IA1PR12MB6532:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3201d55b-5b6b-45d1-4784-08dee0fd2424
-X-LD-Processed: 3dd8961f-e488-4e60-8e11-a82d994e183d,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|366016|23010399003|1800799024|7416014|376014|11063799006|56012099006|4143699003|3023799007|9063799003|22082099003|18002099003|921020;
-X-Microsoft-Antispam-Message-Info:
-	HZ7Btc9nUGa9GKHJ4yYgntoiWddF6EtX+4MA8PZP7KXmAyhEo/XYfOTD9LYm+22EV1YB935DOe805n7sAhvG+wKnDFh+xVjl2b+B8eUEdBohmaWIPgPF4OJxbx9jCPdteC6WH2W8ED7rIVKbhotVY7KFH0o2UWQW2ZGC+YGHQl8/PLT7wm4wEVWHqNmyWwW5yh1QCHOvlLlMq1HGkxznl5xrNIjwOX0DTn7L3fVy9RjKWf5atqLXXzytLVHE36taoeyppFKxvRMw1A6FXBQENOXqE2ksnU05XAF6B39cyJ8NOa1tLfloPQGd8OWQNG3f1HQ9LGy1GpfGmOooJDzUYxOl9CTqn/FU6hn9Ye7T6ofZumg2lSKTRpxBQCbWVIz4dPr4L9npCJy/bJlqLNSoepE0nLEXy82Mnf/OQUpIPAGl8Z7E2pBEmxjUt8gRfYN85bkLqYir3NYxEKDlZPeVfv56hhZv1Pq15eobQiOH18rN/iTrSw3bMATzSPTLSh2d1cUTHM51nqN5HYl7HBcdnGbjs4j2gfqxfqcbaFhegBxy6Pzqf6FvpgXnLvN14bLNunjOnBdumTN28U3BfXbKQwIpFJCPrjT5OcyNkMqIKN1SSnoNvn7mWa+iuBkegjs9ofWYmDa++uL1G4RUsjEJcn2LHKhhq3GyrmCqludDre8=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CY1PR12MB9697.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(23010399003)(1800799024)(7416014)(376014)(11063799006)(56012099006)(4143699003)(3023799007)(9063799003)(22082099003)(18002099003)(921020);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?dkpKS2VodEprWGJRT2krVjhFOTZwdE1wb0dJOTZBVTcxOW9CZ2RvOTFjZXJi?=
- =?utf-8?B?UVNvNUxsTm1FVmErdklES2V6VEVCSWFKdTdQYUY5V1ZsbXBHMFFHWkVTdVVB?=
- =?utf-8?B?ZnZ3eEViTlY0SzVpS2RjbWtVUjlLdmhRKzZ3Q3B5cjFGa0JDSEZGU3ZjOFp1?=
- =?utf-8?B?bW84eG5aQ1F4R3dISVdVM3ZLL2UvcU4yem9GMW1sbjdjTTZzTEc4c2d0amR2?=
- =?utf-8?B?R0VkVGNXSWNSM2lDa2pjek9WbFk2WUR6TkZIZDMzTU4wOSt0VERTQTEwelJQ?=
- =?utf-8?B?Qkx5RmhWK0ZFTmJjM2QxOWFkNkNHMnFGWXJ5bEVaWFg2NjlBNVJKNHJiRVo3?=
- =?utf-8?B?QmJJZXBmL0FJeUptOFFleWZ6ZmFsWDNzRnhFc09wZGEybVBwWTYrWlFnd2lx?=
- =?utf-8?B?aFJkK1hjZ3ZnZHRYNTN1L3VONnRBSkU0YnE5bnlOZzJ3QlFiRldxV3pIUzVw?=
- =?utf-8?B?TGZibzZDUXcrckxWV2pmNitLWkR3R25QanBiQTI4YVlUN3phRnVpL2hXbE8r?=
- =?utf-8?B?aXBteFZpMHpOTHd4ZGNjS0NZWVZLblFmeWJaTHVVYUYyZUx2QmhYdjBXdWZi?=
- =?utf-8?B?Y21BSm16NjFUYXVUajNaN3ZLR2hzM1A5a3NibW9xaFozR24yY240NDlvTHEy?=
- =?utf-8?B?bk56OTRxaXY2eXVCbTVKbWlkL05adUJ6M3lxbE8yb05CZ2FFZVkzMUhneCt4?=
- =?utf-8?B?Y0Jkc01BZnhTWjlRVmJTaDYweTB6dlEwTW9WUTEzZ0hvY05WQnVUaTNvYW8w?=
- =?utf-8?B?QXZWTkNBR0J6cWFxVmJOTFplM1pkbkNBNWZsRWFUSXFHek5YaDluZ25MZlVY?=
- =?utf-8?B?WVVtZldWUC92bXpsU2MyZnlkRjJzbGNKL2VrZ3dHWGdlYXRlUGRHRjB5UnpK?=
- =?utf-8?B?NUhYOWIrSUpRU1VYVCtnNXdVT0VEMUtPL0p1dnNCZ3YrV3QyTnFZUTZFRlFh?=
- =?utf-8?B?dHovdE5CK2V4bFVzZXhBemRmaGptRkMyZ3YzNmJCVkU4RVVFdEhYYzFVWjZO?=
- =?utf-8?B?VHUzd0Rsai93amUwSkl4RTNJUjl5Nzl6TkRvWlYydzhRUVpjUnI2ZGlkb3Jq?=
- =?utf-8?B?TlAzRTlpZ2lpcVI2ZHFmVEZEVGtIcWZTaDU5cWxDV3J5L2lrZEFxWUF2QWxu?=
- =?utf-8?B?akNFTHowTVJLeFNEK3FrTjhqUWRER01hc09lMSsvKzlLdTNOUm5yOG1EV0Zr?=
- =?utf-8?B?Z04rMUtVR1VFdzl6V3JidWVOcGoyb296RGFiN1lvMmZUT2tzRWJsUisvVlFt?=
- =?utf-8?B?VVBzSUdKbDdxWlBQRTJrdEs2Y1owamp3RVQvYzJhVkllbldXRlVsU1FRTmwy?=
- =?utf-8?B?RnZCeE1DekZCQksxN3RMTk9lemlmd3ZUd1BCZ3czQkpvbUNjYldZdVoxNDM4?=
- =?utf-8?B?NDRtYXlRRlBkdm8wUVpDdFhJdkprNHI2aDNBUEdqcUxnYUpTWjZLVU5QU2tK?=
- =?utf-8?B?dTVLUVd6NS8zcWkvSmVlWDExL3JLZ0pSQm1wSHB1cUhyM3BUZHhCTXFSb0l2?=
- =?utf-8?B?OUdCRVBBMXVOOUpYejVuUXRMMjdYTWRIT3haL1MrRzAzTEVnT0ZmQ3F4aXJu?=
- =?utf-8?B?N3cwdWNka25rUDhZZHlFZ1NvTlQ0UVlDS2ZuM2JWN1BBNTduVmhHOSttQ09Y?=
- =?utf-8?B?bU9KVXM2ak1OaGpNSlBnbUVGdEJQdzBJMU5NTW02dkdwejB4Y2tscFU5enRX?=
- =?utf-8?B?NXhjdkhEaEZscW1HYTFubXNzSExJNTg3WWErb0RtOVo5YXhybmtaVExpOFh3?=
- =?utf-8?B?K0F3WHFKN2I2TXY2VXZxS3BKNCtuTU5jRVcxNGZJNHpQSGt1UTlOczUrSm5n?=
- =?utf-8?B?cCtBOEU1R2dhK3dTNnB5eGtWb0VOWSt6eFhNaXFrN0QyS3ROY1BZc2F5WGtt?=
- =?utf-8?B?R0lYN0hDd3FxM2xNNldObDRiOE1LY1VjbXNaeHhYS0g0M0s5MmswODZNMXpz?=
- =?utf-8?B?TEZkM0E5ZFdmQVphTFZOQVlDZ3VWY2t4TnhocE1xdEExc211YjNnKzhDa05k?=
- =?utf-8?B?MlBBUHp1bGswUUM2Y1JRaWo0NGgwUVZMV2ZDZkJrUXVocncyakJaV2JQSEpM?=
- =?utf-8?B?YThNZlRtVEpVOEM4UUc1R0Q0anJPc2NWZm5GZWgwdGl2dWZ3UTV4VGRTR29u?=
- =?utf-8?B?NXNHZlo0T3pNekdWVTQ5am9QSnEyQ28xZVBHb2cxVFRpYi9tcUc4LzJEMloy?=
- =?utf-8?B?VHMvelN0ZTh0TkJiZnk2c2NBbituL0Fxa09xU1VOZjVsRGppSUxhRk4vekJw?=
- =?utf-8?B?bEV1Q3h0SHdPVFlzL2JoN3Mzai9SYzFzbUUwTUtJY1B4cmorcXVFaGJrcXBk?=
- =?utf-8?B?c2N4clpkMXAwRzZmZk5ZcFpEL0hMOWl4OUpDckRPTHJRRkE4ejV0UT09?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3201d55b-5b6b-45d1-4784-08dee0fd2424
-X-MS-Exchange-CrossTenant-AuthSource: CY1PR12MB9697.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Jul 2026 16:38:17.2247
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: cnOq/4vGdOlFSspQXgidxq8DNcMXTZn5xAnEJK+6bIjeGMefRqeYlWEywRrymV4G
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB6532
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 6/6] arm64: dts: imx8mm: imx8mp: Add FIO1-Audio DTOs
+ for Data Modul i.MX8M Mini and Plus eDM SBC
+To: Frank Li <Frank.li@oss.nxp.com>, sashiko-reviews@lists.linux.dev
+Cc: Frank.Li@kernel.org, imx@lists.linux.dev, robh@kernel.org,
+ devicetree@vger.kernel.org, conor+dt@kernel.org
+References: <20260705200534.151803-1-marex@nabladev.com>
+ <20260705200534.151803-6-marex@nabladev.com>
+ <20260705202221.E99291F000E9@smtp.kernel.org> <alUJIlUUo98_x0Lm@SMW015318>
+Content-Language: en-US
+From: Marek Vasut <marex@nabladev.com>
+In-Reply-To: <alUJIlUUo98_x0Lm@SMW015318>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Last-TLS-Session-Version: TLSv1.3
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [1.34 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[nabladev.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[nabladev.com:s=dkim];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[29];
-	TAGGED_FROM(0.00)[bounces-325712-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:shubhamsanjay.patil@amd.com,m:git@amd.com,m:michal.simek@amd.com,m:alexandre.belloni@bootlin.com,m:Frank.Li@nxp.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:pgaj@cadence.com,m:wsa+renesas@sang-engineering.com,m:tommaso.merciai.xr@bp.renesas.com,m:arnd@arndb.de,m:quic_msavaliy@quicinc.com,m:Shyam-sundar.S-k@amd.com,m:sakari.ailus@linux.intel.com,m:billy_tsai@aspeedtech.com,m:kees@kernel.org,m:gustavoars@kernel.org,m:jarkko.nikula@linux.intel.com,m:jorge.marques@analog.com,m:linux-i3c@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arch@vger.kernel.org,m:linux-hardening@vger.kernel.org,m:radhey.shyam.pandey@amd.com,m:srinivas.goud@amd.com,m:shubhrajyoti.datta@amd.com,m:manikanta.guntupalli@amd.com,m:krzk@kernel.org,m:conor@kernel.org,m:wsa@sang-engineering.com,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-325801-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:Frank.li@oss.nxp.com,m:sashiko-reviews@lists.linux.dev,m:Frank.Li@kernel.org,m:imx@lists.linux.dev,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	FORGED_SENDER(0.00)[marex@nabladev.com,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[radheys@amd.com,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[radheys@amd.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[amd.com:+];
-	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[marex@nabladev.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[nabladev.com:+];
+	RCPT_COUNT_SEVEN(0.00)[7];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp,amd.com:email,amd.com:dkim,amd.com:url,amd.com:from_mime,amd.com:mid,devicetree.org:url]
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[nabladev.com:from_mime,nabladev.com:mid,nabladev.com:email,nabladev.com:dkim,vger.kernel.org:from_smtp,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 7DD4574DAF2
+X-Rspamd-Queue-Id: 0199774FB39
 
-> From: Manikanta Guntupalli <manikanta.guntupalli@amd.com>
+On 7/13/26 5:49 PM, Frank Li wrote:
+> On Sun, Jul 05, 2026 at 08:22:21PM +0000, sashiko-bot@kernel.org wrote:
+>> Thank you for your contribution! Sashiko AI review found 4 potential issue(s) to consider:
+>> - [High] The SAI2 interface is incorrectly configured with `fsl,sai-asynchronous` and an invalid `fsl,sai-bit-clock-swap` property, leading to audio capture and playback failure.
+>> - [Medium] The overlays instantiate new `clock-controller` nodes at the exact same unit addresses as the existing `sai5` nodes, causing DTC warnings and resource conflicts.
+>> - [Medium] Missing interrupt override for the PCA9554 GPIO expander in the i.MX8MP overlay causes the device to listen on a dead interrupt line.
+>> - [Medium] The commit message claims features that are not implemented in the patch.
+>> --
+>>
+>> commit 1e6ee57031100e82b436dac299b0eed194860d5b
+>> Author: Marek Vasut <marex@nabladev.com>
+>>
+>> arm64: dts: imx8mm: imx8mp: Add FIO1-Audio DTOs for Data Modul i.MX8M Mini and Plus eDM SBC
+>>
+>> This commit adds device tree overlays for the eDM-MOD-iMX8Mm-FIO1-Audio
+>> feature connector expansion module. It provides support for the SGTL5000
+>> codec, CAN, I2C, SPI, and other peripherals on the i.MX8M Mini and Plus
+>> boards.
+>>
+>>> Add DT overlay for feature connector expansion module eDM-MOD-iMX8Mm-FIO1-Audio
+>>> providing additional UARTs, CAN, PWM Beeper, I2C, SPI, GPIO breakout and
+>>> SGTL5000 codec. This adapter can be optionally populated onto the eDM SBC.
+>>
+>> [Severity: Medium]
+>> Is the commit message accurate regarding the features provided?
+>>
+>> The FIO1-Audio overlay only seems to enable a single UART (uart2, while uart4
+>> is disabled) and doesn't contain a pwm-beeper node or PWM pin configuration.
+>>
+>> Could the commit message be updated to reflect only the features actually
+>> implemented in this variant?
+>>
+>>> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-data-modul-edm-sbc-overlay-edm-mod-imx8mm-fio1-audio.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-data-modul-edm-sbc-overlay-edm-mod-imx8mm-fio1-audio.dtsi
+>>> --- /dev/null
+>>> +++ b/arch/arm64/boot/dts/freescale/imx8mm-data-modul-edm-sbc-overlay-edm-mod-imx8mm-fio1-audio.dtsi
+>> [ ... ]
+>>> +	gpio_feature: io-expander@20 {
+>>> +		compatible = "nxp,pca9554";
+>>> +		reg = <0x20>;
+>>> +		#gpio-cells = <2>;
+>>> +		gpio-controller;
+>>> +		#interrupt-cells = <2>;
+>>> +		interrupt-controller;
+>>> +		interrupt-parent = <&gpio5>;
+>>> +		interrupts = <4 IRQ_TYPE_LEVEL_LOW>;
+>>
+>> [Severity: Medium]
+>> Since this file is shared between i.MX8MM and i.MX8MP overlays, does the
+>> interrupt configuration need to be overridden for i.MX8MP?
+>>
+>> On the i.MX8MP baseboard, this feature connector signal seems to be physically
+>> routed to GPIO1_IO08 instead of GPIO5_IO04. The i.MX8MP overlay doesn't
+>> currently override these properties for gpio_feature, which might cause the
+>> expander to listen on a dead interrupt line.
 > 
-> Add device tree binding documentation for the AMD I3C master controller
-> version 1.0.
-> 
-> Signed-off-by: Manikanta Guntupalli <manikanta.guntupalli@amd.com>
-> Co-developed-by: Shubham Patil <shubhamsanjay.patil@amd.com>
-> Signed-off-by: Shubham Patil <shubhamsanjay.patil@amd.com>
-> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-> ---
-v10 changes looks fine to me.
+> please check this
 
-Reviewed-by: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
-Thanks!
+Its GPIO5_IO04 on both MX8MM and MX8MP.
 
-> Changes for V10:
-> Use symbolic interrupt macros and include arm-gic.h.
-> Added Shubham Patil as Co-developed-by / Signed-off-by on the binding.
+>> [ ... ]
+>>> +&sai2 {
+>>> +	pinctrl-names = "default";
+>>> +	pinctrl-0 = <&pinctrl_sai2>;
+>>> +	assigned-clock-rates = <24576000>;
+>>> +	fsl,sai-asynchronous;
+>>
+>> [Severity: High]
+>> Does disabling internal synchronization between the TX and RX halves of the
+>> SAI block break audio?
+>>
+>> The SGTL5000 codec only has a single set of I2S clocks, and the pinmux
+>> settings only route one clock pair. This leaves the other half of the SAI
+>> physically disconnected from any clock source.
+>>
+>> [ ... ]
+>>> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-data-modul-edm-sbc-overlay-edm-mod-imx8mm-fio1-audio.dtso b/arch/arm64/boot/dts/freescale/imx8mm-data-modul-edm-sbc-overlay-edm-mod-imx8mm-fio1-audio.dtso
+>> [ ... ]
+>>> +&sai2 {
+>>> +	assigned-clocks = <&clk IMX8MM_CLK_SAI2>;
+>>> +	assigned-clock-parents = <&clk IMX8MM_AUDIO_PLL1_OUT>;
+>>> +	fsl,sai-bit-clock-swap;
+>>
+>> [Severity: High]
+>> Is fsl,sai-bit-clock-swap intended to fix the asynchronous clocking issue?
+>>
+>> This property is a downstream vendor leftover that does not exist in
+>> mainline device tree bindings and is ignored by the upstream fsl_sai.c
+>> driver. Should fsl,sai-asynchronous be removed from the shared .dtsi
+>> instead so the SAI can operate in synchronous mode?
 > 
-> Changes for V9:
-> Updated the MAINTAINER section.
-> 
-> Changes for V8:
-> None.
-> 
-> Changes for V7:
-> Added i3c controller version details to commit description.
-> 
-> Changes for V6:
-> Corrected the file name for $id in yaml to fix the dtschema warning.
-> 
-> Changes for V5:
-> Renamed the xlnx,axi-i3c.yaml file into xlnx,axi-i3c-1.0.yaml.
-> 
-> Changes for V4:
-> Added h/w documentation details.
-> 
-> Changes for V3:
-> Updated commit description.
-> Corrected the order of properties and removed resets property.
-> Added compatible to required list.
-> Added interrupts to example.
-> 
-> Changes for V2:
-> Updated commit subject and description.
-> Moved allOf to after required.
-> Removed xlnx,num-targets property.
-> ---
->   .../bindings/i3c/xlnx,axi-i3c-1.0.yaml        | 58 +++++++++++++++++++
->   1 file changed, 58 insertions(+)
->   create mode 100644 Documentation/devicetree/bindings/i3c/xlnx,axi-i3c-1.0.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/i3c/xlnx,axi-i3c-1.0.yaml b/Documentation/devicetree/bindings/i3c/xlnx,axi-i3c-1.0.yaml
-> new file mode 100644
-> index 000000000000..2caa245a8656
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/i3c/xlnx,axi-i3c-1.0.yaml
-> @@ -0,0 +1,58 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/i3c/xlnx,axi-i3c-1.0.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: AMD I3C master
-> +
-> +maintainers:
-> +  - Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
-> +  - Shubham Patil <shubhamsanjay.patil@amd.com>
-> +
-> +description:
-> +  The AXI-I3C IP is an I3C Controller with an AXI4-Lite interface, compatible
-> +  with the MIPI I3C Specification v1.1.1. The design includes bidirectional I/O
-> +  buffers that implement open collector drivers for the SDA and SCL signals.
-> +  External pull-up resistors are required to properly hold the bus at a Logic-1
-> +  level when the drivers are released.
-> +
-> +  For more details, please see https://docs.amd.com/r/en-US/pg439-axi-i3c
-> +
-> +properties:
-> +  compatible:
-> +    const: xlnx,axi-i3c-1.0
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +
-> +allOf:
-> +  - $ref: i3c.yaml#
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
-> +    i3c@80000000 {
-> +        compatible = "xlnx,axi-i3c-1.0";
-> +        reg = <0x80000000 0x10000>;
-> +        clocks = <&zynqmp_clk 71>;
-> +        interrupt-parent = <&imux>;
-> +        interrupts = <GIC_SPI 89 IRQ_TYPE_LEVEL_HIGH>;
-> +        #address-cells = <3>;
-> +        #size-cells = <0>;
-> +    };
-> +...
+> Please check this ?
 
+dc06cf4268a4 ("ASoC: fsl_sai: Add RX/TX BCLK swap support") implements 
+"fsl,sai-bit-clock-swap" so this is AI being confused.
+
+>> [ ... ]
+>>> +&spba2 {
+>>> +	#address-cells = <1>;
+>>> +	#size-cells = <1>;
+>>> +
+>>> +	sai5clk: clock-controller@30050000 {	/* SAI5 */
+>>
+>> [Severity: Medium]
+>> Does declaring a new node here cause a duplicate unit-address warning and
+>> potential resource conflicts?
+>>
+>> The base SoC .dtsi files already define sai5: sai@30050000 at this exact
+>> address. Because the node names differ (clock-controller vs sai), DTC will
+>> create two distinct sibling nodes rather than merging them.
+>>
+>> If the baseboard enables the existing &sai5 node, both drivers could attempt
+>> to map the identical physical MMIO region using devm_platform_ioremap_resource,
+>> causing a -EBUSY error. Should this overlay reference the existing &sai5 node
+>> by label instead?
+> 
+> Make sense, please check it.
+No, it won't, the other node is sai@... so this is a non-issue too.
 
