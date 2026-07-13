@@ -1,54 +1,54 @@
-Return-Path: <devicetree+bounces-325618-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-325614-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 2I6IACz+VGoxigAAu9opvQ
-	(envelope-from <devicetree+bounces-325618-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 17:03:08 +0200
+	id 3Ex5Lcf9VGoYigAAu9opvQ
+	(envelope-from <devicetree+bounces-325614-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 17:01:27 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C34B74CBDF
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 17:03:07 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 13D7F74CB8E
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 17:01:27 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=fris.de header.s=mail header.b=IAF9RlYR;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-325618-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-325618-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=fris.de header.s=mail header.b=1r+6GHEa;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-325614-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-325614-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=fris.de;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 412763139E56
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 14:55:48 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 3501E30770D4
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 14:55:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A2CCD43C05E;
-	Mon, 13 Jul 2026 14:55:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DAB6843932C;
+	Mon, 13 Jul 2026 14:55:29 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail.fris.de (mail.fris.de [116.203.77.234])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19C03437440;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19C92438036;
 	Mon, 13 Jul 2026 14:55:26 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783954530; cv=none; b=qA/vPMww8QmUjpauleUa/VY8x+i8JrTW7mRi0uDl3D0vSev8ubtnU3TLch+DtItGUTK5OjHZZSmKvIkW5ZRARwwNSF6WgIDv0cZTcxRToPPEIagSWXMTBkWWcGKNv3er4ZYSvapcL9cRW3fTvzlWDWWlj/3mDRgfd/KPTI+h1hg=
+	t=1783954529; cv=none; b=ueFSzR1P+e7fl/2oRBP95Pb0466Cg5Ddd6Eku+WqDLlaCe0Kv+oOJbrDuTg/jlRdgr/8Gx/aBt2MeHRlh7Y6hMhpzK4mYhSwYi0YPTOmf61cMAGC8E1gqmhdDCbnDZPzeS6j1aHmEsQGVZOKo5dGlHI3sjJedBSP97Y2gLjPkTA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783954530; c=relaxed/simple;
-	bh=ezOWvH/osRE6H/cXFkg9H9smMaW9rStaT6bb3eJPa3Q=;
+	s=arc-20240116; t=1783954529; c=relaxed/simple;
+	bh=hguiKqe0Uuyua2AX1GYt1cNVLRmZaSGClWVkNI+fC/I=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=hcNimcUbBNB5cw9ifiVN/0W9qZrnYULioNryFJb9de8cugAq8dZXK5LFIiFMXqFLi/iDI1d5fSTszxTzfjINIKyjmMMmK4KemN32qZqCuYrRL8D7ZIMSyNJeLxowr1cam2ZlhI4qUXemxxWeiOIDi7C0mlmdWI2ZJv9rNEEQXZc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fris.de; spf=pass smtp.mailfrom=fris.de; dkim=pass (2048-bit key) header.d=fris.de header.i=@fris.de header.b=IAF9RlYR; arc=none smtp.client-ip=116.203.77.234
+	 In-Reply-To:To:Cc; b=LuUWX8R8QI+wq3aYNtXxr/Yk7zwCza9XMbTeWzVh6qs4xIDpJ1YMsIpXD2DbwC2Sx+/JlNk3TlwB0+gauGQymoALN1hT2LS2wuPRuLxJc8l9HJ2dYxArstaLvrfpULDbQ7XFRdq/0ODLt1vmRYKYfd+dxurFZOCfiszrD3dq/d8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fris.de; spf=pass smtp.mailfrom=fris.de; dkim=pass (2048-bit key) header.d=fris.de header.i=@fris.de header.b=1r+6GHEa; arc=none smtp.client-ip=116.203.77.234
 From: Frieder Schrempf <frieder@fris.de>
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=fris.de; s=mail;
-	t=1783954517;
+	t=1783954518;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=hg5tW1Rb6Nt7cG6Ff89MFT0HTZsA91xkclD1Vy8H15c=;
-	b=IAF9RlYRY32TgRdGT9RUVAxp8kZ+ISAA2djU9dBRkpEcG9FaNaKr9whnLDozCgy0seIGa6
-	U5yICggsp6HBXPFGYOprdnY6FEQxihmgmE9Ti4KsqJpdc29NKTlePtZtUNfRzKACXWgKQ5
-	M5GyPCZ6N2Q1JWDxYf1zcQRyAzSfLczT97j8wdS1RLQTkLZvfa31oD65V5nC0LofckDhHZ
-	x2qLdC4AB5s5n6Y2oUzy3v8I4DV0re7fnhIoyBsrZ4toumES5fUP+EFGhg0uAPPPUuFNFo
-	QvejdVnIiPIpu8ilBuKBmCvATk7MIubpoeXZGX6jZ2j7ODtkKIs5G3/cLTayGg==
-Date: Mon, 13 Jul 2026 16:53:44 +0200
-Subject: [PATCH v2 08/10] nvmem: imx-ocotp-ele: Remove the FUSE_ELE type
+	bh=mnjH8bUvLNMs032Y3RxCllB4beQC3Ai/Gw/n6qJweSY=;
+	b=1r+6GHEaUzeW7ARL5A1y4cF89AgFbIyWmXz3gysj4C8Lo1wZ5x1/ZcSeakLGgRT1wtQsVV
+	YDiQ6o1s1OY5aAbKQuaYeqgicH2EfUrdZE7x8TQOwYRg5ZVhC4jL0V2Eaydm8C/MJ7E4PO
+	PPBaAw006VKx7z1B92ZErkma0gbnjWJ1IlYMgHjfMwlZKtk3DNvXtbsuf8sZg0s53YYgmw
+	6X+nK8WAt5RMrWTgz1UVyrXQbXcBhDS59fetYRkkBo9js4hZAushUFtgq3gEj0EVf6ZRfd
+	ddgGL7DCdOi1ICx8Tc3YE9qei0OctQYZ8E+9aqGXuUpdX6jOgOcVARdPjSgkaA==
+Date: Mon, 13 Jul 2026 16:53:45 +0200
+Subject: [PATCH v2 09/10] nvmem: imx-ocotp-ele: Rename FSB access map
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,7 +57,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260713-upstreaming-next-20260609-imx-ocotp-ele-v2-8-b8266d93514b@kontron.de>
+Message-Id: <20260713-upstreaming-next-20260609-imx-ocotp-ele-v2-9-b8266d93514b@kontron.de>
 References: <20260713-upstreaming-next-20260609-imx-ocotp-ele-v2-0-b8266d93514b@kontron.de>
 In-Reply-To: <20260713-upstreaming-next-20260609-imx-ocotp-ele-v2-0-b8266d93514b@kontron.de>
 To: Srinivas Kandagatla <srini@kernel.org>, Rob Herring <robh@kernel.org>, 
@@ -71,13 +71,13 @@ To: Srinivas Kandagatla <srini@kernel.org>, Rob Herring <robh@kernel.org>,
 Cc: devicetree@vger.kernel.org, imx@lists.linux.dev, 
  linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
  Frieder Schrempf <frieder.schrempf@kontron.de>
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2820;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2464;
  i=frieder.schrempf@kontron.de; h=from:subject:message-id;
- bh=CqKbLWJEprAuY0A/3w0FIvWFGg+83f0jb6ih5HsLxAE=;
- b=owGbwMvMwCWWWSatKlDTJMZ4Wi2JISvkTxCb6Ecx23P9bN8iv/GeaXfd3LRl4au9x4pMfkdJn
- dnI8+51RykLgxgXg6yYIosUv8VrW7NYH/lj1VEwc1iZQIYwcHEKwESYPzEynLpcPIm37Jje82n8
- 3BYJGe8vnVrXGmZg/O7I+9MOQRJrjzIy3LvEOKm3duX/KWKmKyd9X+ht4fumNF1noe+/228nuh4
- 7zgMA
+ bh=Ui1yqAl2SncRGvJ6Cd8lkM+A+lQmMiIxti+ManRJv8M=;
+ b=owGbwMvMwCWWWSatKlDTJMZ4Wi2JISvkT1C3w/beB9E9Z2xvtbTFXdtnvVh5WsCH8LwKq4xJE
+ 6eV/37UUcrCIMbFICumyCLFb/Ha1izWR/5YdRTMHFYmkCEMXJwCMBF5TUaGXR+frjmv+OWmI+eT
+ r1tunniavijj7ZYph850/HBYOkuQ4S7DP631XGy3/7w1Sc47IRs8SaN+7VWno1vbOexnstv37u+
+ dygMA
 X-Developer-Key: i=frieder.schrempf@kontron.de; a=openpgp;
  fpr=1A0F38EB3D365D4C1FC67B5A69761B25107C8216
 X-Rspamd-Action: no action
@@ -85,7 +85,7 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[fris.de,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[fris.de:s=mail];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
@@ -100,7 +100,7 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	FORGED_SENDER(0.00)[frieder@fris.de,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
 	FORWARDED(0.00)[lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-325618-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-325614-lists,devicetree=lfdr.de];
 	DKIM_TRACE(0.00)[fris.de:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
@@ -111,100 +111,92 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[kontron.de:email,kontron.de:mid,fris.de:from_mime,fris.de:dkim,vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 3C34B74CBDF
+X-Rspamd-Queue-Id: 13D7F74CB8E
 
 From: Frieder Schrempf <frieder.schrempf@kontron.de>
 
-There is no use in tracking the fuses that are only accessible via
-ELE API and the current lists are incomplete. If the ELE API is
-available it will be used as primary access method anyway, otherwise
-the fuses not listed as accessible through the FSB can be considered
-invalid.
+The table is used to declare which fuse registers are accessible
+through the FSB block. Name it accordingly to make this clearer for
+the reader.
 
 No functional changes intended.
 
 Signed-off-by: Frieder Schrempf <frieder.schrempf@kontron.de>
 ---
- drivers/nvmem/imx-ocotp-ele.c | 19 +++++--------------
- 1 file changed, 5 insertions(+), 14 deletions(-)
+ drivers/nvmem/imx-ocotp-ele.c | 24 ++++++++++++------------
+ 1 file changed, 12 insertions(+), 12 deletions(-)
 
 diff --git a/drivers/nvmem/imx-ocotp-ele.c b/drivers/nvmem/imx-ocotp-ele.c
-index 6ac7d588c4bd..f07565c0a02d 100644
+index f07565c0a02d..1a125f9c5b1d 100644
 --- a/drivers/nvmem/imx-ocotp-ele.c
 +++ b/drivers/nvmem/imx-ocotp-ele.c
-@@ -19,8 +19,7 @@
- 
- enum fuse_type {
- 	FUSE_FSB = BIT(0),
--	FUSE_ELE = BIT(1),
--	FUSE_ECC = BIT(2),
-+	FUSE_ECC = BIT(1),
- 	FUSE_INVALID = -1
+@@ -33,11 +33,11 @@ struct ocotp_devtype_data {
+ 	u32 reg_off;
+ 	char *name;
+ 	u32 size;
+-	u32 num_entry;
++	u32 num_fsb_map;
+ 	u32 flag;
+ 	const struct nvmem_keepout *keepout;
+ 	unsigned int nkeepout;
+-	struct ocotp_map_entry entry[];
++	struct ocotp_map_entry fsb_map[];
  };
  
-@@ -215,7 +214,7 @@ static int imx_ocotp_reg_read(void *context, unsigned int offset, void *val, siz
- 		}
+ struct imx_ocotp_priv {
+@@ -160,12 +160,12 @@ static enum fuse_type imx_ocotp_fuse_type(void *context, u32 index)
+ 	u32 start, end;
+ 	int i;
  
- 		type = imx_ocotp_fuse_type(context, i);
--		if (type == FUSE_INVALID || type == FUSE_ELE) {
-+		if (type == FUSE_INVALID) {
- 			*buf++ = 0;
- 			continue;
- 		}
-@@ -365,13 +364,9 @@ static const struct nvmem_keepout imx93_ocotp_keepout[] = {
+-	for (i = 0; i < data->num_entry; i++) {
+-		start = data->entry[i].start;
+-		end = data->entry[i].start + data->entry[i].num;
++	for (i = 0; i < data->num_fsb_map; i++) {
++		start = data->fsb_map[i].start;
++		end = data->fsb_map[i].start + data->fsb_map[i].num;
+ 
+ 		if (index >= start && index < end)
+-			return data->entry[i].type;
++			return data->fsb_map[i].type;
+ 	}
+ 
+ 	return FUSE_INVALID;
+@@ -364,8 +364,8 @@ static const struct nvmem_keepout imx93_ocotp_keepout[] = {
  static const struct ocotp_devtype_data imx93_ocotp_data = {
  	.reg_off = 0x8000,
  	.size = 2048,
--	.num_entry = 6,
-+	.num_entry = 2,
- 	.entry = {
+-	.num_entry = 2,
+-	.entry = {
++	.num_fsb_map = 2,
++	.fsb_map = {
  		{ 0, 52, FUSE_FSB },
--		{ 63, 1, FUSE_ELE},
--		{ 128, 16, FUSE_ELE },
--		{ 182, 1, FUSE_ELE },
--		{ 188, 1, FUSE_ELE },
  		{ 312, 200, FUSE_FSB }
  	},
- 	.keepout = imx93_ocotp_keepout,
-@@ -381,7 +376,7 @@ static const struct ocotp_devtype_data imx93_ocotp_data = {
+@@ -376,8 +376,8 @@ static const struct ocotp_devtype_data imx93_ocotp_data = {
  static const struct ocotp_devtype_data imx94_ocotp_data = {
  	.reg_off = 0x8000,
  	.size = 3296, /* 103 Banks */
--	.num_entry = 10,
-+	.num_entry = 9,
- 	.entry = {
+-	.num_entry = 9,
+-	.entry = {
++	.num_fsb_map = 9,
++	.fsb_map = {
  		{ 0, 1, FUSE_FSB | FUSE_ECC },
  		{ 7, 1, FUSE_FSB | FUSE_ECC },
-@@ -389,7 +384,6 @@ static const struct ocotp_devtype_data imx94_ocotp_data = {
- 		{ 12, 24, FUSE_FSB },
- 		{ 36, 2, FUSE_FSB  | FUSE_ECC },
- 		{ 38, 14, FUSE_FSB },
--		{ 59, 1, FUSE_ELE },
- 		{ 525, 2, FUSE_FSB | FUSE_ECC },
- 		{ 528, 7, FUSE_FSB },
- 		{ 536, 280, FUSE_FSB },
-@@ -399,7 +393,7 @@ static const struct ocotp_devtype_data imx94_ocotp_data = {
+ 		{ 9, 3, FUSE_FSB | FUSE_ECC },
+@@ -393,8 +393,8 @@ static const struct ocotp_devtype_data imx94_ocotp_data = {
  static const struct ocotp_devtype_data imx95_ocotp_data = {
  	.reg_off = 0x8000,
  	.size = 2048,
--	.num_entry = 12,
-+	.num_entry = 9,
- 	.entry = {
+-	.num_entry = 9,
+-	.entry = {
++	.num_fsb_map = 9,
++	.fsb_map = {
  		{ 0, 1, FUSE_FSB | FUSE_ECC },
  		{ 7, 1, FUSE_FSB | FUSE_ECC },
-@@ -407,9 +401,6 @@ static const struct ocotp_devtype_data imx95_ocotp_data = {
- 		{ 12, 24, FUSE_FSB },
- 		{ 36, 2, FUSE_FSB  | FUSE_ECC },
- 		{ 38, 14, FUSE_FSB },
--		{ 63, 1, FUSE_ELE },
--		{ 128, 16, FUSE_ELE },
--		{ 188, 1, FUSE_ELE },
- 		{ 317, 2, FUSE_FSB | FUSE_ECC },
- 		{ 320, 7, FUSE_FSB },
- 		{ 328, 184, FUSE_FSB }
+ 		{ 9, 3, FUSE_FSB | FUSE_ECC },
 
 -- 
 2.55.0
