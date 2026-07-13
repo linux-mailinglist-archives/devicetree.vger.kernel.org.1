@@ -1,128 +1,156 @@
-Return-Path: <devicetree+bounces-325327-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-325328-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id MSlyIButVGoWpQMAu9opvQ
-	(envelope-from <devicetree+bounces-325327-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 11:17:15 +0200
+	id Vn2/H3itVGozpQMAu9opvQ
+	(envelope-from <devicetree+bounces-325328-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 11:18:48 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE64F74932D
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 11:17:14 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 69133749368
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 11:18:47 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=jN+v1q30;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=TpQpTRfj;
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-325327-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-325327-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-325328-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-325328-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id C4B68301FB35
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 09:17:12 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 8A7123001397
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 09:18:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCB033DE448;
-	Mon, 13 Jul 2026 09:17:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 685153DE44D;
+	Mon, 13 Jul 2026 09:18:43 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BEE7C3D954C;
-	Mon, 13 Jul 2026 09:17:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4998E3CAE84;
+	Mon, 13 Jul 2026 09:18:41 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783934231; cv=none; b=b4ov/Qs7PP75IDRyj6TBAKFQEtptuDXOyXKBJRbVLs2e34I6lvjDPos/VzgeKli1UsmSKixy8L9BecN1O1SubTJZlYXC8kXtY9xe0JdJwfPmhbKeCF/6jPzpB3hfHdtz74ASI56e73dYW1UaxSa6oznJl2rCOHrKY4rj8Pr+EKo=
+	t=1783934323; cv=none; b=SWmNBK2tQSI2nUhbfrWDprRntahkdaiHabnUtSsCIBJyTV6D8QGjK62sjwO2oFSJlC98aHg5CEw6MXDj52aKMF8PHZPY8CeWUlEPuVPIFRIbNLvrIR6oDp5z0e2UU7/xmnQykCRliiasEZA3IEbK9iGvHU9Ohixbu4lfbnzfzkk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783934231; c=relaxed/simple;
-	bh=/MTiVkivWwRkYjG1tPw9Ohi/tITdICz3TxZb9sUAq7c=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=O0G+GWax6WvsXLfjIGc3h8kwa9BrUFdDD0+7CKg1gPIxiyPhE59T++pa6sOOfgnmFsvb/KZedbw5ZtCD+2iN6Kjwxduh0VErijuZgP72t6mh4BAASzpwjjuSsYpFjjMW0G5R8rgjJ5z4jXpwrNWiP7a7jwirXxCyW+tbR0YQsuE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jN+v1q30; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 97E6D1F00A3F;
-	Mon, 13 Jul 2026 09:17:09 +0000 (UTC)
+	s=arc-20240116; t=1783934323; c=relaxed/simple;
+	bh=HoGudEA3/UGPUFZeHBs0goYGBX0tK9K3/9aUbf9KZA8=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=jehnsFIXUt8dRsGmwjBdzVxVp8mJsHr5PXjMMO/lLg3N8Aw+KiZyynA2313vcLwJSBwBxOHpjghW8HVKJ7YyOp5cRYWY1qQ0zK3y1mqGb9c9KAG7a3dHmqZTwFegbOHWX53mWc04EjDkKUKhGNXbRHuojyYmkHx9sqL0E2JFTIQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TpQpTRfj; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 322D11F000E9;
+	Mon, 13 Jul 2026 09:18:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783934230;
-	bh=I84JgCkBPA2ap7sLC4w/LE5hx1QYu9euEbpPHYVjIFA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=jN+v1q30ltie7Wh6ptwJ1B7gxkVDfklLV4GLf1m7y8XNe03qlMPpOi7HjRuyphRqC
-	 Sm29JMxfyDm2Z/jYb02RGUrDwJuNALD3J014XdzYLpdr8kXqZn6cEQ2AN++SRFcaMA
-	 s6Ajg0zoNftkg0Lr5HBJM1FFCwRn5hgqny3KnQh+cXOH5gcFakS+CDHp3oGI8/5mBF
-	 hwLCl8BS2UX3UiKpkXfzJvTEoAKnXpQZtuth8jM8B5Fq5jcrph+4WdVcn08QbgCP0r
-	 AwzW3W15DNICL/xRvy6hHYCfqnTrIE4WQ25y1521tMdyQC/GDxg/u9KlBTKfpLyfZf
-	 E10XbyNOO7w4A==
-Date: Mon, 13 Jul 2026 11:17:06 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Daniel Drake <dan@reactivated.net>
-Cc: "Joerg Roedel (AMD)" <joro@8bytes.org>, Will Deacon <will@kernel.org>, 
-	Robin Murphy <robin.murphy@arm.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Florian Fainelli <florian.fainelli@broadcom.com>, 
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, iommu@lists.linux.dev, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org, 
-	linux-arm-kernel@lists.infradead.org, nick.hollinghurst@raspberrypi.com, 
-	Jason Gunthorpe <jgg@ziepe.ca>
-Subject: Re: [PATCH 6/6] arm64: dts: broadcom: bcm2712: Add GPU IOMMU and
- IOMMU cache nodes
-Message-ID: <20260713-important-prawn-of-health-9d032a@quoll>
-References: <20260712-bcm2712-iommu-submit-v1-0-80e10cdde2ea@reactivated.net>
- <20260712-bcm2712-iommu-submit-v1-6-80e10cdde2ea@reactivated.net>
+	s=k20260515; t=1783934321;
+	bh=6yqUSN/e8kq6AbWr6U2lgOTKcyCUso6Rbl9W/U1G0ww=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=TpQpTRfjeYU/avUD7cnPNJJB/8l7CdtQfFZzQH3GwW3QOGs28gjAVKYdbb4eE+XCW
+	 D78SlD22VMFZSXS16jJIa3OYYxtccp+uC2ndx62ZxF6OQV0euSgDATK1RRRNPjzRP7
+	 3tzqmOlvAw45eb/GNBvpeYPR3mfXu9H/TLSOYS+7N0swX3BH+HwfBwQv6sqPZ2Eiy9
+	 Bf9NGCRM2Nnl8bpGmUYXkp4atp/hF8pCNENPj1b7bTa6YLWY10ftIFn/THuwkT4pnR
+	 DWxYJ8O934L1pdk7ksvOT53RvZuIQhH+355DYF7dbDM6pVK1I5Dm8ymuzKcOWDGCWm
+	 mQwDjmXVzl6xg==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v6 4/6] dt-bindings: can: fsl,flexcan: add NXP S32N79
+ SoC support
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Ciprian Costea" <ciprianmarian.costea@oss.nxp.com>
+Cc: "Vincent Mailhol" <mailhol@kernel.org>, robh@kernel.org, devicetree@vger.kernel.org, Frank.Li@kernel.org, linux-can@vger.kernel.org, "Marc
+ Kleine-Budde" <mkl@pengutronix.de>, "Oleksij Rempel" <o.rempel@pengutronix.de>, imx@lists.linux.dev, "Oliver
+ Hartkopp" <socketcan@hartkopp.net>, conor+dt@kernel.org
+In-Reply-To: <20260713085306.2643794-5-ciprianmarian.costea@oss.nxp.com>
+References: <20260713085306.2643794-1-ciprianmarian.costea@oss.nxp.com>
+ <20260713085306.2643794-5-ciprianmarian.costea@oss.nxp.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Mon, 13 Jul 2026 09:18:39 +0000
+Message-Id: <20260713091840.322D11F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20260712-bcm2712-iommu-submit-v1-6-80e10cdde2ea@reactivated.net>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.16 / 15.00];
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	FORGED_RECIPIENTS(0.00)[m:dan@reactivated.net,m:joro@8bytes.org,m:will@kernel.org,m:robin.murphy@arm.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:florian.fainelli@broadcom.com,m:bcm-kernel-feedback-list@broadcom.com,m:iommu@lists.linux.dev,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-rpi-kernel@lists.infradead.org,m:linux-arm-kernel@lists.infradead.org,m:nick.hollinghurst@raspberrypi.com,m:jgg@ziepe.ca,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-325328-lists,devicetree=lfdr.de];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:ciprianmarian.costea@oss.nxp.com,m:mailhol@kernel.org,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:Frank.Li@kernel.org,m:linux-can@vger.kernel.org,m:mkl@pengutronix.de,m:o.rempel@pengutronix.de,m:imx@lists.linux.dev,m:socketcan@hartkopp.net,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-325327-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,quoll:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,reactivated.net:email]
+	FROM_NO_DN(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,sashiko.dev:url,smtp.kernel.org:mid,vger.kernel.org:from_smtp,lists.linux.dev:replyto,nxp.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: DE64F74932D
+X-Rspamd-Queue-Id: 69133749368
 
-On Sun, Jul 12, 2026 at 10:18:56PM +0100, Daniel Drake wrote:
-> Define the IOMMU and IOMMUC nodes for the Broadcom BCM2712 SoC found in
-> the Raspberry Pi 5. Enable use of the IOMMU for the graphics/display
-> block.
-> 
-> Signed-off-by: Daniel Drake <dan@reactivated.net>
-> ---
->  arch/arm64/boot/dts/broadcom/bcm2712.dtsi | 15 +++++++++++++++
->  1 file changed, 15 insertions(+)
-> 
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [Medium] The flexcan driver fails to claim the newly added 'nxp,s32n79-fl=
+excan' compatible string.
+--
 
-Does not like built with W=1.
+--- Patch [4]: [PATCH v6 4/6] dt-bindings: can: fsl,flexcan: add NXP S32N79=
+ SoC support ---
+commit 81a73119cf0179abcfa99d350e69491bfd8303b6
+Author: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
 
-Best regards,
-Krzysztof
+dt-bindings: can: fsl,flexcan: add NXP S32N79 SoC support
 
+This commit adds the NXP S32N79 SoC compatible string and interrupt propert=
+ies
+to the FlexCAN device tree binding. On this platform, the IP uses separate
+interrupt lines for mailboxes and bus errors.
+
+> diff --git a/Documentation/devicetree/bindings/net/can/fsl,flexcan.yaml b=
+/Documentation/devicetree/bindings/net/can/fsl,flexcan.yaml
+> index f81d56f7c12a5..d098a44c2b9c2 100644
+> --- a/Documentation/devicetree/bindings/net/can/fsl,flexcan.yaml
+> +++ b/Documentation/devicetree/bindings/net/can/fsl,flexcan.yaml
+> @@ -26,6 +26,7 @@ properties:
+>            - fsl,ls1021ar2-flexcan
+>            - fsl,lx2160ar1-flexcan
+>            - nxp,s32g2-flexcan
+> +          - nxp,s32n79-flexcan
+
+[Severity: Medium]
+Does the flexcan driver need to be updated to claim this new compatible
+string?
+
+Because the binding does not provide a fallback compatible string, devices
+using nxp,s32n79-flexcan will fail to probe unless flexcan_of_match in
+drivers/net/can/flexcan/flexcan-core.c is also updated to include it. Is th=
+ere
+a companion patch planned to update the driver's match table?
+
+[ ... ]
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260713085306.2643=
+794-1-ciprianmarian.costea@oss.nxp.com?part=3D4
 
