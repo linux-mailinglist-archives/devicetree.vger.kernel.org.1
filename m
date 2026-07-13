@@ -1,54 +1,106 @@
-Return-Path: <devicetree+bounces-325616-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-325608-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id cw+ODu39VGokigAAu9opvQ
-	(envelope-from <devicetree+bounces-325616-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 17:02:05 +0200
+	id mbxrB0j8VGqjiQAAu9opvQ
+	(envelope-from <devicetree+bounces-325608-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 16:55:04 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D0E574CBB2
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 17:02:04 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E12F274CA49
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 16:55:03 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=fris.de header.s=mail header.b=DoiWiU1C;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-325616-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-325616-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=fris.de;
+	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=g9puQe4A;
+	dkim=pass header.d=oss.qualcomm.com header.s=google header.b=c75t6wv3;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-325608-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-325608-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=reject) header.from=qualcomm.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 79589312C53C
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 14:55:42 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 4C2EF3013B8F
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 14:54:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25BDA43744C;
-	Mon, 13 Jul 2026 14:55:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64EBE319860;
+	Mon, 13 Jul 2026 14:54:48 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.fris.de (mail.fris.de [116.203.77.234])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89E5543900F;
-	Mon, 13 Jul 2026 14:55:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51189437451
+	for <devicetree@vger.kernel.org>; Mon, 13 Jul 2026 14:54:46 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783954530; cv=none; b=b53ctYOIXTT0F/9AR/xZ36xk9R93Q7muI1Cje/m2sZ65+kMNjHZEPccoXI97mckOtzZvqU9gyoylyHzzPamZakPxtyIykBRl731LFi/m+AdwjL5u2kUal0zkq64rURyrqCvXNoKXYPWUVg/ID9RIH7eJ9VC/lCWpRFVuKFG0EYE=
+	t=1783954488; cv=none; b=qnpWDQNQv2rCqIWKVbfghiiqkhCB4csa4SEfypG/skRNzoEKFGNQIwXty9Gsvp7gzVlG4G6JpR303yArykyPEzOq7HWcLZebEgZJYgDq+cQ+O2efXm+PtRlVWARJAAKBjWoNsCmDQNkJN4PHTE4IxJynJeKo5wIrDka9hK5ekZM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783954530; c=relaxed/simple;
-	bh=DvBLMFFMqhjcK/mtSmBXrkd1pVaKzFZPX4BOh+/c7bE=;
+	s=arc-20240116; t=1783954488; c=relaxed/simple;
+	bh=JAxPm0Y9NFVKecoKMOgggrZBB+t2MIckOgZU6Q+WkLA=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=BFENuTgkAt56YOXNMQC95Q4DDm47rKHYP147DHdQ67Tzu88Yxjd9AyCQDjyKbLoCnCYzHBNu8vmVaSbPWONkBP/JI6/DtlgRDoc1WzzIChKF50kgwcY6Hb5q4gNwzttTmupXn1P/PkRrHyDHVZtz9VMIStlMlmKMcRVHTf4FkOY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fris.de; spf=pass smtp.mailfrom=fris.de; dkim=pass (2048-bit key) header.d=fris.de header.i=@fris.de header.b=DoiWiU1C; arc=none smtp.client-ip=116.203.77.234
-From: Frieder Schrempf <frieder@fris.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=fris.de; s=mail;
-	t=1783954517;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=xoQzTXuDuiokYI38jvyMnODPwxI+8Eexv4gmNuBhtXI=;
-	b=DoiWiU1C4U7Jcn/9Y3d4tGZTtFbMttjXYEc9lygJCWCiQjt/d+0ZAmTjxgaxUpN1pDTuZ4
-	tzD2SsOus/2N+qLdN5emPOX7rYw57W5mVhbI3PRfgGNohYk5sYd5INw0DHvgZsp97LgwBx
-	yGY3l8vSBs/dwFAXvDOM5x2W3TLEbpAvj2DZqcRTvwF883EtEGMVjkA/CIC+67ZPDNT5nv
-	G/NWtjx0xkfCkTnFbpJUb3cqMpbmSR/U6GdDoD4SC1IEUIFmR79VjzOJBJeWpbnFZh/jct
-	ZnZLAEMxpiRmef9Aa1B2QZKOWtZ65tRSeMKqPTrAF+eZGNo4EMphXFt6Y8TWNQ==
-Date: Mon, 13 Jul 2026 16:53:43 +0200
-Subject: [PATCH v2 07/10] nvmem: imx-ocotp-ele: Support the ELE API
+	 In-Reply-To:To:Cc; b=d+6L2twku2mdiRIdmhTLWIFJN2ibH6qKiwwLyFT/GycTwVGYPBOYltuIRZLNWzLYDvwcRbqhp8SsgvlJ2phqokCQkIxOk/8ToXtAeg9Bck60AzEmtdH8pD2aZUudSGsf5ubZ+1k3KwU8YOdtdr86jl9fUpt9NSKSMCUkRHavVtE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=g9puQe4A; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=c75t6wv3; arc=none smtp.client-ip=205.220.168.131
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 66DCEMCe1333557
+	for <devicetree@vger.kernel.org>; Mon, 13 Jul 2026 14:54:45 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	hgcEb5E3TZMaH4mwYv3jMZRWyRtMAb43VzTkYqvLtfI=; b=g9puQe4AE4F6SLzn
+	M/QXPWoin2RrKYnh13l5LwzJJnHOZmccL6TDcDg9gbzALu3WrEMbCGdeCeqn7vs0
+	NSiWGskSuca8QUOqv6DmyYUR90165fBAosSaA4oykdOBsVzn1bOIuEP9RXP+cF55
+	B2MfBSQZzH8rBDMdWhnlQhfmriZXP0fzlbRn99kbITzEp/jJnqJayAPhe28TlDBX
+	fVftT3wJM8K24BVBg9pNaRrtOjjidRTIrwpiR6qy0Ejyeq0HXV4zUgRm9SovC4J6
+	nzhHb2Z3Puxk2P8E9Fe0Z5CBNu4r97PFLvCw8Sd/eVLuwBSYY3oAy4uxbNgoc/H3
+	qEM8AA==
+Received: from mail-ot1-f69.google.com (mail-ot1-f69.google.com [209.85.210.69])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4fctc8j426-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 13 Jul 2026 14:54:45 +0000 (GMT)
+Received: by mail-ot1-f69.google.com with SMTP id 46e09a7af769-7e94dffa918so4836949a34.1
+        for <devicetree@vger.kernel.org>; Mon, 13 Jul 2026 07:54:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1783954485; x=1784559285; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :content-type:mime-version:subject:date:from:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=hgcEb5E3TZMaH4mwYv3jMZRWyRtMAb43VzTkYqvLtfI=;
+        b=c75t6wv3iQwH2jFJvgBhlqd2kRCqUSOrFsEWnNZrXICr/NcDfCHXvc/c/+FuwhMKtZ
+         x1evUyXOj3rVguLgf5pi0mGyiL2nuho523Ng9ZdJaUVN/6CCoP0amaVns87PfWZHmJ8T
+         jiauDV8tzOuC+w96m7uJhkGre7B9kbSBOheZ0j5xejoM0ng/RL+mVbc4NCMK7ZIxBXHH
+         hLkp5LDg2WrQOsgzCa4YOKRuLR1SHbJDkicc8kubrpyQ/QqZYgQD36d0phGFmkmgVqCl
+         eNpy7fuiUw5CRQ+pWkp3e5XmNPb4IUJN5mhyVnxr96l3RcqJfVGctfZIHrX8NM9d7CtE
+         DRNg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1783954485; x=1784559285;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :content-type:mime-version:subject:date:from:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=hgcEb5E3TZMaH4mwYv3jMZRWyRtMAb43VzTkYqvLtfI=;
+        b=MsF2q5VxfHK6rSLZs/hXz3x+yBmNm7XU8LNTigN028AtiLKoRXS/HbMPXi0UBEf9Cv
+         hcJcTBxSN0Vs5u55/00/PNZtgFXD+tm/oqBa7zVhrcIHPYAymgCj2odem6iD2EUlwJsk
+         p9OXHiyXbHVYQWLako/+hQ5mIRccAd43z6gGHcdO/u5vrVj2Z7iRTXFLNincEFi+uKTs
+         qC7QF6BQ+xuM87XajK4rRyAT/dWSez/AUmmWJDP+Qzv0xg9MZ0Z934Bfo5dV5nECxQtp
+         5SZqjx1sfJb0ip+651AQZhaXa0VJBe6Pm14QBqYMJWI/ZQoEA3WGcGn/27gp6saQqv/z
+         ypdQ==
+X-Forwarded-Encrypted: i=1; AFNElJ+i6mEswMtvTTuxZ8tYjgIZVnTOosi9jv0zuvq2LD20MuQA2K/GImD9cgEhXXgHLVgonzxIhciIGzzI@vger.kernel.org
+X-Gm-Message-State: AOJu0YzDpfPnus6KtzrvMe4v83fOhYjf9cqgimk80YPJkgKLmEkODRq2
+	2hxpxJF1VYqY5G4XJnBu5P1oRqmaE62mwoOrQGHE5LrzeYmeDC9NVLc4IS2BBBmnNr5v+u1i2Vh
+	Xg9qesACyXFEcjgAxnDbZp2rXAeDSYmiYhoQkgf18nbpC/SlNjb9J3t4JbwJ+7u33
+X-Gm-Gg: AfdE7cnzEP4y3oDKhujhVhV59Yh2rAbhCMQ3jp/MyeXjI0rlXbDRiXbCCRu+FoRpyqr
+	Lo5+luGdESGfgVPJ3smnuv3bOIfYCrCmKSuAjQwuG3Vf+SfsLfx4PpKLPQlsBmVcnGsHdxigy3Y
+	xFPXzdo5FCbBBOTNCSQ82FVWgqATzkk0B3BpXC4nImbJSz4d3hEd9QdBn8pUWxgjjk7vsFY4A8i
+	OYGO4rY1XBo2BvhvIT18tyeJB6i4G+kyyPAZnMM7Cpl9+0hTJ7mJBPPaWWnsuz7SQBSlT7ric2p
+	JLOnzG0IyJ6Xs+BLZUdxuMJX7W9pH/z/hsO/W0UIM07v06eOmlXrmC/fIe+BUpYQGUJ4gk74+xu
+	KFIGJX3cGXRUo410hmRj999bG6YEqTY7OOjQ=
+X-Received: by 2002:a05:6820:f02f:b0:6a3:a11:2172 with SMTP id 006d021491bc7-6a39a863b7fmr5536556eaf.61.1783954484545;
+        Mon, 13 Jul 2026 07:54:44 -0700 (PDT)
+X-Received: by 2002:a05:6820:f02f:b0:6a3:a11:2172 with SMTP id 006d021491bc7-6a39a863b7fmr5536527eaf.61.1783954484122;
+        Mon, 13 Jul 2026 07:54:44 -0700 (PDT)
+Received: from hu-tdas-hyd.qualcomm.com ([202.46.22.19])
+        by smtp.gmail.com with ESMTPSA id 006d021491bc7-6a38e9bc8casm6728746eaf.2.2026.07.13.07.54.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 13 Jul 2026 07:54:43 -0700 (PDT)
+From: Taniya Das <taniya.das@oss.qualcomm.com>
+Date: Mon, 13 Jul 2026 20:23:44 +0530
+Subject: [PATCH v7 06/10] dt-bindings: clock: qcom: Add support for CAMCC
+ for Eliza
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,337 +109,348 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260713-upstreaming-next-20260609-imx-ocotp-ele-v2-7-b8266d93514b@kontron.de>
-References: <20260713-upstreaming-next-20260609-imx-ocotp-ele-v2-0-b8266d93514b@kontron.de>
-In-Reply-To: <20260713-upstreaming-next-20260609-imx-ocotp-ele-v2-0-b8266d93514b@kontron.de>
-To: Srinivas Kandagatla <srini@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>, 
- Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>, Shawn Guo <shawnguo@kernel.org>, 
- Pankaj Gupta <pankaj.gupta@nxp.com>, 
- "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc: devicetree@vger.kernel.org, imx@lists.linux.dev, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Frieder Schrempf <frieder.schrempf@kontron.de>
-X-Developer-Signature: v=1; a=openpgp-sha256; l=8311;
- i=frieder.schrempf@kontron.de; h=from:subject:message-id;
- bh=bexM75HEGaMazdG9kbnGppPaWEavFDTLd0QOTQKGZD0=;
- b=owGbwMvMwCWWWSatKlDTJMZ4Wi2JISvkT9Dsi+E9tn2bgg/aNRiWCsTwFKQtmbh3I1vXjMzwa
- IvUPxkdpSwMYlwMsmKKLFL8Fq9tzWJ95I9VR8HMYWUCGcLAxSkAExE8y8iwccGEexq9V184nbDL
- WW16pGvtL4UyrdslWTsPPbsgsO/bG0aGyXYXvyxmiv6w/VP9HpvT8y8cXmbqYn1kEusPx4uMTyd
- t5gUA
-X-Developer-Key: i=frieder.schrempf@kontron.de; a=openpgp;
- fpr=1A0F38EB3D365D4C1FC67B5A69761B25107C8216
+Message-Id: <20260713-b4-eliza_mm_cc_v6-v7-6-4d91bcef50eb@oss.qualcomm.com>
+References: <20260713-b4-eliza_mm_cc_v6-v7-0-4d91bcef50eb@oss.qualcomm.com>
+In-Reply-To: <20260713-b4-eliza_mm_cc_v6-v7-0-4d91bcef50eb@oss.qualcomm.com>
+To: Bjorn Andersson <andersson@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney@redhat.com>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Luca Weiss <luca.weiss@fairphone.com>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Ajit Pandey <ajit.pandey@oss.qualcomm.com>,
+        Imran Shaik <imran.shaik@oss.qualcomm.com>,
+        Jagadeesh Kona <jagadeesh.kona@oss.qualcomm.com>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Taniya Das <taniya.das@oss.qualcomm.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+X-Mailer: b4 0.15-dev-aa3f6
+X-Proofpoint-GUID: 0wU6F60n8NzLqbjFQYrJCyVSj3ncwYiB
+X-Proofpoint-ORIG-GUID: 0wU6F60n8NzLqbjFQYrJCyVSj3ncwYiB
+X-Authority-Analysis: v=2.4 cv=UtRT8ewB c=1 sm=1 tr=0 ts=6a54fc35 cx=c_pps
+ a=z9lCQkyTxNhZyzAvolXo/A==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+ a=IkcTkHD0fZMA:10 a=RAioF0-LDSMA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=_K5XuSEh1TEqbUxoQ0s3:22
+ a=EUspDBNiAAAA:8 a=6H0WHjuAAAAA:8 a=E4wYszUKohIvJGSh0HwA:9 a=QEXdDO2ut3YA:10
+ a=EyFUmsFV_t8cxB2kMr4A:22 a=Soq9LBFxuPC4vsCAQt-j:22
+X-Proofpoint-Spam-Info: AW1haW4tMjYwNzEzMDE1NSBTYWx0ZWRfX5F9UTy1BWBRH
+ ZQbTFpm8Ad0kwfkwnyPgnoW2C2PB+YxDkIU7EPKUsffpRjl4rxdha0HYMPzwlUshN38Pm5p+bWf
+ 2zxcVbm8b9Us2wc46y64RzKKhhXhFF4=
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNzEzMDE1NSBTYWx0ZWRfX2dNOl5k6lsan
+ P7t85mYAUD/lmqmjpgBL4wfTrXfT5COoS7RUTbJnSkxd3rDZVEbSIA93CcMwsSKzlzaHQuwNxm8
+ qD79MOv1hB0tMgGyOIh845XWLqkKaO48HJ5YrA/cJHdUg1E5dMV/Ilga/plrLvqsHOXQt5LhgK0
+ lQza6/iJgwe6avk9ggEiMcHG3aUiNpogBVdyxvhocLyc1HmcJ0dHaOvHpAdzn+ZYVBwATo72upg
+ IAQ1dAcK79fLhBt/BJx57kAmnU+gDJVgtibwtguwreTImGMQ3B4raLhB1Sb4qMs2cuJtZMgQAlI
+ j2m9FyQavfap3BPC45f5TtYLf8I/RVIVibQGXMAaLmxkmgcwSeFksPAAz0vxQR9db5/3odCtjvc
+ dXu1OuqDKgCn5eRS9oQGT1qWGc679I9A1d82PyfB5FrB1Ermz3n4J91r1SXXTpKdOzw7a8nepUv
+ Z5kVj01sqnX6DjJ86aA==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.134,FMLib:17.12.100.49
+ definitions=2026-07-13_03,2026-07-10_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 phishscore=0 suspectscore=0 bulkscore=0 clxscore=1015
+ impostorscore=0 lowpriorityscore=0 adultscore=0 malwarescore=0 spamscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2606150000 definitions=main-2607130155
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[fris.de,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[fris.de:s=mail];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:srini@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:Frank.Li@nxp.com,m:s.hauer@pengutronix.de,m:kernel@pengutronix.de,m:festevam@gmail.com,m:shawnguo@kernel.org,m:pankaj.gupta@nxp.com,m:peng.fan@oss.nxp.com,m:devicetree@vger.kernel.org,m:imx@lists.linux.dev,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:frieder.schrempf@kontron.de,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[kernel.org,nxp.com,pengutronix.de,gmail.com,oss.nxp.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	FORGED_SENDER(0.00)[frieder@fris.de,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-325608-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[25];
 	FORWARDED(0.00)[lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-325616-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[fris.de:+];
+	FREEMAIL_TO(0.00)[kernel.org,baylibre.com,redhat.com,fairphone.com,gmail.com,foss.st.com,oss.qualcomm.com];
+	FORGED_RECIPIENTS(0.00)[m:andersson@kernel.org,m:mturquette@baylibre.com,m:sboyd@kernel.org,m:bmasney@redhat.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:luca.weiss@fairphone.com,m:konradybcio@kernel.org,m:mcoquelin.stm32@gmail.com,m:alexandre.torgue@foss.st.com,m:dmitry.baryshkov@oss.qualcomm.com,m:ajit.pandey@oss.qualcomm.com,m:imran.shaik@oss.qualcomm.com,m:jagadeesh.kona@oss.qualcomm.com,m:linux-arm-msm@vger.kernel.org,m:linux-clk@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-stm32@st-md-mailman.stormreply.com,m:linux-arm-kernel@lists.infradead.org,m:krzk@kernel.org,m:konrad.dybcio@oss.qualcomm.com,m:taniya.das@oss.qualcomm.com,m:krzysztof.kozlowski@oss.qualcomm.com,m:conor@kernel.org,m:mcoquelinstm32@gmail.com,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[taniya.das@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[fairphone.com:email,vger.kernel.org:from_smtp,qualcomm.com:email,qualcomm.com:dkim,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,oss.qualcomm.com:from_mime,oss.qualcomm.com:dkim,oss.qualcomm.com:mid];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[frieder@fris.de,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[taniya.das@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
 	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp,kontron.de:email,kontron.de:mid]
+	TO_DN_SOME(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 7D0E574CBB2
+X-Rspamd-Queue-Id: E12F274CA49
 
-From: Frieder Schrempf <frieder.schrempf@kontron.de>
+Eliza camera clock controller is on CX and MX rails similar to Milos.
+Add compatible string for Eliza camera and camera BIST clock
+controller to the existing Milos camcc binding and add the
+dt-bindings header for Eliza.
 
-The fuses inside the Edgelock Secure Enclave are currently not
-accessed via its API but through the FSB block which provides
-limited access to some fuses.
+The camera clock controller provides power domains, so 'power-domain-cells'
+must be present in the device tree node. Add this to required properties
+to enforce it in the binding schema.
 
-The ELE API allows us to access all fuses with read/write
-permissions. Therefore use it as primary method and only fall
-back to the limited FSB if the ELE API is not available.
-
-Signed-off-by: Frieder Schrempf <frieder.schrempf@kontron.de>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Signed-off-by: Taniya Das <taniya.das@oss.qualcomm.com>
 ---
- drivers/nvmem/imx-ocotp-ele.c | 178 +++++++++++++++++++++++++++++++++++++++++-
- 1 file changed, 177 insertions(+), 1 deletion(-)
+ .../bindings/clock/qcom,milos-camcc.yaml           |  12 +-
+ .../dt-bindings/clock/qcom,eliza-cambistmclkcc.h   |  32 +++++
+ include/dt-bindings/clock/qcom,eliza-camcc.h       | 151 +++++++++++++++++++++
+ 3 files changed, 193 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/nvmem/imx-ocotp-ele.c b/drivers/nvmem/imx-ocotp-ele.c
-index 47ee6bd176a3..6ac7d588c4bd 100644
---- a/drivers/nvmem/imx-ocotp-ele.c
-+++ b/drivers/nvmem/imx-ocotp-ele.c
-@@ -7,10 +7,12 @@
+diff --git a/Documentation/devicetree/bindings/clock/qcom,milos-camcc.yaml b/Documentation/devicetree/bindings/clock/qcom,milos-camcc.yaml
+index 2295e7627ec9feb6a67f3ca952e6192a31cce593..29c29d9774f9c712ba39dfc1487c7118fec9dc90 100644
+--- a/Documentation/devicetree/bindings/clock/qcom,milos-camcc.yaml
++++ b/Documentation/devicetree/bindings/clock/qcom,milos-camcc.yaml
+@@ -8,16 +8,23 @@ title: Qualcomm Camera Clock & Reset Controller on Milos
  
- #include <linux/cleanup.h>
- #include <linux/device.h>
-+#include <linux/firmware/imx/se_api.h>
- #include <linux/io.h>
- #include <linux/module.h>
- #include <linux/nvmem-provider.h>
- #include <linux/of.h>
-+#include <linux/of_platform.h>
- #include <linux/platform_device.h>
- #include <linux/slab.h>
- #include <linux/if_ether.h>	/* ETH_ALEN */
-@@ -45,8 +47,113 @@ struct imx_ocotp_priv {
- 	struct nvmem_config config;
- 	struct mutex lock;
- 	const struct ocotp_devtype_data *data;
-+	struct se_if_priv *se_data;
- };
+ maintainers:
+   - Luca Weiss <luca.weiss@fairphone.com>
++  - Taniya Das <taniya.das@oss.qualcomm.com>
  
-+/* ELE commands and message sizes used for OCOTP fuse access. */
-+#define ELE_READ_FUSE_REQ		0x97
-+#define ELE_READ_FUSE_REQ_MSG_SZ	0x08
-+#define ELE_READ_FUSE_RSP_MSG_SZ	0x0c
-+
-+#define ELE_WRITE_FUSE			0xd6
-+#define ELE_WRITE_FUSE_REQ_MSG_SZ	0x0c
-+#define ELE_WRITE_FUSE_RSP_MSG_SZ	0x0c
-+
+ description: |
+   Qualcomm camera clock control module provides the clocks, resets and power
+   domains on Milos.
+ 
+-  See also: include/dt-bindings/clock/qcom,milos-camcc.h
++  See also:
++    include/dt-bindings/clock/qcom,eliza-cambistmclkcc.h
++    include/dt-bindings/clock/qcom,eliza-camcc.h
++    include/dt-bindings/clock/qcom,milos-camcc.h
+ 
+ properties:
+   compatible:
+-    const: qcom,milos-camcc
++    enum:
++      - qcom,eliza-cambistmclkcc
++      - qcom,eliza-camcc
++      - qcom,milos-camcc
+ 
+   clocks:
+     items:
+@@ -40,6 +47,7 @@ required:
+   - clocks
+   - power-domains
+   - required-opps
++  - '#power-domain-cells'
+ 
+ allOf:
+   - $ref: qcom,gcc.yaml#
+diff --git a/include/dt-bindings/clock/qcom,eliza-cambistmclkcc.h b/include/dt-bindings/clock/qcom,eliza-cambistmclkcc.h
+new file mode 100644
+index 0000000000000000000000000000000000000000..7b8b285f18d2714393885149fc97c715b3fbb042
+--- /dev/null
++++ b/include/dt-bindings/clock/qcom,eliza-cambistmclkcc.h
+@@ -0,0 +1,32 @@
++/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
 +/*
-+ * imx_ocotp_se_read_fuse() - Request the secure enclave FW to read a fuse.
-+ * @priv: handle to the secure-enclave interface.
-+ * @fuse_id: fuse identifier to read.
-+ * @value: location to store the read fuse value.
-+ *
-+ * Secure enclaves like the EdgeLock Enclave manage the fuses. This requests
-+ * the FW to read the fuse and returns the value reported by the FW.
-+ *
-+ * Return: 0 on success, a negative error code otherwise.
++ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
 + */
-+static int imx_ocotp_se_read_fuse(struct se_if_priv *priv, u16 fuse_id, u32 *value)
-+{
-+	struct se_api_msg *tx_msg __free(kfree) = NULL;
-+	struct se_api_msg *rx_msg __free(kfree) = NULL;
-+	int ret;
 +
-+	if (!priv)
-+		return -EINVAL;
++#ifndef _DT_BINDINGS_CLK_QCOM_CAM_BIST_MCLK_CC_ELIZA_H
++#define _DT_BINDINGS_CLK_QCOM_CAM_BIST_MCLK_CC_ELIZA_H
 +
-+	tx_msg = kzalloc(ELE_READ_FUSE_REQ_MSG_SZ, GFP_KERNEL);
-+	if (!tx_msg)
-+		return -ENOMEM;
++/* CAM_BIST_MCLK_CC clocks */
++#define CAM_BIST_MCLK_CC_MCLK0_CLK				0
++#define CAM_BIST_MCLK_CC_MCLK0_CLK_SRC				1
++#define CAM_BIST_MCLK_CC_MCLK1_CLK				2
++#define CAM_BIST_MCLK_CC_MCLK1_CLK_SRC				3
++#define CAM_BIST_MCLK_CC_MCLK2_CLK				4
++#define CAM_BIST_MCLK_CC_MCLK2_CLK_SRC				5
++#define CAM_BIST_MCLK_CC_MCLK3_CLK				6
++#define CAM_BIST_MCLK_CC_MCLK3_CLK_SRC				7
++#define CAM_BIST_MCLK_CC_MCLK4_CLK				8
++#define CAM_BIST_MCLK_CC_MCLK4_CLK_SRC				9
++#define CAM_BIST_MCLK_CC_MCLK5_CLK				10
++#define CAM_BIST_MCLK_CC_MCLK5_CLK_SRC				11
++#define CAM_BIST_MCLK_CC_MCLK6_CLK				12
++#define CAM_BIST_MCLK_CC_MCLK6_CLK_SRC				13
++#define CAM_BIST_MCLK_CC_MCLK7_CLK				14
++#define CAM_BIST_MCLK_CC_MCLK7_CLK_SRC				15
++#define CAM_BIST_MCLK_CC_PLL0					16
++#define CAM_BIST_MCLK_CC_PLL_TEST_CLK				17
++#define CAM_BIST_MCLK_CC_PLL_TEST_DIV_CLK_SRC			18
++#define CAM_BIST_MCLK_CC_SLEEP_CLK				19
++#define CAM_BIST_MCLK_CC_SLEEP_CLK_SRC				20
 +
-+	rx_msg = kzalloc(ELE_READ_FUSE_RSP_MSG_SZ, GFP_KERNEL);
-+	if (!rx_msg)
-+		return -ENOMEM;
-+
-+	ret = imx_se_fill_cmd_msg_hdr(priv, &tx_msg->header, ELE_READ_FUSE_REQ,
-+				      ELE_READ_FUSE_REQ_MSG_SZ, true);
-+	if (ret)
-+		return ret;
-+
-+	tx_msg->data[0] = fuse_id;
-+
-+	ret = imx_se_msg_send_rcv(priv, tx_msg, ELE_READ_FUSE_REQ_MSG_SZ,
-+				  rx_msg, ELE_READ_FUSE_RSP_MSG_SZ);
-+	if (ret < 0)
-+		return ret;
-+
-+	ret = imx_se_val_rsp_hdr_n_status(priv, rx_msg, ELE_READ_FUSE_REQ,
-+					  ELE_READ_FUSE_RSP_MSG_SZ, true);
-+	if (ret)
-+		return ret;
-+
-+	*value = rx_msg->data[1];
-+
-+	return 0;
-+}
-+
++#endif
+diff --git a/include/dt-bindings/clock/qcom,eliza-camcc.h b/include/dt-bindings/clock/qcom,eliza-camcc.h
+new file mode 100644
+index 0000000000000000000000000000000000000000..d85ef9777d08d12ec349d57f6da5e76a305404f8
+--- /dev/null
++++ b/include/dt-bindings/clock/qcom,eliza-camcc.h
+@@ -0,0 +1,151 @@
++/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
 +/*
-+ * imx_ocotp_se_write_fuse() - Request the secure enclave FW to write a fuse.
-+ * @priv: handle to the secure-enclave interface.
-+ * @fuse_id: fuse identifier to write to.
-+ * @value: value to write to the fuse.
-+ *
-+ * Secure enclaves like the EdgeLock Enclave manage the fuses. This requests
-+ * the FW to program the fuse with the given value.
-+ *
-+ * Return: 0 on success, a negative error code otherwise.
++ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
 + */
-+static int imx_ocotp_se_write_fuse(struct se_if_priv *priv, u16 fuse_id, u32 value)
-+{
-+	struct se_api_msg *tx_msg __free(kfree) = NULL;
-+	struct se_api_msg *rx_msg __free(kfree) = NULL;
-+	int ret;
 +
-+	if (!priv)
-+		return -EINVAL;
++#ifndef _DT_BINDINGS_CLK_QCOM_CAM_CC_ELIZA_H
++#define _DT_BINDINGS_CLK_QCOM_CAM_CC_ELIZA_H
 +
-+	tx_msg = kzalloc(ELE_WRITE_FUSE_REQ_MSG_SZ, GFP_KERNEL);
-+	if (!tx_msg)
-+		return -ENOMEM;
++/* CAM_CC clocks */
++#define CAM_CC_CAM_TOP_AHB_CLK					0
++#define CAM_CC_CAM_TOP_FAST_AHB_CLK				1
++#define CAM_CC_CAMNOC_DCD_XO_CLK				2
++#define CAM_CC_CAMNOC_NRT_AXI_CLK				3
++#define CAM_CC_CAMNOC_NRT_CRE_CLK				4
++#define CAM_CC_CAMNOC_NRT_IPE_NPS_CLK				5
++#define CAM_CC_CAMNOC_NRT_OFE_ANCHOR_CLK			6
++#define CAM_CC_CAMNOC_NRT_OFE_HDR_CLK				7
++#define CAM_CC_CAMNOC_NRT_OFE_MAIN_CLK				8
++#define CAM_CC_CAMNOC_RT_AXI_CLK				9
++#define CAM_CC_CAMNOC_RT_AXI_CLK_SRC				10
++#define CAM_CC_CAMNOC_RT_IFE_LITE_CLK				11
++#define CAM_CC_CAMNOC_RT_TFE_0_BAYER_CLK			12
++#define CAM_CC_CAMNOC_RT_TFE_0_MAIN_CLK				13
++#define CAM_CC_CAMNOC_RT_TFE_1_BAYER_CLK			14
++#define CAM_CC_CAMNOC_RT_TFE_1_MAIN_CLK				15
++#define CAM_CC_CAMNOC_RT_TFE_2_BAYER_CLK			16
++#define CAM_CC_CAMNOC_RT_TFE_2_MAIN_CLK				17
++#define CAM_CC_CAMNOC_XO_CLK					18
++#define CAM_CC_CCI_0_CLK					19
++#define CAM_CC_CCI_0_CLK_SRC					20
++#define CAM_CC_CCI_1_CLK					21
++#define CAM_CC_CCI_1_CLK_SRC					22
++#define CAM_CC_CCI_2_CLK					23
++#define CAM_CC_CCI_2_CLK_SRC					24
++#define CAM_CC_CORE_AHB_CLK					25
++#define CAM_CC_CPHY_RX_CLK_SRC					26
++#define CAM_CC_CRE_AHB_CLK					27
++#define CAM_CC_CRE_CLK						28
++#define CAM_CC_CRE_CLK_SRC					29
++#define CAM_CC_CSI0PHYTIMER_CLK					30
++#define CAM_CC_CSI0PHYTIMER_CLK_SRC				31
++#define CAM_CC_CSI1PHYTIMER_CLK					32
++#define CAM_CC_CSI1PHYTIMER_CLK_SRC				33
++#define CAM_CC_CSI2PHYTIMER_CLK					34
++#define CAM_CC_CSI2PHYTIMER_CLK_SRC				35
++#define CAM_CC_CSI3PHYTIMER_CLK					36
++#define CAM_CC_CSI3PHYTIMER_CLK_SRC				37
++#define CAM_CC_CSI4PHYTIMER_CLK					38
++#define CAM_CC_CSI4PHYTIMER_CLK_SRC				39
++#define CAM_CC_CSI5PHYTIMER_CLK					40
++#define CAM_CC_CSI5PHYTIMER_CLK_SRC				41
++#define CAM_CC_CSID_CLK						42
++#define CAM_CC_CSID_CLK_SRC					43
++#define CAM_CC_CSID_CSIPHY_RX_CLK				44
++#define CAM_CC_CSIPHY0_CLK					45
++#define CAM_CC_CSIPHY1_CLK					46
++#define CAM_CC_CSIPHY2_CLK					47
++#define CAM_CC_CSIPHY3_CLK					48
++#define CAM_CC_CSIPHY4_CLK					49
++#define CAM_CC_CSIPHY5_CLK					50
++#define CAM_CC_DRV_AHB_CLK					51
++#define CAM_CC_DRV_XO_CLK					52
++#define CAM_CC_FAST_AHB_CLK_SRC					53
++#define CAM_CC_GDSC_CLK						54
++#define CAM_CC_ICP_0_AHB_CLK					55
++#define CAM_CC_ICP_0_CLK					56
++#define CAM_CC_ICP_0_CLK_SRC					57
++#define CAM_CC_ICP_1_AHB_CLK					58
++#define CAM_CC_ICP_1_CLK					59
++#define CAM_CC_ICP_1_CLK_SRC					60
++#define CAM_CC_IFE_LITE_AHB_CLK					61
++#define CAM_CC_IFE_LITE_CLK					62
++#define CAM_CC_IFE_LITE_CLK_SRC					63
++#define CAM_CC_IFE_LITE_CPHY_RX_CLK				64
++#define CAM_CC_IFE_LITE_CSID_CLK				65
++#define CAM_CC_IFE_LITE_CSID_CLK_SRC				66
++#define CAM_CC_IPE_NPS_AHB_CLK					67
++#define CAM_CC_IPE_NPS_CLK					68
++#define CAM_CC_IPE_NPS_CLK_SRC					69
++#define CAM_CC_IPE_NPS_FAST_AHB_CLK				70
++#define CAM_CC_IPE_PPS_CLK					71
++#define CAM_CC_IPE_PPS_FAST_AHB_CLK				72
++#define CAM_CC_JPEG_0_CLK					73
++#define CAM_CC_JPEG_1_CLK					74
++#define CAM_CC_JPEG_CLK_SRC					75
++#define CAM_CC_OFE_AHB_CLK					76
++#define CAM_CC_OFE_ANCHOR_CLK					77
++#define CAM_CC_OFE_ANCHOR_FAST_AHB_CLK				78
++#define CAM_CC_OFE_CLK_SRC					79
++#define CAM_CC_OFE_HDR_CLK					80
++#define CAM_CC_OFE_HDR_FAST_AHB_CLK				81
++#define CAM_CC_OFE_MAIN_CLK					82
++#define CAM_CC_OFE_MAIN_FAST_AHB_CLK				83
++#define CAM_CC_PLL0						84
++#define CAM_CC_PLL0_OUT_EVEN					85
++#define CAM_CC_PLL0_OUT_ODD					86
++#define CAM_CC_PLL1						87
++#define CAM_CC_PLL1_OUT_EVEN					88
++#define CAM_CC_PLL2						89
++#define CAM_CC_PLL2_OUT_EVEN					90
++#define CAM_CC_PLL3						91
++#define CAM_CC_PLL3_OUT_EVEN					92
++#define CAM_CC_PLL4						93
++#define CAM_CC_PLL4_OUT_EVEN					94
++#define CAM_CC_PLL5						95
++#define CAM_CC_PLL5_OUT_EVEN					96
++#define CAM_CC_PLL6						97
++#define CAM_CC_PLL6_OUT_EVEN					98
++#define CAM_CC_PLL6_OUT_ODD					99
++#define CAM_CC_QDSS_DEBUG_CLK					100
++#define CAM_CC_QDSS_DEBUG_CLK_SRC				101
++#define CAM_CC_QDSS_DEBUG_XO_CLK				102
++#define CAM_CC_SLEEP_CLK					103
++#define CAM_CC_SLEEP_CLK_SRC					104
++#define CAM_CC_SLOW_AHB_CLK_SRC					105
++#define CAM_CC_TFE_0_BAYER_CLK					106
++#define CAM_CC_TFE_0_BAYER_FAST_AHB_CLK				107
++#define CAM_CC_TFE_0_CLK_SRC					108
++#define CAM_CC_TFE_0_MAIN_CLK					109
++#define CAM_CC_TFE_0_MAIN_FAST_AHB_CLK				110
++#define CAM_CC_TFE_1_BAYER_CLK					111
++#define CAM_CC_TFE_1_BAYER_FAST_AHB_CLK				112
++#define CAM_CC_TFE_1_CLK_SRC					113
++#define CAM_CC_TFE_1_MAIN_CLK					114
++#define CAM_CC_TFE_1_MAIN_FAST_AHB_CLK				115
++#define CAM_CC_TFE_2_BAYER_CLK					116
++#define CAM_CC_TFE_2_BAYER_FAST_AHB_CLK				117
++#define CAM_CC_TFE_2_CLK_SRC					118
++#define CAM_CC_TFE_2_MAIN_CLK					119
++#define CAM_CC_TFE_2_MAIN_FAST_AHB_CLK				120
++#define CAM_CC_XO_CLK_SRC					121
 +
-+	rx_msg = kzalloc(ELE_WRITE_FUSE_RSP_MSG_SZ, GFP_KERNEL);
-+	if (!rx_msg)
-+		return -ENOMEM;
++/* CAM_CC power domains */
++#define CAM_CC_IPE_0_GDSC					0
++#define CAM_CC_OFE_GDSC						1
++#define CAM_CC_TFE_0_GDSC					2
++#define CAM_CC_TFE_1_GDSC					3
++#define CAM_CC_TFE_2_GDSC					4
++#define CAM_CC_TITAN_TOP_GDSC					5
 +
-+	ret = imx_se_fill_cmd_msg_hdr(priv, &tx_msg->header, ELE_WRITE_FUSE,
-+				      ELE_WRITE_FUSE_REQ_MSG_SZ, true);
-+	if (ret)
-+		return ret;
++/* CAM_CC resets */
++#define CAM_CC_DRV_BCR						0
++#define CAM_CC_ICP_BCR						1
++#define CAM_CC_IPE_0_BCR					2
++#define CAM_CC_OFE_BCR						3
++#define CAM_CC_QDSS_DEBUG_BCR					4
++#define CAM_CC_TFE_0_BCR					5
++#define CAM_CC_TFE_1_BCR					6
++#define CAM_CC_TFE_2_BCR					7
 +
-+	tx_msg->data[0] = (32 << 16) | (fuse_id << 5);
-+	tx_msg->data[1] = value;
-+
-+	ret = imx_se_msg_send_rcv(priv, tx_msg, ELE_WRITE_FUSE_REQ_MSG_SZ,
-+				  rx_msg, ELE_WRITE_FUSE_RSP_MSG_SZ);
-+	if (ret < 0)
-+		return ret;
-+
-+	return imx_se_val_rsp_hdr_n_status(priv, rx_msg, ELE_WRITE_FUSE,
-+					   ELE_WRITE_FUSE_RSP_MSG_SZ, true);
-+}
-+
- static enum fuse_type imx_ocotp_fuse_type(void *context, u32 index)
- {
- 	struct imx_ocotp_priv *priv = context;
-@@ -73,6 +180,7 @@ static int imx_ocotp_reg_read(void *context, unsigned int offset, void *val, siz
- 	u32 count, index, num_bytes;
- 	enum fuse_type type;
- 	u32 *buf;
-+	int ret;
- 	int i;
- 	u8 skipbytes;
- 
-@@ -93,6 +201,19 @@ static int imx_ocotp_reg_read(void *context, unsigned int offset, void *val, siz
- 	buf = p;
- 
- 	for (i = index; i < (index + count); i++) {
-+		/*
-+		 * All fuse registers can be read via ELE. If the SE device is
-+		 * available, always prefer it.
-+		 */
-+		if (priv->se_data) {
-+			ret = imx_ocotp_se_read_fuse(priv->se_data, i, buf++);
-+			if (ret) {
-+				mutex_unlock(&priv->lock);
-+				return ret;
-+			}
-+			continue;
-+		}
-+
- 		type = imx_ocotp_fuse_type(context, i);
- 		if (type == FUSE_INVALID || type == FUSE_ELE) {
- 			*buf++ = 0;
-@@ -112,6 +233,32 @@ static int imx_ocotp_reg_read(void *context, unsigned int offset, void *val, siz
- 	return 0;
- };
- 
-+static int imx_ocotp_reg_write(void *context, unsigned int offset, void *val, size_t bytes)
-+{
-+	struct imx_ocotp_priv *priv = context;
-+	u32 word = offset >> 2;
-+	u32 *buf = val;
-+	int ret;
-+
-+	/* allow only writing one complete OTP word at a time */
-+	if ((bytes != 4) || (offset % 4 != 0))
-+		return -EINVAL;
-+
-+	/*
-+	 * The ELE API returns an error when writing an all-zero value. As
-+	 * OTP fuse bits can not be switched from 1 to 0 anyway, skip these
-+	 * values.
-+	 */
-+	if (!*buf)
-+		return 0;
-+
-+	mutex_lock(&priv->lock);
-+	ret = imx_ocotp_se_write_fuse(priv->se_data, word, *buf);
-+	mutex_unlock(&priv->lock);
-+
-+	return ret;
-+}
-+
- static int imx_ocotp_cell_pp(void *context, const char *id, int index,
- 			     unsigned int offset, void *data, size_t bytes)
- {
-@@ -138,8 +285,10 @@ static void imx_ocotp_fixup_dt_cell_info(struct nvmem_device *nvmem,
- static int imx_ele_ocotp_probe(struct platform_device *pdev)
- {
- 	struct device *dev = &pdev->dev;
-+	struct platform_device *se_pdev;
- 	struct imx_ocotp_priv *priv;
- 	struct nvmem_device *nvmem;
-+	struct device_node *np;
- 
- 	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
- 	if (!priv)
-@@ -151,16 +300,40 @@ static int imx_ele_ocotp_probe(struct platform_device *pdev)
- 	if (IS_ERR(priv->base))
- 		return PTR_ERR(priv->base);
- 
-+	np = of_parse_phandle(pdev->dev.of_node, "secure-enclave", 0);
-+	if (!np) {
-+		dev_info(dev, "missing or invalid SE handle, using readonly FSB\n");
-+	} else {
-+		se_pdev = of_find_device_by_node(np);
-+
-+		of_node_put(np);
-+		if (!se_pdev)
-+			return dev_err_probe(dev, -ENODEV, "failed to find SE device\n");
-+
-+		priv->se_data = platform_get_drvdata(se_pdev);
-+		if (!priv->se_data) {
-+			put_device(&se_pdev->dev);
-+			return dev_err_probe(dev, -EPROBE_DEFER, "SE device not ready\n");
-+		}
-+
-+		if (!device_link_add(dev, &se_pdev->dev, DL_FLAG_AUTOREMOVE_CONSUMER)) {
-+			put_device(&se_pdev->dev);
-+			return dev_err_probe(dev, -EINVAL, "failed to link to SE device\n");
-+		}
-+
-+		put_device(&se_pdev->dev);
-+	}
-+
- 	priv->config.dev = dev;
- 	priv->config.name = "ELE-OCOTP";
- 	priv->config.id = NVMEM_DEVID_AUTO;
- 	priv->config.owner = THIS_MODULE;
- 	priv->config.size = priv->data->size;
- 	priv->config.reg_read = imx_ocotp_reg_read;
-+	priv->config.reg_write = imx_ocotp_reg_write;
- 	priv->config.word_size = 1;
- 	priv->config.stride = 1;
- 	priv->config.priv = priv;
--	priv->config.read_only = true;
- 	priv->config.add_legacy_fixed_of_cells = true;
- 	priv->config.fixup_dt_cell_info = imx_ocotp_fixup_dt_cell_info;
- 
-@@ -169,6 +342,9 @@ static int imx_ele_ocotp_probe(struct platform_device *pdev)
- 		priv->config.nkeepout = priv->data->nkeepout;
- 	}
- 
-+	if (!priv->se_data)
-+		priv->config.read_only = true;
-+
- 	mutex_init(&priv->lock);
- 
- 	nvmem = devm_nvmem_register(dev, &priv->config);
++#endif
 
 -- 
-2.55.0
+2.34.1
 
 
