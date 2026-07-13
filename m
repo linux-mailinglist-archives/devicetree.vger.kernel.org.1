@@ -1,75 +1,76 @@
-Return-Path: <devicetree+bounces-325654-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-325656-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id imhmHe8DVWqziwAAu9opvQ
-	(envelope-from <devicetree+bounces-325654-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 17:27:43 +0200
+	id 9PPrIeoBVWo0iwAAu9opvQ
+	(envelope-from <devicetree+bounces-325656-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 17:19:06 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id DAC3B74D070
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 17:27:42 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A45C74CEE3
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 17:19:06 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=l2FKCYRS;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-325654-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-325654-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=DjkyuPnQ;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-325656-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-325656-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 0B36E30429B7
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 15:16:18 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id ADB39300D341
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 15:19:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DAD183451A7;
-	Mon, 13 Jul 2026 15:16:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4AC8284880;
+	Mon, 13 Jul 2026 15:18:59 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B97412848A7;
-	Mon, 13 Jul 2026 15:16:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2C4C30EF77;
+	Mon, 13 Jul 2026 15:18:58 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783955774; cv=none; b=bWjYuqogBs7EyKkwG/q9S9wa6zjnSedKcIcKYJ6paPamwYK73EaD8lGiup3l4dB3+M3TSMDC2NiTY/Xm5S+Bfc93WL+fdrrX8bWpCE/4KEZ5RbLrndN/4Uv65HzUAqcy5FL/KnS+o2NIXH2GVgicANOwPvTpEpKNd3cMGx2wngM=
+	t=1783955939; cv=none; b=R6YM64IAJkXDbh+ghGHlNL7VXazTk5PDZnGMIaf/9tXIgbtbwAQUTkw4pwnORzWdoPLzup1aVmzbh1K50wsJkKhnLmWjous8UyItTd3z1mp6LWMvg+Fvt2cM5d/tP0NMLXqyBAIgEKzoMbsUTiaU7VCj58ZrYySpksGpWmj44CE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783955774; c=relaxed/simple;
-	bh=50VSCCSjxlULIrzndGMgnZPn10en7KHyCnsSfxARocU=;
+	s=arc-20240116; t=1783955939; c=relaxed/simple;
+	bh=Q92+vm/2vUfD7BvMv6itjSyYoLq4GSIt9f0Z3LqR9/A=;
 	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=InP5x5JevTT7lUJvbokHPqhnfLq+p/HAUeVEryWsQj1Ip/xYe2RBDOAKe1GjCk/P743IFhv60mqcnVEZsRl+li16iIrLiTbX13XGMH8YLjyH2H3fX++uAsbKE0ov//gelVu/nJ2Z7Mjt5oQWteV+h60hOua6t2VQ6CmgZNdFhCk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=l2FKCYRS; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 511BD1F000E9;
-	Mon, 13 Jul 2026 15:16:13 +0000 (UTC)
+	 MIME-Version:Content-Type; b=IV3q1LSpEiCvMamMXZZzEPMZ71Zy5elVcnkEJ+Rkb+M8zqNMYJeaqwyRCjTDRu70cbAby/GsHy+97E7HMQ+SS4qWhVMIDcNJx+7wuJ0KsiPgJITorkMb+EdmruFfr5YdhJBlu+j36P3B1+WeCNDRF2XMIeE2GvDy7Qd5h1rBLz8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DjkyuPnQ; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 52E321F000E9;
+	Mon, 13 Jul 2026 15:18:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783955773;
-	bh=nf98+pyVNv0DEsLtyOYduaaIxghimk4gVbkPW/XQWvE=;
+	s=k20260515; t=1783955938;
+	bh=ciq/I2+BL5j+uB+AABX0XLHmc/WSjoaA1RcZmJWFnaQ=;
 	h=Date:From:To:Cc:Subject:In-Reply-To:References;
-	b=l2FKCYRSFitUuZAE7g69bPN2SZjDtUUCUb6RgSuLwpcinDXRaY/XCg7PcO+1PnwSa
-	 B+b0XG3LszMigZ4iedTN7ln9aL4DrOs8QrNu3d9INom5krcwEDGi+ZS669z7IY/juV
-	 obMGfOL37Hu6KO801Eios2g41jcL3G0XewAhEUjkuyh9GNDHCRbhg13nYR35ZvWR1X
-	 6b1xDI8i3PdE/dXFqaaBANfLCN7FBzidOCUgE8IXEhcgHu5pMlQ00AArNmWluo78sh
-	 2R54gyspRv2q+Oeq3/61KsoMJm0s6aRbd2PnhatnVFFjmXuZxgVGRcJEUkhRLEcIY9
-	 piMWLnX0uBBgw==
+	b=DjkyuPnQfstUUzWkidFDDVxGMprS4Et5vhWSDhkPCeRuWSjmhG6Km5kARaCsw/Y+v
+	 EQqZ6DGLbRd3fKpYjPw1huYb83BENbYrx8bs2WT4QditMiCeAJo2ZKD8gwwtzEiO7l
+	 rw/TH4KEOVL10wu4/aeXCa3uRo4kqr0TKxyZb5wSjWCjv8yHaIhPTpEBN/fBC/dLO5
+	 VtkmH49gPUkWjn/EiCa5HfU4GAPRwuJHtQ/ohoCLpDXqvquhmP0ipQHZFCeHXmiMuV
+	 O4F7670dgEeQMnimChpI4eux+NbII+5b7Fa+BK9vRxEnMg7ufPCknKLIsoiAoYSTlr
+	 vD8xxud9rr3Lg==
 Received: from sofa.misterjones.org ([185.219.108.64] helo=lobster-girl.misterjones.org)
 	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.98.2)
 	(envelope-from <maz@kernel.org>)
-	id 1wjIOB-00000004XkN-0UVC;
-	Mon, 13 Jul 2026 15:16:11 +0000
-Date: Mon, 13 Jul 2026 16:18:00 +0100
-Message-ID: <87h5m26hqv.wl-maz@kernel.org>
+	id 1wjIQq-00000004Xo1-1iIy;
+	Mon, 13 Jul 2026 15:18:56 +0000
+Date: Mon, 13 Jul 2026 16:20:45 +0100
+Message-ID: <87fr1m6hma.wl-maz@kernel.org>
 From: Marc Zyngier <maz@kernel.org>
-To: Sneh Mankad <sneh.mankad@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Thomas Gleixner <tglx@kernel.org>,
-	Shawn Guo <shawn.guo@linaro.org>,
-	linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 4/7] irqchip/irq-qcom-mpm: Program wakeup timer when CPU cluster goes to LPM
-In-Reply-To: <20260713-b4-shikra_lpm_addition-v1-4-3d858df2cbbf@oss.qualcomm.com>
-References: <20260713-b4-shikra_lpm_addition-v1-0-3d858df2cbbf@oss.qualcomm.com>
-	<20260713-b4-shikra_lpm_addition-v1-4-3d858df2cbbf@oss.qualcomm.com>
+To: Marek Vasut <marek.vasut@mailbox.org>
+Cc: linux-pci@vger.kernel.org,	kernel test robot <lkp@intel.com>,	Krzysztof
+ =?UTF-8?B?V2lsY3p5xYRza2k=?= <kwilczynski@kernel.org>,	Bjorn Helgaas
+ <bhelgaas@google.com>,	Catalin Marinas <catalin.marinas@arm.com>,	Conor
+ Dooley <conor+dt@kernel.org>,	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,	Lorenzo Pieralisi
+ <lpieralisi@kernel.org>,	Manivannan Sadhasivam <mani@kernel.org>,	Rob
+ Herring <robh@kernel.org>,	Yoshihiro Shimoda
+ <yoshihiro.shimoda.uh@renesas.com>,	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,	linux-doc@vger.kernel.org,
+	linux-kernel@vger.kernel.org,	linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH] PCI: rcar-gen4: Inline GIC_TRANSLATER offset macro
+In-Reply-To: <2cb03029-0957-4ed8-98bd-9b3e0e0bce2d@mailbox.org>
+References: <20260709201103.90162-1-marek.vasut+renesas@mailbox.org>
+	<87qzlb5jsl.wl-maz@kernel.org>
+	<2cb03029-0957-4ed8-98bd-9b3e0e0bce2d@mailbox.org>
 User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
  FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/30.1
  (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
@@ -79,9 +80,10 @@ List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: sneh.mankad@oss.qualcomm.com, andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, tglx@kernel.org, shawn.guo@linaro.org, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+X-SA-Exim-Rcpt-To: marek.vasut@mailbox.org, linux-pci@vger.kernel.org, lkp@intel.com, kwilczynski@kernel.org, bhelgaas@google.com, catalin.marinas@arm.com, conor+dt@kernel.org, geert+renesas@glider.be, krzk+dt@kernel.org, lpieralisi@kernel.org, mani@kernel.org, robh@kernel.org, yoshihiro.shimoda.uh@renesas.com, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org
 X-SA-Exim-Mail-From: maz@kernel.org
 X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 X-Rspamd-Action: no action
@@ -91,96 +93,91 @@ X-Spamd-Result: default: False [-2.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-325654-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[maz@kernel.org,devicetree@vger.kernel.org];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:sneh.mankad@oss.qualcomm.com,m:andersson@kernel.org,m:konradybcio@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:tglx@kernel.org,m:shawn.guo@linaro.org,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-325656-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:marek.vasut@mailbox.org,m:linux-pci@vger.kernel.org,m:lkp@intel.com,m:kwilczynski@kernel.org,m:bhelgaas@google.com,m:catalin.marinas@arm.com,m:conor+dt@kernel.org,m:geert+renesas@glider.be,m:krzk+dt@kernel.org,m:lpieralisi@kernel.org,m:mani@kernel.org,m:robh@kernel.org,m:yoshihiro.shimoda.uh@renesas.com,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-doc@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-renesas-soc@vger.kernel.org,m:conor@kernel.org,m:geert@glider.be,m:krzk@kernel.org,s:lists@lfdr.de];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[maz@kernel.org,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[maz@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	ALIAS_RESOLVED(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[11];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,qualcomm.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: DAC3B74D070
+X-Rspamd-Queue-Id: 2A45C74CEE3
 
-On Mon, 13 Jul 2026 11:25:44 +0100,
-Sneh Mankad <sneh.mankad@oss.qualcomm.com> wrote:
-> 
-> The next wakeup timer value needs to be set in MPM timer as the arch timer
-> interrupt can not wakeup the SoC if after the deepest CPUidle states the
-> SoC also enters deepest low power state.
-> 
-> To wakeup the SoC in such scenarios the earliest wakeup time is set in MPM
-> timer and the Resource Power Manager (RPM processor) takes care of setting
-> the timer in HW.
-> 
-> Add MPM timer programming when CPU cluster enters power collapse.
-> 
-> Signed-off-by: Sneh Mankad <sneh.mankad@oss.qualcomm.com>
-> ---
->  drivers/irqchip/irq-qcom-mpm.c | 44 ++++++++++++++++++++++++++++++++++++++++++
->  1 file changed, 44 insertions(+)
-> 
-> diff --git a/drivers/irqchip/irq-qcom-mpm.c b/drivers/irqchip/irq-qcom-mpm.c
-> index 763eddee99dc4cdd5edab22ce54808528f9ef165..f43c4a1c35f78b6cdae194dc7ae88c5c307ada94 100644
-> --- a/drivers/irqchip/irq-qcom-mpm.c
-> +++ b/drivers/irqchip/irq-qcom-mpm.c
-> @@ -13,6 +13,7 @@
->  #include <linux/io.h>
->  #include <linux/irqchip.h>
->  #include <linux/irqdomain.h>
-> +#include <linux/ktime.h>
->  #include <linux/mailbox_client.h>
->  #include <linux/module.h>
->  #include <linux/of.h>
-> @@ -25,6 +26,8 @@
->  #include <linux/soc/qcom/irq.h>
->  #include <linux/spinlock.h>
->  
-> +#include <clocksource/arm_arch_timer.h>
-> +
->  /*
->   * This is the driver for Qualcomm MPM (MSM Power Manager) interrupt controller,
->   * which is commonly found on Qualcomm SoCs built on the RPM architecture.
-> @@ -77,6 +80,13 @@ enum qcom_mpm_reg {
->  	MPM_REG_STATUS,
->  };
->  
-> +#define USECS_TO_CYCLES(time_usecs)	xloops_to_cycles((time_usecs) * 0x10C7UL)
-> +
-> +static inline unsigned long xloops_to_cycles(u64 xloops)
-> +{
-> +	return (xloops * loops_per_jiffy * HZ) >> 32;
-> +}
-> +
+On Fri, 10 Jul 2026 14:35:10 +0100,
+Marek Vasut <marek.vasut@mailbox.org> wrote:
+>=20
+> On 7/10/26 10:30 AM, Marc Zyngier wrote:
+> > On Thu, 09 Jul 2026 21:10:03 +0100,
+> > Marek Vasut <marek.vasut+renesas@mailbox.org> wrote:
+> >>=20
+> >> Instead of pulling in the whole linux/irqchip/arm-gic-v3.h , copy the
+> >> one GITS_TRANSLATER register offset macro directly into the driver.
+> >> This repairs the ability to build the driver on non-ARM non-GIC targets
+> >> the way it was possible until now, which retains good build test cover=
+age.
+> >>=20
+> >> Reported-by: kernel test robot <lkp@intel.com>
+> >> Closes: https://lore.kernel.org/oe-kbuild-all/202607100310.iQw5m9Uo-lk=
+p@intel.com/
+> >> Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
+> >> ---
+> >> Cc: "Krzysztof Wilczy=C5=84ski" <kwilczynski@kernel.org>
+> >> Cc: Bjorn Helgaas <bhelgaas@google.com>
+> >> Cc: Catalin Marinas <catalin.marinas@arm.com>
+> >> Cc: Conor Dooley <conor+dt@kernel.org>
+> >> Cc: Geert Uytterhoeven <geert+renesas@glider.be>
+> >> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+> >> Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>
+> >> Cc: Manivannan Sadhasivam <mani@kernel.org>
+> >> Cc: Marc Zyngier <maz@kernel.org>
+> >> Cc: Rob Herring <robh@kernel.org>
+> >> Cc: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+> >> Cc: devicetree@vger.kernel.org
+> >> Cc: linux-arm-kernel@lists.infradead.org
+> >> Cc: linux-doc@vger.kernel.org
+> >> Cc: linux-kernel@vger.kernel.org
+> >> Cc: linux-pci@vger.kernel.org
+> >> Cc: linux-renesas-soc@vger.kernel.org
+> >> ---
+> >> Note: The alternative I could think of would be ifdeffery which
+> >>        is not nice and thwarts the build coverage, or limit the
+> >>        driver to ARM/ARM64 in Kconfig which also thwarts the build
+> >>        coverage. I could also split off the register macros in
+> >>        linux/irqchip/arm-gic-v3.h into some separate header
+> >>        linux/irqchip/arm-gic-v3-regs.h and include that which
+> >>        might be OKish and avoids duplication. Thoughts ?
+> >=20
+> > No, I'm not hacking something that is purely architecture specific for
+> > the purpose of a bizarre integration quirk that should be handled by
+> > the boot firmware, and not Linux.
+>=20
+> The PCIe controller is fully controlled by Linux.
 
-Do we really need arch-specific code to be literally copied from
-arm64's delay.c, without any comment or attempt at making it generic?
-
-Specially after having added the same stuff to rpmh-rsc.c 4 years ago?
-
-See a pattern here?
+And it shouldn't. Why can't your favourite boot-loader use it, like on
+any reasonable machine?
 
 	M.
 
--- 
+--=20
 Jazz isn't dead. It just smells funny.
 
