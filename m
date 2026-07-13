@@ -1,226 +1,242 @@
-Return-Path: <devicetree+bounces-325801-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-325713-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id cgDCJVx0VWp6ogAAu9opvQ
-	(envelope-from <devicetree+bounces-325801-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 01:27:24 +0200
+	id 7MuoLnUWVWpMjwAAu9opvQ
+	(envelope-from <devicetree+bounces-325713-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 18:46:45 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0199774FB39
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 01:27:24 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 59CE574DB9B
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 18:46:45 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=nabladev.com header.s=dkim header.b=gMJEvuUq;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-325801-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-325801-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=reject) header.from=nabladev.com;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=dlwg+Fqw;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-325713-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-325713-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=gmail.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id EDF893017FAD
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 23:27:22 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 34CA430644E9
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 16:44:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C4433D3D1D;
-	Mon, 13 Jul 2026 23:27:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE7BC43C054;
+	Mon, 13 Jul 2026 16:44:38 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx.nabladev.com (mx.nabladev.com [178.251.229.89])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 889CE396D2E
-	for <devicetree@vger.kernel.org>; Mon, 13 Jul 2026 23:27:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC21A43B3E6
+	for <devicetree@vger.kernel.org>; Mon, 13 Jul 2026 16:44:36 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783985242; cv=none; b=REH7onThelSIptDvSfylgt3CmuhvmxX1Y73mZNkRRv7QNK8MZKkvHLbq5Tgvkb5UYoXD4JqubW9H4wjlKulNLpKZLiJpJMla53jiXLzIBY5/lnwRPXF0cJQzqO6fLbh4T8yGElPci6XCiOP0QxN+n5SPdVBaI6APlZVKFJJHzkU=
+	t=1783961078; cv=none; b=qd3OHbJ5zVv7UxKqeJsSQFCmn8C1h/4czuzRIaDg2a8EeiFW6q59goG+Bqf8E5YOd+RijlmUiKRFRy+mLJKa8Oi7FQ5Y/mc3TN8o9yq6U3j6d5jmCXNlwcotAbvSIUhRXfC2PRpgsc/Cm7NLw3Xe8MK4ZSKVDWrILojsTCHvcQc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783985242; c=relaxed/simple;
-	bh=XJf98y7AoS4YfUWnQO9snJ/cXMlzoIoxg3AYArm9QYg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=kA0q65b1cvE0KwhzE10YUpm8PAusaA3EL5JOX+zNgxcXWg0a7ao7qIBJDYwRQaYf6Oz91QEqbYl2/XcFRS6gVhEBDb6oFW5lRNs70GsuIIWWtcXWcNDE+7KC2k6ZBqx0j5rJbImk1lfZHFAxpTsV3wvScB2S8dwuUC9IbA+iqjU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nabladev.com; spf=pass smtp.mailfrom=nabladev.com; dkim=pass (2048-bit key) header.d=nabladev.com header.i=@nabladev.com header.b=gMJEvuUq; arc=none smtp.client-ip=178.251.229.89
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id B96471199D6;
-	Tue, 14 Jul 2026 01:27:18 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nabladev.com;
-	s=dkim; t=1783985239;
-	h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:content-language:in-reply-to:references;
-	bh=o/GWt+QYwjps3nuPm/JnZPXVZxL4jie70yU+1vvQkXQ=;
-	b=gMJEvuUqg81bjNsTgnh035UVY7LVDJJ10izi42gcm5MqLgScHqnlrL94Sqsu7Dd/qlDrgG
-	BdFv2bv0ghsc9Vahy2lYASm/Q4TSVxDf2oGv9y+e8KUzif9cFxzJ9wgCtgKyUCY4wLz/f6
-	wkLg7/LeY3DQfXMwQDJFtnWR9yGSUbSoXgoak/QOl8pGe/p/aX/TzFn076rsXed4505q02
-	/9qRGm5iqObje5ilJCmnP/SpTw0rQeg2X6r6aUEJTfbvVuF38mIDeEWn04OkaSSY7pdi4P
-	sWARCur1GDh+AIFrl15OHEtM1yIGRjQguqJkqLHixaJcYNq6yZc9c66nWRcLoQ==
-Message-ID: <aa134d00-df3d-4f0a-a598-4aea512d3cd0@nabladev.com>
-Date: Mon, 13 Jul 2026 18:41:02 +0200
+	s=arc-20240116; t=1783961078; c=relaxed/simple;
+	bh=nNTqNq7xMs/jXDzPl/ePNEIhBvhz9TuNxBRMnOKKpbs=;
+	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZmMDYe7xNc7r4sPPdCcNrEcNcUdn6FzpCn6oj+n47gHEm6n/Jy7L6O6MmLrEEmEWgd82Kuetvg232kFdJKfugD9AkVmhYaqTyymt49qyHSaXIZo/bGnSgJGdUeByTM9sw8k+yXApuq6vMdjmiGPzCSQWSRQhQVlYib5H44rFIoo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dlwg+Fqw; arc=none smtp.client-ip=209.85.128.44
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-493c52cde9eso30252855e9.3
+        for <devicetree@vger.kernel.org>; Mon, 13 Jul 2026 09:44:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1783961075; x=1784565875; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:date:from:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=RjYd7MVan8krnGSSqxV4jQoaD7g5/4a0TcjKtRhjtfw=;
+        b=dlwg+FqwRh8SusCqwS5NGG9ZMqUONQ4E8LG72Ld/UwR73FTMPLsHYAD8GlQ327ZSwx
+         Gc2so+x1H/m62G4Mleryiaw2Kwo44o87e9PCTMkdDgd7BNL1d99q08OJAVr57gQUmtEp
+         R0xU72+kGS++sXve1n6fblxlEyOzdbAibCkFL05xIBk/JFETPEa4YXe7wfYjsGvDwgG/
+         zSTuJSVQralsKAUjxF4JXOx200H/0e1NNnbTdAfv2A6HJMie37IWpwQHOxpYL/nrNZwl
+         2XVHpBx3TIDmqODu3eu0tcKBm3BjgOFfQhIg3bssIa/b8UiqKga1tJ9HZqt7KQD5oKGf
+         MsCQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1783961075; x=1784565875;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:date:from:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=RjYd7MVan8krnGSSqxV4jQoaD7g5/4a0TcjKtRhjtfw=;
+        b=fE8zP9Pqk/KXo5NeFwzzCtWot18AJKDy48ZklX++IHdM5dReXkoPSn5fkyc52i43bY
+         /Sl7EGeGxg5nKI5FbVccg+AEuJmYofPrPKlvTUWF9e6lyD14sS9HLWr1YM1TZAgMVSgC
+         jZf3pNmWNP2aRI7gTGG7HLx+xuhTgCiwEBi2LSJlgiivu+pqmOQbtQMSFotzPnajxH2M
+         SurPB+Rus9NzcbPAb8bd9+s7YKROrBhHEZhKYHTDjwioJ787DhAxqCf33w+VU+jBLag7
+         9Lr3ECBo8L+mi+amokfUNbVBaqXhGjH38z2nTt1ECQ4sie+ehGNGMlMka5znqNu4CQcH
+         Zb6Q==
+X-Forwarded-Encrypted: i=1; AHgh+RpzMm2Dy96FXMO4w1kNRLzdnndYCo4NM4iWxoIsY88530pEbf5GhHvwHLDlXQpKnBWYoAsP6aL4FV6d@vger.kernel.org
+X-Gm-Message-State: AOJu0YxcYYRAXlOqaW709kop3lr/+0vsgBizmVQG7Iwc3INPfyVcielF
+	i5c0rUYNqMUtE4ePHT50cybKyoiviyQEayiL84HXCuh9tH6pXxMvBF+j
+X-Gm-Gg: AfdE7cmEBtcY1vzQNdnkCMgI9mgvd1FQ3pqXZHN9ytDQ5Mm6H09eMzlToV45BxFJqcg
+	yceNU6Wv+IAS/4+5qrXLH2aVJVVIospoc779EKiczSV5rmCD8gTb7aDCPPTvd//7c8ZfxtdaHXV
+	WoqHbNI45bbeJ137rWHL7MmFACZ7VqVhn+aZdqworgX9MuBeg4w+N3qEgDRvp3WKaWe7ljZfl7V
+	cXoxBTgGWJhR4QIjCAIaUx+etxrmLdMYbnC9eGPlFoHZexG8zu2/2VdrmxpD3gfIkceh/FgH+vJ
+	/OSYoawJsHQUCZL/912haBrgeh03d/JNAeDIbHsIMWaNcy6YWYcOVHD0Nps8Jz+VMXTynJd75W0
+	Wb5SmoRlEsl9tJPysk2ZZ5YqjOe5a09APXb8g+jpKvC03VtZg1rHeb3YDFWEZ1YJZuJ2HDFy2Fj
+	99i4BUfJewWumNVODA+Hd9outK85WwPeUV3m1ntwjd4WlKfkx+uJHGPtXh8d6TWBSp4EVhWzZWy
+	mt6qpSz1Fq9SSxY
+X-Received: by 2002:a05:600c:b99:b0:493:aaa2:f034 with SMTP id 5b1f17b1804b1-493f882ae23mr104948055e9.26.1783961075315;
+        Mon, 13 Jul 2026 09:44:35 -0700 (PDT)
+Received: from RDEALENC-L01.ad.analog.com (24.206.116.103.netskope-rdns.com. [24.206.116.103])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-49508727f7dsm8128065e9.4.2026.07.13.09.44.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 13 Jul 2026 09:44:34 -0700 (PDT)
+From: Rodrigo Alencar <455.rodrigo.alencar@gmail.com>
+X-Google-Original-From: Rodrigo Alencar <rodrigo.alencar@analog.com>
+Date: Mon, 13 Jul 2026 17:44:28 +0100
+To: David Lechner <dlechner@baylibre.com>, 
+	Michael Auchter <michael.auchter@ni.com>, linux@analog.com, linux-iio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org
+Cc: Michael Hennerich <Michael.Hennerich@analog.com>, 
+	Jonathan Cameron <jic23@kernel.org>, Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Kees Cook <kees@kernel.org>, 
+	"Gustavo A. R. Silva" <gustavoars@kernel.org>
+Subject: Re: [PATCH v7 4/7] iio: dac: ad5686: implement new sync() op for the
+ spi bus
+Message-ID: <satyxehagxb4zdqfmni7b57ipwyk6bmu5opkfquz2ie7ohne2s@jbobjkgdp2pk>
+References: <20260710-ad5686-new-features-v7-0-1bcc8c280e4d@analog.com>
+ <20260710-ad5686-new-features-v7-4-1bcc8c280e4d@analog.com>
+ <931fe63d-d200-4b79-9e17-fa48c8de7f29@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 6/6] arm64: dts: imx8mm: imx8mp: Add FIO1-Audio DTOs
- for Data Modul i.MX8M Mini and Plus eDM SBC
-To: Frank Li <Frank.li@oss.nxp.com>, sashiko-reviews@lists.linux.dev
-Cc: Frank.Li@kernel.org, imx@lists.linux.dev, robh@kernel.org,
- devicetree@vger.kernel.org, conor+dt@kernel.org
-References: <20260705200534.151803-1-marex@nabladev.com>
- <20260705200534.151803-6-marex@nabladev.com>
- <20260705202221.E99291F000E9@smtp.kernel.org> <alUJIlUUo98_x0Lm@SMW015318>
-Content-Language: en-US
-From: Marek Vasut <marex@nabladev.com>
-In-Reply-To: <alUJIlUUo98_x0Lm@SMW015318>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <931fe63d-d200-4b79-9e17-fa48c8de7f29@baylibre.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[nabladev.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[nabladev.com:s=dkim];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-325713-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-325801-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:Frank.li@oss.nxp.com,m:sashiko-reviews@lists.linux.dev,m:Frank.Li@kernel.org,m:imx@lists.linux.dev,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FORGED_SENDER(0.00)[marex@nabladev.com,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[455rodrigoalencar@gmail.com,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FORGED_RECIPIENTS(0.00)[m:dlechner@baylibre.com,m:michael.auchter@ni.com,m:linux@analog.com,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-hardening@vger.kernel.org,m:Michael.Hennerich@analog.com,m:jic23@kernel.org,m:andy@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:p.zabel@pengutronix.de,m:kees@kernel.org,m:gustavoars@kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	FORWARDED(0.00)[lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[marex@nabladev.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[nabladev.com:+];
-	RCPT_COUNT_SEVEN(0.00)[7];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[455rodrigoalencar@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	ALIAS_RESOLVED(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[nabladev.com:from_mime,nabladev.com:mid,nabladev.com:email,nabladev.com:dkim,vger.kernel.org:from_smtp,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[analog.com:email,vger.kernel.org:from_smtp,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,jbobjkgdp2pk:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 0199774FB39
+X-Rspamd-Queue-Id: 59CE574DB9B
 
-On 7/13/26 5:49 PM, Frank Li wrote:
-> On Sun, Jul 05, 2026 at 08:22:21PM +0000, sashiko-bot@kernel.org wrote:
->> Thank you for your contribution! Sashiko AI review found 4 potential issue(s) to consider:
->> - [High] The SAI2 interface is incorrectly configured with `fsl,sai-asynchronous` and an invalid `fsl,sai-bit-clock-swap` property, leading to audio capture and playback failure.
->> - [Medium] The overlays instantiate new `clock-controller` nodes at the exact same unit addresses as the existing `sai5` nodes, causing DTC warnings and resource conflicts.
->> - [Medium] Missing interrupt override for the PCA9554 GPIO expander in the i.MX8MP overlay causes the device to listen on a dead interrupt line.
->> - [Medium] The commit message claims features that are not implemented in the patch.
->> --
->>
->> commit 1e6ee57031100e82b436dac299b0eed194860d5b
->> Author: Marek Vasut <marex@nabladev.com>
->>
->> arm64: dts: imx8mm: imx8mp: Add FIO1-Audio DTOs for Data Modul i.MX8M Mini and Plus eDM SBC
->>
->> This commit adds device tree overlays for the eDM-MOD-iMX8Mm-FIO1-Audio
->> feature connector expansion module. It provides support for the SGTL5000
->> codec, CAN, I2C, SPI, and other peripherals on the i.MX8M Mini and Plus
->> boards.
->>
->>> Add DT overlay for feature connector expansion module eDM-MOD-iMX8Mm-FIO1-Audio
->>> providing additional UARTs, CAN, PWM Beeper, I2C, SPI, GPIO breakout and
->>> SGTL5000 codec. This adapter can be optionally populated onto the eDM SBC.
->>
->> [Severity: Medium]
->> Is the commit message accurate regarding the features provided?
->>
->> The FIO1-Audio overlay only seems to enable a single UART (uart2, while uart4
->> is disabled) and doesn't contain a pwm-beeper node or PWM pin configuration.
->>
->> Could the commit message be updated to reflect only the features actually
->> implemented in this variant?
->>
->>> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-data-modul-edm-sbc-overlay-edm-mod-imx8mm-fio1-audio.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-data-modul-edm-sbc-overlay-edm-mod-imx8mm-fio1-audio.dtsi
->>> --- /dev/null
->>> +++ b/arch/arm64/boot/dts/freescale/imx8mm-data-modul-edm-sbc-overlay-edm-mod-imx8mm-fio1-audio.dtsi
->> [ ... ]
->>> +	gpio_feature: io-expander@20 {
->>> +		compatible = "nxp,pca9554";
->>> +		reg = <0x20>;
->>> +		#gpio-cells = <2>;
->>> +		gpio-controller;
->>> +		#interrupt-cells = <2>;
->>> +		interrupt-controller;
->>> +		interrupt-parent = <&gpio5>;
->>> +		interrupts = <4 IRQ_TYPE_LEVEL_LOW>;
->>
->> [Severity: Medium]
->> Since this file is shared between i.MX8MM and i.MX8MP overlays, does the
->> interrupt configuration need to be overridden for i.MX8MP?
->>
->> On the i.MX8MP baseboard, this feature connector signal seems to be physically
->> routed to GPIO1_IO08 instead of GPIO5_IO04. The i.MX8MP overlay doesn't
->> currently override these properties for gpio_feature, which might cause the
->> expander to listen on a dead interrupt line.
+On 11/07/26 10:07, David Lechner wrote:
+> On 7/10/26 6:20 AM, Rodrigo Alencar via B4 Relay wrote:
+> > From: Rodrigo Alencar <rodrigo.alencar@analog.com>
+> > 
+> > Use of local SPI bus data to manage a collection of SPI transfers and
+> > flush them to the SPI platform driver with the sync() operation. This
+> > allows for faster handling of multiple channel DAC writes, avoiding kernel
+> > overhead per spi_sync() call, which will be helpful when enabling
+> > triggered buffer support.
+
+...
+
+> >  static int ad5686_spi_write(struct ad5686_state *st,
+> >  			    u8 cmd, u8 addr, u16 val)
+> >  {
+> > -	struct spi_device *spi = to_spi_device(st->dev);
+> > -	u8 tx_len, *buf;
+> > +	struct ad5686_spi_data *bus_data = st->bus_data;
+> > +	struct spi_transfer *xfer;
+> >  
 > 
-> please check this
-
-Its GPIO5_IO04 on both MX8MM and MX8MP.
-
->> [ ... ]
->>> +&sai2 {
->>> +	pinctrl-names = "default";
->>> +	pinctrl-0 = <&pinctrl_sai2>;
->>> +	assigned-clock-rates = <24576000>;
->>> +	fsl,sai-asynchronous;
->>
->> [Severity: High]
->> Does disabling internal synchronization between the TX and RX halves of the
->> SAI block break audio?
->>
->> The SGTL5000 codec only has a single set of I2S clocks, and the pinmux
->> settings only route one clock pair. This leaves the other half of the SAI
->> physically disconnected from any clock source.
->>
->> [ ... ]
->>> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-data-modul-edm-sbc-overlay-edm-mod-imx8mm-fio1-audio.dtso b/arch/arm64/boot/dts/freescale/imx8mm-data-modul-edm-sbc-overlay-edm-mod-imx8mm-fio1-audio.dtso
->> [ ... ]
->>> +&sai2 {
->>> +	assigned-clocks = <&clk IMX8MM_CLK_SAI2>;
->>> +	assigned-clock-parents = <&clk IMX8MM_AUDIO_PLL1_OUT>;
->>> +	fsl,sai-bit-clock-swap;
->>
->> [Severity: High]
->> Is fsl,sai-bit-clock-swap intended to fix the asynchronous clocking issue?
->>
->> This property is a downstream vendor leftover that does not exist in
->> mainline device tree bindings and is ignored by the upstream fsl_sai.c
->> driver. Should fsl,sai-asynchronous be removed from the shared .dtsi
->> instead so the SAI can operate in synchronous mode?
+> This could use some comments similar to the explanation in the
+> commit message that this function is just queuing writes to
+> be sent over the bus when sync() is called.
 > 
-> Please check this ?
-
-dc06cf4268a4 ("ASoC: fsl_sai: Add RX/TX BCLK swap support") implements 
-"fsl,sai-bit-clock-swap" so this is AI being confused.
-
->> [ ... ]
->>> +&spba2 {
->>> +	#address-cells = <1>;
->>> +	#size-cells = <1>;
->>> +
->>> +	sai5clk: clock-controller@30050000 {	/* SAI5 */
->>
->> [Severity: Medium]
->> Does declaring a new node here cause a duplicate unit-address warning and
->> potential resource conflicts?
->>
->> The base SoC .dtsi files already define sai5: sai@30050000 at this exact
->> address. Because the node names differ (clock-controller vs sai), DTC will
->> create two distinct sibling nodes rather than merging them.
->>
->> If the baseboard enables the existing &sai5 node, both drivers could attempt
->> to map the identical physical MMIO region using devm_platform_ioremap_resource,
->> causing a -EBUSY error. Should this overlay reference the existing &sai5 node
->> by label instead?
+> > +	if (bus_data->size >= bus_data->capacity)
+> > +		return -E2BIG;
+> > +
+> > +	if (bus_data->size)
+> > +		bus_data->xfers[bus_data->size - 1].cs_change = 1;
+> > +	else
+> > +		spi_message_init(&bus_data->msg);
+> > +
+> > +	xfer = &bus_data->xfers[bus_data->size];
 > 
-> Make sense, please check it.
-No, it won't, the other node is sai@... so this is a non-issue too.
+> Why not a local variable for st->data[bus_data->size] too so we don't
+> have to write it so many times?
+
+The union is anonymous.. is it fine to use:
+
+	typeof(st->data[0]) *buf;
+	...
+	buf = &st->data[bus_data->size];
+
+> 
+> >  	switch (st->chip_info->regmap_type) {
+> >  	case AD5310_REGMAP:
+> > -		st->data[0].d16 = cpu_to_be16(FIELD_PREP(AD5310_CMD_MSK, cmd) |
+> > -					      FIELD_PREP(AD5310_DATA_MSK, val));
+> > -		buf = &st->data[0].d8[0];
+> > -		tx_len = 2;
+> > +		st->data[bus_data->size].d16 =
+> > +			cpu_to_be16(FIELD_PREP(AD5310_CMD_MSK, cmd) |
+> > +				    FIELD_PREP(AD5310_DATA_MSK, val));
+> > +		*xfer = (struct spi_transfer) {
+> > +			.tx_buf = &st->data[bus_data->size].d16,
+> > +			.len = sizeof(st->data[bus_data->size].d16),
+> > +		};
+> >  		break;
+> >  	case AD5683_REGMAP:
+> > -		st->data[0].d32 = cpu_to_be32(FIELD_PREP(AD5686_CMD_MSK, cmd) |
+> > -					      FIELD_PREP(AD5683_DATA_MSK, val));
+> > -		buf = &st->data[0].d8[1];
+> > -		tx_len = 3;
+> > +		st->data[bus_data->size].d32 =
+> > +			cpu_to_be32(FIELD_PREP(AD5686_CMD_MSK, cmd) |
+> > +				    FIELD_PREP(AD5683_DATA_MSK, val));
+> > +		*xfer = (struct spi_transfer) {
+> > +			.tx_buf = &st->data[bus_data->size].d8[1],
+> > +			.len = sizeof(st->data[bus_data->size].d8) - 1,
+> > +		};
+> >  		break;
+> >  	case AD5686_REGMAP:
+> > -		st->data[0].d32 = cpu_to_be32(FIELD_PREP(AD5686_CMD_MSK, cmd) |
+> > -					      FIELD_PREP(AD5686_ADDR_MSK, addr) |
+> > -					      FIELD_PREP(AD5686_DATA_MSK, val));
+> > -		buf = &st->data[0].d8[1];
+> > -		tx_len = 3;
+> > +		st->data[bus_data->size].d32 =
+> > +			cpu_to_be32(FIELD_PREP(AD5686_CMD_MSK, cmd) |
+> > +				    FIELD_PREP(AD5686_ADDR_MSK, addr) |
+> > +				    FIELD_PREP(AD5686_DATA_MSK, val));
+> > +		*xfer = (struct spi_transfer) {
+> > +			.tx_buf = &st->data[bus_data->size].d8[1],
+> > +			.len = sizeof(st->data[bus_data->size].d8) - 1,
+> > +		};
+> >  		break;
+> >  	default:
+> >  		return -EINVAL;
+> >  	}
+
+...
+
+-- 
+Kind regards,
+
+Rodrigo Alencar
 
