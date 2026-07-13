@@ -1,55 +1,56 @@
-Return-Path: <devicetree+bounces-325355-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-325356-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id Eyk8H9q2VGqypwMAu9opvQ
-	(envelope-from <devicetree+bounces-325355-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 11:58:50 +0200
+	id VFShKt+2VGq4pwMAu9opvQ
+	(envelope-from <devicetree+bounces-325356-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 11:58:55 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E487F7498AC
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 11:58:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5DA9F7498BD
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 11:58:55 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=collabora.com header.s=mail header.b=S48uLbyZ;
+	dkim=pass header.d=collabora.com header.s=mail header.b=Gjw7Vlyl;
 	dmarc=pass (policy=none) header.from=collabora.com;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-325355-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-325355-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-325356-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-325356-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id F13AC301A7F8
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 09:58:48 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id DE337302ADBF
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 09:58:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34FEC3E3DBD;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE3AA3E4504;
 	Mon, 13 Jul 2026 09:58:46 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A90EC3E274B;
-	Mon, 13 Jul 2026 09:58:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D8E13E2AB1;
+	Mon, 13 Jul 2026 09:58:45 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783936726; cv=none; b=uOu57WvlrWJh8rjKfkP1GukvKuMQ30/jtQbWBqobZ/JjF+8IGIK+qrbzgKXO73JUmVIbBSTRXtzGzILyBabJDKezvmX/MCzNoXytxYPWufZTv2LICTLFyE7n3RAVpEaGdAOiWCslPcI/FLjKmKwurJJj4rfm1yXtIxxqVGzc3bc=
+	t=1783936726; cv=none; b=r6LfNKQrncKVrX1Lg3te3mLbd8g8hPiornFstr1SkRC9+u1xhgmANPJ4wP6xTMrFkzqSLBXmkgum9Ie4cbf/uQG2mGEDDNKNXAbKpv5lfF35scdP3QyaEeFt9jEG9yHnmyMOdvef3nwoeSN/hwtTmrEmgY7fIAWJm2bOm89HyZw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1783936726; c=relaxed/simple;
-	bh=L3vveFHarcM3rTKYGNiyk7oFljFUe8aHn+MiLlT0Lmo=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=LEb11zCbpJTL+ZK77pQ6QmI+JFo2PzXx8CBHErDJiGxIdi/uVRzWKFuH7/C6sK7Ptz1LyRSybETwSSQc0jN8AaTlPdoX+p+QA3OWbfdlSrfNsjCG+NfnW11Rb99a1+cqVlxHG3168HhZXfCzWgtEdpa0w9SmvjDJRpe1e6hGkME=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=S48uLbyZ; arc=none smtp.client-ip=148.251.105.195
+	bh=CRTgzEIiCGF3Q0P2KDt3LTOIuTWsDk2Q75L0QVm3KT8=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=AuXuC2puSuTBmx1Ueu3FVNhCt97Y9efz68iFpgYAseVwBe8PEiz1E9j/Xh9An5ZsY6XNeb89DkxeRSwb9abtaDoAX+LDJROx2pLJqpTsQyCsAh+x5ZCfYZli/Qzd3sKVb0ZIoTq9ih2vBWt1N7cLtfa1sS0v/TBH5SI/AK6i2CI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=Gjw7Vlyl; arc=none smtp.client-ip=148.251.105.195
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1783936722;
-	bh=L3vveFHarcM3rTKYGNiyk7oFljFUe8aHn+MiLlT0Lmo=;
-	h=From:To:Cc:Subject:Date:From;
-	b=S48uLbyZxCPaozPuYjE0+A1NfJSeB0WLmCZ9iJz8C3D3lgiGzr7Cn0ZKTkmucMhcc
-	 ih1OMnv3ufo3HUwYFy6EoRdWZ1iFPwyCVL/uiaf2OKgBtdU7DZOYtt9i3UUUB37AMu
-	 uk05NwFUyiopBcQEa4wtk6chCfIn1773Nupkq/DtH28OMCyNffdCSuJ6JnRnwrcv81
-	 TMiLLkzwkxUPbFVGg6yyxkPRdfnNo1Dnq+4gKA9j786FPzXSsNy3nXpAp7Egp6rYsa
-	 Clkj4SI3c+ACh2lbWGvyk1oB5/rATVQvHuqgpP/ILj2TFda/powNz6r5qrIGdYvHV+
-	 S0Mq4tZoYETsw==
+	s=mail; t=1783936723;
+	bh=CRTgzEIiCGF3Q0P2KDt3LTOIuTWsDk2Q75L0QVm3KT8=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=Gjw7Vlylh/1msVV5jtcTYVQltqxSzGcz+bhh/n+1d8Mh87gxC0HheHfTdawZ7K5iz
+	 Ig/eFGtg0mP+H7CFmL9f4pKhcW//mIM5RD+lAWo1LSX80PVzlvBbZKvPSOz2lBuUna
+	 yeKnC8kTZSWFm6dIDSmbf+V7qTdfiJVr2v5kRFPyD92V1O49PjyBJQVwAJXDXV+7qJ
+	 vRdFOV+FuAES3oKByXxp/QnInuRSNI775joE1cNvkm9k/rUzqxcH2kMHeFLYAS3ltS
+	 BU3LIaf77eM8RHTHwtW1asPAtX7bzq3SsRkc3ZYvRpaCtElnR+ISljkIuDLrNgX2T1
+	 613MxHExsG4kQ==
 Received: from IcarusMOD.eternityproject.eu (unknown [100.64.1.21])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
 	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 18C2317E01AC;
-	Mon, 13 Jul 2026 11:58:42 +0200 (CEST)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 081ED17E03CE;
+	Mon, 13 Jul 2026 11:58:43 +0200 (CEST)
 From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 To: chunkuang.hu@kernel.org
 Cc: p.zabel@pengutronix.de,
@@ -72,10 +73,12 @@ Cc: p.zabel@pengutronix.de,
 	kernel@collabora.com,
 	justin.yeh@mediatek.com,
 	jason-jh.lin@mediatek.com
-Subject: [PATCH v2 00/10] drm/mediatek: Add DSC, WDMA, MT8189/96 DSI support
-Date: Mon, 13 Jul 2026 11:58:27 +0200
-Message-ID: <20260713095837.16590-1-angelogioacchino.delregno@collabora.com>
+Subject: [PATCH v2 01/10] dt-bindings: display: mediatek: dsc: Add MT8196 compatible
+Date: Mon, 13 Jul 2026 11:58:28 +0200
+Message-ID: <20260713095837.16590-2-angelogioacchino.delregno@collabora.com>
 X-Mailer: git-send-email 2.54.0
+In-Reply-To: <20260713095837.16590-1-angelogioacchino.delregno@collabora.com>
+References: <20260713095837.16590-1-angelogioacchino.delregno@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -98,7 +101,7 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	FORWARDED(0.00)[lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FREEMAIL_CC(0.00)[pengutronix.de,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,collabora.com,mediatek.com,lists.freedesktop.org,lists.infradead.org,vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-325355-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-325356-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_SENDER(0.00)[angelogioacchino.delregno@collabora.com,devicetree@vger.kernel.org];
@@ -117,50 +120,36 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	ALIAS_RESOLVED(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,collabora.com:from_mime,collabora.com:dkim,collabora.com:mid]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,collabora.com:from_mime,collabora.com:email,collabora.com:mid,collabora.com:dkim]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: E487F7498AC
+X-Rspamd-Queue-Id: 5DA9F7498BD
 
-Changes in v2:
- - Rebased on next-20260706
+Add compatible for the Display Stream Compression (DSC) IP found
+in the display controller of the MT8196 SoC.
 
-This series adds support for:
- - Display Stream Compression (DSC) for DSI and DisplayPort for both
-   legacy (8188/92/95 and others) and for Kompanio Ultra MT8196 SoCs
- - Write DMA (WDMA) Engine (for legacy only at this time) as a step
-   to enable Writeback support (coming later with a restructuring of
-   the entire mediatek-drm driver)
- - Newer MIPI DSI IP revisions, found in MT8189 and MT8196 SoCs
+This IP is compatible with the one found in MT8195.
 
-AngeloGioacchino Del Regno (10):
-  dt-bindings: display: mediatek: dsc: Add MT8196 compatible
-  drm/mediatek: Implement Display Stream Compression support
-  dt-bindings: display: mediatek: dsi: Document MT8189 and MT8196
-  drm/mediatek: mtk_dsi: Enable interrupt at component bind time
-  drm/mediatek: mtk_dsi: Transfer register offsets to per-SoC const
-  drm/mediatek: mtk_dsi: Add support for MT8189
-  drm/mediatek: mtk_dsi: Add support for MT8196
-  drm/mediatek: mtk_dsi: Enable PM Runtime on probe
-  dt-bindings: display: mediatek: wdma: Add compatibles for more SoCs
-  drm/mediatek: Add Write DMA (WDMA) Engine for Writeback support
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
+Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+---
+ .../devicetree/bindings/display/mediatek/mediatek,dsc.yaml    | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
- .../display/mediatek/mediatek,dsc.yaml        |   4 +-
- .../display/mediatek/mediatek,dsi.yaml        |   2 +
- .../display/mediatek/mediatek,wdma.yaml       |   5 +
- drivers/gpu/drm/mediatek/Makefile             |   2 +
- drivers/gpu/drm/mediatek/mtk_crtc.c           |  21 +
- drivers/gpu/drm/mediatek/mtk_ddp_comp.c       |  64 +-
- drivers/gpu/drm/mediatek/mtk_ddp_comp.h       |   9 +
- drivers/gpu/drm/mediatek/mtk_disp_drv.h       |  29 +
- drivers/gpu/drm/mediatek/mtk_disp_dsc.c       | 435 +++++++++++
- drivers/gpu/drm/mediatek/mtk_disp_wdma.c      | 611 +++++++++++++++
- drivers/gpu/drm/mediatek/mtk_drm_drv.c        |   8 +
- drivers/gpu/drm/mediatek/mtk_drm_drv.h        |   2 +
- drivers/gpu/drm/mediatek/mtk_dsi.c            | 733 ++++++++++++++----
- 13 files changed, 1741 insertions(+), 184 deletions(-)
- create mode 100644 drivers/gpu/drm/mediatek/mtk_disp_dsc.c
- create mode 100644 drivers/gpu/drm/mediatek/mtk_disp_wdma.c
-
+diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,dsc.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,dsc.yaml
+index a5b88eb97e3b..c8b3e86943e4 100644
+--- a/Documentation/devicetree/bindings/display/mediatek/mediatek,dsc.yaml
++++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,dsc.yaml
+@@ -23,7 +23,9 @@ properties:
+       - enum:
+           - mediatek,mt8195-disp-dsc
+       - items:
+-          - const: mediatek,mt8188-disp-dsc
++          - enum:
++              - mediatek,mt8188-disp-dsc
++              - mediatek,mt8196-disp-dsc
+           - const: mediatek,mt8195-disp-dsc
+ 
+   reg:
 -- 
 2.54.0
 
