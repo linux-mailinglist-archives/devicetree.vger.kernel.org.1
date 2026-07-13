@@ -1,196 +1,317 @@
-Return-Path: <devicetree+bounces-325684-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-325686-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id OKADCbgMVWqTjQAAu9opvQ
-	(envelope-from <devicetree+bounces-325684-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 18:05:12 +0200
+	id KJP8C1MNVWqvjQAAu9opvQ
+	(envelope-from <devicetree+bounces-325686-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 18:07:47 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id CEFA174D678
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 18:05:11 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B21974D6C3
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 18:07:46 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=none;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-325684-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-325684-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=none;
+	dkim=pass header.d=suse.de header.s=susede2_rsa header.b=kMVA4bcU;
+	dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=dcZw7hjA;
+	dkim=pass header.d=suse.de header.s=susede2_rsa header.b=FaH+x4J9;
+	dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b="1sRd/hFC";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-325686-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-325686-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=suse.de;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id B2D36301D95A
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 16:00:52 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 396953031C0F
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 16:02:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62B0E283C83;
-	Mon, 13 Jul 2026 16:00:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9620F3090C2;
+	Mon, 13 Jul 2026 16:02:38 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f169.google.com (mail-vk1-f169.google.com [209.85.221.169])
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07382282F2A
-	for <devicetree@vger.kernel.org>; Mon, 13 Jul 2026 16:00:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF2CD2848A7
+	for <devicetree@vger.kernel.org>; Mon, 13 Jul 2026 16:02:36 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783958452; cv=none; b=hMcNP1mNQStnkyHbhF6zWX/2uL+FiszzUwcf3rUndMA/pVT/kf4QhCns5auqDFIIYt3kSBgxTGrw/Uw4d+rpYPp3MFRwoRNKLD8eAbQNW+Qi1AzOI4vRdAxl0p5W3tve/eks54QU5QKC5R0HlkbUHAHlXO+oq824op2nTo+QzOg=
+	t=1783958558; cv=none; b=c8E2v62uF3B7QrgUKIfjlSvfUKgPWOn7CYOD4BlNmZPSyeLlBqPIS9iJ+wGCoTuSX/sfhdjv2q7iePXOzLzGmAaM9iiha5gibnhux+jV4wOu06GLe5WNzbHHJAXSO2bg/kDxj8DEFnsm04lmvGwOf1gFoS8qjEb/Wz/n/aYAhGM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783958452; c=relaxed/simple;
-	bh=SsOh1enJoELJHzfIclkKXerzvf46Ll/w8xxgwM0UOnc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=REbCmmHHfkkLCbgN2SXsAQHYDMRH5BMHHZ2rrEp2fiRfZHjbMmIleFppaXULGF+cx8YtNuIF+j56aX8aPyEhhJkSgkjSW+ko9aoCF8hQFPRKJf6Af5UTgRfVpIuEGbt7pe3YeSDOGIcW3IHkY+N38/jbnMOVVElxjzeWzSoYKtk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.169
-Received: by mail-vk1-f169.google.com with SMTP id 71dfb90a1353d-5bfdd59df9bso13345e0c.1
-        for <devicetree@vger.kernel.org>; Mon, 13 Jul 2026 09:00:50 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783958450; x=1784563250;
-        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
-         :references:mime-version:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to:content-type;
-        bh=674QbDTihSeDJzkwbUpD4t11m/0pIrH8HDq4q33BUPk=;
-        b=o6dnI1diC/iwnJEd2SFw1G7VmyGET+ia/6dLWXE22lBXuWfO+g33n837AjV0jj+x1S
-         3zhLn/hXsrOy7YP6qfNC/6Khvjxigzpu3WNhW44eaSSK65lO6oROfdVkA9E2V0V1jVHY
-         RfII+7StsXkHF/LLNt6IsvKs2Xz1IvATv/kN+fj3Zkh5+7M6hl3w7nePOLS4+NjgL5xu
-         UWuEkprD5n9TNFUtv2goKqWcFcP8ht00mnNtAeWoegRHqEPHdJLeJXY9lOEquKlNcRgh
-         nX9wAx6LMYtGV9YYuwisTgsDWUmo3lWoi/cyGQQvg6fvNqW5XWL1rBmBqg24ZGQfwjAz
-         zgeA==
-X-Forwarded-Encrypted: i=1; AHgh+RpnesY1kcEk2+AcGP0NSDZaGt5h0H+HLp323NjTIRicgNavFp9VuS0pZG47DUwRBTeXJMHpj3djt7jB@vger.kernel.org
-X-Gm-Message-State: AOJu0YxIa10CstPOla7QsQFJtn7YReV+WzdEJ4Q+223zKXVKiSv2HAXS
-	gMMFbatj/B2lHm3GiRHCFXrVBFMIpyOQIpZjHtrPsVDduXqIZSKtHeGTe46RRSymgrY=
-X-Gm-Gg: AfdE7ckNciLm4LJ3ts5IgkP7U6YLH+ojHXkX2ERQwup3wXL8HWhFTXph1MwSFWDridB
-	2qostLrwSqQyendLSyYMZgZFXvvoKEGhVmx9dYmwUKghMmna5DxCvDtJOy4XQkiSJDfOPd5DH0N
-	Opocsn1bUCbLmG0LTpXNWAV6HLt2zgK2yMcjx61fQgYBoieWHmN19uUOy4jyGlTer9jgM0ejNwz
-	V6iZWtx9HHO4EW78dzoUwzgVfrUvLba2FBM6TYWPIdSpDUzYCh0bRJrskFe0MkTbCm910fcMRJo
-	7J1eNtHjq2gASMoFIUWNFjnvQ6lvdFK76bqQCo9n1YAU42j8pmBsjKcsdsjiWZykSXZ7bMA1tRm
-	gGkgl/3gnhfdR1Qryu5a3v2d2QV6W7U7pywDd4xIiVkZQPXpE+/GXNTksk5GK90iLzcwf9Lxze/
-	WdkybpJCFiLtAWvdsYrsEo9I5TMvy2RO/yVJu/fPl8iy13FfY5eX1pTA==
-X-Received: by 2002:a05:6123:5c2:20b0:5bb:e5dd:d93d with SMTP id 71dfb90a1353d-5bfa42f0ae1mr5536508e0c.0.1783958449852;
-        Mon, 13 Jul 2026 09:00:49 -0700 (PDT)
-Received: from mail-vk1-f171.google.com (mail-vk1-f171.google.com. [209.85.221.171])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-5bf6f68d099sm10009517e0c.8.2026.07.13.09.00.47
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 13 Jul 2026 09:00:48 -0700 (PDT)
-Received: by mail-vk1-f171.google.com with SMTP id 71dfb90a1353d-5bfbbe5220dso12814e0c.1
-        for <devicetree@vger.kernel.org>; Mon, 13 Jul 2026 09:00:47 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AHgh+RphHNMutUVeuxLbniSIPzhqaSz+beBSPjMNpRkv4evwjPYMHacBBlSjFZajqam4TmtBwvHO8TX+qOBZ@vger.kernel.org
-X-Received: by 2002:a05:6122:6310:b0:5bd:a2dd:60ee with SMTP id
- 71dfb90a1353d-5bfa470c003mr6470720e0c.3.1783958447155; Mon, 13 Jul 2026
- 09:00:47 -0700 (PDT)
+	s=arc-20240116; t=1783958558; c=relaxed/simple;
+	bh=ClIEoMdepOT7JMzzsUOaM8m9cJgQZ4Pzk4xj2WOGatc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=jLDsFaxc2UsH7XgXIZs+IYJnmpkAHmFTGRVCp+qWeN3rsfjTVTcuOfaiQw9mO0bZQRAQsi9ai8q8MQjNfbB+FKfQ4nVlXD26KUTEK/zpWL4a7EjymnkGPrijc/MYEuUHSwasmwLxe5GmhqSYEbml1ec27btECu/i9xzztkkGLUk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de; spf=pass smtp.mailfrom=suse.de; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=kMVA4bcU; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=dcZw7hjA; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=FaH+x4J9; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=1sRd/hFC; arc=none smtp.client-ip=195.135.223.131
+Received: from kunlun.suse.cz (unknown [IPv6:2a07:de40:b306:2000::2])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by smtp-out2.suse.de (Postfix) with ESMTPS id 910343DFC;
+	Mon, 13 Jul 2026 16:02:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+	t=1783958555; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=MGgu+CaOtcKoy1gxSjcO4Zf6uMbnGEq/XPb9LJCgoJk=;
+	b=kMVA4bcUNX22GtjClknA4KZ3fswlnAFGsZYKs0uwwH1VrgIL2+ORMYrArV9ujyIHjLC14k
+	SGzvcu7HbBhHWN3bF1cRKzrIUtBwRshU0nLnAUSCR4N93D05xfgHrEr3NmSSTo6/qlTgxx
+	vtdSZBsuWczRq9NBJphkoevwqZ5skDk=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+	s=susede2_ed25519; t=1783958555;
+	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=MGgu+CaOtcKoy1gxSjcO4Zf6uMbnGEq/XPb9LJCgoJk=;
+	b=dcZw7hjAGevDvneRyQ1wY82SJEjy1wW1W8fPidRDgniuImvtEZ/Wrgnx6psFw+vUq4sEPB
+	WZrd8C20us+TxLBA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+	t=1783958553; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=MGgu+CaOtcKoy1gxSjcO4Zf6uMbnGEq/XPb9LJCgoJk=;
+	b=FaH+x4J9MKhf1OgVVyTDE0Yl+c5P1Q7hpBjJ7kAFs0XsGN2gTO5a9BjxDXnL3r/gA5NsRj
+	oCLkzRFVhAk5DNDGmMYRazGe7bYWoTpftPK1DWs+1hxSs7mN9y0usho/1Xf2Xuenoev8yW
+	CaWVqK+NqdKRwSW1LUsivR1ZB5uBPgI=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+	s=susede2_ed25519; t=1783958553;
+	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=MGgu+CaOtcKoy1gxSjcO4Zf6uMbnGEq/XPb9LJCgoJk=;
+	b=1sRd/hFCLT/gl1Z2ed/ali1OABoveak0agl2hPKbpsb6FYMjd5wsFLj8zcpuLkulfyZgfs
+	97P2c2Q7xYgWMOCA==
+Date: Mon, 13 Jul 2026 18:02:32 +0200
+From: Michal =?iso-8859-1?Q?Such=E1nek?= <msuchanek@suse.de>
+To: Andre Przywara <andre.przywara@arm.com>
+Cc: Mark Rutland <mark.rutland@arm.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Sudeep Holla <sudeep.holla@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, vsethi@nvidia.com,
+	Salman Nabi <salman.nabi@arm.com>, Rob Herring <robh@kernel.org>,
+	linux-kernel@vger.kernel.org, Varun Wadekar <vwadekar@nvidia.com>,
+	Trilok Soni <trilokkumar.soni@oss.qualcomm.com>,
+	devicetree@vger.kernel.org, Nirmoy Das <nirmoyd@nvidia.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v3 0/8] Arm Live Firmware Activation (LFA) support
+Message-ID: <alUMGCJzVG6U3Ggm@kunlun.suse.cz>
+References: <20260706134455.132091-1-andre.przywara@arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260702123112.161160-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20260702123112.161160-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 13 Jul 2026 18:00:36 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdUhiBAcJ6P7j0ZxL+0AbVqz88PMo7YX9UiYOK8jM61D1Q@mail.gmail.com>
-X-Gm-Features: AUfX_myKEIDnT9gmvoSHxK3o8Be_bh5PlIka-qGq00orZWkHqkcXT9vOA0tXJpw
-Message-ID: <CAMuHMdUhiBAcJ6P7j0ZxL+0AbVqz88PMo7YX9UiYOK8jM61D1Q@mail.gmail.com>
-Subject: Re: [PATCH RFC v2 0/9] Add System Controller support for RZ/T2H and
- RZ/N2H SoCs
-To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Brian Masney <bmasney@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck <linux@roeck-us.net>, 
-	Magnus Damm <magnus.damm@gmail.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-watchdog@vger.kernel.org, 
-	Prabhakar <prabhakar.csengg+renesas@gmail.com>, Biju Das <biju.das.jz@bp.renesas.com>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260706134455.132091-1-andre.przywara@arm.com>
+X-Spam-Flag: NO
+X-Spam-Level: ***
+X-Spamd-Bar: +++
+X-Spam-Score: 3.99
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.04 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	DMARC_POLICY_ALLOW(-0.50)[suse.de,none];
+	R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:andre.przywara@arm.com,m:mark.rutland@arm.com,m:lpieralisi@kernel.org,m:sudeep.holla@kernel.org,m:conor+dt@kernel.org,m:vsethi@nvidia.com,m:salman.nabi@arm.com,m:robh@kernel.org,m:linux-kernel@vger.kernel.org,m:vwadekar@nvidia.com,m:trilokkumar.soni@oss.qualcomm.com,m:devicetree@vger.kernel.org,m:nirmoyd@nvidia.com,m:krzk+dt@kernel.org,m:linux-arm-kernel@lists.infradead.org,m:conor@kernel.org,m:krzk@kernel.org,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-325686-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[linux-m68k.org];
-	TAGGED_FROM(0.00)[bounces-325684-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:prabhakar.csengg@gmail.com,m:mturquette@baylibre.com,m:sboyd@kernel.org,m:bmasney@redhat.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:wim@linux-watchdog.org,m:linux@roeck-us.net,m:magnus.damm@gmail.com,m:p.zabel@pengutronix.de,m:linux-renesas-soc@vger.kernel.org,m:linux-clk@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-watchdog@vger.kernel.org,m:prabhakar.csengg+renesas@gmail.com,m:biju.das.jz@bp.renesas.com,m:fabrizio.castro.jz@renesas.com,m:prabhakar.mahadev-lad.rj@bp.renesas.com,m:prabhakarcsengg@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:magnusdamm@gmail.com,s:lists@lfdr.de];
-	FREEMAIL_TO(0.00)[gmail.com];
+	FORGED_SENDER(0.00)[msuchanek@suse.de,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[20];
-	FORGED_SENDER(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FREEMAIL_CC(0.00)[baylibre.com,kernel.org,redhat.com,linux-watchdog.org,roeck-us.net,gmail.com,pengutronix.de,vger.kernel.org,bp.renesas.com,renesas.com];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
 	TO_DN_SOME(0.00)[];
-	R_DKIM_NA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,vger.kernel.org:from_smtp,linux-m68k.org:email,linux-m68k.org:from_mime,renesas.com:email]
+	FORGED_SENDER_FORWARDING(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[msuchanek@suse.de,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[suse.de:+];
+	ALIAS_RESOLVED(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,arm.com:url,kunlun.suse.cz:mid,suse.de:from_mime,suse.de:dkim]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: CEFA174D678
+X-Rspamd-Queue-Id: 9B21974D6C3
 
-Hi Prabhakar,
+On Mon, Jul 06, 2026 at 03:44:40PM +0200, Andre Przywara wrote:
+> Hi all,
+> 
+> this is version 3 of the Live Firmware Activation kernel support. The
+> device part of the code now relies on Aneesh's SMCCC bus patches[1],
+> which solves some problems rather nicely. I also added the formerly
+> missing sysfs ABI documentation. Based on v7.2-rc1, plus the first
+> two patches from Aneesh's series. More detailed changelog below.
+> ==============================
+> 
+> This series implements the kernel side support of the Arm Live
+> Firmware Activation (LFA) specification [2]. LFA enables the activation
+> of updated firmware components without requiring a system reboot,
+> reducing downtime and allowing quicker deployment of critical bug fixes
+> in environments such as data centers and hyperscale systems.
+> It requires explicit firmware support, both via an agent running in EL3
+> (for instance in TF-A, already merged), but also in the firmware
+> component to be activated. TF-RMM recently merged support for this.
+> 
+> Unlike the usual firmware update process (which may use tools like
+> fwupd), LFA focuses solely on the activation of an already updated
+> firmware component, called "pending activation" in LFA lingo. This works
+> by signalling the LFA agent (part of the EL3 runtime firmware) via an
+> SMC call, which then does the heavy lifting of the live update, in
+> cooperation with the to-be-updated firmware component.
+> 
+> Key features of the driver:
+> * Detects LFA support in system firmware (EL3).
+> * Lists all firmware components that support live activation, identified
+>   by their GUID.
+> * Exposes component attributes (e.g., activation capability, and
+>   activation pending) via sysfs under /sys/firmware/lfa/<GUID>/.
+> * Provides interfaces to:
+>   - Trigger activation of an updated firmware component.
+>   - Cancel an ongoing activation if required.
+> A more detailed list of features can be found in patch 2/8.
+> Based on v7.2-rc1.
+> 
+> This work is conceptually similar to Intel’s Platform Firmware Runtime
+> Update and telemetry (PFRUT) [3] and TDX module updates [4], but
+> targets Arm platforms. The driver has been used to successfully activate
+> a Realm Management Monitor (RMM) firmware image in a controlled test
+> environment. RMM is analogous to Intel’s TDX module.
+> 
+> There is effort on similar work from the OCP [5]. Future work may
+> include integration with utilities like fwupd to automatically select
+> the appropriate driver, based on platform architecture, for Live/Runtime
+> firmware updates.
+> 
+> Please have a look, test and comment!
 
-On Thu, 2 Jul 2026 at 14:31, Prabhakar <prabhakar.csengg@gmail.com> wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> This series adds support for the System Controller (SYSC) blocks found on
-> the Renesas RZ/T2H and RZ/N2H SoCs. These blocks handle critical low-power
-> management and access control functions.
->
-> Hardware Architecture & Dependency Challenges:
-> ----------------------------------------------
-> The SYSC in these SoCs is a multi-functional block responsible for:
->     - Clock & Reset Control
->     - Low Power Management
->     - Clock Monitor (CLMA)
->     - Access Control
->
-> A key architectural detail is that these SYSC blocks are physically located
-> within the CPG/MSSR (Clock Pulse Generator / Module Standby Software Reset)
-> address space. While the CPG/MSSR driver is already implemented and
-> functional for these SoCs, the integration of SYSC adds a layer of
-> complexity due to a cyclic dependency:
->     - SYSC requires CPG: The system controller needs a clock to operate.
->     - CPG requires SYSC: Access control registers within the SYSC contain
->       bits necessary to control the PLLs managed by the CPG.
->
-> If implemented as a completely separate top-level system controller node, we
-> would face a cyclic dependency between the CPG and SYSC drivers during the
-> boot process.
->
-> Proposed Implementation
-> ----------------------------
-> To resolve this, the SYSC blocks are represented as child nodes of the
-> CPG/MSSR controller in the device tree. The SYSC regmap is registered
-> directly against the CPG device node. This hierarchy correctly models the
-> hardware address space while allowing the drivers to share resources
-> without deadlock.
->
-> I am sending this as an RFC specifically to get feedback on the
-> implementation of the SYSC as child nodes of the CPG to resolve the
-> dependency cycle.
+Hello,
 
-Personally, I am not a big fan of subnodes.  I assume you are using
-subnodes because you can register only a single regmap per syscon node?
-Would it be possible to just extend the existing clock-controller
-node with two more reg entries, and expose them through a single
-combined regmap?
+booting a kernel with v2 of this patchset applied the module does not
+get autoloaded. Loading it manually I get
 
-Gr{oetje,eeting}s,
+[ 1972.957282] [   T5195] Arm LFA: Live Firmware Activation: detected v1.0
+[ 1972.958620] [   T5195] Arm LFA: registered LFA ACPI notification
 
-                        Geert
+Is this expected?
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+I would expect the driver to load automatically.
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+I do not see anything in the v3 changelog obviously addressing
+autoloading but changing to using a bus might affect that.
+
+I will try to update to v3 later.
+
+Thanks
+
+Michal
+
+
+> 
+> Best regards,
+> Salman and Andre
+> 
+> Changes in v3:
+> - change node name in DT binding example
+> - move SMCCC function identifiers into generic SMCCC header
+> - rework to use the new SMCCC bus instead of a using a faux device
+> - add missing workqueue cleanup in probe() routine
+> - squash former patch v2 3/8 into base patch
+> - use get_image_name() more consistently
+> - also consider -LFA_BUSY return in activate call
+> 
+> Changes in v2:
+> - restrict build to arm64 (the LFA spec only supports AArch64)
+> - rename and extend central data structure to fw_image
+> - use separate GPR register sets for some SMC calls
+> - provide wrapper for error messages to prevent out-of-bound access
+> - return GUID in the "name" sysfs file when image is unknown
+> - fix wrong attribute in pending version number show function
+> - add missing include files and order them properly
+> - fix memory leaks in error cleanup paths
+> - handle lifetime using embedded kobjects and a kset
+> - drop global lfa_lock, use kset list lock and kobject refcount instead
+> - add DT binding documentation
+> - add timeout and watchdog re-arming (contributed by Veda)
+> - relax timeout period and do not block while waiting
+> - register ACPI notification (contributed by Veda) and DT interrupt 
+> - refactor ACPI notification code to allow sharing with DT code
+> - use faux device instead of platform driver
+> - add auto_activate file to control automatic activation
+> - introduce rwsem mutex to prevent using stale sequence ID
+> - use labels and goto instead of infinite loop when retrying activation
+> - initialise workqueue only once (thanks to Nirmoy)
+> - various cleanups on reported messages and code formatting
+> - rebase on top of v7.0-rc1
+> 
+> Changes in v1:
+> - Updated SMCCC version 1.1 to 1.2 per the LFA specification requirement.
+> - Changed "image_props" array to a linked list to support the dynamic
+>   removal and addition of firmware images.
+> - Added code to refresh firmware images following a successful activation.
+> - Added a work_queue to handle the removal of firmware image attribute
+>   from it's respective kobject "_store" handle.
+> - Refactored prime and activate into separate functions.
+> - Kernel config for LFA now defaults to "y" i.e. included by default.
+> - Added individual kernel attribute files removal when removing the
+>   respective kobjects using kobject_put().
+> - mutex_lock added to activate_fw_image() and prime_fw_image() calls.
+> - Renamed create_fw_inventory to update_fw_image_node.
+> - Renamed create_fw_images_tree to update_fw_images_tree.
+> - Added two more attributes due to specs update from bet0 to bet1:
+>   current_version: For retrieval of the current firmware's version info.
+>   pending_version: For retrieval of the pending firmware's version info.
+> - Minor changes such as, improved firmware image names, and code comments.
+> - do...while loops refactored to for(;;) loops.
+> 
+> [1] https://lore.kernel.org/linux-arm-kernel/20260611130429.295516-1-aneesh.kumar@kernel.org/
+> [2] https://developer.arm.com/documentation/den0147/latest/
+> [3] https://lore.kernel.org/all/cover.1631025237.git.yu.c.chen@intel.com/
+> [4] https://lore.kernel.org/all/20250523095322.88774-1-chao.gao@intel.com/
+> [5] https://www.opencompute.org/documents/hyperscale-cpu-impactless-firmware-updates-requirements-specification-v0-7-9-29-2025-pdf
+> 
+> Andre Przywara (5):
+>   dt-bindings: arm: Add Live Firmware Activation
+>   firmware: smccc: lfa: Add auto_activate sysfs file
+>   firmware: smccc: lfa: Register DT interrupt
+>   firmware: smccc: lfa: introduce SMC access lock
+>   firmware: smccc: lfa: add sysfs ABI documentation
+> 
+> Salman Nabi (1):
+>   firmware: smccc: Add support for Live Firmware Activation (LFA)
+> 
+> Vedashree Vidwans (2):
+>   firmware: smccc: lfa: Add timeout and trigger watchdog
+>   firmware: smccc: lfa: Register ACPI notification
+> 
+>  Documentation/ABI/testing/sysfs-firmware-lfa  | 106 ++
+>  .../devicetree/bindings/arm/arm,lfa.yaml      |  45 +
+>  drivers/firmware/smccc/Kconfig                |  10 +
+>  drivers/firmware/smccc/Makefile               |   1 +
+>  drivers/firmware/smccc/lfa_fw.c               | 988 ++++++++++++++++++
+>  drivers/firmware/smccc/smccc.c                |   5 +
+>  include/linux/arm-smccc.h                     |  15 +
+>  7 files changed, 1170 insertions(+)
+>  create mode 100644 Documentation/ABI/testing/sysfs-firmware-lfa
+>  create mode 100644 Documentation/devicetree/bindings/arm/arm,lfa.yaml
+>  create mode 100644 drivers/firmware/smccc/lfa_fw.c
+> 
+> 
+> base-commit: dc59e4fea9d83f03bad6bddf3fa2e52491777482
+> prerequisite-patch-id: 64fa2209c9eee2084861ba13f0bdfdac312b19b0
+> prerequisite-patch-id: fe1ca1a9aeb94623c79bf66366c76bfb8645b581
+> -- 
+> 2.43.0
+> 
+> 
 
