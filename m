@@ -1,225 +1,205 @@
-Return-Path: <devicetree+bounces-325479-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-325481-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id cFLlJEzRVGr+fAAAu9opvQ
-	(envelope-from <devicetree+bounces-325479-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 13:51:40 +0200
+	id R4t4OCzRVGr7fAAAu9opvQ
+	(envelope-from <devicetree+bounces-325481-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 13:51:08 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 05C5E74A8BF
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 13:51:40 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3AF7074A8B2
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 13:51:08 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b="E5CsO/dT";
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-325479-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-325479-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=bl5QtVgC;
+	dkim=pass header.d=oss.qualcomm.com header.s=google header.b=ZwerW8U9;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-325481-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-325481-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=reject) header.from=qualcomm.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 3D9B2303FB5A
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 11:50:14 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 27484302002F
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 11:50:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D51753F410E;
-	Mon, 13 Jul 2026 11:49:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68ED93F39F1;
+	Mon, 13 Jul 2026 11:50:53 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E2163F1AC5;
-	Mon, 13 Jul 2026 11:49:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDC273CF21E
+	for <devicetree@vger.kernel.org>; Mon, 13 Jul 2026 11:50:46 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783943383; cv=none; b=soPvGh4xfgFg7ZChUpXcwgjkr8oS4VYsvMeJ+6piabsCx/cIhEw6IoMhfGyAMlw8+wFnsIBVBctKqpOtk25Qvfjfki0+CTgQ9rfxlVboIjnZjChekYfWtm5TARELhGAs5oBrsg+K47okTzl2xguz7+Pqxd8rBqsnOxD+jDJu2+E=
+	t=1783943452; cv=none; b=lVrZ1JPd54zMU9uU1W9Br9eXegjT2H+auhZDWuJLi5bMF9XxpmY/g46AyBqhAJwNh1vQRJc42PP5fy/5oiE+5gC+7FhvafA+DahvPU2CBeN/JVjeBsL8QBb8ijfiOo8K6pjQVKcSR+Xf+QObkO0kM1kOhDeW2CRF9TVBUF8ht4I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783943383; c=relaxed/simple;
-	bh=GkozHKXSoZ2wR4ajkOEpfTb8oDAva7gjkLxRXsGjVIs=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=NezK3THfGfc0+wf6ootvUhsa3vk6GBeUCle81IPzWeYNFebFvU2tssE0thSlvViYB9XYuD41ZYLTwl+8ZyazOx/3mUdM6grOfIE0IsIX3CeGrhh1bSjFs/Tb2n9XyM65HB1IKo2cmTWVXx4SBztqrfuQ0tallR7BayG5Gx6TXeE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=E5CsO/dT; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 604271F000E9;
-	Mon, 13 Jul 2026 11:49:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783943369;
-	bh=gQOXD74tuqTS6+S4RPt0AHk03HPSQzTbz8kAhaFB66E=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=E5CsO/dTqEl6BYv2VYDMCN5VQhf8mLD4mwCn0QCuWo1SLkI3bVgRRRBovY6SGcZ3U
-	 PFoWYWsbzn1i6mWTGBTQvf71vP3YA7jXmo5um4N9mN9OWk6lllPgL5VQ7//ulfKI3i
-	 aKIT8BDhypgCDLOJ1yzwA8zRusHfgj7nFZjuLJn8Ix7IghKqlq3tFJDiVus/myQ/zb
-	 hioPPGftvZGjSqmlNzlRXts3r/6UtCFhii/+N1ZYd6K3C6XMpXvrfJL0zEZc85hL+W
-	 pE45QYrFZNAuIwSRyLk9qz+vCqoO3SVI6YeP67iGGbBCHZq1K2G5evsdxunfmd1uUE
-	 3r9ggmeDf2hyw==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v2 05/18] arm64: dts: ti: k3-am62p-j722s: Add multiple
- channels for CSI2RX DMA
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Yemike Abhilash Chandra" <y-abhilashchandra@ti.com>
-Cc: robh@kernel.org, devicetree@vger.kernel.org, conor+dt@kernel.org, imx@lists.linux.dev, Frank.Li@kernel.org
-In-Reply-To: <20260713113423.2310443-6-y-abhilashchandra@ti.com>
-References: <20260713113423.2310443-1-y-abhilashchandra@ti.com>
- <20260713113423.2310443-6-y-abhilashchandra@ti.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Mon, 13 Jul 2026 11:49:28 +0000
-Message-Id: <20260713114929.604271F000E9@smtp.kernel.org>
+	s=arc-20240116; t=1783943452; c=relaxed/simple;
+	bh=YujMEq/IYDCcyQvcmIyGcrQUVG3mK7GrieTZQ8bUe5A=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=pagRHkMjHXqT42vKVRepjVlxYB1BRJUbtYITMUWZAVm/SCWHj30JFHFpjK5b4nMutf/IftrtkCSwjBWrlLcId8rzQL7uDizh9I0/Azd4bNlR/oLzBpVJN6h2Savf3D1KFnvIVeH+Q6/fR/1VuC7no37FxkcAZsrvywRmB26NMbk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=bl5QtVgC; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=ZwerW8U9; arc=none smtp.client-ip=205.220.168.131
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 66D9dZTm952964
+	for <devicetree@vger.kernel.org>; Mon, 13 Jul 2026 11:50:44 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	32BCUGnUu2Id1Yusst4iQdiV2C4tMZvFoGEnFIez6Eg=; b=bl5QtVgCx0H4EGBQ
+	I8Elbu/BOIru3VWc2N+TuPb/F0MVjmb6Aw+mbfJgX4mhmvEyZfIeHqR6v5ekqs9w
+	M/+JuJWBwpgvH4x3EPmM+D8u6tq2fYOSZnj87sX+upNew/WtTTM2Vnm6uFNXQD2i
+	AtG4l5sHTEXWG2rQMwaFpXVUdKNC02/iggPRN49fOXaxCN8RDxIX90VWZkt2oaVM
+	P1hGt/lISckK1zZ4cBuilzrLYYV1KgI6r7YnWloI0c0w+0hrWg7k9jSJlbR84McK
+	gUrRSqIvAEfjZjLj23Yv/shhT6jfyf85YA0O7jSgp6oFa4eu8+RI6bQUA/1BJKn+
+	aaxwLQ==
+Received: from mail-pj1-f70.google.com (mail-pj1-f70.google.com [209.85.216.70])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4fcwk3geba-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 13 Jul 2026 11:50:44 +0000 (GMT)
+Received: by mail-pj1-f70.google.com with SMTP id 98e67ed59e1d1-38dbf293831so4310032a91.3
+        for <devicetree@vger.kernel.org>; Mon, 13 Jul 2026 04:50:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1783943444; x=1784548244; darn=vger.kernel.org;
+        h=content-transfer-encoding:content-type:in-reply-to:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=32BCUGnUu2Id1Yusst4iQdiV2C4tMZvFoGEnFIez6Eg=;
+        b=ZwerW8U9+2JjOumzwKvE4xS7DuSFjpYThMiUp+gvQqmo1uQWdXvx6xOsk+cAp5gFuS
+         4tsCB3nHox64mGUyRG/xH5ZbowTcBSLXoRdT00ecq6OPvdjWfYs1yquVZwVuiym3yFM7
+         pIIesphzJnVwOOq12ubrudZGwP0E+T8ZPZpN5IhbWURX1jvoAlwvtS3TCOIRCTViCCHe
+         GZ0eMAp7Aaqq73hX6djcj/Ex+pAm7CXeN1t/sM5TGaYAK9J6QVMv+I5BChOf0rOGJmGO
+         50neRp/alSCXtSPBbqxj+dYcDVXdAAXotYWaHvLqok6S1As6I8D8Q0/DVIrDTCasRYNh
+         nEXw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1783943444; x=1784548244;
+        h=content-transfer-encoding:content-type:in-reply-to:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=32BCUGnUu2Id1Yusst4iQdiV2C4tMZvFoGEnFIez6Eg=;
+        b=a7KfZyNNGscCxH6SBCieOf9ZoWUn3dCmqxn2sFst/pE+ObPTxYdJ/PXVVflBreI+uz
+         qQaZX+gYXR8Yfi2MFm0fBwhcQLUK9Q7KMGkaAX1ak3GBxPcac5Tet0iH4tLMjIMyuYN6
+         dQvDB76GnNLmLL7I8d8h4jVLADhSElpU2WgRMOMcivwVjBSnQGBkNnrRBFJ7CckM3PzD
+         LmAkH9MIAiIMU+73s/W28FBRKF2UZ1C8z59RjXba9PArBu1+Hskwu7PyXNjANvqrVQzl
+         LaGnU5K+qTAsAkuxlF0oiGRGpR1oRwyr14dmVbMuSl27bVIjXP3QA3ZxVOiptSDGIYUJ
+         yyJw==
+X-Forwarded-Encrypted: i=1; AHgh+Rp5UYewXWfFJa0X+AveJlijrsvsLvMPnWM4eLkBd9snkUvKZz7sF1Y2NZ3U42beJIv9yJkWCJhuOCnq@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywcbo8zBQ+7nqHsib/4RMxkgB8R8g0WEHV68F/kRcTLToPepzgo
+	bTrVTiHbMWACLxBmShYbEPsuhThTAYCHm2FgzTX6kjAyEjC40MOmfbu1JrirVar/dh9eRIUZ/G7
+	WdDIsOYCcIM9qaKsCo0v5E6N5TB4irk9KCQBuDjjjGbeuOqGkbvL42dDkQCfZ2SRWgsF6fYbe
+X-Gm-Gg: AfdE7cmvUA4foQGW0VtG/U3nOKVLL32CS70AfXS3gGtq6fcrVPteNNXJsOLCOVlqSMY
+	47HCoPRiPAJmMdy25oJR+CHVwYT12KiEJVrpWW3Wo80HI5eqMJM/r/5fk23g1q61rjfo0vDNpm9
+	e2ZRaGhJEktp9bPTkYCnFLHp2aZFiLp1e3W9j0rhR7rOROo37FUW+D8RrirzList1K7SzQWK/WC
+	8vO6MWw1wKxVaLpyf3CL9jOHTil1qLhJtRM3OOcF8G0lxjTgzJdacpqzZmDMv/zyUNOxu6anlUP
+	2Pe9JoHmSLBD6412Y/f9mkZ3MIelSkZlImwrDTEF6iRwWl39Dgq+Xg8Ybn4iaGQHQ9hN2FFvDuB
+	8loxR6kUlpU5ogtT5D0JdMrDZxJvVnFtKLxJDfw==
+X-Received: by 2002:a17:90b:4c4e:b0:38d:84ec:b03e with SMTP id 98e67ed59e1d1-38dc73bdd34mr7771152a91.6.1783943444004;
+        Mon, 13 Jul 2026 04:50:44 -0700 (PDT)
+X-Received: by 2002:a17:90b:4c4e:b0:38d:84ec:b03e with SMTP id 98e67ed59e1d1-38dc73bdd34mr7771128a91.6.1783943443533;
+        Mon, 13 Jul 2026 04:50:43 -0700 (PDT)
+Received: from [192.168.1.8] ([103.211.19.60])
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-3120c8e41fcsm36700629eec.15.2026.07.13.04.50.40
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 13 Jul 2026 04:50:43 -0700 (PDT)
+Message-ID: <0c791abb-9f55-492a-81e8-5232217831cf@oss.qualcomm.com>
+Date: Mon, 13 Jul 2026 17:20:38 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 2/6] arm64: dts: qcom: shikra: Add CAMSS node
+To: sashiko-reviews@lists.linux.dev,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: imx@lists.linux.dev, conor+dt@kernel.org, Frank.Li@kernel.org,
+        robh@kernel.org, devicetree@vger.kernel.org,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+References: <20260713-shikra-camss-review-v5-0-db53be15dc4f@oss.qualcomm.com>
+ <20260713-shikra-camss-review-v5-2-db53be15dc4f@oss.qualcomm.com>
+ <20260713093919.B71F41F000E9@smtp.kernel.org>
+Content-Language: en-US
+From: Nihal Kumar Gupta <nihal.gupta@oss.qualcomm.com>
+In-Reply-To: <20260713093919.B71F41F000E9@smtp.kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-ORIG-GUID: on5wl9P1Lip7BypRP53gpmRj8aOoFiCP
+X-Proofpoint-Spam-Info: AW1haW4tMjYwNzEzMDEyMiBTYWx0ZWRfX0jzQTubv0hQD
+ 6+6tlBn5rs61gzlSnW2tpjNtcdBNghyYiGtf3ePT9D7Do9Lvovgz2t96Hw/LH4BI8PvTO6NF+CZ
+ gpLeNxV5igrhrGN+sGghpB3M97ck0IU=
+X-Authority-Analysis: v=2.4 cv=e6c2j6p/ c=1 sm=1 tr=0 ts=6a54d114 cx=c_pps
+ a=0uOsjrqzRL749jD1oC5vDA==:117 a=PqZB0zJ+pwaroKfoAs2U/A==:17
+ a=IkcTkHD0fZMA:10 a=RAioF0-LDSMA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=YMgV9FUhrdKAYTUUvYB2:22
+ a=VwQbUJbxAAAA:8 a=beKYP8gAV9hXG197g18A:9 a=QEXdDO2ut3YA:10
+ a=mQ_c8vxmzFEMiUWkPHU9:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNzEzMDEyMiBTYWx0ZWRfX+rdLmr/71LbA
+ 2tY6/Z+A5qWRVuwC4TZZ2//FLqNT5GyBnt/Ci5EhtRKE3DivAvB8u8bjQJk0NZnm0z8PJZYvEKp
+ +FZqTCTjBYgHoDqXu5WcKsqcblgxCot+D3fW2PpdLpz3njvntyDcADfCe1R01vWDXlXSib0ecRQ
+ aMwCmTdK9DM6SOEtMW/NVtGQ+T9CUDl3nubqXRA8efnCeMhuERUw+kEs4jlvNV+sqy42gXuYkSm
+ 7U9gyOXNCK/IlX3uBZCg0e0yXeZDg8KRfg/a4it06zJl9KC0Ja+ifDu38iYFI5O8Bvq4P482MNv
+ EO/WFMBYsABgpFDrWRaT0X1q+SYIhu5775w9zcgo1H2mfAsR4Rrehkup2srngZ9D9VUir52IY0t
+ 8D/EEP8WoMKa42Rd0ZOplQV2fXbaFQzuKoSMkKiVUJwL0iWB0M6/bGo1GL1Fb28aUpw7heJg82e
+ 4lrMfnuuKwe3/UeEciw==
+X-Proofpoint-GUID: on5wl9P1Lip7BypRP53gpmRj8aOoFiCP
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.134,FMLib:17.12.100.49
+ definitions=2026-07-13_02,2026-07-10_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 clxscore=1015 phishscore=0 lowpriorityscore=0 spamscore=0
+ adultscore=0 malwarescore=0 impostorscore=0 suspectscore=0 bulkscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2606150000 definitions=main-2607130122
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	TAGGED_FROM(0.00)[bounces-325479-lists,devicetree=lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sashiko.dev:url,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,ti.com:email,lists.linux.dev:replyto];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:y-abhilashchandra@ti.com,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:imx@lists.linux.dev,m:Frank.Li@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-325481-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,oss.qualcomm.com:from_mime,oss.qualcomm.com:dkim,oss.qualcomm.com:mid];
+	FORGED_RECIPIENTS(0.00)[m:sashiko-reviews@lists.linux.dev,m:konrad.dybcio@oss.qualcomm.com,m:imx@lists.linux.dev,m:conor+dt@kernel.org,m:Frank.Li@kernel.org,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:bryan.odonoghue@linaro.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
 	FORWARDED(0.00)[lists@lfdr.de];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	FORGED_SENDER(0.00)[nihal.gupta@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	RCPT_COUNT_FIVE(0.00)[6];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FROM_NO_DN(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[nihal.gupta@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
+	ALIAS_RESOLVED(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 05C5E74A8BF
+X-Rspamd-Queue-Id: 3AF7074A8B2
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
-s) to consider:
 
-New issues:
-- [Medium] Incomplete multistream implementation for J722S SoC: missing DMA=
- channels for CSI2RX instances 1, 2, and 3.
 
-Pre-existing issues:
-- [High] The driver j721e-csi2rx.c leaks DMA channels on probe error, remov=
-e, and runtime_resume.
+On 13-07-2026 15:09, sashiko-bot@kernel.org wrote:
+>> +			compatible = "qcom,shikra-camss", "qcom,qcm2290-camss";
+> [Severity: Low]
+> Could this node be placed out of order? 
+> 
+> Device tree node unit-addresses are generally sorted numerically, but here 
+> camss@5c11000 is placed before the geniqup@4ac0000 node, which breaks the 
+> numerical sorting under the soc node.
+
+Reasonable, will fix. 
+
+@Konrad, could you review the DTS patches?
+
 --
-
---- Patch [5]: [PATCH v2 05/18] arm64: dts: ti: k3-am62p-j722s: Add multipl=
-e channels for CSI2RX DMA ---
-commit 57c14c001a8a9799dd013f93cc44d67678cdb58d
-Author: Vaishnav Achath <vaishnav.a@ti.com>
-
-arm64: dts: ti: k3-am62p-j722s: Add multiple channels for CSI2RX DMA
-   =20
-J721E CSI2RX SHIM layer can support up to 32 DMA channel contexts. This pat=
-ch
-adds additional DMA channels to enable multistream support for CSI2RX.
-
-> diff --git a/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi b/arc=
-h/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi
-> index f130c7cb998d7..ecb537b96fcaa 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi
-> @@ -1053,8 +1053,10 @@ ti_csi2rx0: ticsi2rx@30102000 {
->  		ranges;
->  		#address-cells =3D <2>;
->  		#size-cells =3D <2>;
-> -		dmas =3D <&main_bcdma_csi 0 0x5000 0>;
-> -		dma-names =3D "rx0";
-> +		dmas =3D <&main_bcdma_csi 0 0x5000 0>, <&main_bcdma_csi 0 0x5001 0>,
-> +		       <&main_bcdma_csi 0 0x5002 0>, <&main_bcdma_csi 0 0x5003 0>,
-> +		       <&main_bcdma_csi 0 0x5004 0>, <&main_bcdma_csi 0 0x5005 0>;
-> +		dma-names =3D "rx0", "rx1", "rx2", "rx3", "rx4", "rx5";
-
-[Severity: High]
-This isn't a bug introduced by this patch, but increasing the number of DMA
-channels here heavily amplifies a channel leak in the j721e-csi2rx.c driver.
-
-When probe fails after channels are requested, ti_csi2rx_cleanup_ctx() chec=
-ks
-the PM runtime status:
-
-drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c:ti_csi2rx_cleanup_ctx=
-() {
-        if (!pm_runtime_status_suspended(ctx->csi->dev))
-                dma_release_channel(ctx->dma.chan);
-}
-
-Since the PM status is default suspended during a probe failure, the channe=
-ls
-are never released.
-
-Similarly, during driver removal, the driver calls pm_runtime_set_suspended=
-()
-before cleaning up contexts, causing the same leak for active devices:
-
-drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c:ti_csi2rx_remove() {
-        if (!pm_runtime_status_suspended(&pdev->dev))
-                pm_runtime_set_suspended(&pdev->dev);
-
-        for (unsigned int i =3D 0; i < csi->num_ctx; i++)
-                ti_csi2rx_cleanup_ctx(&csi->ctx[i]);
-}
-
-Finally, by increasing the context count to 6 here, this activates a mid-lo=
-op
-failure path in ti_csi2rx_runtime_resume() that was impossible with 1 chann=
-el:
-
-drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c:ti_csi2rx_runtime_res=
-ume() {
-        for (unsigned int i =3D 0; i < csi->num_ctx; i++) {
-                ret =3D ti_csi2rx_init_dma(&csi->ctx[i]);
-                if (ret)
-                        return ret;
-        }
-}
-
-If ti_csi2rx_init_dma() fails at i=3D1, does this return without releasing =
-the
-channel successfully requested at i=3D0? Would it be possible to address th=
-ese
-leaks in the driver prior to or alongside expanding the channel counts in
-the DT?
-
-[Severity: Medium]
-Are there missing multistream DMA channel definitions for the other CSI2RX
-instances?
-
-The J722S SoC has four identical instances (ti_csi2rx0 through ti_csi2rx3).
-While this updates ti_csi2rx0 in k3-am62p-j722s-common-main.dtsi, the other
-instances in k3-j722s-main.dtsi appear to still only have one DMA context:
-
-arch/arm64/boot/dts/ti/k3-j722s-main.dtsi:ti_csi2rx1() {
-        ...
-        dmas =3D <&main_bcdma_csi 0 0x5100 0>;
-        dma-names =3D "rx0";
-        ...
-}
-
-If a user connects a multistream camera to CSI ports 1, 2, or 3, will they
-be prevented from using multistream capture because rx1 through rx5 are not
-defined? Should instances 1 through 3 be updated to match ti_csi2rx0?
-
->  		power-domains =3D <&k3_pds 182 TI_SCI_PD_EXCLUSIVE>;
->  		status =3D "disabled";
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260713113423.2310=
-443-1-y-abhilashchandra@ti.com?part=3D5
+Regards,
+Nihal Kumar Gupta
 
