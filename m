@@ -1,78 +1,78 @@
-Return-Path: <devicetree+bounces-325431-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-325432-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id qeWdCzXGVGoqSwAAu9opvQ
-	(envelope-from <devicetree+bounces-325431-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 13:04:21 +0200
+	id YKO9I4jFVGoJSwAAu9opvQ
+	(envelope-from <devicetree+bounces-325432-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 13:01:28 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA59074A1C3
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 13:04:20 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 71CE374A15A
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 13:01:27 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=thingy.jp header.s=google header.b=iZkbkNep;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-325431-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-325431-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=thingy.jp header.s=google header.b=LpHBypps;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-325432-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-325432-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=none;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 6DFD5307DACF
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 11:00:19 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id DFECE301274C
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 11:00:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AAE1437EFE4;
-	Mon, 13 Jul 2026 11:00:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64E2A383C85;
+	Mon, 13 Jul 2026 11:00:24 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f182.google.com (mail-pf1-f182.google.com [209.85.210.182])
+Received: from mail-pf1-f175.google.com (mail-pf1-f175.google.com [209.85.210.175])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18B47379C43
-	for <devicetree@vger.kernel.org>; Mon, 13 Jul 2026 11:00:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 429A8311C2A
+	for <devicetree@vger.kernel.org>; Mon, 13 Jul 2026 11:00:19 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783940418; cv=none; b=oGVab285rZNSWIsUDRvwmIx1EbyL6c5dmiIh3ZshC3KvNb+tTAWL0htB7f8I2r4MiW3jzKhVqN1z3W+MDVtf3Uklbo/NM//YgGYrzDYT77CNhQwUO6gpUYdcng8kBnR6k2TWmJyjR29J0fblqfN8xjEAnQFaEEFG7BokfRSZe2k=
+	t=1783940424; cv=none; b=nGbNyhNP0ZUgCyf7t8R8itedNzDpoVjaKdnD2Nt5i+WhkHtCB8221yelTTl7FLB4uX/NGgusKc7wthW5kK9JyFH+cgNImCuBVsSMuWfMg4sTL22pnqyYolmceXQCJ6Zblz9lZwLSmX6av6xc0Px1oIIMHzxSsifu7y25AYQk9L8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783940418; c=relaxed/simple;
-	bh=x6lJHFXHL60GFi7hGaxbTBMSrwAi3nW/WeWDhNRtjkc=;
+	s=arc-20240116; t=1783940424; c=relaxed/simple;
+	bh=8MB4E2UurTrMQQNKlrDKnakx6TBEowVKPcUjoB3PzW0=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=UKQH76lAiwMGFaYwhLRNhwg0xRhBsaRyUkzpoPFlmAuLkGbVY91Rt5SP6nLeaozir5DSeeQIhFSvueyJ2ZtD+5jg6CX3JqxtzWkA7x/AZz6jHgJFsntwTAWKUl2WrCp/v1+pG9ATm4ONVY4L24NECPOU8HBjx6pJVP1HG6vH7js=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=thingy.jp; spf=pass smtp.mailfrom=0x0f.com; dkim=pass (1024-bit key) header.d=thingy.jp header.i=@thingy.jp header.b=iZkbkNep; arc=none smtp.client-ip=209.85.210.182
-Received: by mail-pf1-f182.google.com with SMTP id d2e1a72fcca58-8487b7b3fc7so1086895b3a.0
-        for <devicetree@vger.kernel.org>; Mon, 13 Jul 2026 04:00:16 -0700 (PDT)
+	 MIME-Version; b=scLMMTz+FYjjU7xFpy+D7gSA+M9EXrzqTfYO57bFlsruHgiO0G7x7yx1+APmx5UIGTChzH7BopM2rbczwI4kV9lK6fiKIIMk1cwHQe7vbCZNgGpIRLCO8/3HCMTV2ev9sXaNGGzEWEKM8/t3Ygvew4QpSpJpJYQ3qcUeqbetx6I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=thingy.jp; spf=pass smtp.mailfrom=0x0f.com; dkim=pass (1024-bit key) header.d=thingy.jp header.i=@thingy.jp header.b=LpHBypps; arc=none smtp.client-ip=209.85.210.175
+Received: by mail-pf1-f175.google.com with SMTP id d2e1a72fcca58-848882fdb18so2101753b3a.0
+        for <devicetree@vger.kernel.org>; Mon, 13 Jul 2026 04:00:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=thingy.jp; s=google; t=1783940416; x=1784545216; darn=vger.kernel.org;
+        d=thingy.jp; s=google; t=1783940418; x=1784545218; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=4mraqavKEL8rZFk/6+m83umFrUpJ6nJzwQqBUF9zz+s=;
-        b=iZkbkNepBsxiC8pM1CfdBoNpTnp1oY2q0cLlREWpRZX6p4Ig9t9LwBeeR6MX+k083C
-         jkXzJnTcpMUIJkuFoHQnf6RNvujZ6UfrSw5OiEOEmrRjw9GuyVmBgmRgs3jG8RYW3M/T
-         PkGjvj9+9kzM1NgEgml0k3yhA2bIrCaEV1m5g=
+        bh=PZ5iHgXe68coNKsyjUEJY/KvBzACNRTOom6/ZK/yLLM=;
+        b=LpHByppsuP9L2eJGFtNnAQ7xjvy9WFCk0rVXp4gKT61laeq3VIs+z9GvoFk70wra7g
+         +wBZm47yB/1Ew+CuQnt++De85xUURsd2pkkRRWPs3kmD2BuPy/LtQpBHJWco6cgDbQ1w
+         88sf0dpte0VfDO8bjrIAJ3nUuxCHVvzTiWm64=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783940416; x=1784545216;
+        d=1e100.net; s=20251104; t=1783940418; x=1784545218;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=4mraqavKEL8rZFk/6+m83umFrUpJ6nJzwQqBUF9zz+s=;
-        b=jL68JMRZHJMXw1gLscLoNUog8OsnGGcrcknV0TaIDmPSF1/v6nD7jVCHCvVJetHhVd
-         qVr5ykeuJqNvvBS224bw9eZjypBMrgJrd8MdJCB465zXN7fu1TcRxexjfunEPIJ/Y2Wa
-         qV3ncS9hBiXzmCXKGnuLj4zh3KONNSiEhkVjFo4UJAi4w4KPiKtnqRjutvXPEyAa6pjS
-         2ChB380wQWNUmLIXJEXfJV7tbpzrNPcpq9NpgHULuH+c9eVQtw9eG/lgZ+a/Cx9dtltE
-         XHQk39tODAgFou4zz41ZB9rHENYhsog2YjRKblUIg4X6hXJYDuyoGJs1J2Gi/C8Q/atN
-         1o2g==
-X-Forwarded-Encrypted: i=1; AHgh+RreMQzy6WNaZZHQywuU+Q+C613rR93+zgag7UxXNte0G4M1bcEH9OJmSYv7Ae4Hf+YXX+VP8YOrmbeQ@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw8Q2u11UQPa5O4sQstg+aOmKn0r5ut80ygie06cBQd9NLxB8cb
-	nZAjKy3etLv34M1rb4IxCoPUTQqv+eGZl6h0j6RnHSf5761DDH/ZVvO+g2WR31G3fEA=
-X-Gm-Gg: AfdE7cmXXkGAjF0cYYotujCWaV3kGtg2JNsK6SvhLjnGcMezZED8yXXGNzlecYJN2sf
-	sXR5oNaJsfLtl0vjfVoyvvDfvhfkalormkkaw57qMfG1EZQMSJdC3tuuYERBryJHZ+rtZ8PPCOT
-	ALeRZohvqV2POtZe0Nn9TadU9t3sUuYnzmJnydqkYUSPfPkSAw2vbrZqgns8WDEdUeTXPAILzET
-	s4CvEodPcYTwTAmHYOK5PQvcbKuxX3T9uPQ0cKC4WgFn0b55cHowEEDNs/A8X/mmvnDmcsT6A88
-	Ob28WzGLpMD5APc/rLKKAZIE5qVB7C5wHXCUCl8eU3OcHuq4aqhX1J5cmSFCsi6WvDmDydsxTxP
-	pBYbt6YZXYgInLBkVZwnJu18rKVLTPK6FYjAt2KrIUbVz9jYS0epdmIzMYx0Av3oI4uFfoeaRtU
-	N0nQOdmw3CSMXhpv0l3bD8unxUYA==
-X-Received: by 2002:a05:6a00:3d0e:b0:845:f107:38c8 with SMTP id d2e1a72fcca58-8488975ad8emr7159281b3a.47.1783940416384;
-        Mon, 13 Jul 2026 04:00:16 -0700 (PDT)
+        bh=PZ5iHgXe68coNKsyjUEJY/KvBzACNRTOom6/ZK/yLLM=;
+        b=PNUpS3EvGMyrejcjqRkHixfr/XmnYlLfLyN7bb8hqWEXboDRrNNwqZ9axe6Mr8nVZS
+         dGIWNFBNilpiOoFiYqduYes87RMXfnEi3+YtCj1y1lVzT9qFSIgVHucDfUu82+Y38aH0
+         TwgfI4XI08AwL+T4Ew8IENdYjQU+FhYb6w8w4EEQNBConVn5wIc5GSAQMGXgFESJXtzR
+         q4XYirEuRe+tE8jNaAb+O+xxZCh1IkA/CWIcSWcMuojVYTBvErF6e3eV04asHmvqX94G
+         X9f4WR9F42Op1LMF2KbTsbyY3y0uDlgN6DfeNBBzDtxjZOWKps6KKeDhdVE34vhVWRLH
+         BSUA==
+X-Forwarded-Encrypted: i=1; AHgh+Rouuh3ZdG2M+CAEr9ARGPIqJk0HkcApzwGzZj+k4wXXPLzlYnAJZeHo5u9ufC9fLP4ZZz4pP/hqk3KQ@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx25mWZY+aXbQyUbEWRYnAJMA2s40I2xfCeAvczWANdwvQeYt5h
+	R9BxDqiHm14BZBLInhz/ov2IXKcWDWIWvU3b8lWHWuWngijXW1rCxWbIIZ2aadUHPag=
+X-Gm-Gg: AfdE7cmevdH1WkvWMuJlqmy4yeByqDOdYe+QvY6HiuIZbtwJU6OzzhuUJTg2a33rPxx
+	sjkTtChsoo7aBHQu5ZLTUbykafT1C62n9RkkWHRgYtKQ442E+q3DDH5YSmscn5X5QPsZGX3hdQs
+	I5tHXoj+2YejIBSvxix/Hq9kurKvwjc8DQu3W6bnsk0d6BzBLNp0wDzi57dVw1k+MhvYrBQNTFE
+	0K6Hvyd+1tJexyfmpCHJrUlcrBcKtKZKXdaafmU0CoKy3QtYGHePc/geZ9lj9knourD9O2KoaBm
+	Ysz64EJ06k64+ZOcGm97qReyzu3suE8/KCgdMwTpaPwLLkjQcloPBf+gtbjhwFCaEtIeqzD80Ew
+	hRNZKBoUqbkRj6IuH66g4GbN2pCL9hREz5+XNPVBIeMtxDnRPeoPjOggxc5ilf64xkFTxEYckOV
+	a2i8xR7ZYfkYZxuNTI5iZM1UuwwNmfOLCPvJWjLEaBZoPbc6g=
+X-Received: by 2002:a05:6a00:b8a:b0:845:e9f8:67de with SMTP id d2e1a72fcca58-8488965bcebmr7867993b3a.27.1783940418459;
+        Mon, 13 Jul 2026 04:00:18 -0700 (PDT)
 Received: from kinako.work.home.arpa ([2400:4162:2428:2ffe:a973:53e4:1a28:8545])
-        by smtp.googlemail.com with ESMTPSA id d2e1a72fcca58-84909673e32sm3019597b3a.56.2026.07.13.04.00.14
+        by smtp.googlemail.com with ESMTPSA id d2e1a72fcca58-84909673e32sm3019597b3a.56.2026.07.13.04.00.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 13 Jul 2026 04:00:15 -0700 (PDT)
+        Mon, 13 Jul 2026 04:00:17 -0700 (PDT)
 From: Daniel Palmer <daniel@thingy.jp>
 To: linux-arm-kernel@lists.infradead.org
 Cc: romain.perier@gmail.com,
@@ -82,9 +82,9 @@ Cc: romain.perier@gmail.com,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	Daniel Palmer <daniel@0x0f.com>
-Subject: [PATCH 2/8] ARM: dts: mstar: unitv2: Add regulators
-Date: Mon, 13 Jul 2026 19:59:44 +0900
-Message-ID: <20260713105950.1346962-3-daniel@thingy.jp>
+Subject: [PATCH 3/8] ARM: dts: mstar: unitv2: Add button
+Date: Mon, 13 Jul 2026 19:59:45 +0900
+Message-ID: <20260713105950.1346962-4-daniel@thingy.jp>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260713105950.1346962-1-daniel@thingy.jp>
 References: <20260713105950.1346962-1-daniel@thingy.jp>
@@ -98,93 +98,81 @@ Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [1.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
 	R_DKIM_ALLOW(-0.20)[thingy.jp:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-325431-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[lists@lfdr.de];
-	DMARC_NA(0.00)[thingy.jp];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
 	FREEMAIL_CC(0.00)[gmail.com,kernel.org,vger.kernel.org,0x0f.com];
-	FORGED_RECIPIENTS(0.00)[m:linux-arm-kernel@lists.infradead.org,m:romain.perier@gmail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:daniel@0x0f.com,m:romainperier@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORWARDED(0.00)[lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-325432-lists,devicetree=lfdr.de];
 	FORGED_SENDER(0.00)[daniel@thingy.jp,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[daniel@thingy.jp,devicetree@vger.kernel.org];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:linux-arm-kernel@lists.infradead.org,m:romain.perier@gmail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:daniel@0x0f.com,m:romainperier@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	DMARC_NA(0.00)[thingy.jp];
 	DKIM_TRACE(0.00)[thingy.jp:+];
-	ALIAS_RESOLVED(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[daniel@thingy.jp,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	RCPT_COUNT_SEVEN(0.00)[8];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	FROM_HAS_DN(0.00)[]
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[thingy.jp:from_mime,thingy.jp:dkim,thingy.jp:mid,vger.kernel.org:from_smtp,0x0f.com:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: BA59074A1C3
+X-Rspamd-Queue-Id: 71CE374A15A
 
 From: Daniel Palmer <daniel@0x0f.com>
 
-Add the fixed regulators for the core, IO and DRAM voltage rails and
-the GPIO controlled switch that supplies the WiFi chip.
+Add the front panel button as a polled gpio-keys device reporting
+BTN_0.
 
 Signed-off-by: Daniel Palmer <daniel@0x0f.com>
 ---
- .../mstar-infinity2m-ssd202d-unitv2.dts       | 32 +++++++++++++++++++
- 1 file changed, 32 insertions(+)
+ .../sigmastar/mstar-infinity2m-ssd202d-unitv2.dts    | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
 
 diff --git a/arch/arm/boot/dts/sigmastar/mstar-infinity2m-ssd202d-unitv2.dts b/arch/arm/boot/dts/sigmastar/mstar-infinity2m-ssd202d-unitv2.dts
-index f02de5b475af..5e79819a070a 100644
+index 5e79819a070a..b5a282cd1a67 100644
 --- a/arch/arm/boot/dts/sigmastar/mstar-infinity2m-ssd202d-unitv2.dts
 +++ b/arch/arm/boot/dts/sigmastar/mstar-infinity2m-ssd202d-unitv2.dts
-@@ -39,6 +39,38 @@ led-1 {
- 			linux,default-trigger = "heartbeat";
+@@ -8,6 +8,7 @@
+ #include "mstar-infinity2m-ssd202d.dtsi"
+ 
+ #include <dt-bindings/gpio/gpio.h>
++#include <dt-bindings/input/input.h>
+ #include <dt-bindings/leds/common.h>
+ 
+ / {
+@@ -40,6 +41,17 @@ led-1 {
  		};
  	};
-+
-+	reg_vcc_core: regulator-vcc-core {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc_core";
-+		regulator-min-microvolt = <950000>;
-+		regulator-max-microvolt = <950000>;
-+		regulator-boot-on;
-+	};
-+
-+	reg_vcc_io: regulator-vcc-io {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc_io";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-boot-on;
-+	};
-+
-+	reg_vcc_dram: regulator-vcc-dram {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc_dram";
-+		regulator-min-microvolt = <1500000>;
-+		regulator-max-microvolt = <1500000>;
-+		regulator-boot-on;
-+	};
-+
-+	reg_vcc_wifi: regulator-vcc-wifi {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc_wifi";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		gpio = <&gpio SSD20XD_GPIO_GPIO14 GPIO_ACTIVE_HIGH>;
-+	};
- };
  
- &pm_uart {
++	gpio-keys {
++		compatible = "gpio-keys-polled";
++		poll-interval = <100>;
++
++		button {
++			label = "button";
++			gpios = <&gpio SSD20XD_GPIO_GPIO2 GPIO_ACTIVE_LOW>;
++			linux,code = <BTN_0>;
++		};
++	};
++
+ 	reg_vcc_core: regulator-vcc-core {
+ 		compatible = "regulator-fixed";
+ 		regulator-name = "vcc_core";
 -- 
 2.53.0
 
