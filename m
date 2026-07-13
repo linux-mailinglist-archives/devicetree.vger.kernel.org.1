@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-325419-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-325420-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id iRd1CWLAVGrvqgMAu9opvQ
-	(envelope-from <devicetree+bounces-325419-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 12:39:30 +0200
+	id mUtgCwjDVGpJSQAAu9opvQ
+	(envelope-from <devicetree+bounces-325420-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 12:50:48 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E5E2749E4A
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 12:39:29 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C41CB749FD3
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 12:50:47 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=VAYiqIxj;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=dq3+kXSd;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-325420-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-325420-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-325419-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-325419-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id E676E301060B
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 10:39:28 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 18FFD302E329
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 10:40:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B5E937AA99;
-	Mon, 13 Jul 2026 10:39:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D66D337F014;
+	Mon, 13 Jul 2026 10:39:58 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F39791DE8AE
-	for <devicetree@vger.kernel.org>; Mon, 13 Jul 2026 10:39:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A960F37EFEE
+	for <devicetree@vger.kernel.org>; Mon, 13 Jul 2026 10:39:57 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783939167; cv=none; b=qliMcq19nUP04bRSbr2QYSIaGUL1Ip662de9zsrrou6WLT+rwgO8xue8F2eDo2mYYHmkg6oWc6Uiyxll3TWinHJ+6nhyggU8Dbj7pVRlN4JlpCOuxNsf7UeOOFqmJCYPGs6GMbpouuRejT/x3DyBnTTSkwEWoC2XkpHpNe9L0UY=
+	t=1783939198; cv=none; b=LrgzvQ4iaNjyupl4wCVvNIFDIlpiC/W8j72Ikp3d+kXtdWu2SB7obRfHn7GxUPwd8bJ4BFpZtqlmCnEPzSZ5uaGE6hRUEyHt4rEn+YgTsdtlyDCKjHHiGfcikagFc0IRIOIwum2Ju0Kar5FcWnIZueHByuCvV+OaqJE27A/p7PE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783939167; c=relaxed/simple;
-	bh=QqsdTC+pOrGH8S6rx7eCKn9toq/Hstqd1Nmymc1owR4=;
+	s=arc-20240116; t=1783939198; c=relaxed/simple;
+	bh=T83c9AjGOsXdwIkRuDI6xxHnynV85BGDz5exlcZubiQ=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=Rhgld2JTS0Ho/Jo5XePIJ9S1/v9ykRc0kafQN7FZW51NH69YYUX+/Vn5pZ+jUDbTLAIYFWnVU1wMaxwKkpgmx2/B89HLpeeYq2tRQ/GqixwB7+XW01XzyLGt+TwMN7WP1oZb05tUIfaojvrGgarcqCX/i4V8tvfBdakzDQoQSS4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VAYiqIxj; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 557CE1F000E9;
-	Mon, 13 Jul 2026 10:39:25 +0000 (UTC)
+	 Message-Id; b=cV7UcAQSEq6NsSuj+a8OR2g8uUh1nUueg7tPwZ0PIwYxfflMFGigVZqV0dLIqRHodVPs9NBk+RreuSswbyC1LdqFMHzHzoi9Wb0+WnwckjJFJ9Jyjm5CuQJl3MlMkwNKjIrKhLOZakm5469ym9Zx6IO92dj5h5bQMcVTrTNzFBI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dq3+kXSd; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4C0C61F000E9;
+	Mon, 13 Jul 2026 10:39:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783939165;
-	bh=15Dhwh20XfweFeuR1h505sKF7tnS5xI1FovplSycQEU=;
+	s=k20260515; t=1783939197;
+	bh=x8oXiou74DGyocC5MesdY8P+CtY16UEe9mvEu2VUYTs=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=VAYiqIxjL3daCyR+D+ETLGq41mNrhbgaGKn7ME2q4d8KPQYkA6jeYNTEYqj0Bcmpe
-	 jqOnw1gz383wgQ7PryrwzW9KoTe+5f8HW5gigVehgRcPxT5V/oB5NH+r1UziMp5E78
-	 icplkzFFW8k8uiCDDOJg5x2zJIU70DPaE2Fe6RXpouuG76zhi3jpRPRZV9WvJe0u2E
-	 +ou/itGBnTQAqCWqqyfyuov7eijDS7B5hbid+ZYoWCFp95nUTucwT7y91597Q4oE8a
-	 R1QfVzsPDfBgKYBAqi+C8IoPpa17yS7E6kP7QbdkeSO+CeE7Oj7rzcu3zauQ9XdY00
-	 LLMhXXK8coSHA==
+	b=dq3+kXSdvSGYySMrQ2kDXlLecn39by9+jxaXp1X6A4xX2qmPirzgdEVcgbvseToii
+	 YKk4eV15MysJy974UmLvYP9yHdR5WKSui2oFl3TYWpqzZ+TaygTnz3JCAkGiw4mMTn
+	 CGakq97ZQQltT8oUOocuxTIgQ5pfyKCN/fV1abJMdOJGqHIYP2gcIhdi+ECE6B13Sd
+	 NcSj9xKyvgwjQT1sI0LwPlA48j6cbQ/BlaIjIwd0MnQALMSumMeGSlAk34T5mv2Lxg
+	 HZudwUnm2g7a5WZ6VWUrRN81k2jXTYphJ109WCfpX0Rtk0TKRm0cobs7iHu93DGheU
+	 DcSWqmJN+X1PA==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 3/7] irqchip/irq-qcom-mpm: Prepare common access path
- for timer and pin regs
+Subject: Re: [PATCH 6/7] arm64: dts: qcom: agatti: Do not mark MPM as power
+ domain
 Reply-To: sashiko-reviews@lists.linux.dev
 To: "Sneh Mankad" <sneh.mankad@oss.qualcomm.com>
-Cc: devicetree@vger.kernel.org, conor+dt@kernel.org, robh@kernel.org
-In-Reply-To: <20260713-b4-shikra_lpm_addition-v1-3-3d858df2cbbf@oss.qualcomm.com>
+Cc: devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org
+In-Reply-To: <20260713-b4-shikra_lpm_addition-v1-6-3d858df2cbbf@oss.qualcomm.com>
 References: <20260713-b4-shikra_lpm_addition-v1-0-3d858df2cbbf@oss.qualcomm.com>
- <20260713-b4-shikra_lpm_addition-v1-3-3d858df2cbbf@oss.qualcomm.com>
+ <20260713-b4-shikra_lpm_addition-v1-6-3d858df2cbbf@oss.qualcomm.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Mon, 13 Jul 2026 10:39:24 +0000
-Message-Id: <20260713103925.557CE1F000E9@smtp.kernel.org>
+Date: Mon, 13 Jul 2026 10:39:56 +0000
+Message-Id: <20260713103957.4C0C61F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,24 +72,23 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-325419-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:sneh.mankad@oss.qualcomm.com,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-325420-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS(0.00)[m:sneh.mankad@oss.qualcomm.com,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	ALIAS_RESOLVED(0.00)[];
@@ -98,111 +97,109 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	RCPT_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,qualcomm.com:email,vger.kernel.org:from_smtp,smtp.kernel.org:mid,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,lists.linux.dev:replyto]
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 8E5E2749E4A
+X-Rspamd-Queue-Id: C41CB749FD3
 
 Thank you for your contribution! Sashiko AI review found 2 potential issue(=
 s) to consider:
-
-Pre-existing issues:
-- [High] The initialization loop in the probe function writes zeroes to reg=
-isters based on the device tree property `qcom,mpm-pin-count` without verif=
-ying if the calculated `reg_stride` fits within the mapped I/O memory regio=
-n.
-- [High] Lack of bounds checking on `d->hwirq` combined with signed integer=
- conversion allows arbitrary out-of-bounds memory accesses when reading/wri=
-ting IRQ registers.
+- [High] Missing check for KTIME_MAX and expired timers causes 64-bit integ=
+er overflow, resulting in an unpredictable hardware wakeup time.
+- [High] Mailbox notification is sent to the RPM processor before the timer=
+ registers are updated, causing a race where RPM reads stale timer values.
 --
 
---- Patch [3]: [PATCH 3/7] irqchip/irq-qcom-mpm: Prepare common access path=
- for timer and pin regs ---
-commit 481c7b7ccc27a48778456542a65ce5c589dcaa00
+--- Patch [6]: [PATCH 6/7] arm64: dts: qcom: agatti: Do not mark MPM as pow=
+er domain ---
+commit 7c3965f0765f0a48723f4b17bac82d687c8614cc
 Author: Sneh Mankad <sneh.mankad@oss.qualcomm.com>
 
-irqchip/irq-qcom-mpm: Prepare common access path for timer and pin regs
+arm64: dts: qcom: agatti: Do not mark MPM as power domain
+   =20
+Do not mark MPM device as power domain since it leads to idle-states init
+failure because of probe dependencies. CPU cluster power domain node is kept
+disabled and hence CPU cluster will never power collapse. Do not register
+MPM under it in this case.
 
-This commit introduces a common addressing helper, qcom_mpm_offset(),
-to calculate memory offsets for both timer and pin registers. It also=20
-replaces the macro definitions for vMPM registers with an enum and=20
-updates the read/write accessor functions to use it.
-
-> diff --git a/drivers/irqchip/irq-qcom-mpm.c b/drivers/irqchip/irq-qcom-mp=
-m.c
-> index 01fd1843172aa..763eddee99dc4 100644
-> --- a/drivers/irqchip/irq-qcom-mpm.c
-> +++ b/drivers/irqchip/irq-qcom-mpm.c
-[ ... ]
-> @@ -92,18 +97,36 @@ struct qcom_mpm_priv {
->  	atomic_t cpus_in_pm;
->  };
+> diff --git a/arch/arm64/boot/dts/qcom/agatti.dtsi b/arch/arm64/boot/dts/q=
+com/agatti.dtsi
+> index f0b6ae9b81528..ddb038b3bbbc4 100644
+> --- a/arch/arm64/boot/dts/qcom/agatti.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/agatti.dtsi
+> @@ -205,7 +205,6 @@ cpu_pd3: power-domain-cpu3 {
 > =20
-> -static u32 qcom_mpm_read(struct qcom_mpm_priv *priv, unsigned int reg,
-> -			 unsigned int index)
-> +static unsigned int qcom_mpm_offset(struct qcom_mpm_priv *priv, enum qco=
-m_mpm_reg reg,
-> +				    unsigned int index)
-> +{
-> +	unsigned int reg_offset;
-> +
-> +	/*
-> +	 * Per the vMPM register map, TIMER[0..1] starts at register index 0 an=
-d all pin-specific
-> +	 * registers start after the two TIMER regs. Pin-specific register IDs =
-start at
-> +	 * MPM_REG_ENABLE, so subtract it to convert to a zero-based pin-regist=
-er group index.
-> +	 */
-> +	if (reg =3D=3D MPM_REG_TIMER)
-> +		reg_offset =3D index;
-> +	else
-> +		reg_offset =3D MPM_TIMER_REGS +
-> +			 (reg - MPM_REG_ENABLE) * priv->reg_stride + index;
-> +
-> +	return reg_offset * sizeof(u32);
-> +}
+>  		cluster_pd: power-domain-cpu-cluster {
+>  			#power-domain-cells =3D <0>;
+> -			power-domains =3D <&mpm>;
+>  			domain-idle-states =3D <&cluster_sleep>;
+>  		};
+>  	};
 
 [Severity: High]
-This isn't a bug introduced by this patch, but I'm wondering if
-priv->reg_stride is validated against the size of the mapped I/O memory reg=
-ion?
+Does removing the MPM power domain mapping cause issues with the timer
+values?
 
-Looking at qcom_mpm_probe():
+When no hrtimers are pending, dev_pm_genpd_get_next_hrtimer() returns
+KTIME_MAX. Subtracting 'now' leaves a huge positive value, which when
+converted to microseconds and multiplied by 0x10C7UL overflows the 64-bit
+boundary.
 
-	priv->reg_stride =3D DIV_ROUND_UP(pin_cnt, 32);
+Similarly, if a timer has already expired, the negative difference
+becomes a huge positive value when implicitly cast to u64 wakeup_us, leading
+to overflow.
 
-If a very large qcom,mpm-pin-count is provided in the device tree, could the
-initialization loop later in qcom_mpm_probe():
+Could this happen here in mpm_write_next_wakeup() within
+drivers/irqchip/irq-qcom-mpm.c:
 
-	for (i =3D 0; i < priv->reg_stride; i++) {
-		qcom_mpm_write(priv, MPM_REG_ENABLE, i, 0);
-		...
+	wakeup =3D dev_pm_genpd_get_next_hrtimer(priv->dev);
 
-write zeroes out of bounds into memory following priv->base?
+	/* Find the relative wakeup in kernel time scale */
+	now =3D ktime_get();
+	wakeup =3D ktime_sub(wakeup, now);
+	wakeup_us =3D ktime_to_us(wakeup);
+
+	/* Convert the wakeup to arch timer scale */
+	wakeup_cycles =3D USECS_TO_CYCLES(wakeup_us);
+
+and cause random timer values to be programmed into the MPM hardware?
+
+[ ... ]
+
+> @@ -281,7 +280,6 @@ mpm: interrupt-controller {
+>  			mboxes =3D <&apcs_glb 1>;
+>  			interrupt-controller;
+>  			#interrupt-cells =3D <2>;
+> -			#power-domain-cells =3D <0>;
+>  			interrupt-parent =3D <&intc>;
+>  			qcom,mpm-pin-count =3D <96>;
+>  			qcom,mpm-pin-map =3D <2 275>,  /* TSENS0 uplow */
 
 [Severity: High]
-This is a pre-existing issue, but does this function safely handle the index
-parameter against malformed device tree inputs?
+Does this change expose a race condition with the RPM processor?
 
-In qcom_mpm_alloc(), pin is assigned as d->hwirq from the device tree
-interrupt specifier without bounds validation against domain->hwirq_max.
+The AP signals the RPM processor to configure hardware state from the shared
+vMPM SRAM before actually writing the new timer wakeup values to the SRAM.
+Since the RPM is an independent processor, it is highly likely to read the
+old, stale timer values.
 
-Later in qcom_mpm_enable_irq():
+Could this happen here in handle_rpm_notification() within
+drivers/irqchip/irq-qcom-mpm.c:
 
-	int pin =3D d->hwirq;
-	unsigned int index =3D pin / 32;
+	/* Notify RPM to write vMPM into HW */
+	ret =3D mbox_send_message(priv->mbox_chan, NULL);
+	if (ret < 0)
+		return ret;
 
-If a sufficiently large d->hwirq (e.g., 0x80000000) is provided, would the
-signed integer conversion cause it to wrap into a negative number, resulting
-in a massive unsigned index being passed into qcom_mpm_offset() and allowing
-arbitrary out-of-bounds memory accesses?
+	mpm_write_next_wakeup(priv);
+
+and cause the hardware to be programmed with the incorrect wakeup time?
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260713-b4-shikra_=
-lpm_addition-v1-0-3d858df2cbbf@oss.qualcomm.com?part=3D3
+lpm_addition-v1-0-3d858df2cbbf@oss.qualcomm.com?part=3D6
 
