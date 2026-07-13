@@ -1,97 +1,69 @@
-Return-Path: <devicetree+bounces-325180-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-325181-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id Tl2HNUleVGrJlAMAu9opvQ
-	(envelope-from <devicetree+bounces-325180-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 05:40:57 +0200
+	id L0zKDqJeVGrdlAMAu9opvQ
+	(envelope-from <devicetree+bounces-325181-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 05:42:26 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 29ECB746F93
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 05:40:57 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E8CC4746FB1
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 05:42:25 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=tenstorrent.com header.s=google header.b=gkUXyAm5;
-	dmarc=pass (policy=reject) header.from=tenstorrent.com;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-325180-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-325180-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=gondor.apana.org.au header.s=h01 header.b=Qb2bWov7;
+	dmarc=pass (policy=quarantine) header.from=apana.org.au;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-325181-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-325181-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id EF3213008D05
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 03:40:55 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 29A363011A44
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 03:42:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E4CA33A00C;
-	Mon, 13 Jul 2026 03:40:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2A8A33ADB9;
+	Mon, 13 Jul 2026 03:42:19 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f171.google.com (mail-yw1-f171.google.com [209.85.128.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from abb.hmeau.com (abb.hmeau.com [180.181.231.80])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A4363396EE
-	for <devicetree@vger.kernel.org>; Mon, 13 Jul 2026 03:40:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BADAC1F3BA4;
+	Mon, 13 Jul 2026 03:42:17 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783914055; cv=none; b=r4YNieQ6VAp9wYuxz1LEntiXmt1qrk0g2H80Q54Vlp4mnPoioiy3Yhg7EHmGksTY0F2mDbml5OHSfmAdvOFzp3R+7bdqMGHXjzpkltXepmDKdLBn5Qaza1KxL3eKTYdRguIl9LjpVuu87I4MnKO1Pf2gWsWR7bqkwqXiuE3J71w=
+	t=1783914139; cv=none; b=Bg6KOGFUXi1nKciSoIdFdQ8z5MLBTiDvGthv2sdBNyjMWyM3zuk74GC2JGIbb5u2z+E66503kSkVuRl5bpRe86EA3tEoOB4uKzAqzg8HLnvXBk4a+99Eop15iI/gK3EZOe02CDEbkOjpLv6mXbTt7w0GIm0QaV89+NAETCLUbeQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783914055; c=relaxed/simple;
-	bh=5h8jQL3TdcDQN5OyfaTjXVOYLwfig02OQQ0EFcveYAM=;
+	s=arc-20240116; t=1783914139; c=relaxed/simple;
+	bh=viFaBWiMYiXNWA4jLXpBiJLpNrYbbMfjMI1CIpubu4c=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lALhTG4TJ5UbXkFBduKiDz7WKWm0sm3bldPfrcuY94acpJBvlHijDAhnjHvJeGXVrQYQob+N+d8Y5vb3hDZUofvMLZ86+5RtUf9m8wEXDdpu6Whw/NqoADqQ/UaSXzLds1iBn9HWGG/Qwxkf4MKuBP+e4NmKywFXZBN9oKPbkUw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.tenstorrent.com; spf=pass smtp.mailfrom=tenstorrent.com; dkim=pass (2048-bit key) header.d=tenstorrent.com header.i=@tenstorrent.com header.b=gkUXyAm5; arc=none smtp.client-ip=209.85.128.171
-Received: by mail-yw1-f171.google.com with SMTP id 00721157ae682-80e24970f1dso18590757b3.0
-        for <devicetree@vger.kernel.org>; Sun, 12 Jul 2026 20:40:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tenstorrent.com; s=google; t=1783914052; x=1784518852; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:content-type:mime-version
-         :references:message-id:subject:cc:to:from:date:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=DD337bllPU0qOfiBQScd86xJr2rrEeEQWd3DGNprvhw=;
-        b=gkUXyAm5E5CZVFNODwx4uGf6Xix1pEX0F5qP+5D9kGOIfyzJrxugvnWtI5v4ZUfC93
-         IsJWan3OyFwKrmUvC7IV3AXeoPP9vgMeEW1EU5QpVuX7z86RMRLJXLMk56WVG9VoVBL6
-         QGL0n/ziG4uOP5MGKCXvNokqhtL+zeu/PmZ9OB4wGCO9JLDVW8pO6ZoDRvS6LoVqa3rs
-         FQG5rpucSwESFexDcIHJ8BDiStnvtsjJHkw9tbBENcksFymqmGw6zRTd/GXiNtLNWdqj
-         dR8yPcqbElvsUezup4k4uwuNJae14aLFzZerY67MymbsY0mot92cH2N1D4z3Ng3mOK0s
-         FshQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783914052; x=1784518852;
-        h=in-reply-to:content-disposition:content-type:mime-version
-         :references:message-id:subject:cc:to:from:date:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=DD337bllPU0qOfiBQScd86xJr2rrEeEQWd3DGNprvhw=;
-        b=rK++jWoaURcxd+Eb5h+KVkxXleA5947iSxhJmYHE4Ugy+60yfuadHCB6/1Jx1vjQZQ
-         1sjvc/taSR5BbxAGXChRxazPr2Oe7rY/uRSIelh/AIzsuieGZkzIc/MDF3smW+SaemD4
-         xmZtOi9qLLElKZ6Jk2+3OoZ4TML98Gnt8PX+z+VIMmyqHpGRHITfk8QIAMMqcCj+T7mv
-         44ap7s4Yrl7hd+rqQJDfxCNkVv/YdzrmQYl+sM9viFFL0E211RgKt+0tx1nuQxTt2NVl
-         V2twm8IW3b05CztlbQKS0CHhqZKYGdz6rOCx9tD2h8FUYht50DvfIcGAaKHNmhcXJyAg
-         /M0w==
-X-Forwarded-Encrypted: i=1; AHgh+RriioLJVvW6hiiBFLRJT/wrRXkvllI+DdY0ttP8GC0LdM4DS7/4StVHZpVWeR7P753hKszMcb7/6awG@vger.kernel.org
-X-Gm-Message-State: AOJu0Yze1QWbuiIp5tl8KQXOpn/5lY9vafyCXdbzzAlVeOevcpCXzNTi
-	G0xwHNqeSRgLABITcMXEr0gHj3Yz/gCWyddJnuYLfev+gCje5/qTwL1DXFru+aN89sM=
-X-Gm-Gg: AfdE7cmZZ7yxjp9ywbsGdIAew32foAYeCXjWFE2urjXtFXfdO8ObtDV4r6U4IWA9aY/
-	UX2Bnv2gthTQL4DetmpOZRpYjI8Itwu7yKJ4pF3e1tJzh4tTkxa/41WnyHpaFW2DYtrm/IM2llf
-	dmQYLb+WelJgGQ3L1JtFDThxNWTJ5nyRzIzxuLKK8XuARMxeA5WHlMwGWicVz/Npwi4gom7vkAO
-	/Q813MWUBEdTC74WmltiKybBIDfySF/AgtLjFwHIgtmGQj1jyL70fuDLALs77LETClGXB3gaoVl
-	mOKECgU3878NNswrf7APYs+qtlMFZw+Jh6NBP0XlugnwFYzNk8EAoa6k8dsdvG3gDyp9qhlhA7E
-	Xn85ArKAplnnrwuHq0szCmZQc/U3P7KSolMFcT4VOpZ8Ma/NMCMua3t345fpYYiFOZ56lQYl0gY
-	QJgrqZLi5jUk4h25vvIi7unmSvNAqHU3+GwYjDwzxW8mOFxjssy24xDSMHcA==
-X-Received: by 2002:a05:690c:6981:b0:80e:2917:4b01 with SMTP id 00721157ae682-81e9003e955mr55511657b3.27.1783914052406;
-        Sun, 12 Jul 2026 20:40:52 -0700 (PDT)
-Received: from toolbox ([2600:1700:220:59e0:55c1:a162:6cca:b98a])
-        by smtp.gmail.com with ESMTPSA id 00721157ae682-81e6c249b87sm104348967b3.49.2026.07.12.20.40.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 12 Jul 2026 20:40:52 -0700 (PDT)
-Date: Sun, 12 Jul 2026 22:40:22 -0500
-From: Anirudh Srinivasan <asrinivasan@oss.tenstorrent.com>
-To: Yixun Lan <dlan@kernel.org>
-Cc: Alim Akhtar <alim.akhtar@samsung.com>, 
-	Avri Altman <avri.altman@sandisk.com>, Bart Van Assche <bvanassche@acm.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, "James E.J. Bottomley" <James.Bottomley@hansenpartnership.com>, 
-	"Martin K. Petersen" <martin.petersen@oracle.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, linux-scsi@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, spacemit@lists.linux.dev, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 0/3] Add UFS Host driver support for SpacemiT K3 SoC
-Message-ID: <wjbz5tp7vjrsjwjaiu3n7du5ksbrlsduuxhwg2wriyxshkrqd5@t3sdxr6ua2sg>
-References: <20260702-08-k3-ufs-support-v1-0-1a64a3ab128f@kernel.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=NVgTCtVtv8SYyLkyKmWbyuETpfml/lkgZ1WmWVQcvkAA0aA9/mKPA98BaVOesyYMOD5NSNCdO6ijJOysd0/578+C+MitO/G6pw+3vGycidzneex0MuWGKQiqPeATXmnRFp9QGtlkXJeLKzOzF7qhmnU+zZ2jzqjU7GMyN7VR+d0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gondor.apana.org.au; spf=pass smtp.mailfrom=gondor.apana.org.au; dkim=pass (2048-bit key) header.d=gondor.apana.org.au header.i=@gondor.apana.org.au header.b=Qb2bWov7; arc=none smtp.client-ip=180.181.231.80
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=gondor.apana.org.au; s=h01; h=In-Reply-To:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:cc:to:subject:message-id:date:
+	from:content-type:reply-to; bh=89rWfb/GKA0YbwlF/rC1Uqb+AHHDfcTsgnf6prS00ms=; 
+	b=Qb2bWov7fDBLJ4II8sHjsLbeIXS4BXEzwIlOgSn1BDBcp1Vkbk9yo6voNd5z1BnQaDm8W8bfCHd
+	6oWRW1VN1NYQYo93R6N9AsmmaOoB3y1Oo77s1Z4cyz0khXh+AnHUmHOKi8URHGJhKGnu7F7lXgtAM
+	U2spVQE/Ax9CwwX1VQF9iUSRDTTyXpHpWLpb9aqQqnIOWDJ5gVTcQfNwBzRztQ2ZFmVEoAakRC5AD
+	nz9LzgWWhBTq+8UuLXPQ17GIcDCVFRMopIY0NkTkHwICMORLitb42bdHqebl4sPB/vZpmoKlm5qgo
+	fjWbWEw6hABQ1T1+auOa2NMplNFQ2I5NJLMw==;
+Received: from loth.rohan.me.apana.org.au ([192.168.167.2])
+	by formenos.hmeau.com with smtp (Exim 4.98.2 #2 (Debian))
+	id 1wj7Yb-0000000CyEH-3axH;
+	Mon, 13 Jul 2026 11:42:14 +0800
+Received: by loth.rohan.me.apana.org.au (sSMTP sendmail emulation); Mon, 13 Jul 2026 13:42:13 +1000
+Date: Mon, 13 Jul 2026 13:42:13 +1000
+From: Herbert Xu <herbert@gondor.apana.org.au>
+To: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
+Cc: "David S. Miller" <davem@davemloft.net>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>, aiqun.yu@oss.qualcomm.com,
+	tingwei.zhang@oss.qualcomm.com, trilok.soni@oss.qualcomm.com,
+	yijie.yang@oss.qualcomm.com, linux-arm-msm@vger.kernel.org,
+	linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Subject: Re: [PATCH v2 0/3] dt-bindings: crypto: Add Qualcomm Maili crypto
+ support
+Message-ID: <alRelRyJDvTdNTgJ@gondor.apana.org.au>
+References: <20260628-maili-crypto-v2-0-f8ce760f71d6@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -100,97 +72,69 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260702-08-k3-ufs-support-v1-0-1a64a3ab128f@kernel.org>
+In-Reply-To: <20260628-maili-crypto-v2-0-f8ce760f71d6@oss.qualcomm.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[tenstorrent.com,reject];
-	R_DKIM_ALLOW(-0.20)[tenstorrent.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
+	DMARC_POLICY_ALLOW(-0.50)[apana.org.au,quarantine];
+	R_DKIM_ALLOW(-0.20)[gondor.apana.org.au:s=h01];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-325180-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	FORGED_SENDER(0.00)[asrinivasan@oss.tenstorrent.com,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:dlan@kernel.org,m:alim.akhtar@samsung.com,m:avri.altman@sandisk.com,m:bvanassche@acm.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:James.Bottomley@hansenpartnership.com,m:martin.petersen@oracle.com,m:p.zabel@pengutronix.de,m:pjw@kernel.org,m:palmer@dabbelt.com,m:aou@eecs.berkeley.edu,m:alex@ghiti.fr,m:linux-scsi@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-riscv@lists.infradead.org,m:spacemit@lists.linux.dev,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-325181-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:jingyi.wang@oss.qualcomm.com,m:davem@davemloft.net,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:vkoul@kernel.org,m:andersson@kernel.org,m:aiqun.yu@oss.qualcomm.com,m:tingwei.zhang@oss.qualcomm.com,m:trilok.soni@oss.qualcomm.com,m:yijie.yang@oss.qualcomm.com,m:linux-arm-msm@vger.kernel.org,m:linux-crypto@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzysztof.kozlowski@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	FORGED_SENDER(0.00)[herbert@gondor.apana.org.au,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[lists@lfdr.de];
+	DKIM_TRACE(0.00)[gondor.apana.org.au:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[asrinivasan@oss.tenstorrent.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[tenstorrent.com:+];
+	FROM_NEQ_ENVFROM(0.00)[herbert@gondor.apana.org.au,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,tenstorrent.com:dkim,spacemit.com:url]
+	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,apana.org.au:url,apana.org.au:email,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 29ECB746F93
+X-Rspamd-Queue-Id: E8CC4746FB1
 
-Hi Yixun,
-
-On Thu, Jul 02, 2026 at 02:31:34AM +0000, Yixun Lan wrote:
-> This series try to add UFS support for SpacemiT K3 SoC, the controller
-> components consists of System Bus Interface Unit, UFS Host Controller
-> Interface, UFS Transport Protocol Layer, UFS Host Registers, Device
-> Management Entity (DME), Transport Layer, Network Layer, Data Link
-> Layer, PHY Adapter Layer, and M-PHY Interface. A more detail functional
-> block diagram can be found in SpacemiT website, chapter 9.7.3 [1]
+On Sun, Jun 28, 2026 at 11:44:34PM -0700, Jingyi Wang wrote:
+> Add crypto(ICE and TRNG) dt-binding support for Qualcomm upcoming Maili
+> SoC. Meanwhile fix the power-domain and clk missing on Hawi.
 > 
-> Please note, in order to test this driver, the UFS clock driver[2] here
-> should be applied first as a prerequisite patch.
-> 
-> One known issue is that the device will occasionally raise BKOPS interrupt
-> when doing some high load test, log from dmesg shows
-> 
-> [  806.710763] ufshcd-spacemit c0e00000.ufshc: ufshcd_bkops_exception_event_handler: device raised urgent BKOPS exception for bkops status 1
-> 
-> Link: https://spacemit.com/community/document/info?nodepath=hardware/key_stone/k3/k3_docs/k3_usermanual/09_memory_storage.md&lang=en [1]
-> Link: https://lore.kernel.org/all/20260630-06-clk-ufs-support-v1-0-cf7521d1d0fe@kernel.org/ [2]
-> Signed-off-by: Yixun Lan <dlan@kernel.org>
-
-I see this during probe on a k3-pico-itx. Does the UFS chip on board
-have an RPMB block on it? Is this error of any concern.
-
-[    5.957864] ufshcd-spacemit c0e00000.ufshc: ufshcd_scsi_add_wlus: BOOT WLUN not found
-[    5.963319] bus_add_device: cannot add device 'ufs_rpmb0' to unregistered bus 'ufs_rpmb'
-[    5.971155] ufshcd-spacemit c0e00000.ufshc: Failed to register UFS RPMB device 0
-
-Regards
-Anirudh Srinivasan
-
+> Signed-off-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
 > ---
-> Yixun Lan (3):
->       scsi: ufs: spacemit: dt-bindings: Add UFS controller for K3 SoC
->       scsi: ufs: spacemit: k3: Add UFS Host Controller driver
->       riscv: dts: spacemit: k3: Add UFS support
+> Changes in v2:
+> - add power-domain and clk constraint
+> - add acked-by tag
+> - Link to v1: https://lore.kernel.org/r/20260609-maili-crypto-v1-0-0f577df56a61@oss.qualcomm.com
 > 
->  .../devicetree/bindings/ufs/spacemit,k3-ufshc.yaml |  54 ++
->  arch/riscv/boot/dts/spacemit/k3-com260-ifx.dts     |   4 +
->  arch/riscv/boot/dts/spacemit/k3-pico-itx.dts       |   4 +
->  arch/riscv/boot/dts/spacemit/k3.dtsi               |  13 +
->  drivers/ufs/host/Kconfig                           |  12 +
->  drivers/ufs/host/Makefile                          |   1 +
->  drivers/ufs/host/ufs-spacemit.c                    | 931 +++++++++++++++++++++
->  drivers/ufs/host/ufs-spacemit.h                    |  90 ++
->  8 files changed, 1109 insertions(+)
 > ---
-> base-commit: dc59e4fea9d83f03bad6bddf3fa2e52491777482
-> change-id: 20260605-08-k3-ufs-support-c8b308e415e2
+> Jingyi Wang (3):
+>       dt-bindings: crypto: qcom,prng: Document Maili TRNG
+>       dt-bindings: crypto: qcom,inline-crypto-engine: Document Maili ICE
+>       dt-bindings: crypto: qcom,ice: Fix missing power-domain and iface clk on Hawi
 > 
-> Best regards,
-> --  
-> Yixun Lan <dlan@kernel.org>
-> 
+>  .../devicetree/bindings/crypto/qcom,inline-crypto-engine.yaml          | 3 +++
+>  Documentation/devicetree/bindings/crypto/qcom,prng.yaml                | 1 +
+>  2 files changed, 4 insertions(+)
+> ---
+> base-commit: a87737435cfa134f9cdcc696ba3080759d04cf72
+> change-id: 20260609-maili-crypto-5d612f629acf
+
+All applied.  Thanks.
+-- 
+Email: Herbert Xu <herbert@gondor.apana.org.au>
+Home Page: http://gondor.apana.org.au/~herbert/
+PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
 
