@@ -1,257 +1,266 @@
-Return-Path: <devicetree+bounces-325480-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-325486-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id OWuDDyDRVGr2fAAAu9opvQ
-	(envelope-from <devicetree+bounces-325480-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 13:50:56 +0200
+	id t8/iH0bUVGq9fQAAu9opvQ
+	(envelope-from <devicetree+bounces-325486-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 14:04:22 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E04574A8A9
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 13:50:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D8DAA74AAF5
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 14:04:21 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=cDkVdYxW;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-325480-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-325480-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
+	dkim=pass header.d=goldelico.com header.s=strato-dkim-0002 header.b=Y+mVFkcz;
+	dkim=pass header.d=goldelico.com header.s=strato-dkim-0003 header.b=s5oUxzPz;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-325486-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-325486-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=goldelico.com;
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id AFFA6301FF85
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 11:50:50 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 7335B316CAA2
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 11:59:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4B8B3F39C4;
-	Mon, 13 Jul 2026 11:50:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 327663F58D9;
+	Mon, 13 Jul 2026 11:59:49 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from mo4-p02-ob.smtp.rzone.de (mo4-p02-ob.smtp.rzone.de [81.169.146.168])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FFAD3CFF62;
-	Mon, 13 Jul 2026 11:50:43 +0000 (UTC)
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783943447; cv=none; b=oaToJeJl2jfrqRkPkiXSPTAegflfRYhGtT2x8y+qeXbgqF8RiBVX7Qdc6AN+srW0FpiN2B8N934iIN1Vsh0yF3OiJhOsUJ3QTLTJ7lV/jj3o0x97J2hkuM895H9baEuiU/8z3ScHeSylLrw8B5g4LHHI1Mr5E+o0UYpwpLEqKs4=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783943447; c=relaxed/simple;
-	bh=11UeDmBsuBqRYggVnD3ev5amPkLRJsMORlSHbCjOfhA=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=a/EpPeDJWrB3n77gwyXda9Uahx8mkNL+20WELrEaSEkt62gKCS7d+305q2gPRLNfsKQwIRfRuX7LyZ27HvTGhdiX0dZ4pR5c5/eSBg5jLH8Ho3YbAXgRRbt21+zZX1dkc1A14Xd39iHj2OLF1tTHzXLbzFsnXtlc2bKA3+/fy4Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cDkVdYxW; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 213F31F000E9;
-	Mon, 13 Jul 2026 11:50:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783943441;
-	bh=1mbN8eNdjVr7o4rWULavtp/pnpgSU4r8lLn5jDBY1Cw=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=cDkVdYxWlqxQH0HI4NFi2PZYCZ46/+js/bM6xYBpdpuh6EKJw+54/mvjUWBEnXK3Q
-	 GXiVRsUFQXWeDRetkC9aS7mumcL4pwwG11CdJnF2g4++SdLHBUudDHfq0wNUbrOZ1/
-	 Sw5f7B+9n0FD0DUCe1lgSeMp5v+FewPlEqRNnAwIxj01v5Q17obvxcJU5USJM+l7g1
-	 fi5LZE3DdS+RVgV5DFb1bAEwHIvm8OkokgUc9hXMsfEucsSWJOa8IkD9C3qHAf121O
-	 6CKofwhMbvDCKcNnFFtu9EXZHFZYCqq1unyLGGmbXlSrH5IQ3kDA6cWEbx2XJmfVDR
-	 CpB8/PNgsqDQA==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v2 04/18] arm64: dts: ti: k3-j784s4-j742s2-main-common:
- Add multiple channels for CSI2RX DMA
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Yemike Abhilash Chandra" <y-abhilashchandra@ti.com>
-Cc: conor+dt@kernel.org, robh@kernel.org, devicetree@vger.kernel.org, Frank.Li@kernel.org, imx@lists.linux.dev
-In-Reply-To: <20260713113423.2310443-5-y-abhilashchandra@ti.com>
-References: <20260713113423.2310443-1-y-abhilashchandra@ti.com>
- <20260713113423.2310443-5-y-abhilashchandra@ti.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Mon, 13 Jul 2026 11:50:40 +0000
-Message-Id: <20260713115041.213F31F000E9@smtp.kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80EDF3F4DEB;
+	Mon, 13 Jul 2026 11:59:44 +0000 (UTC)
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1783943988; cv=pass; b=lK3ifxxPSSQVaCOmNZb7JCASdFfIzfyVPBiRIRAxEi2WPKJbg0V3EJfAUP2w8Xhy+17CNBFb7+F2Pv+i9eGXueCUrzRzolCJGc3WTuF794g4Jma1G4NdX9jBRQCitvSDKbLbK8J1HlWrcUCgmvMVrthp5GCvu6Fq7AlMNq+NbbA=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1783943988; c=relaxed/simple;
+	bh=i3ds+ZfPgSmMxk9w62eeDN6HWFjTVsxsr0xp5kuGCo0=;
+	h=Content-Type:Mime-Version:Subject:From:In-Reply-To:Date:Cc:
+	 Message-Id:References:To; b=OO8wnJFNQDDzwl+lURPPTazvQx3Jq7Fx4SnHRzEg7sfKju488xxYEJUUaB7EywL4rqjj5hIQ9bBJGiJYog87cbgatMhlWiE7n/SEd71gtFFky/jeJ0WNH4pZM8hVQiq8FUPGbsi72+IyQBr4EpUvvUA494YByRQaEKnQ20qgn3I=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=goldelico.com; spf=pass smtp.mailfrom=goldelico.com; dkim=pass (2048-bit key) header.d=goldelico.com header.i=@goldelico.com header.b=Y+mVFkcz; dkim=permerror (0-bit key) header.d=goldelico.com header.i=@goldelico.com header.b=s5oUxzPz; arc=pass smtp.client-ip=81.169.146.168
+ARC-Seal: i=1; a=rsa-sha256; t=1783943621; cv=none;
+    d=strato.com; s=strato-dkim-0002;
+    b=Kx1wuMGhNx1H1qyfH20/px3rarhlIIZQ+JjJo0CEpux60nBDZPSSrKgs9Rl3tQiiv6
+    0l0dKIVzgcjkdC3daT6DTHReUrAge2lS4LW7dM4khoLYId08yYBqLVzE1l5J6wBWMpH8
+    Z9EKVYSrbNd1ti3fQ8QLOb3Gv+e+XkFK96rSLufhJeeYCIRWK65kErEhJA2uI4N64NjH
+    JYSz8Sn6nZ5H52RQdUFyCUCbhgdybWcihOBibDK90RNM5bcsxZ71wwF406c4ytvZT3In
+    Jmfs6IOFCUNNXe4kTJbT6bMATZ+WUR8O3jLEfZRx5UHgEo1lrh2NyIzmi2jqKLw22ZXr
+    uAgQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1783943620;
+    s=strato-dkim-0002; d=strato.com;
+    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
+    From:Subject:Sender;
+    bh=i3ds+ZfPgSmMxk9w62eeDN6HWFjTVsxsr0xp5kuGCo0=;
+    b=BGXfZQIZ3SaQrA5X07mjvAtyo/KMJXmohUec/pZZWOecujXRZ34ILOkWUzK+DTpm19
+    DnpguzbL1Z0SCC3Hpgm/18BSBg1BUOyrgDyO7vWh76TBoIxvViomlPgRdOZ2QVUU4HYJ
+    9MnaMHd5KOuuqTngGz2RsP1yw3WZXZYIMWeZ4mFAuJqNK8eiiCW8p7lsgvjwiESjK51O
+    CPH9DVJh5ImrcAWh/khAd7tG3GbgFouS5hc5XVRw9jo2Ln5FSuy0ML7nLcdmYFGdvT3r
+    R43lS5IAIwKYUfF7w6e/7VOy2rLBLnJm7Ve0Od7qnIVFb2QhXsSPXw8SkmrsjC/GoGeM
+    QLOw==
+ARC-Authentication-Results: i=1; strato.com;
+    arc=none;
+    dkim=none
+X-RZG-CLASS-ID: mo02
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1783943620;
+    s=strato-dkim-0002; d=goldelico.com;
+    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
+    From:Subject:Sender;
+    bh=i3ds+ZfPgSmMxk9w62eeDN6HWFjTVsxsr0xp5kuGCo0=;
+    b=Y+mVFkczigTwHh07i5RU3dZ4pxUtVVhWXaI+p5c5AuX4Ed3wFswQZy7pu7aGlrJMG1
+    FBOO2pYQMlDx3CJBFf33GdHpPyDq1MlQdZiKOkP9d3deI3MUqXWAt7ei92bTojyXs1W1
+    +luDZjQbt02BL4qKEod75NByenN/O2d9h78LoyQmDKJg1cmhUNdKVrH18UxMrNgsE3qU
+    lxDmX3AeDOyw33C7ZsKCdbNSFmDJB481hWSDhvS9ew4kZtFwMWys2mWiY8aV3XJ1eMh5
+    Z44CypUzRk/gNuUvXICD9kW/AkreJKPPPMJr1hGp01t11GWAMRgt5E0gycK3VwVa6b97
+    Muyg==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1783943620;
+    s=strato-dkim-0003; d=goldelico.com;
+    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
+    From:Subject:Sender;
+    bh=i3ds+ZfPgSmMxk9w62eeDN6HWFjTVsxsr0xp5kuGCo0=;
+    b=s5oUxzPzsKSduKARr3lcDfEnRpESmipObP6NRDu3IJDlm6uuVQYxwV1+P6l65C1tdO
+    QuCLZy3VdSu64X4cJwCw==
+X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMhflhwDubTJ9qVpwcQVkPW4I1HrQi5pZlciNgDl2kEp5oHJ2/c57N2Mc49IfXTKd"
+Received: from smtpclient.apple
+    by smtp.strato.de (RZmta 55.5.6 AUTH)
+    with ESMTPSA id Q4b76426DBrcOAG
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve X9_62_prime256v1 with 256 ECDH bits, eq. 3072 bits RSA))
+	(Client did not present a certificate);
+    Mon, 13 Jul 2026 13:53:38 +0200 (CEST)
+Content-Type: text/plain;
+	charset=us-ascii
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3826.700.81.1.8\))
+Subject: Re: [PATCH 09/16] ASoC: dt-bindings: add OpenPandora Sound Card
+From: "H. Nikolaus Schaller" <hns@goldelico.com>
+In-Reply-To: <741706c6-e6ff-4bc2-8ea1-28ebada6032c@kernel.org>
+Date: Mon, 13 Jul 2026 13:53:28 +0200
+Cc: Grond <grond66@riseup.net>,
+ Stefan Leichter <sle85276@gmx.de>,
+ Grazvydas Ignotas <notasas@gmail.com>,
+ Tony Lindgren <tony@atomide.com>,
+ Ethan Nelson-Moore <enelsonmoore@gmail.com>,
+ Jarkko Nikula <jarkko.nikula@bitmer.com>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Andreas Kemnade <andreas@kemnade.info>,
+ Lee Jones <lee@kernel.org>,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>,
+ Aaro Koskinen <aaro.koskinen@iki.fi>,
+ Kevin Hilman <khilman@baylibre.com>,
+ Roger Quadros <rogerq@kernel.org>,
+ Russell King <linux@armlinux.org.uk>,
+ Daniel Thompson <danielt@kernel.org>,
+ Jingoo Han <jingoohan1@gmail.com>,
+ Helge Deller <deller@gmx.de>,
+ Jaroslav Kysela <perex@perex.cz>,
+ Takashi Iwai <tiwai@suse.com>,
+ Sen Wang <sen@ti.com>,
+ Richard Fitzgerald <rf@opensource.cirrus.com>,
+ Arnd Bergmann <arnd@arndb.de>,
+ Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>,
+ Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+ Charles Keepax <ckeepax@opensource.cirrus.com>,
+ Niranjan H Y <niranjan.hy@ti.com>,
+ letux-kernel@openphoenux.org,
+ devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org,
+ linux-sound@vger.kernel.org,
+ linux-omap@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org,
+ dri-devel@lists.freedesktop.org,
+ linux-fbdev@vger.kernel.org,
+ kernel@pyra-handheld.com,
+ mfd@lists.linux.dev
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <9E796FCB-F393-48F9-A8D4-6E433EFB6876@goldelico.com>
+References: <cover.1783749722.git.hns@goldelico.com>
+ <7989e699de400c0fe3f0cb7af77a54077784df78.1783749722.git.hns@goldelico.com>
+ <20260713-infallible-capable-dormouse-aaaebe@quoll>
+ <BF2B6C4A-A4CC-48D7-9854-DC014950184B@goldelico.com>
+ <5667350d-cc3f-421d-899f-f353b05c5ea1@kernel.org>
+ <8A0C119B-7885-4538-8D4F-AC60E5C91B7E@goldelico.com>
+ <741706c6-e6ff-4bc2-8ea1-28ebada6032c@kernel.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+X-Mailer: Apple Mail (2.3826.700.81.1.8)
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[goldelico.com,quarantine];
+	MV_CASE(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[goldelico.com:s=strato-dkim-0002,goldelico.com:s=strato-dkim-0003];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-325486-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER(0.00)[hns@goldelico.com,devicetree@vger.kernel.org];
 	RCVD_COUNT_THREE(0.00)[4];
-	TAGGED_FROM(0.00)[bounces-325480-lists,devicetree=lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,smtp.kernel.org:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp,ti.com:email,lists.linux.dev:replyto];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:y-abhilashchandra@ti.com,m:conor+dt@kernel.org,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:Frank.Li@kernel.org,m:imx@lists.linux.dev,m:conor@kernel.org,s:lists@lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[41];
+	FORGED_RECIPIENTS(0.00)[m:grond66@riseup.net,m:sle85276@gmx.de,m:notasas@gmail.com,m:tony@atomide.com,m:enelsonmoore@gmail.com,m:jarkko.nikula@bitmer.com,m:s.hauer@pengutronix.de,m:andreas@kemnade.info,m:lee@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:lgirdwood@gmail.com,m:broonie@kernel.org,m:aaro.koskinen@iki.fi,m:khilman@baylibre.com,m:rogerq@kernel.org,m:linux@armlinux.org.uk,m:danielt@kernel.org,m:jingoohan1@gmail.com,m:deller@gmx.de,m:perex@perex.cz,m:tiwai@suse.com,m:sen@ti.com,m:rf@opensource.cirrus.com,m:arnd@arndb.de,m:srinivas.kandagatla@oss.qualcomm.com,m:kuninori.morimoto.gx@renesas.com,m:ckeepax@opensource.cirrus.com,m:niranjan.hy@ti.com,m:letux-kernel@openphoenux.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-sound@vger.kernel.org,m:linux-omap@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:dri-devel@lists.freedesktop.org,m:linux-fbdev@vger.kernel.org,m:kernel@pyra-handheld.com,m:mfd@lists.linux.dev,m:krz
+ k@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	FREEMAIL_CC(0.00)[riseup.net,gmx.de,gmail.com,atomide.com,bitmer.com,pengutronix.de,kemnade.info,kernel.org,iki.fi,baylibre.com,armlinux.org.uk,perex.cz,suse.com,ti.com,opensource.cirrus.com,arndb.de,oss.qualcomm.com,renesas.com,openphoenux.org,vger.kernel.org,lists.infradead.org,lists.freedesktop.org,pyra-handheld.com,lists.linux.dev];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NEQ_ENVFROM(0.00)[hns@goldelico.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[goldelico.com:+];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCPT_COUNT_FIVE(0.00)[6];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FROM_NO_DN(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[goldelico.com:from_mime,goldelico.com:dkim,goldelico.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 7E04574A8A9
+X-Rspamd-Queue-Id: D8DAA74AAF5
 
-Thank you for your contribution! Sashiko AI review found 5 potential issue(=
-s) to consider:
 
-Pre-existing issues:
-- [High] DMA channel leak on probe failure due to incorrect PM status check.
-- [High] DMA channels are leaked on module removal if the device is active.
-- [High] Missing pm_runtime_disable() on probe error paths.
-- [High] DMA channel leak on error path in ti_csi2rx_runtime_resume().
-- [High] DMA drain transaction is instantly aborted during system suspend.
---
 
---- Patch [4]: [PATCH v2 04/18] arm64: dts: ti: k3-j784s4-j742s2-main-commo=
-n: Add multiple channels for CSI2RX DMA ---
-commit ebceec6da92de871c7ab51be87cc009f8c4d7c16
-Author: Vaishnav Achath <vaishnav.a@ti.com>
+> Am 13.07.2026 um 11:42 schrieb Krzysztof Kozlowski <krzk@kernel.org>:
+>=20
+> On 13/07/2026 11:38, H. Nikolaus Schaller wrote:
+>>=20
+>>=20
+>>> Am 13.07.2026 um 11:21 schrieb Krzysztof Kozlowski =
+<krzk@kernel.org>:
+>>>=20
+>>> On 13/07/2026 10:27, H. Nikolaus Schaller wrote:
+>>>> Hi Krzysztof,
+>>>>=20
+>>>> Thank you for the feedback.
+>>>>=20
+>>>>=20
+>>>> It does not emit any C compiler issues or runtime problems so it =
+remained unnoticed.
+>>>=20
+>>> I do not believe.
+>>>=20
+>>> There is a clear warning from Rob's bot.
+>>>=20
+>>> You just did not follow the process of building the code (compiler =
+has
+>>> nothing to do here). Read submitting patches in DT dir and then =
+writing
+>>> schema for further instructions. This is ABSOLUTE MINIMUM. We are =
+not
+>>> your build test service.
+>>>=20
+>>>>=20
+>>>> It was notified by the sahiko-bot and will be fixed in v2.
+>>>=20
+>>> Sashiko has nothing to do with that.
+>>>=20
+>>> You DID NOT BUILD the code.
+>>=20
+>> Hm. You are confusing me. I did "make" and did not get any errors...
+>> And the resulting code works as intended.
+>=20
+> 'make' alone does not build that, just like other pieces of code they
+> have own - well documented and always expected - build processes.
+>=20
+> I don't know what is confusing in my message, since I pointed you to
+> SPECIFIC guide telling you EXACTLY what to do (and which you did not =
+do).
 
-arm64: dts: ti: k3-j784s4-j742s2-main-common: Add multiple channels for CSI=
-2RX DMA
+Confusing was the phrase "building the code". For my understanding
+"building the code" is the process of building ("translating the code")
+to get vmlinux or similar and a DTB and kernel modules.
 
-This commit expands the CSI2RX SHIM layer configuration in the device tree
-to support up to 8 DMA channel contexts. This change enables multistream
-support for CSI2RX by adding the necessary DMA mappings.
+As far as I understand the bindings they are used to check the DTS =
+source
+files against. So here is no translation of bindings into a real DTB =
+that
+finaly runs on a device. So I had assumed that schemas are "validated"
+(not "built") by dt_binding_check.
 
-> diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi b/a=
-rch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi
-> index c2636e624f18b..4b4545a5af192 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi
-> @@ -811,8 +811,11 @@ ti_csi2rx0: ticsi2rx@4500000 {
->  		ranges;
->  		#address-cells =3D <2>;
->  		#size-cells =3D <2>;
-> -		dmas =3D <&main_bcdma_csi 0 0x4940 0>;
-> -		dma-names =3D "rx0";
-> +		dmas =3D <&main_bcdma_csi 0 0x4940 0>, <&main_bcdma_csi 0 0x4941 0>,
-> +		       <&main_bcdma_csi 0 0x4942 0>, <&main_bcdma_csi 0 0x4943 0>,
-> +		       <&main_bcdma_csi 0 0x4944 0>, <&main_bcdma_csi 0 0x4945 0>,
-> +		       <&main_bcdma_csi 0 0x4946 0>, <&main_bcdma_csi 0 0x4947 0>;
-> +		dma-names =3D "rx0", "rx1", "rx2", "rx3", "rx4", "rx5", "rx6", "rx7";
+This made me confused.
 
-[Severity: High]
-This is a pre-existing issue, but expanding the channel count makes a=20
-multi-iteration failure during initialization more likely.
+Back to topic:
 
-If ti_csi2rx_init_ctx() fails for a later context in ti_csi2rx_probe(), it=
-=20
-jumps to err_ctx to clean up previously successful contexts. However,=20
-pm_runtime_set_active() has not been called yet, so the device is=20
-considered suspended:
+It finally turned out that our script to run the required checks =
+automatically
+was no longer operational and silently ignored the validations. =
+Therefore
+nobody noticed before the bots did. Good to have a second and =
+independent
+check.
 
-drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c:ti_csi2rx_cleanup_ctx=
-() {
-    ...
-    if (!pm_runtime_status_suspended(ctx->csi->dev))
-        dma_release_channel(ctx->dma.chan);
-    ...
-}
+So sorry for the confusion we have introduced...
 
-Will this skip the DMA release and leak the successfully requested channels?
+v2 will be checked as it previously was.
 
-[Severity: High]
-This is a pre-existing issue, but does a partial failure during runtime=20
-resume also cause a permanent leak of previously allocated DMA channels?
+BR and thanks,
+Nikolaus
 
-drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c:ti_csi2rx_runtime_res=
-ume() {
-    ...
-    for (unsigned int i =3D 0; i < csi->num_ctx; i++) {
-        ret =3D ti_csi2rx_init_dma(&csi->ctx[i]);
-        if (ret)
-            return ret;
-    }
-    ...
-}
-
-If ti_csi2rx_init_dma() fails for a later context, it returns immediately=20
-without freeing the channels allocated for previous contexts. Since the nex=
-t=20
-resume attempt will re-allocate new channels, do the old channels become=20
-permanently leaked?
-
-[Severity: High]
-This is a pre-existing issue, but does module removal also leak all 8=20
-channels if the device is active?
-
-drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c:ti_csi2rx_remove() {
-    ...
-    if (!pm_runtime_status_suspended(&pdev->dev))
-        pm_runtime_set_suspended(&pdev->dev);
-    ...
-}
-
-This forcefully manipulates the internal PM state to suspended without=20
-invoking the runtime_suspend callback. When ti_csi2rx_cleanup_ctx() is=20
-called immediately afterward, it sees the newly set suspended state and=20
-skips calling dma_release_channel(). Can this be avoided so channels are=20
-properly released?
-
-[Severity: High]
-This is a pre-existing issue, but do the probe error paths leave the PM=20
-state unbalanced?
-
-pm_runtime_enable() is called earlier in probe, but pm_runtime_disable()=20
-appears to be missing on the error paths:
-
-drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c:ti_csi2rx_probe() {
-    ...
-err_notifier:
-    ti_csi2rx_cleanup_notifier(csi);
-err_ctx:
-    while (i--)
-        ti_csi2rx_cleanup_ctx(&csi->ctx[i]);
-    ...
-}
-
-If ti_csi2rx_notifier_register() or subsequent initialization steps fail,=20
-the driver returns an error but leaves the device improperly registered wit=
-h=20
-the PM framework. Should a pm_runtime_disable() be added here?
-
-[Severity: High]
-This is a pre-existing issue, but is the asynchronous DMA drain transaction=
-=20
-instantly aborted during system suspend?
-
-drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c:ti_csi2rx_suspend() {
-    ...
-    /* Drain DMA */
-    ti_csi2rx_drain_dma(ctx);
-
-    /* Terminate DMA */
-    ret =3D dmaengine_terminate_sync(ctx->dma.chan);
-    ...
-}
-
-The driver submits an asynchronous DMA drain transaction via=20
-ti_csi2rx_drain_dma(), but immediately calls dmaengine_terminate_sync()=20
-without waiting for it to complete. Does this synchronously terminate the=20
-drain transfer before it can execute, potentially leaving stale data in the=
-=20
-hardware FIFO?
-
-[ ... ]
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260713113423.2310=
-443-1-y-abhilashchandra@ti.com?part=3D4
 
