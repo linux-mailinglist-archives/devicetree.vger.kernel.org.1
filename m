@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-325595-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-325596-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id XNT3EIL9VGr6iQAAu9opvQ
-	(envelope-from <devicetree+bounces-325595-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 17:00:18 +0200
+	id xs/bJMP5VGoMiQAAu9opvQ
+	(envelope-from <devicetree+bounces-325596-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 16:44:19 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34A7974CB37
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 17:00:17 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 296D974C8A1
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 16:44:19 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=S1dWm8LZ;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-325595-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-325595-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=mDUiXnWZ;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-325596-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-325596-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 9759430BE3CE
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 14:42:41 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id EB374303975F
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 14:43:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D0F8438FE7;
-	Mon, 13 Jul 2026 14:42:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B69D9276038;
+	Mon, 13 Jul 2026 14:43:05 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DAFB8438022
-	for <devicetree@vger.kernel.org>; Mon, 13 Jul 2026 14:42:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 830923D1A8F
+	for <devicetree@vger.kernel.org>; Mon, 13 Jul 2026 14:43:04 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783953742; cv=none; b=VPh0gN3fepjIdP31WuSYgn5HlLVdWxICBI+TyXqLdXPJ/Z5v5xQ1OHV5ac+1NNhLhaj/567BOJ+mO26+inrB6+tEMwHjp+ozcj85ALRTeGtaiPrf6T1iaMFcmK8fY4qPTcePKcRN3tt7SWzxRphF6pfICURh+xhMqCWhAc+Jmxs=
+	t=1783953785; cv=none; b=p37k/geWcxZOb4raYOhoi4t89nRoNVj9MoC7KmezU6l8RqQx+3l8gxRJdQPifWnRimgv0GcpGfpy46D1Do50E7nvEEEJtXl4vvVfyXtw9Tg4tkICQ3i6sDXWyd+49ehfwRyQx6jkEGsO1qSXQb7o3qw6YWUN1Q8QMLvAvla/tXk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783953742; c=relaxed/simple;
-	bh=A3nAgZCcILRZihtlf1hSZPiEwEHWmCux4P7TVKnPVf4=;
+	s=arc-20240116; t=1783953785; c=relaxed/simple;
+	bh=BamuV/RNO8DYQqKIsACHHso0H5lMXea/nknYCbbMrDE=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=P8cyA7RB9M3nwrUYP2zuaGRj87dbcrwMQZ6xQzGvEanqMCizM/38pK3WTU9njB+XG9UEWk3Z9X4C4toeZPWBykK8Q/ob0vFuS9HmcR5ZUXExE8v+PFuL+8avDJ2AdaP0BnQGzSkQGOkQVkNhxOaOifVifdgd3YgssLDcAHAdKmQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=S1dWm8LZ; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2C4F91F00A3A;
-	Mon, 13 Jul 2026 14:42:21 +0000 (UTC)
+	 Message-Id; b=KCUKooyCTED3Ra4Sc/ZWSGxLdWE8QKhrTfmQm8z0iqc6QOZOQywFQxap3a0WOnH5uvDLA3WYCPLQWInJWiZj16sx+XAt4xtIbMQ9aOo76x+o+n8IoVfnTw1l8xwfHfWkb7dGYA/vy7b/qNDLELlslBE40+JiSIFqKa19YahHbiI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mDUiXnWZ; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D147C1F000E9;
+	Mon, 13 Jul 2026 14:43:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783953741;
-	bh=Ndyus4C5pLtwG8sU+06pp+DBs92OiWXZdXuF0XPFvvw=;
+	s=k20260515; t=1783953784;
+	bh=q3yOsUZV9nSjWdLN0XIHkqbrgl9sxp0I9eodHAtdT38=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=S1dWm8LZN1Od1U2Oxen5xddFLVClqI2e+Kk5+TMw64VwxbIyWTtViLqLfX34L2LiN
-	 R/1YkvtPgaoNVB8ovY5OlU/ZMuCJzihfaXPmODmeC7Nqh1LKqcoonR00Hx0FtuP/qH
-	 mECmGD9fAmQMEDEVKJWT+UTKWasqwP1WjjlY8OtY6/CqJL18qvhknPDMNaLhpGqWcm
-	 HKFhrRAJeS799rCEnACAeqy6e01SerAI7VdKz7w3ZvRyjN642gCyGvXcoHFT9za2xe
-	 8Xu9bTdEYoT3RGMlX9iwJk5CcBpzPXSFe1J0+/tA8a9BJbbX8K613u43kO+p7S+Er4
-	 HMN+nlwpJn9Uw==
+	b=mDUiXnWZJq7MhLxTYXWsIlrTPPUjGrNFg1YluBkHxKGQtsKLxC3/qIZkjVn03xYz4
+	 t79AaBBwgbgaOYtaxn1FXOULvlLaCggbR0BaGgtVWspJDDxjbzIIMNdVxp3NNViwJi
+	 YZmdPi28/u8L3zxtUGGSsPy2/pqkcYPsvS0jQ0I6KZ7oN/xgFGel9wlbzOo6GUe58i
+	 oamkTuykodJTfZkl22DN0kG+QrjVTwfcHSPwH7p244mYgZFTHUw/7/BM8KnjLzsMIm
+	 yaWgDq03nZ6PpoDkD/sBna1eLK3+Npr32rLptcSvR+TONaXTSh7atC/QQNMIS+Gf4Z
+	 SKQFExxRX9hdQ==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v4 09/10] dt-bindings: display: mediatek: wdma: Add
- compatibles for more SoCs
+Subject: Re: [PATCH v4 08/10] drm/mediatek: mtk_dsi: Enable PM Runtime on
+ probe
 Reply-To: sashiko-reviews@lists.linux.dev
 To: "AngeloGioacchino Del Regno" <angelogioacchino.delregno@collabora.com>
-Cc: conor+dt@kernel.org, robh@kernel.org, devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org
-In-Reply-To: <20260713142746.40259-10-angelogioacchino.delregno@collabora.com>
+Cc: conor+dt@kernel.org, dri-devel@lists.freedesktop.org, robh@kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260713142746.40259-9-angelogioacchino.delregno@collabora.com>
 References: <20260713142746.40259-1-angelogioacchino.delregno@collabora.com>
- <20260713142746.40259-10-angelogioacchino.delregno@collabora.com>
+ <20260713142746.40259-9-angelogioacchino.delregno@collabora.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Mon, 13 Jul 2026 14:42:20 +0000
-Message-Id: <20260713144221.2C4F91F00A3A@smtp.kernel.org>
+Date: Mon, 13 Jul 2026 14:43:02 +0000
+Message-Id: <20260713144303.D147C1F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,18 +72,18 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	TAGGED_FROM(0.00)[bounces-325595-lists,devicetree=lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,collabora.com:email,lists.linux.dev:replyto,vger.kernel.org:from_smtp,smtp.kernel.org:mid,sashiko.dev:url];
+	TAGGED_FROM(0.00)[bounces-325596-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,collabora.com:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,vger.kernel.org:from_smtp,smtp.kernel.org:mid,lists.linux.dev:replyto];
 	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:angelogioacchino.delregno@collabora.com,m:conor+dt@kernel.org,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:dri-devel@lists.freedesktop.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:angelogioacchino.delregno@collabora.com,m:conor+dt@kernel.org,m:dri-devel@lists.freedesktop.org,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
@@ -97,7 +97,7 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	PRECEDENCE_BULK(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	RCPT_COUNT_FIVE(0.00)[5];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
@@ -105,62 +105,94 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 34A7974CB37
+X-Rspamd-Queue-Id: 296D974C8A1
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
 s) to consider:
-- [Medium] The compatible string `mediatek,mt6893-disp-wdma` is incorrectly=
- added to the standalone enum instead of the fallback items list.
+- [High] Enabling PM runtime leaves the DSI hardware permanently suspended,=
+ resulting in system crashes during unpowered MMIO register accesses.
+- [High] The IRQ handler accesses hardware registers without verifying the =
+device's PM runtime state.
 --
 
---- Patch [9]: [PATCH v4 09/10] dt-bindings: display: mediatek: wdma: Add c=
-ompatibles for more SoCs ---
-commit 8001f83833ae9c684be67bc719c7aaa056f90763
+--- Patch [8]: [PATCH v4 08/10] drm/mediatek: mtk_dsi: Enable PM Runtime on=
+ probe ---
+commit 7ce79b5636ac6fccf8b21d5b0f6a67f31c6b10eb
 Author: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-dt-bindings: display: mediatek: wdma: Add compatibles for more SoCs
+drm/mediatek: mtk_dsi: Enable PM Runtime on probe
 
-Multiple MediaTek SoCs have the Write DMA hardware in their Display
-Controller. This commit adds the missing compatibles for Dimensity 1200
-(MT6893) and for Kompanio 500/520/820/1200.
+This commit enables PM runtime at the end of mtk_dsi_probe() to allow the
+power domains for the DSI IP to be turned on and off when necessary. The
+commit message assumes mtk_ddp_comp_power_on() will resume the device.
 
-> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,=
-wdma.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,wdm=
-a.yaml
-> index 97d052b0fb614..c3ed867d058d9 100644
-> --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,wdma.ya=
-ml
-> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,wdma.ya=
-ml
-> @@ -22,11 +22,16 @@ properties:
->    compatible:
->      oneOf:
->        - enum:
-> +          - mediatek,mt6893-disp-wdma
+> diff --git a/drivers/gpu/drm/mediatek/mtk_dsi.c b/drivers/gpu/drm/mediate=
+k/mtk_dsi.c
+> index 93bc507d77e20..1726f5a2683cf 100644
+> --- a/drivers/gpu/drm/mediatek/mtk_dsi.c
+> +++ b/drivers/gpu/drm/mediatek/mtk_dsi.c
+> @@ -1731,6 +1731,10 @@ static int mtk_dsi_probe(struct platform_device *p=
+dev)
+>  	if (ret)
+>  		return dev_err_probe(&pdev->dev, ret, "Failed to request DSI irq\n");
+> =20
+> +	ret =3D devm_pm_runtime_enable(dev);
+> +	if (ret)
+> +		return ret;
+> +
 
-[Severity: Medium]
-Does this incorrectly place mediatek,mt6893-disp-wdma as a standalone
-compatible string rather than in the items list requiring a fallback?
+[Severity: High]
+The commit message states that mtk_ddp_comp_power_on() will resume the
+device. Is this assumption correct?
 
-If a device tree uses compatible =3D "mediatek,mt6893-disp-wdma" to satisfy
-this schema, the DRM driver will not probe the device since it only matches
-mediatek,mt8173-disp-wdma. If the developer instead provides the fallback=20
-compatible =3D "mediatek,mt6893-disp-wdma", "mediatek,mt8173-disp-wdma" so =
-the
-driver can probe it, won't the device tree fail schema validation here?
+Looking at mtk_crtc_atomic_enable() in drivers/gpu/drm/mediatek/mtk_crtc.c,
+mtk_ddp_comp_power_on() is only called for the first component in the displ=
+ay
+pipeline (comp[0]), bypassing the DSI component entirely.
 
->               - mediatek,mt8173-disp-wdma
->           - items:
->               - enum:
->                   - mediatek,mt6795-disp-wdma
->                   - mediatek,mt8167-disp-wdma
-> +              - mediatek,mt8183-disp-wdma
-> +              - mediatek,mt8186-disp-wdma
-> +              - mediatek,mt8192-disp-wdma
-> +              - mediatek,mt8195-disp-wdma
->               - const: mediatek,mt8173-disp-wdma
+Furthermore, even if mtk_ddp_comp_power_on() iterated over all components, =
+it
+executes after mtk_dsi_bridge_atomic_pre_enable(). The pre-enable hook calls
+mtk_dsi_poweron(), which directly accesses hardware registers:
+
+drivers/gpu/drm/mediatek/mtk_dsi.c:mtk_dsi_poweron() {
+	...
+	mtk_dsi_enable(dsi);
+
+	/* Bypass shadow and force commit only if the register is present */
+	if (data->reg_adv[DSI_SHADOW_DEBUG])
+		writel(FORCE_COMMIT | BYPASS_SHADOW,
+		       dsi->regs + data->reg_adv[DSI_SHADOW_DEBUG]);
+	...
+}
+
+Since the PM domain is still powered off at this point, will these direct
+MMIO accesses cause a bus hang or system crash?
+
+[Severity: High]
+Now that the device supports PM runtime, can the IRQ handler run while the
+device is in the RPM_SUSPENDED state?
+
+The interrupt is unconditionally enabled in mtk_dsi_bind() and remains
+enabled at the IRQ controller level even when the device is suspended. If a
+spurious or delayed interrupt fires, mtk_dsi_irq() directly reads the
+hardware register:
+
+drivers/gpu/drm/mediatek/mtk_dsi.c:mtk_dsi_irq() {
+	...
+	status =3D readl(dsi->regs + dsi->driver_data->reg_main[DSI_INTSTA]) & fla=
+g;
+	...
+}
+
+Should the IRQ handler use pm_runtime_get_if_active() before accessing
+hardware registers to avoid touching unpowered hardware?
+
+>  	ret =3D mipi_dsi_host_register(&dsi->host);
+>  	if (ret < 0)
+>  		return dev_err_probe(dev, ret, "Failed to register DSI host\n");
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260713142746.4025=
-9-1-angelogioacchino.delregno@collabora.com?part=3D9
+9-1-angelogioacchino.delregno@collabora.com?part=3D8
 
