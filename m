@@ -1,257 +1,188 @@
-Return-Path: <devicetree+bounces-325368-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-325372-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id wnZ1BAm5VGpcqAMAu9opvQ
-	(envelope-from <devicetree+bounces-325368-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 12:08:09 +0200
+	id Jku7Mv25VGqZqAMAu9opvQ
+	(envelope-from <devicetree+bounces-325372-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 12:12:13 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3943B749A20
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 12:08:08 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C5FE749A7E
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 12:12:13 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=ti.com header.s=proofpoint-05-2026 header.b=TfltmVNz;
-	dkim=pass header.d=ti.com header.s=selector1 header.b=GfF3hFWl;
-	dmarc=pass (policy=quarantine) header.from=ti.com;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-325368-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-325368-lists+devicetree=lfdr.de@vger.kernel.org";
-	arc=reject ("cv is fail on i=2")
+	dkim=pass header.d=kernel.org header.s=k20201202 header.b=jPs2CPfw;
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-325372-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-325372-lists+devicetree=lfdr.de@vger.kernel.org";
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id A711D300F465
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 10:08:07 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 573A23032647
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 10:11:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F02E37A82A;
-	Mon, 13 Jul 2026 10:08:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18A6E3E5A39;
+	Mon, 13 Jul 2026 10:11:55 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0002e601.pphosted.com (mx0a-0002e601.pphosted.com [148.163.150.75])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73E0E241CB7;
-	Mon, 13 Jul 2026 10:08:04 +0000 (UTC)
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783937286; cv=fail; b=vAhVBXstgPJbLH1W8NtrCV35rQUNJuK9ZXUlVCyeMKHDFGYDYHr4l2+rBkCRxukJik4JDx9tnRL1B81BMcOAbdjF1Z6A9QL/ImMxiZuWOavpwrlKGANUOo6Qvu6Lnp90KIfOz1WH5rHrbBaIjohZu15dzmAZVaB+HEaGlh1oeiI=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783937286; c=relaxed/simple;
-	bh=lRNwDQB/HP/p43oEFHotWOHSi+zIUcCkdGbhNTcPrFc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=r1lTe5+Nm8lkhJ4XrhRWqkg+snKXYZ/B4HaRoNKEg4dYoX6gKkn7WJHGSmCNEIbNSgdcLfQ0YUs4FOwJ8XOErznN0hF142x4QODFENNqbuTv1ksOANccd4JyK+/tTu9HnABLIv3kdXfjZYoR3L9e9L06MdGM+QEWC4g+7oOppwY=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (2048-bit key) header.d=ti.com header.i=@ti.com header.b=TfltmVNz; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=GfF3hFWl; arc=fail smtp.client-ip=148.163.150.75
-Received: from pps.filterd (m0384305.ppops.net [127.0.0.1])
-	by m0384305.ppops.net (8.18.1.11/8.18.1.11) with ESMTP id 66D6PY1F1486469;
-	Mon, 13 Jul 2026 05:08:00 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; h=cc
-	:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=
-	proofpoint-05-2026; bh=Z3aRxbsmAMhhtHfnyYCSWaedMhAaZQHSeUHcyuadp
-	OE=; b=TfltmVNz6gz6S4OqbPsXgcQR6t0K3Q1ePDM1CafafkCwq4tXDSzhiLlro
-	Ar2hRqsMfctkXUd6F6kc+tphjSohBz8SZltMUencLzJygq04x8YsiGC8dkI+5tNa
-	+CAtGhkOD2Kl7z9FCkNtvYfU0QqBapxZtb4Mhl2JQF7lOmE97yfa2WcM9kc2VQfs
-	H46oohaVFAcr9ktKtdem5+HXYiotefdm2rQXyvgOU1Gev4wC97/2d36h+uIfQu24
-	XO386VidDVPkjEcvw+g5vFaF6Ag2+V2xR1CupRmpAzeUzOz+oScT14L8SDvD0WXg
-	d47M7Zn4CPrBrB20/OVzUDhqcCxlg==
-Received: from ch5pr02cu005.outbound.protection.outlook.com (mail-northcentralusazon11012050.outbound.protection.outlook.com [40.107.200.50])
-	by m0384305.ppops.net (PPS) with ESMTPS id 4fc7snd0ec-1
-	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
-	Mon, 13 Jul 2026 05:07:59 -0500 (CDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=xgDeGe67aLshPzzcETEO11uSSmDYpf+Eddvr8sPxaTta+4b4zOOLElNwl7vlYFV8i/0vuO0HwNNfbYlgTrNjvy8M+NidLATpuTYKZc+Clt9Tn1EG1n16bTGePvuINt6yI4Uy221Sg4i5Uotc+cvGAdMzGowuHY7dWL80KckTzmNZ9x3+YBq3JvF02di5HKLw9PgSQkSDv7c+dDHIQkKhdn+lZOopUEoE/IWFoPLJTbt8aBk6X25GaRpDRe/rxKdNPMG7JsLVuNU2LVkcBV2kfi48G+KRJBBIotOXBRcJhftqi6Uj8n+k4rRiSLCaQqDygAHqDDDBoTB45Or6LVOADg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Z3aRxbsmAMhhtHfnyYCSWaedMhAaZQHSeUHcyuadpOE=;
- b=G3DL8uBVOt/DiCEtn/Nx0Avm2O9QrI7QIiXkh9GL/4GgIOHd1rhr3fzca5+B1klxwdrv6irfWYw60cARF0h2QCV6DCtTQaxvtd0O2oIESSl8ZhhjXJdDxBwHlDidE/Go4UfwdVJayzuF88DQ9J7qJs7ULSkGR4FPcYEjD1CfgB/EYkvJ9X9gEkoYx6Q9rbXzjS9OjyYsw36uiD0GgXRzDmvAL3Ln40D8w9bZ4JeEWttJdr/8kTFORABOZ92AY2FW2Ku3oE7xLtuoPXjeRoewVvOC/no8dIfpNReo+6eGkJuiiV36/A7ioe3a8+fYvGgZ2V7tmXKMr849OkZufAPLcA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.23.195) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=ti.com;
- dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Z3aRxbsmAMhhtHfnyYCSWaedMhAaZQHSeUHcyuadpOE=;
- b=GfF3hFWlP3EG/Ln8OuA3UGh4kybGqFdYOn0AGTRWj7RF4OrDWn69YzIm7h8clBdS2st3lW+Ga5NigQKd7sogUWA2ircriPq4fZ387jttvIiK061AZPelU8SLuaoWodQb67KMNF09LLgXJj2G3kTY6KWeXuYMQ1rMRcM07I6wAT4=
-Received: from MW4PR03CA0119.namprd03.prod.outlook.com (2603:10b6:303:b7::34)
- by IA3PR10MB8760.namprd10.prod.outlook.com (2603:10b6:208:581::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.202.18; Mon, 13 Jul
- 2026 10:07:56 +0000
-Received: from CO1PEPF000066EB.namprd05.prod.outlook.com
- (2603:10b6:303:b7:cafe::2c) by MW4PR03CA0119.outlook.office365.com
- (2603:10b6:303:b7::34) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.202.19 via Frontend Transport; Mon,
- 13 Jul 2026 10:07:56 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.195)
- smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
- action=none header.from=ti.com;
-Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.23.195 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.23.195; helo=lewvzet201.ext.ti.com; pr=C
-Received: from lewvzet201.ext.ti.com (198.47.23.195) by
- CO1PEPF000066EB.mail.protection.outlook.com (10.167.249.7) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.223.9 via Frontend Transport; Mon, 13 Jul 2026 10:07:56 +0000
-Received: from DLEE200.ent.ti.com (157.170.170.75) by lewvzet201.ext.ti.com
- (10.4.14.104) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.37; Mon, 13 Jul
- 2026 05:07:54 -0500
-Received: from DLEE215.ent.ti.com (157.170.170.118) by DLEE200.ent.ti.com
- (157.170.170.75) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.37; Mon, 13 Jul
- 2026 05:07:54 -0500
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE215.ent.ti.com
- (157.170.170.118) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.37 via Frontend
- Transport; Mon, 13 Jul 2026 05:07:54 -0500
-Received: from [10.24.50.130] (uda0132425.dhcp.ti.com [10.24.50.130])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 66DA7oKA1895607;
-	Mon, 13 Jul 2026 05:07:50 -0500
-Message-ID: <8355d900-8938-45bd-89ca-8511507ae0d9@ti.com>
-Date: Mon, 13 Jul 2026 15:37:49 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0D693E3158;
+	Mon, 13 Jul 2026 10:11:54 +0000 (UTC)
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1783937515; cv=none; b=fRe1M22BjQvHv0eifmBsq/Rnb6JjNg1Ei8bVhBR4jY3boiQ9UtBCEZhbiOAT5d3KGTNt2PE9HyIzn9YKNHrezq+6dWWLfTr08kubOMQLrqvZ5K+yjTEN8T+ptj1mMmACVrmfiWzSK7G1Ydxd8kPp4rpb1hkRRGs2UhkOAaDrA10=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1783937515; c=relaxed/simple;
+	bh=IH90joJ4tnRLkJPNr03igPwq+iiAzvjOkx7FuVR2LQo=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=ozL82HjoA/M8tpQW3pg5Sin8SH1yw4O+TJ2TK5G8rsy8VfZ+lzj9p3VufrJ4OmFct3zTOqyygazj/Y7PcgFLZVWR18tp4rHOfWIBPjvtbBMfzGxfgQaWTSceZ1YyBf9m6udMB65ZK/eogs8YkFJo5f4jQzTQnFGQOxwZDClAgR0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jPs2CPfw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 84281C2BCB8;
+	Mon, 13 Jul 2026 10:11:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1783937514;
+	bh=IH90joJ4tnRLkJPNr03igPwq+iiAzvjOkx7FuVR2LQo=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=jPs2CPfwNKnT/QK3kmF3AknCV+qOfFfTKyeZQiIdECp0FVnfQsWLllpPfQox/FqEY
+	 i+E1OpjXy0wvVs8XTa5Rzs+9uhFpFBfhfh10r96sjjiJGnDI3nwZXE+klNcfyNW1dS
+	 o4NYb1ARoaJF6oFix7S3zAPZEDXG+WXjtpGgn6Qp8FKIuRsrina4EsATbwhy5WuunS
+	 umD/EJgCpdPo7kv5DfKEnFdpBemG9G4aD6TlHZWsgV00jUIS5JPsf0KxnUB0WMX4UI
+	 NaQ03RiIU+au+EassF5XJ9DYfXZ3SZ6ZiTUYV/B0AyjoHblIamDSeWT46HkR7wK0EL
+	 0dTtq0qdz60eA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5F353C44506;
+	Mon, 13 Jul 2026 10:11:54 +0000 (UTC)
+From: Roman Vivchar via B4 Relay <devnull+rva333.protonmail.com@kernel.org>
+Subject: [PATCH v3 0/3] nvmem: add support for the MediaTek mt6323 PMIC
+Date: Mon, 13 Jul 2026 13:11:34 +0300
+Message-Id: <20260713-mt6323-nvmem-v3-0-205c39267a24@protonmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 1/2] dt-bindings: ti: Update audio-refclk binding and
- j721e system controller
-To: Moteen Shah <m-shah@ti.com>, <krzk+dt@kernel.org>, <robh@kernel.org>,
-        <conor+dt@kernel.org>, <nm@ti.com>, <kristo@kernel.org>
-CC: <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <u-kumar1@ti.com>,
-        <gehariprasath@ti.com>, <y-abhilashchandra@ti.com>, <sen@ti.com>
-References: <20260619062749.1575066-1-m-shah@ti.com>
- <20260619062749.1575066-2-m-shah@ti.com>
-From: Vignesh Raghavendra <vigneshr@ti.com>
-Content-Language: en-US
-In-Reply-To: <20260619062749.1575066-2-m-shah@ti.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1PEPF000066EB:EE_|IA3PR10MB8760:EE_
-X-MS-Office365-Filtering-Correlation-Id: d44a3d1a-f075-4f19-55f8-08dee0c69c70
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|36860700016|82310400026|23010399003|376014|3023799007|6133799003|18002099003|22082099003|56012099006|4143699003|5023799004|13003099007;
-X-Microsoft-Antispam-Message-Info:
-	VJ5SyByl7FIn6CLXNmiVk/GYsClmI80uzym5DennZsbQYvxew6JGm+jRyOVVJdI6yvm+YYyOPbjmiszZNsuwYAyynZm2lSg56Vych88RkesBqSv0umwmz7zfG0nThtl+U8W3/ypU3t5c6C+F5Jed98GmIqEAOoS8fmlx1Nd2zLrs/ITtPOtG3rxvJQhTKWlfllKAz0dBVmUNmc24rEuy8kPrn1LsB8W+H/KHEuB2urMNFKIbnBXcx9Z/D8mS5C5i+kQ9a+u8SQOrLXMXBksiES/ElBpYvmeqvXjqRVpeJl39DYjhV12UlDWJVPtgryWQl+frFeoUPcufhg5g3tXDUgPYw6B1kmhqOF5WAEFsdHFmIyMDYH3OSUZa7AdqKJWxhu07BZh74XMh0bNAbtsL+7F0az6R6rJSxyYRs46LuAt+R+S3sLftDJohnpYK0nZ0jg0GS8yQ4NSrJw3Ti3TUKZwGBwI//+ZYH+vEjxFSL+MutiKu1azJQ1GUFDFtuZDEskC+saNAkjaDBiJcnoNDQlKTVFl1kBVyYZndd+Un7ZVvnn6AxHrzwgQ3gxx4RyAf1BfqEZLK9rhHv9a/v0zIwG2DWnKLTlFI1TMab9Ys8x9kT/PVcZ536MUN2y/xk8oAWtorg3zfhXo1OOCVr8Qtnh5jeT/ZKEv10u5T7mYX7mSGWCj+cX7YBHet5BQnWsACELYzFAylQBIXD3zAh5bfjw==
-X-Forefront-Antispam-Report:
-	CIP:198.47.23.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet201.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(36860700016)(82310400026)(23010399003)(376014)(3023799007)(6133799003)(18002099003)(22082099003)(56012099006)(4143699003)(5023799004)(13003099007);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	F5ebkp2neNG9DsLug/fvgl1t5McwkKxxnnPRk9BXCQm5EyhzSMwuqfOG7Oyj8MMCoYm+5XBuJXMpaOriA0qxNXWvuA5PL89SGvjjSifrCNImpWwzenuxvajZ6kzJDIroFoVhIOAVbIsnGCyUVtydLG1qXAiuTwwLZLJ/7Sq7U8NbmFioWCXdjo7Frvi2CWaRGdUYY20U7i1O8+T+th1jCJ7cHmbR5nL9cvTr/xv9Kj/sm1HjrQZ9bHLyQa+AjAzRMtJ/wxDMipyVvEol2Djtu1RTr3KXLzBfU0R72zfuzZt3e0/7p65EKMmhLjY7ctbhYxpbTRreZI+o00JZ0cIwpOuLieqSRexW98jxuliCSPnwfagM/BRgI5jA7krgysMDSc57zp1xAPE/hkXCv+n+gqjV8lewCxIrCj6yh40AHe42M6w+E3fXJ8PPw0k7ngWy
-X-Exchange-RoutingPolicyChecked:
-	eQrPOJZ/5fefg1zI9ybMb8UcYuI7M/4tY3uCvq6EoQ1m/r2upwhtJCRBlw9gfXLZD+EHms/brekWlteVIRi+hzDIB28lEEodBgkK9E9eO8JUu36lCc4fc0omKlsZXspBLvQOu/mKyNoHwCHV4t0ixfUgQZnwJQnKvJSeC03G0K2OBusz6IXGroMTznrljWKRUIk4nqDcP3FvT1FyoZnalgQ6UG5KEXbiMhsDRnYtIXKGCC02flBuA3gU25mXcpKjcCl/EM1Stuq0mdm5eSy4J4oMZbv77aMgmOcgPVBLOQApIaZPtYTTLnYTnxGxdK8Ztb3+TgU/lyZR0HaI82CtUw==
-X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Jul 2026 10:07:56.4682
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: d44a3d1a-f075-4f19-55f8-08dee0c69c70
-X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.195];Helo=[lewvzet201.ext.ti.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	CO1PEPF000066EB.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA3PR10MB8760
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNzEzMDEwNSBTYWx0ZWRfX4osc7s/z3Ohj
- 7BieDAKcny2WUu41J5GRzsj2VEAVAiZ61C8C3uRiXYZH4MEliGdObjQz4bpDskrPYqP/7GGPsJ1
- DWFlm95uzUzATXXgPSMbfuByDXW7Dhaz1kVms61FboEtaiK0TFbZsmVA6xc1cczcJb/LCCbLum6
- FbomM6p4W++MQHl1VTspy8eiDgPGAo5sBZh9zGqy3wVNut8LprMT/qx3Rx7cfGJggWYnVGqzaMH
- 2xc4lmbLvbpEvsOZ7EpntcQu6H7x6dsk2wFh0AvYRov8i42r5gV7B47JzutbXJdHd6+9WoUNlfP
- 0VHV6XHNahFY0v0ZpZj0DJoJeWujxX0IsT8GGQgC2XVA9E1JQS9tqOfPe+HfssBrXtXfCpDiy8E
- UPmSE4hDSFDmH5qunyBYr20vRbn6hx0g3MwvisqIXWJ82g7gU9My5Bt/FozX6RoUDb7qXKe5Cb9
- k+8eaVNsR5fVqPmZPNw==
-X-Authority-Analysis: v=2.4 cv=G+ks1dk5 c=1 sm=1 tr=0 ts=6a54b8ff cx=c_pps
- a=ZVLNonFp53krOPJecICuKg==:117 a=f+v6EHfkeJbVwR46tk4DMg==:17
- a=6eWqkTHjU83fiwn7nKZWdM+Sl24=:19 a=IkcTkHD0fZMA:10 a=RAioF0-LDSMA:10
- a=s63m1ICgrNkA:10 a=V5UXEbMT0ywA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=Z8NIEmU8O1QQgoT56wFK:22 a=taLDd7a_hP9WKsMzeGRc:22 a=sozttTNsAAAA:8
- a=VwQbUJbxAAAA:8 a=IpJZQVW2AAAA:8 a=20KFwNOVAAAA:8 a=yPVGkpx-bGFPD1hCy28A:9
- a=QEXdDO2ut3YA:10 a=IawgGOuG5U0WyFbmm1f5:22
-X-Proofpoint-ORIG-GUID: C9XRKkCILVlyQ4jrL87WO2Er65SdyPjP
-X-Proofpoint-Spam-Info: AW1haW4tMjYwNzEzMDEwNSBTYWx0ZWRfX7e1gPvi3dm0x
- NTiWGJxoEoq+7rYGjYnuragtg6Ff6+YGyzNms7QxhW3qF0VCy86JBM2yFCBGbtQcy2qcSfk1E8A
- dsNygeFU/TBsAM07io9rU269d5cj9d0=
-X-Proofpoint-GUID: C9XRKkCILVlyQ4jrL87WO2Er65SdyPjP
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.134,FMLib:17.12.100.49
- definitions=2026-07-13_02,2026-07-10_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 spamscore=0 priorityscore=1501 phishscore=0 suspectscore=0
- clxscore=1015 lowpriorityscore=0 bulkscore=0 adultscore=0 malwarescore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2606150000 definitions=main-2607130105
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/3XOTQ7CIBAF4Ks0rMXw02LqynsYFxQHixFoAImm6
+ d2FujEaly95872ZUYRgIKJ9M6MA2UTjXQl80yA1SncBbM4lI0aYIIJSbJPgjGOXLVhMVNdKopm
+ WvUblZAqgzWPljqd3jvfhCipVozZGE5MPz3Uv09r7Q2eKCR46oEOvoKOaHabgk3dWmttWeYuqn
+ 9mnsPsSWBFazQlwIcuX7Y+wLMsLAjaZiQEBAAA=
+X-Change-ID: 20260611-mt6323-nvmem-0c54a0f2fa9f
+To: Sen Chu <sen.chu@mediatek.com>, Sean Wang <sean.wang@mediatek.com>, 
+ Macpaul Lin <macpaul.lin@mediatek.com>, Lee Jones <lee@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Srinivas Kandagatla <srini@kernel.org>, 
+ Roman Vivchar <rva333@protonmail.com>
+Cc: Andy Shevchenko <andy@kernel.org>, linux-pm@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+ Ben Grisdale <bengris32@protonmail.ch>, 
+ Conor Dooley <conor.dooley@microchip.com>
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1783937511; l=2150;
+ i=rva333@protonmail.com; s=20260510; h=from:subject:message-id;
+ bh=IH90joJ4tnRLkJPNr03igPwq+iiAzvjOkx7FuVR2LQo=;
+ b=e72h5C0iNaVmwv4Y/8ukUwlKHV0J3jGG7YwkrI9fJAY3hbFhInt4LTTzIWRwBD+eA4nrrKCyJ
+ v4b+mBvQsnSDumEwaC9CVp4OBK+J2/pJ3PklK3CCHhJJnfOQ8aMtO3S
+X-Developer-Key: i=rva333@protonmail.com; a=ed25519;
+ pk=zww/nWjBGoQ4POXCG0BV6fx2iuXK6jx77rsKPA5YK5Y=
+X-Endpoint-Received: by B4 Relay for rva333@protonmail.com/20260510 with
+ auth_id=777
+X-Original-From: Roman Vivchar <rva333@protonmail.com>
+Reply-To: rva333@protonmail.com
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	DMARC_POLICY_ALLOW(-0.50)[ti.com,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
-	R_DKIM_ALLOW(-0.20)[ti.com:s=proofpoint-05-2026,ti.com:s=selector1];
+X-Spamd-Result: default: False [-1.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	FREEMAIL_REPLYTO_NEQ_FROM(2.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-325368-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:sen.chu@mediatek.com,m:sean.wang@mediatek.com,m:macpaul.lin@mediatek.com,m:lee@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:matthias.bgg@gmail.com,m:angelogioacchino.delregno@collabora.com,m:srini@kernel.org,m:rva333@protonmail.com,m:andy@kernel.org,m:linux-pm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-mediatek@lists.infradead.org,m:bengris32@protonmail.ch,m:conor.dooley@microchip.com,m:krzk@kernel.org,m:conor@kernel.org,m:matthiasbgg@gmail.com,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-325372-lists,devicetree=lfdr.de,rva333.protonmail.com];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:m-shah@ti.com,m:krzk+dt@kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:nm@ti.com,m:kristo@kernel.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:u-kumar1@ti.com,m:gehariprasath@ti.com,m:y-abhilashchandra@ti.com,m:sen@ti.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[vigneshr@ti.com,devicetree@vger.kernel.org];
+	FREEMAIL_REPLYTO(0.00)[protonmail.com];
+	FREEMAIL_TO(0.00)[mediatek.com,kernel.org,gmail.com,collabora.com,protonmail.com];
+	FORGED_SENDER(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[19];
 	FORWARDED(0.00)[lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[protonmail.com:replyto,protonmail.com:mid,protonmail.com:email,protonmail.ch:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp,msgid.link:url];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	HAS_REPLYTO(0.00)[rva333@protonmail.com];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_TWELVE(0.00)[12];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[vigneshr@ti.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[ti.com:+];
+	FROM_HAS_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,ti.com:dkim,ti.com:mid,ti.com:from_mime,ti.com:url,ti.com:email]
+	DKIM_TRACE(0.00)[kernel.org:+];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TO_DN_SOME(0.00)[]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 3943B749A20
+X-Rspamd-Queue-Id: 2C5FE749A7E
 
-Moteen,
+This series adds support for the EFUSE found on the MediaTek mt6323 PMIC.
 
-On 19/06/26 11:57, Moteen Shah wrote:
-> Add ti,j721s2-audio-refclk as a supported compatible string in the
-> ti,am62-audio-refclk binding. J721S2 uses the same audio reference
-> clock IP block first introduced on AM62. Per writing-bindings
-> guidelines, the J721S2-specific compatible is added as the primary
-> string with ti,am62-audio-refclk as the fallback.
-> 
-> Also extend the ti,j721e-system-controller clock-controller@ child
-> pattern to accept audio-refclk schemas alongside ehrpwm-tbclk via a
-> oneOf constraint, fixing the alphanumerical ordering of $refs.
-> 
-> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-> Signed-off-by: Moteen Shah <m-shah@ti.com>
-> ---
->  .../devicetree/bindings/clock/ti,am62-audio-refclk.yaml   | 8 ++++++--
->  .../bindings/soc/ti/ti,j721e-system-controller.yaml       | 6 ++++--
->  2 files changed, 10 insertions(+), 4 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/clock/ti,am62-audio-refclk.yaml b/Documentation/devicetree/bindings/clock/ti,am62-audio-refclk.yaml
+The previous version of the series for all AUXADC, EFUSE and thermal
+drivers was split after Krzysztof's comment [1].
+    
+Tested on the MediaTek mt6572 and mt8163 SoCs (Ben), both paired with a
+mt6323.
 
+[1]: https://lore.kernel.org/linux-mediatek/20260504-mt6323-v1-0-799b58b355ff@protonmail.com/T/#med30fad67a090be35f549231336b2dec295233f6
 
-You don't have any CCF maintainers in To/CC. This patch will go nowhere.
+Tested-by: Ben Grisdale <bengris32@protonmail.ch> # Amazon Echo Dot (2nd Generation)
+Signed-off-by: Roman Vivchar <rva333@protonmail.com>
 
-./scripts/get_maintainer.pl -f Documentation/devicetree/bindings/clock/ti,am62-audio-refclk.yaml 
-Michael Turquette <mturquette@baylibre.com> (maintainer:COMMON CLK FRAMEWORK)
-Stephen Boyd <sboyd@kernel.org> (maintainer:COMMON CLK FRAMEWORK)
-Brian Masney <bmasney@redhat.com> (reviewer:COMMON CLK FRAMEWORK)
-linux-clk@vger.kernel.org (open list:COMMON CLK FRAMEWORK)
+---
+Changes in v3:
+- Rebase onto next-20260708
+- EFUSE driver: Replace 'mod_devicetable.h' with explicit 'device-id/of.h'
+- Drop MFD patch since it's applied
+- Link to v2: https://patch.msgid.link/20260617-mt6323-nvmem-v2-0-4f30e36aa0f4@protonmail.com
 
-[...]
+Changes in v2:
+- EFUSE driver: Sort variables in the mt6323_efuse_read (Andy)
+- Link to v1: https://patch.msgid.link/20260611-mt6323-nvmem-v1-0-b5e1b9ce51f2@protonmail.com
 
--- 
-Regards
-Vignesh
-https://ti.com/opensource
+Changes after split:
+- EFUSE driver:
+    - Remove 'linux/errno.h' header (Andy)
+    - Remove explicit cast to u16 in the 'mt6323_efuse_read' (Andy)
+    - Reword comment in the 'mt6323_efuse_read'
+    - Capitalize MediaTek in the module description
+- Link to a previous series: https://patch.msgid.link/20260512-mt6323-v2-0-3efcba579e88@protonmail.com
+
+---
+Roman Vivchar (3):
+      dt-bindings: mfd: mediatek: mt6397: add mt6323 PMIC EFUSE
+      nvmem: add mt6323 PMIC EFUSE driver
+      ARM: dts: mediatek: mt6323: add EFUSE support
+
+ .../devicetree/bindings/mfd/mediatek,mt6397.yaml   | 21 ++++++
+ MAINTAINERS                                        |  5 ++
+ arch/arm/boot/dts/mediatek/mt6323.dtsi             |  4 +
+ drivers/nvmem/Kconfig                              | 11 +++
+ drivers/nvmem/Makefile                             |  2 +
+ drivers/nvmem/mt6323-efuse.c                       | 85 ++++++++++++++++++++++
+ 6 files changed, 128 insertions(+)
+---
+base-commit: b9810cd75b9fb56a3425d391cba3f608502bd474
+change-id: 20260611-mt6323-nvmem-0c54a0f2fa9f
+
+Best regards,
+--  
+Roman Vivchar <rva333@protonmail.com>
+
 
 
