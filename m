@@ -1,134 +1,181 @@
-Return-Path: <devicetree+bounces-325698-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-325700-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id Qr4FHuoQVWpkjgAAu9opvQ
-	(envelope-from <devicetree+bounces-325698-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 18:23:06 +0200
+	id ZhaUFggQVWoyjgAAu9opvQ
+	(envelope-from <devicetree+bounces-325700-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 18:19:20 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id C95D274D8E2
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 18:23:05 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4DDF574D83B
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 18:19:19 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=JledqyFq;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-325698-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-325698-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=KOopP5Le;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-325700-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-325700-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=gmail.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 1897B301BF79
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 16:17:58 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 482ED3009F3A
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 16:18:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 992753E7179;
-	Mon, 13 Jul 2026 16:17:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7064740B39C;
+	Mon, 13 Jul 2026 16:18:24 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 895E030F92D;
-	Mon, 13 Jul 2026 16:17:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD6633F23BB
+	for <devicetree@vger.kernel.org>; Mon, 13 Jul 2026 16:18:22 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783959477; cv=none; b=UyVa3voreW6i3XLSllHlXZdB042YSYtxEl0YEjLBF3ImIUd6YyCW3o6v4ZEFJ8GCEicjAY/W05L/cG7HXgXKoBbUHdIuUkyT5XldT/R5XXfSPxHmiyqdF80I2l30VblBiC3LaA8AKHxBVwkvA2vuZHZVhcaOQgWXH3sWW62yNfU=
+	t=1783959504; cv=none; b=FUw2JweQRQj2sB/UClLSpe5IvzRC5RIy0Dvhm6z3UbQVbQBds22VNEI2ZyJ1fZT67YLj9pBSjvyPIOjGTfUekN3FfBF5ErF3fIpA28u5XvwiML49Wdxn85E7bPUxzjsRWr87Zn36wEKQrxD6uEFe61/iEG/bU6+JbeLkUVkhiIY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783959477; c=relaxed/simple;
-	bh=tuwF9vwESMLqkD+bDFietU0mxhnReLF+5GhxbApRbqg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IPXh6cO+Txd0IpXKzKkPa/WAaRBWosP4uEFCVYv87wMHSNh9wLoeQDFZ8A1HNbHP/gx4/TRBOzXwHhOcrWJFLD6j55pemjapgsJaLHVAcBzU81zWRF/HVY5PvwQZGslJ9c4h7OkTk6Qe+GFgERA2RQrEndrhROSEo1MQwz0rNq8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JledqyFq; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8ED641F00A3F;
-	Mon, 13 Jul 2026 16:17:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783959476;
-	bh=tuwF9vwESMLqkD+bDFietU0mxhnReLF+5GhxbApRbqg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=JledqyFqn3TcSRwAL0y2b2vcOAjaHitnZRcP5Cnu+4wadG9f8IDngb8YvUQ1mCoaO
-	 UDBx4imS2imCStDpgzCbZhTBtk/CbjSNLO4AMC2E4hz+bVAnBO4aN59rJTFvQfql4J
-	 2XAqa6kp5Yd32f47K0oJYnognME+dhe9H/a9OY9w4V3dmlRVvyFpxXjbXGcZnSzSFP
-	 X0ezjYLEE056P1qNRzN0dWOPq/zV1qVeFAJwDstbHW5dGByrRdr8gny9KVOEpkMK93
-	 ZLswKiCeGYfz190CT0rBCs8B3Fcm65MsxU9j8gdv2pRkaqBW0Vg7f+HBvC9W+mevST
-	 sABuQoRqCM+pA==
-Date: Mon, 13 Jul 2026 17:17:51 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Jonas Rebmann <jre@pengutronix.de>
-Cc: Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-	Sven Schwermer <sven.schwermer@disruptive-technologies.com>,
-	Pavel Machek <pavel@ucw.cz>, linux-leds@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	kernel@pengutronix.de
-Subject: Re: [PATCH RESEND v3] dt-bindings: leds: Add default-intensity
- property
-Message-ID: <20260713-preachy-tinderbox-5d73eef5f106@spud>
-References: <20260713-multicolor-default-v3-1-fb43f3f789cf@pengutronix.de>
+	s=arc-20240116; t=1783959504; c=relaxed/simple;
+	bh=j/xGGVpfBmZ38fXC8JgNuKE6Pd+vPTqjmTMDjnqgZk4=;
+	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=mkSLuKD0fA3Ux+dlmSQ/VP1dzDXkQoF3N6PPciOV2Ytw122PrBLpCe3abk8okbUVulZqgMNASP71jy/hUwg14PYlUCZAD9DiXSB2HLsm8PW8ur9bh4FZ85gQcYsjiJt0JTcN4g5FH1/2nZk2BUODMyDYUNnXWjCSKy62jJtPNB8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KOopP5Le; arc=none smtp.client-ip=209.85.128.43
+Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-493f4638f4aso782565e9.3
+        for <devicetree@vger.kernel.org>; Mon, 13 Jul 2026 09:18:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1783959501; x=1784564301; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:date:from:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=TbGjb/jMJnZzb2UpXKwZzIOhvZ257eTjhYHwFcycWxE=;
+        b=KOopP5Lek6WwBkVP78wZIawLKodi3zHxJ8ipLT+pzfncbVPORan7bKbC/pxSFKaEAf
+         R2hH9ufjSC48FbdymIqun3oH7vkyg+0S7P46qLJ0DuiHPbVypbotReu+4J8SVSe3Kx9g
+         qRBqU1rshS7IpsGxaACI1ffgoJiofV1zj9/az25SHRVcaJqZx5cwcarVqdhYbh3wmrtC
+         9RuYWevfr1+BiWjHGzMZO7E3YXlBBJrgLimCNSea9wDT4qfV45AAFsH7Llinz0LxJazx
+         GuPQ8BnAFAQhoFJ6Qfoy2QUe7iItfn5Y1QJ5ZlGoIVJyzhpwDv52N4vfe3RdHrxPTF2c
+         gWGg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1783959501; x=1784564301;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:date:from:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=TbGjb/jMJnZzb2UpXKwZzIOhvZ257eTjhYHwFcycWxE=;
+        b=qv8xFn6xQhwHRJu72+SKKK6CxTXbKQbwQzgE093mtpEWP1THFLsZKlRGqf3sqXfMaG
+         g+21lOqzajBPB6FJa3EM0XbbIvJGb1+HprG3hulchHk+iUXcTEC8fzljGxYtUpSZQyGB
+         kYXrIeZcpVBNKjqYjsYOeXFb8C54GqXX9t9Uu82/lDIE7lxFh8i4gRKhJJQAsDthjd1u
+         S+zUsslPeizGIDw5wxSiDYFZ25uAZFiEmnP1ZRJozjFUt5h4eTZACmS/zuCwtv6I7iiC
+         Ulzii6kBkcLONOIJXqQfi0HQOy9GE872yQ3k4H3Jre+c7eFzHJQiczb8yEMgWf5kMmLY
+         OQpA==
+X-Forwarded-Encrypted: i=1; AHgh+RoCDAYS9GbuEGWpvdpP4eJREusrLUkjH09aD1mMAU6+bTCW9dpF9SUtYJu14/cZPeunUcQ88xQ1ZuXx@vger.kernel.org
+X-Gm-Message-State: AOJu0YzSB3capZxJNcZHYeipWidE2G0RVf7FXTxZ/qFiUWT5zGUfNn02
+	S7kBU57iVQ/eFSmycm/9pTzaGye0VncAtNx9Os1UpxyZNuGU3l8GgQBZ
+X-Gm-Gg: AfdE7cln7twVGLyQ1qwPvv7a2Bk4OS4TN4fbLyFB56X0GA+3aSX2dmqt49jIRPGqD8x
+	WKgUh3r9hAKmi2CrBsapwhzBzj6xntbINDvslGlxIBbdUOuganoVRGF5iS6+Q7pIEuK+QnKP2Om
+	oCaw+2KTS8vBA7fV7wTT/VlZCV9xM9HEnj+pzaXStFawReNvfUllBEk8P/IhzpfEN3l3y+L3Ezn
+	673xwYUKOLWxs+9lhGL5PBqaijZd8QBYaCfprMoW7PAdwKRC+pvVX1Mov28zxMex+kpqBHZ5Z5h
+	pVBEbeHpnAWpWPM6c6UiitaW3VBsEMrEtoVgdGfYb+jz4Uu9VNFTSrYx0niG1areZMPRsUlv816
+	KvJi44lJ0Gv+1t/86karBXPIdHHQpRliU6CutvffpHxh258eAiT8g0n6VrFPlCM09ZgPX7CdQgE
+	uStcAWUlYeMmTo/nm+jogpdmBLXiXdviH17mB36eBRdBvp+G5evZ7lTfyuLQd/xRbEDxfvcCOn7
+	axU1Va1dOxsMYP5PhHdiWT28Mc=
+X-Received: by 2002:a05:600c:1392:b0:493:f753:24e8 with SMTP id 5b1f17b1804b1-493fed59338mr80519895e9.6.1783959500626;
+        Mon, 13 Jul 2026 09:18:20 -0700 (PDT)
+Received: from RDEALENC-L01.ad.analog.com (24.206.116.103.netskope-rdns.com. [24.206.116.103])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4950a32a2casm7873375e9.12.2026.07.13.09.18.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 13 Jul 2026 09:18:19 -0700 (PDT)
+From: Rodrigo Alencar <455.rodrigo.alencar@gmail.com>
+X-Google-Original-From: Rodrigo Alencar <rodrigo.alencar@analog.com>
+Date: Mon, 13 Jul 2026 17:18:14 +0100
+To: Andy Shevchenko <andriy.shevchenko@intel.com>
+Cc: Michael Auchter <michael.auchter@ni.com>, linux@analog.com, 
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-hardening@vger.kernel.org, Michael Hennerich <Michael.Hennerich@analog.com>, 
+	Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, 
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Kees Cook <kees@kernel.org>, 
+	"Gustavo A. R. Silva" <gustavoars@kernel.org>
+Subject: Re: [PATCH v7 4/7] iio: dac: ad5686: implement new sync() op for the
+ spi bus
+Message-ID: <2shq75gvzzm27rodbgmtxkbgt5n2a7dafjc2mmkttwnshmhyqr@pdytastitwfm>
+References: <20260710-ad5686-new-features-v7-0-1bcc8c280e4d@analog.com>
+ <20260710-ad5686-new-features-v7-4-1bcc8c280e4d@analog.com>
+ <alM8M78O9-cRSxR-@ashevche-desk.local>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="s3WRRSQLhh5beZEZ"
-Content-Disposition: inline
-In-Reply-To: <20260713-multicolor-default-v3-1-fb43f3f789cf@pengutronix.de>
-X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-5.26 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	SIGNED_PGP(-2.00)[];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	MAILLIST(-0.15)[generic];
-	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCVD_TLS_LAST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	FORGED_RECIPIENTS(0.00)[m:jre@pengutronix.de,m:lee@kernel.org,m:pavel@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:jacek.anaszewski@gmail.com,m:sven.schwermer@disruptive-technologies.com,m:pavel@ucw.cz,m:linux-leds@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:kernel@pengutronix.de,m:krzk@kernel.org,m:conor@kernel.org,m:jacekanaszewski@gmail.com,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-325698-lists,devicetree=lfdr.de];
-	FORGED_SENDER(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,disruptive-technologies.com,ucw.cz,vger.kernel.org,pengutronix.de];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp,spud:mid,microchip.com:email]
-X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: C95D274D8E2
-
---s3WRRSQLhh5beZEZ
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+In-Reply-To: <alM8M78O9-cRSxR-@ashevche-desk.local>
+X-Rspamd-Action: no action
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
+	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-325700-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER(0.00)[455rodrigoalencar@gmail.com,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FORGED_RECIPIENTS(0.00)[m:andriy.shevchenko@intel.com,m:michael.auchter@ni.com,m:linux@analog.com,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-hardening@vger.kernel.org,m:Michael.Hennerich@analog.com,m:jic23@kernel.org,m:dlechner@baylibre.com,m:andy@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:p.zabel@pengutronix.de,m:kees@kernel.org,m:gustavoars@kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	FORWARDED(0.00)[lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[455rodrigoalencar@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	ALIAS_RESOLVED(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp]
+X-Rspamd-Server: lfdr
+X-Rspamd-Queue-Id: 4DDF574D83B
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-pw-bot: not-applicable
+On 12/07/26 10:03, Andy Shevchenko wrote:
+> On Fri, Jul 10, 2026 at 12:20:48PM +0100, Rodrigo Alencar via B4 Relay wrote:
+> 
+> > Use of local SPI bus data to manage a collection of SPI transfers and
+> > flush them to the SPI platform driver with the sync() operation. This
+> > allows for faster handling of multiple channel DAC writes, avoiding kernel
+> > overhead per spi_sync() call, which will be helpful when enabling
+> > triggered buffer support.
+> 
+> ...
+> 
+> >  int ad5686_probe(struct device *dev,
+> >  		 const struct ad5686_chip_info *chip_info,
+> > -		 const char *name, const struct ad5686_bus_ops *ops)
+> > +		 const char *name, const struct ad5686_bus_ops *ops,
+> > +		 void *bus_data)
+> 
+> Can't you utilise the dev->platform_data for this? I believe it's exactly
+> the case where it suits.
 
---s3WRRSQLhh5beZEZ
-Content-Type: application/pgp-signature; name=signature.asc
+I could use dev_set_drvdata(), I understand that platform_data is to be injected
+by the board/platform configuration.
 
------BEGIN PGP SIGNATURE-----
+SPI/I2C cores do write it, from the board-info structs at device creation:
+    - drivers/spi/spi.c:835
+	proxy->dev.platform_data = (void *) chip->platform_data; (from spi_board_info::platform_data)
+    - drivers/i2c/i2c-core-base.c:973
+	client->dev.platform_data = info->platform_data; (from i2c_board_info::platform_data)
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCalUPrwAKCRB4tDGHoIJi
-0gqCAP98rL/t1xK7uPgwytUSDHlpe11BjbBYcqn4IJ8OVZlP9gD+JwzM7NsMDFfG
-4puEsdJDinSzumwRmPYHdNWbulqK/wM=
-=zS4X
------END PGP SIGNATURE-----
+After device creation, the core itself doesn't touch it.
 
---s3WRRSQLhh5beZEZ--
+-- 
+Kind regards,
+
+Rodrigo Alencar
 
