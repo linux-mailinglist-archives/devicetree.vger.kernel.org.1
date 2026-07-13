@@ -1,170 +1,176 @@
-Return-Path: <devicetree+bounces-325800-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-325711-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 9T+kAYx0VWqLogAAu9opvQ
-	(envelope-from <devicetree+bounces-325800-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 01:28:12 +0200
+	id KleUEokUVWoDjwAAu9opvQ
+	(envelope-from <devicetree+bounces-325711-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 18:38:33 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 544BE74FB57
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 01:28:11 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C571674DABD
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 18:38:32 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=nabladev.com header.s=dkim header.b=KdzY9rKo;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-325800-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-325800-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=reject) header.from=nabladev.com;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=YGA9ko4V;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-325711-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-325711-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 9C282302AD06
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 23:27:22 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id ACE66307A9D8
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 16:34:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA9783D3323;
-	Mon, 13 Jul 2026 23:27:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07F1043800C;
+	Mon, 13 Jul 2026 16:34:55 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx.nabladev.com (mx.nabladev.com [178.251.229.89])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 379A23921E6
-	for <devicetree@vger.kernel.org>; Mon, 13 Jul 2026 23:27:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCC6540B363;
+	Mon, 13 Jul 2026 16:34:53 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783985241; cv=none; b=mc4lOxqA/FzDhAI7owNY3PFWBSjMnusH0uFNL/s3NU3T07g9S845PiOC6/H/OA1oVE34ouLR5KQrymbare9fnHFtsXdW7dp2gZCfVRlS52Kjv57wKeGHLxtDu6dPPdy85ovlnDbxcXVxq+97+1K/EXYXaEXpGvcDXr5HyR8v9us=
+	t=1783960494; cv=none; b=LMvkzmwqCNX4QLdcpTJqYgRu66urAiROoD1B4x2hS7qCIYaCu2quN7Zp+CHThNMtV0ZXkaT+4GwxUVTvNfBsylW6SjHeQlnkORoVwLez5Ceu+GCqH4+5d3Kp2WdSe7MP+C5aYQBaf+8RKmM44Yly85+gkphjARofVQDW1yIv3bs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783985241; c=relaxed/simple;
-	bh=Wjug2qov7LRyqgr3Qse5dIMzwa/3KSun6rLl4rDLdII=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=JJqQLk0KQgNOnQ162VqbphnhSwTHCOQ24bMl8lCyC9iMV+UNe3Nhq7yW/NLR0E+B7++SjBs3/rrVqDbrBluDpdqFZ2DpU78dKGbAig2jg6jKEjWkSd/G1ByUyBYH1Ob5zywo80s3QaeMwcwac/yLVQla4h0ufpI6ZnJNg3a/RlQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nabladev.com; spf=pass smtp.mailfrom=nabladev.com; dkim=pass (2048-bit key) header.d=nabladev.com header.i=@nabladev.com header.b=KdzY9rKo; arc=none smtp.client-ip=178.251.229.89
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id DC60C1199A0;
-	Tue, 14 Jul 2026 01:27:16 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nabladev.com;
-	s=dkim; t=1783985238;
-	h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:content-language:in-reply-to:references;
-	bh=dR7GHvB3UJZSmPkAEhG2QL9LbWKjbS7ctY0T+4ydKxM=;
-	b=KdzY9rKor+121zBdNVAQ6jYyjVy6OKscrIGF0ylwff+P849Bm4XP10tevzf51rTts7YEiL
-	KlYAoxXDEdKnV2qUyBIET/8PgxLphayTZSv5JA3kCLLgSThuFT5JyGtsOayEFSWkbKQUip
-	mLaI1FkJa7oAuKHYqBEUemj0Aac0O+Kz9BzNSmoHbK/nMt5d0+WthIUowH/CkBfFSHdBRK
-	3Ad+MlVsI5AjIzlv9+3zwUIASJnOVct2CO9DFKhgwkm1MJ+A5KsvZhS5DWNQxRwptPvtgT
-	GGZWpMUAVRWKfkHPlN4UXYgA6hGfru4YCOllhuCvINNFWlQUgGp8YpAEa39JMA==
-Message-ID: <f1e52327-42da-48e1-8e4a-dabf148ce216@nabladev.com>
-Date: Mon, 13 Jul 2026 18:33:33 +0200
+	s=arc-20240116; t=1783960494; c=relaxed/simple;
+	bh=na1uv642ZQrq6gWKyzyjjyTGH+8BPshBveflTbSNjgc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Ut7WUrm0OPAs9l47vgdCHmhixLcbELpRCLFWVFisMgnILUIGmJw2ZBcEKBUUIEC2Wsh72ipwZCeMjuYL+xjZQ3zABdexIYkPgEvM1wGvOykiL7c8eUJURUQGTr/GLSaNP8nNpcLgalP920QeO50KoQJdqfwlaf8P/9hyUnVZJMI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YGA9ko4V; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 77E381F000E9;
+	Mon, 13 Jul 2026 16:34:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1783960493;
+	bh=TWl2pjBXORo/TSKlw37Ir+gVF0UuTAmSudez331KOlI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=YGA9ko4VvaxB54Kl5hgoPWXgOPl/vRN7Vrr+YCZk2VGNJrdPWqXVcQfR7xRWbx/YJ
+	 N/EvAm8bc8pXArHcwmHQuF9mHNHIAEggf9WUZqJ3lhLqwmjo3xiPppQ2RmeFhfbpXe
+	 P/kyduGapmN2Nv3ij8Ni7BLCgDlwKztdI3bRR4CXOttZznIpN+PqrScKHSNdwEW+HW
+	 U5an22ptcH9WeEb4Y6c8bxEHf7MclBCKD5yAPG4P5Y0XuFRVRy1wwYf9gwnkY91se6
+	 GQ6eOH1U1AtKxIeVAV5kccdbKWVyJ+nNSzI6MjLHgDm2XRm6IKaMVIAwauhQWDLNps
+	 FubqAP1mP6Owg==
+Date: Mon, 13 Jul 2026 17:34:49 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Jonas Rebmann <jre@pengutronix.de>
+Cc: Stefan Wahren <wahrenst@gmx.net>, Lee Jones <lee@kernel.org>,
+	Pavel Machek <pavel@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jean-Jacques Hiblot <jjhiblot@traphandler.com>,
+	linux-leds@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH RFC 1/2] dt-bindings: leds-group-multicolor: Introduce
+ default-intensity
+Message-ID: <20260713-undercoat-cranium-c018ab9ab642@spud>
+References: <20260708224652.106632-1-wahrenst@gmx.net>
+ <20260708224652.106632-2-wahrenst@gmx.net>
+ <20260709-outsell-undamaged-6c8045d6115f@spud>
+ <cacecf1f-3074-4768-825b-bf143fd36ce2@gmx.net>
+ <0e3f38bd-ca70-4136-a313-564267cb9239@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 4/6] arm64: dts: imx8mm: imx8mp: Add CM DTOs for Data
- Modul i.MX8M Mini and Plus eDM SBC
-To: Frank Li <Frank.li@oss.nxp.com>, sashiko-reviews@lists.linux.dev
-Cc: devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org,
- Frank.Li@kernel.org, imx@lists.linux.dev
-References: <20260705200534.151803-1-marex@nabladev.com>
- <20260705200534.151803-4-marex@nabladev.com>
- <20260705202439.3F5771F000E9@smtp.kernel.org> <alUICTI-24tREZO8@SMW015318>
-Content-Language: en-US
-From: Marek Vasut <marex@nabladev.com>
-In-Reply-To: <alUICTI-24tREZO8@SMW015318>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="Q2L6aTL7M8Oj44P9"
+Content-Disposition: inline
+In-Reply-To: <0e3f38bd-ca70-4136-a313-564267cb9239@pengutronix.de>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-5.26 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[nabladev.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[nabladev.com:s=dkim];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-325711-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-325800-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:Frank.li@oss.nxp.com,m:sashiko-reviews@lists.linux.dev,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:Frank.Li@kernel.org,m:imx@lists.linux.dev,m:conor@kernel.org,s:lists@lfdr.de];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FORGED_SENDER(0.00)[marex@nabladev.com,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:jre@pengutronix.de,m:wahrenst@gmx.net,m:lee@kernel.org,m:pavel@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:jjhiblot@traphandler.com,m:linux-leds@vger.kernel.org,m:devicetree@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	RCVD_COUNT_THREE(0.00)[4];
 	FORWARDED(0.00)[lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FREEMAIL_CC(0.00)[gmx.net,kernel.org,traphandler.com,vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[marex@nabladev.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[nabladev.com:+];
-	RCPT_COUNT_SEVEN(0.00)[7];
+	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCPT_COUNT_SEVEN(0.00)[10];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp,nabladev.com:from_mime,nabladev.com:mid,nabladev.com:email,nabladev.com:dkim]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,spud:mid,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 544BE74FB57
+X-Rspamd-Queue-Id: C571674DABD
 
-On 7/13/26 5:45 PM, Frank Li wrote:
-> On Sun, Jul 05, 2026 at 08:24:38PM +0000, sashiko-bot@kernel.org wrote:
->> Thank you for your contribution! Sashiko AI review found 1 potential issue(s) to consider:
->> - [Medium] The virtio device buffer node is named `vdevbuffer` instead of `vdev0buffer`, bypassing the driver's carveout exclusion logic.
->> --
->>
->> commit b1e78cbda66a659316ae8170db75a75bd2d9d9d2
->> Author: Marek Vasut <marex@nabladev.com>
->>
->> arm64: dts: imx8mm: imx8mp: Add CM DTOs for Data Modul i.MX8M Mini and Plus eDM SBC
->>
->> This commit adds device tree overlays for the CM4/CM7 cores on the Data
->> Modul i.MX8M Mini and Plus eDM SBCs. The overlays allow CM4/CM7 firmware
->> to be used with remoteproc and rpmsg without imposing the overhead on
->> every user of the platform.
->>
->> [ ... ]
->>
->>> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-data-modul-edm-sbc-overlay-cm4.dtso b/arch/arm64/boot/dts/freescale/imx8mm-data-modul-edm-sbc-overlay-cm4.dtso
->>> new file mode 100644
->>> index 0000000000000..8d681c0eff0d4
->>> --- /dev/null
->>> +++ b/arch/arm64/boot/dts/freescale/imx8mm-data-modul-edm-sbc-overlay-cm4.dtso
->>> @@ -0,0 +1,56 @@
->> [ ... ]
->>> +		rsc_table: rsc-table@b80ff000 {
->>> +			reg = <0 0xb80ff000 0 0x1000>;
->>> +			no-map;
->>> +		};
->>> +
->>> +		vdevbuffer: vdevbuffer@b8400000 {
->>> +			compatible = "shared-dma-pool";
->>> +			reg = <0 0xb8400000 0 0x100000>;
->>
->> [Severity: Medium]
->> Will this node name bypass the driver's carveout exclusion logic?
->>
->> Looking at imx_rproc_prepare(), it iterates over memory-regions and checks
->> specifically for the name "vdev0buffer" to skip processing the vdev buffer:
->>
->> 	if (!strcmp(it.node->name, "rsc-table") ||
->> 	    !strcmp(it.node->name, "vdev0vring0") ||
->> 	    !strcmp(it.node->name, "vdev0vring1") ||
->> 	    strstarts(res.name, "vdev0buffer"))
->> 		continue;
->>
->> Because this node is named "vdevbuffer" instead of "vdev0buffer", it appears
->> it will be mapped as a generic carveout via ioremap_wc() and unintentionally
->> included in the remoteproc coredump.
->>
->> Could this node be renamed to "vdev0buffer" to avoid wasting vmalloc space
->> and bloating the coredump?
-> 
-> Look like make sense, please check it.
-> 
-> It is not good to use node-name as ABI. Laurentiu is working on use
-> memory-region-namses.
-The memory regionss are referenced from imx8mm-cm4 { } node via the 
-memory-region property:
+--Q2L6aTL7M8Oj44P9
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-memory-region = <&vdevbuffer>, <&vdev0vring0>, <&vdev0vring1>, <&rsc_table>;
+On Mon, Jul 13, 2026 at 10:41:53AM +0200, Jonas Rebmann wrote:
+> Hi Stefan,
+>=20
+> Thanks, for CCing me here.
+>=20
+> On 2026-07-13 10:23, Stefan Wahren wrote:
+> > sorry, I missed this. Thanks for pointing to this patch. In general i'm
+> > fine with this approach, but there is something which confuses me.
+> > Looking at the description, there is the statement: [default-intensity]
+> > "Defaults to 0".
+> > This seems to be correct for the Linux implementation of
+> > leds-pwm-multicolor, but is this really an expectation along all (multi
+> > color) LEDs (at least for Linux)?
+>=20
+> You are right, sadly the initialization default of some
+> multicolor-LED drivers differs.
+
+Hmm, I forget if you had a default in leds common.yaml, but you should
+probably remove it in this case and move the default to the individual
+led type if so, rather than wait for support in a driver that doesn't
+zero initialise.
+
+> > E.g. leds-group-multicolor init the intensity with the maximum. So all
+> > users of leds-group-multicolor should specify default-intensity for each
+> > sub LED to achieve a defined behavior without breaking existing behavio=
+r.
+>=20
+> I agree, once support is added to one of the drivers that doesn't
+> zero-initialize, the documentation needs updating (because as you say,
+> backwards-compatibilty probably beats consistency here).
+>=20
+> I'm also just noticing that my v3 for only the dt-bindings never arrived
+> on the list (I think I was on a buggy b4 master), I'll re-send now.
+>=20
+> Regards,
+> Jonas
+>=20
+> --=20
+> Pengutronix e.K.                           | Jonas Rebmann               |
+> Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+> 31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+> Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-9    |
+
+--Q2L6aTL7M8Oj44P9
+Content-Type: application/pgp-signature; name=signature.asc
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCalUTqQAKCRB4tDGHoIJi
+0uA4AQDJIJjUl6dzr6MOLQnkT46rw8z86SUQrrxPm5vvDLjjYwEA9Nsu5J/eXBE1
+vJ5Lm5GFrwZVWh/6D991825lwxncngA=
+=NFPt
+-----END PGP SIGNATURE-----
+
+--Q2L6aTL7M8Oj44P9--
 
