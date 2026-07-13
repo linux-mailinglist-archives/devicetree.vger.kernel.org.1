@@ -1,158 +1,240 @@
-Return-Path: <devicetree+bounces-325343-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-325346-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id NbZ2M22xVGpmpgMAu9opvQ
-	(envelope-from <devicetree+bounces-325343-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 11:35:41 +0200
+	id cFO4OnWyVGqwpgMAu9opvQ
+	(envelope-from <devicetree+bounces-325346-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 11:40:05 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32F1B7495E5
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 11:35:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4802F749673
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 11:40:05 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=LJjWcwCp;
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-325343-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-325343-lists+devicetree=lfdr.de@vger.kernel.org";
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
+	dkim=pass header.d=goldelico.com header.s=strato-dkim-0002 header.b=GR+pzhec;
+	dkim=pass header.d=goldelico.com header.s=strato-dkim-0003 header.b=dC8bNf8x;
+	dmarc=pass (policy=quarantine) header.from=goldelico.com;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-325346-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-325346-lists+devicetree=lfdr.de@vger.kernel.org";
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D59063012D08
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 09:35:38 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 50DF730131E2
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jul 2026 09:39:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27A2C3DDDB1;
-	Mon, 13 Jul 2026 09:35:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF5D13E170E;
+	Mon, 13 Jul 2026 09:39:42 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from mo4-p02-ob.smtp.rzone.de (mo4-p02-ob.smtp.rzone.de [85.215.255.80])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBFCD3A960A;
-	Mon, 13 Jul 2026 09:35:36 +0000 (UTC)
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783935338; cv=none; b=g1RMcdvszGU7lTms2XfibAkVTOZRw4SUnCcdu3vePmb68aBfMJ20mc+6/HS3GPkQ3bAteTGw0Vy17IXssdr/2heUt5BtHBCNhYlP06aBQoopqv6BA5FaqbGX9zsJ8jgaLbbdhYBcyKXZQqOC3ZZrBJslNI8k4pqDN0dqpnxIHCg=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783935338; c=relaxed/simple;
-	bh=H2W/KP8SPA0KLTPvj9PjQ56CIeXVFarLU19pUgwYfmg=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=NITAqgtpY0Eb7mhQqaxWjh5XvaprcIBM2a2TDVFYfpkJIaXRiyTle7Ky1bPvNVQFirkmc1Ax//XFa1Yi1KIZJiGFVfMw79ljLrDFd8O29NSwQKOfYffylvNXo/ZaNp1uutLwXIqlmw1rSmKH/nq1IOjjn1cURHgBqoERTluYZAI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LJjWcwCp; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 33CFC1F000E9;
-	Mon, 13 Jul 2026 09:35:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783935336;
-	bh=GgTLQ8uwman0lLyw9cc4IPWO6BS2HmXsRVj/qpzG7AM=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject;
-	b=LJjWcwCpOVWguIJ8+S6Ex3xdAJSBzh57FCfNLUBAfs1hYUYICauAG9fLUO2DbWWQL
-	 wDStrijG+9ypPEQQvq33DtfiC2dOplak8cVIzix3BEiioPKyyUQo1ogZn9zqQ51NhH
-	 spbXn+4DK3s1JNvdi/Q5ITO1+aS7IJ2GpTTH5oYXeKnBx5IWMJi/NtiIOo5SppG7n1
-	 ZVMesfuCl8BE3TqUUBvl5idFY2rkKpIuJT2QTLSYNoCIOzzq6NfDHMa+raoHma1Y7P
-	 CC7DtX9ATgOedLyUmXDTq5Uv3KYI3QTTcu4hcKi9ykxFXQQm0XpjqzER/qDv9+MTFu
-	 jwqmb7e4mOwdg==
-Date: Mon, 13 Jul 2026 04:35:35 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3407F324B22;
+	Mon, 13 Jul 2026 09:39:38 +0000 (UTC)
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1783935582; cv=pass; b=dqVsOKSSdu8l3BcD5b2HFJm0U6VmwdgQwca9zWqqXLYhNVkBXqvZ/fHUHIdX71EULbFKiLsz83Eq6eFGDRELuqRlB9h87lGQMoESd2AwIMLkBRtTyKp0Cp8TQuLmnqPL7bZwgzdu9Oun555N26MfIZTKNZDAZyLrO6yZBiaJIME=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1783935582; c=relaxed/simple;
+	bh=hnhHYznYw4U+dJX7Gr1QJFYbWAhkfB84VU99JrG/Yvg=;
+	h=Content-Type:Mime-Version:Subject:From:In-Reply-To:Date:Cc:
+	 Message-Id:References:To; b=C+JfKRKGzThj/wTpIButSAxLK86pPwPyELhvSqvEHS0fEycSIf33/YHEHezD1J6uzicnoF0ZEVJmfzHTdfOeQ7u/Ex5xH6Oh56wdkp+PyAagpIdmzzjst+jGuyDbN+2ka7egqO+8TANVvfqePs+UPc1zoTlRDU1DJMWpKY4F6Tg=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=goldelico.com; spf=pass smtp.mailfrom=goldelico.com; dkim=pass (2048-bit key) header.d=goldelico.com header.i=@goldelico.com header.b=GR+pzhec; dkim=permerror (0-bit key) header.d=goldelico.com header.i=@goldelico.com header.b=dC8bNf8x; arc=pass smtp.client-ip=85.215.255.80
+ARC-Seal: i=1; a=rsa-sha256; t=1783935395; cv=none;
+    d=strato.com; s=strato-dkim-0002;
+    b=dP7OcmRnbwhCBH1RoJu0txmmrfPY1oppMgEqp052JfsHPADq+XQmroimpG/Bcd1tQ2
+    XkUF8sIltV3UbQKKEVvwnPLPY1isrhIkqM8+BH0cNyuMJZ647KC/9j9akGQwGMCBMDGY
+    2CHTazeGLdAOb7z1EvGSIL7q01ddxCVu4eWk3cW7Sic7J68wL72vEu8Eeg9L22dsd7kr
+    etviG/LUL9RVSvHOKzFhBrGA4lnscNb9P6f71d62ArlACy+3r7ukkTQT4eoJpUrSDNgw
+    BtVpqhFeiFQAt2Pf1ney1jGlCAQrTdHz+3k59/QNUxwbzbZCjP8wW0ukq9DpUu2zp/4X
+    z5HQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1783935395;
+    s=strato-dkim-0002; d=strato.com;
+    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
+    From:Subject:Sender;
+    bh=hnhHYznYw4U+dJX7Gr1QJFYbWAhkfB84VU99JrG/Yvg=;
+    b=i4ylZOSETHOTtxTdM6FHIyJqoa1k5j8HFL1QUpsJGOci28Q7PDUR47wd+g173HWoYh
+    VvbTln2Babj6qzPodSTUnafD3yN6AJhAx4KjjalBC8DHfJTIAcRWPe+wh1jjsU1E6goG
+    izTHi4psfYWBT47tHAfOn3ELPpq8/C+DQJDkOidIP7nEKDyzdb6wowVAmh1Bka5LPI0/
+    O8ncVDwXSEGbj2Zv74GkKZOnwq3A7KKo8SVfpUFMbg+oJUjkbxpuCnoTxSk2QqfAY0zD
+    JtjXfC3phLcUTla7szaN/zyMiNf/uReytyKl8PVt0JS/1yuJ0uOvLvZjVK527lvGHzbp
+    dq3w==
+ARC-Authentication-Results: i=1; strato.com;
+    arc=none;
+    dkim=none
+X-RZG-CLASS-ID: mo02
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1783935395;
+    s=strato-dkim-0002; d=goldelico.com;
+    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
+    From:Subject:Sender;
+    bh=hnhHYznYw4U+dJX7Gr1QJFYbWAhkfB84VU99JrG/Yvg=;
+    b=GR+pzhecddLYFJZMc2TkGjkjxgc7DC0nZFR03CQdi+czSfM6pxlv/3KTMXQCGBNz9z
+    BcJuwmMD+eyqm9Gq96U9Fgny+Gkd9td1wnpUYRaXIzGjKFDXgR5JWNkkx97bxd9NdKmR
+    Ot6Nnogfl9XsMNwLcZPqnbQVo/77HbxfxrQMnIKbOhLUaM6FOKFU4PK0y0GH6QK9j1bQ
+    UGAG2tZ+xAvYFn3dJmvoVnJElakBDEcUMsjRQbukdeJIJKoDJ7yy7O/+QHBTfCO6Sz7d
+    wdafVe+iE9kJ4weOtCaj5gKcOGg1HmTshPDlA0BsSTq0U6xEQ4jqfgwRlttZHIn658vQ
+    O3ug==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1783935395;
+    s=strato-dkim-0003; d=goldelico.com;
+    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
+    From:Subject:Sender;
+    bh=hnhHYznYw4U+dJX7Gr1QJFYbWAhkfB84VU99JrG/Yvg=;
+    b=dC8bNf8xW+rX8n44wt9DVlrzvORrz9yJLqjhY6lCP6awzocEeb+ilJ8db4Rk1zkHNL
+    Mg/Z3iyLc5JCNkCNZiDg==
+X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMhflhwDubTJ9qVpwcQVkPW4I1HrQi5pZlciNgDl2kEp5oHJ2/c57N2Mc49IfXTKd"
+Received: from smtpclient.apple
+    by smtp.strato.de (RZmta 55.5.6 AUTH)
+    with ESMTPSA id Q4b76426D9aXNNi
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve X9_62_prime256v1 with 256 ECDH bits, eq. 3072 bits RSA))
+	(Client did not present a certificate);
+    Mon, 13 Jul 2026 11:36:33 +0200 (CEST)
+Content-Type: text/plain;
+	charset=us-ascii
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: nuno.sa@analog.com, dlechner@baylibre.com, devicetree@vger.kernel.org, 
- cwweng@nuvoton.com, conor+dt@kernel.org, 
- linux-arm-kernel@lists.infradead.org, jic23@kernel.org, 
- linux-iio@vger.kernel.org, andy@kernel.org, linux-kernel@vger.kernel.org, 
- krzk+dt@kernel.org
-To: Chi-Wen Weng <cwweng.linux@gmail.com>
-In-Reply-To: <20260713081127.115197-2-cwweng.linux@gmail.com>
-References: <20260713081127.115197-1-cwweng.linux@gmail.com>
- <20260713081127.115197-2-cwweng.linux@gmail.com>
-Message-Id: <178393533549.3982391.11335351167555265751.robh@kernel.org>
-Subject: Re: [PATCH v2 1/2] dt-bindings: iio: adc: Add Nuvoton MA35D1 EADC
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3826.700.81.1.8\))
+Subject: Re: [PATCH 01/16] dt-bindings: twl-regulator: Add bindings for
+ exposing ti,twl4030-regen
+From: "H. Nikolaus Schaller" <hns@goldelico.com>
+In-Reply-To: <17497012-97d8-4c52-89b8-f433179f1eda@kernel.org>
+Date: Mon, 13 Jul 2026 11:36:23 +0200
+Cc: Grond <grond66@riseup.net>,
+ Stefan Leichter <sle85276@gmx.de>,
+ Grazvydas Ignotas <notasas@gmail.com>,
+ Tony Lindgren <tony@atomide.com>,
+ Ethan Nelson-Moore <enelsonmoore@gmail.com>,
+ Jarkko Nikula <jarkko.nikula@bitmer.com>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Andreas Kemnade <andreas@kemnade.info>,
+ Lee Jones <lee@kernel.org>,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>,
+ Aaro Koskinen <aaro.koskinen@iki.fi>,
+ Kevin Hilman <khilman@baylibre.com>,
+ Roger Quadros <rogerq@kernel.org>,
+ Russell King <linux@armlinux.org.uk>,
+ Daniel Thompson <danielt@kernel.org>,
+ Jingoo Han <jingoohan1@gmail.com>,
+ Helge Deller <deller@gmx.de>,
+ Jaroslav Kysela <perex@perex.cz>,
+ Takashi Iwai <tiwai@suse.com>,
+ Sen Wang <sen@ti.com>,
+ Richard Fitzgerald <rf@opensource.cirrus.com>,
+ Arnd Bergmann <arnd@arndb.de>,
+ Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>,
+ Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+ Charles Keepax <ckeepax@opensource.cirrus.com>,
+ Niranjan H Y <niranjan.hy@ti.com>,
+ letux-kernel@openphoenux.org,
+ devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org,
+ linux-sound@vger.kernel.org,
+ linux-omap@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org,
+ dri-devel@lists.freedesktop.org,
+ linux-fbdev@vger.kernel.org,
+ kernel@pyra-handheld.com,
+ mfd@lists.linux.dev
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <CA2C7052-43D0-411C-8556-26228EB6FEC2@goldelico.com>
+References: <cover.1783749722.git.hns@goldelico.com>
+ <00718b18253a764c2a7c9a2b95c3b8c411796583.1783749722.git.hns@goldelico.com>
+ <20260713-aquatic-memorable-griffin-cf9e46@quoll>
+ <3D58F644-3EAA-4BE7-88FB-1DCEAE7D5768@goldelico.com>
+ <17497012-97d8-4c52-89b8-f433179f1eda@kernel.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+X-Mailer: Apple Mail (2.3826.700.81.1.8)
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[goldelico.com,quarantine];
+	MV_CASE(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[goldelico.com:s=strato-dkim-0002,goldelico.com:s=strato-dkim-0003];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:nuno.sa@analog.com,m:dlechner@baylibre.com,m:devicetree@vger.kernel.org,m:cwweng@nuvoton.com,m:conor+dt@kernel.org,m:linux-arm-kernel@lists.infradead.org,m:jic23@kernel.org,m:linux-iio@vger.kernel.org,m:andy@kernel.org,m:linux-kernel@vger.kernel.org,m:krzk+dt@kernel.org,m:cwweng.linux@gmail.com,m:conor@kernel.org,m:krzk@kernel.org,m:cwwenglinux@gmail.com,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-325346-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	FREEMAIL_TO(0.00)[gmail.com];
+	FORGED_SENDER(0.00)[hns@goldelico.com,devicetree@vger.kernel.org];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[41];
+	FORGED_RECIPIENTS(0.00)[m:grond66@riseup.net,m:sle85276@gmx.de,m:notasas@gmail.com,m:tony@atomide.com,m:enelsonmoore@gmail.com,m:jarkko.nikula@bitmer.com,m:s.hauer@pengutronix.de,m:andreas@kemnade.info,m:lee@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:lgirdwood@gmail.com,m:broonie@kernel.org,m:aaro.koskinen@iki.fi,m:khilman@baylibre.com,m:rogerq@kernel.org,m:linux@armlinux.org.uk,m:danielt@kernel.org,m:jingoohan1@gmail.com,m:deller@gmx.de,m:perex@perex.cz,m:tiwai@suse.com,m:sen@ti.com,m:rf@opensource.cirrus.com,m:arnd@arndb.de,m:srinivas.kandagatla@oss.qualcomm.com,m:kuninori.morimoto.gx@renesas.com,m:ckeepax@opensource.cirrus.com,m:niranjan.hy@ti.com,m:letux-kernel@openphoenux.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-sound@vger.kernel.org,m:linux-omap@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:dri-devel@lists.freedesktop.org,m:linux-fbdev@vger.kernel.org,m:kernel@pyra-handheld.com,m:mfd@lists.linux.dev,m:krz
+ k@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-325343-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FREEMAIL_CC(0.00)[riseup.net,gmx.de,gmail.com,atomide.com,bitmer.com,pengutronix.de,kemnade.info,kernel.org,iki.fi,baylibre.com,armlinux.org.uk,perex.cz,suse.com,ti.com,opensource.cirrus.com,arndb.de,oss.qualcomm.com,renesas.com,openphoenux.org,vger.kernel.org,lists.infradead.org,lists.freedesktop.org,pyra-handheld.com,lists.linux.dev];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[hns@goldelico.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[goldelico.com:+];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp,devicetree.org:url,nuvoton.com:email]
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,riseup.net:email,goldelico.com:from_mime,goldelico.com:dkim,goldelico.com:mid,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 32F1B7495E5
+X-Rspamd-Queue-Id: 4802F749673
 
 
-On Mon, 13 Jul 2026 16:11:26 +0800, Chi-Wen Weng wrote:
-> From: Chi-Wen Weng <cwweng@nuvoton.com>
-> 
-> Add devicetree binding for the Enhanced ADC controller found on
-> Nuvoton MA35D1 SoCs.
-> 
-> The controller has one register region, up to four end-of-conversion
-> interrupts, one functional clock, and an optional reset line. The
-> binding also describes the optional external reference supply and the
-> optional DMA request supported by the hardware.
-> 
-> ADC input pins are described using standard channel child nodes. The
-> external ADC input channels are 0 to 7. Differential inputs are described
-> with diff-channels and are limited to the fixed hardware pairs.
-> 
-> Signed-off-by: Chi-Wen Weng <cwweng@nuvoton.com>
-> ---
->  .../bindings/iio/adc/nuvoton,ma35d1-eadc.yaml | 163 ++++++++++++++++++
->  1 file changed, 163 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/adc/nuvoton,ma35d1-eadc.yaml
-> 
 
-My bot found errors running 'make dt_binding_check' on your patch:
+> Am 13.07.2026 um 11:19 schrieb Krzysztof Kozlowski <krzk@kernel.org>:
+>=20
+> On 13/07/2026 10:26, H. Nikolaus Schaller wrote:
+>> Hi Krzysztof,
+>>=20
+>> Thank you for the feedback.
+>>=20
+>>> Am 13.07.2026 um 09:39 schrieb Krzysztof Kozlowski =
+<krzk@kernel.org>:
+>>>=20
+>>> On Sat, Jul 11, 2026 at 08:01:48AM +0200, H. Nikolaus Schaller =
+wrote:
+>>>> From: Grond <grond66@riseup.net>
+>>>>=20
+>>>=20
+>>>>=20
+>>>> Signed-off-by: Grond <grond66@riseup.net>
+>>>=20
+>>> As explicitly written in submitting patches: we do not take =
+anonymous
+>>> contributions.
+>>=20
+>> Thanks for pointing this out. In more than 10 years of contributing, =
+I actually have never run into this specific issue before.
+>>=20
+>> To give some context: this is a contribution we received on our =
+mailing list about 5 years ago. We do not know the author personally, =
+but the code looks good and has been thoroughly tested by us. I kept =
+their Signed-off-by because I didn't want to falsely claim authorship.
+>=20
+> Take the authorship. You are allowed to do that by both DCO and common
+> sense (you are not doing something immoral, unless author shows
+> interest/hints to fix it by themself).
 
-yamllint warnings/errors:
+Ok, let's give him some days to respond. Thanks for the procedure
+to resolve a potential deadlock.
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/iio/adc/nuvoton,ma35d1-eadc.yaml: properties:interrupts: {'minItems': 1, 'maxItems': 4, 'items': [{'description': 'ADINT0 end-of-conversion interrupt'}, {'description': 'ADINT1 end-of-conversion interrupt'}, {'description': 'ADINT2 end-of-conversion interrupt'}, {'description': 'ADINT3 end-of-conversion interrupt'}]} should not be valid under {'required': ['maxItems']}
-	hint: "maxItems" is not needed with an "items" list
-	from schema $id: http://devicetree.org/meta-schemas/items.yaml
+>=20
+> Commit msg also needs fixing/rewriting.
+>=20
+> Beside, one more nit since there will be a new version:
+>=20
+> A nit, subject: drop second/last, redundant "bindings for". The
+> "dt-bindings" prefix is already stating that these are bindings.
 
-doc reference errors (make refcheckdocs):
+Ok.
 
-See https://patchwork.kernel.org/project/devicetree/patch/20260713081127.115197-2-cwweng.linux@gmail.com
+> Best regards,
+> Krzysztof
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
 
 
