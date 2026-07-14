@@ -1,230 +1,228 @@
-Return-Path: <devicetree+bounces-326173-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-326175-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id ixZ4AQ8mVmo90AAAu9opvQ
-	(envelope-from <devicetree+bounces-326173-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 14:05:35 +0200
+	id MzIfJkcnVmrN0AAAu9opvQ
+	(envelope-from <devicetree+bounces-326175-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 14:10:47 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB1B7754404
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 14:05:33 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id C15A375453A
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 14:10:46 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=A4MAnEao;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326173-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-326173-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=intel.com;
+	dkim=pass header.d=suse.de header.s=susede2_rsa header.b=1V5YCDK1;
+	dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=72W64q08;
+	dkim=pass header.d=suse.de header.s=susede2_rsa header.b=1V5YCDK1;
+	dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=72W64q08;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326175-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-326175-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=suse.de;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 2C31E30577D7
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 11:52:08 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 11C3A3065EF7
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 11:54:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5140438C406;
-	Tue, 14 Jul 2026 11:46:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E318438C406;
+	Tue, 14 Jul 2026 11:52:59 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEE8D35BDC7;
-	Tue, 14 Jul 2026 11:46:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D6A538A700
+	for <devicetree@vger.kernel.org>; Tue, 14 Jul 2026 11:52:58 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1784029602; cv=none; b=lRwmfQNRqXmXYWuh8oGkJpwSvZXIqAH+jkcIVF4II8KhmobCoUsHXCwVjyDXIuRjAjg9NUrDYmLO9uKgMmScRI/W+Cgf+oF/d/M2obbnss2XPLjPvR39w4v6VMbOXD586HgJzaiQlTV88wlFWuKPKoZz1R1Q6jKCBy323SciZvA=
+	t=1784029979; cv=none; b=sts85r2toZ3yR7Q0l+oz9AgFwViJ54HgKgjg3KNax7Ss8l/UKlCHoD7IhKcWmC2IFQacr1VKarAPWwejTHHR3PePTd1Cgm5oJnzLeJdhNgHqcyzXcpP7cvN3ZlVtyaNj4EyEVGxY++X1KV4jrtiHmZSusohdKTn84gI2O2QOv8c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1784029602; c=relaxed/simple;
-	bh=SuvH0R0BK+/0Ae0Mp+igWDU48vvsC5mEiQoQxHn1sBM=;
+	s=arc-20240116; t=1784029979; c=relaxed/simple;
+	bh=q62MG/KZnFtxq0b7Jy3yHW3PGTLF9Pt17ZkpVcdzoX0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=iCkGaYWApOPFxydJpFe4nKv0aGPPllMioLPgT//6UpmAQFM0+5g7HHmzvsYY92e1A/agzqHPUuQOKtsUhjfeyO7mjP9O72F55GLH15+a4bg5Y1Wi2Yt2yrSGTAQxmhUcFb8IuGcaI17biH9u+TOfu/MghZjbOq8+43XB30Dv5Dg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=A4MAnEao; arc=none smtp.client-ip=192.198.163.12
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1784029601; x=1815565601;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=SuvH0R0BK+/0Ae0Mp+igWDU48vvsC5mEiQoQxHn1sBM=;
-  b=A4MAnEaojvoOKCrFwEaEU2VSDmLGPSwpk3way50gXMEpjtYfYBwJq/Db
-   wC96cIw7nydxtbbwFmuvUKLaXeNLyOdXRBDX3wCKDPMTqsjMq/+CD30QZ
-   0YG1znZdKYlvcCHWpDiGlPwkraFqiaVqmE/u8m22jEJ9b5OoqvSa3CEwO
-   nD7eSeYWFf8x4iatRLvUm5RiIA3wFVQc8Vx4eIlKkgMkKGXn8+AJgFPC1
-   tnY8PIyk9rFrq5eX1Qu9KfnDG9DAmgTTQm3e8hcWPcJPeBUYZgX8pHAvy
-   ebQrqPProBY+xW0D24hKM5jkCiujRwF6DCAyhXEVUEZcVaGftlhwPisYn
-   A==;
-X-CSE-ConnectionGUID: 60E0xN9bTt2qse3fXPtQQg==
-X-CSE-MsgGUID: HaUt82+DS/SGOVUmE4u9ag==
-X-IronPort-AV: E=McAfee;i="6800,10657,11846"; a="88470446"
-X-IronPort-AV: E=Sophos;i="6.25,163,1779174000"; 
-   d="scan'208";a="88470446"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
-  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Jul 2026 04:46:40 -0700
-X-CSE-ConnectionGUID: RWzRhk1qTOWgY9v/MBMjwA==
-X-CSE-MsgGUID: PFof6ymER0SXkV4IgFNRHQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,163,1779174000"; 
-   d="scan'208";a="257801627"
-Received: from kniemiec-mobl1.ger.corp.intel.com (HELO localhost) ([10.245.245.189])
-  by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Jul 2026 04:46:36 -0700
-Date: Tue, 14 Jul 2026 14:46:33 +0300
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: rodrigo.alencar@analog.com
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
-	linux-hardening@vger.kernel.org,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=HQcDH5MmH9cjFoS3F0fcINuoWKJuRTRjfyiVDJd3E/YuRIK3idb40cO835apNNx/j34Imtz7EqWsDGxzTUmyNsEXVTe19YT7uF//eA87bC09kp2wIDonQ4kFr3hZjKZ9tY3h305h+uHibFpUJntZM4jywr3ULUYvfbTeO/IjJZo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de; spf=pass smtp.mailfrom=suse.de; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=1V5YCDK1; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=72W64q08; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=1V5YCDK1; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=72W64q08; arc=none smtp.client-ip=195.135.223.130
+Received: from kunlun.suse.cz (unknown [IPv6:2a07:de40:b306:2000::2])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by smtp-out1.suse.de (Postfix) with ESMTPS id 27F0D77E49;
+	Tue, 14 Jul 2026 11:52:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+	t=1784029976; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=/arxFu0AfWl5VKJfwYtAIB0ze2CiMONt1SfavfBwTcc=;
+	b=1V5YCDK1E9WAmMcZbM4dTaBj5YSZQY0MdPJCDn05bnQi+scYeXcLmKPgJ50aU0gZMzFPPd
+	lEKHgSKoFTt9/1j3+I8cFgpefGOm14/hS1Mys2OE/QaxCYTDfrB6+HWLa0R4rOeRu7zkhQ
+	MxqP4LEqj8UdPYuFmHQJYWkp+VRY938=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+	s=susede2_ed25519; t=1784029976;
+	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=/arxFu0AfWl5VKJfwYtAIB0ze2CiMONt1SfavfBwTcc=;
+	b=72W64q08AWUN8gzE3h+nMI8Xu2c5ClDSnYmLwAXd/4poFfEQeEJ15hkGSkvAZkFMqCA71J
+	ahS/STSnnltMr3Bw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+	t=1784029976; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=/arxFu0AfWl5VKJfwYtAIB0ze2CiMONt1SfavfBwTcc=;
+	b=1V5YCDK1E9WAmMcZbM4dTaBj5YSZQY0MdPJCDn05bnQi+scYeXcLmKPgJ50aU0gZMzFPPd
+	lEKHgSKoFTt9/1j3+I8cFgpefGOm14/hS1Mys2OE/QaxCYTDfrB6+HWLa0R4rOeRu7zkhQ
+	MxqP4LEqj8UdPYuFmHQJYWkp+VRY938=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+	s=susede2_ed25519; t=1784029976;
+	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=/arxFu0AfWl5VKJfwYtAIB0ze2CiMONt1SfavfBwTcc=;
+	b=72W64q08AWUN8gzE3h+nMI8Xu2c5ClDSnYmLwAXd/4poFfEQeEJ15hkGSkvAZkFMqCA71J
+	ahS/STSnnltMr3Bw==
+Date: Tue, 14 Jul 2026 13:52:55 +0200
+From: Michal =?iso-8859-1?Q?Such=E1nek?= <msuchanek@suse.de>
+To: Andre Przywara <andre.przywara@arm.com>
+Cc: Mark Rutland <mark.rutland@arm.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Sudeep Holla <sudeep.holla@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, vsethi@nvidia.com,
+	Salman Nabi <salman.nabi@arm.com>, Rob Herring <robh@kernel.org>,
+	linux-kernel@vger.kernel.org, Varun Wadekar <vwadekar@nvidia.com>,
+	Trilok Soni <trilokkumar.soni@oss.qualcomm.com>,
+	devicetree@vger.kernel.org, Nirmoy Das <nirmoyd@nvidia.com>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Shuah Khan <skhan@linuxfoundation.org>, Kees Cook <kees@kernel.org>,
-	"Gustavo A. R. Silva" <gustavoars@kernel.org>
-Subject: Re: [PATCH v8 06/17] iio: core: create local
- __iio_chan_prefix_emit() for reuse
-Message-ID: <alYhmR7y7xlMqLJ1@ashevche-desk.local>
-References: <20260714-ad9910-iio-driver-v8-0-36939c3c07d2@analog.com>
- <20260714-ad9910-iio-driver-v8-6-36939c3c07d2@analog.com>
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v3 0/8] Arm Live Firmware Activation (LFA) support
+Message-ID: <alYjFwi0dnld-wP3@kunlun.suse.cz>
+References: <20260706134455.132091-1-andre.przywara@arm.com>
+ <alUMGCJzVG6U3Ggm@kunlun.suse.cz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260714-ad9910-iio-driver-v8-6-36939c3c07d2@analog.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <alUMGCJzVG6U3Ggm@kunlun.suse.cz>
+X-Spam-Flag: YES
+X-Spam-Level: ***************
+X-Spamd-Bar: +++++++++++++++
+X-Spam-Score: 15.68
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[intel.com:d:+,kernel.org:s:+];
+X-Spamd-Result: default: False [4.34 / 15.00];
+	SPAM_FLAG(5.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	DMARC_POLICY_ALLOW(-0.50)[suse.de,none];
+	R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-326173-lists,devicetree=lfdr.de];
-	HAS_ORG_HEADER(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:rodrigo.alencar@analog.com,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-doc@vger.kernel.org,m:linux-hardening@vger.kernel.org,m:lars@metafoo.de,m:Michael.Hennerich@analog.com,m:jic23@kernel.org,m:dlechner@baylibre.com,m:andy@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:p.zabel@pengutronix.de,m:corbet@lwn.net,m:skhan@linuxfoundation.org,m:kees@kernel.org,m:gustavoars@kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:andre.przywara@arm.com,m:mark.rutland@arm.com,m:lpieralisi@kernel.org,m:sudeep.holla@kernel.org,m:conor+dt@kernel.org,m:vsethi@nvidia.com,m:salman.nabi@arm.com,m:robh@kernel.org,m:linux-kernel@vger.kernel.org,m:vwadekar@nvidia.com,m:trilokkumar.soni@oss.qualcomm.com,m:devicetree@vger.kernel.org,m:nirmoyd@nvidia.com,m:krzk+dt@kernel.org,m:linux-arm-kernel@lists.infradead.org,m:conor@kernel.org,m:krzk@kernel.org,s:lists@lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	GREYLIST(0.00)[pass,body];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	FORGED_SENDER(0.00)[msuchanek@suse.de,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[suse.de:+];
 	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[msuchanek@suse.de,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-326175-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,vger.kernel.org:from_smtp,ashevche-desk.local:mid,intel.com:from_mime,intel.com:dkim]
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,suse.de:from_mime,suse.de:dkim,kunlun.suse.cz:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: EB1B7754404
+X-Rspamd-Queue-Id: C15A375453A
 
-On Tue, Jul 14, 2026 at 12:02:46PM +0100, Rodrigo Alencar via B4 Relay wrote:
+On Mon, Jul 13, 2026 at 06:02:35PM +0200, Michal Suchánek wrote:
+> On Mon, Jul 06, 2026 at 03:44:40PM +0200, Andre Przywara wrote:
+> > Hi all,
+> > 
+> > this is version 3 of the Live Firmware Activation kernel support. The
+> > device part of the code now relies on Aneesh's SMCCC bus patches[1],
+> > which solves some problems rather nicely. I also added the formerly
+> > missing sysfs ABI documentation. Based on v7.2-rc1, plus the first
+> > two patches from Aneesh's series. More detailed changelog below.
+> > ==============================
+> > 
+> > This series implements the kernel side support of the Arm Live
+> > Firmware Activation (LFA) specification [2]. LFA enables the activation
+> > of updated firmware components without requiring a system reboot,
+> > reducing downtime and allowing quicker deployment of critical bug fixes
+> > in environments such as data centers and hyperscale systems.
+> > It requires explicit firmware support, both via an agent running in EL3
+> > (for instance in TF-A, already merged), but also in the firmware
+> > component to be activated. TF-RMM recently merged support for this.
+> > 
+> > Unlike the usual firmware update process (which may use tools like
+> > fwupd), LFA focuses solely on the activation of an already updated
+> > firmware component, called "pending activation" in LFA lingo. This works
+> > by signalling the LFA agent (part of the EL3 runtime firmware) via an
+> > SMC call, which then does the heavy lifting of the live update, in
+> > cooperation with the to-be-updated firmware component.
+> > 
+> > Key features of the driver:
+> > * Detects LFA support in system firmware (EL3).
+> > * Lists all firmware components that support live activation, identified
+> >   by their GUID.
+> > * Exposes component attributes (e.g., activation capability, and
+> >   activation pending) via sysfs under /sys/firmware/lfa/<GUID>/.
+> > * Provides interfaces to:
+> >   - Trigger activation of an updated firmware component.
+> >   - Cancel an ongoing activation if required.
+> > A more detailed list of features can be found in patch 2/8.
+> > Based on v7.2-rc1.
+> > 
+> > This work is conceptually similar to Intel’s Platform Firmware Runtime
+> > Update and telemetry (PFRUT) [3] and TDX module updates [4], but
+> > targets Arm platforms. The driver has been used to successfully activate
+> > a Realm Management Monitor (RMM) firmware image in a controlled test
+> > environment. RMM is analogous to Intel’s TDX module.
+> > 
+> > There is effort on similar work from the OCP [5]. Future work may
+> > include integration with utilities like fwupd to automatically select
+> > the appropriate driver, based on platform architecture, for Live/Runtime
+> > firmware updates.
+> > 
+> > Please have a look, test and comment!
+> 
+> Hello,
+> 
+> booting a kernel with v2 of this patchset applied the module does not
+> get autoloaded. Loading it manually I get
+> 
+> [ 1972.957282] [   T5195] Arm LFA: Live Firmware Activation: detected v1.0
+> [ 1972.958620] [   T5195] Arm LFA: registered LFA ACPI notification
+> 
+> Is this expected?
+> 
+> I would expect the driver to load automatically.
+> 
+> I do not see anything in the v3 changelog obviously addressing
+> autoloading but changing to using a bus might affect that.
+> 
+> I will try to update to v3 later.
 
-> Move logic to create a channel prefix for naming attribute files into a
-> separate __iio_chan_prefix_emit() function for reuse. The dev pointer is
-> passed to __iio_device_attr_init() so that dev_err() replaces WARN().
-> The new helper is going to be used to expose channel relationships as
-> sysfs attributes.
+Hello,
 
-...
+updating to v3 of the patchset resolves the problem.
 
-> +static ssize_t __iio_chan_prefix_emit(struct device *dev,
-> +				      const struct iio_chan_spec *chan,
-> +				      enum iio_shared_by shared_by,
-> +				      char *buf, size_t len)
-> +{
-> +	const char *type = iio_chan_type_name_spec[chan->type];
-> +	const char *dir = iio_direction[chan->output];
-> +	struct seq_buf s;
-> +
-> +	seq_buf_init(&s, buf, len);
-> +
-> +	switch (shared_by) {
-> +	case IIO_SHARED_BY_ALL:
-> +		break;
-> +	case IIO_SHARED_BY_DIR:
-> +		seq_buf_printf(&s, "%s", dir);
-> +		break;
-> +	case IIO_SHARED_BY_TYPE:
-> +		seq_buf_printf(&s, "%s_%s", dir, type);
-> +		if (chan->differential)
-> +			seq_buf_printf(&s, "-%s", type);
-> +		break;
-> +	case IIO_SEPARATE:
+The driver is now autoloaded.
 
-> +		seq_buf_printf(&s, "%s_%s", dir, type);
-> +		if (chan->indexed) {
-> +			seq_buf_printf(&s, "%d", chan->channel);
-> +			if (chan->differential)
-> +				seq_buf_printf(&s, "-%s%d", type, chan->channel2);
-> +		} else if (chan->differential) {
-> +			dev_err(dev, "Differential channels must be indexed\n");
-> +			return -EINVAL;
-> +		}
-> +
-> +		if (chan->modified) {
-> +			if (chan->differential) {
-> +				dev_err(dev, "Differential channels can not have modifier\n");
-> +				return -EINVAL;
-> +			}
-> +			seq_buf_printf(&s, "_%s", iio_modifier_names[chan->channel2]);
-> +		}
-> +
-> +		if (chan->extend_name)
-> +			seq_buf_printf(&s, "_%s", chan->extend_name);
-> +		break;
+Thanks
 
-Can we actually do the validation first without dirtying the output?
-
-		/* Validate differential channel settings */
-		if (chan->differential) {
-			if (!chan->indexed) {
-				dev_err(dev, "Differential channels must be indexed\n");
-				return -EINVAL;
-			}
-			if (chan->modified) {
-				dev_err(dev, "Differential channels can not have modifier\n");
-				return -EINVAL;
-			}
-		}
-
-		seq_buf_printf(&s, "%s_%s", dir, type);
-
-		if (chan->indexed) {
-			seq_buf_printf(&s, "%d", chan->channel);
-
-		if (chan->differential)
-			seq_buf_printf(&s, "-%s%d", type, chan->channel2);
-
-		if (chan->modified)
-			seq_buf_printf(&s, "_%s", iio_modifier_names[chan->channel2]);
-
-		if (chan->extend_name)
-			seq_buf_printf(&s, "_%s", chan->extend_name);
-		break;
-
-
-> +	}
-> +
-> +	return seq_buf_has_overflowed(&s) ? -EOVERFLOW : s.len;
-> +}
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+Michal
 
