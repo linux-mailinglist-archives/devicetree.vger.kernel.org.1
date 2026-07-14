@@ -1,62 +1,61 @@
-Return-Path: <devicetree+bounces-326455-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-326465-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 4ARfICuOVmpB9AAAu9opvQ
-	(envelope-from <devicetree+bounces-326455-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 21:29:47 +0200
+	id xn3vKQORVmqt9QAAu9opvQ
+	(envelope-from <devicetree+bounces-326465-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 21:41:55 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2AB53758440
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 21:29:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B5C275863C
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 21:41:55 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=collabora.com header.s=mail header.b=AUc3ZeZk;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326455-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-326455-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=collabora.com header.s=mail header.b=jRDJTfhK;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326465-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-326465-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=none) header.from=collabora.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id C965A303D4FE
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 19:28:05 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id ABA433086B8A
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 19:35:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4805443551C;
-	Tue, 14 Jul 2026 19:26:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8DBDA41DDEB;
+	Tue, 14 Jul 2026 19:35:29 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71A3A42BE91;
-	Tue, 14 Jul 2026 19:26:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CEB0C2931DA;
+	Tue, 14 Jul 2026 19:35:27 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1784057187; cv=none; b=t9+VoYJK9tfNaWiaqmBo7vQpbiGXoe2AdDw34wOd+y77Zf56ygBG+e1e6re/zuI8yiVEssTVem3IS3sNzpcxPJtoKoTCEL26YdZyNJNpFBwfMX1su29rOIHnvqquNz/KLs2JSyn7K6mGLPnfJI2R9B8tHoLrzZ1Gu6lvwRz51Hg=
+	t=1784057729; cv=none; b=seRxhHPtDvCXxc+yoNnYew6hUTWY8orPauIy0qfcFuR4XzG3qwdbXbaaIalJYxMamXbye6oliNDTJkvcWfTprPmYBW2V9NEjritbkhFkc0Ys5qsz9asgiqMPuichfkgtrAVpqowe50eIf7dHNYuvpx166pL/Ba2e6H6WeTu68+s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1784057187; c=relaxed/simple;
-	bh=V63zlxbk2WwIpvUkzfZbShKKI8n4pibTtc1ZREWfyK0=;
+	s=arc-20240116; t=1784057729; c=relaxed/simple;
+	bh=sykfJDcEh0P0sU0/0Mx5RGtaMEmg4itoA8UTsTqvby0=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=jWxaDZzYMNpQtzIIc0Q8OsqZdb/lXNRwXDu5gYrPM62S107GWu3yAJiDIIwBO3Knd0lKHZXQDiAcvDnJqRicubVbahMSxhTJgI0GnCR6bS6Y4YJZ2OfELudBTMvF1jF8BohnijaUXdfAnxGvlFdc08uoi/knt0CMyWvx3DTvOiI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=AUc3ZeZk; arc=none smtp.client-ip=148.251.105.195
+	 In-Reply-To:To:Cc; b=ikHuzOywVrKdQ5MHRyCAbPkAUOm1lP3Vc3VG8vnIpStMmM4C4eJDAWrBROxz6j/eKt0l4nJlHuTuHbXFJvjtRjO/GTXh6Ks2BV/7dbKw13id+X7Mo/nE+EoedJI9t6aJ1NR9N9RTRwcGedjKBT5cfsEKFfMrQGUT6znLGyjd+zc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=jRDJTfhK; arc=none smtp.client-ip=148.251.105.195
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1784057170;
-	bh=V63zlxbk2WwIpvUkzfZbShKKI8n4pibTtc1ZREWfyK0=;
+	s=mail; t=1784057726;
+	bh=sykfJDcEh0P0sU0/0Mx5RGtaMEmg4itoA8UTsTqvby0=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=AUc3ZeZklmz6zTkda4UwrE4VKA8f/XvVPshTkGXqnxaj/Kx6Tvv4wMVCPXD2gx6fb
-	 8JviOTx+R5jLeVqnUXcVbF7aEWXGBn0xkbT4EVnXIblO8KmVTNiyr6QOCC63fKhWb5
-	 xarMp9ia59aGQDcNsIN3TJCsIxSSz4g0IRF9kkDhs7/lK0nLj+ABFxOz9BvB8b5GA2
-	 QU7nOHIfh7DOlUZPUlbvsbQVFtgEyKXYatz/KJMeAA++aoZZ6Bg+mcpJ5isVg19IHj
-	 gHxWfGvNjKY6hTEzl5MRdCHij7Q4OzH5Y43ONnystVXdHI8XNu7sNC2fp4SPzaiAum
-	 RsBEg5euhNc0A==
+	b=jRDJTfhK+6QPYMg1L9pxv4z1daQvN2QQFwMaqsWsKC78WwXHTvEgq1WawZR3zRGoc
+	 EiihOgIgo/Jeu5mTN8sHQRHbKJa5ZoVdaCy3r1pG0UCBoxNaaTKke2F9fbcS6p1vHQ
+	 w9a7w81h/v8dxRgZacvVkIniPwwV9UNmCSGAHK3u4mtSoKM/OVaMbAdJwMtGjmBL4p
+	 mifZGVG2P1ehRW9MwhXIpw5pveH3JKQHwIp6Wjp71fD4yb1w2m8qZcwDTVdKllyrub
+	 A9e3q1SRk+kUCM0BTAslz3M2gmT77I3rKLxPk2TuWZq9htBVb0FGuZkEqRODUfiCKT
+	 pN310zq1qQEBA==
 Received: from jupiter.universe (unknown [100.64.1.62])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange x25519)
 	(No client certificate requested)
 	(Authenticated sender: sre)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 18C4517E120F;
-	Tue, 14 Jul 2026 21:26:10 +0200 (CEST)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id D29CE17E0E1C;
+	Tue, 14 Jul 2026 21:35:25 +0200 (CEST)
 Received: by jupiter.universe (Postfix, from userid 1000)
-	id 0332548006E; Tue, 14 Jul 2026 21:26:09 +0200 (CEST)
+	id 04B8C48006F; Tue, 14 Jul 2026 21:26:09 +0200 (CEST)
 From: Sebastian Reichel <sebastian.reichel@collabora.com>
-Date: Tue, 14 Jul 2026 21:26:28 +0200
-Subject: [PATCH v13 27/35] phy: rockchip: usbdp: Only enable USB3 when not
- in high-speed mode
+Date: Tue, 14 Jul 2026 21:26:29 +0200
+Subject: [PATCH v13 28/35] phy: core: add notifier infrastructure
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,7 +64,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260714-rockchip-usbdp-cleanup-v13-27-6cb3e769d4c5@collabora.com>
+Message-Id: <20260714-rockchip-usbdp-cleanup-v13-28-6cb3e769d4c5@collabora.com>
 References: <20260714-rockchip-usbdp-cleanup-v13-0-6cb3e769d4c5@collabora.com>
 In-Reply-To: <20260714-rockchip-usbdp-cleanup-v13-0-6cb3e769d4c5@collabora.com>
 To: Vinod Koul <vkoul@kernel.org>, 
@@ -82,24 +81,23 @@ Cc: Andy Yan <andy.yan@rock-chips.com>, Dmitry Baryshkov <lumag@kernel.org>,
  linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
  linux-kernel@vger.kernel.org, kernel@collabora.com, 
  devicetree@vger.kernel.org, linux-usb@vger.kernel.org, 
- Sebastian Reichel <sebastian.reichel@collabora.com>, 
- Sashiko <sashiko-bot@kernel.org>
+ Sebastian Reichel <sebastian.reichel@collabora.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1088;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=6202;
  i=sebastian.reichel@collabora.com; h=from:subject:message-id;
- bh=V63zlxbk2WwIpvUkzfZbShKKI8n4pibTtc1ZREWfyK0=;
- b=owJ4nAFtApL9kA0DAAoB2O7X88g7+poByyZiAGpWjVAJ7QmSEvdWysGnof840cj44T1gR36gk
- uWBoj12xlU/f4kCMwQAAQoAHRYhBO9mDQdGP4tyanlUE9ju1/PIO/qaBQJqVo1QAAoJENju1/PI
- O/qaElYP/3qvpmGnUJMDBxbC6Z8jMPqFXid2nRYDzLr4mTRZufmSXpwe/QnPg5Ts5ngwnKKhmig
- 8G3ttivx/KU38sUHK7esljYtt837+z6jINnPGR+XgYCbxREJCdsoBunEayweVhFwZa7AOk+MVqI
- rHtRgCEYegnbzlWKT28my1NoBCIkcD6Z7XKqNlNKehrwRC9Dkh/nisHYwYY8z34PC+sEp3uHz5s
- cVsJFXAICY3O7r1HtdkZjHQMO+m7+hsA2W5HNj+9caM3NdfXckuWUKGrvEusILFulVlkI0WT0Rq
- P27ZcIj65HuxKmStjMXyrNS7zAnYv87rUtMIKw1/pdXh0Y3RE2K5j90+3cryiISnbknHedKhND0
- 2ZjKAOMmWSNme7EYqhdXNjz4+yKT+4ffGouG3gGsPSbFdMWd31udJ8Beq/jR8xeuqEpll6XDvPe
- n+C9E73fbKMxW3fr11et1rjbWVJcBiZMkmB6Pc+p0lKJI2Jg3+6vevxmzaZaINlhOUPAoE6jmvG
- 95raaQ0LE/6QDkKxUzxykkFg2khg27yrDOS66w8xhLex7ty72SXDkskQN6bmt8nNfFyA/HHtIyN
- i6r3+O0AyVfM5X/Hx8vHz86JnNhvP9xpJdtfyKYAiLIr2XmuKmfVSNySYrRyzg2lJbLCRptN9M4
- qzzNhmCfJQJTpweaAgq9B7Q==
+ bh=sykfJDcEh0P0sU0/0Mx5RGtaMEmg4itoA8UTsTqvby0=;
+ b=owJ4nAFtApL9kA0DAAoB2O7X88g7+poByyZiAGpWjVBkgJl2ck1HXRcrKKhMUm/3mP++3YsYi
+ n8Z6b3pV9PER4kCMwQAAQoAHRYhBO9mDQdGP4tyanlUE9ju1/PIO/qaBQJqVo1QAAoJENju1/PI
+ O/qamc0QAIRxSM2B8YiSBj+Ft7JHB/qltvuud6yJbT0Qrqs1JV3Ae/Sr7WpkwgslPgbLx9qnUqS
+ zaRN1Ca+VrlrB8BcxzVU2Aoym4WjSiETgSNfsQyFZzrvSiEIEwnZtIbvJHvqxmy2j/L6PP83bZ1
+ qHZ+3Ah6QZytFucXknrOQJyGsQYB6JFRWgd+iRDjpBJUl6WvTenydPf/CY0TsulEb185Kf9PgyX
+ RA3PuTyb70iCjCmsD0tTiD8M+gQvafeutCkjYGRniQMAgB+hvB8mgXsgiBDHvYYKvPfBns8BhUQ
+ 0wJLuPHr4GwE99+FYJDjSww5IqypCl2PPb74LfTunaQY1as2GWDaz1lThyRKKE4VyK6O6s9Be/C
+ Wu2r8Pp89fdfiaphtuwfk8sw7zNL2CT1K2m+2eYPJKM8FKOlgBwYXI73yP5K1+TGq4CZvW+iGPl
+ ylcN1ULATNDMOLt369wDJX7Zq0/Z/jvRbQMfze3bvpQaiyWRFwAAVT+WSoU+zyyozrRvjEwFGrw
+ /3wJCoUR7QpWoiTJ8ZrGPGkOzQkGAtFrdcGZE+T2K5ZV0e0QBTfrr2RbgnUOZVtQt4RRP7lvM6W
+ 30tjqD015SFWoC/7vj/LIKin5Smp8W+R6QjSqDrIqXbWebWpCnEy9uuXO4KROMMkRybj7ZV31pU
+ rMH8pOs5Sg9vMUCfVl5EzBA==
 X-Developer-Key: i=sebastian.reichel@collabora.com; a=openpgp;
  fpr=EF660D07463F8B726A795413D8EED7F3C83BFA9A
 X-Rspamd-Action: no action
@@ -112,12 +110,12 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-326455-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-326465-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER(0.00)[sebastian.reichel@collabora.com,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[23];
-	FORGED_RECIPIENTS(0.00)[m:vkoul@kernel.org,m:neil.armstrong@linaro.org,m:heiko@sntech.de,m:frank.wang@rock-chips.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:Thinh.Nguyen@synopsys.com,m:gregkh@linuxfoundation.org,m:p.zabel@pengutronix.de,m:andy.yan@rock-chips.com,m:lumag@kernel.org,m:yubing.zhang@rock-chips.com,m:alchark@flipper.net,m:linux-phy@lists.infradead.org,m:linux-arm-kernel@lists.infradead.org,m:linux-rockchip@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:kernel@collabora.com,m:devicetree@vger.kernel.org,m:linux-usb@vger.kernel.org,m:sebastian.reichel@collabora.com,m:sashiko-bot@kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[22];
+	FORGED_RECIPIENTS(0.00)[m:vkoul@kernel.org,m:neil.armstrong@linaro.org,m:heiko@sntech.de,m:frank.wang@rock-chips.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:Thinh.Nguyen@synopsys.com,m:gregkh@linuxfoundation.org,m:p.zabel@pengutronix.de,m:andy.yan@rock-chips.com,m:lumag@kernel.org,m:yubing.zhang@rock-chips.com,m:alchark@flipper.net,m:linux-phy@lists.infradead.org,m:linux-arm-kernel@lists.infradead.org,m:linux-rockchip@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:kernel@collabora.com,m:devicetree@vger.kernel.org,m:linux-usb@vger.kernel.org,m:sebastian.reichel@collabora.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
@@ -134,34 +132,197 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,collabora.com:from_mime,collabora.com:mid,collabora.com:email,collabora.com:dkim,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,sashiko.dev:url]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,vger.kernel.org:from_smtp,collabora.com:from_mime,collabora.com:mid,collabora.com:email,collabora.com:dkim]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 2AB53758440
+X-Rspamd-Queue-Id: 7B5C275863C
 
-Ensure that USB3 mode is not accidently enabled during PHY re-init
-for systems that are configured as high-speed only via DT.
+Some PHY devices with multiple ports (e.g. USB3 and DP) require a reset
+if the configuration changes or cable orientation changes. This is a
+problem, as the consumer device will run into undefined behavior.
 
-Fixes: 2f70bbddeb45 ("phy: rockchip: add usbdp combo phy driver")
-Reported-by: Sashiko <sashiko-bot@kernel.org>
-Closes: https://sashiko.dev/#/message/20260626212424.C215E1F000E9%40smtp.kernel.org
+With the new PHY notifier API introduced in this patch, the consumer
+driver can hook into reset events coming from a PHY device to handle the
+PHY going down gracefully.
+
+Note that this uses -ENOSYS instead of the more sensible -ENOTSUP for
+the stub functions when GENERIC_PHY is disabled to stay consistent with
+the existing ones.
+
 Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
 ---
- drivers/phy/rockchip/phy-rockchip-usbdp.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/phy/phy-core.c  | 65 +++++++++++++++++++++++++++++++++++++++++++++++++
+ include/linux/phy/phy.h | 40 ++++++++++++++++++++++++++++++
+ 2 files changed, 105 insertions(+)
 
-diff --git a/drivers/phy/rockchip/phy-rockchip-usbdp.c b/drivers/phy/rockchip/phy-rockchip-usbdp.c
-index 701c92ed6e2d..59b836a3796c 100644
---- a/drivers/phy/rockchip/phy-rockchip-usbdp.c
-+++ b/drivers/phy/rockchip/phy-rockchip-usbdp.c
-@@ -1009,7 +1009,7 @@ static int rk_udphy_power_on(struct rk_udphy *udphy, u8 mode)
- 		if (ret)
- 			return ret;
+diff --git a/drivers/phy/phy-core.c b/drivers/phy/phy-core.c
+index 21aaf2f76e53..51d261daae7a 100644
+--- a/drivers/phy/phy-core.c
++++ b/drivers/phy/phy-core.c
+@@ -542,6 +542,70 @@ int phy_notify_state(struct phy *phy, union phy_notify state)
+ }
+ EXPORT_SYMBOL_GPL(phy_notify_state);
  
--		if (udphy->mode & UDPHY_MODE_USB)
-+		if (!udphy->hs && udphy->mode & UDPHY_MODE_USB)
- 			rk_udphy_u3_port_disable(udphy, false);
- 		udphy->phy_needs_reinit = false;
- 	} else if (udphy->phy_needs_reinit) {
++/**
++ * phy_register_notifier() - register a notifier for PHY events
++ * @phy: the phy returned by phy_get()
++ * @nb: notifier block to register
++ *
++ * Allows PHY consumers to receive notifications about PHY reset events.
++ * PHY providers can signal these events using phy_notify_reset().
++ *
++ * Returns: %0 if successful, a negative error code otherwise
++ */
++int phy_register_notifier(struct phy *phy, struct notifier_block *nb)
++{
++	if (!phy)
++		return 0;
++
++	return blocking_notifier_chain_register(&phy->notifier, nb);
++}
++EXPORT_SYMBOL_GPL(phy_register_notifier);
++
++/**
++ * phy_unregister_notifier() - unregister a notifier for PHY events
++ * @phy: the phy returned by phy_get()
++ * @nb: notifier block to unregister
++ *
++ * Returns: %0 if successful, a negative error code otherwise
++ */
++int phy_unregister_notifier(struct phy *phy, struct notifier_block *nb)
++{
++	if (!phy)
++		return 0;
++
++	return blocking_notifier_chain_unregister(&phy->notifier, nb);
++}
++EXPORT_SYMBOL_GPL(phy_unregister_notifier);
++
++/**
++ * phy_notify_reset() - notify consumers of a PHY reset event
++ * @phy: the phy that is being reset
++ * @event: the notification event (PRE_RESET or POST_RESET)
++ *
++ * Called by PHY providers to notify consumers that the PHY is about to
++ * be reset or has completed a reset. This allows consumers to quiesce
++ * hardware before the PHY becomes unavailable.
++ *
++ * This may be called from within PHY provider callbacks (e.g. set_mode,
++ * power_on) where phy->mutex is held. Consumer notification handlers must
++ * therefore NOT call back into the PHY framework (e.g. phy_power_off,
++ * phy_exit) on the same PHY, as this would result in a deadlock.
++ *
++ * Returns: %0 if successful or no notifiers registered, a negative error
++ * code if a notifier returns an error (for PRE_RESET only)
++ */
++int phy_notify_reset(struct phy *phy, enum phy_notification event)
++{
++	int ret;
++
++	if (!phy)
++		return 0;
++
++	ret = blocking_notifier_call_chain(&phy->notifier, event, phy);
++	return notifier_to_errno(ret);
++}
++EXPORT_SYMBOL_GPL(phy_notify_reset);
++
+ /**
+  * phy_configure() - Changes the phy parameters
+  * @phy: the phy returned by phy_get()
+@@ -1018,6 +1082,7 @@ struct phy *phy_create(struct device *dev, struct device_node *node,
+ 	device_initialize(&phy->dev);
+ 	lockdep_register_key(&phy->lockdep_key);
+ 	mutex_init_with_key(&phy->mutex, &phy->lockdep_key);
++	BLOCKING_INIT_NOTIFIER_HEAD(&phy->notifier);
+ 
+ 	phy->dev.class = &phy_class;
+ 	phy->dev.parent = dev;
+diff --git a/include/linux/phy/phy.h b/include/linux/phy/phy.h
+index ea47975e288a..3779a4d0a02c 100644
+--- a/include/linux/phy/phy.h
++++ b/include/linux/phy/phy.h
+@@ -11,6 +11,7 @@
+ #define __DRIVERS_PHY_H
+ 
+ #include <linux/err.h>
++#include <linux/notifier.h>
+ #include <linux/of.h>
+ #include <linux/device.h>
+ #include <linux/pm_runtime.h>
+@@ -53,6 +54,16 @@ enum phy_media {
+ 	PHY_MEDIA_DAC,
+ };
+ 
++/**
++ * enum phy_notification - PHY notification events
++ * @PHY_NOTIFY_PRE_RESET: PHY is about to be reset, consumers should quiesce
++ * @PHY_NOTIFY_POST_RESET: PHY reset is complete, consumers may resume
++ */
++enum phy_notification {
++	PHY_NOTIFY_PRE_RESET,
++	PHY_NOTIFY_POST_RESET,
++};
++
+ enum phy_ufs_state {
+ 	PHY_UFS_HIBERN8_ENTER,
+ 	PHY_UFS_HIBERN8_EXIT,
+@@ -170,6 +181,7 @@ struct phy_attrs {
+  * @power_count: used to protect when the PHY is used by multiple consumers
+  * @attrs: used to specify PHY specific attributes
+  * @pwr: power regulator associated with the phy
++ * @notifier: notifier head for PHY reset events
+  * @debugfs: debugfs directory
+  */
+ struct phy {
+@@ -182,6 +194,7 @@ struct phy {
+ 	int			power_count;
+ 	struct phy_attrs	attrs;
+ 	struct regulator	*pwr;
++	struct blocking_notifier_head notifier;
+ 	struct dentry		*debugfs;
+ };
+ 
+@@ -267,6 +280,9 @@ int phy_calibrate(struct phy *phy);
+ int phy_notify_connect(struct phy *phy, int port);
+ int phy_notify_disconnect(struct phy *phy, int port);
+ int phy_notify_state(struct phy *phy, union phy_notify state);
++int phy_register_notifier(struct phy *phy, struct notifier_block *nb);
++int phy_unregister_notifier(struct phy *phy, struct notifier_block *nb);
++int phy_notify_reset(struct phy *phy, enum phy_notification event);
+ static inline int phy_get_bus_width(struct phy *phy)
+ {
+ 	return phy->attrs.bus_width;
+@@ -428,6 +444,30 @@ static inline int phy_notify_state(struct phy *phy, union phy_notify state)
+ 	return -ENOSYS;
+ }
+ 
++static inline int phy_register_notifier(struct phy *phy,
++					struct notifier_block *nb)
++{
++	if (!phy)
++		return 0;
++	return -ENOSYS;
++}
++
++static inline int phy_unregister_notifier(struct phy *phy,
++					  struct notifier_block *nb)
++{
++	if (!phy)
++		return 0;
++	return -ENOSYS;
++}
++
++static inline int phy_notify_reset(struct phy *phy,
++				   enum phy_notification event)
++{
++	if (!phy)
++		return 0;
++	return -ENOSYS;
++}
++
+ static inline int phy_configure(struct phy *phy,
+ 				union phy_configure_opts *opts)
+ {
 
 -- 
 2.53.0
