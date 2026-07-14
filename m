@@ -1,247 +1,258 @@
-Return-Path: <devicetree+bounces-326199-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-326200-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id GEwaDIsrVmqH0gAAu9opvQ
-	(envelope-from <devicetree+bounces-326199-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 14:28:59 +0200
+	id HUo1FfQrVmqp0gAAu9opvQ
+	(envelope-from <devicetree+bounces-326200-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 14:30:44 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2361F7548BE
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 14:28:58 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 36246754902
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 14:30:43 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=NP2+lx77;
-	dkim=pass header.d=oss.qualcomm.com header.s=google header.b="JB8yTI/l";
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326199-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-326199-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=reject) header.from=qualcomm.com;
+	dkim=pass header.d=ew.tq-group.com header.s=default2602 header.b=JXCj53Rf;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326200-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-326200-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=ew.tq-group.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id B2521302334F
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 12:22:00 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 1F05C3035BA3
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 12:23:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 381B644682A;
-	Tue, 14 Jul 2026 12:21:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D53E744838D;
+	Tue, 14 Jul 2026 12:23:17 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from www537.your-server.de (www537.your-server.de [188.40.3.216])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE2913845DA
-	for <devicetree@vger.kernel.org>; Tue, 14 Jul 2026 12:21:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C7B838398E;
+	Tue, 14 Jul 2026 12:23:02 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1784031715; cv=none; b=YMerpCQ+ho0BQLvmw8KFEg/xUyJ78E7yLXfGr5Cok2OCt4iVBKSVa7chFV4Bnc4mcmEOItav9EN0ISR5OTSNTdOhKLzV+QpRl6Ni/mgu2FUv1XWijJJM9IZkhzZIakqdNxpNvH/8ar2srgT4KsUOhhlk6QAJX52NdO5zQhhi/SE=
+	t=1784031794; cv=none; b=G1DTAOaGmOLNNxHlzMe0WoRpYueVwuU53u+BOFw+TS2676hfqwgNoUb0EtbN2frgGhapPUGDP5TptdO7bJDNewixozMVaKnxaa/w+RuVjBOuDf/rEllqDHhsgdS8V2wNeI28tvKZrGRd00u62CKdF0UHUQaet7A6JaLEcb/n6iw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1784031715; c=relaxed/simple;
-	bh=blSGc8mpSJfii4N42Bv2ZHS+Y+To/QfElGIhr8fNnEE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=I8YH8LX3f+P+0M28edI1qGIzzIUZPdUy1ToyqtKMnvPY0Gy6YCO2hD+BaeFV1vxmFUF+YG27qouAr23+vLi572Upqovi4vEKnE4RTR00nr/N8g2zsB6z7k4FSDcYe7aStg1glCURh+RRpEMZ8K6P00cNldlZk9inmxiaOAylNLo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=NP2+lx77; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=JB8yTI/l; arc=none smtp.client-ip=205.220.168.131
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 66EBNjZu494325
-	for <devicetree@vger.kernel.org>; Tue, 14 Jul 2026 12:21:46 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=AaJWOsd5BnjyqC24eEwjOhih
-	u+jMm50tNnjN6UTMWOk=; b=NP2+lx77TF+gnPxX5hILhZ914ChMD+KPaBl+iE3o
-	pZ5QI6C3HOI2+Ab0ctmhxsEQgT/gIIjBztMKl/ZP98MQSq9avYPZSJSpPaGw3u7q
-	XuU/XTzibRrj1saPv9klk0su5J5djM+9ImQ5Ri4fbjsQn5FuyyTtYkdz7X1eGrrE
-	3pGzsJgCb3Asokg1umiS+nAk25LUtcscYtpqHY+J2z17ZP6vOGNJhNLja/3azd5W
-	IjzNHeTdmbtVMcCDtmTqY7LGFbJnPZapTVj+gFyjJBSWMlYO3I6GoJl4A3gkoQ2B
-	kRu/WFNczigNFKWLh3pAu4IQyYiIhv36X8mGCRVL98Rf9w==
-Received: from mail-pl1-f199.google.com (mail-pl1-f199.google.com [209.85.214.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4fd44cumpa-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 14 Jul 2026 12:21:46 +0000 (GMT)
-Received: by mail-pl1-f199.google.com with SMTP id d9443c01a7336-2c7f385887bso103433215ad.0
-        for <devicetree@vger.kernel.org>; Tue, 14 Jul 2026 05:21:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1784031705; x=1784636505; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:content-type:mime-version
-         :references:message-id:subject:cc:to:from:date:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=AaJWOsd5BnjyqC24eEwjOhihu+jMm50tNnjN6UTMWOk=;
-        b=JB8yTI/ltgDMQqYC8+hx7JBWIWYVdBKinC2tkUELeysLZxPDzdbaRVNmeAJa+0XNxF
-         B6mrQmxYNV2vrnJMWxG7QUaeITZPlEf00VzxOgHsxAMAU4gGIvPglkfXR8fn1LGk4lgj
-         qPfu2oqaY9D4subwlO2SlR/gyciOJ0nulbUuOo1w15SHPOnr3FK1q6p2enOnV3lmyT+K
-         Cx8NA4w1OIVVPyoWpERSd9T9JU469OeM+EOKTmB52zc51A3RWYBkf7tXTzDzE0H8YrSq
-         5NbZn4oRIr0gpNp/9CrcUhQb5zEJ3IT0go/+wksziRJZy3rLLb7khgSF49LguhEn3y7l
-         VE3Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1784031705; x=1784636505;
-        h=in-reply-to:content-disposition:content-type:mime-version
-         :references:message-id:subject:cc:to:from:date:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=AaJWOsd5BnjyqC24eEwjOhihu+jMm50tNnjN6UTMWOk=;
-        b=V1DrKasF5L1OTiiMiv6WYFpJw75VXcQubZFY5jRta5qBtL41lhHrmIEO+TFCpsx0Cc
-         dyOWW0E495oD/DIekeZ8UwtgiXKVkhaSKFYIPaFDqPNI5yJ2sjGrVIgnU/EiLt3524Uv
-         ysifJM5gyd9KrsrbnopQN2J+L4UHA6RoehJfkfP87SOZiWVajdBOnKmNEUG0ExUXI1Xy
-         cOcRkmLdsgauFX7okda7UV2oK1z0Ku0mVIOhQokB2qhrYIfEXDEibmlsr7M9yYcyM49g
-         YVLuCVw5jjHFxILYRJs9QfFpf7lDkx55IQ/qQ6qyz1uQCO19o+tF3VMtekl4TNnUigbt
-         JVIg==
-X-Forwarded-Encrypted: i=1; AHgh+RpPxzIeLD4Gp4fL3uCrR8QUy/g1VMLQFAYWEMYILiKNQ9ShzN1Sq1UWoZk+o6wDBptVW78sW9luRU7s@vger.kernel.org
-X-Gm-Message-State: AOJu0YxpF/hLAHtR4XZ7heQXCzdJ0jWiKy0j+umEczddcYZEB6l3jK2t
-	wRezIt9Tpj+S+eHZhJXdoj0rdSQT9RiYtSD3hif6jjWYYsJ5lNG3dRmTG8TEDWvIvX+7ETpX+fi
-	232VN6Pj3v97PzU7qLK4ydd70TrMlU9GVdogM7Ycm9R/j9SeM4Z0EmTSJ5SGXGvPS
-X-Gm-Gg: AfdE7clug36oFD5UB57wYPC2V7dusZtFn3dJtUxMx9kWeZNpyU/l5/N128W2AQq5F1p
-	xSEbPoHZtnJLyhr0k//SnD6osJLl4muv3NfhoWpn6yOy89z0vWLGiWNb17xAAiFEEaNkzdGejOU
-	mtqi2AGq3otGJA/VscahHFxOgDdLbYn47YZtcaZwZtQX5HSK6ImDltkKVjobK9gRYqcQ78ceBKR
-	3v6fQZ6StNx84Cy9QEswLc0w/z9xEOy1f+Eqr+rl9VJLEsol8V5qcIONXTSP/29RX7tNChOZkSM
-	NEeift8MuzKx67TRXKEvJG6OT/iAot3QeifvsE33I4gG2iBvHzGujBYqvDHmd1rb2vXpLmSvsZy
-	PA02Aft0T8aRtmsDTyevfs62ZijHMQz+I1s/QYJnmO7BdOAZz0Apvgw==
-X-Received: by 2002:a05:6a21:9f17:b0:3c0:9c19:65c4 with SMTP id adf61e73a8af0-3c110aaff03mr16582534637.76.1784031705647;
-        Tue, 14 Jul 2026 05:21:45 -0700 (PDT)
-X-Received: by 2002:a05:6a21:9f17:b0:3c0:9c19:65c4 with SMTP id adf61e73a8af0-3c110aaff03mr16582483637.76.1784031705057;
-        Tue, 14 Jul 2026 05:21:45 -0700 (PDT)
-Received: from QCOM-aGQu4IUr3Y (i-global052.qualcomm.com. [199.106.103.52])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-311747f596asm80463710eec.2.2026.07.14.05.21.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Jul 2026 05:21:44 -0700 (PDT)
-Date: Tue, 14 Jul 2026 20:21:39 +0800
-From: Shawn Guo <shengchao.guo@oss.qualcomm.com>
-To: Bjorn Andersson <andersson@kernel.org>
-Cc: Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bartosz Golaszewski <brgl@kernel.org>,
-        Deepti Jaggi <deepti.jaggi@oss.qualcomm.com>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
-Subject: Re: [PATCH v5 7/7] arm64: dts: qcom: Add device tree for IQ10 RRD
- board
-Message-ID: <alYp00gq1akcx9SK@QCOM-aGQu4IUr3Y>
-References: <20260709132013.4096850-1-shengchao.guo@oss.qualcomm.com>
- <20260709132013.4096850-8-shengchao.guo@oss.qualcomm.com>
- <alOuTNcCjaEkHn0e@baldur>
+	s=arc-20240116; t=1784031794; c=relaxed/simple;
+	bh=auZ4C5ReUYq7BzaciJn06uxsOqN9s9GqqIYihlqkBtI=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=cNfSpFtdXHCPpRgv6jVicq28V9XRXL7OdINwfZXEFiGX7Xghi0871jTShF2RuHbi/4ihuNaLHMn+NqDqKk5CwdbKBX8ixGgyz30IXzUt+q7/D0mOb9C/l6/tOfFrZ4AwC6AQLNmKOQKRsFiIkLVpMjcwAaM4dRyiYHRdmFgcIgg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=JXCj53Rf; arc=none smtp.client-ip=188.40.3.216
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=ew.tq-group.com; s=default2602; h=Content-Type:MIME-Version:References:
+	In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID;
+	bh=XrrEeqFj/zMDMUWNJzoASYNNQtEig1sQZ0PwjZWRQSI=; b=JXCj53RfarxMkZ0ybH40l7TIjO
+	TQBzb5NkO+dqgXPkr9+f4SZNx5b8sPTLIhoksu1x4qiH+pjaxa0EwzhYK0ID17t9zDAN9bhTnSWT5
+	ENytREbChrPK93WpW/lkFh3vKaKWuqoybbbWlGGPat2uuh+i3XideXAMMS7TmxvRCTSpFgejWk4+O
+	ZXoWQitk4YJ/hDoGaxrYL+0nZHV5ampLcmS+Y/4quX3IdycgCFdbirTKTofmd/i70udidf5V+13hM
+	ZEbKdg4MEG5TYDKAE2HgqQfdS4z9pln4eXpHz/NQk+XvQYj6h7vwHfMCUFmwmL2qDqKayKw0/GJq8
+	hu+ofSQg==;
+Received: from sslproxy04.your-server.de ([78.46.152.42])
+	by www537.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.96.2)
+	(envelope-from <alexander.stein@ew.tq-group.com>)
+	id 1wjcA3-000PTO-2X;
+	Tue, 14 Jul 2026 14:22:55 +0200
+Received: from localhost ([127.0.0.1])
+	by sslproxy04.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <alexander.stein@ew.tq-group.com>)
+	id 1wjcA3-0000xs-25;
+	Tue, 14 Jul 2026 14:22:55 +0200
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: sashiko-reviews@lists.linux.dev, Frank Li <Frank.li@oss.nxp.com>
+Cc: devicetree@vger.kernel.org, imx@lists.linux.dev, robh@kernel.org,
+ Frank.Li@kernel.org, conor+dt@kernel.org, wsa+renesas@sang-engineering.com
+Subject: Re: [PATCH v7 1/1] arm64: dts: add tqma9596la-mba95xxca
+Date: Tue, 14 Jul 2026 14:22:54 +0200
+Message-ID: <1965063.tdWV9SEqCh@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <alUO-oOtWBescUK6@SMW015318>
+References:
+ <20260707062506.949806-1-alexander.stein@ew.tq-group.com>
+ <20260707065956.124121F000E9@smtp.kernel.org> <alUO-oOtWBescUK6@SMW015318>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <alOuTNcCjaEkHn0e@baldur>
-X-Proofpoint-GUID: vCJrdmFYCZ6KlQCdY7auUE_andZQcHSS
-X-Proofpoint-ORIG-GUID: vCJrdmFYCZ6KlQCdY7auUE_andZQcHSS
-X-Proofpoint-Spam-Info: AW1haW4tMjYwNzE0MDEyOCBTYWx0ZWRfX54oDxmPb4VhB
- 79HTD2PN/+Ao5LGw8sxeV14iIeXj76ijSTCTguVeH8G3t5EnWZl+8M5PEQ/JxreqOUYtJBGWGFd
- qJQ+qGF3P8TQKjgcWlmTMS1U6Nbbl8o=
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNzE0MDEyOCBTYWx0ZWRfX9Hn5GKQw05vE
- +Q9caAYkDMy0Xi6LoNl8bkU7dZRqRaUOy9zodydQX1DeDw4X9QpMmfms5fuyCRpSzuJKj9LVa9z
- 9bPhBJ/HhfHfPFxLqjijOMxR7SVRmm+f+tNrsQ6VNofp/9VDW567c6V3ZFlkGj1njqPT6/L7hRq
- ebP6NY6byO6Tsgr++C18jcdu9//LRMNeBkpiWh6zJBa3LfdiL89gup6UQUcgQdkyhvqsWLTnKn5
- 0yUkMIiwDGdAscs89TqUDOB9n1RfbcLvK8QX9D9iW5Xs4ELuELvveuLGRAA171gKnNwKD1Yd1bX
- 3kzNIdALZ9oSvqSFaq4SHBHrqy9z1Dapg2FGIY6I+pc4toiLg0nL1Xtvb3DyqyY6vIvyBTkMEn+
- BdC218VptYnEyhBxTj/4w/M+ZRwezv4BRbrz8XDF9WnE5hcglKY+5/wv0byrikrNQDKvnwUUhb8
- dY9qfyudQdlcO1YeWow==
-X-Authority-Analysis: v=2.4 cv=P84KQCAu c=1 sm=1 tr=0 ts=6a5629da cx=c_pps
- a=JL+w9abYAAE89/QcEU+0QA==:117 a=b9+bayejhc3NMeqCNyeLQQ==:17
- a=kj9zAlcOel0A:10 a=RAioF0-LDSMA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=Um2Pa8k9VHT-vaBCBUpS:22
- a=EUspDBNiAAAA:8 a=7Am0Wwq9neIlElUaZukA:9 a=CjuIK1q_8ugA:10
- a=324X-CrmTo6CU4MGRt3R:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.134,FMLib:17.12.100.49
- definitions=2026-07-14_03,2026-07-10_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 priorityscore=1501 impostorscore=0 malwarescore=0
- lowpriorityscore=0 phishscore=0 spamscore=0 bulkscore=0 suspectscore=0
- adultscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2606150000
- definitions=main-2607140128
+Content-Type: multipart/signed; boundary="nextPart2273617.irdbgypaU6";
+ micalg="pgp-sha512"; protocol="application/pgp-signature"
+X-Virus-Scanned: Clear (ClamAV 1.4.3/28060/Tue Jul 14 08:25:07 2026)
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
+X-Spamd-Result: default: False [-2.26 / 15.00];
+	SIGNED_PGP(-2.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	DMARC_POLICY_ALLOW(-0.50)[ew.tq-group.com,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_DKIM_ALLOW(-0.20)[ew.tq-group.com:s=default2602];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-326199-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,oss.qualcomm.com:from_mime,oss.qualcomm.com:dkim,qualcomm.com:email,qualcomm.com:dkim,QCOM-aGQu4IUr3Y:mid];
-	FORGED_RECIPIENTS(0.00)[m:andersson@kernel.org,m:konradybcio@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:brgl@kernel.org,m:deepti.jaggi@oss.qualcomm.com,m:devicetree@vger.kernel.org,m:linux-arm-msm@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:bartosz.golaszewski@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[shengchao.guo@oss.qualcomm.com,devicetree@vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[shengchao.guo@oss.qualcomm.com,devicetree@vger.kernel.org];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-326200-lists,devicetree=lfdr.de];
+	FORGED_SENDER(0.00)[alexander.stein@ew.tq-group.com,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	HAS_ORG_HEADER(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:sashiko-reviews@lists.linux.dev,m:Frank.li@oss.nxp.com,m:devicetree@vger.kernel.org,m:imx@lists.linux.dev,m:robh@kernel.org,m:Frank.Li@kernel.org,m:conor+dt@kernel.org,m:wsa+renesas@sang-engineering.com,m:conor@kernel.org,m:wsa@sang-engineering.com,s:lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	ALIAS_RESOLVED(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[alexander.stein@ew.tq-group.com,devicetree@vger.kernel.org];
+	PRECEDENCE_BULK(0.00)[];
+	DKIM_TRACE(0.00)[ew.tq-group.com:+];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[11];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tq-group.com:email,tq-group.com:url,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,steina-w:mid,ew.tq-group.com:from_mime,ew.tq-group.com:dkim]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 2361F7548BE
+X-Rspamd-Queue-Id: 36246754902
 
-On Sun, Jul 12, 2026 at 10:15:52AM -0500, Bjorn Andersson wrote:
-> On Thu, Jul 09, 2026 at 09:20:13PM +0800, Shawn Guo wrote:
-> > Add initial device tree for the Qualcomm IQ10 RRD board, which is built
-> 
-> I think this is the first time we see this new TLA, please provide its
-> expansion as well.
+--nextPart2273617.irdbgypaU6
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"; protected-headers="v1"
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: sashiko-reviews@lists.linux.dev, Frank Li <Frank.li@oss.nxp.com>
+Subject: Re: [PATCH v7 1/1] arm64: dts: add tqma9596la-mba95xxca
+Date: Tue, 14 Jul 2026 14:22:54 +0200
+Message-ID: <1965063.tdWV9SEqCh@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <alUO-oOtWBescUK6@SMW015318>
+MIME-Version: 1.0
 
-Sure, will do.
+Hi Frank,
 
-> > on Nord Embedded variant. Enable the debug UART, UFS storage, PMICs,
-> > I2C and SPI.
-> > 
-> > Co-developed-by: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
-> > Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
-> > Signed-off-by: Shawn Guo <shengchao.guo@oss.qualcomm.com>
-> > ---
-> >  arch/arm64/boot/dts/qcom/Makefile     |   1 +
-> >  arch/arm64/boot/dts/qcom/iq10-rrd.dts | 588 ++++++++++++++++++++++++++
-> 
-> I want all Nord-based boards prefixed with "nord-". I shouldn't have to
-> open the file and look at the includes to figure out which family it
-> relates to.
+Am Montag, 13. Juli 2026, 18:14:50 CEST schrieb Frank Li:
+> On Tue, Jul 07, 2026 at 06:59:55AM +0000, sashiko-bot@kernel.org wrote:
+> > Thank you for your contribution! Sashiko AI review found 2 potential is=
+sue(s) to consider:
+> > - [High] Conflicting GPIO assignments for M.2 Key-E SDIO Reset between =
+the `wifi-connector` device node and a leftover `gpio-hog`.
+> > - [High] The fan supply regulator `reg_pwm_fan` is never enabled, leavi=
+ng the fan unpowered.
+> > --
+> >
+> > --- Patch [1]: [PATCH v7 1/1] arm64: dts: add tqma9596la-mba95xxca ---
+> > commit c06cc8eb19eb4a69fc0547caa6773b503beae3a7
+> > Author: Markus Niebel <Markus.Niebel@ew.tq-group.com>
+> >
+> > arm64: dts: add tqma9596la-mba95xxca
+> >
+> > This patch adds support for the TQMa95xxLA modules on the MBa95xxCA car=
+rier
+> > board. It introduces a common device tree include for the module and a =
+specific
+> > device tree for the carrier board.
+> >
+> > > diff --git a/arch/arm64/boot/dts/freescale/imx95-tqma9596la-mba95xxca=
+=2Edts b/arch/arm64/boot/dts/freescale/imx95-tqma9596la-mba95xxca.dts
+> > > new file mode 100644
+> > > index 0000000000000..db2fd6991d112
+> > > --- /dev/null
+> > > +++ b/arch/arm64/boot/dts/freescale/imx95-tqma9596la-mba95xxca.dts
+> > [ ... ]
+> > > +	wifi-connector {
+> > > +		compatible =3D "pcie-m2-e-connector";
+> > > +		vpcie3v3-supply =3D <&reg_v3v3_mb>;
+> > > +		vpcie1v8-supply =3D <&reg_v1v8_mb>;
+> > > +		i2c-parent =3D <&lpi2c2>;
+> > > +		w-disable1-gpios =3D <&expander2 9 GPIO_ACTIVE_LOW>;
+> > > +		w-disable2-gpios =3D <&expander2 10 GPIO_ACTIVE_LOW>;
+> > > +		/* UART_WAKE is connected to SM */
+> > > +		/* SDIO_WAKE is connected to SM */
+> > > +		sdio-reset-gpios =3D <&expander3 2 GPIO_ACTIVE_LOW>;
+> > > +	};
+> >
+> > [Severity: High]
+> > Does this sdio-reset-gpios assignment conflict with the gpio-hog on the=
+ same
+> > line?
+> >
+> > The wifi-connector node requests expander3 line 2 here, but later in th=
+e file,
+> > m2-keye-sdio-rst-hog hogs the exact same GPIO line. Won't this conflict=
+ cause
+> > the wifi-connector driver to fail probing with -EBUSY?
+>=20
+> suppose needn't gpio hog for expander3 2 ?
+> can you double check it?
 
-Ok, will do renames:
+Well pwrseq-pcie-m2.c doesn't support "sdio-reset-gpios" yet, so there is n=
+o -EBUSY.
+But I'm okay with remove the hog which seems appropriate.
 
-  sa8797p-ride.dts -> nord-ride.dts
-  iq10-rrd.dts -> nord-rrd.dts
+> >
+> > [ ... ]
+> > > +	fan_controller: fan-controller@2f {
+> > > +		compatible =3D "microchip,emc2301", "microchip,emc2305";
+> > > +		reg =3D <0x2f>;
+> > > +		#address-cells =3D <1>;
+> > > +		#size-cells =3D <0>;
+> > > +		#pwm-cells =3D <3>;
+> > > +		status =3D "okay";
+> > > +
+> > > +		fan: fan@0 {
+> > > +			reg =3D <0x0>;
+> > > +			pwms =3D <&fan_controller 40000 PWM_POLARITY_INVERTED 1>;
+> > > +			#cooling-cells =3D <2>;
+> > > +			fan-supply =3D <&reg_pwm_fan>;
+> > > +		};
+> > > +	};
+> >
+> > [Severity: High]
+> > Will the reg_pwm_fan regulator ever be enabled?
+> >
+> > The emc2305 driver does not parse or request the fan-supply property fr=
+om
+> > child nodes. Since reg_pwm_fan is not marked regulator-always-on earlie=
+r in
+> > this file, does this leave the fan unpowered?
+>=20
+> look like make sense, but dts itself should be correct. You'd better upda=
+te
+> driver also.
 
-> >  2 files changed, 589 insertions(+)
-> >  create mode 100644 arch/arm64/boot/dts/qcom/iq10-rrd.dts
-> > 
-> > diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-> > index 8e6ef4116146..75d29d602e77 100644
-> > --- a/arch/arm64/boot/dts/qcom/Makefile
-> > +++ b/arch/arm64/boot/dts/qcom/Makefile
-> > @@ -40,6 +40,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= ipq9574-rdp449.dtb
-> >  dtb-$(CONFIG_ARCH_QCOM)	+= ipq9574-rdp453.dtb
-> >  dtb-$(CONFIG_ARCH_QCOM)	+= ipq9574-rdp454.dtb
-> >  dtb-$(CONFIG_ARCH_QCOM)	+= ipq9650-rdp488.dtb
-> > +dtb-$(CONFIG_ARCH_QCOM)	+= iq10-rrd.dtb
-> >  dtb-$(CONFIG_ARCH_QCOM)	+= kaanapali-mtp.dtb
-> >  dtb-$(CONFIG_ARCH_QCOM)	+= kaanapali-qrd.dtb
-> >  dtb-$(CONFIG_ARCH_QCOM)	+= lemans-evk.dtb
-> > diff --git a/arch/arm64/boot/dts/qcom/iq10-rrd.dts b/arch/arm64/boot/dts/qcom/iq10-rrd.dts
-> > new file mode 100644
-> > index 000000000000..39d254b49c14
-> > --- /dev/null
-> > +++ b/arch/arm64/boot/dts/qcom/iq10-rrd.dts
-> > @@ -0,0 +1,588 @@
-> > +// SPDX-License-Identifier: BSD-3-Clause
-> > +/*
-> > + * Copyright (c) 2024-2025, Qualcomm Innovation Center, Inc. All rights reserved.
-> 
-> What?!
+I'ts on my TODO, but I won't manage to add it for the time being. How do you
+want to procede? I'd rather remove the fan-supply and disable the reg_pwm_f=
+an
+for the time being.
 
-Sorry, will fix.
+Best regards,
+Alexander
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
+--nextPart2273617.irdbgypaU6
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part.
+Content-Transfer-Encoding: 7Bit
 
-Shawn
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEByESxqszIvkmWRwbaS+g2M0Z/iUFAmpWKh4ACgkQaS+g2M0Z
+/iVX6gf8CPBANnI2cDftSXLqyxDSkPQeBrw29NY27Nf62/0kqw7KBe6+H3+dwo4p
+KXbgaJlOgIhwEdXVocHIQgzHvdziHS0gJrKFMm2ZYVby0ye3jPdQzwY4uZQcxDKP
+Qtwy8Diam4XANdlZ4olRnAk6USOxwEbocsELmeaq7ozh1n3HkAorNSEtMa3Dem6G
+knaMLQglNqkD/vcz+foCfe0stfWeSCj/S/HtqOH+f7+yhqPfHOC2sdaO43bGWSmI
+QzOHRKkRu3bmp/7Y5b1NNp3uHaxwVmhd8UqPZ7FC4why7EudcAeYMRQB9zXik1yn
+CbWZ5R9EAoopG/FhvhkN1KMXiJ6tyQ==
+=m9jA
+-----END PGP SIGNATURE-----
+
+--nextPart2273617.irdbgypaU6--
+
+
+
 
