@@ -1,238 +1,166 @@
-Return-Path: <devicetree+bounces-325976-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-325978-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id jkHnEJHpVWqrvgAAu9opvQ
-	(envelope-from <devicetree+bounces-325976-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 09:47:29 +0200
+	id oUMZNnnqVWoqvwAAu9opvQ
+	(envelope-from <devicetree+bounces-325978-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 09:51:21 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id EFD727520DF
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 09:47:28 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F8DB752145
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 09:51:21 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
 	dkim=none;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-325976-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-325976-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-325978-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-325978-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=none;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 184113062953
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 07:46:05 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 33A0C3048555
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 07:50:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D534E3F211A;
-	Tue, 14 Jul 2026 07:45:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9018A3F0AB8;
+	Tue, 14 Jul 2026 07:50:54 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from cstnet.cn (smtp25.cstnet.cn [159.226.251.25])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+Received: from mail-ua1-f42.google.com (mail-ua1-f42.google.com [209.85.222.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C8CA3F4853;
-	Tue, 14 Jul 2026 07:45:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8AA73E1D04
+	for <devicetree@vger.kernel.org>; Tue, 14 Jul 2026 07:50:52 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1784015150; cv=none; b=qBkJOaNPy34vduXjL5d2Z+NUt4vM5jef32VSFhyNggD4usYou8IHshxb1o5fCsMZnB4exrA5KAtpHzKoYIlamBJQmiSduuZUNMIUaS0oQ7904ZyAs7Mq6PC64rkqBRfqOPfg7Ae942g9e16x7/dWrx6ROJLZPC/kKiCXFFGhyew=
+	t=1784015454; cv=none; b=AZn+2mo2PCj7u5Ej45e5ZN1UqWV12VxlS++n/Qc6BYM3laVX6/8aK98pE4H117Uwa5exIJSRE3W4aFCyL+jyke6g4J1OmsdouYXALogGGX2bDTijoLrUM3xmmA/54KR6/nGexcYmDuyMv11eFu3ZtySrQ6iSeKk38TskXmdXw3s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1784015150; c=relaxed/simple;
-	bh=Zh+tqLcF6GYgpG9FDLpPCwTm5HMFuErsnFlL03ULyzU=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Ctx6zzPm1V1Hs9ntuirtS63hZO5bJR5CTQmrJ0KH9LN6NwkN7XGBl/AIsjTEo/X84wHwQvnZQZ9Hg4QxDSM25PqQZOP4n7ml6AJ8EKX4jherT3FjmqiErnkPMLEV4tJdIdpCVSXcJ5bMJqCWR50heSkkKuQ9ZzaoWjdOSfADHFc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn; spf=pass smtp.mailfrom=iscas.ac.cn; arc=none smtp.client-ip=159.226.251.25
-Received: from edelgard.fodlan.icenowy.me (unknown [112.94.101.100])
-	by APP-05 (Coremail) with SMTP id zQCowABXq84X6VVqEs8pGA--.61698S7;
-	Tue, 14 Jul 2026 15:45:35 +0800 (CST)
-From: Icenowy Zheng <zhengxingda@iscas.ac.cn>
-To: Drew Fustini <fustini@kernel.org>,
-	Guo Ren <guoren@kernel.org>,
-	Fu Wei <wefu@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	MoeLeak <i@leak.moe>
-Cc: Paul Walmsley <pjw@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	linux-riscv@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Icenowy Zheng <uwu@icenowy.me>,
-	Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-	Icenowy Zheng <zhengxingda@iscas.ac.cn>
-Subject: [PATCH v2 5/5] riscv: dts: thead: Add remaining Lichee Pi 4A IO expansions
-Date: Tue, 14 Jul 2026 15:45:15 +0800
-Message-ID: <20260714074515.1959352-6-zhengxingda@iscas.ac.cn>
-X-Mailer: git-send-email 2.52.0
-In-Reply-To: <20260714074515.1959352-1-zhengxingda@iscas.ac.cn>
-References: <20260714074515.1959352-1-zhengxingda@iscas.ac.cn>
+	s=arc-20240116; t=1784015454; c=relaxed/simple;
+	bh=iq8Kc5+SBapLqwF6ORCrQ5sCq4FaCemr05ZMk3EEWBE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=BqfuStIZZXrRBf2HWGXY5FU8zzwRkilEU3a4QJNVLaIKuzTnb8ZW+2UTO3rd3cLfVeXDJYyE33oyhrlYM4NSwSVneEWt0kSbSiJNNXH5vkRXIRAWSCiOoZ8hGNB3I8biDN4O5zRRBvYauPZ5VjXMn6lV6e9CbG53UmTdgpHkx+Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.42
+Received: by mail-ua1-f42.google.com with SMTP id a1e0cc1a2514c-966d70b9e1cso340551241.2
+        for <devicetree@vger.kernel.org>; Tue, 14 Jul 2026 00:50:52 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1784015452; x=1784620252;
+        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
+         :references:mime-version:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to:content-type;
+        bh=yavgJsn42/mg7FbRzuzYhczZGQV3Jism9aLSRgEzMNU=;
+        b=H808df2JvONDl7e8U2Mz0qk1TLFe+6rsv6qgibALv84Q4CqsLvJ67/IoRSve2NvSLG
+         RxJxKxfnjSKHfbWdgIHHjbiz0xUi2LScbJJyMv+W/7RstOMkg5q707d9QDGyGn+yqJyR
+         XK4sCTiOcGT8BCjrEXo/sbgdq4tsQ7y2X/NMIoEFNeQ1FolO0sLm8N/OnUgGfJKbAWM3
+         vj9TQUVpZeui1+5ysZ2YD+LfexqZH4ezFdmv5QrcQwnBebyDA6sYupK0jyP735VzDKeK
+         1nbZguf9SdEISMsdzo/qnf/JrrGiO3lWWUfb293YCDGYY0QjzoGRyBGpeQ/fqw16immE
+         SShQ==
+X-Forwarded-Encrypted: i=1; AHgh+RrTyae8F06dAMaAgGfjQfht9OCqQfphg7EQLuM69gnbTOPPpYmS51BRLDnUDp92KEDcmttUrB4NDQiK@vger.kernel.org
+X-Gm-Message-State: AOJu0YxN7oiF5DIs3ibetibIM+UCHmgrfm8Qau+UwjJGLwtnD8t8X5tz
+	OP3YRk7cHu4U4db6zjzYpI2LB/SQFGHcAlFPF835AOS+2HXt/KqBBTwtj0WSgx5yKlM=
+X-Gm-Gg: AfdE7clgl/0VLP1A0y5M46czCs93EUVFUbo/k+q4pR13DfrlTtRdPd4J+c6A9fUxydT
+	YfFDAKZjSxcal2daLbg46ddCIIuSRVQPW79Ma4ZlypZr6z+Od4cJOCtEx1xE5Up+i+2NPMVrzeU
+	1mRbJZJ4yXcCQG7CQ/9grh28i+23xOTQna/ttzxqbHFKvli77L5rYZgIdH1CfATH4C18pJ9Dyox
+	KZ0/Q/JCrcCCtSJvlb8pAB4/3S/aC1MnDVTibhNusacYq9gVgbMtbhDojO410FzMElyopLQ7LrO
+	HDcX/bBC2e1MQZ/wZ68S9joAFHZCoiCKvc3rqM9fax2YVdTCrNqx9vZroE2W3D3PSVIaGZBdL04
+	9GSUbg8S7kPR+MAlqwVCNP76o3a3OrlnADk1PrNm/JsWpZeIhFMzI9YOD2u6kq1Ed/l43IfvHIh
+	4FCrZaKQQilaEqPQA71NyU8O2eUn3uT6GnjZy+L4PQvbj37B275A==
+X-Received: by 2002:a05:6102:26d5:b0:737:5c42:858b with SMTP id ada2fe7eead31-74533c1c30fmr8290753137.11.1784015451740;
+        Tue, 14 Jul 2026 00:50:51 -0700 (PDT)
+Received: from mail-vs1-f42.google.com (mail-vs1-f42.google.com. [209.85.217.42])
+        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-744d6a3ee7csm9927290137.2.2026.07.14.00.50.50
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 14 Jul 2026 00:50:50 -0700 (PDT)
+Received: by mail-vs1-f42.google.com with SMTP id ada2fe7eead31-735f73287e2so411478137.2
+        for <devicetree@vger.kernel.org>; Tue, 14 Jul 2026 00:50:50 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AHgh+RoR3uhpF+Q2HbG9TEnciQv0gDNJ9998du2t0NXOYVftLPxh9OlTcIqjUJFg4zapkN1iSxYIDbo9bKOo@vger.kernel.org
+X-Received: by 2002:a05:6102:1608:b0:739:15ef:cdfb with SMTP id
+ ada2fe7eead31-74533b84395mr8279731137.5.1784015450565; Tue, 14 Jul 2026
+ 00:50:50 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:zQCowABXq84X6VVqEs8pGA--.61698S7
-X-Coremail-Antispam: 1UD129KBjvJXoW7AF48ZFWrKrW8XFyktr43Wrg_yoW5Jr4xpa
-	1xZ3yft3Wvkry2934avFy09FyrGan5JF95KrnrCFy8Xw43WFW8X34jqrn8uF1DXF4ruw13
-	CFsxCr929F1qv3JanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDU0xBIdaVrnRJUUUmq14x267AKxVWrJVCq3wAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
-	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2048vs2IY020E87I2jVAFwI0_JF0E3s1l82xGYI
-	kIc2x26xkF7I0E14v26ryj6s0DM28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48ve4kI8wA2
-	z4x0Y4vE2Ix0cI8IcVAFwI0_Xr0_Ar1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI0_Gr1j6F
-	4UJwA2z4x0Y4vEx4A2jsIE14v26F4UJVW0owA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_GcCE
-	3s1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E2I
-	x0cI8IcVAFwI0_JrI_JrylYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJVW8
-	JwACjcxG0xvY0x0EwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFIxGxcIEc7CjxVA2Y2
-	ka0xkIwI1lc7CjxVAaw2AFwI0_Jw0_GFyl42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Y
-	z7v_Jr0_Gr1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2zV
-	AF1VAY17CE14v26r4a6rW5MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_JFI_Gr1l
-	IxAIcVC0I7IYx2IY6xkF7I0E14v26r4UJVWxJr1lIxAIcVCF04k26cxKx2IYs7xG6r1j6r
-	1xMIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Gr1j6F4UJbIY
-	CTnIWIevJa73UjIFyTuYvjfUriihUUUUU
-X-CM-SenderInfo: x2kh0wp0lqwv3d6l2u1dvotugofq/
+References: <20260710160450.64967-1-marek.vasut+renesas@mailbox.org>
+ <CAMuHMdUQJ8mzUi0birB5f1KnCMX_QufHTgYB7AW=d3ZoFer+Yg@mail.gmail.com> <1d0d4074-90ca-4b33-9bd3-ff27aa0fd4d4@mailbox.org>
+In-Reply-To: <1d0d4074-90ca-4b33-9bd3-ff27aa0fd4d4@mailbox.org>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Tue, 14 Jul 2026 09:50:39 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdWNcbMxONo=PaHqJnD1EErc8AzYLf0MceD+vt9UhmsVfQ@mail.gmail.com>
+X-Gm-Features: AUfX_mxwFeauCKqv0YVOv7ObJuQMatx6kqMpuGapev3XA_vc1zBsK6ZaiEApGuY
+Message-ID: <CAMuHMdWNcbMxONo=PaHqJnD1EErc8AzYLf0MceD+vt9UhmsVfQ@mail.gmail.com>
+Subject: Re: [PATCH v2] arm64: dts: renesas: ironhide: Describe inline ECC carveouts
+To: Marek Vasut <marek.vasut@mailbox.org>
+Cc: linux-arm-kernel@lists.infradead.org, stable@vger.kernel.org, 
+	Conor Dooley <conor+dt@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Magnus Damm <magnus.damm@gmail.com>, 
+	Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [1.54 / 15.00];
+X-Spamd-Result: default: False [0.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DMARC_NA(0.00)[iscas.ac.cn];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-325976-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	FORGED_RECIPIENTS(0.00)[m:fustini@kernel.org,m:guoren@kernel.org,m:wefu@redhat.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:i@leak.moe,m:pjw@kernel.org,m:palmer@dabbelt.com,m:aou@eecs.berkeley.edu,m:linux-riscv@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:uwu@icenowy.me,m:emil.renner.berthing@canonical.com,m:zhengxingda@iscas.ac.cn,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[zhengxingda@iscas.ac.cn,devicetree@vger.kernel.org];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[zhengxingda@iscas.ac.cn,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-325978-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	FREEMAIL_CC(0.00)[lists.infradead.org,vger.kernel.org,kernel.org,glider.be,gmail.com];
+	RCVD_TLS_LAST(0.00)[];
+	DMARC_NA(0.00)[linux-m68k.org];
+	FORGED_RECIPIENTS(0.00)[m:marek.vasut@mailbox.org,m:linux-arm-kernel@lists.infradead.org,m:stable@vger.kernel.org,m:conor+dt@kernel.org,m:geert+renesas@glider.be,m:krzk+dt@kernel.org,m:magnus.damm@gmail.com,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-renesas-soc@vger.kernel.org,m:conor@kernel.org,m:geert@glider.be,m:krzk@kernel.org,m:magnusdamm@gmail.com,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	R_DKIM_NA(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
+	MISSING_XM_UA(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,canonical.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,iscas.ac.cn:from_mime,iscas.ac.cn:email,iscas.ac.cn:mid]
+	RCPT_COUNT_SEVEN(0.00)[11];
+	R_DKIM_NA(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mailbox.org:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp,linux-m68k.org:email,linux-m68k.org:from_mime,glider.be:email,mail.gmail.com:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: EFD727520DF
+X-Rspamd-Queue-Id: 2F8DB752145
 
-From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+Hi Marek,
 
-Lichee Pi 4A has 3 I2C IO expansion chips onboard, connected to the
-I2C0/1/3 busses. The I2C1 one is already added to the device tree, but
-the I2C0/3 ones are not yet added.
+On Tue, 14 Jul 2026 at 01:27, Marek Vasut <marek.vasut@mailbox.org> wrote:
+> On 7/13/26 11:11 AM, Geert Uytterhoeven wrote:
+> >> +               ecc@1e66660000 {
+> >> +                       reg = <0x1e 0x66660000 0x0 0x999a0000>;
+> >> +                       no-map;
+> >> +               };
+> >
+> > Given all DB[0-7]FSDRAMECCAREA00 registers on Ironhide contain
+> > 0x0000cccc (md.l e98[0-3][7f]450 1), I think the last 3 regions should
+> > start at offset 0xcccc0000 instead of 0x66660000, too.
+> > As a bonus, we get 4.8 GiB back ;-)
+> I asked about that part internally already, and yes, it does take away a
+> lot of DRAM. I think it is safer to reserve more DRAM and have a stable
+> system than reserve less DRAM and deal with potential stability issues.
+> I also think we can always update the reserved memory nodes in the
+> future and shrink them to make more DRAM available, once we know that it
+> is safe to do so.
 
-Add device tree nodes for them.
+Agreed
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-fixes for v7.2.
 
-Signed-off-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
-[Icenowy: added commit description, enable SoC pull-up, remove I2C1 and
- aliases]
-Signed-off-by: Icenowy Zheng <zhengxingda@iscas.ac.cn>
----
- .../boot/dts/thead/th1520-lichee-pi-4a.dts    | 63 +++++++++++++++++++
- 1 file changed, 63 insertions(+)
+Gr{oetje,eeting}s,
 
-diff --git a/arch/riscv/boot/dts/thead/th1520-lichee-pi-4a.dts b/arch/riscv/boot/dts/thead/th1520-lichee-pi-4a.dts
-index 78f5979a56c14..75396cafb39dc 100644
---- a/arch/riscv/boot/dts/thead/th1520-lichee-pi-4a.dts
-+++ b/arch/riscv/boot/dts/thead/th1520-lichee-pi-4a.dts
-@@ -117,6 +117,23 @@ hdmi_out_con: endpoint {
- 	};
- };
- 
-+&i2c0 {
-+	clock-frequency = <400000>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&i2c0_pins>;
-+	status = "okay";
-+
-+	ioexp1: gpio@18 {
-+		compatible = "nxp,pca9557";
-+		reg = <0x18>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+		gpio-line-names = "cam0_dvdd12",
-+				  "cam0_avdd28",
-+				  "cam0_dovdd18";
-+	};
-+};
-+
- &i2c1 {
- 	clock-frequency = <400000>;
- 	pinctrl-names = "default";
-@@ -139,6 +156,28 @@ ioexp2: gpio@18 {
- 	};
- };
- 
-+&i2c3 {
-+	clock-frequency = <400000>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&i2c3_pins>;
-+	status = "okay";
-+
-+	ioexp3: gpio@18 {
-+		compatible = "nxp,pca9557";
-+		reg = <0x18>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+		gpio-line-names = "tp0_rst",
-+				  "",
-+				  "",
-+				  "vcc5v_usb",
-+				  "vdd28_tp0",
-+				  "vdd33_lcd0",
-+				  "vdd18_lcd0",
-+				  "lcd0_reset";
-+	};
-+};
-+
- &padctrl0_apsys {
- 	fan_pins: fan-0 {
- 		pwm1-pins {
-@@ -152,6 +191,18 @@ pwm1-pins {
- 		};
- 	};
- 
-+	i2c3_pins: i2c3-0 {
-+		i2c-pins {
-+			pins = "I2C3_SCL", "I2C3_SDA";
-+			function = "i2c";
-+			bias-pull-up = <2100>;
-+			drive-strength = <7>;
-+			input-enable;
-+			input-schmitt-enable;
-+			slew-rate = <0>;
-+		};
-+	};
-+
- 	uart0_pins: uart0-0 {
- 		tx-pins {
- 			pins = "UART0_TXD";
-@@ -176,6 +227,18 @@ rx-pins {
- };
- 
- &padctrl1_apsys {
-+	i2c0_pins: i2c0-0 {
-+		i2c-pins {
-+			pins = "I2C0_SCL", "I2C0_SDA";
-+			function = "i2c";
-+			bias-pull-up = <2100>;
-+			drive-strength = <7>;
-+			input-enable;
-+			input-schmitt-enable;
-+			slew-rate = <0>;
-+		};
-+	};
-+
- 	i2c1_pins: i2c1-0 {
- 		i2c-pins {
- 			pins = "I2C1_SCL", "I2C1_SDA";
+                        Geert
+
 -- 
-2.52.0
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
