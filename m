@@ -1,206 +1,162 @@
-Return-Path: <devicetree+bounces-326493-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-326494-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 6iwVJRWVVmqX+AAAu9opvQ
-	(envelope-from <devicetree+bounces-326493-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 21:59:17 +0200
+	id DtuwKxSVVmqW+AAAu9opvQ
+	(envelope-from <devicetree+bounces-326494-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 21:59:16 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 08B0275886F
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 21:59:17 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id C6F9675886C
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 21:59:15 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=Dx3LujzA;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326493-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-326493-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
+	dkim=pass header.d=gmail.com header.s=20251104 header.b="fGi8qq/k";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326494-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-326494-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=gmail.com;
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 0CAB1307207A
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 19:58:40 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 5B41E301D203
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 19:58:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C7E843A7FD;
-	Tue, 14 Jul 2026 19:58:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE2B043A815;
+	Tue, 14 Jul 2026 19:58:48 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f175.google.com (mail-pf1-f175.google.com [209.85.210.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E309C3ED5DE
-	for <devicetree@vger.kernel.org>; Tue, 14 Jul 2026 19:58:36 +0000 (UTC)
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1784059118; cv=none; b=eyiaOhHCbT4hH3+uGmLHQEOYZiU19Bu4c42nqTxXk9GunSAhuILcpsVba7cyZQsaEkE+ddQ19pE/SZyPIts+mzleUR0D2UNDV2E6eK6euVCfbWuORTlXZLoyY7VlPNVG8EUDheXQd1X94dEAjyTXFd3i/7ft09lt0KWDcxjSPH0=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1784059118; c=relaxed/simple;
-	bh=j8mHFe8UjgPMFvD6ooci0E0L4Q4nz1iDgAS6jbUzGSo=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=K2JQ7Gmr+pucwWsfpSqJblgffo9xcYZp+tXrxUFsp61yXeq0CJG6VpQXSfUE9eau8wY59ApUnBi5iAruefOxo1cfbAtGkNlCjjQx0wsXIyIRIWCcXgRuubkJs8R/Uhz9iwCQqimiMdn4yS7eycfRebUrxK5dG6E4921kW8qjx+o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Dx3LujzA; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 45C8C1F00A3A;
-	Tue, 14 Jul 2026 19:58:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1784059116;
-	bh=aGitlCzPrMPaNylSmWm9QFlHiQweLEH7GcpNFL69zfI=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=Dx3LujzAjncLeWnt1VhD+TsRmjxZQg08LMLzBiqtuentdw40gO1rMGI56vpIDOAbX
-	 WwjKeoXoWtVygytta8a73N8UofrznByWSpV1us5v78+MzHHvPMhdB/OKgLj/Ml5EJJ
-	 WVInZK+qInASoKe64Cx5R9v5lxKMOKMkuq0y0m+jDXShAimNRbPhnyC27OepbidKxK
-	 diX10rY/cvwCR/UQTkMsKaZPPJvjZ2w6OoVIqAGikyul8fRLanlbLyyMgzwY4PbLz7
-	 zRV20ym6OGZqRHjBPFRUk7NpldLjvsDymn2o6Z63qCyum7useVGmfWxq3QregGx6d/
-	 FSd0pIMMTBbDw==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v13 18/35] phy: rockchip: usbdp: Rename mode_change to
- phy_needs_reinit
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Sebastian Reichel" <sebastian.reichel@collabora.com>
-Cc: devicetree@vger.kernel.org, conor+dt@kernel.org, robh@kernel.org, vkoul@kernel.org, neil.armstrong@linaro.org, olteanv@gmail.com, linux-phy@lists.infradead.org
-In-Reply-To: <20260714-rockchip-usbdp-cleanup-v13-18-6cb3e769d4c5@collabora.com>
-References: <20260714-rockchip-usbdp-cleanup-v13-0-6cb3e769d4c5@collabora.com>
- <20260714-rockchip-usbdp-cleanup-v13-18-6cb3e769d4c5@collabora.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Tue, 14 Jul 2026 19:58:35 +0000
-Message-Id: <20260714195836.45C8C1F00A3A@smtp.kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8155B44160A
+	for <devicetree@vger.kernel.org>; Tue, 14 Jul 2026 19:58:47 +0000 (UTC)
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1784059128; cv=pass; b=EINZKhwOfd+PJbEgSMM/GzX0K2nWi6mOBrK9HnYiZk8DBRvP1MX0aOMa5+kU066BEJvlIHLO20zdSAt1jC0YZuivCnghwJztiEEPundlJKbNjKoq6ARZzYw58JcW0t6pkkJ6O2iRh/gg+N1hZv4guwensON24gKyS8j/5o/14+c=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1784059128; c=relaxed/simple;
+	bh=XZ2kilMID1jdVFb3NXkl2ELqxMEbMA2hedlSLEWHaXE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=kdO0pGj+VYYatEihku1gUI2oX0sBIAEeliAQWpSeaCCIwn24elB4bJoFXY5Z56E4J5LDVTHr7AofJ7oiRY5j1j/qej+jTlOu9OIrrvQHMiD0UX7ESE5Udvko0tylmF8yM02Gs9gFuh0roMZvcEO0n97Pvpwb/8GoyQ4YJdZ6BmE=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fGi8qq/k; arc=pass smtp.client-ip=209.85.210.175
+Received: by mail-pf1-f175.google.com with SMTP id d2e1a72fcca58-848643382fcso5281986b3a.1
+        for <devicetree@vger.kernel.org>; Tue, 14 Jul 2026 12:58:47 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1784059127; cv=none;
+        d=google.com; s=arc-20260327;
+        b=GF5ng524ojQ9mJcefCfBC7vtWTYzyW9MzLNAmxKsLoPfJ+s5gaYMmA2BN6uq0KK+9b
+         CnG2Gojskpb5x+j27ojApgrafg1b2XOcRwXfDolUy1cSR3tSgEnQYdxO7u2s6QYMEuWi
+         OI5WNnTEb26mkaaBShhiQogzUE82lYeKnNkHoOCtfpH9UOm794ddMmm1dt4u7PIqfHnN
+         7FbJZW/NrP4HSX4eY4PBonM+Tl0qUh9h3JMPEIA46GXzJmPrWWlkAujV7etvbRZvtPZm
+         WIfgJ6/mE8slCapDIhLBE2eOGewOBrugOlKuOS8Nn0FLyMffTqQhLf1oDMEZ0w+njScy
+         xLZw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=XZ2kilMID1jdVFb3NXkl2ELqxMEbMA2hedlSLEWHaXE=;
+        fh=SzVtZ2Ole2ZiHPFwpWSms2Bt/XcsZ007pe+0qwAFD80=;
+        b=hvuMGys2gTwFvqSyc+UdgYGBEF2tSRUjRjIeIeUDoax7HvVzXxXNt3a/9Dp31tYd4s
+         0TlFxaA2mU5uUfZQg/TNcKzQPfdOKdAzf3WUsbsywpztclnYT+imkPlRFVkCmT+wI8pB
+         hngmlSwfCfF7se532nEhMqSelsTvxQD7uVrvEkYyk9psLnuEEcN2XCx1Yw3EMdAAPvJM
+         nJ4h+pawYf41R9cHXoNIVfYPesQoPZ093uKd5lcxZ0JlP9741vDGyVYhVTklRRbNmyBf
+         ldoiCjzTh0BL3anIRHjgDHeA7rYj0NA51Oat5iGGqrpkn80wWq2qERA4z0Sl13o7h4kO
+         9b1Q==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1784059127; x=1784663927; darn=vger.kernel.org;
+        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
+         :references:mime-version:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=XZ2kilMID1jdVFb3NXkl2ELqxMEbMA2hedlSLEWHaXE=;
+        b=fGi8qq/kucGNDnd6vWzk2Z/VuQZ/9XKp5am1B9qDjYWpOmmsGEfwjdNl5s8lBPBjVL
+         08+s42vAuUqN0KRzeKyx/1PIxgt0r0TggPaZVCtenNPpzN9R0HIfoMw1VEl0rzLGrgWF
+         T8PPSguM0JPFTI40QtsFSqVKZaINfwNNdqGzUskoyBIZLxa5R21Gke+wUerucpEbRQkq
+         8LD84UiK3AcYIMkaAFd3u8tlhgRy/Qc2W3OGHSD1sFuKLSmFKzi5JSQyMW9t8SMWHp3x
+         iIPOWiOIrGYjcDfysPccekvYlXqGbFQLL56JXcFwtSyTt/TPEKUgcabuq0t/YsUrJsyA
+         g9fQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1784059127; x=1784663927;
+        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
+         :references:mime-version:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to:content-type;
+        bh=XZ2kilMID1jdVFb3NXkl2ELqxMEbMA2hedlSLEWHaXE=;
+        b=V4u8OCnaKE38GAflkGjaPK8WD603hHVsG7lLWw9gmO/LAk+koI9Xc2oqT2z3ZMc5hP
+         0VZ57MPTEJjf7hBDrae1XUwNCBdKomzs2gAgmswJ9nrFE/SCCk8jfIlE5yXPX8HtpyWO
+         Pv/Tpfla/TO9vOsEwpThrC1TbpuIwqY5wZbaIyH9JCyqr5+uvDJLQn9oW0eEXlmFtf/R
+         pb4DChEg2HPexZAwjhPeN1z7UXM13UsCfJQxBfTd+Xy8G3REf0eLAx4ryyeNg4rN4oF9
+         L1onsW5z/L2cL9qFwvR28WjSUZNqAR6I+CNBx4jl+xCZ6y7ZZN/PwV6qXfTpgFwFKShh
+         S+6A==
+X-Forwarded-Encrypted: i=1; AHgh+Rqz1WA2WyQASO/YSy97aibbmr6VoB0NA4KOb4hqF+1RLlA1ieGvRDFyTlsV5/0JOYKebhilXWqMZYsu@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy5ZrCTY0mu3RVc27t6bNU/yiQ7G5/kRqa7Ds+6p3IFaPQq0JZq
+	nNP67wUQo6Y/Iey7SinqreEWsy7JmIFA5p1BwrCt0b0Irx5ZDTv9DG/gKZYqLM4PxXmgn4Km74/
+	aerzt0ZtozEXWf+8ELZ0EsiEYUEpSwFE=
+X-Gm-Gg: AfdE7clkMdA0BVF29KIHbOkLcGwY2wm6XLQQNZMPApVACCLDFCi3BcfAYoKGFUVpF8+
+	wkw3s0tx250rjP4JJpUD2cNj0oTMha9rm8qjJgu8nolIBQJC9IYLBD9JoMZ511GxYzekvwKqSz+
+	4iVnFmRxTb8eTG9mpgmhkmnurYTjEfeiexqBfD1v/aHwctT+eXemcM7VIuj2XJfrmuBOceQtfXD
+	uTk8VCXmeTBkGp5usT06SPfkA4dp8TbTMt2hsJRXg3Lm/8dJlopsXOu2gtsEE261ZJ5Q6EgWo1S
+	HGz5LX6C49IbnF6T8D/N50nXdd7zSdU=
+X-Received: by 2002:a05:6a00:812:b0:847:94bb:30e2 with SMTP id
+ d2e1a72fcca58-84a516058f7mr4674736b3a.41.1784059126868; Tue, 14 Jul 2026
+ 12:58:46 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+References: <20260714194717.596193-1-jakubszczudlo40@gmail.com>
+In-Reply-To: <20260714194717.596193-1-jakubszczudlo40@gmail.com>
+From: =?UTF-8?Q?Jakub_Szczud=C5=82o?= <jakubszczudlo40@gmail.com>
+Date: Tue, 14 Jul 2026 21:58:36 +0200
+X-Gm-Features: AUfX_myzs711Ch5m3soe1aOBMfdRnDp2aINH4666i4uah2KBLUeUm9QYw3ctKVA
+Message-ID: <CA+gq5JjVnLKW1WdEYzy279tqURXqqy+JNWn9zJPfXKGHUP5hCg@mail.gmail.com>
+Subject: Re: [PATCH v7 0/3] iio: adc: ti-ads1100: Add support for TI ADS1110
+ to ti-ads1100 driver
+To: linux-iio@vger.kernel.org
+Cc: jic23@kernel.org, dlechner@baylibre.com, nuno.sa@analog.com, 
+	andy@kernel.org, marcelo.schmitt@analog.com, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, mike.looijmans@topic.nl, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	jorge.marques@analog.com, antoniu.miclaus@analog.com, 
+	mazziesaccount@gmail.com, jishnu.prakash@oss.qualcomm.com, 
+	duje@dujemihanovic.xyz, wens@kernel.org, sakari.ailus@linux.intel.com, 
+	linusw@kernel.org
+Content-Type: text/plain; charset="UTF-8"
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-326494-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-326493-lists,devicetree=lfdr.de];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:sebastian.reichel@collabora.com,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:robh@kernel.org,m:vkoul@kernel.org,m:neil.armstrong@linaro.org,m:olteanv@gmail.com,m:linux-phy@lists.infradead.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:linux-iio@vger.kernel.org,m:jic23@kernel.org,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:andy@kernel.org,m:marcelo.schmitt@analog.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:mike.looijmans@topic.nl,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:jorge.marques@analog.com,m:antoniu.miclaus@analog.com,m:mazziesaccount@gmail.com,m:jishnu.prakash@oss.qualcomm.com,m:duje@dujemihanovic.xyz,m:wens@kernel.org,m:sakari.ailus@linux.intel.com,m:linusw@kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[jakubszczudlo40@gmail.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[20];
+	FREEMAIL_CC(0.00)[kernel.org,baylibre.com,analog.com,topic.nl,vger.kernel.org,gmail.com,oss.qualcomm.com,dujemihanovic.xyz,linux.intel.com];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,linaro.org,gmail.com,lists.infradead.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	TO_DN_NONE(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jakubszczudlo40@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	ALIAS_RESOLVED(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,collabora.com:email,vger.kernel.org:from_smtp,sashiko.dev:url]
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,vger.kernel.org:from_smtp,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 08B0275886F
+X-Rspamd-Queue-Id: C6F9675886C
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
+sorry guys I need to resend because of some dumb error
 
-Pre-existing issues:
-- [High] Unclocked register access leading to system hang when an unsupport=
-ed PHY mode is requested.
---
-
---- Patch [18]: [PATCH v13 18/35] phy: rockchip: usbdp: Rename mode_change =
-to phy_needs_reinit ---
-commit fe40e70a3614f2ec7c81e0e8bd7039efe25202c3
-Author: Sebastian Reichel <sebastian.reichel@collabora.com>
-
-phy: rockchip: usbdp: Rename mode_change to phy_needs_reinit
-
-This commit renames the mode_change property to phy_needs_reinit to better
-reflect that a re-initialization is required not just on mode changes, but
-also on cable orientation changes.
-
-> diff --git a/drivers/phy/rockchip/phy-rockchip-usbdp.c b/drivers/phy/rock=
-chip/phy-rockchip-usbdp.c
-> index 24108816e3b95..e44d19c9d1193 100644
-> --- a/drivers/phy/rockchip/phy-rockchip-usbdp.c
-> +++ b/drivers/phy/rockchip/phy-rockchip-usbdp.c
-
-[ ... ]
-
-> @@ -951,15 +951,15 @@ static int rk_udphy_power_on(struct rk_udphy *udphy=
-, u8 mode)
-> =20
->  		if (udphy->mode & UDPHY_MODE_USB)
->  			rk_udphy_u3_port_disable(udphy, false);
-> -		udphy->mode_change =3D false;
-> -	} else if (udphy->mode_change) {
-> +		udphy->phy_needs_reinit =3D false;
-> +	} else if (udphy->phy_needs_reinit) {
-
-[Severity: High]
-This is a pre-existing issue, but can returning 0 for unsupported modes
-lead to unclocked register accesses and system hangs?
-
-In rk_udphy_power_on(), if the requested mode is not supported by the
-hardware, the function prints an info message and returns 0 (success)
-instead of an error:
-
-        if (!(udphy->mode & mode)) {
-                dev_info(udphy->dev, "mode 0x%02x is not support\n", mode);
-                return 0;
-        }
-
-This success return tricks the caller into proceeding to access unclocked
-hardware:
-
-rk_udphy_dp_phy_power_on() {
-        ...
-        ret =3D rk_udphy_power_on(udphy, UDPHY_MODE_DP);
-        if (ret)
-                goto unlock;
-
-        rk_udphy_dp_lane_enable(udphy, udphy->dp_lanes);
-        ...
-}
-
-Because the mode was unsupported, the clocks are not enabled. Accessing
-the registers in rk_udphy_dp_lane_enable() will then crash the system.
-
-Similarly, rk_udphy_dp_phy_power_off() unconditionally accesses hardware
-registers before checking if the mode was supported and powered on:
-
-rk_udphy_dp_phy_power_off() {
-        ...
-        mutex_lock(&udphy->mutex);
-        rk_udphy_dp_lane_enable(udphy, 0);
-        rk_udphy_power_off(udphy, UDPHY_MODE_DP);
-        ...
-}
-
-Does it make sense to return an error code like -EOPNOTSUPP for
-unsupported modes, and guard the register accesses in the power-off path?
-
->  		if (udphy->mode =3D=3D UDPHY_MODE_DP)
->  			rk_udphy_u3_port_disable(udphy, true);
-> =20
->  		ret =3D rk_udphy_init(udphy);
->  		if (ret)
->  			return ret;
-> -		udphy->mode_change =3D false;
-> +		udphy->phy_needs_reinit =3D false;
->  	}
-> =20
->  	udphy->status |=3D mode;
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260714-rockchip-u=
-sbdp-cleanup-v13-0-6cb3e769d4c5@collabora.com?part=3D18
+Best regards,
+Jakub Szczudlo
 
