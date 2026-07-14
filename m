@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-326080-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-326081-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id t++NEIYQVmrrygAAu9opvQ
-	(envelope-from <devicetree+bounces-326080-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 12:33:42 +0200
+	id ftaYKoIUVmqbywAAu9opvQ
+	(envelope-from <devicetree+bounces-326081-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 12:50:42 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26D9B753736
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 12:33:41 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C5BD753964
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 12:50:42 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=EUC301ar;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326080-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-326080-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=ItrD2uGa;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326081-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-326081-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 0C241300C7EA
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 10:33:38 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 49BF930FB8E8
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 10:47:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64C9C36F419;
-	Tue, 14 Jul 2026 10:33:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C7BC314A84;
+	Tue, 14 Jul 2026 10:47:14 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3303373C12
-	for <devicetree@vger.kernel.org>; Tue, 14 Jul 2026 10:33:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5EE1913AD1C
+	for <devicetree@vger.kernel.org>; Tue, 14 Jul 2026 10:47:13 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1784025215; cv=none; b=c7GhwqTI69JWzD5tM/CEBSSROwCDJjtpfL4Qab0t2fHPRIm0nzDZGFySlknH9bR3hScXCTgKoZwq5yZb5hhj2Owhia7Qr0vTzbxwrNZp+C9XCSzg9/ruLdPKH4Bf32eHRKQOLNqrt+3WbSfKT2Y5Um8cukH6zwfcIakZlXYr5sg=
+	t=1784026034; cv=none; b=S6DIb+g0Sd1+ZX6Crl6K1YIOnNeJkHtxhvnGD2BqR3BEgiLYm+HEuiQMihW5RW5+DV0vm4MnPUAT4qzcO/D2kjRopvyJOqVodtnXatgi7SdLJfj0m7nEBGYPkDSx3qgUcQOZbKOnf0XvV4OwE1BXZIsm0/d0t+6WeXhrKya2nvs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1784025215; c=relaxed/simple;
-	bh=u7JAVxyXGPBPc0AnBNRiKGWYoyFdGMVdK7lRJbtjP3U=;
+	s=arc-20240116; t=1784026034; c=relaxed/simple;
+	bh=JVa/BVAZYTy4W/96VLsXZTb6AVQ89neXUyQjZ4UgTMg=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=M4aIRDaAdebmaaEcQ0qSAk5lTt7xxI8SBozjPM20OyKdchAZowdA2gwQVKfeTL1GcIWTKJ366VskZ301b+Vpp4q8p5+tyumaPMKDxgV3calhfb3aVG5FFbTbvN8OSfjdYV7BaDLKLkYeobrSg+dkZAHt2zIVr6TvPCshddN3xl0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EUC301ar; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B8B351F000E9;
-	Tue, 14 Jul 2026 10:33:32 +0000 (UTC)
+	 Message-Id; b=e/8ZhicRJhsTR+wT4UDOd1AJhF//otp5csr6LCKRek6myQ/pMKQ8YlKevrVSKNskRjSC6Vm6dvAYqXwHELXW+LwnjlFko4hQYTHk1jKuBIxNoMjIT8o2aBoT7ke8MojkeYfjrVzkNDpKwI7GS3pV0JtXj/32lP2bIqC2Qr6P0Xk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ItrD2uGa; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EBBCD1F000E9;
+	Tue, 14 Jul 2026 10:47:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1784025213;
-	bh=BQw2KidrqMiAG/KUfR6bWGxFP1306jZELdm7/5yTiZI=;
+	s=k20260515; t=1784026033;
+	bh=TFIf2sErBZkBkTP7wZ/PflsiUQ8bxGAbyrmoHzwNd9k=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=EUC301ar8nIbHjmrNMpIXxEiqb5kz4uJKRlVt5POH2XZFyjZSFz6MfKLskuE+sOfI
-	 JVbi9ygHDz/ksTTrp8dtjy7p634h9cUN92yeALaA7XZrwes77YiQo4AQ/Ah2iEvXPa
-	 cAxGV1JFyWIeZuvwZ/grR48z22IKLYPo94B4OYcda4rBTfNAZWoXZ+4IfnqlENAj5X
-	 NI6F55BRuUXRXj0Mvg5f0pjIQOQLH3j6hwEiqaprNnd3G97XO7IQrbDmRlEoY/H1pI
-	 AZWH2xq6F73gF3mpdST1PhG9p0LCEAMqMGpvPaDWEmVVBrRNiYpCddCU+aslQRj+v6
-	 jiGp1HG5+vWfA==
+	b=ItrD2uGaoxQ0ZW0ZJkYkoxgfvHcZrcSDNTdMYDG9dyL5tmye2BV4Mst4WiRZnu5Wd
+	 tfW2huk5o4EjlzHRYEZkmwc+4/tdVFlW1pbu7hCM5bbk+PSoYUnb7gFDuxNY4eq7ey
+	 xQ4pYYFHRZme1Flsvh0w9ZshQOd+q5CVaaf4YzLFf40p1eArn3y4DlZ90eQw3p0gwg
+	 FSYLDrwldvkgIEKyfxhzp8OczGaMbeqZcY0/hb9N6WDTNQFQnSys0iMlgeWRrxcBoa
+	 or+W26SVlzThgNZ3J/TSCkLya8gAGY3hpZWboV0KVXzL4OKxZMSmt6yJdn3NQro0hs
+	 H935t5NoeuP5A==
 From: sashiko-bot@kernel.org
-Subject: Re: [RFC PATCH 2/3] drm/glanda: Add initial DRM driver for
- GlandaGPU
+Subject: Re: [RFC PATCH 3/3] NOT FOR MERGE: drm/glanda: Add x86 platform
+ test device
 Reply-To: sashiko-reviews@lists.linux.dev
 To: "Leander Kieweg" <kieweg.leander@gmail.com>
-Cc: dri-devel@lists.freedesktop.org, conor+dt@kernel.org, devicetree@vger.kernel.org, robh@kernel.org
-In-Reply-To: <20260714101146.200416-3-kieweg.leander@gmail.com>
+Cc: robh@kernel.org, dri-devel@lists.freedesktop.org, conor+dt@kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260714101146.200416-4-kieweg.leander@gmail.com>
 References: <20260714101146.200416-1-kieweg.leander@gmail.com>
- <20260714101146.200416-3-kieweg.leander@gmail.com>
+ <20260714101146.200416-4-kieweg.leander@gmail.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Tue, 14 Jul 2026 10:33:32 +0000
-Message-Id: <20260714103332.B8B351F000E9@smtp.kernel.org>
+Date: Tue, 14 Jul 2026 10:47:12 +0000
+Message-Id: <20260714104712.EBBCD1F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,22 +72,22 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-326080-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-326081-lists,devicetree=lfdr.de];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:kieweg.leander@gmail.com,m:dri-devel@lists.freedesktop.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:kiewegleander@gmail.com,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:kieweg.leander@gmail.com,m:robh@kernel.org,m:dri-devel@lists.freedesktop.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:kiewegleander@gmail.com,m:conor@kernel.org,s:lists@lfdr.de];
 	TO_DN_SOME(0.00)[];
 	FREEMAIL_TO(0.00)[gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
 	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,sashiko.dev:url,lists.linux.dev:replyto,vger.kernel.org:from_smtp,smtp.kernel.org:mid];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[smtp.kernel.org:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,sashiko.dev:url,lists.linux.dev:replyto,vger.kernel.org:from_smtp];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
@@ -100,180 +100,124 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FROM_NO_DN(0.00)[];
 	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
 	RCPT_COUNT_FIVE(0.00)[5]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 26D9B753736
+X-Rspamd-Queue-Id: 0C5BD753964
 
-Thank you for your contribution! Sashiko AI review found 7 potential issue(=
+Thank you for your contribution! Sashiko AI review found 3 potential issue(=
 s) to consider:
-- [High] Plane atomic update callback calls sleeping functions, violating D=
-RM atomic context rules.
-- [High] Manual call to drm_mode_config_cleanup causes a double-free.
-- [High] Missing drm_atomic_helper_shutdown() during driver removal.
-- [High] Teardown logic creates a race condition causing ioctl threads to w=
-rite to unmapped MMIO memory.
-- [High] IRQ handler is registered before the CRTC is initialized, creating=
- a window for a NULL pointer dereference.
-- [Medium] Direct pointer dereference of `iosys_map` memory bypasses abstra=
-ction and breaks on I/O memory.
-- [Medium] Mishandling of platform_get_irq return value breaks probe deferr=
-al.
+
+Pre-existing issues:
+- [High] Missing DRM unplug protection in IOCTL handlers allows Use-After-U=
+nmap of MMIO resources.
+- [High] The plane atomic update callback calls multiple sleeping functions=
+ while executing in atomic context.
+- [High] Premature shared IRQ registration causes a NULL pointer dereferenc=
+e if the interrupt fires before CRTC initialization.
 --
 
---- Patch [2]: [RFC PATCH 2/3] drm/glanda: Add initial DRM driver for Gland=
-aGPU ---
-commit ee638d3912e8ed264bf2c9ee4b6fd9350bc3726b
+--- Patch [3]: [RFC PATCH 3/3] NOT FOR MERGE: drm/glanda: Add x86 platform =
+test device ---
+commit 6108d4cd0cea176f9e750373bc9ba705d3d2a6c7
 Author: Leander Kieweg <kieweg.leander@gmail.com>
-Subject: drm/glanda: Add initial DRM driver for GlandaGPU
 
-This commit introduces the core DRM/KMS driver for GlandaGPU. This driver
-supports basic modesetting, atomic updates, and custom 2D hardware
-acceleration IOCTLs.
+NOT FOR MERGE: drm/glanda: Add x86 platform test device
+
+Register a mock platform device on x86 architectures to allow
+testing the GlandaGPU driver inside QEMU without cross-compiling.
 
 > diff --git a/drivers/gpu/drm/tiny/glandagpu.c b/drivers/gpu/drm/tiny/glan=
 dagpu.c
-> new file mode 100644
-> index 0000000000000..8f87ae096a2e3
-> --- /dev/null
+> index 8f87ae096a2e3..c1e9370f2a4b1 100644
+> --- a/drivers/gpu/drm/tiny/glandagpu.c
 > +++ b/drivers/gpu/drm/tiny/glandagpu.c
-> @@ -0,0 +1,769 @@
-[ ... ]
-> +static void glanda_plane_atomic_update(struct drm_plane *plane,
-> +				       struct drm_atomic_commit *state)
-> +{
-[ ... ]
-> +	dma_resv_lock(shmem->base.resv, NULL);
-> +	ret =3D drm_gem_shmem_vmap_locked(shmem, &map);
-> +	if (ret) {
-> +		dma_resv_unlock(shmem->base.resv);
-> +		drm_err(&gdev->drm,
-> +			"GlandaGPU: failed to vmap GEM shmem object\n");
-> +		return;
-> +	}
-> +
-> +	mutex_lock(&gdev->lock);
 
 [Severity: High]
-DRM atomic commit callbacks execute in an atomic context and cannot sleep.=
-=20
-Is it safe to call dma_resv_lock, drm_gem_shmem_vmap_locked, and mutex_lock=
-=20
-here? These functions can sleep and might trigger a schedule while atomic
-oops or deadlocks when this path is reached via non-blocking atomic commits.
+This is a pre-existing issue, but is it possible for a concurrent ioctl to
+access unmapped MMIO memory during device removal?
 
-> +
-> +	ret =3D glanda_wait_idle(gdev);
-> +	if (ret) {
-> +		drm_err(&gdev->drm, "GlandaGPU: timed out waiting for idle\n");
-> +		mutex_unlock(&gdev->lock);
-> +		drm_gem_shmem_vunmap_locked(shmem, &map);
-> +	dma_resv_unlock(shmem->base.resv);
-> +		return;
-> +	}
-> +
-> +	src_pitch =3D fb->pitches[0];
-> +	width =3D min_t(u32, fb->width, GLANDA_WIDTH);
-> +	height =3D min_t(u32, fb->height, GLANDA_HEIGHT);
-> +
-> +	u8 __iomem *dst_base =3D gdev->vram_base;
-> +	u8 *src_base =3D map.vaddr;
-> +	u32 y;
-> +
-> +	for (y =3D 0; y < height; y++) {
-> +		u32 *src =3D (u32 *)(src_base + y * src_pitch);
+Looking at glandagpu_remove(), it wakes up blocked ioctls:
 
-[Severity: Medium]
-Does directly dereferencing map.vaddr break abstraction on architectures=20
-that do not support direct memory dereferencing for I/O memory? If the=20
-mapped memory is in I/O space (like an imported dma-buf), this might cause=
-=20
-a panic. Should this use iosys_map helpers like iosys_map_rd instead?
+drivers/gpu/drm/tiny/glandagpu.c:glandagpu_remove() {
+    ...
+	gdev->cmd_done =3D true;
+	wake_up_interruptible(&gdev->cmd_wq);
+    ...
+}
 
-[ ... ]
-> +static int glandagpu_probe(struct platform_device *pdev)
-> +{
-[ ... ]
-> +	writel(0, gdev->mmio_base + REG_IER);
-> +	writel(0xFFFFFFFF, gdev->mmio_base + REG_ISR);	/* clear flags */
-> +
-> +	ret =3D platform_get_irq(pdev, 0);
-> +	if (ret > 0) {
-> +		gdev->irq =3D ret;
-> +		ret =3D devm_request_irq(&pdev->dev, gdev->irq, glanda_irq_handler,
-> +				       IRQF_SHARED, "glandagpu", gdev);
+However, it lacks drm_dev_unplug() and drm_dev_enter()/drm_dev_exit()
+synchronization. When glandagpu_remove() returns, the devres framework
+automatically unmaps gdev->mmio_base. The forcibly awakened ioctl could
+then resume and write directly to the unmapped MMIO memory:
 
-[Severity: Medium]
-What happens if platform_get_irq returns -EPROBE_DEFER or another negative=
-=20
-error code? The check for ret > 0 seems to treat all negative error codes=20
-as a missing IRQ, falling back to polling permanently rather than returning=
-=20
-the error to the driver core to retry.
+drivers/gpu/drm/tiny/glandagpu.c:glanda_hw_clear() {
+    ...
+	writel(color, gdev->mmio_base + REG_COLOR);
+    ...
+}
+
+Could this cause a kernel panic due to a use-after-unmap page fault?
 
 [Severity: High]
-Since devm_request_irq is called with IRQF_SHARED here, could the IRQ=20
-handler fire immediately before the CRTC is initialized later in probe?=20
-If the shared interrupt fires early and the INT_VSYNC bit is set,=20
-glanda_irq_handler would call drm_crtc_handle_vblank on an uninitialized=20
-crtc object, which could lead to a NULL pointer dereference.
+This isn't a bug introduced by this patch, but does the plane atomic update
+callback sleep while in atomic context?
 
-[ ... ]
-> +err_mode_cleanup:
-> +	drm_mode_config_cleanup(&gdev->drm);
-> +	return ret;
-> +}
+Userspace can initiate a non-blocking DRM atomic commit, which executes
+glanda_plane_atomic_update() in an atomic context. However, it appears to
+call multiple sleeping functions:
 
-[Severity: High]
-The mode config is initialized using drm_mode_config_init, which wraps=20
-drmm_mode_config_init and automatically registers a devres action for=20
-cleanup. Does calling drm_mode_config_cleanup manually here cause a=20
-double-free on probe failure?
+drivers/gpu/drm/tiny/glandagpu.c:glanda_plane_atomic_update() {
+    ...
+	dma_resv_lock(shmem->base.resv, NULL);
+	ret =3D drm_gem_shmem_vmap_locked(shmem, &map);
+    ...
+	mutex_lock(&gdev->lock);
 
-> +
-> +static void glandagpu_remove(struct platform_device *pdev)
-> +{
-> +	struct glanda_device *gdev =3D platform_get_drvdata(pdev);
-> +
-> +	/* Disable interrupts first so no new IRQ work can race the teardown
-> +	 * below, and wake up anyone still blocked in glanda_wait_idle().
-> +	 */
-> +	writel(0, gdev->mmio_base + REG_IER);
-> +	gdev->cmd_done =3D true;
-> +	wake_up_interruptible(&gdev->cmd_wq);
+	ret =3D glanda_wait_idle(gdev);
+    ...
+}
+
+Since glanda_wait_idle() internally uses wait_event_interruptible_timeout(),
+could these calls cause system instability, scheduling-while-atomic warning=
+s,
+or deadlocks in the DRM commit worker?
 
 [Severity: High]
-By faking a successful completion instead of signaling an abort condition,=
-=20
-any ioctl threads sleeping in glanda_wait_idle will wake up and proceed=20
-to write to mmio_base. Without proper synchronization or a call to=20
-drm_dev_enter/exit to ensure threads finish, can these awakened threads=20
-end up writing to unmapped MMIO memory as the devres teardown proceeds?
+This is a pre-existing issue, but could premature shared IRQ registration
+cause a NULL pointer dereference during probe?
 
-> +
-> +	drm_info(&gdev->drm, "GlandaGPU DRM Driver removed\n");
-> +	drm_dev_unregister(&gdev->drm);
+In glandagpu_probe(), devm_request_irq() is called with IRQF_SHARED before
+the DRM CRTC is initialized by drm_crtc_init_with_planes():
 
-[Severity: High]
-Should this removal sequence include a call to drm_atomic_helper_shutdown=20
-to quiesce the display hardware? Without it, hardware pipelines might remai=
-n=20
-active after the module is unloaded, which could result in memory corruptio=
-n=20
-or resource leaks.
+drivers/gpu/drm/tiny/glandagpu.c:glandagpu_probe() {
+    ...
+		ret =3D devm_request_irq(&pdev->dev, gdev->irq, glanda_irq_handler,
+				       IRQF_SHARED, "glandagpu", gdev);
+    ...
+	ret =3D drm_crtc_init_with_planes(&gdev->drm, &gdev->crtc,
+    ...
+}
 
-> +	drm_mode_config_cleanup(&gdev->drm);
-> +}
+If another device on the same shared line triggers an interrupt immediately,
+the handler reads the raw REG_ISR without masking it against the interrupt
+enable register (REG_IER). If the INT_VSYNC bit is set, it proceeds to
+handle the vblank:
 
-[Severity: High]
-Similar to the probe error path, does this manual call to=20
-drm_mode_config_cleanup cause a double-free on module unload, given that=20
-drm_mode_config_init already registered a devres cleanup handler?
+drivers/gpu/drm/tiny/glandagpu.c:glanda_irq_handler() {
+    ...
+	if (isr & INT_VSYNC)
+		drm_crtc_handle_vblank(&gdev->crtc);
+    ...
+}
+
+Since gdev->crtc is still zero-initialized at this point, could this
+dereference a NULL crtc->dev pointer and lead to a kernel panic?
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260714101146.2004=
-16-1-kieweg.leander@gmail.com?part=3D2
+16-1-kieweg.leander@gmail.com?part=3D3
 
