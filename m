@@ -1,193 +1,255 @@
-Return-Path: <devicetree+bounces-326734-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-326407-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id QTRrHzY+V2oIIAEAu9opvQ
-	(envelope-from <devicetree+bounces-326734-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 10:00:54 +0200
+	id WNXxJKeFVmpv8AAAu9opvQ
+	(envelope-from <devicetree+bounces-326407-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 20:53:27 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 62F8675BAFD
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 10:00:49 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 03C5D757F86
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 20:53:27 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kemnade.info header.s=20220719 header.b="2Np9K2/0";
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326734-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-326734-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=kemnade.info;
+	dkim=pass header.d=9elements.com header.s=google header.b=IHs0nixE;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326407-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-326407-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=9elements.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 32529300AC9B
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 08:00:46 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 0C3FB3056641
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 18:53:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 674013C73D9;
-	Wed, 15 Jul 2026 08:00:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D0D4480972;
+	Tue, 14 Jul 2026 18:53:25 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9D4B31D362;
-	Wed, 15 Jul 2026 08:00:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E63252641EE
+	for <devicetree@vger.kernel.org>; Tue, 14 Jul 2026 18:53:14 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1784102441; cv=none; b=MoSaa1N7E9zfPoV59SJdHqtDAO3TI+cjzlTMPkMZKouCSZFKdbG3T/BESJwwI6Hyi7WbKu5okMs7U/x6FVVZHTdhVcG2crIgjX/p6uf8xvZj28aIUjcTbkBjIFmJCKAW4qlRXk71VI1C7ESuTqS/U3dWWi9afnCpkJQv3u3i5EU=
+	t=1784055203; cv=none; b=QeCc+rWgiNqVVokqRsCMt86mUFCvcXnQFYS5gDkOcwUX3AWLfNy9wIGgfD0nkNI8kfiG7swnuRIFSeGx/XQqMQyQPNtGg08Vqxbi0MwmX0gueXdRJbOy+8bd1Sa1NBukoBDL2th/UrId2UDTUxMxe/8FhWOu5MEsLfEMgz83jkw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1784102441; c=relaxed/simple;
-	bh=0puFGrZ1bzugF2iwQzkqWYUclPV3sCgyrEBkPyJ2SgE=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=inNvgQMLaV9Bfhh5JXIFDvufZev9Gmlel9Wd5LaTpFfBJZ7aZ462eax690yLMQ36kCiyGR63uG6p4nTWJCCsapFMMybyO9KTwIMoW2fp7iktaV5Bvha7/J1uHnTwfcEHIF85NkLGtY7xHTIwC/N+qliUblUuxl+PxXhPlaIxewc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=2Np9K2/0; arc=none smtp.client-ip=178.238.236.174
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=kemnade.info; s=20220719; h=References:In-Reply-To:Subject:Cc:To:From:
-	Reply-To:Content-ID:Content-Description;
-	bh=87clj23hFfpt9QBNepHjfZoYycZtPvLMabqLFhkG2z0=; t=1784102440; x=1785312040; 
-	b=2Np9K2/0eQBu1pnF9tOnCy3Y4l9fzbQ+7QCq0N/L9P3M6AonqMOYlgH+YahTy2V07B3TurY/LhL
-	o5S6GrpxmM7ayI+zfOfaettgdSXGJ4DptR9dHhvT5Dw0ibPaS9qalzm8QW4fRddqdz4NUnp8VK4Zh
-	MtSTVqYRXkMuy4HO9ne73wH3vt1NF+kDsEmJuq04C2DqALW+O5YJpvtIWR2OABenRLVznT+8YYvqc
-	xP53QS6LTbiUVylTG8+s8ogwoSwyLlrkgJLw+a1szGctvS6GGJghwTRgZbL7H7/mhgS0q7938JdQi
-	NQU4EJ6G9hlEf5cKOZJIZKOaoGFrV6m8S6PA==;
-Date: Tue, 14 Jul 2026 20:46:36 +0200
-From: Andreas Kemnade <andreas@kemnade.info>
-To: "H. Nikolaus Schaller" <hns@goldelico.com>
-Cc: Grond <grond66@riseup.net>, Stefan Leichter <sle85276@gmx.de>, Grazvydas
- Ignotas <notasas@gmail.com>, Tony Lindgren <tony@atomide.com>, Ethan
- Nelson-Moore <enelsonmoore@gmail.com>, Jarkko Nikula
- <jarkko.nikula@bitmer.com>, Sascha Hauer <s.hauer@pengutronix.de>, Lee
- Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Liam Girdwood
- <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Aaro Koskinen
- <aaro.koskinen@iki.fi>, Kevin Hilman <khilman@baylibre.com>, Roger Quadros
- <rogerq@kernel.org>, Russell King <linux@armlinux.org.uk>, Daniel Thompson
- <danielt@kernel.org>, Jingoo Han <jingoohan1@gmail.com>, Helge Deller
- <deller@gmx.de>, Jaroslav Kysela <perex@perex.cz>, Takashi Iwai
- <tiwai@suse.com>, Sen Wang <sen@ti.com>, Richard Fitzgerald
- <rf@opensource.cirrus.com>, Arnd Bergmann <arnd@arndb.de>, Srinivas
- Kandagatla <srinivas.kandagatla@oss.qualcomm.com>, Kuninori Morimoto
- <kuninori.morimoto.gx@renesas.com>, Charles Keepax
- <ckeepax@opensource.cirrus.com>, Niranjan H Y <niranjan.hy@ti.com>,
- letux-kernel@openphoenux.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-sound@vger.kernel.org,
- linux-omap@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- dri-devel@lists.freedesktop.org, linux-fbdev@vger.kernel.org,
- kernel@pyra-handheld.com, mfd@lists.linux.dev
-Subject: Re: [PATCH 16/16] arm: omap2: remove remaining pdata-quirks for
- pandora legacy devices
-Message-ID: <20260714204630.0fd6bcb1@kemnade.info>
-In-Reply-To: <d380941287c655a3d205ee8b08516d364c0ddec9.1783749722.git.hns@goldelico.com>
-References: <cover.1783749722.git.hns@goldelico.com>
-	<d380941287c655a3d205ee8b08516d364c0ddec9.1783749722.git.hns@goldelico.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; arm-unknown-linux-gnueabihf)
+	s=arc-20240116; t=1784055203; c=relaxed/simple;
+	bh=ZdMjtjALJ9INUjixbUCM2kZrdun7GikDbIME1A+PLD4=;
+	h=MIME-Version:Content-Type:Subject:From:To:Cc:In-Reply-To:
+	 References:Date:Message-Id; b=uNXtDUnTK77SFM8Psz3y3X8vFzR+y7dgxpM7bIsrz0w3oHBUm38pd4fF3+JO/vZ+BKRqrzDYhrPN272wS64BraZOZXSrue404l9kcauvXdZGwzD5tx3/qFWgBK6ABkAVvMMKJjNnY9EQQFGq3nHKyzoZaE0KCUMwlqxJ00aiVnw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=9elements.com; spf=pass smtp.mailfrom=9elements.com; dkim=pass (2048-bit key) header.d=9elements.com header.i=@9elements.com header.b=IHs0nixE; arc=none smtp.client-ip=209.85.221.47
+Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-47df6a5202bso2884432f8f.0
+        for <devicetree@vger.kernel.org>; Tue, 14 Jul 2026 11:53:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=9elements.com; s=google; t=1784055188; x=1784659988; darn=vger.kernel.org;
+        h=message-id:date:references:in-reply-to:cc:to:from:subject
+         :content-transfer-encoding:content-type:mime-version:from:to:cc
+         :subject:date:message-id:reply-to:content-type;
+        bh=v81RYgZzr05KCDxoR1cyj6HFcz85Vml1RF/7JkwpDYw=;
+        b=IHs0nixEvgbAsfcA2+uVO2prTfml0MlLbLAI2MyLIE+qg+LwVbxI1q7/Su+HFYjS22
+         6+cV+3N8msl9AC/3PGgWS6z9adTU/i4Az6lxWqIL6ho++zgtIQAUs/xQrFgy7hxZLjMM
+         BBsgY+EZ0Q1iC3RYNHqq9FPL6S3MoX88Z2ENxMvUT2/ZzwKhEGRvtyk6xBiswH5uqTt+
+         /eYR0tTypL/NKYBcU8NEqw79Giz5rfZcOhv6GnEO8dBs+AFpqVNegS0sa0Krcugvxumz
+         QSBA66pEhP6YIob+GjLOEYFWtUug00OytU7iEfdxLDMiesqMztQpibZGsed3URqFou/J
+         tQkQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1784055188; x=1784659988;
+        h=message-id:date:references:in-reply-to:cc:to:from:subject
+         :content-transfer-encoding:content-type:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=v81RYgZzr05KCDxoR1cyj6HFcz85Vml1RF/7JkwpDYw=;
+        b=k2+ef1VwmT0sCZeSgomFiDKkr7BFB4S7RtiCu2MGMChCj0aOQsS2Hfjvr+S5x7x2Q8
+         xlp1T0I6hxeYRheh7qr9PQLC0quZSsHleardrGaD4WlaaXuVJ418AuWCk8eRm9Z8Vrto
+         u0gOZgFyCVwkKSR7HRs3P9OXUk0Oj4HpGq2U9JXSjf6qtTC+VX3ycMcMg5kMrswkDDLY
+         0g+HJmRdNQXeOZURs19Z3cMPB1ENDRWRpgWTwd7i/Vp+HXZQC8qPJQmANVI8XBHJQkCK
+         zbxm3lSqqOBfFqz7GBQbf9vGONyKH04z++dBfa9K+wtfkbBEgfepqJCyWkiG/5VHtnik
+         FYzQ==
+X-Forwarded-Encrypted: i=1; AHgh+Rrj2nv23+YUgnmu++KCT9ODidife3ysxiCq2HXCBMmV42ZgJUgtUbTsFPc1ekpAdxAAtO11vuD1ihex@vger.kernel.org
+X-Gm-Message-State: AOJu0YzDn8U45ClTAmw4YNdYz+lg4R/Y5u22xY/d/BLz8jaiL7AaOJnm
+	YqLBN3RuJS5RsjuRgwDwdCu2Cr6Ai1xDBbSlTR4RVK4vtUu4BYixh6JBTN2o10zkHl4=
+X-Gm-Gg: AfdE7cmt13KUZ6Zg/fzLSeDY4hzsdmthmfk2e8ehg8MO+msrHLORVkCrXfKt4hsj1G+
+	f3vNAqj4Kvz0Mo1d18EhLoTt5q7LvG6ucWoks9p74gFEHCquZuXWMaffcWa+y0kyNKLDG58Z/T4
+	yLOiaiRE8rCbaCXEy7Mm/lTTLmDCIbS9D7wagrprr6csrz9DkMyJe8vPlW07dq57ksBnLX32x3S
+	i/4YSoy5K6Bclj/PV4fjqbd9cgInHjo/bd9OUTtBWatwUV2XIUk/84RHQrRSu9UkyYHSJt3c4x4
+	Mb8ynam0c7Tfr8jnZ3/c1cAEr+OJs+1YKX+mtusKWH2y6Cm3g8rnYhgbNw1D+acZyig/p0TsGaV
+	B4lUb9XjVB0kO3no5I6ilTJRsWmfT60wFDEAJs13fd83BtxznBQWiZo/ICEyKcxSRatUPmT9iUe
+	jiBCyoJUa/MnhRw3gIuTvllz6zdOqURA==
+X-Received: by 2002:a05:600c:3150:b0:492:53e8:3bc1 with SMTP id 5b1f17b1804b1-4953c1624bdmr714135e9.17.1784055187650;
+        Tue, 14 Jul 2026 11:53:07 -0700 (PDT)
+Received: from [192.168.254.124] ([2001:9e8:2fb:8201:c26a:83ef:161a:409b])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-49508725c0bsm94908715e9.2.2026.07.14.11.53.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 14 Jul 2026 11:53:07 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH v4 4/7] serial: 8250_aspeed_vuart: add VUART over PCI
+From: Tan Siewert <tan.siewert@9elements.com>
+To: =?utf-8?q?Gr=C3=A9goire_Layet?= <gregoire.layet@9elements.com>
+Cc: joel@jms.id.au, andrew@codeconstruct.com.au, lkundrak@v3.sk, 
+ devicetree@vger.kernel.org, gregkh@linuxfoundation.org, 
+ jirislaby@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
+ conor+dt@kernel.org, andrew@lunn.ch, jacky_chou@aspeedtech.com, 
+ yh_chung@aspeedtech.com, ninad@linux.ibm.com, anirudhsriniv@gmail.com, 
+ linux-serial@vger.kernel.org, linux-aspeed@lists.ozlabs.org, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+In-Reply-To: <28c6e7c493559feffc7e6231b0a2f0b73b7fda41.1783524645.git.gregoire.layet@9elements.com>
+References: <cover.1783524645.git.gregoire.layet@9elements.com>
+ <28c6e7c493559feffc7e6231b0a2f0b73b7fda41.1783524645.git.gregoire.layet@9elements.com>
+Date: Tue, 14 Jul 2026 20:53:03 +0200
+Message-Id: <178405518337.194693.16062290686593842402.b4-review@b4>
+X-Mailer: b4 0.16-dev
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1784055186; l=4160;
+ i=tan.siewert@9elements.com; s=20260527; h=from:subject:message-id;
+ bh=ZdMjtjALJ9INUjixbUCM2kZrdun7GikDbIME1A+PLD4=;
+ b=GZ6jzOrhucR05WwmvOfO9a6YYLoB752Rjv/H4tteyWXK0nQoP0J4vtOVuXDGA+QefmBBarWe8
+ Ma1Cg3Obz4gAvCucwwSYpECAuo9Mbmv2Y1RTdL+yzoGUgXHEqBazp7d
+X-Developer-Key: i=tan.siewert@9elements.com; a=ed25519;
+ pk=ORQd/zQf+LsAvJGXP1CjQwVO6t6iEOGq/eGUsmRVTG4=
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kemnade.info,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
-	R_DKIM_ALLOW(-0.20)[kemnade.info:s=20220719];
+	DMARC_POLICY_ALLOW(-0.50)[9elements.com,quarantine];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_DKIM_ALLOW(-0.20)[9elements.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-326407-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-326734-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	FORGED_SENDER(0.00)[andreas@kemnade.info,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[40];
-	FORGED_RECIPIENTS(0.00)[m:hns@goldelico.com,m:grond66@riseup.net,m:sle85276@gmx.de,m:notasas@gmail.com,m:tony@atomide.com,m:enelsonmoore@gmail.com,m:jarkko.nikula@bitmer.com,m:s.hauer@pengutronix.de,m:lee@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:lgirdwood@gmail.com,m:broonie@kernel.org,m:aaro.koskinen@iki.fi,m:khilman@baylibre.com,m:rogerq@kernel.org,m:linux@armlinux.org.uk,m:danielt@kernel.org,m:jingoohan1@gmail.com,m:deller@gmx.de,m:perex@perex.cz,m:tiwai@suse.com,m:sen@ti.com,m:rf@opensource.cirrus.com,m:arnd@arndb.de,m:srinivas.kandagatla@oss.qualcomm.com,m:kuninori.morimoto.gx@renesas.com,m:ckeepax@opensource.cirrus.com,m:niranjan.hy@ti.com,m:letux-kernel@openphoenux.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-sound@vger.kernel.org,m:linux-omap@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:dri-devel@lists.freedesktop.org,m:linux-fbdev@vger.kernel.org,m:kernel@pyra-handheld.com,m:mfd@lists.linux.dev,m:krzk@k
- ernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS(0.00)[m:gregoire.layet@9elements.com,m:joel@jms.id.au,m:andrew@codeconstruct.com.au,m:lkundrak@v3.sk,m:devicetree@vger.kernel.org,m:gregkh@linuxfoundation.org,m:jirislaby@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:andrew@lunn.ch,m:jacky_chou@aspeedtech.com,m:yh_chung@aspeedtech.com,m:ninad@linux.ibm.com,m:anirudhsriniv@gmail.com,m:linux-serial@vger.kernel.org,m:linux-aspeed@lists.ozlabs.org,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	FORGED_SENDER(0.00)[tan.siewert@9elements.com,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FREEMAIL_CC(0.00)[riseup.net,gmx.de,gmail.com,atomide.com,bitmer.com,pengutronix.de,kernel.org,iki.fi,baylibre.com,armlinux.org.uk,perex.cz,suse.com,ti.com,opensource.cirrus.com,arndb.de,oss.qualcomm.com,renesas.com,openphoenux.org,vger.kernel.org,lists.infradead.org,lists.freedesktop.org,pyra-handheld.com,lists.linux.dev];
+	FREEMAIL_CC(0.00)[jms.id.au,codeconstruct.com.au,v3.sk,vger.kernel.org,linuxfoundation.org,kernel.org,lunn.ch,aspeedtech.com,linux.ibm.com,gmail.com,lists.ozlabs.org,lists.infradead.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andreas@kemnade.info,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kemnade.info:+];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[tan.siewert@9elements.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[9elements.com:+];
+	ALIAS_RESOLVED(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RSPAMD_EMAILBL_FAIL(0.00)[devicetree@vger.kernel.org:query timed out];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,kemnade.info:from_mime,kemnade.info:dkim,kemnade.info:mid,goldelico.com:email]
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,vger.kernel.org:from_smtp,9elements.com:from_mime,9elements.com:email,9elements.com:dkim,aspeedtech.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 62F8675BAFD
+X-Rspamd-Queue-Id: 03C5D757F86
 
-On Sat, 11 Jul 2026 08:02:03 +0200
-"H. Nikolaus Schaller" <hns@goldelico.com> wrote:
-
-> After updating the pandora-backligt setup and removing the
-> omap3pandora sound system and defining related gpios by device tree,
-> we can remove omap3_pandora_legacy_init() and the related legacy
-> devices completely.
+> Enable the VUART over PCI for the AST2600. Activate it only if the
+> 'aspeed,vuart-over-pci' property flag is set on an
+> 'ast2600-vuart' compatible node.
 > 
-> Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
-
-regarding bisectabily: Do we create mess, if the platform devices via
-quirks are disabled?
-
-I am wondering how we handle this. If this patch goes together with the
-removal of the legacy drivers, then there might be a situation where
-neither the new one nor the old one is available? Split this all up?
-
-If sound discussion takes longer, maybe do the backlight thing alone?
-
-Regards,
-Andreas
-> ---
->  arch/arm/mach-omap2/pdata-quirks.c | 23 -----------------------
->  1 file changed, 23 deletions(-)
+> The AST2600 has 2 VUART that are usable over PCI. These are already defined as
+> the VUART3 and VUART4 in the 'aspeed-g6.dtsi'.
 > 
-> diff --git a/arch/arm/mach-omap2/pdata-quirks.c
-> b/arch/arm/mach-omap2/pdata-quirks.c index
-> b947bacf23a37..aca7097a692ed 100644 ---
-> a/arch/arm/mach-omap2/pdata-quirks.c +++
-> b/arch/arm/mach-omap2/pdata-quirks.c @@ -268,27 +268,6 @@ static void
-> __init omap3_logicpd_torpedo_init(void) omap3_gpio126_127_129();
->  }
->  
-> -/* omap3pandora legacy devices */
-> -
-> -static struct platform_device pandora_backlight = {
-> -	.name	= "pandora-backlight",
-> -	.id	= -1,
-> -};
-> -
-> -static struct gpiod_lookup_table pandora_soc_audio_gpios = {
-> -	.dev_id = "soc-audio",
-> -	.table = {
-> -		GPIO_LOOKUP("gpio-112-127", 6, "dac",
-> GPIO_ACTIVE_HIGH),
-> -		GPIO_LOOKUP("gpio-0-15", 14, "amp",
-> GPIO_ACTIVE_HIGH),
-> -		{ }
-> -	},
-> -};
-> -
-> -static void __init omap3_pandora_legacy_init(void)
-> -{
-> -	platform_device_register(&pandora_backlight);
-> -	gpiod_add_lookup_table(&pandora_soc_audio_gpios);
-> -}
->  #endif /* CONFIG_ARCH_OMAP3 */
->  
->  #ifdef CONFIG_SOC_DRA7XX
-> @@ -514,8 +493,6 @@ static struct pdata_init pdata_quirks[]
-> __initdata = { { "ti,omap3-evm-37xx", omap3_evm_legacy_init, },
->  	{ "ti,am3517-evm", am3517_evm_legacy_init, },
->  	{ "technexion,omap3-tao3530", omap3_tao3530_legacy_init, },
-> -	{ "openpandora,omap3-pandora-600mhz",
-> omap3_pandora_legacy_init, },
-> -	{ "openpandora,omap3-pandora-1ghz",
-> omap3_pandora_legacy_init, }, #endif
->  	{ /* sentinel */ },
->  };
+> Sets the BMC PCI device enable bits, sets the PCI class code to
+> unassgined/device specific, and configures MSI interrupts.
+> 
+> There is no disable function. Removing this driver should not disable
+> the BMC PCI device, as other drivers could use it.
+> However, if all the drivers using it are removed, the
+> BMC PCI device will still be activated, which is not ideal. But in reality,
+> this is not a use case for a BMC, the drivers will never be removed.
+> 
+> This is useful on PCIe BMC expansion cards that use the AST2600, such as the
+> ASUS Kommando IPMI Expansion Card.
+> 
+> Register initialisation taken from ASPEED 6.18 Kernel SDK.
+> Add return code checks to each register write.
+> Simplify the code and add macros.
+> 
+> The ASPEED_SCUC24 regmap update is missing a macro for 'BIT(14)'. I was
+> unable to determine the purpose of this bit. In the AST2600 A3
+> datasheet it is marked as 'reserved'. It is only used on the other
+> revision. As I only have the AST2600A3, I was unable to try this code
+> path. This BIT14 was set in the ASPEED SDK so I kept it.
+> I can remove it and the untested path if necessary.
 
+There's not even a reference in the datasheet changelog, so I suspect that it
+has always been reserved.
+I'd be in favour of removing it.
+
+> 
+> Signed-off-by: Jacky Chou <jacky_chou@aspeedtech.com>
+> Signed-off-by: aspeedyh <yh_chung@aspeedtech.com>
+> Signed-off-by: Grégoire Layet <gregoire.layet@9elements.com>
+>
+> diff --git a/drivers/tty/serial/8250/8250_aspeed_vuart.c b/drivers/tty/serial/8250/8250_aspeed_vuart.c
+> index 6afa2f4057e1..4d09c04cb972 100644
+> --- a/drivers/tty/serial/8250/8250_aspeed_vuart.c
+> +++ b/drivers/tty/serial/8250/8250_aspeed_vuart.c
+
+*snip*
+
+> +static int aspeed_ast2600_vuart_over_pci_set_enabled(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	u32 silicon_revision_id;
+> +	struct regmap *scu;
+> +	int rc;
+> +
+> +	u32 pcie_config_ctl = SCU_PCIE_CONF_BMC_DEV_EN_IRQ |
+> +				SCU_PCIE_CONF_BMC_DEV_EN_MMIO |
+> +				SCU_PCIE_CONF_BMC_DEV_EN_MSI |
+> +				SCU_PCIE_CONF_BMC_DEV_EN_PCIE_BUS_MASTER |
+> +				SCU_PCIE_CONF_BMC_DEV_EN_E2L |
+> +				SCU_PCIE_CONF_BMC_DEV_EN_LPC_DECODE |
+> +				SCU_PCIE_CONF_BMC_DEV_EN;
+> +
+> +	scu = syscon_regmap_lookup_by_phandle(dev->of_node, "syscon");
+> +	if (IS_ERR(scu)) {
+> +		dev_err(&pdev->dev, "failed to find SCU regmap\n");
+
+dev_err(dev, ...) instead of &pdev->dev (defined above).
+
+> +		return PTR_ERR(scu);
+> +	}
+> +
+> +	/* update class code to be an Unassigned/device specific class device */
+> +	if (regmap_write(scu, ASPEED_SCU_BMC_DEV_CLASS, 0xff000000)) {
+> +		dev_err(dev, "could not set PCI class code\n");
+> +		return -EIO;
+> +	}
+> +
+> +	if (regmap_update_bits(scu, ASPEED_SCU_PCIE_CONF_CTRL,
+> +			       pcie_config_ctl, pcie_config_ctl)) {
+> +		dev_err(dev, "could not set PCIe configuration\n");
+> +		return -EIO;
+> +	}
+> +
+> +	if (regmap_read(scu, ASPEED_SCU_SILICON_REVISION_ID, &silicon_revision_id)) {
+> +		dev_err(dev, "could not read silicon revision\n");
+> +		return -EIO;
+> +	}
+> +
+> +	if (silicon_revision_id == AST2600A3_REVISION_ID)
+> +		rc = regmap_update_bits(scu, ASPEED_SCUC24,
+> +					ASPEED_SCUC24_PCIDEV1_INTX_MSI_HOST2BMC_EN | ASPEED_SCUC24_MSI_ROUTING_MASK,
+> +					ASPEED_SCUC24_PCIDEV1_INTX_MSI_HOST2BMC_EN | ASPEED_SCUC24_MSI_ROUTING_PCIE2LPC_PCIDEV1);
+> +	else
+> +		rc = regmap_update_bits(scu, ASPEED_SCUC24,
+> +					/**
+> +					 * The bit 14 is reserved in the Datasheet.
+> +					 */
+
+Even in the oldest datasheet that I've got (which was for A2 apparently) it is
+marked as reserved.
+
+Maybe some ASPEED folks can enlighten us what Bits 14 till 16 were used for on
+A0-A2, and if they are relevant for PCIe INTx/MSI routing on the older silicons.
+
+	Tan
+
+-- 
+Tan Siewert <tan.siewert@9elements.com>
 
