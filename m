@@ -1,1049 +1,329 @@
-Return-Path: <devicetree+bounces-325883-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-325881-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id PRQPN7XKVWpytQAAu9opvQ
-	(envelope-from <devicetree+bounces-325883-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 07:35:49 +0200
+	id vSfHFm/KVWpBtQAAu9opvQ
+	(envelope-from <devicetree+bounces-325881-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 07:34:39 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81FBD751303
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 07:35:49 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E7E627512C5
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 07:34:38 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=lpTSBxVs;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-325883-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-325883-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=gmail.com;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=RxHfukhQ;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-325881-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-325881-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id D75393046966
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 05:34:44 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 8D2EE3019FCE
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 05:34:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83DAD33D51A;
-	Tue, 14 Jul 2026 05:34:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62A5E33E348;
+	Tue, 14 Jul 2026 05:34:33 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f50.google.com (mail-pj1-f50.google.com [209.85.216.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82B2933D6D7
-	for <devicetree@vger.kernel.org>; Tue, 14 Jul 2026 05:34:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE49733D6C0;
+	Tue, 14 Jul 2026 05:34:31 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1784007282; cv=none; b=lc6bomP3B11QnG15tNyHUGEq5S2oEx9TmOVJfWdeukA6/ocD4Fn6kxeMhrSc3tiIymN9mGLYwSJqvz70M9swaBogI50L+2eXGDVlM3AmXyOdF8OpCzQGJ7jbiX5DoWHvS6QaMDr0r3XmlIgTKOfE1OYmMrgyO+wO/c2ejWlAMYw=
+	t=1784007273; cv=none; b=t5w83J719lfcLWgGDh6a0MaPdAneLLaMRdc8oO+IyPyHyAhKT8O8avDNgld8iWSiWO5siabfhX7JX9E/R1+5XUWrqT0hUGyIVldKS/4MxyOlNelgXaKsmQHPWHLPOtwTmIyH/M/a/eIY+uDD2Jc518tq/NZMnNxVneNQm5rJ5EI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1784007282; c=relaxed/simple;
-	bh=AY7fn9vkouGEcE24zScLoN7YDQhQdcEd3G9js81xxvc=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Q3hznyukZDOkv1Ft+FNrNr4nhlKPXZtHEwxAIZdreqbreblaqI80ZXPvOmN7a8WvcgCNhF3hUcHe6nMv0PZJpFfz/7LTjGsgl0Uapf1oqACX3yoP/1jqu79XAiQOVz1QEkTLkhjGvsJHt4smrxiIKpYry+Zu7+e+fZfORU6qWzo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lpTSBxVs; arc=none smtp.client-ip=209.85.216.50
-Received: by mail-pj1-f50.google.com with SMTP id 98e67ed59e1d1-38deea72eebso1812445a91.1
-        for <devicetree@vger.kernel.org>; Mon, 13 Jul 2026 22:34:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1784007280; x=1784612080; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=FIda7uj2B93RTZqxSmU5zPZuWVrR/AcetLX/UZooMaU=;
-        b=lpTSBxVs0IQERHpEfQ4GiOOXPg8qVzcBD2c24tsT7t/kCZB7sxsxj4f70BeEet5DUD
-         Vind0NfnZcUXerTYZvDLo9hePXp8OXWoevpx5s5JKabQMnx8wWY2MOK9WHoUzDSdAYJg
-         fu/jDUifnxoXPn3hRvaoiXmyQDbukVqSAoQgSga1TYhug9X0hNRz4OAIpfQwdAS8DSud
-         BE7Mepw2xYBqMeNub8s3DuOWrxdE02Zx7n4z9Qra2Mgy4z4FP2kng3Y8zgPIv2NerxgU
-         Sv+nOA2gFcO527lyM+e4Cf9nkqmf3bMMcoRznNxkuvK6zmreCMifPDud5wBkhYjtAhzG
-         rcVQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1784007280; x=1784612080;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=FIda7uj2B93RTZqxSmU5zPZuWVrR/AcetLX/UZooMaU=;
-        b=JMznJsZ9w9RXLQoWmjFw4+PAkOdRMQJYjeW02Xp+ik94VXJQAbM3eCK3hMXL+0HSLU
-         k1SB0PBIJv6jr1PaPsWnOStNPNkl339ef6hr2sKiF422hwOGXIETqUWQ35AoFiGVDXwG
-         pAfV/K6ABfXfcwnAvYn/dQohA/nNz9HSasn5hxF6JEBqnCcuZqGfnWmLFi6z9y5BEDu/
-         KuC9x/Eti+1m7faxB3CckvQg45AafANHbxEQ5y1VQL6UZcR+kYi/UrVbAs2EZ+Mv75Ek
-         KhXZw0GAZec2HVKj5kObGSW1PfZZ9W8JUm8hg8Dr7tnLd1oBwnab2ATfbHas0x+EG/Ue
-         nESg==
-X-Forwarded-Encrypted: i=1; AHgh+RoxjP/XhF1LzBa96RypTPxEutFqPc6p+ycOpX6YvR50EIZejYrtF6uIcfcGiAtEgsCXLgpDIPBXinDE@vger.kernel.org
-X-Gm-Message-State: AOJu0YzWtuqJDNFlibw67+NlQ+Efl0rjPpctEHpFiE51R3urBvbJP4dN
-	DyYa739JQ60wY0C1Z+u8K1lVWDdBQSF7Y8/Fuf9WO8CmP2mbuDRao69n
-X-Gm-Gg: AfdE7cmQeqhvX1HigPZM8m2/gkheb2AZ0l6xi4vsuNFLJw9BXGXttqZyEYq72OO1YN3
-	kDtEC0Wsf/ddkVBhOnATgNBUjBXx5rOsYV1yqbcnh28/HN/4WzL/Cu4Qb9K6oaunn/VWiHMK6JR
-	fVjjpvJ2XS+aKNIZz7rCN876C67GrGOaL4hVWbZoM4wpKrqrTgV7BlxfchfffqLa4rTNA+OCR8D
-	M9YHmv1UNevC/3CUIvxAv+oSt7eWTTLKjJaYa8sZYfwR2R0h8P6RANAtvWeJcuiOwu5gsDQ92fs
-	mzzHENgvjINezukeyxkdc2p8j/2xInH/0zgtU0Gm1e9DsDbh4fzTwNT5aDuFUf4eLRpJXENmz1U
-	LCbhxvdVRbJSecaLPbmElRa1Hf8XQp5IfKnIMPMaPJ7zOFcH1nHkFHirUonkmOIeY4AbEk3KVOh
-	qpBEwTKoCBYU128A6vQc051FagsweWics=
-X-Received: by 2002:a05:6a21:7107:b0:3bf:5ff5:2b15 with SMTP id adf61e73a8af0-3c110170db9mr13957789637.16.1784007279756;
-        Mon, 13 Jul 2026 22:34:39 -0700 (PDT)
-Received: from i386.168.1.127 ([2402:a00:163:2ce9:6882:91b7:8e79:7958])
-        by smtp.gmail.com with ESMTPSA id a92af1059eb24-13b87b92b27sm33047165c88.6.2026.07.13.22.34.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 13 Jul 2026 22:34:38 -0700 (PDT)
-From: Hrushiraj Gandhi <hrushirajg23@gmail.com>
-To: linux-rockchip@lists.infradead.org
-Cc: heiko@sntech.de,
-	krzk+dt@kernel.org,
-	robh@kernel.org,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Hrushiraj Gandhi <hrushirajg23@gmail.com>
-Subject: [PATCH v8 2/2] arm64: dts: rockchip: add Vicharak Axon board
-Date: Tue, 14 Jul 2026 11:04:19 +0530
-Message-ID: <20260714053419.265523-3-hrushirajg23@gmail.com>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20260714053419.265523-1-hrushirajg23@gmail.com>
-References: <20260714053419.265523-1-hrushirajg23@gmail.com>
+	s=arc-20240116; t=1784007273; c=relaxed/simple;
+	bh=fAKzaWM9e86Ewv++wa6J+o8ohBSjIl+3I4rl4uPVMYc=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=AKR8Z7ufR5x7Kltddlj0ilfgq9isHZNfgalWW/UcHfiBTKac8bvyi2cdpWlkgmwlquYWMvsINYZmpD/C/y2+1zVSHlJzz9cRBzBi9NR7O80MXhVEbaaGO0hcsrxg6Iq9WV8nZNI1z/RAmZlCvugEyns7uL/ZGNmXJ7XWRX8Ry98=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RxHfukhQ; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 45D371F00A3E;
+	Tue, 14 Jul 2026 05:34:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1784007271;
+	bh=FvR1ya1mJMTyVnXZUOmEiSjTpEukiZQ/KKcJQDRNUic=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=RxHfukhQ8jiz1AHg5NHA94sXzyEw7FWRID2/HtCAyyoYX8bCfQHxF1t6tOaHM2EQw
+	 DROkk+0phsK98nKRHmT8/DrrDgMYa/u2eQ/gh7w1nKcBmzTCVfk21ceqEfHJtdWT33
+	 oo08uCOxlWd0dyTgZ90+bfT2i9pQ/SQUg+f+FKtK8ZUBGjTER4/WUmgsElg4J355Z9
+	 fgakmIE+sEr4Ivvz6s8wseIJxc8xZ+C1mnJVWvZjAWxNmkfdzdP12DXYWIL5w07MkS
+	 MjYksty9Avb2kxk5SdXkBbq62f+TO8v4pCVgsvlnSbH1yM1OO4aNYwL6Woq11dWjam
+	 ABZBd/NbSh0WA==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v3 3/3] input: misc: Add Qualcomm SPMI PMIC haptics
+ driver
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Fenglin Wu" <fenglin.wu@oss.qualcomm.com>
+Cc: devicetree@vger.kernel.org, dmitry.torokhov@gmail.com, robh@kernel.org, linux-input@vger.kernel.org, conor+dt@kernel.org
+In-Reply-To: <20260713-qcom-spmi-haptics-v3-3-c931bb7cb94f@oss.qualcomm.com>
+References: <20260713-qcom-spmi-haptics-v3-0-c931bb7cb94f@oss.qualcomm.com>
+ <20260713-qcom-spmi-haptics-v3-3-c931bb7cb94f@oss.qualcomm.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Tue, 14 Jul 2026 05:34:30 +0000
+Message-Id: <20260714053431.45D371F00A3E@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.84 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
+X-Spamd-Result: default: False [-3.16 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-325881-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[smtp.kernel.org:mid,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,sashiko.dev:url,vger.kernel.org:from_smtp,qualcomm.com:email,lists.linux.dev:replyto];
+	FREEMAIL_CC(0.00)[vger.kernel.org,gmail.com,kernel.org];
 	MIME_TRACE(0.00)[0:+];
 	TO_DN_SOME(0.00)[];
-	FREEMAIL_CC(0.00)[sntech.de,kernel.org,vger.kernel.org,lists.infradead.org,gmail.com];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-325883-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:linux-rockchip@lists.infradead.org,m:heiko@sntech.de,m:krzk+dt@kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:hrushirajg23@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:fenglin.wu@oss.qualcomm.com,m:devicetree@vger.kernel.org,m:dmitry.torokhov@gmail.com,m:robh@kernel.org,m:linux-input@vger.kernel.org,m:conor+dt@kernel.org,m:dmitrytorokhov@gmail.com,m:conor@kernel.org,s:lists@lfdr.de];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[hrushirajg23@gmail.com,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[hrushirajg23@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	PRECEDENCE_BULK(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	RCPT_COUNT_FIVE(0.00)[6];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	FROM_NO_DN(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 81FBD751303
+X-Rspamd-Queue-Id: E7E627512C5
 
-Add initial support for the Vicharak Axon single-board computer based on
-the Rockchip RK3588 SoC.
+Thank you for your contribution! Sashiko AI review found 4 potential issue(=
+s) to consider:
+- [High] AB-BA deadlock in the error path of haptics_start_fifo() between `=
+h->fifo_lock` and `disable_irq()`.
+- [High] Failure to write to the FIFO in the IRQ handler leaves the interru=
+pt condition asserted, leading to an interrupt storm.
+- [Medium] Stop requests for inactive effects incorrectly terminate the cur=
+rently playing effect.
+- [Low] Mixing `goto`-based error handling with `guard()` scope-based clean=
+up in `haptics_start_fifo()`.
+--
 
-The board supports:
+--- Patch [3]: [PATCH v3 3/3] input: misc: Add Qualcomm SPMI PMIC haptics d=
+river ---
+commit 516c3c8b367d0b2e322ea97c78aee0907ed541f0
+Author: Fenglin Wu <fenglin.wu@oss.qualcomm.com>
 
-- eMMC storage
-- microSD card
-- Gigabit Ethernet
-- HDMI output (dual HDMI)
-- HDMI input
-- USB 2.0 host ports
-- PCIe 2.0 slots
-- PCIe 3.0 x4 slot
-- SATA
-- RTC
-- Status LEDs
+    input: misc: Add Qualcomm SPMI PMIC haptics driver
+   =20
+    Add an initial driver for the Qualcomm PMIH0108 PMIC haptics module,
+    named as HAP530_HV. This module supports several play modes, including
+    DIRECT_PLAY, FIFO, PAT_MEM, and SWR, each with distinct data sourcing
+    and hardware data handling logic.
 
-The board uses an RK806 PMIC and provides the regulators required by
-the RK3588 SoC.
+> diff --git a/drivers/input/misc/qcom-spmi-haptics.c b/drivers/input/misc/=
+qcom-spmi-haptics.c
+> new file mode 100644
+> index 0000000000000..ffbef7453459a
+> --- /dev/null
+> +++ b/drivers/input/misc/qcom-spmi-haptics.c
+> @@ -0,0 +1,1160 @@
 
-Signed-off-by: Hrushiraj Gandhi <hrushirajg23@gmail.com>
----
- arch/arm64/boot/dts/rockchip/Makefile         |   1 +
- .../dts/rockchip/rk3588-vicharak-axon.dts     | 860 ++++++++++++++++++
- 2 files changed, 861 insertions(+)
- create mode 100644 arch/arm64/boot/dts/rockchip/rk3588-vicharak-axon.dts
+[ ... ]
 
-diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
-index 761d82b4f4f2..92114cb757cc 100644
---- a/arch/arm64/boot/dts/rockchip/Makefile
-+++ b/arch/arm64/boot/dts/rockchip/Makefile
-@@ -213,6 +213,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-tiger-haikou.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-tiger-haikou-video-demo.dtbo
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-toybrick-x0.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-turing-rk1.dtb
-+dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-vicharak-axon.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-coolpi-4b.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-evb1-v10.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-gameforce-ace.dtb
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-vicharak-axon.dts b/arch/arm64/boot/dts/rockchip/rk3588-vicharak-axon.dts
-new file mode 100644
-index 000000000000..709b03375f01
---- /dev/null
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-vicharak-axon.dts
-@@ -0,0 +1,860 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+
-+/dts-v1/;
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/input/linux-event-codes.h>
-+#include <dt-bindings/leds/common.h>
-+#include <dt-bindings/pinctrl/rockchip.h>
-+#include <dt-bindings/soc/rockchip,vop2.h>
-+#include "rk3588.dtsi"
-+
-+/ {
-+	model = "Vicharak Axon";
-+	compatible = "vicharak,axon", "rockchip,rk3588";
-+
-+	aliases {
-+		mmc0 = &sdmmc;
-+		mmc1 = &sdhci;
-+		serial2 = &uart2;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial2:1500000n8";
-+	};
-+
-+	hdmi0-con {
-+		compatible = "hdmi-connector";
-+		type = "a";
-+
-+		port {
-+			hdmi0_con_in: endpoint {
-+				remote-endpoint = <&hdmi0_out_con>;
-+			};
-+		};
-+	};
-+
-+	hdmi1-con {
-+		compatible = "hdmi-connector";
-+		type = "a";
-+
-+		port {
-+			hdmi1_con_in: endpoint {
-+				remote-endpoint = <&hdmi1_out_con>;
-+			};
-+		};
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		power_led: power-led {
-+			color = <LED_COLOR_ID_GREEN>;
-+			function = LED_FUNCTION_STATUS;
-+			gpios = <&pca9554 0 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger = "heartbeat";
-+		};
-+
-+		status_led: status-led {
-+			color = <LED_COLOR_ID_RED>;
-+			function = LED_FUNCTION_STATUS;
-+			gpios = <&pca9554 1 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger = "none";
-+		};
-+	};
-+
-+	vcc12v_dcin: regulator-vcc12v-dcin {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc12v_dcin";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <12000000>;
-+		regulator-max-microvolt = <12000000>;
-+	};
-+
-+	vcc3v3_io_expander: regulator-vcc3v3-io-expander {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc3v3_io_expander";
-+		regulator-boot-on;
-+		regulator-always-on;
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+	};
-+
-+	vcc3v3_pcie20_sata30: regulator-vcc3v3-pcie20-sata30 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc3v3_pcie20_sata30";
-+		regulator-boot-on;
-+		regulator-always-on;
-+		enable-active-high;
-+		gpios = <&gpio0 RK_PA0 GPIO_ACTIVE_HIGH>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-min-microvolt = <3300000>;
-+		vin-supply = <&vcc12v_dcin>;
-+	};
-+
-+	vcc3v3_pcie30: regulator-vcc3v3-pcie30 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc3v3_pcie30";
-+		regulator-boot-on;
-+		regulator-always-on;
-+		enable-active-high;
-+		gpios = <&gpio0 RK_PB2 GPIO_ACTIVE_HIGH>;
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&vcc12v_dcin>;
-+	};
-+
-+	vcc5v0_sys: regulator-vcc5v0-sys {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc5v0_sys";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		vin-supply = <&vcc12v_dcin>;
-+	};
-+
-+	vcc5v0_usb20_host: regulator-vcc5v0-usb20-host {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc5v0_usb20_host";
-+		regulator-boot-on;
-+		regulator-always-on;
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		vin-supply = <&vcc5v0_sys>;
-+	};
-+
-+	vcc_1v1_nldo_s3: regulator-vcc-1v1-nldo-s3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc_1v1_nldo_s3";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <1100000>;
-+		regulator-max-microvolt = <1100000>;
-+		vin-supply = <&vcc5v0_sys>;
-+	};
-+
-+};
-+
-+
-+&combphy0_ps {
-+	status = "okay";
-+};
-+
-+&combphy1_ps {
-+	status = "okay";
-+};
-+
-+&combphy2_psu {
-+	status = "okay";
-+};
-+
-+&cpu_b0 {
-+	cpu-supply = <&vdd_cpu_big0_s0>;
-+};
-+
-+&cpu_b1 {
-+	cpu-supply = <&vdd_cpu_big0_s0>;
-+};
-+
-+&cpu_b2 {
-+	cpu-supply = <&vdd_cpu_big1_s0>;
-+};
-+
-+&cpu_b3 {
-+	cpu-supply = <&vdd_cpu_big1_s0>;
-+};
-+
-+&cpu_l0 {
-+	cpu-supply = <&vdd_cpu_lit_s0>;
-+};
-+
-+&cpu_l1 {
-+	cpu-supply = <&vdd_cpu_lit_s0>;
-+};
-+
-+&cpu_l2 {
-+	cpu-supply = <&vdd_cpu_lit_s0>;
-+};
-+
-+&cpu_l3 {
-+	cpu-supply = <&vdd_cpu_lit_s0>;
-+};
-+
-+&gmac1 {
-+	clock_in_out = "output";
-+	phy-handle = <&rgmii_phy>;
-+	phy-mode = "rgmii-rxid";
-+	phy-supply = <&vcc_3v3_s3>;
-+	pinctrl-0 = <&gmac1_rgmii_bus
-+				&gmac1_rgmii_clk
-+				&gmac1_rx_bus2
-+				&gmac1_tx_bus2
-+				&gmac1_miim>;
-+	pinctrl-names = "default";
-+	snps,reset-active-low;
-+	snps,reset-delays-us = <0 20000 100000>;
-+	snps,reset-gpio = <&gpio3 RK_PB7 GPIO_ACTIVE_LOW>;
-+	rx_delay = <0x00>;
-+	tx_delay = <0x43>;
-+	status = "okay";
-+};
-+
-+&gpu {
-+	mali-supply = <&vdd_gpu_s0>;
-+	status = "okay";
-+};
-+
-+&hdmi0 {
-+	status = "okay";
-+};
-+
-+&hdmi0_in {
-+	hdmi0_in_vp0: endpoint {
-+		remote-endpoint = <&vp0_out_hdmi0>;
-+	};
-+};
-+
-+&hdmi0_out {
-+	hdmi0_out_con: endpoint {
-+		remote-endpoint = <&hdmi0_con_in>;
-+	};
-+};
-+
-+&hdmi0_sound {
-+	status = "okay";
-+};
-+
-+&hdmi1 {
-+	status = "okay";
-+};
-+
-+&hdmi1_in {
-+	hdmi1_in_vp1: endpoint {
-+		remote-endpoint = <&vp1_out_hdmi1>;
-+	};
-+};
-+
-+&hdmi1_out {
-+	hdmi1_out_con: endpoint {
-+		remote-endpoint = <&hdmi1_con_in>;
-+	};
-+};
-+
-+&hdmi1_sound {
-+	status = "okay";
-+};
-+
-+&hdmi_receiver {
-+	pinctrl-0 = <&hdmim1_rx_cec &hdmim1_rx_hpdin &hdmim1_rx_scl &hdmim1_rx_sda &hdmirx_hpd>;
-+	pinctrl-names = "default";
-+	hpd-gpios = <&gpio4 RK_PB0 GPIO_ACTIVE_LOW>;
-+	status = "okay";
-+};
-+
-+&hdmi_receiver_cma {
-+	status = "okay";
-+};
-+
-+&hdptxphy0 {
-+	status = "okay";
-+};
-+
-+&hdptxphy1 {
-+	status = "okay";
-+};
-+
-+&i2c0 {
-+	pinctrl-0 = <&i2c0m2_xfer>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+
-+	vdd_cpu_big0_s0: regulator@42 {
-+		compatible = "rockchip,rk8602";
-+		fcs,suspend-voltage-selector = <1>;
-+		reg = <0x42>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-max-microvolt = <1050000>;
-+		regulator-min-microvolt = <550000>;
-+		regulator-name = "vdd_cpu_big0_s0";
-+		regulator-ramp-delay = <2300>;
-+		vin-supply = <&vcc5v0_sys>;
-+
-+		regulator-state-mem {
-+			regulator-off-in-suspend;
-+		};
-+	};
-+
-+	vdd_cpu_big1_s0: regulator@43 {
-+		compatible = "rockchip,rk8603", "rockchip,rk8602";
-+		fcs,suspend-voltage-selector = <1>;
-+		reg = <0x43>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-max-microvolt = <1050000>;
-+		regulator-min-microvolt = <550000>;
-+		regulator-name = "vdd_cpu_big1_s0";
-+		regulator-ramp-delay = <2300>;
-+		vin-supply = <&vcc5v0_sys>;
-+
-+		regulator-state-mem {
-+			regulator-off-in-suspend;
-+		};
-+	};
-+
-+	hym8563: rtc@51 {
-+		compatible = "haoyu,hym8563";
-+		reg = <0x51>;
-+		#clock-cells = <0>;
-+		clock-output-names = "hym8563";
-+		interrupt-parent = <&gpio0>;
-+		interrupts = <RK_PB0 IRQ_TYPE_LEVEL_LOW>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&rtc_int>;
-+		wakeup-source;
-+	};
-+};
-+
-+&i2c1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&i2c1m2_xfer>;
-+	status = "okay";
-+
-+	vdd_npu_s0: regulator@42 {
-+		compatible = "rockchip,rk8602";
-+		reg = <0x42>;
-+		fcs,suspend-voltage-selector = <1>;
-+		regulator-name = "vdd_npu_s0";
-+		regulator-boot-on;
-+		regulator-enable-ramp-delay = <500>;
-+		regulator-min-microvolt = <550000>;
-+		regulator-max-microvolt = <950000>;
-+		regulator-ramp-delay = <2300>;
-+		vin-supply = <&vcc5v0_sys>;
-+
-+		regulator-state-mem {
-+			regulator-off-in-suspend;
-+		};
-+	};
-+};
-+
-+&i2c6 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&i2c6m0_xfer>;
-+	status = "okay";
-+
-+	pca9554: gpio@24 {
-+		compatible = "nxp,pca9554";
-+		#gpio-cells = <2>;
-+		gpio-controller;
-+		reg = <0x24>;
-+		vcc-supply = <&vcc3v3_io_expander>;
-+	};
-+};
-+
-+&i2s5_8ch {
-+	status = "okay";
-+};
-+
-+&i2s6_8ch {
-+	status = "okay";
-+};
-+
-+&sdhci {
-+	bus-width = <8>;
-+	full-pwr-cycle-in-suspend;
-+	mmc-hs400-1_8v;
-+	mmc-hs400-enhanced-strobe;
-+	no-sd;
-+	no-sdio;
-+	non-removable;
-+	vmmc-supply = <&vcc_3v3_s3>;
-+	vqmmc-supply = <&vcc_1v8_s3>;
-+	status = "okay";
-+};
-+
-+&sdmmc {
-+	bus-width = <4>;
-+	cap-mmc-highspeed;
-+	cap-sd-highspeed;
-+	cd-gpios = <&gpio0 RK_PA4 GPIO_ACTIVE_LOW>;
-+	disable-wp;
-+	max-frequency = <200000000>;
-+	no-mmc;
-+	no-sdio;
-+	sd-uhs-sdr104;
-+	vmmc-supply = <&vcc_3v3_s3>;
-+	vqmmc-supply = <&vccio_sd_s0>;
-+	status = "okay";
-+};
-+
-+&spi2 {
-+	assigned-clock-rates = <200000000>;
-+	assigned-clocks = <&cru CLK_SPI2>;
-+	num-cs = <1>;
-+	pinctrl-0 = <&spi2m2_cs0 &spi2m2_pins>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	pmic@0 {
-+		compatible = "rockchip,rk806";
-+		reg = <0>;
-+		#gpio-cells = <2>;
-+		gpio-controller;
-+		interrupt-parent = <&gpio0>;
-+		interrupts = <7 IRQ_TYPE_LEVEL_LOW>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pmic_pins>, <&rk806_dvs1_null>,
-+				<&rk806_dvs2_null>, <&rk806_dvs3_null>;
-+		spi-max-frequency = <1000000>;
-+
-+		vcc1-supply = <&vcc5v0_sys>;
-+		vcc2-supply = <&vcc5v0_sys>;
-+		vcc3-supply = <&vcc5v0_sys>;
-+		vcc4-supply = <&vcc5v0_sys>;
-+		vcc5-supply = <&vcc5v0_sys>;
-+		vcc6-supply = <&vcc5v0_sys>;
-+		vcc7-supply = <&vcc5v0_sys>;
-+		vcc8-supply = <&vcc5v0_sys>;
-+		vcc9-supply = <&vcc5v0_sys>;
-+		vcc10-supply = <&vcc5v0_sys>;
-+		vcc11-supply = <&vcc_2v0_pldo_s3>;
-+		vcc12-supply = <&vcc5v0_sys>;
-+		vcc13-supply = <&vcc_1v1_nldo_s3>;
-+		vcc14-supply = <&vcc_1v1_nldo_s3>;
-+		vcca-supply = <&vcc5v0_sys>;
-+
-+		rk806_dvs1_null: dvs1-null-pins {
-+			pins = "gpio_pwrctrl1";
-+			function = "pin_fun0";
-+		};
-+
-+		rk806_dvs2_null: dvs2-null-pins {
-+			pins = "gpio_pwrctrl2";
-+			function = "pin_fun0";
-+		};
-+
-+		rk806_dvs3_null: dvs3-null-pins {
-+			pins = "gpio_pwrctrl3";
-+			function = "pin_fun0";
-+		};
-+
-+		regulators {
-+			vdd_gpu_s0: dcdc-reg1 {
-+				regulator-boot-on;
-+				regulator-min-microvolt = <550000>;
-+				regulator-max-microvolt = <950000>;
-+				regulator-ramp-delay = <12500>;
-+				regulator-name = "vdd_gpu_s0";
-+				regulator-enable-ramp-delay = <400>;
-+
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			vdd_cpu_lit_s0: dcdc-reg2 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <550000>;
-+				regulator-max-microvolt = <950000>;
-+				regulator-ramp-delay = <12500>;
-+				regulator-name = "vdd_cpu_lit_s0";
-+
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			vdd_log_s0: dcdc-reg3 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <675000>;
-+				regulator-max-microvolt = <750000>;
-+				regulator-ramp-delay = <12500>;
-+				regulator-name = "vdd_log_s0";
-+
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+					regulator-suspend-microvolt = <750000>;
-+				};
-+			};
-+
-+			vdd_vdenc_s0: dcdc-reg4 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <550000>;
-+				regulator-max-microvolt = <950000>;
-+				regulator-ramp-delay = <12500>;
-+				regulator-name = "vdd_vdenc_s0";
-+
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			vdd_ddr_s0: dcdc-reg5 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <675000>;
-+				regulator-max-microvolt = <900000>;
-+				regulator-ramp-delay = <12500>;
-+				regulator-name = "vdd_ddr_s0";
-+
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+					regulator-suspend-microvolt = <850000>;
-+				};
-+			};
-+
-+			vdd2_ddr_s3: dcdc-reg6 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-name = "vdd2_ddr_s3";
-+
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+				};
-+			};
-+
-+			vcc_2v0_pldo_s3: dcdc-reg7 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <2000000>;
-+				regulator-max-microvolt = <2000000>;
-+				regulator-name = "vdd_2v0_pldo_s3";
-+
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+					regulator-suspend-microvolt = <2000000>;
-+				};
-+			};
-+
-+			vcc_3v3_s3: dcdc-reg8 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-name = "vcc_3v3_s3";
-+
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+					regulator-suspend-microvolt = <3300000>;
-+				};
-+			};
-+
-+			vddq_ddr_s0: dcdc-reg9 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-name = "vddq_ddr_s0";
-+
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			vcc_1v8_s3: dcdc-reg10 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-name = "vcc_1v8_s3";
-+
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+					regulator-suspend-microvolt = <1800000>;
-+				};
-+			};
-+
-+			avcc_1v8_s0: pldo-reg1 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-name = "avcc_1v8_s0";
-+
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			vcc_1v8_s0: pldo-reg2 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-name = "vcc_1v8_s0";
-+
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+					regulator-suspend-microvolt = <1800000>;
-+				};
-+			};
-+
-+			avdd_1v2_s0: pldo-reg3 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <1200000>;
-+				regulator-max-microvolt = <1200000>;
-+				regulator-name = "avdd_1v2_s0";
-+
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			vcc_3v3_s0: pldo-reg4 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-name = "vcc_3v3_s0";
-+
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			vccio_sd_s0: pldo-reg5 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-name = "vccio_sd_s0";
-+
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			pldo6_s3: pldo-reg6 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-name = "pldo6_s3";
-+
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+					regulator-suspend-microvolt = <1800000>;
-+				};
-+			};
-+
-+			vdd_0v75_s3: nldo-reg1 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <750000>;
-+				regulator-max-microvolt = <750000>;
-+				regulator-name = "vdd_0v75_s3";
-+
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+					regulator-suspend-microvolt = <750000>;
-+				};
-+			};
-+
-+			vdd_ddr_pll_s0: nldo-reg2 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <850000>;
-+				regulator-max-microvolt = <850000>;
-+				regulator-name = "vdd_ddr_pll_s0";
-+
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+					regulator-suspend-microvolt = <850000>;
-+				};
-+			};
-+
-+			avdd_0v75_s0: nldo-reg3 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <837500>;
-+				regulator-max-microvolt = <837500>;
-+				regulator-name = "avdd_0v75_s0";
-+
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			vdd_0v85_s0: nldo-reg4 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <850000>;
-+				regulator-max-microvolt = <850000>;
-+				regulator-name = "vdd_0v85_s0";
-+
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			vdd_0v75_s0: nldo-reg5 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <750000>;
-+				regulator-max-microvolt = <750000>;
-+				regulator-name = "vdd_0v75_s0";
-+
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+		};
-+	};
-+};
-+
-+&mdio1 {
-+	rgmii_phy: phy@1 {
-+		compatible = "ethernet-phy-ieee802.3-c22";
-+		reg = <0x1>;
-+	};
-+};
-+
-+&pcie2x1l0 {
-+	reset-gpios = <&gpio4 RK_PA5 GPIO_ACTIVE_HIGH>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pcie2_0_rst>;
-+	vpcie3v3-supply = <&vcc3v3_pcie20_sata30>;
-+	status = "okay";
-+};
-+
-+&pcie2x1l1 {
-+	reset-gpios = <&gpio4 RK_PA2 GPIO_ACTIVE_HIGH>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pcie2_1_rst>;
-+	vpcie3v3-supply = <&vcc3v3_pcie20_sata30>;
-+	status = "okay";
-+};
-+
-+&pcie2x1l2 {
-+	status = "disabled";
-+};
-+
-+&pcie30phy {
-+	status = "okay";
-+};
-+
-+&pcie3x4 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pcie3_reset>;
-+	reset-gpios = <&gpio4 RK_PB6 GPIO_ACTIVE_HIGH>;
-+	vpcie3v3-supply = <&vcc3v3_pcie30>;
-+	status = "okay";
-+};
-+
-+&pinctrl {
-+
-+	hdmirx {
-+		hdmirx_hpd: hdmirx-5v-detection {
-+			rockchip,pins = <4 RK_PB0 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+
-+
-+	hym8563 {
-+		rtc_int: rtc-int {
-+			rockchip,pins =
-+				<0 RK_PB0 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+
-+	pcie2 {
-+		pcie2_0_rst: pcie2-0-rst {
-+			rockchip,pins =
-+				<4 RK_PA5 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+
-+		pcie2_1_rst: pcie2-1-rst {
-+			rockchip,pins =
-+				<4 RK_PA2 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+
-+	pcie3 {
-+		pcie3_reset: pcie3-reset {
-+			rockchip,pins =
-+				<4 RK_PB6 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+
-+};
-+
-+&saradc {
-+	vref-supply = <&avcc_1v8_s0>;
-+	status = "okay";
-+};
-+
-+&sata0 {
-+	status = "okay";
-+};
-+
-+&tsadc {
-+	status = "okay";
-+};
-+&u2phy2 {
-+	status = "okay";
-+};
-+
-+&u2phy2_host {
-+	phy-supply = <&vcc5v0_usb20_host>;
-+	status = "okay";
-+};
-+
-+&u2phy3 {
-+	status = "okay";
-+};
-+
-+&u2phy3_host {
-+	phy-supply = <&vcc5v0_usb20_host>;
-+	status = "okay";
-+};
-+
-+&uart2 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&uart2m0_xfer>;
-+	status = "okay";
-+};
-+
-+&usb_host0_ehci {
-+	status = "okay";
-+};
-+
-+&usb_host0_ohci {
-+	status = "okay";
-+};
-+
-+&usb_host1_ehci {
-+	status = "okay";
-+};
-+
-+&usb_host1_ohci {
-+	status = "okay";
-+};
-+
-+&vop {
-+	status = "okay";
-+};
-+
-+&vop_mmu {
-+	status = "okay";
-+};
-+
-+&vp0 {
-+	vp0_out_hdmi0: endpoint@ROCKCHIP_VOP2_EP_HDMI0 {
-+		reg = <ROCKCHIP_VOP2_EP_HDMI0>;
-+		remote-endpoint = <&hdmi0_in_vp0>;
-+	};
-+};
-+
-+&vp1 {
-+	vp1_out_hdmi1: endpoint@ROCKCHIP_VOP2_EP_HDMI1 {
-+		reg = <ROCKCHIP_VOP2_EP_HDMI1>;
-+		remote-endpoint = <&hdmi1_in_vp1>;
-+	};
-+};
--- 
-2.47.3
+> +static int haptics_start_fifo(struct qcom_haptics *h, int effect_id)
+> +{
+> +	struct qcom_haptics_effect *eff =3D &h->effects[effect_id];
+> +	u32 vmax =3D eff->vmax_mv ? eff->vmax_mv : h->vmax_mv;
+> +	u32 init_len;
+> +	bool data_done;
+> +	int ret;
+> +
+> +	if (!eff->fifo_data || !eff->data_len)
+> +		return -EINVAL;
+> +
+> +	ret =3D haptics_clear_faults(h);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* Disable auto-resonance for FIFO mode */
+> +	ret =3D cfg_update_bits(h, HAP_CFG_AUTORES_CFG_REG, AUTORES_EN_BIT, 0);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret =3D haptics_set_vmax(h, haptics_gain_scaled_vmax(h, vmax));
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret =3D ptn_update_bits(h, HAP_PTN_FIFO_PLAY_RATE_REG,
+> +			      FIFO_PLAY_RATE_MASK,
+> +			      FIELD_PREP(FIFO_PLAY_RATE_MASK, eff->play_rate));
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* Flush FIFO before loading new data */
+> +	ret =3D ptn_write(h, HAP_PTN_MEM_OP_ACCESS_REG, MEM_FLUSH_RELOAD_BIT);
+> +	if (ret)
+> +		return ret;
+> +	ret =3D ptn_write(h, HAP_PTN_MEM_OP_ACCESS_REG, 0);
+> +	if (ret)
+> +		return ret;
+> +
+> +	guard(mutex)(&h->fifo_lock);
+> +
+> +	/* Write the initial chunk and initialise streaming state */
+> +	init_len =3D min_t(u32, eff->data_len, FIFO_INIT_FILL);
+> +	ret =3D haptics_write_fifo_chunk(h, eff->fifo_data, init_len);
 
+[Severity: Low]
+Is it intended to mix goto-based error handling with scope-based guard()
+cleanup here? The subsystem cleanup guidelines specify that functions should
+use either goto-based cleanups or scope-based cleanups, but never both in
+the same function.
+
+> +	if (ret)
+> +		return ret;
+> +
+> +	h->fifo_data    =3D eff->fifo_data;
+> +	h->data_len     =3D eff->data_len;
+> +	h->data_written =3D init_len;
+> +
+> +	/*
+> +	 * Set empty threshold.  When threshold > 0 the hardware fires the
+> +	 * FIFO-empty interrupt when occupancy drops below the threshold,
+> +	 * allowing the driver to refill.  A threshold of 0 disables the IRQ.
+> +	 */
+> +	data_done =3D (h->data_written >=3D h->data_len);
+> +	if (!data_done) {
+> +		ret =3D ptn_write(h, HAP_PTN_FIFO_EMPTY_CFG_REG,
+> +				FIFO_EMPTY_THRESH / FIFO_THRESH_LSB);
+> +		if (ret)
+> +			goto free_fifo;
+> +
+> +		haptics_fifo_irq_enable(h, true);
+> +	}
+> +
+> +	ret =3D cfg_write(h, HAP_CFG_SPMI_PLAY_REG,
+> +			 PLAY_EN_BIT | FIELD_PREP(PAT_SRC_MASK, PAT_SRC_FIFO));
+> +	if (ret) {
+> +		dev_err(h->dev, "trigger FIFO play failed, ret=3D%d\n", ret);
+> +		goto fail;
+> +	}
+> +
+> +	return 0;
+> +
+> +fail:
+> +	ptn_write(h, HAP_PTN_FIFO_EMPTY_CFG_REG, 0);
+> +	haptics_fifo_irq_enable(h, false);
+> +free_fifo:
+> +	h->fifo_data =3D NULL;
+> +	return ret;
+> +}
+
+[Severity: High]
+Can this sequence cause a deadlock? In haptics_start_fifo(), h->fifo_lock is
+still held via the guard() scope when jumping to the fail label.
+
+The code then calls haptics_fifo_irq_enable() which disables the IRQ
+synchronously using disable_irq().
+
+If the threaded IRQ handler haptics_fifo_empty_irq() is concurrently runnin=
+g,
+it will block waiting for h->fifo_lock, while disable_irq() blocks waiting
+for the handler to complete.
+
+[ ... ]
+
+> +static irqreturn_t haptics_fifo_empty_irq(int irq, void *dev_id)
+> +{
+> +	struct qcom_haptics *h =3D dev_id;
+> +	u32 sts, to_write;
+> +	int ret;
+> +
+> +	ret =3D regmap_read(h->regmap,
+> +			  h->cfg_base + HAP_CFG_INT_RT_STS_REG, &sts);
+> +	if (ret || !(sts & FIFO_EMPTY_BIT))
+> +		return IRQ_HANDLED;
+> +
+> +	guard(mutex)(&h->fifo_lock);
+> +
+> +	if (!h->fifo_data)
+> +		return IRQ_HANDLED;
+> +
+> +	/* Refill: write the next chunk */
+> +	to_write =3D min_t(u32, h->data_len - h->data_written,
+> +			 h->fifo_len - FIFO_EMPTY_THRESH);
+> +	ret =3D haptics_write_fifo_chunk(h, &h->fifo_data[h->data_written], to_=
+write);
+> +	if (ret) {
+> +		dev_err(h->dev, "refill FIFO samples failed, ret=3D%d\n", ret);
+> +		return IRQ_HANDLED;
+> +	}
+
+[Severity: High]
+If haptics_write_fifo_chunk() fails here, could this cause an interrupt
+storm?
+
+By returning IRQ_HANDLED without writing samples to the FIFO or disabling
+the empty threshold via ptn_write(), the hardware FIFO occupancy remains
+below the threshold.
+
+Once the IRQ is unmasked upon return, the hardware will immediately trigger
+the interrupt again.
+
+[ ... ]
+
+> +static void haptics_play_work(struct work_struct *work)
+> +{
+> +	struct qcom_haptics *h =3D container_of(to_delayed_work(work),
+> +					      struct qcom_haptics, play_work);
+> +	struct haptics_play_req *req =3D haptics_dequeue_play_req(h);
+> +	bool rearmed =3D false;
+> +	u32 length_us;
+> +	int ret;
+> +
+> +	guard(mutex)(&h->play_lock);
+> +
+> +	if (req && req->play) {
+> +		ret =3D haptics_start_locked(h, req->effect_id);
+> +		if (ret) {
+> +			dev_err(h->dev, "play haptics failed, ret=3D%d\n", ret);
+> +		} else {
+> +			/*
+> +			 * Re-arm the work to stop the play or advance
+> +			 * to next play after the play duration
+> +			 */
+> +			length_us =3D h->effects[req->effect_id].length_us;
+> +			if (length_us) {
+> +				schedule_delayed_work(&h->play_work,
+> +						      usecs_to_jiffies(length_us));
+> +				rearmed =3D true;
+> +			}
+> +		}
+> +	} else {
+> +		haptics_stop_locked(h, false);
+> +	}
+
+[Severity: Medium]
+Will this unconditionally stop the active effect even if the stop request
+was for a different effect?
+
+Since the ff-core tracks multiple effects, an application might send a stop
+command for an inactive effect. The else block here does not verify if
+req->effect_id matches h->active_effect_id before terminating the hardware
+playback.
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260713-qcom-spmi-=
+haptics-v3-0-c931bb7cb94f@oss.qualcomm.com?part=3D3
 
