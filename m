@@ -1,57 +1,57 @@
-Return-Path: <devicetree+bounces-325821-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-325823-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id HY2oAlKSVWrpqAAAu9opvQ
-	(envelope-from <devicetree+bounces-325821-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 03:35:14 +0200
+	id w7X0KlGSVWroqAAAu9opvQ
+	(envelope-from <devicetree+bounces-325823-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 03:35:13 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A34A75016E
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D39D75016D
 	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 03:35:13 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20201202 header.b=qJ+XIuvW;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-325821-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-325821-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20201202 header.b=l9EhaJ3Z;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-325823-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-325823-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 578893037EE6
+	by tor.lore.kernel.org (Postfix) with ESMTP id DEE4F301A421
 	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 01:35:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 479DB3612D8;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 510133624C2;
 	Tue, 14 Jul 2026 01:35:10 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20E7235F191;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20F6B360EC4;
 	Tue, 14 Jul 2026 01:35:09 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783992910; cv=none; b=IokVW6OrZvn7IyMrHfB4WzidhkmkQlMi/XT6k6te6F85HrZdBr1ZkZtv4v3jW6VVBbkqdt1HPZQY5l/nFsPsCLITe+pSeT3d5iW1XqRxVGb1S5z8ZxNp0O04mwIOetrN6XUPQl1G147UMU8TQZW/UW6puv/lm2b8ol4iNW9G9ww=
+	t=1783992910; cv=none; b=ARvjWeJEDjpvPmTShSPsHtxCTlHyATsR9k2CbeJLjd2YkVdbvXDs7Zr1t9e/lQJ0OkfrpQuH8eR+reb1RiuYgob2I0HXQ2TRSvCRbI/Mko3Nvd+7aLSKO+ZMHXxmWsAplnaQ4T7AZC0bP6BkHbLUeTf4ppvDyhJiO905cM3o95U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1783992910; c=relaxed/simple;
-	bh=1+0h5Czi3945BvDh1x4hHUXcjf/w1aukAvvcGRam85U=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=uOOteuUpsdkvppmWswkokCsjzSwAseWD0i4TDdfk+YfnSB3oev/8l4CpyMDpu9boRDPZ8Mrrzwk2erYM3gCv9oUymbtYaJyopx2S1zoZebzF7/IDkk919Rfsd0cVwyP5bDUyAAxW3RK/IhGLQsHOTboxLm8MBZRq0n2RKQi9wlQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qJ+XIuvW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id B1002C2BCB8;
+	bh=i+vNWFu0WMNpWI91QVE2Zdt4dVaM7AXfu0XL56oslRc=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=h8byqT+0tUO0/95FIINtkx3QIgho+7GOpd4owZpK/TLrfEHaIaeAPEOlKgdQXV0z1q5b4DqntAinx+wZFqYovo/18ZnaHjCEjYsH8TN5kuIQfCmGbW2lhL3NmUzkIRCljV7iMoFgnyrbHfR6MCrTECXOl8LzQCwaGR+K54WxiLk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=l9EhaJ3Z; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id BA7DEC2BCB9;
 	Tue, 14 Jul 2026 01:35:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1783992909;
-	bh=1+0h5Czi3945BvDh1x4hHUXcjf/w1aukAvvcGRam85U=;
-	h=From:Subject:Date:To:Cc:Reply-To:From;
-	b=qJ+XIuvW6GtPLLL987Lo3J/PuDspwiAStV29o1FEsa1ShTAbjFrYVoQwcWm9CAYd7
-	 c90/n437KbOtaE4tfog34dXig7s9sS4TZEzIjV+P8bCwOj+07AxHL72xhvwvpLTBes
-	 baQmHuT/rs4nfoM3096ggSa7PbMPD+ger4Hj1MdL5vPXWHMtF3Dtf/LR5dhpXlk19l
-	 +M76q/Tde8VskFe4BqY/bQNsa9Z/0ymC/+4ssFwI2BQ86p5Z5xWJQhVGWRXtEYj4wV
-	 zH+sQsFthwmEMnIjp14siAyQTJ/IZBuSbMjJauUKnXGCxa4iW2wps6f/jN8+IKv3Yx
-	 M0fmvHn1OYfjQ==
+	bh=i+vNWFu0WMNpWI91QVE2Zdt4dVaM7AXfu0XL56oslRc=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
+	b=l9EhaJ3ZwQo6rzj4WepxsnmgXPrtzzQBTplNoY4ECz1+SRyg1maLKqYe4kJjHPhnt
+	 cLw9DGKuntK2lNxyr6BgPdZBZDplIkhv84AQyw9ZI8EaKPR1RZDlRyKphLExjLqk8c
+	 AhFOR8APl2RqXJzMMXmKcHHzAF+epgxdLT+5CkzAyfwx2xJrNtv7YM2UEqqgKGf0J1
+	 4mU4PgGPz6sqeaA+ntSbeJl4xwgz2x0f/jYLwxiw8asBKBQ/8exV0ycumDDmA8gBD9
+	 QcYk46w4sm8qeW2ok6so/8vNqW6rvPdW2/YizrmuD5hRValaVJY9GqfvFN2OknObO3
+	 FvK6VhYKNBXlw==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 8D8ADC43458;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 9C492C44501;
 	Tue, 14 Jul 2026 01:35:09 +0000 (UTC)
 From: Jia Wang via B4 Relay <devnull+wangjia.ultrarisc.com@kernel.org>
-Subject: [PATCH v3 0/3] clk: ultrarisc: add DP1000 clock support
-Date: Tue, 14 Jul 2026 09:35:06 +0800
-Message-Id: <20260714-ultrarisc-clock-v3-0-4b1ccaa26b37@ultrarisc.com>
+Date: Tue, 14 Jul 2026 09:35:07 +0800
+Subject: [PATCH v3 1/3] clk: composite: Export devm composite pdata helper
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,24 +60,21 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAEuSVWoC/2XNyw6CMBQE0F8hXVvTh4C48j+Mi/ZykfqgpoVGQ
- /h3W0iMkeUkM2dG4tEZ9OSQjcRhMN7YLga5yQi0qrsgNXXMRDBRsFwIOtx7p5zxQOFu4UYV16V
- SedUUTJO4ejpszGsWT+cl+0FfEfrEpEZrfG/de74MPPUWveB8pQdOGRV1JVHrHQCXx29jC/ZB0
- kMQv0a5NkQ0KtC8YHuJPMd/Y5qmD8BwEIUIAQAA
-X-Change-ID: 20260522-ultrarisc-clock-a1b7aa59f60b
+Message-Id: <20260714-ultrarisc-clock-v3-1-4b1ccaa26b37@ultrarisc.com>
+References: <20260714-ultrarisc-clock-v3-0-4b1ccaa26b37@ultrarisc.com>
+In-Reply-To: <20260714-ultrarisc-clock-v3-0-4b1ccaa26b37@ultrarisc.com>
 To: Michael Turquette <mturquette@baylibre.com>, 
  Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney@redhat.com>, 
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>
 Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Jia Wang <wangjia@ultrarisc.com>, 
- Conor Dooley <conor.dooley@microchip.com>
+ linux-kernel@vger.kernel.org, Jia Wang <wangjia@ultrarisc.com>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1783992908; l=3315;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1783992908; l=797;
  i=wangjia@ultrarisc.com; s=20260515; h=from:subject:message-id;
- bh=1+0h5Czi3945BvDh1x4hHUXcjf/w1aukAvvcGRam85U=;
- b=41r9EoV30RQxk3tELxyntfYSeX23Mx7E4y3Ato3uUdnZdQVvO4oBbfwpGxokZ2qNZJnXHxuuD
- 7FdDxEJ9kQvBIvyog5mbMH4DNI8NBMgDTG4UpfvY6Nwpm9SDPjZcB0c
+ bh=8T/bzSyCQgQUdtW8jZQCk07FkbCd8+9jHeSg8tcJ/w4=;
+ b=I66Zq+FmxIu0b3yH8s5tk9YjFDzCEY2GPNmcpVat1RMClR8P7hb4dRbNGPsT7RIjF3vrdGAHC
+ /fkb2AITbfCDwgyJ5ikrnate2AnNcqyJH4uyMj9S0Xvwbh6akWkpWyR
 X-Developer-Key: i=wangjia@ultrarisc.com; a=ed25519;
  pk=wGVm18siRScehKOkOz0WKxgxDy7IezHEszhnN4/TUCY=
 X-Endpoint-Received: by B4 Relay for wangjia@ultrarisc.com/20260515 with
@@ -90,17 +87,17 @@ X-Spamd-Result: default: False [-3.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-325821-lists,devicetree=lfdr.de,wangjia.ultrarisc.com];
+	TAGGED_FROM(0.00)[bounces-325823-lists,devicetree=lfdr.de,wangjia.ultrarisc.com];
 	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:mturquette@baylibre.com,m:sboyd@kernel.org,m:bmasney@redhat.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-clk@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:wangjia@ultrarisc.com,m:conor.dooley@microchip.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:mturquette@baylibre.com,m:sboyd@kernel.org,m:bmasney@redhat.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-clk@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:wangjia@ultrarisc.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
@@ -115,89 +112,39 @@ X-Spamd-Result: default: False [-3.66 / 15.00];
 	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,ultrarisc.com:mid,ultrarisc.com:email,ultrarisc.com:replyto,baylibre.com:email,msgid.link:url]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,ultrarisc.com:mid,ultrarisc.com:email,ultrarisc.com:replyto,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 4A34A75016E
+X-Rspamd-Queue-Id: 1D39D75016D
 
-This series exports a small common clock helper and adds the devicetree
-binding and clock driver for the UltraRISC DP1000 SoC.
+From: Jia Wang <wangjia@ultrarisc.com>
 
-The clock tree is driven by a SYSPLL and provides fixed-factor clocks for
-the subsystem and PCIe, divider-based root clocks for GMAC and the UART,
-I2C, and SPI blocks, and per-instance gate clocks for UART0-3, I2C0-3,
-and SPI0-1.
+Allow modular clock drivers to use
+devm_clk_hw_register_composite_pdata() by exporting the helper.
 
-Testing:
-- dt_binding_check and dtbs_check on ultrarisc,dp1000-clk
-- Kernel build for RISC-V and boot-tested on DP1000
-- Modules build test for CLK_ULTRARISC_DP1000
+The non-devm composite helpers are already available to modules. Export
+this devm variant as well so users do not need to open-code devres
+cleanup.
 
 Signed-off-by: Jia Wang <wangjia@ultrarisc.com>
 ---
-Changes in v3:
-- Add a preparatory clk core patch exporting
-  devm_clk_hw_register_composite_pdata().
-- Use devm_clk_hw_register_composite_pdata() for DP1000 divider composite
-  clock registration.
-- Export ultrarisc_clk_probe() in the CLK_ULTRARISC namespace and import it
-  from the DP1000 clock driver.
-- Drop the local devres composite wrapper and use clk_parent_data for
-  divider parents.
-- Remove the optional no-gate divider path and model DP1000 dividers as
-  divider+gate composites.
-- Drop CLK_GET_RATE_NOCACHE from fixed-factor, gate, and divider composite
-  registrations where it is not needed.
-- Link to v2: https://patch.msgid.link/20260617-ultrarisc-clock-v2-0-9cb16083e15e@ultrarisc.com
+ drivers/clk/clk-composite.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-Changes in v2:
-- Drop the redundant clock-names property from the clock binding.
-- Move DP1000_CLK_NUM from the dt-bindings header into the driver.
-- Clarify the divider load-bit handling in the common clock core.
-- Validate that all advertised clock IDs are populated before registering
-  the onecell clock provider.
-- Rework divider composite clock registration so the driver builds
-  correctly as a module.
-- Link to v1: https://patch.msgid.link/20260611-ultrarisc-clock-v1-0-2d93ebb4cc13@ultrarisc.com
+diff --git a/drivers/clk/clk-composite.c b/drivers/clk/clk-composite.c
+index 835b1e4e5869..11842bce5918 100644
+--- a/drivers/clk/clk-composite.c
++++ b/drivers/clk/clk-composite.c
+@@ -462,3 +462,4 @@ struct clk_hw *devm_clk_hw_register_composite_pdata(struct device *dev,
+ 						rate_hw, rate_ops, gate_hw,
+ 						gate_ops, flags);
+ }
++EXPORT_SYMBOL_GPL(devm_clk_hw_register_composite_pdata);
 
-To: Michael Turquette <mturquette@baylibre.com>
-To: Stephen Boyd <sboyd@kernel.org>
-To: Brian Masney <bmasney@redhat.com>
-To: Jia Wang <wangjia@ultrarisc.com>
-To: Rob Herring <robh@kernel.org>
-To: Krzysztof Kozlowski <krzk+dt@kernel.org>
-To: Conor Dooley <conor+dt@kernel.org>
-Cc: linux-clk@vger.kernel.org
-Cc: linux-kernel@vger.kernel.org
-Cc: devicetree@vger.kernel.org
-
----
-Jia Wang (3):
-      clk: composite: Export devm composite pdata helper
-      dt-bindings: clock: ultrarisc: Add DP1000 Clock Controller
-      clk: ultrarisc: Add DP1000 clock driver
-
- .../bindings/clock/ultrarisc,dp1000-clk.yaml       |  60 +++
- MAINTAINERS                                        |   8 +
- drivers/clk/Kconfig                                |   1 +
- drivers/clk/Makefile                               |   1 +
- drivers/clk/clk-composite.c                        |   1 +
- drivers/clk/ultrarisc/Kconfig                      |  18 +
- drivers/clk/ultrarisc/Makefile                     |   4 +
- drivers/clk/ultrarisc/clk-dp1000.c                 | 154 ++++++++
- drivers/clk/ultrarisc/clk-ultrarisc.c              | 407 +++++++++++++++++++++
- drivers/clk/ultrarisc/clk-ultrarisc.h              |  71 ++++
- include/dt-bindings/clock/ultrarisc,dp1000-clk.h   |  27 ++
- 11 files changed, 752 insertions(+)
----
-base-commit: a13c140cc289c0b7b3770bce5b3ad42ab35074aa
-change-id: 20260522-ultrarisc-clock-a1b7aa59f60b
-
-Best regards,
---  
-Jia Wang <wangjia@ultrarisc.com>
+-- 
+2.34.1
 
 
 
