@@ -1,308 +1,171 @@
-Return-Path: <devicetree+bounces-326266-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-326267-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 1RMSLLM4VmrF1gAAu9opvQ
-	(envelope-from <devicetree+bounces-326266-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 15:25:07 +0200
+	id YMfMOGE6VmpS1wAAu9opvQ
+	(envelope-from <devicetree+bounces-326267-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 15:32:17 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id AFFF77550EE
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 15:25:06 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 469C97552A5
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 15:32:17 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=NQ38ObsO;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326266-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-326266-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=gmail.com;
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=2")
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=h4RyA26Q;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326267-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-326267-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 86ABA301AE6A
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 13:23:00 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 976B43107D40
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 13:24:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F61F3043CF;
-	Tue, 14 Jul 2026 13:22:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6874B31F9B9;
+	Tue, 14 Jul 2026 13:24:21 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 554D725B0BF
-	for <devicetree@vger.kernel.org>; Tue, 14 Jul 2026 13:22:57 +0000 (UTC)
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1784035379; cv=pass; b=EaekTYvcieKIweaWEIqm28Gys0C+LFhUgHaOoymTVksRtidFuqjiGvt5TQ9k3tnB/vysBuyOzp95JkqLrF8o4MFiTLpE7xJ6QmNKomrXjDr3UR9vhTvXdoVU9xZZQjM8Po4SQl4fiQWK/sQx1hHXnSHBrES3Ns6pfEBp1KcQc+8=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1784035379; c=relaxed/simple;
-	bh=likGGf+ggWYG16RLVo/FcbajDunMZFr0fDET5ovKQVA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=WpcA5wssSd3X09sqn5BKFKhRzEErbHD/VE6oWf+4nYEztaQO4pidvliENyeq9KYikHfX+5B1QvN7G1DXaDma76BeZsm9cNdCRLN8VKiAV7tdMVhG6VQV+5GfUF0X6x5/hFkZ19VmvXLPj3PqoXKY5Y6/XhzAF279jfHu2Zy448c=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NQ38ObsO; arc=pass smtp.client-ip=209.85.221.50
-Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-47f36a122fdso1010896f8f.2
-        for <devicetree@vger.kernel.org>; Tue, 14 Jul 2026 06:22:57 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1784035375; cv=none;
-        d=google.com; s=arc-20260327;
-        b=bCzF3f4xmzAOhu9yO5fyp15wUnJF6n1TciefdIPhcVpa4zMr8Py9jA0X6vdxvcVULB
-         uLtPs2BvhEF7slHDf9pvBTzdj/OICbmdDlzpC1XpEdn6C7UDAGPeeFvMuN1nIK0yhLXT
-         d2IRx/uo6EzOAGUnEO6NvNkZOJRc/RyIyx8iAIKkwoaHnbBJySaZEPonaDEKIxGuneWh
-         OlkYbSART2LLFgGiKV0bkAHWKSRUVw7/u44+YxIMzbUEY3pTTGTXEFV+CFVphkCePtAo
-         zx+icsstdoIvhFF1B3L49dpRrg8maenk7GMHqr2l/rCKdGKpXsIjdOYvV76dKZb+zJIk
-         XtUA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=QXEB7lD1Pe7mGc0NP7BMIVuEFyfydPaOvdXbwC8z9qY=;
-        fh=FhmuiT3yyX6fLt3LWy9iV+EioFD6/a690Ea//WyBLZ4=;
-        b=MgGMnSxxfCaXMnIzZKxDDVaMRs7PbhrGwmAE4Rl8hgZu5vBTNK7RonpAJC+vweWtcg
-         sCPSAgkFqRjMMkjtAf1XsOvvway1I4NG2ULoJej1EOL4hzeNmHlc7lmZVxrLWa7Q9Jvl
-         Tz1VcZ9NPO2gzEYiFHCb1gP4HWjQvFdUFVN+isD+vtXclT01ApWbZDWEX4mk4xjR+pea
-         ug0GhdCdFZCc9vIYKuInoOLRyjpN7K+3xoPegBGjbqL83tk0cPV9lDolwoQv+sUDuGEL
-         76dvzOYloYa6HCqrN9KkRYxmkyBDRs78beRbGyJNtYnAWxEVFzdTnCM6+DdjGD3Uzyp2
-         EpdA==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1784035375; x=1784640175; darn=vger.kernel.org;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=QXEB7lD1Pe7mGc0NP7BMIVuEFyfydPaOvdXbwC8z9qY=;
-        b=NQ38ObsOvFwVrbqoVD24TE2/27i0bu0G7Ec30C9jBx0tt5tZWmFLfgrC6xfF3lc9zC
-         rOhmbPeZv63XGOVJ53YoXHmrUS9XOg237YBc1UwYaMyrerRVilWlX8M9RmBifxbvvVy1
-         PiCBANHlBCLVOr//Q5LPGatjrvj00LT1VWyWGsIHIK3qY+NNxaMLbuS2OS8i5CXk7Ynv
-         N7AIzaSfRYleWMdBNJ923GpVyhD8LBoYX74SZxh0ZUowaNYuiNEkmpvJJ/CWLNMQu1b4
-         JRfv5rO7p6yWdx51Yf16Ty+220qZpLoHkkENmaLb/m1hq7uZ0Oc8aEcRG4WfnOJRubTj
-         PkFg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1784035375; x=1784640175;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=QXEB7lD1Pe7mGc0NP7BMIVuEFyfydPaOvdXbwC8z9qY=;
-        b=YWWYktl+6fhcSvGmbU2rynuiIm4NIsuRvNYOc6a4BVeGf56B9QYnqWLETLK6Timkl5
-         xxBcIk4RYeKHOXpWqMcsSDnsg7tR+qwJVZ0GhHHJreHJnLwLlURk0lWuz9n5h8T4Pjia
-         k1iVtyh3Vqw8Ge00V9+rNTgIO2A/aIy0jcroZY2diH9ZMzIHlZ1Os1o/vtmG3odO2Ei9
-         WcEYNNIRXqhr9BIBbCJo+EWo+1yjtUQ64OnjNmCNE4EWyH2DeuLqrQMx9Es0LiFs1ucY
-         moC5YhPQEFXinF51Run7oMpUVr1yCE9BtlIQafeWsUJCtVRLCCA1otIzn2nkRFi+Fu5z
-         t60A==
-X-Forwarded-Encrypted: i=1; AHgh+Rr63nKuOId5YJazBX+jMRk6tVmFm9Ui9UvZJPQNpRtoFnAh4sM4bwhhgbjtiumGRlKsh+gKqAv1dt6k@vger.kernel.org
-X-Gm-Message-State: AOJu0YxygOeNooPkGJhe92RAlaNQRUCs1pzZChbFokgCEck3ZjFklqst
-	n/Y1xwrPwtCdhp+pmnoq43jkZ/muT2DFhpYvSivC/R5q50Ztq9yZLmo3JGJHVSwNZYctdc4HVDT
-	jRRaKPisslX1shZiuNps0XmYJx5cNkwQ=
-X-Gm-Gg: AfdE7ckdm8xW40RuQYNr06iwlNFraSCbhkFfwCu2aCiKw2YFD9nIe+830dnFPW05rUs
-	VzoAXkFcXDGwm8A0zzyeh7vYNjHZOYzGVJxkpOmyzwAbiYsoJgJMTfM010I5AThB06WT+USytCR
-	Uj0l+ePb3TOzjGxckemXToPCZ8i6PY492eQQtCj7GazTISVTwjMS/lWkXXQ4eGq3ZoRz0U3EzDp
-	J2mt7m4Me9gu5OdBOSm5HBAbWj+cX0UDSIoxoB57n3FZitNv9Dcqn7cVJadPYPOerFb0cmsja63
-	v4WKCDwCpKNy5SR0oADZsXoPVgAVQWxFhLieiu+TU0NLrnEBB8TBdKrpXGk=
-X-Received: by 2002:a05:6000:4b01:b0:475:f100:35fa with SMTP id
- ffacd0b85a97d-47f2dd439ebmr15117164f8f.55.1784035375471; Tue, 14 Jul 2026
- 06:22:55 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 36ABC2C11FD
+	for <devicetree@vger.kernel.org>; Tue, 14 Jul 2026 13:24:19 +0000 (UTC)
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1784035461; cv=none; b=MJZGlIbloIwGdBaykoIyQq/DdcRmjCBmxtBR8xlgNJ1QObzISn8lkc49Y0qdtSocTnPNZIceeCSRGCvna1rrAtBYIhvEqUu5vhLzT/MLBYs87b8B9I9nvTulzMIzqJLrvmhyOeeWYxRcNBn3XsDYjapt50JJgJ/g9S0epu+08Zg=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1784035461; c=relaxed/simple;
+	bh=BqSsuOBbFdWtY4cEmSxeyiw96wMBimZYo87vcmLcTcc=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=Q2p25BgeAKOymFAzCL6JJ5LrTLMAc+wPKwXsKKT3WGdRNq+oAzifyG7k/9kkM81Q2hpCYX6NmNiEoKsY87V7JoLbSkHKuKRQWZj6jbyXJtwsykO1RJKrCNf+j+ugUyZWXNGjALSYjArppUdTPItXZVLOK5B4oQhNLQwLbsk/pQo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=h4RyA26Q; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AB7C71F00A3A;
+	Tue, 14 Jul 2026 13:24:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1784035459;
+	bh=5Wr2hqswUi+9/4bFTyoMer2pNaPp4fDsZBsQri+BcLg=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=h4RyA26QOt8JzgHX8D/l3Lw/puoEHMHOgpjhDcy9V6j9BAdWXzVGTJSJNtdHhZ/9P
+	 Oglb7BkKFl7ETEmtoywz102YCiyv3JspDpQuPXfW0d0S1hZtTx3LIZyK1Oh4veS/Ci
+	 bDqxoWxO13MjzvFFlfPauPOorarvSaDbVOkZTwaQbOWtIsIHhm8vAjq2GiQJiU6awP
+	 wnP0w8u33mcMOwreyQi0eGj+8D2U/cM32MDoNTaetUWVvdCOOtdn4S6kDdIglO+wxk
+	 Rt9FKyPf44GYGapyUGuhQFA1YsBb1uaMPbfrboEdICU7zVZAtlGT3AUiVNf2rzdBtl
+	 mSZKYGlKFGUKA==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH 3/3] soc: mediatek: pwrap: add mt6572 support
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Roman Vivchar" <rva333@protonmail.com>
+Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260714-6572-pwrap-v1-3-d8e5a39cf7ef@protonmail.com>
+References: <20260714-6572-pwrap-v1-0-d8e5a39cf7ef@protonmail.com>
+ <20260714-6572-pwrap-v1-3-d8e5a39cf7ef@protonmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Tue, 14 Jul 2026 13:24:18 +0000
+Message-Id: <20260714132418.AB7C71F00A3A@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-References: <20260702123112.161160-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20260702123112.161160-3-prabhakar.mahadev-lad.rj@bp.renesas.com> <CAMuHMdViSFTZZMe0SsC_aYmyZqTHCFNN0NxPVoNx5OBfwi4MLw@mail.gmail.com>
-In-Reply-To: <CAMuHMdViSFTZZMe0SsC_aYmyZqTHCFNN0NxPVoNx5OBfwi4MLw@mail.gmail.com>
-From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date: Tue, 14 Jul 2026 14:22:29 +0100
-X-Gm-Features: AUfX_myvAV81_pgPn9QpR6gxgV9zHgZTebLUmHf7fq4pIgaFNeNRXJt-dYDKguY
-Message-ID: <CA+V-a8tXUttE088QVKn3Ovhm0tyUEAq5ehBZgTjTrozvw=YSpg@mail.gmail.com>
-Subject: Re: [PATCH RFC v2 2/9] clk: renesas: r9a09g077: Add SYSC regmap support
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Brian Masney <bmasney@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck <linux@roeck-us.net>, 
-	Magnus Damm <magnus.damm@gmail.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-watchdog@vger.kernel.org, 
-	Prabhakar <prabhakar.csengg+renesas@gmail.com>, Biju Das <biju.das.jz@bp.renesas.com>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-1.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:geert@linux-m68k.org,m:mturquette@baylibre.com,m:sboyd@kernel.org,m:bmasney@redhat.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:wim@linux-watchdog.org,m:linux@roeck-us.net,m:magnus.damm@gmail.com,m:p.zabel@pengutronix.de,m:linux-renesas-soc@vger.kernel.org,m:linux-clk@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-watchdog@vger.kernel.org,m:prabhakar.csengg+renesas@gmail.com,m:biju.das.jz@bp.renesas.com,m:fabrizio.castro.jz@renesas.com,m:prabhakar.mahadev-lad.rj@bp.renesas.com,m:krzk@kernel.org,m:conor@kernel.org,m:magnusdamm@gmail.com,m:prabhakarcsengg@gmail.com,s:lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-326266-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-326267-lists,devicetree=lfdr.de];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER(0.00)[prabhakarcsengg@gmail.com,devicetree@vger.kernel.org];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[20];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	FREEMAIL_TO(0.00)[protonmail.com];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:rva333@protonmail.com,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[prabhakarcsengg@gmail.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[baylibre.com,kernel.org,redhat.com,linux-watchdog.org,roeck-us.net,gmail.com,pengutronix.de,vger.kernel.org,bp.renesas.com,renesas.com];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NO_DN(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCPT_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,mail.gmail.com:mid,linux-m68k.org:email,renesas.com:email,vger.kernel.org:from_smtp]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,smtp.kernel.org:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,sashiko.dev:url,lists.linux.dev:replyto,protonmail.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: AFFF77550EE
+X-Rspamd-Queue-Id: 469C97552A5
 
-Hi Geert,
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [High] Unconditional dereference and access of `wrp->slave->dew_regs` in =
+MT6572 clock initialization can cause a NULL pointer dereference or uninten=
+ded PMIC register overwrite.
+--
 
-Thank you for the review.
+--- Patch [3]: [PATCH 3/3] soc: mediatek: pwrap: add mt6572 support ---
+commit 27b1606815262a3356b161758ca5a4ebb413b4ab
+Author: Roman Vivchar <rva333@protonmail.com>
 
-On Mon, Jul 13, 2026 at 4:54=E2=80=AFPM Geert Uytterhoeven <geert@linux-m68=
-k.org> wrote:
->
-> Hi Prabhakar,
->
-> On Thu, 2 Jul 2026 at 14:31, Prabhakar <prabhakar.csengg@gmail.com> wrote=
-:
-> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> >
-> > Add System Controller (SYSC) regmap support for the RZ/T2H SoC.
-> >
-> > The RZ/T2H SoC features two System Controller (SYSC) blocks that handle
-> > low-power management and access control. These blocks are defined as ch=
-ild
-> > nodes within the Clock Pulse Generator (CPG) address space in the devic=
-e
-> > tree. Implement support for creating regmaps for these SYSC blocks.
-> >
-> > Register the regmap using of_syscon_register_regmap() against the CPG
-> > device node so that consumers can access SYSC registers via the existin=
-g
-> > syscon phandle.
-> >
-> > Add a sysc_init() callback to the CPG/MSSR core to allow SoC-specific
-> > initialization of the SYSC regmap.
-> >
-> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > ---
-> > v1->v2:
-> > - Made use of for_each_child_of_node_scoped
-> > - Moved sysc_init() to the end of the probe function
->
-> Thanks for the update!
->
-> > --- a/drivers/clk/renesas/r9a09g077-cpg.c
-> > +++ b/drivers/clk/renesas/r9a09g077-cpg.c
->
-> > +static bool rzt2h_writeable_readable_sysc0(struct device *dev, unsigne=
-d int reg)
-> > +{
-> > +       switch (reg) {
-> > +       case 0x0000 ... 0x0008:
-> > +       case 0x1000 ... 0x1164:
-> > +       case 0x2000 ... 0x2024:
-> > +       case 0x2030 ... 0x2054:
-> > +       case 0x2060:
-> > +       case 0x3000 ... 0x300C:
-> > +       case 0x3100 ... 0x310C:
-> > +       case 0x4100:
-> > +       case 0x4200:
-> > +               return true;
-> > +
-> > +       default:
-> > +               return false;
-> > +       }
-> > +}
-> > +
-> > +static bool rzt2h_writeable_readable_sysc1(struct device *dev, unsigne=
-d int reg)
-> > +{
-> > +       switch (reg) {
-> > +       case 0x000C:
-> > +       case 0x0034 ... 0x0038:
-> > +       case 0x0048 ... 0x007C:
-> > +       case 0x0100 ... 0x017C:
-> > +       case 0x0200 ... 0x027C:
-> > +       case 0x0308 ... 0x030C:
-> > +       case 0x0320 ... 0x037C:
-> > +       case 0x0480 ... 0x0484:
-> > +       case 0x0580 ... 0x0584:
-> > +       case 0x0680 ... 0x0684:
-> > +       case 0x0780 ... 0x0784:
-> > +       case 0x0880:
-> > +       case 0x0980 ... 0x098C:
-> > +       case 0x1100 ... 0x1118:
-> > +       case 0x1200 ... 0x1204:
-> > +       case 0x1400 ... 0x1484:
-> > +       case 0x1500 ... 0x1584:
-> > +       case 0x1600 ... 0x1680:
-> > +       case 0x1700 ... 0x1780:
-> > +       case 0x1800 ... 0x1884:
-> > +       case 0x1900 ... 0x1984:
-> > +       case 0x1A00 ... 0x1A84:
-> > +       case 0x1B00 ... 0x1B8C:
-> > +       case 0x1C00 ... 0x1C8C:
-> > +       case 0x1D00 ... 0x1D8C:
-> > +       case 0x3000:
-> > +       case 0x3010:
-> > +       case 0x3020:
-> > +       case 0x3030:
-> > +       case 0x4000:
-> > +       case 0x5008 ... 0x500C:
-> > +       case 0x5020 ... 0x503C:
-> > +       case 0x5100 ... 0x5114:
-> > +       case 0x6000:
-> > +               return true;
-> > +
-> > +       default:
-> > +               return false;
-> > +       }
-> > +}
->
-> This exposes a lot of dangerous registers.  Aren't they also exported
-> to userspace through drivers/base/regmap/regmap-debugfs.c?
->
-Yes they are exported to userspace. I'll drop it
+soc: mediatek: pwrap: add mt6572 support
 
-> > --- a/drivers/clk/renesas/renesas-cpg-mssr.h
-> > +++ b/drivers/clk/renesas/renesas-cpg-mssr.h
-> > @@ -178,6 +178,7 @@ struct cpg_mssr_info {
-> >
-> >         /* Callbacks */
-> >         int (*init)(struct device *dev);
-> > +       int (*sysc_init)(struct device *dev);
->
-> I would rather call it "late_init" or "post_init", as it might become
-> useful for other purposes, too.
->
-Ok, I will rename this to post_init.
+This commit adds mt6572 registers and platform data for the pmic wrapper.
+It reuses the mt2701 SoC-specific initialization function since they share
+the same GPS_INTF settings.
 
-Cheers,
-Prabhakar
+> diff --git a/drivers/soc/mediatek/mtk-pmic-wrap.c b/drivers/soc/mediatek/=
+mtk-pmic-wrap.c
+> index a4b10b0a97cbb..4b8a5dc80a36e 100644
+> --- a/drivers/soc/mediatek/mtk-pmic-wrap.c
+> +++ b/drivers/soc/mediatek/mtk-pmic-wrap.c
 
-> >         struct clk *(*cpg_clk_register)(struct device *dev,
-> >                                         const struct cpg_core_clk *core=
-,
-> >                                         const struct cpg_mssr_info *inf=
-o,
-> Gr{oetje,eeting}s,
->
->                         Geert
->
-> --
-> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m6=
-8k.org
->
-> In personal conversations with technical people, I call myself a hacker. =
-But
-> when I'm talking to journalists I just say "programmer" or something like=
- that.
->                                 -- Linus Torvalds
+[ ... ]
+
+> @@ -1733,6 +1824,11 @@ static void pwrap_init_chip_select_ext(struct pmic=
+_wrapper *wrp, u8 hext_write,
+>  static int pwrap_common_init_reg_clock(struct pmic_wrapper *wrp)
+>  {
+>  	switch (wrp->master->type) {
+> +	case PWRAP_MT6572:
+> +		pwrap_writel(wrp, 0x8, PWRAP_RDDMY);
+> +		pwrap_write(wrp, wrp->slave->dew_regs[PWRAP_DEW_RDDMY_NO], 0x8);
+
+[Severity: High]
+Could this unconditionally dereference wrp->slave->dew_regs if the configur=
+ed
+slave PMIC doesn't populate it?
+
+If the mediatek,mt6572-pwrap device node is configured with a PMIC that
+doesn't populate dew_regs (like PMIC_MT6380), or leaves PWRAP_DEW_RDDMY_NO
+uninitialized (like PMIC_MT6397), this array lookup could either
+dereference a NULL pointer or evaluate to 0x0.=20
+
+This could lead to a kernel panic during driver probe or an unintended
+SPI write of 0x8 to PMIC register 0x0.
+
+Would it be safer to validate the slave PMIC type or check that dew_regs is
+present before accessing it here, similar to how it is handled for
+PWRAP_MT6795 below?
+
+> +		pwrap_init_chip_select_ext(wrp, 5, 0, 0, 0);
+> +		break;
+>  	case PWRAP_MT6795:
+>  		if (wrp->slave->type =3D=3D PMIC_MT6331) {
+
+[ ... ]
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260714-6572-pwrap=
+-v1-0-d8e5a39cf7ef@protonmail.com?part=3D3
 
