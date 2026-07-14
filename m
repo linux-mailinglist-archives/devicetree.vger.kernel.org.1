@@ -1,209 +1,193 @@
-Return-Path: <devicetree+bounces-326087-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-326088-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 2p9QEkYXVmohzAAAu9opvQ
-	(envelope-from <devicetree+bounces-326087-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 13:02:30 +0200
+	id Dut1A00XVmoizAAAu9opvQ
+	(envelope-from <devicetree+bounces-326088-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 13:02:37 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id B626F753ADA
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 13:02:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F2C8753ADD
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 13:02:36 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=ez8SHUmT;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326087-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-326087-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=intel.com;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b="HJZK/Vm8";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326088-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-326088-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 6AC1630B911B
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 11:00:54 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 893A030D341A
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 11:00:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B3D9F3769EF;
-	Tue, 14 Jul 2026 11:00:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF37037755A;
+	Tue, 14 Jul 2026 11:00:56 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60A9136A02F;
-	Tue, 14 Jul 2026 11:00:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5BD4294A10;
+	Tue, 14 Jul 2026 11:00:55 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1784026853; cv=none; b=lC+zPiTlyLRyvaGptHPnukczN1DMVzNZPcJtCRaTkqDm3dorOnqpVqDRhGBtAJUDo9QU5RHWMFOZ4x1zUGgdy9fLK+h9fjmqLdEswP+OKGw+ICswk1WGcklwt8gcNG+8iVs06Qj1Du3d9An2ahnRq2S1ovYcMFvHgTWKnzHicL0=
+	t=1784026856; cv=none; b=JuGi8cGfYZPctzd0bMtfR3rsCmeMb1YMFSs6df3qsrT6B/LJhUZlnvjbhQWywVFxWk4VeEkgs4e+6sklH5BnW/T72JQEsKJ0Hc4TYD9zkfkMZjbHSNc3DryolQ62Zf3IcgdnHnuHV34EI7g+lsNBKq9+aEnS3qfYIvidi9/DMas=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1784026853; c=relaxed/simple;
-	bh=Yw3UByh9lza4l+oROGbFdHgEwE9MVd7gDa2MvYy2QbA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ngpBSD4MWK4GX1mVvWeTw//Pfaq89/rPMOnNh0AF5ixIFWxp9mwoTuqNIFA+O1BD3RbrCEnN6wpImflZal3K4fJjJU4d8+joPJ2wOevblWaVjZPPZI53FF0bP5n6rDHyGeEMOKFYrmIlqicNnlbEGNKgCjkbHHFoVhJSEWpOZ9g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=ez8SHUmT; arc=none smtp.client-ip=192.198.163.8
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1784026851; x=1815562851;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=Yw3UByh9lza4l+oROGbFdHgEwE9MVd7gDa2MvYy2QbA=;
-  b=ez8SHUmTul4uUk0qItjnm2d7h8HVxCZc6LGEbXmGbGi/sycpAi3S4lZN
-   sLnsIorkuh2n9QPUN+jByYLEyWbltk2TNqDZ0zSH0t/mUjbChosokbES+
-   tM39mSOIaFojF6EyKkZvkR1iAhEstlN6MKyUxFqGrrd92e5lTOLY+Xmz4
-   6D/sgYFaGhJRIND293O1rOBZXUIdoWltQoZ1vofjSXyJ/79B5S8JusuWO
-   pVf0LSNUWGfzTbtokZVskoV7XE4Qj8sOntH4CdZW46MT0HO3iZgyTS2mt
-   ENP4hX9J04Gm98m8y/62wRfK3zrGr3sHRNosvOja6/rq40oeD9Zgpkv2S
-   A==;
-X-CSE-ConnectionGUID: +VMD1IJTRzC9965f2E7GIg==
-X-CSE-MsgGUID: FAVNDz4zSFieUbdXrBegdA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11846"; a="102198195"
-X-IronPort-AV: E=Sophos;i="6.25,163,1779174000"; 
-   d="scan'208";a="102198195"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
-  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Jul 2026 04:00:50 -0700
-X-CSE-ConnectionGUID: OCETTmGHRDaDqfO9C4ls2w==
-X-CSE-MsgGUID: tdAzxbYhTeyhJs6x74p/zQ==
-X-ExtLoop1: 1
-Received: from kniemiec-mobl1.ger.corp.intel.com (HELO localhost) ([10.245.245.189])
-  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Jul 2026 04:00:47 -0700
-Date: Tue, 14 Jul 2026 14:00:45 +0300
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Chris Morgan <macroalpha82@gmail.com>
-Cc: linux-iio@vger.kernel.org, andy@kernel.org, nuno.sa@analog.com,
-	dlechner@baylibre.com, jic23@kernel.org,
-	jean-baptiste.maneyrol@tdk.com, linux-rockchip@lists.infradead.org,
-	devicetree@vger.kernel.org, heiko@sntech.de, conor+dt@kernel.org,
-	krzk+dt@kernel.org, robh@kernel.org,
-	Chris Morgan <macromorgan@hotmail.com>
-Subject: Re: [PATCH v16 05/10] iio: imu: inv_icm42607: Add SPI For icm42607
-Message-ID: <alYW3YEbjnCqrY2k@ashevche-desk.local>
-References: <20260713215842.69097-1-macroalpha82@gmail.com>
- <20260713215842.69097-6-macroalpha82@gmail.com>
+	s=arc-20240116; t=1784026856; c=relaxed/simple;
+	bh=9+sNkwAq9kRCKx7ZY392GeL5V1K5ZZsoIADh2kmbaB4=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=oK+N0ZuJ5hPCd8+NO9lZYQDK+KZPOXRTqM1HoTZBF+Ntj21biXJJOZ/IXJ7EZswQhD+j9Us5xwazZppiCwB3v7p965rV9KSInuskXcN9J9zUsHXKV9KFtsakdlxmc6N2qFsuF4xmIkxQAu7tTdWpQDlu8tczDnyY2GvNcT1OTZ0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HJZK/Vm8; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ECD931F000E9;
+	Tue, 14 Jul 2026 11:00:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1784026855;
+	bh=B+eOLbPEonGCAyuU4cP6n+fpPeNKsxzlfSHfKj7J+b8=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=HJZK/Vm8GJRdqm8JYO7bkhL7FLVCL4uHBQLdZIhdpDTZCiYEnsao01UPdItZbLO0a
+	 rtHd+dH+VCfuWalfG7vQwHuAJ4jg/4pzUggd2J6YOBV784lhwMuhqzb7WnX6v2z9F2
+	 9uz2i6fzCWZOkUAq4JN0fVq6LtDkPH7beeoz+iYWKbzwkucXj5ojcFxhtonHCk7A42
+	 uP5LnVAnG6oUkeSTDJcqkXAbyrYuK+QA7XOM9HReKakJCWS4MZrO5C54diabEMhStG
+	 ud5ycl1HKcUAUbPkz+Ao2+hCxzGkiw4A42dbiPlhGtjtxBOl5UFBZy5Fi+9O4Z5EcV
+	 J+SzGMfRVc3MA==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v8 3/3] thermal/drivers/imx: Add calibration offset
+ support
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Haoning CHENG" <Haoning.CHENG@cn.bosch.com>
+Cc: Frank.Li@kernel.org, imx@lists.linux.dev, devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org
+In-Reply-To: <20260714-b4-symana21-11221-imx-thermal-support-upstream-6-18-v8-3-d54d8690e16e@cn.bosch.com>
+References: <20260714-b4-symana21-11221-imx-thermal-support-upstream-6-18-v8-0-d54d8690e16e@cn.bosch.com>
+ <20260714-b4-symana21-11221-imx-thermal-support-upstream-6-18-v8-3-d54d8690e16e@cn.bosch.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Tue, 14 Jul 2026 11:00:54 +0000
+Message-Id: <20260714110054.ECD931F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260713215842.69097-6-macroalpha82@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[intel.com:d:+,kernel.org:s:+];
+X-Spamd-Result: default: False [-1.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-326087-lists,devicetree=lfdr.de];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:macroalpha82@gmail.com,m:linux-iio@vger.kernel.org,m:andy@kernel.org,m:nuno.sa@analog.com,m:dlechner@baylibre.com,m:jic23@kernel.org,m:jean-baptiste.maneyrol@tdk.com,m:linux-rockchip@lists.infradead.org,m:devicetree@vger.kernel.org,m:heiko@sntech.de,m:conor+dt@kernel.org,m:krzk+dt@kernel.org,m:robh@kernel.org,m:macromorgan@hotmail.com,m:conor@kernel.org,m:krzk@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	FREEMAIL_TO(0.00)[gmail.com];
-	MIME_TRACE(0.00)[0:+];
-	HAS_ORG_HEADER(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,analog.com,baylibre.com,tdk.com,lists.infradead.org,sntech.de,hotmail.com];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-326088-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[bosch.com:email,sashiko.dev:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:Haoning.CHENG@cn.bosch.com,m:Frank.Li@kernel.org,m:imx@lists.linux.dev,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	PRECEDENCE_BULK(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp,intel.com:from_mime,intel.com:email,intel.com:dkim,ashevche-desk.local:mid]
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCPT_COUNT_FIVE(0.00)[6];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	FROM_NO_DN(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: B626F753ADA
+X-Rspamd-Queue-Id: 4F2C8753ADD
 
-On Mon, Jul 13, 2026 at 04:58:35PM -0500, Chris Morgan wrote:
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
+s) to consider:
 
-> Add SPI driver support for InvenSense ICM-42607 devices.
+Pre-existing issues:
+- [High] Missing pm_runtime_put() on the error path in imx_get_temp() cause=
+s a runtime PM leak.
+- [High] Missing pm_runtime_put() on the error path in imx_set_trip_temp() =
+causes a runtime PM leak.
+--
 
-A few nit-picks below, otherwise
-Reviewed-by: Andy Shevchenko <andriy.shevchenko@intel.com>
+--- Patch [3]: [PATCH v8 3/3] thermal/drivers/imx: Add calibration offset s=
+upport ---
+commit a5acc3eb3799b4fe9bc9d1fba54049882d4b5c06
+Author: Haoning CHENG <Haoning.CHENG@cn.bosch.com>
 
-...
+thermal/drivers/imx: Add calibration offset support
 
-> +static int inv_icm42607_spi_bus_setup(struct inv_icm42607_state *st)
-> +{
-> +	unsigned int val;
-> +	int ret;
-> +
-> +	/* Only support 4-wire mode for now. */
-> +	ret = regmap_set_bits(st->map, INV_ICM42607_REG_DEVICE_CONFIG,
-> +				      INV_ICM42607_DEVICE_CONFIG_SPI_AP_4WIRE);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = regmap_clear_bits(st->map, INV_ICM42607_REG_INTF_CONFIG1,
-> +				INV_ICM42607_INTF_CONFIG1_I3C_DDR_EN |
-> +				INV_ICM42607_INTF_CONFIG1_I3C_SDR_EN);
-> +	if (ret)
-> +		return ret;
-> +
-> +	val = FIELD_PREP(INV_ICM42607_DRIVE_CONFIG3_SPI_MASK,
-> +			 INV_ICM42607_SLEW_RATE_2NS);
-> +	ret = regmap_update_bits(st->map, INV_ICM42607_REG_DRIVE_CONFIG3,
-> +				 INV_ICM42607_DRIVE_CONFIG3_SPI_MASK, val);
-> +	if (ret)
-> +		return ret;
-> +
-> +	val = FIELD_PREP(INV_ICM42607_INTF_CONFIG0_UI_SIFS_CFG_MASK,
-> +			 INV_ICM42607_INTF_CONFIG0_UI_SIFS_CFG_I2C_DIS);
+This commit adds support for an optional calibration offset to align
+reported CPU temperatures with board-level measurements. It reads the
+fsl,temp-calibration-offset-millicelsius property from the device tree
+and applies it symmetrically to the threshold and temperature readings
+for i.MX6/6SX/7D devices.
 
-+ blank line?
-(Not sure, this is an interesting case and I have no strong opinion on
- either style.)
+> diff --git a/drivers/thermal/imx_thermal.c b/drivers/thermal/imx_thermal.c
+> index 168069a16e930..87ae2e40cc6fe 100644
+> --- a/drivers/thermal/imx_thermal.c
+> +++ b/drivers/thermal/imx_thermal.c
+[ ... ]
+> @@ -283,6 +290,7 @@ static int imx_get_temp(struct thermal_zone_device *t=
+z, int *temp)
+>  		*temp =3D (n_meas - data->c1 + 25) * 1000;
+>  	else
+>  		*temp =3D data->c2 - n_meas * data->c1;
+> +	*temp +=3D data->calibration_offset;
+> =20
+>  	/* Update alarm value to next higher trip point for TEMPMON_IMX6Q */
+>  	if (data->socdata->version =3D=3D TEMPMON_IMX6Q) {
 
-> +	return regmap_update_bits(st->map, INV_ICM42607_REG_INTF_CONFIG0,
+[Severity: High]
+This isn't a bug introduced by this patch, but while reviewing this file I
+noticed a potential issue earlier in imx_get_temp(). Does the early return=
+=20
+for invalid sensor data leak a PM runtime reference?
 
-> +				  INV_ICM42607_INTF_CONFIG0_UI_SIFS_CFG_MASK,
-> +				  val);
+Earlier in the function, it calls pm_runtime_resume_and_get():
 
-This can be a single (a bit longer) line.
+    ret =3D pm_runtime_resume_and_get(data->dev);
+    if (ret < 0)
+        return ret;
 
-> +}
+    regmap_read(map, soc_data->temp_data, &val);
 
-...
+    if ((val & soc_data->temp_valid_mask) =3D=3D 0)
+        return -EAGAIN;
 
-> +static int inv_icm42607_probe(struct spi_device *spi)
-> +{
-> +	const struct inv_icm42607_hw *hw;
-> +	struct device *dev = &spi->dev;
-> +	struct regmap *regmap;
-> +
-> +	hw = spi_get_device_match_data(spi);
-> +	if (!hw)
-> +		return dev_err_probe(dev, -ENODEV, "Failed to get SPI data\n");
-> +
-> +	if (spi->mode & SPI_3WIRE)
-> +		return dev_err_probe(dev, -ENODEV, "SPI 3-wire mode not supported\n");
+If the sensor is polled before data is valid and it takes this -EAGAIN
+path, shouldn't there be a matching pm_runtime_put(data->dev) to prevent
+the device and its power domain from permanently remaining awake?
 
-Hmm... I would distinguish these two by the error code, perhaps -ENODATA for no
-match data?
+[Severity: High]
+This is also a pre-existing issue, but the same pattern appears to exist
+in imx_set_trip_temp() during bounds checking. Does this code leak the
+PM runtime usage counter?
 
-> +	regmap = devm_regmap_init_spi(spi, &inv_icm42607_regmap_config);
-> +	if (IS_ERR(regmap))
-> +		return dev_err_probe(dev, PTR_ERR(regmap),
-> +				     "Failed to register spi regmap\n");
+drivers/thermal/imx_thermal.c:imx_set_trip_temp() {
+    ...
+    ret =3D pm_runtime_resume_and_get(data->dev);
+    if (ret < 0)
+        return ret;
 
-> +	return inv_icm42607_core_probe(regmap, hw,
-> +				       inv_icm42607_spi_bus_setup);
+    if (temp < 0 || temp > trips[IMX_TRIP_CRITICAL].temperature)
+        return -EINVAL;
+    ...
+}
 
-This is perfectly a single line.
+If a user writes an out-of-bounds temperature, this early return misses
+the pm_runtime_put(data->dev) call. Could this be updated to properly
+release the reference on this error path?
 
-> +}
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260714-b4-symana2=
+1-11221-imx-thermal-support-upstream-6-18-v8-0-d54d8690e16e@cn.bosch.com?pa=
+rt=3D3
 
