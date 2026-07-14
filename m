@@ -1,264 +1,161 @@
-Return-Path: <devicetree+bounces-326214-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-326216-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id i8nyF5UtVmpb0wAAu9opvQ
-	(envelope-from <devicetree+bounces-326214-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 14:37:41 +0200
+	id J8nCH04vVmrw0wAAu9opvQ
+	(envelope-from <devicetree+bounces-326216-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 14:45:02 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0B2B754A2B
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 14:37:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FF90754B17
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 14:45:02 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=ew.tq-group.com header.s=default2602 header.b=OksRTZVd;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326214-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-326214-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=ew.tq-group.com;
+	dkim=pass header.d=kernel.org header.s=k20201202 header.b=OKu1WK5d;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326216-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-326216-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 587DB30066BD
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 12:37:40 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 7F91430074AB
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 12:45:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B4B3448393;
-	Tue, 14 Jul 2026 12:37:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 431A63D9043;
+	Tue, 14 Jul 2026 12:45:00 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from www537.your-server.de (www537.your-server.de [188.40.3.216])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79349448D14;
-	Tue, 14 Jul 2026 12:37:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F6E7391E55;
+	Tue, 14 Jul 2026 12:44:59 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1784032656; cv=none; b=YxiDDuAkx0F/AXKuldZ1YR20XqZdsIA+XfmLp/jQfOEF/idVkhLERBNACdNIj0fvNGK6pr/7Pas46iYAZHkTbHbZHo85RSwh4CeDaWJ3Juo/+zoAmBvEYimda7jFE0A6BE7k4imtjg+wwhW6dWD43IPytXVhr8naZzsgjkMFT4I=
+	t=1784033100; cv=none; b=N+IOQHObvPQkOg4dIez5f/Q+Jhvkh/8eCnrWjMRqDZiYF2mpz0kI33KLOGq76Ymg2Dw3aiYTqoaAA9Gj5G1BNBeTXAj4MyTWSwIAqykRF27pEid53FuxGbRzdaJ4AGWNr9V3POO7FLzZZBmQvDhx+5t6XZTceDHoQSzQT2obDjc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1784032656; c=relaxed/simple;
-	bh=RAfh/PzupwWnD+3cauiv6r8CFHSLK8xZ7xKOz5WJXPA=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=tsonMv8+siwHiW/qkSUKCqVnJy4Ujo9YGqKdOF9QEMLBvBw5E8Q95HVL9QURknKP65aWZZqtvd2ACdmZziuowQfVNYoxPn2QoFO8srTwVmDgVPcTgWwr+lxqgFwUdxAjztweu0xrVbNrEZYEI6+PVr87/6HD8mI9kPellDG08oM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=OksRTZVd; arc=none smtp.client-ip=188.40.3.216
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=ew.tq-group.com; s=default2602; h=Content-Type:MIME-Version:References:
-	In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=RAfh/PzupwWnD+3cauiv6r8CFHSLK8xZ7xKOz5WJXPA=; b=OksRTZVdjiKJjUiNnWiOcaZqHC
-	Ij5+zXHSfVUo+51wTnST6aiirB3z0PSAVnpRDYQSJfSj+flzitFvVWVPPtpNGNlp+xIQd3m1CN8GP
-	i98RfJECcb5cVLcmsLUlleKCkRXDT7cBLZCOVFEIIgfO4bQhhGcAZ78Z4ENrO9F3/rmVctILpVKaF
-	Abf5IrQamVjChCmQCMr79jdO315+kNgvjSwZRTsPSRPXdF+/g5+Uk/qC3hmrNUGnCzcIW8gcsYZEg
-	O6shwVWXb1We0+o3Lw94XE1tHKH0rZAJXY1e0XoFzM8O45d0Bh2NBXMCDWxI5URh/adwz6Bl9xUPb
-	q6ecBK+A==;
-Received: from sslproxy03.your-server.de ([88.198.220.132])
-	by www537.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.96.2)
-	(envelope-from <alexander.stein@ew.tq-group.com>)
-	id 1wjcO9-0003sZ-18;
-	Tue, 14 Jul 2026 14:37:29 +0200
-Received: from localhost ([127.0.0.1])
-	by sslproxy03.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <alexander.stein@ew.tq-group.com>)
-	id 1wjcO8-0009Wh-0k;
-	Tue, 14 Jul 2026 14:37:28 +0200
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: Francesco Dolcini <francesco@dolcini.it>
-Cc: Frieder Schrempf <frieder.schrempf@kontron.de>,
- linux-arm-kernel@lists.infradead.org,
- Francesco Dolcini <francesco@dolcini.it>, Frieder Schrempf <frieder@fris.de>,
- Srinivas Kandagatla <srini@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Frank Li <Frank.Li@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Shawn Guo <shawnguo@kernel.org>,
- Pankaj Gupta <pankaj.gupta@nxp.com>, "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
- devicetree@vger.kernel.org, imx@lists.linux.dev, linux-kernel@vger.kernel.org
-Subject:
- Re: [PATCH v2 10/10] arm64: dts: imx93-kontron: Enable ELE firmware driver
-Date: Tue, 14 Jul 2026 14:37:27 +0200
-Message-ID: <3056369.e9J7NaK4W3@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <20260714123350.GD22086@francesco-nb>
-References:
- <20260713-upstreaming-next-20260609-imx-ocotp-ele-v2-0-b8266d93514b@kontron.de>
- <2420855.ElGaqSPkdT@steina-w> <20260714123350.GD22086@francesco-nb>
+	s=arc-20240116; t=1784033100; c=relaxed/simple;
+	bh=Nn/jrapi0kptlJ39pA0zVXo92X49jLlO8HGLvAXNkrM=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=ClhEm4qceKFl8+dEjDuX3zht38fUU6jEuMbkOjaZqNrdP8aa94yVRMvlcSMmW/+CLXqJw7D14+VNfVXvqirKuSeJBQpOBpMrHuBNjOyalW3d2RQWOdVsCXcgftaTR7xgvMxYpvEN3mPF9UTYuSEykbUh8RnDsxbK31YqSyFs+No=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OKu1WK5d; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id B3EB1C2BCB8;
+	Tue, 14 Jul 2026 12:44:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1784033099;
+	bh=Nn/jrapi0kptlJ39pA0zVXo92X49jLlO8HGLvAXNkrM=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=OKu1WK5d0CKd+GZLAWHMYagMNsyC7Y3VP8MEYqDELMxl3+RUbKKpitvNsHoK1GooD
+	 eDUe+btuv+ZkbkHUKluTNftiHzJamni8Byde3D8qDf92jkKRz85nMMQEBBV+r9Hva/
+	 o2acmnMRa5S04ECQh/305brlEPUWO2WFmav3GMbv/TrV9lkw3GrM//UPYzawZw/4lk
+	 CIDuawyODaFlaC5WkP0AlLTB4jb4HTLQA29H56AuFjp1ARCwadcw3x0EUo1ecwS/BE
+	 Kf/al7nABTva0caIDO/KR3e+FIBoMAblULvk8D4JgwPsQ4Ar0BW0ZCxh1GLNOXVQGX
+	 aonIwesSHK9jw==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 71436C43458;
+	Tue, 14 Jul 2026 12:44:59 +0000 (UTC)
+From: Roman Vivchar via B4 Relay <devnull+rva333.protonmail.com@kernel.org>
+Subject: [PATCH 0/3] soc: mediatek: pwrap: mt6572 support + log level fixes
+Date: Tue, 14 Jul 2026 15:42:02 +0300
+Message-Id: <20260714-6572-pwrap-v1-0-d8e5a39cf7ef@protonmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="nextPart3424428.aeNJFYEL58";
- micalg="pgp-sha512"; protocol="application/pgp-signature"
-X-Virus-Scanned: Clear (ClamAV 1.4.3/28060/Tue Jul 14 08:25:07 2026)
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/yXMTQ5AMBBA4avIrDXRKRWuIhbUYCxoWn+JuLti+
+ S3eu8CTY/JQRhc42tnzMgfIOAIzNvNAgrtgwAR1kksUOstR2MM1VqSmkJlWpu9QQQiso57Pb1b
+ Vv/3WTmTW9wD3/QC2rBQtbgAAAA==
+X-Change-ID: 20260712-6572-pwrap-4c91563cfd23
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Flora Fu <flora.fu@mediatek.com>, Alexandre Mergnat <amergnat@baylibre.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+ Roman Vivchar <rva333@protonmail.com>
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1784033096; l=1009;
+ i=rva333@protonmail.com; s=20260510; h=from:subject:message-id;
+ bh=Nn/jrapi0kptlJ39pA0zVXo92X49jLlO8HGLvAXNkrM=;
+ b=blv4Al/GQ3QV1Qr4XT5gNVLbbMpXXuOLHXeoPuWo0bBGSh4WjPO4Up+DtLqb5j+MR6nC5M7Um
+ KXoGJK1ssy6DA4yHMT0E9aGC1lrF5UkrcpnHhtUXlNwrT8jVXHQ/N43
+X-Developer-Key: i=rva333@protonmail.com; a=ed25519;
+ pk=zww/nWjBGoQ4POXCG0BV6fx2iuXK6jx77rsKPA5YK5Y=
+X-Endpoint-Received: by B4 Relay for rva333@protonmail.com/20260510 with
+ auth_id=777
+X-Original-From: Roman Vivchar <rva333@protonmail.com>
+Reply-To: rva333@protonmail.com
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.26 / 15.00];
-	SIGNED_PGP(-2.00)[];
+X-Spamd-Result: default: False [-1.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	FREEMAIL_REPLYTO_NEQ_FROM(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[ew.tq-group.com,quarantine];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	R_DKIM_ALLOW(-0.20)[ew.tq-group.com:s=default2602];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	FREEMAIL_TO(0.00)[kernel.org,gmail.com,collabora.com,mediatek.com,baylibre.com];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	TAGGED_FROM(0.00)[bounces-326214-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	FORGED_SENDER(0.00)[alexander.stein@ew.tq-group.com,devicetree@vger.kernel.org];
-	FORWARDED(0.00)[lists@lfdr.de];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
-	FREEMAIL_CC(0.00)[kontron.de,lists.infradead.org,dolcini.it,fris.de,kernel.org,nxp.com,pengutronix.de,gmail.com,oss.nxp.com,vger.kernel.org,lists.linux.dev];
-	FORGED_RECIPIENTS(0.00)[m:francesco@dolcini.it,m:frieder.schrempf@kontron.de,m:linux-arm-kernel@lists.infradead.org,m:frieder@fris.de,m:srini@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:Frank.Li@nxp.com,m:s.hauer@pengutronix.de,m:kernel@pengutronix.de,m:festevam@gmail.com,m:shawnguo@kernel.org,m:pankaj.gupta@nxp.com,m:peng.fan@oss.nxp.com,m:devicetree@vger.kernel.org,m:imx@lists.linux.dev,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:matthias.bgg@gmail.com,m:angelogioacchino.delregno@collabora.com,m:flora.fu@mediatek.com,m:amergnat@baylibre.com,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-mediatek@lists.infradead.org,m:rva333@protonmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:matthiasbgg@gmail.com,s:lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[alexander.stein@ew.tq-group.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[ew.tq-group.com:+];
-	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_SENDER(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FREEMAIL_REPLYTO(0.00)[protonmail.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-326216-lists,devicetree=lfdr.de,rva333.protonmail.com];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,protonmail.com];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	ALIAS_RESOLVED(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	PRECEDENCE_BULK(0.00)[];
+	HAS_REPLYTO(0.00)[rva333@protonmail.com];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,kontron.de:email,vger.kernel.org:from_smtp,ew.tq-group.com:from_mime,ew.tq-group.com:dkim,tq-group.com:url,steina-w:mid]
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,protonmail.com:mid,protonmail.com:email,protonmail.com:replyto]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: E0B2B754A2B
+X-Rspamd-Queue-Id: 0FF90754B17
 
---nextPart3424428.aeNJFYEL58
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"; protected-headers="v1"
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: Francesco Dolcini <francesco@dolcini.it>
-Date: Tue, 14 Jul 2026 14:37:27 +0200
-Message-ID: <3056369.e9J7NaK4W3@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <20260714123350.GD22086@francesco-nb>
-MIME-Version: 1.0
+This patch series adds support for the mt6572 pwrap.
 
-Am Dienstag, 14. Juli 2026, 14:33:50 CEST schrieb Francesco Dolcini:
-> On Tue, Jul 14, 2026 at 02:06:38PM +0200, Alexander Stein wrote:
-> > Am Dienstag, 14. Juli 2026, 11:33:54 CEST schrieb Francesco Dolcini:
-> > > On Tue, Jul 14, 2026 at 10:43:56AM +0200, Frieder Schrempf wrote:
-> > > > On 14.07.26 10:32, Francesco Dolcini wrote:
-> > > > > On Tue, Jul 14, 2026 at 10:09:11AM +0200, Frieder Schrempf wrote:
-> > > > >> Hi Francesco,
-> > > > >>
-> > > > >> On 14.07.26 08:59, Francesco Dolcini wrote:
-> > > > >>> Hello Frieder,
-> > > > >>>
-> > > > >>> On Mon, Jul 13, 2026 at 04:53:46PM +0200, Frieder Schrempf wrot=
-e:
-> > > > >>>> From: Frieder Schrempf <frieder.schrempf@kontron.de>
-> > > > >>>>
-> > > > >>>> Add the ELE firmware API node and pass its handle to the OCOTP
-> > > > >>>> driver. This allows us to gain read/write access to the OTP fu=
-ses.
-> > > > >>>
-> > > > >>> This seems something we should have in the soc dtsi (imx93/imx9=
-1), it
-> > > > >>> does not seems board specific.
-> > > > >>
-> > > > >> My original intention was to move as much as possible into the S=
-oC dtsi.
-> > > > >> The problem is that the memory node is somewhat board specific d=
-ue to
-> > > > >> the DDR. And I can't move the firmware node into the SoC dtsi an=
-d assign
-> > > > >> the memory node in the board dts as the checks for all boards not
-> > > > >> specifying a memory node would fail then.
-> > > > >=20
-> > > > > What is the reason to have this memory address different on vario=
-us
-> > > > > boards? Can we have a default in the soc dtsi, and allow the boar=
-d to
-> > > > > override the address if needed?
-> > > >=20
-> > > > There is no real point in having different addresses on different
-> > > > boards. But the node describes memory that is physically on the boa=
-rd
-> > > > and not on the SoC. And I think that is why DT maintainers want to =
-have
-> > > > it in the board DT. It's the same with the memory nodes for the
-> > > > remoteproc drivers to communicate with the Cortex M-Cores in the i.=
-MX.
-> > > > But maybe I'm wrong and if there is a possibility to move this to t=
-he
-> > > > SoC DT I will definitely take it.
-> >=20
-> > We are talking about reserved memory, so this is highly board-specific.
-> > So for different hardware variants with different amount of RAM you hav=
-e to
-> > go for the minimum anyway.
-> >=20
-> > > > >=20
-> > > > > Or can't you add the address in all the boards, and keep everythi=
-ng else
-> > > > > in the soc dtsi?
-> > > > This could be a possible way, yes. In that case maybe we could even
-> > > > create a generic dtsi to contain such defaults for all boards.
-> > >=20
-> > > I would go for this solution, we could have something like
-> > > `k3-am62-ti-ipc-firmware.dtsi`, include it from all the boards, have a
-> > > sane default memory address, and have an easy way to override the mem=
-ory
-> > > address from the board dts, if needed.
-> >=20
-> > So what is a sane default? At the end of the minimal possible RAM?
-> > I'm not really fond of something you have to make sure matches to your
-> > hardware, but won't raise an error if you forgot.
-> >=20
-> > How about providing defaults for the SoC part and users have to provide=
- their
-> > memory on board-level? Similar to the VPU nodes on imx8qm/imx8qxp. Ther=
-e you
-> > have to specify memory-region in your board.
->=20
-> I am personally ok with both solution.
->=20
-> I think it is easy to have a sane default in this case. You cannot have
-> less than 256MiB in practice, and this is just about the offset, is not
-> that you are going to want more memory reserved if the board has more
-> memory available.
->=20
-> At the same time, having the memory range in the board dts is also ok to
-> me.
+All known mt6572 devices use mt6323 PMIC, which is already supported
+by the upstream drivers. mt6572 also shares SoC-specific init with
+mt2701.
 
-I'm just saying, because we had lots of problem with assumed offsets/length
-in code/DT for NXP boards. They usually come with big/huge amount of RAM.
-This breaks for all hardware using a small amount of RAM.
-So it's better to not have a default than silently breaking things because
-the default doesn't match.
+Patch 1 adds dt-bindings compatible.
+Patch 2 fixes improper log levels in the driver, improving UX when
+debugging.
+Patch 3 adds mt6572 support.
+
+Tested on various mt6572 devices without any failures.
+
+Signed-off-by: Roman Vivchar <rva333@protonmail.com>
+---
+Roman Vivchar (3):
+      dt-bindings: soc: mediatek: pwrap: add mt6572
+      soc: mediatek: pwrap: use correct log level
+      soc: mediatek: pwrap: add mt6572 support
+
+ .../bindings/soc/mediatek/mediatek,pwrap.yaml      |   1 +
+ drivers/soc/mediatek/mtk-pmic-wrap.c               | 156 +++++++++++++++++----
+ 2 files changed, 129 insertions(+), 28 deletions(-)
+---
+base-commit: 8cd9520d35a6c38db6567e97dd93b1f11f185dc6
+change-id: 20260712-6572-pwrap-4c91563cfd23
 
 Best regards,
-Alexander
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
---nextPart3424428.aeNJFYEL58
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEByESxqszIvkmWRwbaS+g2M0Z/iUFAmpWLYcACgkQaS+g2M0Z
-/iWINAf/TAzAwTQA+zKmdhL5w9TllXM6GKTvgTinOPm+2fkvr9SXHxClh6uLoloB
-Ox0kLVveoy4uOLMZFeYU3XC+DK4bAnFskikhXJobAk6M0iOOxCWEWmqVwS9iggTS
-TS+iedIl3I2MKKoTFRAbBgomA3B/SCvHQa9It040eB6Sngif+GaHOXZAiKQV1qVO
-a/VbmJ05D6hHAGv3hRGGyZw5x8+IT5AVI3QazV3+yFJ1tUtCH6RUTEN7J3wT25dA
-Un0UIhpBXI9r53gkrJdE6Hm8gosLEjvBY7T65CYbhvoping7DAxqzUEK4yclyGkG
-yVNLMfvuBcYtRr6u5yQR0D/6j2weZw==
-=WgXO
------END PGP SIGNATURE-----
-
---nextPart3424428.aeNJFYEL58--
-
+--  
+Roman Vivchar <rva333@protonmail.com>
 
 
 
