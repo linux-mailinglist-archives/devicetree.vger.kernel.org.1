@@ -1,272 +1,208 @@
-Return-Path: <devicetree+bounces-326124-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-326125-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id N1xPIjMeVmqizQAAu9opvQ
-	(envelope-from <devicetree+bounces-326124-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 13:32:03 +0200
+	id 20z2M+IfVmr/zQAAu9opvQ
+	(envelope-from <devicetree+bounces-326125-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 13:39:14 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDF8E753EAD
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 13:32:02 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B7AD753F7D
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 13:39:13 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=eJdgzk24;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326124-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-326124-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=intel.com header.s=Intel header.b="PgVN1X/a";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326125-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-326125-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=intel.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 7A981304696F
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 11:31:54 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A228A300BD93
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 11:36:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2ABC035E1A3;
-	Tue, 14 Jul 2026 11:31:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB66137F00F;
+	Tue, 14 Jul 2026 11:36:29 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8E1235BDC7
-	for <devicetree@vger.kernel.org>; Tue, 14 Jul 2026 11:31:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 924F635C1BD;
+	Tue, 14 Jul 2026 11:36:27 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1784028714; cv=none; b=JtO7OA2W2rfqrtb5xLxQoPyT5KZv/zuefvAv9G6dq1OeTJLkh5p6IBKC/IjdiZF3eHyo1mndRjir9eZs8MCtzUK2I7v6DEP0tln8o675EuT9BV0cYYqHgsLrKZtKcVResGoJa7YCxbveu7VM5TOEmXReYU3zbF3pIGPtbmEiD1M=
+	t=1784028989; cv=none; b=ZipxwWuxh+ISJex2upTXB7Or3UDz+8uxd4ZgOASL9T/YRJCmEWa/UfOvw9AIg12LtkTZsuJP3Q3vT7bmiBIhjMuB4Z8IxeFWWB3zy37f7X9GLO10thM6rCbhtrjsXbm9VhKs6oq2QIh7cGtOoReuWaK/4EV6o2E+VvO5Zp7vrDY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1784028714; c=relaxed/simple;
-	bh=FfOPjnuz7QtdM4YS/c6xrKtzHCqvsdCzBb/9HRmTy4o=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=qOS4YWiDXYmqaoTldwvP+Xf4yNT8EgTR2G5gGeuj4TCXZZUEC43QOzYJEF5aMHIeOhVLSLs3/81HDhcAEYcZyTi2q5KCCRk8a1xx0QMirCI45P8dHgdHM0CuSUspApPGg+wAn9Xk8GdfqgA4T2LJwuuHqSbNiyV47eokaWB/z68=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eJdgzk24; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0DE771F000E9;
-	Tue, 14 Jul 2026 11:31:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1784028712;
-	bh=QQeoHKLcjTnsjCJVP09/mJ0h3b2GJCBITeElAgPA3k0=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=eJdgzk24p4YXxXPCDdbJygRyBbCuWkpOw2ur6bS4iRtHXJuSCxPKg1TwtrZm8SASZ
-	 FycsuVREg81bk817vysadpedV/E+clRyeMoW5xl/qaaKPhzUWBZynyEK08cX7g2F36
-	 ZoG/PzaBcoO14kyKxSL0SE0SNJD6KO6i6Gwu16r4saM7BVhZFoDPGAQ+5Swl1fRHYk
-	 7Xx0auLAab10AxYMvTxjimlLWEVMyZyEhrQ49qGXJUmpVp2d8pVUZJVuSguh2dozY1
-	 kR3KjCTUzipu5zUjRbpNSG07FvyHWeUx/qEaZpvJTx5mZPntweIpqaO/in1UD2gy26
-	 iaIGIlovzLkKQ==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v14 7/8] i3c: hub: p3h2x4x: Add support for NXP P3H2x4x
- I3C hub functionality
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Lakshay Piplani" <lakshay.piplani@nxp.com>
-Cc: robh@kernel.org, devicetree@vger.kernel.org, linux-i3c@lists.infradead.org, Frank.Li@kernel.org, conor+dt@kernel.org, "Alexandre
- Belloni" <alexandre.belloni@bootlin.com>
-In-Reply-To: <20260714092053.2461482-8-lakshay.piplani@nxp.com>
-References: <20260714092053.2461482-1-lakshay.piplani@nxp.com>
- <20260714092053.2461482-8-lakshay.piplani@nxp.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Tue, 14 Jul 2026 11:31:51 +0000
-Message-Id: <20260714113152.0DE771F000E9@smtp.kernel.org>
+	s=arc-20240116; t=1784028989; c=relaxed/simple;
+	bh=YDjvmbpWIrtlGPcVMzL5cFtWnoLtPzwtrwnMNnUkhPw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=IXAF0IP2pxq88RYgQ6FR1+l0pwNoJzsRwE8ZbkeI3m62FQKdHFszm8VzyBd+6jh01Sl8PMW9zEBZc3Ka0FT03/L3bqRhjCEau0w8P0l70ngud7zN10HqVGI551OSbyF9b3/19jTDvVQNA5SDKLe68XZ8tx1u3/KEx/EwkWz6YTU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=PgVN1X/a; arc=none smtp.client-ip=192.198.163.11
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1784028988; x=1815564988;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=YDjvmbpWIrtlGPcVMzL5cFtWnoLtPzwtrwnMNnUkhPw=;
+  b=PgVN1X/ad+HrQCO/5K6tYKJ4WM1xlluyr02pjpkRF9kzht6CtpJiEIrw
+   1XjpyjtEqWnPb8aK/S303BlwlWmFKCFbHyIfmhdn5vWcE8p+iwx0JcShd
+   DHriYOEq9TDNEXLTOa2aK1+tMjkBMTZyvH0lrNIfNSUJjRf+WVCds/wuA
+   e8INGeeFzdapKXrrNU64VzfH4pAgCgLBRfpvIteuUEB/M2xhZcw1Q5LDv
+   1TSDZOzoJ4+NdD8i7w2fOMfhpFLprBEgIr6QwqBm8dsmayT3CJ1I2N0GR
+   shBdpGkjr4XTfJ/IHVMbPbq3V1U9WOpxPfzr6gRfMOxwmegCgZ/vhX5Lj
+   A==;
+X-CSE-ConnectionGUID: BADjSHWiRt+ypBWhf6Rtrw==
+X-CSE-MsgGUID: 3giPNZLJSdqLHtFgUPl0pQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11846"; a="95249122"
+X-IronPort-AV: E=Sophos;i="6.25,163,1779174000"; 
+   d="scan'208";a="95249122"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Jul 2026 04:36:27 -0700
+X-CSE-ConnectionGUID: hMR+49mZT0mZA6vNwnKt+g==
+X-CSE-MsgGUID: 5GCO/4VHT2q88LKYf3rxiQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,163,1779174000"; 
+   d="scan'208";a="285910405"
+Received: from klitkey1-mobl1.ger.corp.intel.com (HELO kekkonen.fi.intel.com) ([10.245.245.245])
+  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Jul 2026 04:36:25 -0700
+Received: from kekkonen.localdomain (localhost [IPv6:::1])
+	by kekkonen.fi.intel.com (Postfix) with SMTP id BA8BC11F8AD;
+	Tue, 14 Jul 2026 14:36:22 +0300 (EEST)
+Date: Tue, 14 Jul 2026 14:36:22 +0300
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6 krs, Bertel Jungin Aukio 5, 02600 Espoo
+From: Sakari Ailus <sakari.ailus@linux.intel.com>
+To: Dave Stevenson <dave.stevenson@raspberrypi.com>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Richard Acayan <mailingradian@gmail.com>,
+	linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
+	David Heidelberg <david@ixit.cz>,
+	Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 12/20] media: imx355: Use pm_runtime autosuspend_delay
+Message-ID: <alYfNhqYLLP7Ob2m@kekkonen.localdomain>
+References: <20260708-media-imx355-v3-0-9df386a623d7@raspberrypi.com>
+ <20260708-media-imx355-v3-12-9df386a623d7@raspberrypi.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260708-media-imx355-v3-12-9df386a623d7@raspberrypi.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [-3.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[intel.com:d:+,kernel.org:s:+];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	TAGGED_FROM(0.00)[bounces-326124-lists,devicetree=lfdr.de];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:lakshay.piplani@nxp.com,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:linux-i3c@lists.infradead.org,m:Frank.Li@kernel.org,m:conor+dt@kernel.org,m:alexandre.belloni@bootlin.com,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-326125-lists,devicetree=lfdr.de];
+	HAS_ORG_HEADER(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:dave.stevenson@raspberrypi.com,m:mchehab@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:mailingradian@gmail.com,m:linux-media@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:david@ixit.cz,m:jacopo.mondi@ideasonboard.com,m:devicetree@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORWARDED(0.00)[lists@lfdr.de];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	FORGED_SENDER(0.00)[sakari.ailus@linux.intel.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,vger.kernel.org,ixit.cz,ideasonboard.com];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[7];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FROM_NO_DN(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sakari.ailus@linux.intel.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[intel.com:+];
+	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,sashiko.dev:url,lists.linux.dev:replyto,smtp.kernel.org:mid,vger.kernel.org:from_smtp]
+	MISSING_XM_UA(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,vger.kernel.org:from_smtp,linux.intel.com:from_mime,kekkonen.localdomain:mid,ideasonboard.com:email,raspberrypi.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: CDF8E753EAD
+X-Rspamd-Queue-Id: 9B7AD753F7D
 
-Thank you for your contribution! Sashiko AI review found 5 potential issue(=
-s) to consider:
-- [High] Child driver illegaly overwrites the parent MFD device's private d=
-ata, causing type confusion and kernel panics.
-- [High] The SMBus timeout formula underestimates minimum physical wire tim=
-e, causing large block transfers to inevitably fail with -ETIMEDOUT.
-- [High] Target ports configured as "i2c" are left completely disconnected =
-and functionally dead.
-- [High] Use-After-Free of device structure embedded in devm-allocated memo=
-ry during driver unbind.
-- [Medium] Missing I2C adapter quirks causes undocumented rigid transfer si=
-ze limits.
---
+Hi Dave,
 
---- Patch [7]: [PATCH v14 7/8] i3c: hub: p3h2x4x: Add support for NXP P3H2x=
-4x I3C hub functionality ---
-commit cfe07c5ef0a917e7757bc31fa34e458df22a78ed
-Author: Aman Kumar Pandey <aman.kumarpandey@nxp.com>
+On Wed, Jul 08, 2026 at 03:48:48PM +0100, Dave Stevenson wrote:
+> Avoid powering the sensor up and down unnecessarily by using
+> pm_runtime's autosuspend_delay feature.
+> 
+> Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
+> Reviewed-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+> ---
+>  drivers/media/i2c/imx355.c | 9 +++++++--
+>  1 file changed, 7 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/media/i2c/imx355.c b/drivers/media/i2c/imx355.c
+> index ee1f41a66a0b..f01a1a5ae7c9 100644
+> --- a/drivers/media/i2c/imx355.c
+> +++ b/drivers/media/i2c/imx355.c
+> @@ -1073,7 +1073,7 @@ static int imx355_set_stream(struct v4l2_subdev *sd, int enable)
+>  			goto err_rpm_put;
+>  	} else {
+>  		imx355_stop_streaming(imx355);
+> -		pm_runtime_put(imx355->dev);
+> +		pm_runtime_put_autosuspend(imx355->dev);
+>  	}
+>  
+>  	/* vflip and hflip cannot change during streaming */
+> @@ -1085,7 +1085,7 @@ static int imx355_set_stream(struct v4l2_subdev *sd, int enable)
+>  	return ret;
+>  
+>  err_rpm_put:
+> -	pm_runtime_put(imx355->dev);
+> +	pm_runtime_put_autosuspend(imx355->dev);
+>  err_unlock:
+>  	mutex_unlock(&imx355->mutex);
+>  
+> @@ -1436,6 +1436,8 @@ static int imx355_probe(struct i2c_client *client)
+>  	pm_runtime_set_active(imx355->dev);
+>  	pm_runtime_enable(imx355->dev);
+>  	pm_runtime_idle(imx355->dev);
+> +	pm_runtime_set_autosuspend_delay(imx355->dev, 1000);
+> +	pm_runtime_use_autosuspend(imx355->dev);
 
-i3c: hub: p3h2x4x: Add support for NXP P3H2x4x I3C hub functionality
+I think it'd make sense to do this before calling pm_runtime_idle(),
+wouldn't it?
 
-Add I3C hub functionality for the NXP P3H2x4x family of multiport hubs.
-These devices support downstream target ports that can be configured
-as I3C, I2C, or SMBus.
+There's also a pre-existing bug here: if pm_runtime_idle() powers the
+sensor off before calling pm_runtime_disable(), imx355_power_off() will get
+called twice. The easiest fix is to call pm_runtime_idle() only after
+v4l2_async_register_subdev_sensor().
 
-> diff --git a/drivers/i3c/hub/p3h2840_i3c_hub.h b/drivers/i3c/hub/p3h2840_=
-i3c_hub.h
-> index 0000000000000..e7ab243bbfff6
-> --- /dev/null
-> +++ b/drivers/i3c/hub/p3h2840_i3c_hub.h
-[ ... ]
-> +/* Hub SMBus transaction time */
-> +#define P3H2X4X_SMBUS_400kHz_TRANSFER_TIMEOUT(x)		((20 * (x)) + 80)
+This should be fixed before adding autosuspend support.
 
-[Severity: High]
-Is this timeout formula sufficient for large SMBus block transfers?
-
-At 400kHz, each 9-bit I2C byte takes 22.5 us. For a 32-byte payload plus a
-1-byte address, the minimum physical wire time is 33 * 22.5 =3D 742.5 us.
-However, the formula 20 * x + 80 allocates only 720 us for a 32-byte payloa=
-d.
-
-If a large payload message is sent, the timeout will trigger in
-p3h2x4x_read_smbus_transaction_status() before the transfer can complete on
-the wire, causing it to fail with a timeout.
-
-[ ... ]
-> diff --git a/drivers/i3c/hub/p3h2840_i3c_hub_common.c b/drivers/i3c/hub/p=
-3h2840_i3c_hub_common.c
-> index 0000000000000..2fd9723da60d9
-> --- /dev/null
-> +++ b/drivers/i3c/hub/p3h2840_i3c_hub_common.c
-[ ... ]
-> +static int p3h2x4x_i3c_hub_probe(struct platform_device *pdev)
-> +{
-> +	struct p3h2x4x *p3h2x4x =3D dev_get_drvdata(pdev->dev.parent);
-> +	struct p3h2x4x_i3c_hub_dev *p3h2x4x_i3c_hub;
-> +	struct device *dev =3D &pdev->dev;
-> +	struct device_node *node;
-> +	int ret, i;
+>  
+>  	ret = v4l2_async_register_subdev_sensor(&imx355->sd);
+>  	if (ret < 0)
+> @@ -1446,6 +1448,7 @@ static int imx355_probe(struct i2c_client *client)
+>  error_media_entity_runtime_pm:
+>  	pm_runtime_disable(imx355->dev);
+>  	pm_runtime_set_suspended(imx355->dev);
+> +	pm_runtime_dont_use_autosuspend(imx355->dev);
+>  	media_entity_cleanup(&imx355->sd.entity);
+>  
+>  error_handler_free:
+> @@ -1476,6 +1479,8 @@ static void imx355_remove(struct i2c_client *client)
+>  		pm_runtime_set_suspended(imx355->dev);
+>  	}
+>  
+> +	pm_runtime_dont_use_autosuspend(imx355->dev);
 > +
-> +	p3h2x4x_i3c_hub =3D devm_kzalloc(dev, sizeof(*p3h2x4x_i3c_hub), GFP_KER=
-NEL);
+>  	mutex_destroy(&imx355->mutex);
+>  }
+>  
+> 
 
-[Severity: High]
-Could this lead to a use-after-free during driver unbind?
+-- 
+Kind regards,
 
-The p3h2x4x_i3c_hub structure is allocated via devm_kzalloc() and contains
-struct i3c_master_controller instances, which in turn embed struct device.
-
-When the devm action calls i3c_master_unregister() on driver unbind, it
-invokes device_unregister(). Because device_unregister() does not block to
-wait for all sysfs references to drop, userspace might still hold reference=
-s.
-When devm subsequently frees the containing p3h2x4x_i3c_hub_dev structure,
-accessing those remaining references will cause a use-after-free.
-
-> +	if (!p3h2x4x_i3c_hub)
-> +		return -ENOMEM;
-[ ... ]
-> +	/* Register virtual I3C master controllers for I3C target ports */
-> +	if (p3h2x4x->i3cdev) {
-> +		p3h2x4x_i3c_hub->i3cdev =3D p3h2x4x->i3cdev;
-> +		i3cdev_set_drvdata(p3h2x4x->i3cdev, p3h2x4x_i3c_hub);
-
-[Severity: High]
-Does this code safely manage the parent device's private data?
-
-By calling i3cdev_set_drvdata() on p3h2x4x->i3cdev here in
-p3h2x4x_i3c_hub_probe(), it replaces the MFD parent's drvdata with the child
-driver's context. If any parent callbacks try to retrieve their data, they
-will incorrectly cast struct p3h2x4x_i3c_hub_dev to struct p3h2x4x, leading
-to type confusion and data corruption.
-
-> +		ret =3D p3h2x4x_tp_i3c_algo(p3h2x4x_i3c_hub);
-> +		if (ret)
-> +			return dev_err_probe(dev, ret, "Failed to register i3c bus\n");
-> +	}
-[ ... ]
-> diff --git a/drivers/i3c/hub/p3h2840_i3c_hub_i3c.c b/drivers/i3c/hub/p3h2=
-840_i3c_hub_i3c.c
-> index 0000000000000..0e5bf7eb3cf7f
-> --- /dev/null
-> +++ b/drivers/i3c/hub/p3h2840_i3c_hub_i3c.c
-[ ... ]
-> +int p3h2x4x_tp_i3c_algo(struct p3h2x4x_i3c_hub_dev *p3h2x4x_hub)
-> +{
-[ ... ]
-> +	for (tp =3D 0; tp < P3H2X4X_TP_MAX_COUNT; tp++) {
-> +		if (!p3h2x4x_hub->tp_bus[tp].of_node ||
-> +		    p3h2x4x_hub->hub_config.tp_config[tp].mode !=3D P3H2X4X_TP_MODE_I3=
-C)
-> +			continue;
-
-[Severity: High]
-Will target ports configured as i2c in the device tree be registered?
-
-The p3h2x4x_tp_i3c_algo() function explicitly skips ports unless they are in
-I3C mode. Similarly, p3h2x4x_tp_smbus_algo() skips ports unless they are in
-SMBus mode. As a result, ports configured as i2c are ignored entirely and
-never registered or enabled in the hardware's network configuration mask.
-
-> +
-> +		struct i3c_hub_controller *hub_controller =3D
-> +				&p3h2x4x_hub->tp_bus[tp].hub_controller;
-[ ... ]
-> diff --git a/drivers/i3c/hub/p3h2840_i3c_hub_smbus.c b/drivers/i3c/hub/p3=
-h2840_i3c_hub_smbus.c
-> index 0000000000000..b991c46f3ed59
-> --- /dev/null
-> +++ b/drivers/i3c/hub/p3h2840_i3c_hub_smbus.c
-[ ... ]
-> +static s32 p3h2x4x_tp_i2c_xfer(struct i2c_adapter *adap, struct i2c_msg =
-*msgs, int num)
-> +{
-[ ... ]
-> +	for (msg_count =3D 0; msg_count < num; msg_count++) {
-> +		if (msgs[msg_count].len > P3H2X4X_SMBUS_PAYLOAD_SIZE) {
-> +			dev_err(p3h2x4x_i3c_hub->dev,
-> +				"Message nr. %d not sent - length over %d bytes.\n",
-> +				msg_count, P3H2X4X_SMBUS_PAYLOAD_SIZE);
-> +			return -EINVAL;
-> +		}
-
-[Severity: Medium]
-Would it be better to expose this size limitation to the I2C subsystem?
-
-By enforcing a hard boundary here dynamically in p3h2x4x_tp_i2c_xfer()
-without populating the i2c_adapter_quirks structure, the I2C subsystem
-cannot automatically split up oversized reads and writes for the client.
-This will result in unexpected failures for standard transactions that exce=
-ed
-84 bytes.
-
-> +
-> +		rw =3D (msgs[msg_count].flags & I2C_M_RD) ? 1 : 0;
-[ ... ]
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260714092053.2461=
-482-1-lakshay.piplani@nxp.com?part=3D7
+Sakari Ailus
 
