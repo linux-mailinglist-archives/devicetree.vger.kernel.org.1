@@ -1,215 +1,210 @@
-Return-Path: <devicetree+bounces-326478-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-326482-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id suB+E2iSVmrR9gAAu9opvQ
-	(envelope-from <devicetree+bounces-326478-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 21:47:52 +0200
+	id K/D1GKWSVmoI9wAAu9opvQ
+	(envelope-from <devicetree+bounces-326482-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 21:48:53 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0C5175871B
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 21:47:51 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A7AA75875B
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 21:48:52 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=W646cstV;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326478-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-326478-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=hJjbRkjo;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326482-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-326482-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 3CABB3040695
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 19:47:41 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id B78113012759
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 19:48:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BB07432E76;
-	Tue, 14 Jul 2026 19:47:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DEC0843550E;
+	Tue, 14 Jul 2026 19:48:09 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C49472F9D82
-	for <devicetree@vger.kernel.org>; Tue, 14 Jul 2026 19:47:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 159FC433047;
+	Tue, 14 Jul 2026 19:48:06 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1784058457; cv=none; b=ue76SWb5Fh2xcUSZJukumEkGeBE+yniPcg3u4nEO0LbeQN4nKHNiXkBB5he3yIBvIASlqmo1YoXfPrBEtWRnp57mAGlRKu7ZxM2+mURmxzp1TT9T38XaXFrt2DtqNCs8+jHWvHv1nAG6cJ743Q//NvtT+ngUraiYEFcaHQQCK4E=
+	t=1784058489; cv=none; b=kynygfMhhQd3WfJfzl5e8SoAbv5R55v1aby+WYd0eo4WutPOIta68rzKzDe6K70CkI8UNOdy1IGLtZAPD6lt9wCHFfcguE7soNOkg5WJqkXaULdXTJMBOcnJHycxcm9oB29wkkWxapdkCWjeteoPmC0Lr/tpPU76Nuo6Ir9LUL0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1784058457; c=relaxed/simple;
-	bh=3jrjtiYA/ePTdhaa72dNKjSvwGHQiVd1iDu3KxKqEJ8=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=P/Ka7oL4XLU9f33UBLH3phE77MqveI99mMjKuISYF6hMTGlQKW+ZoZ6YRdNFUVDDcWvLO0itQ4ANMpCI8mcxJY8Z2i/5FzxjC/XfwhpPQ9/wcSNMLI3p/p6JfGptOQWTzkp2YBl03Zf5aWG1dpoEonYBiBF1+BU11Z6H+PRUXtk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=W646cstV; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E50AE1F00ACF;
-	Tue, 14 Jul 2026 19:47:35 +0000 (UTC)
+	s=arc-20240116; t=1784058489; c=relaxed/simple;
+	bh=B/L/X9V9PjtyIkDoHFL2DD8jdxZBz4bQhuxjlzo8bYw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=rmHfFip1KZ0MS6/52yRV6KASDPEaPLdQNYotWUEHwncfOHAB2oZB9BwstYWbmE0jnye6mjklkNjWo7YWXfjBnhRmmeYDLZqAizX4KRNHG9f6uelnrJa/icigTLBZ0kWMIZoVYU5C5nOF3jmiwLH/9UktkRXpzsvelmGCnAJ0eMY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hJjbRkjo; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C8CA91F000E9;
+	Tue, 14 Jul 2026 19:48:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1784058456;
-	bh=nXHjhU3zzxZS+D7A9hEj2tuSM9TlLQQMYiGI4BCD/3s=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=W646cstVOS0mKBrMUQArA9Rlbg5CE8YR1hvFHnahN9aykLnaTyF9hlO/An00eFvI7
-	 rckF3+7++8aqRy46DHm52Ke3t5sF7n2f7/SzY0H73M94mm6Cy6By4N8sHAgM27QXwR
-	 cqUv6rN3N+XmdnNTJHQxcnpeEWIMF/N7UZgqjMuGsAC9TVMW9d0dpgTskp98okuXtD
-	 2io2npplwjkrTXFD4lNpuervNlYWdFuyTjx9uu577QnRI131S8yn2U5Dz5DhDuQ6sz
-	 eVYQmefyQZqVE7KCXeLlZj2fghxTjXLFHxTn/pQmlUsguVqFOqfDIhEjgfVHd4JxQ2
-	 pHocHhiy1Qf1w==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v13 07/35] phy: rockchip: usbdp: Keep clocks running on
- PHY re-init
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Sebastian Reichel" <sebastian.reichel@collabora.com>
-Cc: robh@kernel.org, olteanv@gmail.com, neil.armstrong@linaro.org, linux-phy@lists.infradead.org, conor+dt@kernel.org, vkoul@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20260714-rockchip-usbdp-cleanup-v13-7-6cb3e769d4c5@collabora.com>
-References: <20260714-rockchip-usbdp-cleanup-v13-0-6cb3e769d4c5@collabora.com>
- <20260714-rockchip-usbdp-cleanup-v13-7-6cb3e769d4c5@collabora.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Tue, 14 Jul 2026 19:47:35 +0000
-Message-Id: <20260714194735.E50AE1F00ACF@smtp.kernel.org>
+	s=k20260515; t=1784058486;
+	bh=oUqzUmCd5C8LaJR7q3XMrWlHVSAMJDyXvnpn53blVaI=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To;
+	b=hJjbRkjodStNV3aFkSroSh3RyI1uRsygLQn7A7gDs39Y2nFzt9uMuVciIxK1tCwid
+	 66Zsi7OXdiuAxDKyEIZCZr3Y9I8GCiLF/6JSPmQZtGTO8IhFtkj+duE81iHc26IQn2
+	 sGcHzOYVs7sqGGWXhxqTLkkpdp94MM5U3iMnjO88g90e1AK0JU0DxA1vT9yJ/oIBbD
+	 K6F0yyuRNESCDE6QhmYjyn5BKZVDrwP3/e/WhQLW4pw6uiJDgBOq28fGTs/p01Oh+b
+	 Hyzzf9nPwI6aCkawKUD5Q+mQgyttB7YY8h5gKwGVoQ4zWjrPBvu3GeScAb0VXeMkTr
+	 MNslCVmGm6Uqg==
+Message-ID: <6c3a01f7-957d-4dc4-a892-3af2826928af@kernel.org>
+Date: Tue, 14 Jul 2026 21:47:59 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 10/10] arm64: dts: apple: Add minimal t8132 (M4) device
+ trees
+To: Yureka Lilian <yureka@cyberchaos.dev>
+Cc: Hector Martin <marcan@marcan.st>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, asahi@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, linux-watchdog@vger.kernel.org,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+ =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
+ Neal Gompa <neal@gompa.dev>, Janne Grunau <j@jannau.net>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>, Guenter Roeck
+ <linux@roeck-us.net>, Wim Van Sebroeck <wim@linux-watchdog.org>,
+ Linus Walleij <linusw@kernel.org>, Sasha Finkelstein <k@chaosmail.tech>,
+ linux-gpio@vger.kernel.org, linux-i2c@vger.kernel.org,
+ Thomas Gleixner <tglx@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ linux-pwm@vger.kernel.org, Andi Shyti <andi.shyti@kernel.org>,
+ Mark Kettenis <kettenis@openbsd.org>
+References: <20260705-apple-m4-initial-devicetrees-v1-0-e5655ee56523@cyberchaos.dev>
+ <20260705-apple-m4-initial-devicetrees-v1-10-e5655ee56523@cyberchaos.dev>
+Content-Language: en-US
+From: Sven Peter <sven@kernel.org>
+In-Reply-To: <20260705-apple-m4-initial-devicetrees-v1-10-e5655ee56523@cyberchaos.dev>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
+X-Spamd-Result: default: False [-3.66 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-326482-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-326478-lists,devicetree=lfdr.de];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:sebastian.reichel@collabora.com,m:robh@kernel.org,m:olteanv@gmail.com,m:neil.armstrong@linaro.org,m:linux-phy@lists.infradead.org,m:conor+dt@kernel.org,m:vkoul@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:yureka@cyberchaos.dev,m:marcan@marcan.st,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:asahi@lists.linux.dev,m:linux-arm-kernel@lists.infradead.org,m:linux-watchdog@vger.kernel.org,m:krzk+dt@kernel.org,m:robh@kernel.org,m:ukleinek@kernel.org,m:neal@gompa.dev,m:j@jannau.net,m:lpieralisi@kernel.org,m:linux@roeck-us.net,m:wim@linux-watchdog.org,m:linusw@kernel.org,m:k@chaosmail.tech,m:linux-gpio@vger.kernel.org,m:linux-i2c@vger.kernel.org,m:tglx@kernel.org,m:conor+dt@kernel.org,m:linux-pwm@vger.kernel.org,m:andi.shyti@kernel.org,m:kettenis@openbsd.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[sven@kernel.org,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[24];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,linaro.org,lists.infradead.org,vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sven@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:email,vger.kernel.org:from_smtp,lists.linux.dev:replyto,collabora.com:email,sashiko.dev:url,smtp.kernel.org:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: C0C5175871B
+X-Rspamd-Queue-Id: 7A7AA75875B
 
-Thank you for your contribution! Sashiko AI review found 3 potential issue(=
-s) to consider:
 
-New issues:
-- [High] Potential clock leak and state corruption if PHY re-initialization=
- fails during a mode change.
 
-Pre-existing issues:
-- [High] The `rk_udphy_dp_phy_configure` callback modifies the shared `pma_=
-regmap` and reads shared lane mapping arrays without holding the driver-spe=
-cific `udphy->mutex`.
-- [High] The USB3 (U3) port is not re-enabled in the GRF registers if the P=
-HY dynamically transitions from a DP-only mode to a DP+USB mode while power=
-ed on.
---
+On 7/5/26 15:17, Yureka Lilian wrote:
+> Added device trees for the following devices:
+> - apple,j604 - MacBook Pro (14-inch, M4, 2024)
+> - apple,j623 - iMac (24-inch, 2x USB-C, M4, 2024)
+> - apple,j624 - iMac (24-inch, 4x USB-C, M4, 2024)
+> - apple,j713 - MacBook Air (13-inch, M4, 2025)
+> - apple,j715 - MacBook Air (15-inch, M4, 2025)
+> - apple,j773g - Mac mini (M4, 2024)
+>
+> The device trees have a minimal set of devices limited to CPU cores,
+> interrupt controller, power states, watchdog, serial, pin controller,
+> i2c and framebuffer.
+> The device trees for the notebooks add a PWM controller for the keyboard
+> LED illumination.
+>
+> Using the macOS 26.6b3 iBoot/firmware, the Mac mini reliably boots on a
+> single core using the stock kernel.
+> Booting with smp requires avoiding the wfi and wfit instructions
+> in the idle loop and `delay()` respectively, since those instructions
+> cause a loss of architectural state on the secondary cores, and even
+> then boot is unreliable.
+>
+> Signed-off-by: Yureka Lilian <yureka@cyberchaos.dev>
+> ---
+>   arch/arm64/boot/dts/apple/Makefile        |    6 +
+>   arch/arm64/boot/dts/apple/t8132-j604.dts  |   35 +
+>   arch/arm64/boot/dts/apple/t8132-j623.dts  |   18 +
+>   arch/arm64/boot/dts/apple/t8132-j624.dts  |   18 +
+>   arch/arm64/boot/dts/apple/t8132-j713.dts  |   35 +
+>   arch/arm64/boot/dts/apple/t8132-j715.dts  |   35 +
+>   arch/arm64/boot/dts/apple/t8132-j773g.dts |   25 +
+>   arch/arm64/boot/dts/apple/t8132-jxxx.dtsi |   48 ++
+>   arch/arm64/boot/dts/apple/t8132-pmgr.dtsi | 1125 +++++++++++++++++++++++++++++
+>   arch/arm64/boot/dts/apple/t8132.dtsi      |  440 +++++++++++
+>   10 files changed, 1785 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/apple/Makefile b/arch/arm64/boot/dts/apple/Makefile
+> index 6fc3349a5842..181bd0e28965 100644
+> --- a/arch/arm64/boot/dts/apple/Makefile
+> +++ b/arch/arm64/boot/dts/apple/Makefile
+> @@ -1,4 +1,10 @@
+>   # SPDX-License-Identifier: GPL-2.0
+> +dtb-$(CONFIG_ARCH_APPLE) += t8132-j604.dtb
+> +dtb-$(CONFIG_ARCH_APPLE) += t8132-j623.dtb
+> +dtb-$(CONFIG_ARCH_APPLE) += t8132-j624.dtb
+> +dtb-$(CONFIG_ARCH_APPLE) += t8132-j713.dtb
+> +dtb-$(CONFIG_ARCH_APPLE) += t8132-j715.dtb
+> +dtb-$(CONFIG_ARCH_APPLE) += t8132-j773g.dtb
+Please put these at the correct position in the Makefile and not at the 
+very top.
 
---- Patch [7]: [PATCH v13 07/35] phy: rockchip: usbdp: Keep clocks running =
-on PHY re-init ---
-commit 0ed1125cb68d99c18b6937c983323c7c388ecb47
-Author: Sebastian Reichel <sebastian.reichel@collabora.com>
+>   dtb-$(CONFIG_ARCH_APPLE) += s5l8960x-j71.dtb
+>   dtb-$(CONFIG_ARCH_APPLE) += s5l8960x-j73.dtb
+>   dtb-$(CONFIG_ARCH_APPLE) += s5l8960x-j85m.dtb
+> diff --git a/arch/arm64/boot/dts/apple/t8132-j604.dts b/arch/arm64/boot/dts/apple/t8132-j604.dts
+> new file mode 100644
+> index 000000000000..c4be915cb33a
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/apple/t8132-j604.dts
+> @@ -0,0 +1,35 @@
+> +// SPDX-License-Identifier: GPL-2.0+ OR MIT
+> +/*
+> + * Apple MacBook Pro (14-inch, M4, 2024)
+> + *
+> + * target-type: J604
+> + *
 
-phy: rockchip: usbdp: Keep clocks running on PHY re-init
+[...]
 
-When a mode change is required, rk_udphy_power_on() originally disabled
-clocks before re-enabling them. This commit updates it to call
-rk_udphy_init() directly, keeping clocks running during PHY
-re-initialization.
+> +
+> +		pmgr: power-management@380700000 {
+> +			compatible = "apple,t8132-pmgr", "apple,t8103-pmgr", "syscon", "simple-mfd";
+> +			#address-cells = <1>;
+> +			#size-cells = <1>;
+> +			reg = <0x3 0x80700000 0 0x14000>;
+> +			/* child nodes are added in t8132-pmgr.dtsi */
+> +		};
+> +
+> +		aic: interrupt-controller@381180000 {
+> +			compatible = "apple,t8132-aic3", "apple,t8122-aic3";
+> +			#interrupt-cells = <3>;
+> +			interrupt-controller;
+> +			reg = <0x00000003 0x81000000 0x00000000 0x1cc000>,
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+You have 381180000 in the node name but 381000000 here, I guess the node 
+name is a copy paste error. W=1 flags this fwiw.
 
-> diff --git a/drivers/phy/rockchip/phy-rockchip-usbdp.c b/drivers/phy/rock=
-chip/phy-rockchip-usbdp.c
-> index 6cb9f6b4dbf6d..e3f5a26c876a5 100644
-> --- a/drivers/phy/rockchip/phy-rockchip-usbdp.c
-> +++ b/drivers/phy/rockchip/phy-rockchip-usbdp.c
-> @@ -987,8 +987,7 @@ static int rk_udphy_power_on(struct rk_udphy *udphy, =
-u8 mode)
->  		if (udphy->mode =3D=3D UDPHY_MODE_DP)
->  			rk_udphy_u3_port_disable(udphy, true);
-> =20
 
-[Severity: High]
-This is a pre-existing issue, but does this code fail to unmask the USB3
-port during dynamic mode changes?
+Sven
 
-If the PHY transitions dynamically from a DP-only mode to a DP+USB mode
-while powered on, this block handles the mode change but does not call
-rk_udphy_u3_port_disable(udphy, false) to re-enable the U3 port in the GRF
-registers. This seems to prevent USB3 devices from enumerating after the
-transition.
-
-> -		rk_udphy_disable(udphy);
-> -		ret =3D rk_udphy_setup(udphy);
-> +		ret =3D rk_udphy_init(udphy);
->  		if (ret)
->  			return ret;
-
-[Severity: High]
-If rk_udphy_init() fails, does this regression leak the clock resources?
-
-Prior to this patch, if rk_udphy_setup() failed, rk_udphy_disable() had
-already powered off the PHY. Now, if rk_udphy_init() fails (e.g., due to a
-PLL lock timeout), it returns the error without disabling the clocks.
-
-Since udphy->status was already set to UDPHY_MODE_NONE earlier in this
-block, the teardown path will see a 0 status:
-
-drivers/phy/rockchip/phy-rockchip-usbdp.c:rk_udphy_power_off() {
-    if (!udphy->status)
-        return;
-    ...
-}
-
-and return early without calling rk_udphy_disable(), permanently leaking
-the clocks.
-
->  		udphy->mode_change =3D false;
-
-[Severity: High]
-This is a pre-existing issue, but does rk_udphy_dp_phy_configure() need to
-hold the udphy->mutex?
-
-drivers/phy/rockchip/phy-rockchip-usbdp.c:rk_udphy_dp_phy_configure() {
-    struct rk_udphy *udphy =3D phy_get_drvdata(phy);
-    struct phy_configure_opts_dp *dp =3D &opts->dp;
-
-    if (dp->set_rate) {
-    ...
-}
-
-Unlike other PHY operations in this driver, rk_udphy_dp_phy_configure() does
-not acquire udphy->mutex. Since the generic PHY framework serializes
-phy_configure on a per-instance basis, this could run concurrently with
-operations on the USB3 PHY instance (like rk_udphy_usb3_phy_init) or Type-C
-callbacks.
-
-This can result in unprotected accesses to shared resources, such as
-pma_regmap or dp_lane_sel, and potentially cause synchronous external aborts
-if registers are accessed while the hardware block is concurrently put into
-reset by rk_udphy_init().
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260714-rockchip-u=
-sbdp-cleanup-v13-0-6cb3e769d4c5@collabora.com?part=3D7
 
