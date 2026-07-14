@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-325815-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-325816-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id sipyMsCNVWoIqAAAu9opvQ
-	(envelope-from <devicetree+bounces-325815-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 03:15:44 +0200
+	id x5cEFXGOVWo1qAAAu9opvQ
+	(envelope-from <devicetree+bounces-325816-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 03:18:41 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A4B375007B
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 03:15:44 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD8687500BC
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 03:18:40 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=Sd5BeOM5;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-325815-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-325815-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b="RNgT+O/Q";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-325816-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-325816-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 946BC300B75D
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 01:15:25 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id E0B9930157C4
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 01:18:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D429E35AC1B;
-	Tue, 14 Jul 2026 01:15:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E3222EA498;
+	Tue, 14 Jul 2026 01:18:38 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA75C28F5;
-	Tue, 14 Jul 2026 01:15:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F276207DF7;
+	Tue, 14 Jul 2026 01:18:37 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783991722; cv=none; b=J/BoOo7M2x3Fyt0UC+l250wVrbi2UsNpHHwae+7WuL47pkiI6tcy/ZJmc8xUKCSsCCFJfKR1LF3EHlneLwvqRxS45MJd4xa3cek7LN53+2cDsBe9jj9Bh/PJIAWSb/GfiGCEb4G5j/bcsCXUOWe1nCyGT0H4bwtax5O3rNG0YLE=
+	t=1783991918; cv=none; b=HbLyOVQ0ahM4K2m2nstuIUupdQV02XvCjHRNv6/mMDNtxbpoFtf7/zx/7KY9UBOAR5MncAC265FvcuMQOY0Q2nnsd4VzchnCuADzXoqqhiHo9zypEEAbzl+KpJyFdKBrRrgNkspWIH1Gu4B38fvwqg5FhKtk42ezcp7FvmXwwjk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783991722; c=relaxed/simple;
-	bh=X0HeZtFkkn1SU2dLRhNwE7Xjcdh740jB8r24lUrnMOE=;
+	s=arc-20240116; t=1783991918; c=relaxed/simple;
+	bh=S0OIYxZ2Oe9uuuqQT1uHRVtc88us2WImxwPL6a53bw0=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=tFTwGxTQNxMJISFEQeFRCTKHon+Z43fQU27lgmBNc2q3dR5MU+HVrVwxr0Rc2mH2YS6t54BAMzvVTzXQLHKuN2bP2VEp3LBcEmKNnZs9PgHxFlQ5Ex3SxTt8uDfavm8ifTmPino8OPLwqFElM9rTBbIeo3+JQTzIYPfu9iXFp88=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Sd5BeOM5; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E61621F000E9;
-	Tue, 14 Jul 2026 01:15:20 +0000 (UTC)
+	 Message-Id; b=QF+MIK7iVYuEFlhcQ3lkftG3siYQLQRmq/j9ACSi/XoAWhy7zjDCDHy6VJWCI9S00H+3axbsymTn03NfGBTjQY7JctzO41vIjdxAgz8fSES40DQd/sbd2TvaqXwJZRD3yueoezMAQq25GenMCZzEjsOJjZsQuxe5YB7nckUFz5k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RNgT+O/Q; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9B6311F000E9;
+	Tue, 14 Jul 2026 01:18:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783991721;
-	bh=9DKJQm3acDAtqJ/hSlGSCXRR3a67t/hDKvsd7Txn+I4=;
+	s=k20260515; t=1783991917;
+	bh=S0OIYxZ2Oe9uuuqQT1uHRVtc88us2WImxwPL6a53bw0=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=Sd5BeOM5TqJVn9/+hf6w5jCfWukcc1y6mDUtuI6xYkF/h7b/pXKIvkCsHvaSzr2ob
-	 9xWVfoeKdrfd0i9ad/DKsziJ+AeZ+FV13HurEE1OZhMeaTAWE0VySqeIQN8KVv1Yu7
-	 CZk8e6fUuONKnhhONkkrlEkjMvLTQZCxDGd0n7FPGlCAR+nkbIZHU5HqfqGqfSI+U5
-	 ITOUNG01/+sLKXMIGHretLuyPtKrsAzFKlPPNRf5zlyK2RV1AV3lRBu30N6SwubFAQ
-	 pT/4lEPJGimlDWJutcZgSgIoS/zX+lzi5Od4H+P8y6AULwb/p58dJ/5E9AF2R9TRmX
-	 kdKdoAquNCsrQ==
+	b=RNgT+O/QnEUrksvevhcGGbCWLPVexg9EFkIS3cdkSaHz8hWezFWfg4PitiQsLFi4k
+	 1ApgV+zgDEdOQxwJNF1TRI2bp3SMx4hh8YWnBfqJtA+5+G0A8SN1fVxnwUD0AkTWD8
+	 gPMZLrMV3AwzKddzcqlM5U31Zc/jFbFKsb9jCbo9pTgUODRofsAToXY81Kdkz8J95p
+	 FoM09GQ2b1On5jmB86XQqCXVRP7LR4I8Sd/yD1bjfcZIZxcISK37C9oLln2LCZmyMG
+	 B5F3YTlia1jS/cGgY5cyamlWi8gp1xOLKMDIds/oIlKUrru0XNGw3wndEs35CmjS3v
+	 fvqLqSi08O6CQ==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v3 3/3] PCI: ultrarisc: allow DP1000 driver to build as
- module
+Subject: Re: [PATCH v3 2/3] PCI: ultrarisc: get and enable DP1000 PCIe
+ clocks
 Reply-To: sashiko-reviews@lists.linux.dev
 To: "Jia Wang" <wangjia@ultrarisc.com>
-Cc: robh@kernel.org, linux-pci@vger.kernel.org, devicetree@vger.kernel.org, conor+dt@kernel.org
-In-Reply-To: <20260714-ultrarisc-pci-clk-v3-3-e72723fc0ef1@ultrarisc.com>
+Cc: conor+dt@kernel.org, robh@kernel.org, devicetree@vger.kernel.org, linux-pci@vger.kernel.org
+In-Reply-To: <20260714-ultrarisc-pci-clk-v3-2-e72723fc0ef1@ultrarisc.com>
 References: <20260714-ultrarisc-pci-clk-v3-0-e72723fc0ef1@ultrarisc.com>
- <20260714-ultrarisc-pci-clk-v3-3-e72723fc0ef1@ultrarisc.com>
+ <20260714-ultrarisc-pci-clk-v3-2-e72723fc0ef1@ultrarisc.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Tue, 14 Jul 2026 01:15:20 +0000
-Message-Id: <20260714011520.E61621F000E9@smtp.kernel.org>
+Date: Tue, 14 Jul 2026 01:18:36 +0000
+Message-Id: <20260714011836.9B6311F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,53 +71,47 @@ X-Spamd-Result: default: False [-3.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-325815-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-325816-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,ultrarisc.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,ultrarisc.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,smtp.kernel.org:mid];
 	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:wangjia@ultrarisc.com,m:robh@kernel.org,m:linux-pci@vger.kernel.org,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:wangjia@ultrarisc.com,m:conor+dt@kernel.org,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:linux-pci@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
 	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	MID_RHS_MATCH_FROMTLD(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	PRECEDENCE_BULK(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	RCPT_COUNT_FIVE(0.00)[5];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
 	FROM_NO_DN(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5]
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 6A4B375007B
+X-Rspamd-Queue-Id: CD8687500BC
 
 > From: Jia Wang <wangjia@ultrarisc.com>
 >=20
-> CONFIG_PCIE_ULTRARISC is a tristate option, so the driver can be selected
-> as a module when COMPILE_TEST or platform configuration allows it.  Using
-> builtin_platform_driver() leaves the module build without the module
-> init/exit plumbing and causes modpost failures for the generated .ko.
+> Add the required core, dbi, and aux clocks for the DP1000 PCIe
+> controller and enable them before initializing the DesignWare host.
 >=20
-> Use module_platform_driver() so the driver works for both module and
-> built-in builds while keeping the existing tristate Kconfig entry.
->=20
-> Add a remove callback and call dw_pcie_host_deinit() during removal so the
-> root bus is torn down before devres releases the controller data.
+> Also manage the clocks across system suspend and resume.
 >=20
 > Fixes: 5fc35740c3b3 ("PCI: ultrarisc: Add UltraRISC DP1000 PCIe Root Comp=
 lex driver")
@@ -127,6 +121,6 @@ Sashiko has reviewed this patch and found no issues. It looks great!
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260714-ultrarisc-=
-pci-clk-v3-0-e72723fc0ef1@ultrarisc.com?part=3D3
+pci-clk-v3-0-e72723fc0ef1@ultrarisc.com?part=3D2
 
 
