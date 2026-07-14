@@ -1,121 +1,153 @@
-Return-Path: <devicetree+bounces-326017-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-326019-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id Vd4aEzv0VWo/wwAAu9opvQ
-	(envelope-from <devicetree+bounces-326017-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 10:32:59 +0200
+	id ORc+Akb1VWqdwwAAu9opvQ
+	(envelope-from <devicetree+bounces-326019-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 10:37:26 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5A7E7526DF
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 10:32:58 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6852C75279C
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 10:37:25 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=B0bAn2gO;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326017-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-326017-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=dolcini.it header.s=default header.b=QPbZAiLr;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326019-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-326019-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=dolcini.it;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 4391C30071C1
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 08:32:58 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id CED7B30777B3
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 08:33:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47CC23FAE09;
-	Tue, 14 Jul 2026 08:32:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B016540BCB3;
+	Tue, 14 Jul 2026 08:33:21 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9EBB3FADFD;
-	Tue, 14 Jul 2026 08:32:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC0B43F4823;
+	Tue, 14 Jul 2026 08:33:11 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1784017972; cv=none; b=tYJgHGp3Lj+RkCNHXAGMfZjqISh+UYNyRId/KBdporvRY1xodCxCBX23NZvbOMODbgfJ7B8bcll2w1euB5If+skQK4Cu7kZJ05/bMuuWlwxYhTPfSHSkdnbWNYDf50z1Cyd32SQFA7kPbeqEDkWEQwArJzNpn+taVbRwyq/VOEg=
+	t=1784017999; cv=none; b=G29mOidTp3kyuJ807jo2v+7IPCHT4Zqvr5bVzWGbsInZrnme77sorFbXn4/1RPvdgPffDunV7CJIMkaddkxJrYnyx2E7xAThPrXXLlZZVoZ7qsSQ33fESvtHfOH2T4ZnKy2KaU+ehHn9VqX1tn5p1ph4/X+gmt3Toh/JzOKPzKE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1784017972; c=relaxed/simple;
-	bh=b48OZ9CaVQ8nyQDDUxCsqw0CCUVdQs21oJGISNQety8=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=bMthdas5enNyMPeujT34cxGa/1wQn0HePAKFUgo574lHBJhe8OkvvYkGUCrJjhEWM2rdkl1ZlIoG+sKYgJhsSwTmX6YbSRKdo16MeQ4hVcOkYhjPajwMtrvG7bqrNTvr02WNlRXfpsFAwT0Spejc+fzmOufz37czkdpALs+obQo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=B0bAn2gO; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A490D1F000E9;
-	Tue, 14 Jul 2026 08:32:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1784017964;
-	bh=b48OZ9CaVQ8nyQDDUxCsqw0CCUVdQs21oJGISNQety8=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=B0bAn2gOkLXCCyJUL2H+1S7XDBacWebt7YDXXD6yTDfu2qMpHxPC6KSLeZd0dFKeE
-	 2zaNBOb5oJGDMiJ2wn6BqfPxIf83UQUW2lRfJAHjzNG/2QR/j7H2IY3SPFAyBN5cV4
-	 kP/sEygL/+iiwwxmilFU6303ZCOyg0l7Ld0yR+hZ9FALXyWRBU5aAOKly8G7WUnCvz
-	 R0A+wjwUgEawogXTecs6yj2GaVJfRVDBv0ZorJkNJmQ6kb+VY8LTY4kQuXlS8PReLR
-	 mtNNRE0XBqmAS2bNTMU9O+uW21y2nuiDtvMPjfAyAzdN2D4TqT5qwgPoiADYCyhC0I
-	 llUb5NT+V6jHw==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 2/4] dt-bindings: hwmon: Add Kandou KB9002
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Andy Chung" <Andy.Chung@amd.com>
-Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org, linux-hwmon@vger.kernel.org
-In-Reply-To: <20260714-kb9002-upstream-v1-2-8fd2f0b135d8@amd.com>
-References: <20260714-kb9002-upstream-v1-0-8fd2f0b135d8@amd.com>
- <20260714-kb9002-upstream-v1-2-8fd2f0b135d8@amd.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Tue, 14 Jul 2026 08:32:43 +0000
-Message-Id: <20260714083243.A490D1F000E9@smtp.kernel.org>
+	s=arc-20240116; t=1784017999; c=relaxed/simple;
+	bh=XZFK8kG3Z4mNizDB3oPb0dFGtlkWNuMYxvU1hMPGfEc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=vD6pYBfWTU4QmsYYfH5m59sx0NHGOYbvZiY/ESo5hUwv2hyELsnyzLLbEKLwB19bu27hDVXENiLfdRlWLPo6GWmhO+MGvMTLoSokrI04H8U8Xs2pRsr+cc8wpA2A4PzJ+ByWj3RQi1JGtokT8jsQifiSiIiTMnXDrQSNM6fSR8A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=QPbZAiLr; arc=none smtp.client-ip=217.194.8.81
+Received: from francesco-nb (248.201.173.83.static.wline.lns.sme.cust.swisscom.ch [83.173.201.248])
+	by mail11.truemail.it (Postfix) with ESMTPA id D9FF422866;
+	Tue, 14 Jul 2026 10:33:00 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
+	s=default; t=1784017981;
+	bh=5RPD9zCkYpEFXFkstqhyOb8iX6+4+Xh8cL6FAPBm4VQ=; h=From:To:Subject;
+	b=QPbZAiLrylAhQopbd8b7Jphl2QaqIgE4F0fN+KYxFFHhiNv7ervkryY5qnNcBz2LF
+	 MzaqSTAwgsny0heS2ml7O0Nia7/gZ+VUynx10OB6mqSutjWY+jfOkqjOf8z8+65rbC
+	 njUh+RVCyLD+mEZ3Lxp7HQqLP6TcfNFQ/Mj41l0MR83/O+PXjBuqX1BUGQHcDUSF8w
+	 1mlZhl+hz2d717Yn6XSOe08kDY2+asxLNeLLMEcLElKcXNqUNJfhdXKN07ON8AY2ed
+	 VWGauA123gBGJls9iVigBBjLTBTUM6Iw1VyVXqyDCVZX9+TDY8QFzWc0BVRy9A6W8p
+	 F/M/PNtPdtCjQ==
+Date: Tue, 14 Jul 2026 10:32:59 +0200
+From: Francesco Dolcini <francesco@dolcini.it>
+To: Frieder Schrempf <frieder.schrempf@kontron.de>
+Cc: Francesco Dolcini <francesco@dolcini.it>,
+	Frieder Schrempf <frieder@fris.de>,
+	Srinivas Kandagatla <srini@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, Shawn Guo <shawnguo@kernel.org>,
+	Pankaj Gupta <pankaj.gupta@nxp.com>,
+	"Peng Fan (OSS)" <peng.fan@oss.nxp.com>, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 10/10] arm64: dts: imx93-kontron: Enable ELE firmware
+ driver
+Message-ID: <20260714083259.GB22086@francesco-nb>
+References: <20260713-upstreaming-next-20260609-imx-ocotp-ele-v2-0-b8266d93514b@kontron.de>
+ <20260713-upstreaming-next-20260609-imx-ocotp-ele-v2-10-b8266d93514b@kontron.de>
+ <20260714065947.GA22086@francesco-nb>
+ <e515a6c5-b32c-47b7-968b-0f6a66e4f24a@kontron.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <e515a6c5-b32c-47b7-968b-0f6a66e4f24a@kontron.de>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.16 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[dolcini.it,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[dolcini.it:s=default];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-326017-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-326019-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,vger.kernel.org:from_smtp,smtp.kernel.org:mid,lists.linux.dev:replyto];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:Andy.Chung@amd.com,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:linux-hwmon@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS(0.00)[m:frieder.schrempf@kontron.de,m:francesco@dolcini.it,m:frieder@fris.de,m:srini@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:Frank.Li@nxp.com,m:s.hauer@pengutronix.de,m:kernel@pengutronix.de,m:festevam@gmail.com,m:shawnguo@kernel.org,m:pankaj.gupta@nxp.com,m:peng.fan@oss.nxp.com,m:devicetree@vger.kernel.org,m:imx@lists.linux.dev,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	FORGED_SENDER(0.00)[francesco@dolcini.it,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
 	FORWARDED(0.00)[lists@lfdr.de];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[dolcini.it:+];
+	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	RCPT_COUNT_FIVE(0.00)[5];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FROM_NO_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[francesco@dolcini.it,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[dolcini.it,fris.de,kernel.org,nxp.com,pengutronix.de,gmail.com,oss.nxp.com,vger.kernel.org,lists.linux.dev,lists.infradead.org];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,dolcini.it:from_mime,dolcini.it:dkim,vger.kernel.org:from_smtp,francesco-nb:mid,kontron.de:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: D5A7E7526DF
+X-Rspamd-Queue-Id: 6852C75279C
 
-> From: Andy Chung <Andy.Chung@amd.com>
->=20
-> Add device tree bindings for the Kandou KB9002 PCIe 5.0 retimer, an
-> SMBus target that exposes an aggregated die temperature.
->=20
-> Signed-off-by: Andy Chung <Andy.Chung@amd.com>
+On Tue, Jul 14, 2026 at 10:09:11AM +0200, Frieder Schrempf wrote:
+> Hi Francesco,
+> 
+> On 14.07.26 08:59, Francesco Dolcini wrote:
+> > Hello Frieder,
+> > 
+> > On Mon, Jul 13, 2026 at 04:53:46PM +0200, Frieder Schrempf wrote:
+> >> From: Frieder Schrempf <frieder.schrempf@kontron.de>
+> >>
+> >> Add the ELE firmware API node and pass its handle to the OCOTP
+> >> driver. This allows us to gain read/write access to the OTP fuses.
+> > 
+> > This seems something we should have in the soc dtsi (imx93/imx91), it
+> > does not seems board specific.
+> 
+> My original intention was to move as much as possible into the SoC dtsi.
+> The problem is that the memory node is somewhat board specific due to
+> the DDR. And I can't move the firmware node into the SoC dtsi and assign
+> the memory node in the board dts as the checks for all boards not
+> specifying a memory node would fail then.
 
-Sashiko has reviewed this patch and found no issues. It looks great!
+The ELEFW is required to boot, is not an optional component for this
+SoC, so I would try to find a way to have this duplicated in all the
+board files.
 
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260714-kb9002-ups=
-tream-v1-0-8fd2f0b135d8@amd.com?part=3D2
+What is the reason to have this memory address different on various
+boards? Can we have a default in the soc dtsi, and allow the board to
+override the address if needed?
+
+Or can't you add the address in all the boards, and keep everything else
+in the soc dtsi?
+
+Francesco
 
 
