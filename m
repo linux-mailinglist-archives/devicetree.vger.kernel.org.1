@@ -1,301 +1,170 @@
-Return-Path: <devicetree+bounces-326218-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-326219-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id uqADKvcvVmos1AAAu9opvQ
-	(envelope-from <devicetree+bounces-326218-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 14:47:51 +0200
+	id fJKfH6YxVmqv1AAAu9opvQ
+	(envelope-from <devicetree+bounces-326219-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 14:55:02 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B619754B7E
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 14:47:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C7799754C18
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 14:55:01 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20201202 header.b=sNvPHRLx;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326218-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-326218-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=j8eYFVvf;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326219-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-326219-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2EC1730E4C5C
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 12:45:01 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 783E5301039A
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 12:53:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57889445ACE;
-	Tue, 14 Jul 2026 12:45:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0ED373845A9;
+	Tue, 14 Jul 2026 12:53:04 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 335703BBFAE;
-	Tue, 14 Jul 2026 12:45:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E776136404B
+	for <devicetree@vger.kernel.org>; Tue, 14 Jul 2026 12:53:02 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1784033100; cv=none; b=QLvIzD4yC5pdtPeDe/Aevc4xB3TD39FP4vzDOHlrO5d/+P602UAykM3AkrqIH5abijSV+sN8Qclf2CfvuSNpv4Lbhe3fWRjr4SLYNdU8XZ/5mzkMN3VVGJpM9/t1YTjahnv0KbK7Zis+Iex2DzF1DmQCZKXY7M/LpUsUA3oM1VU=
+	t=1784033584; cv=none; b=HIEL06iaKmE3SeH8uM95gKzBwOHkWpuOoupg4XigcXSM6TVJMc7AE7V0MgtKA0uKFPnli//EqmbswwuLmVOhLWWu9uLZcSsJxu2usNFZIudRDpJ5wJKzLGFJuJI1VuhZB9u8fkRf4ilkQ0Yf4vkpRytef8dhKRcgf/vbH+9VkkQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1784033100; c=relaxed/simple;
-	bh=yrxMhmCYOUKee/WHlWAg1e5dG7auoKfuHFKPci2Li+c=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=CqgA8tt+00FHUv3WBwt12ySeGgilmHW0W42o4zCcfSYiMiOifAvAEc5E0TYaprGj2vFlM0gInhTQIsm427FGQEnv5NCYMN9PqZItyYBs+9ibAglB85lQkRcHwAbN4iSb3QvluznkGtrI9THKJKpux4bdqhdyvNYKYZq59HcnLrw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sNvPHRLx; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id D45CAC2BCF5;
-	Tue, 14 Jul 2026 12:44:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1784033099;
-	bh=yrxMhmCYOUKee/WHlWAg1e5dG7auoKfuHFKPci2Li+c=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=sNvPHRLxhxDr/Tbzq2T1zG+NviZ4GJlCvmhPF9olSMCOiFkSGXCtyiFE3hFbWYI/w
-	 +cGhStojrujikZaXxHraP+GrXrxPPbdqCoCg9EhK0PFv69SGsXDe4odEe12zjTkH8e
-	 7Is3mGLGNT6SxwIeuxuJ8ao4mR+GxTj7bc3ImKnBggfh/0TckJxqRWU628T25UdmoP
-	 ruMtqgBQCszpWGcBS00HhkIS6zmr4j7jMBhWlT0zzWRdJr8x35/tnCBvkocQGEJmt7
-	 O5ps6ep3QTJp71UCSnsLXcG12vnkYGEkOqLOZcONK9JTk6UJdVq0nlwGkHluvqfaKz
-	 /d3jcVY0kFYoA==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B565FC4450B;
-	Tue, 14 Jul 2026 12:44:59 +0000 (UTC)
-From: Roman Vivchar via B4 Relay <devnull+rva333.protonmail.com@kernel.org>
-Date: Tue, 14 Jul 2026 15:42:05 +0300
-Subject: [PATCH 3/3] soc: mediatek: pwrap: add mt6572 support
+	s=arc-20240116; t=1784033584; c=relaxed/simple;
+	bh=Kw881NAVagCAmPEOsnz3kfxN3FcMgmdiVroUnDn50dY=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=BO7e/+OYS6BedSu46VI/MokyENbmFWy4qTJSnSYEWv9CY9CeXeKg82uhLZtMzS5eFLiXZKH6ESQAYh6fCYrfritKEcpEMOkLSnTMnR1hgrjrnEdIPZVzhuDJS/L1v/w8uMru7HqNpUHXBFGQZnG+aG4mU7ySFoNizxiWHlskzW8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=j8eYFVvf; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4776C1F00A3A;
+	Tue, 14 Jul 2026 12:53:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1784033582;
+	bh=JsukuSqV8zrXKTeMN1kasFqW4PwGn41cz1VnIVcTqBM=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=j8eYFVvfr45AdATBIV3Vun7T663pqfD2BR6kXuvX/rfXJOMZlbgjvJdgPpxSTaxpT
+	 G5LZFYGopUTOF5WO0WhHkV8p71pw1iDaat6cYOiqnwkOEUIKd1Q4DsnDyQoY/zI/Mu
+	 3Zr7BeBeGNnPe6JK7sPAgTXyZ+VKPen8BdIolTimooD/WSQbiLDHM0EZC+BJr4PRKV
+	 faUX8bwK+fzEivANm3Zgj931V56IreFsubutkaK+37cwxQ66mzGxrWDzexR1Xn5fRD
+	 P7e1dhY44Y0y0lGidflB2W4Yl2lvzBQUBBBgn9fFYowJcL/0t0h+KTn3QRuYHmGaVD
+	 /wh5ZVuRnBrTw==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH 2/3] soc: mediatek: pwrap: use correct log level
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Roman Vivchar" <rva333@protonmail.com>
+Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260714-6572-pwrap-v1-2-d8e5a39cf7ef@protonmail.com>
+References: <20260714-6572-pwrap-v1-0-d8e5a39cf7ef@protonmail.com>
+ <20260714-6572-pwrap-v1-2-d8e5a39cf7ef@protonmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Tue, 14 Jul 2026 12:53:01 +0000
+Message-Id: <20260714125302.4776C1F00A3A@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260714-6572-pwrap-v1-3-d8e5a39cf7ef@protonmail.com>
-References: <20260714-6572-pwrap-v1-0-d8e5a39cf7ef@protonmail.com>
-In-Reply-To: <20260714-6572-pwrap-v1-0-d8e5a39cf7ef@protonmail.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Flora Fu <flora.fu@mediatek.com>, Alexandre Mergnat <amergnat@baylibre.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
- Roman Vivchar <rva333@protonmail.com>
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1784033096; l=5555;
- i=rva333@protonmail.com; s=20260510; h=from:subject:message-id;
- bh=MPPYOgzDqoNCcN6F5iF2Dxp5T0TD89ZEJks3TwVCRQY=;
- b=JF16gx8q+zpMiZXOKBwHA9fCCmx8KQ+k5V9GLIDoEui8/ctpGb81KmpUv+9n/RaAHUe/WHlfA
- DFv2NlPy7FlDEzIeLKfKg/GWwJgWy46OfbSmDfWLY+pK6HsLwpeK0Ez
-X-Developer-Key: i=rva333@protonmail.com; a=ed25519;
- pk=zww/nWjBGoQ4POXCG0BV6fx2iuXK6jx77rsKPA5YK5Y=
-X-Endpoint-Received: by B4 Relay for rva333@protonmail.com/20260510 with
- auth_id=777
-X-Original-From: Roman Vivchar <rva333@protonmail.com>
-Reply-To: rva333@protonmail.com
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-1.66 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	FREEMAIL_REPLYTO_NEQ_FROM(2.00)[];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_TO(0.00)[kernel.org,gmail.com,collabora.com,mediatek.com,baylibre.com];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:matthias.bgg@gmail.com,m:angelogioacchino.delregno@collabora.com,m:flora.fu@mediatek.com,m:amergnat@baylibre.com,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-mediatek@lists.infradead.org,m:rva333@protonmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:matthiasbgg@gmail.com,s:lists@lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FREEMAIL_REPLYTO(0.00)[protonmail.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-326218-lists,devicetree=lfdr.de,rva333.protonmail.com];
-	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,protonmail.com];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	ALIAS_RESOLVED(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
-	PRECEDENCE_BULK(0.00)[];
-	HAS_REPLYTO(0.00)[rva333@protonmail.com];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,protonmail.com:mid,protonmail.com:email,protonmail.com:replyto,vger.kernel.org:from_smtp]
+	TAGGED_FROM(0.00)[bounces-326219-lists,devicetree=lfdr.de];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[protonmail.com];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:rva333@protonmail.com,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ALIAS_RESOLVED(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NO_DN(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCPT_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,sashiko.dev:url,lists.linux.dev:replyto,protonmail.com:email,smtp.kernel.org:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 0B619754B7E
+X-Rspamd-Queue-Id: C7799754C18
 
-From: Roman Vivchar <rva333@protonmail.com>
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
 
-Add mt6572 registers and platform data for the pmic wrapper.
-The mt2701 SoC-specific initialization function is used because they
-share the same GPS_INTF settings.
+Pre-existing issues:
+- [High] Child devices created by `of_platform_populate()` are leaked upon =
+probe failure or driver unbind, leading to a Use-After-Free.
+--
 
-Signed-off-by: Roman Vivchar <rva333@protonmail.com>
----
- drivers/soc/mediatek/mtk-pmic-wrap.c | 111 +++++++++++++++++++++++++++++++++++
- 1 file changed, 111 insertions(+)
+--- Patch [2]: [PATCH 2/3] soc: mediatek: pwrap: use correct log level ---
+commit 9e7d63641cf243186ed10eee942d5eeb9f4b6345
+Author: Roman Vivchar <rva333@protonmail.com>
 
-diff --git a/drivers/soc/mediatek/mtk-pmic-wrap.c b/drivers/soc/mediatek/mtk-pmic-wrap.c
-index a4b10b0a97cb..4b8a5dc80a36 100644
---- a/drivers/soc/mediatek/mtk-pmic-wrap.c
-+++ b/drivers/soc/mediatek/mtk-pmic-wrap.c
-@@ -569,6 +569,96 @@ static const int mt2701_regs[] = {
- 	[PWRAP_ADC_RDATA_ADDR2] =	0x154,
- };
- 
-+static const int mt6572_regs[] = {
-+	[PWRAP_MUX_SEL] =		0x0,
-+	[PWRAP_WRAP_EN] =		0x4,
-+	[PWRAP_DIO_EN] =		0x8,
-+	[PWRAP_SIDLY] =			0xc,
-+	[PWRAP_OP_TYPE] =		0x10,
-+	[PWRAP_MSB_FIRST] =		0x14,
-+	[PWRAP_RDDMY] =			0x18,
-+	[PWRAP_SI_CK_CON] =		0x1c,
-+	[PWRAP_CSHEXT_WRITE] =		0x20,
-+	[PWRAP_CSHEXT_READ] =		0x24,
-+	[PWRAP_CSLEXT_START] =		0x28,
-+	[PWRAP_CSLEXT_END] =		0x2c,
-+	[PWRAP_STAUPD_PRD] =		0x30,
-+	[PWRAP_STAUPD_GRPEN] =		0x34,
-+	[PWRAP_STAUPD_MAN_TRIG] =	0x38,
-+	[PWRAP_STAUPD_STA] =		0x3c,
-+	[PWRAP_GPS_STA] =		0x40,
-+	[PWRAP_WRAP_STA] =		0x44,
-+	[PWRAP_HARB_INIT] =		0x48,
-+	[PWRAP_HARB_HPRIO] =		0x4c,
-+	[PWRAP_HIPRIO_ARB_EN] =		0x50,
-+	[PWRAP_HARB_STA0] =		0x54,
-+	[PWRAP_HARB_STA1] =		0x58,
-+	[PWRAP_MAN_EN] =		0x5c,
-+	[PWRAP_MAN_CMD] =		0x60,
-+	[PWRAP_MAN_RDATA] =		0x64,
-+	[PWRAP_MAN_VLDCLR] =		0x68,
-+	[PWRAP_WACS0_EN] =		0x6c,
-+	[PWRAP_INIT_DONE0] =		0x70,
-+	[PWRAP_WACS0_CMD] =		0x74,
-+	[PWRAP_WACS0_RDATA] =		0x78,
-+	[PWRAP_WACS0_VLDCLR] =		0x7c,
-+	[PWRAP_WACS1_EN] =		0x80,
-+	[PWRAP_INIT_DONE1] =		0x84,
-+	[PWRAP_WACS1_CMD] =		0x88,
-+	[PWRAP_WACS1_RDATA] =		0x8c,
-+	[PWRAP_WACS1_VLDCLR] =		0x90,
-+	[PWRAP_WACS2_EN] =		0x94,
-+	[PWRAP_INIT_DONE2] =		0x98,
-+	[PWRAP_WACS2_CMD] =		0x9c,
-+	[PWRAP_WACS2_RDATA] =		0xa0,
-+	[PWRAP_WACS2_VLDCLR] =		0xa4,
-+	[PWRAP_INT_EN] =		0xa8,
-+	[PWRAP_INT_FLG_RAW] =		0xac,
-+	[PWRAP_INT_FLG] =		0xb0,
-+	[PWRAP_INT_CLR] =		0xb4,
-+	[PWRAP_SIG_ADR] =		0xb8,
-+	[PWRAP_SIG_MODE] =		0xbc,
-+	[PWRAP_SIG_VALUE] =		0xc0,
-+	[PWRAP_SIG_ERRVAL] =		0xc4,
-+	[PWRAP_CRC_EN] =		0xc8,
-+	[PWRAP_TIMER_EN] =		0xcc,
-+	[PWRAP_TIMER_STA] =		0xd0,
-+	[PWRAP_WDT_UNIT] =		0xd4,
-+	[PWRAP_WDT_SRC_EN] =		0xd8,
-+	[PWRAP_WDT_FLG] =		0xdc,
-+	[PWRAP_DEBUG_INT_SEL] =		0xe0,
-+	[PWRAP_DVFS_ADR0] =		0xe4,
-+	[PWRAP_DVFS_WDATA0] =		0xe8,
-+	[PWRAP_DVFS_ADR1] =		0xec,
-+	[PWRAP_DVFS_WDATA1] =		0xf0,
-+	[PWRAP_DVFS_ADR2] =		0xf4,
-+	[PWRAP_DVFS_WDATA2] =		0xf8,
-+	[PWRAP_DVFS_ADR3] =		0xfc,
-+	[PWRAP_DVFS_WDATA3] =		0x100,
-+	[PWRAP_DVFS_ADR4] =		0x104,
-+	[PWRAP_DVFS_WDATA4] =		0x108,
-+	[PWRAP_DVFS_ADR5] =		0x10c,
-+	[PWRAP_DVFS_WDATA5] =		0x110,
-+	[PWRAP_DVFS_ADR6] =		0x114,
-+	[PWRAP_DVFS_WDATA6] =		0x118,
-+	[PWRAP_DVFS_ADR7] =		0x11c,
-+	[PWRAP_DVFS_WDATA7] =		0x120,
-+	[PWRAP_CIPHER_KEY_SEL] =	0x124,
-+	[PWRAP_CIPHER_IV_SEL] =		0x128,
-+	[PWRAP_CIPHER_EN] =		0x12c,
-+	[PWRAP_CIPHER_RDY] =		0x130,
-+	[PWRAP_CIPHER_MODE] =		0x134,
-+	[PWRAP_CIPHER_SWRST] =		0x138,
-+	[PWRAP_DCM_EN] =		0x13c,
-+	[PWRAP_DCM_DBC_PRD] =		0x140,
-+	[PWRAP_ADC_CMD_ADDR] =		0x144,
-+	[PWRAP_PWRAP_ADC_CMD] =		0x148,
-+	[PWRAP_ADC_RDY_ADDR] =		0x14c,
-+	[PWRAP_ADC_RDATA_ADDR1] =	0x150,
-+	[PWRAP_ADC_RDATA_ADDR2] =	0x154,
-+	[PWRAP_SW_RST] =		0x180,
-+};
-+
- static const int mt6765_regs[] = {
- 	[PWRAP_MUX_SEL] =		0x0,
- 	[PWRAP_WRAP_EN] =		0x4,
-@@ -1314,6 +1404,7 @@ enum pmic_type {
- 
- enum pwrap_type {
- 	PWRAP_MT2701,
-+	PWRAP_MT6572,
- 	PWRAP_MT6765,
- 	PWRAP_MT6779,
- 	PWRAP_MT6795,
-@@ -1733,6 +1824,11 @@ static void pwrap_init_chip_select_ext(struct pmic_wrapper *wrp, u8 hext_write,
- static int pwrap_common_init_reg_clock(struct pmic_wrapper *wrp)
- {
- 	switch (wrp->master->type) {
-+	case PWRAP_MT6572:
-+		pwrap_writel(wrp, 0x8, PWRAP_RDDMY);
-+		pwrap_write(wrp, wrp->slave->dew_regs[PWRAP_DEW_RDDMY_NO], 0x8);
-+		pwrap_init_chip_select_ext(wrp, 5, 0, 0, 0);
-+		break;
- 	case PWRAP_MT6795:
- 		if (wrp->slave->type == PMIC_MT6331) {
- 			const u32 *dew_regs = wrp->slave->dew_regs;
-@@ -1839,6 +1935,7 @@ static int pwrap_init_cipher(struct pmic_wrapper *wrp)
- 		pwrap_writel(wrp, 1, PWRAP_CIPHER_START);
- 		break;
- 	case PWRAP_MT2701:
-+	case PWRAP_MT6572:
- 	case PWRAP_MT6765:
- 	case PWRAP_MT6779:
- 	case PWRAP_MT6795:
-@@ -2277,6 +2374,19 @@ static const struct pmic_wrapper_type pwrap_mt2701 = {
- 	.init_soc_specific = pwrap_mt2701_init_soc_specific,
- };
- 
-+static const struct pmic_wrapper_type pwrap_mt6572 = {
-+	.regs = mt6572_regs,
-+	.type = PWRAP_MT6572,
-+	.arb_en_all = 0x1ff,
-+	.int_en_all = 0x7ffffffd,
-+	.int1_en_all = 0,
-+	.spi_w = PWRAP_MAN_CMD_SPI_WRITE,
-+	.wdt_src = PWRAP_WDT_SRC_MASK_ALL,
-+	.caps = PWRAP_CAP_RESET | PWRAP_CAP_DCM,
-+	.init_reg_clock = pwrap_common_init_reg_clock,
-+	.init_soc_specific = pwrap_mt2701_init_soc_specific,
-+};
-+
- static const struct pmic_wrapper_type pwrap_mt6765 = {
- 	.regs = mt6765_regs,
- 	.type = PWRAP_MT6765,
-@@ -2446,6 +2556,7 @@ static const struct pmic_wrapper_type pwrap_mt8186 = {
- 
- static const struct of_device_id of_pwrap_match_tbl[] = {
- 	{ .compatible = "mediatek,mt2701-pwrap", .data = &pwrap_mt2701 },
-+	{ .compatible = "mediatek,mt6572-pwrap", .data = &pwrap_mt6572 },
- 	{ .compatible = "mediatek,mt6765-pwrap", .data = &pwrap_mt6765 },
- 	{ .compatible = "mediatek,mt6779-pwrap", .data = &pwrap_mt6779 },
- 	{ .compatible = "mediatek,mt6795-pwrap", .data = &pwrap_mt6795 },
+soc: mediatek: pwrap: use correct log level
 
--- 
-2.54.0
+This commit updates error handling in the mediatek pwrap driver to use
+dev_err_probe instead of dev_dbg for error branches. It also simplifies
+the returns by utilizing dev_err_probe.
 
+> diff --git a/drivers/soc/mediatek/mtk-pmic-wrap.c b/drivers/soc/mediatek/=
+mtk-pmic-wrap.c
+> index 0bcd858263755..a4b10b0a97cbb 100644
+> --- a/drivers/soc/mediatek/mtk-pmic-wrap.c
+> +++ b/drivers/soc/mediatek/mtk-pmic-wrap.c
 
+[ ... ]
+
+> @@ -2593,11 +2584,9 @@ static int pwrap_probe(struct platform_device *pde=
+v)
+>  		return PTR_ERR(wrp->regmap);
+> =20
+>  	ret =3D of_platform_populate(np, NULL, NULL, wrp->dev);
+> -	if (ret) {
+> -		dev_dbg(wrp->dev, "failed to create child devices at %pOF\n",
+> -				np);
+> -		return ret;
+> -	}
+> +	if (ret)
+> +		return dev_err_probe(wrp->dev, ret,
+> +				     "failed to create child devices at %pOF\n", np);
+
+[Severity: High]
+This is a pre-existing issue, but does this missing cleanup for
+of_platform_populate() leave child devices registered if this fails
+halfway through, or during driver unbind?
+
+If a user unbinds the driver via sysfs, devres will automatically free
+the parent driver's resources, including wrp->regmap. Since there is no
+remove callback to call of_platform_depopulate(), the child devices
+remain active. When these active child drivers subsequently attempt to
+use their parent's freed regmap, could this result in a use-after-free?
+
+Would it be safer to use devm_of_platform_populate() here instead to
+ensure proper cleanup?
+
+>  	return 0;
+>  }
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260714-6572-pwrap=
+-v1-0-d8e5a39cf7ef@protonmail.com?part=3D2
 
