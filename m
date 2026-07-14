@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-326507-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-326508-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id mzhRDQGXVmr9+QAAu9opvQ
-	(envelope-from <devicetree+bounces-326507-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 22:07:29 +0200
+	id wXYyEM2XVmp7+gAAu9opvQ
+	(envelope-from <devicetree+bounces-326508-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 22:10:53 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1711758A06
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 22:07:28 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 66212758A3F
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 22:10:52 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=KQgMZT7R;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326507-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-326507-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b="nx03Wv/d";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326508-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-326508-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 8CB2A3009F4C
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 20:07:23 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 82D7B300D682
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 20:09:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3BF8423EB1;
-	Tue, 14 Jul 2026 20:07:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D6E7423EBE;
+	Tue, 14 Jul 2026 20:09:42 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E9F5423EAD
-	for <devicetree@vger.kernel.org>; Tue, 14 Jul 2026 20:07:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54C0B423E8B
+	for <devicetree@vger.kernel.org>; Tue, 14 Jul 2026 20:09:40 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1784059641; cv=none; b=EocdHxtcKLrjZrbGwGLhZ+ubQ0ajxwTI6vrMk/4FwuDSY+v0EqnBO7v+QHfpk0jHbDy0ML7UqQOpjVnDf03af1beSUcBn5hmMDH/j6vnt451pzjGvM9kFuWueo6JnSy5OA8mGhalRQv8yvpxmmKu98SEex9XzXwYeNHkI9pMKtc=
+	t=1784059781; cv=none; b=SFgWP0MyBmM1iN87YEYVaHDiGrTb1z/SqERgO65qCxahjW2OdJZOVimez9+ohZm0y1ovtwmJnwLPlYUsk3pCUvPGj59QiS5jIS+woJMT9EZ2Z7ZSWJEp2W1NkuoDNOHHez6IlHIkyoCNPLAkLU8gHHJIzhHlcpon2OKw4nMF0V4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1784059641; c=relaxed/simple;
-	bh=hu3gtGx9m9Z4XoKNl0CiHKclij4H8HJvfWF8GmnbWXw=;
+	s=arc-20240116; t=1784059781; c=relaxed/simple;
+	bh=Lk6/NzUSqSKhxGY+ppBbANU+Ev4gHYoMVj48/H4QyX8=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=aJm3L+ggkjW3oVXY9hv4C62A5wLm09yeoi8ECXyTJ6Iaibr5GS2hVSCiT53K2EFP19AH4fCHLhtycLdZvfwwsltbIr7G5KRGGPmIKy8VJUfYwlKz67AzpZMe9TROIe2prqPtni1TGz4KzORc7N9UCX+K4ptKD9DGz+aT6MIJvIo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KQgMZT7R; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F219A1F000E9;
-	Tue, 14 Jul 2026 20:07:19 +0000 (UTC)
+	 Message-Id; b=pCQ0EsO1SNSFTz2FMl4/nmoBslsSnIBGW4UH1VhnKLC8RI4Jo4YijZPECsT2h05ejY7VMv2jyQcOhwgMtSlTpFq3Gvdgx6ugkpFLUB8M04RSf9TG4SN/gLA+XhlibC2jNZiJidra6IpVz/DeKnqcn/i7bvfjFGtyBRAMqCYc44A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nx03Wv/d; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B857F1F000E9;
+	Tue, 14 Jul 2026 20:09:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1784059640;
-	bh=xjNqXuwPPzEvD/tsaYeKTDN6oH88zdVfZyO58zSsN+I=;
+	s=k20260515; t=1784059780;
+	bh=pxrjdEhQ20BdCU9qiayJEDZ+LSAkaqGbClsBBdZHk/E=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=KQgMZT7R1jGMacJhOC8QvarLYci1NKWbkPfnGatKkePZsZIeFRQzPIEbpPOzBnbeX
-	 bNSoNFGSlOsfOY5ZgOMlRFHiGRySmv8Fd0vLLZ17WNacD+NjdKDVt0hoMqh6e7V31w
-	 QnUQqc11+fEZxBWsKS60gxVrNWtm+ME9jQ0K0wRFkl+qQQJKgZW98epYrQe36x14Xx
-	 eUzgmrl39v+p06JncaYPqe8ITSiBM1v+QeGSCVS59g4ojLmqCrUeaYVn3mw/pMZy6X
-	 OSZbaC+o71c4KrkE/MFcl7dgerbIk3SFeP1grXstO7VmxnLqlgN5AY56PGPUW4sSBz
-	 WqONgyfY37BQw==
+	b=nx03Wv/dH0KAw6m9I1/bZqokrtC56pdV84qwpNrcIrsMOU+H0ktaYxefurhqH4G0m
+	 fQZTcsiz/u1SkHY1cfknu+nCIKH3I3lZ/uGtmkLqdxHcN0kPyvhJ54qtdaoLzuGmtC
+	 aBtjn1tKfVZXA9ZRtdC6H2UzVbAf1rjmiLQMlq6IYRHeFmxAOCmrFLyYZ7de0K9DNg
+	 wNKN/6e1bZj6OJmf0YKV4unzS+/KgL0z1uAM2IGu5oGkVc+eQ3JApKo8xKodv0FiGq
+	 oWP7OTK9gTHZ1uNx4kDBDcEbUUNo+wABteuQjPoV/BB1/yJcdFUIbUC8dUz5+cUExs
+	 jTFPz0WuFou0g==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v7 3/3] iio: adc: ti-ads1100: Add ti-ads1110 support to
- ti-ads1100 driver
+Subject: Re: [PATCH v13 19/35] phy: rockchip: usbdp: Re-init the PHY on
+ orientation change
 Reply-To: sashiko-reviews@lists.linux.dev
-To: "Jakub Szczudlo" <jakubszczudlo40@gmail.com>
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, robh@kernel.org
-In-Reply-To: <20260714195528.597753-4-jakubszczudlo40@gmail.com>
-References: <20260714195528.597753-1-jakubszczudlo40@gmail.com>
- <20260714195528.597753-4-jakubszczudlo40@gmail.com>
+To: "Sebastian Reichel" <sebastian.reichel@collabora.com>
+Cc: neil.armstrong@linaro.org, vkoul@kernel.org, olteanv@gmail.com, conor+dt@kernel.org, devicetree@vger.kernel.org, linux-phy@lists.infradead.org, robh@kernel.org
+In-Reply-To: <20260714-rockchip-usbdp-cleanup-v13-19-6cb3e769d4c5@collabora.com>
+References: <20260714-rockchip-usbdp-cleanup-v13-0-6cb3e769d4c5@collabora.com>
+ <20260714-rockchip-usbdp-cleanup-v13-19-6cb3e769d4c5@collabora.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Tue, 14 Jul 2026 20:07:19 +0000
-Message-Id: <20260714200719.F219A1F000E9@smtp.kernel.org>
+Date: Tue, 14 Jul 2026 20:09:39 +0000
+Message-Id: <20260714200939.B857F1F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,25 +72,25 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-326507-lists,devicetree=lfdr.de];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[gmail.com];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:jakubszczudlo40@gmail.com,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-326508-lists,devicetree=lfdr.de];
 	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:sebastian.reichel@collabora.com,m:neil.armstrong@linaro.org,m:vkoul@kernel.org,m:olteanv@gmail.com,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:linux-phy@lists.infradead.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FREEMAIL_CC(0.00)[linaro.org,kernel.org,gmail.com,vger.kernel.org,lists.infradead.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[8];
 	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	ALIAS_RESOLVED(0.00)[];
@@ -99,119 +99,93 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FROM_NO_DN(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	RCPT_COUNT_THREE(0.00)[4];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[smtp.kernel.org:mid,sashiko.dev:url,vger.kernel.org:from_smtp,lists.linux.dev:replyto,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,smtp.kernel.org:mid,collabora.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,lists.linux.dev:replyto,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: C1711758A06
+X-Rspamd-Queue-Id: 66212758A3F
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-- [High] Inverted polling condition in ads1100_poll_data_ready causes 7.5s =
-hangs and missed data.
-- [Medium] Unhandled negative error code from ads1100_get_vref_millivolts()=
- leaks to userspace.
+
+Pre-existing issues:
+- [High] The USB3 port is not re-enabled in the system GRF when the PHY dyn=
+amically transitions from DP-only to DP+USB mode, permanently breaking Supe=
+rSpeed USB functionality.
 --
 
---- Patch [3]: [PATCH v7 3/3] iio: adc: ti-ads1100: Add ti-ads1110 support =
-to ti-ads1100 driver ---
-commit 0307e42b36df78ace85fb2bcabb35c647c1a78d3
-Author: Jakub Szczudlo <jakubszczudlo40@gmail.com>
+--- Patch [19]: [PATCH v13 19/35] phy: rockchip: usbdp: Re-init the PHY on =
+orientation change ---
+commit dd525747df45e57b3edc64db460c26dd4373c3df
+Author: Sebastian Reichel <sebastian.reichel@collabora.com>
 
-iio: adc: ti-ads1100: Add ti-ads1110 support to ti-ads1100 driver
+phy: rockchip: usbdp: Re-init the PHY on orientation change
 
-This commit adds support for the ADS1110 ADC. It provides faster data rates
-than the ADS1100 and uses an internal voltage reference of 2.048V.
+Changing the cable orientation reconfigures the lane muxing, which
+requires re-initializing the PHY. Without this DP functionality
+breaks, if the cable is re-plugged with swapped orientation.
 
-> diff --git a/drivers/iio/adc/ti-ads1100.c b/drivers/iio/adc/ti-ads1100.c
-> index f0a30ae139afa..5d798bfcc74e1 100644
-> --- a/drivers/iio/adc/ti-ads1100.c
-> +++ b/drivers/iio/adc/ti-ads1100.c
-[ ... ]
-> @@ -144,7 +182,8 @@ static int ads1100_new_data_is_ready(struct ads1100_d=
-ata *data)
-> =20
->  static int ads1100_poll_data_ready(struct ads1100_data *data)
+> diff --git a/drivers/phy/rockchip/phy-rockchip-usbdp.c b/drivers/phy/rock=
+chip/phy-rockchip-usbdp.c
+> index e44d19c9d1193..4b454798c4ed4 100644
+> --- a/drivers/phy/rockchip/phy-rockchip-usbdp.c
+> +++ b/drivers/phy/rockchip/phy-rockchip-usbdp.c
+> @@ -620,6 +620,7 @@ static int rk_udphy_orien_sw_set(struct typec_switch_=
+dev *sw,
+>  				 enum typec_orientation orien)
 >  {
-> -	int data_rate_Hz =3D ads1100_data_rate[FIELD_GET(ADS1100_DR_MASK, data-=
->config)];
-> +	int data_rate_index =3D FIELD_GET(ADS1100_DR_MASK, data->config);
-> +	int data_rate_Hz =3D data->ads_config->available_data_rate_hz[data_rate=
-_index];
->  	/* To be sure we wait 5 times more than data rate */
->  	unsigned long wait_time_us =3D DIV_ROUND_CLOSEST(USEC_PER_SEC, 5 * data=
-_rate_Hz);
->  	int data_ready;
+>  	struct rk_udphy *udphy =3D typec_switch_get_drvdata(sw);
+> +	bool flipped =3D orien =3D=3D TYPEC_ORIENTATION_REVERSE;
+> =20
+>  	mutex_lock(&udphy->mutex);
+> =20
+> @@ -631,7 +632,10 @@ static int rk_udphy_orien_sw_set(struct typec_switch=
+_dev *sw,
+>  		goto unlock_ret;
+>  	}
+> =20
+> -	udphy->flip =3D orien =3D=3D TYPEC_ORIENTATION_REVERSE;
+> +	if (udphy->flip !=3D flipped)
+> +		udphy->phy_needs_reinit =3D true;
 
 [Severity: High]
-Does the inverted break condition in ads1100_poll_data_ready() cause the
-polling loop to hang when data is ready?
+This is a pre-existing issue, but does setting phy_needs_reinit to true exp=
+ose
+a bug in rk_udphy_power_on() where the USB3 port is not re-enabled when
+transitioning from DP-only to DP+USB mode?
 
-Further down in this function, the readx_poll_timeout() call evaluates
-the data_ready variable:
+If the Type-C connection dynamically transitions from DP-only (where the U3=
+ port
+is disabled via rk_udphy_u3_port_disable(udphy, true)) to DP+USB
+(UDPHY_MODE_DP_USB), rk_udphy_power_on() takes this branch:
 
-    ret =3D readx_poll_timeout(ads1100_new_data_is_ready, data,
-                             data_ready, data_ready !=3D 0,
-                             wait_time_us, ADS1100_MAX_DRDY_TIMEOUT_US);
+drivers/phy/rockchip/phy-rockchip-usbdp.c:rk_udphy_power_on() {
+    ...
+	} else if (udphy->phy_needs_reinit) {
+		if (udphy->mode =3D=3D UDPHY_MODE_DP)
+			rk_udphy_u3_port_disable(udphy, true);
 
-It looks like ads1100_new_data_is_ready() returns 0 when ready, 1 when busy,
-and a negative code on I2C error.
+		ret =3D rk_udphy_init(udphy);
+    ...
+}
 
-Since readx_poll_timeout() stops looping when its condition evaluates to tr=
-ue,
-data_ready !=3D 0 would cause it to silently exit on busy or error states, =
-but
-hang and loop until the 7.5s timeout when data is actually ready.
+It explicitly disables the U3 port if the new mode is DP-only, but it
+completely lacks the logic to re-enable the port
+(rk_udphy_u3_port_disable(udphy, false)) if the mode includes USB.
 
-[ ... ]
-> @@ -230,14 +269,9 @@ static int ads1100_set_data_rate(struct ads1100_data=
- *data, int chan, int rate)
->  	return ads1100_poll_data_ready(data);
->  }
-> =20
-> -static int ads1100_get_vdd_millivolts(struct ads1100_data *data)
-> -{
-> -	return regulator_get_voltage(data->reg_vdd) / (MICRO / MILLI);
-> -}
-> -
->  static void ads1100_calc_scale_avail(struct ads1100_data *data)
->  {
-> -	int millivolts =3D ads1100_get_vdd_millivolts(data);
-> +	int millivolts =3D ads1100_get_vref_millivolts(data);
+Could this cause SuperSpeed USB traffic to fail because the U3 port remains
+disabled in the usbgrf register?
 
-[Severity: Medium]
-If regulator_get_voltage() fails inside ads1100_get_vref_millivolts(),
-will this permanently cache a bogus negative error code (like -EINVAL) in
-the scale_avail array?
-
->  	unsigned int i;
-> =20
->  	for (i =3D 0; i < ARRAY_SIZE(data->scale_avail) / 2; i++) {
-[ ... ]
-> @@ -296,12 +331,12 @@ static int ads1100_read_raw(struct iio_dev *indio_d=
-ev,
->  		return IIO_VAL_INT;
->  	case IIO_CHAN_INFO_SCALE:
->  		/* full-scale is the supply voltage in millivolts */
-> -		*val =3D ads1100_get_vdd_millivolts(data);
-> +		*val =3D ads1100_get_vref_millivolts(data);
-
-[Severity: Medium]
-Can an unhandled negative error code from ads1100_get_vref_millivolts() leak
-to userspace here?
-
-If the VDD regulator driver fails to return its voltage, *val will contain
-the negative error code. Because the function returns IIO_VAL_FRACTIONAL_LO=
-G2
-instead of the error, this masks the failure from the IIO core.
-
->  		*val2 =3D 15 + FIELD_GET(ADS1100_PGA_MASK, data->config);
->  		return IIO_VAL_FRACTIONAL_LOG2;
+> +
+> +	udphy->flip =3D flipped;
+>  	rk_udphy_set_typec_default_mapping(udphy);
+>  	rk_udphy_usb_bvalid_enable(udphy, true);
+>
 
 --=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260714195528.5977=
-53-1-jakubszczudlo40@gmail.com?part=3D3
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260714-rockchip-u=
+sbdp-cleanup-v13-0-6cb3e769d4c5@collabora.com?part=3D19
 
