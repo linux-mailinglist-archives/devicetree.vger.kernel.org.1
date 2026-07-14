@@ -1,226 +1,177 @@
-Return-Path: <devicetree+bounces-326322-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-326324-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id mlchMt5KVmrb2wAAu9opvQ
-	(envelope-from <devicetree+bounces-326322-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 16:42:38 +0200
+	id yuEODn5NVmpq3AAAu9opvQ
+	(envelope-from <devicetree+bounces-326324-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 16:53:50 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26B81755FC9
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 16:42:38 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 152577561BB
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 16:53:49 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=NXP1.onmicrosoft.com header.s=selector1-NXP1-onmicrosoft-com header.b=f+6NLFB5;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326322-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-326322-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=fail reason="SPF not aligned (relaxed), DKIM not aligned (relaxed)" header.from=nxp.com (policy=none);
-	arc=reject ("cv is fail on i=2")
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=YwaGPVsC;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326324-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-326324-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 31D6630F1F2A
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 14:38:24 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id C97FE304817D
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 14:44:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91493478849;
-	Tue, 14 Jul 2026 14:38:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78C20363087;
+	Tue, 14 Jul 2026 14:44:00 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from MRWPR03CU001.outbound.protection.outlook.com (mail-francesouthazon11011037.outbound.protection.outlook.com [40.107.130.37])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DA0743DA27;
-	Tue, 14 Jul 2026 14:38:20 +0000 (UTC)
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1784039902; cv=fail; b=UCgrM6kkFQ0wnWHtuV7ZIM8dAPt+xHVBhmryywFBFVC1WozIsEd/BQwRTdkzt4MV2g5kkaf2rs9ZcRH+Ai14zboE7vZUxhZX1gl+x3zf11VSitw9yQOqkDG3WrjQ9L9KSkOOJxKOEy0jlxQI0blvrpdm2cdFQgbnUmF1HaTuaok=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1784039902; c=relaxed/simple;
-	bh=3ZyT5oFsfXcsrzjCXJBhorrhyPuSQQdN9Y04fosAuqw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=cfCBZ2oeAhA11M8PYqsTu0EhHEuTfuJIfxtBTahQ65J5Yu0WD0spqVsEcB2xfxCxzWrubjBrOhjVve0vosiDsxU9TyfD0gprCT8yjk/dwFb53sexyGfKdpiEB8sPSohihKFukH3rIWb/Kwhy7XwOCMidOMVlNqLzti5TE62B4Qo=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=f+6NLFB5; arc=fail smtp.client-ip=40.107.130.37
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=OWsGxbdI0mNNcBnrjo0mbi4DU1x2xxq0VUuHI79AgnGS/SiEMuYNBoog7GPJMfI0V4M75i1wdmX85RssEc753W0MMJzAoqNAJ9nVPdbPN6jVuh+wvVhSvFvk5d/zajFYSZh3Oz2spqxLTTxMPHu+MiINCRviz2K0Mu+x6QuhZ1dZY2saD9VOpajurwOHptfrWqqzCpCBIiMCicHplfgIitcRyuSfM9ETHNQ+uTap/GNU52UDEb5c5CWqB9Ci9b55jgdipoAyuNcIMW7APC2Esko0EfDa8VUWuxCy/Se+elC+NBiNqntHX9xn+gBaYXoeyPEPo5JbKMU6b9Gi+yZvMA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=3tTmEev5SELNaeKdzfBV8MycBIf60rUFPq+eXzQqTdc=;
- b=gNz8xI0UhL8dzo937R16DuEDwQPsYSUlLRwGTm9d9kAfTsxDcDYsgzrosXiNZhDz3y41QCOw6yX1zDJ5SiUgraXqCf/hO4eDc5C0Ma2vTNrXVKT4WpZM+3f3MFIyOe8P9P8n1Lt0DR1JsRwHcPCUYCiqQ55bFe6nQx+mMAuykPi2Y43KtaJbrFShdGxErDbCZKfM8IB8IRbnBX4sLrJXKCqEGMvw2EZCpU7q43BLQNUcaekqmP1lkO5rBhcJ9icMFWX0bb7DMfEAAc08LemreN3CZrCT1dCPKeU/rDedkh8jsTgJUfPwAlRBdiHsVUuHtJmLllWKh8sbU4fERoYZCA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector1-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=3tTmEev5SELNaeKdzfBV8MycBIf60rUFPq+eXzQqTdc=;
- b=f+6NLFB55rSBlClUK+JeTRL5Ax+1yRRKgzdMg/Dx5zj06LwK3OeWIm0AJYbhdBUh38y1vG1dgYhzWHbaZvPTWmowukndRj3yZyGtUHwKWOQIrB7pMgIOxpAnahD+f7IowDrg7I8SusXSc6WbRYzwg4mInv2bUGc1wbBEIZEprdaIzUIOOcZOzK0A/iyAqRtViwGjkePABr+RgMNNHJSN01TtjkoItvpNNJNvHTI7q/2/iQgLFi3ZDagA40jIdCchP0qyHVskZi3hAtw5YyOp/X/aUY0niR5uPtBorRfSt/jOINw8vWFlWB4hDRCTH1zepNWQIglvW8HkBL9C7iy7nw==
-Received: from GV2PR04MB11799.eurprd04.prod.outlook.com (2603:10a6:150:2cf::9)
- by PR3PR04MB7340.eurprd04.prod.outlook.com (2603:10a6:102:93::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.202.19; Tue, 14 Jul
- 2026 14:38:17 +0000
-Received: from GV2PR04MB11799.eurprd04.prod.outlook.com
- ([fe80::2146:83a2:5329:b7c]) by GV2PR04MB11799.eurprd04.prod.outlook.com
- ([fe80::2146:83a2:5329:b7c%6]) with mapi id 15.21.0202.018; Tue, 14 Jul 2026
- 14:38:17 +0000
-Date: Tue, 14 Jul 2026 09:38:04 -0500
-From: Frank Li <Frank.li@oss.nxp.com>
-To: Frieder Schrempf <frieder.schrempf@kontron.de>
-Cc: Frank Li <Frank.Li@nxp.com>, Jonathan Corbet <corbet@lwn.net>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Pankaj Gupta <pankaj.gupta@nxp.com>, linux-doc@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-Subject: Re: (subset) [PATCH v25 0/7] firmware: imx: driver for NXP
- secure-enclave
-Message-ID: <alZJzKHs8w0UAw_z@SMW015318>
-References: <20260122-imx-se-if-v25-0-5c3e3e3b69a8@nxp.com>
- <177799642393.1381528.2137639571938103661.b4-ty@nxp.com>
- <73a5b9fd-aff4-4ae2-ab2b-d860bbc7325d@kontron.de>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <73a5b9fd-aff4-4ae2-ab2b-d860bbc7325d@kontron.de>
-X-ClientProxiedBy: PH7PR17CA0032.namprd17.prod.outlook.com
- (2603:10b6:510:323::22) To GV2PR04MB11799.eurprd04.prod.outlook.com
- (2603:10a6:150:2cf::9)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B547E3EF649
+	for <devicetree@vger.kernel.org>; Tue, 14 Jul 2026 14:43:50 +0000 (UTC)
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1784040237; cv=none; b=tUTpreH/V/euyMOTEOznDVpBIgRWoqOFMD8+6w2SQ/0nLyHnEXpw5Fk5Cbn7MdaPvuUH9wcY0PB6RvCg+B+odr9b8p7Cz6o9eqpmZGWcua1DfkyVSe5/gzizZX9KYpF7+h6b/2pAjD0jJF/Fa3nVUSL7Wwq668+HoaBxpRbLhN0=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1784040237; c=relaxed/simple;
+	bh=8lauzoCV0Odo+rQIYEW020nlaawB3h3rCEKLa5hRDak=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=ELJMeUEUcRGhNq1tJZk3Sz7JvhQZonY5Hg3u4lQYSif601k0IOTbc1+Prgbeaz7hdyCnXqNqbfuz2uK3f5uDnxqxjrQpITNKDaiIrZSYa9uZPnY9BJO+Oaln4fGsByxzA4B4SsQ6dsko+913wYRCm6CllnEb8bmTMrob/aCkP/E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YwaGPVsC; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B5FCD1F000E9;
+	Tue, 14 Jul 2026 14:43:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1784040225;
+	bh=HZMvlN47iSORZIZaAbkAqmsFbas0vM1DiVs9tPYji0M=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=YwaGPVsCyX454F5cBlV3fh+M9hF9kScDbVu8y9CrbQFMt+L4bYJN/MSC9fGNqWFd8
+	 R54+G8ErlZ3j32mPllqdzpXm6olLg/zMPlX6J5IfFMLpOSXuqr3NrJ8zovbNaoqQBq
+	 Es+vn29pd3Ec1iYEAtFGpUpaM0Xq6SL5NI+MefHTaPvmGsxA/C89NkfwUObJLvRNJP
+	 I58NZzHU8lAUddyj6y0SdYLQ9ul4U9wsx2ojnPKUF7VN9vZ93HKGHFdB19+C2oQ9h1
+	 mRnCQFBMEXHEWHRVEZqxoy6+KbcZNZkHsASpNPBISYJmgFexqbrW3HFXKp9E9Uo1sS
+	 tPe4pVE3iCMmg==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH net-next v10 1/9] net: dsa: add tag driver for LAN9645X
+Reply-To: sashiko-reviews@lists.linux.dev
+To: =?utf-8?b?SmVucyBFbWlsIFNjaHVseiDDmHN0ZXJnYWFyZA==?= <jensemil.schulzostergaard@microchip.com>
+Cc: robh@kernel.org, devicetree@vger.kernel.org, conor+dt@kernel.org
+In-Reply-To: <20260713-dsa_lan9645x_switch_driver_base-v10-1-a4886a08fb15@microchip.com>
+References: <20260713-dsa_lan9645x_switch_driver_base-v10-0-a4886a08fb15@microchip.com>
+ <20260713-dsa_lan9645x_switch_driver_base-v10-1-a4886a08fb15@microchip.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Tue, 14 Jul 2026 14:43:44 +0000
+Message-Id: <20260714144344.B5FCD1F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: GV2PR04MB11799:EE_|PR3PR04MB7340:EE_
-X-MS-Office365-Filtering-Correlation-Id: ad32899c-9cd8-43dc-9fb3-08dee1b58b16
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|19092799006|7416014|376014|23010399003|366016|3023799007|6133799003|56012099006|4143699003|11063799006|18002099003|22082099003;
-X-Microsoft-Antispam-Message-Info:
-	qdvIFlQvhKvVA17Dijym1yr1AgfUmSuiB3JG658Zmyq/GybT6ANMaHDbmrYhVqP4U0iF2sc1DDc4/cWp1m2uS8qu1OXbrT6Fp2NPte2qq8W+ZW1ood6LPQwwMF0jYDHsbFYXWMxkkGSpogiZqOhB3UJZUZYz+poNsbex4nUs3e+tEntKIsfuLldOEg/VDCA3LFKDwAJ21IvyDP7Zq01t6L99REDFUOI3kfsLke+xZxzz32KVRkRZj9FfLz/kNCIJdVQTcLYF0iPtcWtjqzR1lPkGDdb65CganQ89TE0woc9K6wximJFrEkh22CoHbW7ra+X/43x6HJMeQW5LjhitramLIVffW+MKEUZsO+86axm7b0MQZt0IaymFO7v1VszmmV6PBeUTTqbfUkSMvVNgWxnj+09it6AvKKAF0xvfqQ8P9HrnbLtzCXrJHNU0K7CiZ19TnQypUQHGMGIgawFgzt4+9mGpJS1ud3xBf5+InJpza4XmsnvlUntMLC8gI035F7/J1avk+xc3ZkYws0MFQxrpttNLU22DTExHKhV89XWQRyU/1KGc7HtC+9GENCD6XKzCHO5qBrQxoypqwTZLF10IZsAu9NipINGzurCRVTKDiHaz3pvsk2++Hb/ThyDEKXF1Z+qGg1/1/6e40TEQLtt6ORrY7UCuJvWnO/J+MFE=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:GV2PR04MB11799.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(19092799006)(7416014)(376014)(23010399003)(366016)(3023799007)(6133799003)(56012099006)(4143699003)(11063799006)(18002099003)(22082099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?Sgn8dul2RNeCE8JuJb4Uh2JbQ87ZOWlcnn295P+qpPElgWJslIN5qW88b1I+?=
- =?us-ascii?Q?oYidqOq3WUMbJ22klmtTzSk//FZFzeHfRFxZ4e+VhqzcJdhzcZYEvTjwiY4K?=
- =?us-ascii?Q?YgbNcD/QS433HFIYZfLbKZ7lGHSOLkkDsHwpSY/71Rjl3iAKvlQdsBYL0YYd?=
- =?us-ascii?Q?4oiCsJ5DIQK8uu+gflHnku5X5ZTsspTRKOsh+qfxZDVH+VHVBSDaulxoEsBR?=
- =?us-ascii?Q?LOnU2o+FjymboG3PKfx8FZsf5+Pb3LrADttw2Tfdq3KOPbDb6loubgzoJrTm?=
- =?us-ascii?Q?gHg2M+aLDGPgpn1WIkhEc1KwITJnhgQJsialJ/8+PNrFt3gv42n41AwnERsZ?=
- =?us-ascii?Q?IdpuETMrrivXdq0vclyiCcgNyva8KykwS8lRelZTMqchh5QNqGbEtpcwBXMd?=
- =?us-ascii?Q?c8BGeVLuly+LlpnuBMNLljWEMRz3/3+qI1SEhD/E9sJKb7tXqzU7ZrRRgOER?=
- =?us-ascii?Q?UyWpkM6sCIRNZ8EjTSagnCPOVCiWPVhoqdSrfNwFikyYnNXDkuOFC6s2TeTn?=
- =?us-ascii?Q?xzjRCBTHVIaiOKyEPT6FgpUqFaWes4buE3H10I3DV3CAXd/0YAjKTYgfrCtH?=
- =?us-ascii?Q?adIKrytwcKXe5t8rW2Y5FFDOulNyOrhcdJbOknPpkpWUQc5QCc3504+J4SwQ?=
- =?us-ascii?Q?4Xlmh/lZULWHkR9x3353tMEdNzSZaNAaczPzZwdBKh6fmfQH7FttsEIiMk7X?=
- =?us-ascii?Q?bYQzTX7DVVMCquiQZu7FDD75VFBUhib/aM2UGMt15z0qz7QIEMocJZDTG9Bu?=
- =?us-ascii?Q?Lo4UufPvpZMDndgkf4Hjbmb9YygtLsJkl190oEW5KKCiwGbLlrB4U5BkGYFq?=
- =?us-ascii?Q?hA/3PFAKzHEv8pcyQDNIqpuhF3yEhuWj801dq2qUjUf06Jk4To+E9NERGSmY?=
- =?us-ascii?Q?ZJFk+tohPM8o6pHDk224w0q6OveO6Nm5fwa+slPSfoNc9ym2IRFgeECASCEX?=
- =?us-ascii?Q?NfxxSdaCnmL8z0cLdBNUlq+bTPFpPQXSFImpGaM+EVrnWhc2ufJtm4fCgtBx?=
- =?us-ascii?Q?9yEDmViJ8psnKoitUG8NET7QGG608uGDuLVC3BrgrSL3Kgl/FH72RjkbfuZd?=
- =?us-ascii?Q?ksah5XYS5rdecqPodven4Ak3pGl/k5jfMuT6bdMGY+VINjlyz8ypmFRogZah?=
- =?us-ascii?Q?miG4d9Tbtd/m5PA7jndbo1kvz5+GAoNX0WDgnGUVwBXFArzCCB3QwEmD65Ss?=
- =?us-ascii?Q?eeslOZyahkDhImf5M0TP/y8rxD+aG1xjGpYexbuU+hT4VApf7X72WF0Ax66W?=
- =?us-ascii?Q?oU0/vQCaGQc0t5K8ztwhS+QdSLZZMljEr4G6j6tk4i3PWQMZZjCqWrEm0JZs?=
- =?us-ascii?Q?JKemCwGksudvUmyllRUky918YY8Yw8R7jz7itjkNjh63/4e7CKc/FNJXYn4q?=
- =?us-ascii?Q?+ytC/ciI9FvsS/raexNzAUFS8LvsYkXsF+C+7gUyHr0qZksatFmQRViSMWnN?=
- =?us-ascii?Q?I9VFUxCZPNjJHyFlu7g6AmF1KmM1gsp/8rHBWHSB8mRiAE63EONgeZSfV7Q8?=
- =?us-ascii?Q?BJC6HSPByhcd3MBHCpq6hKv4IArMCztBSKyHrc3Fl0GvY2tE8TSjx6GW/7sM?=
- =?us-ascii?Q?SVPF1wYjyBnmqyXe7AHdl1Og6q1ZRw7GUfefFa9131yyE9/jAyzdnXHNFaE5?=
- =?us-ascii?Q?ywka0HdgSevMwxHSKDTkCB5MTrFqey6lS+ssUgUSa57rfj2aR7IhDOid9q23?=
- =?us-ascii?Q?2BHZ7s9qDJKcMHP85znGGNwpTbzlaLfkP8LsqBvt9g7oyDDaHYCOIBmd6IMc?=
- =?us-ascii?Q?7BjEcn83uk9RmYI+o9MJe+IR3xQpQmrjXzVz98WulGhKAvCPha58?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ad32899c-9cd8-43dc-9fb3-08dee1b58b16
-X-MS-Exchange-CrossTenant-AuthSource: GV2PR04MB11799.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Jul 2026 14:38:17.5169
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: gmKHYb4ZEdpynYGHNbgatMnA8VL+RKHqjLx2mo7QDl9bZxaoNXYrwGhT+naM6bsDlgApG3Pe0PMg3t9Fjd5AJ+S9rYNbaqTpSQpGU4rzJosSinX0P9untki1hft80Z50
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PR3PR04MB7340
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [2.44 / 15.00];
+X-Spamd-Result: default: False [-1.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[NXP1.onmicrosoft.com:s=selector1-NXP1-onmicrosoft-com];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[nxp.com : SPF not aligned (relaxed), DKIM not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-326322-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:frieder.schrempf@kontron.de,m:Frank.Li@nxp.com,m:corbet@lwn.net,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:shawnguo@kernel.org,m:s.hauer@pengutronix.de,m:kernel@pengutronix.de,m:festevam@gmail.com,m:pankaj.gupta@nxp.com,m:linux-doc@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:imx@lists.linux.dev,m:linux-arm-kernel@lists.infradead.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[Frank.li@oss.nxp.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[NXP1.onmicrosoft.com:+];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[Frank.li@oss.nxp.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[nxp.com,lwn.net,kernel.org,pengutronix.de,gmail.com,vger.kernel.org,lists.linux.dev,lists.infradead.org];
-	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-326324-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:jensemil.schulzostergaard@microchip.com,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ALIAS_RESOLVED(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	RCPT_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.nxp.com:from_mime,vger.kernel.org:from_smtp,i.mx:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,SMW015318:mid,NXP1.onmicrosoft.com:dkim]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,sashiko.dev:url,smtp.kernel.org:mid,lists.linux.dev:replyto,microchip.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 26B81755FC9
+X-Rspamd-Queue-Id: 152577561BB
 
-On Tue, Jul 14, 2026 at 09:27:06AM +0200, Frieder Schrempf wrote:
-> On 05.05.26 17:53, Frank Li wrote:
-> >
-> > On Thu, 22 Jan 2026 17:19:12 +0530, Pankaj Gupta wrote:
-> >> The NXP's i.MX EdgeLock Enclave, a HW IP creating an embedded secure
-> >> enclave within the SoC boundary to enable features like
-> >> - HSM
-> >> - SHE
-> >> - V2X
-> >>
-> >> Communicates via message unit with linux kernel. This driver is
-> >> enables communication ensuring well defined message sequence protocol
-> >> between Application Core and enclave's firmware.
-> >>
-> >> [...]
-> >
-> > Applied, thanks!
-> >
-> > [1/7] Documentation/firmware: add imx/se to other_interfaces
-> >       commit: 3b4531c6e0f4c8874f0266853a410438eda1fc24
-> > [2/7] dt-bindings: arm: fsl: add imx-se-fw binding doc
-> >       commit: 4d7bcf0869686d7d7fbf16244453b987e5ca6d14
-> > [3/7] firmware: imx: add driver for NXP EdgeLock Enclave
-> >       commit: 338529a73c2bf2c277013b745cfe6f19b84b70af
-> > [4/7] firmware: imx: device context dedicated to priv
-> >       commit: 2d733ed67f608ee85abb854157011f88d7f280a8
-> > [5/7] firmware: drivers: imx: adds miscdev
-> >       commit: 4de71839142b5f43846e3593f4eb236e1d733885
-> What happened to these patches?
->
-> They were part of linux-next for quite some time (up to next-20260630)
-> and then they disappeared (missing in next-20260701).
->
-> I didn't find any hint where or why they were dropped.
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [High] Adding an out-of-band VLAN tag without checking for and popping an=
+ existing payload tag results in double-tagged frames.
+--
 
-Sashiko and linux-next build found some issues, which need be fixed before
-send pull request.
+--- Patch [1]: [PATCH net-next v10 1/9] net: dsa: add tag driver for LAN964=
+5X ---
+commit 3fca3b09e95a3eeee247c89f8ecdf602074e9506
+Author: Jens Emil Schulz =C3=98stergaard <jensemil.schulzostergaard@microch=
+ip.com>
 
-Pankaj is working on the new version.
+net: dsa: add tag driver for LAN9645X
 
-Frank
+This commit adds a DSA tag driver for the LAN9645x family of switches. It
+configures an NPI port to use a 16-byte long prefix on extraction and no
+prefix on injection, prepending an internal frame header (IFH) to transmit
+critical data.
 
->
+> diff --git a/net/dsa/tag_lan9645x.c b/net/dsa/tag_lan9645x.c
+> new file mode 100644
+> index 0000000000000..2692c7ad56cbc
+> --- /dev/null
+> +++ b/net/dsa/tag_lan9645x.c
+[ ... ]
+> +static struct sk_buff *lan9645x_rcv(struct sk_buff *skb,
+> +				    struct net_device *ndev)
+> +{
+[ ... ]
+> +	/* While we have REW_PORT_NO_REWRITE=3D0 on the NPI port, we still disa=
+ble
+> +	 * port VLAN tagging with REW_TAG_CFG. Any classified VID, different
+> +	 * from a VID in the frame, will not be written to the frame, but is
+> +	 * only communicated via the IFH. So for VLAN-aware ports we add the IFH
+> +	 * vlan to the skb.
+> +	 */
+> +	dp =3D dsa_user_to_port(skb->dev);
+> +	vlan_tpid =3D tag_type ? ETH_P_8021AD : ETH_P_8021Q;
+> +
+> +	if (dsa_port_is_vlan_filtering(dp) && vlan_tci) {
+> +		u16 port_pvid =3D 0;
+> +
+> +		br_vlan_get_pvid_rcu(skb->dev, &port_pvid);
+> +
+> +		if ((vlan_tci & VLAN_VID_MASK) !=3D port_pvid)
+
+[Severity: High]
+Does this code result in double-tagged frames?
+
+If the hardware delivers the frame without stripping the in-band tag because
+port VLAN rewrite is disabled, calling __vlan_hwaccel_put_tag() here adds an
+out-of-band tag while leaving the original in-band tag intact in the payloa=
+d.
+This would cause the network stack to process a single 802.1Q tagged frame
+from the wire as a Q-in-Q double-tagged frame.
+
+Should lan9645x_rcv() pop the existing payload tag (for example, using
+__skb_vlan_pop()) before adding the out-of-band tag to avoid duplicating it?
+
+> +			__vlan_hwaccel_put_tag(skb, htons(vlan_tpid), vlan_tci);
+> +	}
+> +
+> +	return skb;
+> +}
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260713-dsa_lan964=
+5x_switch_driver_base-v10-0-a4886a08fb15@microchip.com?part=3D1
 
