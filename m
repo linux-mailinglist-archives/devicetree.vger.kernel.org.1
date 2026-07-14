@@ -1,176 +1,162 @@
-Return-Path: <devicetree+bounces-326543-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-326545-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id K9pvFJOoVmpO/wAAu9opvQ
-	(envelope-from <devicetree+bounces-326543-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 23:22:27 +0200
+	id k99RJ3GpVmqA/wAAu9opvQ
+	(envelope-from <devicetree+bounces-326545-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 23:26:09 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9AFD3758F3A
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 23:22:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E56F7758F96
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 23:26:08 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=baylibre.com header.s=google header.b=OYPZHltL;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326543-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-326543-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=none;
+	dkim=pass header.d=lunn.ch header.s=20171124 header.b=N469ay99;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326545-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-326545-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=lunn.ch;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 44A44301F1A9
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 21:21:25 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 8E26C3021724
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 21:26:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9248412BF1;
-	Tue, 14 Jul 2026 21:21:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E47AC429CD8;
+	Tue, 14 Jul 2026 21:26:06 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 771103F5BD8
-	for <devicetree@vger.kernel.org>; Tue, 14 Jul 2026 21:21:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDF9540D590;
+	Tue, 14 Jul 2026 21:26:04 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1784064084; cv=none; b=Lp849hG1bcwB8C+1YHIh4plR+NVBtMQ7gI9FPyElSS/cyVZqg54Y/6MToee3EFeFJGncPyDl1j0Rv04qVVVfLkx+9zvdhJuBw21EICuED2aD8kGzNn6Simi5SvMJXBkMaYjVbc2Ktt7znxA7YQ/DTkSCecNRWFvjNj540+cmSEQ=
+	t=1784064366; cv=none; b=uXRTmXQXIcXEXJSPgNzeFudWl3uzJKN1EN5XPuZ+3rS8QQkqh4VPWqgFNQBNw8DRcpu29W+XOs76n0geIb+jl5vBHTOOkOJua5gAHLfDLLD9tUwNUeu50L/xxR8GrqLvChdxusijKWL0TzJOBitX3mY2EFZgY7Pztc2OPZ4vgUg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1784064084; c=relaxed/simple;
-	bh=yw2HrJD4EnW28VQxXIvfJ2mgB36yVB4/eQhPGNDBomA=;
+	s=arc-20240116; t=1784064366; c=relaxed/simple;
+	bh=K8J6oPxjgmTJ7fyU1h6chiS+KMrCFolhxacoMa2oN3k=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qNcVvqiAEhV4+SMWa9svxi+4y01kvYRutoqk32pPaPI7oc48dYPlHuYQtOHEZuzasSiKdvERp339E6qPWhKaaad93Srbmd6o6iKbwVBeYxLqLy32WxK+3Z0HBBDDBiMg5lk6JhGuESjEf880+yaPJbNMpR9WgauwWv18tNb9JPs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.b=OYPZHltL; arc=none smtp.client-ip=209.85.221.51
-Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-47122683cf3so2672590f8f.0
-        for <devicetree@vger.kernel.org>; Tue, 14 Jul 2026 14:21:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre.com; s=google; t=1784064081; x=1784668881; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:content-type:mime-version
-         :references:message-id:subject:cc:to:from:date:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=yw2HrJD4EnW28VQxXIvfJ2mgB36yVB4/eQhPGNDBomA=;
-        b=OYPZHltLQVtLFcdQw3TxavhtSXHbPnQFzOcAGs1ZXVZR/QrLA5k/afyWXFFzq7ZqAx
-         5xTSPjRIAnweLr/Dcaa7vBuV5Ih4zEs9jdJ01UV5spR0wHeW07umhfIOJulwnu+yhn1s
-         brL1XByi/FMhtSVYXSFnIHhd1rO5Qc85f3R1RPE2kOfzpKUVJA4cRDI6nMle7tjKiHl2
-         w7S1AKi60lXMKqfiIIas5FtP+qRvY1kxMs5noQ7HFvDa4WL+M3U90bMwQYjBzXZBusEW
-         N+hrwCQCAKoyOLQ7WIsv/NJUgrKw9LVbhC5iWuC9j7b6NaIz1dS922r5msLMQjGdbIy8
-         NtcQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1784064081; x=1784668881;
-        h=in-reply-to:content-disposition:content-type:mime-version
-         :references:message-id:subject:cc:to:from:date:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=yw2HrJD4EnW28VQxXIvfJ2mgB36yVB4/eQhPGNDBomA=;
-        b=qWUUSDDTdGRUYNtkGp699jmVYqw+2AsJCicsjjE9WRmGCDUhSrMe4BAN3rTOPTPTr8
-         4yGi+yLle18tjceMuMe9jMj5HLW4hxOjprLkyHr+eTFdZAfKYHz6oiBG7PUxDAFkWxye
-         BynQpD353Q6ouZFfqzetZcTzF2u52AGn/mxBc0eCVt707Y7p0ZQCjsARPzPOUzHRpPkM
-         Y4J3wx52Xc9FPKh7ja0NuzK3erAoWxRGkR/pC2HhHjENQqCCRjSumR6RMOZhpE0UJT47
-         rc9aoHEDM6cMYnJ1Wm/bvQkCjxtSQbYUISUQlblqaR2fxYBaE8nF/ihqBoM3Xn6EjCpQ
-         k23w==
-X-Forwarded-Encrypted: i=1; AHgh+RpXXMOC8oBuMslXyS0/cZdbBZBwivb9UtDyB1T5R1PoWB0e6LiRRcrspWGa/Ntb5X/1ibGP6+Vk/85c@vger.kernel.org
-X-Gm-Message-State: AOJu0YwfRclT5Prz370qwDOhY1jw0yht9QnS4agAARL6Y7a3lUOrjpcR
-	XG1dqdkug0UL7Qw/pQ6hiAMu0S6qSmt+XMilrGihQ898SkqVNRPQvB7+FHtjGdmc458=
-X-Gm-Gg: AfdE7clJGn8FrC+WH+8xC6MFS2CTsYw9Q+4yTpGdq7U77X9X6isy9qBS5xg04wu2snJ
-	5uCexhBjQu2smyNG259Qv0jZSwVwF/j+/0Dy/wK7LzF/bnPgUMPqT7rPmuVGPdfTTgkwi9M2Oce
-	gbB9XbBvJpaze7evFSqYhiP4WFgGKJi8cHdzA1Ebvu+8Knp2V8l9iIX2sUUX8NCJOJ31xSEAbgR
-	VIiDyb5L86QMuKQQuBNSwLfDsilxfhaPnL7p4WtrCM4GE+W8f0gxg6eeCwhSs0uk9olRGqXvocG
-	A1+/J6Mm5XLeJ8cU0u3VYbZMuycZWzoK77PkDZOlEdqfYWnslpBoLgEi5QgJnu0lKxz7Sk7Floe
-	6yDawSa/t4KXfiMledsfNq7vWi2xORm3UYD8ohP+uyAJXqMz2uSvgkFXMtMg9T7cyJKh90c8Bkz
-	Xj8Pqk3VelKcNItUjKhw==
-X-Received: by 2002:a05:600c:c04b:10b0:495:21e7:fd53 with SMTP id 5b1f17b1804b1-49521e7fd96mr44313885e9.18.1784064080765;
-        Tue, 14 Jul 2026 14:21:20 -0700 (PDT)
-Received: from localhost ([2a02:8071:56d1:2de0:1d24:d58d:2b65:c291])
-        by smtp.gmail.com with UTF8SMTPSA id 5b1f17b1804b1-4953c6fe0c6sm4273135e9.1.2026.07.14.14.21.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Jul 2026 14:21:19 -0700 (PDT)
-Date: Tue, 14 Jul 2026 23:21:18 +0200
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
-To: Jorijn van der Graaf <jorijnvdgraaf@catcrafts.net>
-Cc: Jonathan Cameron <jic23@kernel.org>, 
-	David Lechner <dlechner@baylibre.com>, Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>, 
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Siratul Islam <siratul.islam@linux.dev>, Luca Weiss <luca.weiss@fairphone.com>, linux-iio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] iio: magnetometer: add support for QST QMC6308
-Message-ID: <alansZsKEH3nX_UN@monoceros>
-References: <20260714202842.340293-1-jorijnvdgraaf@catcrafts.net>
- <20260714202842.340293-3-jorijnvdgraaf@catcrafts.net>
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZR39h12Y4OGQ5zyK1FxImdYZReEOmWrfTQdDO9GIdx4aVz9lYlKg/dCJMUvwIB97/nB2aCcB+YBpNknwt7PsxM6gevagPJKE12X7VHgGPDSLpjtaXMPZMrteuYbSrNcvSX/wic17b4cRlT394svskd1xMHIgpvWl190XHWTuC/4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=N469ay99; arc=none smtp.client-ip=156.67.10.101
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=MsR2KbYLSyQF72+KA6xaRaH75h8QqeIfFLr6MHB+Zc8=; b=N469ay99+/ZaIlavpJcpDuFsPQ
+	S2Y8q9ICABsWs87hzWYvv3ghxupOpluKi4Yxa/iLGWU8QFI04WTi0I4+l27mg0YTpr5inqR0WNktL
+	CBnXc79CPLO68HgK4pX8fraanE3FHPekZyYod7i/y2N0o7OVd4HCsR5dhZr1YocBB9JY=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1wjkdY-00CFhF-1j; Tue, 14 Jul 2026 23:25:56 +0200
+Date: Tue, 14 Jul 2026 23:25:56 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Artem Shimko <a.shimko.dev@gmail.com>
+Cc: netdev@vger.kernel.org, Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	"David S . Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next 2/2] net: phy: add DAPU Telecom DAP8210R(I)
+ Gigabit Ethernet PHY driver
+Message-ID: <5c95a7cd-d5d7-4998-8641-7dee1e34078b@lunn.ch>
+References: <20260713131223.279555-1-a.shimko.dev@gmail.com>
+ <20260713131223.279555-3-a.shimko.dev@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="fwne57h3b6pk7whs"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260714202842.340293-3-jorijnvdgraaf@catcrafts.net>
+In-Reply-To: <20260713131223.279555-3-a.shimko.dev@gmail.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.76 / 15.00];
-	SIGNED_PGP(-2.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	DMARC_POLICY_ALLOW(-0.50)[lunn.ch,none];
+	R_DKIM_ALLOW(-0.20)[lunn.ch:s=20171124];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[baylibre.com:s=google];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	FORGED_RECIPIENTS(0.00)[m:a.shimko.dev@gmail.com,m:netdev@vger.kernel.org,m:hkallweit1@gmail.com,m:linux@armlinux.org.uk,m:davem@davemloft.net,m:edumazet@google.com,m:kuba@kernel.org,m:pabeni@redhat.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:ashimkodev@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-326545-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:jorijnvdgraaf@catcrafts.net,m:jic23@kernel.org,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:andy@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:siratul.islam@linux.dev,m:luca.weiss@fairphone.com,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[u.kleine-koenig@baylibre.com,devicetree@vger.kernel.org];
+	FREEMAIL_TO(0.00)[gmail.com];
+	FORGED_SENDER(0.00)[andrew@lunn.ch,devicetree@vger.kernel.org];
 	RCPT_COUNT_TWELVE(0.00)[13];
-	DMARC_NA(0.00)[baylibre.com];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-326543-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[lunn.ch:+];
 	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[u.kleine-koenig@baylibre.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[baylibre.com:+];
 	ALIAS_RESOLVED(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andrew@lunn.ch,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[vger.kernel.org,gmail.com,armlinux.org.uk,davemloft.net,google.com,kernel.org,redhat.com];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp,monoceros:mid]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 9AFD3758F3A
+X-Rspamd-Queue-Id: E56F7758F96
 
+> The driver also exports a debugfs interface for diagnostics,
+> exposing PHY status registers and providing runtime control over the
+> internal packet generator, CRC corruption, and loopback functionality.
 
---fwne57h3b6pk7whs
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Subject: Re: [PATCH 2/2] iio: magnetometer: add support for QST QMC6308
-MIME-Version: 1.0
+Please drop all this. Many PHYs have this sort of facility. We want
+one generic API, probably via ethtool, which all PHYs can follow, not
+N different incompatible APIs.
 
-Hello,
+> +static u32 dap8211r_get_rgmii_delay(struct phy_device *phydev, const char *prop_name)
+> +{
+> +	struct device_node *np = phydev->mdio.dev.of_node;
+> +	int ret;
+> +	u32 ps = 0;
+> +
+> +	ret = of_property_read_u32(np, prop_name, &ps);
+> +	if (ret) {
+> +		phydev_dbg(phydev, "Using default delay (%ups)\n", DAP8211R_DEFAULT_DELAY_PS);
+> +		ps = DAP8211R_DEFAULT_DELAY_PS;
+> +	}
 
-On Tue, Jul 14, 2026 at 10:28:42PM +0200, Jorijn van der Graaf wrote:
-> +#include <linux/i2c.h>
-> +#include <linux/mod_devicetable.h>
+This can be simplified.
 
-Please drop the include of <linux/mod_devicetable.h>. You need
-i2c_device_id and of_device_id, both are provided by <linux/i2c.h>.
+First off, there probably too many phydev_dbg() messages, specially
+for normal case things, using defaults, etc. 
 
-Best regards
-Uwe
+of_property_read_u32_array() is documented as not touching the results
+value, if it does not find the property. So you can do:
 
---fwne57h3b6pk7whs
-Content-Type: application/pgp-signature; name="signature.asc"
+	u32 ps = DAP8211R_DEFAULT_DELAY_PS;
+	of_property_read_u32(np, prop_name, &ps);
+  
+	return dap8211r_delay_ps_to_sel(phydev, ps);
 
------BEGIN PGP SIGNATURE-----
+> +static int dap8211r_config_init(struct phy_device *phydev)
+> +{
+> +	struct device_node *phydev_node = phydev->mdio.dev.of_node;
+> +	u16 mask = 0, set = 0;
+> +	int ret;
+> +
+> +	switch (phydev->interface) {
+> +	case PHY_INTERFACE_MODE_RGMII:
+> +		break;
 
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmpWqEoACgkQj4D7WH0S
-/k49YAf/R118nhj7SqTdriZ9maLRuzr3XBenh2ENuYEmtwi2qAFOwOA66GQrg4Zo
-2amincOgpKDOD/DybNYT7tahUZGx+FtHIum22ptdG+bK97qeja8L0F1ekrTMvMUw
-OpQ0JZ4M0B/dmRB8digv6bjvmAN0sUVkNpbqyQ9GeD58FRVI9wxkb74cZrtYmy43
-ni15dJzrO1f8ZZ0QDPAxGAcZafmOCC41ktIbKNH1sTvg+xFnauIGBiA4q7MiKcL9
-w54Io/K61EweIwCM12jALoz8Wi+HLr1E54QYa1B3lBH+C/MJ8LABJyYJ612c6WDS
-l2OhVGxAf0Roe2r0koBRwmoM2KVHJA==
-=8BGo
------END PGP SIGNATURE-----
+This is one of the less well defined areas. PHY_INTERFACE_MODE_RGMII
+would mean either the PCB is adding the delay, or the MAC. There is no
+reason however why the PHY cannot perform fine tuning, adding a small
+delay, say 150ps. So you should respect the rx-internal-delay-ps and
+tx-internal-delay-ps delays here. 
 
---fwne57h3b6pk7whs--
+	Andrew
 
