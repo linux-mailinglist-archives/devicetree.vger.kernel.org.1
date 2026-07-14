@@ -1,180 +1,292 @@
-Return-Path: <devicetree+bounces-326423-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-326411-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id irZhF6yKVmqn8gAAu9opvQ
-	(envelope-from <devicetree+bounces-326423-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 21:14:52 +0200
+	id hD+PCqGJVmo48gAAu9opvQ
+	(envelope-from <devicetree+bounces-326411-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 21:10:25 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id EEEC875824A
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 21:14:51 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 770BE7581C8
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 21:10:24 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=ZrwAAFES;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326423-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-326423-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=gmail.com;
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
+	dkim=fail ("body hash did not verify") header.d=NXP1.onmicrosoft.com header.s=selector1-NXP1-onmicrosoft-com header.b=O7uC3kXn;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326411-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-326411-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=fail reason="SPF not aligned (relaxed)" header.from=nxp.com (policy=none);
+	arc=reject ("cv is fail on i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 96457301FF1A
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 19:14:49 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 4FC0F3024524
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 19:10:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7FB4329395;
-	Tue, 14 Jul 2026 19:14:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F41BC4ADDBF;
+	Tue, 14 Jul 2026 19:10:21 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj2-f1.google.com (mail-pj2-f1.google.com [74.125.227.129])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from MRWPR03CU001.outbound.protection.outlook.com (mail-francesouthazon11011055.outbound.protection.outlook.com [40.107.130.55])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75261418A56
-	for <devicetree@vger.kernel.org>; Tue, 14 Jul 2026 19:14:45 +0000 (UTC)
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1784056486; cv=none; b=nzww3R2Uy8LNP0p01I3L4DHIds5TD7IC/3KHau+h8KhblfoEw96vSp2UlL9hBXdQIU5Ef72KVr9dliG/8wchN29sF1TUE5PUEP+i5+6s+D7TGwYWs53DIL39CYDlOY6QwC0HSzDwp6hp6I7D4huUCOQVmo4rb4tcI2ry/f+dfqU=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1784056486; c=relaxed/simple;
-	bh=nSCUFK/OMjdSa1QSD08/pZk0TevbcWQS6oI7xIYrSQU=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=opnT6lSEPVLPlSRzalIGx4IJubLMIoUZlcTCr1iSM+iWBdTFUTNUF6Ijl1bs7zRQuw8jOLnPJo8LJB89nM4ilAn9KVVpaxl8Enof0llKq9IvipYTfjCgI4I3vCY9SU4Hia51Y2rDFLxG7cz5uDSb2jYkCCxYcQ+h4JSJffyB4cs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZrwAAFES; arc=none smtp.client-ip=74.125.227.129
-Received: by mail-pj2-f1.google.com with SMTP id d9443c01a7336-2cabf1f1051so4128565ad.0
-        for <devicetree@vger.kernel.org>; Tue, 14 Jul 2026 12:14:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1784056485; x=1784661285; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=kGEBxSja9QK9v749iu4BHEOzirdhrkQ+xdtjQ0ijsW8=;
-        b=ZrwAAFESJcQzWFth7kUZDdjFtBBTf7/AGY1sEsF6AVf5lKsUsTA6gcjNKkSfBxn8Ns
-         ytfMNKRdOxOniQ2n17xFFIugNlA9k0ks4CoXBueWAmDhF6/Ksurhi7LIdviUChOe4vA8
-         bPIm2tAcWxxUvw7G8PqHt4qJeeRinvLfFK646TzdWBfQ8lbd4gyD7EySYzZ9dzF8eb2K
-         UD6+YEQRfP2CxBPj2dHQ1ry9ToSE9nh+WergovF/sTsUxuIQEfXQGrLxUinDP3kaIJfZ
-         boq6l7WCyGfeKH/0KUHKgCLX8MFP6YsvBvA1Q84Slygaxv4qGPC/y/EYSVFcwdfCUkgQ
-         sv9w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1784056485; x=1784661285;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=kGEBxSja9QK9v749iu4BHEOzirdhrkQ+xdtjQ0ijsW8=;
-        b=PLDXblSWAcwvIoxgMFO90CxJXFqQiq3nB76dAwyIdBzihWipo5GsgZ+CYxlJpzuqJF
-         DndQEoL41jeELcZJq2Dy8afcsBdAx2MIzq5VKxDb8X1R7zDnh8Zvfu6T+bKEZDWdXBZs
-         bDbbntjQD1uadfdJfnmPscX1dW9Ma5XpfTtrtsFv45NQb1lu/Iu8UbK1VdZGieVHMikR
-         oCKWkXEPYrlewXMH2SZQ3AnMVL+LIZOvfHK+Y83hdP2sqM08XwYwujDmPrruMcXxTCJF
-         W34nLA0AKlz+cuuaEqt4lIpCzJ89j4zoX9InjYZOS5LPp4k/SWwJQTzbbBq8cvDtIpjl
-         3Qhw==
-X-Forwarded-Encrypted: i=1; AHgh+RpzRAuzu1F0ooyBLe69IPUhfU6kV9TggR/mfa2Jl6FPZzA3xZYGIY72YnffYDWy+T/q2aRSYpau3JPV@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxlju9fnFjqVG273Wz74IuIHf/uXmgqrlq2aViuoyVJfnh7Pinx
-	pXUY1ZDOm2LDs04vVGN9w03BoTRXli878mOxSh63wJcstBypr8lNLYj7
-X-Gm-Gg: AfdE7cmXwDhMAn2OmtXg98VJWeKCO46lXWpydPlf/Dxugy0PmyHpMh2WtipfRleX/pe
-	82VLQ/MfX2Rz6EA9GldqLnTqxiMnmmXKAJXEEYmX/GWnSdSQslAN74OQFO7+aL8wGUbXlkrDZOo
-	12SmIp8Ge0YYfkn6a/qrGBtsthJxucGjPAO0Cah3/5dMiFVsL36HQqCnQUnIdavb+ZwJPMNscCq
-	jTk/mtsW9OiiA9UPfrdpAjOffJs9+IPFe3Jr2FXZmwKIwushuLU6F6KYGVj8CBtcobNnvx5SS1l
-	2oafx1ZMX0qY270v57HUdjSf4UmHrh6GO3yxfIOGQgeUAMPTVa7O2V1T6zxb0GEaSQbAHvOVJzu
-	bfZGCxHn2mcv+1ADcTFRQ24oex7AjQWh10PGRJ7MyHtBoshIylcr9SYrLaRvl7UG+q/drH2Xprc
-	gigm1eHHidIBo=
-X-Received: by 2002:a17:903:15c3:b0:2cc:777f:d67c with SMTP id d9443c01a7336-2ce9e99be82mr146416405ad.13.1784056484883;
-        Tue, 14 Jul 2026 12:14:44 -0700 (PDT)
-Received: from server.lan ([150.230.217.250])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2ccc9d3d451sm120763245ad.65.2026.07.14.12.14.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Jul 2026 12:14:43 -0700 (PDT)
-From: Coia Prant <coiaprant@gmail.com>
-To: kuba@kernel.org,
-	davem@davemloft.net,
-	edumazet@google.com,
-	pabeni@redhat.com,
-	andrew+netdev@lunn.ch,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	heiko@sntech.de
-Cc: netdev@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-phy@lists.infradead.org,
-	Coia Prant <coiaprant@gmail.com>
-Subject: [RFC PATCH 10/10] MAINTAINERS: add entry for Rockchip XPCS driver
-Date: Wed, 15 Jul 2026 03:08:38 +0800
-Message-ID: <20260714191341.690906-11-coiaprant@gmail.com>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20260714191341.690906-1-coiaprant@gmail.com>
-References: <20260714191341.690906-1-coiaprant@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 629953C0A1B
+	for <devicetree@vger.kernel.org>; Tue, 14 Jul 2026 19:10:18 +0000 (UTC)
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1784056221; cv=fail; b=m8tkncwhnnViO99k4q3AsmmDpN2iW5AZOTBKjbM+4I4F8uDSrwPj0zY5AAIEqRjpcOm3wt/Coc5znvSlFF1lF9k01A/UGHVj6h9/CQxcl8mu/rKcLDJkhnxdCW/4HvRrcrRiOxlQJ5hAPFGU/WIe1kpZd7ExE48d6GX9zF/DF90=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1784056221; c=relaxed/simple;
+	bh=5COp/TSKcg7kwo+kzOTmKpV38sVU/w8QGN/EkEz5h+4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=UUQilI7Bt6MrWKwmoulRzdsegEsQL05ymQ6R0rpZlJjR60Q3zdam/xkVjUGpAS/X8/qEXDSRmtBG6dYx+0ERNHKqwGWD3/+gMit2KnIXB2F2lMerR5ExDp54VBIaknm032/2Q5lrya/YnAtKoecyNSsCZmG3Vr2TdJVkBHbrFhA=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=fail (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=O7uC3kXn reason="signature verification failed"; arc=fail smtp.client-ip=40.107.130.55
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=v30yOlDytVw7uKtLeZPsmk6FE/t6dl3U5ht0AsItcevyKRn+69My0In0UmTCqEJBgnoyVk5j57u6D11VH6P5HReBG59h2dy4vLEtJHHr3ZrMP7BfMFpieal4v/o4j6b+cXmd8ScAA6xevahzczIH8XVAiz2Me1rwXi3Y5nPedkgSXkEyqpiWHxYanWAdr7rjHvPeA+WC/Em+ZQSXe5dsWGHOVlt39ST4cSgbiWXYWOiMHUALq4MQdvd3mQ0JvyKMQyucFve6+CAbKlxU8xV1bjo96PNVHf/fJ38Hlq85E+CuPyhqVYhq1pB0b7ywTSd8KDKqfXtIksYvp3UMpBauJA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=TjQ+KtovMztVNiIbwrIbROnNTLlR1wEeQOEKGu+tnn8=;
+ b=m26v8StkIjWfu+hDpuqaX9Scu5n/57+usY4e43jwDbl03xeryzguf2IwWbFqXifkNhLLauGWvAiWth0Yq1qEPugohCNgdNbmnmUtfE7igunS56FEKJj5wbzgYKOZJGBLHZv3ghsNmn/j9FYYa2DvC4k7PzcCGmVzYk9H8RSi2izghH4jdLxBSHbFGI7AZxjREV7POqu3XJFcnV7nu0Vj4Y+e9ata2hievAT+0vMRIvg/XqgL62nSZcsO8dvURGKfZRMzjw3fDds4SJ32ky0xgrtL5wyY3uyuTsjmQBO+tX23/5YGeXZVSK2hA9JOMYLWyog3RVMHlmzuxaGXHmTbPw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector1-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=TjQ+KtovMztVNiIbwrIbROnNTLlR1wEeQOEKGu+tnn8=;
+ b=O7uC3kXnYcZ+MI8l5NHT/bbvkEPV200ac9QNgEZBYKMHDvOR2Brd/Y9y2f3y4kIMnWJLeCsC/Lte8R6iUM1Z2EaJCUnl8xCkHL9ezzvSLUw77ht/CzRXjw8N1Tj14kc0SZUnK+ekBpjKm8YZ+ERQWaKSj5TQNZuK0r8dWlSyaV92gM7//WrsEW+lyvIAbqc0USVNJ/eluU6EEARwacq3+jpOhm28H9OxG6gdccf7H6qWKOTtFceyAF8WqOqgBZVjnfyG5vKeMG/UT5rd1pJUFaJ4OEdNTYGctl3sG6sq8TOV1+ZlrJaQyMaoGNFtgmONyfuE0O93JmY6joPStk6//A==
+Received: from GV2PR04MB11799.eurprd04.prod.outlook.com (2603:10a6:150:2cf::9)
+ by PA4PR04MB9639.eurprd04.prod.outlook.com (2603:10a6:102:260::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.18; Tue, 14 Jul
+ 2026 19:10:13 +0000
+Received: from GV2PR04MB11799.eurprd04.prod.outlook.com
+ ([fe80::2146:83a2:5329:b7c]) by GV2PR04MB11799.eurprd04.prod.outlook.com
+ ([fe80::2146:83a2:5329:b7c%6]) with mapi id 15.21.0202.018; Tue, 14 Jul 2026
+ 19:10:13 +0000
+Date: Tue, 14 Jul 2026 15:10:06 -0400
+From: Frank Li <Frank.li@oss.nxp.com>
+To: sashiko-reviews@lists.linux.dev
+Cc: Lakshay Piplani <lakshay.piplani@nxp.com>, conor+dt@kernel.org,
+	linux-i3c@lists.infradead.org,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>, robh@kernel.org,
+	Frank.Li@kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v14 2/8] i3c: master: Fix IBI request and free cleanup
+ paths
+Message-ID: <alaJjgWkLKoQklNt@lizhi-Precision-Tower-5810>
+References: <20260714092053.2461482-1-lakshay.piplani@nxp.com>
+ <20260714092053.2461482-3-lakshay.piplani@nxp.com>
+ <20260714102026.510E01F000E9@smtp.kernel.org>
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260714102026.510E01F000E9@smtp.kernel.org>
+X-ClientProxiedBy: SA9PR13CA0087.namprd13.prod.outlook.com
+ (2603:10b6:806:23::32) To GV2PR04MB11799.eurprd04.prod.outlook.com
+ (2603:10a6:150:2cf::9)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: GV2PR04MB11799:EE_|PA4PR04MB9639:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5a492914-aae3-4209-9c77-08dee1db8816
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|376014|23010399003|366016|19092799006|1800799024|56012099006|4143699003|11063799006|22082099003|18002099003|3023799007;
+X-Microsoft-Antispam-Message-Info:
+	TlEIKh2HTWRCV7kIA+ZRndLT25lwKmFqFrXcs7wgeCqOhu9+Po7uSwNexzPS8sZzVGvplws5U5o2J7SoEG7UAZiRsRtzo7NvvOy0A2p4kGO7+vSFXVGAWaNEo1UkOgYRmwosuwrbuN3WHfnV365pXh1zS+rENtUg6HYZAn5+eKSAANX5IEyojWNQ7nBX0ST4K63gSDaLBZxVLj5uMw3wqqSEyYSLJ5yck809NNq03mQiU8oC5Kpl17d3NlCNiWItw40OYVNs4yo4tNqjytWrDv/1Dkk0WXp3aOI96ywxSqcx1x+JVQdIKsa2mUcGgOAgw3dfzy1woeZJ88T+z5jc+YTl4NGTd7r/kDd+NtBVaWkhGzRKcJbWEYsg5TynzZt5NQ4UQ4/WSSTP/JoVbCs9TyMSFzr980wwrF634k1a9rfL60pJNIqEkMhqLU6x0h2qj8OKpt4+LJl/c5UKNVJLc1KsiNNKqcagW1iBD+gWjm+OW09OF4YeCRV8IOgtPAx8G+ElNrppPSnY2r9UIdks7lFnH8px5kvEdFjt0XQr6s4l/yD67eHUPSGBMZz18H2/+/HvovBo9oFW3H/wQB1f8Mxp8+/+FydrR7s1k2Wl7Lg=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:GV2PR04MB11799.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(23010399003)(366016)(19092799006)(1800799024)(56012099006)(4143699003)(11063799006)(22082099003)(18002099003)(3023799007);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?iso-8859-1?Q?lDYnkUEd33BtiQSG3+E/s0dbcwGSTXset4awABob80mK7mM2ai9J9o2B+1?=
+ =?iso-8859-1?Q?iAFH5OztrtFida5Sc5qL1SpSVOEf0JCVm1mcIYlsji0MXDhLurEMx1M31v?=
+ =?iso-8859-1?Q?vlaWrk8Jr04rpDYBwHdNh1X4s2nDSjGzCd0ZNqUtomBxOn4jPNHcjlRbDV?=
+ =?iso-8859-1?Q?oFeC1yPadcNX22X0UNYIS2foi2XuUsRNU1URX9GKWVvSN9pVhoCIGPkOVA?=
+ =?iso-8859-1?Q?tcnUReySSj0gb5Lcyczqai+nEVz/nt1UKjpBGQUel7EvU8t5rNtHT93C6A?=
+ =?iso-8859-1?Q?02ETnR5cYatw+HMsig5/7vxlIq4ooqvlbNU9TIhxxH7j/9iEmsxbTaK2ET?=
+ =?iso-8859-1?Q?jubSkT+5lJpTP0Ux2kZeH3vpiuJscbQB3rw/ULCRZ+wkOtn44n8KLQKDte?=
+ =?iso-8859-1?Q?txsTsxrPeog6kkvdV+TjEbf/BpKCNMr8El5Kmau1rkpUJYuKY3PMKnYNqZ?=
+ =?iso-8859-1?Q?ml4Nn/xWg2KYLU46ql/2as16GqBu52QUR7NV46XQB/Wwotp2Oi8onUKuUU?=
+ =?iso-8859-1?Q?789CD1/WbKsSvQdC8m229KzYp8bwR5EH2vB6GznlTbjUqJSWEAnGnZBNkM?=
+ =?iso-8859-1?Q?HiHbIZBSU34Q1c9EK/G0vN3UvhqBzBZzLGQ0ole7w8DXdSXeOnJkqCwyT8?=
+ =?iso-8859-1?Q?NUIT5A+AMOKulvCFnwxOWKUtWxIwAvHL0jOuTKPYEAXPfTuBzWHHvB7io7?=
+ =?iso-8859-1?Q?f8s7r3IXwaL+Du14q8NK6YiRGv6z0OFTfiZR8Hr03O9dVWpZdK746AkYL1?=
+ =?iso-8859-1?Q?asb84R0Q5ra96af5xH39tz96giyRLgylh0peTEoh2lXDE2TYw2hf4kftG6?=
+ =?iso-8859-1?Q?St9z3e19VwgAp7vdbY2jwY1h8oqsHXQlFKThIiB1vEOFfPIBv+gEEuCO+4?=
+ =?iso-8859-1?Q?lIOrtcITiioPHLb+APOa9LD5M7sD6Jr6hsyjoUigSEZRylOejFlEQkBWR3?=
+ =?iso-8859-1?Q?oCNvwHGLZaNDUoBumk6qHvkxw++7zcTZfowaGBiGnSeThAu4t+8ifELNgS?=
+ =?iso-8859-1?Q?jpoWvaRD6jLArNmmhh7O280h5lEvl3/v4BQE43Wr/qdDlFmyr86vr/4WYA?=
+ =?iso-8859-1?Q?18zen3Mfkdq1f/1kGR9CWqD1xqhOIy6rnJ6/AvG01rbGy1UGSiplK1sDcx?=
+ =?iso-8859-1?Q?UCdmxN+4o4hjC8vxG8fZn+Rr9tJs4TZnUyQci1zKmZTqXJQ0+1MvOZB+r/?=
+ =?iso-8859-1?Q?KEownEtST23tExkyMXDzoK2xx4DYcTGmnm1r7npi+4qjkGfI6qnM0L42F4?=
+ =?iso-8859-1?Q?kS64dmNJux3zRmERvul+ztX56w/cOQloLOobZ3qg0Ob8mxs+iywNrKHQ+q?=
+ =?iso-8859-1?Q?LVQAtsvDyDE+zk+C5UUo/98xj8k4YvExbZKFz3yWdCqz5diHIUu6H8dCYx?=
+ =?iso-8859-1?Q?TKl4qIZRLD8A5jfV8dE1zzzBN3zimeOu6BrdnJu1pEUhls0018aUvU6Ic9?=
+ =?iso-8859-1?Q?Y2kfmPtgqnSGsJ1L1Yn56G1+3NbeRPvTTJCxOruUdj1OKaVPuP7OEZyb+j?=
+ =?iso-8859-1?Q?rlI37P7791d6WioeKdmKul280/ixFFR5uuUk7C0q35HiPokx9MgiY8J2z4?=
+ =?iso-8859-1?Q?4RMbjl4RIPU2uy5lc7/UjeGKRTaw0LS6gfihLpfUT2r2M1pzw/K9BmcEy5?=
+ =?iso-8859-1?Q?eEz5O7PbCAvck2tab29LKaf1nSDaqzmxbM7VjczB0cB4DHm54JCwOv+LiJ?=
+ =?iso-8859-1?Q?1QJLqZp05tOG4ew71Qx7X9NHRlvxU0U6xt5gGX8/NUrNPpIM2ejIEMRpXH?=
+ =?iso-8859-1?Q?/cK3O2ODfamGI6Rfc5Ib7FjUOPb+d1Sy+5KVr0mJ0UTCTzmuzXyeTrVrS9?=
+ =?iso-8859-1?Q?4nKXI0LUOeCjuaFBn8OOIP80DdltpMCgTtd646NoadelXh5jlnlE?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5a492914-aae3-4209-9c77-08dee1db8816
+X-MS-Exchange-CrossTenant-AuthSource: GV2PR04MB11799.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Jul 2026 19:10:13.2713
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 2v10q7w7EGR9ZM9cMxaHQK2go5VKXX+ebUU+hZodGfPH7iGBlNtPKMP/aPPjrmEaSD6kEoZNrid1gYsBd35UZRfr3SvaUjq2GxoLeI5zHzrgNJJ5wSmeWxHZlpx7AHjt
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA4PR04MB9639
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [3.64 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	R_DKIM_REJECT(1.00)[NXP1.onmicrosoft.com:s=selector1-NXP1-onmicrosoft-com];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	DMARC_POLICY_SOFTFAIL(0.10)[nxp.com : SPF not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-326423-lists,devicetree=lfdr.de];
-	FORGED_SENDER(0.00)[coiaprant@gmail.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,gmail.com];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:kuba@kernel.org,m:davem@davemloft.net,m:edumazet@google.com,m:pabeni@redhat.com,m:andrew+netdev@lunn.ch,m:robh@kernel.org,m:krzk+dt@kernel.org,m:heiko@sntech.de,m:netdev@vger.kernel.org,m:linux-rockchip@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-phy@lists.infradead.org,m:coiaprant@gmail.com,m:andrew@lunn.ch,m:krzk@kernel.org,s:lists@lfdr.de];
-	FORWARDED(0.00)[lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-326411-lists,devicetree=lfdr.de];
+	FORWARDED(0.00)[lists@lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[Frank.li@oss.nxp.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS(0.00)[m:sashiko-reviews@lists.linux.dev,m:lakshay.piplani@nxp.com,m:conor+dt@kernel.org,m:linux-i3c@lists.infradead.org,m:alexandre.belloni@bootlin.com,m:robh@kernel.org,m:Frank.Li@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[coiaprant@gmail.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
 	RCVD_COUNT_FIVE(0.00)[5];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[Frank.li@oss.nxp.com,devicetree@vger.kernel.org];
+	PRECEDENCE_BULK(0.00)[];
+	DKIM_TRACE(0.00)[NXP1.onmicrosoft.com:-];
 	ALIAS_RESOLVED(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,infradead.org:email]
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp,oss.nxp.com:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: EEEC875824A
+X-Rspamd-Queue-Id: 770BE7581C8
 
-Add a MAINTAINERS entry for the Rockchip RK3568 XPCS platform driver
-and its device tree binding.
+On Tue, Jul 14, 2026 at 10:20:25AM +0000, sashiko-bot@kernel.org wrote:
+> Thank you for your contribution! Sashiko AI review found 2 potential issue(s) to consider:
+>
+> New issues:
+> - [High] Bypassing the core cleanup paths when `dev->ibi` is cleared by a controller callback causes a permanent leak of the IBI workqueue (including its rescuer kthread) and potentially the `ibi` object itself.
+>
+> Pre-existing issues:
+> - [High] Potential use-after-free of IBI pool during workqueue destruction if IBI disable fails.
+> --
+>
+> --- Patch [2]: [PATCH v14 2/8] i3c: master: Fix IBI request and free cleanup paths ---
+> commit e0d1c57d2924f66898a40232f7e52ca0e1be0aea
+> Author: Lakshay Piplani <lakshay.piplani@nxp.com>
+>
+> i3c: master: Fix IBI request and free cleanup paths
+>
+> This commit attempts to fix a workqueue leak in the IBI request failure path
+> by destroying the workqueue before freeing the IBI object. It also adds checks
+> to avoid touching dev->ibi after controller callbacks if they have already
+> cleared it, aiming to prevent NULL pointer dereferences.
+>
+> > diff --git a/drivers/i3c/master.c b/drivers/i3c/master.c
+> > index 3b1c342be2bc5..ba37f71badac8 100644
+> > --- a/drivers/i3c/master.c
+> > +++ b/drivers/i3c/master.c
+> > @@ -3702,8 +3702,18 @@ int i3c_dev_request_ibi_locked(struct i3c_dev_desc *dev,
+> >
+> >  	dev->ibi = ibi;
+> >  	ret = master->ops->request_ibi(dev, req);
+> > -	if (ret) {
+> > -		kfree(ibi);
+> > +
+> > +	/*
+> > +	 * The controller callback may have already released and cleared dev->ibi
+> > +	 * when the request is forwarded by a virtual controller. Only clean up the
+> > +	 * IBI object if the callback left dev->ibi valid.
+> > +	 */
+> > +	if (ret && dev->ibi) {
+> > +		/* Avoid leaking the workqueue allocated for this IBI request. */
+> > +		if (dev->ibi->wq)
+> > +			destroy_workqueue(dev->ibi->wq);
+> > +
+> > +		kfree(dev->ibi);
+> >  		dev->ibi = NULL;
+> >  	}
+>
+> [Severity: High]
+> Does this logic introduce a permanent leak of the IBI workqueue and the local
+> ibi object?
+>
+> Since the core framework dynamically allocated ibi and ibi->wq earlier in
+> i3c_dev_request_ibi_locked(), if master->ops->request_ibi() fails and the
+> callback cleared dev->ibi, the check if (ret && dev->ibi) will be false.
+>
+> Because the callback does not own these resources and cannot safely destroy
+> the framework's workqueue, the workqueue (including its rescuer kthread) and
+> the ibi object will be skipped during cleanup and leak permanently.
 
-Include the relevant mailing lists (netdev and linux-rockchip) so that
-future patches are properly distributed.
+look like make sense
+	if (ret) {
+		if (ibi=>wq)
+			destroy_workqueue(...);
+		kfree(ibi)
+		dev->ibi = NULL;
+	}
 
-Signed-off-by: Coia Prant <coiaprant@gmail.com>
----
- MAINTAINERS | 9 +++++++++
- 1 file changed, 9 insertions(+)
+>
+> [ ... ]
+>
+> > @@ -3743,6 +3753,13 @@ void i3c_dev_free_ibi_locked(struct i3c_dev_desc *dev)
+> >
+> >  	master->ops->free_ibi(dev);
+>
+> [Severity: High]
+> This isn't a bug introduced by this patch, but can this lead to a
+> use-after-free of the IBI pool memory if disabling the IBI fails?
+>
+> Earlier in i3c_dev_free_ibi_locked(), if the IBI is still enabled, it tries
+> to disable it via i3c_dev_disable_ibi_locked(). If that disable fails
+> (e.g., due to a hardware timeout), it returns an error without waiting for
+> pending IBIs to finish, and we proceed directly to master->ops->free_ibi(dev).
+>
+> This callback immediately frees the generic IBI pool. Subsequently,
+> destroy_workqueue() is called below, which synchronously drains
+> any executing IBI handler works. Since these pending work items reside inside
+> the newly-freed pool, won't the rescuer thread dereference freed memory as
+> the workqueue drains?
+>
+> > +	/*
+> > +	 * The controller callback may have already released dev->ibi, for example
+> > +	 * when the request was forwarded by a virtual controller.
+> > +	 */
+> > +	if (!dev->ibi)
+> > +		return;
+>
+> [Severity: High]
+> Similar to the request path above, does this early return bypass the
+> destruction of the workqueue and cause a resource leak?
+>
+> If the controller callback cleared dev->ibi on the free path, we return
+> early and skip the destroy_workqueue(dev->ibi->wq) step, leaking the
+> workqueue and its rescuer thread.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 806bd2d80d153..8cba6a0a2dd03 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -23463,6 +23463,15 @@ S:	Maintained
- F:	Documentation/devicetree/bindings/sound/rockchip,rk3576-sai.yaml
- F:	sound/soc/rockchip/rockchip_sai.*
- 
-+ROCKCHIP XPCS DRIVER
-+M:	Coia Prant <coiaprant@gmail.com>
-+L:	netdev@vger.kernel.org
-+L:	linux-rockchip@lists.infradead.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/net/pcs/rockchip-dwxpcs.yaml
-+F:	drivers/net/pcs/pcs-xpcs-rk.c
-+F:	include/linux/pcs/pcs-xpcs-rk.h
-+
- ROCKER DRIVER
- M:	Jiri Pirko <jiri@resnulli.us>
- L:	netdev@vger.kernel.org
--- 
-2.47.3
+make sense
 
+Frank
+>
+> > +
+> >  	if (dev->ibi->wq) {
+> >  		destroy_workqueue(dev->ibi->wq);
+> >  		dev->ibi->wq = NULL;
+>
+> --
+> Sashiko AI review · https://sashiko.dev/#/patchset/20260714092053.2461482-1-lakshay.piplani@nxp.com?part=2
 
