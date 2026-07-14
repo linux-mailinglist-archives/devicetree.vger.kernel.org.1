@@ -1,176 +1,135 @@
-Return-Path: <devicetree+bounces-326550-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-326551-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id or7gDuWyVmpWAQEAu9opvQ
-	(envelope-from <devicetree+bounces-326550-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 00:06:29 +0200
+	id S0VhNUCzVmpeAQEAu9opvQ
+	(envelope-from <devicetree+bounces-326551-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 00:08:00 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id C74F0759224
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 00:06:28 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B578675922B
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 00:07:59 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=O9dj1NK4;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326550-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-326550-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=Xk6NTNI9;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326551-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-326551-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 473733003D37
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 22:06:28 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id D4F2A300ADBF
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 22:07:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 685473A641B;
-	Tue, 14 Jul 2026 22:06:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88C403A641B;
+	Tue, 14 Jul 2026 22:07:55 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48F5832B108
-	for <devicetree@vger.kernel.org>; Tue, 14 Jul 2026 22:06:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D82D286A7;
+	Tue, 14 Jul 2026 22:07:54 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1784066787; cv=none; b=MvWwA6lczcVh3QZfEbBvycmpEcw55opAsXHBYnsF0WXvR9YmiMjNdzgprk8KAb4uoaJTO7YQzRNXC4Ywlh+hu4Fbb4AvqaJ8IZsNDlxKFqRAMx00VgxYtZOA9TuKBLb8r4XjF174VrldDu6/7Jia61EpaHwL3rpmV6Zli4TsnqA=
+	t=1784066875; cv=none; b=Lv9SNWUETSEyXwsuzm/cMTk9xAdk0CUFUSZS4RE27TZNl40neLRysoGEf3OSgut4v/LGDwP5p4/1QZoTcxtrEgjIlRpdI8Zziz0mcj+KuGQzSgABzRPqWDRi9ODpe8v8J1Ei/zndAmUfJHetxn/MA8MBieMEUiKSB8iMhBhPEGI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1784066787; c=relaxed/simple;
-	bh=lz27EZ+9ZtXNvvHmiEaHmuGxc4F9WgcsMwu8LNgW6jY=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=Tk5a7W9VPBns0O5u4U57YZPKmTNKSVIi+vRE19cPFf9WWeA6gWMzWjRX/Q8j4P4QBNspCQ9FTUK3fLbWyPYrE9jJsf0p6Qj9E1CVAH5MPdTpskQbPIsfHPmVLGA9mm1B/mS/4z3qNY32TN+bAe4btZy+k4+aa8f0HHuJEB2oUBw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=O9dj1NK4; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 966F21F000E9;
-	Tue, 14 Jul 2026 22:06:25 +0000 (UTC)
+	s=arc-20240116; t=1784066875; c=relaxed/simple;
+	bh=o9o5p8oHa5PLQEyVxp87E5GRl6EIIJ0LD+bJXieVeRs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=afgus3MlhwB5Bd7tdt8zh6hStcHEKuUAEf0n5ViVPcD8fczhyvVWvNVKArF6rOMaUh1MHDVCN7z3GxyyB9ZDIhoNAQqRvZ3YcKhXQeLx7sGG/mbOpaoY3WV2a5Z2R9hl6SgfhkBBcneZ3Rab16MzXld04pRyxGcRdwrxuian6jI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Xk6NTNI9; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DDFE61F000E9;
+	Tue, 14 Jul 2026 22:07:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1784066785;
-	bh=B3Zbur4dfu3msund7THyceV0YPa4iw0/k/Dn+MnlSpA=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=O9dj1NK429reRgL5pTqyDOxXf5cnvHAdIltQLNO99Jhm9+wFagAOjn2DLXtIqSjMx
-	 DyMnwQzT0aU6fI4wkFJlnayfkVdEVBG44NhVJd09hO4zRjnqIl3DI4ynD/IAErZiVj
-	 xNhuTZ+xYlVYZxWEPZEsZaOPVT8TZLgKU9dyoRJRor2gGw1oVY1755mF46cAGfabb+
-	 +Pse3KfO5L3u12wwIOVe4slJIxwIq/rQodYGkA2n08y8HrU98oZAH1E6WboClVMFvh
-	 uyADUYNFQrNoD9H04NVwn9EIpQxh6TM4NgGpagNpiuJcd0oAicV46YhgGXHpHPfIYl
-	 n9YUgLn+VwcbA==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v4] dt-bindings: iio: proximity: move LIDAR-Lite out of
- trivial-devices
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Rodrigo Gobbi" <rodrigo.gobbi.7@gmail.com>
-Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20260714215433.41259-1-rodrigo.gobbi.7@gmail.com>
-References: <20260714215433.41259-1-rodrigo.gobbi.7@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Tue, 14 Jul 2026 22:06:25 +0000
-Message-Id: <20260714220625.966F21F000E9@smtp.kernel.org>
+	s=k20260515; t=1784066874;
+	bh=cCJqnZwrEKY71GXeGxG5qqUI1KURWRmR5Jhm6EFOgGE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=Xk6NTNI93W1VDGFBzrKB8W2DIWncv/N0U5Xlhvw9oNiimw4sKR7y5Q+UQsV/zAa3x
+	 V9vpxM22qjuzUS4bW+dK9i9cqY9Dyx36ZQFfSysp0Tq9EBcHnjMRItYz8GP6DWcZ/n
+	 yEsDmPBxhxm9of8CeSeQF7GA+VusQjdOOQjTtUV3/N+9xrbTqe1sZrwNhrb449PR78
+	 Bmh6KxTuK3JQ9P8fxcOiYpCOPovmt9ettMeHKy29AwCcxdRT4Vc1xG8T7pg7kkWWpq
+	 bEtdu8B83mb6vMHVAT/JNCida59N8uJsLxaHFs5Lw0xm65H0xMGF+rTQVg7yXrNtt7
+	 jqMgvhHmWt5xw==
+Date: Tue, 14 Jul 2026 17:07:53 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Udaya Kiran Challa <challauday369@gmail.com>
+Cc: linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
+	skhan@linuxfoundation.org, tsbogend@alpha.franken.de,
+	krzk+dt@kernel.org, linux-kernel@vger.kernel.org,
+	conor+dt@kernel.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>,
+	me@brighamcampbell.com
+Subject: Re: [PATCH v2] dt-bindings: watchdog: microchip,pic32mzda-wdt:
+ Convert to DT schema
+Message-ID: <178406687202.3036881.4468660016404184803.robh@kernel.org>
+References: <20260624055648.127399-1-challauday369@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260624055648.127399-1-challauday369@gmail.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.16 / 15.00];
+X-Spamd-Result: default: False [-2.66 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TO_DN_SOME(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-326551-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-326550-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
 	FREEMAIL_TO(0.00)[gmail.com];
+	FORGED_SENDER(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS(0.00)[m:challauday369@gmail.com,m:linux-rtc@vger.kernel.org,m:devicetree@vger.kernel.org,m:skhan@linuxfoundation.org,m:tsbogend@alpha.franken.de,m:krzk+dt@kernel.org,m:linux-kernel@vger.kernel.org,m:conor+dt@kernel.org,m:krzysztof.kozlowski@oss.qualcomm.com,m:me@brighamcampbell.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORWARDED(0.00)[lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:rodrigo.gobbi.7@gmail.com,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:rodrigogobbi7@gmail.com,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	RCPT_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sashiko.dev:url,smtp.kernel.org:mid,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,qualcomm.com:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: C74F0759224
+X-Rspamd-Queue-Id: B578675922B
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
-s) to consider:
-- [Medium] Making `vdd-supply` a strictly required property in the new sche=
-ma breaks Device Tree validation for existing valid device trees.
-- [Medium] The binding schema omits the previously allowed `interrupts` pro=
-perty and fails to document the mode-control capabilities, contradicting th=
-e commit message and breaking compatibility.
---
 
---- Patch [1]: [PATCH v4] dt-bindings: iio: proximity: move LIDAR-Lite out =
-of trivial-devices ---
-commit 19408504da4434cc55f5f0ccb25c557b08078221
-Author: Rodrigo Gobbi <rodrigo.gobbi.7@gmail.com>
+On Wed, 24 Jun 2026 11:26:48 +0530, Udaya Kiran Challa wrote:
+> Convert Microchip PIC32 Watchdog Timer devicetree binding
+> from legacy text format to DT schema.
+> 
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+> Signed-off-by: Udaya Kiran Challa <challauday369@gmail.com>
+> ---
+> Changelog:
+> 
+> Changes since v1:
+> - Fix example indentation
+> - Correct example clock specifier from REF2CLK to LPRCCLK
+> 
+> Link to v1:https://lore.kernel.org/all/20260620172354.155565-1-challauday369@gmail.com/
+> ---
+>  .../bindings/watchdog/microchip,pic32-wdt.txt | 18 --------
+>  .../watchdog/microchip,pic32mzda-wdt.yaml     | 44 +++++++++++++++++++
+>  2 files changed, 44 insertions(+), 18 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/watchdog/microchip,pic32-wdt.txt
+>  create mode 100644 Documentation/devicetree/bindings/watchdog/microchip,pic32mzda-wdt.yaml
+> 
 
-dt-bindings: iio: proximity: move LIDAR-Lite out of trivial-devices
+Applied, thanks!
 
-The PulsedLight LIDAR-Lite v2 is moved out of trivial-devices into a
-dedicated binding file. Support for LIDAR-Lite v3 is also documented as
-a fallback compatible.
-
-Link: https://lore.kernel.org/all/c39a2980-f5e5-44aa-9fd3-20e0658f62dc@gmai=
-l.com/
-
-> diff --git a/Documentation/devicetree/bindings/iio/proximity/pulsedlight,=
-lidar-lite-v2.yaml b/Documentation/devicetree/bindings/iio/proximity/pulsed=
-light,lidar-lite-v2.yaml
-> new file mode 100644
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/proximity/pulsedlight,lidar-l=
-ite-v2.yaml
-
-[ ... ]
-
-> +  powerdown-gpios:
-> +    description: GPIO that can be driven low to shut off power to the de=
-vice.
-> +    maxItems: 1
-> +
-> +  vdd-supply: true
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - vdd-supply
-
-[Severity: Medium]
-Since the device was previously defined in trivial-devices.yaml, which
-explicitly disallowed vdd-supply, no existing valid device trees could have
-included this property. Does making vdd-supply strictly required here
-introduce a regression by breaking backward compatibility during
-dt_binding_check for legacy device trees?
-
-> +
-> +additionalProperties: false
-
-[Severity: Medium]
-The commit message mentions a mode-control pin used for PWM distance output,
-but there are no properties defined in the schema to describe it.
-
-Additionally, trivial-devices.yaml previously permitted the interrupts
-property, but it is omitted from this new schema. Because
-additionalProperties is false, wouldn't legacy device trees specifying an
-interrupt fail validation?
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260714215433.4125=
-9-1-rodrigo.gobbi.7@gmail.com?part=3D1
 
