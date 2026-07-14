@@ -1,358 +1,304 @@
-Return-Path: <devicetree+bounces-326410-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-326413-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 6KNOKUmIVmqu8QAAu9opvQ
-	(envelope-from <devicetree+bounces-326410-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 21:04:41 +0200
+	id gwWBNnWKVmqF8gAAu9opvQ
+	(envelope-from <devicetree+bounces-326413-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 21:13:57 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2EAB475814D
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 21:04:41 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 77188758208
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 21:13:57 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=fail ("body hash did not verify") header.d=NXP1.onmicrosoft.com header.s=selector1-NXP1-onmicrosoft-com header.b=dSm1KEwL;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326410-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-326410-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=fail reason="SPF not aligned (relaxed)" header.from=nxp.com (policy=none);
-	arc=reject ("cv is fail on i=2")
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=VG6Xj81F;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326413-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-326413-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=gmail.com;
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 9A5143039A31
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 19:04:40 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id E41EE3005ABC
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 19:13:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A712D49691F;
-	Tue, 14 Jul 2026 19:04:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E88F1418A55;
+	Tue, 14 Jul 2026 19:13:55 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from GVXPR05CU001.outbound.protection.outlook.com (mail-swedencentralazon11013061.outbound.protection.outlook.com [52.101.83.61])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj2-f4.google.com (mail-pj2-f4.google.com [74.125.227.132])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B766494A17
-	for <devicetree@vger.kernel.org>; Tue, 14 Jul 2026 19:04:32 +0000 (UTC)
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1784055877; cv=fail; b=RIg1DInMv1QEz7qp6H7JE/VyLlMCMBajtvZYSrJuSN9TjB2mAqmwjXIg81pKBV7nrCEY1+6fv5TM8waqC6Jb+/OB9UXa1+lPhW3x+6oo9x4chTV4j0BhnSSG/ZyAtP8Z9zqjPwdPh1di+n+zmDkgUxARJaV90Bj2mvo6N8aHaiY=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1784055877; c=relaxed/simple;
-	bh=AZ+I4F2cDvPO4oq09j8RV/9eHbMGtq5UEpTjd561Hzo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=qbw5vFA44LSmxRrJcDMZAzMaBtRlxbzI1QZKJP4m5Y4fwTBovvaBm5eS+RmOhlvHykMHNw5/xL8B+Oded2QCCqRxDdxgqDXkAZDkHeSHWwX6IPTcuo6o8pkI1MexN5YPmk+/oPWNx0wNVgtwff8VXTNN2VrCMNXWpQEos7QumxU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=fail (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=dSm1KEwL reason="signature verification failed"; arc=fail smtp.client-ip=52.101.83.61
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=V+gslhcjSA10P9wrU2J6LoOmAxKsGYuvrICfRqjb6fpJyP+lChShyTN8a2FdcyjQCG/hrrQP/8sCBbtBFiASjN2v9lB5nB4iajlcq7/HVZ0QH/tEXPKziA2HaBt3qPF0N3sLQRSf+xkaadEtvGJYWAcFrF8n1b5JOWwVuCED7IvFP/+SzGjDZFDNl9d4Lg4KXyLw/chJJ8K2hce12nayRGu9DJ5zu9RfxcOpWB1D1hVjIy9kBwtvOKo7oKjD/mDsN/x6qwiLq5GdYZIdgsyhgOPO9GqXgqyrre5b248jQy9mU/mcMBHXyjvU+qeox2SvCAl5wb5Xfqh9IXCD9pjr1w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=SYdHb/LsdAwQUVUY+udEub0NAawh/x8xojKbNs0AEeI=;
- b=Q7afeu1C4w7xixXL5Q8MqZZK1Sy2eDr4TR53xpW4xnJ1UYqLMUi+xe7SXml9ip4Jx3AMh88p5a7bJszLbGLhnbu3PUls9ig1gCx4xb3wLP+INumUiK/IR2X3Ll5hyJa6oDOX5P1p1Wa9vQ1gLinfHW0PosnhbKp+pvkMPs3pgyNmeE/lnnE2nwpcxhXRj9Ut5WrMxoIt9Lbg1zL+gUnWOqcIFFzcneh8t/EV6wZCFrJjZOSZwJHx2abH+itFmhU/OuD+oGDhYbKl7hLYz5PPo/Ka8JvTL0/frPhc2upCdeYlkPqvKTR7Z/WEVzbICw4x6BhnxfWclocBOKXH0WXDtw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector1-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=SYdHb/LsdAwQUVUY+udEub0NAawh/x8xojKbNs0AEeI=;
- b=dSm1KEwL0Rc4Whc/ClkAU4mODswuivlU8Wl8/VMkzj1DzTiayvQPCqmMQFDsSDG+d2QQ2QfvU8nJgfl1Acv1ze0k5vrTyAP6vGaVQdvIwkRWLyvD4yOjbeUYHEOvSVVciFtpReXPuV7luneexwcTKhWTkiU8zIiO0whz7rLscM0W/NS1QC1Sgfdwkh2bFjGjlfSW2TDVnLDVtDyWJryH2a+63k5kt3qNCCy0JOuESTy7ER2aR94XkXD7wsSmP3Vz1rxN0daX84DDuJ0Fvvlyd3TkL3j9eY9gJHABD7p1iJ/+PucKw7Hd3kjTzbAg9Oa5BgLhJIi7uL4BXddGsbnvaw==
-Received: from GV2PR04MB11799.eurprd04.prod.outlook.com (2603:10a6:150:2cf::9)
- by PA4PR04MB9639.eurprd04.prod.outlook.com (2603:10a6:102:260::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.18; Tue, 14 Jul
- 2026 19:04:28 +0000
-Received: from GV2PR04MB11799.eurprd04.prod.outlook.com
- ([fe80::2146:83a2:5329:b7c]) by GV2PR04MB11799.eurprd04.prod.outlook.com
- ([fe80::2146:83a2:5329:b7c%6]) with mapi id 15.21.0202.018; Tue, 14 Jul 2026
- 19:04:24 +0000
-Date: Tue, 14 Jul 2026 15:04:16 -0400
-From: Frank Li <Frank.li@oss.nxp.com>
-To: sashiko-reviews@lists.linux.dev
-Cc: Lakshay Piplani <lakshay.piplani@nxp.com>,
-	linux-i3c@lists.infradead.org, Frank.Li@kernel.org,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>, robh@kernel.org,
-	conor+dt@kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v14 1/8] i3c: master: Add APIs for I3C hub support
-Message-ID: <alaIMOhdFQxC--93@lizhi-Precision-Tower-5810>
-References: <20260714092053.2461482-1-lakshay.piplani@nxp.com>
- <20260714092053.2461482-2-lakshay.piplani@nxp.com>
- <20260714100322.7F82A1F00A3A@smtp.kernel.org>
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260714100322.7F82A1F00A3A@smtp.kernel.org>
-X-ClientProxiedBy: PH8PR02CA0008.namprd02.prod.outlook.com
- (2603:10b6:510:2d0::17) To GV2PR04MB11799.eurprd04.prod.outlook.com
- (2603:10a6:150:2cf::9)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69017418A30
+	for <devicetree@vger.kernel.org>; Tue, 14 Jul 2026 19:13:54 +0000 (UTC)
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1784056435; cv=none; b=aHGheuZthovcM0FM0j6+l224/40HpRkg8+Cfd8PVyLT8nspbxmlg445UXB7iwg3ZSsicHtmdTqrw61pL6iAp/hTIXoMtbZN3DzIWJxRIRBKhXZxChINKLIu/g9LrbjcCX+q4Thdgoz4iZAB5wAea2OZZbcQ8rMGwaVuKIZs6tWs=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1784056435; c=relaxed/simple;
+	bh=OnzeXub9pWgszEs+eJAfiDhXWiRA2b94Y2FtZMmT++0=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=aRlYFVI95SUnC2LXjYKkTKdodJjfSofRbNPnbl0erqYcbXepXsdTtxU5tXvYFsHYNYNlXEFWtDhYJdo2MejN2cdIYNCr4gB/BwCx5JAUDd+tlysJMb5CGXUq//YFG1MLG+njJ8ynqNMhRklaPkCzlEr6HbcravEnSwC8/VkHrQk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VG6Xj81F; arc=none smtp.client-ip=74.125.227.132
+Received: by mail-pj2-f4.google.com with SMTP id d9443c01a7336-2cc6207127aso23282575ad.1
+        for <devicetree@vger.kernel.org>; Tue, 14 Jul 2026 12:13:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1784056434; x=1784661234; darn=vger.kernel.org;
+        h=content-transfer-encoding:content-type:mime-version:message-id:date
+         :subject:cc:to:from:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=ZvralJAhtjQC0agihnqVt6yZC+MGkbFen1qSIili9Nc=;
+        b=VG6Xj81F5S/ZRaj0v2iVgPjJ2r14ha6lo1wSa5w+l2PWo1XW/IDkwyzUbv9MMGQs+I
+         I3CADMXKTKcTJ2NESpni75slX3bt3A4J/ZUfIIxH/GN+QLoyTHWxiuuGyTOmcWsl0Qfu
+         QLW+1jE3CVV/OJLobPl1QhgRXme8o1qVJHARIGzKZcqyd46YEA0SJ1vN8hv5IhJyu1g2
+         gTLzpJO5YLFF2BHjXBHmzpOyCflb15wDrjn7XqdSn0y+My8p8kLBTcowoZJjK9bEIFAZ
+         cjhrW1NvT0oJKsyLgpB1wLk8dBlDBJPIW76BuHMIqUybLLxPXQVHTg3IE5fu+cmnsNyh
+         mcsg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1784056434; x=1784661234;
+        h=content-transfer-encoding:content-type:mime-version:message-id:date
+         :subject:cc:to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=ZvralJAhtjQC0agihnqVt6yZC+MGkbFen1qSIili9Nc=;
+        b=R1V8GAPYwsQuNmASsuKPht1Ag7L+DrNp31STNJ5GVF5OSg44ZnnYkVvLI5xplHKVql
+         MzM/PfqGC2seFglc2VLa6LLRHlAKiI93RxUlUMzd8EccMePCdmrqPjle2k+LZxnwGJw6
+         QExJy5HoKfWvJpJP8WD79j9bGffFta4eRE5L4UQ7nIIIfp20LFaa5XCv0PGfe8akarLV
+         74hPNVKVTVRVgwGS8J2SZrObHLSiJbzePN4MWgAgAg9cpTON6W9cI3jkrh+Ne8NdXsLf
+         sNz8C6N4Vn6yyp+SekxhwLLanI3ZApjVcC5+q1Nu7uxqAB+69B1MhK0yJvAa9oHgxQhV
+         FCdg==
+X-Forwarded-Encrypted: i=1; AHgh+Rrc3FiGfWYW7FgScD25ikTi2PpqSLV/ItmilkRRva5ynY5DrjCYYmzCAssxm4dqRlCyIBTv49Qv6l8M@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz1jxDX/l3K07wWf1sCtR/SXTxSR9dwmC0kZyvXxVQOGmW94DAB
+	2BtQnkg5rb456BVRlIVPxrAbkaIRBzWwnnmbtQoD5ekfAEx6BdcXGE5u
+X-Gm-Gg: AfdE7cm+5JVccelLP2cQxKykDNFoZJ2yWUQGxnJWxxvvjnszYC7XhJg7CyUzwwnt+ZI
+	ZxurFZb7jRQW9gJ6g9Sbq5P13zJ5hTWxba4hRfqRk39BaFwn90JDHdfrsHX9XJ5AJG1TiVCqRlq
+	cjNNEGozFGZwk5TzwAS7HoglZOjMzflsOadAB+7YzOiNwBrGIGBw3otDeRPYKggSm6mFc1oyrLw
+	5JCNSHcBRnFHeov9TVzykLM86CZfASncfu1+zp2nZwGJuwLQiaZ8vwQWERNJJsAPtiYK2mz+d65
+	64IMKsAFFG+Y9wmSb6n4uL29vt4MPbp4rjZa7YSeXzS8u9uZHIxNTTCoZKTcppM2d4WLfTghNMr
+	BWfiNugeeRNljwd0rovCS+oj3AaviP7PaIYCgIJNEgbL31GS6i6TxrtQ6Xi+iaOCwAyWtGCiuGP
+	5KqwAdR3evkpU=
+X-Received: by 2002:a17:903:2f0f:b0:2ce:ed59:7044 with SMTP id d9443c01a7336-2ceed597127mr47465305ad.30.1784056433646;
+        Tue, 14 Jul 2026 12:13:53 -0700 (PDT)
+Received: from server.lan ([150.230.217.250])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2ccc9d3d451sm120763245ad.65.2026.07.14.12.13.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 14 Jul 2026 12:13:53 -0700 (PDT)
+From: Coia Prant <coiaprant@gmail.com>
+To: kuba@kernel.org,
+	davem@davemloft.net,
+	edumazet@google.com,
+	pabeni@redhat.com,
+	andrew+netdev@lunn.ch,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	heiko@sntech.de
+Cc: netdev@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-phy@lists.infradead.org,
+	Coia Prant <coiaprant@gmail.com>
+Subject: [RFC PATCH 00/10] net-next: add basic support for RK3568 XPCS
+Date: Wed, 15 Jul 2026 03:08:28 +0800
+Message-ID: <20260714191341.690906-1-coiaprant@gmail.com>
+X-Mailer: git-send-email 2.47.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: GV2PR04MB11799:EE_|PA4PR04MB9639:EE_
-X-MS-Office365-Filtering-Correlation-Id: cf573693-d681-4bf8-5464-08dee1dab83a
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|376014|23010399003|366016|19092799006|1800799024|6133799003|56012099006|4143699003|11063799006|5023799004|22082099003|18002099003|3023799007;
-X-Microsoft-Antispam-Message-Info:
-	Kkh4QwW0KRg03LsP6FPOjjoL6PIlHnDS4G9AmswaYq0Lrb8D+y/TlcXwchCn9gXLhQ+u3SxrbeYq1M1ZSR/hbIM7i48Rfy8YN7WXtOEwHaFx7DY0IDr4OZZ1NYgtW8rI9bWrXGLLrmOd34VBk61LGtJbnSMuCIDTTK4OClgfKrzdYtl8SnzP4packet9goQtz3FyRrzKZixY7UeTEM2L5/7TrjYlPVRcYG8sQEkGMDATE/lWxPTNth0OIT7Uz1w39N1Zf+XflfZXs9TEwLZaaeDyRyNu7OZPPzjQTaardSKdo5yPZNnfUObwM4ugxoiu9pW/JvHXLZ3L4MOJELdbis02znJT8HJZ0fYGIYfMjZRQBvnbv/RUcznxQ9UB4VyEVF+USYSRiEhX5mjtqhKOY8e3hPsoyk/UTOU9FphV9gragbvGYreK2wEuswmjnYWoDr+dlk/Q0xBqxpY+0TmcuENDvj9Vsk6vB+claArgVaSoroH2jB5Ve/yP7Bagl+yCtkGClGYLndGYhsU119G0iIWb4PpJkRI1DSZ/gl5tIpqgdn9LLRU5uxo3aYXT/D+GGaixSrC/s7jr3GwOQI78U4SSB+etZ6JlO5dp4nKiLT4=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:GV2PR04MB11799.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(23010399003)(366016)(19092799006)(1800799024)(6133799003)(56012099006)(4143699003)(11063799006)(5023799004)(22082099003)(18002099003)(3023799007);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?iso-8859-1?Q?Sm+h81H1k9p3mAFGdy4kbFJBOAi5a3t8ltvFltt5kaYCjtFr+6oG3F3aQO?=
- =?iso-8859-1?Q?enloPs4XCSvlIZwBVoTqVkZHCnfzoVTDwG7n7b5ZmzJslYtvi4NZvXJCZN?=
- =?iso-8859-1?Q?5VX3lWjmJw+6ysHemdUgXa6cxoHrly4suKsD5QpmSM5QZFqbeSrg5cmmV+?=
- =?iso-8859-1?Q?I+gtJaB84eJ61Wd+3wsS1XzENaqlD7mJM2otXM+TX5s/isC1jBcCtsmtgk?=
- =?iso-8859-1?Q?dAEkRSpPs5VpUiHZ0IySbrJoVMOoJM4yCdZDwzmVtOOzpaw5Q+iEv1DykX?=
- =?iso-8859-1?Q?7B0h3yl63ist1jJSj6LGJxSH8ZhRtQMmX9GhSehbGlQSlSfOT3sOG1ajyU?=
- =?iso-8859-1?Q?vWeFUuTBxZb6PfUbwG7JQwte+bdQDPR9lz1v/o+vzwXuuocz72BA1j4DLF?=
- =?iso-8859-1?Q?yW2dudsaOt8uFjrXsGvB0+hediqNKtBV/rVFnqUjmz+zCFGzycjbrwpKRM?=
- =?iso-8859-1?Q?Qg0Fa5B2dj4F6ZJ/i9v7y/UA0//8fE/Gcbb4xQDhS5LsaexU5+4pJ9UfuN?=
- =?iso-8859-1?Q?pjoB2eG/yX7hHJIFjKcCPCBIFd30UXOqv2QUgjTyix025kn9ubAqC9wYVC?=
- =?iso-8859-1?Q?PhMxOJLyzUL85F57qQ9AsYHfv8yfVFuPCKo168Z9qs+AzEXdX0HPFdEquv?=
- =?iso-8859-1?Q?5cZlWHAR8F1GF77Ron5lfnCvRSvDV2x9YSxo13+cT+fncCIlhdKwnC8i/i?=
- =?iso-8859-1?Q?Te6X+ZWZycsiXonx2gPbHDPGkppUD+/nY5Veic81ScEtmMxJrtE9/LPlTG?=
- =?iso-8859-1?Q?Lb61UB8ehFj7s33ut7B8sa1+pnAC1jmH8DreQCe1AdXxM75s59cRZuq7EB?=
- =?iso-8859-1?Q?cFyYNAUXjM0ujENd75i9K+P6BrJ/6YtKuQ2KwRO9A0mgqMFTsszU8bPBb7?=
- =?iso-8859-1?Q?7rk0m+f6kgOSw+FLByW26s6+yy8w9I8nJKpalWlw7XzjUWtju/eN4JTu1l?=
- =?iso-8859-1?Q?0ryEyMBgqW/OMruGtuJzWWtQYGT7W7oew43xArok8NFJ0LSqevNVOkWpJg?=
- =?iso-8859-1?Q?OySkUUqHKIa++A+lsF0xXfkcSCdDV/1Aj8cVcRCzX3O5aFDbDG9FDeCSFc?=
- =?iso-8859-1?Q?4llpKycRcd7C94IUTLlimpimbaXhcS9tzo2ACKg1kbA8FzY3DTdfmXvaHP?=
- =?iso-8859-1?Q?YY5OgmJDRSBePq5S0oooQKYWODXoHih7/zCdFdeqt/I4quLVLU3GxBy7xF?=
- =?iso-8859-1?Q?/FKOA9tHfaFAf9DkyR4pRwk4RmybLUIH4sV+wLQoNX0qbhBTqojuy6EQbC?=
- =?iso-8859-1?Q?KdnCdyynEJabZkYT8G2Prrs4q1WusfxWx8Ij0/O9oPCilYv1bLExncEDsm?=
- =?iso-8859-1?Q?LuRkNI+Espo82bd1TEpzIyEkKAqfqjUUlfM/efk+ObAEZ2FxE+Cj1l2ant?=
- =?iso-8859-1?Q?+b84hz+mPW0QUY7G3J5D13WVZDfihkOLixQewAsgDKCmab0ORI4AbtIPd8?=
- =?iso-8859-1?Q?xQfrAnGLd16b8K3oe0fCO73Ys3JgSPJ5JZh/AHam52qQYWnzHDYeX8WfBv?=
- =?iso-8859-1?Q?U/JQYlSJcd5/0MhHnGUFW0OxA22Jh/jioM7kik99fKJ4H4AmiEMmu6IPiq?=
- =?iso-8859-1?Q?IrpZV/s+PFFDftte6GIjFbmCwsCONJk55MSt/2k6T8aRiJNlniCbTd5Ktx?=
- =?iso-8859-1?Q?9SyX+3aKtjufpe3EiVfy2qHQu4ur443njGiZ1kGy7gwk+aCT9edc5sgukm?=
- =?iso-8859-1?Q?5ZQCT9ZDc52jnhXEKtXzStDvIckmjm05dLxA8JLCl/QxUkecXUt+yPNd9c?=
- =?iso-8859-1?Q?VBkL/zZtcbXf5JnXZyKhmxlxPP760BI0rEW60Uh7qFEJpPlcprc25WXuZ8?=
- =?iso-8859-1?Q?Fnb/h3Ekd5TpsbZTZNkyELqhZ5/R6z6GF+cycfy+LRKoiBWOAvRM?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: cf573693-d681-4bf8-5464-08dee1dab83a
-X-MS-Exchange-CrossTenant-AuthSource: GV2PR04MB11799.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Jul 2026 19:04:24.5267
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: LBRBQOLIRYcfupUtwvOpLAcoZUAg5hRS6fLmAhLfEfxa5q8vbjqfWkAbu5J8h7doRqk1Yzz8Iv7Sed6Fdn0Ggc0kRBURAVM1zbz98eslSN7jTTpK7jkjqlw9DBCPuIjO
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA4PR04MB9639
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [3.64 / 15.00];
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	R_DKIM_REJECT(1.00)[NXP1.onmicrosoft.com:s=selector1-NXP1-onmicrosoft-com];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[nxp.com : SPF not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-326410-lists,devicetree=lfdr.de];
-	FORWARDED(0.00)[lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-326413-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[Frank.li@oss.nxp.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS(0.00)[m:sashiko-reviews@lists.linux.dev,m:lakshay.piplani@nxp.com,m:linux-i3c@lists.infradead.org,m:Frank.Li@kernel.org,m:alexandre.belloni@bootlin.com,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER(0.00)[coiaprant@gmail.com,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FORGED_RECIPIENTS(0.00)[m:kuba@kernel.org,m:davem@davemloft.net,m:edumazet@google.com,m:pabeni@redhat.com,m:andrew+netdev@lunn.ch,m:robh@kernel.org,m:krzk+dt@kernel.org,m:heiko@sntech.de,m:netdev@vger.kernel.org,m:linux-rockchip@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-phy@lists.infradead.org,m:coiaprant@gmail.com,m:andrew@lunn.ch,m:krzk@kernel.org,s:lists@lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	FORWARDED(0.00)[lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,gmail.com];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[Frank.li@oss.nxp.com,devicetree@vger.kernel.org];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	DKIM_TRACE(0.00)[NXP1.onmicrosoft.com:-];
+	FROM_NEQ_ENVFROM(0.00)[coiaprant@gmail.com,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,vger.kernel.org:from_smtp,sashiko.dev:url]
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 2EAB475814D
+X-Rspamd-Queue-Id: 77188758208
 
-On Tue, Jul 14, 2026 at 10:03:22AM +0000, sashiko-bot@kernel.org wrote:
-> Thank you for your contribution! Sashiko AI review found 3 potential issue(s) to consider:
->
-> New issues:
-> - [High] Asymmetrical cleanup in `i3c_master_direct_detach_i3c_dev_locked` leaks resources for unaddressed devices.
->
-> Pre-existing issues:
-> - [High] IDR entry deletion on `i3c_bus_init` failure causes ID corruption and sysfs collisions.
-> - [High] Missing NULL check for `dev->boardinfo` in `i3c_master_get_i3c_addrs` leads to kernel panic.
-> --
->
-> --- Patch [1]: [PATCH v14 1/8] i3c: master: Add APIs for I3C hub support ---
-> commit 1db519c7da22819d977429d77c0d05ba94daedf9
-> Author: Aman Kumar Pandey <aman.kumarpandey@nxp.com>
->
-> i3c: master: Add APIs for I3C hub support
->
-> Add helpers for attaching and detaching I3C devices and CCC helpers
-> to check CCC support and send CCC commands, address slot helpers to
-> query and update I3C bus address slot state, registering virtual
-> masters with an explicit firmware node, and exposing the bus maintenance
-> lock helpers.
->
-> > diff --git a/drivers/i3c/master.c b/drivers/i3c/master.c
-> > index f1be38a640ca1..3b1c342be2bc5 100644
-> > --- a/drivers/i3c/master.c
-> > +++ b/drivers/i3c/master.c
->
-> [ ... ]
->
-> > @@ -1775,6 +1792,83 @@ static int i3c_master_attach_i3c_dev(struct i3c_master_controller *master,
-> >  	return 0;
-> >  }
-> >
-> > +/**
-> > + * i3c_master_direct_attach_i3c_dev_locked() - Attach an I3C device to a master
-> > + * @master: I3C master controller to attach the device to
-> > + * @dev: I3C device descriptor representing the device
-> > + *
-> > + * Attach an I3C device to its master controller after reserving the device
-> > + * addresses on the bus. The device must belong to @master.
-> > + *
-> > + * The master device itself is not passed to the controller driver's
-> > + * ->attach_i3c_dev() callback.
-> > + *
-> > + * Context: Caller must hold @master->bus.lock in write mode.
-> > + *
-> > + * Return: 0 on success, or a negative error code if address reservation fails
-> > + * or if the master controller driver's ->attach_i3c_dev() callback fails.
-> > + */
-> > +int i3c_master_direct_attach_i3c_dev_locked(struct i3c_master_controller *master,
-> > +					    struct i3c_dev_desc *dev)
-> > +{
-> > +	int ret;
-> > +
-> > +	if (WARN_ON(i3c_dev_get_master(dev) != master))
-> > +		return -EINVAL;
-> > +
-> > +	ret = i3c_master_get_i3c_addrs(dev);
->
-> [Severity: High]
-> This is a pre-existing issue, but does exposing this new API introduce a
-> potential NULL pointer dereference?
->
-> If a caller manually constructs a virtual I3C device without an OF node
-> where dev->boardinfo is NULL, but it has a static_addr, calling this
-> function will invoke i3c_master_get_i3c_addrs(). Inside that function,
-> if the static address slot is not free:
->
-> i3c_master_get_i3c_addrs() {
->     ...
->     status = i3c_bus_get_addr_slot_status(&master->bus,
->                                           dev->info.static_addr);
->     if (status != I3C_ADDR_SLOT_FREE &&
->         dev->info.static_addr != dev->boardinfo->init_dyn_addr)
->         return -EBUSY;
->     ...
-> }
->
-> Could this dereference dev->boardinfo without checking if it is NULL, leading
-> to a kernel panic?
->
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	/* Do not attach the master device itself. */
-> > +	if (master->this != dev && master->ops->attach_i3c_dev) {
-> > +		ret = master->ops->attach_i3c_dev(dev);
->
-> [Severity: High]
-> Could this cause an asymmetrical resource leak for unaddressed devices?
->
-> The original i3c_master_attach_i3c_dev() function includes a check at the
-> beginning to return early if the device has no static or dynamic address:
->
-> if (!dev->info.static_addr && !dev->info.dyn_addr)
->     return 0;
->
-> This new attach function lacks that check, meaning it invokes the master
-> controller's attach_i3c_dev() hook even for unaddressed devices.
+This series adds proper SGMII support for the Rockchip RK3568 SoC
+using the integrated Synopsys DesignWare XPCS, along with necessary
+fixes and refactoring in the stmmac core and XPCS driver.
 
-Please check it ?
+Motivation
+==========
+The RK3568 integrates a DW XPCS accessed via APB3 and connected to
+a Naneng Combo SerDes PHY.  Several boards (e.g., Ariaboard
+Photonicat) use this interface for Gigabit Ethernet.  However, the
+current upstream stmmac driver does not support this configuration,
+and the XPCS driver has issues in SGMII poll mode that cause the
+link to be reported incorrectly.
 
-Frank
+This series addresses these issues by:
+- Fixing the XPCS driver's SGMII AN state handling
+- Refactoring stmmac PCS lifetime management to allow platform drivers
+  full control over PCS creation/destruction
+- Adding a Rockchip XPCS platform glue driver and wiring it up in
+  dwmac-rk
 
->
-> However, the new i3c_master_direct_detach_i3c_dev_locked() function
-> explicitly skips detach for unaddressed devices:
->
-> if (!dev->info.static_addr && !dev->info.dyn_addr)
->     return;
->
-> Will any resources allocated by the controller driver during the attach
-> hook be permanently leaked when the device is detached?
->
-> > +		if (ret) {
-> > +			i3c_master_put_i3c_addrs(dev);
-> > +			return ret;
-> > +		}
-> > +	}
-> > +	return 0;
-> > +}
-> > +EXPORT_SYMBOL_GPL(i3c_master_direct_attach_i3c_dev_locked);
->
-> [ ... ]
->
-> > @@ -3195,34 +3342,31 @@ static int i3c_master_check_ops(const struct i3c_master_controller_ops *ops)
->
-> [ ... ]
->
-> > +int i3c_master_register_fwnode(struct i3c_master_controller *master,
-> > +			       struct device *parent,
-> > +			       struct fwnode_handle *fwnode,
-> > +			       const struct i3c_master_controller_ops *ops,
-> > +			       bool secondary)
-> > +{
-> > +	unsigned long i2c_scl_rate = I3C_BUS_I2C_FM_PLUS_SCL_MAX_RATE;
-> > +	struct i3c_bus *i3cbus = i3c_master_get_bus(master);
-> > +	enum i3c_bus_mode mode = I3C_BUS_MODE_PURE;
-> > +	struct device_node *np = NULL;
-> > +	struct i2c_dev_boardinfo *i2cbi;
-> > +	int ret;
->
-> [ ... ]
->
-> > +	ret = i3c_bus_init(i3cbus, master->dev.of_node);
-> > +	if (ret)
-> > +		goto err_put_dev;
->
-> [Severity: High]
-> This isn't a bug introduced by this patch, but does an error here cause
-> global IDR corruption?
->
-> If i3c_bus_init() fails during idr_alloc(), it returns an error with
-> i3cbus->id still set to 0. Taking the err_put_dev path calls put_device() on
-> master->dev, which invokes i3c_masterdev_release().
->
-> i3c_masterdev_release() unconditionally calls i3c_bus_cleanup(), which runs:
->
-> i3c_bus_cleanup() {
->     ...
->     idr_remove(&i3c_bus_idr, i3cbus->id);
->     ...
-> }
->
-> If i3cbus->id is uninitialized (0), does this mistakenly remove ID 0 from
-> the global i3c_bus_idr? If a valid bus was already registered with ID 0, it
-> seems it would lose its IDR entry, causing a subsequent bus registration to
-> be assigned ID 0 again and triggering sysfs collisions (i3c-0).
->
-> > +
-> > +	dev_set_name(&master->dev, "i3c-%d", i3cbus->id);
-> > +
-> > +	ret = of_populate_i3c_bus(master);
-> > +	if (ret)
-> > +		goto err_put_dev;
->
-> [ ... ]
->
-> --
-> Sashiko AI review � https://sashiko.dev/#/patchset/20260714092053.2461482-1-lakshay.piplani@nxp.com?part=1
+Series overview
+===============
+
+Generic:
+  Patch 1: move XPCS lifetime management to platform drivers
+           (introduces pcs_init/pcs_exit callbacks)
+
+PHY:
+  Patch 2: DT binding for Naneng Combo PHY SGMII MAC selection
+  Patch 3: implement the PHY SGMII MAC selection in driver
+
+RK3568 XPCS/SGMII:
+  Patch 4: DT binding for Rockchip RK3568 XPCS
+  Patch 5: add XPCS and fixed-clock nodes to rk3568.dtsi
+  Patch 6: improve SGMII AN state handling (fixes link-down recovery)
+  Patch 7: implement the Rockchip XPCS platform glue driver
+  Patch 8: wire up SGMII support in dwmac-rk
+  Patch 10: update MAINTAINERS
+
+Board enablement:
+  Patch 9: enable SGMII LAN port on Photonicat board
+
+Key design decisions
+====================
+- The stmmac core now delegates XPCS creation entirely to platform
+  drivers via pcs_init/pcs_exit.  This is necessary because the
+  generic XPCS creation logic would override any XPCS set up by the
+  platform driver.
+
+- The Rockchip XPCS driver creates a virtual MDIO bus over the APB3
+  registers and implements address remapping.  The generic XPCS core
+  handles all PCS configuration via phylink_pcs_ops.
+
+- On RK3568 in SGMII mode, the MAC clock is fixed at 125 MHz and
+  cannot be dynamically changed.  In-band mode is used, and the
+  generic stmmac set_clk_tx_rate callback is disabled to prevent
+  incorrect clock updates that would break RX.
+
+- The SerDes and power domain are attached to the XPCS device tree
+  node rather than the MAC node. This reflects the actual hardware
+  topology and simplifies the dwmac-rk driver by keeping all PCS-related
+  resources self-contained. It also prepares for possible future QSGMII
+  support, where a single SerDes serves multiple MACs and would be
+  more naturally managed under the XPCS node.
+
+Testing
+=======
+Board: Ariaboard Photonicat (RK3568)
+OS: Armbian (trixie)
+Kernel: 6.18 (backports)
+Result: The SGMII interface obtains an IP address, SSH works, and
+        ping traffic passes without loss.
+
+Notes
+=====
+- When testing out-band mode with set_clk_tx_rate, only 1000Mbps
+  works on both TX/RX; 10/100Mbps only works on TX side.
+- I also noticed that the PHY (YT8521) reports 100Mbps/Half in out-band
+  tesing while the PCS reports 100Mbps/Full if using in-band.
+  This looks like a separate PHY driver bug.
+  I will address/report it independently after this series lands
+  (or if a maintainer points me to the right list).
+
+Dependencies
+============
+None. All patches apply cleanly on top of torvalds master tree (v7.2).
+
+Questions
+=========
+1. Patch 6 (SGMII AN state handling) touches generic pcs-xpcs code and
+   may affect Wangxun NICs.  I don't have Wangxun hardware to test.
+   The original Wangxun-specific path is kept unchanged, so I believe
+   there is no regression risk.
+
+2. Would Heiko Stuebner be willing to be listed as a co-maintainer
+   for the Rockchip XPCS driver?  I've added myself in MAINTAINERS,
+   but having a more experienced Rockchip maintainer on board would
+   be ideal.
+
+Related discussion
+==================
+Previous attempt at SGMII support on RK3568 by others:
+https://lore.kernel.org/all/20221129072714.22880-2-amadeus@jmu.edu.cn/
+
+Also related (runtime PM fix for xpcs-plat, sent separately):
+https://lore.kernel.org/all/20260704214808.1566710-1-coiaprant@gmail.com/
+
+Acknowledgments
+===============
+This work was inspired by and builds upon the excellent work of others:
+- Serge Semin's Synopsys DesignWare XPCS platform driver (pcs-xpcs-plat.c)
+- Clément Léger's Renesas MIIC driver (pcs-rzn1-miic.c)
+- The Rockchip TRM and downstream OEM drivers
+
+This is my first kernel driver series.  I've spent many nights
+debugging the hardware quirks on this board.  I hope this can finally
+replace the out-of-tree OEM code with a clean upstream solution.
+Any guidance during review is greatly appreciated.
+
+Thanks in advance,
+Coia Prant
+---
+Coia Prant (10):
+  net: stmmac: move XPCS lifetime management to platform drivers
+  dt-bindings: phy: rockchip: naneng-combphy: add rockchip,sgmii-mac-sel
+    property
+  phy: rockchip: naneng-combphy: add SGMII MAC selection for RK3568
+  dt-bindings: net: pcs: add rockchip,rk3568-xpcs binding
+  arm64: dts: rockchip: rk3568: add XPCS and fixed-clock nodes
+  net: pcs: xpcs: improve SGMII AN state handling for Rockchip RK3568
+  net: pcs: xpcs: add Rockchip RK3568 platform glue driver
+  net: stmmac: dwmac-rk: add SGMII support for RK3568
+  arm64: dts: rockchip: rk3568-photonicat: enable SGMII LAN port
+  MAINTAINERS: add entry for Rockchip XPCS driver
+
+ .../bindings/net/pcs/rockchip-dwxpcs.yaml     | 126 +++++
+ .../phy/phy-rockchip-naneng-combphy.yaml      |   7 +
+ MAINTAINERS                                   |   9 +
+ .../boot/dts/rockchip/rk3568-photonicat.dts   |  77 ++-
+ arch/arm64/boot/dts/rockchip/rk3568.dtsi      |  45 ++
+ drivers/net/ethernet/stmicro/stmmac/Kconfig   |   1 +
+ .../net/ethernet/stmicro/stmmac/dwmac-intel.c |  44 +-
+ .../stmicro/stmmac/dwmac-renesas-gbeth.c      |   7 +-
+ .../net/ethernet/stmicro/stmmac/dwmac-rk.c    |  87 ++-
+ .../net/ethernet/stmicro/stmmac/dwmac-rzn1.c  |   7 +-
+ .../ethernet/stmicro/stmmac/dwmac-socfpga.c   |   7 +-
+ .../net/ethernet/stmicro/stmmac/stmmac_mdio.c |  37 +-
+ drivers/net/pcs/Kconfig                       |  22 +
+ drivers/net/pcs/Makefile                      |   7 +-
+ drivers/net/pcs/pcs-xpcs-rk.c                 | 526 ++++++++++++++++++
+ drivers/net/pcs/pcs-xpcs.c                    |  31 +-
+ .../rockchip/phy-rockchip-naneng-combphy.c    |   8 +
+ include/linux/pcs/pcs-xpcs-rk.h               |  11 +
+ 18 files changed, 1008 insertions(+), 51 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/net/pcs/rockchip-dwxpcs.yaml
+ create mode 100644 drivers/net/pcs/pcs-xpcs-rk.c
+ create mode 100644 include/linux/pcs/pcs-xpcs-rk.h
+
+-- 
+2.47.3
+
 
