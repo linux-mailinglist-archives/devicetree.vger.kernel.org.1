@@ -1,157 +1,164 @@
-Return-Path: <devicetree+bounces-326082-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-326083-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 8V7/AkkUVmqEywAAu9opvQ
-	(envelope-from <devicetree+bounces-326082-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 12:49:45 +0200
+	id +FsfAD4WVmrsywAAu9opvQ
+	(envelope-from <devicetree+bounces-326083-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 12:58:06 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02FC175391A
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 12:49:44 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 273EA753A5B
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 12:58:05 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b="fetno/zJ";
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326082-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-326082-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=intel.com header.s=Intel header.b=NUD37idW;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326083-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-326083-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=intel.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 33ACE300A253
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 10:49:41 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 707EC300DE0E
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 10:57:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17EC534A3D6;
-	Tue, 14 Jul 2026 10:49:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01720376A0C;
+	Tue, 14 Jul 2026 10:57:05 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2D392F49F6
-	for <devicetree@vger.kernel.org>; Tue, 14 Jul 2026 10:49:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52F1836AB5A;
+	Tue, 14 Jul 2026 10:57:03 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1784026180; cv=none; b=Hw9eVTlwyme8oWrp8yaWJYB/OYKtXfGcsdG/kQXbIVAiwTODrSGomg0Auc0JaAnuDe/oBCkJBqp+Qy3PPv3mWCD51CEGrfdPuiK6EzLtcFApSvGylcfpvzsSYI3kxXVnCIT39wIhvfRSN1R9VNETQK9LHa8YxDXaaRnG6cP/AoE=
+	t=1784026624; cv=none; b=eBIVpSFcWc6kZbKXMuQYTAlr0w0HwuO+MRXLoMNkcPyeGbIvQPzw5VBtRr4lTEavp3ERyz1DpFp7QmV20N1xjDf+qRwK8kSpncQTliCt/NfgQAjdGhzEf9HOozmZ6jcJztmfat53aMo7aPWIyhaQchVf1hDv0JHZTvtI9Ir7NhI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1784026180; c=relaxed/simple;
-	bh=QWa2ZLSFckKMeVwxIYai+EsToX0nNy+3eGgQ0rrDqo4=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=dICu+ts+StnsMWNbCKzqK1diqjbgktaA282bld2thaO3E1dSyQ0JNpf1wRfwLp0RWvxXhEF8EphPNmz0+Q+FQ0i/ViT/5oQ8dKXGUNDnFRAFkMF2FOjSUkpz4FYfwPCfSoDEkKi6eMcq03/06QALsyO/H3IADnkuEN+mmDvMqac=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fetno/zJ; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5902E1F000E9;
-	Tue, 14 Jul 2026 10:49:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1784026178;
-	bh=P75t0rtBVZzTvdRwa9/+74bm860SvIYWvnvjecvf3G4=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=fetno/zJLMjboufzProXAjnXJm9WySGEFV4uvcVACyWefl3+wSDM8VhrrS4TjgRR6
-	 uPdw9OaYKEW+Z3fm4YzFcuIdMMLs5UVzHZr1IZCHw79psNw9yYAMnh+fDC6zuGz680
-	 kDyWrU/mPpFuIGzmJnv4sCsG1WdgG8eCmNkKPblXiO+NnnbXiw9fpPAQE2jYNhQZQf
-	 NnJmI80inwFflpIcXNRoM9HFofR1F00sErTgx+h1spR+bGKOtZiobwgunHZ4Y9hvgO
-	 kaUS2xjO9xO8JsEwDE2yQLMgS09rTX3lUsaLHmIYqJwwAyE/Gfjg4SmDwl4Y7+B9Jp
-	 U/qGWm+G4SPHQ==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v14 4/8] mfd: p3h2x4x: Add driver for NXP P3H2x4x i3c
- hub and on-die regulator
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Lakshay Piplani" <lakshay.piplani@nxp.com>
-Cc: "Alexandre Belloni" <alexandre.belloni@bootlin.com>, robh@kernel.org, devicetree@vger.kernel.org, linux-i3c@lists.infradead.org, Frank.Li@kernel.org, conor+dt@kernel.org
-In-Reply-To: <20260714092053.2461482-5-lakshay.piplani@nxp.com>
-References: <20260714092053.2461482-1-lakshay.piplani@nxp.com>
- <20260714092053.2461482-5-lakshay.piplani@nxp.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Tue, 14 Jul 2026 10:49:37 +0000
-Message-Id: <20260714104938.5902E1F000E9@smtp.kernel.org>
+	s=arc-20240116; t=1784026624; c=relaxed/simple;
+	bh=7p88xNr3ryyi6ibpcUgmTHu4NSvfticNGxsvwZsHU88=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=V0Mv4Ujl3OlR5zuq3ZYwKt7NZaEWOaqh5jJtOXpxYdQ8ay1gJNKVkK9LtmeYpn2ArH+/gr04z4amsbDvhB2Ta4HZUPnN/BF3voexHuAkzZVgzaxoVAvdmP1QHpXp2MrFll9CccG+pEC2LBrAjKrnShZq6f7AYcIEzQMnQHZwaho=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=NUD37idW; arc=none smtp.client-ip=198.175.65.20
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1784026624; x=1815562624;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=7p88xNr3ryyi6ibpcUgmTHu4NSvfticNGxsvwZsHU88=;
+  b=NUD37idWn6B/7VqrzaZagY8udojXPz879B8tP/vWkueEgQ5uthxcOrqp
+   bxD5cWiOjSB/cAN6ltB7INs39n/WAVnh73TaO+xTQF1fuGAGpxqVB+QBn
+   KgQBPgkjBzCR5FzfK/Tt/9GKPcxgFusAMUrAgfFSbBnlbpAsNM/PEqhrX
+   kz2lgrdkS+UDVgAqJDzDe2+pOGhL/MHzd1CRYUeRfVNdDwxXoAkczIhde
+   AeBBgXTsA3vcoe2pc+dclk8OgGao61QvKRo2yihAr/TNLwP9xADykgS1E
+   gvRR4ilTp1vkN3D+rWiqDS5+s86ZJ1fL0cW3RrCYExYBYPo9FnqWtA3TP
+   g==;
+X-CSE-ConnectionGUID: /O3S1yvqQBa5EAXXcMNO+A==
+X-CSE-MsgGUID: v/lqaTljRIyNuNtttf7MGg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11846"; a="84425303"
+X-IronPort-AV: E=Sophos;i="6.25,163,1779174000"; 
+   d="scan'208";a="84425303"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Jul 2026 03:57:03 -0700
+X-CSE-ConnectionGUID: tAp4suAZQ7W8vqWtI5sRQg==
+X-CSE-MsgGUID: fOFImHORQemPAJIS0pzizw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,163,1779174000"; 
+   d="scan'208";a="253202539"
+Received: from kniemiec-mobl1.ger.corp.intel.com (HELO localhost) ([10.245.245.189])
+  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Jul 2026 03:56:59 -0700
+Date: Tue, 14 Jul 2026 13:56:57 +0300
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Chris Morgan <macroalpha82@gmail.com>
+Cc: linux-iio@vger.kernel.org, andy@kernel.org, nuno.sa@analog.com,
+	dlechner@baylibre.com, jic23@kernel.org,
+	jean-baptiste.maneyrol@tdk.com, linux-rockchip@lists.infradead.org,
+	devicetree@vger.kernel.org, heiko@sntech.de, conor+dt@kernel.org,
+	krzk+dt@kernel.org, robh@kernel.org,
+	Chris Morgan <macromorgan@hotmail.com>
+Subject: Re: [PATCH v16 04/10] iio: imu: inv_icm42607: Add inv_icm42607 Core
+ Driver
+Message-ID: <alYV-QAmGViGSOSv@ashevche-desk.local>
+References: <20260713215842.69097-1-macroalpha82@gmail.com>
+ <20260713215842.69097-5-macroalpha82@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260713215842.69097-5-macroalpha82@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [-3.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[intel.com:d:+,kernel.org:s:+];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-326083-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-326082-lists,devicetree=lfdr.de];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:lakshay.piplani@nxp.com,m:alexandre.belloni@bootlin.com,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:linux-i3c@lists.infradead.org,m:Frank.Li@kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS(0.00)[m:macroalpha82@gmail.com,m:linux-iio@vger.kernel.org,m:andy@kernel.org,m:nuno.sa@analog.com,m:dlechner@baylibre.com,m:jic23@kernel.org,m:jean-baptiste.maneyrol@tdk.com,m:linux-rockchip@lists.infradead.org,m:devicetree@vger.kernel.org,m:heiko@sntech.de,m:conor+dt@kernel.org,m:krzk+dt@kernel.org,m:robh@kernel.org,m:macromorgan@hotmail.com,m:conor@kernel.org,m:krzk@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	FREEMAIL_TO(0.00)[gmail.com];
+	MIME_TRACE(0.00)[0:+];
+	HAS_ORG_HEADER(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,analog.com,baylibre.com,tdk.com,lists.infradead.org,sntech.de,hotmail.com];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[7];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FROM_NO_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.linux.dev:replyto,sashiko.dev:url,smtp.kernel.org:mid,vger.kernel.org:from_smtp,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,nxp.com:email]
+	MISSING_XM_UA(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,intel.com:from_mime,intel.com:email,intel.com:dkim,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 02FC175391A
+X-Rspamd-Queue-Id: 273EA753A5B
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [Low] Architecture / Layering Violation: Driver-specific header file is i=
-ncorrectly placed in the global `include/linux/mfd/` directory.
---
+On Mon, Jul 13, 2026 at 04:58:34PM -0500, Chris Morgan wrote:
 
---- Patch [4]: [PATCH v14 4/8] mfd: p3h2x4x: Add driver for NXP P3H2x4x i3c=
- hub and on-die regulator ---
-commit 2a59167d38bc0c8607cf16c05249be2d7d9c9354
-Author: Aman Kumar Pandey <aman.kumarpandey@nxp.com>
+> Add the core component of a new inv_icm42607 driver. This includes
+> a few setup functions and the full register definition in the
+> header file, as well as the bits necessary to compile and probe the
+> device when used on an i2c bus.
 
-mfd: p3h2x4x: Add driver for NXP P3H2x4x i3c hub and on-die regulator
+Reviewed-by: Andy Shevchenko <andriy.shevchenko@intel.com>
 
-This commit adds core MFD support for the NXP P3H2x4x family of multiport
-I3C hub devices. These devices connect to a host via I3C/I2C/SMBus and
-expose multiple downstream target ports.
+...
 
-[ ... ]
+> +++ b/drivers/iio/imu/inv_icm42607/inv_icm42607_core.c
 
-> diff --git a/include/linux/mfd/p3h2840.h b/include/linux/mfd/p3h2840.h
-> new file mode 100644
-> index 0000000000000..ba9a38756ecb8
-> --- /dev/null
-> +++ b/include/linux/mfd/p3h2840.h
-> @@ -0,0 +1,25 @@
-> +/* SPDX-License-Identifier: GPL-2.0 */
+> +#include <linux/bitfield.h>
+> +#include <linux/delay.h>
+> +#include <linux/device.h>
 
-[ ... ]
+> +#include <linux/device/devres.h>
 
-> +#define I3C_MANUF_ID_NXP					0x011b
-> +
-> +struct p3h2x4x {
-> +	struct i3c_device *i3cdev;
-> +	struct regmap *regmap;
-> +	struct mutex protected_reg_lock; /* Serializes protected register unloc=
-k/lock sequences. */
-> +};
+When device.h is included, this one is not needed. Yeah, device.h is a mess,
+but here we are now.
 
-[Severity: Low]
-This isn't a bug, but since this header file defines driver-specific
-structures solely intended for the parent and its immediate children, should
-it be kept locally in drivers/mfd/ rather than being placed in the global
-include/linux/mfd/ directory?
+> +#include <linux/err.h>
+> +#include <linux/iio/iio.h>
+> +#include <linux/module.h>
+> +#include <linux/mutex.h>
+> +#include <linux/regmap.h>
+> +#include <linux/regulator/consumer.h>
+> +#include <linux/time.h>
+> +#include <linux/types.h>
 
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260714092053.2461=
-482-1-lakshay.piplani@nxp.com?part=3D4
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
 
