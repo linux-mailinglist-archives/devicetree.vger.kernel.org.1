@@ -1,62 +1,62 @@
-Return-Path: <devicetree+bounces-326440-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-326445-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id a45BA/KRVmp49gAAu9opvQ
-	(envelope-from <devicetree+bounces-326440-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 21:45:54 +0200
+	id C6vhJruOVmqN9AAAu9opvQ
+	(envelope-from <devicetree+bounces-326445-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 21:32:11 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7266D7586C4
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 21:45:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0CE307584BC
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 21:32:11 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=collabora.com header.s=mail header.b=TCMVnBFf;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326440-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-326440-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=collabora.com header.s=mail header.b=Xuju2Wyw;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326445-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-326445-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=none) header.from=collabora.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 7689832643A0
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 19:26:56 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id AA32F328B49C
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 19:27:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4DF6424D75;
-	Tue, 14 Jul 2026 19:26:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 856EE42BEAA;
+	Tue, 14 Jul 2026 19:26:22 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D8AE41F35B;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22A9041F36F;
 	Tue, 14 Jul 2026 19:26:16 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1784057179; cv=none; b=DpuXOuBrmzFwUIODvAAyjpGCSHDw+v+Gh3rXyAJZsU7LdJah247XidNgtrOcNyuks/qYA1HTavTmA8ZvISGFr9ZvgWn22H52mvamuOmADHw7/TwJ9a1FI2j282kh30ljYuIjAQzwcP6sQnBQClkbdiX2hBL129b0krYhdy4wMN4=
+	t=1784057181; cv=none; b=IndTmHac4E97L1zW9rjhMbiKVkojNkHTuW91imCWoCQC79O5pUv+mURpm/SXnI5XFy8wgBd2D+yfK/BK25k/UsDW+MY/7Jjvpt9M/XW5gUa7kCK6NMHa6FiROlwkZWr8Wbrh54hjv/7OpsPnlv0DDwaBxatMIA6oJuFDMZlYVVs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1784057179; c=relaxed/simple;
-	bh=Cc0K4Dr4eJL0SNbtq8hAs+EI1LLSLgYhEuv3ZarCDYw=;
+	s=arc-20240116; t=1784057181; c=relaxed/simple;
+	bh=MGpikBa/aaqvkv65oP/N23ryrQe5o83Pvtc6osrktIs=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=X0wGh4d8unQjghTJ5GG/Eku4n2a92EBWwXH0wK+5WJkfaLn6xGy877qwu0miuQmfG3a0s8AWagnPwLW4t88e0fOSpCJy5G4Sz7h4gri5tnJLJfpxKUUUPPq8xqdagYJF7MbGKE8S5kpteRn4fjnDj6S5HkpeC+l3ufAnWwIuBxE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=TCMVnBFf; arc=none smtp.client-ip=148.251.105.195
+	 In-Reply-To:To:Cc; b=S5A5LMIflRXCW+RJsGD2k5OmDxyTfuqcJH4mt1KycYhEWbkuA/W6C+WUXFTJyXUF4Tc6IYcprLaa6jz8qsknfOFjeo+1HBN07WSltFxcSyAWphIU6VWqHIX6E+DwhTKgmfMJ41JXzJa10MlM8RrOqbXp1XX4UjjXl+vOpeNLcX8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=Xuju2Wyw; arc=none smtp.client-ip=148.251.105.195
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
 	s=mail; t=1784057169;
-	bh=Cc0K4Dr4eJL0SNbtq8hAs+EI1LLSLgYhEuv3ZarCDYw=;
+	bh=MGpikBa/aaqvkv65oP/N23ryrQe5o83Pvtc6osrktIs=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=TCMVnBFfvF9dgEV0Zk8R9ceHdtGRwiEEKljPYMo5gEHhCQBzGd2Aa2/os+lgOdLXj
-	 5szueHCnvtE8Ipk7d8igsYL3MOv5uSGhml//XtWbw4HVk+hSzR+IbPT0NVjr8+8ayi
-	 MCnJdGZUlWEy5ao6Us4S5za36108xZKK8GWywMutRbqXRd+QSfEU/dPmLvHC/XjsHV
-	 VMJz3yhCtAe9UXg5NEh349IJ3cY0SZviFNqVpuVohDYEYg98x6/NcGpxoIKLwRyP8I
-	 l5GH7mDedCK0IVV6GYINn1HB5sc6e71lsBXphA1Tbbqo85qhz+/osPnDFfc6IUCQqn
-	 YbVHReUvx49Hw==
+	b=Xuju2WywpFtui/Z2oN2alMAQa34o5piASKxOQflLVuMm4btZz5hgo5LsXLN7hQPic
+	 rGDebKq/3XHdlOMDj67RXV7o7QchCiWQ+o33xG0btMhtWt0oEhRHHdkpPjPlHOy2IE
+	 GAD5ZcGby6L8byqJ9j8yQtS5sKm/HFCF9akapjS57YzG3pp1QPjy2yBBKyEckcU+WS
+	 NeuryE90UpVEIoDMrFbw58fRrOQYqnGqJpZxKX3Xi4OmrVAwPpngG6sOPBR+Dx15RZ
+	 F+Hqyh+enA7uOvVlnUEch3DRaH4mJ9yChIBCBOpMErrkQamlPYkBCbhn2X2FciHHzh
+	 /Ad0wstgecMNw==
 Received: from jupiter.universe (unknown [100.64.1.62])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange x25519)
 	(No client certificate requested)
 	(Authenticated sender: sre)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 7E1C417E0F76;
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 8609617E0FC9;
 	Tue, 14 Jul 2026 21:26:09 +0200 (CEST)
 Received: by jupiter.universe (Postfix, from userid 1000)
-	id D88CC48003A; Tue, 14 Jul 2026 21:26:08 +0200 (CEST)
+	id DA28348003D; Tue, 14 Jul 2026 21:26:08 +0200 (CEST)
 From: Sebastian Reichel <sebastian.reichel@collabora.com>
-Date: Tue, 14 Jul 2026 21:26:09 +0200
-Subject: [PATCH v13 08/35] phy: rockchip: usbdp: Amend SSC modulation
- deviation
+Date: Tue, 14 Jul 2026 21:26:10 +0200
+Subject: [PATCH v13 09/35] phy: rockchip: usbdp: Fix LFPS detect threshold
+ control
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,7 +65,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260714-rockchip-usbdp-cleanup-v13-8-6cb3e769d4c5@collabora.com>
+Message-Id: <20260714-rockchip-usbdp-cleanup-v13-9-6cb3e769d4c5@collabora.com>
 References: <20260714-rockchip-usbdp-cleanup-v13-0-6cb3e769d4c5@collabora.com>
 In-Reply-To: <20260714-rockchip-usbdp-cleanup-v13-0-6cb3e769d4c5@collabora.com>
 To: Vinod Koul <vkoul@kernel.org>, 
@@ -82,23 +82,24 @@ Cc: Andy Yan <andy.yan@rock-chips.com>, Dmitry Baryshkov <lumag@kernel.org>,
  linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
  linux-kernel@vger.kernel.org, kernel@collabora.com, 
  devicetree@vger.kernel.org, linux-usb@vger.kernel.org, 
- Sebastian Reichel <sebastian.reichel@collabora.com>
+ Sebastian Reichel <sebastian.reichel@collabora.com>, 
+ William Wu <william.wu@rock-chips.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1765;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1521;
  i=sebastian.reichel@collabora.com; h=from:subject:message-id;
- bh=lqHOLnlRChaCaNvIuz6SialOxFJNoEYQ3ZMsuUuJrVw=;
- b=owJ4nAFtApL9kA0DAAoB2O7X88g7+poByyZiAGpWjU++ipQRjOseY59s9pGTP4qbq/L//IGKf
- vSifZcJJ2fUmYkCMwQAAQoAHRYhBO9mDQdGP4tyanlUE9ju1/PIO/qaBQJqVo1PAAoJENju1/PI
- O/qavnQP/3IDc0Q76QtEeC9YkxDq7WdmLRnbUbRZxJgzk4FHIFpL0brortfzFzXJd9iiXKllVwL
- T2tZ83ddURxyGT1Cc4c9kzzeo05JvLFJWIMD8fPrrR50XqUGo8COeHTc5s3wan2k3khEMCHDEri
- 4GdEa+7bGxMxcDETiA+/mXqIPvJi7i0EkdbHFR3LdwWsSFYeOCTBbflbEeCkUcFDJxAA2siqlYF
- L9aaKvHAMBTyuB8UtlOlc28wnVDYNMK2T/tb7sS0WEowDzKFYS/QRaHxQ8grmK7MSsqosIIgt/t
- pOodD8Xzy/HzrsPxE+clulHATk8qlutl57eVjLuj+Xxi1bmEjAFs8+a+SWds1yPyzC49zfKMP06
- 2yQKt6p73xUrrcNcVKzghpareKA3O2pypZBNaPYW/4Bj2TrxIjXlAoLuGVKx4JvUG2Oj9hmqJgv
- MdvsBYjN47EswZ59qfqdjgpG+6exOzxg34s47C87HLF/owVaYwN6BZG/Lklj1NHBT5pf49BIDHC
- gg0mV6I92sAUgZTKxDFEnfq6tl2rAVX7/cbLPXiEaNMHREyvCSd7a4HhfYrMfaoXk4InljMVt/7
- A5zTyuTMBNPVeu0BcoRcBZlkHKOM+mtlgNu/Xm4zoWaTrRtbwYnQ/41FDf/qnsgq2oG/vvWNcoM
- yWO7dHOUCTomFy33+d4o2gA==
+ bh=6XR1qE8oQQO8DmAkgt9+gIoazIh1eRLq97pcAr0j0tg=;
+ b=owJ4nAFtApL9kA0DAAoB2O7X88g7+poByyZiAGpWjU9kvXXCFcWCsGLP/icPkll7F0LFFXimL
+ aWpjzH3VER5wIkCMwQAAQoAHRYhBO9mDQdGP4tyanlUE9ju1/PIO/qaBQJqVo1PAAoJENju1/PI
+ O/qaSpAP/RB3hJESZ+hiCzmQA5DrQM0y68edl734dfmkOatL/AFakFFDU0pxs2sG8YyHte17fBC
+ oWw75hbXztb+db7z53HsZQ4F87sfqviKmc0DhSG5ubVZRVI8CHQSr+BMWDAfRd+kgLfktxHxgo1
+ ZkYrNDiZoX5Or6L1ehiuE5nBBDRsqz1T8cc7fgppH8TqLgrZgr/s5ZkOYNh3VH2Mi4lpqm+Qimo
+ +JOONf4Dq23CYskYAQkLSbaT6EJvnzyzZHhzV7oe9tkW19bYQQuxwTcxnXi+2XZma4KW+9X+4oD
+ 8Cg9VZ+9zaffQfghI/86qMm3PzY1Kspmq/c4AvCsAEgcAkU8hWlNRNCsiIZptq53pY/4ZMZLXRE
+ X7vjsw2j5GW1oYYZafdwySKowuAMiyn5IP5YK2cNu0k3Dhcx5LWENC6kOTUIh9dqpl0yml59SJg
+ 8kjO0bct7MIkVf9u4skfyz1mUlRDF0Iqg+KSAiPrkGuvHz6hxIhAGF/1Rtqzcb2mM/IxGrXMLue
+ bcPVyBezyfNrgd+51MStCp4jGkPQmKaLVPAeCp5pXIkrO3oWuKi49LTvpgxfwQpP4eXbQ67dtLH
+ oEx66AKQTcpP0atmzwEuKnXJt7XRpKENg06cnddnNLqx3DS7DqJhjqOXY6iXnKmfMoRDapum6YC
+ FgjX0wEXCVtkSo0SF9oAtNw==
 X-Developer-Key: i=sebastian.reichel@collabora.com; a=openpgp;
  fpr=EF660D07463F8B726A795413D8EED7F3C83BFA9A
 X-Rspamd-Action: no action
@@ -111,12 +112,12 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-326440-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-326445-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER(0.00)[sebastian.reichel@collabora.com,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[22];
-	FORGED_RECIPIENTS(0.00)[m:vkoul@kernel.org,m:neil.armstrong@linaro.org,m:heiko@sntech.de,m:frank.wang@rock-chips.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:Thinh.Nguyen@synopsys.com,m:gregkh@linuxfoundation.org,m:p.zabel@pengutronix.de,m:andy.yan@rock-chips.com,m:lumag@kernel.org,m:yubing.zhang@rock-chips.com,m:alchark@flipper.net,m:linux-phy@lists.infradead.org,m:linux-arm-kernel@lists.infradead.org,m:linux-rockchip@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:kernel@collabora.com,m:devicetree@vger.kernel.org,m:linux-usb@vger.kernel.org,m:sebastian.reichel@collabora.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[23];
+	FORGED_RECIPIENTS(0.00)[m:vkoul@kernel.org,m:neil.armstrong@linaro.org,m:heiko@sntech.de,m:frank.wang@rock-chips.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:Thinh.Nguyen@synopsys.com,m:gregkh@linuxfoundation.org,m:p.zabel@pengutronix.de,m:andy.yan@rock-chips.com,m:lumag@kernel.org,m:yubing.zhang@rock-chips.com,m:alchark@flipper.net,m:linux-phy@lists.infradead.org,m:linux-arm-kernel@lists.infradead.org,m:linux-rockchip@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:kernel@collabora.com,m:devicetree@vger.kernel.org,m:linux-usb@vger.kernel.org,m:sebastian.reichel@collabora.com,m:william.wu@rock-chips.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
@@ -133,56 +134,44 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:from_mime,collabora.com:mid,collabora.com:email,collabora.com:dkim,vger.kernel.org:from_smtp,rock-chips.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,linaro.org:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,linaro.org:email,collabora.com:from_mime,collabora.com:mid,collabora.com:email,collabora.com:dkim,vger.kernel.org:from_smtp,rock-chips.com:email,usb.org:url]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 7266D7586C4
+X-Rspamd-Queue-Id: 0CE307584BC
 
-From: Frank Wang <frank.wang@rock-chips.com>
+From: William Wu <william.wu@rock-chips.com>
 
-Move SSC modulation deviation into private config of clock
+According to the LFPS Tx Low Power/LFPS Rx Detect Threshold [1],
+the device under test(DUT) must not respond if LFPS below the
+minimum LFPS Rx Detect Threshold 100mV. Test fail on Rockchip
+platforms, because the default LFPS detect threshold is set to
+65mV.
 
- - 24M: 0x00d4[5:0] = 0x30
- - 26M: 0x00d4[5:0] = 0x33
+The USBDP PHY LFPS detect threshold voltage could be set to
+30mV ~ 140mV, and since there could be 10-20% PVT variation,
+we set LFPS detect threshold voltage to 110mV.
 
-Signed-off-by: Frank Wang <frank.wang@rock-chips.com>
-[Taken over from rockchip's kernel tree; register 0x00d4 is not
-described in the TRM]
+[1] https://compliance.usb.org/resources/LFPS_Rx_Tx_Low_Power_Compliance_Update_Rev5.pdf
+
+Signed-off-by: William Wu <william.wu@rock-chips.com>
+[Taken over from rockchip's kernel tree; the registers are not described
+in the TRM]
 Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
 ---
- drivers/phy/rockchip/phy-rockchip-usbdp.c | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+ drivers/phy/rockchip/phy-rockchip-usbdp.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/phy/rockchip/phy-rockchip-usbdp.c b/drivers/phy/rockchip/phy-rockchip-usbdp.c
-index e3f5a26c876a..cb6acadfbccf 100644
+index cb6acadfbccf..982315535caf 100644
 --- a/drivers/phy/rockchip/phy-rockchip-usbdp.c
 +++ b/drivers/phy/rockchip/phy-rockchip-usbdp.c
-@@ -350,7 +350,8 @@ static const struct reg_sequence rk_udphy_24m_refclk_cfg[] = {
- 	{0x0a64, 0xa8}, {0x1a3c, 0xd0},
- 	{0x1a44, 0xd0}, {0x1a48, 0x01},
- 	{0x1a4c, 0x0d}, {0x1a54, 0xe0},
--	{0x1a5c, 0xe0}, {0x1a64, 0xa8}
-+	{0x1a5c, 0xe0}, {0x1a64, 0xa8},
-+	{0x00d4, 0x30}
- };
- 
- static const struct reg_sequence rk_udphy_26m_refclk_cfg[] = {
-@@ -377,7 +378,7 @@ static const struct reg_sequence rk_udphy_26m_refclk_cfg[] = {
- 	{0x0c30, 0x0e}, {0x0c48, 0x06},
- 	{0x1c30, 0x0e}, {0x1c48, 0x06},
- 	{0x028c, 0x18}, {0x0af0, 0x00},
--	{0x1af0, 0x00}
-+	{0x1af0, 0x00}, {0x00d4, 0x33}
- };
- 
- static const struct reg_sequence rk_udphy_init_sequence[] = {
-@@ -412,8 +413,7 @@ static const struct reg_sequence rk_udphy_init_sequence[] = {
+@@ -413,7 +413,8 @@ static const struct reg_sequence rk_udphy_init_sequence[] = {
  	{0x0070, 0x7d}, {0x0074, 0x68},
  	{0x0af4, 0x1a}, {0x1af4, 0x1a},
  	{0x0440, 0x3f}, {0x10d4, 0x08},
--	{0x20d4, 0x08}, {0x00d4, 0x30},
--	{0x0024, 0x6e},
-+	{0x20d4, 0x08}, {0x0024, 0x6e}
+-	{0x20d4, 0x08}, {0x0024, 0x6e}
++	{0x20d4, 0x08}, {0x0024, 0x6e},
++	{0x09c0, 0x0a}, {0x19c0, 0x0a}
  };
  
  static inline int rk_udphy_grfreg_write(struct regmap *base,
