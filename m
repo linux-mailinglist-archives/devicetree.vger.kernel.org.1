@@ -1,196 +1,348 @@
-Return-Path: <devicetree+bounces-326171-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-326174-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id lCwFAtAjVmpYzwAAu9opvQ
-	(envelope-from <devicetree+bounces-326171-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 13:56:00 +0200
+	id yJBnB64lVmoa0AAAu9opvQ
+	(envelope-from <devicetree+bounces-326174-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 14:03:58 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B300754268
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 13:55:59 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 699467543C3
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 14:03:55 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=collabora.com header.s=mail header.b=Kpxd7Lxf;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326171-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-326171-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=collabora.com;
+	dkim=pass header.d=lontium.com header.s=default header.b=oMNNH0TX;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326174-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-326174-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=none;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id BCC4C3031DAD
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 11:51:16 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id D65353058AD2
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 11:52:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 724993D4130;
-	Tue, 14 Jul 2026 11:45:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB361397352;
+	Tue, 14 Jul 2026 11:47:00 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from out28-100.mail.aliyun.com (out28-100.mail.aliyun.com [115.124.28.100])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E56D23932FC;
-	Tue, 14 Jul 2026 11:45:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E22B35BDC7
+	for <devicetree@vger.kernel.org>; Tue, 14 Jul 2026 11:46:57 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1784029534; cv=none; b=lSHr7Ir8x7ckX2YTYCBGF3p4A9jw0r/DTuYNgVojhTDKunn8K/wWtDrK59FHicTpgHdua5qjNvF61yv07e5ZPpojZcHIbYATfZHPpaUSohraKF4P2HjdakzDQpJwEmN4m5vkWXr/YLq7trLP+UA8yROxxY3ei8lHlw1UV6lCah8=
+	t=1784029620; cv=none; b=DZxr7pez+fFC+gNldxPqq9Hj0I4R9a5fHVJbsmRjNwpK3c8GpM4zZ4BBSSND/K5pKRrAzeJz1kFPo7LLvNM3Npo5lPCfLxOfEnerCmSqH1AyhLIbkLiMKZ+YCotS3lnz0Zegry63BX+7hyoK2DNVAvLb235m2PRnXkFf+rN2bk8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1784029534; c=relaxed/simple;
-	bh=xVf5evvB8FvUTkLLMIdH5J561qbfcKhWFLWfJ3S1bPI=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=oy3lNNEm/+OGFc1BykQul75dby3qpQGcxThKwpIrl1QT6rjQZkTpRjfudg3LfCTBlJnblDnZ0+hKlzE539WX4g4XXxLjZ8/TeMl5W2Mg+2H4aoUIqGiqjr/pBuNDtlntv74ysKSNQkN+jFvKtCwejeVI2y/HCHwVILETsJzTA10=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=Kpxd7Lxf; arc=none smtp.client-ip=148.251.105.195
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1784029530;
-	bh=xVf5evvB8FvUTkLLMIdH5J561qbfcKhWFLWfJ3S1bPI=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=Kpxd7Lxfm1d+n3Zqc5Cp5QDwyzhBw2qRRrDJHAx38FDPIN2Kpt5QP1I4/zoWo3FEU
-	 5d6cXAlXo0JBWf8KJwRDC93xyRliRrLZoR3o5Q1ccjTfP9Ncn7UPhykRozQsbrWO74
-	 C09PmdgjlidhA5D1IVCf9b2hhKpgXPm1j8T9QwZUhIJ6BEHQ9jKSQAmLjYXilvf/0U
-	 oy0pFYYLCRdU1U3wPmbxHBiIkdV/C/ICSXafaVpTHBf/E9/tky8eUpICuqGzusnmxr
-	 QO5RPjSWltpQ48LjwziKr8/KDzH3Z1y95IHu1KqQx+lt94dO3aAwpBwyS6lLT9NRf8
-	 CJz0fixDM5y9g==
-Received: from IcarusMOD.eternityproject.eu (unknown [100.64.1.21])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 80E2B17E0956;
-	Tue, 14 Jul 2026 13:45:29 +0200 (CEST)
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-To: chunkuang.hu@kernel.org
-Cc: p.zabel@pengutronix.de,
-	airlied@gmail.com,
-	simona@ffwll.ch,
-	maarten.lankhorst@linux.intel.com,
-	mripard@kernel.org,
-	tzimmermann@suse.de,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	matthias.bgg@gmail.com,
-	angelogioacchino.delregno@collabora.com,
-	dri-devel@lists.freedesktop.org,
-	linux-mediatek@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	justin.yeh@mediatek.com,
-	jason-jh.lin@mediatek.com,
-	kernel@collabora.com
-Subject: [PATCH v2 46/46] drm/mediatek: mtk_drm_drv: Fail init only if all paths are invalid
-Date: Tue, 14 Jul 2026 13:44:14 +0200
-Message-ID: <20260714114414.184512-47-angelogioacchino.delregno@collabora.com>
-X-Mailer: git-send-email 2.54.0
-In-Reply-To: <20260714114414.184512-1-angelogioacchino.delregno@collabora.com>
-References: <20260714114414.184512-1-angelogioacchino.delregno@collabora.com>
+	s=arc-20240116; t=1784029620; c=relaxed/simple;
+	bh=PpLrAeRhVpu1dWy+xVb8rUoHbuUV5k9Kd45x7IDUfsQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=MAH+GRqk7hWt/IVqbjvNidctbCllwY2iqI2jiyjBSzhrvjPY6J+LhKl1u0UZZd263e9GkNT5Uo47DEhArnV3lw3flWWmz47AIWTC1OIRb2oTRn4fvmeQ7S/IDYsbsNAOZbupCgTxzJymWL/cUXdgnGG6A7Nuew3P1cWFZe43pOQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=lontium.com; spf=pass smtp.mailfrom=lontium.com; dkim=pass (2048-bit key) header.d=lontium.com header.i=@lontium.com header.b=oMNNH0TX; arc=none smtp.client-ip=115.124.28.100
+DKIM-Signature:v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=lontium.com; s=default;
+	t=1784029608; h=MIME-Version:From:Date:Message-ID:Subject:To:Content-Type;
+	bh=i7cCoPUbrub6B12htwmRFp15EcZoaERECpcXhtYclkw=;
+	b=oMNNH0TXja24JYXP1a0qxngjFf7ZjbfH8/Ghr7durSEnuTC//jfGYjDUG2WvqoSgsOectzzqenFedREQUczLpygChKB1WlXfvnk9gyHAEsyWGB3K305EltGa7L3EjQccVacfbet4OEkQiyFC08j4jTReemW3mrxNVrGquiWzmBXEjnFTDlp98zvb+W4Zr+Kh+joM0piv8gajtoeYVw0RiQi7tKYIvEgGy+cHJ2E1Jp94i5hONBdtcX5ARDAzTC4fUFw4iTjf6CUAoTTahWJF4tiOxqjTM0onVAwo/8PnSTEOmkROCR2bkwJgyVT+ijTD7OGvL9CGrzYDVMgNHjioxA==
+X-Alimail-AntiSpam:AC=CONTINUE;BC=0.07437065|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_regular_dialog|0.0130186-0.00169102-0.98529;FP=3418604069976786166|3|1|3|0|-1|-1|-1;HT=maildocker-contentspam033032062159;MF=syyang@lontium.com;NM=1;PH=DS;RN=1;RT=1;SR=0;TI=SMTPD_---.iL-EyUt_1784029607;
+Received: from mail-oi1-f177.google.com(mailfrom:syyang@lontium.com fp:SMTPD_---.iL-EyUt_1784029607 cluster:ay29)
+          by smtp.aliyun-inc.com;
+          Tue, 14 Jul 2026 19:46:48 +0800
+Received: by mail-oi1-f177.google.com with SMTP id 5614622812f47-491bc1d4e6bso2903991b6e.0
+        for <devicetree@vger.kernel.org>; Tue, 14 Jul 2026 04:46:47 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AFNElJ/MjJLbTNp8qQ11wt5PGOEU6G/s96+jkILTwekz+EUTdHOQJRcOHYBvWiJtLi6J0+yl7EHlTwiFCzAa@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxa5XKa62DPwf4GzNWZfIjje4M1PE63kiF1sGHx9xbLm6oqLNn1
+	HNVhLdBHTgR+brJEQLhE1/W2QNR/KRYRS7QpyIzCfXDYPQ+roioKDeJd2ZpuHtIbqVLouQOFqeF
+	2zzKr3STRKHxZkiv3UJ0nedJGShvZhBI=
+X-Received: by 2002:a05:6808:1b99:b0:4a3:d383:b3ea with SMTP id
+ 5614622812f47-4a47a5e054dmr1059263b6e.27.1784029605960; Tue, 14 Jul 2026
+ 04:46:45 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20260714105828.2763677-1-syyang@lontium.com> <20260714105828.2763677-3-syyang@lontium.com>
+ <20260714111639.53ED11F000E9@smtp.kernel.org>
+In-Reply-To: <20260714111639.53ED11F000E9@smtp.kernel.org>
+From: Sunyun Yang <syyang@lontium.com>
+Date: Tue, 14 Jul 2026 19:46:33 +0800
+X-Gmail-Original-Message-ID: <CAFQXuNbYfMQO9EHm9Ym2ZPzHohNbkas9ThvLQmj=NLEe1bhi+A@mail.gmail.com>
+X-Gm-Features: AUfX_myp2kzOEm1DUx7Y224QGA5tgUgrUe_G0ESXBpXArFi_gt7X8ykS3UZ2jeU
+Message-ID: <CAFQXuNbYfMQO9EHm9Ym2ZPzHohNbkas9ThvLQmj=NLEe1bhi+A@mail.gmail.com>
+Subject: Re: [PATCH v16 2/2] drm/bridge: Add Lontium LT7911EXC eDP to MIPI DSI bridge
+To: sashiko-reviews@lists.linux.dev
+Cc: robh@kernel.org, dri-devel@lists.freedesktop.org, 
+	devicetree@vger.kernel.org, conor+dt@kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
-	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_DKIM_ALLOW(-0.20)[lontium.com:s=default];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[pengutronix.de,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,collabora.com,lists.freedesktop.org,lists.infradead.org,vger.kernel.org,mediatek.com];
-	TAGGED_FROM(0.00)[bounces-326171-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[angelogioacchino.delregno@collabora.com,devicetree@vger.kernel.org];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:chunkuang.hu@kernel.org,m:p.zabel@pengutronix.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:matthias.bgg@gmail.com,m:angelogioacchino.delregno@collabora.com,m:dri-devel@lists.freedesktop.org,m:linux-mediatek@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:justin.yeh@mediatek.com,m:jason-jh.lin@mediatek.com,m:kernel@collabora.com,m:krzk@kernel.org,m:conor@kernel.org,m:matthiasbgg@gmail.com,s:lists@lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[20];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[angelogioacchino.delregno@collabora.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-326174-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[collabora.com:+];
+	FORGED_RECIPIENTS(0.00)[m:sashiko-reviews@lists.linux.dev,m:robh@kernel.org,m:dri-devel@lists.freedesktop.org,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[syyang@lontium.com,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	DMARC_NA(0.00)[lontium.com];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[lontium.com:+];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	MISSING_XM_UA(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[syyang@lontium.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_NONE(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	ALIAS_RESOLVED(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[5];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,vger.kernel.org:from_smtp,collabora.com:from_mime,collabora.com:mid,collabora.com:email,collabora.com:dkim]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,sashiko.dev:url,vger.kernel.org:from_smtp,mail.gmail.com:mid,lontium.com:from_mime,lontium.com:email,lontium.com:dkim,bridge.dev:url]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 9B300754268
+X-Rspamd-Queue-Id: 699467543C3
 
-Up until now, if not all display controller paths were valid, the
-driver would fail probing and refuse to bind components: while
-that was a good idea before, now that mediatek-drm gained much
-more flexibility, it is finally possible to gracefully handle
-this situation and register only the valid paths while leaving
-the invalid ones unregistered, without any crash.
+<sashiko-bot@kernel.org> =E4=BA=8E2026=E5=B9=B47=E6=9C=8814=E6=97=A5=E5=91=
+=A8=E4=BA=8C 19:16=E5=86=99=E9=81=93=EF=BC=9A
+>
+> Thank you for your contribution! Sashiko AI review found 5 potential issu=
+e(s) to consider:
+> - [High] Dynamic devm allocation and bridge registration in DSI host atta=
+ch/detach causes devres leaks and list corruption.
+> - [High] Asynchronous workqueue dereferences dangling `bridge.dev` if the=
+ DRM display controller unbinds.
+> - [Medium] Failure to clear `output_bridge` in `dsi_host_detach` prevents=
+ panel re-attachment.
+> - [Low] Mutating `pre_enable_prev_first` of a downstream bridge object vi=
+olates subsystem API layering.
+> - [Low] Unsynchronized reads of `lt7911exc->removed` in the asynchronous =
+workqueue.
+> --
+>
+> --- Patch [2]: [PATCH v16 2/2] drm/bridge: Add Lontium LT7911EXC eDP to M=
+IPI DSI bridge ---
+> commit f0896e2dbabe50d3cbe793868df9c6d4afd6db5f
+> Author: Sunyun Yang <syyang@lontium.com>
+>
+> drm/bridge: Add Lontium LT7911EXC eDP to MIPI DSI bridge
+>
+> This commit adds support for the Lontium LT7911EXC bridge chip, which
+> converts eDP input to MIPI DSI output. It implements firmware upgrades,
+> GPIO reset handling, and DSI host interface attachment.
+>
+> > diff --git a/drivers/gpu/drm/bridge/lontium-lt7911exc.c b/drivers/gpu/d=
+rm/bridge/lontium-lt7911exc.c
+> > new file mode 100644
+> > --- /dev/null
+> > +++ b/drivers/gpu/drm/bridge/lontium-lt7911exc.c
+>
+> [ ... ]
+>
+> > @@ -344,14 +344,14 @@ static void lt7911exc_firmware_upgrade_work(struc=
+t work_struct *work)
+> > +{
+> > +     struct lt7911exc *lt7911exc =3D container_of(work, struct lt7911e=
+xc, work);
+> > +     struct device *dev =3D lt7911exc->dev;
+> > +     const struct firmware *fw;
+> > +     u8 *buffer;
+> > +     size_t total_size =3D FW_SIZE - 4;
+> > +     u32 crc32, version;
+> > +     int ret;
+> > +
+> > +     mutex_lock(&lt7911exc->upgrade_lock);
+> > +     if (lt7911exc->removed)
+>
+> [Severity: Low]
+> Should this read of the removed flag be protected by the ocm_lock? It
+> appears this can be evaluated concurrently with driver removal since the
+> lock isn't held here.
+>
 
-Count how many output paths are found, and then count how many
-have failed probing: if there is at least one valid path, avoid
-erroring out, so that at least some outputs will just work.
+Valid point. Will fix by protecting the initial removed check with ocm_lock=
+:
+mutex_lock(&lt7911exc->upgrade_lock);
+scoped_guard(mutex, &lt7911exc->ocm_lock) {
+      if (lt7911exc->removed)
+          goto out_unlock_upgrade;
+}
 
-Of course, any path failing is not a clean situation and must be
-resolved: in this case, function mtk_crtc_create() still prints
-error messages so, even though some output works, that will not
-go unnoticed, as a quick check in kmsg will show the errors that
-made a certain path not to register.
+> > +             goto out_unlock_upgrade;
+> > +
+>
+> [ ... ]
+>
+> > +out_unlock_upgrade:
+> > +     scoped_guard(mutex, &lt7911exc->ocm_lock) {
+> > +             if (!lt7911exc->removed)
+> > +                     lt7911exc->upgrade =3D false;
+> > +     }
+> > +
+> > +     /* Notify DRM to re-trigger modeset after firmware upgrade */
+> > +     if (!lt7911exc->removed && lt7911exc->bridge.dev)
+> > +             drm_kms_helper_hotplug_event(lt7911exc->bridge.dev);
+>
+> [Severity: High]
+> Could this dereference a freed drm_device if the upstream DRM display
+> controller unbinds before the firmware upgrade completes?
+>
+> The I2C device has a lifecycle independent of the DRM display controller.
+> If the upstream DRM driver is unloaded, the drm_device is destroyed, but
+> the I2C device remains, leaving bridge.dev populated but dangling.
+>
+> If a sysfs write triggers this asynchronous workqueue in that window,
+> it looks like it will pass a freed pointer to drm_kms_helper_hotplug_even=
+t().
+>
+This is a known limitation of the DRM bridge framework, not specific
+to this driver. drm_bridge_remove() does not clear bridge.dev, and
+there is no mechanism to bind the bridge lifecycle to the drm_device
+lifecycle. All bridge drivers that call drm_kms_helper_hotplug_event()
+share this risk. A proper fix requires framework-level support for
+bridge-to-drm_device lifetime tracking. Additionally, this scenario
+requires root sysfs access to trigger firmware upgrade while
+simultaneously unloading the DRM driver, which is an administrator
+operation outside normal usage.
 
-Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
----
- drivers/gpu/drm/mediatek/mtk_drm_drv.c | 20 ++++++++++++++++++--
- 1 file changed, 18 insertions(+), 2 deletions(-)
+> > +
+> > +     mutex_unlock(&lt7911exc->upgrade_lock);
+> > +}
+>
+> [ ... ]
+>
+> > +static int lt7911exc_dsi_host_attach(struct mipi_dsi_host *host, struc=
+t mipi_dsi_device *dev)
+> > +{
+> > +     struct lt7911exc *lt7911exc =3D dsi_host_to_lt7911exc(host);
+> > +     struct drm_bridge *bridge;
+> > +
+> > +     /* currently do not support connecting several DSI devices to the=
+ same host */
+> > +     if (lt7911exc->output_bridge)
+> > +             return -EBUSY;
+> > +
+> > +     if (dev->lanes > 4) {
+> > +             dev_err(lt7911exc->dev, "unsupported number of data lanes=
+(%u)\n", dev->lanes);
+> > +             return -EINVAL;
+> > +     }
+> > +
+> > +     bridge =3D devm_drm_of_get_bridge(lt7911exc->dev, host->dev->of_n=
+ode, 1, 0);
+>
+> [Severity: High]
+> Is it safe to dynamically allocate devm memory during panel attach?
+>
+> If the downstream panel driver is repeatedly unbound and rebound by a
+> local administrator, this will repeatedly allocate devres memory without
+> freeing it, causing a memory leak.
+>
+This is a false positive. The -EBUSY guard at the top of
+lt7911exc_dsi_host_attach() prevents re-attach when output_bridge is
+already set. After the first successful attach, any panel rebind
+attempt is rejected before reaching devm_drm_of_get_bridge() or
+drm_bridge_add(), so no devres leak or list corruption can occur. This
+follows the same pattern used in cdns-dsi-core.c (cdns_dsi_attach,
+line 1052).
 
-diff --git a/drivers/gpu/drm/mediatek/mtk_drm_drv.c b/drivers/gpu/drm/mediatek/mtk_drm_drv.c
-index 82d844b6abf7..7c9cb50909c8 100644
---- a/drivers/gpu/drm/mediatek/mtk_drm_drv.c
-+++ b/drivers/gpu/drm/mediatek/mtk_drm_drv.c
-@@ -394,6 +394,8 @@ static int mtk_drm_kms_init(struct drm_device *drm)
- 	struct mtk_drm_private *priv_n;
- 	struct device *dma_dev = NULL;
- 	struct drm_crtc *crtc;
-+	int num_failed = 0;
-+	int num_paths = 0;
- 	int ret, i, j;
- 
- 	if (drm_firmware_drivers_only())
-@@ -460,15 +462,29 @@ static int mtk_drm_kms_init(struct drm_device *drm)
- 			if (!priv_n->data->output_paths[i].len)
- 				continue;
- 
-+			num_paths++;
-+
-+			dev_vdbg(drm->dev,
-+				 "[CTRL%d-CRTC%d] Path Len:%d, Controller Order:%u\n",
-+				 j, i, priv_n->data->output_paths[i].len,
-+				 priv_n->data->output_paths[i].order);
-+
- 			ret = mtk_crtc_create(drm, i, j,
- 					      priv_n->data->conn_routes,
- 					      priv_n->data->num_conn_routes);
-+			if (ret == 0)
-+				break;
- 
--			if (ret)
--				goto err_component_unbind;
-+			num_failed++;
- 		}
- 	}
- 
-+	if (num_failed == num_paths) {
-+		dev_err(drm->dev, "No valid Display Controller path! Going out.\n");
-+		ret = -ENODEV;
-+		goto err_component_unbind;
-+	}
-+
- 	/* IGT will check if the cursor size is configured */
- 	drm->mode_config.cursor_width = 512;
- 	drm->mode_config.cursor_height = 512;
--- 
-2.54.0
+> > +     if (IS_ERR(bridge)) {
+> > +             dev_err(lt7911exc->dev, "failed to add DSI device\n");
+> > +             return PTR_ERR(bridge);
+> > +     }
+> > +
+> > +     lt7911exc->output_bridge =3D bridge;
+> > +
+> > +     /*
+> > +      * Force panel-first enable order: the DSI output stream (0xe0b0)
+> > +      * must not be enabled before the panel is powered on.
+> > +      * This override is safe because LT7911EXC's transfer() is a stub=
+ =E2=80=94
+> > +      * panel DCS commands are silently discarded and panel init is do=
+ne
+> > +      * by the chip's internal firmware. The panel driver's
+> > +      * prepare_prev_first preference is therefore irrelevant here.
+> > +      */
+> > +     lt7911exc->output_bridge->pre_enable_prev_first =3D false;
+>
+> [Severity: Low]
+> Is it acceptable to modify the state of a downstream bridge object
+> that is owned and managed by another driver? Doing so bypasses the
+> subsystem API layering.
+>
 
+This override is a hardware constraint. The DSI output stream
+(register 0xe0b0) must be enabled after the panel is powered on. The
+override is safe because transfer() is a stub =E2=80=94 panel DCS commands =
+are
+silently discarded and panel initialization is handled entirely by the
+chip's internal firmware. The panel driver's prepare_prev_first
+preference is therefore irrelevant for this chip. The comment above
+the assignment documents this rationale.
+
+> > +
+> > +     drm_bridge_add(&lt7911exc->bridge);
+>
+> [Severity: High]
+> Does this corrupt the global bridge list if the panel driver is rebound?
+>
+> When the downstream panel unbinds, lt7911exc_dsi_host_detach() calls
+> drm_bridge_remove(), which moves the bridge to the bridge_lingering_list
+> and destroys its mutexes.
+>
+> If the panel binds again, this drm_bridge_add() will be called on the sam=
+e
+> bridge structure, invoking list_add_tail() on a node that is already trac=
+ked
+> in the lingering list.
+>
+
+This is a false positive. The -EBUSY guard at the top of
+lt7911exc_dsi_host_attach() prevents re-attach when output_bridge is
+already set. After the first successful attach, any panel rebind
+attempt is rejected before reaching devm_drm_of_get_bridge() or
+drm_bridge_add(), so no devres leak or list corruption can occur. This
+follows the same pattern used in cdns-dsi-core.c (cdns_dsi_attach,
+line 1052).
+
+> > +
+> > +     return 0;
+> > +}
+> > +
+> > +static int lt7911exc_dsi_host_detach(struct mipi_dsi_host *host, struc=
+t mipi_dsi_device *dev)
+> > +{
+> > +     struct lt7911exc *lt7911exc =3D dsi_host_to_lt7911exc(host);
+> > +
+> > +     drm_bridge_remove(&lt7911exc->bridge);
+>
+> [Severity: Medium]
+> Does this prevent the panel from re-attaching later?
+>
+> The detach function does not set lt7911exc->output_bridge back to NULL.
+> If the downstream panel driver tries to attach again,
+> lt7911exc_dsi_host_attach() will check if output_bridge is set and return
+> -EBUSY, leaving the display pipeline permanently broken until the bridge
+> driver is reloaded.
+>
+This is intentional and consistent with cdns-dsi-core.c, where
+cdns_dsi_detach() (line 1082-1091) does not clear output->dev either.
+Clearing output_bridge would allow re-attach, which would call
+devm_drm_of_get_bridge() again and leak the previous devm allocation.
+The DRM bridge framework does not currently support dynamic
+reconfiguration of the bridge chain. Panel rebind is not supported;
+reloading the bridge driver is required, matching the upstream
+convention.
+
+> > +
+> > +     return 0;
+> > +}
+>
+> --
+> Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260714105828.27=
+63677-1-syyang@lontium.com?part=3D2
 
