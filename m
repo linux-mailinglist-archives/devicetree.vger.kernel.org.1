@@ -1,56 +1,56 @@
-Return-Path: <devicetree+bounces-326136-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-326135-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id UbSAJoYhVmqozgAAu9opvQ
-	(envelope-from <devicetree+bounces-326136-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 13:46:14 +0200
+	id oT//NlQhVmqAzgAAu9opvQ
+	(envelope-from <devicetree+bounces-326135-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 13:45:24 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA2B37540F0
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 13:46:13 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C937754078
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 13:45:24 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=collabora.com header.s=mail header.b=mgwGgJXC;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326136-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-326136-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=collabora.com header.s=mail header.b=eoXmSbyH;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326135-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-326135-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=none) header.from=collabora.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 2360D3024758
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 11:45:15 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 89E21302BCBD
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 11:45:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7716F38F92F;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FB4538F636;
 	Tue, 14 Jul 2026 11:44:51 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C60D53914E2;
-	Tue, 14 Jul 2026 11:44:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0B4E38D3F2;
+	Tue, 14 Jul 2026 11:44:41 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1784029491; cv=none; b=Xg6vbpV8XWSqIgTojz9cjkWcKubhYko2RJbOkbXLkuYfA1JLZJmaw96GLD+hBmVohquAcy2e+sKCj1KvMKOSFP3w4JpNTwv130KnHo8gPtG8hEFZeC3+tJ9yJ4U48+8Xm6BJmmjPkEC+EkRKuH1cnBIRt7vEJKSWaSPrZUh+F64=
+	t=1784029490; cv=none; b=akQLfG1x+9gAnTcGvH5078uNyaQBJTEJV4zdX19BkxzuS9zA1/xDCJHsjTQF4XWfVmJq+tIKSRFU1hbO2vMwYBklstuFdVSMGCvq3O209VtPDsHNeg/gBlrkCVxcoatEaqfUerUX48+MbFEeSkHXUFlFfbVGCm3qiGm7LQ9qODY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1784029491; c=relaxed/simple;
-	bh=a3Zk9VtwjzQZ0fQ39QCCtxiwLry/La2QPCCPr/aNPEs=;
+	s=arc-20240116; t=1784029490; c=relaxed/simple;
+	bh=sd+JYVRU6OpcEMXuSkYvEWh3qcS31gGWMQijSMj+rNI=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=a9K/q4Ak7zwsQ/siWEpIyylc9vrKamPKZ/2RG0XnXf5jK7So04ALfiH61o9eTwT2Oik/e3SKGeWIC167h7+Fx/6iBnukxEcguQ7XQSzIIdGC7lwyXmMPpj1Oa5XiRAtux3XRNKz2hp4kmErZ71Iqz8C1sOmOUg6HETZ12wLmBr4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=mgwGgJXC; arc=none smtp.client-ip=148.251.105.195
+	 MIME-Version; b=la/39zKJMnClkv8Da8Pn3w2Yd1BWX1a9lH0G36RnWThbZtaDZq2zVvXABjdCNFXGoDOuLjYHLid9tNrlMFQ956+KxC6Fgbjr0i7o9/VKoeghm/gVRXsTzQ1lyj1qYheT4iUAP49435MSb2XVLYyewiu0B8n9SAdDY2Zof7lYUiI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=eoXmSbyH; arc=none smtp.client-ip=148.251.105.195
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1784029479;
-	bh=a3Zk9VtwjzQZ0fQ39QCCtxiwLry/La2QPCCPr/aNPEs=;
+	s=mail; t=1784029480;
+	bh=sd+JYVRU6OpcEMXuSkYvEWh3qcS31gGWMQijSMj+rNI=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=mgwGgJXCRzEOdwC7wAnqJJ7sLRdNLOHiObE/1iZpQOdcG6n4pJfi6iEKexkOQjxq+
-	 i8e8psG6eMH5lVecw5Nr8KhpUq+f2zjRf1A+3Wm1JJ5BHocNWmkmf60VpO22yjdQRX
-	 I6lNxyVTEpEPx1Lk27kOJaFJsRgDKF4DxaGY6LYzJR8BjBqc5UCajlkcTfaKRuPP8p
-	 2GwzFEb26cMPTcQke3Gqlib1mMClMDhGlx19H3ygr+NHOlhnCn9ZDgdXMMqtKJwcIv
-	 3+M64jqq7dw9yhabTlAb3/U5PfJftdueXyGJPePhQQW8U16GPB7Iis6Vu2D+cf8Bp6
-	 NsTfA0h0uYY2Q==
+	b=eoXmSbyHcj6RJB/bQXWbtn9HZG8CaQ7pk1BYZNcV64AcSmPAsVC4Cz7g0TOH2ApMR
+	 Gurg0GNiFYKLDdTJpvebxGdwURew2RPYoB4dzutRBd8Uup4FamJtIt617NsOcvRVcD
+	 5RAsJ9L/gZ59kdWinBI1hmtnR9yW1mRPzvB64MczyNDaKB2f+rABfHLx+asQIumloQ
+	 dwnl6zg2B5fEZlkCvOUhyxcHByNu803XULafqEhlChBK81O0QCWdASO2/hX29ZOKv/
+	 SZcvs+snIWlIlZe9K+30x4d7ptgHeifpLRJttUzaiT2pnr9HY7PWycdIoXUDZVOzQx
+	 Qi2CKE2hRMF5Q==
 Received: from IcarusMOD.eternityproject.eu (unknown [100.64.1.21])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
 	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 54F1317E010F;
-	Tue, 14 Jul 2026 13:44:38 +0200 (CEST)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 3E4E917E0857;
+	Tue, 14 Jul 2026 13:44:39 +0200 (CEST)
 From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 To: chunkuang.hu@kernel.org
 Cc: p.zabel@pengutronix.de,
@@ -71,11 +71,10 @@ Cc: p.zabel@pengutronix.de,
 	linux-arm-kernel@lists.infradead.org,
 	justin.yeh@mediatek.com,
 	jason-jh.lin@mediatek.com,
-	kernel@collabora.com,
-	CK Hu <ck.hu@mediatek.com>
-Subject: [PATCH v2 08/46] drm/mediatek: ddp_comp: Move internal component register in function
-Date: Tue, 14 Jul 2026 13:43:36 +0200
-Message-ID: <20260714114414.184512-9-angelogioacchino.delregno@collabora.com>
+	kernel@collabora.com
+Subject: [PATCH v2 09/46] drm/mediatek: De-duplicate internal component checks
+Date: Tue, 14 Jul 2026 13:43:37 +0200
+Message-ID: <20260714114414.184512-10-angelogioacchino.delregno@collabora.com>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20260714114414.184512-1-angelogioacchino.delregno@collabora.com>
 References: <20260714114414.184512-1-angelogioacchino.delregno@collabora.com>
@@ -89,137 +88,175 @@ Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-326136-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
+	URIBL_MULTI_FAIL(0.00)[collabora.com:server fail,vger.kernel.org:server fail];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER(0.00)[angelogioacchino.delregno@collabora.com,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[21];
-	FORGED_RECIPIENTS(0.00)[m:chunkuang.hu@kernel.org,m:p.zabel@pengutronix.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:matthias.bgg@gmail.com,m:angelogioacchino.delregno@collabora.com,m:dri-devel@lists.freedesktop.org,m:linux-mediatek@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:justin.yeh@mediatek.com,m:jason-jh.lin@mediatek.com,m:kernel@collabora.com,m:ck.hu@mediatek.com,m:krzk@kernel.org,m:conor@kernel.org,m:matthiasbgg@gmail.com,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
 	FREEMAIL_CC(0.00)[pengutronix.de,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,collabora.com,lists.freedesktop.org,lists.infradead.org,vger.kernel.org,mediatek.com];
-	DKIM_TRACE(0.00)[collabora.com:+];
+	FORWARDED(0.00)[lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-326135-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER(0.00)[angelogioacchino.delregno@collabora.com,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:chunkuang.hu@kernel.org,m:p.zabel@pengutronix.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:matthias.bgg@gmail.com,m:angelogioacchino.delregno@collabora.com,m:dri-devel@lists.freedesktop.org,m:linux-mediatek@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:justin.yeh@mediatek.com,m:jason-jh.lin@mediatek.com,m:kernel@collabora.com,m:krzk@kernel.org,m:conor@kernel.org,m:matthiasbgg@gmail.com,s:lists@lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[20];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[angelogioacchino.delregno@collabora.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	DKIM_TRACE(0.00)[collabora.com:+];
+	TO_DN_NONE(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	ALIAS_RESOLVED(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,collabora.com:from_mime,collabora.com:mid,collabora.com:email,collabora.com:dkim,mediatek.com:email,vger.kernel.org:from_smtp]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:from_mime,collabora.com:mid,collabora.com:email,collabora.com:dkim,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: BA2B37540F0
+X-Rspamd-Queue-Id: 6C937754078
 
-In preparation for adding an helper serving the purpose of finally
-removing duplicated code to check for internal/simple components,
-and for improving human readability in the up coming refactoring,
-move the internal/simple component registration logic to its own
-mtk_ddp_comp_init_internal_comp() function.
+Both mtk_ddp_comp and mtk_drm_drv are performing similar checks
+to distinguish components that have an external driver from ones
+that don't - with the exception of mtk_ddp_comp also checking if
+the component is related to a backlight driver.
 
-This brings no functional changes.
+Create helper functions in the main component management driver
+mtk_ddp_comp, one to check if the currently checked component is
+internal/simple, and one (static, internal to mtk_ddp_comp only)
+to check if it is a backlight related one.
 
-Reviewed-by: CK Hu <ck.hu@mediatek.com>
+Since the amount of internal/simple components is lower than the
+amount of ones having a specific driver, and since it is expected
+that most of (if not all) of any new hardware support will need a
+specific driver as well, the helpers are doing an inverted check
+compared to what the code was doing before, as both mtk_ddp_comp
+and mtk_drm_drv were checking for external component explicitly,
+while now they're doing the same, but checking if NOT internal.
+
+Also, while at it, for the OVL_ADAPTOR components case, instead
+of checking for MTK_DISP_OVL_ADAPTOR, call the already provided
+mtk_ovl_adaptor_is_comp_present() function to check for this type
+of component.
+
 Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 ---
- drivers/gpu/drm/mediatek/mtk_ddp_comp.c | 55 +++++++++++++++----------
- 1 file changed, 33 insertions(+), 22 deletions(-)
+ drivers/gpu/drm/mediatek/mtk_ddp_comp.c | 46 ++++++++++++++-----------
+ drivers/gpu/drm/mediatek/mtk_ddp_comp.h |  1 +
+ drivers/gpu/drm/mediatek/mtk_drm_drv.c  | 16 ++-------
+ 3 files changed, 29 insertions(+), 34 deletions(-)
 
 diff --git a/drivers/gpu/drm/mediatek/mtk_ddp_comp.c b/drivers/gpu/drm/mediatek/mtk_ddp_comp.c
-index d716fd9f8a70..2ba2123238b3 100644
+index 2ba2123238b3..a9c3e29fb340 100644
 --- a/drivers/gpu/drm/mediatek/mtk_ddp_comp.c
 +++ b/drivers/gpu/drm/mediatek/mtk_ddp_comp.c
-@@ -629,6 +629,38 @@ static void mtk_ddp_comp_clk_put(void *_clk)
+@@ -629,6 +629,26 @@ static void mtk_ddp_comp_clk_put(void *_clk)
  	clk_put(clk);
  }
  
-+static int mtk_ddp_comp_init_internal_comp(struct device *dev, struct device *comp_dev)
++static bool mtk_ddp_comp_is_backlight_comp(enum mtk_ddp_comp_type type)
 +{
-+	struct device_node *comp_node = comp_dev->of_node;
-+	struct mtk_ddp_comp_dev *priv;
-+	int ret;
++	return type == MTK_DISP_BLS || type == MTK_DISP_PWM;
++}
 +
-+	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
++bool mtk_ddp_comp_is_internal_comp(enum mtk_ddp_comp_type type)
++{
++	switch (type) {
++	case MTK_DISP_DITHER:
++	case MTK_DISP_OD:
++	case MTK_DISP_POSTMASK:
++	case MTK_DISP_UFOE:
++		return true;
++	default:
++		break;
++	};
 +
-+	priv->regs = devm_of_iomap(dev, comp_node, 0, NULL);
-+	if (IS_ERR(priv->regs))
-+		return PTR_ERR(priv->regs);
++	return false;
++}
 +
-+	priv->clk = of_clk_get(comp_node, 0);
-+	if (IS_ERR(priv->clk))
-+		return PTR_ERR(priv->clk);
-+
-+	ret = devm_add_action_or_reset(dev, mtk_ddp_comp_clk_put, priv->clk);
-+	if (ret)
-+		return ret;
-+
-+#if IS_REACHABLE(CONFIG_MTK_CMDQ)
-+	ret = cmdq_dev_get_client_reg(comp_dev, &priv->cmdq_reg, 0);
-+	if (ret)
-+		dev_dbg(comp_dev, "get mediatek,gce-client-reg fail!\n");
-+#endif
-+	dev_set_drvdata(comp_dev, priv);
-+
-+	return 0;
-+};
-+
- int mtk_ddp_comp_init(struct device *dev, struct device_node *node,
- 		      struct mtk_drm_comp_list *hlist,
- 		      unsigned int comp_id)
-@@ -636,7 +668,6 @@ int mtk_ddp_comp_init(struct device *dev, struct device_node *node,
- 	struct platform_device *comp_pdev;
- 	struct mtk_ddp_comp *comp;
- 	enum mtk_ddp_comp_type type;
--	struct mtk_ddp_comp_dev *priv;
- 	int ret;
- 
- 	if (comp_id >= DDP_COMPONENT_DRM_ID_MAX)
-@@ -686,29 +717,9 @@ int mtk_ddp_comp_init(struct device *dev, struct device_node *node,
- 	    type == MTK_DISP_DSI)
- 		goto end;
- 
--	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
--	if (!priv)
--		return -ENOMEM;
--
--	priv->regs = devm_of_iomap(dev, node, 0, NULL);
--	if (IS_ERR(priv->regs))
--		return PTR_ERR(priv->regs);
--
--	priv->clk = of_clk_get(node, 0);
--	if (IS_ERR(priv->clk))
--		return PTR_ERR(priv->clk);
--
--	ret = devm_add_action_or_reset(dev, mtk_ddp_comp_clk_put, priv->clk);
-+	ret = mtk_ddp_comp_init_internal_comp(dev, comp->dev);
+ static int mtk_ddp_comp_init_internal_comp(struct device *dev, struct device *comp_dev)
+ {
+ 	struct device_node *comp_node = comp_dev->of_node;
+@@ -700,26 +720,12 @@ int mtk_ddp_comp_init(struct device *dev, struct device_node *node,
  	if (ret)
  		return ret;
+ 
+-	if (type == MTK_DISP_AAL ||
+-	    type == MTK_DISP_BLS ||
+-	    type == MTK_DISP_CCORR ||
+-	    type == MTK_DISP_COLOR ||
+-	    type == MTK_DISP_DSC ||
+-	    type == MTK_DISP_GAMMA ||
+-	    type == MTK_DISP_MERGE ||
+-	    type == MTK_DISP_OVL ||
+-	    type == MTK_DISP_OVL_2L ||
+-	    type == MTK_DISP_PWM ||
+-	    type == MTK_DISP_RDMA ||
+-	    type == MTK_DISP_WDMA ||
+-	    type == MTK_DISP_DPI ||
+-	    type == MTK_DISP_DP_INTF ||
+-	    type == MTK_DISP_DSI)
+-		goto end;
 -
--#if IS_REACHABLE(CONFIG_MTK_CMDQ)
--	ret = cmdq_dev_get_client_reg(comp->dev, &priv->cmdq_reg, 0);
+-	ret = mtk_ddp_comp_init_internal_comp(dev, comp->dev);
 -	if (ret)
--		dev_dbg(comp->dev, "get mediatek,gce-client-reg fail!\n");
--#endif
--
--	platform_set_drvdata(comp_pdev, priv);
+-		return ret;
++	/* If there's no external driver for this component, allocate and init now */
++	if (mtk_ddp_comp_is_internal_comp(type) || mtk_ddp_comp_is_backlight_comp(type)) {
++		ret = mtk_ddp_comp_init_internal_comp(dev, comp->dev);
++		if (ret)
++			return ret;
++	}
  end:
  	hash_add(hlist->ddp_list, &comp->lnode, comp->id);
  
+diff --git a/drivers/gpu/drm/mediatek/mtk_ddp_comp.h b/drivers/gpu/drm/mediatek/mtk_ddp_comp.h
+index 4203eecb2a7b..58a06add1368 100644
+--- a/drivers/gpu/drm/mediatek/mtk_ddp_comp.h
++++ b/drivers/gpu/drm/mediatek/mtk_ddp_comp.h
+@@ -351,6 +351,7 @@ static inline struct mtk_ddp_comp
+ 	return NULL;
+ }
+ 
++bool mtk_ddp_comp_is_internal_comp(enum mtk_ddp_comp_type type);
+ int mtk_ddp_comp_get_id(struct device_node *node,
+ 			enum mtk_ddp_comp_type comp_type);
+ int mtk_find_possible_crtcs(struct drm_device *drm, struct device *dev);
+diff --git a/drivers/gpu/drm/mediatek/mtk_drm_drv.c b/drivers/gpu/drm/mediatek/mtk_drm_drv.c
+index e956e1966b86..18683aee61ff 100644
+--- a/drivers/gpu/drm/mediatek/mtk_drm_drv.c
++++ b/drivers/gpu/drm/mediatek/mtk_drm_drv.c
+@@ -1166,20 +1166,8 @@ static int mtk_drm_probe(struct platform_device *pdev)
+ 		 * blocks have separate component platform drivers and initialize their own
+ 		 * DDP component structure. The others are initialized here.
+ 		 */
+-		if (comp_type == MTK_DISP_AAL ||
+-		    comp_type == MTK_DISP_CCORR ||
+-		    comp_type == MTK_DISP_COLOR ||
+-		    comp_type == MTK_DISP_DSC ||
+-		    comp_type == MTK_DISP_GAMMA ||
+-		    comp_type == MTK_DISP_MERGE ||
+-		    comp_type == MTK_DISP_OVL ||
+-		    comp_type == MTK_DISP_OVL_2L ||
+-		    comp_type == MTK_DISP_OVL_ADAPTOR ||
+-		    comp_type == MTK_DISP_RDMA ||
+-		    comp_type == MTK_DISP_WDMA ||
+-		    comp_type == MTK_DISP_DP_INTF ||
+-		    comp_type == MTK_DISP_DPI ||
+-		    comp_type == MTK_DISP_DSI) {
++		if (!mtk_ddp_comp_is_internal_comp(comp_type) &&
++		    !mtk_ovl_adaptor_is_comp_present(node)) {
+ 			dev_info(dev, "Adding component match for %pOF\n",
+ 				 node);
+ 			drm_of_component_match_add(dev, &match, component_compare_of,
 -- 
 2.54.0
 
