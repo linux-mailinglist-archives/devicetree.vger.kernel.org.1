@@ -1,211 +1,175 @@
-Return-Path: <devicetree+bounces-326412-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-326424-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 17VmMXuKVmqJ8gAAu9opvQ
-	(envelope-from <devicetree+bounces-326412-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 21:14:03 +0200
+	id 2+BXIyiLVmrl8gAAu9opvQ
+	(envelope-from <devicetree+bounces-326424-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 21:16:56 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id B852D75820B
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 21:14:02 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 87BD775828A
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 21:16:55 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=arndb.de header.s=fm1 header.b=D7T3B79e;
-	dkim=pass header.d=messagingengine.com header.s=fm2 header.b="G DTRFcT";
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326412-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-326412-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=arndb.de;
+	dkim=pass header.d=chromium.org header.s=google header.b=CwlYWUeq;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326424-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-326424-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=chromium.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id AF1FF302AD39
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 19:12:30 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id D93A83018A80
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 19:16:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F00E0418A37;
-	Tue, 14 Jul 2026 19:12:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADCF12931F8;
+	Tue, 14 Jul 2026 19:16:49 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from fout-a2-smtp.messagingengine.com (fout-a2-smtp.messagingengine.com [103.168.172.145])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oi1-f180.google.com (mail-oi1-f180.google.com [209.85.167.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3AE5418A3E
-	for <devicetree@vger.kernel.org>; Tue, 14 Jul 2026 19:12:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 128C52931CD
+	for <devicetree@vger.kernel.org>; Tue, 14 Jul 2026 19:16:46 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1784056349; cv=none; b=SnCI1fXQdA8tfII2FJsM074HmiKpH49dmIZphouiENyOjkLa5kwBSQpcUPFDBvD5h8JfIJn1M4BefkNsxy7D4HwvcGWsUmBBVtAgmE/myiOA4OGn3oSeo6gf4jd54E+aD2KU4kEXnt63hBST3YBuKDy4A1xrzVCNbcwR6l4co5M=
+	t=1784056609; cv=none; b=Bs4nXUI7X0PIFUGgoNTY8L/0bTH7n6aO4IrZLM5o9GoaJHXq/SH38ya88wH7E13i0BX8JDTMDGibrAbNRsDZ5139gBUGIpF9YnwhkVsP5Zgbphg+slkzshEh1887JZ/awuwE1I34ZN7lP9RL3uIdgx50chJwqPFK5MpJLIHAEYE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1784056349; c=relaxed/simple;
-	bh=NKQz55hxpy4V2/xw8iMhAaHilmGFcZmdA4Bdw1G6rTo=;
-	h=MIME-Version:Date:From:To:Cc:Message-Id:In-Reply-To:References:
-	 Subject:Content-Type; b=iWw58uFQs4mGNz+JbGHK8vkm0hMw8mPq9ZU62W24VF9YRJZYdmtUmoDCwp1LJhDiKt/X5XPguuqDpb+hWbmmqV609bmzR0EljIYI8SHtri6xr9bPVucH6L9eRGCCa1ups7AT0XgVxSXBjn98b8G8ux3s2pvxPBPSAd4dlhHDsN0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de; spf=pass smtp.mailfrom=arndb.de; dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b=D7T3B79e; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=GDTRFcTs; arc=none smtp.client-ip=103.168.172.145
-Received: from phl-compute-04.internal (phl-compute-04.internal [10.202.2.44])
-	by mailfout.phl.internal (Postfix) with ESMTP id DA75BEC00BB;
-	Tue, 14 Jul 2026 15:12:25 -0400 (EDT)
-Received: from phl-imap-05 ([10.202.2.95])
-  by phl-compute-04.internal (MEProxy); Tue, 14 Jul 2026 15:12:25 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
-	:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to; s=fm1; t=1784056345;
-	 x=1784142745; bh=tLip3RoufnJPJeBbpcoojxrxLCk+6g2vq1XFlcI4NnY=; b=
-	D7T3B79eqgvNNcgXs5wOLs6jcjNzHZ5iIolHLBxW1Oeb62FFt7Fz8IM1Eqypq1IQ
-	D4lBNgJBD37YDROUrqB5O3sqXbfFQ7x1nnhSXwTRpg9Va/jO4P3+3NRImMJgFQk/
-	lqHHyP3OdpN73ZQzhRtqxJCfNw3Q0xfFTLsxCKeNGCBXqgyAjoCtDpn+sfeLR4TF
-	5FuwIUQNbPjSoNvLqKoN21kmYpDwSyi/ESlS4alBQltxnvIir4Kied2hGdpnlQRb
-	7e45H8/79sgbRhgt85DHWa0BWXmd8AYO4dFYQhQ2jYIdyczN7KRXWPrQAxxvyHLT
-	3fVlzDq5IZL4RfFxYJiY5Q==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1784056345; x=
-	1784142745; bh=tLip3RoufnJPJeBbpcoojxrxLCk+6g2vq1XFlcI4NnY=; b=G
-	DTRFcTspGQzHX0No0owi7/3QsH42KVB+/8qNjzHm0Z+HibJYkkGvhVDyNRpcS9Sw
-	PTGfU8P09TMN/zCJXiLzYy8fAWFw/CjcuIookfLYVit/6+guvJAgTolKnbK/IrKT
-	HY4IAk42D4bZzB8TL0hw7E6prNgU/WxQuxhVWMRlxQY6Xz26MLFETPloEQptAzqk
-	9bgo6xnLgtONB2z2+gMtfL/XQg7bDJ1ZcghPeJxjEnDiFICB/oBKW0DwZRFlG743
-	jM6q+x0/UfNMJkmYVV1B4KenRl5BLtymc1BOqqIxL2N72bqYZXxMj28yxMXD+l+I
-	t3ThIvWHSoXltr4h45Xyg==
-X-ME-Sender: <xms:GYpWah9aHwjwzulsOuw6GR9p1l7nl5KKtBu4u618Q-w8PDreV8KY9A>
-    <xme:GYpWaggNdHK0omDBpm_5-PLHndRj2n4cdSwq6wV6jWmrRRdaCl8tH3asgxKjRQCYy
-    rd5EgEj2DHF5sGpsHivx7wm-Rg4pKonGje1r4OvpyoRWfIZvKF4bVo>
-X-ME-Proxy-Cause: dmFkZTEszan4uBCfC6CBBOwC+6icxd081lKQSn1MZskwHoItpuHEdz+qLM04ltCMWvLQWg
-    vNwQsZuo/EHr2DPm3c8KV3BRW/3o+gZY1Rqdc9BjC+QrKvKbsZCrI2BVIshm3izHuH3Ya0
-    wci/QX0Fe4fIv+FTVP7FGvPA7Tl/KaXtF6RmQVsE+IwA3iiX/2tLmH1GkfnnVYw8F9WNAj
-    4rv9aefvuVnwZvnnYd2AtG7aYXeGk2I1+AxMuGhYpRhFTXbnYZr2jmWtYa1sk8kMLM9F8m
-    V2jP5ap/hZCEAfp5iWde3GVq7PENYGhuzlbnlPuNsGr4ntRC1u0zrMnBoiC5DJ4PoSTNnU
-    KHksBsUZ5SqWaTsENjVOnyKvl9hGzMLNOrNLT6kcXWGLTqKpZmcZVkL3mutxo2VAmW2L9z
-    EDyihBJllIC159RI2O3886S16ZYeRO8X9SzeWEMys7K1UhefeCGwS2FSCxEAwY4ejrovXd
-    tkc3eRV7paXBZy2m7w4RUFLS8puKeSVKx28fnDwnB3r6yqXecP6LI5p+St7GyPUPJ92Ecx
-    Yd4uosHPaCThHye2UNyxU5qafJTlPyUl4AkZSBYKvi/IS5EV5sem0I1xBnFFvYdL352eBj
-    fSj9mk92mD632xpOmI0Od7uptE8xJJcLgkui76COG459r7c0X+1UTteeZCPA
-X-ME-Proxy: <xmx:GYpWagKSOWVMNvAMYhfrC-NcyMhG82ofgzJFojGaStk0lbTjFUxWng>
-    <xmx:GYpWapFQhSxnCFLL3F1lsGil8uVeU5oN5iqfoOW3B-Op-_v-SporEw>
-    <xmx:GYpWasTbChXVxj3WAG0AoiON8ZBWW5om7PKHvahnK36Ed26wOXbJkA>
-    <xmx:GYpWatfrMj_nmH5VUDku3Z28re-BUBwMLd9EoLDHyiqDzAKwLSaIMQ>
-    <xmx:GYpWaqHVoZvLhtvMZPoudpm-LqU3-sjiolVlwvIDTiRr1o830SpLIPrO>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.phl.internal (Postfix, from userid 501)
-	id 934D31820082; Tue, 14 Jul 2026 15:12:25 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
+	s=arc-20240116; t=1784056609; c=relaxed/simple;
+	bh=+f+IDLTrXMIwTZ7iuJjJZVhlyaQWKezzbOXQBgkin+k=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=lt5rZSSHLZUiAV3CatkUFK7ZB5AXkOfwTrtaJ83Sghl5m/FtzkD3a71Y3dJD93ew2DVt1iDst7e85yaSuK2fnhxLolWknR3vE2iFWKPQ83Wpw/xBC1UfkUhZW4QeMUwuqbM55moOaJuY5Yibt3aZ5LjuKD1jYwiNS7PzYGb8pLU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=CwlYWUeq; arc=none smtp.client-ip=209.85.167.180
+Received: by mail-oi1-f180.google.com with SMTP id 5614622812f47-495b27007d0so945692b6e.1
+        for <devicetree@vger.kernel.org>; Tue, 14 Jul 2026 12:16:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1784056605; x=1784661405; darn=vger.kernel.org;
+        h=content-transfer-encoding:content-type:mime-version:message-id:date
+         :subject:cc:to:from:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=xuXRtMtsCrbKtroiJGCdttoDF3tRJIUhOu4EeJUBsWE=;
+        b=CwlYWUeqvLnTF1uafTf4ApxV8OCRd58uuBHZK6U1cLp8LwKUF8sSP3iIErGqbiQrXX
+         SpZtB70POQ9kZg5JwTumT24Cs4jVeuflxIBb4PXE/+Dk0UchakKoteHEON1UMLiRRhAZ
+         qT+KRJTiLwXt0nzzoYf9JmzXhKDe/UMI1ELqg=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1784056605; x=1784661405;
+        h=content-transfer-encoding:content-type:mime-version:message-id:date
+         :subject:cc:to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=xuXRtMtsCrbKtroiJGCdttoDF3tRJIUhOu4EeJUBsWE=;
+        b=iHpXEG4K/q+723L9EgMWrHdwemDo1SLtHcQ6hiPanYhbCMYbNCl04AEhi7knaYlFYV
+         IHvAHnhGyYJ/A5o09WBriBo3O8e1pONAGk/BWZ6kfHSsbDoUyrf+k/RN59kKF0K5iWZu
+         btsN5dbL7PEiumTsUi3ifLpCgpGHCqGMO2JGLxFuxV4w9mZJqzRl8ARcLGa3/H3Wr1/U
+         EUXbF30zhUImYKBYd/jUjd4ulcFFonONMLfnTwBV2y26xKYgnless/cLe7EXJliD2qel
+         oeRQcyvA9Ifvb6O0JqT78xocdJvY2Z87tME8I7n3i80482zgE99DO2iUfHlTsxYmxvP3
+         KYVg==
+X-Forwarded-Encrypted: i=1; AFNElJ8UrNdGVnt7dAlZ8d+1YrxTIVhgQbjOdx3ATOkY9BeHZo0DPVsuneRvUpZUANri2UxKK8YM5Y1wTWE4@vger.kernel.org
+X-Gm-Message-State: AOJu0YxCJ6fohyYITMJnt5lJ+NsixXn9mhuDNSHlSPX/7bhYG6qW7etO
+	rj/lR3z1yt5sCV8+jSCpMHZQFOGVpdodHLov4vBntYB79EQAQXUpp2asgjL/y1+LLQ==
+X-Gm-Gg: AfdE7cnDcQz2UFx9yut/JRANF7ymvhGGEV6K5vq+EgfB5D/0sWphmuNbU+iIacHgUH1
+	pnrpDOrHuFzaY4KahLGnSK6lUD3bqxrWllfd3FxnrhrSYxM7C/K+P8ZCvMKIFsVi6b3AQZGpSc3
+	W0csBM903Ly7uyxkW8qewf3tm6q9NNif6RGJN23zQSKJ8guX6beBypRU8ICsiG7dXfcAUXD3Z8/
+	9FklMOf+iqEUBcrSiJTTwC3DipwMGTZSmK4kLxzx0rDVLonjXyzdwqPOY5rldpSQuzrzwg6zekk
+	J4uYCrhDIm0Bhfmvytfasb0sXWCqC08nbCP67ZNbs6GNdSLybUZwW1X6r0cQEPd09ygaA+r/IRv
+	3qCDl0FpOUSnEFTpo/dVg183CcGZ5Kscla7dEbeXKY4rF61RqeZq1JdMrHX6iJcdZiZiOplQCuB
+	czy4JM/uU=
+X-Received: by 2002:a05:6808:4f22:b0:4a3:26b5:7c3a with SMTP id 5614622812f47-4a42ae048e3mr10469731b6e.15.1784056605373;
+        Tue, 14 Jul 2026 12:16:45 -0700 (PDT)
+Received: from chromium.org ([174.51.25.52])
+        by smtp.gmail.com with ESMTPSA id 5614622812f47-4a1acc82f3csm14767236b6e.3.2026.07.14.12.16.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 14 Jul 2026 12:16:44 -0700 (PDT)
+From: Simon Glass <sjg@chromium.org>
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: Heiko Stuebner <heiko@sntech.de>,
+	Andy Shevchenko <andy@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-rockchip@lists.infradead.org,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	=?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>,
+	Rob Herring <robh@kernel.org>,
+	Simon Glass <sjg@chromium.org>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2] dt-bindings: iio: adc: rockchip-saradc: Add RV1106 compatible
+Date: Tue, 14 Jul 2026 13:16:32 -0600
+Message-ID: <20260714131631.v2.1.0b846080833e4b836793c43fc26d1c6d817cf9b4@changeid>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-ThreadId: AP3t97ZhQAc3
-Date: Tue, 14 Jul 2026 21:12:04 +0200
-From: "Arnd Bergmann" <arnd@arndb.de>
-To: "Linus Walleij" <linusw@kernel.org>, sashiko-reviews@lists.linux.dev
-Cc: "Conor Dooley" <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- "Rob Herring" <robh@kernel.org>
-Message-Id: <68d6b870-593c-47f1-aaff-373a448e518d@app.fastmail.com>
-In-Reply-To: 
- <CAD++jLmUwxEdEw23H0sk6YsBCVDPLtY_SA=SeBRcxf+jTO=4tQ@mail.gmail.com>
-References: <20260709-ixp4xx-little-endian-v1-0-e9622d0ba9e4@kernel.org>
- <20260709-ixp4xx-little-endian-v1-1-e9622d0ba9e4@kernel.org>
- <20260708224834.138FC1F00A3D@smtp.kernel.org>
- <CAD++jLmUwxEdEw23H0sk6YsBCVDPLtY_SA=SeBRcxf+jTO=4tQ@mail.gmail.com>
-Subject: Re: [PATCH 1/3] ARM: decompressor: always set endianess on xscale
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.65 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[arndb.de,none];
-	R_DKIM_ALLOW(-0.20)[arndb.de:s=fm1,messagingengine.com:s=fm2];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[chromium.org,none];
+	R_DKIM_ALLOW(-0.20)[chromium.org:s=google];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	XM_UA_NO_VERSION(0.01)[];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-326412-lists,devicetree=lfdr.de];
-	TO_DN_SOME(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-326424-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	FORGED_SENDER(0.00)[sjg@chromium.org,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS(0.00)[m:linusw@kernel.org,m:sashiko-reviews@lists.linux.dev,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[arnd@arndb.de,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:jic23@kernel.org,m:heiko@sntech.de,m:andy@kernel.org,m:dlechner@baylibre.com,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:linux-rockchip@lists.infradead.org,m:krzk@kernel.org,m:nuno.sa@analog.com,m:robh@kernel.org,m:sjg@chromium.org,m:jonas@kwiboo.se,m:krzk+dt@kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5];
+	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[arnd@arndb.de,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[arndb.de:+,messagingengine.com:+];
-	RCVD_COUNT_FIVE(0.00)[6];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sjg@chromium.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[chromium.org:+];
 	ALIAS_RESOLVED(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp,messagingengine.com:dkim,app.fastmail.com:mid,arndb.de:from_mime,arndb.de:dkim]
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,vger.kernel.org:from_smtp,chromium.org:from_mime,chromium.org:email,chromium.org:dkim,changeid:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: B852D75820B
+X-Rspamd-Queue-Id: 87BD775828A
 
-On Thu, Jul 9, 2026, at 21:32, Linus Walleij wrote:
-> On Thu, Jul 9, 2026 at 12:48=E2=80=AFAM <sashiko-bot@kernel.org> wrote:
->
->> [Severity: High]
->> This isn't a bug introduced by this patch, but does this XScale-speci=
-fic
->> cache flush sequence execute unconditionally on all CPUs in a multipl=
-atform
->> build?
->>
->> arch/arm/boot/compressed/head-xscale.S:__XScale_start()
->>     ...
->>     mcr p15, 0, r0, c7, c10, 4  @ drain WB
->>     mcr p15, 0, r0, c7, c7, 0   @ flush I & D caches
->>     ...
->>
->> When booting a multiplatform kernel configured with both CONFIG_CPU_X=
-SCALE and
->> CONFIG_CPU_ARM720T on an ARM720T CPU (such as CLPS711x), could this c=
-ause a
->> fatal undefined instruction exception during early boot?
->>
->> Since these CP15 cache flush instructions are undefined on the ARM720T
->> architecture and execute before the exception vectors are set up, doe=
-s this
->> lead to an unconditional system crash?
->
-> Hm.
->
-> I did originally patch it like this:
->
-> +               mrc p15, 0, r0, c1, c0, 0
-> +#ifdef CONFIG_CPU_BIG_ENDIAN
-> +               orr     r0, r0, #(1 << 7)       @ enable big endian mo=
-de
-> +#else
-> +               bic     r0, r0, #0x80
-> +#endif
-> +               mcr     p15, 0, r0, c1, c0, 0
-> + 0:           mrc     p15, 0, r0, c1, c0, 0
-> +               tst       r0, #0x80
-> +               bne     0b
-> +               sub     pc, pc, #4              @ flush instruction pi=
-peline
->
-> which works fine as well.
->
-> Shall we go for this version instead if it will be nicer on other CPUs?
-> It has the upside of just fiddling with a single bit.
+Add the compatible for the SARADC of the Rockchip RV1106, which is
+compatible with the RK3588 variant.
 
-I think the version you posted makes more sense as this is the
-officially documented sequence from the manual.
+Signed-off-by: Simon Glass <sjg@chromium.org>
+---
 
-The potential bug I mentioned is with the instructions that are
-already there, not the ones you add, so nothing changes there.
+Changes in v2:
+- Fold the compatible into an enum together with rk3576-saradc, since
+  both fall back to rk3588-saradc
 
-The only ARM720 board we support is limited to 16MiB of RAM, so
-even if that is a real bug, nobody would ever want to run an IXP4xx
-enabled kernel on clps711x.
+ .../devicetree/bindings/iio/adc/rockchip-saradc.yaml          | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-If we wanted to fix this properly, I think the head-xscale.S
-file should start with a CPU ID check and skip the rest when
-running on anything else. That would be a seperate patch though.
+diff --git a/Documentation/devicetree/bindings/iio/adc/rockchip-saradc.yaml b/Documentation/devicetree/bindings/iio/adc/rockchip-saradc.yaml
+index 6769d679c907..f0551d665916 100644
+--- a/Documentation/devicetree/bindings/iio/adc/rockchip-saradc.yaml
++++ b/Documentation/devicetree/bindings/iio/adc/rockchip-saradc.yaml
+@@ -22,7 +22,9 @@ properties:
+       - const: rockchip,rk3562-saradc
+       - const: rockchip,rk3588-saradc
+       - items:
+-          - const: rockchip,rk3576-saradc
++          - enum:
++              - rockchip,rk3576-saradc
++              - rockchip,rv1106-saradc
+           - const: rockchip,rk3588-saradc
+       - items:
+           - enum:
+---
+base-commit: 3b029c035b34bbc693405ddf759f0e9b920c27f1
+branch: rv1106e2
 
-       Arnd
+-- 
+2.43.0
+
 
