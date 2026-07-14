@@ -1,113 +1,113 @@
-Return-Path: <devicetree+bounces-326220-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-326224-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id ddUPDVYyVmrh1AAAu9opvQ
-	(envelope-from <devicetree+bounces-326220-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 14:57:58 +0200
+	id YeukLrcyVmr91AAAu9opvQ
+	(envelope-from <devicetree+bounces-326224-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 14:59:35 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 912AF754C6B
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 14:57:57 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E59E754C9D
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 14:59:35 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=ti.com header.s=proofpoint-05-2026 header.b=NqRzZggS;
-	dkim=pass header.d=ti.com header.s=selector1 header.b=qVwSxSXM;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326220-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-326220-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=ti.com header.s=proofpoint-05-2026 header.b=lJFFhRva;
+	dkim=pass header.d=ti.com header.s=selector1 header.b="kuQM/9VW";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326224-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-326224-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=ti.com;
 	arc=reject ("cv is fail on i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2DC9730432F4
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 12:55:56 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 25EB63146C15
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 12:56:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5B913845A9;
-	Tue, 14 Jul 2026 12:55:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E91024483AD;
+	Tue, 14 Jul 2026 12:56:06 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0002e601.pphosted.com (mx0b-0002e601.pphosted.com [148.163.154.28])
+Received: from mx0a-0002e601.pphosted.com (mx0a-0002e601.pphosted.com [148.163.150.75])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6E2C342CBA;
-	Tue, 14 Jul 2026 12:55:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45E53342CBA;
+	Tue, 14 Jul 2026 12:56:04 +0000 (UTC)
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1784033754; cv=fail; b=ZYqJ5BxelktaiD2KYOIvOIQ+rL8ICiRPSdp2fob3awLcMHJTDhg3+Y9/Uw6g6KpN9kAaoUFDP9VNnwkYnd73UxtrPdU3mXo2E22iipo+bANk904RFaXdbu8hAAlkOKE2dh9SMx+7TJdwtxDz3GC7LBxTzDDc/2XfFNB4mu2S0jU=
+	t=1784033766; cv=fail; b=ACPjC534Wo7TvAzgvWKHWDQvCbAeVIg5cJ82TuTz7a4+4zLaWnZpujldUKuQvzcMkU5Qi32Xl+7F9VCiHE+kDggpKk6vHf5AzuH0Ep/vG/IcqMMKWgk2EIHWSKfiJzyIZBwoc3vH7lTImHR7pUb5w9ye5W1AK9GBCM5edSzwwn8=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1784033754; c=relaxed/simple;
-	bh=JsxNTl60JMeoIOc9iHZKkOg3u4W/a7MISX7PfY8Xb/M=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=MOvQNHJxSMtw8uqFEnTQZ5fr5ywVvOO5HYOaBN27V4v8LdCnMemLs7gOjMwH90VFW4QvtQSzZwXoXT6Sei3lT8BJZTL1bktq1MMKSjHngiQDN99MfkxwbIQ1obzGCmlbwnl2micLE1H4fbjo1xmTtLWvN8/qrVmtetpQtblyxLY=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (2048-bit key) header.d=ti.com header.i=@ti.com header.b=NqRzZggS; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=qVwSxSXM; arc=fail smtp.client-ip=148.163.154.28
-Received: from pps.filterd (m0374956.ppops.net [127.0.0.1])
-	by mx0b-0002e601.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 66EBQAM22106440;
-	Tue, 14 Jul 2026 07:55:48 -0500
+	s=arc-20240116; t=1784033766; c=relaxed/simple;
+	bh=whkDglQXRNjG8kFx5rAmSXrQoPYS723R6Q39IKJOB9o=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=Il9QMwDZ9IH9qG7ckkoA2j8OrNAr8ZsPdQ642T/NaXWhqSteirUaltbCw5QBujSNUkPILAiprUY7SVnWAWWVGW7oadQHhB+j7y8AqLzbtzmBuohDVJhPaP9OBNnsYMl/4Fs6MIGj84+oFHa395+Af3xJ0iNyMUpcGpyjY5tT184=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (2048-bit key) header.d=ti.com header.i=@ti.com header.b=lJFFhRva; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=kuQM/9VW; arc=fail smtp.client-ip=148.163.150.75
+Received: from pps.filterd (m0380145.ppops.net [127.0.0.1])
+	by m0380145.ppops.net (8.18.1.11/8.18.1.11) with ESMTP id 66EBhrCN2165582;
+	Tue, 14 Jul 2026 07:56:00 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; h=cc
 	:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=proofpoint-05-2026; bh=WxopXo6ytlzxA
-	9QMkBw+cDiCNVKGhV3mGExBAB2p+pQ=; b=NqRzZggSF7TFw/dQzhUFBj6IiSCQ9
-	tZyk+Y3CUSMRS1toYHyXlluHezhiU+5XPOglutq25AmEcDCFMtEygOwEoPb7kEcT
-	IdbA2oM2pmtifYMagyka+IZfd1PZUP96K5OHe+1CLe16lwkSx8kkNrwCFxeOVXXr
-	SeRaK5DUeaXESpYcByKvjiu3qiScaVXa+kvODxGyeqLLtEvkiqJsyuoMEbuFVLmX
-	Znj+rY6nLu4uwpthT27OoTt6DcDeaSZi19Nneb9YsPal4YrJ/fdpC81EIZw5MAv/
-	YbLapQELwHLoAiAYRclAn+aPxgP05x+yVgNBGKN6ZXfi1A2dVoAZtMVgA==
-Received: from ch4pr04cu002.outbound.protection.outlook.com (mail-northcentralusazon11013068.outbound.protection.outlook.com [40.107.201.68])
-	by mx0b-0002e601.pphosted.com (PPS) with ESMTPS id 4fdm2tgdx6-1
+	:mime-version:subject:to; s=proofpoint-05-2026; bh=p879Q6Ni3yNNb
+	Sed/rsS32uHkX3sL/ZjKqiW3AXeLzM=; b=lJFFhRvagRAUgPL0hlChiewaxp2po
+	kW1uPgc3i1+7MF5Pkt/k+f8pyz0UvbbDxgZGnMfkAXGQr9EZgsQ+sLV9d69x4hDv
+	3iIbRPx8kEPlHPbsxJ9obCDCg3cdsGUn9efzJq5IykSFo6pOxGK3mL54karh7lYY
+	e9PtYydHjw/5GCdkDzx+p/2MCZ1gXmXprZC/4rL446nLQTKSAPgXvlphKAzDTmGh
+	CuoVaRX9j/XniNjn2wd3wTtThgyVcCvPJ4Rm4FK3sFakHcoJlxykFyYeXFgKb94q
+	dXqEGN08Lf5LHBOYQbyqV+sgN0Zf415hlGnBqQENzHhWBe/8y/ZxzBcYA==
+Received: from cy7pr03cu001.outbound.protection.outlook.com (mail-westcentralusazon11010039.outbound.protection.outlook.com [40.93.198.39])
+	by m0380145.ppops.net (PPS) with ESMTPS id 4fdmgcgbe5-1
 	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
-	Tue, 14 Jul 2026 07:55:47 -0500 (CDT)
+	Tue, 14 Jul 2026 07:55:59 -0500 (CDT)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=VnG7O2ArLaskbHLzo49JwOk9k+OFGwRdZ9+B5y6nRSu8VcPUmsxTlzhdKilxpzfSv4ph07hw8hEgI77Ipo44AWhIpDoEav3Z0C1F6Sc8kaiyVRjNwf/2ImoJ9bildNmhlBmujWmEdYzre331akTWAtRBFRR7NeK1YMqkrwX2bcDCVt5OEZjaSGUgzKk3VSi3j9RRuJOoAPihCgajf5rNqPZZC4R7CoElhqYxSLji+luqctdSkamtNL9bT4hw+qj6gvGLHCVfVAd3JE9f0aXZNkmz5Dtc1ZVGu2A2SJoKGrgqEMLGk6J/vrz6HAajy0jdvmS5QuFkgHhhs6BkyeDgDQ==
+ b=pskypwVhFgWU9SFlOJsk6WoSEF86b58iFPg5J6LAvTYROiPochTlMWCy4A1867KQUaI+9HDPYEkfKtP2RezB64ghEaf75Exxrdx1R86ErIStRFbuIfkQmADQU5/y48IUVYxEuCQq170Rpe1lpaN8UKuwucu7MRfY02Aa26T09Eqh7GCfMgadFW+FlmgtXRSLSB+eurhPO0GqTb8MHWgzj6b3wljEqu0HvUmzsvUbMCrIKwTdkbWeVR8+9JS8gL1CtrusHsbhHB44NeDNr3dUvLKAhOTu4GHrKkzc3SRVH/eo2nXEHEvOYH4UkSORsE/aDUz/Q4cMDQOegJvzQ3rreA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=WxopXo6ytlzxA9QMkBw+cDiCNVKGhV3mGExBAB2p+pQ=;
- b=JNeEveCkq0JZCvTDJec2bGF2veeSdS4SqGq6rqt+/FHripR5jNvDo6847Xk/so//3y2t45Wrn3N5um3IVx4Yazpg3ljB5qDpBwD2/1oucgptkgjnsaURKWXWHyv6YMi0VIiXoyQL6nCotodAaQlRD8xX+nZlrEELw+ABf1Ekcq34aZE81v5pPlCeTM5bE7gYsd5ISkVjmaKvHm3dGrvXaNRmaXq34z1o/y+ZEyC55MD6A8J5+sH5UOGIUJhhjHgZXwPHMpu3IhyP6rdAKThleC4j9uY252MstUeABCjN2Y8tLbbqbMWIAcZoLCkJTx2lt4+XcifcMa6lK7Sm0T+dLg==
+ bh=p879Q6Ni3yNNbSed/rsS32uHkX3sL/ZjKqiW3AXeLzM=;
+ b=R5pIR03Xr3nxxGwY0iSD68gjW+H4wsyxVQra9aY08e7tlAbbBY/lavFoSXqbPpAv6lKB2FTiIeAuJcSXw4AHSFA5HB8UjixrTvTesLMuEGr2MSsSKAVY0E8uBDut4KxVwv9dUHV0fjdFPOd6xipmGkt7t7pgtDTtrg5GRCP9dEQ89XkPoNyjBI74GM0h3FFHQxbnLgdwefF+0IDPpjLgnthyH/Ai3dKZvesBNj3YDz5P3y4RQWfLsjjxud8pp/Pm2hgqEWUcCe5OXb5YQ/2FoDGQ29K/4BUEXijJurDGRMyavjri/cyU98f7DOPEA5lhRorCBdY5xc8i9r2h1sJZsA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.21.195) smtp.rcpttodomain=lists.linux.dev smtp.mailfrom=ti.com;
+ 198.47.21.194) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=ti.com;
  dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
  dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=WxopXo6ytlzxA9QMkBw+cDiCNVKGhV3mGExBAB2p+pQ=;
- b=qVwSxSXMGBk4RRGWKmjQ3TZnW6E5DCzNOBbBWQu2cAjyfaropGbQrcCfxLnnVK6f2PfXayLgPWyTcn6+Aibb/wwZA1/tnGtqVwd14MPm6tfTeYal5T2s2qVGvZ8UAb3O/1LR9Rg2KwrdpmAdX8o13sF6cy8dZs3VzQvFMUAsBbU=
-Received: from DS3P221CA0005.NAMP221.PROD.OUTLOOK.COM (2603:10b6:8:45e::15) by
- SJ0PR10MB4432.namprd10.prod.outlook.com (2603:10b6:a03:2df::15) with
+ bh=p879Q6Ni3yNNbSed/rsS32uHkX3sL/ZjKqiW3AXeLzM=;
+ b=kuQM/9VWpqChoSXADtvCgfUXS4v7LWEEP5y2s/buWDv9gtRdTR/XwhuIcPMPzPgHvtFXJM6YkwzfzcnW0Shx6TkLrL6MfxJ8HcVWQImXsm3O/ULiU1vvX3Fp+/WIs6a7gb/Ir3tt9ZZTPewx1ySPaYm68S2iS+jHhDfEQ9/4dzU=
+Received: from PH8PR05CA0024.namprd05.prod.outlook.com (2603:10b6:510:2cc::12)
+ by BN0PR10MB4952.namprd10.prod.outlook.com (2603:10b6:408:122::13) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.202.18; Tue, 14 Jul
- 2026 12:55:43 +0000
-Received: from DS2PEPF000061C2.namprd02.prod.outlook.com
- (2603:10b6:8:45e:cafe::5d) by DS3P221CA0005.outlook.office365.com
- (2603:10b6:8:45e::15) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.223.9; Tue, 14 Jul
+ 2026 12:55:56 +0000
+Received: from CY4PEPF0000EE39.namprd03.prod.outlook.com
+ (2603:10b6:510:2cc:cafe::43) by PH8PR05CA0024.outlook.office365.com
+ (2603:10b6:510:2cc::12) with Microsoft SMTP Server (version=TLS1_3,
  cipher=TLS_AES_256_GCM_SHA384) id 15.21.223.10 via Frontend Transport; Tue,
- 14 Jul 2026 12:55:42 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.195)
+ 14 Jul 2026 12:55:56 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.194)
  smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
  action=none header.from=ti.com;
 Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.21.195 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.21.195; helo=flwvzet201.ext.ti.com; pr=C
-Received: from flwvzet201.ext.ti.com (198.47.21.195) by
- DS2PEPF000061C2.mail.protection.outlook.com (10.167.23.69) with Microsoft
+ 198.47.21.194 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.21.194; helo=flwvzet200.ext.ti.com; pr=C
+Received: from flwvzet200.ext.ti.com (198.47.21.194) by
+ CY4PEPF0000EE39.mail.protection.outlook.com (10.167.242.11) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.223.9 via Frontend Transport; Tue, 14 Jul 2026 12:55:40 +0000
-Received: from DFLE200.ent.ti.com (10.64.6.58) by flwvzet201.ext.ti.com
- (10.248.192.32) with Microsoft SMTP Server (version=TLS1_2,
+ 15.21.223.9 via Frontend Transport; Tue, 14 Jul 2026 12:55:53 +0000
+Received: from DFLE200.ent.ti.com (10.64.6.58) by flwvzet200.ext.ti.com
+ (10.248.192.31) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.37; Tue, 14 Jul
- 2026 07:55:37 -0500
+ 2026 07:55:41 -0500
 Received: from DFLE200.ent.ti.com (10.64.6.58) by DFLE200.ent.ti.com
  (10.64.6.58) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.37; Tue, 14 Jul
- 2026 07:55:37 -0500
+ 2026 07:55:41 -0500
 Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE200.ent.ti.com
  (10.64.6.58) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.37 via Frontend
- Transport; Tue, 14 Jul 2026 07:55:37 -0500
+ Transport; Tue, 14 Jul 2026 07:55:41 -0500
 Received: from venkey.dhcp.ti.com (venkey.dhcp.ti.com [10.24.53.161])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 66ECtXOe4164177;
-	Tue, 14 Jul 2026 07:55:34 -0500
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 66ECtciS4164266;
+	Tue, 14 Jul 2026 07:55:38 -0500
 From: MANNURU VENKATESWARLU <v-mannuru@ti.com>
-To: <linux-arm-kernel@lists.infradead.org>
-CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-perf-users@vger.kernel.org>, <mfd@lists.linux.dev>,
-        <n-francis@ti.com>, <s-k6@ti.com>, <bb@ti.com>, <v-mannuru@ti.com>
-Subject: [RFC PATCH 00/22] Add TI K3 DDR subsystem drivers and DT bindings
-Date: Tue, 14 Jul 2026 18:25:32 +0530
-Message-ID: <20260714125532.3304178-1-v-mannuru@ti.com>
+To: <krzk@kernel.org>, <robh@kernel.org>, <conor+dt@kernel.org>
+CC: <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <n-francis@ti.com>, <s-k6@ti.com>,
+        <bb@ti.com>, <v-mannuru@ti.com>
+Subject: [RFC PATCH 01/22] dt-bindings: memory: cdns,k3-ddr: Add Cadence K3 DDR controller binding
+Date: Tue, 14 Jul 2026 18:25:35 +0530
+Message-ID: <20260714125537.3304217-1-v-mannuru@ti.com>
 X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -120,56 +120,57 @@ Content-Type: text/plain
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS2PEPF000061C2:EE_|SJ0PR10MB4432:EE_
-X-MS-Office365-Filtering-Correlation-Id: a8987147-5a79-4102-33ec-08dee1a735ad
+X-MS-TrafficTypeDiagnostic: CY4PEPF0000EE39:EE_|BN0PR10MB4952:EE_
+X-MS-Office365-Filtering-Correlation-Id: 9e0b2d9d-89ac-4aa6-fe86-08dee1a73d6e
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|23010399003|36860700016|376014|30052699003|82310400026|1800799024|56012099006|18002099003|6133799003;
+	BCL:0;ARA:13230040|23010399003|376014|82310400026|36860700016|1800799024|13003099007|3023799007|6133799003|18002099003|56012099006;
 X-Microsoft-Antispam-Message-Info:
-	v0b2x6GtJ+0amNiQOPeRQyv3HAhJqZ4zkusDSPr9xICrzymaQ2DYG0t3gUMYl1AannSx3MosAdOgSMpUan5J9pFsBmeFUXtVNrKrJyxu/DT/ON0OfYnTRxFIRi4KGB/aOXWZpDCX3+Lyvh3FsI/Ov/ez6Zjod6jU+Gsa8dVWu1JDLaUI8E4nBlIksdnuGMttXFJnb1LXa739dPc/m645Aa6bAXNZ5IV7TUPOh2qWTnWT/vMxZM7UfaFHhBwh20WM0R9pbRE3zagy6fDiUnVD2iW0xM2qqAKM3xPmm2ROjBO4P0tWmGH/pT8uxQm9waVQftDu+3Z8yOtcEuJFrLLr3cMBi2tHTmjnpfy8iy05z2Tdc9RSW5aWR2N5wgmfLF2JDC4wiDGuNRi4zyBKUTXVfoe4imjvkvU4BxVG62kmArP+0MMllhokBVtpm/FgQGtrbdSM6AlRm0mVyClYZkD2AnmR5/RELmrvXrmguWVdcTBpgVat2k40u8XpnMAFgXdT/v5CWuq7zYsPm27mq6A5iL6h+gXtwZ6RiVEDj4/jiP8JvH4x0YdU1u/yfIifxXbfGiYFh6pa/x9x2hZSwF+my1wy6zotp53bncocYa3IX9a+C2NBuMr4pmGwsi/lEGIqBNRTypKu4SXAg5ugrnotW9SKtbSNNtKOEc8KOjgJinGfBQ4sM9Ybhem1xX8t2qKYK1ZwrtvI6RtDyN8zS8beqA==
+	KaxdzQIOzhVga2mKxg0aSNQtdg131QNfh6hH20WF1Eyi3Zq0euPH+HmcJItyCGXO1EkcQfHTy46l92uxZqhU9OSLAsKFso+JZU1OQtiZZZPcPTp9fzp8opgxyGPDxk3JVw3960sjP1bRbjOYEqE9+Fg0yXly4o0OQiHJV5rwMespIiEv0R+upnSkf7nyi1GYMycHtvrIKnrniZOCSZXN4AiqmQmJiV9QhHplEaTTkZAYnw/JkldoaWq0vOkMDib3mzySln5xp6wzMupO97bb6MymokEDO8qAvALJIEDvFJx8jGb8CmgPVx/uM3BjTdJO7aqY8IvdsTp1fapbJnl6x2pAU6wwoAMKyfXgsQCj5Y0P6tjD/2yQKIB8Bph4gbT+WRQx2ebyflbMqtMiq+C1Cv3eDUwsqfPXL+itgFeQMVRUMDLJwJQZdzIiogo51NP4YY77LcuCMtOW4dCDtFZxIbjxiKVFc3Rs5BNmGzfFzUpM1rGPin+/+Ho6xqTn1PBTb/yCeT60BpWEzEJ37PN3rdJeDsqXyQ8WyPT1GH7C7Owk1+RvnFx4YiyxAai7BTR4iP/uz84emtgpsEJaGMAlZUzM4prQF4hv+05czJOeReNT8HoNx0en4AdhpIAvdqZ7ekHsqC5R6MDJsdGlkfQr5Q==
 X-Forefront-Antispam-Report:
-	CIP:198.47.21.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet201.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(23010399003)(36860700016)(376014)(30052699003)(82310400026)(1800799024)(56012099006)(18002099003)(6133799003);DIR:OUT;SFP:1101;
+	CIP:198.47.21.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet200.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(23010399003)(376014)(82310400026)(36860700016)(1800799024)(13003099007)(3023799007)(6133799003)(18002099003)(56012099006);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0:
-	ekFL1ivsXIbybdPmGn3tHC6VIt/tBZDNfUrxL5cjd1DlFW8H5xeGHlF31nAxShU5rT9yFE4XTiBkCzhYnd2AKM4IZhvFYYFvyyhZflAjitxo2vFBJEPuZXZYopYXUmm+GqKdBn7VYG9t2w2iHKx8ewxYWR2gr4DH7Gh418FXFOp/7kSfOcgrVNSI2fcYBN+5fXrbMkWTF/9b7lqZEY0xwFYcR8sSfZHK5yClGPAfRPxneUvH4Sqyi/tF2B7/ZQfL3LyLqM3yWS+JEr/uKWQqGr8K6Cy4cjigOwRu9s6E/iuk9F4HBZAkKZyNpW1xJSNP6OzTNRivI+Mh+xO/VSQQl+fUyL/o7rPgzZjyemlUVIuVJ5gnd4Kd/SlIYd/V8cA3ubFVZFrXkcGjVbSskpfDxOkB/Ews4T+zUL08VEzlTGCzx/ITVhVVeDm4UEMBxCJh
+	85NzMxLQtnAz9Hz6WTku09WHVU5vf//RaFYR1tIdTAOZ2nwJKTzWbQq/gJBTk86TUvtD18tKvHQTY7xaA5rtyV3YkPUuovh0LXGwrI+4o94vl4lk+0bszzCS07wbnFI2syGnhgRcSA/eqRyveVtlE5bU4rZNFwFcRJFqZEMvdJCS9PKbgn3rWKfaW5XIJPzL7dDCmzBtNQ+dmGF5EG7LR2o65OGJcrnSWnPRhtBnG3bFjK9MGyNB9uo8r9RZqet7Pt9BkFhfF7SSINj6ce3D+OEqc6JCaC1GyXiAG4tnK4UsLTMAPQf2At/kcVrOK9qT7j5m870PjQ9GEciRhKpLsejFnbFd7L0674wjZF+8T9+g9cbrOFtmiUwE9QJwRgyPTWf2DRiE/JvMyLQFa6Q6t5PiCbkV4AcFxkAJ+2RiackRV4k+evA2V1PaODfKKtsK
 X-Exchange-RoutingPolicyChecked:
-	nyd2GAYA53hKDiN3+2nybrXZwSNsv8ABNMlSyyUMSffjRJQKIJxjIfuIdJdkMrU9k3LKvelNJ2O4gVonSq1VUGYoDSMn677raY41unQrtlk9QzITV2qo40OCEY0e65VyXMnGQ3L88VIpNZtsSzJEQKIyFvdOpp1KbnqP4lwBvgSV/27lUmc8dS/me7IKuWOokLcthFtkpioAcy2Pur6L51x4rGGvjCw5MWQuy1Rm5PUUpvOJhZFT6vJy3IrNAljUXUxAISiRKJznyYvre0DK24xqHQrD8aT69M/fGHtt/dGu43g2P8+9kBT1aUMZcd2aKxLsISvDcZddaxjQtP1syQ==
+	nfKKmmIViTFOF/o3FurAMxtKxFC7G04xK/VFBMfCuJCQfh6t9run/YXCT9wJYTcnD5sr+wqQhLEqxCJ/0gbHGwhPsAOMk5XMwOVtMLQl3K9N73hWkk7VmnKRXxYF5oujv6FtzMkM+mZLjCO9cZJZlDS7GDVN1n7VvFs6GApJDWVNK9HPOYgjI3eyDSUxYpF9zxE+XprtlarnCM1XEHzvLD10vnNlVMWTr4Oso5AAOSAxJvVn4oBefuXSnGzFXGu2EsnCYTeU5plRka6XA81tHz1F9J4s8LHBB5NlKPIrakYpvFDF1ScwX+GCkUgVVhdFz9A5aAkaOnbxd0nLXn4faw==
 X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Jul 2026 12:55:40.8597
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Jul 2026 12:55:53.8825
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: a8987147-5a79-4102-33ec-08dee1a735ad
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9e0b2d9d-89ac-4aa6-fe86-08dee1a73d6e
 X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.195];Helo=[flwvzet201.ext.ti.com]
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.194];Helo=[flwvzet200.ext.ti.com]
 X-MS-Exchange-CrossTenant-AuthSource:
-	DS2PEPF000061C2.namprd02.prod.outlook.com
+	CY4PEPF0000EE39.namprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR10MB4432
-X-Proofpoint-Spam-Info: AW1haW4tMjYwNzE0MDEzNSBTYWx0ZWRfX0arkB8GOTQCZ
- 5ouK6QL1ZT1SIluXG7LBhB+AYOxDwoYOHpGFH9nprvGW133L6DUwRYp7CFrqQsWYsCavNgfc0yS
- 7SJfe9evimhTNzPcrds/lgY0+cZqP/M=
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNzE0MDEzNSBTYWx0ZWRfX4pMiUj66S49S
- Kw9Ue3Bi+BVs7JengcgncJL517HtdOUHMzwoBlpp+M6hPF6xeW0uXNk8B0m1JsUUfJHy4LA8jh8
- 81EhAMzkE0WSQL16I+RTh9vbbH5sq1i42oqg7va70LkEMm1I8bD2E90sZGKPgL9uknGWGlTm727
- 1PmyTiHJyVGMuUx028xgVbnU8ndb9oTt6/TzfvyDBB9Tx/GGWpRfTf8wB+FSLBzpZdvT2DT7V1s
- zs/9c1uxRaPy4GcKM7K2FhU0UAOvKMhBysOl1PHaamqOaLuY9wjcEZ2fWpTEiVauqfKuDbvNAQd
- JeM4SALOFroUd4IT01artLx0irpwMqZx9lOHOHZldBl1sEmJJ8nIoQgzuaDVXRMQr/ki8fZekd9
- Qzvijzk2hC9RfuWwx7XqLECZFNek3CfzStHZdGKFg0XZwqXG8ocvFw7m3c4NPi0K2DQBnJHiYwU
- r42Qp2x/M8wlnIhM7cQ==
-X-Authority-Analysis: v=2.4 cv=FbcHAp+6 c=1 sm=1 tr=0 ts=6a5631d3 cx=c_pps
- a=QwCZ9Ep3279coiJ7nb8JBQ==:117 a=tJyPKKxUohctrY4NYmUjkA==:17
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN0PR10MB4952
+X-Proofpoint-Spam-Info: AW1haW4tMjYwNzE0MDEzNSBTYWx0ZWRfX/KdeFRkoCGnT
+ Zq0n4Kru1LzWTnmbKSuTjViEYTWR8INumH+Q6JdM1VS6auC8+qaNVJgYha7Zzc+DTr/fgS7P/rq
+ +WPMG10bsiBwiJvDqkQbRqQMJIvce0o=
+X-Proofpoint-GUID: 4Ik_0kN7ZaAeDgoz-esxfVAV-0QFy5_T
+X-Proofpoint-ORIG-GUID: 4Ik_0kN7ZaAeDgoz-esxfVAV-0QFy5_T
+X-Authority-Analysis: v=2.4 cv=GLo41ONK c=1 sm=1 tr=0 ts=6a5631df cx=c_pps
+ a=WWBLjRe7FI6dQUFhva+Khw==:117 a=iwqwCZQqcuTv3JOpYdM7/Q==:17
  a=6eWqkTHjU83fiwn7nKZWdM+Sl24=:19 a=RAioF0-LDSMA:10 a=V5UXEbMT0ywA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=Z8NIEmU8O1QQgoT56wFK:22 a=jwouBfj2j3NM8CExmVVE:22
- a=zvrWtlHHRBkuNqoByXUA:9
-X-Proofpoint-ORIG-GUID: OG_MDU_zDN63KVcClwp6_RwD9GgQrgsC
-X-Proofpoint-GUID: OG_MDU_zDN63KVcClwp6_RwD9GgQrgsC
+ a=VkNPw1HP01LnGYTKEx00:22 a=Z8NIEmU8O1QQgoT56wFK:22 a=gO1vWkAQAl3rybz1DQOp:22
+ a=gEfo2CItAAAA:8 a=sozttTNsAAAA:8 a=80RN8Rq2F7w2I7kDcSgA:9
+ a=sptkURWiP4Gy88Gu7hUp:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNzE0MDEzNSBTYWx0ZWRfX46SMit8efEpL
+ D1foeN+Lyfw49XxtCCq+4TICq1DpK9v+WaNrauyBc2/KNh1uKFx2j4sS7D8eM0N922Ny4CYlEiB
+ MICN1ah7EMVY5H3HovNrBiEjwT+Fbx9nvaeX0eGHKZX7C1RNdBszjbz63G5qNYjUxqXpETtIgsw
+ SqEiQ6CuL4znhe6Dk3nJtz6JQPBXlWDk3Ng87fqe/T8YbHlJlxQnOrH6w87tBQNaewin2WEbOBx
+ StWykY+dghrQwDLuqarCFiDCVLXkDOHyCvcWj3s5zR6S0bUAxhSASpCKOy+apnLauCIwWpFDhUb
+ c7QTnnkg1mqPiOFwL07p+RT8N+fI/sT9rFXzMn4DZjG+MnaQGCSVtdSHyzRxEPg1uGhyfUbw8F7
+ OPgm53TdGGMqljFi79WOxmMwM54aLz5dO71EygkokepumjAIpwbyoKyLaAWJo0qlvu+Luqu4qhv
+ cSW0SymK2EFzdJRNB3A==
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.134,FMLib:17.12.100.49
  definitions=2026-07-14_03,2026-07-10_01,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 spamscore=0 bulkscore=0 impostorscore=0 clxscore=1011
- lowpriorityscore=0 phishscore=0 suspectscore=0 malwarescore=0 adultscore=0
+ impostorscore=0 priorityscore=1501 adultscore=0 suspectscore=0 bulkscore=0
+ malwarescore=0 lowpriorityscore=0 clxscore=1015 spamscore=0 phishscore=0
  classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
  reason=mlx scancount=1 engine=8.22.0-2606150000 definitions=main-2607140135
 X-Rspamd-Action: no action
@@ -179,7 +180,7 @@ X-Spamd-Result: default: False [1.34 / 15.00];
 	DMARC_POLICY_ALLOW(-0.50)[ti.com,quarantine];
 	R_MISSING_CHARSET(0.50)[];
 	R_DKIM_ALLOW(-0.20)[ti.com:s=proofpoint-05-2026,ti.com:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
@@ -187,10 +188,10 @@ X-Spamd-Result: default: False [1.34 / 15.00];
 	FORWARDED(0.00)[lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER(0.00)[v-mannuru@ti.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS(0.00)[m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-perf-users@vger.kernel.org,m:mfd@lists.linux.dev,m:n-francis@ti.com,m:s-k6@ti.com,m:bb@ti.com,m:v-mannuru@ti.com,s:lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-326220-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:krzk@kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:n-francis@ti.com,m:s-k6@ti.com,m:bb@ti.com,m:v-mannuru@ti.com,m:conor@kernel.org,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-326224-lists,devicetree=lfdr.de];
 	DKIM_TRACE(0.00)[ti.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	TO_DN_NONE(0.00)[];
@@ -198,143 +199,111 @@ X-Spamd-Result: default: False [1.34 / 15.00];
 	FROM_NEQ_ENVFROM(0.00)[v-mannuru@ti.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_COUNT_TWELVE(0.00)[12];
-	RCPT_COUNT_SEVEN(0.00)[9];
+	RCPT_COUNT_SEVEN(0.00)[10];
 	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	FROM_HAS_DN(0.00)[]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 912AF754C6B
+X-Rspamd-Queue-Id: 4E59E754C9D
 
-This series adds support for the DDR subsystem (DDRSS) on TI K3 SoCs,
-which wraps a Cadence DDR controller. It introduces three drivers and
-the associated DT bindings and DTS nodes.
+Add device tree binding for the Cadence DDR controller used in TI K3 SoCs.
 
-The Cadence DDR controller (cdns,k3-ddr) handles the actual DRAM
-interface. The TI DDRSS wrapper provides interrupt routing, subsystem
-configuration registers (SSCFG), and performance counters. It is
-modelled as an MFD device that instantiates two child drivers:
-
-  ti-ddrss-mr4: Reads the LPDDR4 MR4 temperature code on every TUF
-  interrupt and left-shifts the firmware-initialized baseline tRAS_MAX
-  and tREF values across all three FSPs. The baseline is the 0.25x
-  worst-case rate set at boot; cooler temperatures relax refresh to save
-  power, hotter temperatures restore the baseline to comply with JEDEC
-  LPDDR4 requirements.
-
-  ti-k3-ddr-pmu: Exposes 34 hardware performance counters per DDR
-  channel via the perf subsystem. JSON event and metric definitions are
-  provided for perf stat named-event support.
-
-SoC coverage: J721E, J7200, J721S2, J784S4, AM62x, AM62Ax, AM62Px,
-AM64x.
-
-Tested on J721S2 EVM (kernel 7.2.0-rc2-next-20260708):
-
-  root@j721s2-evm:~# cat /sys/bus/platform/devices/ti-ddrss-mr4.*/refresh_status
-  2x refresh interval
-  2x refresh interval
-
-  root@j721s2-evm:~# perf stat -a \
-      -M k3_ddr_j7.read_bandwidth_mbytes_sec \
-      -M k3_ddr_j7.write_bandwidth_mbytes_sec \
-      stress-ng --vm 2 --vm-bytes 256M -t 10s
-
-     143668213  k3_ddr0/k3_ddr.write/   #  912.8 MB/s  k3_ddr_j7.write_bandwidth_mbytes_sec
-     142802125  k3_ddr1/k3_ddr.write/   #  907.3 MB/s  k3_ddr_j7.write_bandwidth_mbytes_sec
-     142443551  k3_ddr0/k3_ddr.read/    #  905.1 MB/s  k3_ddr_j7.read_bandwidth_mbytes_sec
-     141198258  k3_ddr1/k3_ddr.read/    #  897.1 MB/s  k3_ddr_j7.read_bandwidth_mbytes_sec
-
-Aarya Chaumal (8):
-  dt-bindings: perf: ti,k3-ddr-pmu: Add K3 DDR PMU binding
-  perf: ti_k3_ddr: Add TI K3 DDR performance monitor driver
-  docs: perf: Add TI K3 DDR PMU documentation
-  perf/events: arm64: ti: Add AM62 DDR performance events
-  perf/events: arm64: ti: Add AM62A DDR performance events
-  perf/events: arm64: ti: Add AM62P DDR performance events
-  perf/events: arm64: ti: Add AM64 DDR performance events
-  tools/perf: jevents: Add k3_ddr to JSON unit table
-
-Gandhar Deshpande (1):
-  arm64: dts: ti: k3-j7200: Add DDR node for j7200
-
-MANNURU VENKATESWARLU (5):
-  dt-bindings: memory: cdns,k3-ddr: Add Cadence K3 DDR controller
-    binding
-  dt-bindings: memory: ti,j7-ddrss: Add TI K3 DDRSS wrapper binding
-  dt-bindings: memory: ti,j721s2-msmc: Add TI K3 MSMC binding
-  mfd: ti-ddrss: Add TI K3 DDR subsystem MFD core driver
-  perf/events: arm64: ti: Add J7 DDR performance events
-
-Neha Malcom Francis (4):
-  arm64: dts: ti: k3-j721e: Add DDR and controller node
-  arm64: dts: ti: k3-j721s2-main: Add DDR nodes for J721S2
-  arm64: dts: ti: k3-j784s4-main: Add DDR nodes for J784S4
-  arm64: dts: ti: k3-am64: Add DDR and controller node
-
-Santhosh Kumar K (4):
-  memory: ti-ddrss: Add MR4 temperature-driven refresh rate driver
-  arm64: dts: ti: k3-am62: Add DDR and controller node
-  arm64: dts: ti: k3-am62a: Add DDR and controller node
-  arm64: dts: ti: k3-am62p: Add DDR and controller node
-
- Documentation/admin-guide/perf/index.rst      |   1 +
- Documentation/admin-guide/perf/k3-ddr.rst     |  57 ++
- .../memory-controllers/ti/cdns,k3-ddr.yaml    |  81 +++
- .../memory-controllers/ti/ti,j7-ddrss.yaml    | 186 ++++++
- .../memory-controllers/ti/ti,j721s2-msmc.yaml | 124 ++++
- .../bindings/perf/ti,k3-ddr-pmu.yaml          |  40 ++
- arch/arm64/boot/dts/ti/k3-am62-main.dtsi      |  25 +
- arch/arm64/boot/dts/ti/k3-am62a-main.dtsi     |  33 ++
- .../dts/ti/k3-am62p-j722s-common-main.dtsi    |  25 +
- arch/arm64/boot/dts/ti/k3-am64-main.dtsi      |  33 ++
- arch/arm64/boot/dts/ti/k3-j7200-main.dtsi     |  32 ++
- arch/arm64/boot/dts/ti/k3-j721e-main.dtsi     |  32 ++
- arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi    |  84 +++
- .../dts/ti/k3-j784s4-j742s2-main-common.dtsi  |  83 +++
- arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi    |  73 +++
- drivers/memory/Kconfig                        |  19 +
- drivers/memory/Makefile                       |   1 +
- drivers/memory/ti-ddrss-mr4.c                 | 322 +++++++++++
- drivers/mfd/Kconfig                           |  13 +
- drivers/mfd/Makefile                          |   1 +
- drivers/mfd/ti-ddrss-core.c                   | 280 +++++++++
- drivers/perf/Kconfig                          |  11 +
- drivers/perf/Makefile                         |   1 +
- drivers/perf/ti_k3_ddr_perf.c                 | 532 ++++++++++++++++++
- include/linux/mfd/ti-ddrss.h                  |  53 ++
- .../arch/arm64/ti/am62/sys/ddrc.json          | 240 ++++++++
- .../arch/arm64/ti/am62/sys/metrics.json       |  34 ++
- .../arch/arm64/ti/am62a/sys/ddrc.json         | 240 ++++++++
- .../arch/arm64/ti/am62a/sys/metrics.json      |  34 ++
- .../arch/arm64/ti/am62p/sys/ddrc.json         | 240 ++++++++
- .../arch/arm64/ti/am62p/sys/metrics.json      |  34 ++
- .../arch/arm64/ti/am64/sys/ddrc.json          | 240 ++++++++
- .../arch/arm64/ti/am64/sys/metrics.json       |  34 ++
- .../pmu-events/arch/arm64/ti/j7/sys/ddrc.json | 240 ++++++++
- .../arch/arm64/ti/j7/sys/metrics.json         |  34 ++
- tools/perf/pmu-events/jevents.py              |   1 +
- 36 files changed, 3513 insertions(+)
- create mode 100644 Documentation/admin-guide/perf/k3-ddr.rst
+Signed-off-by: Neha Malcom Francis <n-francis@ti.com>
+Signed-off-by: Gandhar Deshpande <g-deshpande@ti.com>
+Signed-off-by: MANNURU VENKATESWARLU <v-mannuru@ti.com>
+---
+ .../memory-controllers/ti/cdns,k3-ddr.yaml    | 81 +++++++++++++++++++
+ 1 file changed, 81 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/memory-controllers/ti/cdns,k3-ddr.yaml
- create mode 100644 Documentation/devicetree/bindings/memory-controllers/ti/ti,j7-ddrss.yaml
- create mode 100644 Documentation/devicetree/bindings/memory-controllers/ti/ti,j721s2-msmc.yaml
- create mode 100644 Documentation/devicetree/bindings/perf/ti,k3-ddr-pmu.yaml
- create mode 100644 drivers/memory/ti-ddrss-mr4.c
- create mode 100644 drivers/mfd/ti-ddrss-core.c
- create mode 100644 drivers/perf/ti_k3_ddr_perf.c
- create mode 100644 include/linux/mfd/ti-ddrss.h
- create mode 100644 tools/perf/pmu-events/arch/arm64/ti/am62/sys/ddrc.json
- create mode 100644 tools/perf/pmu-events/arch/arm64/ti/am62/sys/metrics.json
- create mode 100644 tools/perf/pmu-events/arch/arm64/ti/am62a/sys/ddrc.json
- create mode 100644 tools/perf/pmu-events/arch/arm64/ti/am62a/sys/metrics.json
- create mode 100644 tools/perf/pmu-events/arch/arm64/ti/am62p/sys/ddrc.json
- create mode 100644 tools/perf/pmu-events/arch/arm64/ti/am62p/sys/metrics.json
- create mode 100644 tools/perf/pmu-events/arch/arm64/ti/am64/sys/ddrc.json
- create mode 100644 tools/perf/pmu-events/arch/arm64/ti/am64/sys/metrics.json
- create mode 100644 tools/perf/pmu-events/arch/arm64/ti/j7/sys/ddrc.json
- create mode 100644 tools/perf/pmu-events/arch/arm64/ti/j7/sys/metrics.json
 
+diff --git a/Documentation/devicetree/bindings/memory-controllers/ti/cdns,k3-ddr.yaml b/Documentation/devicetree/bindings/memory-controllers/ti/cdns,k3-ddr.yaml
+new file mode 100644
+index 0000000000000..89caeb111627a
+--- /dev/null
++++ b/Documentation/devicetree/bindings/memory-controllers/ti/cdns,k3-ddr.yaml
+@@ -0,0 +1,81 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/memory-controllers/ti/cdns,k3-ddr.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Cadence DDR controller for K3 devices
++
++maintainers:
++  - Santhosh Kumar K <s-k6@ti.com>
++  - Neha Malcom Francis <n-francis@ti.com>
++
++properties:
++  compatible:
++    const: cdns,k3-ddr
++
++  reg:
++    minItems: 3
++    maxItems: 3
++    description: |
++      Address ranges for the different register regions of the DDRSS controller.
++      - ctl_cfg: Controller configuration registers
++      - ctl_cfg_pi: PHY Interface configuration registers
++      - ctl_cfg_phy: PHY configuration registers
++
++  reg-names:
++    items:
++      - const: ctl_cfg
++      - const: ctl_cfg_pi
++      - const: ctl_cfg_phy
++
++  bootph-pre-ram: true
++
++required:
++  - compatible
++  - reg
++  - reg-names
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    #include <dt-bindings/soc/ti,sci_pm_domain.h>
++
++    cbass_main {
++      #address-cells = <2>;
++      #size-cells = <2>;
++
++      memorycontroller: memorycontroller@2980000 {
++        compatible = "ti,j721e-ddrss";
++        reg = <0x0 0x02990000 0x0 0x4000>,
++              <0x0 0x0114000 0x0 0x100>;
++        reg-names = "cfg", "ctrl_mmr_lp4";
++        power-domains = <&k3_pds 47 TI_SCI_PD_SHARED>,
++                        <&k3_pds 90 TI_SCI_PD_SHARED>;
++        interrupts = <GIC_SPI 216 IRQ_TYPE_LEVEL_HIGH>;
++        #address-cells = <2>;
++        #size-cells = <2>;
++        ranges = <0x00 0x0000 0x00 0x02990000 0x00 0x4000>;
++        ti,ddr-freq1 = <0>;
++        ti,ddr-freq2 = <0>;
++        ti,ddr-fhs-cnt = <0>;
++        clocks = <&k3_clks 47 2>, <&k3_clks 30 9>;
++        bootph-pre-ram;
++
++        ddr: ddr@0 {
++          compatible = "cdns,k3-ddr";
++          reg = <0x00 0x0000 0x00 0x72c>,
++                <0x00 0x2000 0x00 0x4b0>,
++                <0x00 0x4000 0x00 0x163c>;
++          reg-names = "ctl_cfg", "ctl_cfg_pi", "ctl_cfg_phy";
++          bootph-pre-ram;
++        };
++
++        ddr_pmu0: ddr-pmu@100 {
++          compatible = "ti,k3-ddr-pmu";
++          reg = <0x00 0x100 0x00 0x14>;
++        };
++      };
++    };
 -- 
 2.34.1
 
