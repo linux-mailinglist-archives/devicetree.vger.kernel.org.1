@@ -1,385 +1,215 @@
-Return-Path: <devicetree+bounces-326481-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-326478-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id E3gqEK2SVmoL9wAAu9opvQ
-	(envelope-from <devicetree+bounces-326481-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 21:49:01 +0200
+	id suB+E2iSVmrR9gAAu9opvQ
+	(envelope-from <devicetree+bounces-326478-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 21:47:52 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1E6D75875E
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 21:49:00 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id C0C5175871B
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 21:47:51 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b="Moft9qN/";
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326481-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-326481-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=gmail.com;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=W646cstV;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326478-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-326478-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id A3CED307ACFF
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 19:47:58 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 3CABB3040695
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 19:47:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E51C435511;
-	Tue, 14 Jul 2026 19:47:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BB07432E76;
+	Tue, 14 Jul 2026 19:47:38 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5A29435533
-	for <devicetree@vger.kernel.org>; Tue, 14 Jul 2026 19:47:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C49472F9D82
+	for <devicetree@vger.kernel.org>; Tue, 14 Jul 2026 19:47:36 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1784058469; cv=none; b=Xi8GexZWNQESO8fpvjCIvhQpXfd0gyOqLbA8X+gKcr/PSiMuV4XxM4qwIKJZbx8XZXHtPqJH5RdqFWj95WoROqwUy+st7qOIa3hxLOfu+4cyfPtC3/UYQseQd5pMGwMoZUPofHpCnwFdk4X3aHsrKU9/qmtui5VD1rWSaUBZYag=
+	t=1784058457; cv=none; b=ue76SWb5Fh2xcUSZJukumEkGeBE+yniPcg3u4nEO0LbeQN4nKHNiXkBB5he3yIBvIASlqmo1YoXfPrBEtWRnp57mAGlRKu7ZxM2+mURmxzp1TT9T38XaXFrt2DtqNCs8+jHWvHv1nAG6cJ743Q//NvtT+ngUraiYEFcaHQQCK4E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1784058469; c=relaxed/simple;
-	bh=x5xeEm5V2RUVbJPpiW7WO6S+OyLmpUCyxUEr4Fp4/mM=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=J4KhmbpTaDDlr3E+JwzOGg5eTJmIAXfwFPwbUYY8bEkLUCjsA8p98hi1knvRvcLVtEuAmBsO995olPH32KEWy09S8EgRZck6lZbVP/RKvel3XgD+RrnTvNApM7tE/TmQ36Tq58Zu/nVpftcD9GM15VJ/In3eF4iG4uo8ZMqqfug=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Moft9qN/; arc=none smtp.client-ip=209.85.167.53
-Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-5aeb2bc82ccso1686150e87.2
-        for <devicetree@vger.kernel.org>; Tue, 14 Jul 2026 12:47:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1784058464; x=1784663264; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=C5ekcSFTL4/hgcBZvhEGy/Z9aZabj+fJ0ywhsDg/4Uw=;
-        b=Moft9qN/guihsKiXKCcSdZM/eL2KokMUN9bfIRrRfYDi92aULNWF2uPFB3TMjQ+4Tu
-         BWtyVKZ1jYSymu2ZQkl4oSYhvjZrlh1tScS9hBkLvFC4dU4ij/h/JgW5/OBLwgReHjUe
-         qqaHzmd+b05VJqeUQm27mTeBNK+EvWe7Ka0LDTXx47HgsgpR6U/xdWbkufb6hEcDfaBx
-         gkTQS+pNYzu/xh5m0ZFmHoPEy69vX4yMB8Jf9jUsA4yoQlL2Eh5mhy2h4/lva+BCAzgY
-         /QXCYtjayBB0tUTx+qzIQnEQyB038apjri8CVbdjbEWLax/GYkLHfdN4tpD7MtGJsKQY
-         puHQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1784058464; x=1784663264;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=C5ekcSFTL4/hgcBZvhEGy/Z9aZabj+fJ0ywhsDg/4Uw=;
-        b=KSax4r9oZCjW7wxbSXA+poC/1Va6xpJvOB9B0Om7Mfys67zVQxUB+f0yxJCo/a168i
-         zmC5qxYKMOv4/npihYV76RxvZ9hOfEyXGC12ubODzVmllI9OklvGhfMPcZMDAcph40Mk
-         TQ2DwrjGBk0Ox7TXx6UuZ9XpPUiCV1nwQKPx0Kxy0Biakpr+MnF/xCVdSBwCTksBXRuM
-         GrezZ2nrIVk4kr2/jdd8ADyXeVs0LcK0VuJPvBiPeB6w9JYdbBkaAfyEcHnal4Mj9l4q
-         pcDrgzV7Hluf6TvGIBEQnzyljxdbzt8ZzW91GeWvRjlsiLsOridibXDUbpkwE+4gwU0+
-         t28g==
-X-Forwarded-Encrypted: i=1; AHgh+RqYviBBp199sGO2vs0pmDvUVbTEVErJHh3e+DrussSu8iHHRbWClsXNqjtUqZ8bTiMYSnLfXOTzFCCI@vger.kernel.org
-X-Gm-Message-State: AOJu0YwXfwsnTa/Aor7SED53DQnguQuvvi74HJVyg5rWKvcBLq9ELONa
-	TZC1q7+3N0izrO3V4NpmOZbjvg3czDtQOofoiLnPEptf7lN6Irt8Dyqv
-X-Gm-Gg: AfdE7cm45M3E0CA4kYg7MPz+qrn0TDlr5Sf2nRftePr1uxhq3q+tglSvx8mne3jxUG1
-	eO1fdiWFVMCBCZz0XHo9InuNoxIpgVthzJFziulIwhPwB880+KWSYRwMOMMiNZitE4HQToIELN7
-	AAkY0xe7lnO1LsCcwJZA5QHmLjM8dHf+C49BJtzLMQ9b4sg5oaLuhxggeLkDMYMX8coVJD4HYda
-	bLaotmUaJ5pg/QqJhnCqNQGk1rHcJj9+X8JVyxn87w5ntP9KqN+0BUMPqpq8oHM5Rpfis2rPmQD
-	MXZElztkHUMByzbsdzP9WqQ1pIsolr0TrVm+pwkC1a6jFhpALFCn+ccA508/vzCDxgyBNDGsCB5
-	2dExTwpXXJQB5iDIIiAKZIqfo9IwKKp6v5pXwZPotf+jQrlc6TmYVv1waKsSr/wZxvMqDJbxzd6
-	oRsb0eFC117Kg9D8N50VFrQwT1I0vCx6B4lO/VTGV+pCP/sIE=
-X-Received: by 2002:ac2:508c:0:b0:5b0:e70:c6e8 with SMTP id 2adb3069b0e04-5b0236c0babmr2541636e87.59.1784058463983;
-        Tue, 14 Jul 2026 12:47:43 -0700 (PDT)
-Received: from MSI-LINUX.kielce.vectranet.pl ([2a02:2a40:27ec:2900:822e:374d:22e8:16cf])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5b01ca50a8esm3780287e87.28.2026.07.14.12.47.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Jul 2026 12:47:42 -0700 (PDT)
-From: Jakub Szczudlo <jakubszczudlo40@gmail.com>
-To: linux-iio@vger.kernel.org
-Cc: jic23@kernel.org,
-	dlechner@baylibre.com,
-	nuno.sa@analog.com,
-	andy@kernel.org,
-	marcelo.schmitt@analog.com,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	mike.looijmans@topic.nl,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	jorge.marques@analog.com,
-	antoniu.miclaus@analog.com,
-	mazziesaccount@gmail.com,
-	jishnu.prakash@oss.qualcomm.com,
-	duje@dujemihanovic.xyz,
-	wens@kernel.org,
-	sakari.ailus@linux.intel.com,
-	linusw@kernel.org,
-	Jakub Szczudlo <jakubszczudlo40@gmail.com>
-Subject: [PATCH v7 3/3] iio: adc: ti-ads1100: Add ti-ads1110 support to ti-ads1100 driver
-Date: Tue, 14 Jul 2026 21:47:17 +0200
-Message-ID: <20260714194717.596193-4-jakubszczudlo40@gmail.com>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20260714194717.596193-1-jakubszczudlo40@gmail.com>
-References: <20260714194717.596193-1-jakubszczudlo40@gmail.com>
+	s=arc-20240116; t=1784058457; c=relaxed/simple;
+	bh=3jrjtiYA/ePTdhaa72dNKjSvwGHQiVd1iDu3KxKqEJ8=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=P/Ka7oL4XLU9f33UBLH3phE77MqveI99mMjKuISYF6hMTGlQKW+ZoZ6YRdNFUVDDcWvLO0itQ4ANMpCI8mcxJY8Z2i/5FzxjC/XfwhpPQ9/wcSNMLI3p/p6JfGptOQWTzkp2YBl03Zf5aWG1dpoEonYBiBF1+BU11Z6H+PRUXtk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=W646cstV; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E50AE1F00ACF;
+	Tue, 14 Jul 2026 19:47:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1784058456;
+	bh=nXHjhU3zzxZS+D7A9hEj2tuSM9TlLQQMYiGI4BCD/3s=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=W646cstVOS0mKBrMUQArA9Rlbg5CE8YR1hvFHnahN9aykLnaTyF9hlO/An00eFvI7
+	 rckF3+7++8aqRy46DHm52Ke3t5sF7n2f7/SzY0H73M94mm6Cy6By4N8sHAgM27QXwR
+	 cqUv6rN3N+XmdnNTJHQxcnpeEWIMF/N7UZgqjMuGsAC9TVMW9d0dpgTskp98okuXtD
+	 2io2npplwjkrTXFD4lNpuervNlYWdFuyTjx9uu577QnRI131S8yn2U5Dz5DhDuQ6sz
+	 eVYQmefyQZqVE7KCXeLlZj2fghxTjXLFHxTn/pQmlUsguVqFOqfDIhEjgfVHd4JxQ2
+	 pHocHhiy1Qf1w==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v13 07/35] phy: rockchip: usbdp: Keep clocks running on
+ PHY re-init
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Sebastian Reichel" <sebastian.reichel@collabora.com>
+Cc: robh@kernel.org, olteanv@gmail.com, neil.armstrong@linaro.org, linux-phy@lists.infradead.org, conor+dt@kernel.org, vkoul@kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260714-rockchip-usbdp-cleanup-v13-7-6cb3e769d4c5@collabora.com>
+References: <20260714-rockchip-usbdp-cleanup-v13-0-6cb3e769d4c5@collabora.com>
+ <20260714-rockchip-usbdp-cleanup-v13-7-6cb3e769d4c5@collabora.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Tue, 14 Jul 2026 19:47:35 +0000
+Message-Id: <20260714194735.E50AE1F00ACF@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [-1.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-326481-lists,devicetree=lfdr.de];
-	FORGED_SENDER(0.00)[jakubszczudlo40@gmail.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[kernel.org,baylibre.com,analog.com,topic.nl,vger.kernel.org,gmail.com,oss.qualcomm.com,dujemihanovic.xyz,linux.intel.com];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[21];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:linux-iio@vger.kernel.org,m:jic23@kernel.org,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:andy@kernel.org,m:marcelo.schmitt@analog.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:mike.looijmans@topic.nl,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:jorge.marques@analog.com,m:antoniu.miclaus@analog.com,m:mazziesaccount@gmail.com,m:jishnu.prakash@oss.qualcomm.com,m:duje@dujemihanovic.xyz,m:wens@kernel.org,m:sakari.ailus@linux.intel.com,m:linusw@kernel.org,m:jakubszczudlo40@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORWARDED(0.00)[lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-326478-lists,devicetree=lfdr.de];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:sebastian.reichel@collabora.com,m:robh@kernel.org,m:olteanv@gmail.com,m:neil.armstrong@linaro.org,m:linux-phy@lists.infradead.org,m:conor+dt@kernel.org,m:vkoul@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,linaro.org,lists.infradead.org,vger.kernel.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jakubszczudlo40@gmail.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	ALIAS_RESOLVED(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,ti.com:url]
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:email,vger.kernel.org:from_smtp,lists.linux.dev:replyto,collabora.com:email,sashiko.dev:url,smtp.kernel.org:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: C1E6D75875E
+X-Rspamd-Queue-Id: C0C5175871B
 
-Add ADS1110 support that have faster datarate than ADS1100, it also uses
-internal voltage reference of 2.048V for measurement.
+Thank you for your contribution! Sashiko AI review found 3 potential issue(=
+s) to consider:
 
-Signed-off-by: Jakub Szczudlo <jakubszczudlo40@gmail.com>
----
- drivers/iio/adc/Kconfig      |  9 ++--
- drivers/iio/adc/ti-ads1100.c | 84 +++++++++++++++++++++++++++---------
- 2 files changed, 69 insertions(+), 24 deletions(-)
+New issues:
+- [High] Potential clock leak and state corruption if PHY re-initialization=
+ fails during a mode change.
 
-diff --git a/drivers/iio/adc/Kconfig b/drivers/iio/adc/Kconfig
-index 3755a81c1efd..9de2f4eb72fa 100644
---- a/drivers/iio/adc/Kconfig
-+++ b/drivers/iio/adc/Kconfig
-@@ -1768,11 +1768,14 @@ config TI_ADS1018
-          called ti-ads1018.
- 
- config TI_ADS1100
--	tristate "Texas Instruments ADS1100 and ADS1000 ADC"
-+	tristate "Texas Instruments ADS1100 and similar single channel I2C ADC"
- 	depends on I2C
- 	help
--	  If you say yes here you get support for Texas Instruments ADS1100 and
--	  ADS1000 ADC chips.
-+	  If you say yes here you get support for TI single channel I2C Analog
-+	  Devices.
-+	  * ADS1000 12-Bit, 128 MSPS Analog-to-Digital Converter
-+	  * ADS1100 16-Bit, 128 MSPS Analog-to-Digital Converter
-+	  * ADS1110 16-Bit, 240 MSPS Analog-to-Digital Converter
- 
- 	  This driver can also be built as a module. If so, the module will be
- 	  called ti-ads1100.
-diff --git a/drivers/iio/adc/ti-ads1100.c b/drivers/iio/adc/ti-ads1100.c
-index f0a30ae139af..ad9099aaf19c 100644
---- a/drivers/iio/adc/ti-ads1100.c
-+++ b/drivers/iio/adc/ti-ads1100.c
-@@ -5,7 +5,7 @@
-  * Copyright (c) 2023, Topic Embedded Products
-  *
-  * Datasheet: https://www.ti.com/lit/gpn/ads1100
-- * IIO driver for ADS1100 and ADS1000 ADC 16-bit I2C
-+ * IIO driver for ADS1100 and similar single channel ADC 16-bit I2C
-  */
- 
- #include <linux/bitfield.h>
-@@ -41,20 +41,44 @@
- #define	ADS1100_SINGLESHOT	ADS1100_CFG_SC
- 
- #define ADS1100_SLEEP_DELAY_MS	2000
-+#define ADS1110_INTERNAL_REF_mV 2048
- 
- static const int ads1100_data_rate[] = { 128, 32, 16, 8 };
-+static const int ads1110_data_rate[] = { 240, 60, 30, 15 };
- static const int ads1100_data_rate_bits[] = { 12, 14, 15, 16 };
- 
- /* Timeout based on the minimum sample rate of 8 SPS (7500ms) */
- #define ADS1100_MAX_DRDY_TIMEOUT_US	(7500 * USEC_PER_MSEC)
- 
-+struct ads1100_config {
-+	const char *name;
-+	const int *available_data_rate_hz;
-+	const int data_rate_count;
-+	bool has_internal_vref_only;
-+};
-+
-+static const struct ads1100_config ads1100_config = {
-+	.name = "ads1100",
-+	.available_data_rate_hz = ads1100_data_rate,
-+	.data_rate_count = ARRAY_SIZE(ads1100_data_rate),
-+	.has_internal_vref_only = false,
-+};
-+
-+static const struct ads1100_config ads1110_config = {
-+	.name = "ads1110",
-+	.available_data_rate_hz = ads1110_data_rate,
-+	.data_rate_count = ARRAY_SIZE(ads1110_data_rate),
-+	.has_internal_vref_only = true,
-+};
-+
- struct ads1100_data {
- 	struct i2c_client *client;
- 	struct regulator *reg_vdd;
- 	struct mutex lock;
- 	int scale_avail[2 * 4]; /* 4 gain settings */
-+	const struct ads1100_config *ads_config;
- 	u8 config;
--	bool supports_data_rate; /* Only the ADS1100 can select the rate */
-+	bool supports_data_rate;
- };
- 
- static const struct iio_chan_spec ads1100_channel = {
-@@ -90,6 +114,20 @@ static int ads1100_set_config_bits(struct ads1100_data *data, u8 mask, u8 value)
- 	return 0;
- };
- 
-+static int ads1100_get_vref_milivolts(struct ads1100_data *data)
-+{
-+	int voltage_uV;
-+
-+	if (data->ads_config->has_internal_vref_only)
-+		return ADS1110_INTERNAL_REF_mV;
-+
-+	voltage_uV = regulator_get_voltage(data->reg_vdd);
-+	if (voltage_uV < 0)
-+		return voltage_uV;
-+
-+	return voltage_uV / (MICRO / MILLI);
-+}
-+
- static int ads1100_data_bits(struct ads1100_data *data)
- {
- 	return ads1100_data_rate_bits[FIELD_GET(ADS1100_DR_MASK, data->config)];
-@@ -144,7 +182,8 @@ static int ads1100_new_data_is_ready(struct ads1100_data *data)
- 
- static int ads1100_poll_data_ready(struct ads1100_data *data)
- {
--	int data_rate_Hz = ads1100_data_rate[FIELD_GET(ADS1100_DR_MASK, data->config)];
-+	int data_rate_index = FIELD_GET(ADS1100_DR_MASK, data->config);
-+	int data_rate_Hz = data->ads_config->available_data_rate_hz[data_rate_index];
- 	/* To be sure we wait 5 times more than data rate */
- 	unsigned long wait_time_us = DIV_ROUND_CLOSEST(USEC_PER_SEC, 5 * data_rate_Hz);
- 	int data_ready;
-@@ -185,7 +224,7 @@ static int ads1100_set_scale(struct ads1100_data *data, int val, int val2)
- 	if (ret)
- 		return ret;
- 
--	microvolts = regulator_get_voltage(data->reg_vdd);
-+	microvolts = ads1100_get_vref_milivolts(data) * (MICRO / MILLI);
- 	/*
- 	 * val2 is in 'micro' units, n = val2 / 1000000
- 	 * result must be millivolts, d = microvolts / 1000
-@@ -208,9 +247,9 @@ static int ads1100_set_data_rate(struct ads1100_data *data, int chan, int rate)
- 	unsigned int size;
- 	int ret;
- 
--	size = data->supports_data_rate ? ARRAY_SIZE(ads1100_data_rate) : 1;
-+	size = data->supports_data_rate ? data->ads_config->data_rate_count : 1;
- 	for (i = 0; i < size; i++) {
--		if (ads1100_data_rate[i] == rate)
-+		if (data->ads_config->available_data_rate_hz[i] == rate)
- 			break;
- 	}
- 
-@@ -230,14 +269,9 @@ static int ads1100_set_data_rate(struct ads1100_data *data, int chan, int rate)
- 	return ads1100_poll_data_ready(data);
- }
- 
--static int ads1100_get_vdd_millivolts(struct ads1100_data *data)
--{
--	return regulator_get_voltage(data->reg_vdd) / (MICRO / MILLI);
--}
--
- static void ads1100_calc_scale_avail(struct ads1100_data *data)
- {
--	int millivolts = ads1100_get_vdd_millivolts(data);
-+	int millivolts = ads1100_get_vref_milivolts(data);
- 	unsigned int i;
- 
- 	for (i = 0; i < ARRAY_SIZE(data->scale_avail) / 2; i++) {
-@@ -259,9 +293,9 @@ static int ads1100_read_avail(struct iio_dev *indio_dev,
- 	switch (mask) {
- 	case IIO_CHAN_INFO_SAMP_FREQ:
- 		*type = IIO_VAL_INT;
--		*vals = ads1100_data_rate;
-+		*vals = data->ads_config->available_data_rate_hz;
- 		if (data->supports_data_rate)
--			*length = ARRAY_SIZE(ads1100_data_rate);
-+			*length = data->ads_config->data_rate_count;
- 		else
- 			*length = 1;
- 		return IIO_AVAIL_LIST;
-@@ -280,6 +314,7 @@ static int ads1100_read_raw(struct iio_dev *indio_dev,
- 			    int *val2, long mask)
- {
- 	int ret;
-+	int data_rate_index;
- 	struct ads1100_data *data = iio_priv(indio_dev);
- 
- 	guard(mutex)(&data->lock);
-@@ -296,12 +331,12 @@ static int ads1100_read_raw(struct iio_dev *indio_dev,
- 		return IIO_VAL_INT;
- 	case IIO_CHAN_INFO_SCALE:
- 		/* full-scale is the supply voltage in millivolts */
--		*val = ads1100_get_vdd_millivolts(data);
-+		*val = ads1100_get_vref_milivolts(data);
- 		*val2 = 15 + FIELD_GET(ADS1100_PGA_MASK, data->config);
- 		return IIO_VAL_FRACTIONAL_LOG2;
- 	case IIO_CHAN_INFO_SAMP_FREQ:
--		*val = ads1100_data_rate[FIELD_GET(ADS1100_DR_MASK,
--						   data->config)];
-+		data_rate_index = FIELD_GET(ADS1100_DR_MASK, data->config);
-+		*val = data->ads_config->available_data_rate_hz[data_rate_index];
- 		return IIO_VAL_INT;
- 	default:
- 		return -EINVAL;
-@@ -401,6 +436,11 @@ static int ads1100_probe(struct i2c_client *client)
- 	if (ret)
- 		return ret;
- 
-+	data->ads_config = i2c_get_match_data(client);
-+	if (!data->ads_config)
-+		return dev_err_probe(dev, -EINVAL,
-+				     "Can't get device data from firmware\n");
-+
- 	ret = ads1100_setup(data);
- 	if (ret)
- 		return dev_err_probe(dev, ret,
-@@ -463,16 +503,18 @@ static DEFINE_RUNTIME_DEV_PM_OPS(ads1100_pm_ops,
- 				 NULL);
- 
- static const struct i2c_device_id ads1100_id[] = {
--	{ .name = "ads1100" },
--	{ .name = "ads1000" },
-+	{ .name = "ads1000", .driver_data = (kernel_ulong_t)&ads1100_config },
-+	{ .name = "ads1100", .driver_data = (kernel_ulong_t)&ads1100_config },
-+	{ .name = "ads1110", .driver_data = (kernel_ulong_t)&ads1110_config },
- 	{ }
- };
- 
- MODULE_DEVICE_TABLE(i2c, ads1100_id);
- 
- static const struct of_device_id ads1100_of_match[] = {
--	{.compatible = "ti,ads1100" },
--	{.compatible = "ti,ads1000" },
-+	{ .compatible = "ti,ads1000", .data = &ads1100_config },
-+	{ .compatible = "ti,ads1100", .data = &ads1100_config },
-+	{ .compatible = "ti,ads1110", .data = &ads1110_config },
- 	{ }
- };
- 
--- 
-2.47.3
+Pre-existing issues:
+- [High] The `rk_udphy_dp_phy_configure` callback modifies the shared `pma_=
+regmap` and reads shared lane mapping arrays without holding the driver-spe=
+cific `udphy->mutex`.
+- [High] The USB3 (U3) port is not re-enabled in the GRF registers if the P=
+HY dynamically transitions from a DP-only mode to a DP+USB mode while power=
+ed on.
+--
 
+--- Patch [7]: [PATCH v13 07/35] phy: rockchip: usbdp: Keep clocks running =
+on PHY re-init ---
+commit 0ed1125cb68d99c18b6937c983323c7c388ecb47
+Author: Sebastian Reichel <sebastian.reichel@collabora.com>
+
+phy: rockchip: usbdp: Keep clocks running on PHY re-init
+
+When a mode change is required, rk_udphy_power_on() originally disabled
+clocks before re-enabling them. This commit updates it to call
+rk_udphy_init() directly, keeping clocks running during PHY
+re-initialization.
+
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+
+> diff --git a/drivers/phy/rockchip/phy-rockchip-usbdp.c b/drivers/phy/rock=
+chip/phy-rockchip-usbdp.c
+> index 6cb9f6b4dbf6d..e3f5a26c876a5 100644
+> --- a/drivers/phy/rockchip/phy-rockchip-usbdp.c
+> +++ b/drivers/phy/rockchip/phy-rockchip-usbdp.c
+> @@ -987,8 +987,7 @@ static int rk_udphy_power_on(struct rk_udphy *udphy, =
+u8 mode)
+>  		if (udphy->mode =3D=3D UDPHY_MODE_DP)
+>  			rk_udphy_u3_port_disable(udphy, true);
+> =20
+
+[Severity: High]
+This is a pre-existing issue, but does this code fail to unmask the USB3
+port during dynamic mode changes?
+
+If the PHY transitions dynamically from a DP-only mode to a DP+USB mode
+while powered on, this block handles the mode change but does not call
+rk_udphy_u3_port_disable(udphy, false) to re-enable the U3 port in the GRF
+registers. This seems to prevent USB3 devices from enumerating after the
+transition.
+
+> -		rk_udphy_disable(udphy);
+> -		ret =3D rk_udphy_setup(udphy);
+> +		ret =3D rk_udphy_init(udphy);
+>  		if (ret)
+>  			return ret;
+
+[Severity: High]
+If rk_udphy_init() fails, does this regression leak the clock resources?
+
+Prior to this patch, if rk_udphy_setup() failed, rk_udphy_disable() had
+already powered off the PHY. Now, if rk_udphy_init() fails (e.g., due to a
+PLL lock timeout), it returns the error without disabling the clocks.
+
+Since udphy->status was already set to UDPHY_MODE_NONE earlier in this
+block, the teardown path will see a 0 status:
+
+drivers/phy/rockchip/phy-rockchip-usbdp.c:rk_udphy_power_off() {
+    if (!udphy->status)
+        return;
+    ...
+}
+
+and return early without calling rk_udphy_disable(), permanently leaking
+the clocks.
+
+>  		udphy->mode_change =3D false;
+
+[Severity: High]
+This is a pre-existing issue, but does rk_udphy_dp_phy_configure() need to
+hold the udphy->mutex?
+
+drivers/phy/rockchip/phy-rockchip-usbdp.c:rk_udphy_dp_phy_configure() {
+    struct rk_udphy *udphy =3D phy_get_drvdata(phy);
+    struct phy_configure_opts_dp *dp =3D &opts->dp;
+
+    if (dp->set_rate) {
+    ...
+}
+
+Unlike other PHY operations in this driver, rk_udphy_dp_phy_configure() does
+not acquire udphy->mutex. Since the generic PHY framework serializes
+phy_configure on a per-instance basis, this could run concurrently with
+operations on the USB3 PHY instance (like rk_udphy_usb3_phy_init) or Type-C
+callbacks.
+
+This can result in unprotected accesses to shared resources, such as
+pma_regmap or dp_lane_sel, and potentially cause synchronous external aborts
+if registers are accessed while the hardware block is concurrently put into
+reset by rk_udphy_init().
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260714-rockchip-u=
+sbdp-cleanup-v13-0-6cb3e769d4c5@collabora.com?part=3D7
 
