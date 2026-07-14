@@ -1,244 +1,283 @@
-Return-Path: <devicetree+bounces-326524-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-326527-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id Fd6RC6qaVmrO+wAAu9opvQ
-	(envelope-from <devicetree+bounces-326524-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 22:23:06 +0200
+	id YciTAzObVmr5+wAAu9opvQ
+	(envelope-from <devicetree+bounces-326527-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 22:25:23 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8FAC0758B48
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 22:23:05 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id EFB47758B78
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 22:25:21 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=j2voWa3x;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326524-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-326524-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
+	dkim=pass header.d=amd.com header.s=selector1 header.b=JWlKQnL5;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326527-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-326527-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=amd.com;
+	arc=reject ("cv is fail on i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 4D697301DED0
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 20:22:53 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id EF8E23018CCF
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 20:25:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48E962EEE67;
-	Tue, 14 Jul 2026 20:22:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D34F435512;
+	Tue, 14 Jul 2026 20:24:54 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from PH7PR06CU001.outbound.protection.outlook.com (mail-westus3azon11010040.outbound.protection.outlook.com [52.101.201.40])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C0A02EDD6B
-	for <devicetree@vger.kernel.org>; Tue, 14 Jul 2026 20:22:49 +0000 (UTC)
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1784060571; cv=none; b=NJNXTy/NB1mlRK8/m6TaRlrOhXJmEvdPc2P+q4eRjuLX1xE+DI46iMSTOeOfl2FbR600cqj/IPixJ1FFz3onszJ5tn+sYQLj/FHhoPnQiZcqzKwVkCfycyl0gaSHZjdpD9NVLozuXion8FzcHYOiBZlFwAyLweqAb2z85QgZzCk=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1784060571; c=relaxed/simple;
-	bh=pReN0uZNq8XmXhY9C0IrF2YTSsl0fojPET/zhJAdsa0=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=u9HOMB+96gqZnX7xRC9pku8y04uBS9/XbL1BB2oZ6SoKSb00qelR1ouPsglMS/ibmlcwDY+D9yHL0C8jQfmmnfU+LOkxN7qX14D+/Xs0nvSyaVc7eB6U5+LdqhDGmMPZaXY0ymttrGkryXBADVydK4UDBJA8bf5O6/3lQJ/hjMU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=j2voWa3x; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 16B7F1F000E9;
-	Tue, 14 Jul 2026 20:22:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1784060569;
-	bh=MHSqA7occ7hGC7US8NOfu7naZc8W6e5MV9v/apQ1gtA=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=j2voWa3xzxpKMmshz8lxOgqyUze+wfldWL/08xWQBu2KQ4B1bnZXKEJqMkLJILS6i
-	 XGz529QHqF2prZiGZquBWjIcLVyzthv6m02XLyGRVCCiAvA6WDeMxexErg32pEhDH8
-	 3x56nhQS2UjB/jxyvqb4twt+KGarA65GfmDAEGpFdA14uOpTWBLdYb1l39Z4pBTEWi
-	 /RPmaPPRESvLaKtKONKpcvj+LegkCWerFOwZvQ5W6EsIePNJc4H9OJTpvEVhCxbSKm
-	 SpBquaNM0d1NIY/RuQEr6qjtQKJydEndqbN6L1pBWekPThtMCp2ki0SSAyU7MxZU4k
-	 dczoRVGq9+Hqg==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v13 21/35] phy: rockchip: usbdp: Properly handle
- TYPEC_STATE_SAFE and TYPEC_STATE_USB
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Sebastian Reichel" <sebastian.reichel@collabora.com>
-Cc: vkoul@kernel.org, linux-phy@lists.infradead.org, robh@kernel.org, devicetree@vger.kernel.org, neil.armstrong@linaro.org, olteanv@gmail.com, conor+dt@kernel.org
-In-Reply-To: <20260714-rockchip-usbdp-cleanup-v13-21-6cb3e769d4c5@collabora.com>
-References: <20260714-rockchip-usbdp-cleanup-v13-0-6cb3e769d4c5@collabora.com>
- <20260714-rockchip-usbdp-cleanup-v13-21-6cb3e769d4c5@collabora.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Tue, 14 Jul 2026 20:22:48 +0000
-Message-Id: <20260714202249.16B7F1F000E9@smtp.kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 727B2357CF8;
+	Tue, 14 Jul 2026 20:24:52 +0000 (UTC)
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1784060693; cv=fail; b=DfcQIQ3QjGhlGTrRprzUg7Pw3fora3A1vkNZnNBHbtPrkdFv84Ggi6WXO2bpffC9lQpMURDJGnKS42euCwqzSk5T/BnerJXyDYuax5RfVVzDNXWWGr42N2Zt66a1uqJvslswlyQUbvwAQNFKwg1MH/GHfTsNicYgQ67pyzPt0JE=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1784060693; c=relaxed/simple;
+	bh=tR5Y9yDVHL34Jzv3ZJzz8dolb34OyU2p0c2qY/Q1Vlw=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=QK5HGIffAFNGhS5rE9R7vdNq0Jj5d+eB0DK95EWKKK1EHiGfbOUgpDwAXtCul3lMbnD/O++OvcaFaLRlDVSz4RSIybMml+sLebXB6kimDhG4QsEE9hwpJHykXWweH3GkMviq2eHfNQR5Zl/gFS4unb/hd+LIDUxzGrwVovITOI0=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=JWlKQnL5; arc=fail smtp.client-ip=52.101.201.40
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=TvphX/c6ZcUj0m4ZUQ6FhFcLEly8xobgfggEQvIT7Uvuyolp4Y0Ui7tLDvXQQ6+B0S8EI1P7tqkKCFW1FSOK+DrUvWv8WX+Bm6Q1OZZATrbV/ep1pdNkesM5NivbJ+E/HcrCI1so+Xjv/c4+tZEwOdsGUc5eoSDg9HEaxfMLJy0TAj/hGDc39r7rvqnb1XevOGqig0e6ObhR3VB7rERnBtfU7C1K89EI5MaCVtb7mTXXmxXNmDzYExGE1t3jQNi1BGPOg+aOiAk/mBDtqL99RSzUxsroYpVtdTbcsyq3Fd1JKi/rzBjY4MemHqJhbFs8/hzBUBttOI4z778ROUTGiQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=QIN1+waErVoCIrF0Mid1XOjtO1YPvqvcFewIDoc91LY=;
+ b=jXyptabXjDOyTN1bOsNfMwGKpdA6gFSpR0nYobtw1fv/6k0Z0DWEBEIUp3aIAcH+91OAaBerZfr+2miy4sJfwxzv0xDhXpf7fxvKyC2uLqLFBnFcRIlG3O7OyVlqK6ulLZiV0tOBK/Sf7iyGkKpSbiUzLno2jdx8SwI6Ctip5xAVndZk9If8Ugsxwy3Y/cbBx0YoRPZHn2iOENXosWkKSz7wn1/6oRtq5mqSrBAU75FbQDwRUKzGLcqvAGiBkE5muluXDoZl1tUHKZiEUpau9CM+lzhbOf2odRqB8s0VnjUGM/dCNJBZPCiGjEQ/LuFKOOU2+WUOdpuLhwGmtspMyg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=kernel.org smtp.mailfrom=amd.com; dmarc=pass
+ (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=QIN1+waErVoCIrF0Mid1XOjtO1YPvqvcFewIDoc91LY=;
+ b=JWlKQnL5TEKlRKMkjJruxRK0b/4O5HYIskvyb6/6bmtFMe5AzrPZnyEF3Y9iFtfq48EkitSeb0j/0PTsyg8UwNwJ2I+4auq17UbepM9hQyaxvyheT+iXTLJBpKm5NxHhy5iNe0obHoSj8Mm0TH5zHigA11aBHC43rD4I9jX68a4=
+Received: from MN2PR16CA0040.namprd16.prod.outlook.com (2603:10b6:208:234::9)
+ by DS4PR12MB9660.namprd12.prod.outlook.com (2603:10b6:8:281::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.202.18; Tue, 14 Jul
+ 2026 20:24:43 +0000
+Received: from BN2PEPF00004FC0.namprd04.prod.outlook.com
+ (2603:10b6:208:234:cafe::58) by MN2PR16CA0040.outlook.office365.com
+ (2603:10b6:208:234::9) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.202.19 via Frontend Transport; Tue,
+ 14 Jul 2026 20:24:43 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ BN2PEPF00004FC0.mail.protection.outlook.com (10.167.243.186) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.223.9 via Frontend Transport; Tue, 14 Jul 2026 20:24:43 +0000
+Received: from satlexmb10.amd.com (10.181.42.219) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Tue, 14 Jul
+ 2026 15:24:43 -0500
+Received: from satlexmb08.amd.com (10.181.42.217) by satlexmb10.amd.com
+ (10.181.42.219) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Tue, 14 Jul
+ 2026 15:24:42 -0500
+Received: from xsjblevinsk51.xilinx.com (10.180.168.240) by satlexmb08.amd.com
+ (10.181.42.217) with Microsoft SMTP Server id 15.2.2562.41 via Frontend
+ Transport; Tue, 14 Jul 2026 15:24:42 -0500
+From: Ben Levinsky <ben.levinsky@amd.com>
+To: Bjorn Andersson <andersson@kernel.org>, Mathieu Poirier
+	<mathieu.poirier@linaro.org>, Rob Herring <robh@kernel.org>, "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+CC: <linux-remoteproc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, Tanmay Shah <tanmay.shah@amd.com>, "Michal
+ Simek" <michal.simek@amd.com>, <ben.levinsky@amd.com>
+Subject: [PATCH v6 0/2] remoteproc: add AMD MicroBlaze/V BRAM-based remote processor driver
+Date: Tue, 14 Jul 2026 13:24:39 -0700
+Message-ID: <20260714202441.554065-1-ben.levinsky@amd.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN2PEPF00004FC0:EE_|DS4PR12MB9660:EE_
+X-MS-Office365-Filtering-Correlation-Id: 447e86c5-3b53-4107-c1bb-08dee1e5f09b
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|23010399003|36860700016|82310400026|376014|18002099003|13003099007|6133799003|3023799007|11063799006|56012099006;
+X-Microsoft-Antispam-Message-Info:
+	FERGgxwF33Q6zUYYPDfdDofQibq1f1h3jKGSIx8l76lYnxIIZ+zTwYzqe5h51nZKdpsAF6L96X+oFlqQun+5U/oOSzh2MFonhvu1UxDIosbWLFaTIJNFiYUvR6mbCRj1t9/snVtOPImQGa/ub2vMXOrA98+oolg2RS/U19ArJNsJV1YTjjjpo+bYVTSfGTLF3TBm977NcZ7p4T3olcXbCYzn6S4ageKNrntVo4a99bBsjxlFpCsQXM0MgZQN/F69cMjmu9wy30NRSMXQXrKipfj+i8bnGtrqG7WiWmgcz4sRZ7DK59zUVuuEmCNxLroFZby9cmy8dnwHB5z0wmcYwbFhnJjrWoqWI9FMldob2aXrT0Qv4abzPLAqMyiSmh8nTL7UJMdYyaqLedQtVVX6mpM4H5Zkr2ilyIkd15PI9YuGYK6v0jOaTD92zBMpelUApwaaxs24nUK3ZHuYl1/IS9BQrsy2rXFWBJ+L4C5EYNmvTsI9588FWoJ5wowS2zNlTeefICMW399rvKXZ1b0ag6/Nk6RNRxboGIqDRWXQV5xCB21rKoDtcL2GhPXFGLx2pB7df5aE7lcqjRTI5Taow7ZGy8UKoAILrFk2bAuJDnd3tIEN7aWTxZzkk+VgGsfV5ymXbGhbErlEi5HY+6+gWTm/MorSNJ8S7GR5877L2u/Pb+rhk5N3lHTvCgbVW/paFEbYnoAdP0k3SKUh8q8OBQ==
+X-Forefront-Antispam-Report:
+	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:satlexmb07.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(23010399003)(36860700016)(82310400026)(376014)(18002099003)(13003099007)(6133799003)(3023799007)(11063799006)(56012099006);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	gtn8qLpy2dzXFwFJk2LYq7fWRz0lQz0EDgalGsigDhK/GQtdKxNikMww0QVn5dU65pZquEXR4MEZJ26oexV2Wb0N+OxNgwe0iL8Jvu8iiqd6KpTVubyhx0BCJF0VQiYUDkxiSwpnA8qsARuWuTyUtJafrDiC7pIouhBiYePl7B+UikPWlrh8bfmlR903LLi6Odxct00fDNI3fuJpxy7eG0LzLdHwKiZ8Pufb7Eus2ktgOOOD0vBU+zjmFuxBegl9ohYqvdUX/Qmr+ss4vDliyVQ3hATh+vCOL5b8amqfGjGIEqPNzYAv2TDXvLl+Jd5U3zdXvoZiPofI0m5avoqGaM+PWxM3MxwhijJ5mejmcpwRYVPfQv67rnJb8HS5JxCIeE5fFGruo9n1J0tPnk0XyPopsycS3inDjFEqV+6b6k/78MJLuTITMFfN3AQnvNvs
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Jul 2026 20:24:43.3261
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 447e86c5-3b53-4107-c1bb-08dee1e5f09b
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	BN2PEPF00004FC0.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS4PR12MB9660
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+X-Spamd-Result: default: False [1.34 / 15.00];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-326524-lists,devicetree=lfdr.de];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:sebastian.reichel@collabora.com,m:vkoul@kernel.org,m:linux-phy@lists.infradead.org,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:neil.armstrong@linaro.org,m:olteanv@gmail.com,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FREEMAIL_CC(0.00)[kernel.org,lists.infradead.org,vger.kernel.org,linaro.org,gmail.com];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ALIAS_RESOLVED(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-326527-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:andersson@kernel.org,m:mathieu.poirier@linaro.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-remoteproc@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:tanmay.shah@amd.com,m:michal.simek@amd.com,m:ben.levinsky@amd.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[ben.levinsky@amd.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[amd.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[ben.levinsky@amd.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,amd.com:from_mime,amd.com:dkim,amd.com:mid,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	ALIAS_RESOLVED(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,collabora.com:email,sashiko.dev:url,vger.kernel.org:from_smtp,smtp.kernel.org:mid,lists.linux.dev:replyto]
+	RCVD_COUNT_SEVEN(0.00)[9]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 8FAC0758B48
+X-Rspamd-Queue-Id: EFB47758B78
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
-s) to consider:
+Add a MicroBlaze/V BRAM-based remoteproc driver and corresponding binding
+for AMD soft processors located in programmable logic.
 
-Pre-existing issues:
-- [High] Incomplete hardware reconfiguration when exiting DP AltMode leaves=
- USB3 permanently broken.
-- [High] Resource leak due to checking `udphy->mode` instead of `udphy->sta=
-tus` during PHY exit and power off.
---
+The series models a soft-core processor subsystem that executes firmware
+from dual-port BRAM. The BRAM window is described in the processor-local
+address space and translated to the Linux-visible system physical address
+through the parent bus ranges property.
 
---- Patch [21]: [PATCH v13 21/35] phy: rockchip: usbdp: Properly handle TYP=
-EC_STATE_SAFE and TYPEC_STATE_USB ---
-commit 00cf3afa847e665c47f5fa7b9e7cf40b3d920a4f
-Author: Sebastian Reichel <sebastian.reichel@collabora.com>
+This series depends on the remoteproc cleanup series available here:
 
-phy: rockchip: usbdp: Properly handle TYPEC_STATE_SAFE and TYPEC_STATE_USB
+  https://lore.kernel.org/linux-remoteproc/ah2aVdlsLqy9aeHP@p14s/
 
-This commit updates the Rockchip USB/DP Combo PHY driver to handle Type-C
-safe and USB states. This is intended to ensure that the muxing is properly
-updated when exiting DP AltMode.
+That series adds the common WC ioremap carveout callbacks and optional
+ELF resource-table helper used by patch 2.
 
-Closes: https://sashiko.dev/#/message/20260619155020.CC7361F000E9%40smtp.ke=
-rnel.org
+v6:
+  Patch 1, dt-bindings: remoteproc: document AMD MicroBlaze/V BRAM-based
+  rproc
 
-> diff --git a/drivers/phy/rockchip/phy-rockchip-usbdp.c b/drivers/phy/rock=
-chip/phy-rockchip-usbdp.c
-> index 4e54020d17551..0399cbf96e195 100644
-> --- a/drivers/phy/rockchip/phy-rockchip-usbdp.c
-> +++ b/drivers/phy/rockchip/phy-rockchip-usbdp.c
-> @@ -1293,17 +1293,26 @@ static const struct phy_ops rk_udphy_usb3_phy_ops=
- =3D {
->  	.owner		=3D THIS_MODULE,
->  };
-> =20
-> +static bool rk_udphy_is_supported_mode(struct typec_mux_state *state)
-> +{
-> +	/* Handle Safe State and USB State */
-> +	if (state->mode < TYPEC_STATE_MODAL)
-> +		return true;
-> +
-> +	/* Handle DP AltMode */
-> +	if (state->alt && state->alt->svid =3D=3D USB_TYPEC_DP_SID)
-> +		return true;
-> +
-> +	return false;
-> +}
-> +
->  static int rk_udphy_typec_mux_set(struct typec_mux_dev *mux,
->  				  struct typec_mux_state *state)
->  {
->  	struct rk_udphy *udphy =3D typec_mux_get_drvdata(mux);
-> =20
-> -	/*
-> -	 * Ignore mux events not involving DP AltMode, because
-> -	 * the mode field is being reused, e.g. state->mode =3D=3D 4
-> -	 * could be either TYPEC_MODE_USB4 or TYPEC_DP_STATE_C.
-> -	 */
-> -	if (!state->alt || state->alt->svid !=3D USB_TYPEC_DP_SID)
-> +	/* Ignore mux events not involving USB or DP */
-> +	if (!rk_udphy_is_supported_mode(state))
->  		return 0;
-> =20
->  	mutex_lock(&udphy->mutex);
+  - Corrected Krzysztof Kozlowski's Reviewed-by trailer to match the tag
+    provided during the v3 review.
 
-[Severity: High]
-This isn't a bug introduced by this patch, but does this fully resolve the
-problem when transitioning back to USB-only mode?
+  Patch 2, remoteproc: add AMD MicroBlaze/V BRAM-based remote processor
+  driver
 
-When the Type-C framework exits DP AltMode (entering TYPEC_STATE_SAFE or
-TYPEC_STATE_USB), rk_udphy_typec_mux_set() updates udphy->mode and sets
-udphy->phy_needs_reinit =3D true. However, it appears the hardware is never
-actually reconfigured to reflect this.
+  - Renamed the driver source and object from amd_bram_rproc to
+    amd_mbv_bram_rproc.
 
-The hardware is only reconfigured inside rk_udphy_power_on(), which checks
-phy_needs_reinit. Because the USB subsystem already powered on the USB PHY
-before DP was connected, it holds a power reference and will not call
-phy_power_on() again due to a Type-C mux change.
+v5:
+  Patch 1, dt-bindings: remoteproc: document AMD MicroBlaze/V BRAM-based
+  rproc
 
-Furthermore, when the DP driver calls phy_power_off() during AltMode exit,
-rk_udphy_power_off() clears the UDPHY_MODE_DP flag from udphy->status but d=
-oes
-not check phy_needs_reinit or trigger hardware reconfiguration.
+  - Updated the binding title and patch wording to use MicroBlaze/V.
+  - Added Reviewed-by from Krzysztof Kozlowski.
 
-Does this leave the hardware PHY stuck in 4-lane DP mode with the U3 port
-disabled, breaking USB3 functionality after unplugging the DP cable?
+  Patch 2, remoteproc: add AMD MicroBlaze/V BRAM-based remote processor
+  driver
 
+  - Renamed the Kconfig symbol to AMD_MBV_BRAM_REMOTEPROC.
+  - Updated the Kconfig prompt to use MicroBlaze/V.
+  - Removed the reset GPIO and clock sentence from the Kconfig help text.
+  - Updated the driver and module descriptions to use MicroBlaze/V.
 
-[Severity: High]
-This is also a pre-existing issue, but could the way udphy->mode is updated
-during these mux transitions lead to a resource leak?
+v4:
+  Patch 1, dt-bindings: remoteproc: document AMD BRAM-based rproc
 
-If rk_udphy_typec_mux_set() switches udphy->mode to UDPHY_MODE_DP (4-lane D=
-P)
-while the USB3 PHY is actively in use, udphy->mode loses the UDPHY_MODE_USB
-bit.
+  - Sorted the SoC-specific compatible enum by name.
 
-Later, if the USB3 driver is unbound or the system suspends,
-rk_udphy_usb3_phy_exit() is called:
+  Patch 2, remoteproc: add AMD BRAM-based remote processor driver
 
-rk_udphy_usb3_phy_exit() {
-    ...
-    if (!(udphy->mode & UDPHY_MODE_USB) || udphy->hs)
-        goto unlock;
-    ...
-}
+  - Dropped the driver-specific MAINTAINERS entry.
+  - Trimmed the Kconfig help text.
+  - Reused the common WC ioremap/iounmap carveout callbacks.
+  - Reused the common optional ELF resource-table helper.
+  - Used resource_size(&res) for the translated memory window size.
+  - Kept the coredump segment address as the processor-local device
+    address. The coredump path resolves segment addresses through
+    rproc_da_to_va() against the registered carveout device address, while
+    res.start is the Linux-visible system physical address after DT
+    translation and may differ from the processor-local BRAM address.
 
-Because the check uses udphy->mode instead of udphy->status, it returns ear=
-ly
-and skips rk_udphy_power_off(). This leaves UDPHY_MODE_USB permanently set =
-in
-udphy->status.
+v3:
+  This version updates the binding to use SoC-specific compatibles with
+  the fallback form discussed on the thread.
 
-Additionally, rk_udphy_power_off() also incorrectly validates against
-udphy->mode instead of udphy->status:
+  Patch 1, dt-bindings: remoteproc: document AMD BRAM-based rproc
 
-rk_udphy_power_off() {
-    ...
-    if (!(udphy->mode & mode)) {
-        dev_info(udphy->dev, "mode 0x%02x is not support\n", mode);
-        return;
-    }
-    ...
-}
+  - Reworked the compatible schema to use SoC-specific compatibles.
+  - Added amd,versal2-bram-rproc to the supported compatible list.
+  - Used xlnx,zynqmp-bram-rproc as the fallback compatible.
+  - Updated the example to match the new compatible scheme.
 
-Because udphy->status never returns to 0 (UDPHY_MODE_NONE), rk_udphy_disabl=
-e()
-is never called. Does this leave the PHY fully powered indefinitely, preven=
-ting
-the system from entering low-power suspend states?
+  Patch 2, remoteproc: add AMD BRAM-based remote processor driver
 
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260714-rockchip-u=
-sbdp-cleanup-v13-0-6cb3e769d4c5@collabora.com?part=3D21
+  - Updated the driver OF match table to bind via the
+    xlnx,zynqmp-bram-rproc fallback compatible.
+
+v2:
+  This version pivots the series away from a MicroBlaze-specific binding
+  and driver shape and instead models a BRAM-based soft-core processor
+  subsystem more generally.
+
+  This follows the upstream feedback that amd,microblaze was too tied to
+  the processor architecture while also being too generic as a DT
+  compatible for the hardware interface being described.
+
+  Patch 1, dt-bindings: remoteproc: document AMD BRAM-based rproc
+
+  - Renamed the binding away from amd,microblaze and reframed it around a
+    BRAM-based soft-core processor subsystem.
+  - Dropped the redundant trailing "binding" wording from the patch
+    subject.
+  - Rewrote the binding text to describe the hardware rather than the Linux
+    remoteproc framework.
+  - Reworked the example to address the original dt_binding_check
+    complaints about the root node and simple-pm-bus example shape.
+  - Added a clocks property for the soft-core subsystem.
+
+  Patch 2, remoteproc: add AMD BRAM-based remote processor driver
+
+  - Renamed the driver away from the MicroBlaze-specific name to match the
+    BRAM-based binding.
+  - Added clock handling for the soft-core subsystem and the matching
+    COMMON_CLK dependency in Kconfig.
+  - Cleaned up the reset comments and removed the success dev_dbg() message
+    called out in review.
+
+Ben Levinsky (2):
+  dt-bindings: remoteproc: document AMD MicroBlaze/V BRAM-based rproc
+  remoteproc: add AMD MicroBlaze/V BRAM-based remote processor driver
+
+ .../bindings/remoteproc/amd,bram-rproc.yaml   | 105 +++++++++
+ drivers/remoteproc/Kconfig                    |   9 +
+ drivers/remoteproc/Makefile                   |   1 +
+ drivers/remoteproc/amd_mbv_bram_rproc.c       | 213 ++++++++++++++++++
+ 4 files changed, 328 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/remoteproc/amd,bram-rproc.yaml
+ create mode 100644 drivers/remoteproc/amd_mbv_bram_rproc.c
+
+-- 
+2.34.1
 
