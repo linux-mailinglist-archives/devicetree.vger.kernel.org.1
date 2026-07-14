@@ -1,117 +1,248 @@
-Return-Path: <devicetree+bounces-326546-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-326548-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id DpUHJyuqVmqt/wAAu9opvQ
-	(envelope-from <devicetree+bounces-326546-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 23:29:15 +0200
+	id F0qKG0awVmqSAAEAu9opvQ
+	(envelope-from <devicetree+bounces-326548-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 23:55:18 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50D16758FED
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 23:29:15 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0617D75912E
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 23:55:18 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=lunn.ch header.s=20171124 header.b=sBpwKpI7;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326546-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-326546-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=lunn.ch;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=IjiY2bEY;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326548-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-326548-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=gmail.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 429353010EF1
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 21:29:14 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 0FB8D3070F2F
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 21:54:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2ECC429CDB;
-	Tue, 14 Jul 2026 21:29:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A9C242DA29;
+	Tue, 14 Jul 2026 21:54:44 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yx1-f43.google.com (mail-yx1-f43.google.com [74.125.224.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8CB442BC4E;
-	Tue, 14 Jul 2026 21:29:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C61EF427FB5
+	for <devicetree@vger.kernel.org>; Tue, 14 Jul 2026 21:54:42 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1784064551; cv=none; b=IeOeEhRDY19upSt9wyu0U7D/BWM5HxBFdxlv6uNQ2DMht9DKZ3ZoiFgDqoNNs0jqBnse3DKL3pl9uCwFGg+lVERoyuHQ3h9NYtAnYfnjbib7QvYIUG2hq5fiMyfhCmBZbrHwhSmhd7miWECCZLNR6AMbGA+5iYGm6SHL0GVnssc=
+	t=1784066084; cv=none; b=iyc+5qnbw6b4TyeY0L25Ug04+BLHo4a15V9SudLWTV+c8nXwUl2LtkieH0rMFVBycT4z5NbQ4txhtVdepx83ZK4U44Iodz0PFDk9B83dy8HsX+ufZtjW1KAPjibLkY64HYIBrCYDppnT/NU9ADHJ4opqyg1LOdZ1CN1GBuUt/SY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1784064551; c=relaxed/simple;
-	bh=Bpvtk1w8wV8HWIFOpcV3in5/WC4GIMCY5VMMG9umu/g=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FriSfJX9RvVhEX1FyAOhP2X+LOo/wT29JXgkvrAPsGEgPo+3YVA88sCighGeowf3tdRhsS1DVtbm4JXMsxD/11hM5nXLyessufNcr4plaui7is7snQy1ajm846zKd+sqDVTvC8wIDIaJyBpExmoBefpMiw9ZmxdFTo4qNdKuYyM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=sBpwKpI7; arc=none smtp.client-ip=156.67.10.101
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=tGonvPPlDGQZ4gzGaAE5ONSL7R/+KJFUYJM5k/cS46A=; b=sBpwKpI7EB9v8CROH/LRfco+iW
-	04q83SalkG4SzKJq5Y6lOM6Y5Ph3R9GqWrP71Bgme1bRNzE1eif+HWXamTSUrO6Ewkk+ARsFV+3R5
-	q8+5F7JXfSgz3qbvH1wqP52qfhLRuPaITFt6ozWpdNhdhhKq8OOx8WkPw8VkgUMQWa8c=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1wjkgW-00CFjP-P4; Tue, 14 Jul 2026 23:29:00 +0200
-Date: Tue, 14 Jul 2026 23:29:00 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Liu Changjie <liucj1228@outlook.com>
-Cc: Heiner Kallweit <hkallweit1@gmail.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	netdev@vger.kernel.org, Russell King <linux@armlinux.org.uk>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next 0/2] net: phy: Add Maxio MAE0621A support
-Message-ID: <c03931fb-019d-42d7-99aa-f2d97fb97660@lunn.ch>
-References: <MN0PR19MB6091CD5A84D2DA5DACF434DAACF92@MN0PR19MB6091.namprd19.prod.outlook.com>
+	s=arc-20240116; t=1784066084; c=relaxed/simple;
+	bh=2fRnUTnOxq4qo8Xgzr8H3mWLUn8au9hOu6H8KuFMv34=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=VR1ouyYCsBMWO8uOmUMPhmtSTjfYVEsi47rvvHfX7w1s/qNsMxrzuDf7QLAkSsEgN4mrV/C1SJPosmSWGTFqgZZMlMl8GtC/UGZQq+duu93Da1s72gTvA7I0hUe7pplB2pPEHD5iTMS79Z1VnwzS4ECJ1/5vywfr/A7xrfWjOMw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=IjiY2bEY; arc=none smtp.client-ip=74.125.224.43
+Received: by mail-yx1-f43.google.com with SMTP id 956f58d0204a3-6626b5ace23so68853d50.0
+        for <devicetree@vger.kernel.org>; Tue, 14 Jul 2026 14:54:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1784066082; x=1784670882; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=LD1fSzo5RQ5ZA0kbdHkEYjYhopbXbN0iGXXs945C6dg=;
+        b=IjiY2bEYiPRPztNpzhpOBkpDsH3Bq0sBllQjP/wh7tMy1IVWaFPbPgVAvJSO50EqnX
+         V9FWq0DPlDyMJSOe8BW/aCIkcobnpyFpYXgNZ9cqezz7WEL+MHK08ecunySjZsAT6wP2
+         GazSFTlf33c/Q1K1dFWDCGQUV9OjSCqQck+0Y6Zt2rvypprOdPTDVEOjAlYIDrssrlad
+         phAhbJHPnpFzKXZTryoXsVcPxmxXYU7NPBjS6+p0/FHy+spdSZIO//VFO5IAMINvFU/i
+         M5PqSZFecACUN3yY5brSOzJywX3Siyvx6bwXL2HDMoG8lLEwYqWcujBHLntEaxI4lpqm
+         WK5g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1784066082; x=1784670882;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=LD1fSzo5RQ5ZA0kbdHkEYjYhopbXbN0iGXXs945C6dg=;
+        b=Zd2DOWdCLbEOf2kTy07pxLoiiPqmlpsqZYo0nyHur3AnRvF6AhHvhZWhwW4EVT+mY3
+         bPliNLibUwmd1R1e6GdE6beSn1PQoqOSpy6G7RVN66z7s7I5aZ9Mm4pzoNEZEtX3d/TG
+         nZRDSQlvQAEz+EAzXQtnYjfPviZrCs+Vf0+QI5V+HyyY0OlbKZ6yCKsaTOb8wVfsNcWG
+         b9Sy8EY8a04u4yuNjPAyKt/7U1d747a5MxGT+35PpTcVCVfv0sdQg7vMZufEW3wLwjnI
+         3lC9J22fcsM3ZjQDINYBDqALvTOnkL5tpOUWPFdDVUkaZELh9OtEq2vBXz77fxHS+XXK
+         NdHQ==
+X-Forwarded-Encrypted: i=1; AHgh+RrxaD+nzg+MmACyrjC0Oycb+agfoB9PoxkgrSWsK39gsqw01StaVVNlB9aDbbhPFZdmZmet1cZUCNgu@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywrc2K6px2Dzz5eyh5VFbp3tPzF0Q8C0eSTXD5KuzJGzzds/504
+	11hP0SaImn5R4bU699mObrQzTfvVOOxsePwhSVG9foq2uZHU3IpcHUdVa2EzAtqI
+X-Gm-Gg: AfdE7ckXG/2aq3lTYrPPGtvuO/IAPRjX8p2w8VwXtkgju9G76ZK9T+hleeIDaLOH/O+
+	JL9wZpc06MuMStdkh3yFErWdbLWenz5PDq3oRjB0lzRHZXL3SOiFGJOhQ2ZJnCFc2UpbRgYS9ye
+	sndhL7A9MQPbunOlGsZY3hOLLrIdmnmK16367o7A0wQ5gPGXMFPOISdK8do95cUOQxnZOdZkLtu
+	CpFZhPrr1lRX5TW+cQbfx5vZu535llJtJsjfctnXSvLUKqFlqw7fBnAjKq8EzKHtDGNGAKTkQsY
+	WcwJvtF4cPRjoqCiJjrkDAlo2MmC4VQMDBsp0VH1j7jGp9qhoU4jL6MHHNoW81gD0S2u30ztwr4
+	P+F+gzdWzaQ7afS0lG4ZxgyM1KEUd/qT0NQNCprnCyuBbcDoK3Dbe0zltDVCMzuhfA2jGe3G54Z
+	P1N5Wwdv9U3fO/a063u9edo7LRh8lmkq6lmtEFhmz4YDzitfYH3DY3uhNEv04hjIuzFA==
+X-Received: by 2002:a05:690e:1581:20b0:665:2045:fe47 with SMTP id 956f58d0204a3-667c5a65848mr10794815d50.7.1784066081644;
+        Tue, 14 Jul 2026 14:54:41 -0700 (PDT)
+Received: from localhost.localdomain ([2804:14d:4c64:82a2:a510:f4e7:1a8:cf71])
+        by smtp.gmail.com with ESMTPSA id 956f58d0204a3-6678775d505sm17359640d50.1.2026.07.14.14.54.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 14 Jul 2026 14:54:41 -0700 (PDT)
+From: Rodrigo Gobbi <rodrigo.gobbi.7@gmail.com>
+To: jic23@kernel.org,
+	dlechner@baylibre.com,
+	nuno.sa@analog.com,
+	andy@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	mranostay@gmail.com
+Cc: ~lkcamp/patches@lists.sr.ht,
+	linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-kernel-mentees@lists.linux.dev
+Subject: [PATCH v4] dt-bindings: iio: proximity: move LIDAR-Lite out of trivial-devices
+Date: Tue, 14 Jul 2026 18:30:20 -0300
+Message-ID: <20260714215433.41259-1-rodrigo.gobbi.7@gmail.com>
+X-Mailer: git-send-email 2.48.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <MN0PR19MB6091CD5A84D2DA5DACF434DAACF92@MN0PR19MB6091.namprd19.prod.outlook.com>
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[lunn.ch,none];
-	R_DKIM_ALLOW(-0.20)[lunn.ch:s=20171124];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_MISSING_CHARSET(0.50)[];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:liucj1228@outlook.com,m:hkallweit1@gmail.com,m:davem@davemloft.net,m:edumazet@google.com,m:kuba@kernel.org,m:pabeni@redhat.com,m:netdev@vger.kernel.org,m:linux@armlinux.org.uk,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-326546-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[outlook.com];
-	FORGED_SENDER(0.00)[andrew@lunn.ch,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[lunn.ch:+];
-	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:jic23@kernel.org,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:andy@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:mranostay@gmail.com,m:~lkcamp/patches@lists.sr.ht,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-kernel-mentees@lists.linux.dev,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andrew@lunn.ch,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[gmail.com,davemloft.net,google.com,kernel.org,redhat.com,vger.kernel.org,armlinux.org.uk];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	TAGGED_FROM(0.00)[bounces-326548-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_TO(0.00)[kernel.org,baylibre.com,analog.com,gmail.com];
+	FORGED_SENDER(0.00)[rodrigogobbi7@gmail.com,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	FROM_HAS_DN(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FROM_NEQ_ENVFROM(0.00)[rodrigogobbi7@gmail.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_NONE(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,vger.kernel.org:from_smtp,lunn.ch:from_mime,lunn.ch:dkim,lunn.ch:mid]
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 50D16758FED
+X-Rspamd-Queue-Id: 0617D75912E
 
-> Hardware tests with the 125 MHz setting:
-> - 1 Gbit/s, full duplex link negotiation
+The PulsedLight LIDAR-Lite v2 is currently described as a trivial device,
+but it is not one: besides the I2C interface it exposes a power-enable pin
+and a mode-control pin (the latter also used for the PWM distance output).
 
-What happens when 100Mbps or 10Mbps is negotiated? Has that been
-tested?
+Move it to a dedicated binding file. While at it, document the LIDAR-Lite
+v3: it is sold by Garmin, which acquired PulsedLight, and is
+pin-compatible with the v2, so add it with "pulsedlight,lidar-lite-v2"
+as a fallback compatible.
 
-	Andrew
+Signed-off-by: Rodrigo Gobbi <rodrigo.gobbi.7@gmail.com>
+---
+Hi, all,
+This was on my plate and I didn't have a chance to send this before.
+
+The vendor change is not a typo: see the discussion at [1].
+Tks and regards.
+
+[1] https://lore.kernel.org/all/c39a2980-f5e5-44aa-9fd3-20e0658f62dc@gmail.com/
+
+Changelog:
+v4: unify patches rather than using a series to keep the tree bisectable;
+    rewrite the commit msg, naming the devices explicitly;
+v3: https://lore.kernel.org/all/20251102221643.9966-1-rodrigo.gobbi.7@gmail.com/
+v2: https://lore.kernel.org/all/20250801224112.135918-1-rodrigo.gobbi.7@gmail.com/
+v1: https://lore.kernel.org/all/20250701223341.36835-1-rodrigo.gobbi.7@gmail.com/
+---
+ .../proximity/pulsedlight,lidar-lite-v2.yaml  | 54 +++++++++++++++++++
+ .../devicetree/bindings/trivial-devices.yaml  |  2 -
+ 2 files changed, 54 insertions(+), 2 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/iio/proximity/pulsedlight,lidar-lite-v2.yaml
+
+diff --git a/Documentation/devicetree/bindings/iio/proximity/pulsedlight,lidar-lite-v2.yaml b/Documentation/devicetree/bindings/iio/proximity/pulsedlight,lidar-lite-v2.yaml
+new file mode 100644
+index 000000000000..60e60b7769ba
+--- /dev/null
++++ b/Documentation/devicetree/bindings/iio/proximity/pulsedlight,lidar-lite-v2.yaml
+@@ -0,0 +1,54 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/iio/proximity/pulsedlight,lidar-lite-v2.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Pulsedlight LIDAR-Lite v2 range-finding sensor
++
++maintainers:
++  - Matt Ranostay <mranostay@gmail.com>
++
++description: |
++  Support for LIDAR-Lite v2 and v3 laser rangefinders. These devices
++  can use a simple I2C communication bus or can operate in a PWM mode using a
++  mode control pin to trigger acquisitions and return the measured distance.
++  They also have a power enable pin, which can be used to shut off the device.
++
++properties:
++  compatible:
++    oneOf:
++      - items:
++          - enum:
++              - grmn,lidar-lite-v3
++          - const: pulsedlight,lidar-lite-v2
++      - const: pulsedlight,lidar-lite-v2
++
++  reg:
++    maxItems: 1
++
++  powerdown-gpios:
++    description: GPIO that can be driven low to shut off power to the device.
++    maxItems: 1
++
++  vdd-supply: true
++
++required:
++  - compatible
++  - reg
++  - vdd-supply
++
++additionalProperties: false
++
++examples:
++  - |
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++        lidar@62 {
++            compatible = "grmn,lidar-lite-v3", "pulsedlight,lidar-lite-v2";
++            reg = <0x62>;
++            vdd-supply = <&vdd_5v0>;
++        };
++    };
++...
+diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
+index 435c4baab436..74b640c48598 100644
+--- a/Documentation/devicetree/bindings/trivial-devices.yaml
++++ b/Documentation/devicetree/bindings/trivial-devices.yaml
+@@ -396,8 +396,6 @@ properties:
+           - onnn,adt7462
+             # 48-Lane, 12-Port PCI Express Gen 2 (5.0 GT/s) Switch
+           - plx,pex8648
+-            # Pulsedlight LIDAR range-finding sensor
+-          - pulsedlight,lidar-lite-v2
+             # Renesas HS3001 Temperature and Relative Humidity Sensors
+           - renesas,hs3001
+             # Renesas ISL29501 time-of-flight sensor
+-- 
+2.48.1
+
 
