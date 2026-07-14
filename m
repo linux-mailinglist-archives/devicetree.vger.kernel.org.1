@@ -1,57 +1,104 @@
-Return-Path: <devicetree+bounces-325820-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-325824-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 2PFpFlGSVWrnqAAAu9opvQ
-	(envelope-from <devicetree+bounces-325820-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 03:35:13 +0200
+	id 0KjRG6CXVWpKqgAAu9opvQ
+	(envelope-from <devicetree+bounces-325824-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 03:57:52 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 762A975016C
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 03:35:12 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id CEE2B75037E
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 03:57:51 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20201202 header.b=fox3kMx0;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-325820-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-325820-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=Lt5XL7Nf;
+	dkim=pass header.d=oss.qualcomm.com header.s=google header.b=CY6TtMTp;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-325824-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-325824-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=reject) header.from=qualcomm.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 3A1DD30363B0
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 01:35:11 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id D2A58301E7ED
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 01:57:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45B11360EF4;
-	Tue, 14 Jul 2026 01:35:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63AFB371887;
+	Tue, 14 Jul 2026 01:57:49 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20DEA35DA75;
-	Tue, 14 Jul 2026 01:35:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7F6119ABC6
+	for <devicetree@vger.kernel.org>; Tue, 14 Jul 2026 01:57:47 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783992910; cv=none; b=rm4hqIPiESQLUPaRR/aeU8GbkvwOwZf/ZkuIwgYSVimDgyJ3gERSz3+M59DOqgE+sMbJf2GMSpSalp9rSMb+9VloJk9fL7MqDcjVG7p2HOhGiB/g/Y3ksYDy4lfYm2ZiOxDI9QIOihuYIWdRgtAj717kK6EUwFNYYkQO4PXQfas=
+	t=1783994269; cv=none; b=UaeFJy7COjynWXAZ6AtlBz0aAXbljyh2TQ8YXwJU5dyTHdkFfjFnPWR56c9/GpdcVCSoxh+L9Gaig2tm80CxF5+c+xieObl9ljFbdAXH4+9dFWx5uIlyKoyMP0pVul1o4R0SmFRlpnM7SlsWGAUZzRqJzQ5ZtEQ4tAun6Wr7wUs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783992910; c=relaxed/simple;
-	bh=F26QaJx9sl604URtwE6JAh1iCYOPqnVEQw2Yhx4xxU8=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=T0dhtUcH8UAWRNfeEvkfKLb/r0vu9Y2i1JmSiA1pvfzizXgMcMYCZsOEipMImf2y5ttFxRMTYNMLoESiB8JVhBDv6ASJqQBfTbbrRslQIRRuJPVY6ERtsC8zpE0MEEViIBQZWG/07Y7T69lLIGcKvlarOhyWJbmgidJJpppIe04=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fox3kMx0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id D399DC2BCF7;
-	Tue, 14 Jul 2026 01:35:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1783992909;
-	bh=F26QaJx9sl604URtwE6JAh1iCYOPqnVEQw2Yhx4xxU8=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=fox3kMx0g8+EZQPsSNppA9B8MxlAqtYMsGWtuy7UnN5ZThKHQJ0sOmtF2zuU1zzLE
-	 LuDmg0DuBhCIzcUFDEsjnn25+rFsDiJh/GGAT9+wFHmUf53v1Q6aJZN6pFAMlDvHON
-	 OiXheGIv6C92IphbxXESBEFhftHG58XiWZCApHscqJsZZkH2lIrMFKztYnzdADdD10
-	 Pcoscw6Mc9SlGGHF9jxPt24Qvl/tsk70aPQZkws2SYk2BnSJh5dpvy7wpi9S/yWp9T
-	 p2yz+kYDngdiKjy0Ndnrkxxwzk+s+WTgX0PtwRXPsp2+L25TyKJ3LrHNmgyI2Fc16v
-	 02DVRv6gICz2w==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B875BC44507;
-	Tue, 14 Jul 2026 01:35:09 +0000 (UTC)
-From: Jia Wang via B4 Relay <devnull+wangjia.ultrarisc.com@kernel.org>
-Date: Tue, 14 Jul 2026 09:35:09 +0800
-Subject: [PATCH v3 3/3] clk: ultrarisc: Add DP1000 clock driver
+	s=arc-20240116; t=1783994269; c=relaxed/simple;
+	bh=F2K9sEjjREWTXCiiFvgwr/QcjLlB0RgcEW4s31Wtlh0=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=trmq9QeME6U5qEQppfIpssYY2ug7H2ABxGqu8LGAGcNHD5LWyVyfj1vgLpkRVlFupPHLcA3AzPcDw9eo7j5Brjjyd+Yt7AWSBP6I9NtT2S5WjBRX3SmJrzrNjTnLvAVJl/sVmgY72ypGR627EnsEL3Atpw4tZEqER/0KkXjGO8g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Lt5XL7Nf; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=CY6TtMTp; arc=none smtp.client-ip=205.220.180.131
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 66E1jv5j3259263
+	for <devicetree@vger.kernel.org>; Tue, 14 Jul 2026 01:57:47 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=tp+sv+c71VTdHi1qXlE1u1
+	5U+7SzQuSNHRz9AK/D148=; b=Lt5XL7NfRoJOWWR8HMi5u8+L9Bxyt7UKH/i//O
+	mk0zDHYEstNElk/MsiQ7QES0PZHqITKhrdr7jARMSK4u2ssThVffL7vrnAlqCuuE
+	wLM9ZtHVHg7p+FRCPOtljYj1Tc5Tf6JWl9g/mmwF5RlBjRvpCiBj3dJ5Izwil0e5
+	i+7+N3Cn8zKAXuD2lQqGW7ix0S3DM2EredYGOu2m8uXeWCBQAuD+E1AMPi7OnOCS
+	ESabFpCjUNDTLaKUi+YhRn1LvloIwSP3+MFf9knwCxeuIwA9N32mK2NEcFJygi1d
+	F53KKGBK6YKqnkXnZdr55AogzMwzyw5nrJpq2CoaujSo+Zag==
+Received: from mail-pf1-f199.google.com (mail-pf1-f199.google.com [209.85.210.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4fdbr480ys-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 14 Jul 2026 01:57:46 +0000 (GMT)
+Received: by mail-pf1-f199.google.com with SMTP id d2e1a72fcca58-84870e7f498so4503603b3a.3
+        for <devicetree@vger.kernel.org>; Mon, 13 Jul 2026 18:57:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1783994266; x=1784599066; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:content-type:mime-version
+         :message-id:date:subject:from:from:to:cc:subject:date:message-id
+         :reply-to:content-type;
+        bh=tp+sv+c71VTdHi1qXlE1u15U+7SzQuSNHRz9AK/D148=;
+        b=CY6TtMTpJoUgSwtftr+lrHjNXglFuVBvSJdLNlCbpNVycrD4q3BIG8QSHQ8IDC+Sw9
+         3uSfsboFzqGNs66dx29jpN7cmTmXsYhEJ6jqZl9X7uyvufpwW8sHLQKA+2D+dyXN4XGo
+         ywKfOclkExakEC3imTxskxbhFwPpIAih8WQMaYK8yQUeR/J/zv0ykH6GZrvXHgBKRCGc
+         dJCm6LaKJbu+0mJzWIiiXGGcNDFTiEcAloDrTNGOWC8RVbO9b0c9mPRLTMd4zXbZKZnD
+         6I1+Jwss8N/VkJaLhM5dgSbJt2p4HL5UWJ20BCdb0GFxr8ufF2jmuhRytdubA0uKk1Xt
+         W+ig==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1783994266; x=1784599066;
+        h=cc:to:content-transfer-encoding:content-type:mime-version
+         :message-id:date:subject:from:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to:content-type;
+        bh=tp+sv+c71VTdHi1qXlE1u15U+7SzQuSNHRz9AK/D148=;
+        b=spsUsrryrpcSZyEh09gOaojQ3tDSR2SxZn1FWJUrvDnyqFETB0YGx2xIkOqgmiYwLQ
+         GgaMLNAg+cbOPt1AgGI41UJmwNgX8tHVXpr9d+aZ2PNJciM+HhNbiCYsl1qrZX1bmfJW
+         UAQfz6AgIOAy0K6+YfoNunRkPIwSya4shUpHMteKMHJO6iIDyA9F/MQSXjceHqa+BVoO
+         mRh+FZb0g2DE2rk+WR00CCRPRJ3iOgmybmW5FD2BnZhNu7nCU5TypTn+4dc4gGgKyzDQ
+         FF9D660EMg2mHCFw08p+jQmx7EWmdBkXE0GBsSCfyFzjITnTL+JbWj2n2fbpge5Grqa4
+         kH4Q==
+X-Forwarded-Encrypted: i=1; AHgh+RoaEeIq/sT/1MZXDVV9Qj4eJzkPh4FH5RzW3FSlxb+1EelCt70mgjJILh1YSGK1mGVjKGdNzLAOhxb6@vger.kernel.org
+X-Gm-Message-State: AOJu0YykEM9VadDj9N8+F71JlUN485KI6BD9uLT6fOwBoBZt37unmzOk
+	0/7CRBxT4tzeLws1C8h2gGEzi2IWceiM6WP4ni+gksKh9Y4eWlZToJq6VpCarjRa0Sg2DYkwYNO
+	YwkvVNzx9HiBvj0zkJWxOoO/5LMaDj/UVTGDjzLkOUZJuytRPspu5HjIUzoWqKLxp
+X-Gm-Gg: AfdE7cmLPvUwEqi7TJz47P7PDmdZVrPuPAAb5MqF6N2m3sIeRx2299C27lt6VAf2UJI
+	O6soCjIclJtDy4yQFJuqN9CLEdKOTcJsGQnrJSIky8tKPe1xBu3XUUemBkvmhLx8/H55+jWgRrd
+	LBXFFlsV8Hy/7XcK8BRCwZmOB6IRmiA90ecxXssnSVQzbTpXivn4w0g2s7QOil4J6Cj+JgvSJl3
+	DvhHhqbHWDo5R2/S+TMqTuFAKOKSNZGcKzhyxkMhcOsdP/6T4wBQFJYDzjvJ60EevAZb2+TkXNd
+	mAYHUxlJ8bL2VynPNC2jucAtLoeKTuVV0ytNDIOtSffxfLvMzifxr02xjm1rssuXhd0GH4dMudY
+	Om9cZUz8dTjoaLZHJtn7J6HRF714HHkO+2370t7Mk3KtXZz4aq6b6GGDVqpdZGH5jCcFZ1bBLiA
+	==
+X-Received: by 2002:a05:6a00:4484:b0:848:700d:c950 with SMTP id d2e1a72fcca58-8488975a906mr10015118b3a.37.1783994265794;
+        Mon, 13 Jul 2026 18:57:45 -0700 (PDT)
+X-Received: by 2002:a05:6a00:4484:b0:848:700d:c950 with SMTP id d2e1a72fcca58-8488975a906mr10015096b3a.37.1783994265313;
+        Mon, 13 Jul 2026 18:57:45 -0700 (PDT)
+Received: from jiegan-gv.ap.qualcomm.com (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-84a4f29ed3dsm634191b3a.27.2026.07.13.18.57.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 13 Jul 2026 18:57:44 -0700 (PDT)
+From: Jie Gan <jie.gan@oss.qualcomm.com>
+Subject: [PATCH 0/2] Add CoreSight nodes for Qualcomm Shikra SoC
+Date: Tue, 14 Jul 2026 09:57:24 +0800
+Message-Id: <20260714-add-coresight-nodes-for-shikra-v1-0-b1cf85962455@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,809 +107,121 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260714-ultrarisc-clock-v3-3-4b1ccaa26b37@ultrarisc.com>
-References: <20260714-ultrarisc-clock-v3-0-4b1ccaa26b37@ultrarisc.com>
-In-Reply-To: <20260714-ultrarisc-clock-v3-0-4b1ccaa26b37@ultrarisc.com>
-To: Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney@redhat.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Jia Wang <wangjia@ultrarisc.com>
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1783992908; l=21828;
- i=wangjia@ultrarisc.com; s=20260515; h=from:subject:message-id;
- bh=eCIu2c1M/VDIoTzeSIEnsQlfiMD1h3d09vd9jEEB2ks=;
- b=7DthACWDJjItLTJvYZEF9BhnIzD3yimHziu2fWynMyok2XXVfk2bOepzyTiAQxUXPZ0Bq5a35
- bNzJ8ecdt8FBxKA59gEdzeTYw1R2GR52AqNnrYZMvCTr9Fl90S/TT8E
-X-Developer-Key: i=wangjia@ultrarisc.com; a=ed25519;
- pk=wGVm18siRScehKOkOz0WKxgxDy7IezHEszhnN4/TUCY=
-X-Endpoint-Received: by B4 Relay for wangjia@ultrarisc.com/20260515 with
- auth_id=779
-X-Original-From: Jia Wang <wangjia@ultrarisc.com>
-Reply-To: wangjia@ultrarisc.com
+X-B4-Tracking: v=1; b=H4sIAIWXVWoC/x3NMQrDMAxA0asEzRXEJjjQq5QOIpJiEbCLVEoh5
+ O41Hd/y/wkhbhJwn05w+VhYbwPpNsFWqe2CxsOQ51zmNS1IzLh1l7C9vrF1lkDtjlHtcEJVpVy
+ SEJcFRuTlovb9Dx7P6/oBzTuaNXAAAAA=
+To: Suzuki K Poulose <suzuki.poulose@arm.com>, Mike Leach <mike.leach@arm.com>,
+        James Clark <james.clark@linaro.org>, Leo Yan <leo.yan@arm.com>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Tingwei Zhang <tingwei.zhang@oss.qualcomm.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>
+Cc: coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+        Jie Gan <jie.gan@oss.qualcomm.com>
+X-Mailer: b4 0.14.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1783994260; l=1206;
+ i=jie.gan@oss.qualcomm.com; s=20250909; h=from:subject:message-id;
+ bh=F2K9sEjjREWTXCiiFvgwr/QcjLlB0RgcEW4s31Wtlh0=;
+ b=nhcXZEAnqwFMvxfhtW3CN+qiVqmS7C8vIUCnVOD/G678bP0apyOiIDi0PpEatlNLYmjRNgQQA
+ CrX5DtpTQwnA+B9F7EjUkpiwWwy6VWaUTVTpQ/ijdd04dI+/7Cm4ypP
+X-Developer-Key: i=jie.gan@oss.qualcomm.com; a=ed25519;
+ pk=3LxxUZRPCNkvPDlWOvXfJNqNO4SfGdy3eghMb8puHuk=
+X-Proofpoint-GUID: l-Sm8olAFA_TaP43WprNuugqhv4HEHbT
+X-Proofpoint-ORIG-GUID: l-Sm8olAFA_TaP43WprNuugqhv4HEHbT
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNzE0MDAxNiBTYWx0ZWRfX6+hz+umQe2SN
+ SxyJ2a2FKfwN1YkpQsSiPSymjagL4IKzo+eVBJP+evsXHIKXCdsdHDb6KXkFgDdIyRB9na/MLpN
+ Q9ejbeQetLVJUYquMtKUIhBtm6+N/a0LhVmy+V3mxBGIbXVc0Tr7jUGqsAcaDruKrhC0mkOrwN7
+ Ak50y79z5qmTTzG/h4opQG9hzgO1qUAQhmZ36srX+MD9aq0mRAu1Be48OHgoPZqhlMvM0uVWLg5
+ pZ7AUEAD/JHwttWwtIlaqyYQTxuNu3bTykPDf6JR1w8e2PS1XbXffPWWgrGvZ/8WJQu0fjWGq/w
+ GEYUmmlG+T3hrpIdMvvduF9InLhqzB27Tz98jWO0K9bLd9PuqhnTxFzRMkt+LF5oX8sGcR4o0N3
+ ay14msDKrZzYqMzvBZd/ihzMwW7svKCKS0oDyPofz6sg6W9CKGiT2Uv+QXyYx3uT/X3foFUeV+6
+ UI2waKev/431elgJsoQ==
+X-Authority-Analysis: v=2.4 cv=F5hnsKhN c=1 sm=1 tr=0 ts=6a55979a cx=c_pps
+ a=WW5sKcV1LcKqjgzy2JUPuA==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
+ a=IkcTkHD0fZMA:10 a=RAioF0-LDSMA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=gowsoOTTUOVcmtlkKump:22
+ a=EUspDBNiAAAA:8 a=YMzFSpygh5mOmOF2B6YA:9 a=QEXdDO2ut3YA:10
+ a=OpyuDcXvxspvyRM73sMx:22
+X-Proofpoint-Spam-Info: AW1haW4tMjYwNzE0MDAxNiBTYWx0ZWRfX6p0tAOLFJob8
+ HDncGm2EfPo0MctD2hsMtabQBnowu99Is4ouBvoh6QIKdzea2l3baNmrtluASukZ+uMHJ3OMhbl
+ /BoxPJwMngiHi+g84S86pGZLMCQJ7Rs=
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.134,FMLib:17.12.100.49
+ definitions=2026-07-13_06,2026-07-10_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 bulkscore=0 malwarescore=0 priorityscore=1501 suspectscore=0
+ clxscore=1015 adultscore=0 impostorscore=0 lowpriorityscore=0 spamscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2606150000 definitions=main-2607140016
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-325820-lists,devicetree=lfdr.de,wangjia.ultrarisc.com];
+	TAGGED_FROM(0.00)[bounces-325824-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:mturquette@baylibre.com,m:sboyd@kernel.org,m:bmasney@redhat.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-clk@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:wangjia@ultrarisc.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,oss.qualcomm.com:from_mime,oss.qualcomm.com:dkim,oss.qualcomm.com:mid];
+	FORGED_SENDER(0.00)[jie.gan@oss.qualcomm.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	FORGED_RECIPIENTS(0.00)[m:suzuki.poulose@arm.com,m:mike.leach@arm.com,m:james.clark@linaro.org,m:leo.yan@arm.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:tingwei.zhang@oss.qualcomm.com,m:andersson@kernel.org,m:konradybcio@kernel.org,m:coresight@lists.linaro.org,m:linux-arm-kernel@lists.infradead.org,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-riscv@lists.infradead.org,m:jie.gan@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	HAS_REPLYTO(0.00)[wangjia@ultrarisc.com];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jie.gan@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,ultrarisc.com:mid,ultrarisc.com:email,ultrarisc.com:replyto]
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 762A975016C
+X-Rspamd-Queue-Id: CEE2B75037E
 
-From: Jia Wang <wangjia@ultrarisc.com>
+This series adds the CoreSight debug and trace subsystem for the
+Qualcomm Shikra SoC.
 
-Add a clock driver for the UltraRISC DP1000 SoC.
+The first patch adds a fallback compatible for the Shikra CTCU (CoreSight
+Trace Control Unit). The CTCU on Shikra shares the same configuration as
+the one on SA8775p, so "qcom,shikra-ctcu" falls back to the existing
+"qcom,sa8775p-ctcu" compatible.
 
-The clock tree is driven by a SYSPLL and provides fixed-factor clocks for
-the subsystem and PCIe, divider-based root clocks for GMAC and the UART,
-I2C, and SPI blocks, and per-instance gate clocks for UART0-3, I2C0-3,
-and SPI0-1.
+The second patch adds the DT nodes describing the CoreSight topology on
+Shikra, including the funnels, replicators, TMC sinks (ETR/ETF), STM,
+per-core ETMs, CTIs, and the TPDM/TPDA trace collection blocks, along
+with the CTCU and the dummy source/sink endpoints that model external
+trace sources and the EUD sink.
 
-Signed-off-by: Jia Wang <wangjia@ultrarisc.com>
+Signed-off-by: Jie Gan <jie.gan@oss.qualcomm.com>
 ---
- MAINTAINERS                           |   1 +
- drivers/clk/Kconfig                   |   1 +
- drivers/clk/Makefile                  |   1 +
- drivers/clk/ultrarisc/Kconfig         |  18 ++
- drivers/clk/ultrarisc/Makefile        |   4 +
- drivers/clk/ultrarisc/clk-dp1000.c    | 154 +++++++++++++
- drivers/clk/ultrarisc/clk-ultrarisc.c | 407 ++++++++++++++++++++++++++++++++++
- drivers/clk/ultrarisc/clk-ultrarisc.h |  71 ++++++
- 8 files changed, 657 insertions(+)
+Jie Gan (2):
+      dt-bindings: arm: add CTCU device for shikra
+      arm64: dts: qcom: shikra: Add coresight nodes
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index d646707bb17f..d9a20d5ba13b 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -27676,6 +27676,7 @@ M:	Jia Wang <wangjia@ultrarisc.com>
- L:	linux-clk@vger.kernel.org
- S:	Maintained
- F:	Documentation/devicetree/bindings/clock/ultrarisc,dp1000-clk.yaml
-+F:	drivers/clk/ultrarisc/*
- F:	include/dt-bindings/clock/ultrarisc,dp1000-clk.h
- 
- ULTRARISC DP1000 PINCTRL DRIVER
-diff --git a/drivers/clk/Kconfig b/drivers/clk/Kconfig
-index 1717ce75a907..b33a0d93d909 100644
---- a/drivers/clk/Kconfig
-+++ b/drivers/clk/Kconfig
-@@ -541,6 +541,7 @@ source "drivers/clk/tenstorrent/Kconfig"
- source "drivers/clk/thead/Kconfig"
- source "drivers/clk/stm32/Kconfig"
- source "drivers/clk/ti/Kconfig"
-+source "drivers/clk/ultrarisc/Kconfig"
- source "drivers/clk/uniphier/Kconfig"
- source "drivers/clk/visconti/Kconfig"
- source "drivers/clk/x86/Kconfig"
-diff --git a/drivers/clk/Makefile b/drivers/clk/Makefile
-index cc108a75a900..c66621a8b6cd 100644
---- a/drivers/clk/Makefile
-+++ b/drivers/clk/Makefile
-@@ -159,6 +159,7 @@ obj-$(CONFIG_ARCH_TEGRA)		+= tegra/
- obj-y					+= tenstorrent/
- obj-$(CONFIG_ARCH_THEAD)		+= thead/
- obj-y					+= ti/
-+obj-y					+= ultrarisc/
- obj-$(CONFIG_CLK_UNIPHIER)		+= uniphier/
- obj-$(CONFIG_ARCH_U8500)		+= ux500/
- obj-y					+= versatile/
-diff --git a/drivers/clk/ultrarisc/Kconfig b/drivers/clk/ultrarisc/Kconfig
-new file mode 100644
-index 000000000000..2eecc6ac3119
---- /dev/null
-+++ b/drivers/clk/ultrarisc/Kconfig
-@@ -0,0 +1,18 @@
-+# SPDX-License-Identifier: GPL-2.0-only
-+
-+config CLK_ULTRARISC
-+	tristate
-+	depends on OF
-+	depends on ARCH_ULTRARISC || COMPILE_TEST
-+
-+config CLK_ULTRARISC_DP1000
-+	tristate "UltraRISC DP1000 clock controller"
-+	select CLK_ULTRARISC
-+	depends on OF && HAS_IOMEM
-+	depends on ARCH_ULTRARISC || COMPILE_TEST
-+	default ARCH_ULTRARISC
-+	help
-+	  This driver provides the clock controller for the UltraRISC
-+	  DP1000 SoC. It exposes the PLL output, derived fixed-factor
-+	  clocks, programmable divider clocks, and peripheral gate
-+	  clocks to Linux consumers.
-diff --git a/drivers/clk/ultrarisc/Makefile b/drivers/clk/ultrarisc/Makefile
-new file mode 100644
-index 000000000000..b013708c9444
---- /dev/null
-+++ b/drivers/clk/ultrarisc/Makefile
-@@ -0,0 +1,4 @@
-+# SPDX-License-Identifier: GPL-2.0-only
-+
-+obj-$(CONFIG_CLK_ULTRARISC) += clk-ultrarisc.o
-+obj-$(CONFIG_CLK_ULTRARISC_DP1000) += clk-dp1000.o
-diff --git a/drivers/clk/ultrarisc/clk-dp1000.c b/drivers/clk/ultrarisc/clk-dp1000.c
-new file mode 100644
-index 000000000000..6e824a4f238e
---- /dev/null
-+++ b/drivers/clk/ultrarisc/clk-dp1000.c
-@@ -0,0 +1,154 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Copyright (C) 2026 UltraRISC Technology (Shanghai) Co., Ltd.
-+ */
-+
-+#include <linux/module.h>
-+
-+#include <dt-bindings/clock/ultrarisc,dp1000-clk.h>
-+
-+#include "clk-ultrarisc.h"
-+
-+#define DP1000_PLL_CFG1_OFFSET		0x400
-+#define DP1000_PLL_CFG2_OFFSET		0x404
-+
-+#define DP1000_CCR_UART_OFFSET		0x220
-+#define DP1000_CCR_I2C_OFFSET		0x224
-+#define DP1000_CCR_GMAC_OFFSET		0x228
-+#define DP1000_CCR_SPI_OFFSET		0x22c
-+#define DP1000_PERI_CLKENA_OFFSET	0x270
-+
-+#define DP1000_CCR_LOAD			BIT(16)
-+
-+#define DP1000_PERI_MAX_RATE		62500000UL
-+#define DP1000_CLK_NUM			21
-+
-+static const struct ultrarisc_pll_layout dp1000_pll_layout = {
-+	.cfg1_offset = DP1000_PLL_CFG1_OFFSET,
-+	.cfg2_offset = DP1000_PLL_CFG2_OFFSET,
-+	.frac_mask = GENMASK(23, 0),
-+	.m_mask = GENMASK(23, 16),
-+	.n_mask = GENMASK(11, 6),
-+	.oddiv1_mask = GENMASK(4, 3),
-+	.oddiv2_mask = GENMASK(1, 0),
-+};
-+
-+static const struct ultrarisc_pll_desc dp1000_plls[] = {
-+	{
-+		.id = DP1000_CLK_SYSPLL,
-+		.name = "syspll_clk",
-+	},
-+};
-+
-+#define DP1000_FIXED_FACTOR(_id, _name, _parent, _mult, _div)	\
-+	{							\
-+		.id = (_id),					\
-+		.name = (_name),				\
-+		.parent_id = (_parent),				\
-+		.mult = (_mult),				\
-+		.div = (_div),					\
-+	}
-+
-+#define DP1000_DIV(_id, _name, _offset, _parent, _max_rate)	\
-+	{							\
-+		.id = (_id),					\
-+		.name = (_name),				\
-+		.offset = (_offset),				\
-+		.parent_id = (_parent),				\
-+		.max_rate = (_max_rate),			\
-+		.load_mask = DP1000_CCR_LOAD,			\
-+		.div_shift = 8,					\
-+		.div_width = 4,					\
-+		.gate_bit = 0,					\
-+		.divider_flags = CLK_DIVIDER_ONE_BASED,		\
-+		.gate_flags = 0,				\
-+	}
-+
-+#define DP1000_GATE(_id, _name, _parent, _bit)		\
-+	{							\
-+		.id = (_id),					\
-+		.name = (_name),				\
-+		.offset = DP1000_PERI_CLKENA_OFFSET,		\
-+		.parent_id = (_parent),				\
-+		.gate_bit = (_bit),				\
-+		.gate_flags = 0,				\
-+	}
-+
-+static const struct ultrarisc_fixed_factor_desc dp1000_fixed_factor_clks[] = {
-+	DP1000_FIXED_FACTOR(DP1000_CLK_SYSPLL_DIV2, "syspll_div2_clk",
-+			    DP1000_CLK_SYSPLL, 1, 2),
-+	DP1000_FIXED_FACTOR(DP1000_CLK_SUBSYS, "subsys_clk",
-+			    DP1000_CLK_SYSPLL_DIV2, 1, 2),
-+	DP1000_FIXED_FACTOR(DP1000_CLK_PCIE_DBI, "pcie_dbi_clk",
-+			    DP1000_CLK_SYSPLL, 1, 10),
-+	DP1000_FIXED_FACTOR(DP1000_CLK_PCIEX4_CORE, "pciex4_core_clk",
-+			    DP1000_CLK_SYSPLL, 1, 2),
-+	DP1000_FIXED_FACTOR(DP1000_CLK_PCIEX16_CORE, "pciex16_core_clk",
-+			    DP1000_CLK_SYSPLL, 1, 1),
-+	DP1000_FIXED_FACTOR(DP1000_CLK_PCIE_AUX, "pcie_aux_clk",
-+			    DP1000_CLK_SYSPLL, 1, 40),
-+};
-+
-+static const struct ultrarisc_divider_desc dp1000_divider_clks[] = {
-+	DP1000_DIV(DP1000_CLK_GMAC, "gmac_clk", DP1000_CCR_GMAC_OFFSET,
-+		   DP1000_CLK_SYSPLL_DIV2, 0),
-+	DP1000_DIV(DP1000_CLK_UART_ROOT, "uart_root_clk",
-+		   DP1000_CCR_UART_OFFSET, DP1000_CLK_SUBSYS,
-+		   DP1000_PERI_MAX_RATE),
-+	DP1000_DIV(DP1000_CLK_I2C_ROOT, "i2c_root_clk",
-+		   DP1000_CCR_I2C_OFFSET, DP1000_CLK_SUBSYS,
-+		   DP1000_PERI_MAX_RATE),
-+	DP1000_DIV(DP1000_CLK_SPI_ROOT, "spi_root_clk",
-+		   DP1000_CCR_SPI_OFFSET, DP1000_CLK_SUBSYS,
-+		   DP1000_PERI_MAX_RATE),
-+};
-+
-+static const struct ultrarisc_gate_desc dp1000_gate_clks[] = {
-+	DP1000_GATE(DP1000_CLK_UART0, "uart0_clk", DP1000_CLK_UART_ROOT, 0),
-+	DP1000_GATE(DP1000_CLK_UART1, "uart1_clk", DP1000_CLK_UART_ROOT, 1),
-+	DP1000_GATE(DP1000_CLK_UART2, "uart2_clk", DP1000_CLK_UART_ROOT, 2),
-+	DP1000_GATE(DP1000_CLK_UART3, "uart3_clk", DP1000_CLK_UART_ROOT, 3),
-+	DP1000_GATE(DP1000_CLK_I2C0, "i2c0_clk", DP1000_CLK_I2C_ROOT, 4),
-+	DP1000_GATE(DP1000_CLK_I2C1, "i2c1_clk", DP1000_CLK_I2C_ROOT, 5),
-+	DP1000_GATE(DP1000_CLK_I2C2, "i2c2_clk", DP1000_CLK_I2C_ROOT, 6),
-+	DP1000_GATE(DP1000_CLK_I2C3, "i2c3_clk", DP1000_CLK_I2C_ROOT, 7),
-+	DP1000_GATE(DP1000_CLK_SPI0, "spi0_clk", DP1000_CLK_SPI_ROOT, 8),
-+	DP1000_GATE(DP1000_CLK_SPI1, "spi1_clk", DP1000_CLK_SPI_ROOT, 9),
-+};
-+
-+static const struct ultrarisc_clk_soc_data dp1000_clk_soc_data = {
-+	.num_clks = DP1000_CLK_NUM,
-+	.pll_layout = &dp1000_pll_layout,
-+	.plls = dp1000_plls,
-+	.num_plls = ARRAY_SIZE(dp1000_plls),
-+	.fixed_factors = dp1000_fixed_factor_clks,
-+	.num_fixed_factors = ARRAY_SIZE(dp1000_fixed_factor_clks),
-+	.dividers = dp1000_divider_clks,
-+	.num_dividers = ARRAY_SIZE(dp1000_divider_clks),
-+	.gates = dp1000_gate_clks,
-+	.num_gates = ARRAY_SIZE(dp1000_gate_clks),
-+};
-+
-+static int dp1000_clk_probe(struct platform_device *pdev)
-+{
-+	return ultrarisc_clk_probe(pdev, &dp1000_clk_soc_data);
-+}
-+
-+static const struct of_device_id dp1000_clk_of_match[] = {
-+	{ .compatible = "ultrarisc,dp1000-clk" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, dp1000_clk_of_match);
-+
-+static struct platform_driver dp1000_clk_driver = {
-+	.probe = dp1000_clk_probe,
-+	.driver = {
-+		.name = "ultrarisc-dp1000-clk",
-+		.of_match_table = dp1000_clk_of_match,
-+	},
-+};
-+module_platform_driver(dp1000_clk_driver);
-+
-+MODULE_IMPORT_NS("CLK_ULTRARISC");
-+MODULE_DESCRIPTION("UltraRISC DP1000 clock controller");
-+MODULE_LICENSE("GPL");
-diff --git a/drivers/clk/ultrarisc/clk-ultrarisc.c b/drivers/clk/ultrarisc/clk-ultrarisc.c
-new file mode 100644
-index 000000000000..f06ada5a9fe0
---- /dev/null
-+++ b/drivers/clk/ultrarisc/clk-ultrarisc.c
-@@ -0,0 +1,407 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Copyright (C) 2026 UltraRISC Technology (Shanghai) Co., Ltd.
-+ */
-+
-+#include <linux/bitfield.h>
-+#include <linux/clk-provider.h>
-+#include <linux/io.h>
-+#include <linux/math64.h>
-+#include <linux/module.h>
-+#include <linux/platform_device.h>
-+
-+#include "clk-ultrarisc.h"
-+
-+struct ultrarisc_pll_clk {
-+	struct clk_hw hw;
-+	void __iomem *base;
-+	const struct ultrarisc_pll_layout *layout;
-+};
-+
-+struct ultrarisc_divider_clk {
-+	struct clk_divider divider;
-+	struct clk_gate gate;
-+	u32 load_mask;
-+};
-+
-+#define to_ultrarisc_pll_clk(_hw) \
-+	container_of(_hw, struct ultrarisc_pll_clk, hw)
-+
-+static inline struct ultrarisc_divider_clk *to_ultrarisc_divider_clk(struct clk_hw *hw)
-+{
-+	struct clk_divider *divider = to_clk_divider(hw);
-+
-+	return container_of(divider, struct ultrarisc_divider_clk, divider);
-+}
-+
-+static unsigned long ultrarisc_pll_recalc_rate(struct clk_hw *hw,
-+					       unsigned long parent_rate)
-+{
-+	struct ultrarisc_pll_clk *pll = to_ultrarisc_pll_clk(hw);
-+	const struct ultrarisc_pll_layout *layout = pll->layout;
-+	u32 oddiv1_div, oddiv2_div;
-+	u64 mult, rate, den;
-+	u32 frac, m, n;
-+	u32 cfg1, cfg2;
-+
-+	cfg1 = readl_relaxed(pll->base + layout->cfg1_offset);
-+	cfg2 = readl_relaxed(pll->base + layout->cfg2_offset);
-+
-+	frac = field_get(layout->frac_mask, cfg1);
-+	m = field_get(layout->m_mask, cfg2);
-+	n = field_get(layout->n_mask, cfg2);
-+	if (!n)
-+		return 0;
-+
-+	oddiv1_div = 1U << field_get(layout->oddiv1_mask, cfg2);
-+	oddiv2_div = 1U << field_get(layout->oddiv2_mask, cfg2);
-+
-+	/*
-+	 * The output frequency is calculated as:
-+	 * fvco = parent * (m + frac / 2^24) / n
-+	 * fout = fvco / (2^oddiv1_raw * 2^oddiv2_raw)
-+	 *
-+	 * The output divider values are derived from the raw register field values as:
-+	 * oddivX_div = 1 << oddivX_raw
-+	 */
-+	mult = ((u64)m << 24) + frac;
-+	rate = (u64)parent_rate * mult;
-+	den = ((u64)n << 24) * oddiv1_div * oddiv2_div;
-+
-+	return div64_u64(rate + (den >> 1), den);
-+}
-+
-+static const struct clk_ops ultrarisc_pll_ro_ops = {
-+	.recalc_rate = ultrarisc_pll_recalc_rate,
-+};
-+
-+static unsigned long ultrarisc_divider_recalc_rate(struct clk_hw *hw,
-+						   unsigned long parent_rate)
-+{
-+	struct clk_divider *divider = to_clk_divider(hw);
-+	u32 val;
-+
-+	val = readl_relaxed(divider->reg) >> divider->shift;
-+	val &= clk_div_mask(divider->width);
-+
-+	return divider_recalc_rate(hw, parent_rate, val, divider->table,
-+				   divider->flags, divider->width);
-+}
-+
-+static int ultrarisc_divider_determine_rate(struct clk_hw *hw,
-+					    struct clk_rate_request *req)
-+{
-+	struct clk_divider *divider = to_clk_divider(hw);
-+
-+	return divider_determine_rate(hw, req, divider->table, divider->width,
-+				      divider->flags);
-+}
-+
-+static int ultrarisc_divider_set_rate(struct clk_hw *hw, unsigned long rate,
-+				      unsigned long parent_rate)
-+{
-+	struct ultrarisc_divider_clk *divider_clk = to_ultrarisc_divider_clk(hw);
-+	struct clk_divider *divider = &divider_clk->divider;
-+	int value;
-+	u32 val;
-+
-+	value = divider_get_val(rate, parent_rate, divider->table,
-+				divider->width, divider->flags);
-+	if (value < 0)
-+		return value;
-+
-+	scoped_guard(spinlock_irqsave, divider->lock) {
-+		val = readl_relaxed(divider->reg);
-+		val &= ~(clk_div_mask(divider->width) << divider->shift);
-+		val |= value << divider->shift;
-+		writel_relaxed(val, divider->reg);
-+
-+		if (divider_clk->load_mask) {
-+			/*
-+			 * Program the new divider field, then write 1 to the
-+			 * load bit to trigger the update. The load bit is
-+			 * write-triggered and reads back as 0 on this hardware.
-+			 */
-+			writel_relaxed(val | divider_clk->load_mask, divider->reg);
-+		}
-+	}
-+
-+	return 0;
-+}
-+
-+static const struct clk_ops ultrarisc_divider_ops = {
-+	.recalc_rate = ultrarisc_divider_recalc_rate,
-+	.determine_rate = ultrarisc_divider_determine_rate,
-+	.set_rate = ultrarisc_divider_set_rate,
-+};
-+
-+static struct clk_hw *ultrarisc_clk_register_pll(struct device *dev,
-+						 const struct ultrarisc_pll_desc *desc,
-+						 const struct ultrarisc_pll_layout *layout,
-+						 void __iomem *base)
-+{
-+	struct clk_parent_data pdata = { .index = 0 };
-+	struct ultrarisc_pll_clk *pll;
-+	struct clk_init_data init = {
-+		.name = desc->name,
-+		.ops = &ultrarisc_pll_ro_ops,
-+		.parent_data = &pdata,
-+		.num_parents = 1,
-+		.flags = CLK_GET_RATE_NOCACHE,
-+	};
-+	int ret;
-+
-+	pll = devm_kzalloc(dev, sizeof(*pll), GFP_KERNEL);
-+	if (!pll)
-+		return ERR_PTR(-ENOMEM);
-+
-+	pll->base = base;
-+	pll->layout = layout;
-+	pll->hw.init = &init;
-+
-+	ret = devm_clk_hw_register(dev, &pll->hw);
-+	if (ret)
-+		return ERR_PTR(ret);
-+
-+	return &pll->hw;
-+}
-+
-+static struct clk_hw *
-+ultrarisc_clk_register_divider(struct device *dev,
-+			       const struct ultrarisc_divider_desc *desc,
-+			       struct clk_hw *parent_hw, void __iomem *base,
-+			       spinlock_t *lock)
-+{
-+	const struct clk_parent_data pdata = { .hw = parent_hw };
-+	void __iomem *reg = base + desc->offset;
-+	struct ultrarisc_divider_clk *divider;
-+
-+	if (!desc->div_width)
-+		return ERR_PTR(-EINVAL);
-+
-+	if (!lock)
-+		return ERR_PTR(-EINVAL);
-+
-+	divider = devm_kzalloc(dev, sizeof(*divider), GFP_KERNEL);
-+	if (!divider)
-+		return ERR_PTR(-ENOMEM);
-+
-+	divider->divider.reg = reg;
-+	divider->divider.shift = desc->div_shift;
-+	divider->divider.width = desc->div_width;
-+	divider->divider.flags = desc->divider_flags;
-+	divider->divider.lock = lock;
-+	divider->load_mask = desc->load_mask;
-+	divider->gate.reg = reg;
-+	divider->gate.bit_idx = desc->gate_bit;
-+	divider->gate.flags = desc->gate_flags;
-+	divider->gate.lock = lock;
-+
-+	return devm_clk_hw_register_composite_pdata(dev, desc->name,
-+						    &pdata, 1, NULL, NULL,
-+						    &divider->divider.hw,
-+						    &ultrarisc_divider_ops,
-+						    &divider->gate.hw,
-+						    &clk_gate_ops, 0);
-+}
-+
-+static int ultrarisc_clk_register_fixed_factors(struct device *dev,
-+						struct clk_hw_onecell_data *clk_data,
-+						const struct ultrarisc_clk_soc_data *soc_data)
-+{
-+	u32 i;
-+
-+	for (i = 0; i < soc_data->num_fixed_factors; i++) {
-+		const struct ultrarisc_fixed_factor_desc *desc;
-+		struct clk_hw *parent_hw;
-+		struct clk_hw *hw;
-+
-+		desc = &soc_data->fixed_factors[i];
-+		if (desc->id >= clk_data->num || desc->parent_id >= clk_data->num)
-+			return -EINVAL;
-+
-+		parent_hw = clk_data->hws[desc->parent_id];
-+		if (!parent_hw)
-+			return -EINVAL;
-+
-+		hw = devm_clk_hw_register_fixed_factor_parent_hw(dev, desc->name,
-+								 parent_hw, 0,
-+								 desc->mult,
-+								 desc->div);
-+		if (IS_ERR(hw))
-+			return PTR_ERR(hw);
-+
-+		clk_data->hws[desc->id] = hw;
-+	}
-+
-+	return 0;
-+}
-+
-+static int ultrarisc_clk_register_plls(struct platform_device *pdev,
-+				       struct clk_hw_onecell_data *clk_data,
-+				       const struct ultrarisc_clk_soc_data *soc_data,
-+				       void __iomem *base)
-+{
-+	struct device *dev = &pdev->dev;
-+	u32 i;
-+
-+	for (i = 0; i < soc_data->num_plls; i++) {
-+		const struct ultrarisc_pll_desc *desc = &soc_data->plls[i];
-+		struct clk_hw *hw;
-+
-+		if (desc->id >= clk_data->num) {
-+			dev_err(dev, "%s invalid clock ID %u >= %u\n",
-+				desc->name, desc->id, clk_data->num);
-+			return -EINVAL;
-+		}
-+
-+		hw = ultrarisc_clk_register_pll(dev, desc, soc_data->pll_layout, base);
-+		if (IS_ERR(hw))
-+			return PTR_ERR(hw);
-+
-+		clk_data->hws[desc->id] = hw;
-+	}
-+
-+	return 0;
-+}
-+
-+static int ultrarisc_clk_register_dividers(struct platform_device *pdev,
-+					   struct clk_hw_onecell_data *clk_data,
-+					   const struct ultrarisc_clk_soc_data *soc_data,
-+					   void __iomem *base,
-+					   spinlock_t *lock)
-+{
-+	struct device *dev = &pdev->dev;
-+	u32 i;
-+
-+	for (i = 0; i < soc_data->num_dividers; i++) {
-+		const struct ultrarisc_divider_desc *desc;
-+		struct clk_hw *parent_hw;
-+		struct clk_hw *hw;
-+
-+		desc = &soc_data->dividers[i];
-+		if (desc->id >= clk_data->num || desc->parent_id >= clk_data->num)
-+			return -EINVAL;
-+
-+		parent_hw = clk_data->hws[desc->parent_id];
-+		if (!parent_hw)
-+			return -EINVAL;
-+
-+		hw = ultrarisc_clk_register_divider(dev, desc, parent_hw, base,
-+						    lock);
-+		if (IS_ERR(hw))
-+			return PTR_ERR(hw);
-+
-+		if (desc->max_rate) {
-+			unsigned long rate;
-+
-+			clk_hw_set_rate_range(hw, 0, desc->max_rate);
-+
-+			rate = clk_hw_get_rate(hw);
-+			if (rate > desc->max_rate)
-+				dev_warn(dev, "%s rate %lu exceeds max %lu\n",
-+					 desc->name, rate, desc->max_rate);
-+		}
-+
-+		clk_data->hws[desc->id] = hw;
-+	}
-+
-+	return 0;
-+}
-+
-+static int ultrarisc_clk_register_gates(struct platform_device *pdev,
-+					struct clk_hw_onecell_data *clk_data,
-+					const struct ultrarisc_clk_soc_data *soc_data,
-+					void __iomem *base,
-+					spinlock_t *lock)
-+{
-+	struct device *dev = &pdev->dev;
-+	u32 i;
-+
-+	for (i = 0; i < soc_data->num_gates; i++) {
-+		const struct ultrarisc_gate_desc *desc;
-+		struct clk_hw *parent_hw;
-+		struct clk_hw *hw;
-+
-+		desc = &soc_data->gates[i];
-+		if (desc->id >= clk_data->num || desc->parent_id >= clk_data->num)
-+			return -EINVAL;
-+
-+		parent_hw = clk_data->hws[desc->parent_id];
-+		if (!parent_hw)
-+			return -EINVAL;
-+
-+		hw = devm_clk_hw_register_gate_parent_hw(dev, desc->name,
-+							 parent_hw, 0,
-+							 base + desc->offset,
-+							 desc->gate_bit,
-+							 desc->gate_flags,
-+							 lock);
-+		if (IS_ERR(hw))
-+			return PTR_ERR(hw);
-+
-+		clk_data->hws[desc->id] = hw;
-+	}
-+
-+	return 0;
-+}
-+
-+int ultrarisc_clk_probe(struct platform_device *pdev,
-+			const struct ultrarisc_clk_soc_data *soc_data)
-+{
-+	struct clk_hw_onecell_data *clk_data;
-+	struct device *dev = &pdev->dev;
-+	void __iomem *base;
-+	spinlock_t *lock;
-+	int ret;
-+
-+	if (!soc_data)
-+		return -EINVAL;
-+
-+	lock = devm_kzalloc(dev, sizeof(*lock), GFP_KERNEL);
-+	if (!lock)
-+		return -ENOMEM;
-+
-+	spin_lock_init(lock);
-+
-+	clk_data = devm_kzalloc(dev, struct_size(clk_data, hws,
-+						 soc_data->num_clks),
-+				GFP_KERNEL);
-+	if (!clk_data)
-+		return -ENOMEM;
-+
-+	clk_data->num = soc_data->num_clks;
-+
-+	base = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(base))
-+		return PTR_ERR(base);
-+
-+	ret = ultrarisc_clk_register_plls(pdev, clk_data, soc_data, base);
-+	if (ret)
-+		return ret;
-+
-+	ret = ultrarisc_clk_register_fixed_factors(dev, clk_data, soc_data);
-+	if (ret)
-+		return ret;
-+
-+	ret = ultrarisc_clk_register_dividers(pdev, clk_data, soc_data, base, lock);
-+	if (ret)
-+		return ret;
-+
-+	ret = ultrarisc_clk_register_gates(pdev, clk_data, soc_data, base, lock);
-+	if (ret)
-+		return ret;
-+
-+	for (int i = 0; i < clk_data->num; i++) {
-+		if (!clk_data->hws[i]) {
-+			dev_err(dev, "missing clock ID %u\n", i);
-+			return -EINVAL;
-+		}
-+	}
-+
-+	return devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get, clk_data);
-+}
-+EXPORT_SYMBOL_NS_GPL(ultrarisc_clk_probe, "CLK_ULTRARISC");
-+
-+MODULE_DESCRIPTION("UltraRISC clock core driver");
-+MODULE_LICENSE("GPL");
-diff --git a/drivers/clk/ultrarisc/clk-ultrarisc.h b/drivers/clk/ultrarisc/clk-ultrarisc.h
-new file mode 100644
-index 000000000000..8202b7ed0e31
---- /dev/null
-+++ b/drivers/clk/ultrarisc/clk-ultrarisc.h
-@@ -0,0 +1,71 @@
-+/* SPDX-License-Identifier: GPL-2.0-only */
-+#ifndef __ULTRARISC_CLK_ULTRARISC_H
-+#define __ULTRARISC_CLK_ULTRARISC_H
-+
-+#include <linux/clk-provider.h>
-+#include <linux/platform_device.h>
-+#include <linux/types.h>
-+
-+struct ultrarisc_pll_layout {
-+	u32 cfg1_offset;
-+	u32 cfg2_offset;
-+	u32 frac_mask;
-+	u32 m_mask;
-+	u32 n_mask;
-+	u32 oddiv1_mask;
-+	u32 oddiv2_mask;
-+};
-+
-+struct ultrarisc_pll_desc {
-+	u32 id;
-+	const char *name;
-+};
-+
-+struct ultrarisc_fixed_factor_desc {
-+	u32 id;
-+	const char *name;
-+	u32 parent_id;
-+	u32 mult;
-+	u32 div;
-+};
-+
-+struct ultrarisc_divider_desc {
-+	u32 id;
-+	const char *name;
-+	u32 offset;
-+	u32 parent_id;
-+	unsigned long max_rate;
-+	u32 load_mask;
-+	u8 div_shift;
-+	u8 div_width;
-+	u8 gate_bit;
-+	u16 divider_flags;
-+	u8 gate_flags;
-+};
-+
-+struct ultrarisc_gate_desc {
-+	u32 id;
-+	const char *name;
-+	u32 offset;
-+	u32 parent_id;
-+	u8 gate_bit;
-+	u8 gate_flags;
-+};
-+
-+struct ultrarisc_clk_soc_data {
-+	const struct ultrarisc_pll_layout *pll_layout;
-+	const struct ultrarisc_pll_desc *plls;
-+	u32 num_plls;
-+	const struct ultrarisc_fixed_factor_desc *fixed_factors;
-+	u32 num_fixed_factors;
-+	const struct ultrarisc_divider_desc *dividers;
-+	u32 num_dividers;
-+	const struct ultrarisc_gate_desc *gates;
-+	u32 num_gates;
-+	u32 num_clks;
-+};
-+
-+int ultrarisc_clk_probe(struct platform_device *pdev,
-+			const struct ultrarisc_clk_soc_data *soc_data);
-+
-+#endif /* __ULTRARISC_CLK_ULTRARISC_H */
+ .../bindings/arm/qcom,coresight-ctcu.yaml          |    1 +
+ arch/arm64/boot/dts/qcom/shikra.dtsi               | 1298 ++++++++++++++++++++
+ 2 files changed, 1299 insertions(+)
+---
+base-commit: 49362394dad7df66c274c867a271394c10ca2bb8
+change-id: 20260714-add-coresight-nodes-for-shikra-fffa261ead64
 
+Best regards,
 -- 
-2.34.1
-
+Jie Gan <jie.gan@oss.qualcomm.com>
 
 
