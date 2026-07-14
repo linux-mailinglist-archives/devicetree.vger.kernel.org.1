@@ -1,189 +1,202 @@
-Return-Path: <devicetree+bounces-325810-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-325813-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id peg4BTOLVWptpwAAu9opvQ
-	(envelope-from <devicetree+bounces-325810-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 03:04:51 +0200
+	id hsH2J8SMVWrHpwAAu9opvQ
+	(envelope-from <devicetree+bounces-325813-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 03:11:32 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3B8974FF44
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 03:04:49 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2261B74FFAB
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 03:11:32 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=dMdvXX+Y;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-325810-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-325810-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=intel.com;
+	dkim=pass header.d=kernel.org header.s=k20201202 header.b=MzhCOYWs;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-325813-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-325813-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 79C7D301E976
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 01:04:48 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 02D88302515D
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 01:11:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BAFD73563E8;
-	Tue, 14 Jul 2026 01:04:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6833835B136;
+	Tue, 14 Jul 2026 01:11:24 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46F4F12C534;
-	Tue, 14 Jul 2026 01:04:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01B1B35E1A1;
+	Tue, 14 Jul 2026 01:11:23 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783991087; cv=none; b=RI9fs7sNIhkO2HltvZLQEhQFITwr2QhQL+i8x3zbbuaCDZRn1UPk8Fh9f7LuH4qN2lHoKsFD3P9IC7HeVOes9Gp8SRvVBiCZEDSFypEUAZ14nSbhHUciTgS3Nt0zIsIcPdydwppGByGsJ7A4n70NVtgR3neqQsDC8hFT8tiWSBg=
+	t=1783991484; cv=none; b=Nhbbx1hGqUHM4Ge+9kTPpRJ7MfdAoOMobiqU4XjDvkfWjWUNcQuYp0nhBG8DKR/5NhNzzfd1L/gfXH4ba/JGi+3MtLjBikE7TMgQ0OjVO53q9Xovb/h7W6AsvYw/T1c+TlWay/k6yYbjBkq2SLT/qTuo6BPtlWacd0ytJPnHYRg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783991087; c=relaxed/simple;
-	bh=ghnA79c0myfQmm1tLT8G1Q7k9znQt4izz53sCHLn+p4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CAf/HfAFftNCmWNHyBtarRTZeJ8m79Kbuu0Wc5Pxm777I4BKN6eywRBRk4dH7UfAe+UTaQu/ndA2eOLkPD5V9fxMweld7Eb3aUyZzN2leqbZL9AnA0CaPpLSJuMgYm8JrQIAI+g4gVi0lxx7ODNfPp4AyWNffYnEupcDfK03clU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=dMdvXX+Y; arc=none smtp.client-ip=198.175.65.18
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1783991086; x=1815527086;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=ghnA79c0myfQmm1tLT8G1Q7k9znQt4izz53sCHLn+p4=;
-  b=dMdvXX+Yu7q9MU11XxJWAWGl93F1tBQqv+1XRa4nVgnsdpkKX3mmEetR
-   FQ9VP6HCWm5hUDBk48HDbHZGF70RVnypnH8uyj2M5SA0YN7qpWbsWVz8b
-   /3jXPMsQysrNBqOyI7CzjBh8qb/CSfDcQPWoitkav4it9EDxzTufTMsQC
-   5ETMQVdn83O4RB5xKWOcOy/mVRtNQAA0YDCAF0ma1MEz+0LDvUGuqzBjg
-   bj8/f+wzWg3PV6HNt1Dz+anWhvSDdKP9trHqsJSe/J9JGT+PcXXFDhodK
-   0RpVVvbO4U2jdUhzLNH1cIcoZrAtY8WwNeftAZGxNGxT2SPA/EmBlv4pZ
-   A==;
-X-CSE-ConnectionGUID: jKSAghVcTviplz2Hs07luA==
-X-CSE-MsgGUID: GkJMRTblTsG1J5aPC/8zGw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11841"; a="84701794"
-X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; 
-   d="scan'208";a="84701794"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
-  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Jul 2026 18:04:45 -0700
-X-CSE-ConnectionGUID: JBWFPNJRTj2IGgrbVri1Gg==
-X-CSE-MsgGUID: AQadaKAeS7mdjt78kRDGkA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; 
-   d="scan'208";a="252317728"
-Received: from kniemiec-mobl1.ger.corp.intel.com (HELO localhost) ([10.245.245.189])
-  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Jul 2026 18:04:41 -0700
-Date: Tue, 14 Jul 2026 04:04:39 +0300
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: David Lechner <dlechner@baylibre.com>
-Cc: Jonathan Cameron <jic23@kernel.org>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Chris Hall <c-hall@ti.com>,
-	Patrick Edwards <pedwards@ti.com>, Kurt Borja <kuurtb@gmail.com>,
-	Nguyen Minh Tien <zizuzacker@gmail.com>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 8/8] iio: adc: ti-ads112c14: add measurement channel
- support
-Message-ID: <alWLJ8j-a7CtTbU3@ashevche-desk.local>
-References: <20260710-iio-adc-ti-ads122c14-v3-0-746d52cbf1d0@baylibre.com>
- <20260710-iio-adc-ti-ads122c14-v3-8-746d52cbf1d0@baylibre.com>
- <alI-a6nkGvXp6sDo@ashevche-desk.local>
- <f8bb35a6-a898-497a-96eb-7a76a1fba16c@baylibre.com>
+	s=arc-20240116; t=1783991484; c=relaxed/simple;
+	bh=2okLRAGbVQqKklUYGWmJ7tyA+p3vyLm+/B5mkepvT5Y=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Trs3/T45oNnbGm0tJLjuQfD33rSJ0JHZ1blOLGouBI643e/j1dBh/VFT6NWoeN2y186zTbSnbirCZBdjor6u5aVQ+Nwv6cA21TIbOEU97dVURgAhEPIO+obxXhHmMWjHfp0nlOjIomOrFz4Lu3ekqPsXaLTXj8MFhLEk+pRPgKU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MzhCOYWs; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 7C387C2BCB8;
+	Tue, 14 Jul 2026 01:11:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1783991483;
+	bh=2okLRAGbVQqKklUYGWmJ7tyA+p3vyLm+/B5mkepvT5Y=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=MzhCOYWsGCsJ7nUAWyah/617hIhMdYAY2W4j2Cv/1fYQj9wwqWOujTNv6mdZOPSDx
+	 Gm/9rBi8ToXqvHFB4XWHWStCm1Tdv2cOcS9RbXsc7IL5eyjMtcq/rHl55wfDYDm6+X
+	 NDT7tu9RAoe4lH5sgdjMG1+GlAnTUwlh3jfEtLtmeumzlwYLjJOMrSy9s4cKCLntuF
+	 Nw8Uoldgcj7sXtq7lJ+b37I546qIJbHnuhjvFDgMnFf/OwFdzIQhIlGgolU+yacemw
+	 7Xl86kBXU5AFFmGJ7q/2F+E4vPcO6gJTlRc813RdrkZnmvOMaT7HgBaI26v/r9Ggtq
+	 3emwWbLi8+ZJg==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5AD61C44501;
+	Tue, 14 Jul 2026 01:11:23 +0000 (UTC)
+From: Jia Wang via B4 Relay <devnull+wangjia.ultrarisc.com@kernel.org>
+Subject: [PATCH v3 0/3] PCI: ultrarisc: Add DP1000 PCIe clock support
+Date: Tue, 14 Jul 2026 09:11:01 +0800
+Message-Id: <20260714-ultrarisc-pci-clk-v3-0-e72723fc0ef1@ultrarisc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <f8bb35a6-a898-497a-96eb-7a76a1fba16c@baylibre.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAKWMVWoC/23Nyw6CMBQE0F8hXVvThxZx5X8YF225lesDSAuNh
+ vDvFjSaGJaTzJwZSACPEMg+G4iHiAGbOgW5yoitdH0GimXKRDChmOI57W+d1x6Dpa1Fam9Xqi0
+ v2CbXjoMmadd6cPiYzePpnUNvLmC7CZoaFYau8c/5NPKp9/FFseBHThndgpaS7VypjTx8O2vb3
+ Mn0EcVPyZlaUkRShJPOKGe0UuZfGcfxBRQjU7UOAQAA
+X-Change-ID: 20260617-ultrarisc-pci-clk-ac19047af1ea
+To: Xincheng Zhang <zhangxincheng@ultrarisc.com>, 
+ Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+ =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
+ Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Bjorn Helgaas <bhelgaas@google.com>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Jia Wang <wangjia@ultrarisc.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>, 
+ Conor Dooley <conor.dooley@microchip.com>
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1783991481; l=2995;
+ i=wangjia@ultrarisc.com; s=20260515; h=from:subject:message-id;
+ bh=2okLRAGbVQqKklUYGWmJ7tyA+p3vyLm+/B5mkepvT5Y=;
+ b=PMqfwG3L/HPPIM7FZXN8QLT8vF5qGlTEcsmO7O2+RjQAIHyJ7ZeLJpxQgTkzrkK7U3NqTCTXH
+ nDKJzlPRWvxDi0rmUvbOf5DLuRDJjhg5buBapFyxEWWuIVl333CFIcQ
+X-Developer-Key: i=wangjia@ultrarisc.com; a=ed25519;
+ pk=wGVm18siRScehKOkOz0WKxgxDy7IezHEszhnN4/TUCY=
+X-Endpoint-Received: by B4 Relay for wangjia@ultrarisc.com/20260515 with
+ auth_id=779
+X-Original-From: Jia Wang <wangjia@ultrarisc.com>
+Reply-To: wangjia@ultrarisc.com
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[intel.com:d:+,kernel.org:s:+];
+X-Spamd-Result: default: False [-2.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_RHS_MATCH_TO(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[14];
+	FORGED_RECIPIENTS(0.00)[m:zhangxincheng@ultrarisc.com,m:lpieralisi@kernel.org,m:kwilczynski@kernel.org,m:mani@kernel.org,m:robh@kernel.org,m:bhelgaas@google.com,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-pci@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:wangjia@ultrarisc.com,m:krzysztof.kozlowski@oss.qualcomm.com,m:conor.dooley@microchip.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-325810-lists,devicetree=lfdr.de];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:dlechner@baylibre.com,m:jic23@kernel.org,m:nuno.sa@analog.com,m:andy@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:c-hall@ti.com,m:pedwards@ti.com,m:kuurtb@gmail.com,m:zizuzacker@gmail.com,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	HAS_ORG_HEADER(0.00)[];
-	FORGED_SENDER(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[kernel.org,analog.com,ti.com,gmail.com,vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	REPLYTO_DOM_EQ_TO_DOM(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	FORWARDED(0.00)[lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-325813-lists,devicetree=lfdr.de,wangjia.ultrarisc.com];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	HAS_REPLYTO(0.00)[wangjia@ultrarisc.com];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,vger.kernel.org:from_smtp,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: C3B8974FF44
+X-Rspamd-Queue-Id: 2261B74FFAB
 
-On Mon, Jul 13, 2026 at 02:40:27PM -0500, David Lechner wrote:
-> On 7/11/26 8:00 AM, Andy Shevchenko wrote:
-> > On Fri, Jul 10, 2026 at 05:50:41PM -0500, David Lechner (TI) wrote:
+Add clock handling for the UltraRISC DP1000 DesignWare PCIe host
+controller.
 
-...
+The DP1000 PCIe controller depends on three input clocks: core, dbi, and
+aux. The driver accesses DBI registers during host initialization, so the
+clocks must be enabled before the controller registers are touched.
 
-> >> +struct ads112c14_measurement {
-> >> +	const char *label;
-> >> +	u32 vref_source;
-> >> +	u8 iunit;
-> >> +	u8 idac1_mag;
-> >> +	u8 idac2_mag;
-> >> +	u8 idac1_mux;
-> >> +	u8 idac2_mux;
-> > 
-> > I would group this slightly differently:
-> > 
-> > 	u8 idac1_mag;
-> > 	u8 idac2_mag;
-> > 	u8 idac1_mux;
-> > 	u8 idac2_mux;
-> > 	u8 iunit;
-> > 
-> > I haven't seen the code, but names suggest that most likely one would read
-> > *[12] together or close enough, and less probably mixed with 'iunit' reads.
-> > Current layout might lead to interesting code generation complications on
-> > the unaligned-intolerable architectures.
-> 
-> iunit is scaling factor for *_mag, so logically gets grouped with
-> those. (These are all datasheet register field names.)
+This series documents the required clocks in the device tree binding,
+enables the core, dbi, and aux clocks before DesignWare host
+initialization, and keeps them managed across probe failure, detach, and
+system suspend/resume. It also switches the driver to
+module_platform_driver() so the existing tristate Kconfig option builds
+correctly as a module.
 
-Then it can be
+Testing:
+- Build and module build tested with ARCH=riscv.
+- Boot tested on UltraRISC DP1000.
+- Validated the PCIe binding with dt_binding_check and dtbs_check.
 
-	u8 idac1_mux;
-	u8 idac2_mux;
-	u8 idac1_mag;
-	u8 idac2_mag;
-	u8 iunit;
+Signed-off-by: Jia Wang <wangjia@ultrarisc.com>
+---
+Changes in v3:
+- Track whether the PCIe clocks are enabled and make clock enable/disable
+  helpers idempotent.
+- Skip dw_pcie_suspend_noirq() when the controller is already suspended to
+  avoid register access with clocks disabled after a failed resume.
+- Disable clocks again if dw_pcie_resume_noirq() fails after clocks were
+  re-enabled.
+- Add a remove callback to deinitialize the DesignWare host when the module
+  build support is added.
+- Link to v2: https://patch.msgid.link/20260706-ultrarisc-pci-clk-v2-0-2f3fb6fba66b@ultrarisc.com
 
+Changes in v2:
+- Add Fixes and Acked-by tags to the binding patch.
+- Add a Fixes tag to the driver clock handling patch.
+- Fix the suspend/resume clock handling so clocks are disabled only after a
+  successful suspend and kept enabled on resume failure.
+- Add a module build fix by switching to module_platform_driver().
+- Link to v1: https://patch.msgid.link/20260629-ultrarisc-pci-clk-v1-0-5ea3308fdab3@ultrarisc.com
 
-> >> +	u8 iadc_count;
-> >> +	u8 gain_val;
-> >> +	u8 burnout;
-> >> +	bool global_chop;
-> >> +	bool bipolar;
-> > 
-> >> +	s64 scale_available[ARRAY_SIZE(ads112c14_pga_gains_x10)];
-> > 
-> > Also this can be moved upper, but I think it won't save any bytes in this
-> > layout.
-> > 
-> >> +};
+To: Xincheng Zhang <zhangxincheng@ultrarisc.com>
+To: Jia Wang <wangjia@ultrarisc.com>
+To: Lorenzo Pieralisi <lpieralisi@kernel.org>
+To: Krzysztof Wilczyński <kwilczynski@kernel.org>
+To: Manivannan Sadhasivam <mani@kernel.org>
+To: Rob Herring <robh@kernel.org>
+To: Bjorn Helgaas <bhelgaas@google.com>
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>
+To: Conor Dooley <conor+dt@kernel.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Cc: linux-pci@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
 
--- 
-With Best Regards,
-Andy Shevchenko
+---
+Jia Wang (3):
+      dt-bindings: pci: ultrarisc: add required DP1000 PCIe clocks
+      PCI: ultrarisc: get and enable DP1000 PCIe clocks
+      PCI: ultrarisc: allow DP1000 driver to build as module
+
+ .../bindings/pci/ultrarisc,dp1000-pcie.yaml        |  16 +++
+ drivers/pci/controller/dwc/pcie-ultrarisc.c        | 112 +++++++++++++++++++--
+ 2 files changed, 120 insertions(+), 8 deletions(-)
+---
+base-commit: a13c140cc289c0b7b3770bce5b3ad42ab35074aa
+change-id: 20260617-ultrarisc-pci-clk-ac19047af1ea
+
+Best regards,
+--  
+Jia Wang <wangjia@ultrarisc.com>
 
 
 
