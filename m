@@ -1,47 +1,42 @@
-Return-Path: <devicetree+bounces-326534-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-326530-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id BYvqCjadVmqF/AAAu9opvQ
-	(envelope-from <devicetree+bounces-326534-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 22:33:58 +0200
+	id bdbkDSqcVmo+/AAAu9opvQ
+	(envelope-from <devicetree+bounces-326530-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 22:29:30 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B0F0758C17
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 22:33:57 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D55C758BAF
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 22:29:29 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
 	dkim=none;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326534-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-326534-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326530-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-326530-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=none;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 904B630398AB
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 20:33:56 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 970AD303B199
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 20:29:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFBC4427F9E;
-	Tue, 14 Jul 2026 20:33:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 752A137E5D1;
+	Tue, 14 Jul 2026 20:29:22 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from h6.fbrelay.privateemail.com (h6.fbrelay.privateemail.com [162.0.218.229])
+Received: from MTA-11-3.privateemail.com (mta-11-3.privateemail.com [198.54.122.105])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B33D74156CE;
-	Tue, 14 Jul 2026 20:33:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6EA737E5C2;
+	Tue, 14 Jul 2026 20:29:20 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1784061235; cv=none; b=TKZONqs8VtaKCygo02EZjTDiQfY+nOE/sKtRDSvYjAviv0k+MlVy3PCCFhWttDF4sQwlEmXK3UD7wvhgUjp+mGbaTrBUTC39M2PKO2EjbOm6PQpO5qxz1Lne0mnoRqeW0gw7VRx+RgNtrI2Bepg4mXMyvsXVC+InA6nVOqI0Mkw=
+	t=1784060962; cv=none; b=TJ7PQ43Sy6AOkNVsEfg3//0SMYuaIHMN+oZgfoQHCLnMmnDNA2BzYhKJWWtJ2Mso7b3TyVggsKyhXBmJxxZUWQ13cdgLkbV6zW/8SRfczmPQvrxWglG8ZM4RJjSNzs9QEn63VyxX7PjVyZqfUfs3Imn1DlsSyCPwHXV4O1V+kMo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1784061235; c=relaxed/simple;
-	bh=vpOSmILnVlOjzQDd3adunMrb8V2vgwHdO/qrml9HiL0=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=N5eCvs1kh3UAO204G1ezrFtdKX3b7HvIz2nqX9Do7+8clglSdLAbIjZ0m8ERpFE/rpGTU1tajjs6JdTF4iMfqybPjusmGpCz/2NqMFSazadI9lB3U5iHXkMK+JOLNEjeVW0HH/xjj5nJq8A75uDXjGrcWEqqzZRVBL1Dl/HGpgQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=catcrafts.net; spf=pass smtp.mailfrom=catcrafts.net; arc=none smtp.client-ip=162.0.218.229
-Received: from MTA-11-3.privateemail.com (mta-11.privateemail.com [198.54.118.200])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
-	(No client certificate requested)
-	by h5.fbrelay.privateemail.com (Postfix) with ESMTPSA id 4h09rS2CCxz2xj7;
-	Tue, 14 Jul 2026 20:29:12 +0000 (UTC)
+	s=arc-20240116; t=1784060962; c=relaxed/simple;
+	bh=lRA42Vvb+oaM/ndWuHQ7jyTBMyUSYRhCOBuVNbYP4Po=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=At6Bvo6OW4iWpd2KRaak2aoWTmdgfVmOfBn0jjRSt7HgV046tDVdi8qQbDqKfH5d8M1oFKcFmrij+zdbsSKN0Y3aImVwrijy4czVbryRLgJZ+WVqnDAVWK6zhbAk42I9McMRz12bJk0MSCh7OY+gJNZjxUmB6CmLoeMuAVhisqM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=catcrafts.net; spf=pass smtp.mailfrom=catcrafts.net; arc=none smtp.client-ip=198.54.122.105
 Received: from mail.privateemail.com (K8S-PROD-WORKER-13 [87.215.145.39])
-	by mta-11.privateemail.com (Postfix) with ESMTPA id 4h09r06kgKz3hhTD;
-	Tue, 14 Jul 2026 16:28:48 -0400 (EDT)
+	by mta-11.privateemail.com (Postfix) with ESMTPA id 4h09rK1wQHz3hhTG;
+	Tue, 14 Jul 2026 16:29:04 -0400 (EDT)
 From: Jorijn van der Graaf <jorijnvdgraaf@catcrafts.net>
 To: Jonathan Cameron <jic23@kernel.org>
 Cc: Jorijn van der Graaf <jorijnvdgraaf@catcrafts.net>,
@@ -56,10 +51,12 @@ Cc: Jorijn van der Graaf <jorijnvdgraaf@catcrafts.net>,
 	linux-iio@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH 0/2] iio: magnetometer: add support for QST QMC6308
-Date: Tue, 14 Jul 2026 22:28:40 +0200
-Message-ID: <20260714202842.340293-1-jorijnvdgraaf@catcrafts.net>
+Subject: [PATCH 1/2] dt-bindings: iio: magnetometer: add QST QMC6308
+Date: Tue, 14 Jul 2026 22:28:41 +0200
+Message-ID: <20260714202842.340293-2-jorijnvdgraaf@catcrafts.net>
 X-Mailer: git-send-email 2.55.0
+In-Reply-To: <20260714202842.340293-1-jorijnvdgraaf@catcrafts.net>
+References: <20260714202842.340293-1-jorijnvdgraaf@catcrafts.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -73,80 +70,119 @@ X-Spamd-Result: default: False [1.54 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-326534-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:jic23@kernel.org,m:jorijnvdgraaf@catcrafts.net,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:andy@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:siratul.islam@linux.dev,m:luca.weiss@fairphone.com,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[jorijnvdgraaf@catcrafts.net,devicetree@vger.kernel.org];
 	RCPT_COUNT_TWELVE(0.00)[13];
-	DMARC_NA(0.00)[catcrafts.net];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-326530-lists,devicetree=lfdr.de];
+	DMARC_NA(0.00)[catcrafts.net];
+	FORGED_RECIPIENTS(0.00)[m:jic23@kernel.org,m:jorijnvdgraaf@catcrafts.net,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:andy@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:siratul.islam@linux.dev,m:luca.weiss@fairphone.com,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	FORGED_SENDER(0.00)[jorijnvdgraaf@catcrafts.net,devicetree@vger.kernel.org];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[jorijnvdgraaf@catcrafts.net,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	R_DKIM_NA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
+	R_DKIM_NA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[devicetree.org:url,vger.kernel.org:from_smtp,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,qstcorp.com:url]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 8B0F0758C17
+X-Rspamd-Queue-Id: 9D55C758BAF
 
-This adds a driver and DT binding for the QST QMC6308, a 3-axis AMR
-magnetometer found e.g. in the Fairphone 6. The series is based on
-iio/togreg.
+Add device tree bindings for the QST QMC6308, a 3-axis AMR
+magnetometer. It is an I2C device in a 4-pin WLCSP package with a
+single supply and no interrupt pin, at I2C address 0x2c.
 
-The chip is a sibling of the recently added QMC5883L but is not
-register compatible with it (different chip ID register and value,
-data output at 0x01..0x06, and the range field lives in control
-register 2), so this is a separate driver; its structure intentionally
-follows qmc5883l.c. The QMC6308's 4-pin WLCSP has no DRDY/interrupt
-pin at all, so there is nothing to hang a trigger off; reads are
-polled from the chip's periodic measurement mode (its one-shot mode
-has no specified conversion time to bound a wait on), with runtime PM
-dropping the chip into its 2-3 uA suspend mode between uses. A
-software-triggered buffer mode could be added later without breaking
-the ABI.
-
-Tested on a Fairphone 6, where the sensor sits on a bit-banged
-i2c-gpio bus, using a byte-identical backport on that device's
-7.1-based kernel; on this base the driver is build- and modpost-
-verified (arm64 defconfig, W=1 clean). Testing covered the chip ID
-probe, raw reads, every ODR (10/50/100/200 Hz), oversampling ratio
-(8/4/2/1) and scale setting (the same ambient field reads consistently
-across all four ranges), the mount matrix validated against Earth's
-field by pointing the device at the cardinal directions, and runtime
-PM verified at the bus level (the mode register reads back as suspend
-after the autosuspend delay, wakes on read, and accepts configuration
-writes while suspended). The FP6 board DTS will be submitted
-separately through the qcom tree once this lands.
-
-Jorijn van der Graaf (2):
-  dt-bindings: iio: magnetometer: add QST QMC6308
-  iio: magnetometer: add support for QST QMC6308
-
- .../iio/magnetometer/qstcorp,qmc6308.yaml     |  48 ++
- MAINTAINERS                                   |   7 +
- drivers/iio/magnetometer/Kconfig              |  11 +
- drivers/iio/magnetometer/Makefile             |   1 +
- drivers/iio/magnetometer/qmc6308.c            | 590 ++++++++++++++++++
- 5 files changed, 657 insertions(+)
+Assisted-by: Claude:claude-fable-5
+Signed-off-by: Jorijn van der Graaf <jorijnvdgraaf@catcrafts.net>
+---
+ .../iio/magnetometer/qstcorp,qmc6308.yaml     | 48 +++++++++++++++++++
+ MAINTAINERS                                   |  6 +++
+ 2 files changed, 54 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/iio/magnetometer/qstcorp,qmc6308.yaml
- create mode 100644 drivers/iio/magnetometer/qmc6308.c
 
-
-base-commit: 2e2f2de7532cbbc2269de8be20ec709606c6e79b
+diff --git a/Documentation/devicetree/bindings/iio/magnetometer/qstcorp,qmc6308.yaml b/Documentation/devicetree/bindings/iio/magnetometer/qstcorp,qmc6308.yaml
+new file mode 100644
+index 000000000000..ced839d2aac3
+--- /dev/null
++++ b/Documentation/devicetree/bindings/iio/magnetometer/qstcorp,qmc6308.yaml
+@@ -0,0 +1,48 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/iio/magnetometer/qstcorp,qmc6308.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: QST QMC6308 3-Axis Magnetic Sensor
++
++maintainers:
++  - Jorijn van der Graaf <jorijnvdgraaf@catcrafts.net>
++
++description: |
++  QST QMC6308 3-Axis Magnetic Sensor on I2C bus. The sensor comes in a
++  4-pin WLCSP package with a single supply and no interrupt pin.
++  https://qstcorp.com/upload/pdf/202202/13-52-15%20QMC6308%20Datasheet%20Rev.%20F(1).pdf
++
++properties:
++  compatible:
++    enum:
++      - qstcorp,qmc6308
++
++  reg:
++    maxItems: 1
++
++  vdd-supply: true
++
++  mount-matrix: true
++
++additionalProperties: false
++
++required:
++  - compatible
++  - reg
++  - vdd-supply
++
++examples:
++  - |
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        magnetometer@2c {
++            compatible = "qstcorp,qmc6308";
++            reg = <0x2c>;
++            vdd-supply = <&vdd_1v8_reg>;
++        };
++    };
++...
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 2b1ec46c5919..2315c94ad0e8 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -22061,6 +22061,12 @@ S:	Maintained
+ F:	Documentation/devicetree/bindings/iio/magnetometer/qstcorp,qmc5883l.yaml
+ F:	drivers/iio/magnetometer/qmc5883l.c
+ 
++QST QMC6308 3-AXIS MAGNETIC SENSOR
++M:	Jorijn van der Graaf <jorijnvdgraaf@catcrafts.net>
++L:	linux-iio@vger.kernel.org
++S:	Maintained
++F:	Documentation/devicetree/bindings/iio/magnetometer/qstcorp,qmc6308.yaml
++
+ QT1010 MEDIA DRIVER
+ L:	linux-media@vger.kernel.org
+ S:	Orphan
 -- 
 2.55.0
 
