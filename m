@@ -1,372 +1,160 @@
-Return-Path: <devicetree+bounces-326183-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-326178-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 8Yu2B4olVmoQ0AAAu9opvQ
-	(envelope-from <devicetree+bounces-326183-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 14:03:22 +0200
+	id zHFjDqcoVmpM0QAAu9opvQ
+	(envelope-from <devicetree+bounces-326178-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 14:16:39 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 78C1175439E
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 14:03:21 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id C30FD75463B
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 14:16:38 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=FfyXFMSS;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326183-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-326183-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=gmail.com;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=otdtft7k;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326178-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-326178-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 7B9AF30A2473
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 11:59:25 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 5ECEA30B641D
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 11:59:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2283A38C406;
-	Tue, 14 Jul 2026 11:59:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D424382393;
+	Tue, 14 Jul 2026 11:58:59 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA026387364
-	for <devicetree@vger.kernel.org>; Tue, 14 Jul 2026 11:59:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E1E7381B02;
+	Tue, 14 Jul 2026 11:58:57 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1784030348; cv=none; b=BevM255TmKVhqoMBYBQhxAFi80PWUMQ8YrA5oBLVnW0Zr0qMXupFRuhE5sJr0fOkVLrkGn/IcKiwlgq5kgV24wYJ+GRae2ieOkQj8anO5MGiR+nhkAaOqTO9rOZZXlpsoQegbXU7CoC66Blt5E7P8NYy4pQXqeGrd7xJ43KVbII=
+	t=1784030339; cv=none; b=FiH8grfmEj+lizST815Tog3ORgVUWZ82qi1ToAlSqqOL3aBBFmorJXcDB7JopZhlJMs/eldWZzCtsQt3TDLEmzMagu6luGQRcA34Gysv+Jn+RINUYubeYsOQcka2N5a8Lg/L40kxik5kXHcybKsztB8FLQ5H1fb9/GdlvLCusqM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1784030348; c=relaxed/simple;
-	bh=9EjEM+p0aW3HjJ0EM8BiJPYCn7/1qkS+GD0o1UnDUxY=;
-	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=T4EF/Q8x3ZbBnxF76ok15Q8N4DU4l4wo3HKMUjUtHlntVhqFdYyW3W7Mqvpr5GiTvKZ+AFuaIO1qHDeZa/Jpiy2AOsWw4hidGxMXrg2Gi8WN9NF0XlQeS0fLofTo+VV0rZ59Yn8i2AjWGWdwGX7U/xU1A15KGJKJQa1NTKQ02XA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FfyXFMSS; arc=none smtp.client-ip=209.85.128.49
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-493c7902f47so37956135e9.1
-        for <devicetree@vger.kernel.org>; Tue, 14 Jul 2026 04:59:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1784030344; x=1784635144; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to:content-type;
-        bh=2dz/Y1HrLufnbLtLUTRWz4L3ORozmQ9Ewma4qta/N4k=;
-        b=FfyXFMSSDBgGtS7Rztbph47h2eLM+xUMAL/WmQTXKBbccE/pRDmJdFksTst9TP3myJ
-         ODpZUgYbFD1AWp6ncPhDaNEELCqA7EHFKbo6s+Lg7QmcXrfpACx5M/IPAX4svuW0Rh4F
-         qRUoAczpzh/j+dSIMhiH8npd9VK6MaGRegeJHoufWruRTNg5OYc1qGMUWMzaCHXo+S0U
-         /JDYtJCtz4fGRGBfta6nFdgijPriuF7OhInk6MhBuMV7nfUlcehI1V/edd5w2GIGtnCN
-         lxa8R6GwGgyz9fQ7BAeaSGHYTBjoquHX4vikiUxQwTu+d/YTC91fYSqDe7LPsRbJrD01
-         ZvRw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1784030344; x=1784635144;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to:content-type;
-        bh=2dz/Y1HrLufnbLtLUTRWz4L3ORozmQ9Ewma4qta/N4k=;
-        b=h4UTkOheVqSklIG6dpFu7uSrfLb6pBCTpb5AAcbHjk4TKAtWGnU1KHxGIvFS4bhubo
-         EGjzGaZUMWE5x5fg70wkmoW8aq6kMjqxxtBkoq6OMEeyDfAoEk+ZK3IWuaxTJBv2ECME
-         qX85v9NhGKF+ZTMi4/4H+XD9fOPVA9USyPFxm+rL0L6o/PbFlwC7JA/0aUPGz8/hciqY
-         a6/TrdL5Zb/re2UAaQjyeJiQ38frlqemdiHaah743f+BXKVnxlJ6yA9ODQLoylYpb1DD
-         kQoKc+iPtrygRpVu0xFKDxIv8nV5WAH7pecEapL4PvgAwpn08a6YeD17GeKz9tgAlXGX
-         Mpbg==
-X-Forwarded-Encrypted: i=1; AHgh+RqkocK/wDS/KFuPWdtXjzQGrBqEKFjVdSoTs9exJaGrboCpZuYCHVnIbrbhC4gK//hLLKDck4RgrALS@vger.kernel.org
-X-Gm-Message-State: AOJu0YwNU1CisGcWIK8cHs5JoFMYQxKqju+d9310mG1nKobup324z1GE
-	e96xa3U3b67RRW9XvZJq6ddGaxbY9lCfqf+toe9Dm+YdO4RLrXuS0iIw
-X-Gm-Gg: AfdE7clen2iAReCp2f0zzLuOydFY7sD5Ciori6bymRhEGqjMde1EGM+7pgkajZ/yUYd
-	kQf+BbPgy7cVr0EA/K9WlWjTuoNCR8ZOtwY3TNGFwkGQxTAg6x2Ge2yHZ9iNeBG55Rt9LRZq3O9
-	ncAO59nKi84wKUK25SGi9ObBBTvT3hR6KQuYV1fJ70HM3V6QaQwFBnod4jd2GoGQTkWy7NwXnOn
-	lwR1cwHaA6eNyglP3lxjre3PMHWKeum5diq5dFzlhHp+2wP3B2HrnvP5saYzU/rywbPBKoekK7X
-	gEdCFJXjo7B515mdI1oESWnNeR3fxugn5AvhkaBhclk/Ewr/A1X5i684oF9hDn5IXioWP9HQjhY
-	XKIbJ8HakI7k7DJfUljuZsJ+/rK6S0nAUDu1+psp8a2RpfQfs0XpuOMIF6gKG6iyT4/QTq+HNQ4
-	kN5i21Zk/EMg0mkyaa2whDwAabvxaNY0BqYJtdFXKzpXFpUJjNU5yNaKQU/PXNF69IiYHhp3MRW
-	afvczif
-X-Received: by 2002:a05:600c:993:b0:490:e5c1:b8bf with SMTP id 5b1f17b1804b1-493f87ea615mr89680695e9.13.1784030344127;
-        Tue, 14 Jul 2026 04:59:04 -0700 (PDT)
-Received: from Ansuel-XPS24.localdomain (host-95-248-227-210.retail.telecomitalia.it. [95.248.227.210])
-        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-493fd3ccfd4sm180531655e9.2.2026.07.14.04.59.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Jul 2026 04:59:02 -0700 (PDT)
-From: Christian Marangi <ansuelsmth@gmail.com>
-To: Bjorn Helgaas <bhelgaas@google.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	=?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Ryder Lee <ryder.lee@mediatek.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Brian Masney <bmasney@redhat.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Christian Marangi <ansuelsmth@gmail.com>,
-	Jianjun Wang <jianjun.wang@mediatek.com>,
-	linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-mediatek@lists.infradead.org,
-	linux-clk@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v4 4/4] PCI: mediatek-gen3: Add 2-lanes mode support for Airoha AN7581
-Date: Tue, 14 Jul 2026 13:58:46 +0200
-Message-ID: <20260714115848.8537-5-ansuelsmth@gmail.com>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260714115848.8537-1-ansuelsmth@gmail.com>
-References: <20260714115848.8537-1-ansuelsmth@gmail.com>
+	s=arc-20240116; t=1784030339; c=relaxed/simple;
+	bh=kmdAeC8hOQ6BVZgDdZfmzE1BGMi4JMkVnWEtsYc6Kg8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=APY6sm8CZNQQFTnRbk9jjwNSlYhDNoun0OYRUNFB0mHC4ACRwK19J9sJhM9kLn8iddBZlDBEQG3dDeT6dOoduh2OU1daeKywZR0es1yRTa7GwAdmGeHvGq9XUurNUGwCO+FC/OIBUt3m7IBYOPLv/nd0R/3ZAmzV3QbZIfXhGpI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=otdtft7k; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F09801F000E9;
+	Tue, 14 Jul 2026 11:58:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1784030337;
+	bh=giljRTyf1/GeNOSQzfIPJUop85WcABknb2AO0qQE6u8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=otdtft7koRJ9KTpp8Lc1Kbd0yTLVGKldNWh2Pgdgbxv8Vhn1tQWMLDJynabMil1As
+	 IrLVwudKY43tMQ9K6lC2xCblgiQpsMzzIu8kyX5MB1Pq4tQwGM2VRaFypD5LmPW27m
+	 uOTxcSvsUa0iJZynDx6ZFSBUFGAZQlplKAV+jiOZ+JNcad24LpbxRVDVUSP+N9TyW+
+	 d6Tm20PG90euvR1VHnSL3YbTZoIopdrLYRDoKH/5I651gQlF+115Hm3m5qube0LMct
+	 VFIQrwY6uFGKPdKbvNaoIwRdEJulEZsufvfX3wsCqFDI45tmf1B7KgR6qRIVC3+aRZ
+	 951wTJfKaMlmQ==
+Date: Tue, 14 Jul 2026 17:28:54 +0530
+From: Vinod Koul <vkoul@kernel.org>
+To: sashiko-bot@kernel.org
+Cc: Xianwei Zhao <xianwei.zhao@amlogic.com>, neil.armstrong@linaro.org,
+	robh@kernel.org, conor+dt@kernel.org, Frank.Li@kernel.org,
+	dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-amlogic@lists.infradead.org
+Subject: Re: [PATCH v11 1/3] dt-bindings: dma: Add Amlogic A9 SoC DMA
+Message-ID: <alYkfmsBU0UqI6Hz@vaman>
+References: <20260714-amlogic-dma-v11-0-de79c2394282@amlogic.com>
+ <20260714-amlogic-dma-v11-1-de79c2394282@amlogic.com>
+ <20260714081942.2E0B91F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260714081942.2E0B91F000E9@smtp.kernel.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [-3.16 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[22];
-	FREEMAIL_FROM(0.00)[gmail.com];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-326183-lists,devicetree=lfdr.de];
-	FORGED_SENDER(0.00)[ansuelsmth@gmail.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS(0.00)[m:bhelgaas@google.com,m:lpieralisi@kernel.org,m:kwilczynski@kernel.org,m:mani@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:ryder.lee@mediatek.com,m:mturquette@baylibre.com,m:sboyd@kernel.org,m:bmasney@redhat.com,m:p.zabel@pengutronix.de,m:matthias.bgg@gmail.com,m:angelogioacchino.delregno@collabora.com,m:ansuelsmth@gmail.com,m:jianjun.wang@mediatek.com,m:linux-pci@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-mediatek@lists.infradead.org,m:linux-clk@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:krzk@kernel.org,m:conor@kernel.org,m:matthiasbgg@gmail.com,s:lists@lfdr.de];
-	FORWARDED(0.00)[lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-326178-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:sashiko-bot@kernel.org,m:xianwei.zhao@amlogic.com,m:neil.armstrong@linaro.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:Frank.Li@kernel.org,m:dmaengine@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-amlogic@lists.infradead.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[vkoul@kernel.org,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[google.com,kernel.org,mediatek.com,baylibre.com,redhat.com,pengutronix.de,gmail.com,collabora.com,vger.kernel.org,lists.infradead.org];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORWARDED(0.00)[lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ansuelsmth@gmail.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	ALIAS_RESOLVED(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[vkoul@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCPT_COUNT_SEVEN(0.00)[9];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vaman:mid,amlogic.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 78C1175439E
+X-Rspamd-Queue-Id: C30FD75463B
 
-The Airoha AN7581 SoC supports configuring the first PCIe0 lane to 2-lanes
-mode (2x link) by bonding it with the second PCIe lane (PCIe1). This is
-done by configuring the PCIe MUX in the SCU register.
+On 14-07-26, 08:19, sashiko-bot@kernel.org wrote:
+> Thank you for your contribution! Sashiko AI review found 1 potential issue(s) to consider:
+> - [Low] The macros DMA_TX and DMA_RX in the global DT binding header lack an Amlogic/SoC specific prefix, leading to namespace pollution and potential build conflicts.
+> --
+> 
+> --- Patch [1]: [PATCH v11 1/3] dt-bindings: dma: Add Amlogic A9 SoC DMA ---
+> commit 093f368eaa67418008421d43d724ce2e98651039
+> Author: Xianwei Zhao <xianwei.zhao@amlogic.com>
+> dt-bindings: dma: Add Amlogic A9 SoC DMA
+> 
+> This commit adds device tree binding documentation for the Amlogic A9 SoC
+> general-purpose DMA controller. It introduces the YAML schema and a header
+> file defining the channel type macros.
+> 
+> > diff --git a/Documentation/devicetree/bindings/dma/amlogic,a9-dma.yaml b/Documentation/devicetree/bindings/dma/amlogic,a9-dma.yaml
+> > new file mode 100644
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/dma/amlogic,a9-dma.yaml
+> [ ... ]
+> > +  '#dma-cells':
+> > +    const: 2
+> > +    description:
+> > +      The first cell is the DMA channel type(DMA_TX or DMA_RX).
+> > +      The second cell is the DMA channel index.
+> [ ... ]
+> > diff --git a/include/dt-bindings/dma/amlogic,a9-dma.h b/include/dt-bindings/dma/amlogic,a9-dma.h
+> > new file mode 100644
+> > --- /dev/null
+> > +++ b/include/dt-bindings/dma/amlogic,a9-dma.h
+> > @@ -0,0 +1,8 @@
+> > +/* SPDX-License-Identifier: (GPL-2.0 OR MIT) */
+> > +
+> > +#ifndef __DT_BINDINGS_DMA_AMLOGIC_DMA_H__
+> > +#define __DT_BINDINGS_DMA_AMLOGIC_DMA_H__
+> > +
+> > +#define DMA_TX			0
+> > +#define DMA_RX			1
+> 
+> [Severity: Low]
+> Are these macro names too generic for a global dt-bindings header?
+> 
+> Since headers in include/dt-bindings/ are globally visible and frequently
+> included by C drivers, unprefixed names like DMA_TX and DMA_RX could lead
+> to namespace pollution and macro redefinition build failures if a driver
+> includes this alongside other headers that use the same common names.
+> 
+> Would it be safer to add a vendor or SoC prefix, such as AMLOGIC_A9_DMA_TX?
 
-To correctly configure PCIe0 in 2x link, define in DT the following
-additional property:
-- additional reg, 'sec-pcie-mac' for the secondary PCIe.
-- PERSTOUT reset for both main and secondary PCIE0, called 'perstout' and
-  'sec-perstout'
-- airoha,scu property to correctly configure the SCU register for the PCIe
-  MUX
-- 'num-lanes' set to '2' to enable PCIe0 in 2x link
+I think this makes sense to add here
 
-In such configuration the EQ preset are configured to the same values.
-
-To permit correct configuration of the PCIe line, additional logic is added
-to assert and deassert the PERSTOUT resets.
-
-Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
----
- drivers/pci/controller/pcie-mediatek-gen3.c | 106 ++++++++++++++++----
- 1 file changed, 89 insertions(+), 17 deletions(-)
-
-diff --git a/drivers/pci/controller/pcie-mediatek-gen3.c b/drivers/pci/controller/pcie-mediatek-gen3.c
-index b0accd828589..764974045340 100644
---- a/drivers/pci/controller/pcie-mediatek-gen3.c
-+++ b/drivers/pci/controller/pcie-mediatek-gen3.c
-@@ -32,6 +32,11 @@
- 
- #include "../pci.h"
- 
-+/* AN7581 SCU register */
-+#define SCU_PCIC			0x88
-+#define SCU_PCIC_PCIE_CTRL		GENMASK(7, 0)
-+
-+/* PCIe register */
- #define PCIE_BASE_CFG_REG		0x14
- #define PCIE_BASE_CFG_SPEED		GENMASK(15, 8)
- 
-@@ -131,6 +136,7 @@
- #define PCIE_ATR_TLP_TYPE_IO		PCIE_ATR_TLP_TYPE(2)
- 
- #define MAX_NUM_PHY_RESETS		3
-+#define MAX_NUM_PERSTOUT_RESETS		2
- 
- #define PCIE_MTK_RESET_TIME_US		10
- 
-@@ -203,9 +209,11 @@ struct mtk_msi_set {
- struct mtk_gen3_pcie {
- 	struct device *dev;
- 	void __iomem *base;
-+	void __iomem *sec_base;
- 	phys_addr_t reg_base;
- 	struct reset_control *mac_reset;
- 	struct reset_control_bulk_data phy_resets[MAX_NUM_PHY_RESETS];
-+	struct reset_control_bulk_data perstout_resets[MAX_NUM_PERSTOUT_RESETS];
- 	struct phy *phy;
- 	struct clk_bulk_data *clks;
- 	int num_clks;
-@@ -928,6 +936,14 @@ static int mtk_pcie_parse_port(struct mtk_gen3_pcie *pcie)
- 	if (ret)
- 		return dev_err_probe(dev, ret, "failed to get PHY bulk reset\n");
- 
-+	pcie->perstout_resets[0].id = "perstout";
-+	pcie->perstout_resets[1].id = "sec-perstout";
-+
-+	ret = devm_reset_control_bulk_get_optional_exclusive(dev, MAX_NUM_PERSTOUT_RESETS,
-+							     pcie->perstout_resets);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "failed to get PERSTOUT bulk reset\n");
-+
- 	pcie->mac_reset = devm_reset_control_get_optional_exclusive(dev, "mac");
- 	if (IS_ERR(pcie->mac_reset))
- 		return dev_err_probe(dev, PTR_ERR(pcie->mac_reset), "failed to get MAC reset\n");
-@@ -949,18 +965,38 @@ static int mtk_pcie_parse_port(struct mtk_gen3_pcie *pcie)
- 			pcie->num_lanes = num_lanes;
- 	}
- 
-+	/* Map secondary PCIe for 2-lanes mode for EN7581 */
-+	if (pcie->num_lanes == 2 && device_is_compatible(dev, "airoha,en7581-pcie")) {
-+		regs = platform_get_resource_byname(pdev, IORESOURCE_MEM, "sec-pcie-mac");
-+		if (!regs)
-+			return -EINVAL;
-+		pcie->sec_base = devm_ioremap_resource(dev, regs);
-+		if (IS_ERR(pcie->sec_base))
-+			return dev_err_probe(dev, PTR_ERR(pcie->sec_base), "failed to map secondary register base\n");
-+	}
-+
- 	return 0;
- }
- 
- static int mtk_pcie_en7581_power_up(struct mtk_gen3_pcie *pcie)
- {
- 	struct pci_host_bridge *host = pci_host_bridge_from_priv(pcie);
-+	unsigned int num_lanes = max(1, pcie->num_lanes);
-+	struct regmap *pbus_regmap, *scu;
- 	struct device *dev = pcie->dev;
- 	struct resource_entry *entry;
--	struct regmap *pbus_regmap;
- 	u32 val, args[2], size;
- 	resource_size_t addr;
--	int err;
-+	int i, err;
-+
-+	if (num_lanes > 2)
-+		return dev_err_probe(dev, -EINVAL, "unsupported num-lanes, maximum 2 lanes supported\n");
-+
-+	if (num_lanes == 2) {
-+		scu = syscon_regmap_lookup_by_phandle(dev->of_node, "airoha,scu");
-+		if (IS_ERR(scu))
-+			return dev_err_probe(dev, PTR_ERR(scu), "failed to map SCU regmap\n");
-+	}
- 
- 	/*
- 	 * The controller may have been left out of reset by the bootloader
-@@ -992,6 +1028,19 @@ static int mtk_pcie_en7581_power_up(struct mtk_gen3_pcie *pcie)
- 	size = lower_32_bits(resource_size(entry->res));
- 	regmap_write(pbus_regmap, args[1], GENMASK(31, __fls(size)));
- 
-+	/* Assert PERSTOUT for all relevant lines */
-+	err = reset_control_bulk_assert(MAX_NUM_PERSTOUT_RESETS,
-+					pcie->perstout_resets);
-+	if (err) {
-+		dev_err(dev, "failed to assert PERSTOUTs\n");
-+		return err;
-+	}
-+
-+	/* Configure SCU MUX to disable PCIE1 for 2 lines mode */
-+	if (num_lanes == 2)
-+		regmap_update_bits(scu, SCU_PCIC, SCU_PCIC_PCIE_CTRL,
-+				   FIELD_PREP(SCU_PCIC_PCIE_CTRL, BIT(1)));
-+
- 	/*
- 	 * Unlike the other MediaTek Gen3 controllers, the Airoha EN7581
- 	 * requires PHY initialization and power-on before PHY reset deassert.
-@@ -1024,18 +1073,6 @@ static int mtk_pcie_en7581_power_up(struct mtk_gen3_pcie *pcie)
- 	pm_runtime_enable(dev);
- 	pm_runtime_get_sync(dev);
- 
--	val = FIELD_PREP(PCIE_VAL_LN0_DOWNSTREAM, 0x47) |
--	      FIELD_PREP(PCIE_VAL_LN1_DOWNSTREAM, 0x47) |
--	      FIELD_PREP(PCIE_VAL_LN0_UPSTREAM, 0x41) |
--	      FIELD_PREP(PCIE_VAL_LN1_UPSTREAM, 0x41);
--	writel_relaxed(val, pcie->base + PCIE_EQ_PRESET_01_REG);
--
--	val = PCIE_K_PHYPARAM_QUERY | PCIE_K_QUERY_TIMEOUT |
--	      FIELD_PREP(PCIE_K_PRESET_TO_USE_16G, 0x80) |
--	      FIELD_PREP(PCIE_K_PRESET_TO_USE, 0x2) |
--	      FIELD_PREP(PCIE_K_FINETUNE_MAX, 0xf);
--	writel_relaxed(val, pcie->base + PCIE_PIPE4_PIE8_REG);
--
- 	err = clk_bulk_prepare_enable(pcie->num_clks, pcie->clks);
- 	if (err) {
- 		dev_err(dev, "failed to prepare clock\n");
-@@ -1043,14 +1080,47 @@ static int mtk_pcie_en7581_power_up(struct mtk_gen3_pcie *pcie)
- 	}
- 
- 	/*
--	 * Airoha EN7581 performs PCIe reset via clk callbacks since it has a
--	 * hw issue with PCIE_PE_RSTB signal. Add wait for the time needed to
--	 * complete the PCIe reset.
-+	 * Old Airoha EN7581 clock driver performed PCIe reset via
-+	 * clk callbacks since it has a hw issue with PCIE_PE_RSTB signal.
-+	 * This is now handled by dedicated PERSTOUT resets with clk
-+	 * driver only enabling the refclk.
-+	 *
-+	 * Wait is still needed for refclk to stabilize
- 	 */
- 	msleep(PCIE_T_PVPERL_MS);
- 
-+	/* Configure all the lines to the same EQ config */
-+	for (i = 0; i < num_lanes; i++) {
-+		void __iomem *base = pcie->base;
-+
-+		if (i == 1)
-+			base = pcie->sec_base;
-+
-+		val = FIELD_PREP(PCIE_VAL_LN0_DOWNSTREAM, 0x47) |
-+			FIELD_PREP(PCIE_VAL_LN1_DOWNSTREAM, 0x47) |
-+			FIELD_PREP(PCIE_VAL_LN0_UPSTREAM, 0x41) |
-+			FIELD_PREP(PCIE_VAL_LN1_UPSTREAM, 0x41);
-+		writel_relaxed(val, base + PCIE_EQ_PRESET_01_REG);
-+
-+		val = PCIE_K_PHYPARAM_QUERY | PCIE_K_QUERY_TIMEOUT |
-+			FIELD_PREP(PCIE_K_PRESET_TO_USE_16G, 0x80) |
-+			FIELD_PREP(PCIE_K_PRESET_TO_USE, 0x2) |
-+			FIELD_PREP(PCIE_K_FINETUNE_MAX, 0xf);
-+		writel_relaxed(val, base + PCIE_PIPE4_PIE8_REG);
-+	}
-+
-+	/* Deassert PERSTOUT for all relevant lines */
-+	err = reset_control_bulk_deassert(MAX_NUM_PERSTOUT_RESETS,
-+					  pcie->perstout_resets);
-+	if (err) {
-+		dev_err(dev, "failed to deassert PERSTOUTs\n");
-+		goto err_perstout_deassert;
-+	}
-+
- 	return 0;
- 
-+err_perstout_deassert:
-+	clk_bulk_disable_unprepare(pcie->num_clks, pcie->clks);
- err_clk_prepare_enable:
- 	pm_runtime_put_sync(dev);
- 	pm_runtime_disable(dev);
-@@ -1136,6 +1206,8 @@ static void mtk_pcie_power_down(struct mtk_gen3_pcie *pcie)
- 
- 	phy_power_off(pcie->phy);
- 	phy_exit(pcie->phy);
-+	reset_control_bulk_assert(MAX_NUM_PERSTOUT_RESETS,
-+				  pcie->perstout_resets);
- 	reset_control_bulk_assert(pcie->soc->phy_resets.num_resets,
- 				  pcie->phy_resets);
- }
 -- 
-2.53.0
-
+~Vinod
 
