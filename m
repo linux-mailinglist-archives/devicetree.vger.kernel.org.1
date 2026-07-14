@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-326115-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-326117-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id jiyEAB4aVmrbzAAAu9opvQ
-	(envelope-from <devicetree+bounces-326115-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 13:14:38 +0200
+	id GgmXKfIaVmr3zAAAu9opvQ
+	(envelope-from <devicetree+bounces-326117-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 13:18:10 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B678753CD6
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 13:14:37 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id F117C753D44
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 13:18:09 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=CO2uXR0q;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326115-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-326115-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=XNWU5hcd;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326117-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-326117-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id C26CE30248B7
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 11:14:36 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id CAF27308CD10
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 11:16:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C986437E316;
-	Tue, 14 Jul 2026 11:14:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63E0C37475E;
+	Tue, 14 Jul 2026 11:16:41 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CE9D37DE98
-	for <devicetree@vger.kernel.org>; Tue, 14 Jul 2026 11:14:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20F6B3655EA
+	for <devicetree@vger.kernel.org>; Tue, 14 Jul 2026 11:16:39 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1784027675; cv=none; b=AB9nCVp6oOR54j0vGYX7NBJGKp5D/BAziC/kUwEhIPf5IlvnAbfXdb9kmBOkjj+gvRFUitjPMTHtia8nWxVhn8X/oIMSOY7ZVH+QTBMQ1YKt6L4QPmxUK+WiX9cQvIs9WV6mzqXoWVBSVix+bxyMNqTti24p353bgFvCMGmLS2k=
+	t=1784027801; cv=none; b=P4dDT/yz6tTtVRnP18EoZ0R6FKIuzMnoxzpLwGK8GDP2KNlDt0l59JAyLg2GESdD9WQQIKFwUqeC+KdqcE6K/5WHi94tYcIrOguElIokvu3QG8ITtwdt7bBLgrnPzbAvzSD0SPi/mIMMj0BxsZiHebRfdzMM051arQptApt0/Sk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1784027675; c=relaxed/simple;
-	bh=pfCTKdcvKaSg9oN2jVa8B2BBErG0YXuTqSEcIa26Mj0=;
+	s=arc-20240116; t=1784027801; c=relaxed/simple;
+	bh=Z6Y34jKjuSYJSMyRBreQ7f8PcjGfzzNol+FGO+1pqzw=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=Uyc3yAdWrbkTxvgYY9dDwPmIcy4Pv3g1Yh0mzoLqy521ZehmYjjVHbDqiU2TL6Be9/cZc/vd9g1zPoZhJO8TpGqEBuGKmmFEohO58IoRuD05mZrZyu/gxwS92LMxxMsHUbB4XhKmCo9KQfzHz+DvfEd7S8ZJ5lmtpnuoqZg9vSA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CO2uXR0q; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C33891F000E9;
-	Tue, 14 Jul 2026 11:14:33 +0000 (UTC)
+	 Message-Id; b=PvuWN+QOsNaZA7Dx0defPqvAEitHfsJuTtrULEHmI07mbefAdc1pykJz44oe559Mq389ae642flWIlrpPpENpprKTH9jCm+BT5lDltW7T9Q2LnYAEzkFCTKk9S9r5kqyOEwGsv8V4GZjyvwblnNXiQPgyZSF4Ier/17z0fntMdA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XNWU5hcd; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 53ED11F000E9;
+	Tue, 14 Jul 2026 11:16:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1784027674;
-	bh=nBMBZk/qqZXEz8kQDgWMRRZhqCt2GlX/dZfpUwL++CA=;
+	s=k20260515; t=1784027799;
+	bh=oSD4Ijah9FPQnpFsXPHGC+3xDrLWI131nmYNXRf2k30=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=CO2uXR0qmy3m2ys/euVa9r/aYAUqVQy6req3SGNhpPWZWCbyXctqCiw6G3VLzRSRN
-	 TLZmvJ5Gnhv5AssQmIrTZ/2b2sNiQIkzGh1vnJn7dIIHyBK5afyX2DX9fqSgmH5Pks
-	 3wh336pdUPc/H9guUTwXzVnT/wrCD9verHl+xGCWlRCqTK2cAU45LCXa/PaOTBR+uW
-	 qTy/UzsjnjeaBZ2xkG+EUcosdQt2rjdDNR2m43Tf5z0hTSjOGrm6zz7AJ38TYTtUgD
-	 KznepsQ71/XdqDDow8Py3we5iF9cS8muhkCYks9p2e22J7T9xk48JvJIOgRRTSsiWc
-	 SkdM2xhVwVNDQ==
+	b=XNWU5hcdYIiy7MCgWaM27Nc/1xkAjjsTSBA8Rh85ON2QatM+IaYvPlhG4m5Dc7wEe
+	 hERuii3QOMm2HlWQkb1lHcxMZ4IqiFd+cEbaEWuQ2EVSex8IyRpstRCB6uxJLWiLfG
+	 wv8W2ZElsYFI+NqTgEmf/CtHf/qYcZjra0NRq+HbDE5r6o/5yZWOq5PKK/Pfni25aL
+	 DRBdRI9p/6Gwiq87jSmuNxAY4xcnR7o/8kdelYQred+ieCpMzBKKIjSDalzFGdUN5C
+	 lQlQFeze7g0DoRdc4JQ2QGMimdUA+M2ivJoMBmlewsg5fa/lZhcuUiOKYXwv3Y8WZ9
+	 6f/gy6CO8ikaA==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v14 6/8] i3c: hub: Add support for the I3C interface in
- the I3C hub
+Subject: Re: [PATCH v16 2/2] drm/bridge: Add Lontium LT7911EXC eDP to MIPI
+ DSI bridge
 Reply-To: sashiko-reviews@lists.linux.dev
-To: "Lakshay Piplani" <lakshay.piplani@nxp.com>
-Cc: linux-i3c@lists.infradead.org, "Alexandre Belloni" <alexandre.belloni@bootlin.com>, conor+dt@kernel.org, Frank.Li@kernel.org, devicetree@vger.kernel.org, robh@kernel.org
-In-Reply-To: <20260714092053.2461482-7-lakshay.piplani@nxp.com>
-References: <20260714092053.2461482-1-lakshay.piplani@nxp.com>
- <20260714092053.2461482-7-lakshay.piplani@nxp.com>
+To: syyang@lontium.com
+Cc: robh@kernel.org, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, conor+dt@kernel.org
+In-Reply-To: <20260714105828.2763677-3-syyang@lontium.com>
+References: <20260714105828.2763677-1-syyang@lontium.com>
+ <20260714105828.2763677-3-syyang@lontium.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Tue, 14 Jul 2026 11:14:32 +0000
-Message-Id: <20260714111433.C33891F000E9@smtp.kernel.org>
+Date: Tue, 14 Jul 2026 11:16:38 +0000
+Message-Id: <20260714111639.53ED11F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,331 +72,216 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-326117-lists,devicetree=lfdr.de];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-326115-lists,devicetree=lfdr.de];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:lakshay.piplani@nxp.com,m:linux-i3c@lists.infradead.org,m:alexandre.belloni@bootlin.com,m:conor+dt@kernel.org,m:Frank.Li@kernel.org,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,lontium.com:email,sashiko.dev:url,lists.linux.dev:replyto,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,smtp.kernel.org:mid,bridge.dev:url];
+	FORGED_RECIPIENTS(0.00)[m:syyang@lontium.com,m:robh@kernel.org,m:dri-devel@lists.freedesktop.org,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[7];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	FROM_NO_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_NONE(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	PRECEDENCE_BULK(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,vger.kernel.org:from_smtp,smtp.kernel.org:mid,sashiko.dev:url,lists.linux.dev:replyto,nxp.com:email]
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FROM_NO_DN(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[5]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 5B678753CD6
+X-Rspamd-Queue-Id: F117C753D44
 
-Thank you for your contribution! Sashiko AI review found 8 potential issue(=
+Thank you for your contribution! Sashiko AI review found 5 potential issue(=
 s) to consider:
-- [High] Temporary hub address swapping in `i3c_hub_master_priv_xfers` perm=
-anently frees downstream address slots.
-- [High] Detaching the downstream device in IBI request/free paths uncondit=
-ionally frees its parent bus address slots.
-- [High] Forwarding DAA directly to the parent controller attaches downstre=
-am devices to the wrong bus topology.
-- [High] The no-op `recycle_ibi_slot` callback permanently leaks hardware I=
-BI slots allocated by the parent controller.
-- [High] `i3c_hub_request_ibi()` fails with `-EBUSY` due to conflicting add=
-ress reservations or corrupts parent DAT.
-- [High] Recursive lock acquisition of `hub->lock` causes deadlocks with IB=
-I workqueue handlers.
-- [High] Modifying the device descriptor's master pointer under a shared re=
-ad-lock causes data races, misrouting private transfers.
-- [High] Forwarding direct CCC commands unmodified through the hub causes a=
- NULL pointer dereference in the parent driver.
+- [High] Dynamic devm allocation and bridge registration in DSI host attach=
+/detach causes devres leaks and list corruption.
+- [High] Asynchronous workqueue dereferences dangling `bridge.dev` if the D=
+RM display controller unbinds.
+- [Medium] Failure to clear `output_bridge` in `dsi_host_detach` prevents p=
+anel re-attachment.
+- [Low] Mutating `pre_enable_prev_first` of a downstream bridge object viol=
+ates subsystem API layering.
+- [Low] Unsynchronized reads of `lt7911exc->removed` in the asynchronous wo=
+rkqueue.
 --
 
---- Patch [6]: [PATCH v14 6/8] i3c: hub: Add support for the I3C interface =
-in the I3C hub ---
-commit 02e794653daf2b554f0c962c355d0bb7abb26374
-Author: Lakshay Piplani <lakshay.piplani@nxp.com>
-Subject: i3c: hub: Add support for the I3C interface in the I3C hub
+--- Patch [2]: [PATCH v16 2/2] drm/bridge: Add Lontium LT7911EXC eDP to MIP=
+I DSI bridge ---
+commit f0896e2dbabe50d3cbe793868df9c6d4afd6db5f
+Author: Sunyun Yang <syyang@lontium.com>
 
-This commit adds virtual I3C bus support for the hub, creating virtual
-master controllers for downstream ports and forwarding operations through
-the parent controller.
+drm/bridge: Add Lontium LT7911EXC eDP to MIPI DSI bridge
 
-> diff --git a/drivers/i3c/hub.c b/drivers/i3c/hub.c
-> index 0000000000000..6105bb710be69
+This commit adds support for the Lontium LT7911EXC bridge chip, which=20
+converts eDP input to MIPI DSI output. It implements firmware upgrades,=20
+GPIO reset handling, and DSI host interface attachment.
+
+> diff --git a/drivers/gpu/drm/bridge/lontium-lt7911exc.c b/drivers/gpu/drm=
+/bridge/lontium-lt7911exc.c
+> new file mode 100644
 > --- /dev/null
-> +++ b/drivers/i3c/hub.c
+> +++ b/drivers/gpu/drm/bridge/lontium-lt7911exc.c
+
 [ ... ]
-> +static int i3c_hub_do_daa(struct i3c_hub *hub,
-> +			  struct i3c_master_controller *controller)
+
+> @@ -344,14 +344,14 @@ static void lt7911exc_firmware_upgrade_work(struct =
+work_struct *work)
 > +{
-[ ... ]
-> +	/*
-> +	 * Downstream devices reachable through hub target-port routes share the
-> +	 * parent controller's I3C address space. The hub gates access to a
-> +	 * target-port network, but it does not create an independent dynamic
-> +	 * address domain per virtual bus.
-> +	 *
-> +	 * Run DAA on the parent controller so dynamic addresses remain unique
-> +	 * across all downstream devices, even when they are behind different
-> +	 * target ports.
-> +	 */
-> +	ret =3D i3c_master_do_daa(parent);
-
-[Severity: High]
-Does forwarding DAA directly to the parent controller attach dynamically
-discovered downstream devices directly to the parent bus instead of the
-virtual hub controller?
-
-If these devices are bound to the physical parent, subsequent transfers=20
-might bypass i3c_hub_master_priv_xfers() entirely, leaving the hub port=20
-closed and causing communication to fail.
-
-[ ... ]
-> +static int i3c_hub_send_ccc_cmd(struct i3c_hub *hub,
-> +				struct i3c_master_controller *controller,
-> +				struct i3c_ccc_cmd *cmd)
-> +{
-[ ... ]
-> +	mutex_lock(&hub->lock);
-> +	i3c_hub_enable_port(controller);
-> +	ret =3D i3c_master_send_ccc_cmd(parent, cmd);
-
-[Severity: High]
-When forwarding direct CCC commands to the parent controller, the command=20
-structure still contains virtual bus descriptors in its dests array.=20
-
-Since virtual devices do not allocate a physical master_priv context, can=20
-the physical parent controller driver dereference a NULL pointer here when=
-=20
-it assumes these devices are natively attached?
-
-> +	i3c_hub_disable_port(controller);
-> +	mutex_unlock(&hub->lock);
+> +	struct lt7911exc *lt7911exc =3D container_of(work, struct lt7911exc, wo=
+rk);
+> +	struct device *dev =3D lt7911exc->dev;
+> +	const struct firmware *fw;
+> +	u8 *buffer;
+> +	size_t total_size =3D FW_SIZE - 4;
+> +	u32 crc32, version;
+> +	int ret;
 > +
-> +	return ret;
-> +}
-[ ... ]
-> +static int i3c_hub_master_priv_xfers(struct i3c_dev_desc *dev,
-> +				     struct i3c_xfer *xfers,
-> +				     int nxfers,
-> +				     enum i3c_xfer_mode mode)
-> +{
-[ ... ]
-> +	if (hub_addr !=3D target_addr) {
-> +		hub_dev->info.dyn_addr =3D target_addr;
+> +	mutex_lock(&lt7911exc->upgrade_lock);
+> +	if (lt7911exc->removed)
+
+[Severity: Low]
+Should this read of the removed flag be protected by the ocm_lock? It
+appears this can be evaluated concurrently with driver removal since the
+lock isn't held here.
+
+> +		goto out_unlock_upgrade;
 > +
-> +		ret =3D i3c_master_reattach_i3c_dev_locked(hub_dev, hub_addr);
 
-[Severity: High]
-When the hub address is temporarily swapped here, does=20
-i3c_master_reattach_i3c_dev_locked() unconditionally mark the original=20
-address (old_dyn_addr) as free?
-
-This appears to permanently free downstream address slots and could lead=20
-to address collisions on the parent bus.
-
-> +		if (ret) {
-> +			hub_dev->info.dyn_addr =3D hub_addr;
-> +			goto out_unlock_parent;
-> +		}
-> +	}
 [ ... ]
-> +static int i3c_hub_request_ibi(struct i3c_dev_desc *desc,
-> +			       const struct i3c_ibi_setup *req)
-> +{
-[ ... ]
-> +	i3c_bus_maintenance_lock(&parent->bus);
-> +
-> +	orig_parent =3D i3c_hub_update_desc_parent(&desc->common, parent);
 
-[Severity: High]
-Is it safe to modify desc->master here while only holding a read lock=20
-on the bus?
-
-A concurrent private transfer might read desc->master and resolve it to=20
-the physical parent controller, misrouting the transfer and bypassing=20
-hub routing entirely.
-
-> +
-> +	/*
-> +	 * Downstream devices are exposed through the virtual hub controller.
-> +	 * Private transfers only use the hub device temporarily with the
-> +	 * downstream device's dynamic address; they do not attach the downstre=
-am
-> +	 * device to the parent controller.
-> +	 *
-> +	 * Attach the device to the parent controller before requesting IBI so
-> +	 * the parent can allocate any controller-private IBI state.
-> +	 */
-> +	ret =3D i3c_master_direct_attach_i3c_dev_locked(parent, desc);
-
-[Severity: High]
-Could attaching the downstream device directly to the parent controller=20
-fail with -EBUSY if the address was already reserved?=20
-
-Additionally, if it succeeds, might this leave duplicate DAT entries in=20
-the parent hardware when the hub later masquerades as this target address?
-
-> +	if (ret) {
-> +		i3c_hub_update_desc_parent(&desc->common, orig_parent);
-> +		i3c_bus_maintenance_unlock(&parent->bus);
-> +		return ret;
+> +out_unlock_upgrade:
+> +	scoped_guard(mutex, &lt7911exc->ocm_lock) {
+> +		if (!lt7911exc->removed)
+> +			lt7911exc->upgrade =3D false;
 > +	}
 > +
-> +	if (desc->ibi) {
-> +		if (desc->ibi->wq) {
-> +			destroy_workqueue(desc->ibi->wq);
-> +			desc->ibi->wq =3D NULL;
-> +		}
+> +	/* Notify DRM to re-trigger modeset after firmware upgrade */
+> +	if (!lt7911exc->removed && lt7911exc->bridge.dev)
+> +		drm_kms_helper_hotplug_event(lt7911exc->bridge.dev);
+
+[Severity: High]
+Could this dereference a freed drm_device if the upstream DRM display
+controller unbinds before the firmware upgrade completes?
+
+The I2C device has a lifecycle independent of the DRM display controller.
+If the upstream DRM driver is unloaded, the drm_device is destroyed, but
+the I2C device remains, leaving bridge.dev populated but dangling.
+
+If a sysfs write triggers this asynchronous workqueue in that window,
+it looks like it will pass a freed pointer to drm_kms_helper_hotplug_event(=
+).
+
 > +
-> +		kfree(desc->ibi);
-> +		desc->ibi =3D NULL;
+> +	mutex_unlock(&lt7911exc->upgrade_lock);
+> +}
+
+[ ... ]
+
+> +static int lt7911exc_dsi_host_attach(struct mipi_dsi_host *host, struct =
+mipi_dsi_device *dev)
+> +{
+> +	struct lt7911exc *lt7911exc =3D dsi_host_to_lt7911exc(host);
+> +	struct drm_bridge *bridge;
+> +
+> +	/* currently do not support connecting several DSI devices to the same =
+host */
+> +	if (lt7911exc->output_bridge)
+> +		return -EBUSY;
+> +
+> +	if (dev->lanes > 4) {
+> +		dev_err(lt7911exc->dev, "unsupported number of data lanes(%u)\n", dev-=
+>lanes);
+> +		return -EINVAL;
 > +	}
-> +	ret =3D i3c_dev_request_ibi_locked(desc, req);
-> +	if (ret)
-> +		i3c_master_direct_detach_i3c_dev_locked(desc);
+> +
+> +	bridge =3D devm_drm_of_get_bridge(lt7911exc->dev, host->dev->of_node, 1=
+, 0);
 
 [Severity: High]
-Does detaching the downstream device here unconditionally free its static=20
-and dynamic addresses on the parent bus?=20
+Is it safe to dynamically allocate devm memory during panel attach?
 
-The device is still physically present and using those addresses, so freein=
-g=20
-them could lead to address collisions.
+If the downstream panel driver is repeatedly unbound and rebound by a
+local administrator, this will repeatedly allocate devres memory without
+freeing it, causing a memory leak.
 
+> +	if (IS_ERR(bridge)) {
+> +		dev_err(lt7911exc->dev, "failed to add DSI device\n");
+> +		return PTR_ERR(bridge);
+> +	}
 > +
-> +	i3c_hub_update_desc_parent(&desc->common, orig_parent);
-> +
-> +	i3c_bus_maintenance_unlock(&parent->bus);
-> +
-> +	return ret;
-> +}
-> +
-> +static void i3c_hub_free_ibi(struct i3c_dev_desc *desc)
-> +{
-[ ... ]
-> +	mutex_lock(&hub->lock);
-> +	i3c_hub_enable_port(controller);
-> +
-> +	i3c_bus_maintenance_lock(&parent->bus);
-> +	orig_parent =3D i3c_hub_update_desc_parent(&desc->common, parent);
-> +	i3c_dev_free_ibi_locked(desc);
-
-[Severity: High]
-Can holding hub->lock here cause a deadlock if there are pending IBI work=20
-handlers?=20
-
-Calling i3c_dev_free_ibi_locked() blocks while destroying the workqueue.=20
-If an active IBI handler attempts to read the IBI payload, it will invoke=20
-i3c_hub_master_priv_xfers(), which attempts to acquire this exact same lock.
-
+> +	lt7911exc->output_bridge =3D bridge;
 > +
 > +	/*
-> +	 * Drop the temporary parent attachment created for IBI setup.
-> +	 * The downstream device remains exposed through the virtual hub
-> +	 * controller.
+> +	 * Force panel-first enable order: the DSI output stream (0xe0b0)
+> +	 * must not be enabled before the panel is powered on.
+> +	 * This override is safe because LT7911EXC's transfer() is a stub =E2=
+=80=94
+> +	 * panel DCS commands are silently discarded and panel init is done
+> +	 * by the chip's internal firmware. The panel driver's
+> +	 * prepare_prev_first preference is therefore irrelevant here.
 > +	 */
-> +	i3c_master_direct_detach_i3c_dev_locked(desc);
+> +	lt7911exc->output_bridge->pre_enable_prev_first =3D false;
+
+[Severity: Low]
+Is it acceptable to modify the state of a downstream bridge object
+that is owned and managed by another driver? Doing so bypasses the
+subsystem API layering.
+
+> +
+> +	drm_bridge_add(&lt7911exc->bridge);
 
 [Severity: High]
-Does detaching the device on this path also incorrectly free the=20
-downstream device's addresses on the parent bus?
+Does this corrupt the global bridge list if the panel driver is rebound?
 
-> +	i3c_hub_update_desc_parent(&desc->common, orig_parent);
-> +	i3c_bus_maintenance_unlock(&parent->bus);
-> +
-> +	i3c_hub_disable_port(controller);
-> +	mutex_unlock(&hub->lock);
-> +}
-[ ... ]
-> +static int i3c_hub_disable_ibi(struct i3c_dev_desc *desc)
-> +{
-[ ... ]
-> +	mutex_lock(&hub->lock);
-> +	i3c_hub_enable_port(controller);
-> +
-> +	orig_parent =3D i3c_hub_update_desc_parent(&desc->common, parent);
-> +
-> +	i3c_bus_maintenance_lock(&parent->bus);
-> +	ret =3D i3c_dev_disable_ibi_locked(desc);
+When the downstream panel unbinds, lt7911exc_dsi_host_detach() calls
+drm_bridge_remove(), which moves the bridge to the bridge_lingering_list
+and destroys its mutexes.
 
-[Severity: High]
-Could holding hub->lock while calling i3c_dev_disable_ibi_locked() also=20
-lead to the same ABBA deadlock with pending IBI workers trying to acquire=20
-hub->lock via i3c_hub_master_priv_xfers()?
+If the panel binds again, this drm_bridge_add() will be called on the same
+bridge structure, invoking list_add_tail() on a node that is already tracked
+in the lingering list.
 
-> +	i3c_bus_maintenance_unlock(&parent->bus);
 > +
-> +	i3c_hub_update_desc_parent(&desc->common, orig_parent);
-> +
-> +	i3c_hub_disable_port(controller);
-> +	mutex_unlock(&hub->lock);
-> +
-> +	return ret;
+> +	return 0;
 > +}
 > +
-> +static void i3c_hub_recycle_ibi_slot(struct i3c_dev_desc *desc,
-> +				     struct i3c_ibi_slot *slot)
+> +static int lt7911exc_dsi_host_detach(struct mipi_dsi_host *host, struct =
+mipi_dsi_device *dev)
 > +{
-> +	/*
-> +	 * TODO: Forward IBI slot recycling to the parent controller when
-> +	 * downstream-device IBI support is fully enabled. Current users only
-> +	 * rely on the hub device IBI path for SMBus-agent events, so no parent
-> +	 * hardware slot is recycled through this virtual callback currently.
-> +	 */
-> +}
+> +	struct lt7911exc *lt7911exc =3D dsi_host_to_lt7911exc(host);
+> +
+> +	drm_bridge_remove(&lt7911exc->bridge);
 
-[Severity: High]
-Does this empty implementation permanently leak hardware IBI slots=20
-allocated by the parent controller?=20
+[Severity: Medium]
+Does this prevent the panel from re-attaching later?
 
-Over time, failing to return these slots could exhaust the pool and prevent=
-=20
-further IBI reception.
+The detach function does not set lt7911exc->output_bridge back to NULL.
+If the downstream panel driver tries to attach again,
+lt7911exc_dsi_host_attach() will check if output_bridge is set and return
+-EBUSY, leaving the display pipeline permanently broken until the bridge
+driver is reloaded.
 
 > +
-> +static const struct i3c_master_controller_ops i3c_hub_master_ops_data =
-=3D {
-> +	.bus_init =3D i3c_hub_master_bus_init,
-[ ... ]
-> diff --git a/include/linux/i3c/hub.h b/include/linux/i3c/hub.h
-> index 0000000000000..8ad2cf3c9d5b8
-> --- /dev/null
-> +++ b/include/linux/i3c/hub.h
-> @@ -0,0 +1,102 @@
-[ ... ]
-> +static inline struct i3c_master_controller *
-> +i3c_hub_update_desc_parent(struct i3c_i2c_dev_desc *desc,
-> +			   struct i3c_master_controller *parent)
-> +{
-> +	struct i3c_master_controller *orig_parent =3D desc->master;
-> +
-> +	desc->master =3D parent;
-
-[Severity: High]
-Does modifying desc->master here create a data race with concurrent=20
-transfers using the I3C core transfer functions?
-
-> +	return orig_parent;
+> +	return 0;
 > +}
 
 --=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260714092053.2461=
-482-1-lakshay.piplani@nxp.com?part=3D6
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260714105828.2763=
+677-1-syyang@lontium.com?part=3D2
 
