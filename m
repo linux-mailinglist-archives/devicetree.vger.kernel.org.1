@@ -1,57 +1,57 @@
-Return-Path: <devicetree+bounces-326215-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-326217-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id Pg/WOPQvVmoq1AAAu9opvQ
-	(envelope-from <devicetree+bounces-326215-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 14:47:48 +0200
+	id 84QDI04vVmrx0wAAu9opvQ
+	(envelope-from <devicetree+bounces-326217-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 14:45:02 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A936754B76
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 14:47:48 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1DB65754B18
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 14:45:02 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20201202 header.b=CCU0w3Rz;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326215-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-326215-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20201202 header.b="A8JRblj/";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326217-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-326217-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id EA2FA30E0E7F
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 12:45:00 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 8DE35300753F
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 12:45:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42B243D890C;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 559783E317F;
 	Tue, 14 Jul 2026 12:45:00 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F659378D64;
-	Tue, 14 Jul 2026 12:44:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 313C53B42E9;
+	Tue, 14 Jul 2026 12:45:00 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1784033100; cv=none; b=VaE71rf34OfZQxsTktwQ0rQ6aWV5Lefm96U5CRO572Xgo7EwqUPPftqp3JeAs3NX4S4bNrjOThsU0Rq7y0g3889twkL04KDAvRUkUb1vHGY5nrFC0QUBDZ4Bfzq19SHfJU9IZR72qq4a/5FGYacYGzhLC8Cx01N5qcQETfmY18k=
+	t=1784033100; cv=none; b=lorElCS5IPxN6JvImh9S4bZXgcH1eFYJPUw9ZmVT0WneF/3oPAsDy0eRAeLORiIJioMhwXN0aoT0ZiOuLO2MJfIlF3+HO64jGNdgXpIrITsnH7OfTKgwpms3vXi6pIxuq9wkEgmzcTvDoF9HxR0x/6wd6NK3CnaeyLVGKwNseTA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1784033100; c=relaxed/simple;
-	bh=1ZHNBJO5qrM8bD3uBDopzZ00me/02rhRwmoXbHpPB+o=;
+	bh=HQi9+WXJ36H1mtRwYsG6NMNnHpxUitC2EHPxgWZq3AY=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=A9s2lpDhod7vPr1VSOp2MQndyZkrJjrlnDCiQ8mZi2LcM/dR8HfQRRDR6v8zSrajgLKNs3C14rc0fisn2NEcjMqbQ+0XjjirMo2N6SSvaabqdsBS4SnM5i1BxF0ERnumRqEcr1LsN+KIPN7dV0tzGrSDw4ZZHZ6xHerWKxpbyY4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CCU0w3Rz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id B8739C2BCB9;
+	 In-Reply-To:To:Cc; b=WFQehVfPhe5fV+nA3mUfuxwtK5Hg2Rc73Nx3Aq/Tr/p1ux7Gbj8EeqVzLXm82Ew+/bdpRyuhssNBmOT5vp+VjPFxoP/lp2CMbJow0LkD1zLbuB/LZNU+mXaGmYEdZgE3H/qTeN7/Ikp9WSLIPRK/vvN0j2rsnLL9eUUMVXHjlb8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=A8JRblj/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id C45F4C2BCF6;
 	Tue, 14 Jul 2026 12:44:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1784033099;
-	bh=1ZHNBJO5qrM8bD3uBDopzZ00me/02rhRwmoXbHpPB+o=;
+	bh=HQi9+WXJ36H1mtRwYsG6NMNnHpxUitC2EHPxgWZq3AY=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=CCU0w3Rz29cVqbt3JYg5z9+vauK6q0C7NZrt7aUrZlD9seiZzdUld3CpUHi96hp2a
-	 3ymYZykF8K2vqoXQjAYF8ykQeEZ4naNLo0Syd2HHuPrV+tN8BxPtjJfFHh2QHj6QCY
-	 YRRONyCrXyHiruzkxJjZYqnHt/TOx7HKK+q2RP6zPtamKaIUCwtoMK7MWwKWueJ7Ro
-	 emXTlTYH8/tcjVUt9cf6GqGDckkNRQbVMmm0hR439kwpWrirTz7z1ekJk50CIhri7Y
-	 Df8+2WV53LZ9tF6Hqskl8qghoHqN7bI+BDrclETHJNa2w8JCr34BUWriGqVZ3nAap8
-	 BomyR6sBISMrQ==
+	b=A8JRblj/x+s1q5n5/JejuGtCGZsckUvQRe1Isxa1NOqMM10mVKCnEmBAqDc71hNBl
+	 4bL/YhG/5brV5QQL41/bFsdAvyMG3Ojke+Q5tQin3Oelk1zuc8PxMnjgLC/JAWQL9C
+	 76foVJLDT0FeyCtauTQNjT9COC3Ys4ETdUprFx/2oSPjNdsH76h7V5UPb/7pW6iIp4
+	 vLQXb6yX9DEd2cUFiBcE9YAJXrWSTiB0N5rUGnD5QH289/MAuU8Vx4UPFuD8A5+2jM
+	 dXLRqErDTS+3ZVJQY8bTRcyllwC1jG0okdEgzOGx3Z/eqxyiA2MM/n6VI0vsCTo9qm
+	 Vuidqw1GB3o5g==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 9161EC44501;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A47D8C44508;
 	Tue, 14 Jul 2026 12:44:59 +0000 (UTC)
 From: Roman Vivchar via B4 Relay <devnull+rva333.protonmail.com@kernel.org>
-Date: Tue, 14 Jul 2026 15:42:03 +0300
-Subject: [PATCH 1/3] dt-bindings: soc: mediatek: pwrap: add mt6572
+Date: Tue, 14 Jul 2026 15:42:04 +0300
+Subject: [PATCH 2/3] soc: mediatek: pwrap: use correct log level
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,7 +60,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260714-6572-pwrap-v1-1-d8e5a39cf7ef@protonmail.com>
+Message-Id: <20260714-6572-pwrap-v1-2-d8e5a39cf7ef@protonmail.com>
 References: <20260714-6572-pwrap-v1-0-d8e5a39cf7ef@protonmail.com>
 In-Reply-To: <20260714-6572-pwrap-v1-0-d8e5a39cf7ef@protonmail.com>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -72,11 +72,11 @@ Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
  Roman Vivchar <rva333@protonmail.com>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1784033096; l=838;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1784033096; l=3474;
  i=rva333@protonmail.com; s=20260510; h=from:subject:message-id;
- bh=DGlethcwjr6H16kkYv8rGeF6UvLfthLp0VHfVhWr1Mk=;
- b=9Fb6Cp26hr6jilvkzub6M4v2q/4lL0YwTW5VtR7PmuZCGmc+q1MJnxFs08qNCpGQwIAYC57nS
- 2QYhDhvFYkrB0aFN8eHW4BpqKibUhfROxJ2zy+39XcBccKeVg304Jh9
+ bh=xCzQlof4bTy3lyfGICVenLAtisdpBRuoLhm9lj1xxcA=;
+ b=tFPaWcSgTeyrtuEKazGDhaavw7PSk/bmCsLQdhVZBvGV60I/L96kMUtY7FDNlZ51cFwraAJTe
+ zaElgfCUqgoByKgIGVoz7g00W3aKLxuExk3ZylCMiu0hmVBVVerT5h1
 X-Developer-Key: i=rva333@protonmail.com; a=ed25519;
  pk=zww/nWjBGoQ4POXCG0BV6fx2iuXK6jx77rsKPA5YK5Y=
 X-Endpoint-Received: by B4 Relay for rva333@protonmail.com/20260510 with
@@ -90,7 +90,7 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
@@ -106,7 +106,7 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	RCPT_COUNT_TWELVE(0.00)[12];
 	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-326215-lists,devicetree=lfdr.de,rva333.protonmail.com];
+	TAGGED_FROM(0.00)[bounces-326217-lists,devicetree=lfdr.de,rva333.protonmail.com];
 	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,protonmail.com];
 	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
@@ -116,36 +116,117 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	PRECEDENCE_BULK(0.00)[];
 	HAS_REPLYTO(0.00)[rva333@protonmail.com];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,protonmail.com:mid,protonmail.com:email,protonmail.com:replyto,vger.kernel.org:from_smtp]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,vger.kernel.org:from_smtp,protonmail.com:mid,protonmail.com:email,protonmail.com:replyto]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 3A936754B76
+X-Rspamd-Queue-Id: 1DB65754B18
 
 From: Roman Vivchar <rva333@protonmail.com>
 
-Add a compatible string for the mt6572 SoC.
+Errors paths should be dev_err, not dev_dbg. Replace all dev_dbg in error
+branches to have the correct log level. Also simplify dev_err and return
+with dev_err_probe.
 
 Signed-off-by: Roman Vivchar <rva333@protonmail.com>
 ---
- Documentation/devicetree/bindings/soc/mediatek/mediatek,pwrap.yaml | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/soc/mediatek/mtk-pmic-wrap.c | 45 ++++++++++++++----------------------
+ 1 file changed, 17 insertions(+), 28 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/soc/mediatek/mediatek,pwrap.yaml b/Documentation/devicetree/bindings/soc/mediatek/mediatek,pwrap.yaml
-index e7c4a3984c60..a3cf11153fba 100644
---- a/Documentation/devicetree/bindings/soc/mediatek/mediatek,pwrap.yaml
-+++ b/Documentation/devicetree/bindings/soc/mediatek/mediatek,pwrap.yaml
-@@ -31,6 +31,7 @@ properties:
-       - items:
-           - enum:
-               - mediatek,mt2701-pwrap
-+              - mediatek,mt6572-pwrap
-               - mediatek,mt6765-pwrap
-               - mediatek,mt6779-pwrap
-               - mediatek,mt6795-pwrap
+diff --git a/drivers/soc/mediatek/mtk-pmic-wrap.c b/drivers/soc/mediatek/mtk-pmic-wrap.c
+index 0bcd85826375..a4b10b0a97cb 100644
+--- a/drivers/soc/mediatek/mtk-pmic-wrap.c
++++ b/drivers/soc/mediatek/mtk-pmic-wrap.c
+@@ -2475,10 +2475,9 @@ static int pwrap_probe(struct platform_device *pdev)
+ 	if (np->child)
+ 		of_slave_id = of_match_node(of_slave_match_tbl, np->child);
+ 
+-	if (!of_slave_id) {
+-		dev_dbg(&pdev->dev, "slave pmic should be defined in dts\n");
+-		return -EINVAL;
+-	}
++	if (!of_slave_id)
++		return dev_err_probe(&pdev->dev, -EINVAL,
++				     "slave pmic should be defined in dts\n");
+ 
+ 	wrp = devm_kzalloc(&pdev->dev, sizeof(*wrp), GFP_KERNEL);
+ 	if (!wrp)
+@@ -2496,11 +2495,9 @@ static int pwrap_probe(struct platform_device *pdev)
+ 
+ 	if (HAS_CAP(wrp->master->caps, PWRAP_CAP_RESET)) {
+ 		wrp->rstc = devm_reset_control_get(wrp->dev, "pwrap");
+-		if (IS_ERR(wrp->rstc)) {
+-			ret = PTR_ERR(wrp->rstc);
+-			dev_dbg(wrp->dev, "cannot get pwrap reset: %d\n", ret);
+-			return ret;
+-		}
++		if (IS_ERR(wrp->rstc))
++			return dev_err_probe(wrp->dev, PTR_ERR(wrp->rstc),
++					     "cannot get pwrap reset\n");
+ 	}
+ 
+ 	if (HAS_CAP(wrp->master->caps, PWRAP_CAP_BRIDGE)) {
+@@ -2510,12 +2507,9 @@ static int pwrap_probe(struct platform_device *pdev)
+ 
+ 		wrp->rstc_bridge = devm_reset_control_get(wrp->dev,
+ 							  "pwrap-bridge");
+-		if (IS_ERR(wrp->rstc_bridge)) {
+-			ret = PTR_ERR(wrp->rstc_bridge);
+-			dev_dbg(wrp->dev,
+-				"cannot get pwrap-bridge reset: %d\n", ret);
+-			return ret;
+-		}
++		if (IS_ERR(wrp->rstc_bridge))
++			return dev_err_probe(wrp->dev, PTR_ERR(wrp->rstc_bridge),
++					     "cannot get pwrap-bridge reset\n");
+ 	}
+ 
+ 	ret = devm_clk_bulk_get_all_enabled(wrp->dev, &clk);
+@@ -2535,10 +2529,8 @@ static int pwrap_probe(struct platform_device *pdev)
+ 	 */
+ 	if (!pwrap_readl(wrp, PWRAP_INIT_DONE2)) {
+ 		ret = pwrap_init(wrp);
+-		if (ret) {
+-			dev_dbg(wrp->dev, "init failed with %d\n", ret);
+-			return ret;
+-		}
++		if (ret)
++			return dev_err_probe(wrp->dev, ret, "init failed\n");
+ 	}
+ 
+ 	if (HAS_CAP(wrp->master->caps, PWRAP_CAP_ARB))
+@@ -2548,10 +2540,9 @@ static int pwrap_probe(struct platform_device *pdev)
+ 	else
+ 		mask_done = PWRAP_STATE_INIT_DONE0;
+ 
+-	if (!(pwrap_readl(wrp, PWRAP_WACS2_RDATA) & mask_done)) {
+-		dev_dbg(wrp->dev, "initialization isn't finished\n");
+-		return -ENODEV;
+-	}
++	if (!(pwrap_readl(wrp, PWRAP_WACS2_RDATA) & mask_done))
++		return dev_err_probe(wrp->dev, -ENODEV,
++				     "initialization isn't finished\n");
+ 
+ 	/* Initialize watchdog, may not be done by the bootloader */
+ 	if (!HAS_CAP(wrp->master->caps, PWRAP_CAP_ARB))
+@@ -2593,11 +2584,9 @@ static int pwrap_probe(struct platform_device *pdev)
+ 		return PTR_ERR(wrp->regmap);
+ 
+ 	ret = of_platform_populate(np, NULL, NULL, wrp->dev);
+-	if (ret) {
+-		dev_dbg(wrp->dev, "failed to create child devices at %pOF\n",
+-				np);
+-		return ret;
+-	}
++	if (ret)
++		return dev_err_probe(wrp->dev, ret,
++				     "failed to create child devices at %pOF\n", np);
+ 
+ 	return 0;
+ }
 
 -- 
 2.54.0
