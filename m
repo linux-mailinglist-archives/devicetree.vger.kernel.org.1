@@ -1,311 +1,209 @@
-Return-Path: <devicetree+bounces-325986-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-325988-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id ADCrOkfuVWoJwQAAu9opvQ
-	(envelope-from <devicetree+bounces-325986-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 10:07:35 +0200
+	id uCBkCoDuVWocwQAAu9opvQ
+	(envelope-from <devicetree+bounces-325988-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 10:08:32 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96BDD7522E2
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 10:07:34 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E107752306
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 10:08:31 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=P938Z9IV;
-	dkim=pass header.d=oss.qualcomm.com header.s=google header.b=jIFzCccv;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-325986-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-325986-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=reject) header.from=qualcomm.com;
+	dkim=pass header.d=kernel.org header.s=k20201202 header.b=c+dX6Hqh;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-325988-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-325988-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 1DCE3304EB99
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 08:07:31 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id F151B3007527
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 08:08:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2103B3F5BC5;
-	Tue, 14 Jul 2026 08:07:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39CE93F6C22;
+	Tue, 14 Jul 2026 08:08:27 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A2AE3EDE63
-	for <devicetree@vger.kernel.org>; Tue, 14 Jul 2026 08:07:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A5923F0AA0;
+	Tue, 14 Jul 2026 08:08:26 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1784016450; cv=none; b=ic9OczG6hShyuAbTd+9pczGVs9lNW/Et5r8iAF0NEMBuzbBwv7PNH2qJS0acMbsxuZCBKHLnykY34UGSvHQLau83GhW+lf2x5tM5Y8SLCPzCF+xqyFrN5a/OXJevtaMw9ikd0yoNaRF1edY2erywTyW3oMlQQTP8gWAodmshrEs=
+	t=1784016507; cv=none; b=porR1LlZSZIcQ8eQuar2spy31tUQfmFO2UHQ/A3IOFRdKSQqU2aZO8oZULf1LsSg7j1Ur3aQPghlgK5AlNTBXeuE2vxJwbUcOBAa+BYlkiJ7sskobxMqLWzCGgUt5PIFKcugOTBFXhgwvpBsYWCaE3V72FaTfoEHLhEHlmKoBio=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1784016450; c=relaxed/simple;
-	bh=chPrR3yvSSLbL3nbc1J4St17+dIVVN6Px6STN6fIB6Y=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=KIeZdIS8RFLF1qNmNH5kc5D0dm6pcQDzkkurh8IKdZ2XVGHrD1PyU4UP8jGrZJx9eDi8JvrwViHAEvZqgpJv328xvuT0cmKiC/rXW0r/JdjDnTCZp0B6qhV6KYvKvWUe0el7w1HqdCzLyEPgp8SoluwzJ9aqqH5pAc4IQ9ay0OY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=P938Z9IV; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=jIFzCccv; arc=none smtp.client-ip=205.220.168.131
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 66E6SYhn3743792
-	for <devicetree@vger.kernel.org>; Tue, 14 Jul 2026 08:07:28 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	PGw4sWaMKDTzSJPFnL+q7if3PMk6fCh3Zk7dNYZW40I=; b=P938Z9IVDEs6r7UJ
-	ru54N4j4Ibb5GMoVKokzQZVMLXHNXAgZmnqAPqXzatK5W6g7+2i6fwCTDIBFChQU
-	DXDkiiL2qPdEhYyQbR9NBZtjdQ/NuEpI57gM2Or4popy9dFfDVJjbr4Wad94vMBP
-	6LYHpTZArC0A7K67gZY6aVcKwDa7P8bWDmt3y4ANHxQIbjxdOMqKW+9g4XC5ZCxB
-	PXWNv7fDCCCeruYiN2sc6sok/T7Weo3VwwzuMmlXdW0CDRCMtij88FAy1ky7pmHS
-	ETSsglJcSpHbS0HTReep0Gj9iRrjnyIo4ohGhOisRY/X+5S09TxEPr6m8C0vg66H
-	a1M3dA==
-Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4fd44p2pjr-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 14 Jul 2026 08:07:27 +0000 (GMT)
-Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-5174a236220so63499231cf.3
-        for <devicetree@vger.kernel.org>; Tue, 14 Jul 2026 01:07:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1784016447; x=1784621247; darn=vger.kernel.org;
-        h=content-transfer-encoding:content-type:in-reply-to:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=PGw4sWaMKDTzSJPFnL+q7if3PMk6fCh3Zk7dNYZW40I=;
-        b=jIFzCccvjI+1jIL8j735fkJ25jwxKfQPNeaQI2hXOm1M1s9J7tjJWugWEVwAdjbi0a
-         X15TJTOlNrlNwnN7alCCnC/IMzLKchYiWYzHUntf6FJJpsJyArBxK7VSv/7mmiOMKIgv
-         R0937AkYd/DhnUKgWgbEhmoeEA9b5Td+tC8po8lF9oyOrabi/pBQ6kqHvA4NW8aY6ySn
-         g15eaeHFbH8PURVG5ld3zU4qEgxgmpti/C/+ya+P67B5vpl7jYT/jgGywr2QqeNblQJI
-         XZwAbfKGIzSmLnS/uySCehIZ8LlQIMQIOmqqlHxK1Ua1ubBnFRznvB/Z1cRct+K90mxy
-         TOFw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1784016447; x=1784621247;
-        h=content-transfer-encoding:content-type:in-reply-to:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=PGw4sWaMKDTzSJPFnL+q7if3PMk6fCh3Zk7dNYZW40I=;
-        b=SnaCcOK8zAFscPpnFpwp4Z/juOksyLdVutNQ9tK5o60vqsBrV0RL14jxhfqQxd/Q9a
-         MnVdmSju5a02DNLPzx/qPJlTF6HmJHFf6HO7thogqyhBVgAo7HPoOAfbOuuA7rvV59Ph
-         YstpQLgKC6PgAIIeqpGxhexlAX/gPVCoeg+WNHCat/H4njDMehFl4G+VSDdcoegqeooR
-         ayjL+QFj45byohz7m2gM7cpEeRllxf7r6ovwVVvuqgBKHMi1/+INKUdXyIgL0L3025Pa
-         uM+ZxP0UzmZjwsU11HddIhN9Tq8rxdEUOOwXegn2VCI+PPA6i9ERNVqP6xEcIoeP8luD
-         pcWA==
-X-Forwarded-Encrypted: i=1; AHgh+Rr4ajtqtvSd9waOfJH+eq5ZZv/NCXajTpTB93XoE8g1Au4lkACaLper7X2nNvDYQiCiWhPSPu+6B8Me@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw1ICKpJxwS3mI9IsW4/r4RbjQAntBdy0ebBHLo5ydOalDomc6C
-	gwb9R9RnI4IR+lVgzstopwDphIepJOkxAziGroT7uYQqrupV7Rk8PeoUTrs6D5/+rTiO8OW4ZhN
-	+Zrgl/OTseAp/HVMu/qIkm5Zeh8ZZPfwIrr8/AqXoha4W43VO4yEGARSUirHrMCdk
-X-Gm-Gg: AfdE7cnmAZmyFeWhoeyfkKBRAANhBW/njGxTMLHepYgtOcuUXORX85DjiPONhVuNmTn
-	hf7vZuXEY9ZJnBP/P6vmuxU8M/mG/VJWTn4a66auPwK0KhgEdHIPNgIr7rEN4W0SCTeAjcUguEH
-	bvkXqOX5ufvdfEkxu4kVi1GQvzUUUGKzxduLHOA1hbCC41M6JnsBN9ElXdAdfYwaXPiehv1gb9P
-	0VioyZpop7qBlEynNTU9wt+w1Jp9vxtXX7Mvr3DT0WozRhYU2GaVJ8Zo2mXPzcp9grOQ+649zx/
-	oWjnLjHdn3HmhrY6KCGeA1U+l6oYXaPJKHNrwV7OYXC24tNRTRLwtAtDZUdwlVMMkZrPaj5xk0g
-	mL1TYM/ezSLAYGpvjaSFYFvUva7ZiUulYlY86+w==
-X-Received: by 2002:ac8:7dca:0:b0:51c:7b13:62f3 with SMTP id d75a77b69052e-51e3c33c1c7mr27597671cf.73.1784016446877;
-        Tue, 14 Jul 2026 01:07:26 -0700 (PDT)
-X-Received: by 2002:ac8:7dca:0:b0:51c:7b13:62f3 with SMTP id d75a77b69052e-51e3c33c1c7mr27597361cf.73.1784016446415;
-        Tue, 14 Jul 2026 01:07:26 -0700 (PDT)
-Received: from [192.168.68.109] ([5.133.47.210])
-        by smtp.googlemail.com with ESMTPSA id 4fb4d7f45d1cf-69cd2936143sm955958a12.25.2026.07.14.01.07.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 14 Jul 2026 01:07:25 -0700 (PDT)
-Message-ID: <63e5dfd7-b0e6-4dbb-b67a-79a33b0a6477@oss.qualcomm.com>
-Date: Tue, 14 Jul 2026 09:07:23 +0100
+	s=arc-20240116; t=1784016507; c=relaxed/simple;
+	bh=0kjoSrXOirxQ0MVKjWZxUdN6zn6jSvd2UsDyLLOSTKY=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=cCn1cdAh+FyF1cDQOX7/DLO1OODzu2H6a0cKzhKSju7TCWxbEjj/xmU0Tkked0qf+nm24vhvQ9eITRjRJJJ3X1jsOhA1S7PyqsoZhaT9/vBfUMx1eBig1rioV6cykKt85KmLoKTJnsHc9LZh69t6lF4ZBTEj1DIXceGI6pwpbAw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=c+dX6Hqh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 81F2EC2BCB8;
+	Tue, 14 Jul 2026 08:08:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1784016506;
+	bh=0kjoSrXOirxQ0MVKjWZxUdN6zn6jSvd2UsDyLLOSTKY=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=c+dX6HqhUwhngfZ4+sMn7dVXK1FHgUFGUQ0CStdLJ03U1c/3lXKo3ZkyB2/jLQ0Ly
+	 mbZIDyRdBiEiZZAq3efkyYgvhck0WMx9GxC0TcnQmXw+YmGITZAePUkt16ipkkyUR8
+	 JdpaleeEB37af24RWBCpI3N1G7KflSWddQkvZJlwLAveeRcJcpQDDW5ZnwsToJGV3b
+	 45dEl7kjIeXq5hYEwOch6Xtrdn0OmRY6bH+O47T7j7DRN9icVmrSpTOZpFR5D6Nl8i
+	 Velo7ehpcf6dNH2zv/bZvn4TSdkdBsso1rZkKRzh/H2NlK+fqKCgEWhGPlGlUSighi
+	 wlfRFKvaY4CEg==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5EE3CC43458;
+	Tue, 14 Jul 2026 08:08:26 +0000 (UTC)
+From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
+Subject: [PATCH v11 0/3] Add Amlogic general DMA
+Date: Tue, 14 Jul 2026 08:08:21 +0000
+Message-Id: <20260714-amlogic-dma-v11-0-de79c2394282@amlogic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] ASoC: dt-bindings: qcom,lpass-va-csr: Add HeartBeat
- pulse clock
-To: sarath.ganapathiraju@oss.qualcomm.com,
-        Srinivas Kandagatla <srini@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>
-Cc: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>,
-        linux-sound@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        prasad.kumpatla@oss.qualcomm.com
-References: <20260714-master-v1-0-1ebe5993225e@oss.qualcomm.com>
- <20260714-master-v1-1-1ebe5993225e@oss.qualcomm.com>
-Content-Language: en-US
-From: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
-In-Reply-To: <20260714-master-v1-1-1ebe5993225e@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Info: AW1haW4tMjYwNzE0MDA4MiBTYWx0ZWRfXzuGOERmipiPL
- FLGYvjc23Ap2rUNuzvidYkS2aIFVrd6Up8gsTfW/952I/DgV0SxWj9qtHBEZoLXppR3cFg71ZL4
- ujbmqqEUdue7idI46a0jwzawY/a9qmI=
-X-Proofpoint-GUID: uEk--2FYr9yY6N7WGBXPUmiK0Y5CXjQV
-X-Proofpoint-ORIG-GUID: uEk--2FYr9yY6N7WGBXPUmiK0Y5CXjQV
-X-Authority-Analysis: v=2.4 cv=BZroFLt2 c=1 sm=1 tr=0 ts=6a55ee3f cx=c_pps
- a=WeENfcodrlLV9YRTxbY/uA==:117 a=ZsC4DHZuhs/kKio7QBcDoQ==:17
- a=IkcTkHD0fZMA:10 a=RAioF0-LDSMA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=_K5XuSEh1TEqbUxoQ0s3:22
- a=gEfo2CItAAAA:8 a=EUspDBNiAAAA:8 a=q3g3-CpzSg7zKoWD_TMA:9 a=QEXdDO2ut3YA:10
- a=kacYvNCVWA4VmyqE58fU:22 a=sptkURWiP4Gy88Gu7hUp:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNzE0MDA4MiBTYWx0ZWRfX4LtQGpxrj8qm
- hKEeF755QP2DtufseOmDPJc+tSlQNe1fM8VB5mdaPUX4Q+hX6RxWq5/PghNFWjxF7rLVAN01b5S
- HG+C4ac4UQgkkaM0pgCg+Zlu0LOYf80qXFf+bM+D4Zj8WIHW9s9m1DZpbdQoMLq5d3qk30gZiG4
- LAriYhFtFDYy4N67klGw9WXJIlx6Zbod2XzHdn0UBNa0KrjbAWaGI83Ou40BCSgHwhsalVhf5uK
- XGQ9Pp9J5FCyLC8Tay6XCXslZDAcwUC6QvTGjxCM1GYRph+iZpUnD5FVDeC/GWSnXirg94ipX+x
- /xpBiVuaUj39UDDOuwXWFNu9e5tBhqkJ2GDE2kvw5V+BN7xSDXNOgssL8ZDfVJ1agjWe/agkgQz
- GA3XICGVhOzNHhLcCgO0rIZPLp5+sOsSbJYOQrND25lq+MCWNQlpB48G8v+ImTVoEGkclaP7egh
- +7afz50nE4coQptFmMQ==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.134,FMLib:17.12.100.49
- definitions=2026-07-14_02,2026-07-10_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 spamscore=0 suspectscore=0 bulkscore=0 priorityscore=1501
- malwarescore=0 impostorscore=0 lowpriorityscore=0 adultscore=0 clxscore=1015
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2606150000 definitions=main-2607140082
+X-B4-Tracking: v=1; b=H4sIAHXuVWoC/23SwWrDMAwG4FcpPi/DkiU73mnvMXZwbKU1rE1JR
+ tgoffc5ZSVN0qNkvl9C+KIG6bMM6m13Ub2MecjdqRQALzsVD+G0lyqn0lCokQGBq3D86vY5Vuk
+ YKufJucQxoSVVxLmXNv/c4j4+S33Iw3fX/97SR5i69xy7yBmh0pVg7YWdeBvc+//ra+yOakoa8
+ a6tBnRLjUUTIyeDLjlKW21mjXo12xTNtm18y14S4lbTg17PpqJbZCELJL55sjnP2mhaai46BGK
+ TgNpEZqvto/ZLbYu2xpBPaJpEzVa7B42r2W7avG48iIDHCFtdz5oRlrouurYxYhRPQE+u5mdtc
+ XVzP92c62QdRgqetxr0zB3o1XfR0+4tJQlSGyerq1+v1z9EjZRL2QIAAA==
+X-Change-ID: 20251215-amlogic-dma-79477d5cd264
+To: Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Kees Cook <kees@kernel.org>, 
+ "Gustavo A. R. Silva" <gustavoars@kernel.org>, 
+ Frank Li <Frank.Li@kernel.org>
+Cc: linux-amlogic@lists.infradead.org, dmaengine@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-hardening@vger.kernel.org, Xianwei Zhao <xianwei.zhao@amlogic.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>, 
+ Frank Li <Frank.Li@nxp.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1784016504; l=3316;
+ i=xianwei.zhao@amlogic.com; s=20251216; h=from:subject:message-id;
+ bh=0kjoSrXOirxQ0MVKjWZxUdN6zn6jSvd2UsDyLLOSTKY=;
+ b=Xld4fv2TycWoKv/SsuPG0Ut3FXf8fJv2FfpxgqVXdvbeyTw/TAH5FQDe3cg2VdNpFn11ZsqZi
+ go72iYBVPvgATwpeO2j4eGxfMLhZ5nC/xIrB4W9uDliPQmI72WZcpQM
+X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
+ pk=dWwxtWCxC6FHRurOmxEtr34SuBYU+WJowV/ZmRJ7H+k=
+X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20251216 with
+ auth_id=578
+X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Reply-To: xianwei.zhao@amlogic.com
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-3.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-325986-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-325988-lists,devicetree=lfdr.de,xianwei.zhao.amlogic.com];
+	FORGED_RECIPIENTS(0.00)[m:vkoul@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:kees@kernel.org,m:gustavoars@kernel.org,m:Frank.Li@kernel.org,m:linux-amlogic@lists.infradead.org,m:dmaengine@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-hardening@vger.kernel.org,m:xianwei.zhao@amlogic.com,m:krzysztof.kozlowski@oss.qualcomm.com,m:Frank.Li@nxp.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
+	FORGED_SENDER(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FREEMAIL_TO(0.00)[oss.qualcomm.com,kernel.org,gmail.com,perex.cz,suse.com];
-	FORGED_RECIPIENTS(0.00)[m:sarath.ganapathiraju@oss.qualcomm.com,m:srini@kernel.org,m:lgirdwood@gmail.com,m:broonie@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:perex@perex.cz,m:tiwai@suse.com,m:srinivas.kandagatla@oss.qualcomm.com,m:linux-sound@vger.kernel.org,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:prasad.kumpatla@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[srinivas.kandagatla@oss.qualcomm.com,devicetree@vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,oss.qualcomm.com:from_mime,oss.qualcomm.com:dkim,oss.qualcomm.com:mid,qualcomm.com:email,qualcomm.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[srinivas.kandagatla@oss.qualcomm.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	ALIAS_RESOLVED(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	TO_DN_SOME(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	HAS_REPLYTO(0.00)[xianwei.zhao@amlogic.com];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 96BDD7522E2
+X-Rspamd-Queue-Id: 9E107752306
 
+Add DMA driver and bindigns for the Amlogic SoCs.
 
+Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+---
+Changes in v11:
+- MAX_DMA_LEN 4-byte align, and return real status when get, and lockless error print.
+- Link to v10: https://lore.kernel.org/r/20260710-amlogic-dma-v10-0-ff4deae837e7@amlogic.com
 
-On 7/13/26 9:05 PM, Sarath Ganapathiraju via B4 Relay wrote:
-> From: Sarath Ganapathiraju <sarath.ganapathiraju@oss.qualcomm.com>
-> 
-> Add Qualcomm LPASS VA CSR rate generator node that exposes
-> the lpass_heartbeat_pulse clock on hawi. Also extend the
-> qcom,lpass-va-macro binding to add qcom,hawi-lpass-va-macro with
-> its four-clock constraint (mclk, macro, dcodec, heartbeatpulse).
-> 
-> The HeartBeat Pulse (also known as RateGen Pulse) synchronizes the
-> start of the DMAs and Codec Interfaces for the audio usecase
-> and can serve as a periodic wakeup source for the DSP.
-> 
-> Signed-off-by: Sarath Ganapathiraju <sarath.ganapathiraju@oss.qualcomm.com>
-> ---
->  .../bindings/sound/qcom,lpass-va-csr.yaml          | 47 ++++++++++++++++++++++
->  .../bindings/sound/qcom,lpass-va-macro.yaml        | 18 +++++++++
+Changes in v10:
+- Free dma memory in workqueue.
+- Deal with zero len sg (not consume sg_link),and reset status to DMA_COMPLETE when terminal channel.
+- Add desc for #dma-cells in dt-bindings.
+- Link to v9: https://lore.kernel.org/r/20260626-amlogic-dma-v9-0-558d672c4a95@amlogic.com
 
-Please split these into two patches, as you are adding two things in here.
+Changes in v9:
+- Use each transmission request sg_link mem instead of the loop mem get.
+- Fix some hidden issues which reviewed by ai robot.
+- Link to v8: https://lore.kernel.org/r/20260521-amlogic-dma-v8-0-86cc2ce94142@amlogic.com
 
+Changes in v8:
+- Use kzalloc instead of kmalloc.
+- Initialize the temporary variable and fix a spelling mistake.
+- Link to v7: https://lore.kernel.org/r/20260324-amlogic-dma-v7-0-f8b91ee192c1@amlogic.com
 
---srini
->  2 files changed, 65 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/sound/qcom,lpass-va-csr.yaml b/Documentation/devicetree/bindings/sound/qcom,lpass-va-csr.yaml
-> new file mode 100644
-> index 000000000..794da92ad
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/sound/qcom,lpass-va-csr.yaml
-> @@ -0,0 +1,47 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/sound/qcom,lpass-va-csr.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm LPASS VA CSR heartbeat pulse clock provider
-> +
-> +maintainers:
-> +  - Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
-> +  - Sarath Ganapathiraju <sarath.ganapathiraju@oss.qualcomm.com>
-> +
-> +description:
-> +  The LPASS VA CSR block contains the rate generator hardware which
-> +  produces the heartbeatpulse consumed by the Bolero codec macros
-> +  (rx, tx, wsa, va). It is modelled as a clock provider
-> +  so consumers can reference it by name in their clocks list.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - qcom,hawi-lpass-va-csr
-> +
-> +  reg:
-> +    maxItems: 1
-> +    description: Must cover the full VA CSR block (base 0x7EE0000, size 0xE000).
-> +
-> +  "#clock-cells":
-> +    const: 0
-> +    description:
-> +      Single clock output "lpass_heartbeat_pulse". Consumers reference
-> +      it by clock-name "heartbeatpulse" in their clocks list.
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - "#clock-cells"
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    va-csr@7ee0000 {
-> +      compatible = "qcom,hawi-lpass-va-csr";
-> +      reg = <0x0 0x07ee0000 0x0 0xe000>;
-> +      #clock-cells = <0>;
-> +    };
-> diff --git a/Documentation/devicetree/bindings/sound/qcom,lpass-va-macro.yaml b/Documentation/devicetree/bindings/sound/qcom,lpass-va-macro.yaml
-> index aea31fbda..ae4df8967 100644
-> --- a/Documentation/devicetree/bindings/sound/qcom,lpass-va-macro.yaml
-> +++ b/Documentation/devicetree/bindings/sound/qcom,lpass-va-macro.yaml
-> @@ -19,6 +19,7 @@ properties:
->            - qcom,sm8450-lpass-va-macro
->            - qcom,sm8550-lpass-va-macro
->            - qcom,sc8280xp-lpass-va-macro
-> +          - qcom,hawi-lpass-va-macro
->        - items:
->            - enum:
->                - qcom,eliza-lpass-va-macro
-> @@ -168,6 +169,23 @@ allOf:
->              - const: macro
->              - const: dcodec
->  
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: qcom,hawi-lpass-va-macro
-> +    then:
-> +      properties:
-> +        clocks:
-> +          minItems: 4
-> +          maxItems: 4
-> +        clock-names:
-> +          items:
-> +            - const: mclk
-> +            - const: macro
-> +            - const: dcodec
-> +            - const: heartbeatpulse
-> +
->  unevaluatedProperties: false
->  
->  examples:
-> 
+Changes in v7:
+- Take use vchan to support mltiple txns.
+- Link to v6: https://lore.kernel.org/r/20260309-amlogic-dma-v6-0-63349d23bd4b@amlogic.com
+
+Changes in v6:
+- Some minor modifications according to Frank's suggestion.
+- Link to v5: https://lore.kernel.org/r/20260304-amlogic-dma-v5-0-aa453d14fd43@amlogic.com
+
+Changes in v5:
+- Rename head file and rename macro definition.
+- Rename the subject in [2/3] from "dma" to "dmaengine".
+- Link to v4: https://lore.kernel.org/r/20260227-amlogic-dma-v4-0-f25e4614e9b7@amlogic.com
+
+Changes in v4:
+- Support split transfer when data len > MAX_LEN.
+- When a module fails or exits, perform de-initialization.
+- Some other minor modifications.
+- Link to v3: https://lore.kernel.org/r/20260206-amlogic-dma-v3-0-56fb9f59ed22@amlogic.com
+
+Changes in v3:
+- Adjust the format of binding according to Frank's suggestion.
+- Some code format modified according to Frank's suggestion.
+- Support one prep_sg and one submit, drop multi prep_sg and one submit.
+- Keep pre state when resume from pause status.
+- Link to v2: https://lore.kernel.org/r/20260127-amlogic-dma-v2-0-4525d327d74d@amlogic.com
+
+Changes in v2:
+- Introduce what the DMA is used for in the A9 SoC.
+- Some minor modifications were made according to Krzysztof's suggestions.
+- Some modifications were made according to Neil's suggestions.
+- Fix a build error.
+- Link to v1: https://lore.kernel.org/r/20251216-amlogic-dma-v1-0-e289e57e96a7@amlogic.com
+
+---
+Xianwei Zhao (3):
+      dt-bindings: dma: Add Amlogic A9 SoC DMA
+      dmaengine: amlogic: Add general DMA driver for A9
+      MAINTAINERS: Add an entry for Amlogic DMA driver
+
+ .../devicetree/bindings/dma/amlogic,a9-dma.yaml    |  68 ++
+ MAINTAINERS                                        |   7 +
+ drivers/dma/Kconfig                                |  10 +
+ drivers/dma/Makefile                               |   1 +
+ drivers/dma/amlogic-dma.c                          | 726 +++++++++++++++++++++
+ include/dt-bindings/dma/amlogic,a9-dma.h           |   8 +
+ 6 files changed, 820 insertions(+)
+---
+base-commit: f53b2c30a192b35064be2584df7a800a8e6ac710
+change-id: 20251215-amlogic-dma-79477d5cd264
+
+Best regards,
+-- 
+Xianwei Zhao <xianwei.zhao@amlogic.com>
+
 
 
