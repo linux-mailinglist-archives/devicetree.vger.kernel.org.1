@@ -1,172 +1,305 @@
-Return-Path: <devicetree+bounces-326406-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-326409-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id X8flJBSGVmqW8AAAu9opvQ
-	(envelope-from <devicetree+bounces-326406-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 20:55:16 +0200
+	id PsaQHeaIVmry8QAAu9opvQ
+	(envelope-from <devicetree+bounces-326409-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 21:07:18 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E291E757FA5
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 20:55:15 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 12AEB758197
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 21:07:18 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=9elements.com header.s=google header.b=em8vHOVO;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326406-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-326406-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=9elements.com;
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
+	dkim=pass header.d=NXP1.onmicrosoft.com header.s=selector1-NXP1-onmicrosoft-com header.b=VzuQ3YrS;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326409-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-326409-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=fail reason="SPF not aligned (relaxed), DKIM not aligned (relaxed)" header.from=nxp.com (policy=none);
+	arc=reject ("cv is fail on i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 4E1A8310A42A
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 18:53:25 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 0372F314D352
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 19:04:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F3F14446FF;
-	Tue, 14 Jul 2026 18:53:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C58244C77CB;
+	Tue, 14 Jul 2026 19:04:23 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from GVXPR05CU001.outbound.protection.outlook.com (mail-swedencentralazon11013002.outbound.protection.outlook.com [52.101.83.2])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06FA633260C
-	for <devicetree@vger.kernel.org>; Tue, 14 Jul 2026 18:53:12 +0000 (UTC)
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1784055200; cv=none; b=OdjizK2N2Mg25GC8J1ZHYx/Ela8KTh/97Gwa7ueDY1Lxg7lDtwuMmB5iZ/yLKlUCiXcLIbuQLMCu52caCiWxlrc8bgd6tB1fyhkAGsI1eHXyrqeR2xKwLqpFvSbh+5QyyqFaDI8wfRgvtMG2ba+7Y4aWPBpA+oXrdsgfkLS+2QU=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1784055200; c=relaxed/simple;
-	bh=cSCbnH1xPXdFvXoeIkjlw6q74tyyx6jthYZF2YqxS6Q=;
-	h=MIME-Version:Content-Type:Subject:From:To:Cc:In-Reply-To:
-	 References:Date:Message-Id; b=TASrdZVDgPRzwQtrsyE/TAX5ILpWc/ebrfbE8a0/ymUvPLuLncAN3bHHlCto/ye2Sjli5sA4T4mqBdiQcxBtGMrXNN9ouJusjURNtqAFLJSdveE9PZm69Ish0ecddPNqyWk43LgmIJHR3+EKOoEGBK4zo7H0pmaYlHwxRvcC3j0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=9elements.com; spf=pass smtp.mailfrom=9elements.com; dkim=pass (2048-bit key) header.d=9elements.com header.i=@9elements.com header.b=em8vHOVO; arc=none smtp.client-ip=209.85.128.52
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-493f75f7172so30905215e9.1
-        for <devicetree@vger.kernel.org>; Tue, 14 Jul 2026 11:53:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=9elements.com; s=google; t=1784055190; x=1784659990; darn=vger.kernel.org;
-        h=message-id:date:references:in-reply-to:cc:to:from:subject
-         :content-transfer-encoding:content-type:mime-version:from:to:cc
-         :subject:date:message-id:reply-to:content-type;
-        bh=oeiC8iwmB/ylmI7BL0w8nOLqlIUesF4NQaKuVPlJTmQ=;
-        b=em8vHOVOMz3MokgSycMztY44Spmj4Eox5mpku18Bdb/1X1yFwWqgcbOMM6i0RWyxzk
-         ZI1TJKKa1gr7y4aKWqpD7KMpk52tB26sQsVmgpECaq458NCty+I6DeIdEkSrHjQxlvd5
-         kYmwodxkUsfaByr+h8pGOkZ28BiS2UHCDxGdBWQ7rdlFb6Y9qC1+iLpi4rceWKVDv4yX
-         YtU8T0E+zevB/DzVDEgX8Hm++XBwZw63vlWYL5csywbN5VcqC2hj21BqREh09Mr7vz1u
-         zoV/jQLTfk/ys7sWCM95r0nNdYNLLWgmvvmc8bhRMOH6Oa/jtUiijA+BWuXdp/uDtiyy
-         wrvQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1784055190; x=1784659990;
-        h=message-id:date:references:in-reply-to:cc:to:from:subject
-         :content-transfer-encoding:content-type:mime-version:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=oeiC8iwmB/ylmI7BL0w8nOLqlIUesF4NQaKuVPlJTmQ=;
-        b=nYLMUmVYfqQUXPX6RsWx60OVJTbQ81P8w6tuMnzKx4oouTLmmrAS7DOwmym1YDWgdk
-         ec+2QDwmdy4n4U8sr513OQu3Ph8CVJytUc2yMUmgTNOfjH5jQau40kgA5tXFmuC8hGrg
-         Qy6UapGizuClzAs+0CeEC4XG2VxD3LV15X3hWXc1cKMTexLTqLDAYWnYeHkN1h4blMGb
-         3hDgzf5tXuyTO+6HYBHGNwb2X3hudAGxbpE9DKWMPwQwq9UrGq0OXleHgzUm0WOV2rkz
-         d2b9dNzKQ3jA7EUqqiGFZpC80QTiJUDxdoUise9aJEIF9CpEp1kn9SMK3IlWovs5AiqN
-         lroQ==
-X-Forwarded-Encrypted: i=1; AHgh+Rq2EcF7pOzNwEKUR/kkmj7s32Yoj7zGYhDvaeYZ0TU51CDktVVxzsxiSOx7NKKESr3D+DCPY1kMaYzL@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywgi1JQXrpCW/5I2rhqSwEaE/NREqTA+phPO+qF0qc48uJggqjG
-	7XJl8i7plnmMMMYMGHrUC5RC6NXGi1bu61w2UiWZRH9+2BvOvLMkrnZlJHhDrELmLAU=
-X-Gm-Gg: AfdE7clJxzpor+YXeGRprSo5vik5CY5pVRYldJdEziV4SwQBtzZouKvUcUoR4fxtSh3
-	5NNvmDrccqlGIcN1eY7vWhooALCiHtycT2KLqAcKyRNFX5U8GLbX8cCRn/FaqtxfyuX/oUs4wRQ
-	Tj32S+IssXUCkvDPd1tugFHR7DgDMyd8Fjgk63tezN47/njggNs9Zs3BFw0T5hvFXlLGnGJ370+
-	ZCeveVGZaaZSzwDa6t2JWIB/tdLgSOVkU/NNiVdUaH8pF5Fee+9tOSXKNgDUFG7y2J8i3j0qduB
-	wSpPe17S+/6uoJUsHPdNgEcyBFknP5yiY4yas2yRi0EhtiQpr2EtI5Hy9qjPtpBclunfzxi2mZB
-	KM3TcSQ1yf1UKHtrqeNc5qqQl8DXdvFZoURoQUqbdP9ZDIJIHDCBPK24GD52AVDqYXVmpzV6LDz
-	nKwfSyzrQUyllql8kSHI2LCkGKpzDQHg==
-X-Received: by 2002:a05:600c:6048:b0:493:e404:3727 with SMTP id 5b1f17b1804b1-4953c27b338mr384505e9.23.1784055190102;
-        Tue, 14 Jul 2026 11:53:10 -0700 (PDT)
-Received: from [192.168.254.124] ([2001:9e8:2fb:8201:c26a:83ef:161a:409b])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-49508725c0bsm94908715e9.2.2026.07.14.11.53.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Jul 2026 11:53:09 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25BF7445AFC;
+	Tue, 14 Jul 2026 19:04:14 +0000 (UTC)
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1784055863; cv=fail; b=TZRpprJCfieZm/kmRdE+UGhlBaYRP5qiozRpC4SZ6jzN2nwqVLHKTziVj8W/v80zvTnBKJggcvRO3/MxENDj8Cr3oY9ou+u/mlamc53WyHagRGwD2uQI6yfnifxFCI6weXAtNO0vviHp5BgPLV1YOvqeo9iKYQ6phzZdSTu6Qx4=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1784055863; c=relaxed/simple;
+	bh=d2q+awOc96mR/+WZiGLFt8owLdiHE3pVyFNFajLWHmg=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=aBXTvtBZwMf+QqmignF+/UqtImR8Lwb05zsiGWZvxHS5jGRWFWyPoBJA99zYYRv7h2b8UXeMMjoVW9ODapQQw73DEnjUk94KALpiUvvk8sqtbVO5f47MNRGIcRlvb3zRVA0zyp2O8IwLRIYe8TRwT5T1t8lNwHEPiuvCIODY57Y=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=VzuQ3YrS; arc=fail smtp.client-ip=52.101.83.2
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=xsZ/yWDRb3bNf2JZvDRcNraztLZRvthx8Gf/qlobCrAkgSou0Qs8JFV8zWCAa3/ibd8dZgShUOjsx9VsPozHT/TdjnUZjo+gHgGObXhXylC5UPncPYJz8Ednj5Rf6U8CoseredPXiYFsRJCOy96/94bbnFkFoIBHeS5Lj6dmlo0zbvCfl+/adFEv37wTNytocvkfGUruxTFSVJG1h1XXizXakW1Lg2yPuMDZXdt9fv2xqOgJpHPA8dxOyCdz0V7HQbCSEzdku3aSvALfM2H9uCYorCSV35OOSseYElZqjiChRs0kuFVRI9fEOGf+WBqXbBf54zwmtIB7IKTdF1gjhA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=uWc34plD7LITbpAEnDxcw/AuXqrg6UcPptcYyu0lPAc=;
+ b=nC2BJqlN0qKYh9afH5P97OIPKI0omuvDzHgcqrEd1pWEtMNaFtzITlxnTflkQKIQLmdLjssZ3KKPq4OmMU8Iw99cvyQFD4SeZdmxEIkW5sF+HIW6cozq3IGgY8d4wAvIWx1owSLlFwwdeFGZFGJAcHn6n2H6RwcwIPYPyNZG4/ErK7OXWQ+pSUhCZgZsP03ujAVszVOhd+i34wHld9L8CBc4/Y8dSFdwM8bPfYrazCXgAVDuTKICAz0gU6ZJhckWboGOZZ8XzyWWmQlAkgKkj6pjUmrdeAy70ENts/g7q76SVuyRqHK69a5HQOhOpd6rIzhO95EwkShasfC9r7qzJA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector1-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=uWc34plD7LITbpAEnDxcw/AuXqrg6UcPptcYyu0lPAc=;
+ b=VzuQ3YrSI2w6MUSCu9r8XPLjrL5Bz0OTrbc7/62Nv3Vx8nl38TXKTPhT6p3QB0X2ZmPN9Ri7NI+EDi/myd38dm4nmgKK/5nZFzdyfcb9NUv1BrtvxEtcqYE06FaIlY1Pgj8TAK9ShXEV3FmXRDFgti0cy7TTvxJB2CpKCrBhtnETMVLpJIuvzvmnWSmU5sfGF/iCsVI5/eZhN4MSnh+cwdqVXSjPX66RgMxCufA3mF/Q1KpVl3EdU1ZVK44C1xE4MaSEiDtezQbF5gyGlSEUln4BtFAEuzQdewO5Ev+t25Dv78y2yUH7Wd9+HIfaeO9SsiI/Gn/FbhJHoxpC4sr3Dw==
+Received: from PAXPR04MB9185.eurprd04.prod.outlook.com (2603:10a6:102:231::11)
+ by AM9PR04MB8619.eurprd04.prod.outlook.com (2603:10a6:20b:43a::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.223.9; Tue, 14 Jul
+ 2026 19:04:09 +0000
+Received: from PAXPR04MB9185.eurprd04.prod.outlook.com
+ ([fe80::b4c0:6119:2228:2ceb]) by PAXPR04MB9185.eurprd04.prod.outlook.com
+ ([fe80::b4c0:6119:2228:2ceb%5]) with mapi id 15.21.0181.016; Tue, 14 Jul 2026
+ 19:04:09 +0000
+From: "Shenwei Wang (OSS)" <shenwei.wang@oss.nxp.com>
+To: Mathieu Poirier <mathieu.poirier@linaro.org>, "Shenwei Wang (OSS)"
+	<shenwei.wang@oss.nxp.com>
+CC: Linus Walleij <linusw@kernel.org>, Bartosz Golaszewski <brgl@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Bjorn
+ Andersson <andersson@kernel.org>, Frank Li <frank.li@nxp.com>, Sascha Hauer
+	<s.hauer@pengutronix.de>, Shuah Khan <skhan@linuxfoundation.org>,
+	"linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+	"linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, Pengutronix
+ Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>,
+	Shenwei Wang <shenwei.wang@nxp.com>, Peng Fan <peng.fan@nxp.com>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-remoteproc@vger.kernel.org" <linux-remoteproc@vger.kernel.org>,
+	"imx@lists.linux.dev" <imx@lists.linux.dev>,
+	"linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, dl-linux-imx <linux-imx@nxp.com>,
+	Arnaud POULIQUEN <arnaud.pouliquen@foss.st.com>, "b-padhi@ti.com"
+	<b-padhi@ti.com>, Andrew Lunn <andrew@lunn.ch>
+Subject: RE: [PATCH v14 1/5] docs: driver-api: gpio: rpmsg gpio driver over
+ rpmsg bus
+Thread-Topic: [PATCH v14 1/5] docs: driver-api: gpio: rpmsg gpio driver over
+ rpmsg bus
+Thread-Index: AQHdE8OM5Pma2BJDKkCxecbC057kzQ==
+Date: Tue, 14 Jul 2026 19:04:08 +0000
+Message-ID:
+ <PAXPR04MB918568AE7B2364EC9D16427689F92@PAXPR04MB9185.eurprd04.prod.outlook.com>
+References: <20260625155432.815185-1-shenwei.wang@oss.nxp.com>
+ <20260625155432.815185-2-shenwei.wang@oss.nxp.com> <alUdg9iTysXCFUa5@p14s>
+In-Reply-To: <alUdg9iTysXCFUa5@p14s>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+x-ms-exchange-messagesentrepresentingtype: 1
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: PAXPR04MB9185:EE_|AM9PR04MB8619:EE_
+x-ms-office365-filtering-correlation-id: 81f697b2-6ebf-47ed-4b0b-08dee1daaf12
+x-ms-exchange-sharedmailbox-routingagent-processed: True
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|376014|7416014|366016|19092799006|23010399003|1800799024|38070700021|18002099003|22082099003|6133799003|4143699003|11063799006|56012099006|3023799007;
+x-microsoft-antispam-message-info:
+ q2fOOLnnfCik6wDK8HNfIOvYT8Kg/7Wipaz5GoqOiBNjsrZ78jGhel32YmyCIoH1Z6tGjSnMdH8cX4eNabA/WiKQ4caaeWGRLXRe3euMmKRYVKpNJTHhPvjfWcRa3Iu4TWmHF9u4N7w1SL6WRYSqcGZPZc/thMhfksYpOzuNESToM8UBaruBBlY7CIiFZq9o3G4pJaLRZwSd8EgsxNJfIL28kc40hhripNQhg/IZh6mjtidmVvZEGqUWHKOV5ifKZvcfSvshE3x1kSWk2mvdrAEs3Qfdes3V+dJJXlgXac60vd+8GfYe8Ww1prfiQusIpegptB7qwzhwbm9ICMdYEjLfpStutOD91LzxMhl+Qwh+y2emYT9jwDGe0MHXfPrw4D3kOvliJHqF0HoKRxm/OjiWcXWgfB4QkO9PelMRAwhWt+Clknc087UQdOrfTg+Q/TDOli8G/nUfejknbB3Zpsp4jE/4zFamvgJJR230q6h54GAdljcv2kmGs+Q6ggTTgGC1FRdO9lsj9bgUvIgFHz3aPOtlCtiWHs7RSKWND8yV2P6xtHhSzN5zLznOPkxcW8+nWV/LSLlOqnPtDlCPqxQsUpwLXqMdPFw01apKJfsymN6dtlORHrSSUOE1bg3AfKXfNFLDv5gHZJhdjT5MlNG1enDlah42MnvUQOPJ29pIvxoLKqlrgwTzRaSxNzzWPCF3vhPz5tg3+R+9ZPKsVuLbfVr0yrcSbPqBarLcxBo=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9185.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(366016)(19092799006)(23010399003)(1800799024)(38070700021)(18002099003)(22082099003)(6133799003)(4143699003)(11063799006)(56012099006)(3023799007);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?1N9FwYfVJRePMqYbI8cUdofuFpOQJNiIGoa9Vv91nP6X+b86UyXdEqkKMvGk?=
+ =?us-ascii?Q?wY2ikyuWHydUJAZ6TzTHSU/m+GJ9UlcWaM+3su2DX6DoTBYdiZMZTNqWsuLe?=
+ =?us-ascii?Q?gBdn90c5QOEsWFyDUBjijsqsA02TUrXX0pEUouhYqGmxd+vd1UyIEbBIdRa6?=
+ =?us-ascii?Q?fpfwL+PkH8tqhNUqoQJGBEBkZ8wQun2me2exc77r5iSAPhMO1j0kNl0eD48Z?=
+ =?us-ascii?Q?UP7Vm07woULaLoxQ57xzZcL4XJoDIy0NMxioQgi59VXBUsQ47o2kRpveaMJj?=
+ =?us-ascii?Q?s196PCti4Mk/kTcGk7p8oyxOaiB6AN5Ajc7FXLgR3Sv4fV+HyNn9/5hd7UbS?=
+ =?us-ascii?Q?Er3jN1YAnW6hGaiicCIiUiUCTGYZVVPcu5Pa+SpUTXWwRMvtozOGGJKBunbG?=
+ =?us-ascii?Q?v8K2VwpNIzR2XSTtKA9fo0mAxQk5oGCWodjBCLJq9ZYgQYZp8j0l7uKd+dw2?=
+ =?us-ascii?Q?K51Ru3dc+5sWmBj6CgZRA/Qpc44uAl0jb3LO+9ey6CIuSFW2GRDrmPcG1hW4?=
+ =?us-ascii?Q?XL4RBJzNQEIfMstOIvNqvVEu1zvUs2HHP4vT/W3m/86RsAUi6UMqT6n0pkHA?=
+ =?us-ascii?Q?3osmtRlX8dqOpqKQagH9b4E7LFAiyPD6j3HAiXHsinUsQ/v859PDPrlub+CT?=
+ =?us-ascii?Q?o1WvHArXzyoT5/MSen15kPDLoR2BJDoaoav7pGmr1+Ocy9U/m4n1MFdC9xjw?=
+ =?us-ascii?Q?reZpDqw6UHvAf18OQhJtvX8tRvvjxIi1UOGzFWR76f/DuYzow2eiVLyxzhsc?=
+ =?us-ascii?Q?1DPadaMmgLr+tilgHHHFr3wx7jPkWzIrEExN07x2Utq4OGK7amyNmz4uwaPW?=
+ =?us-ascii?Q?AzNv0bjOqupsS0uvFxF2FjDPUvJa/4BMu+1o4ZW0WxyaAp4GqGviRSrHAwFP?=
+ =?us-ascii?Q?TWDhqOs0NIIVhzCmuhI3IPZJAgqMHkQD/p1/pNx+peZZNcK6KrC4w7ekHmJp?=
+ =?us-ascii?Q?lBPAc9gfw3QgVZG4BioHuJXIGwrTJx8Dq1lPqL8ypf3vIyGS82o7sn8Eug8n?=
+ =?us-ascii?Q?qyT+yA9BT77ngskru5a6On/IExNFJ07MAXTCqO0iIDmc0wMaWRlTPK66KQgp?=
+ =?us-ascii?Q?jJ+AtNJucR/UON9dWk7r3ndgD/Uq5mcTcoXShJMmpkhKt3XHZY1T4hYEjPNV?=
+ =?us-ascii?Q?to6tp8NNVlvadjJyb9v2MN7lDEKY4oLhtnh4Iq8ugPL18sOVv8/zSJoxS9m9?=
+ =?us-ascii?Q?9ryqJIi2mQKqdBpH0EUdl+VEUR7+GyldHnol/S6mgPDCPGQG/w32Iv1tO8FZ?=
+ =?us-ascii?Q?IlYkreT4ywoPQLkHdzCUCmqKWpULAqklQMgdW1ojahDwOhLRsoG/uk/odzoD?=
+ =?us-ascii?Q?0UGA1CxbKQ3R5jJLGjvHUVcszMp10vMDgLpjTlLV9jyuRvMtJbRI7a7vJ6ow?=
+ =?us-ascii?Q?+e0qCVszp3DOVVqpK2zUsC7mY0Tfiyf/RwSImD7DLgVslJOF+WLDnmuCD3dn?=
+ =?us-ascii?Q?ndcKxcpFGwFbuxLAtqVA8Qy0+nmbe8nZBrF6Flm0XXW0jW8iwYviPsKWO589?=
+ =?us-ascii?Q?c9agzM411vMkrgqPCMIQBPQwklzdrZ1Y5ms3S1Qt78nF/QuI3swPP2ZOyvzR?=
+ =?us-ascii?Q?U9xdS3xXAE0z/8z9vdgQDOs1z206Y5OqCDcbPDOTPgurRn6KeuNqMWGYaBTQ?=
+ =?us-ascii?Q?ywg+ZigE7XfaCxOC3YMsbNKGSa5w2GFXZTHlkJpvZm6NayaEpv2a0grrCzQA?=
+ =?us-ascii?Q?sDqPkY9KF8j/3VK8NCjPBhTu20JTo9C2nb+vtyg02qoN57X2qK4p2FKfxP5T?=
+ =?us-ascii?Q?YCKgyICY9g=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH v4 6/7] ARM: dts: aspeed: g6: Change vuart compatible
- string for ast2600
-From: Tan Siewert <tan.siewert@9elements.com>
-To: =?utf-8?q?Gr=C3=A9goire_Layet?= <gregoire.layet@9elements.com>
-Cc: joel@jms.id.au, andrew@codeconstruct.com.au, lkundrak@v3.sk, 
- devicetree@vger.kernel.org, gregkh@linuxfoundation.org, 
- jirislaby@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
- conor+dt@kernel.org, andrew@lunn.ch, jacky_chou@aspeedtech.com, 
- yh_chung@aspeedtech.com, ninad@linux.ibm.com, anirudhsriniv@gmail.com, 
- linux-serial@vger.kernel.org, linux-aspeed@lists.ozlabs.org, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-In-Reply-To: <5875623c1b20cf5a1abc980eab4c31a47cc58468.1783524645.git.gregoire.layet@9elements.com>
-References: <cover.1783524645.git.gregoire.layet@9elements.com>
- <5875623c1b20cf5a1abc980eab4c31a47cc58468.1783524645.git.gregoire.layet@9elements.com>
-Date: Tue, 14 Jul 2026 20:53:03 +0200
-Message-Id: <178405518338.194693.4399160180155776340.b4-review@b4>
-X-Mailer: b4 0.16-dev
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1784055186; l=799;
- i=tan.siewert@9elements.com; s=20260527; h=from:subject:message-id;
- bh=cSCbnH1xPXdFvXoeIkjlw6q74tyyx6jthYZF2YqxS6Q=;
- b=mkm+x2rfwdRTX6T+kPimO0xGU4ZCOBNQdoZdkNzfY3dX6Gjkg11WJUNKDAuKCKrynIBxtwo9X
- 8eCoafR4SqRDuGXcQsnzwqL52BuI0qAQ9N5syq7ajzX3e5IrjjdojFC
-X-Developer-Key: i=tan.siewert@9elements.com; a=ed25519;
- pk=ORQd/zQf+LsAvJGXP1CjQwVO6t6iEOGq/eGUsmRVTG4=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9185.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 81f697b2-6ebf-47ed-4b0b-08dee1daaf12
+X-MS-Exchange-CrossTenant-originalarrivaltime: 14 Jul 2026 19:04:08.9275
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: fcHfkZAHCi4UMv+H3KhovtF8UQtlpG7qHUmpXt0swtXDOiXeO2KHc/uFC42y0ZKxYcdUycU1o6HJC6wlUtakzw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR04MB8619
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [1.94 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[9elements.com,quarantine];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[9elements.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[NXP1.onmicrosoft.com:s=selector1-NXP1-onmicrosoft-com];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	DMARC_POLICY_SOFTFAIL(0.10)[nxp.com : SPF not aligned (relaxed), DKIM not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-326406-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:gregoire.layet@9elements.com,m:joel@jms.id.au,m:andrew@codeconstruct.com.au,m:lkundrak@v3.sk,m:devicetree@vger.kernel.org,m:gregkh@linuxfoundation.org,m:jirislaby@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:andrew@lunn.ch,m:jacky_chou@aspeedtech.com,m:yh_chung@aspeedtech.com,m:ninad@linux.ibm.com,m:anirudhsriniv@gmail.com,m:linux-serial@vger.kernel.org,m:linux-aspeed@lists.ozlabs.org,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-326409-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:mathieu.poirier@linaro.org,m:shenwei.wang@oss.nxp.com,m:linusw@kernel.org,m:brgl@kernel.org,m:corbet@lwn.net,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:andersson@kernel.org,m:frank.li@nxp.com,m:s.hauer@pengutronix.de,m:skhan@linuxfoundation.org,m:linux-gpio@vger.kernel.org,m:linux-doc@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:kernel@pengutronix.de,m:festevam@gmail.com,m:shenwei.wang@nxp.com,m:peng.fan@nxp.com,m:devicetree@vger.kernel.org,m:linux-remoteproc@vger.kernel.org,m:imx@lists.linux.dev,m:linux-arm-kernel@lists.infradead.org,m:linux-imx@nxp.com,m:arnaud.pouliquen@foss.st.com,m:b-padhi@ti.com,m:andrew@lunn.ch,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	FORGED_SENDER(0.00)[tan.siewert@9elements.com,devicetree@vger.kernel.org];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[27];
+	FORGED_SENDER(0.00)[shenwei.wang@oss.nxp.com,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FREEMAIL_CC(0.00)[jms.id.au,codeconstruct.com.au,v3.sk,vger.kernel.org,linuxfoundation.org,kernel.org,lunn.ch,aspeedtech.com,linux.ibm.com,gmail.com,lists.ozlabs.org,lists.infradead.org];
+	FREEMAIL_CC(0.00)[kernel.org,lwn.net,nxp.com,pengutronix.de,linuxfoundation.org,vger.kernel.org,gmail.com,lists.linux.dev,lists.infradead.org,foss.st.com,ti.com,lunn.ch];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[tan.siewert@9elements.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[9elements.com:+];
-	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[shenwei.wang@oss.nxp.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[NXP1.onmicrosoft.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,9elements.com:from_mime,9elements.com:email,9elements.com:dkim]
+	MISSING_XM_UA(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: E291E757FA5
+X-Rspamd-Queue-Id: 12AEB758197
 
-> Use the ast2600 compatible string.
-> Make it more precise and enable specific ast2600 properties.
-> Still use the ast2500 compatible string as a fallback.
-> 
-> Signed-off-by: Grégoire Layet <gregoire.layet@9elements.com>
->
-> diff --git a/arch/arm/boot/dts/aspeed/aspeed-g6.dtsi b/arch/arm/boot/dts/aspeed/aspeed-g6.dtsi
-> index 56bb3b0444f7..7c02633f2bd6 100644
-> --- a/arch/arm/boot/dts/aspeed/aspeed-g6.dtsi
-> +++ b/arch/arm/boot/dts/aspeed/aspeed-g6.dtsi
-> @@ -707,7 +707,7 @@ emmc: sdhci@1e750100 {
->  			};
->  
->  			vuart1: serial@1e787000 {
-> -				compatible = "aspeed,ast2500-vuart";
-> +				compatible = "aspeed,ast2600-vuart", "aspeed,ast2500-vuart";
 
-compatible = "aspeed,ast2500-vuart", "aspeed,ast2600-vuart";
 
-	Tan
+> -----Original Message-----
+> From: Mathieu Poirier <mathieu.poirier@linaro.org>
+> Sent: Monday, July 13, 2026 12:17 PM
+> To: Shenwei Wang (OSS) <shenwei.wang@oss.nxp.com>
+> Cc: Linus Walleij <linusw@kernel.org>; Bartosz Golaszewski <brgl@kernel.o=
+rg>;
+> Jonathan Corbet <corbet@lwn.net>; Rob Herring <robh@kernel.org>; Krzyszto=
+f
+> Kozlowski <krzk+dt@kernel.org>; Conor Dooley <conor+dt@kernel.org>; Bjorn
+> Andersson <andersson@kernel.org>; Frank Li <frank.li@nxp.com>; Sascha Hau=
+er
+> <s.hauer@pengutronix.de>; Shuah Khan <skhan@linuxfoundation.org>; linux-
+> gpio@vger.kernel.org; linux-doc@vger.kernel.org; linux-kernel@vger.kernel=
+.org;
+> Pengutronix Kernel Team <kernel@pengutronix.de>; Fabio Estevam
+> <festevam@gmail.com>; Shenwei Wang <shenwei.wang@nxp.com>; Peng Fan
+> <peng.fan@nxp.com>; devicetree@vger.kernel.org; linux-
+> remoteproc@vger.kernel.org; imx@lists.linux.dev; linux-arm-
+> kernel@lists.infradead.org; dl-linux-imx <linux-imx@nxp.com>; Arnaud
+> POULIQUEN <arnaud.pouliquen@foss.st.com>; b-padhi@ti.com; Andrew Lunn
+> <andrew@lunn.ch>
+> Subject: Re: [PATCH v14 1/5] docs: driver-api: gpio: rpmsg gpio driver ov=
+er rpmsg
+> bus
+>=20
+> > +
+> > +The RPMSG message consists of a 8-byte packet with the following layou=
+t:
+> > +
+> > +.. code-block:: none
+> > +.. code-block:: none
+> > +
+> > +   +------+------+--------+
+> > +   | 0x00 | 0x01 |  0x02  |
+> > +   |   2  | line | trigger|
+> > +   +------+------+--------+
+>=20
+> 2 things here:
+>=20
+> 1) You did not include messages that mask and unmask interrupts at the dr=
+iver
+> side.
+>=20
+> 2) We are carrying virtio-gpio messages on top of RPMSG and as such, this=
+ whole
+> protocol should be about thar:
+>=20
+> +------+------+--------+--------
+> | 0x00 |       payload         |
+> |  Q   |                       |
+> +------+------+--------+--------
+>=20
+> Q =3D 0 requestq
+> Q =3D 1 eventq
+>=20
+> The "payload" part is simply the format of the messages as found in the v=
+irtio-
+> gpio specification.  From there, the only thing left to mention is which =
+messages
+> are not supported, i.e get line names.
+>=20
+> > +
+> > +- **line**: The GPIO line (pin) index of the port.
+> > +
+> > +- **trigger**: Optional parameter to indicate the trigger event type.
+>=20
+> Not part of the spec - remove.
+>=20
 
--- 
-Tan Siewert <tan.siewert@9elements.com>
+The two fields above are required for rpmsg-gpio, but not for virtio-gpio.
+
+In the rpmsg-gpio case, interrupt detection and handling occur on the remot=
+e processor. The=20
+interrupt information (such as the GPIO line and trigger type) must therefo=
+re be sent to Linux=20
+through this notification message.
+
+In contrast, for virtio-gpio, interrupt handling is performed on the local =
+processor. Since Linux already=20
+has all the necessary interrupt context, the information is not needed.
+
+Shenwei
+
+> Given the refactoring work that is still needed, I will not look at the
+> implementation.
+>=20
+> Thanks,
+> Mathieu
+>=20
+> > +
+> > diff --git a/Documentation/driver-api/gpio/index.rst
+> > b/Documentation/driver-api/gpio/index.rst
+> > index bee58f709b9a..e5eb1f82f01f 100644
+> > --- a/Documentation/driver-api/gpio/index.rst
+> > +++ b/Documentation/driver-api/gpio/index.rst
+> > @@ -16,6 +16,7 @@ Contents:
+> >     drivers-on-gpio
+> >     bt8xxgpio
+> >     pca953x
+> > +   gpio-rpmsg
+> >
+> >  Core
+> >  =3D=3D=3D=3D
+> > --
+> > 2.43.0
+> >
 
