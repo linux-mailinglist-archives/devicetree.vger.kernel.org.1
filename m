@@ -1,79 +1,81 @@
-Return-Path: <devicetree+bounces-325880-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-325882-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id ADJlOXHKVWpCtQAAu9opvQ
-	(envelope-from <devicetree+bounces-325880-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 07:34:41 +0200
+	id TxXJOJ7KVWpjtQAAu9opvQ
+	(envelope-from <devicetree+bounces-325882-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 07:35:26 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E965C7512C8
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 07:34:40 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 578B37512F0
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 07:35:26 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=b17ZUTz7;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-325880-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-325880-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=eVjzK3iP;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-325882-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-325882-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=none) header.from=gmail.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id F3D6D3004619
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 05:34:34 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 64C5F304C805
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 05:34:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31AAD33D6E1;
-	Tue, 14 Jul 2026 05:34:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56E7433D506;
+	Tue, 14 Jul 2026 05:34:37 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f174.google.com (mail-pf1-f174.google.com [209.85.210.174])
+Received: from mail-pg1-f170.google.com (mail-pg1-f170.google.com [209.85.215.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6FD333ADA0
-	for <devicetree@vger.kernel.org>; Tue, 14 Jul 2026 05:34:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18A6C332610
+	for <devicetree@vger.kernel.org>; Tue, 14 Jul 2026 05:34:35 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1784007272; cv=none; b=TuVgnluBSeTrUKpxyiOVS1oqSYtdX1/G+iFQtAjj7LtJXUDbsXxqvjKND/F7UG1tTBr+XxLt9JRrxOtAs63tuprXWWtGzCiKmp074BsoJzlA7gHzkiO/BUsWh1P3MrZzDX3vaHet/5Iyjr2eJxEiyCTLXAywz/kvSUxfP5YR6ac=
+	t=1784007277; cv=none; b=Cz4tJga1z6WCq98LBQJglQIFZiyNZg9uQAzrQyS/E9MjIlNFGAd/3eBYmG5UnekS299veoTIpdnK7qm69NsOdev8G3rg05gylAHVcm1GiSZtYqlf2KAQacYHXyizEJfP9vxgy2S32sZmNIlFGtYipTrSMeFCOM6cSLSEBmN9PAY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1784007272; c=relaxed/simple;
-	bh=8SEidWmBMJZw4ThA4G4JznuivXysAvp9/T05dl3c6/w=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=YBuqUhQo9k2Z9ip7oQitkOl37wYT4GG3e/Dvli/tsF6oXyZv1sQz3bZPNkCgGDzIbUVSzuwLM9ePtzPE2kkovVVHTBumNIT1niwbeJKUVmjzNXbup04odVfyhQro9cg6pgnF9644n5dDIhzFEUZUDCXpss36nT9iTRt2JxYfDO4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=b17ZUTz7; arc=none smtp.client-ip=209.85.210.174
-Received: by mail-pf1-f174.google.com with SMTP id d2e1a72fcca58-848643382fcso4332481b3a.1
-        for <devicetree@vger.kernel.org>; Mon, 13 Jul 2026 22:34:30 -0700 (PDT)
+	s=arc-20240116; t=1784007277; c=relaxed/simple;
+	bh=ucxiE01hSKZsuQq0IwQ+Bm9/3gvFxV+2j4LRrSjRiAk=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=sY1p1K7lntxDpyuIrRk3l3e61thEmU58fKN8EMmpnW0c3CmdxhphdN6MY8+hu6m+n3laURZknUJ/NysPqL0ixwPrhK88QGkFlg1haY2Pr7TNAphrMqg2o++wuCJZxOW98qFpXM37sCApCnhN1aT8kFRgYh8dsbrzECvKOC4AUlE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eVjzK3iP; arc=none smtp.client-ip=209.85.215.170
+Received: by mail-pg1-f170.google.com with SMTP id 41be03b00d2f7-c96b08cdd1cso2630791a12.0
+        for <devicetree@vger.kernel.org>; Mon, 13 Jul 2026 22:34:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1784007270; x=1784612070; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=Pql5nZoyx4uigchL2F82l2cIvvuODWlbZIdBTSPz7E8=;
-        b=b17ZUTz7De9qFBR1vpwjjaNKzBLrvSF4WiDL0UIoV439SNqJBWYYa1Ebnv/pbULJ7X
-         8hdysoJBytwoRghSWQMAqixl5ETSqWUN5hIGZW0aLBNSCSwe52IikiKT5CwZGyhFnTbb
-         3kK4veSm5kATxYoQ69AkBhBJEcMWIzO0vUrblKv9V7bobPpZsv/gVpTrzNMUzl2W2toa
-         IEhdjLb1V0Z2/Za3sz9yh3yDVQ3atAF7iYHX/0VyHrgScAyu3PyCUPKoJ+e9FepkMMVk
-         Q18Ro3TaO1Q5MwFqFj03u8Avfx2sdCS8w9iKpoxezP6rvMttgsqnw2BtmShwSh12g54b
-         LNnQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1784007270; x=1784612070;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        d=gmail.com; s=20251104; t=1784007275; x=1784612075; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=Pql5nZoyx4uigchL2F82l2cIvvuODWlbZIdBTSPz7E8=;
-        b=JR5YeWvGXw8wLb7A+5VN2bJSk/Mzt+fYjOK/KUEcLlnas2xd2f0z910qvtZW9MxxiZ
-         sG4a/RJO8FsJHJrnMjPi1i83vG4+Xbc6zYPCXqXD/FGgkMbxLLElEwDZJj3hcGAi+BV/
-         A05ITIo5x6d1Mc9bp1ZDuKQC92s6ndMrcO8ihRaYjwr7pvAGMF6JUcgj0KnhGguMjRi4
-         hUVeoLzAdglUVSuA8q9wfVH/vw227O7C2TikP02Kg1sfdZm4lYpYOCUyI1/ZNuzQe8nl
-         IV9k5hN6NhhxTls+knPkDO7z3mVaH/239tKQLOLUehhPEaiZSE9GtBZxUjHNjLvrycZ3
-         ULaQ==
-X-Forwarded-Encrypted: i=1; AHgh+RpPviAmq3oKiK5VuyD2cLAQCGLutNSs/SYbJ/ApY1Z0azg6Yj0pLArj1oYylFDtvMR3Da2yFqJILwmo@vger.kernel.org
-X-Gm-Message-State: AOJu0YyrF9DFX16dF2yeehTANaWqMZukUm229N2Oxy7ZL3hwQ5v0JWTc
-	E2t4k07rq8g0s+iu/pm83RgISo87LEg+pIVgRSiur6nzii3M0eNfBskQwSc6rcTz
-X-Gm-Gg: AfdE7ckDxlgXyrbZtJ8GOEm6Lwd0RBtm97Mo7l7avv5Lk+PWW6Vnasdxh1+VDQQnTJa
-	3mrDJ4dTVgR/9ixW6XArNJ4fLx9Ar887grsO38wfKTAPoDV1e3MteKsigVeBtnD33LMB2KMyrrG
-	ivnRAcPt+rFYzR28wuyCfr0IZZwyVoaVI13i0HN9t658kpgMEhuS2d4EcBOpgzm4cN0hECmmIkN
-	1zdee29L5qD2mmpIK2sibGtgNs0CoyZ6YTlVlOERD/EEZz6O3F1rKMzk4LHjJ+9zPonZFNWtuB+
-	FUUgCrwYv60wZcUMvsq3B71tRrinaya49NAJdeM3xmnzWm2UDGO7DuuJuCPgSpKRuVQ0DVneFvr
-	wTyw0mNj2zkJrJvGvDh/qJ7vL0cXVVnk9ruYo+4SKbk0eiTM+bk2+j5qYG4K7FUrCD5sFuuXOUX
-	3fAsDgJESKW0Th5bLk2CPl
-X-Received: by 2002:a05:6a21:320b:b0:3c1:d78:6450 with SMTP id adf61e73a8af0-3c34d8bc7ccmr2897757637.66.1784007270055;
-        Mon, 13 Jul 2026 22:34:30 -0700 (PDT)
+        bh=LDpSrlAQ9FmGRYSN7+/NziOaZpQDg6U0Jmn6QAw/EK4=;
+        b=eVjzK3iPmS898lGX5ImIMP3sJMeCHZDXVPNKkTfE8WC5kmRz7vM27jNTFg75J+agTx
+         X77wyee39FFIJCJpYGTLkuIuv5gmqtV38SQG3eROYu9T8jQcuDyCONGdS6qk4xXvfemV
+         jFU4WjDRfPGpOKgU9FXxZ6y/Z3V18hTjNwOo8OLQl8AmrgUToh79nVyvsBf6ZZUFEa2S
+         xgAb0o8YyifMtK1jGP/urSuE3JvcsnjzW9JrPhInf4DJtAytcVwn2DuR8E541b8RpyRi
+         gPsg6glgCTgJxOPeMVV3EUpJgK40gxuXzYwBy3qMSWseMx20EBbUZO/os3+k0JZCslt4
+         ybpg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1784007275; x=1784612075;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to:content-type;
+        bh=LDpSrlAQ9FmGRYSN7+/NziOaZpQDg6U0Jmn6QAw/EK4=;
+        b=TgDlGQqHGhTz0ha6c1WPcDNK5pZITIucUSK1yap5Oe4ilGHXR9TZ/UwUjwtDgKx95R
+         doqjLmA7lh6bMACU7i4AY6E36hsvS5zwmkYra/RWG5HCF12CbBg/T8uFqWZVL95KqL11
+         DM/fz/hG263IokVZJ4C/T7YLSWzeXVl/NEvUM1SZWUsG5YEfZF7GmYrn8Nipc+gLGKRM
+         40aA3mNiOTYXXdnFK7YxwCEfa/M+qqHub/RO7OsxVaWQnJetBewMLmewgttJaTdFfa3k
+         IW7x9Lp4Fe2ViEInXtbvJ0cFPyLntDVx6pN6gJ9cAUrf0HX37l68Ky5NfJJscS6p0jMU
+         gYVw==
+X-Forwarded-Encrypted: i=1; AHgh+RpcBxYQNb/mcQZYD2+Iozfoh5GGGKRAGgqM4vsyy+WCmYcioiInwINDSRtHG24QM3IvacGOlr6wEDE+@vger.kernel.org
+X-Gm-Message-State: AOJu0YyEE9A4LIzxIz02CGqKelkQK2FGi7dLxYK6xZoyFpqgkz45hQm0
+	vVeZGiLoWpUZ56eq1ocqzv6qAUtTz+dHe5NlcqaV64N0O7RsKaT/hrWm
+X-Gm-Gg: AfdE7ckTtsI52SGzvbx2ErPlwF/B5Zbu0EUY7SZVEViLec2VN51wVpE3TvjcvD3adz4
+	qo2RqmeX/6W4oXKCJt2Q1oxw8kXO//rfEgmipk9bY0hs9IvN7P2720tWRvUpYinM3fSC5Hen69z
+	pe3AssS0WwEtK3gavBjiw5HG73uqWcMjDLgOYRndhQfiIQLlQ3q/dkFVf/24eL4dPZpfq/Lpfqf
+	QxLEnYnMz1g84lpH/nmH2/WlxsWrLr5OMVd0WGQd4JvInAjhoqZw65rJUlfSmC+ZeIxV3MokJ12
+	sSt1Bdj51U0IOq7QtOQIm1rbAAM0SoYTa76dvYjIhe6qedLvr82mtX67fAIEksM6zoKemYQgn6b
+	XSiCbZMdgHcyVqZ0kTodMs7hzZaZ/fjGsGg+l06Gq2At2IA+Y1Dmk8VuzvdOA1VNW7ZZ4eD6PfW
+	y8v1sQFrs3eAnPe1y9bJ3W
+X-Received: by 2002:a05:6a21:3992:b0:3b3:2703:115 with SMTP id adf61e73a8af0-3c110157a21mr13059658637.16.1784007275323;
+        Mon, 13 Jul 2026 22:34:35 -0700 (PDT)
 Received: from i386.168.1.127 ([2402:a00:163:2ce9:6882:91b7:8e79:7958])
-        by smtp.gmail.com with ESMTPSA id a92af1059eb24-13b87b92b27sm33047165c88.6.2026.07.13.22.34.26
+        by smtp.gmail.com with ESMTPSA id a92af1059eb24-13b87b92b27sm33047165c88.6.2026.07.13.22.34.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 13 Jul 2026 22:34:29 -0700 (PDT)
+        Mon, 13 Jul 2026 22:34:34 -0700 (PDT)
 From: Hrushiraj Gandhi <hrushirajg23@gmail.com>
 To: linux-rockchip@lists.infradead.org
 Cc: heiko@sntech.de,
@@ -83,11 +85,14 @@ Cc: heiko@sntech.de,
 	devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
-	Hrushiraj Gandhi <hrushirajg23@gmail.com>
-Subject: [PATCH v8 0/2] arm64: dts: rockchip: add Vicharak Axon board support
-Date: Tue, 14 Jul 2026 11:04:17 +0530
-Message-ID: <20260714053419.265523-1-hrushirajg23@gmail.com>
+	Hrushiraj Gandhi <hrushirajg23@gmail.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Subject: [PATCH v8 1/2] dt-bindings: arm: rockchip: add Vicharak Axon board
+Date: Tue, 14 Jul 2026 11:04:18 +0530
+Message-ID: <20260714053419.265523-2-hrushirajg23@gmail.com>
 X-Mailer: git-send-email 2.47.3
+In-Reply-To: <20260714053419.265523-1-hrushirajg23@gmail.com>
+References: <20260714053419.265523-1-hrushirajg23@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -102,21 +107,21 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	MIME_TRACE(0.00)[0:+];
 	TO_DN_SOME(0.00)[];
-	FREEMAIL_CC(0.00)[sntech.de,kernel.org,vger.kernel.org,lists.infradead.org,gmail.com];
+	FREEMAIL_CC(0.00)[sntech.de,kernel.org,vger.kernel.org,lists.infradead.org,gmail.com,oss.qualcomm.com];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-325880-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:linux-rockchip@lists.infradead.org,m:heiko@sntech.de,m:krzk+dt@kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:hrushirajg23@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-325882-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:linux-rockchip@lists.infradead.org,m:heiko@sntech.de,m:krzk+dt@kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:hrushirajg23@gmail.com,m:krzysztof.kozlowski@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORWARDED(0.00)[lists@lfdr.de];
 	FORGED_SENDER(0.00)[hrushirajg23@gmail.com,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
@@ -127,57 +132,38 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_SEVEN(0.00)[9];
+	RCPT_COUNT_SEVEN(0.00)[10];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,vger.kernel.org:from_smtp,lkml.org:url]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: E965C7512C8
+X-Rspamd-Queue-Id: 578B37512F0
 
-This series adds initial device tree support for the Vicharak Axon
-single-board computer, which is based on the Rockchip RK3588 SoC.
+Add the device tree binding for the Vicharak Axon single-board
+computer based on the Rockchip RK3588 SoC.
 
-The Vicharak Axon is a feature-rich SBC targeting developer and embedded
-use cases. It ships with:
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Signed-off-by: Hrushiraj Gandhi <hrushirajg23@gmail.com>
+---
+ Documentation/devicetree/bindings/arm/rockchip.yaml | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-  - Rockchip RK3588 (4x Cortex-A76 + 4x Cortex-A55)
-  - RK806 PMIC providing all SoC power domains
-  - eMMC 5.1 (on-board) and microSD slot
-  - Gigabit Ethernet via RGMII (RTL8211F)
-  - Dual HDMI 2.1 output and one HDMI 2.0 input (receiver)
-  - PCIe 3.0 x4 and two PCIe 2.0 slots
-  - SATA 3.0
-  - USB 2.0 host ports (EHCI/OHCI)
-  - NXP PCA9554 I/O expander for status LEDs
-  - Haoyu HYM8563 RTC
-
-Note on vendor prefix: the 'vicharak' prefix was submitted separately
-[1], and Krzysztof asked us to drop it from our series [2]. 
-
-[1] https://lkml.org/lkml/2026/6/24/929
-[2] https://lore.kernel.org/linux-rockchip/96c9b1eb-9f8e-430d-9c38-eb4d489d7d24@kernel.org/
-
-Changes since v7:
-- Renamed rk806 DVS pinctrl nodes to have '-pins' suffix to comply
-  with the rockchip,rk806.yaml binding (e.g. 'dvs1-null-pins').
-  Removed unused DVS pin state nodes (only the three dvs*-null-pins
-  states actively used in pinctrl-0 are kept).
-- Removed dangling pinctrl-1/pmic-power-off state after removing
-  the unused dvs1-pwrdn node.
-- Moved 'compatible' before 'reg' in the PMIC node per DT convention.
-- Dropped vendor-prefixes.yaml patch (handled separately, see above).
-- Verified with dtbs_check: no warnings.
-
-Hrushiraj Gandhi (2):
-  dt-bindings: arm: rockchip: add Vicharak Axon board
-  arm64: dts: rockchip: add Vicharak Axon board
-
- .../devicetree/bindings/arm/rockchip.yaml     |   5 +
- arch/arm64/boot/dts/rockchip/Makefile         |   1 +
- .../dts/rockchip/rk3588-vicharak-axon.dts     | 860 ++++++++++++++++++
- 3 files changed, 866 insertions(+)
- create mode 100644 arch/arm64/boot/dts/rockchip/rk3588-vicharak-axon.dts
-
+diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
+index 1a9dde18626d..b023d4cc9842 100644
+--- a/Documentation/devicetree/bindings/arm/rockchip.yaml
++++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
+@@ -1306,6 +1306,11 @@ properties:
+           - const: turing,rk1
+           - const: rockchip,rk3588
+ 
++      - description: Vicharak Axon
++        items:
++          - const: vicharak,axon
++          - const: rockchip,rk3588
++
+       - description: WolfVision PF5 mainboard
+         items:
+           - const: wolfvision,rk3568-pf5
 -- 
 2.47.3
 
