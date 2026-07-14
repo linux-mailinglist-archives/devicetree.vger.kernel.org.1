@@ -1,56 +1,56 @@
-Return-Path: <devicetree+bounces-326165-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-326167-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 2P/fFiMlVmrjzwAAu9opvQ
-	(envelope-from <devicetree+bounces-326165-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 14:01:39 +0200
+	id KorbJpIjVmpMzwAAu9opvQ
+	(envelope-from <devicetree+bounces-326167-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 13:54:58 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E187B754345
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 14:01:32 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3DF0F75424D
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 13:54:58 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=collabora.com header.s=mail header.b=Ji+nNJTZ;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326165-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-326165-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=collabora.com header.s=mail header.b=dwE6BOTC;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326167-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-326167-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=none) header.from=collabora.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 5FECF302738B
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 11:50:29 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id D97F23052B94
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 11:50:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A5993CEB9D;
-	Tue, 14 Jul 2026 11:45:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54F913CF20D;
+	Tue, 14 Jul 2026 11:45:30 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 210803CCFB4;
-	Tue, 14 Jul 2026 11:45:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F8483CE096;
+	Tue, 14 Jul 2026 11:45:28 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1784029529; cv=none; b=udITrzCuNE7+E0exg4CLThXGD0jCm4xPbqYlAmqI7KQT+gzSH/c8WfqSJoDxKuOz1XD05aFnYBC5Qsg/xtd/FMELbCsrD5sXESsIuSNDa7qeyHs1or36v0JRydrHVttTT+3mOcyTdI4rbx7BkrKg6XL7cx/ROxkx/U1focFJbGg=
+	t=1784029530; cv=none; b=gYcI+YYAMGot+7sY6OYpgyUWRCHVI3bwYavbYLBWZSVROs4P9B8byIYtcDyxPRZcTJh7jMHJFMC6Ih4CzvIRmLe2FO/+3n3J8GevHDKCBFKYEoD/T9eP9PBHOg4VrPeQcb5xJpYY5aTz50ctZnWNeOsH3ShvW+WvFCLWFYCoqB8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1784029529; c=relaxed/simple;
-	bh=U8wbtuZ0GvoDAp1lslwGMJcS1iFdvCK1ZvJJYPJhSSQ=;
+	s=arc-20240116; t=1784029530; c=relaxed/simple;
+	bh=2oMEWGJqJw3ZhiHkQ1HtMTnhkMX9kCC2Sc5DJ6y/FJE=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=NeieRuPuh4K1Vu5YjOvunZM92TK3TM0gT52TqgP26rJjJiCDVexix27C/9jf3PW/f65SqG5cwFa75hharsWWQfJw/L9xmb1Tynq3NOC9HB75I/ZHh7G5fEBd7mrrMs2R2VaAYmsaqsOCrIslT+x7ZykTqp30e2RS8HdWh7NzddM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=Ji+nNJTZ; arc=none smtp.client-ip=148.251.105.195
+	 MIME-Version; b=RAsAlcXJB+hnEd44Wc5+VvqDeEWAsxGiK0mCFsgF+di+wSrBOsC/9fxLfRgho9wKraMtuEkn1OqLqlZ3LT4RDj0u9K9Tr4ePsswJllZzMLilJrL72v6lN814MmZwqDBy0TQqGCvz2Xybv/DBpkwTP6ywlu//IoH+CWUzyQ+c30o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=dwE6BOTC; arc=none smtp.client-ip=148.251.105.195
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1784029525;
-	bh=U8wbtuZ0GvoDAp1lslwGMJcS1iFdvCK1ZvJJYPJhSSQ=;
+	s=mail; t=1784029526;
+	bh=2oMEWGJqJw3ZhiHkQ1HtMTnhkMX9kCC2Sc5DJ6y/FJE=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=Ji+nNJTZWXvTWQSbmF2AkkMNLjNj4HlM0dqQhdeKNaTl0lpgyN0G1BkXgQk2bsDmH
-	 Bl9N8uWO/ErEIaGuBWu6DZc5PxKczFNaRKywqywgUYyOnulAfWCcFvDLeNagBAlEup
-	 WwR3dxqm2UXiOwvBCc4X/7w6r+KVd6x9XIfXTHMuB2nQN0z/IsUfp2h8E0VfJkAQyy
-	 4F/nAqdk8roWDfXKyVml7MexM0d821S00smLpvKi1sdQM+TVpK84fL5ymYjfoZJwms
-	 Y5XUmz6SKirNS1LUTMzuR68+LlUNsBBN4BWGRABlcux4p9Jc9DGOk6H3qPG3fNoggO
-	 Cvlv+XndG0YMQ==
+	b=dwE6BOTClq0tJ4hDmXlIyjTU8iC8bcZx8V68gJDhkaeYgS4PruxOAZmFcHjh/ll/X
+	 AVaQdCr9oGeXC5iOXnogr12pcFWcjEY59Pbe14yABVxxR8yChlbA3Pe29vwN3yZ9Dm
+	 vhGeT1fOq4eEJkaF7zNJkEjtAVdZN6J4KivR9QQWEYgRJjNi2L4MQg+3bWxWelwsVw
+	 2A0uQ1Bk9EhNZyZeBPO9jLftDK0tLnTdfIlZZ8lCHi1Byooojort+J9Uxg3+kjMAnM
+	 mAfr9Bodby5kRnBOQw0zPWMcJfz+MfaeW1HLLnU4BM11wFn2W5ObBqETCXELmtoJVG
+	 uZxusMTaMgPWQ==
 Received: from IcarusMOD.eternityproject.eu (unknown [100.64.1.21])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
 	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id C931217E0B89;
-	Tue, 14 Jul 2026 13:45:24 +0200 (CEST)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id AAED317E0E95;
+	Tue, 14 Jul 2026 13:45:25 +0200 (CEST)
 From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 To: chunkuang.hu@kernel.org
 Cc: p.zabel@pengutronix.de,
@@ -72,9 +72,9 @@ Cc: p.zabel@pengutronix.de,
 	justin.yeh@mediatek.com,
 	jason-jh.lin@mediatek.com,
 	kernel@collabora.com
-Subject: [PATCH v2 41/46] soc: mediatek: mtk-mmsys: Populate multimedia subsystem subdevices
-Date: Tue, 14 Jul 2026 13:44:09 +0200
-Message-ID: <20260714114414.184512-42-angelogioacchino.delregno@collabora.com>
+Subject: [PATCH v2 42/46] dt-bindings: display: mediatek: Introduce MT8196 2D Sharpness Processor
+Date: Tue, 14 Jul 2026 13:44:10 +0200
+Message-ID: <20260714114414.184512-43-angelogioacchino.delregno@collabora.com>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20260714114414.184512-1-angelogioacchino.delregno@collabora.com>
 References: <20260714114414.184512-1-angelogioacchino.delregno@collabora.com>
@@ -88,81 +88,155 @@ Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-326165-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:chunkuang.hu@kernel.org,m:p.zabel@pengutronix.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:matthias.bgg@gmail.com,m:angelogioacchino.delregno@collabora.com,m:dri-devel@lists.freedesktop.org,m:linux-mediatek@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:justin.yeh@mediatek.com,m:jason-jh.lin@mediatek.com,m:kernel@collabora.com,m:krzk@kernel.org,m:conor@kernel.org,m:matthiasbgg@gmail.com,s:lists@lfdr.de];
-	ASN_FAIL(0.00)[1.2.3.5.c.f.2.1.0.0.0.0.0.0.0.0.5.7.0.0.1.0.0.e.5.1.c.3.0.0.6.2.asn6.rspamd.com:query timed out];
-	MIME_TRACE(0.00)[0:+];
 	FORWARDED(0.00)[lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[pengutronix.de,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,collabora.com,lists.freedesktop.org,lists.infradead.org,vger.kernel.org,mediatek.com];
+	TAGGED_FROM(0.00)[bounces-326167-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_SENDER(0.00)[angelogioacchino.delregno@collabora.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[pengutronix.de,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,collabora.com,lists.freedesktop.org,lists.infradead.org,vger.kernel.org,mediatek.com];
-	DKIM_TRACE(0.00)[collabora.com:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:chunkuang.hu@kernel.org,m:p.zabel@pengutronix.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:matthias.bgg@gmail.com,m:angelogioacchino.delregno@collabora.com,m:dri-devel@lists.freedesktop.org,m:linux-mediatek@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:justin.yeh@mediatek.com,m:jason-jh.lin@mediatek.com,m:kernel@collabora.com,m:krzk@kernel.org,m:conor@kernel.org,m:matthiasbgg@gmail.com,s:lists@lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[angelogioacchino.delregno@collabora.com,devicetree@vger.kernel.org];
-	TO_DN_NONE(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_HAS_DN(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[20];
+	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[angelogioacchino.delregno@collabora.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[collabora.com:+];
+	TO_DN_NONE(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	ALIAS_RESOLVED(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:from_mime,collabora.com:mid,collabora.com:email,collabora.com:dkim,vger.kernel.org:from_smtp,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,devicetree.org:url,vger.kernel.org:from_smtp,collabora.com:from_mime,collabora.com:mid,collabora.com:email,collabora.com:dkim]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: E187B754345
+X-Rspamd-Queue-Id: 3DF0F75424D
 
-The multimedia hardware subsystem contains all of the multimedia
-related sub-devices, and that really is by hardware design, not
-anything software related.
+Add documentation for the Two-Dimension Sharpness Processor, or
+"TDSHP", found in many MediaTek SoCs including MT8196 and its
+variants.
 
-In order to allow specifying a correct description of the hardware
-in devicetrees, add support for probing subdevices of multimedia
-controllers, specified as subnodes.
-
-Acked-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 ---
- drivers/soc/mediatek/mtk-mmsys.c | 8 ++++++++
- 1 file changed, 8 insertions(+)
+ .../mediatek/mediatek,mt8196-tdshp.yaml       | 98 +++++++++++++++++++
+ 1 file changed, 98 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/mediatek/mediatek,mt8196-tdshp.yaml
 
-diff --git a/drivers/soc/mediatek/mtk-mmsys.c b/drivers/soc/mediatek/mtk-mmsys.c
-index f501a29a7697..6c02b898741c 100644
---- a/drivers/soc/mediatek/mtk-mmsys.c
-+++ b/drivers/soc/mediatek/mtk-mmsys.c
-@@ -12,6 +12,7 @@
- #include <linux/io.h>
- #include <linux/module.h>
- #include <linux/of.h>
-+#include <linux/of_platform.h>
- #include <linux/platform_device.h>
- #include <linux/reset-controller.h>
- #include <linux/soc/mediatek/mtk-mmsys.h>
-@@ -489,6 +490,13 @@ static int mtk_mmsys_probe(struct platform_device *pdev)
- 		return PTR_ERR(clks);
- 	mmsys->clks_pdev = clks;
- 
-+	ret = devm_of_platform_populate(dev);
-+	if (ret) {
-+		dev_err(dev, "Failed to populate child devices: %d\n", ret);
-+		platform_device_unregister(clks);
-+		return ret;
-+	}
+diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,mt8196-tdshp.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,mt8196-tdshp.yaml
+new file mode 100644
+index 000000000000..ccd6a8443443
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,mt8196-tdshp.yaml
+@@ -0,0 +1,98 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/display/mediatek/mediatek,mt8196-tdshp.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
- 	if (mmsys->data->is_vppsys)
- 		goto out_probe_done;
- 
++title: MediaTek Display Two-Dimension Sharpness Processor (TDSHP)
++
++maintainers:
++  - AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
++
++description:
++  The MediaTek 2D Sharpness Processor (TDSHP) is responsible for performing
++  image sharpness adjustments/enhancements in a display pipeline.
++  This hardware block supports adjusting the luma and contour 2d histograms,
++  frequency weighting, luma-chroma gain and others, with adaptive weights.
++
++properties:
++  compatible:
++    const: mediatek,mt8196-disp-tdshp
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++
++  power-domains:
++    maxItems: 1
++
++  ports:
++    $ref: /schemas/graph.yaml#/properties/ports
++
++    properties:
++      port@0:
++        $ref: /schemas/graph.yaml#/properties/port
++
++      port@1:
++        $ref: /schemas/graph.yaml#/properties/port
++
++    required:
++      - port@0
++      - port@1
++
++  trigger-sources:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - clock-names
++  - ports
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    #include <dt-bindings/clock/mediatek,mt8196-clock.h>
++    #include <dt-bindings/power/mediatek,mt8196-power.h>
++
++    tdshp@321e0000 {
++        compatible = "mediatek,mt8196-disp-tdshp";
++        reg = <0x321e0000 0x1000>;
++        clocks = <&dispsys0 CLK_MM_DISP_TDSHP0>;
++        power-domains = <&hpm_hwv MT8196_POWER_DOMAIN_DIS0_DORMANT>;
++        trigger-sources = <&disp0_mutex 53>;
++
++        ports {
++            #address-cells = <1>;
++            #size-cells = <0>;
++
++            port@0 {
++                #address-cells = <1>;
++                #size-cells = <0>;
++                reg = <0>;
++
++                endpoint@0 {
++                    reg = <0>;
++                    remote-endpoint = <&resizer0_out>;
++                };
++            };
++
++            port@1 {
++                #address-cells = <1>;
++                #size-cells = <0>;
++                reg = <1>;
++
++                endpoint@0 {
++                    reg = <0>;
++                    remote-endpoint = <&ccorr0_in>;
++                };
++            };
++        };
++    };
++
++...
 -- 
 2.54.0
 
