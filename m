@@ -1,165 +1,269 @@
-Return-Path: <devicetree+bounces-326001-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-326008-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id bKBbJIbyVWqqwgAAu9opvQ
-	(envelope-from <devicetree+bounces-326001-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 10:25:42 +0200
+	id PysiCOrxVWqGwgAAu9opvQ
+	(envelope-from <devicetree+bounces-326008-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 10:23:06 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E83267525D3
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 10:25:41 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD67575258F
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 10:23:05 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=Ia9rbKyC;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326001-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-326001-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
+	dkim=pass header.d=ti.com header.s=proofpoint-05-2026 header.b=L+NL3YJW;
+	dkim=pass header.d=ti.com header.s=selector1 header.b=BYuefAnB;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326008-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-326008-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=ti.com;
+	arc=reject ("cv is fail on i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id AFA193056889
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 08:19:54 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 0FF3C301F6CD
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 08:22:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 257743FB049;
-	Tue, 14 Jul 2026 08:19:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E98FF3FB077;
+	Tue, 14 Jul 2026 08:22:52 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from mx0a-0002e601.pphosted.com (mx0a-0002e601.pphosted.com [148.163.150.75])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 202183EDE5F;
-	Tue, 14 Jul 2026 08:19:45 +0000 (UTC)
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1784017191; cv=none; b=WB5JNp2n2vvazayiCS24ZVOwlNhoH8qsZsCkfcS7uNyAkcdvthtaf5i/7DM7oTQfx93RFP6EMEu7GTpKoW++dfOJgD9ogb1lmnYnvXm8C/CY6k2rkHxN92k8bkjXc88ezaS6e5J+ZYqEiMk9BzE5v/gmfxN13twDc5pP7mqsmmY=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1784017191; c=relaxed/simple;
-	bh=qkTR8NHXRTG8OQSVTgabcuVukF2UeoJkaUSbVQoGMMo=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=ae9U9To26s2AhL8gRZ5LAweUmtLrdl2m0LT4X16b6H84ZHafwuqN6mR2L9wypwFstgnlU7LGMv6iQG/IoxQIrrt9shn3q2yAcB1lR1VNpNNHGWciztK9HGAP2qgom1fTgbLOWDiRIrvwBqdm+NR3KZFB5sUv0hwK5GDd/Va2sKI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ia9rbKyC; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2E0B91F000E9;
-	Tue, 14 Jul 2026 08:19:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1784017182;
-	bh=CCPHq1HHM2IxWF7xzjbQGlm+A8GOHNH5HyfKyBhULhI=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=Ia9rbKyC4kUKevmkwKQT+0tqRgIv8nc61JorVx/5cQLw5UdS51IrjGVgVJCEcdN71
-	 Bwgwqho+h+UrO3tIunUXrJw+AETR1HeEHIIsu8ozW9PCS98jobGD/DZ/b/PC70UAD9
-	 raD+xcKc6PKzWruMr+KzTQlapQF7xLHNXQo8TOeC5kCmqJ6HzJk3Opzh5dMjlHBl1w
-	 OVFI6TdKh0aQi1ZQNpwpxPCLKlF4uupXeaKfBu+3Wd7iBOvgdi/Zjv9RQAtY1gv0wP
-	 ns0+s53hIZ6h/5SRaA9Ty70Hv3V2k1BCx6bsQ8kGgPRQeRXkWam+9klH/cy6zVVbPa
-	 jf9LrQShNxYeg==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v11 1/3] dt-bindings: dma: Add Amlogic A9 SoC DMA
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Xianwei Zhao" <xianwei.zhao@amlogic.com>
-Cc: neil.armstrong@linaro.org, robh@kernel.org, conor+dt@kernel.org, Frank.Li@kernel.org, dmaengine@vger.kernel.org, devicetree@vger.kernel.org, vkoul@kernel.org, linux-amlogic@lists.infradead.org
-In-Reply-To: <20260714-amlogic-dma-v11-1-de79c2394282@amlogic.com>
-References: <20260714-amlogic-dma-v11-0-de79c2394282@amlogic.com>
- <20260714-amlogic-dma-v11-1-de79c2394282@amlogic.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Tue, 14 Jul 2026 08:19:41 +0000
-Message-Id: <20260714081942.2E0B91F000E9@smtp.kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 858513FBB7E;
+	Tue, 14 Jul 2026 08:22:46 +0000 (UTC)
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1784017371; cv=fail; b=Ih+1Im4yL4xsAa10MWW/k3hdVJt7afLbBEZwUyIVrhcToizzX76hf7+dzqdokWArIRYe5HIeXCYEiAlvlNKZKppqG9T9xZV9n5G1+C3mlLrSom5RAMLNljp/F5xsa3JyjnMswQG73nVXtE7sWzVtjrFXzY5q5nOdMPw54pRioe0=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1784017371; c=relaxed/simple;
+	bh=cfnUhLAFB7CK7qF2H+MZZQogVFEXFxLGYVPpt+gP5u0=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=owtJG4HSRZRzVau3DbWbubbfzYbMEOtd9MEIpQjh/5WzBHkv1p52lMgU+LLY/6U8MWHXjbyEAIAKtjQ57ZLYfO5hoCezrL8Kpy6RVzaW7RlE499iKCTV3J6e+/7jTiWuzUSxnkinpxSsP4ZflYm5ZyTw28+o/2lcDkhJ0nWT+jM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (2048-bit key) header.d=ti.com header.i=@ti.com header.b=L+NL3YJW; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=BYuefAnB; arc=fail smtp.client-ip=148.163.150.75
+Received: from pps.filterd (m0380145.ppops.net [127.0.0.1])
+	by m0380145.ppops.net (8.18.1.11/8.18.1.11) with ESMTP id 66E6UVAW1524529;
+	Tue, 14 Jul 2026 03:22:36 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; h=cc
+	:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=proofpoint-05-2026; bh=QyeEI5OGWzc5J
+	STdXFh5wVFtJ5UF/sE2+36u3mI4LIw=; b=L+NL3YJWHcibf2LmZ6oNnAX8FOmY0
+	MImrqMVlXm7oCTbTon/h1X+rvhlLPaYQm7esyQTy3LtXmRQMeIX9j9vnCAayeVqP
+	t63t3ng581+iGFFuA369/cLgWwqMReXCJdNhBItBSjPkDNLqGSJnD8ZItqkVNXTq
+	6iA/X6nDvY+vMw/tHx4yMvZs2o2UJZMNnVFtUvEzMIgzT3sDVze3QwNVyicay6YH
+	t8y4wzzHgmONhKkyKoIevdP5epZMk30ALY0ediTn4sg83Cz9ssR1oOBeipU6CfJB
+	zpio5BQfUWq3BCn9zitVQAFJM94CsXfD8pQK4IPai3ywzaSczbw0hk4dA==
+Received: from bn1pr04cu002.outbound.protection.outlook.com (mail-eastus2azon11010050.outbound.protection.outlook.com [52.101.56.50])
+	by m0380145.ppops.net (PPS) with ESMTPS id 4fdcw59ccr-1
+	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
+	Tue, 14 Jul 2026 03:22:17 -0500 (CDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=XcxgTeOyx4gjA0WeVZB9xLORg5s9rjrfF4eBsP+qnmQ93tufbx0K3mVFk7nFcvrX2m5lXU7MvoKbOhvEk85krWGt1h+BWjQFEuoTgkNrYeBqIASJRzeR3wIMbiqUaVgKICny4UOa2qcQHOL5ar0a85Zli/bQTpq0sj/80iKmdwOv0kATKSQ1ylGW6heS68qKZZuxseHeV+d3oKQc6Y8J1WSs5Wv+iLjG4I83aKsV1/o+8Cs0eSuPWFyN7GBmY0qNTAaww60/A1xmocomruK4Gn/rrPzsj0ne+UUUH3trhuQDsN/ikjN8xFdzAmuo5ktG7PMr9pInW10EmtMSGpdqgw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=QyeEI5OGWzc5JSTdXFh5wVFtJ5UF/sE2+36u3mI4LIw=;
+ b=v5sM9OjRY3xZlj25eaLOvBs7CDpXPNjpnoRf7WwuaGoGMZU5xF7eJn7vUsGpBqWmJgzHVGaVPPOYISe6Y2t70/aXIOaHQdOX0K03XLluqrSOq1Ukkg7OOTjMbfCIRxk653IRiBL6rbgBbnC4BD6O+0Ks8+bf4FNjCQvLP/8HM/7JKKXmFJY/Y9tIg3Jdac1NTQfC3Rk7wOwaEwt7Tr7UrkQk2KMZvTaAgP/9beEAhAB+hM3bAGCyq9M+iG6tR2rSYmkli8sH2tTJbLTHTiaAVBkVbPHWnaKfgTMmjSqEDMk8Eyj+lTZbQ22rBMZyEcAnBzDmD0DRyCP00QXCgUpPeA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 198.47.23.195) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=ti.com;
+ dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=QyeEI5OGWzc5JSTdXFh5wVFtJ5UF/sE2+36u3mI4LIw=;
+ b=BYuefAnBguJe9JJGOz3s0UR9eW2WUF8AjoAlBIK1Ph6C8YoPiWNK7oStavv/luHiEXW1wKSWMrbidnHwssjojTGvTzcQAf02sVSSRK3HkHIFC/ac0/ecorveV4XGWnY5nfgJzQm36tGZNn0OD4txRy3Jni9Ea+iXuKQrsI2y0H0=
+Received: from DS7P220CA0105.NAMP220.PROD.OUTLOOK.COM (2603:10b6:8:25d::17) by
+ SJ2PR10MB6963.namprd10.prod.outlook.com (2603:10b6:a03:4cb::7) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.202.19; Tue, 14 Jul 2026 08:22:13 +0000
+Received: from SN1PEPF0002BA52.namprd03.prod.outlook.com
+ (2603:10b6:8:25d:cafe::37) by DS7P220CA0105.outlook.office365.com
+ (2603:10b6:8:25d::17) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.223.10 via Frontend Transport; Tue,
+ 14 Jul 2026 08:22:13 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.195)
+ smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
+ action=none header.from=ti.com;
+Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
+ 198.47.23.195 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.23.195; helo=lewvzet201.ext.ti.com; pr=C
+Received: from lewvzet201.ext.ti.com (198.47.23.195) by
+ SN1PEPF0002BA52.mail.protection.outlook.com (10.167.242.75) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.223.9 via Frontend Transport; Tue, 14 Jul 2026 08:22:13 +0000
+Received: from DLEE202.ent.ti.com (157.170.170.77) by lewvzet201.ext.ti.com
+ (10.4.14.104) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.37; Tue, 14 Jul
+ 2026 03:22:12 -0500
+Received: from DLEE202.ent.ti.com (157.170.170.77) by DLEE202.ent.ti.com
+ (157.170.170.77) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.37; Tue, 14 Jul
+ 2026 03:22:12 -0500
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE202.ent.ti.com
+ (157.170.170.77) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.37 via Frontend
+ Transport; Tue, 14 Jul 2026 03:22:12 -0500
+Received: from moteen-ubuntu-desk.dhcp.ti.com (moteen-ubuntu-desk.dhcp.ti.com [10.24.50.20])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 66E8M7Ih068443;
+	Tue, 14 Jul 2026 03:22:07 -0500
+From: Moteen Shah <m-shah@ti.com>
+To: <krzk+dt@kernel.org>, <robh@kernel.org>, <conor+dt@kernel.org>,
+        <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>,
+        <mturquette@baylibre.com>, <sboyd@kernel.org>, <bmasney@redhat.com>
+CC: <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <u-kumar1@ti.com>,
+        <gehariprasath@ti.com>, <y-abhilashchandra@ti.com>, <m-shah@ti.com>,
+        <sen@ti.com>
+Subject: [PATCH RESEND v6 0/2] Enable audio support for J721S2 EVM
+Date: Tue, 14 Jul 2026 13:52:04 +0530
+Message-ID: <20260714082206.501922-1-m-shah@ti.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SN1PEPF0002BA52:EE_|SJ2PR10MB6963:EE_
+X-MS-Office365-Filtering-Correlation-Id: 952da91b-0cb5-49d4-2224-08dee18101de
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|376014|23010399003|7416014|82310400026|1800799024|36860700016|18002099003|56012099006|13003099007;
+X-Microsoft-Antispam-Message-Info:
+	3P/ZzK9wM5clcReSpafAcAN5/I9biVGlcvvN/qkyEz+ElZNfLDqflyGgqj11yAIhHWHcUfAwZ/9lkQq4nS+yJCiskPzfqYwny/0LqStx+7rf8sTzH4gQxaOVJAJ7K+1o9ikjeyyq+t+KxjPYMVKuJWQa4c+2lgKJqP6XgZrpbKaCiPIxIoEdRMDem9uRiDZseqWgwTmsf5xW68MT1UAWf59DB914IgB4vWt5F8rGuo8wX8NjmrtcLKp2U4rVSVRI81naK/dZS0G8QdBadytHKrFKoBz0t7weDZlViNBIxuueWX27UlcmqDz/7lxvlsHGhCeYc53kgacU8y4ZtT9f1LRj+Zp2KoYr5Qhm0/l9wIK0h51BPJjfKRkugbDuaR7uz87ipXEY+Ib62kOA34DhEbosPWOAMPY2bKD0pcBmjOjO5ZbcKWfPEFSWUORj0OUR4JiK3hgQfwCztk+H3nrfRDN2ThqdDznkyfbx561nJsnjHxv4ZEai9XcMkZmFlYBcldft04AoHjuIKRRBCQvrvHJo5a3jvJxpLtIXIHVwQgZIMTlH2EIXwSR0aoT/LytcKef6ZrTKrp7XH8OIZKcATbjJiPVv9C/MMojarOnT4/dnJ/UpbNgAmy3Ja14iEqEnjI2rRCjx+M298kwJSaUgX/Nsw5ponrZmegCs4WrFF9KqlLK7nacWnZebvkOukbuzeiCjuCCanbUjRXXkeAy3KQ==
+X-Forefront-Antispam-Report:
+	CIP:198.47.23.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet201.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(376014)(23010399003)(7416014)(82310400026)(1800799024)(36860700016)(18002099003)(56012099006)(13003099007);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	TlTqlqhxVdyjuIIoOrYLKPk3z3Bom3cOGBwsBbItu0RofiGtCaypUzyG6HrnjPSgG3BelvsJ7os+++AutgI+cVn5mftjjWR8uOwxwhhQJnTylvKgkpMranhas3l8pnBTykzg8G+pzV50VcXm27MAeDMVxQEvK2zQgMiRzxJ1ioYbsAPyFAI5Na9CCBhOnAn9Tb4O2AUkksybD2211q/+BUsbbuEV5igGFSAb0IL0pm+7kjHy2tkv4aaPy7/0Vz6XpcipElmeYwky2CcgOw+q3jXPgLu/puFImU4ojFbv7YCRQA+xCPK0QLxHb9gTu7t7RAhxkzuEkFGCg/iXEmfn6LPunZa0SO7tswcT+Vs5wy6Qi39+RWObv2HZcYGinIBx8hdZj6NqfNcskNQqlJdaZhIMfSn6ylIaCVoi1kHsI54dSa0EnC9bovvYLbO1YhXH
+X-Exchange-RoutingPolicyChecked:
+	Hv0nUnwifk6vA9HMVl5J25YxCM127jCmtZ5axnumktCqvnI8VlSFp7LHN31MqB4qwEsLmWUrpSaPk7Evk+sIBK+rANFo5y8uh/sQqWos0pPupOu/jhR5VoyXjJ8YtVsS7ftGayel2+0DJeYeLFwc5re7yWoIxLxFy3iqb3HDCu6Mg4d4wiQpIDTYnrqlclAZ6WDLgnsybGjd/vsA9fbM4XpPczga0PCkuYGBS+M6bwVKC75I1/8fju9DEvdr3yrcNmeCjzO4SP0f9O+ZcIe7ld3L3IMwvVuGmhcofDVcW8gz3db4/bO9iEZ5K8tuuTmhb3uSCyH6SvjyrKVcLM+cFA==
+X-OriginatorOrg: ti.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Jul 2026 08:22:13.0882
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 952da91b-0cb5-49d4-2224-08dee18101de
+X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.195];Helo=[lewvzet201.ext.ti.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	SN1PEPF0002BA52.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR10MB6963
+X-Proofpoint-GUID: BCMlfVDEvB8NViZ_2q6r_6-K11ihnW3n
+X-Proofpoint-Spam-Info: AW1haW4tMjYwNzE0MDA4NiBTYWx0ZWRfX2tltNIf//9Ym
+ 6B/TO3pM0MY+xO114ya8bC/yCuaXK8l8M+W+p96CW60scgdYnRlkOmp7QLplS/uMXl4oW/xwFiU
+ 8ERgXLgC6SY1XxGtD0Mrk8YswP2ySwI=
+X-Proofpoint-ORIG-GUID: BCMlfVDEvB8NViZ_2q6r_6-K11ihnW3n
+X-Authority-Analysis: v=2.4 cv=Ir8utr/g c=1 sm=1 tr=0 ts=6a55f1b9 cx=c_pps
+ a=9FhzUGQqNQs6ZJfz/MkW+g==:117 a=f+v6EHfkeJbVwR46tk4DMg==:17
+ a=6eWqkTHjU83fiwn7nKZWdM+Sl24=:19 a=RAioF0-LDSMA:10 a=s63m1ICgrNkA:10
+ a=V5UXEbMT0ywA:10 a=VkNPw1HP01LnGYTKEx00:22 a=Z8NIEmU8O1QQgoT56wFK:22
+ a=gO1vWkAQAl3rybz1DQOp:22 a=VwQbUJbxAAAA:8 a=sozttTNsAAAA:8 a=NEAV23lmAAAA:8
+ a=8__9IKA1ZvyzrIITXxQA:9
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNzE0MDA4NiBTYWx0ZWRfX9/pTT241N1Bj
+ fASSOdmoU/ND41KEz1pJW4KVIg7tgoJglVjyqxPk6ZDwIXYDgWFR9rnJl/Gx52qcJe0UnMLmFU8
+ MdAv8lcDAK4WROz+rnZYLgimQ0tMS6qJnu+HkInWs1THoMWypxII5ZNTEntjlmkTzvBYGbYmlIK
+ y6uNqi4E8ueNfOeFlF3cJneJhhyc+K0AQ62T5JT31eJMkcR+d5aXILBLLgZIhMa1Z71dSijK7HB
+ nmJIlBeojhKTT7ALCpJykAL3MZTXNic1wGKZYdjvIuaSbSlDfBIG6nnGluzJL/iD8nidhAN8t1V
+ bmXDu9aMYCa26VMI+RW4+RDmWM54xdz01bMFDmKwDTA2R6FwsV8CMbZVIpSf9u+2xoycOiIDGg7
+ exOVS+YM4D5G7DTQs0c2KgwXvkpwZ0xf5G9CsqnYEqio0Ga1mCCV0H4xT+CEuXtSdGo/H/xai07
+ BnIa9LYy9Z4FR9hX+ZA==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.134,FMLib:17.12.100.49
+ definitions=2026-07-14_02,2026-07-10_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 suspectscore=0 lowpriorityscore=0 phishscore=0
+ impostorscore=0 malwarescore=0 bulkscore=0 clxscore=1011 adultscore=0
+ spamscore=0 classifier=typeunknown authscore=0 authtc= authcc= route=outbound
+ adjust=0 reason=mlx scancount=1 engine=8.22.0-2606150000
+ definitions=main-2607140086
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [2.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[ti.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[ti.com:s=proofpoint-05-2026,ti.com:s=selector1];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-326001-lists,devicetree=lfdr.de];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS(0.00)[m:xianwei.zhao@amlogic.com,m:neil.armstrong@linaro.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:Frank.Li@kernel.org,m:dmaengine@vger.kernel.org,m:devicetree@vger.kernel.org,m:vkoul@kernel.org,m:linux-amlogic@lists.infradead.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORWARDED(0.00)[lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[m-shah@ti.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-326008-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:krzk+dt@kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:nm@ti.com,m:vigneshr@ti.com,m:kristo@kernel.org,m:mturquette@baylibre.com,m:sboyd@kernel.org,m:bmasney@redhat.com,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:u-kumar1@ti.com,m:gehariprasath@ti.com,m:y-abhilashchandra@ti.com,m:m-shah@ti.com,m:sen@ti.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[17];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NEQ_ENVFROM(0.00)[m-shah@ti.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[ti.com:+];
+	TO_DN_NONE(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	RCVD_COUNT_TWELVE(0.00)[12];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TO_DN_SOME(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FROM_NO_DN(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[ti.com:from_mime,ti.com:dkim,ti.com:mid,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: E83267525D3
+X-Rspamd-Queue-Id: AD67575258F
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [Low] The macros DMA_TX and DMA_RX in the global DT binding header lack a=
-n Amlogic/SoC specific prefix, leading to namespace pollution and potential=
- build conflicts.
---
+Earlier version of the patchset sent upstream[0] was rejected as
+its dependency[1], which resolves the DTBS check errors introduced
+by [0] also got rejected on the grounds of ABI breakage.
 
---- Patch [1]: [PATCH v11 1/3] dt-bindings: dma: Add Amlogic A9 SoC DMA ---
-commit 093f368eaa67418008421d43d724ce2e98651039
-Author: Xianwei Zhao <xianwei.zhao@amlogic.com>
-dt-bindings: dma: Add Amlogic A9 SoC DMA
+Another solution to fix the DTBS check errors introduced by [0] is
+to modify the ti,j721e-system-controller.yaml binding to allow
+audio-refclk as clock-controller child. This is done in the first
+patch of this series.
 
-This commit adds device tree binding documentation for the Amlogic A9 SoC
-general-purpose DMA controller. It introduces the YAML schema and a header
-file defining the channel type macros.
+Changes since v5:
+Link to v5:
+https://lore.kernel.org/all/20260520115603.2662930-1-m-shah@ti.com/
+- Move audio_refclk1 clock node from the overlay (k3-j721s2-evm-audio.dtso)
+  to the main DTSI (k3-j721s2-main.dtsi) so it is always available
+  independent of the overlay being applied
+- Drop the &scm_conf block from the overlay since it is now in main.dtsi
 
-> diff --git a/Documentation/devicetree/bindings/dma/amlogic,a9-dma.yaml b/=
-Documentation/devicetree/bindings/dma/amlogic,a9-dma.yaml
-> new file mode 100644
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/dma/amlogic,a9-dma.yaml
-[ ... ]
-> +  '#dma-cells':
-> +    const: 2
-> +    description:
-> +      The first cell is the DMA channel type(DMA_TX or DMA_RX).
-> +      The second cell is the DMA channel index.
-[ ... ]
-> diff --git a/include/dt-bindings/dma/amlogic,a9-dma.h b/include/dt-bindin=
-gs/dma/amlogic,a9-dma.h
-> new file mode 100644
-> --- /dev/null
-> +++ b/include/dt-bindings/dma/amlogic,a9-dma.h
-> @@ -0,0 +1,8 @@
-> +/* SPDX-License-Identifier: (GPL-2.0 OR MIT) */
-> +
-> +#ifndef __DT_BINDINGS_DMA_AMLOGIC_DMA_H__
-> +#define __DT_BINDINGS_DMA_AMLOGIC_DMA_H__
-> +
-> +#define DMA_TX			0
-> +#define DMA_RX			1
+Changes since v4:
+Link to v4:
+https://lore.kernel.org/all/20260519142341.2531948-1-m-shah@ti.com/
+- Explicitly disable main_mcan3 and main_mcan5 as they will silently
+  break mcasp audio routing
 
-[Severity: Low]
-Are these macro names too generic for a global dt-bindings header?
+Link to v3:
+https://lore.kernel.org/all/20260330094459.128648-1-m-shah@ti.com/
+Link to v2:
+https://lore.kernel.org/all/20260205130707.2033197-1-m-shah@ti.com/
+Link to v1:
+https://lore.kernel.org/all/20260112104536.83309-1-m-shah@ti.com/
 
-Since headers in include/dt-bindings/ are globally visible and frequently
-included by C drivers, unprefixed names like DMA_TX and DMA_RX could lead
-to namespace pollution and macro redefinition build failures if a driver
-includes this alongside other headers that use the same common names.
+Bootlogs:
+https://gist.github.com/Jamm02/8ee551c2c8db3a58a9aa7976e049fa28
 
-Would it be safer to add a vendor or SoC prefix, such as AMLOGIC_A9_DMA_TX?
+[0]: https://lore.kernel.org/linux-arm-kernel/20250604104656.38752-1-j-choudhary@ti.com/
+[1]: https://lore.kernel.org/all/20250603095609.33569-4-j-choudhary@ti.com/
 
-> +#endif /* __DT_BINDINGS_DMA_AMLOGIC_DMA_H__ */
+Jayesh Choudhary (1):
+  arm64: dts: ti: Add audio overlay for k3-j721s2-evm
 
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260714-amlogic-dm=
-a-v11-0-de79c2394282@amlogic.com?part=3D1
+Moteen Shah (1):
+  dt-bindings: ti: Update audio-refclk binding and j721e system
+    controller
+
+ .../bindings/clock/ti,am62-audio-refclk.yaml  |   8 +-
+ .../soc/ti/ti,j721e-system-controller.yaml    |   6 +-
+ arch/arm64/boot/dts/ti/Makefile               |   4 +
+ .../boot/dts/ti/k3-j721s2-evm-audio.dtso      | 157 ++++++++++++++++++
+ arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi    |   9 +
+ 5 files changed, 180 insertions(+), 4 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/ti/k3-j721s2-evm-audio.dtso
+
+-- 
+2.34.1
+
 
