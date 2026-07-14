@@ -1,231 +1,154 @@
-Return-Path: <devicetree+bounces-326500-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-326501-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 1bUrK3iWVmqv+QAAu9opvQ
-	(envelope-from <devicetree+bounces-326500-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 22:05:12 +0200
+	id 3wlmLa6WVmrQ+QAAu9opvQ
+	(envelope-from <devicetree+bounces-326501-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 22:06:06 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C2CF7589AC
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 22:05:11 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 028167589C2
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 22:06:06 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=jm5BTqnW;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326500-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-326500-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=baylibre.com header.s=google header.b=EfbmWhbh;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326501-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-326501-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=none;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 994DB301B037
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 20:03:47 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E43F0306B57D
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 20:04:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 785453F4DFB;
-	Tue, 14 Jul 2026 20:03:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D43A41D65B;
+	Tue, 14 Jul 2026 20:04:52 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oi1-f174.google.com (mail-oi1-f174.google.com [209.85.167.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BEBDC41D621
-	for <devicetree@vger.kernel.org>; Tue, 14 Jul 2026 20:03:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28DAB41D622
+	for <devicetree@vger.kernel.org>; Tue, 14 Jul 2026 20:04:49 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1784059423; cv=none; b=iOf4TZHeplOqt/XaVED9e+niEiXPYUcCfOk49KwdhltMUGcxWhZ0JRpmGnwt4XsuGKuQNuJc9fHU4EneRhkpc5I/lbBf8VDXI7PmNbxPU+XlC8moST8HtXGKG97ycwqUjdkp9KGknAOhqLEDNaXLbr/wMBYL6JA9tAv+pn5ienU=
+	t=1784059492; cv=none; b=Jmm4XRwAhR308lvGD2Fo6cdd4dLEy28hRuk5u6HD4oW+u2nzfoQiRiHCfGl+JG7lsZY87M0eNRpJ6uFau/snZHdQW2JPfQlHkysf3f1d9hyYK3Ob5jQonx9GzVa8y8V4YAC89SSneAxupQkNmns8tBlw6JY0fbchbueaSA6EoxI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1784059423; c=relaxed/simple;
-	bh=V9Einq5aWoKMB2qU2El3X6UyC3Z0CRiHQn3lhAQ3aNc=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=ArsibrfBGLB5df+xaS03KOJ79GsaOtcesJQ/mATaxUBngeLai2jbmNTiPdCRAfTXdfdfNPBrUqPi1VRy31O8n3dj1OYL8WWKwBhfZsX9Bd0aBo244PvI+rtwiNWqd7H3uSJ732WcBxINWf3VMHFi+K68F9lHdExteU6aIRyhiJ4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jm5BTqnW; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EEE371F000E9;
-	Tue, 14 Jul 2026 20:03:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1784059414;
-	bh=HKC0/td1+G+v8Tx9avf7PHSbT91ujbUYzU1owOnBL3o=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=jm5BTqnWEMt71V5SE+Mxx9nvRdwWAEKwV01+ykly8uwdXCJ3vCQcdCgsvR4uu8w6n
-	 80id1WpWg7U+cCiUQaNeGEJzd1OWA6q5UPTFi0Q9FIApYzrDQQRTQNdxmp0LqhgYRV
-	 4pJowHRidpV95mNuMJTRWDvMnNIOvWMLYFnaCy/5VoO+AQtezHgCSzrGWZIVwotNbX
-	 NHFVkDFD+gRyTyq1SZtXvS31424oJfoGdBgYV2wCnO6N9xsvQjhG14XArV6nXPnWeS
-	 qBbzY1j2cYLLAeNbKe2VkfafRdWdod9NGKDWvE8RWuazNAfiK3OcEXAKSDu3/sNj5z
-	 nEfklwUlUnZ7w==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v7 1/3] iio: adc: ti-ads1100: Fix incorrect reading when
- datarate changed in single mode
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Jakub Szczudlo" <jakubszczudlo40@gmail.com>
-Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20260714194717.596193-2-jakubszczudlo40@gmail.com>
-References: <20260714194717.596193-1-jakubszczudlo40@gmail.com>
- <20260714194717.596193-2-jakubszczudlo40@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Tue, 14 Jul 2026 20:03:33 +0000
-Message-Id: <20260714200333.EEE371F000E9@smtp.kernel.org>
+	s=arc-20240116; t=1784059492; c=relaxed/simple;
+	bh=mlyz0pITWZURifv0t5t/tRwnR3AP8uFL+yB9c5Nmz+g=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=a4jupPhRo6ur4aq0sxfqh14BgkMFuOPG32sZmWUQI3rQg0YsAtriEeIwTVfvKfMqt5QuyP/aPLrl6nJ97tIQVA1cQSMgpA8HZOJ97MKTtYdedoFiC1pqPfAjsCZYwH7g6L5z45n4D8DXomHE6vsM/8DvImzZBpEu4W8BCtOa4Bw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.b=EfbmWhbh; arc=none smtp.client-ip=209.85.167.174
+Received: by mail-oi1-f174.google.com with SMTP id 5614622812f47-49fa951b2c6so1103742b6e.1
+        for <devicetree@vger.kernel.org>; Tue, 14 Jul 2026 13:04:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre.com; s=google; t=1784059489; x=1784664289; darn=vger.kernel.org;
+        h=content-transfer-encoding:content-type:in-reply-to:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=SBKshlNu2WOWV4tRMWzhVwxQQdrnAT+tDDiDT+ttOEU=;
+        b=EfbmWhbh52LEnoc9xqfzbWu92rQFVaUfJ523Fhk3T8K3Sqkfpz+XzCNWILxSKs7UPP
+         +hQJLeUid1c11TlzOX3cB5ZFpU7KhoFQanTnwm0/7Dl6iRa3cwz8di+m6+IY+DOKoErS
+         oSKjKbKC0ykG4bZtib+nyN4Ig6zKLUHz7G61jgcjRCxmyUvVMjZWLG9XbfbDxaA7f++U
+         ixiVomdxqI1Q1HRj5LTZgIClSu0es/SVoP0d9Y2AGJxdkpDtc3mmx3kIJVqOVBs8twq6
+         Xy7WfpXAKTFhqrycdpC95NyFqls6XKcVN8HlHztemhtfyRFzfjPSCazchYDtGzeeyFVC
+         9i6w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1784059489; x=1784664289;
+        h=content-transfer-encoding:content-type:in-reply-to:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=SBKshlNu2WOWV4tRMWzhVwxQQdrnAT+tDDiDT+ttOEU=;
+        b=m8r5vVGaz3fddvg9kqiVZ+ubot6BXScaEkR5KxVcaC27iNE6rnnMIKQHSi3SKRxdT1
+         1fVo/8Hhr0hpT62npufiFUKMjmu1s2ZDIsnQcKEiRB8WzI7art1Vdam8nIk0sbsuaKdh
+         oZEUt4zhZTZPGU8u/446Z16Wa+WWxPX3IaL5IH2ect6cnEzxXfsjaQJJGNzaf6vghjZk
+         fP7IJPpAs4hP6hjLS81K5bHrAQLmiI/Q+RynBODDyzfrsZpcs+xE3ssQ/vVfGh1zZRNT
+         O5tYmWGydPBPP4XuNIA/YLiimvs5TtaGPsHHSvzs/XMkfZTrKJJY1Q+bUj8m5SLalpqu
+         J/Pg==
+X-Forwarded-Encrypted: i=1; AFNElJ8UuDWn74qSmKMZbGjme5jMlCwARMkziDeE5pcZzFSfysHCAe1YUTnvPAGGQsZn/wnraS5oXuyH5hbo@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx7FM6/sut5RIDeZeLWT9UrbmNboQQjcZ00gRqbulX+3y4jc+o5
+	MEdN6UWglDH8dn7Mghi/NFmCfbRIG3y40GF4wK2sCl9/ayOl/Ap45mWNxi6fM3Q30kU=
+X-Gm-Gg: AfdE7cmyQCyNvUgXtxiJtiBlSeSuhHiJblfzLbfOVnsgBaY/c8v7j1P3zyvbmbRANTh
+	qP3oEtQu2cXMsUvklApXDf7porT2GN082RRuohJlkPoHWu1QIFfnlBdmkcT0wyr7m2ulRgj70Gb
+	7DD7P0vs3IRwKM/+hpJMfvz/FR689O6c7jfI2KAlEikYdVK6H7IdGb9PpsZghCCopJwDC79BtQV
+	ihICvRh0XrrhkTj5k3HGWfLsr3aawT5JIYt/ihUEUV8jjOi2K/fZl1PTUSoHMnVgrPIDcXXgbKo
+	GU8X6cEKvz3eJ5ldr/tiF5IkXP3+MLk6WJ8bM+2xNPdIexlLP/+G3hilDj0+pDTapOIu4MQ/Qht
+	jRk5a0MzMVgsnMrs64l+PprhfAEHLoITm2vJ/z+922rWKvz32PkxNohD6wVStk2VR+Iope7g9im
+	BWygl3vAYzCpy28kFrf2Lox++ohDIKvlYrTZUBIsZUauqtL4AlL4c4nUDs5qvrlo8=
+X-Received: by 2002:a05:6808:2386:b0:495:fa73:2e21 with SMTP id 5614622812f47-4a42b04ed3cmr10654616b6e.33.1784059489060;
+        Tue, 14 Jul 2026 13:04:49 -0700 (PDT)
+Received: from ?IPV6:2600:8803:e7e4:500:280e:69fd:7612:d5a9? ([2600:8803:e7e4:500:280e:69fd:7612:d5a9])
+        by smtp.gmail.com with ESMTPSA id 5614622812f47-4a1acc82f31sm14743501b6e.4.2026.07.14.13.04.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 14 Jul 2026 13:04:47 -0700 (PDT)
+Message-ID: <8d6d2236-bb07-43be-8b0d-5f6ff0752994@baylibre.com>
+Date: Tue, 14 Jul 2026 15:04:46 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v7 0/3] iio: adc: ti-ads1100: Add support for TI ADS1110
+ to ti-ads1100 driver
+To: =?UTF-8?Q?Jakub_Szczud=C5=82o?= <jakubszczudlo40@gmail.com>,
+ linux-iio@vger.kernel.org
+Cc: jic23@kernel.org, nuno.sa@analog.com, andy@kernel.org,
+ marcelo.schmitt@analog.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, mike.looijmans@topic.nl, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, jorge.marques@analog.com,
+ antoniu.miclaus@analog.com, mazziesaccount@gmail.com,
+ jishnu.prakash@oss.qualcomm.com, duje@dujemihanovic.xyz, wens@kernel.org,
+ sakari.ailus@linux.intel.com, linusw@kernel.org
+References: <20260714194717.596193-1-jakubszczudlo40@gmail.com>
+ <CA+gq5JjVnLKW1WdEYzy279tqURXqqy+JNWn9zJPfXKGHUP5hCg@mail.gmail.com>
+Content-Language: en-US
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <CA+gq5JjVnLKW1WdEYzy279tqURXqqy+JNWn9zJPfXKGHUP5hCg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[baylibre.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-326500-lists,devicetree=lfdr.de];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-326501-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:jakubszczudlo40@gmail.com,m:linux-iio@vger.kernel.org,m:jic23@kernel.org,m:nuno.sa@analog.com,m:andy@kernel.org,m:marcelo.schmitt@analog.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:mike.looijmans@topic.nl,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:jorge.marques@analog.com,m:antoniu.miclaus@analog.com,m:mazziesaccount@gmail.com,m:jishnu.prakash@oss.qualcomm.com,m:duje@dujemihanovic.xyz,m:wens@kernel.org,m:sakari.ailus@linux.intel.com,m:linusw@kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FREEMAIL_TO(0.00)[gmail.com,vger.kernel.org];
+	FORGED_SENDER(0.00)[dlechner@baylibre.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[20];
+	DMARC_NA(0.00)[baylibre.com];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[gmail.com];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:jakubszczudlo40@gmail.com,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FREEMAIL_CC(0.00)[kernel.org,analog.com,topic.nl,vger.kernel.org,gmail.com,oss.qualcomm.com,dujemihanovic.xyz,linux.intel.com];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	RCPT_COUNT_THREE(0.00)[4];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[dlechner@baylibre.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[baylibre.com:+];
+	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,lists.linux.dev:replyto,smtp.kernel.org:mid,vger.kernel.org:from_smtp]
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 9C2CF7589AC
+X-Rspamd-Queue-Id: 028167589C2
 
-Thank you for your contribution! Sashiko AI review found 3 potential issue(=
-s) to consider:
+On 7/14/26 2:58 PM, Jakub Szczudło wrote:
+> sorry guys I need to resend because of some dumb error
+> 
+> Best regards,
+> Jakub Szczudlo
 
-New issues:
-- [High] The polling logic in `ads1100_poll_data_ready` is fundamentally br=
-oken due to an inverted loop condition and impossible hardware polling stat=
-e in continuous mode.
-
-Pre-existing issues:
-- [High] The driver consistently returns stale or invalid data on the first=
- read after waking up from runtime suspend because it does not wait for a n=
-ew conversion to complete.
-- [Medium] Missing return value check for `ads1100_set_config_bits()` in `a=
-ds1100_set_scale()` suppresses I2C write errors.
---
-
---- Patch [1]: [PATCH v7 1/3] iio: adc: ti-ads1100: Fix incorrect reading w=
-hen datarate changed in single mode ---
-commit 110a1aa46c3c440dfe6b3dac8a6c6e80760ff636
-Author: Jakub Szczudlo <jakubszczudlo40@gmail.com>
-
-iio: adc: ti-ads1100: Fix incorrect reading when datarate changed in single=
- mode
-
-When device is suspended and it is in single mode then changing
-datarate doesn't make it actually wait for a new measurement, so to
-be sure that read after change is correct functions that changes
-datarate and gain will wait for new data.
-
-Fixes: 541880542f2b ("iio: adc: Add TI ADS1100 and ADS1000")
-
-> diff --git a/drivers/iio/adc/ti-ads1100.c b/drivers/iio/adc/ti-ads1100.c
-> index 9fe8d54cce83c..f0a30ae139afa 100644
-> --- a/drivers/iio/adc/ti-ads1100.c
-> +++ b/drivers/iio/adc/ti-ads1100.c
-> @@ -123,10 +128,50 @@ static int ads1100_get_adc_result(struct ads1100_da=
-ta *data, int chan, int *val)
->  	return 0;
->  }
-
-[Severity: High]
-This is a pre-existing issue, but does ads1100_get_adc_result() return stale
-or invalid data on the first read after waking up from runtime suspend?
-
-The code executes the I2C read immediately after the runtime PM resume
-returns, bypassing the necessary hardware conversion delay:
-
-ads1100_get_adc_result()
-    ret =3D pm_runtime_resume_and_get(&data->client->dev);
-    if (ret < 0)
-        return ret;
-
-    ret =3D i2c_master_recv(data->client, (char *)&buffer, sizeof(buffer));
-
-If the read occurs immediately before the conversion finishes (for example,
-125ms delay is needed at 8 SPS), will this return the power-on reset value
-of 0 or garbage data instead of a valid measurement?
-
-> +static int ads1100_poll_data_ready(struct ads1100_data *data)
-> +{
-> +	int data_rate_Hz =3D ads1100_data_rate[FIELD_GET(ADS1100_DR_MASK, data-=
->config)];
-> +	/* To be sure we wait 5 times more than data rate */
-> +	unsigned long wait_time_us =3D DIV_ROUND_CLOSEST(USEC_PER_SEC, 5 * data=
-_rate_Hz);
-> +	int data_ready;
-> +	u8 buffer[3];
-> +	int ret;
-> +
-> +	/* To be sure that polled value will have value after config change */
-> +	ret =3D i2c_master_recv(data->client, (char *)&buffer, sizeof(buffer));
-> +	if (ret < 0) {
-> +		dev_err(&data->client->dev, "I2C read fail: %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	ret =3D readx_poll_timeout(ads1100_new_data_is_ready, data,
-> +				 data_ready, data_ready !=3D 0,
-> +				 wait_time_us, ADS1100_MAX_DRDY_TIMEOUT_US);
-
-[Severity: High]
-Does this readx_poll_timeout() call have an inverted loop condition for
-data_ready?
-
-Because the condition is data_ready !=3D 0, it appears the driver will break
-early when the device is busy, and spin up to 7.5 seconds when the device
-is actually ready.
-
-Since this polling state might be impossible in continuous mode, could this
-cause the driver to consistently hit the 7.5-second timeout, completely
-breaking data rate and scale configuration when userspace writes to the
-in_voltage_scale or in_voltage_sampling_frequency sysfs attributes?
-
-[ ... ]
-
-> @@ -149,22 +199,35 @@ static int ads1100_set_scale(struct ads1100_data *d=
-ata, int val, int val2)
-> =20
->  	ads1100_set_config_bits(data, ADS1100_PGA_MASK, ffs(gain) - 1);
-> =20
-
-[Severity: Medium]
-This is a pre-existing issue, but does ads1100_set_scale() suppress I2C wri=
-te
-errors by missing a return value check for ads1100_set_config_bits()?
-
-If I2C bus errors occur during scale configuration (for example, if the bus
-is unstable or the device is disconnected), the driver will continue as if
-the configuration succeeded.
-
-Could this lead to incorrect data conversion scales being reported to
-userspace?
-
-> -	return 0;
-> +	return ads1100_poll_data_ready(data);
->  }
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260714194717.5961=
-93-1-jakubszczudlo40@gmail.com?part=3D1
+Too late now, but next time if this happens again, add RESEND to the PATCH
+prefix and add a line to the cover letter that says why the RESEND. 
 
