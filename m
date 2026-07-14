@@ -1,224 +1,205 @@
-Return-Path: <devicetree+bounces-325965-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-325967-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id tqW6J0HlVWrluwAAu9opvQ
-	(envelope-from <devicetree+bounces-325965-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 09:29:05 +0200
+	id y2MZC07oVWq+vQAAu9opvQ
+	(envelope-from <devicetree+bounces-325967-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 09:42:06 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26174751DAE
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 09:29:05 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 62BC775200E
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 09:42:05 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kontron.de header.s=selector1 header.b=SCH8UOjB;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-325965-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-325965-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=none;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-325967-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-325967-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=none;
-	arc=reject ("cv is fail on i=2")
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 91D273040555
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 07:27:36 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 606AC3060D30
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 07:36:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B79A3EE1E4;
-	Tue, 14 Jul 2026 07:27:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13ACB3F20F4;
+	Tue, 14 Jul 2026 07:35:56 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from MRWPR03CU001.outbound.protection.outlook.com (mail-francesouthazon11021074.outbound.protection.outlook.com [40.107.130.74])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D5B73EDE6D;
-	Tue, 14 Jul 2026 07:27:15 +0000 (UTC)
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1784014038; cv=fail; b=auGTpqPEImLvX9aRggqJ9+gUbTtX7+2I3urnqXcf2d8UPWkmp3gfgL6mDaNwBILDlokPgmRADFO7dl7QPjnPt6HoHnMn4cAuwk1Tvl0rnaYEHOkhkGuWTCcSq8txniZK+3SK+/BBj6j7R/dh+jJIrYpRe9+fxVLPARo9EdBXI+I=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1784014038; c=relaxed/simple;
-	bh=qOo4LDEFrSXncZ0XiNs0TC3cWSlvz7vpS0n0cUlQqCI=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=DautjDnpa7iaM9TBtZ3IdjX4MA3JreotmDnY5rC1hWMd4uSMpH/u7s7X20lgBCJI0Y1PUPQPMmWqlx4/4TR+bGEMmGjMW4SRzmOlLtqxDc+J/h8cS7WsypREojcXDexCZNQ9xRLbZUUUkP52C+JAhOvMNjbx3v5K+iChuFdbpc4=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kontron.de; spf=pass smtp.mailfrom=kontron.de; dkim=pass (2048-bit key) header.d=kontron.de header.i=@kontron.de header.b=SCH8UOjB; arc=fail smtp.client-ip=40.107.130.74
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=juN+jSEHtSc/0riBex6OpqbZ4dUocVjI/aXNU7qedzt75Azq+75KDTqIz4NC31w5nMqaji/O2Hj3vuOEPPvxA2c0Bo41nBHr2UW8wsF/qFA3x+ej71qSLQzvuUy7lkfvKntklpJ3eDGefrvfaR6sA+kyL6qI1DnkE86NXqGSyv4UiMhA0hzIErqhvfJkmKz6nqQGWd+XqONbKTpCgGEuCCyrxKE1C6rUBdfqZFtEQ2TlQe1VWYf+Ax05jQISlr5nmoPLrXEJ+vXvv0JgYSFyhd9M/JwI6wteIiEH9RTiSL1fIHOVrEb2seuyYNhnxAdhjNWLMb/uqIcoqT0+m7ugFw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=z/q8F1gwVVPPdCBhlmoyKjC3i1hm/M/pR9vn2frAxwc=;
- b=j5h5Fff17oSGx6/zH8/zyCDkkEHs2zKkn6oIYO1bJoLzxxHmkdXSL0h9xz7/QConITke3MiEZeVCNSkRGh6IXLaglADV7qOiMD9CTYv0p3EwI6RvhBg5tpQf+iugL5Hoamz9+dcmmIi3PSsRDzVxnVOy1KhbYKxhTTRkQgWvX2LhZtOtURKe9eTb0KgMpdYu35LPTl2TT8+lSlFI99rBzpkRiGeLuWJ/jnbG6IllvNb9UDTF9COQ03ub4eGihFt1FCj0uJhjS6hP/sgv6/ywPEt8GDq118EM0cqehI05GRHq4HR9SO9SuX/C5K/lbYBvirhW7f8hSVc96cOHIyUKLw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=kontron.de; dmarc=pass action=none header.from=kontron.de;
- dkim=pass header.d=kontron.de; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kontron.de;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=z/q8F1gwVVPPdCBhlmoyKjC3i1hm/M/pR9vn2frAxwc=;
- b=SCH8UOjBl+kuwtEUR17xvcsv9iE3LSpPeG/mhgGmb4eVUpCBsd4wrGwvRXs4vGkFlTJkNYEcX3sG6yR4cC2tIVmXVPm1KqkXgVONQHL/TO9JFPa7Lhgdlf2um3uSmWZokYyj2Wi3Zem7ybv85eQ9V5IKVoQoFUsIVrQOUhbRUptrxV8HJZmayt5MMLBBd1n0zZ6kUVhBm7EcS0Tk4+XqvKclUf1ywkl87qYk8EMXUor8gRPnisUT53cXmlUvwjlWe848GDm8k+25jFgDhxzmq7q39M202M7UQOI/t/FxcIjeztC8kDONZspZWYP8p1b9zUjaM/E9LN8yIfTYNlg+9A==
-Received: from AM9PR10MB4277.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:1fb::23)
- by DU0PR10MB5310.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:10:34d::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.223.9; Tue, 14 Jul
- 2026 07:27:08 +0000
-Received: from AM9PR10MB4277.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::a276:4ad7:962:da22]) by AM9PR10MB4277.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::a276:4ad7:962:da22%6]) with mapi id 15.21.0223.008; Tue, 14 Jul 2026
- 07:27:08 +0000
-Message-ID: <73a5b9fd-aff4-4ae2-ab2b-d860bbc7325d@kontron.de>
-Date: Tue, 14 Jul 2026 09:27:06 +0200
-User-Agent: Mozilla Thunderbird
-Subject: Re: (subset) [PATCH v25 0/7] firmware: imx: driver for NXP
- secure-enclave
-To: Frank Li <Frank.Li@nxp.com>, Jonathan Corbet <corbet@lwn.net>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Pankaj Gupta <pankaj.gupta@nxp.com>
-Cc: linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org
-References: <20260122-imx-se-if-v25-0-5c3e3e3b69a8@nxp.com>
- <177799642393.1381528.2137639571938103661.b4-ty@nxp.com>
-Content-Language: en-US, de-DE
-From: Frieder Schrempf <frieder.schrempf@kontron.de>
-In-Reply-To: <177799642393.1381528.2137639571938103661.b4-ty@nxp.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: FR3P281CA0003.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:1d::22) To AM9PR10MB4277.EURPRD10.PROD.OUTLOOK.COM
- (2603:10a6:20b:1fb::23)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA2213EFFA9
+	for <devicetree@vger.kernel.org>; Tue, 14 Jul 2026 07:35:52 +0000 (UTC)
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1784014556; cv=none; b=REJE2jYPnS88v2AnWB3KACcMwAlcHsi/zJ6fvUxGi1GqEPeh+TiyxVrtUqsKQNhCGasVAoyhZ63qBidlZWO8pGcM1NKPRf+JekRRgxzWssCjSM7aLfITV+YJUiONZw0DtypG3ouihdAvNAbhZxwOPfKhOeYzixasJQvIKqQ2BD0=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1784014556; c=relaxed/simple;
+	bh=BvI5f/SGs3rOnIaf937RzhNNvfMs8aUchvXoAXE8+Rg=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=l3ZfJC4raePbZmKTOA3Ic47igvCK7qBu23DAdDlay6B2sBOcdDlh96I/jQBLNsgLwwLt5yecorydnsEh8ll1nwmWAtcV5tIRR94mJzkCbtrHkdgnkgC4kRRHyNyvFsfUhPeJjttNsJcaAMnh0qRpH2X1na/73XhPj5F6yawCGZM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Received: from dude04.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::ac])
+	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
+	(envelope-from <jre@pengutronix.de>)
+	id 1wjXg5-0001R0-Hm; Tue, 14 Jul 2026 09:35:41 +0200
+From: Jonas Rebmann <jre@pengutronix.de>
+Date: Tue, 14 Jul 2026 09:35:03 +0200
+Subject: [PATCH v4] dt-bindings: leds: Add default-intensity property
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM9PR10MB4277:EE_|DU0PR10MB5310:EE_
-X-MS-Office365-Filtering-Correlation-Id: e5deb206-2f55-45d8-590e-08dee1795009
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|376014|7416014|366016|1800799024|23010399003|921020|18002099003|22082099003|6133799003|4143699003|56012099006|11063799006|3023799007;
-X-Microsoft-Antispam-Message-Info:
-	hJuH9RzFgHSYyKu5kBzjEpUT4MxYedIZLIQGdYpREYosdmH1G2QsYEh8JHP4q/nrzYisCl4hKfm2t4KI5F53ZtS3Uiw12Y7mOfVlo50t8zQWAf20615dzRMCxa0iTMHmv8X0KQRAnWLcUu1AutCwraF9z7UqeSCYw4VLSGuHgizmnaYwtGAnfW1g1PezMcfjoDi+HVe294b61Q5WQsjYLcRWCoq4iGhnLN2tWTZGIS66tjH7IW/S+eykzCddx1jR9/l2woCE5vFjX1kNWR3AWbSqpxK7cy5WgkpjDqHOW7FUd1ivgoSoLk8YgYT+cVSRHGaTXJgTK0fJmbThcrXwVoY9hNfKD8iHYVoAUY89Ka5gWvkVa25w0XiZJsWDZzBPz7hFlCYVe1Y6R+7OR1Aj2c+5G0rN1FTqFgX/jnYiDU5e6tzs2gZz8+mp/oJrYoEVDol3aPXRGczxZMA2kS4HaNdNWK+yut7lE8ZgFVTuni2xzCmVgRe5XPkqxWcSqvcDFAIMTUpNWXdkKNR2xuMPs0C9p4YMERcVYVgnhpOu6ywU3qd6OSTFT+nEEg9KpGb6ckAIEbeDC8PEzQLMJMTfqaODSWzYoMayOKfYRCQ1eRZQ0/9TSAqgrDfivDdEWiY9+0aVbPd3C8daeyD0+gtjtQZIsYR6SyghkhEnDx8qN677K+R1tPD+o1UGxqh/RT8+lT6zvWOcVwwnbDp1Q7nmNQ==
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM9PR10MB4277.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(366016)(1800799024)(23010399003)(921020)(18002099003)(22082099003)(6133799003)(4143699003)(56012099006)(11063799006)(3023799007);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?bk5ab0dtOVVxSW12YlJBdDZYNmdnWGtGUjNka0V4dk95QkxVMVArOHlxS25O?=
- =?utf-8?B?YkxNNnFmdklkZUhOak1LcDRWVFllVkxZSEpiVmZyUTN0dzN5S2pXTGNGNGI5?=
- =?utf-8?B?Q0ZiQnVuUUx2ZnBBQTFkSXBDdHFqaSswbHo3cFZWN2JFTnRaNUx5KzB3OG5a?=
- =?utf-8?B?UDl1WVNBUU9wMjl4UUtsdXVtUnJ4TnhrTTROOUpXUTU5eit0MUs4Y3lHMUdl?=
- =?utf-8?B?aWt4Wk10bm42RTJTUkJONzdXVG9RVGdETkhaOWthZG44bXhmYVNOb1Fob1pt?=
- =?utf-8?B?bzhTQ3o1Ulh3MmpWUTQ0ckw0SE5EVzh1SWk0SkxRZi9adjNiaTVXeWdlV2Nq?=
- =?utf-8?B?cXl5TGdUT09kcXpCRStQaW1OcmJCMDkyNzdmdFVxc2ZEd2FteHJlaWhpcHlN?=
- =?utf-8?B?WDRqZ3p2bldLVlI5SVRLNXFEM09GYkhNN3plYjd1WVA3R3Y5VERlckhhcnZT?=
- =?utf-8?B?RWlJNkgrNTZpM2ZkY3BHWVJnbnEzQjlRTkFHbXA2OVJLRkdBeGt4RGg5THVH?=
- =?utf-8?B?ZFl6dWdHUTZPclFzMkd5Y1UxWFBzSnJCV1BiSGFmc1ArN21LdFR5MFhERUFs?=
- =?utf-8?B?NHU1MTZYN2djS0NvenlKS3pzbE1hVFNIS3FlMklaeU9aNHhwTjR4UG9YY05B?=
- =?utf-8?B?UmpZZVlZa1drOUswNi92ZEFXaTliVXljWU1KOVVPald0eFR2QlcxK2JBaUxw?=
- =?utf-8?B?WW1IcXlQUk9mWFNxUnBmQldwNVlXWkZtMUowTFo3TFd3MHpFVEs1ckVHc3JU?=
- =?utf-8?B?Tnl0dFp3cnhnWjBTY3J1N3JabVZlWGx1YjEvMk5GYURvQTR0eS9SRE9ISDc2?=
- =?utf-8?B?Tm41QzZlUGloN0xYUGZZNCtWWG52Sm5nRTMvS01WTXNpYktTZ1QyQXdLQkNp?=
- =?utf-8?B?bVY2TTBYdXVCcnNUalBQaGZOSWxGeGhMTGFrQVJ0SElJQ2t5a0lwZlRnMEhL?=
- =?utf-8?B?aGxXSE5CL002cDE1K0UxRm94c1cyR01ZcHh5Y0FNOVpPUFNaUmRodzl1RDc4?=
- =?utf-8?B?YXNWdkFJU2trRmhQcktKb3ROYnNwdzBVVnJMVHRvYk44V2ZVR1E4Q0pXSlJq?=
- =?utf-8?B?N3YvTk9YZ05PbXZ5cEVVdlVQdlZZSDRwTE9wc1dhZmZNVy83M3c5OXBqamJm?=
- =?utf-8?B?UW5IalRnN3E4Tkl6aTIvQlZnblRScVg3b2lFbDd1eCtuU2hpTUs3WkFwemlZ?=
- =?utf-8?B?T0NwSHZHd1dKQmE2T3hBeGQydWpDK1hjVEo4U3NyRmtwd0hUd3ZZOVZUVDFr?=
- =?utf-8?B?dk5zMjFXdWQxcnByYWNYVEl2dHJ6TVdwck5tbDAzeUlDb0hMVHI2bk9PNitu?=
- =?utf-8?B?UWxYRzBRdEdFbTVpaWlwQmVVamxMbDBzeElPbEhKV0dOSzh3V1dxRFAzYjNG?=
- =?utf-8?B?aElIZ0NMdzdwa25YQUwwZmhRVHBEV1hCbkhPZ3VadzNTVDZFK1JMVkVNT044?=
- =?utf-8?B?ZXpOUkVUc3o5Y215VTlxcWNEb0s2bE1pYnVEaE1zRnErdXByaGJGL1h5dVVE?=
- =?utf-8?B?cms4U1JnZ0ViTVhTcU1leVNoSGtqbFFqOW45cEN4N1RjRUtzRzNjcmNaY1FP?=
- =?utf-8?B?RFp6R3ljaTVMMEFNRS85cXl2bUZjQ3JDeis2YTI5cCtrYUtnVkhaUmpQQ1hr?=
- =?utf-8?B?ekQvbHNKZHhNS1AzcEdXZGlOcWNvUmN4VGUzcHFBNGdic0lUaDZ5aGkyUmRs?=
- =?utf-8?B?YUNxRTVKaHY3aHlSemsxVzMycnk5ckFWd3VUTUxBajFES3YvanNWNWF4MXRa?=
- =?utf-8?B?b2s5b040R0tSZWhIZ25SZnM2ck5kaHdJWi9hWWYwNFhFaFVyRlY3dDl4b0Va?=
- =?utf-8?B?akNxMUdNUzZRNFNDRG83WXBHTlFGZEI0dU1WUmM2MTNZa3VNUnR3KzZyNWlQ?=
- =?utf-8?B?SHlwZ1BUMGxBSGo5ZXNId09Pc25MZXdrSm5ycUZmWk8xQys2WUtXc0Q1aUtD?=
- =?utf-8?B?Q0VHRFhFVFlmSUg4dzlsYmp1K3BWVVJvZXkxSVFnUXFzT1pnaGNKVE95dW0r?=
- =?utf-8?B?RHZvL1NaSHFBK09qbVViK203MVdaaXVqbFZqR3JYb0xIc3JUQ2c2Ni9uaWNL?=
- =?utf-8?B?VG5BaklRU3NIczRZNHVIMGEwVEUzQ0lJVENNM0lhVHJkQU1rN0hpMks3dzI3?=
- =?utf-8?B?b2FTNGZ5MFRVNE9XTDVXNTBQS2VaY0hPQm91VnIxeENmS0pNbVFvOFJYYW9k?=
- =?utf-8?B?eVlUeXoxMFV3eWsyNzVPUUI2ODkzY0JjYkpJQS9RdTN1VWhyVStQQlhHdVR3?=
- =?utf-8?B?cm5qRGRyUHl6WTJHRmpoSDFGYmJhcUhmK3JNcUtNdjRlNmpTdGhicW0ya1Y0?=
- =?utf-8?B?eTRlcHlzcmM5WkhYczlwK3Z6NjlZWWkvaWdhdDdJS0VLVWZEdE16YThSUWxv?=
- =?utf-8?Q?KIzSy81D/inkBECY=3D?=
-X-OriginatorOrg: kontron.de
-X-MS-Exchange-CrossTenant-Network-Message-Id: e5deb206-2f55-45d8-590e-08dee1795009
-X-MS-Exchange-CrossTenant-AuthSource: AM9PR10MB4277.EURPRD10.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Jul 2026 07:27:08.4796
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 8c9d3c97-3fd9-41c8-a2b1-646f3942daf1
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: inLEqRqH6CO8d1t7hg7vQ10LGC5r2vo9GvEr5eN2s3DR2HfTGzdG2hrf6HHPYM/G+5XFyiBaoVl0vC1imcc00ee8RElUWUZRVDEhDzwZ1sA=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU0PR10MB5310
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20260714-multicolor-default-v4-1-c2335b32bc39@pengutronix.de>
+X-B4-Tracking: v=1; b=H4sIAKbmVWoC/33NQQ6DIBCF4as0rEszgErSVe/RdCEwKI0VA2psj
+ Hcv2o1JTZd/MvO9mUQMDiO5nmYScHTR+TZFdj4RXZdthdSZ1IQDL6CAjL6GpnfaNz5Qg7ZMRRl
+ DoVAbhLwk6bELaN20offHt+Ognqj7VVovahd7H97b6sjWu78DI6NAFUhlbSZYLuStw7Ya+uBbN
+ 10MknVl5HsnP3R4ctCA5JIZWyg4dMTOEXDoCMooz3TOJOhSaPPjLMvyASQDbW5bAQAA
+X-Change-ID: 20260604-multicolor-default-11e3becde05a
+To: Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Jacek Anaszewski <jacek.anaszewski@gmail.com>, 
+ Sven Schwermer <sven.schwermer@disruptive-technologies.com>
+Cc: Pavel Machek <pavel@ucw.cz>, linux-leds@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ kernel@pengutronix.de, Stefan Wahren <wahrenst@gmx.net>, 
+ Conor Dooley <conor.dooley@microchip.com>, 
+ Jonas Rebmann <jre@pengutronix.de>
+X-Mailer: b4 0.16-dev
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3441; i=jre@pengutronix.de;
+ h=from:subject:message-id; bh=BvI5f/SGs3rOnIaf937RzhNNvfMs8aUchvXoAXE8+Rg=;
+ b=owGbwMvMwCV2ZcYT3onnbjcwnlZLYsgKfXbGNpVL5iz793N/NPxfZc8RD66JvevHkXT5yvyMI
+ O02G3/mjlIWBjEuBlkxRZZYNTkFIWP/62aVdrEwc1iZQIYwcHEKwEQOLWL4K5tz9771zUue6S1a
+ qzMfCrz96PH7+PU3qz5wvL1dLxJzNpSRYdI51seijm9LZ27v6LD8b30/kWdFxDeey7v1FJ2m7Lh
+ gxwEA
+X-Developer-Key: i=jre@pengutronix.de; a=openpgp;
+ fpr=0B7B750D5D3CD21B3B130DE8B61515E135CD49B5
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:1101:1d::ac
+X-SA-Exim-Mail-From: jre@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [1.84 / 15.00];
+X-Spamd-Result: default: False [0.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
-	R_DKIM_ALLOW(-0.20)[kontron.de:s=selector1];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-325965-lists,devicetree=lfdr.de];
+	DMARC_NA(0.00)[pengutronix.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:lee@kernel.org,m:pavel@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:jacek.anaszewski@gmail.com,m:sven.schwermer@disruptive-technologies.com,m:pavel@ucw.cz,m:linux-leds@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:kernel@pengutronix.de,m:wahrenst@gmx.net,m:conor.dooley@microchip.com,m:jre@pengutronix.de,m:krzk@kernel.org,m:conor@kernel.org,m:jacekanaszewski@gmail.com,s:lists@lfdr.de];
+	FREEMAIL_TO(0.00)[kernel.org,gmail.com,disruptive-technologies.com];
+	FORGED_SENDER(0.00)[jre@pengutronix.de,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	TAGGED_FROM(0.00)[bounces-325967-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:Frank.Li@nxp.com,m:corbet@lwn.net,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:shawnguo@kernel.org,m:s.hauer@pengutronix.de,m:kernel@pengutronix.de,m:festevam@gmail.com,m:pankaj.gupta@nxp.com,m:linux-doc@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:imx@lists.linux.dev,m:linux-arm-kernel@lists.infradead.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FREEMAIL_TO(0.00)[nxp.com,lwn.net,kernel.org,pengutronix.de,gmail.com];
-	DMARC_NA(0.00)[kontron.de];
-	FORGED_SENDER(0.00)[frieder.schrempf@kontron.de,devicetree@vger.kernel.org];
 	FORWARDED(0.00)[lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kontron.de:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[frieder.schrempf@kontron.de,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jre@pengutronix.de,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[ucw.cz,vger.kernel.org,pengutronix.de,gmx.net,microchip.com];
+	R_DKIM_NA(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,i.mx:url]
+	MID_RHS_MATCH_FROM(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[pengutronix.de:from_mime,pengutronix.de:email,pengutronix.de:mid,vger.kernel.org:from_smtp,msgid.link:url,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,microchip.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 26174751DAE
+X-Rspamd-Queue-Id: 62BC775200E
 
-On 05.05.26 17:53, Frank Li wrote:
-> 
-> On Thu, 22 Jan 2026 17:19:12 +0530, Pankaj Gupta wrote:
->> The NXP's i.MX EdgeLock Enclave, a HW IP creating an embedded secure
->> enclave within the SoC boundary to enable features like
->> - HSM
->> - SHE
->> - V2X
->>
->> Communicates via message unit with linux kernel. This driver is
->> enables communication ensuring well defined message sequence protocol
->> between Application Core and enclave's firmware.
->>
->> [...]
-> 
-> Applied, thanks!
-> 
-> [1/7] Documentation/firmware: add imx/se to other_interfaces
->       commit: 3b4531c6e0f4c8874f0266853a410438eda1fc24
-> [2/7] dt-bindings: arm: fsl: add imx-se-fw binding doc
->       commit: 4d7bcf0869686d7d7fbf16244453b987e5ca6d14
-> [3/7] firmware: imx: add driver for NXP EdgeLock Enclave
->       commit: 338529a73c2bf2c277013b745cfe6f19b84b70af
-> [4/7] firmware: imx: device context dedicated to priv
->       commit: 2d733ed67f608ee85abb854157011f88d7f280a8
-> [5/7] firmware: drivers: imx: adds miscdev
->       commit: 4de71839142b5f43846e3593f4eb236e1d733885
-What happened to these patches?
+Document the default-intensity property to set a default color on
+multicolor LEDs.
 
-They were part of linux-next for quite some time (up to next-20260630)
-and then they disappeared (missing in next-20260701).
+Update pwm-multicolor to support it and update the example to turn the
+LED red on boot.
 
-I didn't find any hint where or why they were dropped.
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Signed-off-by: Jonas Rebmann <jre@pengutronix.de>
+---
+Changes in v4:
+- Move default to leds-pwm-multicolor.yaml as other drivers have other
+  defaults (Thanks, Conor)
+- Move definition of default-intensity property next to default-brightness
+- Slighly improve description
+- Link to v3: https://patch.msgid.link/20260630-multicolor-default-v3-1-24c5170ca3cd@pengutronix.de
+
+Changes in v3:
+- make default-intensity property description more generic and less
+  redundant (Thanks, Conor)
+- Drop applied patch that introduces the property (Thanks, Lee)
+- Link to v2: https://patch.msgid.link/20260605-multicolor-default-v2-0-ed07271df6b0@pengutronix.de
+
+Changes in v2:
+- dt-bindings: Use correct property name in example
+- dt-bindings: Add missing word in property description
+- Link to v1: https://patch.msgid.link/20260604-multicolor-default-v1-0-b07bff431537@pengutronix.de
+---
+ Documentation/devicetree/bindings/leds/common.yaml              | 9 +++++++++
+ Documentation/devicetree/bindings/leds/leds-pwm-multicolor.yaml | 5 +++++
+ 2 files changed, 14 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/leds/common.yaml b/Documentation/devicetree/bindings/leds/common.yaml
+index f4e44b33f56d..3e6f913070b0 100644
+--- a/Documentation/devicetree/bindings/leds/common.yaml
++++ b/Documentation/devicetree/bindings/leds/common.yaml
+@@ -179,6 +179,15 @@ properties:
+       initialization. If the option is not set then max brightness is used.
+     $ref: /schemas/types.yaml#/definitions/uint32
+ 
++  default-intensity:
++    description:
++      The initial intensity of the LED color component. As the intensity of
++      each sub-LED is multiplied by the overall brightness, without this
++      property on a sub-LED, it may effectively be initialized at a brightness
++      of 0 regardless of its linux,default-trigger and default-brightness
++      properties.
++    $ref: /schemas/types.yaml#/definitions/uint32
++
+   panic-indicator:
+     description:
+       This property specifies that the LED should be used, if at all possible,
+diff --git a/Documentation/devicetree/bindings/leds/leds-pwm-multicolor.yaml b/Documentation/devicetree/bindings/leds/leds-pwm-multicolor.yaml
+index a31a202afe5c..08e28c5f08a8 100644
+--- a/Documentation/devicetree/bindings/leds/leds-pwm-multicolor.yaml
++++ b/Documentation/devicetree/bindings/leds/leds-pwm-multicolor.yaml
+@@ -45,6 +45,9 @@ properties:
+ 
+           color: true
+ 
++          default-intensity:
++            default: 0
++
+         required:
+           - pwms
+           - color
+@@ -63,12 +66,14 @@ examples:
+ 
+         multi-led {
+             color = <LED_COLOR_ID_RGB>;
++            linux,default-trigger = "default-on";
+             function = LED_FUNCTION_INDICATOR;
+             max-brightness = <65535>;
+ 
+             led-red {
+                 pwms = <&pwm1 0 1000000>;
+                 color = <LED_COLOR_ID_RED>;
++                default-intensity = <65535>;
+             };
+ 
+             led-green {
+
+---
+base-commit: dc59e4fea9d83f03bad6bddf3fa2e52491777482
+change-id: 20260604-multicolor-default-11e3becde05a
+
+Best regards,
+--  
+Jonas Rebmann <jre@pengutronix.de>
+
 
