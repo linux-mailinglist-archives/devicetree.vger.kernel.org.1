@@ -1,86 +1,86 @@
-Return-Path: <devicetree+bounces-326571-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-326575-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id yPboLQDFVmoIBAEAu9opvQ
-	(envelope-from <devicetree+bounces-326571-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 01:23:44 +0200
+	id RMpqAxrFVmoQBAEAu9opvQ
+	(envelope-from <devicetree+bounces-326575-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 01:24:10 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69DD7759655
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 01:23:44 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0372775966D
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 01:24:09 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=baylibre.com header.s=google header.b=eBpoK6kU;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326571-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-326571-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=baylibre.com header.s=google header.b=T1GT3o0c;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326575-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-326575-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=none;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id F0EF730730C5
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 23:22:42 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 825983022A4F
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 23:22:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8387A433E89;
-	Tue, 14 Jul 2026 23:22:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39B9243B4B9;
+	Tue, 14 Jul 2026 23:22:49 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f42.google.com (mail-ot1-f42.google.com [209.85.210.42])
+Received: from mail-oo1-f47.google.com (mail-oo1-f47.google.com [209.85.161.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CA6A42BE95
-	for <devicetree@vger.kernel.org>; Tue, 14 Jul 2026 23:22:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACA48432E73
+	for <devicetree@vger.kernel.org>; Tue, 14 Jul 2026 23:22:35 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1784071362; cv=none; b=keuoK5sDu7ApEZwHn27sTPGwtGrzgXB2szpxWx6ZfKf4U/OzeOQWzfPuhelIB74t3Y+XurepPfI0djaEt9TS3d1ewSb6RmY6QE+wCOz/55+qbt6DwG6hnowocf7Yi6LP0ZQtUoxmXIwaPWzCjiU6cxmX7Pwn3NkeJu/5mW8CEh4=
+	t=1784071369; cv=none; b=H2jFbIl1EsK9C2iy/4lAbwFxOFVEpZMOnoStivkr77hNDCuMceEvlkZ9fhSf67lLxGPqv+VbDsh5SLYpW65NMQJH1Dv+/g1O+1Yi250u5SjYh0pLZ8mf9BSQG1D2kAOcpEneA7UwNbunETi4Xx+gtBT+dv2aSpm32XDn6HV0pFQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1784071362; c=relaxed/simple;
-	bh=LEjJwrRNUy+HCSKs2f61e3PZbbPkd/lwRYELOdd5SZ8=;
+	s=arc-20240116; t=1784071369; c=relaxed/simple;
+	bh=TfVJkaOJjR+FVvEc3u4C1RbJVpPaZ8OuJ8zPygdP9l0=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=mjxA65sYfltshCrvwQ/NgMLL8UOIa+eRzvOgsAiDNygDE/5z5T19kDLaWH21Yy1ZwGOH+XdD1hMNCkzoVk7Zlta/PMjeZ8LweAKU3iOxr7E2HJ17yGXua94J4VAQ2BC2UV1F8dfA8ydolJL5FgPjRDD3/Nj9SK0ValoT8u+lC2c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.b=eBpoK6kU; arc=none smtp.client-ip=209.85.210.42
-Received: by mail-ot1-f42.google.com with SMTP id 46e09a7af769-7e9eaf04bfaso1777038a34.1
-        for <devicetree@vger.kernel.org>; Tue, 14 Jul 2026 16:22:33 -0700 (PDT)
+	 In-Reply-To:To:Cc; b=XclUR9x26b6jVnH9gve5Wl0wBhEr6RfCebWhbs1xRFfo6HYMiSxMSUW46SgK7betGrHY2AG3x0Zo2e+nloUG+aD4rJKZAbQkE0GbVV9MFueG+lzKWnkexGNBxz9A2+nUvim5EfPQ0pz3wwHTXpfZkMiIhnyoj8xZ2vldbAjESCg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.b=T1GT3o0c; arc=none smtp.client-ip=209.85.161.47
+Received: by mail-oo1-f47.google.com with SMTP id 006d021491bc7-6a1888969ddso2792547eaf.3
+        for <devicetree@vger.kernel.org>; Tue, 14 Jul 2026 16:22:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre.com; s=google; t=1784071352; x=1784676152; darn=vger.kernel.org;
+        d=baylibre.com; s=google; t=1784071354; x=1784676154; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=sjXBokAks/glcKCcc156LiwQ/sZ+5R4jJR8EnJbEndw=;
-        b=eBpoK6kUJVcGbppkra7KsyT7rmKqVcUte8TvWcL7jU5SLj5ucXpJiIdBMHIKzpRMeC
-         GcMf3tmZTAFpaOesV6L5NMPm2ms3hduGarnS6Op013G/t3SaquwKx/hgtVfpnx51X+yf
-         52ddgML/yt/HfUuCB12Uz/92lvMkzSjlCvoDF3BlrdJX9XPGbAuZMS7lf4KrUw3yaSrW
-         +FbUycxdsUm/JklnAsuRgazeEju8hVS402eE7ZVXkF3E985x3Ar9YElqJN8knolDvnWb
-         TIIUOxrOpVAmGRyUT0W62JICTii6aRPZzZMjJuq9S5yuefG2TQTG5tUOC0HXhhev6KBW
-         f/rA==
+        bh=S6toAopr8F8rTSSWjDWDH2rtjDknkrCnbrvnm6omNuY=;
+        b=T1GT3o0c76FuNUkSFWHMuuPVTOfezivPGnTZlW+h0I6vLADo+HsiHDNYtpoAukeYlv
+         4abpoHzayrS0SVJH4YCUUi4cizuEVV/C1YToev08hgrhwi5Ys0XwtKY9ClBoWtD9FLsH
+         Bn1WFOgOko9md19FLM+fT40KwsAdBYFo+2vPTBjZIFEL0AfwALu2z5WSeFx1i+Gthqju
+         ta+xDAF7oalrTDJ7FgJ0FM8yPFTWFtPjJaVDVRfL5xCcUMtefnYUV6EkKGQ/m8n0dHse
+         G2YinPbmqJbll1TQp+pi6trd6t9/cGJoyoTgHC/mFCW8lcynU7OkT5BdgD0pX9lY46Kr
+         4VFg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1784071352; x=1784676152;
+        d=1e100.net; s=20251104; t=1784071354; x=1784676154;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=sjXBokAks/glcKCcc156LiwQ/sZ+5R4jJR8EnJbEndw=;
-        b=T/aPt/s/mV42aWqVdEmANdZsSTUZy3GWdm883vw/CmbxEn1TlpG0nI+rI8iyytRass
-         rWHDTXv6BXKdtDIrcXSU7zdM13Vqw7bsAveRYT98WI0N/U/hMzwtppH/Jj+q9JwM5C4+
-         1hZoL/Zl4kjyvHvxMRt5/sxO6RoMgd9+dU0H/63TvVb9NNRMfnyFIFOCpQzogJpKaYBC
-         DIySWIpFuOcTIKcfWrIItmPSK922UoCjPRcMnhaDp9ftXNx16myN7UmXw0y+u94k6wur
-         zcSZQSL3g0inscTzNiVEiKDjyCNNMSrO7TmAbnm27GcPqJD6DCbyCXOyxsIhM3Lb7YYn
-         wF6Q==
-X-Forwarded-Encrypted: i=1; AFNElJ/a6LASJarSqIPnjtWQzqQbC2iiaT8Hzf7FbHDzTmCS0IOiA1bS7cbV4vp15MJ+4RC2gxr/KU71xZZh@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw6y/E/9l33UGmM0y/wlq+EFoYB+gF2vzjVAOTRcMXJAFgpncyL
-	8GoeyKp70szqzHibfjf0Q1ZVx17DGi8kAPElo8Usw0Klhujay6Ll2/KoptxHjCM3RGw=
-X-Gm-Gg: AfdE7ckNSsSTkuZm+wWqukNUj791x2bHa36WTFBA4IK8prjHTD0naQI9j1wj3v1kqbS
-	yE53lDqZcQwee7MCTRMbClK2EoBjOeMJgUkIRlqX2a93qBuUK9ZIh7PORiU3UjNfdaltV1hrUZq
-	sXtZhD0Lf+LuTQxEQ3Sk1a3qD809LL0/C6/4qDCIUtFWCX0UyIvJX8/TcI7zp2/G5Mehk2O6MK3
-	IAZo9pN3F9SpGoMiELQgM69FB7/v98LouvtkwLR/pIYCww+C3CuUwPlu3I7OZIAmuu/oVkSszLS
-	58RA+rEPzL43H1U56x7Ndc0HFIyP8xnAAZdDdr9VY1iCDnUl7XoT4eCbKDg23XUVLt0roAnZsfB
-	efbc4RmBo95Aqxvo6dmkgeFxQ6lqLeVgh1AKYWLD4yjyqTaLKJkkRVEyOfv1UPN0THyNq6sZHfp
-	3CyHKbzO6lKY3k20FYow==
-X-Received: by 2002:a05:6820:f0a:b0:6a3:bdc5:5910 with SMTP id 006d021491bc7-6a3da004a17mr410773eaf.37.1784071352423;
-        Tue, 14 Jul 2026 16:22:32 -0700 (PDT)
+        bh=S6toAopr8F8rTSSWjDWDH2rtjDknkrCnbrvnm6omNuY=;
+        b=Dw6N94xu1ZjqoLz6SXIEi8TQMraHiDBTbaN+5/4C+ZtBuyVA1hIYqql79bG1I81TuL
+         Kf/5L8/GxU7RIL2VcM3Esipd1rFj/fU2prHaHjKOgZBsuyqjEa0XqZdjs85yksKfCpNO
+         D6heH7iAhzWXDScMMyluVaD5neSycH9KXPmmQh+X2Rb+3GHAQwwjRRn5ubb7M3ACBHyH
+         I4JlITjWjN41g+/dHDbmGO9k78KlkYeX3TEnec1x+7t/vHbZM7cqGNy0EMA7q05o9iMh
+         fkLVgNY5/qwI7WDMuBbKIRNn4Fe/8B4ZmqHwSWj82PqYwSskRQYq46bH1gUfWw6sVKOF
+         AiLg==
+X-Forwarded-Encrypted: i=1; AFNElJ+uExACpAeU9mg53axNztzDcQTWMxUyg8hv866SsOuOhmdhfRn86deYb7jlwLEUbW73QCrfuttS8yTn@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz9MOhcVBw1/PyiTttwLrwmWdYVUUh958mA8SxQSzcmZtfdq8bm
+	TBNiGhI3TP6LqVmXjxD5A6cqqj+1/1hWqX7B/9JGGP+iIGP8FpMGa1Y0FzTrFud6Qeo=
+X-Gm-Gg: AfdE7cmH3PdNPQWhl2j3NwYojAL4Jpk58VFU8fFd1txU2vzOzFELeQT1/GV4ihDuoMI
+	wcLwfopYwe22glArj3Ogk8OGce7KS5t0y24j8ROQumc1thSHw+0jnfjEm97od9Of0/+I6Z6EEEL
+	WwPjI1yJJtc5ywoxn7tD841sqTToybqvh5AwfQI3Hyxs+p652gNFZSZDDt5M9ocERN0E0KhB3L8
+	q6mxXf1WVY+vLNjVdbbTC+x2+cTrK2DKgkcLMqHrw2/4S9aVtPAwZ9AKB+FAd14wWmBW+hF6K/0
+	cON9OU0aSZiL1OYw1hO+ztEA0c9A27cBWiZ1RsM5aQr/bJs1o6y5itEAgvXUzBeWHXomwllkZzB
+	QBY3+9KPLl+wSGHumRPxEhuQwPoTNigy8vRZTe6/iydqdidoCf0NyUP2eH4U2op6ot4rWHKTtC+
+	+G+osDYwQRTx+UbOIa0Q==
+X-Received: by 2002:a05:6820:174f:b0:69e:b41f:1963 with SMTP id 006d021491bc7-6a3cbbd4a5fmr2341508eaf.48.1784071354502;
+        Tue, 14 Jul 2026 16:22:34 -0700 (PDT)
 Received: from [127.0.1.1] ([2600:8803:e7e4:500:280e:69fd:7612:d5a9])
-        by smtp.gmail.com with ESMTPSA id 006d021491bc7-6a39af0e953sm7561978eaf.3.2026.07.14.16.22.30
+        by smtp.gmail.com with ESMTPSA id 006d021491bc7-6a39af0e953sm7561978eaf.3.2026.07.14.16.22.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Jul 2026 16:22:30 -0700 (PDT)
+        Tue, 14 Jul 2026 16:22:34 -0700 (PDT)
 From: David Lechner <dlechner@baylibre.com>
-Date: Tue, 14 Jul 2026 18:21:24 -0500
-Subject: [PATCH v4 2/8] dt-bindings: iio: adc: Add excitation current
- sources properties
+Date: Tue, 14 Jul 2026 18:21:25 -0500
+Subject: [PATCH v4 3/8] dt-bindings: iio: adc: Add burn-out current
+ properties
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -89,7 +89,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260714-iio-adc-ti-ads122c14-v4-2-25f8e3084485@baylibre.com>
+Message-Id: <20260714-iio-adc-ti-ads122c14-v4-3-25f8e3084485@baylibre.com>
 References: <20260714-iio-adc-ti-ads122c14-v4-0-25f8e3084485@baylibre.com>
 In-Reply-To: <20260714-iio-adc-ti-ads122c14-v4-0-25f8e3084485@baylibre.com>
 To: Jonathan Cameron <jic23@kernel.org>, 
@@ -103,15 +103,15 @@ Cc: Chris Hall <c-hall@ti.com>, Patrick Edwards <pedwards@ti.com>,
  linux-kernel@vger.kernel.org, David Lechner <dlechner@baylibre.com>, 
  Conor Dooley <conor.dooley@microchip.com>
 X-Mailer: b4 0.16-dev
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2227; i=dlechner@baylibre.com;
- h=from:subject:message-id; bh=96e2F9/YVY8qwuX8Jw8IiU0nLEgtbp30DvDE9oQfRe4=;
- b=owEBbQGS/pANAwAKAcLMIAH/AY/AAcsmYgBqVsSEZ8CkvjR262q2YkB685P0STJushRPgz7KX
- 6YT/l22ByCJATMEAAEKAB0WIQTsGNmeYg6D1pzYaJjCzCAB/wGPwAUCalbEhAAKCRDCzCAB/wGP
- wCXgCACbIGSHdaMyWKeHrBYL3DjmFKDNe+U6zIL00vffpkxo0o7CwPzkDvh9bfOD3eJNg1u0y3l
- 2xhc3SF24o50+kejshbKaX4PzpbDcZJ0t8S8JOPcMFfd/E3mMcrgsCQMV1dX6ghs/J5n5IEBXX1
- 6y46iTfBKTQY1YuHgB5BVAYDgWHUZvB1kHGRDuFpsFFyUa68XKzJAP94bADwZUHfRDaoU+e7HpS
- HRJSfmhroYvGTy/lqAm2E3qiESIO4th59V2oPhi47QFXm5adH0yHBovRqu2zUejJErGzqNtzahd
- YFwqfJZ0PxWU+UgZ4P8XunFvJsnncTCYRMuXRTIQKrF6s4dw
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1218; i=dlechner@baylibre.com;
+ h=from:subject:message-id; bh=+GUNuuQMtib4Kibx1H+tAJiwv94cfO9xjtvXTTsu6EE=;
+ b=owEBbQGS/pANAwAKAcLMIAH/AY/AAcsmYgBqVsSK2ikdAzyGcKq5rUo+8ZJ2AvgO5A2eHZ4U9
+ CcKvt7ojLuJATMEAAEKAB0WIQTsGNmeYg6D1pzYaJjCzCAB/wGPwAUCalbEigAKCRDCzCAB/wGP
+ wJysB/9XlInnk9loRJLMo2JjVVmYH85uIxCwTOFEILsZbeDdS9cjEofLQkwJPzqRzQZ8qmQKvjS
+ FQP6yw//jnCqzuAlzHSUwbWLQ6W7HkqJuqrTbcRUrYiMd3c4mz8Q8KKlLYlrSWR2ttwl96ptPI+
+ 5iqB4ae43XBtvButX/ehtkUdNgEuW46lMiX8ueBMvFx7BSQspxVgeqqQdZ++A+u57X/aRvPvuA8
+ ywTOuIw+EBAtp2ukaipdrnFGGQENzVyj7yM2aO+0P6xaE3uLbxw3IjjMgMoOfB0+zRC1I+ZW5Lu
+ Y1O6AZlJOwBmFHtZQWLcIAX31m83L3qlc3FlXfS/CmfqQDbX
 X-Developer-Key: i=dlechner@baylibre.com; a=openpgp;
  fpr=8A73D82A6A1F509907F373881F8AF88C82F77C03
 X-Rspamd-Action: no action
@@ -119,12 +119,12 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	R_DKIM_ALLOW(-0.20)[baylibre.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-326571-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-326575-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS(0.00)[m:jic23@kernel.org,m:nuno.sa@analog.com,m:andy@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:c-hall@ti.com,m:pedwards@ti.com,m:kuurtb@gmail.com,m:zizuzacker@gmail.com,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:dlechner@baylibre.com,m:conor.dooley@microchip.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER(0.00)[dlechner@baylibre.com,devicetree@vger.kernel.org];
@@ -134,7 +134,7 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
 	FREEMAIL_CC(0.00)[ti.com,gmail.com,vger.kernel.org,baylibre.com,microchip.com];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
@@ -147,60 +147,40 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,baylibre.com:from_mime,baylibre.com:mid,baylibre.com:email,baylibre.com:dkim,microchip.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,baylibre.com:from_mime,baylibre.com:mid,baylibre.com:email,baylibre.com:dkim,microchip.com:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 69DD7759655
+X-Rspamd-Queue-Id: 0372775966D
 
 From: Kurt Borja <kuurtb@gmail.com>
 
-Some ADCs incorporate current sources that provide excitation current to
-resistive temperature devices (RTDs), thermistors, diodes and other
-resistive sensors that require constant current biasing.
+Some ADCs incorporate burn-out current sources that provide current to
+the channel's input pins for open-circuit or short-circuit detection.
 
 Signed-off-by: Kurt Borja <kuurtb@gmail.com>
 Acked-by: Conor Dooley <conor.dooley@microchip.com>
 Signed-off-by: David Lechner (TI) <dlechner@baylibre.com>
 ---
-v4 changes:
-* Add sentence about values being pins like diff-channels and
-  single-channel properties.
+v3 changes:
+* Removed maxItems.
 
 v2 changes (compared to Kurt's RFC v2):
-* Make units nanoamps instead of microamps to fit known devices.
-* Drop bit about allowing single value for multiple channels.
-* Add bit about semantics of the array index.
+* Changed units from microamps to nanoamps to fit known devices.
 ---
- Documentation/devicetree/bindings/iio/adc/adc.yaml | 21 +++++++++++++++++++++
- 1 file changed, 21 insertions(+)
+ Documentation/devicetree/bindings/iio/adc/adc.yaml | 5 +++++
+ 1 file changed, 5 insertions(+)
 
 diff --git a/Documentation/devicetree/bindings/iio/adc/adc.yaml b/Documentation/devicetree/bindings/iio/adc/adc.yaml
-index 8f608bf0b24d..9f7196d61ac3 100644
+index 9f7196d61ac3..e1da63119648 100644
 --- a/Documentation/devicetree/bindings/iio/adc/adc.yaml
 +++ b/Documentation/devicetree/bindings/iio/adc/adc.yaml
-@@ -80,6 +80,27 @@ properties:
-       ADCs usually allow choosing between internal reference sources or a pair
-       of external pins.
+@@ -101,6 +101,11 @@ properties:
+       sources. The index in the array corresponds to the same index in the
+       excitation-channels array.
  
-+  excitation-channels:
-+    $ref: /schemas/types.yaml#/definitions/uint32-array
++  burn-out-current-nanoamp:
 +    description:
-+      Excitation current sources provide current to resistive temperature
-+      devices (RTDs), thermistors, diodes and other resistive sensors that
-+      require constant current biasing.
-+
-+      This array describes the mux configuration of the excitation current
-+      sources. The values correspond to pins similar to the diff-channels and
-+      single-channel properties.
-+
-+  excitation-current-nanoamp:
-+    description:
-+      Excitation current sources provide current to resistive temperature
-+      devices (RTDs), thermistors, diodes and other resistive sensors that
-+      require constant current biasing.
-+
-+      This array describes the current configuration of the excitation current
-+      sources. The index in the array corresponds to the same index in the
-+      excitation-channels array.
++      Burn-out current sources provide current to the channel's input pins for
++      open-circuit or short-circuit detection.
 +
  anyOf:
    - oneOf:
