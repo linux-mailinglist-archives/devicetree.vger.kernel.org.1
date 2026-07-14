@@ -1,58 +1,57 @@
-Return-Path: <devicetree+bounces-326077-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-326078-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id qFHNOgUQVmrPygAAu9opvQ
-	(envelope-from <devicetree+bounces-326077-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 12:31:33 +0200
+	id ZBNxLxMQVmrYygAAu9opvQ
+	(envelope-from <devicetree+bounces-326078-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 12:31:47 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 80BC57536E1
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 12:31:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D0B87536FE
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 12:31:47 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20201202 header.b=gHr3YTi8;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326077-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-326077-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20201202 header.b=t35gmi7u;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326078-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-326078-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2645B3084609
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 10:28:49 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 3B26A30D0BA0
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 10:28:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 350E937204A;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DE643769EF;
 	Tue, 14 Jul 2026 10:28:47 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0CA6B370ADA;
-	Tue, 14 Jul 2026 10:28:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4490F372EE2;
+	Tue, 14 Jul 2026 10:28:47 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1784024927; cv=none; b=oCu0EP52uCsMS/8mw4hfRFH+rHCd9ohZSKZqUeuK+0baNoUCC0lbCLmZJlZ80jxKSRStkdq+QOKoj9pZYznS0wkMmRhGvhxvuxD+28plEZC/FRCGGWrdqDZ6X83V9nGt6d7NEALAC0FhSVT+Bk3uUbAXVj7mRJddi2CTKnh5i6o=
+	t=1784024927; cv=none; b=trWudTvmqdakjiOi0TRsO3qjW4+qxJwHof5xwoNZMYOAxv7bz4hFkDtJfYzUrGoZ/LO+CSQ4xniypqcJD+L+YdzJu+W/cAeLSFiHSubvDxu/ldTCZ5wRzDkNMymVV6DXOpqnTsbiK5RBsc6xeCILemFignpeYk+9WUyI/F83fGw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1784024927; c=relaxed/simple;
-	bh=LTBMkiOmw98UTxWEbpAQ9H5QlhAKTpgEXEjclnTOmAE=;
+	bh=iVgLZlJQ+vMNolXxqzGao5tv1EtYdzquxCIotgcJLJc=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=jdtWgwVJxGU/qnYLMx+D+vaeslbS66hGvutATk8bO9p/USYq+sueLj2abLhvD4QIMJpjPPncTTgO+edh3hEFzGhhfLLnyP5Iue3845OfXEY7R/W9uFiq7+d/GLOAqHS9053SlCUntGseyihXf4a/MWlXJjiOaW6wHvXYbrYieYU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gHr3YTi8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id BA166C2BCF6;
+	 In-Reply-To:To:Cc; b=O0FqnZuDbDupI4OzDlANydpdfnqNqh5MdDa8Njm93/v4TrR5eQp1oO4aviYiQu6kLO1mBs9PxnsS/80Xey/yvfTXGjmT/eQ5lCSjcM3BJSJU0in4ZOZg0Qp/VYIvy3EOUJfLSF5gzHuWMLOT78hSKG669bt2zbkAkt8fi8L334k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=t35gmi7u; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id CAD5EC2BD00;
 	Tue, 14 Jul 2026 10:28:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1784024926;
-	bh=LTBMkiOmw98UTxWEbpAQ9H5QlhAKTpgEXEjclnTOmAE=;
+	bh=iVgLZlJQ+vMNolXxqzGao5tv1EtYdzquxCIotgcJLJc=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=gHr3YTi8pKSiWEpP/wdKvUSQTH0i2dzJvyxIFBCvT58XPSFYabymZ0G07KdkDbDa4
-	 qSupei/lgH8Dcz2caJOalvi3ITWOl/0U/EwN/A1lD1W/lgFVUeqqW7QxlnanzX9O1q
-	 9oULsevwSyVNgOMncHN+rfCJJlQMmExjPVLqVN435ML9YH+W4DjISzep3SF4qXm7sA
-	 i8qpIfMtFxSqnwFvgtVIKDiaJPivCRAXdHXIqvJpKMNldTMzoMilunvcLNq1dXIrB8
-	 WT6b3+0VpQJkwWL24vyjqsFvPlN8PmSmm3eyF7qo8KqDEKqyLAtsUxUWW4WB2aX7EA
-	 1LXXLFfis6qtg==
+	b=t35gmi7uKtBrLA+I1udsLGXZpkRUxo7suahFfAGRqAJA8sLMFqJgUtkJ2egOTVi7i
+	 0DVjTwK2cGvlxNYpRGn6+XlMLl/6z3NVE2gyTj8UIq6ZIqPK+WUuSnN78TMOcisYOA
+	 e2lUyvyRE5GLSuMPiM5RIu+BpflpdRGFAoWXDew75QYuAaCzJdmeeArc0HQEX+M6ID
+	 LAc/tQKmQXNt0NGdEa1VgBpFAR8aREJts7gHgobU7q94BrE3Sn68x17E+A8NFn3EJL
+	 wXmXM3Ak1t2aRw3kk5z9W/Sx1GCtzQpWlg+1bg2RDLFDJa7YTgPrZIj1YuJctpF9F/
+	 Oxr5e6ku5TPUA==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A7E89C44508;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B8759C44507;
 	Tue, 14 Jul 2026 10:28:46 +0000 (UTC)
 From: Haoning CHENG via B4 Relay <devnull+Haoning.CHENG.cn.bosch.com@kernel.org>
-Date: Tue, 14 Jul 2026 18:28:42 +0800
-Subject: [PATCH v8 2/3] thermal/drivers/imx: Fix rounding and clamp for
- i.MX7D alarm
+Date: Tue, 14 Jul 2026 18:28:43 +0800
+Subject: [PATCH v8 3/3] thermal/drivers/imx: Add calibration offset support
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,8 +59,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260714-b4-symana21-11221-imx-thermal-support-upstream-6-18-v8-2-d54d8690e16e@cn.bosch.com>
+Content-Transfer-Encoding: 8bit
+Message-Id: <20260714-b4-symana21-11221-imx-thermal-support-upstream-6-18-v8-3-d54d8690e16e@cn.bosch.com>
 References: <20260714-b4-symana21-11221-imx-thermal-support-upstream-6-18-v8-0-d54d8690e16e@cn.bosch.com>
 In-Reply-To: <20260714-b4-symana21-11221-imx-thermal-support-upstream-6-18-v8-0-d54d8690e16e@cn.bosch.com>
 To: "Rafael J. Wysocki" <rafael@kernel.org>, 
@@ -76,11 +75,11 @@ Cc: linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
  imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
  linux-kernel@vger.kernel.org, Haoning CHENG <Haoning.CHENG@cn.bosch.com>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1784024921; l=1614;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1784024921; l=4200;
  i=Haoning.CHENG@cn.bosch.com; s=20260709; h=from:subject:message-id;
- bh=1JBV0u3QEY1X06yF+bBAxZo8ixtbx4eg4tQIOMJHWHs=;
- b=LslAkJd+wyxZebCbOnxK6QkqPn42J1gBAC0+EEqd81HxjetCdZIuFcuu9dcZflFdJgFrONEix
- D0jBwdItWe3AExsdqpDQrGB5K5kdWq6HGSMGBbC1D+V0wco9qbQ3O3z
+ bh=fVZ8/nh0Wo4y9uiBm2vp04dsfqXgZZNI2dShzcEryTw=;
+ b=/WnMq2zuNxvlbasuk2ft8ic81S5ZQT/nP29GZ+kVVgzJyYNVKsh42yxesFUiCuu0l94a4R6EH
+ jNpzUSgxAk+AinG6HBgTnVpMp+wV9sQvEhQDlQAGyMwUq6U5P8ZiuYB
 X-Developer-Key: i=Haoning.CHENG@cn.bosch.com; a=ed25519;
  pk=glQGwad/fosRS5gZUJYbLDPPLGe7rFTrTV2VxY/ySdc=
 X-Endpoint-Received: by B4 Relay for Haoning.CHENG@cn.bosch.com/20260709
@@ -99,7 +98,7 @@ X-Spamd-Result: default: False [-3.66 / 15.00];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-326077-lists,devicetree=lfdr.de,Haoning.CHENG.cn.bosch.com];
+	TAGGED_FROM(0.00)[bounces-326078-lists,devicetree=lfdr.de,Haoning.CHENG.cn.bosch.com];
 	FORGED_RECIPIENTS(0.00)[m:rafael@kernel.org,m:daniel.lezcano@linaro.org,m:rui.zhang@intel.com,m:lukasz.luba@arm.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:shawnguo@kernel.org,m:s.hauer@pengutronix.de,m:kernel@pengutronix.de,m:festevam@gmail.com,m:linux-pm@vger.kernel.org,m:devicetree@vger.kernel.org,m:imx@lists.linux.dev,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:Haoning.CHENG@cn.bosch.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FREEMAIL_TO(0.00)[kernel.org,linaro.org,intel.com,arm.com,pengutronix.de,gmail.com];
 	FORGED_SENDER(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
@@ -109,7 +108,7 @@ X-Spamd-Result: default: False [-3.66 / 15.00];
 	RCPT_COUNT_TWELVE(0.00)[17];
 	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	HAS_REPLYTO(0.00)[Haoning.CHENG@cn.bosch.com];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
@@ -118,56 +117,129 @@ X-Spamd-Result: default: False [-3.66 / 15.00];
 	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[cn.bosch.com:mid,cn.bosch.com:replyto,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp,bosch.com:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,bosch.com:email,cn.bosch.com:mid,cn.bosch.com:replyto]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 80BC57536E1
+X-Rspamd-Queue-Id: 3D0B87536FE
 
 From: Haoning CHENG <Haoning.CHENG@cn.bosch.com>
 
-Convert the alarm temperature from millicelsius to degrees for i.MX7D
-using ceiling division instead of integer division, ensuring rounding
-errors do not cause the alarm to trigger below the intended threshold.
-Use DIV_ROUND_UP() for non-negative values and plain integer division
-for negative values, since C rounds toward zero which is equivalent to
-ceiling when the divisor is positive.
+Some boards need a small per-design correction to align the reported CPU
+temperature with board-level measurements. Read the optional
+fsl,temp-calibration-offset-millicelsius property from DT and apply it
+uniformly to the i.MX6/6SX/7D calibration formulas.
 
-Add clamp() to ensure the hardware register value stays within the 9-bit
-range (0..0x1ff) of the i.MX7D alarm field, preventing silent truncation
-if an out-of-range value is written.
+The offset is applied symmetrically at two points to ensure the thermal
+framework sees calibrated temperatures while hardware thresholds remain
+correctly positioned:
+
+1. In imx_set_alarm_temp() and imx_set_panic_temp(): the temperature
+   threshold is *subtracted* by the offset before being converted to a
+   hardware register value. This shifts the hardware IRQ trigger to the
+   physical temperature that corresponds to the intended threshold.
+
+2. In imx_get_temp(): after computing physical temperature from the
+   hardware register, the offset is *added* back. The thermal framework
+   always sees the calibrated temperature.
+
+For example, if DT sets offset = +3000 m°C (board reads 3°C too low)
+and the passive trip is 95°C:
+
+  imx_set_alarm_temp(95000):
+    alarm_temp = 95000 - 3000 = 92000
+    → hardware register programmed for 92°C physical
+
+  Hardware IRQ fires at 92°C physical
+
+  imx_get_temp():
+    reads hardware, computes 92°C physical
+    *temp = 92000 + 3000 = 95000
+    → thermal framework sees 95°C → correct trip
+
+When the property is not present, the offset defaults to 0, preserving
+the current behavior.
 
 Signed-off-by: Haoning CHENG <Haoning.CHENG@cn.bosch.com>
 ---
- drivers/thermal/imx_thermal.c | 12 +++++++++---
- 1 file changed, 9 insertions(+), 3 deletions(-)
+ drivers/thermal/imx_thermal.c | 27 +++++++++++++++++++++++++++
+ 1 file changed, 27 insertions(+)
 
 diff --git a/drivers/thermal/imx_thermal.c b/drivers/thermal/imx_thermal.c
-index 38c993d1bcb3..7f7d1116b9d6 100644
+index 7f7d1116b9d6..d471acc16bce 100644
 --- a/drivers/thermal/imx_thermal.c
 +++ b/drivers/thermal/imx_thermal.c
-@@ -240,10 +240,16 @@ static void imx_set_alarm_temp(struct imx_thermal_data *data,
+@@ -85,6 +85,10 @@ enum imx_thermal_trip {
+ #define TEMPMON_IMX6SX			2
+ #define TEMPMON_IMX7D			3
+ 
++/* Calibration offset limits (±20 °C in millicelsius) */
++#define IMX_TEMP_CALIB_OFFSET_MIN	(-20000)
++#define IMX_TEMP_CALIB_OFFSET_MAX	20000
++
+ struct thermal_soc_data {
+ 	u32 version;
+ 
+@@ -207,6 +211,7 @@ struct imx_thermal_data {
+ 	struct regmap *tempmon;
+ 	u32 c1, c2; /* See formula in imx_init_calib() */
+ 	int temp_max;
++	s32 calibration_offset;
+ 	int alarm_temp;
+ 	int last_temp;
+ 	bool irq_enabled;
+@@ -223,6 +228,7 @@ static void imx_set_panic_temp(struct imx_thermal_data *data,
+ 	struct regmap *map = data->tempmon;
+ 	int critical_value;
+ 
++	panic_temp -= data->calibration_offset;
+ 	critical_value = (data->c2 - panic_temp) / data->c1;
+ 
+ 	regmap_write(map, soc_data->panic_alarm_ctrl + REG_CLR,
+@@ -239,6 +245,7 @@ static void imx_set_alarm_temp(struct imx_thermal_data *data,
+ 	int alarm_value;
  
  	data->alarm_temp = alarm_temp;
++	alarm_temp -= data->calibration_offset;
  
--	if (data->socdata->version == TEMPMON_IMX7D)
--		alarm_value = alarm_temp / 1000 + data->c1 - 25;
--	else
-+	if (data->socdata->version == TEMPMON_IMX7D) {
-+		if (alarm_temp >= 0)
-+			alarm_temp = DIV_ROUND_UP(alarm_temp, 1000);
-+		else
-+			alarm_temp /= 1000;
-+		alarm_value = alarm_temp + data->c1 - 25;
-+		alarm_value = clamp(alarm_value, 0, 0x1ff);
-+	} else {
- 		alarm_value = (data->c2 - alarm_temp) / data->c1;
+ 	if (data->socdata->version == TEMPMON_IMX7D) {
+ 		if (alarm_temp >= 0)
+@@ -283,6 +290,7 @@ static int imx_get_temp(struct thermal_zone_device *tz, int *temp)
+ 		*temp = (n_meas - data->c1 + 25) * 1000;
+ 	else
+ 		*temp = data->c2 - n_meas * data->c1;
++	*temp += data->calibration_offset;
+ 
+ 	/* Update alarm value to next higher trip point for TEMPMON_IMX6Q */
+ 	if (data->socdata->version == TEMPMON_IMX6Q) {
+@@ -635,6 +643,25 @@ static int imx_thermal_probe(struct platform_device *pdev)
+ 
+ 	platform_set_drvdata(pdev, data);
+ 
++	if (of_property_present(dev->of_node,
++				"fsl,temp-calibration-offset-millicelsius")) {
++		ret = of_property_read_s32(dev->of_node,
++					   "fsl,temp-calibration-offset-millicelsius",
++					   &data->calibration_offset);
++		if (ret)
++			return dev_err_probe(dev, ret,
++					     "failed to read calibration offset\n");
++
++		if (data->calibration_offset < IMX_TEMP_CALIB_OFFSET_MIN ||
++		    data->calibration_offset > IMX_TEMP_CALIB_OFFSET_MAX)
++			return dev_err_probe(dev, -EINVAL,
++					     "calibration offset %d millicelsius out of range\n",
++					     data->calibration_offset);
++
++		dev_dbg(dev, "calibration offset: %d millicelsius\n",
++			data->calibration_offset);
 +	}
- 
- 	regmap_write(map, soc_data->high_alarm_ctrl + REG_CLR,
- 		     soc_data->high_alarm_mask);
++
+ 	if (of_property_present(dev->of_node, "nvmem-cells")) {
+ 		ret = imx_init_from_nvmem_cells(pdev);
+ 		if (ret)
 
 -- 
 2.43.0
