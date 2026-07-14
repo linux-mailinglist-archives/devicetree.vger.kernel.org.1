@@ -1,210 +1,148 @@
-Return-Path: <devicetree+bounces-326513-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-326514-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id uq8/JheYVmqk+gAAu9opvQ
-	(envelope-from <devicetree+bounces-326513-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 22:12:07 +0200
+	id fxUMMIeYVmrn+gAAu9opvQ
+	(envelope-from <devicetree+bounces-326514-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 22:13:59 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8FA17758A56
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 22:12:06 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B0F8758A85
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 22:13:59 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=cPrtZvb6;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326513-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-326513-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=lunn.ch header.s=20171124 header.b=pDJ4GOG2;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326514-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-326514-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=lunn.ch;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 99BA930093A3
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 20:12:03 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 74178302A51F
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 20:13:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F30CE423EAD;
-	Tue, 14 Jul 2026 20:12:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70A5641D633;
+	Tue, 14 Jul 2026 20:13:33 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDD823DDDDB
-	for <devicetree@vger.kernel.org>; Tue, 14 Jul 2026 20:11:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62933412BED;
+	Tue, 14 Jul 2026 20:13:31 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1784059920; cv=none; b=JVr/qwD6YlzmVa4ZnWPROOEtXqtnsBYWcDGQIAB3C1P/0aYksvsAL3ZaxmwVk2uDV+iNfwTWEElJIxAAVrLI1tg2kaYaZB1SIRlL9QzMo9eMZCMn/DWky4zmqcPP0R4BSB69G5Qu5osXsyH7PnauXbxY8cj1LsGpp2m0iAkTnnE=
+	t=1784060013; cv=none; b=mBs3GiHpFQKCKLcuUvzHo7Wm4+capB8bU9YsqpYrSHNOiP1z4Gz6wPYcO5An0YyzhVHLyA1ZGx7WhS3JakrM384fbyDIGw5Gri1KkBJDaqa2FVShG5RbquPGQamrjtZc/A0Ta5Cw+upZBUZj9XuPRkGpbUD+DLLY9XNhbnsrewg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1784059920; c=relaxed/simple;
-	bh=qa7zIZNMq1+MlW38yyTjL5Fl7EAGmFZ9caXD+/JcI+g=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=OHSnMrmV6snJAJD7W8iL5oTkvmAm/dtTYAiWsm1ip8eJiWImWkChJttZUQKu5De6NN51+WInf0rC0+mA1vRolXSCGIwoQcMj/UOFPFxkcwqZKH0gQRJ/MGv8Se45arYH8BmMWG0TUClqUVjgANco9Uzz89CAvRUyoPN6JDam9/8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cPrtZvb6; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 333E51F000E9;
-	Tue, 14 Jul 2026 20:11:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1784059919;
-	bh=5wOUEQakUr6ljQwCBFQfnA4S0mb7s7p0pA6XYOUrJM8=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=cPrtZvb61c9Ka/ggOwKzAOxQekP4siJLUiykJRbTIQd8VOHgfPFfF75UkLmLo3Wld
-	 q94TF5gABCbEWZ0Qt5RD1volaQbC4tRaBLRHovv+uTPa4fZXGVkD8mNh2FzGLz7pPx
-	 y1sy2g3Se0B8OWePPDHKDzOWBb3nXYTrAp418zrq+A6soHhjPNse5jb/Awje/dJozQ
-	 G8S3PU6COWA7mpd3G8RstOmtoNBXmp3pswoCpVEsiH7x/hd8IOOMtj0rQ/1xBMuCxD
-	 /g3pcwEWltavrFmtoMdq6kcHBkm5QTznauy6DNXdXfMReROQOznOdd+cdtfIUASxbK
-	 a4JLmw+TOXYPQ==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v13 12/35] phy: rockchip: usbdp: Limit DP lane count to
- muxed lanes
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Sebastian Reichel" <sebastian.reichel@collabora.com>
-Cc: conor+dt@kernel.org, olteanv@gmail.com, linux-phy@lists.infradead.org, robh@kernel.org, vkoul@kernel.org, devicetree@vger.kernel.org, neil.armstrong@linaro.org
-In-Reply-To: <20260714-rockchip-usbdp-cleanup-v13-12-6cb3e769d4c5@collabora.com>
-References: <20260714-rockchip-usbdp-cleanup-v13-0-6cb3e769d4c5@collabora.com>
- <20260714-rockchip-usbdp-cleanup-v13-12-6cb3e769d4c5@collabora.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Tue, 14 Jul 2026 20:11:58 +0000
-Message-Id: <20260714201159.333E51F000E9@smtp.kernel.org>
+	s=arc-20240116; t=1784060013; c=relaxed/simple;
+	bh=u+5POPI/BtTyXAnp0z7wIeJABK6jmiOfa+id3WMDL+w=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=CX+HE/syb5PlRxWpyUpPeL9Z7a5ZYX6/vDz7rXWhHFhXXotxVeYvfdwHE0WqokBS4O7DNse2chAkYJGlk2yoGHLl5cJZgoIX4TCOOszWKMu/gDd3NaFl1CdlKrWhehd6wU22kV1Ppr3HrLL+IHzaNVSWMcNgRrMAiy3zt9KDcOY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=pDJ4GOG2; arc=none smtp.client-ip=156.67.10.101
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=GZnKgW+PTI85uwSvBTZx6tE/LVkjSY/LHRD2fDPNzO0=; b=pDJ4GOG290nNbD7p9pehUqbd6J
+	liRP7KZdmFIUYrnPXVRorJ+btZrptsNhTyOE6IcMio8Z7W0/PkmCvK/jiRDtGbzxLi5Rm1ihsYGcP
+	D6XqGXjWUEYD1ptZjY+ed8cKUhRvmUeZyVFvFrqTJk3NuFUrKT/o+vUrikzcxituPc94=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1wjjVG-00CFLL-Bi; Tue, 14 Jul 2026 22:13:18 +0200
+Date: Tue, 14 Jul 2026 22:13:18 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: "Shenwei Wang (OSS)" <shenwei.wang@oss.nxp.com>
+Cc: Mathieu Poirier <mathieu.poirier@linaro.org>,
+	Linus Walleij <linusw@kernel.org>,
+	Bartosz Golaszewski <brgl@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>, Frank Li <frank.li@nxp.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Shuah Khan <skhan@linuxfoundation.org>,
+	"linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+	"linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Shenwei Wang <shenwei.wang@nxp.com>, Peng Fan <peng.fan@nxp.com>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-remoteproc@vger.kernel.org" <linux-remoteproc@vger.kernel.org>,
+	"imx@lists.linux.dev" <imx@lists.linux.dev>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	dl-linux-imx <linux-imx@nxp.com>,
+	Arnaud POULIQUEN <arnaud.pouliquen@foss.st.com>,
+	"b-padhi@ti.com" <b-padhi@ti.com>
+Subject: Re: [PATCH v14 1/5] docs: driver-api: gpio: rpmsg gpio driver over
+ rpmsg bus
+Message-ID: <680d0633-cdec-4545-9114-79bfd6eaac41@lunn.ch>
+References: <20260625155432.815185-1-shenwei.wang@oss.nxp.com>
+ <20260625155432.815185-2-shenwei.wang@oss.nxp.com>
+ <alUdg9iTysXCFUa5@p14s>
+ <PAXPR04MB91852808D2C7491AEF98CF1589F92@PAXPR04MB9185.eurprd04.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <PAXPR04MB91852808D2C7491AEF98CF1589F92@PAXPR04MB9185.eurprd04.prod.outlook.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	DMARC_POLICY_ALLOW(-0.50)[lunn.ch,none];
+	R_DKIM_ALLOW(-0.20)[lunn.ch:s=20171124];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-326514-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-326513-lists,devicetree=lfdr.de];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:sebastian.reichel@collabora.com,m:conor+dt@kernel.org,m:olteanv@gmail.com,m:linux-phy@lists.infradead.org,m:robh@kernel.org,m:vkoul@kernel.org,m:devicetree@vger.kernel.org,m:neil.armstrong@linaro.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:shenwei.wang@oss.nxp.com,m:mathieu.poirier@linaro.org,m:linusw@kernel.org,m:brgl@kernel.org,m:corbet@lwn.net,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:andersson@kernel.org,m:frank.li@nxp.com,m:s.hauer@pengutronix.de,m:skhan@linuxfoundation.org,m:linux-gpio@vger.kernel.org,m:linux-doc@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:kernel@pengutronix.de,m:festevam@gmail.com,m:shenwei.wang@nxp.com,m:peng.fan@nxp.com,m:devicetree@vger.kernel.org,m:linux-remoteproc@vger.kernel.org,m:imx@lists.linux.dev,m:linux-arm-kernel@lists.infradead.org,m:linux-imx@nxp.com,m:arnaud.pouliquen@foss.st.com,m:b-padhi@ti.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[26];
+	FREEMAIL_CC(0.00)[linaro.org,kernel.org,lwn.net,nxp.com,pengutronix.de,linuxfoundation.org,vger.kernel.org,gmail.com,lists.linux.dev,lists.infradead.org,foss.st.com,ti.com];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[andrew@lunn.ch,devicetree@vger.kernel.org];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,lists.infradead.org,vger.kernel.org,linaro.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ALIAS_RESOLVED(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andrew@lunn.ch,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[lunn.ch:+];
+	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,smtp.kernel.org:mid,vger.kernel.org:from_smtp,sashiko.dev:url,collabora.com:email,lists.linux.dev:replyto]
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,lunn.ch:from_mime,lunn.ch:dkim,lunn.ch:mid,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 8FA17758A56
+X-Rspamd-Queue-Id: 5B0F8758A85
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
+> > 1) You did not include messages that mask and unmask interrupts at the driver
+> > side.
+> 
+> Interrupt masking and unmasking are handled entirely on the local processor.
+> 
+> When an interrupt occurs, the remote system masks the interrupt and then sends a notification 
+> to Linux. After Linux processes the notification, it sends a SET_IRQ_TYPE message back to the 
+> remote system, which then unmasks the interrupt.
 
-Pre-existing issues:
-- [High] Missing locking in `rk_udphy_dp_phy_configure` causes a TOCTOU rac=
-e and state desynchronization against Type-C events, bypassing the newly ad=
-ded lane bounds check.
---
+Masking and unmasking an interrupt are orthogonal to the interrupt
+type.
 
---- Patch [12]: [PATCH v13 12/35] phy: rockchip: usbdp: Limit DP lane count=
- to muxed lanes ---
-commit 51fd699581be62fd9931337e9c0dc6e4f2302b10
-Author: Sebastian Reichel <sebastian.reichel@collabora.com>
+When the interrupt fires, the interrupt core calls the irq_mask()
+operation on the interrupt. That should mask the interrupt. Once the
+handler has finished, the interrupt core, will call irq_unmask() to
+unmask the interrupt.
 
-phy: rockchip: usbdp: Limit DP lane count to muxed lanes
-   =20
-In theory the DP controller could request 4 lanes when the PHY is
-restricted to 2 lanes as the other half is used by USB3.
+Edge, level, high, low, raising, falling has nothing to do with
+masking. Please don't mix concepts which Linux keeps separate.
 
-With the current user (DW-DP) this cannot happen, but as the check is
-cheap and users might change in the future protect things accordingly.
-Not doing so would corrupt USB3 usage by the following code configuring
-the voltages.
-
-Fixes: 2f70bbddeb45 ("phy: rockchip: add usbdp combo phy driver")
-Reported-by: Sashiko <sashiko-bot@kernel.org>
-Closes: https://lore.kernel.org/linux-phy/20260612165546.98E1F1F000E9@smtp.=
-kernel.org/
-Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
-
-> diff --git a/drivers/phy/rockchip/phy-rockchip-usbdp.c b/drivers/phy/rock=
-chip/phy-rockchip-usbdp.c
-> index c4d62b234ea80..b172ce6a722ee 100644
-> --- a/drivers/phy/rockchip/phy-rockchip-usbdp.c
-> +++ b/drivers/phy/rockchip/phy-rockchip-usbdp.c
-> @@ -1099,6 +1099,9 @@ static int rk_udphy_dp_phy_verify_link_rate(struct =
-rk_udphy *udphy,
->  static int rk_udphy_dp_phy_verify_lanes(struct rk_udphy *udphy,
->  					struct phy_configure_opts_dp *dp)
->  {
-> +	if (dp->lanes > udphy->dp_lanes)
-> +		return -EINVAL;
-> +
-
-[Severity: High]
-This isn't a bug introduced by this patch, but can a race condition still
-bypass this new check and corrupt USB3 lanes?
-
-If a Type-C event occurs and rk_udphy_typec_mux_set() reduces udphy->dp_lan=
-es
-from 4 to 2 while updating udphy->lane_mux_sel for USB3, it does so under
-udphy->mutex. However, rk_udphy_dp_phy_configure() lacks mutex protection a=
-nd
-operates on a cached udphy->lanes value.
-
-If the DRM driver subsequently calls rk_udphy_dp_phy_configure() to update
-voltages (with set_voltages =3D 1 and set_lanes =3D 0), this verify functio=
-n is
-skipped entirely:
-
-drivers/phy/rockchip/phy-rockchip-usbdp.c:rk_udphy_dp_phy_configure() {
-    ...
-	if (dp->set_lanes) {
-		ret =3D rk_udphy_dp_phy_verify_lanes(udphy, dp);
-		if (ret)
-			return ret;
-	}
-    ...
-}
-
-Because the check is skipped, the configuration loop iterates using the sta=
-le
-cached udphy->lanes =3D=3D 4:
-
-drivers/phy/rockchip/phy-rockchip-usbdp.c:rk_udphy_dp_phy_configure() {
-    ...
-	if (dp->set_voltages) {
-		for (i =3D 0; i < udphy->lanes; i++) {
-			lane =3D udphy->dp_lane_sel[i];
-			...
-			rk_udphy_dp_set_voltage(udphy, udphy->bw, dp->voltage[i],
-						dp->pre[i], lane);
-		}
-	}
-    ...
-}
-
-Could this overwrite the TRSV registers of physical lanes now assigned to
-USB3, corrupting active USB3 data streams? Should rk_udphy_dp_phy_configure=
-()
-hold udphy->mutex to prevent state desynchronization?
-
->  	switch (dp->lanes) {
->  	case 1:
->  	case 2:
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260714-rockchip-u=
-sbdp-cleanup-v13-0-6cb3e769d4c5@collabora.com?part=3D12
+	 Andrew
 
