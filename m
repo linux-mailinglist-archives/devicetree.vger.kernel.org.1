@@ -1,113 +1,114 @@
-Return-Path: <devicetree+bounces-326271-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-326273-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 4gxkK4k6Vmpe1wAAu9opvQ
-	(envelope-from <devicetree+bounces-326271-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 15:32:57 +0200
+	id SjhgLZ87VmrA1wAAu9opvQ
+	(envelope-from <devicetree+bounces-326273-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 15:37:35 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 386937552CF
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 15:32:57 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C7E77553CB
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 15:37:35 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=egSKewjS;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326271-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-326271-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=HAMoLggN;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326273-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-326273-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=none) header.from=gmail.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 551A230BB635
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 13:27:38 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 22F3C32C3006
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 13:28:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFDB334EF0F;
-	Tue, 14 Jul 2026 13:27:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CEE2E3148B4;
+	Tue, 14 Jul 2026 13:28:44 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f53.google.com (mail-pj1-f53.google.com [209.85.216.53])
+Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com [209.85.214.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4691D3612DB
-	for <devicetree@vger.kernel.org>; Tue, 14 Jul 2026 13:27:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7651130F958
+	for <devicetree@vger.kernel.org>; Tue, 14 Jul 2026 13:28:39 +0000 (UTC)
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1784035643; cv=pass; b=DgmFrURWppIdCdyWqdkE5d1LfCcViGEDkpJi5DwM3MC6Cn/9y3DFapZDEyvNJAgaP/SblrDDlh33HZbhmr9KoXB4pj81qg9pXGTzGq14sEstzDCObXla0hoXFLaA5psruauGt/Tzg4v09XKSC3MHrV/ww+o85v9GED3DGfrZx9I=
+	t=1784035724; cv=pass; b=OKThG0xl9iYu5OJM0Wm9qZkc5QWV9ZVDQAVFbW4o+TLbzfV2/EkRT6/u8b7k/oz7g0YN2Is51qCWwV+AWP64r6PSkWE1n+WmxxrENObf68ZRtvrVAy7I7hIsptkrRWMmU9XCvqP1agBIKHaWX81mguV7H7UUpRUQcK061p44HEQ=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1784035643; c=relaxed/simple;
-	bh=Hqx+/2gwUQf5oktWMVU1iaI86zBAPEpohyRmf9hMejs=;
+	s=arc-20240116; t=1784035724; c=relaxed/simple;
+	bh=ue6jFvPPvjqPgIpHsXNu6T7RM+b3RNh8Y6zW7p+85hQ=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=uDGmVzPsBx7VJwTYOzDd8viyav0gYsjfekBUToqayzdVwEKRTkvQHmcIEP4NGfxOPOvwcLCEyxWG6KKMNsW59Zw+9CORD3HIx9uSgyUKq+fU7R2RqHGRAi0ex6QGnja6b5KOkFA8I/nXIH+WwXER4mfKYcoK4iyrOlvQa5ixol8=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=egSKewjS; arc=pass smtp.client-ip=209.85.216.53
-Received: by mail-pj1-f53.google.com with SMTP id 98e67ed59e1d1-37e0a189b0bso860258a91.1
-        for <devicetree@vger.kernel.org>; Tue, 14 Jul 2026 06:27:21 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1784035641; cv=none;
+	 To:Cc:Content-Type; b=BK6cdOdCaYFMCJjvZL8IxDvu6y7HAuawDmZEXZwiiO78sfVPLjOupLsKEuzj8Vm4uKeS6/IyuUTVZq7I3EEXdpLyDViw4qHuT4fHhHSTEG8oEYZV0gPDWaNZ0kbN5ZFII+jLE3phJ9nneQiLV0mdDABq8gCXQmSDhrDqWfTzBPI=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HAMoLggN; arc=pass smtp.client-ip=209.85.214.177
+Received: by mail-pl1-f177.google.com with SMTP id d9443c01a7336-2cace91f112so38309575ad.0
+        for <devicetree@vger.kernel.org>; Tue, 14 Jul 2026 06:28:39 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1784035717; cv=none;
         d=google.com; s=arc-20260327;
-        b=lv9T71qaXVC5s8HBhbLgdqGptb+I9nMJCrkhmA0SQaLCEmQvnBT7WPIBxbaPzZ2a6O
-         F+Yb+8V6cAWQUZYg4PU/HAYmZycvzY87RnNqKoLOQ7LjvQSFBuvZJ1gP0KaM/M3r7SW8
-         cOix2qPcd8W6nvTnPGlfe0YrPbO63KA6cJ9hQeVAO/1bPYUwhRRelrdKYCZXRiYFlqE2
-         2Po66EhdC9hJMrL5b20lMibJ21DkzGhSiFbOSvOrkTX+TfQ/TdK3zgkDsAxIiyfLCFYm
-         lu86Rz08fa0nI9/Z9ne0kyTQdDeIvo36/sEHYBYpd6XZLLXIr95K6/BQB263zMyoPgcs
-         jKHw==
+        b=YxDCQGKH/CsPlabtpv1lQq0/ccZdlFgaLzW2cgCWbuY4qPdtQ330ylwSpp+vbqhneX
+         nJdHlBGcpBxVgdMCOthSgGwY0sPldJWZRSOR94oPQATWy9sh13V+WEm6h7Lqqen/kGC2
+         9FjPv2D8I/dUjUMsgv8AJcGHZ4GLPZx7l/ZojnKkYxJTxWQQ0Reb8MxqCEEjRoZpfX5O
+         eu5bEwbRxzqK4LtjPKoqaSljsLe5CpI6A11mEaslMffGafHs7zGL5PKu4/6YfSwonrgc
+         pUJ5DneEycFKtD4Yk69/4RRiyFsnvJqwmOygDI/rVUfH9UZDZuco4ZwoBCbU85EWs/qI
+         JV9w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:dkim-signature;
-        bh=PSq/mUWM2YvpW32XDTn1fQtxRJbdlACjQCMNg3wpfiM=;
-        fh=NxUeMZhbVrxzpVHz3tpgD1piOquL2YUwGBHFxlfhUOQ=;
-        b=F4nOnh+3Sffkrsh/Zbb/2EIuhKKBPQS/R/9BEAufcXHINak5p0irMznq96qsRU9Y1R
-         6r6aLZJAskvdAVgfGw1ozjr/h3i9ERrCoBjYKFiCo1wQCSjiPTHHUHXZWuwx3mh3eyeR
-         CXWpgAVED5DxkT4fgSsjXDZZCW64L1/k5eQTxFThA0R0kNdRE1exuWu4FZ1cgFskw4hF
-         t51xWfW3g4Aj1ft9jkoTAY4gDTTrJtcGKfk+/eq2g2agNob7SMJs2G5SVwT7ZUTbnCrR
-         GqyO9hzqbip3bel5lHoddgI/qh/CKM1dvG7FtJBSIB8i2nbKGdo+dTpqJ66uljWnESCM
-         o8mw==;
+        bh=ue6jFvPPvjqPgIpHsXNu6T7RM+b3RNh8Y6zW7p+85hQ=;
+        fh=LuEvP+cOkkkwX81EtDrmfEsAO+y+HpsUX5j+nWLeyNY=;
+        b=B18xvziz3VsIbm+4pRwp8QnFp0Og32rAtHOe/UzrjQ62eGYG1ERapxTZKFfW/Me1Be
+         PsNx2vK5KZJbk3iKNC4S68G4bTEWjhEDyzroJ6COar95gbC4B1LIdAtNEUN1PZQ3Tr/v
+         OhYwWef/evKGaa16a9ne7Kp0/9rxaFV7F24l79RArtITiL7ehUjeB/rmIvtGQs3mwu0J
+         uQvwdSpQscAxloq5dky9QsbavHW/mkxeVDzem5af/ZTihS89ZSq7JXV/sKsdpds6IyZ+
+         KdGLPogacrUSzlJ5rlLk9ZDwcnS7h8gNeHTksOFQ2Bfqn9Jk46D2+GC+EGWo6pwEhQxJ
+         +uHw==;
         darn=vger.kernel.org
 ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1784035641; x=1784640441; darn=vger.kernel.org;
+        d=gmail.com; s=20251104; t=1784035717; x=1784640517; darn=vger.kernel.org;
         h=content-transfer-encoding:content-type:cc:to:subject:message-id
          :date:from:in-reply-to:references:mime-version:from:to:cc:subject
          :date:message-id:reply-to:content-type;
-        bh=PSq/mUWM2YvpW32XDTn1fQtxRJbdlACjQCMNg3wpfiM=;
-        b=egSKewjSB9QKWsQQJRVJxdBUYM87L3b2NzHjTXY2e4Lyrhp2z86pdRrS8fcXMNTw3m
-         EXgJDomP8VGJNhY6mFQX3GG4onLh2IeZQaS7sh1lgkvjgT2vWxMR/eICi0cUg8kz7xv2
-         r5c9voSjZr145JyTG74rT2ZgPcvogC5asUowiQ+oum+MXEuQzsLme9xiAk28xOZruLIa
-         +YMgud91p92rVOdeACWN8wzl7tVSMLbF2oYYaUdUrr/qqq88DJE4ZN5Ni1h7BTnQBNMM
-         i2OG54H6DA//CUQ08xfVEiYxayqkjHU5Y+uzlQcbs9v61CbLoF8FD7MaKOJ9oij+Jcvp
-         T+HQ==
+        bh=ue6jFvPPvjqPgIpHsXNu6T7RM+b3RNh8Y6zW7p+85hQ=;
+        b=HAMoLggNikNfjMaUSjRVs0LKsdZLYv3PPjXr/y1n/bgfeuEWuMbtBEeSeu3Mo4dpnb
+         xBWJuI9zz+8g/MpuGUW6WoFposV5HBQV4iEtgMSAkhvsuNGWlsSPZJ+Fq4weUHTdF1ht
+         XldyK/rSwsiVV3E4u9TlNCjlt3Ou2fkoLA8RZMEXYqBzcpAXQghG1Qs88zaAroZ2yqX1
+         KfYl0+I7ARIkLrHU0obMlW/vLijtNhknmn+ZjZif4tfwcvWHHaYWf5/HzYpfEvh+Ad63
+         +uKJ5fbN33gdlEzUd3aolfkrLr4UALNV4xPZv1zsgyrd7pe6vjxEn/lPRxc7yPMrnTkh
+         cEsg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1784035641; x=1784640441;
+        d=1e100.net; s=20251104; t=1784035717; x=1784640517;
         h=content-transfer-encoding:content-type:cc:to:subject:message-id
          :date:from:in-reply-to:references:mime-version:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=PSq/mUWM2YvpW32XDTn1fQtxRJbdlACjQCMNg3wpfiM=;
-        b=nWLu9HyFecW3vPTMUzWa3Mpy3i4DQDYccBriXZrrNwgfZ3RS8jmK+uj5h17U+czkkH
-         NZXksBXdeP7yhZaZSeK2O3sDQGDnOd5Xm33JTPgNVlJM25MK/s9QPN3gw7UQBWKeI1Oe
-         YvZ6i4L98RUZmOTXqTnjpoEHwNZ3IdFSUDby4w9pGosXN7YDKWRv+0bH+yBAJEMNT3d/
-         xUAGPD55XTAB2FIDlpoiS+ubnTzREW1mQPkXVqc0Usc8gY/AXbcgYDDqdVY8HI7BVMcq
-         sDiSQ763MK8F6s7LkJ7+zruD+p2JA+ngYakOA90sATb+fn8jHQ6H1u61/li4wOToRxwR
-         tibQ==
-X-Forwarded-Encrypted: i=1; AHgh+RqlxaqC/qYRfHyxApdEpuVpnVBPclNjTiMRozo1qgB8achAc4f5iF+/AsLEVR+++Q65aaE5O8UVV791@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz1tJ0/OdqdNztJLFKKdtA3Q9A6C5Iyj8KP3Z9GMEVy9uHnAXAT
-	SEN0NcMQF1gC7F+QQZmn3JkTFFeHvsNm0OsEVyAMZh5nktaP29f5OuwoIOXUJGnZuP6JTD3Oh1D
-	n46UtKAyrue5OmKZFfU4UD6rB9Jdh6Rs=
-X-Gm-Gg: AfdE7clG/9kk6TUME8Z8PHcPsA5MbzYsHVjATjx0XpBdF4rQyE1kGGiEfhPL/3oF1dX
-	edTuGc1UeHUdA1zbQjilq+O0RYp5hh/zWhLyXhhnryrQpZ8mHzr159CjKrfMPV3gdekyUgGFPKV
-	V7K4fm8iFciT+co1B84vnrMkrZF06BmmxurmR709QAK+n1EEzmCDoXi9EmRBCTcv85PI/xR+VmZ
-	uxJxu2LSGdBqal/PWbKWow/G2lPegToh8CReqpehESR0ESuL99JXPKAXerY34dRi/8H8TfOtYO3
-	SnxgFdsWm/KyJSjH3zdO6EqNWh6Xqg==
-X-Received: by 2002:a05:6a20:d70a:b0:3c0:b55a:80ff with SMTP id
- adf61e73a8af0-3c11063d595mr14450342637.24.1784035641387; Tue, 14 Jul 2026
- 06:27:21 -0700 (PDT)
+        bh=ue6jFvPPvjqPgIpHsXNu6T7RM+b3RNh8Y6zW7p+85hQ=;
+        b=eTN5jgEYdfS24uh25xOHoCVuTIA2gsChXpYgjLaOaHW824I2/wT2Eh1fxlW6JtPYQR
+         VXuatmVMEMV407UmT8YHqPoAFcl8WRLHNavzCIBa+SMer6rUMctGxv57/5jjV3nY0/FJ
+         LculQEnc/qZOpIZ4/4butQtmil8+hSMrSGdf5m/cKuvExPl1g9pmSTbZmFOoPqNhLxkW
+         yep5iCQ4F/eaTlf7eFuxIK47EXAvisw97BYahwvBmrapZqaTp1XMOWinu++19bRjDYQc
+         YbS3xgJzMV+OGSIgq/0IOQwyklIPc1ZSfRT+v9ip91KbG9trVGAWIn4qR2lpug+PKkvU
+         jd4A==
+X-Forwarded-Encrypted: i=1; AHgh+RrnrMHlW0tdkvwHGy82kl0MBAR7s40IQ9mOksObi9peTIcUmbN0+o6dOTg8JwbR1bDq5igLmrTZA4g8@vger.kernel.org
+X-Gm-Message-State: AOJu0YziZPR4UHsd6XcGhf5HiNCO1BqJ2Sevt5HMaaJAqXq2OY4zorn7
+	EOrou26EGpNp6j4FxBU0Y7fB8YVWbzmXyGahtKjz/x6W/mN9OOtoFvH3LSGrUz7Mgh9qP947Ycm
+	8L7umq06b+mMa0OTWrAseiUW8KY+zFkY=
+X-Gm-Gg: AfdE7ckba+5UkeWk12e/lRgvrGn3h356jsoTCfezTsikKhZ44ShmQXj5v+rHzodW4pq
+	9eyr9Rl2np1fIJrhhykbEkq0qsjG5l2qcbV2ifaGgZs10CeTx/HaVGjuP4TlW3wup9Tvs/K5+ew
+	C/uc8SKOHtIPoqb25gsAnHG8pmo11oqx6EU+Fb9qYMEb3abL9DWxUOp+rKo43WkwU+UdMTcHQzC
+	7teKR0i0sy2mjeFXB4Nn/vyufK3Euy7mPz+vaSoqmN9T5k1K8UzQn6MUx7FbPy7MC3YLa6M7fPX
+	Isp7lBhf7BuAg1z4U4Cimsu/yFo6rQ==
+X-Received: by 2002:a05:6a21:7486:b0:3b4:b6d7:a992 with SMTP id
+ adf61e73a8af0-3c11062f70cmr15032381637.8.1784035717203; Tue, 14 Jul 2026
+ 06:28:37 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260617080031.99156-1-clamor95@gmail.com> <20260617080031.99156-2-clamor95@gmail.com>
- <akeFmMQ_S1Y18hlu@hovoldconsulting.com>
-In-Reply-To: <akeFmMQ_S1Y18hlu@hovoldconsulting.com>
+References: <20260617080031.99156-1-clamor95@gmail.com> <20260617080031.99156-5-clamor95@gmail.com>
+ <akeF_VrijPbebz3I@hovoldconsulting.com>
+In-Reply-To: <akeF_VrijPbebz3I@hovoldconsulting.com>
 From: Svyatoslav Ryhel <clamor95@gmail.com>
-Date: Tue, 14 Jul 2026 16:27:08 +0300
-X-Gm-Features: AUfX_myw9KUnmAWsWcXDIJL61TlrVu8UIEI1kefy-2iSBs3h-OI28TD8pRQoND4
-Message-ID: <CAPVz0n23=F2Q2fSJJx1E_mST2zhomKcvhKtOy-Af3aoq-pZ-Zw@mail.gmail.com>
-Subject: Re: [PATCH v5 01/14] dt-bindings: leds: Document TI LM3533 LED controller
+Date: Tue, 14 Jul 2026 16:28:24 +0300
+X-Gm-Features: AUfX_mzREZozvqJIpCZw-bv1kiFlmVezGQdepbPdfuQMwUIt-LOogON_yq372Iw
+Message-ID: <CAPVz0n1+wrq+g3p3UTc3hzHcsz8k02=QsvmseBD45d+SoSFsBw@mail.gmail.com>
+Subject: Re: [PATCH v5 04/14] mfd: lm3533: Pass only regmap and light sensor
+ presence to child devices
 To: Johan Hovold <johan@kernel.org>
 Cc: Lee Jones <lee@kernel.org>, Daniel Thompson <danielt@kernel.org>, 
 	Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@kernel.org>, Rob Herring <robh@kernel.org>, 
@@ -125,14 +126,14 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS(0.00)[m:johan@kernel.org,m:lee@kernel.org,m:danielt@kernel.org,m:jingoohan1@gmail.com,m:pavel@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:jic23@kernel.org,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:andy@kernel.org,m:deller@gmx.de,m:dri-devel@lists.freedesktop.org,m:linux-leds@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-iio@vger.kernel.org,m:linux-fbdev@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-326271-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-326273-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER(0.00)[clamor95@gmail.com,devicetree@vger.kernel.org];
 	FORWARDED(0.00)[lists@lfdr.de];
@@ -149,105 +150,27 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	FROM_NEQ_ENVFROM(0.00)[clamor95@gmail.com,devicetree@vger.kernel.org];
 	FREEMAIL_CC(0.00)[kernel.org,gmail.com,baylibre.com,analog.com,gmx.de,lists.freedesktop.org,vger.kernel.org];
 	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,vger.kernel.org:from_smtp,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 386937552CF
+X-Rspamd-Queue-Id: 4C7E77553CB
 
-=D0=BF=D1=82, 3 =D0=BB=D0=B8=D0=BF. 2026=E2=80=AF=D1=80. =D0=BE 12:49 Johan=
+=D0=BF=D1=82, 3 =D0=BB=D0=B8=D0=BF. 2026=E2=80=AF=D1=80. =D0=BE 12:50 Johan=
  Hovold <johan@kernel.org> =D0=BF=D0=B8=D1=88=D0=B5:
 >
-> On Wed, Jun 17, 2026 at 11:00:18AM +0300, Svyatoslav Ryhel wrote:
-> > Document the LM3533 - a complete power source for backlight, keypad and
-> > indicator LEDs in smartphone handsets. The high-voltage inductive boost
-> > converter provides the power for two series LED strings display backlig=
-ht
-> > and keypad functions.
-> >
-> > Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
-> > Reviewed-by: Jonathan Cameron <jic23@kernel.org> #for light sensor
-> > Reviewed-by: Daniel Thompson (RISCstar) <danielt@kernel.org> #for backl=
-ight
-> > Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+> On Wed, Jun 17, 2026 at 11:00:21AM +0300, Svyatoslav Ryhel wrote:
+> > Instead of passing the entire lm3533 core data structure, only pass the
+> > regmap and the light sensor presence flag to child devices.
 >
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/gpio/gpio.h>
-> > +    #include <dt-bindings/interrupt-controller/irq.h>
-> > +
-> > +    i2c {
-> > +        #address-cells =3D <1>;
-> > +        #size-cells =3D <0>;
-> > +
-> > +        led-controller@36 {
-> > +            compatible =3D "ti,lm3533";
-> > +            reg =3D <0x36>;
-> > +
-> > +            enable-gpios =3D <&gpio 110 GPIO_ACTIVE_HIGH>;
-> > +            vin-supply =3D <&vdd_3v3_bat>;
-> > +
-> > +            ti,boost-ovp-microvolt =3D <24000000>;
-> > +            ti,boost-freq-hz =3D <500000>;
-> > +
-> > +            #address-cells =3D <1>;
-> > +            #size-cells =3D <0>;
-> > +
-> > +            backlight@0 {
-> > +                compatible =3D "ti,lm3533-backlight";
-> > +                reg =3D <0>;
-> > +
-> > +                default-brightness =3D <113>;
-> > +
-> > +                led-max-microamp =3D <23400>;
-> > +                led-sources =3D <0 1>;
-> > +            };
-> > +
-> > +            led@2 {
-> > +                compatible =3D "ti,lm3533-leds";
-> > +                reg =3D <2>;
-> > +
-> > +                led-max-microamp =3D <23400>;
-> > +                led-sources =3D <0 1>;
-> > +            };
-> > +
-> > +            led@4 {
-> > +                compatible =3D "ti,lm3533-leds";
-> > +                reg =3D <4>;
-> > +
-> > +                led-max-microamp =3D <23400>;
-> > +                led-sources =3D <2>;
-> > +            };
-> > +
-> > +            led@5 {
-> > +                compatible =3D "ti,lm3533-leds";
-> > +                reg =3D <5>;
-> > +
-> > +                led-max-microamp =3D <23400>;
-> > +                led-sources =3D <3 4>;
-> > +            };
-> > +
-> > +            light-sensor {
->
-> Doesn't the binding (or dts) checker complain about this node not having
-> an address?
+> Again, why?
 >
 
-No it does not
+Because none of the child cells needs entire parents private
+structure, regmap is all that is used.
 
-> > +                compatible =3D "ti,lm3533-als";
-> > +
-> > +                interrupt-parent =3D <&gpio>;
-> > +                interrupts =3D <80 IRQ_TYPE_LEVEL_LOW>;
-> > +
-> > +                ti,pwm-mode;
-> > +            };
-> > +        };
-> > +    };
-> > +...
->
 > Johan
 
