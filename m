@@ -1,150 +1,381 @@
-Return-Path: <devicetree+bounces-326544-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-326118-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id tBfUJvOoVmph/wAAu9opvQ
-	(envelope-from <devicetree+bounces-326544-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 23:24:03 +0200
+	id WN4wITAcVmoozQAAu9opvQ
+	(envelope-from <devicetree+bounces-326118-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 13:23:28 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D222758F5D
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 23:24:03 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id DA701753DC4
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 13:23:27 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=aHUcFRUx;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326544-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-326544-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=intel.com header.s=Intel header.b=YoRIV+rw;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326118-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-326118-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=intel.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 9DC32300230E
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 21:24:02 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E693930D9BB8
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 11:20:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A83BB426EA8;
-	Tue, 14 Jul 2026 21:23:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97FE337B007;
+	Tue, 14 Jul 2026 11:20:50 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92AE940D590;
-	Tue, 14 Jul 2026 21:23:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22A7B367F4A;
+	Tue, 14 Jul 2026 11:20:48 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1784064239; cv=none; b=sNm6gbXu704+RnLLedHRQXP65zl8n5q6uvC1kKKvmyORZC6z+bIpuE1KFRUd4p14FwnjuzOWELtZObpDa42yJYv5zECRePFsdZLnSx3MoAO7G6oTw9YMOMgarXrdMlWm0o0obyZzONVuFln+mRlnlo5CG8pccx0bgKuCub846C4=
+	t=1784028050; cv=none; b=UaII+ALtGb/mzbcBCOFnMKgGJTFeDt/UHR8Z2s3dCUxA+ttvtraU6LwF+OOzKwzqy85Q9JdsQdTEKaZrqgZJl53cQgEOQ82TckcGKHPzpI5V6UVN2kJ+EBzSZkvRkEI0XhQkYmxO8RguoQP+XmN6ALXoBEZtZqbhbp5TGYA2twA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1784064239; c=relaxed/simple;
-	bh=yYxJXTxhaaQyRSn8NksEr8C19bj4QNr6+gLFsSI9u3Y=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=plto0N54X962pIp35qXI9VdZuqUXXx+E1z4bP6ou5brTZNHBozXGiiBSHlMARmN4n6JQcYKFhE4pzLJQd3sAAeXsozi1kJqDePUJ8uf3KOa/si1BeTpB6hf2ThRpFT/5Ew5etC7Ldh9AbRK2hKNtNGYCViZzrE2yr6kA/ruMpcQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aHUcFRUx; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AEA521F000E9;
-	Tue, 14 Jul 2026 21:23:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1784064238;
-	bh=jHird4lTGKKujgL5cT6Qpafb/+B6Eck4ummSsIgsDwM=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date;
-	b=aHUcFRUxeDZAawLZGPJexmH6w7sd7RuSnzHwwRhBC+4YQsjsaGwe/rUlgQzHnqVMA
-	 uzb8NrFU8y3LFZQYhRAoZupivh53DaPs1Q18cPmwSMEXI1tvTmraxduJAAEq0AXlQ0
-	 aFU8vAFMHkgsLYQDy4iCNOHYszhQHfPJAD0dLbWaQ+YefYAZ82TehrIJ741FUoj7Q/
-	 BneVHnaFupGJGnCkxPs84d+ZRJX03riSpUGSBVFworYVtQmS4MGfzNovwRaJ7T0C9E
-	 ixrXj2IuxrATyrBCAYI+OMXyNgT8ju+y96rTKD1pvRq5YQ9ahaAHOWQSNyMifa6YwU
-	 5ISJyl+7W18qw==
-From: Mark Brown <broonie@kernel.org>
-To: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, Frank Li <Frank.Li@nxp.com>
-Cc: imx@lists.linux.dev
-In-Reply-To: <20260512224544.1223283-1-Frank.Li@nxp.com>
-References: <20260512224544.1223283-1-Frank.Li@nxp.com>
-Subject: Re: [PATCH 1/1] dt-bindings: regulator: convert ltc3589 to yaml
- format
-Message-Id: <178402792058.7661.255387093870553422.b4-ty@b4>
-Date: Tue, 14 Jul 2026 12:18:40 +0100
+	s=arc-20240116; t=1784028050; c=relaxed/simple;
+	bh=9v0u859gKTDMwsrTcTlpmsV2knq/Ux1QRTk6GRNLP/Y=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=UwnRLb6Uci0oSLT5SStNTp2Ghi2Img2kiZj9uSrr0Op9ODW9nb9YWh8N7ZeZHBQAXqLn3Em4YWOHJQKgfiXlM7lyzi7UPuzvZ8/XWvjN83M1ZN+uecwpoM9gTiOsTH9IjHi2I6vTN03DNwCMtkAo1dnco1xJIj41hnzQcvscEJE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=YoRIV+rw; arc=none smtp.client-ip=192.198.163.9
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1784028049; x=1815564049;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=9v0u859gKTDMwsrTcTlpmsV2knq/Ux1QRTk6GRNLP/Y=;
+  b=YoRIV+rwRVuUuW77oRfvBY9sO0xNpWKuuMJkjNQa3M7gus1bzc49YD27
+   +WIsvLGaPG9y8/WRCSCvuP5ZR9551VQq8sKM9QLysksJ0FTEW+VF8eUTZ
+   PpMSvtojnJ5OST5zJWGEzghMJTq6qGpoxvWqeHFJ3Rf/dhYhdTLFZ8gk1
+   Pl/dx1RBydeSLTMCuiXk7VANhoHpN2R7YEolISljN1BbOk3ljhyd3LQUY
+   XTwB02CeygxeLR4ycMlYJLDQwZIAH0QOwxxlUfXPpPEnFXRk7u3s9DuH1
+   YZ4vpz5ueAQVCrfFfhX1vdablr5R7UQKYAiKRr+n04+WSY4ndNGjUZZZA
+   A==;
+X-CSE-ConnectionGUID: Tool9qOIQ+qEgtgE50C4pA==
+X-CSE-MsgGUID: QrvuceX2RiG9d6Jssc41Zw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11846"; a="95293563"
+X-IronPort-AV: E=Sophos;i="6.25,163,1779174000"; 
+   d="scan'208";a="95293563"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Jul 2026 04:20:48 -0700
+X-CSE-ConnectionGUID: 2cPIwIgPQ+6NuMrvIVeviQ==
+X-CSE-MsgGUID: HCBcASgMSe+PI2JxmdSJYw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,163,1779174000"; 
+   d="scan'208";a="260719014"
+Received: from kniemiec-mobl1.ger.corp.intel.com (HELO localhost) ([10.245.245.189])
+  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Jul 2026 04:20:45 -0700
+Date: Tue, 14 Jul 2026 14:20:43 +0300
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Chris Morgan <macroalpha82@gmail.com>
+Cc: linux-iio@vger.kernel.org, andy@kernel.org, nuno.sa@analog.com,
+	dlechner@baylibre.com, jic23@kernel.org,
+	jean-baptiste.maneyrol@tdk.com, linux-rockchip@lists.infradead.org,
+	devicetree@vger.kernel.org, heiko@sntech.de, conor+dt@kernel.org,
+	krzk+dt@kernel.org, robh@kernel.org,
+	Chris Morgan <macromorgan@hotmail.com>
+Subject: Re: [PATCH v16 07/10] iio: imu: inv_icm42607: Add Accelerometer for
+ icm42607
+Message-ID: <alYbi_Bp0wVOlJ1i@ashevche-desk.local>
+References: <20260713215842.69097-1-macroalpha82@gmail.com>
+ <20260713215842.69097-8-macroalpha82@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.16-dev
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1130; i=broonie@kernel.org;
- h=from:subject:message-id; bh=yYxJXTxhaaQyRSn8NksEr8C19bj4QNr6+gLFsSI9u3Y=;
- b=owEBbQGS/pANAwAKASTWi3JdVIfQAcsmYgBqVqjre36tpOXUHUcoJmenjFTDn8F0L1Mm4PQ2X
- apTWOrGmOeJATMEAAEKAB0WIQSt5miqZ1cYtZ/in+ok1otyXVSH0AUCalao6wAKCRAk1otyXVSH
- 0LvmB/9E7wHiah4E0N/B3Mg6ZyV1c1O6bnWXUT1L7k6tZ9bDDZ0ENEvaDSil8ZhXwYBpkQLmYoK
- p5WiuvL7MCRwQ4JTAVU4zeW9E2WT4Xx4+Db4FHODzBG4hUa3E0fvymYnjfIZT0DX4mWr5ddmT85
- os/desmkfuNFSWu0lw8N/nfuJl8/lCfXTDbgx8+mNnWB/wACmHA5Dui5f9K+8gS43Qlg5QBFHKQ
- dKad9m17Q8UhcyHIWOw8XLTCmVdQeVlbhSTt+IFHAbhk+iYbHfCFKiNn63Uol9+689ld9F4NRRO
- MlVLSbN5zSDHiocKPKXUcG8uzrHMR2zi04R1+0NPXswLN3cd
-X-Developer-Key: i=broonie@kernel.org; a=openpgp;
- fpr=3F2568AAC26998F9E813A1C5C3F436CA30F5D8EB
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260713215842.69097-8-macroalpha82@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.16 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+X-Spamd-Result: default: False [-3.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[intel.com:d:+,kernel.org:s:+];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-326118-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:lgirdwood@gmail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:Frank.Li@nxp.com,m:imx@lists.linux.dev,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FREEMAIL_TO(0.00)[gmail.com,kernel.org,vger.kernel.org,nxp.com];
-	FORGED_SENDER(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:macroalpha82@gmail.com,m:linux-iio@vger.kernel.org,m:andy@kernel.org,m:nuno.sa@analog.com,m:dlechner@baylibre.com,m:jic23@kernel.org,m:jean-baptiste.maneyrol@tdk.com,m:linux-rockchip@lists.infradead.org,m:devicetree@vger.kernel.org,m:heiko@sntech.de,m:conor+dt@kernel.org,m:krzk+dt@kernel.org,m:robh@kernel.org,m:macromorgan@hotmail.com,m:conor@kernel.org,m:krzk@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-326544-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FORGED_SENDER(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	FREEMAIL_TO(0.00)[gmail.com];
+	MIME_TRACE(0.00)[0:+];
+	HAS_ORG_HEADER(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,analog.com,baylibre.com,tdk.com,lists.infradead.org,sntech.de,hotmail.com];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+	MISSING_XM_UA(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,ashevche-desk.local:mid,intel.com:from_mime,intel.com:dkim]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 2D222758F5D
+X-Rspamd-Queue-Id: DA701753DC4
 
-On Tue, 12 May 2026 18:45:42 -0400, Frank Li wrote:
-> dt-bindings: regulator: convert ltc3589 to yaml format
+On Mon, Jul 13, 2026 at 04:58:37PM -0500, Chris Morgan wrote:
 
-Applied to
+> Add icm42607 accelerometer sensor for icm42607.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-7.3
+...
 
-Thanks!
+> +#define INV_ICM42607_ACCEL_CHAN(_modifier, _index, _ext_info)			\
 
-[1/1] dt-bindings: regulator: convert ltc3589 to yaml format
-      https://git.kernel.org/broonie/regulator/c/c9b256e7900f
+> +{										\
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+You can also make it a compound literal, so it will be possible to use in the
+assignments at run-time (maybe not needed).
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+(struct iio_chan_spec) {
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
+But again, it's up to you.
 
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
+> +	.type = IIO_ACCEL,							\
+> +	.modified = 1,								\
+> +	.channel2 = _modifier,							\
+> +	.info_mask_separate = BIT(IIO_CHAN_INFO_RAW),				\
+> +	.info_mask_shared_by_type = BIT(IIO_CHAN_INFO_SCALE),			\
+> +	.info_mask_shared_by_type_available = BIT(IIO_CHAN_INFO_SCALE),		\
+> +	.info_mask_shared_by_all = BIT(IIO_CHAN_INFO_SAMP_FREQ),		\
+> +	.info_mask_shared_by_all_available = BIT(IIO_CHAN_INFO_SAMP_FREQ),	\
+> +	.scan_index = _index,							\
+> +	.scan_type = {								\
+> +		.sign = 's',							\
+> +		.realbits = 16,							\
+> +		.storagebits = 16,						\
+> +		.endianness = IIO_BE,						\
+> +	},									\
+> +	.ext_info = _ext_info,							\
+> +}
 
-Thanks,
-Mark
+...
+
+> +static int inv_icm42607_accel_write_scale(struct iio_dev *indio_dev,
+> +					  int val, int val2)
+> +{
+> +	struct inv_icm42607_sensor_conf conf = INV_ICM42607_SENSOR_CONF_INIT;
+> +	struct inv_icm42607_state *st = iio_device_get_drvdata(indio_dev);
+> +	size_t scales_len = ARRAY_SIZE(inv_icm42607_accel_scale_nano);
+> +	struct device *dev = regmap_get_device(st->map);
+> +	unsigned int idx;
+> +	int ret;
+> +
+> +	for (idx = 0; idx < scales_len; idx++) {
+> +		if (val == inv_icm42607_accel_scale_nano[idx][0] &&
+> +		    val2 == inv_icm42607_accel_scale_nano[idx][1])
+> +			break;
+> +	}
+> +	if (idx >= scales_len)
+
+'==' should suffice, otherwise it will be an interesting case.
+
+> +		return -EINVAL;
+> +
+> +	conf.fs = idx;
+> +
+> +	PM_RUNTIME_ACQUIRE_AUTOSUSPEND(dev, pm);
+> +	ret = PM_RUNTIME_ACQUIRE_ERR(&pm);
+> +	if (ret)
+> +		return ret;
+> +
+> +	guard(mutex)(&st->lock);
+> +
+> +	return inv_icm42607_set_sensor_conf(st, &conf, IIO_ACCEL);
+> +}
+
+...
+
+> +static int inv_icm42607_accel_read_odr(struct inv_icm42607_state *st,
+> +				       int *val, int *val2)
+> +{
+> +	unsigned int odr;
+> +	unsigned int i;
+> +
+> +	guard(mutex)(&st->lock);
+> +
+> +	odr = st->conf.accel.odr;
+> +
+> +	for (i = INV_ICM42607_ODR_1600HZ; i < ARRAY_SIZE(inv_icm42607_accel_odr); i++) {
+> +		if (i == odr)
+> +			break;
+> +	}
+> +	if (i >= ARRAY_SIZE(inv_icm42607_accel_odr))
+> +		return -EINVAL;
+
+Ditto. And so on.
+
+> +	*val = inv_icm42607_accel_odr[i][0];
+> +	*val2 = inv_icm42607_accel_odr[i][1];
+> +
+> +	return IIO_VAL_INT_PLUS_MICRO;
+> +}
+
+...
+
+> +struct iio_dev *inv_icm42607_accel_init(struct inv_icm42607_state *st)
+> +{
+> +	struct device *dev = regmap_get_device(st->map);
+> +	struct inv_icm42607_sensor_state *accel_st;
+> +	struct iio_dev *indio_dev;
+> +	const char *name;
+> +	int ret;
+> +
+> +	name = devm_kasprintf(dev, GFP_KERNEL, "%s-accel", st->hw->name);
+> +	if (!name)
+> +		return ERR_PTR(-ENOMEM);
+> +
+> +	indio_dev = devm_iio_device_alloc(dev, sizeof(*accel_st));
+> +	if (!indio_dev)
+> +		return ERR_PTR(-ENOMEM);
+
+> +	accel_st = iio_priv(indio_dev);
+> +
+
+Move this blank line to be above on the previous assignment.
+
+> +	accel_st->power_mode = INV_ICM42607_SENSOR_MODE_LOW_NOISE;
+> +	accel_st->filter = INV_ICM42607_FILTER_BW_73HZ;
+
+> +
+> +	iio_device_set_drvdata(indio_dev, st);
+
+And here I would rather move this line to be after the all assignments, so we
+won't have the potential code that might use unfilled data in between.
+
+> +	indio_dev->name = name;
+> +	indio_dev->info = &inv_icm42607_accel_info;
+> +	indio_dev->modes = INDIO_DIRECT_MODE;
+> +	indio_dev->channels = inv_icm42607_accel_channels;
+> +	indio_dev->num_channels = ARRAY_SIZE(inv_icm42607_accel_channels);
+> +
+> +	ret = devm_iio_device_register(dev, indio_dev);
+> +	if (ret)
+> +		return ERR_PTR(ret);
+> +
+> +	return indio_dev;
+> +}
+
+...
+
+> +static void inv_icm42607_update_config(struct inv_icm42607_sensor_conf *conf,
+> +				       struct inv_icm42607_sensor_conf *oldconf,
+> +				       bool *config0, bool *config1)
+> +{
+> +	if (conf->mode < 0)
+> +		conf->mode = oldconf->mode;
+> +	if (conf->fs < 0)
+> +		conf->fs = oldconf->fs;
+> +	if (conf->odr < 0)
+> +		conf->odr = oldconf->odr;
+> +	if (conf->filter < 0)
+> +		conf->filter = oldconf->filter;
+
+> +	if (conf->fs != oldconf->fs || conf->odr != oldconf->odr)
+> +		*config0 = true;
+> +	else
+> +		*config0 = false;
+
+Can be simply
+
+	*config0 = (conf->fs != oldconf->fs) || (conf->odr != oldconf->odr);
+
+(I added parentheses for better reading of this expression to make it clear
+ that the recipient is a boolean.)
+
+> +	if (conf->filter != oldconf->filter)
+> +		*config1 = true;
+> +	else
+> +		*config1 = false;
+
+In the similar way.
+
+> +}
+
+...
+
+> +int inv_icm42607_read_sensor(struct iio_dev *indio_dev,
+> +			     struct iio_chan_spec const *chan,
+> +			     s16 *val)
+> +{
+> +	struct inv_icm42607_sensor_conf conf = INV_ICM42607_SENSOR_CONF_INIT;
+> +	struct inv_icm42607_state *st = iio_device_get_drvdata(indio_dev);
+> +	struct inv_icm42607_sensor_state *sensor_st = iio_priv(indio_dev);
+> +	struct device *dev = regmap_get_device(st->map);
+> +	unsigned int reg;
+
+> +	u8 data[2];
+
+Define using the correct type. AFAICS it should be __be16 data;
+
+> +	int ret;
+> +
+> +	if ((chan->type != IIO_ANGL_VEL) && (chan->type != IIO_ACCEL))
+> +		return -EINVAL;
+> +
+> +	switch (chan->channel2) {
+> +	case IIO_MOD_X:
+> +		if (chan->type == IIO_ANGL_VEL)
+> +			reg = INV_ICM42607_REG_GYRO_DATA_X1;
+> +		else
+> +			reg = INV_ICM42607_REG_ACCEL_DATA_X1;
+> +		break;
+> +	case IIO_MOD_Y:
+> +		if (chan->type == IIO_ANGL_VEL)
+> +			reg = INV_ICM42607_REG_GYRO_DATA_Y1;
+> +		else
+> +			reg = INV_ICM42607_REG_ACCEL_DATA_Y1;
+> +		break;
+> +	case IIO_MOD_Z:
+> +		if (chan->type == IIO_ANGL_VEL)
+> +			reg = INV_ICM42607_REG_GYRO_DATA_Z1;
+> +		else
+> +			reg = INV_ICM42607_REG_ACCEL_DATA_Z1;
+> +		break;
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +
+> +	PM_RUNTIME_ACQUIRE_AUTOSUSPEND(dev, pm);
+> +	ret = PM_RUNTIME_ACQUIRE_ERR(&pm);
+> +	if (ret)
+> +		return ret;
+> +
+> +	guard(mutex)(&st->lock);
+> +
+> +	/* enable sensor */
+> +	conf.mode = sensor_st->power_mode;
+> +	conf.filter = sensor_st->filter;
+> +	ret = inv_icm42607_set_sensor_conf(st, &conf, chan->type);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* read sensor register data */
+> +	ret = regmap_bulk_read(st->map, reg, data, sizeof(data));
+> +	if (ret)
+> +		return ret;
+> +
+> +	*val = get_unaligned_be16(data);
+> +	if (*val == INV_ICM42607_DATA_INVALID)
+> +		return -EINVAL;
+> +
+> +	return 0;
+> +}
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
 
 
