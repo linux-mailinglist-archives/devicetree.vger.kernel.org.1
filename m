@@ -1,56 +1,56 @@
-Return-Path: <devicetree+bounces-326143-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-326146-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id sae4KjsiVmrmzgAAu9opvQ
-	(envelope-from <devicetree+bounces-326143-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 13:49:15 +0200
+	id splLKO8hVmrRzgAAu9opvQ
+	(envelope-from <devicetree+bounces-326146-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 13:47:59 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id A505E75418C
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 13:49:14 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2EED175415E
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 13:47:59 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=collabora.com header.s=mail header.b=XQ5w0jng;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326143-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-326143-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=collabora.com header.s=mail header.b=KzwuEUOJ;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326146-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-326146-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=none) header.from=collabora.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 78659304034D
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 11:46:17 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 2F654301C6DB
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 11:46:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D80A3914FE;
-	Tue, 14 Jul 2026 11:44:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A17763B2FDC;
+	Tue, 14 Jul 2026 11:44:58 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0462539B947;
-	Tue, 14 Jul 2026 11:44:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6D233A1E92;
+	Tue, 14 Jul 2026 11:44:54 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1784029496; cv=none; b=LjONvXD7d3V8Q4KsgC1642Jlmo1MvRlgwTkZXrFNxl7T32w8t7SoZgQ0Z237ugHid9omBMmSdn72FIM3OZ4Z4FonkRAXNLoHarq13XPnietZXTNTdgvZ7ZA7fML5UAUuz9mZuOXhN7NC2QEiyPy3x4FegWV+eYxxfHgW7vC6iZw=
+	t=1784029498; cv=none; b=R45DU7kvwKp+YcgdL3EnvHaGJCMNmn3sDKBUlDBHtapVcecDnDK414sh2ObpNzkaR314DtvTVjgm2y2PqnFy6Cq/iwbs2+P3p8oIpMNom8nUyXZLVjzfgiregYYNDLvA9wWrU3yB2jQrFyvUfv5jtTOAWm5+NqEvzP+beT8PurE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1784029496; c=relaxed/simple;
-	bh=OmKruBuMwOuM/jqTHcrOt10988D6GNY5qNqd/zM9TCI=;
+	s=arc-20240116; t=1784029498; c=relaxed/simple;
+	bh=LUjdZsQs2qIO1Y/KnpDsKJbv2zc671Web0q/OCaOqOs=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=KI12eZSApG5BQmdn+rF1VaE90QxcnDZVVu9+oGMXoVwncNhiVpH/1twW4Ho6RhzCeRKGgRwZIcnOjtUTS2it/hPvCXkda63WAq2NxmS6eJZegM2N4xHM+RLQs8HnKg3+GIBw/Gh5kqmiKrqYrD+LxA0PMbckGrKRe9qQyZuf0hE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=XQ5w0jng; arc=none smtp.client-ip=148.251.105.195
+	 MIME-Version; b=tWSK6ir/uSC0SQFyoIUPQosjLI6JM8zTic5t14oFSdWHVOP7QFI0tQItIlJ+X8pfvKHMJAUMl9qiFPIDVgVzcPBQPfvs48QmwoRZur+F42Scggh0AzzXfVFWnr/aKcCdO/N8VNDRLWVWfatzZfVZ9DyH/kvFJmcc8PEkOOUB9AE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=KzwuEUOJ; arc=none smtp.client-ip=148.251.105.195
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1784029492;
-	bh=OmKruBuMwOuM/jqTHcrOt10988D6GNY5qNqd/zM9TCI=;
+	s=mail; t=1784029493;
+	bh=LUjdZsQs2qIO1Y/KnpDsKJbv2zc671Web0q/OCaOqOs=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=XQ5w0jngNb6D1U5uNMeKYsXPWUjUWjb4vJjC740GFMQ17Mw1vGctmrs4+ctsBvwXE
-	 A4RECSeal47P84Z6MSxKjenDeTaRm8uYTis1kznDHkUn2wIFGv9+iy95sogiTtzFKT
-	 t+xHVJ+0ca1MbafoKFkCUXfP6RWFjAp9X+Plz8lCBtfyZe8rXW0y0c2sTOzvGctI6G
-	 uWBGtVzOvibucycFutQIUJ2dh9nGiuMklFTnKombycKUWR66VD0Vch1FWCOzCLCy21
-	 aCDhcxFCJnHBq9HrD5yQotJUQwLskJmFyIRGR5EJ1dBudOdoZ5khNd63NnQ2S7jja+
-	 HdnRUgtT/m1SQ==
+	b=KzwuEUOJtszQPam36u4Mdb27vYjSy5+Ol4f8ikN4/uQQdg+yznaA7JNIkAo6cMmRj
+	 GX/6cJxWL8DL80xRCY2qrIzgDIlauS71rT48nAdiDav4R8SevPQQftDX0Wuf1jp5a7
+	 Aj34E4dbZGh9YdwX8hZ1KrUYEniFD9ftMYHYpo0k7S/6Uzmus8RPZ1Uadyiv3SEk1U
+	 jQlCVh7gAcCMz69a/qo+cGUpuFmT7uu/rl0Rz1dGUzeQg0k8BWAc5IQu7d9wxvsDig
+	 F2E0oOw1ze56By+Ee8LB93Z2GJ7WoQQaeH8tQHQhlzODNcs9kl9qvYK/h1d0ZqsbZI
+	 ZXpUtuxzzmsIQ==
 Received: from IcarusMOD.eternityproject.eu (unknown [100.64.1.21])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
 	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 7C21B17E010F;
-	Tue, 14 Jul 2026 13:44:51 +0200 (CEST)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 606AC17E0857;
+	Tue, 14 Jul 2026 13:44:52 +0200 (CEST)
 From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 To: chunkuang.hu@kernel.org
 Cc: p.zabel@pengutronix.de,
@@ -72,9 +72,9 @@ Cc: p.zabel@pengutronix.de,
 	justin.yeh@mediatek.com,
 	jason-jh.lin@mediatek.com,
 	kernel@collabora.com
-Subject: [PATCH v2 18/46] drm/mediatek: mtk_crtc: Complete documentation for struct mtk_crtc
-Date: Tue, 14 Jul 2026 13:43:46 +0200
-Message-ID: <20260714114414.184512-19-angelogioacchino.delregno@collabora.com>
+Subject: [PATCH v2 19/46] drm/mediatek: mtk_crtc: Minimize spinlocked time in cmdq callback
+Date: Tue, 14 Jul 2026 13:43:47 +0200
+Message-ID: <20260714114414.184512-20-angelogioacchino.delregno@collabora.com>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20260714114414.184512-1-angelogioacchino.delregno@collabora.com>
 References: <20260714114414.184512-1-angelogioacchino.delregno@collabora.com>
@@ -93,14 +93,14 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
 	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	FORWARDED(0.00)[lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FREEMAIL_CC(0.00)[pengutronix.de,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,collabora.com,lists.freedesktop.org,lists.infradead.org,vger.kernel.org,mediatek.com];
-	TAGGED_FROM(0.00)[bounces-326143-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-326146-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_SENDER(0.00)[angelogioacchino.delregno@collabora.com,devicetree@vger.kernel.org];
@@ -115,82 +115,75 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	DKIM_TRACE(0.00)[collabora.com:+];
 	TO_DN_NONE(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	ALIAS_RESOLVED(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:from_mime,collabora.com:mid,collabora.com:email,collabora.com:dkim,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:from_mime,collabora.com:mid,collabora.com:email,collabora.com:dkim,vger.kernel.org:from_smtp,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: A505E75418C
+X-Rspamd-Queue-Id: 2EED175415E
 
-The mtk_crtc structure was missing many member descriptions, for
-which reason, a while ago it was demoted from kerneldoc to code
-comment.
+In ddp_cmdq_cb (the CMDQ mailbox callback), the config_lock spin
+lock is being locked to read the config_updating variable in the
+mtk_crtc structure, as, if configuration is updating, the callback
+function shall not run (or shall run at a later time).
 
-Add documentation for all of the missing structure members and
-promote it back to kerneldoc.
+It is therefore unnecessary to keep the spinlock until the end of
+the function, in case pending config, planes, or async planes
+bools need to be updated.
+
+Though the cmdq callback is not a performance path in this case,
+this may be running for each frame that is pushed to the display,
+so from 30 (or less) up to 144 times (or more) per second.
+
+Add a temporary "cfg_updating" variable to aid with readability,
+and unlock the spinlock as soon as the config_updating variable
+read operation is done as a micro-optimization.
 
 Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 ---
- drivers/gpu/drm/mediatek/mtk_crtc.c | 33 +++++++++++++++++++----------
- 1 file changed, 22 insertions(+), 11 deletions(-)
+ drivers/gpu/drm/mediatek/mtk_crtc.c | 9 +++++----
+ 1 file changed, 5 insertions(+), 4 deletions(-)
 
 diff --git a/drivers/gpu/drm/mediatek/mtk_crtc.c b/drivers/gpu/drm/mediatek/mtk_crtc.c
-index 28c0269c3424..e74f6244606f 100644
+index e74f6244606f..2cdf28a0e2ff 100644
 --- a/drivers/gpu/drm/mediatek/mtk_crtc.c
 +++ b/drivers/gpu/drm/mediatek/mtk_crtc.c
-@@ -41,18 +41,31 @@ struct mtk_crtc_hw_layer {
- 	u8 layer_stages_nr;
- };
+@@ -288,6 +288,7 @@ static void ddp_cmdq_cb(struct mbox_client *cl, void *mssg)
+ 	struct mtk_crtc_state *state;
+ 	unsigned int i;
+ 	unsigned long flags;
++	bool cfg_updating;
  
--/*
-+/**
-  * struct mtk_crtc - MediaTek specific crtc structure.
-- * @base: crtc object.
-- * @enabled: records whether crtc_enable succeeded
-+ * @base:            CRTC object
-+ * @enabled:         Records whether crtc_enable succeeded
-+ * @pending_needs_vblank: Records whether pending config operation needs a VBlank to finish
-+ * @event:           VBlank event to signal upon completion of state update
-  * @hwlayers:        Array of mtk_crtc_hw_layer structures, one for each overlay plane
-  * @hwlayer_nr:      Number of hwlayers
-- * @mmsys_dev: pointer to the mmsys device for configuration registers
-- * @mutex: handle to one of the ten disp_mutex streams
-- * @ddp_comp_nr: number of components in ddp_comp
-- * @ddp_comp: array of pointers the mtk_ddp_comp structures used by this crtc
-- *
-- * TODO: Needs update: this header is missing a bunch of member descriptions.
-+ * @pending_planes:  Planes pending atomic configuration operation
-+ * @pending_async_planes: Planes pending asynchronous configuration operation
-+ * @cmdq_client:     CMDQ Mailbox Client structure
-+ * @cmdq_handle:     Handle to CMDQ Packet structure, used to send a packet
-+ * @cmdq_event:      Bitmask of GCE Events that CMDQ listens to (to send packets on event)
-+ * @cmdq_vblank_cnt: Number of VBlanks after which CMDQ packet sending operation times out
-+ * @cb_blocking_queue: Wait queue for sending blocking command packet through CMDQ Mailbox
-+ * @mmsys_dev:       Pointer to the MMSYS device for configuration registers
-+ * @dma_dev:         Pointer to the DMA device (usually linked to an IOMMU)
-+ * @mutex:           Pointer to the MediaTek MuteX device for HW triggers mute/unmuting
-+ * @ddp_comp_nr:     Number of HW components in ddp_comp structure
-+ * @num_conn_routes: Number of alternative connection routes for a pipeline
-+ * @conn_routes:     Array of HW components usable as alternative connection route
-+ * @hw_lock:         Display HW access mutex lock
-+ * @config_updating: Tracks whether an asynchronous config update operation is in progress
-+ * @config_lock:     Spinlock to protect config_updating variable
-+ * @ddp_comp:        Array of HW components used in one Display Controller pipeline
-  */
- struct mtk_crtc {
- 	struct drm_crtc			base;
-@@ -81,10 +94,8 @@ struct mtk_crtc {
- 	unsigned int			num_conn_routes;
- 	const struct mtk_drm_route	*conn_routes;
+ 	/* release GCE HW usage and start autosuspend */
+ 	pm_runtime_mark_last_busy(cmdq_cl->chan->mbox->dev);
+@@ -299,7 +300,10 @@ static void ddp_cmdq_cb(struct mbox_client *cl, void *mssg)
+ 	state = to_mtk_crtc_state(mtk_crtc->base.state);
  
--	/* lock for display hardware access */
- 	struct mutex			hw_lock;
- 	bool				config_updating;
--	/* lock for config_updating to cmd buffer */
- 	spinlock_t			config_lock;
+ 	spin_lock_irqsave(&mtk_crtc->config_lock, flags);
+-	if (mtk_crtc->config_updating)
++	cfg_updating = mtk_crtc->config_updating;
++	spin_unlock_irqrestore(&mtk_crtc->config_lock, flags);
++
++	if (cfg_updating)
+ 		goto ddp_cmdq_cb_out;
  
- 	struct mtk_ddp_comp		*ddp_comp[];
+ 	state->pending_config = false;
+@@ -329,14 +333,11 @@ static void ddp_cmdq_cb(struct mbox_client *cl, void *mssg)
+ 	}
+ 
+ ddp_cmdq_cb_out:
+-
+ 	if (mtk_crtc->pending_needs_vblank) {
+ 		mtk_crtc_finish_page_flip(mtk_crtc);
+ 		mtk_crtc->pending_needs_vblank = false;
+ 	}
+ 
+-	spin_unlock_irqrestore(&mtk_crtc->config_lock, flags);
+-
+ 	mtk_crtc->cmdq_vblank_cnt = 0;
+ 	wake_up(&mtk_crtc->cb_blocking_queue);
+ }
 -- 
 2.54.0
 
