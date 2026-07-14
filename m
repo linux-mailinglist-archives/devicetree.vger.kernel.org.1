@@ -1,204 +1,195 @@
-Return-Path: <devicetree+bounces-326042-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-326040-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id QFmxOokBVmo8xwAAu9opvQ
-	(envelope-from <devicetree+bounces-326042-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 11:29:45 +0200
+	id Q8PPHuoAVmoVxwAAu9opvQ
+	(envelope-from <devicetree+bounces-326040-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 11:27:06 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48E46752DA1
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 11:29:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C3E4E752D4C
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 11:27:05 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=novatek.com.tw header.s=dk header.b=uZXTlNco;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326042-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-326042-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=novatek.com.tw;
+	dkim=pass header.d=suse.com header.s=google header.b=BhxCTw10;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326040-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-326040-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=suse.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 275523046984
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 09:25:53 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 5B0DB30A9045
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 09:22:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A955743D4F7;
-	Tue, 14 Jul 2026 09:25:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0106043E9DC;
+	Tue, 14 Jul 2026 09:22:28 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from ms1.novatek.com.tw (ms2.novatek.com.tw [210.202.87.108])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80D2942E8E8;
-	Tue, 14 Jul 2026 09:25:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69CBC43F4C2
+	for <devicetree@vger.kernel.org>; Tue, 14 Jul 2026 09:22:23 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1784021152; cv=none; b=j27EDtAatzIfQcgsvv670sTlcqZyXcIsjMVfZU+Za63al33xn6WQJjENe8vNeO8zkx5MUtbY44LN2bvofRU2MUc93SyzulpUX1yLsGAWU1WYrlnjcXgf1+9CGoE5GRNOcTutJdPRUM7ttUND6DVl2iYN52IXTJyHcVxJHBUDrLY=
+	t=1784020947; cv=none; b=bgiwuw5iV2B5BiZufAimHp+X4Ti9tQJn6HivGbJgDZSsrGU5kDC529vUuendPOUXWlFk+7L6NGSrUdJmd1Fw94u6yKJoK8+G4pCucCt1PlmINd+VB5WXlEqe89JtN5N6d6N920cVAX7IFDfHCGxnb2AU+O9er+laxp1EBNZNT/s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1784021152; c=relaxed/simple;
-	bh=JESY8d7tVfLdbiZwdRziueVXRyGYulEsDkccdCkXhCI=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=T0iBaQ6XYvYvWWzoaK2YiWuepQJCTNC2jd5dX2N74TcbUbaNFMr6OtHCYw6O1HNIKaKLbgpTAufMI93jgmriPh8BmlxdLXEOD+Nqy2MK7mGfoSeXJ9gKPp+e5d624hxZpxAKw/PZp9Vwc6nsqXQJtMlEYZ4zOxP0HwSh4Po+iIo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=novatek.com.tw; spf=pass smtp.mailfrom=novatek.com.tw; dkim=pass (1024-bit key) header.d=novatek.com.tw header.i=@novatek.com.tw header.b=uZXTlNco; arc=none smtp.client-ip=210.202.87.108
-X-UUID: fe26a6fc7f6511f181a149c3f3c08161-20260714
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=novatek.com.tw; s=dk;
-	h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From; bh=nV/YkRgDdKRwlzzTztEs8AeCeEjaYi7Lp5sdOFtAdzo=;
-	b=uZXTlNcowJFXYu8TKmbBxtMR9OdmGnK1O+Lz0MbTYTy9FBq4VTQHsEe3zKgG9vesqq1y7RsuxWU5PI2ITkneSXLO2p1F7Y6lgwGyYBOjY9/Ft6P7/Lo/2FLiIoJuy1bEjTHLtuwL1mSzB2TQCl3j07DTTtZDnr6vg5FbwUWlARw=;
-X-UUID: fe26a6fc7f6511f181a149c3f3c08161-20260714
-Received: from spmgt1 [(172.20.13.10)] by ms1.novatek.com.tw
-	(envelope-from <sp_isw1_at@novatek.com.tw>)
-	(Generic MTA)
-	with ESMTP id 1236598370; Tue, 14 Jul 2026 17:25:45 +0800
-Received: from oabuild50.novatek.com.tw (oabuild50.novatek.com.tw [172.20.13.160])
-	by spmgt1 (Postfix) with ESMTP id B5FC81A1E1C;
-	Tue, 14 Jul 2026 17:25:45 +0800 (CST)
-Received: by oabuild50.novatek.com.tw (Postfix, from userid 1005)
-	id 3D841C600CC; Tue, 14 Jul 2026 17:25:44 +0800 (CST)
-From: Nina_Kuo@novatek.com.tw
-To: andi.shyti@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	linux-i2c@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: ben_huang@novatek.com.tw,
-	toby_chui@novatek.com.tw,
-	shihpei_hsu@novatek.com.tw
-Subject: [PATCH v2 2/3] dt-bindings: i2c: Add Novatek NT726xx SoC I2C controller
-Date: Tue, 14 Jul 2026 17:25:44 +0800
-Message-Id: <20260714092544.82672-1-Nina_Kuo@novatek.com.tw>
-X-Mailer: git-send-email 2.26.1
-In-Reply-To: <20260714092525.82613-1-Nina_Kuo@novatek.com.tw>
-References: <20260714092525.82613-1-Nina_Kuo@novatek.com.tw>
+	s=arc-20240116; t=1784020947; c=relaxed/simple;
+	bh=uGWUfxnxIY0NKJB4tV1A7WYuOfk3qaqaeqns9woe9G0=;
+	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=C4ZUbGX3PukMj2kIflYR2xmZqGAcHdqjqPRjgNJ+CTkSbBx20fiJNRLMdhwfFl+VmryCjQ936E0afyjYSjYnJZDj/NMeRAx1JOOqe5/RGzChLS87hXZ30d7sPogPtvw/DAT0n+aKFUP+5AFEJC4TuiyUuYUwpLNnfTX7gGdRKGU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=BhxCTw10; arc=none smtp.client-ip=209.85.128.52
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-493ce08a75bso15902815e9.1
+        for <devicetree@vger.kernel.org>; Tue, 14 Jul 2026 02:22:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=suse.com; s=google; t=1784020940; x=1784625740; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:date:from:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=a6rmzsH2Z8JYzFqIg2uMkj0gt9jdeZsll9yf1qnb10c=;
+        b=BhxCTw10pMGuJ7cWbSUGb7gGi/Cj/kbJHXgvc42Y01vMdyqMjCLZNlelC/X99G4JJp
+         q1wHIDQ3tQXEozuLxJPoyo25EONtRNBnpzdUw8FgZGOKS/XisSJ5ETUWgvEkHCL+n3h2
+         Mzl/YZKK9G8DkigQQpMMVYiGMS/evTk6Vn7UAxrpamUC+lCYFAOaQpImG6YCASQR3c4G
+         rULR0Jk1UKH/RVvM8Sg5ToAnCnAI3XmEQ/IBMsySYN5Q2UmHcJdCkF5GEpXi/Jhu6DD9
+         ezfBrQO++TlIiXUX/fWX5334IdfmpjRxNODVthDTqYfuXVDc05WQLDESOfnnNuEcOO4a
+         /WUQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1784020940; x=1784625740;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:date:from:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=a6rmzsH2Z8JYzFqIg2uMkj0gt9jdeZsll9yf1qnb10c=;
+        b=HFBDK0kLR9mTjh4dSwlPd9hrZRnVT+06h1ZCBqSB0TelKwlzWi3pvXu3mJB1mLbhC8
+         1OM2IsXjwaS3X6vIYRedNi2S+Ju3X27sNeXIKRtd+Owa5IoqkjhqNgjYViLiunxob1Ds
+         gC1uGnIzeW0uDHzmTzUr2KFiuOTFs0Wd7oiNvHVAM7EpShQRcfcpb4xmuKulYbZF4wVC
+         bdwB4KpuWVvot12eY2jdAXyHSM3jUo3dFOflS7ccRRzbq+BhTRWnZ39M0osWgiq/7Mxj
+         lceN/xYv4idiiens4F5Jt/s4/8Y6OsEq8HkkDqvA7T0mJZbDSw/scPmRMwbDqtekx54c
+         fo6A==
+X-Forwarded-Encrypted: i=1; AHgh+Rq0iUmARvYWyIA3FgTrR+y9vtesJtzAlzZ5ssuZeE66r5KUzg0LUeprDeFwJPHvVpo4MbiBnHkoYnr9@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw5S7QSSM3DP+nsHZRdGxczM2NmUK8h24vZGhH3+rlta+5jSTA2
+	n14Nev3EI2E2lTzLs0h1j3TtYfzzwwGQwHU/247H3BnRprVJ9WfvIwEsIe4juwm4NdA=
+X-Gm-Gg: AfdE7cnDp0xa+oI7z7lWxaR4wxZ3votwOc+pBoWXZV2X0UIreF2e9tbaIURf7dwFAGY
+	V4WHahsS0mn3eCNb1BKmD6zA+TWjkdeYhGr0LhkW5cr5vMRVPD651OqBBNZHrmf0HtWkHsPmFgQ
+	XnGoWpZvovIHbEVEnPQ3nwi13Fy7WbL/Gh0drAMvHgSSj6lmt9DgU8kNPAop+b8wjeGG8Pt29FV
+	OHRqwaAYdy9I+cIciVTEhli4+QPZPNCnKOmqt/Aupje/FMiECQ6lH3m9HmOdBorLqiF4WMmIrba
+	rXHGDqmeMqyX9sh/WfuFASVNcJGpi1SEql7Chf3w20Wd3JEiiqUn7dfsD9uUcmxtIVT0xqMzjl7
+	F+q0ZMdEsAOemwLIJu+NeE/QWZL2M6soFJ8PP0i5CFdOW0xppcOSFb/YXt9BA/fUAG7u1T4Zck7
+	IycCfRsXYO5z4=
+X-Received: by 2002:a05:600c:524b:b0:490:44eb:c1ea with SMTP id 5b1f17b1804b1-495159060f6mr32557165e9.24.1784020940226;
+        Tue, 14 Jul 2026 02:22:20 -0700 (PDT)
+Received: from localhost ([195.94.145.62])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-493f2dd8376sm214271875e9.2.2026.07.14.02.22.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 14 Jul 2026 02:22:19 -0700 (PDT)
+From: Andrea della Porta <andrea.porta@suse.com>
+X-Google-Original-From: Andrea della Porta <aporta@suse.de>
+Date: Tue, 14 Jul 2026 11:25:48 +0200
+To: Andrea della Porta <andrea.porta@suse.com>
+Cc: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	linux-pwm@vger.kernel.org, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Naushir Patuck <naush@raspberrypi.com>,
+	Stanimir Varbanov <svarbanov@suse.de>, mbrugger@suse.com,
+	Sean Young <sean@mess.org>, Julian Braha <julianbraha@gmail.com>
+Subject: Re: [PATCH v6 2/3] pwm: rp1: Add RP1 PWM controller driver
+Message-ID: <alYAnJ66npeYbncs@apocalypse>
+References: <cover.1783097764.git.andrea.porta@suse.com>
+ <5171610d8bebdd10eea44bff5236502d765b5918.1783097764.git.andrea.porta@suse.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: multipart/mixed;
-	boundary="__=_Part_Boundary_004_528031415.933570765"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <5171610d8bebdd10eea44bff5236502d765b5918.1783097764.git.andrea.porta@suse.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [1.14 / 15.00];
-	MIME_BASE64_TEXT_BOGUS(1.00)[];
-	CTYPE_MIXED_BOGUS(1.00)[];
-	MID_CONTAINS_FROM(1.00)[];
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[novatek.com.tw,quarantine];
-	R_DKIM_ALLOW(-0.20)[novatek.com.tw:s=dk];
+	DMARC_POLICY_ALLOW(-0.50)[suse.com,quarantine];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_DKIM_ALLOW(-0.20)[suse.com:s=google];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	MIME_HTML_ONLY(0.20)[];
 	MAILLIST(-0.15)[generic];
-	MIME_BASE64_TEXT(0.10)[];
-	MIME_GOOD(-0.10)[multipart/mixed,text/plain];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-326042-lists,devicetree=lfdr.de];
-	FROM_NEQ_ENVFROM(0.00)[Nina_Kuo@novatek.com.tw,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS(0.00)[m:andi.shyti@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-i2c@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:ben_huang@novatek.com.tw,m:toby_chui@novatek.com.tw,m:shihpei_hsu@novatek.com.tw,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORWARDED(0.00)[lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-326040-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:andrea.porta@suse.com,m:ukleinek@kernel.org,m:linux-pwm@vger.kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:florian.fainelli@broadcom.com,m:bcm-kernel-feedback-list@broadcom.com,m:devicetree@vger.kernel.org,m:linux-rpi-kernel@lists.infradead.org,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:naush@raspberrypi.com,m:svarbanov@suse.de,m:mbrugger@suse.com,m:sean@mess.org,m:julianbraha@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[andrea.porta@suse.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[Nina_Kuo@novatek.com.tw,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[novatek.com.tw:+];
-	FROM_NO_DN(0.00)[];
-	MIME_TRACE(0.00)[0:+,1:~,2:+];
-	RCVD_COUNT_FIVE(0.00)[6];
-	TO_DN_NONE(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FREEMAIL_CC(0.00)[kernel.org,vger.kernel.org,broadcom.com,lists.infradead.org,raspberrypi.com,suse.de,suse.com,mess.org,gmail.com];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andrea.porta@suse.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[suse.com:+];
 	ALIAS_RESOLVED(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp,devicetree.org:url]
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[raspberrypi.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,apocalypse:mid,vger.kernel.org:from_smtp,suse.de:email,suse.com:from_mime,suse.com:email,suse.com:dkim]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 48E46752DA1
+X-Rspamd-Queue-Id: C3E4E752D4C
 
---__=_Part_Boundary_004_528031415.933570765
-Content-Type: text/html;
-	charset="utf-8"
-Content-Transfer-Encoding: base64
+Hi Uwe,
 
-PCEtLXR5cGU6aHRtbC0tPjwhLS17LS0+PHNwYW4gbGFuZz1FTi1VUw0Kc3R5bGU9J2ZvbnQtc2l6
-ZToxMC4wcHQ7Zm9udC1mYW1pbHk6IkNhbGlicmkiLHNhbnMtc2VyaWYnPkNPTkZJREVOVElBTElU
-WSBOT1RJQ0U6IFRoaXMgbWVzc2FnZSwgaW5jbHVkaW5nIGF0dGFjaG1lbnRzLCBjb250YWlucyBp
-bmZvcm1hdGlvbiB3aGljaCBtYXkgYmUgY29uZmlkZW50aWFsIGFuZCBwcml2aWxlZ2VkLCBhbmQg
-aXMgaW50ZW5kZWQgb25seSBmb3IgdXNlIGJ5IHRoZSBhZGRyZXNzZWVzIGRlc2lnbmF0ZWQgYWJv
-dmUuIFVubGVzcyB5b3UgYXJlIHRoZSBpbnRlbmRlZCByZWNpcGllbnQsIGFueSB1c2UsIGNvcHlp
-bmcsIGRpc2Nsb3N1cmUsIG9yIGRpc3RyaWJ1dGlvbiBpcyBwcm9oaWJpdGVkLiBJZiB5b3UgaGF2
-ZSByZWNlaXZlZCB0aGUgbWVzc2FnZSBpbiBlcnJvciwgcGxlYXNlIGltbWVkaWF0ZWx5IGRlbGV0
-ZSB0aGUgbWVzc2FnZSBhbmQgZGVzdHJveSBhbGwgY29waWVzIHRoZXJlb2YgYW5kIG5vdGlmeSB0
-aGUgc2VuZGVyIGJ5IHJlcGx5IGVtYWlsLjwvc3Bhbj48c3Bhbg0KbGFuZz1FTi1VUyBzdHlsZT0n
-Zm9udC1zaXplOjEwLjBwdCc+IDwvc3Bhbj48c3BhbiBzdHlsZT0nZm9udC1zaXplOjEwLjBwdCc+
-JiMyNjQxMjsmIzM3MTA5OyYjMjAyMTQ7JiMyMTQ1MDsmIzIwMjE5OyYjMjAzMDk7PHNwYW4NCmNs
-YXNzPUdyYW1FPiYjMzg0Njg7JiMyMDIxNDsmIzIyMzQzOyYjMjM2NjA7JiMyNzIzMTsmIzIzNDk0
-Ozwvc3Bhbj4mIzY1MjkyOyYjMjA2Nzc7JiMyMDM3OTsmIzIwODU0OyYjMTk5Nzg7JiMyNTM1MTsm
-IzIzNDUwOyYjMjIzMjA7JiMyMjMzNjsmIzIwMDQzOyYjMjU5MTA7JiMyMDIxNDsmIzIwMTU0OyYj
-MjAzNTE7JiMyOTk5MjsmIzEyMjkwOyYjMzg1MDA7JiMzODc1MDsmIzI0NzQ0OyYjMjYxNTk7JiMy
-NTM1MTsmIzIzNDUwOyYjMjAwNDM7JiMyNTkxMDsmIzIwMjE0OyYjMjAxNTQ7JiM2NTI5MjsmIzIx
-NTQyOyYjMjEwNjM7JiMzNTUzMTsmIzIxMjQ3OyYjMjAzNTE7JiMyOTk5MjsmIzEyMjg5OyYjMzUw
-Nzk7JiMzNTA2OTsmIzEyMjg5OyYjMjU1ODE7JiMzODcwNjsmIzI1MTEwOzxzcGFuDQpjbGFzcz1H
-cmFtRT4mIzI1OTU1OyYjMjQwNjc7JiMyNjQxMjsmIzM3MTA5OyYjMjAyMTQ7PC9zcGFuPiYjMjAw
-NDM7JiMyMDIxOTsmIzIwMzA5OyYjMzcwOTY7JiMyMDIyMTsmIzEyMjkwOyYjMzM1MDk7JiMyNDc0
-NDsmIzM3Njc5OyYjMzU0OTI7JiMyMjMyMDsmIzI1OTEwOyYjMjEwNDA7JiMyNzQ5MjsmIzM3MTA5
-OyYjMjAyMTQ7JiM2NTI5MjsmIzM1NTMxOyYjMzE0MzU7JiMyMTM2MzsmIzIyMjM4OyYjMzUyMDY7
-JiMzODY1MTsmIzIzMzc2OyYjMzcxMDk7JiMyMDIxNDsmIzM2ODkwOyYjMzA2OTM7JiMyMzQ5Mjsm
-IzIwMjE0OyYjMjAxNTQ7JiM2NTI5MjsmIzIwMDA2OyYjMzU1MzE7JiMyMzQzNjsmIzIwODQwOyYj
-MjEwMzQ7JiMzODUwMDsmIzE5OTg4OyYjMzc1NTk7JiMyNzU4NDsmIzI2NDEyOyYjMzcxMDk7JiMy
-MDIxNDsmIzIxNDUwOyYjMjA4NTQ7JiMzNTA3OTsmIzI2NDEyOyYjMTIyOTA7PHNwYW4NCmxhbmc9
-RU4tVVM+PG86cD48L286cD48L3NwYW4+PC9zcGFuPg0KPCEtLX0tLT4=
+On 19:05 Fri 03 Jul     , Andrea della Porta wrote:
+> From: Naushir Patuck <naush@raspberrypi.com>
+> 
+> The Raspberry Pi RP1 southbridge features an embedded PWM
+> controller with 4 output channels, alongside an RPM interface
+> to read the fan speed on the Raspberry Pi 5.
+> 
+> Add the supporting driver.
+> 
+> Signed-off-by: Naushir Patuck <naush@raspberrypi.com>
+> Co-developed-by: Stanimir Varbanov <svarbanov@suse.de>
+> Signed-off-by: Stanimir Varbanov <svarbanov@suse.de>
+> Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
+> ---
+>  drivers/pwm/Kconfig   |   9 +
+>  drivers/pwm/Makefile  |   1 +
+>  drivers/pwm/pwm-rp1.c | 435 ++++++++++++++++++++++++++++++++++++++++++
+>  3 files changed, 445 insertions(+)
+>  create mode 100644 drivers/pwm/pwm-rp1.c
+> 
 
---__=_Part_Boundary_004_528031415.933570765
-Content-Type: 
-Content-Transfer-Encoding: base64
+<...snip...>
 
-RnJvbTogQmVuIEh1YW5nIDxCZW5fSHVhbmdAbm92YXRlay5jb20udHc+DQoNCkFkZCBkZXZpY2Ug
-dHJlZSBkb2N1bWVudGF0aW9uIGZvciBOb3ZhdGVrIE5UNzI2eHggU29DIEkyQyBjb250cm9sbGVy
-Lg0KDQpTaWduZWQtb2ZmLWJ5OiBCZW4gSHVhbmcgPEJlbl9IdWFuZ0Bub3ZhdGVrLmNvbS50dz4N
-ClNpZ25lZC1vZmYtYnk6IE5pbmEgS3VvIDxOaW5hX0t1b0Bub3ZhdGVrLmNvbS50dz4NCi0tLQ0K
-IC4uLi9iaW5kaW5ncy9pMmMvbm92YXRlayxudDcyNnh4LWkyYy55YW1sICAgICB8IDc0ICsrKysr
-KysrKysrKysrKysrKysNCiAxIGZpbGUgY2hhbmdlZCwgNzQgaW5zZXJ0aW9ucygrKQ0KIGNyZWF0
-ZSBtb2RlIDEwMDY0NCBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvaTJjL25vdmF0
-ZWssbnQ3MjZ4eC1pMmMueWFtbA0KDQpkaWZmIC0tZ2l0IGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0
-cmVlL2JpbmRpbmdzL2kyYy9ub3ZhdGVrLG50NzI2eHgtaTJjLnlhbWwgYi9Eb2N1bWVudGF0aW9u
-L2RldmljZXRyZWUvYmluZGluZ3MvaTJjL25vdmF0ZWssbnQ3MjZ4eC1pMmMueWFtbA0KbmV3IGZp
-bGUgbW9kZSAxMDA2NDQNCmluZGV4IDAwMDAwMDAwMDAwMC4uODY2NTg5YzVhZTUxDQotLS0gL2Rl
-di9udWxsDQorKysgYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvaTJjL25vdmF0
-ZWssbnQ3MjZ4eC1pMmMueWFtbA0KQEAgLTAsMCArMSw3NCBAQA0KKyMgU1BEWC1MaWNlbnNlLUlk
-ZW50aWZpZXI6IChHUEwtMi4wLW9ubHkgT1IgQlNELTItQ2xhdXNlKQ0KKyVZQU1MIDEuMg0KKy0t
-LQ0KKyRpZDogaHR0cDovL2RldmljZXRyZWUub3JnL3NjaGVtYXMvaTJjL25vdmF0ZWssbnQ3MjZ4
-eC1pMmMueWFtbCMNCiskc2NoZW1hOiBodHRwOi8vZGV2aWNldHJlZS5vcmcvbWV0YS1zY2hlbWFz
-L2NvcmUueWFtbCMNCisNCittYWludGFpbmVyczoNCisgIC0gQmVuIEh1YW5nIDxiZW5faHVhbmdA
-bm92YXRlay5jb20udHc+DQorICAtIEphc29uIEpKIFd1IDxqYXNvbl9qal93dUBub3ZhdGVrLmNv
-bS50dz4NCisNCit0aXRsZTogTm92YXRlayBOVDcyNnh4IFNlcmllcyBTb0MgSTJDIG1hc3RlciBj
-b250cm9sbGVyDQorDQorYWxsT2Y6DQorICAtICRyZWY6IC9zY2hlbWFzL2kyYy9pMmMtY29udHJv
-bGxlci55YW1sIw0KKw0KK3Byb3BlcnRpZXM6DQorICBjb21wYXRpYmxlOg0KKyAgICBjb25zdDog
-bm92YXRlayxudDcyNjAwLWkyYw0KKw0KKyAgcmVnOg0KKyAgICBtYXhJdGVtczogMQ0KKw0KKyAg
-aW50ZXJydXB0czoNCisgICAgbWF4SXRlbXM6IDENCisNCisgIGNsb2NrLWZyZXF1ZW5jeToNCisg
-ICAgZGVmYXVsdDogMTAwMDAwDQorICAgIGVudW06IFsgMTAwMDAwLCA0MDAwMDAgXQ0KKw0KKyAg
-bm92YXRlayxod21vZHM6DQorICAgICRyZWY6IC9zY2hlbWFzL3R5cGVzLnlhbWwjL2RlZmluaXRp
-b25zL3N0cmluZw0KKyAgICBkZXNjcmlwdGlvbjogTmFtZSBvZiBlYWNoIGkyYyBwaW4sIG11c3Qg
-YmUgbmFtZWQgd2l0aCAiaTJjWCIuIChYIGlzDQorICAgICAgICAgICAgICAgICBhbiBpbnRlZ2Vy
-IHN0YXJ0aW5nIGZyb20gMCwgbXVzdCBiZSB1bmlxdWUpDQorDQorICBub3ZhdGVrLHN0YmMtY29u
-dHJvbGxhYmxlOg0KKyAgICB0eXBlOiBib29sZWFuDQorICAgIGRlc2NyaXB0aW9uOiBTZXQgaWYg
-dGhpcyBpMmMgbWFzdGVyLCBuYW1lZCBhcyBgc3RiYy1pMmNgLCBpcw0KKyAgICAgIGNvbnRyb2xs
-YWJsZSBieSBzdGJjIChTdGFuZGJ5IGNvbnRyb2xsZXIsIGFjdHVhbGx5IGlzIGFuIDgwNTENCisg
-ICAgICBtaWNyby1wcm9jZXNzb3IpIG9uIE5vdmF0ZWsgTlQ3MjZ4eCBTb0NzLg0KKyAgICAgIEZv
-ciB0aGVzZSBgc3RiYy1pMmNgcywgdGhlIGRyaXZlbiBjbG9jayBpcyBvbmx5IDEyIE1IeiBhbmQg
-dGhlDQorICAgICAgYXV0aGVudGljYXRpb24gdG8gc3RiYyBtdXN0IGJlIGV4ZWN1dGVkIGJlZm9y
-ZSBjb250cm9sbGluZyB0aGUNCisgICAgICByZWdpc3RlcnMuDQorDQorICAgIGRlZmF1bHQ6IDAN
-CisNCityZXF1aXJlZDoNCisgIC0gY29tcGF0aWJsZQ0KKyAgLSByZWcNCisgIC0gaW50ZXJydXB0
-cw0KKyAgLSBub3ZhdGVrLGh3bW9kcw0KKw0KK3VuZXZhbHVhdGVkUHJvcGVydGllczogZmFsc2UN
-CisNCitleGFtcGxlczoNCisgIC0gfA0KKyAgICBpMmMwOiBpMmNAMTAwMDAwMDAgew0KKyAgICAg
-IGNvbXBhdGlibGUgPSAibm92YXRlayxudDcyNjAwLWkyYyI7DQorICAgICAgcmVnID0gPDB4MCAw
-eDEwMDAwMDAwIDB4MCAweDEwMD47DQorICAgICAgaW50ZXJydXB0cyA9IDwwIDY3IDQ+Ow0KKyAg
-ICAgIGNsb2NrLWZyZXF1ZW5jeSA9IDw0MDAwMDA+Ow0KKyAgICAgIG5vdmF0ZWssaHdtb2RzID0g
-ImkyYzAiOw0KKyAgICAgICNhZGRyZXNzLWNlbGxzID0gPDI+Ow0KKyAgICAgICNzaXplLWNlbGxz
-ID0gPDI+Ow0KKyAgICB9Ow0KKw0KKyAgICBzdGJjLWkyYzE6IGkyY0AyMDAwMDAwMCB7DQorICAg
-ICAgY29tcGF0aWJsZSA9ICJub3ZhdGVrLG50NzI2MDAtaTJjIjsNCisgICAgICByZWcgPSA8MHgw
-IDB4MjAwMDAwMDAgMHgwIDB4MTAwPjsNCisgICAgICBpbnRlcnJ1cHRzID0gPDAgNzcgND47DQor
-ICAgICAgbm92YXRlayxod21vZHMgPSAiaTJjMSI7DQorICAgICAgbm92YXRlayxzdGJjLWNvbnRy
-b2xsYWJsZTsNCisgICAgICAjYWRkcmVzcy1jZWxscyA9IDwyPjsNCisgICAgICAjc2l6ZS1jZWxs
-cyA9IDwyPjsNCisgICAgfTsNCi0tIA0KMi40MC4xDQo=
+> +	.driver = {
+> +		.name = "rp1-pwm",
+> +		.of_match_table = rp1_pwm_of_match,
+> +		.pm = pm_ptr(&rp1_pwm_pm_ops),
+> +		.suppress_bind_attrs = true,
+> +	},
+> +};
+> +builtin_platform_driver(rp1_pwm_driver);
+> +
+> +MODULE_DESCRIPTION("RP1 PWM driver");
+> +MODULE_AUTHOR("Naushir Patuck <naush@raspberrypi.com>");
+> +MODULE_AUTHOR("Andrea della Porta <andrea.porta@suse.com>");
+> +MODULE_LICENSE("GPL");
+> -- 
+> 2.35.3
+>
 
---__=_Part_Boundary_004_528031415.933570765--
+I didn't get any feedback after I replied to Sashiko's latest concerns, which I
+don't think are relevant. Can we proceed with this patch or are there other 
+concerns about it?
 
+Many thanks,
+Andrea
 
