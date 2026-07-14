@@ -1,155 +1,165 @@
-Return-Path: <devicetree+bounces-326000-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-326003-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id FYicOobyVWqrwgAAu9opvQ
-	(envelope-from <devicetree+bounces-326000-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 10:25:42 +0200
+	id SVE+DijzVWrgwgAAu9opvQ
+	(envelope-from <devicetree+bounces-326003-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 10:28:24 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E6857525D8
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 10:25:42 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 99C4375262C
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 10:28:23 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=none;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326000-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-326000-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=none;
+	dkim=pass header.d=kernel.org header.s=k20201202 header.b="XPMvh/AR";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326003-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-326003-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id B5224303EB84
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 08:19:26 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 7C41F30AFCF9
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 08:21:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EF3F3FAE19;
-	Tue, 14 Jul 2026 08:19:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDE543FBB6C;
+	Tue, 14 Jul 2026 08:21:16 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.white.stw.pengutronix.de (mx1.white.stw.pengutronix.de [185.203.200.13])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D089E3FADFD;
-	Tue, 14 Jul 2026 08:19:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 203F23FBEBC;
+	Tue, 14 Jul 2026 08:21:12 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1784017163; cv=none; b=dDi/2eWxYayhobZSByUttfL7VGOMIPySVbtVH44RIW0rCYt/wm7AzMVb0nhsar0Nnole8+TEpii73mKO2yMg4I+QJM+0A3JaBtAHNOxjD+4s8g9tAU4W/eKMf5598wyxZY/TVlGWIIViG/4ClGjkn6FXGtjs2DfiMXdzWTISL2M=
+	t=1784017273; cv=none; b=SE7ZC/h+4z5MJQq7WWUGEGXWFD9t35pR49Rxb5sP0OtjhmWHzveXTAReD9FAFEsSQrgA/H76y9HNWyQ0LxyhWtv0iTOZI56z738MtJe9j8tQN0p/zCP6S6nb7isoiGHvAHl+zLGdVKTxG/xwKKhFJrIwxx71mDSk/70OcYULJNs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1784017163; c=relaxed/simple;
-	bh=wwKTQi9cpPRih9483MgQ+Lfpv5eTWogqhsMzD1Mu8K4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rGZWZ4aUCyb3APuVj9/lK43O3oRQbRdfKY8BNKexmX1lAX8u5e7bCvwJnj2cOpLZhZ02ONRmpn/AIQx4PnvHeHQ8XTta3JedB9EkFgWJf3cAolKRwCevfrfv1SeGYu7VSNhGndxWUela1ikJgE7wKfYLKQCQph6ZFFG1YIFhV1s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.200.13
-Received: from drehscheibe.grey.stw.pengutronix.de (drehscheibe.grey.stw.pengutronix.de [IPv6:2a0a:edc0:0:c01:1d::a2])
-	(Authenticated sender: relay-from-drehscheibe.grey.stw.pengutronix.de)
-	by mx1.white.stw.pengutronix.de (Postfix) with ESMTPSA id 15561202203;
-	Tue, 14 Jul 2026 10:19:10 +0200 (CEST)
-Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <ore@pengutronix.de>)
-	id 1wjYM9-001jwl-39;
-	Tue, 14 Jul 2026 10:19:09 +0200
-Received: from ore by pty.whiteo.stw.pengutronix.de with local (Exim 4.98.2)
-	(envelope-from <ore@pengutronix.de>)
-	id 1wjYM9-000000091z6-3Y9T;
-	Tue, 14 Jul 2026 10:19:09 +0200
-Date: Tue, 14 Jul 2026 10:19:09 +0200
-From: Oleksij Rempel <o.rempel@pengutronix.de>
-To: Jonas Jelonek <jelonek.jonas@gmail.com>
-Cc: Kory Maincent <kory.maincent@bootlin.com>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S . Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Daniel Golle <daniel@makrotopia.org>,
-	=?utf-8?B?QmrDuHJu?= Mork <bjorn@mork.no>
-Subject: Re: [PATCH net-next v7 2/4] net: pse-pd: add Realtek PSE MCU core
-Message-ID: <alXw_QZfEEKQd5fr@pengutronix.de>
-References: <20260712192251.1413279-1-jelonek.jonas@gmail.com>
- <20260712192251.1413279-3-jelonek.jonas@gmail.com>
+	s=arc-20240116; t=1784017273; c=relaxed/simple;
+	bh=YRQiObYZV7j4K+B9X4FSjAje/rXs+OimtUFNe3Mc5DU=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=hDCnGwcZzahyy1D5dln/T/3nMxz1ZAr0tmGquIaaznv0KsbMuP+Pb4spYN/VlC5cw0yoo1LD5SQ3ah1/CMtVu2+aCAORmisKUAss78hj2jMrkrycFT0GRa5+9G90haqdFTDA+ZAzhiXq8V6gPDP6YMG/KPrrD6YtPcadFDyoIws=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XPMvh/AR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 31127C2BCB8;
+	Tue, 14 Jul 2026 08:21:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1784017271;
+	bh=YRQiObYZV7j4K+B9X4FSjAje/rXs+OimtUFNe3Mc5DU=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=XPMvh/ARLF279uK9RBvp5K1LgdyJibk0yujjbS7sXtC+lbSGIlb5KlmTSgS0m/TK5
+	 jkR2ZlZ/Xkrtxmr1Vxxg/LvHtLEdQwSzN9xMwGRvIxDB3CVxuD3Co/4AB9Opaupe9c
+	 NSqyOk9NyqIUc8GTm+wauiY3ODC/m+4qvj0nFcO6l4UtdT2fD84flnDVlVdxJdD1Fz
+	 rDaja6m5WMzKzLxJf4MUcpiTdUNTqq1kw6vq0XcnKHH4Fzmst0n1+8rS9oM+kTi9V3
+	 6bYssbrKVSCDkCsehfhvm89c0hL+/cAIZk1ajbFzKLt6Dttnh0PAGjjjl42dn++//8
+	 ZDi8cip5nlD2Q==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 0D2B9C44501;
+	Tue, 14 Jul 2026 08:21:11 +0000 (UTC)
+From: Andy Chung via B4 Relay <devnull+Andy.Chung.amd.com@kernel.org>
+Subject: [PATCH 0/4] hwmon: Add Kandou KB9002 PCIe retimer driver
+Date: Tue, 14 Jul 2026 16:19:31 +0800
+Message-Id: <20260714-kb9002-upstream-v1-0-8fd2f0b135d8@amd.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20260712192251.1413279-3-jelonek.jonas@gmail.com>
-X-Sent-From: Pengutronix Hildesheim
-X-URL: http://www.pengutronix.de/
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIABPxVWoC/yXMTQqEMAxA4atI1hZiC9XxKuKi1oxmxB8aFUG8u
+ 9VZfov3ThAKTAJlckKgnYXnKSJLE/C9mzpS3EaDRm0xz4wamg+iVtsiayA3KrTeFpZMXhgDsVo
+ Cffl4j1X9t2zNj/z6bOC6btc+znpzAAAA
+X-Change-ID: 20260713-kb9002-upstream-06c686e37833
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Andy Chung <andy.chung@amd.com>, 
+ Guenter Roeck <linux@roeck-us.net>, Jonathan Corbet <corbet@lwn.net>, 
+ Shuah Khan <skhan@linuxfoundation.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-hwmon@vger.kernel.org, linux-doc@vger.kernel.org, 
+ Andy Chung <Andy.Chung@amd.com>
+X-Mailer: b4 0.15.1
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1784017234; l=1648;
+ i=Andy.Chung@amd.com; s=20260327; h=from:subject:message-id;
+ bh=YRQiObYZV7j4K+B9X4FSjAje/rXs+OimtUFNe3Mc5DU=;
+ b=JKeIf8l4EpvoK7p0e3AeHEUfiK61el0DEgPKJanCxa3HUQ4wvp2Ik8CYyxiuiYxGC+KMAYZD/
+ iPn5stRt2DABJQdy8BTswG1gdHXRocWel+YJXvZ5m88hXiNqPcFuMSf
+X-Developer-Key: i=Andy.Chung@amd.com; a=ed25519;
+ pk=X2gaHRnhU2q5hvMjkC6xmIcC03vKNvHY9CQRdsj9ecM=
+X-Endpoint-Received: by B4 Relay for Andy.Chung@amd.com/20260327 with
+ auth_id=696
+X-Original-From: Andy Chung <Andy.Chung@amd.com>
+Reply-To: Andy.Chung@amd.com
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.04 / 15.00];
+X-Spamd-Result: default: False [-3.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-326000-lists,devicetree=lfdr.de];
-	DMARC_NA(0.00)[pengutronix.de];
-	FORGED_RECIPIENTS(0.00)[m:jelonek.jonas@gmail.com,m:kory.maincent@bootlin.com,m:andrew+netdev@lunn.ch,m:davem@davemloft.net,m:edumazet@google.com,m:kuba@kernel.org,m:pabeni@redhat.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:netdev@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:daniel@makrotopia.org,m:bjorn@mork.no,m:jelonekjonas@gmail.com,m:andrew@lunn.ch,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FREEMAIL_TO(0.00)[gmail.com];
+	TAGGED_FROM(0.00)[bounces-326003-lists,devicetree=lfdr.de,Andy.Chung.amd.com];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	FORGED_SENDER(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:andy.chung@amd.com,m:linux@roeck-us.net,m:corbet@lwn.net,m:skhan@linuxfoundation.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-hwmon@vger.kernel.org,m:linux-doc@vger.kernel.org,m:Andy.Chung@amd.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[o.rempel@pengutronix.de,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	RCPT_COUNT_TWELVE(0.00)[15];
+	FROM_HAS_DN(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[o.rempel@pengutronix.de,devicetree@vger.kernel.org];
-	MISSING_XM_UA(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	R_DKIM_NA(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
-	TO_DN_SOME(0.00)[]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	HAS_REPLYTO(0.00)[Andy.Chung@amd.com]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 9E6857525D8
+X-Rspamd-Queue-Id: 99C4375262C
 
-On Sun, Jul 12, 2026 at 07:22:48PM +0000, Jonas Jelonek wrote:
-> A range of managed Realtek-based PoE switches use a small microcontroller
-> on the PCB to front the actual PSE silicon. The host CPU talks to that
-> MCU over I2C/SMBus or UART using a fixed 12-byte request/response
-> protocol with a trailing checksum; the PSE chips are managed by the MCU
-> and are not accessed directly. Two generations of the protocol exist -
-> both Realtek's - diverging in opcode numbering and a few response
-> layouts; the driver handles this with a per-dialect opcode table and
-> parser hooks for the responses that differ, selected by the compatible.
-> The specific PSE chip behind the MCU is detected at runtime and only
-> influences per-chip constants (power scaling and the per-port cap).
-> 
-> This core module implements the protocol, message framing, the dialect
-> machinery and the pse_controller_ops glue, and exports a registration
-> helper for transport modules. The I2C and UART transports that drive it
-> follow in the next patches; the core (PSE_REALTEK_MCU) is selected
-> automatically by those transports and is not user-selectable on its own.
-> 
-> The realtek-pse-mcu-* files and PSE_REALTEK_MCU* symbols match the
-> realtek,pse-mcu-* compatibles (see the binding for the naming rationale).
-> The two protocol generations - gen1 on older Broadcom-PSE boards, gen2 on
-> Realtek's own PSE silicon - are both Realtek's, handled by the same shared
-> core, each selecting its dialect via the compatible.
-> 
-> Power budgeting is left to the MCU firmware; the driver advertises
-> PSE_BUDGET_EVAL_STRAT_DYNAMIC (controller-managed budget) accordingly.
-> 
-> Signed-off-by: Jonas Jelonek <jelonek.jonas@gmail.com>
+The Kandou KB9002 is an 8-lane PCIe 5.0 retimer with an integrated
+microcontroller that exposes an SMBus 3.0 target (with mandatory PEC)
+on its sideband interface. Its firmware aggregates per-lane die
+temperatures and publishes the maximum through a register window.
 
-Acked-by: Oleksij Rempel <o.rempel@pengutronix.de>
+This series adds a hwmon driver for it. The driver reports the
+aggregated maximum die temperature as temp1_input, and exposes the
+running firmware version and boot status under debugfs.
 
-Thank you!
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+The series is organised as:
+
+  1/4  add the "kandou" vendor prefix
+  2/4  device tree binding for the retimer
+  3/4  the driver, Kconfig/Makefile and MAINTAINERS entry
+  4/4  hwmon documentation
+
+Signed-off-by: Andy Chung <Andy.Chung@amd.com>
+---
+Andy Chung (4):
+      dt-bindings: Add vendor prefix for Kandou
+      dt-bindings: hwmon: Add Kandou KB9002
+      hwmon: (kb9002) Add driver for Kandou KB9002 retimer
+      hwmon: (kb9002) Add documentation
+
+ .../devicetree/bindings/hwmon/kandou,kb9002.yaml   |  45 ++
+ .../devicetree/bindings/vendor-prefixes.yaml       |   2 +
+ Documentation/hwmon/index.rst                      |   1 +
+ Documentation/hwmon/kb9002.rst                     |  65 +++
+ MAINTAINERS                                        |   8 +
+ drivers/hwmon/Kconfig                              |  11 +
+ drivers/hwmon/Makefile                             |   1 +
+ drivers/hwmon/kb9002.c                             | 473 +++++++++++++++++++++
+ 8 files changed, 606 insertions(+)
+---
+base-commit: ca078d004cf58137bcf8cb24a8b271397431ba58
+change-id: 20260713-kb9002-upstream-06c686e37833
+
+Best regards,
+--  
+Andy Chung <Andy.Chung@amd.com>
+
+
 
