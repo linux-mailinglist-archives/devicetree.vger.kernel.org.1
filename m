@@ -1,185 +1,148 @@
-Return-Path: <devicetree+bounces-326319-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-326320-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id iTZ3FjxKVmqy2wAAu9opvQ
-	(envelope-from <devicetree+bounces-326319-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 16:39:56 +0200
+	id H8lNMGJKVmrB2wAAu9opvQ
+	(envelope-from <devicetree+bounces-326320-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 16:40:34 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id EEC5B755F58
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 16:39:55 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 23922755F6F
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 16:40:34 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=E9xwor7f;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326319-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-326319-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=gmail.com;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=CHtrnOnW;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326320-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-326320-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 9730F301A17D
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 14:33:26 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 98815316E52B
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jul 2026 14:34:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B23E3AB27F;
-	Tue, 14 Jul 2026 14:33:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D43F370AEE;
+	Tue, 14 Jul 2026 14:34:36 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A84535E1AE
-	for <devicetree@vger.kernel.org>; Tue, 14 Jul 2026 14:33:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D711371873;
+	Tue, 14 Jul 2026 14:34:34 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1784039602; cv=none; b=N9nx9uMfBJtLAyxIJoTbqW8vc575b0gzdEjlCCjxiGsjenLt9QMBPjx83yn335Cvyjgn+tMqYlmB8xK8D+2CKkx7JRVExDkeg9RDLIVWzNPM46k6XI3wmENB3E69RlqPVyoyBcYe+Z7D2pnaQHTT4g5w9rj+WF8YuqcDKNT8tlU=
+	t=1784039676; cv=none; b=XZY4nVLYFrXewRmtMzlAFRaV6PrVjNVlPDxVQs7gOGGtAq6BySMzy1FzF4XAuFjfWd0x75FX7aV88x+R7aAA5wCKCDVEXGekKqyB+v8/dzNxwxMR7wsG7WaUg5+IKiYOyYvH9UA8vtUVj3jCMP0Yp3fQNUb8oH4QtaM9SwbI/DU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1784039602; c=relaxed/simple;
-	bh=SUP1kQE5p1aa+G20qYy1Hucdars0a6q884T9xd3sclY=;
+	s=arc-20240116; t=1784039676; c=relaxed/simple;
+	bh=L9Emhitq2fZbufK98cTv40SJFDXVFtQqBtiVu6ARKKE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gWaLe0H9ACtBhmKteatotp5yEzZI24juLXfCEG6a1Oag8L0MzFiYlrdba0BJYT3u7EpQx8e4p7HIG2Feox7sjt89sTc38lYbH/S6Q3IryafLwIabb6b34UZpPnudokZYqGhdmSxyOSB55BgTNOlhoKD/8A1RQ6ipOvzO3XF/jeI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=E9xwor7f; arc=none smtp.client-ip=209.85.221.43
-Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-4703bc0a99aso2570979f8f.3
-        for <devicetree@vger.kernel.org>; Tue, 14 Jul 2026 07:33:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1784039596; x=1784644396; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :content-type:mime-version:references:message-id:subject:cc:to:from
-         :date:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=BCR2ojKh9CG9hna9RsCPgdIHB0rwbpF+LXlEWMO+i64=;
-        b=E9xwor7fHrqQo54tObeJ34KzvDtNJnxqqFeEU1Mf5tYNN9LFWa6dS53TlkFb1I1AxI
-         xAbTYx773b0pYJvOCgh0yrAijuHmzVygJkefC4Ik/Cd5et49KCPEYRYbCM2Klf0WrU5F
-         xSn3E2I9jJCFUmwzDwuWa1IAhdBUDV+snGZlVsvNIPlBKNpVu/FSHf8v0JkvlxlG83n5
-         5my4Lti/Ajw11pNzNCVEjoy/yUhf4ASxCuguoQWUyEEvkZc/UJFSd36YPFZXkJYnSjmv
-         KdbQPkQlUubJ+lXCnfTZBK3nG8l+KHB/UToE+jocwtN/yXKrb0Avu5nEpJLtItdWa4Yf
-         TAiA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1784039596; x=1784644396;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :content-type:mime-version:references:message-id:subject:cc:to:from
-         :date:x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to:content-type;
-        bh=BCR2ojKh9CG9hna9RsCPgdIHB0rwbpF+LXlEWMO+i64=;
-        b=kkWXVBZtJTDptP1164x3ZtkXjOufp5TlavhCNAjmj6XaNkqALyeUGji2YmFYl6Im1l
-         wHmN6++9wCVcjVf2ZLSJjXggu4s4JJXY/MMHkXutbqeJwDPWi3hAI6ooeHVlwlLU/n/1
-         rN85GvzPqaf5W+ExAZTT153PE73F2OriTGmOJzrZHYvObe/1nD0+btfwfBggjLN8voUx
-         Le7DBfWn/fm1jY8Mm5fMNUDdQFdQJdxdDJKv6u3GWVWIX/SyJDuR3SxeYVimHxy+yEWO
-         RQK/8DdQsQh31NnYR2ib8B7eaQCxvfjYaw2tKiqABHbzsERYyNGbePzRZed6bngRDB9v
-         dD+A==
-X-Forwarded-Encrypted: i=1; AHgh+RpAXG72CGvqz3CIRHu9/43XMJHTU0fMQ5dz3KmsuTo/uWAXKztqrqB0NOh3qgwnApc+nTvLQdEs2jjh@vger.kernel.org
-X-Gm-Message-State: AOJu0YzYBueslMkGjBII4snvG/O6LBbk+HSEM0rvgwyRXgjTy2BS83Cm
-	PfezAx19braMbdwbTp6BJAK6YpEj9duc+82fK7LNtsAY7rVvtiGB5pEx
-X-Gm-Gg: AfdE7cnDNBVuqXmPRjbKLuhQ/NE5yyvgc97PTBp0zCSR2A9STXRhMLXC4KLH+0XyuFs
-	y7byaIbu7aE1p5lnM/x02xv8VL/J3mwkfx37zlbTh8PAar6znFt2QzzW3Y/TOoTpajQitzbBxM7
-	RDufXplcDGWv+sHy5NnPvw6r7m2UtsQEehdxp1GgkRStdpYBbBeGSTxLfZwalIEQp//hxF0Fh7q
-	dXWftVHxulH9AYgvPfdel1HiFEUj2pjdJ9y2FQB7JzpkpuCxZ0KqrR2RGYewsgwNZpsMgtwZU/7
-	loUF6GlNGa7lrWoLiQmhmV48VhNbSCbbr+12O4mw6/L17HBGrQduV7/E8RobhyqCBvumI1aSAvP
-	bk2wGo46XXvw3fpLs81hriwS3XfuQVBHadwtVAjf+RrRZMLvDegUzlgqUBsYjuN1m7S4t0kp2GQ
-	4RwC27JuIJ++GveZHPWttZ7Ztx0A0=
-X-Received: by 2002:a5d:64c7:0:b0:466:6d18:ae93 with SMTP id ffacd0b85a97d-47f2dcb7453mr15499691f8f.21.1784039595520;
-        Tue, 14 Jul 2026 07:33:15 -0700 (PDT)
-Received: from NSA-L02.ad.analog.com ([137.71.226.102])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-47f464c7c96sm8599276f8f.33.2026.07.14.07.33.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Jul 2026 07:33:15 -0700 (PDT)
-Date: Tue, 14 Jul 2026 16:33:11 +0200
-From: Nuno =?utf-8?B?U8Oh?= <noname.nuno@gmail.com>
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: Janani Sunil <janani.sunil@analog.com>, 
-	Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>, Michael Hennerich <Michael.Hennerich@analog.com>, 
-	David Lechner <dlechner@baylibre.com>, Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Olivier Moysan <olivier.moysan@foss.st.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	Linus Walleij <linusw@kernel.org>, Bartosz Golaszewski <brgl@kernel.org>, 
-	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>, linux@analog.com, 
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, linux-doc@vger.kernel.org, jananisunil.dev@gmail.com
-Subject: Re: [PATCH 3/6] iio: adc: adi-axi-adc: Add support for CRC
-Message-ID: <4mtugzv3q72yizfw62b2ijjrwi7r2hro2fbjljeziuotyhuod3@6waqlwzufruh>
-References: <20260709-ad7768-driver-v1-0-44e1194fd96a@analog.com>
- <20260709-ad7768-driver-v1-3-44e1194fd96a@analog.com>
- <20260710014617.323acf6e@jic23-huawei>
- <ucrlt75xiwbv3rrc4gvgdop24u54eizhuqzf2av2qsa6ceymdp@kfkuiwuvakhl>
+	 Content-Type:Content-Disposition:In-Reply-To; b=h7CMd4jC6e6rjJtQxWkV6RjyekdWHFH1ttXNQm4okEjZLcp03DnDZVRtwn43wgkJrTZR0f/Qm1fseOosnFZvr+dDOK0WO3qtx7V0LpAlHpqO2/weFifn9CjnuN6sS7565OLtzdGRnonECPKjmIvvVQm1juZtdeczyfnkgQRkyUo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CHtrnOnW; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 848591F000E9;
+	Tue, 14 Jul 2026 14:34:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1784039674;
+	bh=EwNVTon+/nbjRpzwjhhjH2A7QsMv/Rt06oFZ3UT6FIQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=CHtrnOnW5stVfjfg02P3Kk3ImhP5f3aFDPiEpGg6wdMgZ/9LXy0mTkI/lSmvI8Bgt
+	 xKuMEw2BY1JQ9HgU/AfzfHhwYqrV2ATAE2ixtJSv2E83srd2sFcJiRsYQ/nUBOM5nm
+	 w8S3vB5vdcGKxe5jrQgeg/IUqs0r/tBaUdl6WZ3Car+jDA5rOYOfYOxTQI+F08O/aG
+	 sOenvtzBEEyvzW37bXxTsBV+Vx/Z7As0lmA90UCQnEL3RIz7KldYtPma9E37lNt9eH
+	 wbSoy0aJ4DYRQ9XuTxgKcOOtAowJrenvQ+CiR/ezRgldOVVw3gfJPIBuET81HqDMpi
+	 +Nr7MZgJ4rbHw==
+Date: Tue, 14 Jul 2026 09:34:33 -0500
+From: Rob Herring <robh@kernel.org>
+To: sashiko-reviews@lists.linux.dev
+Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	conor+dt@kernel.org, devicetree@vger.kernel.org,
+	dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH v4 09/10] dt-bindings: display: mediatek: wdma: Add
+ compatibles for more SoCs
+Message-ID: <20260714143433.GA1476641-robh@kernel.org>
+References: <20260713142746.40259-1-angelogioacchino.delregno@collabora.com>
+ <20260713142746.40259-10-angelogioacchino.delregno@collabora.com>
+ <20260713144221.2C4F91F00A3A@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <ucrlt75xiwbv3rrc4gvgdop24u54eizhuqzf2av2qsa6ceymdp@kfkuiwuvakhl>
+In-Reply-To: <20260713144221.2C4F91F00A3A@smtp.kernel.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-2.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-326319-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[nonamenuno@gmail.com,devicetree@vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FORGED_RECIPIENTS(0.00)[m:jic23@kernel.org,m:janani.sunil@analog.com,m:nuno.sa@analog.com,m:Michael.Hennerich@analog.com,m:dlechner@baylibre.com,m:andy@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:olivier.moysan@foss.st.com,m:p.zabel@pengutronix.de,m:linusw@kernel.org,m:brgl@kernel.org,m:corbet@lwn.net,m:skhan@linuxfoundation.org,m:linux@analog.com,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-gpio@vger.kernel.org,m:linux-doc@vger.kernel.org,m:jananisunil.dev@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:jananisunildev@gmail.com,s:lists@lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[22];
-	FORWARDED(0.00)[lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-326320-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[analog.com,baylibre.com,kernel.org,foss.st.com,pengutronix.de,lwn.net,linuxfoundation.org,vger.kernel.org,gmail.com];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:sashiko-reviews@lists.linux.dev,m:angelogioacchino.delregno@collabora.com,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:dri-devel@lists.freedesktop.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[nonamenuno@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
 	ALIAS_RESOLVED(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	RCPT_COUNT_FIVE(0.00)[5];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[6waqlwzufruh:mid,analog.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp,collabora.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: EEC5B755F58
+X-Rspamd-Queue-Id: 23922755F6F
 
-On Tue, Jul 14, 2026 at 04:18:24PM +0200, Nuno Sá wrote:
-> On Fri, Jul 10, 2026 at 01:46:17AM +0100, Jonathan Cameron wrote:
-> > On Thu, 9 Jul 2026 10:50:14 +0200
-> > Janani Sunil <janani.sunil@analog.com> wrote:
-> > 
-> > > Add support for enabling and disabling Cyclic Redundancy Check (CRC)
-> > > processing in the AXI ADC backend. CRC provides data integrity verification
-> > > for high-speed ADC data streams, ensuring reliable data transfer between
-> > > the ADC frontend and backend processing systems.
-> > > 
-> > > Signed-off-by: Janani Sunil <janani.sunil@analog.com>
-> > The 'other things' I found bit from Sashiko is interesting. Far as I can
-> > tell it is right and [devm_]mutex_init() is missing for lock
-> > in struct adi_axi_adc_state().  
-> > 
+On Mon, Jul 13, 2026 at 02:42:20PM +0000, sashiko-bot@kernel.org wrote:
+> Thank you for your contribution! Sashiko AI review found 1 potential issue(s) to consider:
+> - [Medium] The compatible string `mediatek,mt6893-disp-wdma` is incorrectly added to the standalone enum instead of the fallback items list.
+> --
 > 
-> Ouch! Yes, I was also wondering about the lock comment.
+> --- Patch [9]: [PATCH v4 09/10] dt-bindings: display: mediatek: wdma: Add compatibles for more SoCs ---
+> commit 8001f83833ae9c684be67bc719c7aaa056f90763
+> Author: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 > 
-> > Nuno, looks like it was from:
-> > 7ecb8ee5c93b ("iio: adc: adi-axi-adc: support digital interface calibration")
-> > 
-> > Which indeed adds the lock with a mutex_init()
+> dt-bindings: display: mediatek: wdma: Add compatibles for more SoCs
 > 
-> You mean without :)?
+> Multiple MediaTek SoCs have the Write DMA hardware in their Display
+> Controller. This commit adds the missing compatibles for Dimensity 1200
+> (MT6893) and for Kompanio 500/520/820/1200.
 > 
-> I'll send a patch fixing it!
+> > diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,wdma.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,wdma.yaml
+> > index 97d052b0fb614..c3ed867d058d9 100644
+> > --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,wdma.yaml
+> > +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,wdma.yaml
+> > @@ -22,11 +22,16 @@ properties:
+> >    compatible:
+> >      oneOf:
+> >        - enum:
+> > +          - mediatek,mt6893-disp-wdma
+> 
+> [Severity: Medium]
+> Does this incorrectly place mediatek,mt6893-disp-wdma as a standalone
+> compatible string rather than in the items list requiring a fallback?
+> 
+> If a device tree uses compatible = "mediatek,mt6893-disp-wdma" to satisfy
+> this schema, the DRM driver will not probe the device since it only matches
+> mediatek,mt8173-disp-wdma. If the developer instead provides the fallback 
+> compatible = "mediatek,mt6893-disp-wdma", "mediatek,mt8173-disp-wdma" so the
+> driver can probe it, won't the device tree fail schema validation here?
 
-Actually, to make it easier, Janani will include the fix in v2.
+Sashiko fails to look at patch 10. However, the commit message gives no 
+clue whether mt6893 is or is not compatible with something else. If not 
+compatible, explain why it isn't. What's different?
 
-- Nuno Sá
-
-> - Nuno Sá
-> > 
-> > Jonathan
-> > 
-> > >  static const struct iio_backend_info adi_axi_adc_generic = {
-> > > 
-> > 
+Rob
 
