@@ -1,190 +1,479 @@
-Return-Path: <devicetree+bounces-327116-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-327125-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id osLCHXyYV2qpXgAAu9opvQ
-	(envelope-from <devicetree+bounces-327116-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 16:26:04 +0200
+	id wHTiMUicV2p/XwAAu9opvQ
+	(envelope-from <devicetree+bounces-327125-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 16:42:16 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 156DD75F5A2
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 16:26:04 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id BDEDF75F80C
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 16:42:15 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=BnaSCeOt;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-327116-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-327116-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=F0zlaj6s;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-327125-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-327125-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=gmail.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id B57E83044984
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 14:22:50 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 1AE273025899
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 14:23:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D642D346E59;
-	Wed, 15 Jul 2026 14:22:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14D7D376A04;
+	Wed, 15 Jul 2026 14:23:19 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB88B33F394
-	for <devicetree@vger.kernel.org>; Wed, 15 Jul 2026 14:22:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 917AE377EAF
+	for <devicetree@vger.kernel.org>; Wed, 15 Jul 2026 14:23:16 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1784125367; cv=none; b=iLpL7zkGiW5LB8Umo5kXPXedQZDvTm68TrmSFNMDM2Qoxcan91LEwVefovkPKwdLZ+XaQvnceZ8MiHZwzFCGEGuWZpQHD7Kv8JKNbaLXM18Pze/GBwJxCC4fczGuNsspyhYuNw8+jXwPyqdHvIcKn9lz7Fxl3DE7lTkT5ThNmUg=
+	t=1784125399; cv=none; b=Y08gQLgc/wfO4sN2X5jvRsz1x7oE6BhBAKz9AJI72oPWnPEmhXqQb4XSpyBVsArlnJetDZBYswFdio5WwWzjrDEh5WT9c1vrcmyOQ8LALbXoEA+rfShjz/KVUxOhpFyDRF5eSyvk9OJbTKZm9sGj5mTr+qpJrb58MwfERVRvLzo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1784125367; c=relaxed/simple;
-	bh=k3nYVoAtfpCDTTURbSohMq0t11AzFKx5ZedQJLpBNw0=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=GmCNLCxex3GKmfrVLk3DkJuBZtziRHvYxI25tjSVWg3qz1Eil6ZtcXoM5I+/pusEDjPRhqdk6Z9YmtjroRcWs3fOfaOAVaJE9YmoquMJdkpa7YXUz/raXkZ2H8iMC8jttGMgH65zN3qSqJtx6mzh4b9+BFoJujXThRVhXcCQc9U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BnaSCeOt; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EACD01F000E9;
-	Wed, 15 Jul 2026 14:22:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1784125366;
-	bh=MnOglET0Hf4vZd50XO6j5o6DU7yu4NCfkS2KLn6CuUI=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=BnaSCeOtEuxvbMGPMq+pi3EDzuxoqsKV2axNgCPRkADl3mH/wSjgtSAYCOzIpFC5j
-	 TtsaBA8BmyLd6TAnsdrrAS/yiIURqaJzsLR3uueUY4gwI5ZoI4ZZtGqzSHGjKAJse4
-	 H1vH/BJnMtxY+afTO0YGdEKt7iWJDwJmQ3siWPfrfmVmsGPI+O3N0MT50KRyAHbBsg
-	 yo9iHo70EntENfr9eC1P4zUxrOMYQzh9yL6JRpq2XZM5kDEgx0BOcryBxXLGuLUw9S
-	 NGYa2CbhDQmRO7S/fC17snSbkp0ePR35NQJRXY+gjxVTbLkyNxZPe6q0/Rlnn5Bv0e
-	 JvamJupH0We7w==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v9 05/14] media: iris: Skip DMA mask setting to core
- device when IOMMU is not mapped
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Vishnu Reddy" <busanna.reddy@oss.qualcomm.com>
-Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20260715-glymur-v9-5-8cf2cbe12a07@oss.qualcomm.com>
-References: <20260715-glymur-v9-0-8cf2cbe12a07@oss.qualcomm.com>
- <20260715-glymur-v9-5-8cf2cbe12a07@oss.qualcomm.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Wed, 15 Jul 2026 14:22:45 +0000
-Message-Id: <20260715142245.EACD01F000E9@smtp.kernel.org>
+	s=arc-20240116; t=1784125399; c=relaxed/simple;
+	bh=wy+44zk0VebC9liwP0ADDC4UaI6nEi5ixliUR9jtwdM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ptKPq31e31Au39dptPbfP+9RHxfl2sPfmYnm550SBDbS092+G11/unq4suUiP9IjnEhI+492lou/3JeXin4HsxdTcXtA9xCA0WTKH23f3sdAaKwsePgPlJcZ//Llg0BqbPVFrt3GLDREIShY5HKJX6VllFDbQ7CizgplQZn28vs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=F0zlaj6s; arc=none smtp.client-ip=209.85.218.44
+Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-c1614804757so570613266b.1
+        for <devicetree@vger.kernel.org>; Wed, 15 Jul 2026 07:23:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1784125395; x=1784730195; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :content-type:mime-version:references:message-id:subject:cc:to:from
+         :date:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=UByyiWo4FmgJmVhmTFReM0qGRNBTRRz7YX9ql4MTB2U=;
+        b=F0zlaj6s/4AvN/itr/xcrUzoOUPup4GCPyWX81c4y1MMlNW52kGukt1eu4ULy5xJDP
+         xDngUoCw2USWMne/7aaC86iEs48C3ZBN9zG8WYLDTVtfY1Cnj3FcdqMq8hTwr31I7y8/
+         cKA1NM+YnHzGJExyQnDpe47gWxahqDO/DwL8IEfQgpIlDL+QT9WZZhuknxzNQPhyPGU9
+         dAa19JPF0KwufSDaoGg79w49TFQ07jambKrbuchoS+9FlFgWVniY+gA0/pJhf0qubLap
+         ybFnwpPUmnTNCHXQNYcqKmiPnQIARy17tJKoA/BhfUnJJX0KWGuOhaI2AmoqdCgxsINc
+         xdhg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1784125395; x=1784730195;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :content-type:mime-version:references:message-id:subject:cc:to:from
+         :date:x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to:content-type;
+        bh=UByyiWo4FmgJmVhmTFReM0qGRNBTRRz7YX9ql4MTB2U=;
+        b=OpEyNYYh3LkV0wP+JJHIdsLzIDXauLuavK9ibFT6+7MOEiwMwXIBFUZjkO3i7YvD/b
+         tNlyNRBFQge4LPwAZimLbIw0LL70/D79i6HQ4N0r1xjAMMbf/XH/A9hXGXWTdm5CVUq8
+         eudjzysdFMT65bgeYi6d5J9EOAqr9K4HSr3s1wrrjlbOXw7FWF8i1sx3u+OVYKnFANpI
+         BwzSJOLuGvr6Vb8Hsppswsj0rU+wwzQ4AVvPZ9mxbgoq1OT0AhULmIJEM7GKrFMWAqhX
+         rsjOfKVrLylMirtH+GAwulI+xq5Evn8B2mO4EPQ//dFCJR7sqAtpk9HLRoLYpsvyou9v
+         MYHg==
+X-Forwarded-Encrypted: i=1; AHgh+Ro4HP9a+BF27Hffu31TBkVswAyx/q/RcyaLllRJ7Thv8ZaAwUNoskmKsJ4VDb/GX+M2USTf0GJvS4WY@vger.kernel.org
+X-Gm-Message-State: AOJu0YzqnItdctVFdpRgKI1Ue71ckymVNTMzbgnDCWCUTiJQqww5Jn3N
+	+z1lmsy/nystLslI/VuJywG/PcnICB4B6ZdbFq89jnc6wJ2mpfMwVpjj
+X-Gm-Gg: AfdE7ckD9tHWRs+kZlrN3rUnpVb8wbtNx8TpA1prTtGPWc/ncSOkVYfmF5PZ/2b4ed/
+	Vd2qVjr0t46dUHqr4wbviboWJqMKrdwFOuf1twE6DMLc5b66D4ieWH4i7n1oRkQ751u6BOrJ6bJ
+	7DlBi8A64+kH5Nfo151JUrpIrMS7po7HMKrAv/jMexd8pwacLcyhB/Sc+k2NJAWu4Q/oCfCdTcm
+	EndnEKtVH8blyI4/Jxj9Y2sQFtIc+OrWB2NZm4ZJT/DbGWMPn5LiwVeqTCPbb3rnYWUV7CTTwTq
+	RAZF+7jHo61EZu2VAuANI+wX81NvQ0UVNzpeiZI9Ke/v15c5/gPZ7VJ2BvDXc84rBCbzXuM/h23
+	yFy/NtVt5l6UkISVuUUfzCK3T6ROBMutHhK6mg6LxdjgDUs2TIGP7/Ll5Gr8VGmKBioGX8VoUQn
+	JG26x7fRLBM7FJM6LFigysfDLQV0c=
+X-Received: by 2002:a17:907:a708:b0:c12:1c2a:16e6 with SMTP id a640c23a62f3a-c16791943d2mr166056066b.23.1784125394611;
+        Wed, 15 Jul 2026 07:23:14 -0700 (PDT)
+Received: from NSA-L02.ad.analog.com ([137.71.226.102])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-c16871b3dfasm42168766b.28.2026.07.15.07.23.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 15 Jul 2026 07:23:14 -0700 (PDT)
+Date: Wed, 15 Jul 2026 16:23:11 +0200
+From: Nuno =?utf-8?B?U8Oh?= <noname.nuno@gmail.com>
+To: Stefan Popa <stefan.popa@analog.com>
+Cc: Jonathan Cameron <jic23@kernel.org>, linux-iio@vger.kernel.org, 
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>, David Lechner <dlechner@baylibre.com>, 
+	Nuno Sa <nuno.sa@analog.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Siratul Islam <siratul.islam@linux.dev>, Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>, 
+	Ciprian Hegbeli <ciprian.hegbeli@analog.com>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 2/2] iio: adc: add MAX40080 current-sense amplifier
+ driver
+Message-ID: <gnkthebcxlpbwvbo774hap4mphqro4gxho4zemj6p3ixa2qp7g@ncb5o7tw5wf3>
+References: <20260715063652.368501-1-stefan.popa@analog.com>
+ <20260715063652.368501-3-stefan.popa@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260715063652.368501-3-stefan.popa@analog.com>
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-327125-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-327116-lists,devicetree=lfdr.de];
+	FORGED_SENDER(0.00)[nonamenuno@gmail.com,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FORGED_RECIPIENTS(0.00)[m:stefan.popa@analog.com,m:jic23@kernel.org,m:linux-iio@vger.kernel.org,m:andriy.shevchenko@linux.intel.com,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:siratul.islam@linux.dev,m:u.kleine-koenig@baylibre.com,m:ciprian.hegbeli@analog.com,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	FORWARDED(0.00)[lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:busanna.reddy@oss.qualcomm.com,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	RCPT_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[nonamenuno@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	ALIAS_RESOLVED(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,sashiko.dev:url,vger.kernel.org:from_smtp,smtp.kernel.org:mid,lists.linux.dev:replyto]
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,vger.kernel.org:from_smtp,analog.com:url,analog.com:email,ncb5o7tw5wf3:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 156DD75F5A2
+X-Rspamd-Queue-Id: BDEDF75F80C
 X-Rspamd-Action: no action
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
+Hi Stefan,
 
-Pre-existing issues:
-- [High] V4L2 video devices are registered before probe is complete, and th=
-e main `core` structure is tied to the device lifetime via `devm_kzalloc()`=
-, leading to race conditions and Use-After-Free vulnerabilities upon probe =
-failure or unbind.
---
+Some comments from me
 
---- Patch [5]: [PATCH v9 05/14] media: iris: Skip DMA mask setting to core =
-device when IOMMU is not mapped ---
-commit 9521732c3739228afd507693479032190d343a3f
-Author: Vikash Garodia <vikash.garodia@oss.qualcomm.com>
+On Wed, Jul 15, 2026 at 09:36:17AM +0300, Stefan Popa wrote:
+> The MAX40080 is a bidirectional current-sense amplifier with an
+> integrated 12-bit ADC and an I2C/SMBus interface. It measures the
+> voltage across an external shunt resistor and the input bus voltage,
+> storing the results in an internal FIFO.
+> 
+> No existing IIO driver covers this device or a register-compatible part.
+> The closest relatives target different silicon with incompatible register
+> maps and feature sets: max9611 is a unidirectional high-side sensor with a
+> die-temperature channel and MUX-selected gain and no FIFO/PEC, while
+> max34408 is an 8-bit multi-channel current monitor. The MAX40080 has a
+> device-specific register map with bidirectional 13-bit current, a 64-entry
+> FIFO, PEC, a single-measurement mode triggered by an SMBus Quick Command,
+> and two selectable input ranges, so it warrants its own driver.
+> 
+> Add a direct-mode IIO driver exposing the current and voltage channels
+> with raw and scale attributes, a configurable oversampling (digital
+> averaging) ratio, and PEC-protected register access. The two selectable
+> current-sense ranges are exposed through scale/scale_available; the
+> current scale is derived from the shunt-resistor-micro-ohms device-tree
+> property.
+> 
+> Link: https://www.analog.com/media/en/technical-documentation/data-sheets/MAX40080.pdf
+> 
+> Co-developed-by: Ciprian Hegbeli <ciprian.hegbeli@analog.com>
+> Signed-off-by: Ciprian Hegbeli <ciprian.hegbeli@analog.com>
+> Signed-off-by: Stefan Popa <stefan.popa@analog.com>
+> ---
+>  MAINTAINERS                |   9 +
+>  drivers/iio/adc/Kconfig    |  11 +
+>  drivers/iio/adc/Makefile   |   1 +
+>  drivers/iio/adc/max40080.c | 630 +++++++++++++++++++++++++++++++++++++
+>  4 files changed, 651 insertions(+)
+>  create mode 100644 drivers/iio/adc/max40080.c
+> 
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index e087673237636..f50c1e00e12bb 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -15513,6 +15513,15 @@ L:	linux-iio@vger.kernel.org
+>  S:	Supported
+>  F:	drivers/iio/temperature/max30208.c
+>  
+> +MAXIM MAX40080 CURRENT SENSE AMPLIFIER DRIVER
+> +M:	Ciprian Hegbeli <ciprian.hegbeli@analog.com>
+> +M:	Stefan Popa <stefan.popa@analog.com>
+> +L:	linux-iio@vger.kernel.org
+> +S:	Supported
+> +W:	https://ez.analog.com/linux-software-drivers
+> +F:	Documentation/devicetree/bindings/iio/adc/maxim,max40080.yaml
+> +F:	drivers/iio/adc/max40080.c
+> +
+>  MAXIM MAX7360 KEYPAD LED MFD DRIVER
+>  M:	Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
+>  S:	Maintained
+> diff --git a/drivers/iio/adc/Kconfig b/drivers/iio/adc/Kconfig
+> index 58da8255525e4..b651c57bbc3f5 100644
+> --- a/drivers/iio/adc/Kconfig
+> +++ b/drivers/iio/adc/Kconfig
+> @@ -1041,6 +1041,17 @@ config MAX34408
+>  	  To compile this driver as a module, choose M here: the module will be
+>  	  called max34408.
+>  
+> +config MAX40080
+> +	tristate "Analog Devices MAX40080 Current Sense Amplifier"
+> +	depends on I2C
+> +	help
+> +	  Say yes here to build support for the Analog Devices MAX40080
+> +	  bidirectional current-sense amplifier with a 12-bit ADC and an I2C
+> +	  interface.
+> +
+> +	  To compile this driver as a module, choose M here: the module will be
+> +	  called max40080.
+> +
+>  config MAX77541_ADC
+>  	tristate "Analog Devices MAX77541 ADC driver"
+>  	depends on MFD_MAX77541
+> diff --git a/drivers/iio/adc/Makefile b/drivers/iio/adc/Makefile
+> index 7cc8f9a12f763..e1953353c68a4 100644
+> --- a/drivers/iio/adc/Makefile
+> +++ b/drivers/iio/adc/Makefile
+> @@ -91,6 +91,7 @@ obj-$(CONFIG_MAX1241) += max1241.o
+>  obj-$(CONFIG_MAX1363) += max1363.o
+>  obj-$(CONFIG_MAX14001) += max14001.o
+>  obj-$(CONFIG_MAX34408) += max34408.o
+> +obj-$(CONFIG_MAX40080) += max40080.o
+>  obj-$(CONFIG_MAX77541_ADC) += max77541-adc.o
+>  obj-$(CONFIG_MAX9611) += max9611.o
+>  obj-$(CONFIG_MCP320X) += mcp320x.o
+> diff --git a/drivers/iio/adc/max40080.c b/drivers/iio/adc/max40080.c
+> new file mode 100644
+> index 0000000000000..a0c1144cfda7c
+> --- /dev/null
+> +++ b/drivers/iio/adc/max40080.c
+> @@ -0,0 +1,630 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+> +/*
+> + * MAX40080 Digital Current-Sense Amplifier driver
+> + *
+> + * Copyright 2026 Analog Devices, Inc.
+> + */
+> +
+> +#include <linux/bitfield.h>
+> +#include <linux/bitops.h>
+> +#include <linux/cleanup.h>
+> +#include <linux/i2c.h>
+> +#include <linux/iopoll.h>
+> +#include <linux/math64.h>
+> +#include <linux/module.h>
 
-media: iris: Skip DMA mask setting to core device when IOMMU is not mapped
+Typically I would say you're missing mod_devicetable.h but now we have:
 
-The non-pixel and pixel subnodes move the IOMMU streams away from the
-iris parent device. As a result, the core device may not have an IOMMU
-mapping, and setting its DMA mask is unnecessary.
+https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/include/linux/device-id
 
-> diff --git a/drivers/media/platform/qcom/iris/iris_probe.c b/drivers/medi=
-a/platform/qcom/iris/iris_probe.c
-> index 2594f5a67378a..c40c4ec44e83e 100644
-> --- a/drivers/media/platform/qcom/iris/iris_probe.c
-> +++ b/drivers/media/platform/qcom/iris/iris_probe.c
-> @@ -310,9 +310,11 @@ static int iris_probe(struct platform_device *pdev)
-> =20
->  	dma_mask =3D core->iris_platform_data->dma_mask;
-> =20
-> -	ret =3D dma_set_mask_and_coherent(dev, dma_mask);
-> -	if (ret)
-> -		goto err_vdev_unreg_enc;
-> +	if (device_iommu_mapped(dev)) {
-> +		ret =3D dma_set_mask_and_coherent(dev, dma_mask);
-> +		if (ret)
-> +			goto err_vdev_unreg_enc;
-> +	}
+You might need to base your series on linux-next though.
 
-[Severity: High]
-This is a pre-existing issue, but does this probe sequence expose a
-use-after-free regression if probe fails?
+> +#include <linux/mutex.h>
+> +#include <linux/pm.h>
+> +#include <linux/property.h>
+> +#include <linux/time.h>
+> +#include <linux/types.h>
+> +#include <linux/unaligned.h>
+> +#include <linux/units.h>
+> +
+> +#include <linux/iio/iio.h>
+> +
+> +#define MAX40080_REG_CFG		0x00
+> +#define MAX40080_CFG_MODE_MSK		GENMASK(2, 0)
+> +#define MAX40080_CFG_PEC_EN_MSK		BIT(5)
+> +#define MAX40080_CFG_RANGE_MSK		BIT(6)
+> +#define MAX40080_CFG_FILTER_MSK		GENMASK(14, 12)
+> +
+> +#define MAX40080_REG_FIFO_CFG		0x0A
+> +#define MAX40080_FIFO_CFG_STORE_IV_MSK	GENMASK(1, 0)
+> +
+> +#define MAX40080_REG_IV			0x10
+> +/* Current is a 13-bit two's-complement value (magnitude + sign bit). */
+> +#define MAX40080_IV_I_MSK		GENMASK(12, 0)
+> +#define MAX40080_IV_I_SIGN_BIT		12
+> +#define MAX40080_IV_V_MAG_MSK		GENMASK(27, 16)
+> +#define MAX40080_IV_VALID_MSK		BIT(31)
+> +
+> +/* CFG.mode field values */
+> +#define MAX40080_CFG_MODE_STDBY		0x00
+> +#define MAX40080_CFG_MODE_SINGLE	0x02	/* one conversion per Quick Command */
+> +
+> +/* CFG.range field values */
+> +#define MAX40080_CFG_RANGE_50mV		0
+> +#define MAX40080_CFG_RANGE_10mV		1
+> +
+> +/* FIFO_CFG.store_iv field values */
+> +#define MAX40080_FIFO_CFG_STORE_I_V	0x02
+> +
+> +#define MAX40080_ADC_RES		4096
+> +#define MAX40080_INTER_VREF_mV		1250
+> +#define MAX40080_V_BUFF_GAIN		30
+> +#define MAX40080_CSA_50mV_GAIN		25
+> +#define MAX40080_CSA_10mV_GAIN		125
+> +
+> +/*
+> + * The RANGE field (CFG bit 6) selects one of two current-sense full-scale
+> + * ranges: +/-50 mV (gain 25 V/V) or +/-10 mV (gain 125 V/V).
+> + */
+> +static const int max40080_csa_gain[] = {
+> +	[MAX40080_CFG_RANGE_50mV] = MAX40080_CSA_50mV_GAIN,
+> +	[MAX40080_CFG_RANGE_10mV] = MAX40080_CSA_10mV_GAIN,
+> +};
+> +
+> +struct max40080_state {
+> +	struct i2c_client *client;
+> +	/* Serializes read-modify-write access to the CFG register. */
+> +	struct mutex lock;
+> +	u32 shunt_resistor_uohm;
+> +	/*
+> +	 * Cached configuration, also used to restore the device on resume after
+> +	 * a suspend that may have cut its power: the selected RANGE index and
+> +	 * the oversampling ratio.
+> +	 */
+> +	unsigned int range;
+> +	int oversampling_ratio;
+> +	/*
+> +	 * Precomputed current scale (mA per code) for each RANGE setting, as
+> +	 * {integer, nano} pairs for IIO_VAL_INT_PLUS_NANO. The range is
+> +	 * selected by writing the corresponding scale.
+> +	 */
+> +	int current_scale[ARRAY_SIZE(max40080_csa_gain)][2];
+> +};
+> +
+> +static const int max40080_oversampling_avail[] = { 1, 8, 16, 32, 64, 128 };
+> +
+> +static int max40080_update_bits(struct max40080_state *st, u8 reg,
+> +				u16 mask, u16 val)
+> +{
+> +	int tmp;
+> +
+> +	guard(mutex)(&st->lock);
+> +
+> +	tmp = i2c_smbus_read_word_data(st->client, reg);
+> +	if (tmp < 0)
+> +		return tmp;
+> +
+> +	tmp = (tmp & ~mask) | (val & mask);
+> +
+> +	return i2c_smbus_write_word_data(st->client, reg, tmp);
+> +}
 
-In iris_probe(), the core structure is allocated with devm_kzalloc(). Later,
-video devices are registered before the hardware and PM runtime are fully
-initialized.
+Any special reason to not use regmap? If this was already replied in
+other version, feel free to disregard this comment :)
 
-If userspace opens the newly created video node during this window, it
-obtains a file descriptor referencing the core structure:
+> +
+> +/*
+> + * In single-measurement mode the device sits idle until it receives an SMBus
+> + * Quick Command, then performs exactly one current and one voltage conversion
+> + * and returns to idle. Triggering on demand this way (rather than running the
+> + * FIFO continuously in active mode) means each read returns a fresh, coherent
+> + * current/voltage pair instead of the oldest queued FIFO entry.
+> + */
+> +static int max40080_trigger_measurement(struct max40080_state *st)
+> +{
+> +	struct i2c_client *client = st->client;
+> +
+> +	return i2c_smbus_xfer(client->adapter, client->addr,
+> +			      client->flags, I2C_SMBUS_WRITE, 0,
+> +			      I2C_SMBUS_QUICK, NULL);
+> +}
 
-iris_vidc.c:iris_open() {
-    ...
-    ret =3D pm_runtime_resume_and_get(core->dev);
-    ...
-}
+On top of what Andy said, it seems the above is only used in one place
+so I would consider to just remove it.
 
-If a subsequent step in iris_probe() fails (such as returning an error
-after dma_set_mask_and_coherent), the driver returns an error and devres
-automatically frees the core structure.
+> +
+> +/*
+> + * A single measurement holds the matched current/voltage pair in one 32-bit
+> + * word (MAX40080_REG_IV). Reading all four bytes in one transaction returns
+> + * both from the same conversion; reading the separate current (0x0C) and
+> + * voltage (0x0E) registers would decorrelate the two channels.
+> + *
+> + * Unlike the word accesses used elsewhere, this is a plain I2C block read: the
+> + * SMBus layer does not append or verify a PEC byte for it even when PEC is
+> + * otherwise enabled for the device, so this transfer is not PEC protected.
+> + */
+> +static int max40080_read_iv_once(struct max40080_state *st, u32 *iv)
+> +{
+> +	u8 buf[4];
+> +	int ret;
+> +
+> +	ret = i2c_smbus_read_i2c_block_data(st->client, MAX40080_REG_IV,
+> +					    sizeof(buf), buf);
 
-However, the userspace file descriptor remains open. When the process later
-calls close(), the driver attempts to access the freed core structure:
+It's not clear to me that i2c will use safe buffer all the time (from a
+quick look). So I would say to make this DMA safe the usual way we do in
+IIO.
 
-iris_vidc.c:iris_close() {
-    ...
-    iris_check_num_queued_internal_buffers(inst, ...);
-    ...
-}
+> +	if (ret < 0)
+> +		return ret;
+> +	if (ret != sizeof(buf))
+> +		return -EIO;
+> +
+> +	*iv = get_unaligned_le32(buf);
+> +
+> +	return 0;
+> +}
+> +
 
-Could this be fixed by moving video device registration to the very end of
-probe, or by managing the core structure lifetime via the v4l2 device
-release callback instead of devres?
+...
 
-> =20
->  	dma_set_max_seg_size(&pdev->dev, DMA_BIT_MASK(32));
->  	dma_set_seg_boundary(&pdev->dev, DMA_BIT_MASK(32));
+> +
+> +static int max40080_set_range(struct max40080_state *st, unsigned int range)
+> +{
+> +	int ret;
+> +
+> +	ret = max40080_update_bits(st, MAX40080_REG_CFG, MAX40080_CFG_RANGE_MSK,
+> +				   FIELD_PREP(MAX40080_CFG_RANGE_MSK, range));
+> +	if (ret)
+> +		return ret;
+> +
+> +	st->range = range;
+> +
 
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260715-glymur-v9-=
-0-8cf2cbe12a07@oss.qualcomm.com?part=3D5
+We have a lock protecting max40080_update_bits() but that is not enough
+given the above store.
+
+> +	return 0;
+> +}
+
+...
+> +
+> +static int max40080_read_raw(struct iio_dev *indio_dev,
+> +			     struct iio_chan_spec const *chan,
+> +			     int *val, int *val2, long mask)
+> +{
+> +	struct max40080_state *st = iio_priv(indio_dev);
+> +	int ret;
+> +
+> +	switch (mask) {
+> +	case IIO_CHAN_INFO_RAW:
+> +		switch (chan->type) {
+> +		case IIO_CURRENT:
+> +			ret = max40080_get_current(st, val);
+> +			if (ret)
+> +				return ret;
+> +			break;
+> +		case IIO_VOLTAGE:
+> +			ret = max40080_get_voltage(st, val);
+> +			if (ret)
+> +				return ret;
+> +			break;
+> +		default:
+> +			return -EINVAL;
+> +		}
+> +		return IIO_VAL_INT;
+
+You can return inline instead of the breaks.
+
+...
+
+> +
+> +static int max40080_resume(struct device *dev)
+> +{
+> +	struct iio_dev *indio_dev = dev_get_drvdata(dev);
+> +	struct max40080_state *st = iio_priv(indio_dev);
+> +
+> +	/*
+> +	 * A suspend may have cut power to the device, resetting it to its
+> +	 * power-on defaults. Reprogram it from the cached configuration.
+> +	 */
+> +	guard(mutex)(&st->lock);
+
+AFAIK, there´s no need for the lock here. But I´m puzzled about the above
+anyways. Do we have a real usecase for it? Without a .suspend()
+implementation it makes me wonder.
+
+- Nuno Sá
+
 
