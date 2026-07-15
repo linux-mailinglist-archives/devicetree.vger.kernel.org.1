@@ -1,211 +1,163 @@
-Return-Path: <devicetree+bounces-327089-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-327090-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id a7DDGiCXV2pLXgAAu9opvQ
-	(envelope-from <devicetree+bounces-327089-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 16:20:16 +0200
+	id tmu4LjSXV2pNXgAAu9opvQ
+	(envelope-from <devicetree+bounces-327090-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 16:20:36 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3DA2375F4B3
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 16:20:15 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id AE99675F4BC
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 16:20:35 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=gwhlxTvM;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-327089-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-327089-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=intel.com header.s=Intel header.b=fdZNrWZ6;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-327090-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-327090-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=intel.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id BD79E3097C4B
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 13:59:24 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 1E9853058250
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 13:59:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6813637C910;
-	Wed, 15 Jul 2026 13:57:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C14732A3C9;
+	Wed, 15 Jul 2026 13:58:41 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D1792BEC5F;
-	Wed, 15 Jul 2026 13:57:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15A912F8E84;
+	Wed, 15 Jul 2026 13:58:38 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1784123847; cv=none; b=BCkacedNCGGtPa/NN+1yC23OTOnH4bvZ7Mss7VwEtgHuYAaRn+xH/1Socc6YnjDM+6bmCRd2bK51RqPTumoNAyoElVNNy0ZzhLeJ2Y3kCeO5EZJskcwd6FlON6TbkhETR2FfeWWic30tcly53LNdOvnC7D1luPUZU6CF6SeyZIE=
+	t=1784123921; cv=none; b=KabllB+l1A4pI52JnnngROqpbC1bxIwTM0cTgNRErXd/RMIJmRzQlcHyyGhkgBW74+tDDbU1i4eopEYuz5kPuBZ8Axm2cFQL+mGKMPuf3mxx5jkDjPs/8jL2HAMwqJxZsKPcURqu8N/NCd7v68INmIYzdrv2L2btzOElMyzv53E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1784123847; c=relaxed/simple;
-	bh=NO6jAPgSPzytuPFQfw/23MBWm+u5gYaS/UaApL6Kyzo=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=Mf5wzs3efnWm7Xl5GgV+3tvkiAbaHTStAN8gNx9tNBH+j4kbownkjwaJJbGxgGtpIM8jpGT3Bx9+aKXDE/UEqwBSbD7yuNlFlBkdqATGfkb35sPWnjsUEoglQMrUrRhoKitTRDybX7eimSxeb6iTlWgHobHDfsHHHDCMuL5V2ns=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gwhlxTvM; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8A4A91F01560;
-	Wed, 15 Jul 2026 13:57:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1784123845;
-	bh=jYhzCVwkxqSGQogNfEYnNikHr+RklnA3l0xAFUg8sKQ=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=gwhlxTvMxgjNLWV1s18zNjItdCL6eTNAB9Jgi5ftrjXV3+gmxC3wl83HJuZ5/EKoC
-	 q/f4FCAvB0lXyQ/+C+JVWXQScDaGbPuswySkr6RzN5ePDI92dG86P9VXYeJ1TpIOAI
-	 91RckZrxb5gxKAWTmwsjbRNaVqLbrAe6dV+NXbt9ybBvwg/3gO/VoOe502EahJyukH
-	 xmkdKvrBCVgKosiMNtIn9L3ipuQokPDwOzUgK2YNQm6OnvB/XjwXynxoyc5E3uq0Tk
-	 czVV5YwseV4ALUWAYAmVJ+zOypdpcJ5R8PB5szdkz5iNWeL+gaw4WZQ+atwEgJWqqe
-	 IJcENzHj6L1qg==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v6 3/4] leds: pca963x: add multicolor LED class support
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Loic Poulain" <loic.poulain@oss.qualcomm.com>
-Cc: devicetree@vger.kernel.org, linux-leds@vger.kernel.org, lee@kernel.org, robh@kernel.org, conor+dt@kernel.org
-In-Reply-To: <20260715-monza-leds-v6-3-d1724bb7fe3d@oss.qualcomm.com>
-References: <20260715-monza-leds-v6-0-d1724bb7fe3d@oss.qualcomm.com>
- <20260715-monza-leds-v6-3-d1724bb7fe3d@oss.qualcomm.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Wed, 15 Jul 2026 13:57:25 +0000
-Message-Id: <20260715135725.8A4A91F01560@smtp.kernel.org>
+	s=arc-20240116; t=1784123921; c=relaxed/simple;
+	bh=TtjaMHowmPLyOarWnAzWczSPO0iHg57GBSCKyQFi2+M=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=EwSMp/M5aeW7qfnUOJY5GVGrBqbZPXikuIC9U5oKyb81KpJl0ZKtQFq+Kf4l4X/7mM0DJpX5BUcTArL5GS4cxQAMBreo5qNcAdqSdQRbb3FocEckpjkNIwXwuEFQBGjUXtrqNdvos2ESL16w3n20d4LgB2coNVDMQW2Y/k+1qlo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=fdZNrWZ6; arc=none smtp.client-ip=198.175.65.15
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1784123920; x=1815659920;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=TtjaMHowmPLyOarWnAzWczSPO0iHg57GBSCKyQFi2+M=;
+  b=fdZNrWZ6n0pTEjFRKBs8qxlU2rL1ub2CmA9Pd9O5i19ClWNvYB2EofPu
+   YaGiRVA4gGuxk/TW1Naf2HYxW+/Kq4nMoDQwXUn8P4aYFpo2N9j7M0pRH
+   CByxolbLMKrkoyZ1gtQ7CbZeYd1m2huqf4HW7hRdUti9PdRw4/ZXnDINq
+   iryy1G98iylu2gx754TUBXjZiKdk5kul2J7q2d7gRsZEKh3VSirC2RJ+c
+   QumNMf05w78Dv4RsHHLFHdCojodk8nvo1kV6VWV+7yYpz3RauBKfUmY57
+   RUO5EZBznmveI/XNCZfhO+4F/+yfx88LRLSoQ6GtcBd7AHzxspq81rRiz
+   A==;
+X-CSE-ConnectionGUID: 3HedL9J+SMe1h6Xmfa7nOQ==
+X-CSE-MsgGUID: 8pNwl2jtSdOoldZL87fe9Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11847"; a="88438409"
+X-IronPort-AV: E=Sophos;i="6.25,165,1779174000"; 
+   d="scan'208";a="88438409"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Jul 2026 06:58:39 -0700
+X-CSE-ConnectionGUID: EmvoA7ksQvO+UFWeiyq1xQ==
+X-CSE-MsgGUID: l5xnwVhYQtys7nESH+6k6A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,165,1779174000"; 
+   d="scan'208";a="279462800"
+Received: from mkosciow-mobl1.ger.corp.intel.com (HELO localhost) ([10.245.244.129])
+  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Jul 2026 06:58:35 -0700
+Date: Wed, 15 Jul 2026 16:58:33 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Nuno =?iso-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+Cc: Stefan Popa <stefan.popa@analog.com>,
+	Jonathan Cameron <jic23@kernel.org>, linux-iio@vger.kernel.org,
+	David Lechner <dlechner@baylibre.com>, Nuno Sa <nuno.sa@analog.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Siratul Islam <siratul.islam@linux.dev>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@baylibre.com>,
+	Ciprian Hegbeli <ciprian.hegbeli@analog.com>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 2/2] iio: adc: add MAX40080 current-sense amplifier
+ driver
+Message-ID: <aleSCUZhZmhceTqV@ashevche-desk.local>
+References: <20260715063652.368501-1-stefan.popa@analog.com>
+ <20260715063652.368501-3-stefan.popa@analog.com>
+ <aldGAbF4AN8X5CRY@ashevche-desk.local>
+ <4r6grtnbddwtaflsak37y4hlofgiudksd3orxamry6eyhnueky@mg75uai5aeu2>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Spamd-Result: default: False [-3.16 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <4r6grtnbddwtaflsak37y4hlofgiudksd3orxamry6eyhnueky@mg75uai5aeu2>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
+X-Spamd-Result: default: False [-5.16 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[intel.com:d:+,kernel.org:s:+];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-327089-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[smtp.kernel.org:mid,sashiko.dev:url,lists.linux.dev:replyto,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,vger.kernel.org:from_smtp,qualcomm.com:email];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:loic.poulain@oss.qualcomm.com,m:devicetree@vger.kernel.org,m:linux-leds@vger.kernel.org,m:lee@kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	FORWARDED(0.00)[lists@lfdr.de];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ALIAS_RESOLVED(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	PRECEDENCE_BULK(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:noname.nuno@gmail.com,m:stefan.popa@analog.com,m:jic23@kernel.org,m:linux-iio@vger.kernel.org,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:siratul.islam@linux.dev,m:u.kleine-koenig@baylibre.com,m:ciprian.hegbeli@analog.com,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:nonamenuno@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FREEMAIL_TO(0.00)[gmail.com];
+	TAGGED_FROM(0.00)[bounces-327090-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	HAS_ORG_HEADER(0.00)[];
+	FORGED_SENDER(0.00)[andriy.shevchenko@linux.intel.com,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	FROM_NO_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@linux.intel.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[6]
+	TO_DN_SOME(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,ashevche-desk.local:mid,linux.intel.com:from_mime,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,vger.kernel.org:from_smtp,analog.com:url,analog.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 3DA2375F4B3
+X-Rspamd-Queue-Id: AE99675F4BC
 X-Rspamd-Action: no action
 
-Thank you for your contribution! Sashiko AI review found 3 potential issue(=
-s) to consider:
+On Wed, Jul 15, 2026 at 03:41:45PM +0200, Nuno Sá wrote:
+> On Wed, Jul 15, 2026 at 11:34:09AM +0300, Andy Shevchenko wrote:
+> > On Wed, Jul 15, 2026 at 09:36:17AM +0300, Stefan Popa wrote:
 
-New issues:
-- [Low] Commit Message Capitalization Violation
+...
 
-Pre-existing issues:
-- [High] Silent truncation of negative error codes from I2C reads leads to =
-hardware register corruption.
-- [High] Unprotected I2C writes to shared global hardware blinking register=
-s.
---
+> > > +MAXIM MAX40080 CURRENT SENSE AMPLIFIER DRIVER
+> > > +M:	Ciprian Hegbeli <ciprian.hegbeli@analog.com>
+> > > +M:	Stefan Popa <stefan.popa@analog.com>
+> > > +L:	linux-iio@vger.kernel.org
+> > > +S:	Supported
+> > > +W:	https://ez.analog.com/linux-software-drivers
+> > > +F:	Documentation/devicetree/bindings/iio/adc/maxim,max40080.yaml
+> > > +F:	drivers/iio/adc/max40080.c
+> > 
+> > David usually asks this to be split between patches to avoid "orphaned" files
+> > from the MAINTAINERS perspective.
+> 
+> I think checkpatch also complains if you do it like the above.
 
---- Patch [3]: [PATCH v6 3/4] leds: pca963x: add multicolor LED class suppo=
-rt ---
-commit 9035bb6a1e69dbc8b0e467061aaa0b06a70a0f89
-Author: Loic Poulain <loic.poulain@oss.qualcomm.com>
+Yep, but DT people say that this is checkpatch's particular problem. They have
+their own "maintainer" database via the special field in each of the binding
+schemas. Since that discussion with DT people, I'm not going to fight for this
+kind of changes, it may be just an IIO level one (if we want this).
 
-leds: pca963x: add multicolor LED class support
+-- 
+With Best Regards,
+Andy Shevchenko
 
-Allow grouping of individual PCA963x PWM channels into a single
-multicolor LED device by adding support for the LED multicolor class.
-A child node with sub-children is treated as a multicolor group,
-others are treated as single leds, keeping full backwards compatibility.
 
-> leds: pca963x: add multicolor LED class support
-
-[Severity: Low]
-This isn't a bug, but the subsystem prefix description should be capitalize=
-d.
-Should it be "leds: pca963x: Add multicolor LED class support"?
-
-> diff --git a/drivers/leds/leds-pca963x.c b/drivers/leds/leds-pca963x.c
-> index e3a81c60ee27c..f3e4d65e48b4c 100644
-> --- a/drivers/leds/leds-pca963x.c
-> +++ b/drivers/leds/leds-pca963x.c
-> @@ -199,20 +203,24 @@ static void pca963x_blink(struct pca963x_led *led)
->  	led->blinking =3D true;
->  }
-
-[Severity: High]
-This is a pre-existing issue, but are global chip registers modified without
-acquiring the chip mutex here?
-
-drivers/leds/leds-pca963x.c:pca963x_blink() {
-        ...
-        i2c_smbus_write_byte_data(client, chipdef->grppwm, led->gdc);
-        i2c_smbus_write_byte_data(client, chipdef->grpfreq, led->gfrq);
-       =20
-        if (!(mode2 & PCA963X_MODE2_DMBLNK))
-                i2c_smbus_write_byte_data(client, PCA963X_MODE2,
-                                          mode2 | PCA963X_MODE2_DMBLNK);
-       =20
-        mutex_lock(&led->chip->mutex);
-        ...
-}
-
-If user-space initiates hardware blinking for two different LEDs concurrent=
-ly,
-could their writes to these global frequency and duty cycle registers
-interleave and corrupt the hardware blink state for the entire chip?
-
-[ ... ]
-
-> @@ -221,22 +229,54 @@ static int pca963x_led_set(struct led_classdev *led=
-_cdev,
->  			   enum led_brightness value)
->  {
->  	struct pca963x_led *led;
-> +	unsigned long cached_leds;
->  	int ret;
-> =20
->  	led =3D container_of(led_cdev, struct pca963x_led, led_cdev);
-> =20
->  	mutex_lock(&led->chip->mutex);
-> =20
-> +	cached_leds =3D led->chip->leds_on;
->  	ret =3D pca963x_brightness(led, value);
-
-[Severity: High]
-This is a pre-existing issue, but does assigning the result of
-i2c_smbus_read_byte_data() directly to a u8 silently truncate negative error
-codes?
-
-If the read fails and returns -EIO, this would truncate the negative error
-code into a garbage unsigned 8-bit integer, and we then write it back to the
-chip in pca963x_brightness():
-
-drivers/leds/leds-pca963x.c:pca963x_brightness() {
-        ...
-        ledout =3D i2c_smbus_read_byte_data(client, ledout_addr);
-        ...
-        val =3D (ledout & ~mask) | (PCA963X_LED_ON << shift);
-        ret =3D i2c_smbus_write_byte_data(client, ledout_addr, val);
-        ...
-}
-
-The same pattern appears in pca963x_blink() with the mode2 variable. Could
-this cause hardware register corruption during a transient I2C failure?
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260715-monza-leds=
--v6-0-d1724bb7fe3d@oss.qualcomm.com?part=3D3
 
