@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-327131-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-327132-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id b7d+DWibV2pVXwAAu9opvQ
-	(envelope-from <devicetree+bounces-327131-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 16:38:32 +0200
+	id 05iUHpybV2pgXwAAu9opvQ
+	(envelope-from <devicetree+bounces-327132-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 16:39:24 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6465175F789
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 16:38:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 44A5675F7AA
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 16:39:23 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=G2nEikEl;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-327131-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-327131-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=mGv4iySm;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-327132-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-327132-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C446E32289F8
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 14:30:58 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 1B5E23273675
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 14:31:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D26F3812D0;
-	Wed, 15 Jul 2026 14:29:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DB53391E60;
+	Wed, 15 Jul 2026 14:29:42 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3757384CC8
-	for <devicetree@vger.kernel.org>; Wed, 15 Jul 2026 14:29:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4A3D390CB8
+	for <devicetree@vger.kernel.org>; Wed, 15 Jul 2026 14:29:40 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1784125771; cv=none; b=KO5O7LicUxXYEXf0MJbVzAHefv/OEPngnZsMKJQvZGG6/J+xwVJXRQC31STzIBgWWfGeZUzvsrG8bLvvQ+rYNyCx/5+C5yy03d6gFaMVu1GZXZKiIRgM3x10/HeH49JE5fFR35KQa69a0fUBOl94KOZxB/QzKq/hA2uwYOWmnr0=
+	t=1784125781; cv=none; b=HI+PUIW3ZcnuSEAoye+k4aWwFitpWZ8+d5+r0ompbQhspPH42NDhb+OouJe9YSRgehm4g2Ic7IKimbi2ei7KcOIVb8Pee9PFP3e7XUShEl/iiATDKreUcyV8EuciPl1+ESIHMoNKUuvlaC1Ucv2X+BJzbzSHJvysEHRkpCrnT9o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1784125771; c=relaxed/simple;
-	bh=ScbIOVEUnT3zehrLYFdeTzj7gPYvUax8I8Qq1w8H4b8=;
+	s=arc-20240116; t=1784125781; c=relaxed/simple;
+	bh=D9ckNu9SvaeYTC9gvFquLy4a6lU9h26W2+CrcrrHhtw=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=K/5WXNTUPW43TYmlyHFFuhtvxXxSfxFFbpqi1+MX2tLmm08BwXLPN0PcXN0GdDmYopu0/6UVn7Xnf7ORup/y38OH80fgk9RDVBoBVU8v76OVtt1ieIfg/g3QUkSBm6AAT+hyVbs9AIYjV2t8klGJTEj6DTNFQo8hVE2eu7ul+bw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=G2nEikEl; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1E59D1F000E9;
-	Wed, 15 Jul 2026 14:29:29 +0000 (UTC)
+	 Message-Id; b=urKPvKNYVUWYD3v90KCyh4fsNKn5UHcRS9IvaMhKWCnvVGBLRgThPTqwE2HGxHHgSSemAX3PlXSOIUTRgUXXwOFTcOx21YAzXVG6+uwX96i0os/Hh/CTD8LbCW51yaM9DvmBeaIVLIREmrPwsedqHqP+phetEQLtzybq9G3lng4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mGv4iySm; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DCC281F000E9;
+	Wed, 15 Jul 2026 14:29:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1784125769;
-	bh=CrZM1NAmc6btMb5eriTuJ096vYkU1ZlIHWopfY91/A8=;
+	s=k20260515; t=1784125780;
+	bh=im1k+IfTUTLk3amJC9dHFxUNEwpUogrUfZBR4wgapVo=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=G2nEikElsviHzKJlWvX8ANcRD+mej5fCiJ/eciH8DFH6JfvlOW/oHnC9TTcGs9Oxu
-	 i1IsHofcxrBEqrONfUtRVkrKTGn+com9LbHsU51UYCaCSYWUA41wkPIfZCV8/5eNot
-	 i2rju9WFUVh1mQmNwA/h4SDsZm/srsKFzgAY/OezR1XG7csqdgDFbj9ONnco4gOYce
-	 fMLE/7+0U3SDe1WOUnngCKbJzynODYRtqaR0V/rOEYuioLxovg29zJ+b3B8PNVf9QD
-	 XRK3HrjhfL5JPW/PmY7rUwZ3cz9fFgxSXQgDEMu/2dnjvNFzsCUo1B1YUe/xUjFjZm
-	 jE0XuY1gdxflw==
+	b=mGv4iySmB8Qgcxphg9g6l8W8V7oZugFuufB/viYqV9llWLLCAEXopxzn/xjvaD5O8
+	 SYhbfy+K9gVsTc66/ANI+1TtpPxi0LA+WHQjqBiTVhmdp6Lt93PNdeUoDskZCwD+aA
+	 9h3XiP7liSV3CG88kRgdJtKoDzUUsrjA70Hdjp0Gv1+MAVHoOb9qeHRctvhIqcoL8U
+	 Uwi8TWxawTcqe/Gy6ue/6gXvg1x0tm4HGy2XovOgX4R18z4P+iPhqyAkwnu52jViai
+	 ZhodIvrtn+xI5AFVGc1KBHa3FIQWl+41qdche/Vk0RJwf0j9tney5FCFlYVsg+KJI7
+	 N/Irh9w1AP0Qw==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v9 04/14] media: iris: Add helper to select relevant
- context bank device
+Subject: Re: [PATCH v6 05/11] drm/mediatek: mtk_dsi: Enable interrupt at
+ component bind time
 Reply-To: sashiko-reviews@lists.linux.dev
-To: "Vishnu Reddy" <busanna.reddy@oss.qualcomm.com>
-Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20260715-glymur-v9-4-8cf2cbe12a07@oss.qualcomm.com>
-References: <20260715-glymur-v9-0-8cf2cbe12a07@oss.qualcomm.com>
- <20260715-glymur-v9-4-8cf2cbe12a07@oss.qualcomm.com>
+To: "AngeloGioacchino Del Regno" <angelogioacchino.delregno@collabora.com>
+Cc: robh@kernel.org, conor+dt@kernel.org, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org
+In-Reply-To: <20260715135703.46540-6-angelogioacchino.delregno@collabora.com>
+References: <20260715135703.46540-1-angelogioacchino.delregno@collabora.com>
+ <20260715135703.46540-6-angelogioacchino.delregno@collabora.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Wed, 15 Jul 2026 14:29:28 +0000
-Message-Id: <20260715142929.1E59D1F000E9@smtp.kernel.org>
+Date: Wed, 15 Jul 2026 14:29:39 +0000
+Message-Id: <20260715142939.DCC281F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -75,165 +75,142 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-327131-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:busanna.reddy@oss.qualcomm.com,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-327132-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,lists.linux.dev:replyto,smtp.kernel.org:mid,sashiko.dev:url,vger.kernel.org:from_smtp,collabora.com:email];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:angelogioacchino.delregno@collabora.com,m:robh@kernel.org,m:conor+dt@kernel.org,m:dri-devel@lists.freedesktop.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
 	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	PRECEDENCE_BULK(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCPT_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[5];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,qualcomm.com:email,vger.kernel.org:from_smtp,sashiko.dev:url,lists.linux.dev:replyto,smtp.kernel.org:mid]
+	FROM_NO_DN(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 6465175F789
+X-Rspamd-Queue-Id: 44A5675F7AA
 X-Rspamd-Action: no action
 
 Thank you for your contribution! Sashiko AI review found 2 potential issue(=
 s) to consider:
 
-New issues:
-- [High] Using dynamically created context bank devices without taking a re=
-ference via get_device() creates a Use-After-Free risk when file descriptor=
-s outlive device unbind.
-
 Pre-existing issues:
-- [High] The `struct iris_core` is allocated via devres but is accessed in =
-V4L2 deferred release paths, causing a Use-After-Free if a file descriptor =
-is closed after driver unbind.
+- [High] Data race on `dsi->irq_data` between process context and hardirq c=
+ontext can cause false positive interrupt completions.
+- [High] Unbounded hardware polling loop in hardirq handler can lock up the=
+ CPU.
 --
 
---- Patch [4]: [PATCH v9 04/14] media: iris: Add helper to select relevant =
-context bank device ---
-commit ff67c19893e13d3ddb40ea541f363dbf54e13228
-Author: Vikash Garodia <vikash.garodia@oss.qualcomm.com>
+--- Patch [5]: [PATCH v6 05/11] drm/mediatek: mtk_dsi: Enable interrupt at =
+component bind time ---
+commit 869a346c570d4022e4d54a10b57fcff068a735b6
+Author: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-media: iris: Add helper to select relevant context bank device
+drm/mediatek: mtk_dsi: Enable interrupt at component bind time
 
-This commit introduces a helper to associate the appropriate context bank=20
-device with different buffer types. It updates the internal buffer allocati=
-on=20
-and queue initialization to use this dynamically selected device instead of=
-=20
-always defaulting to the main core device.
+Having the DSI interrupt enabled before actually binding the DSI
+component to the display controller driver is both useless and dangerous.
+This commit fixes this by requesting the interrupt with IRQF_NO_AUTOEN,
+and enabling it only when binding DSI to its display controller component.
 
-> diff --git a/drivers/media/platform/qcom/iris/iris_buffer.c b/drivers/med=
-ia/platform/qcom/iris/iris_buffer.c
-> index 246ad0abbac35..249c9f1d0d5da 100644
-> --- a/drivers/media/platform/qcom/iris/iris_buffer.c
-> +++ b/drivers/media/platform/qcom/iris/iris_buffer.c
-> @@ -545,7 +545,7 @@ static int iris_create_internal_buffer(struct iris_in=
-st *inst,
->  	buffer->buffer_size =3D buffers->size;
->  	buffer->dma_attrs =3D DMA_ATTR_WRITE_COMBINE | DMA_ATTR_NO_KERNEL_MAPPI=
-NG;
-> =20
-> -	buffer->kvaddr =3D dma_alloc_attrs(core->dev, buffer->buffer_size,
-> +	buffer->kvaddr =3D dma_alloc_attrs(dev, buffer->buffer_size,
->  					 &buffer->device_addr, GFP_KERNEL, buffer->dma_attrs);
+> diff --git a/drivers/gpu/drm/mediatek/mtk_dsi.c b/drivers/gpu/drm/mediate=
+k/mtk_dsi.c
+> index e4a156a474e08..070d7d555bdbe 100644
+> --- a/drivers/gpu/drm/mediatek/mtk_dsi.c
+> +++ b/drivers/gpu/drm/mediatek/mtk_dsi.c
+> @@ -225,6 +225,7 @@ struct mtk_dsi {
+>  	int refcount;
+>  	bool enabled;
+>  	bool lanes_ready;
+> +	int irq;
+>  	u32 irq_data;
 
 [Severity: High]
-Could this lead to a Use-After-Free of the context bank device?
+This isn't a bug introduced by this patch, but can the data race on
+dsi->irq_data between process context and hardirq context cause false posit=
+ive
+interrupt completions?
 
-When a userspace application opens the video device file descriptor,
-iris_create_internal_buffer() allocates internal buffers using the context
-bank device. If the driver is subsequently unbound (e.g., via sysfs) and the
-context bank devices are unregistered and freed, the application could later
-close the file descriptor.
+The dsi->irq_data variable is modified locklessly using read-modify-write
+operations:
 
-Should a reference be taken on the context bank device pointer via
-get_device() to ensure it outlives deferred file operations cleanup?
+drivers/gpu/drm/mediatek/mtk_dsi.c:mtk_dsi_irq_data_clear() {
+    ...
+    dsi->irq_data &=3D ~irq_bit;
+    ...
+}
 
->  	if (!buffer->kvaddr) {
->  		kfree(buffer);
+drivers/gpu/drm/mediatek/mtk_dsi.c:mtk_dsi_irq_data_set() {
+    ...
+    dsi->irq_data |=3D irq_bit;
+    ...
+}
+
+If a delayed interrupt sets a flag while a process on another CPU is cleari=
+ng
+a different flag for a new command, the process's clear operation can be lo=
+st
+if the interrupt handler overwrites it.
+
+The previously cleared flag remains set, causing mtk_dsi_wait_for_irq_done()
+to falsely return success.
+
+>  	wait_queue_head_t irq_wait_queue;
+>  	const struct mtk_dsi_driver_data *driver_data;
+>  };
 
 [ ... ]
 
-> @@ -682,10 +682,10 @@ int iris_queue_internal_buffers(struct iris_inst *i=
-nst, u32 plane)
+> @@ -1381,17 +1385,15 @@ static int mtk_dsi_probe(struct platform_device *=
+pdev)
 > =20
->  int iris_destroy_internal_buffer(struct iris_inst *inst, struct iris_buf=
-fer *buffer)
->  {
-> -	struct iris_core *core =3D inst->core;
-> +	struct device *dev =3D iris_get_cb_dev(inst, buffer->type);
+>  	platform_set_drvdata(pdev, dsi);
+> =20
+> +	ret =3D devm_request_irq(&pdev->dev, dsi->irq, mtk_dsi_irq,
+> +			       IRQF_NO_AUTOEN, dev_name(&pdev->dev), dsi);
 
 [Severity: High]
-This is a pre-existing issue, but is it possible for inst->core to be freed
-before this deferred cleanup is called?
+This isn't a bug introduced by this patch, but could the unbounded hardware
+polling loop in the mtk_dsi_irq() hardirq handler lock up the CPU?
 
-In drivers/media/platform/qcom/iris/iris_probe.c, the core structure is
-allocated via devm_kzalloc(). If the driver is unbound while a file
-descriptor is open, devres will free the iris_core structure. When the file
-descriptor is later closed, deferred release paths (such as
-iris_check_num_queued_internal_buffers() in iris_vidc.c, or here calling
-iris_get_cb_dev()) will dereference inst->core, resulting in a Use-After-Fr=
-ee.
+The mtk_dsi_irq() function runs in hardirq context and uses an unbounded lo=
+op
+to wait for the hardware:
 
-> =20
->  	list_del(&buffer->list);
-> -	dma_free_attrs(core->dev, buffer->buffer_size, buffer->kvaddr,
-> +	dma_free_attrs(dev, buffer->buffer_size, buffer->kvaddr,
->  		       buffer->device_addr, buffer->dma_attrs);
+drivers/gpu/drm/mediatek/mtk_dsi.c:mtk_dsi_irq() {
+    ...
+    do {
+        mtk_dsi_mask(dsi, DSI_RACK, RACK, RACK);
+        tmp =3D readl(dsi->regs + DSI_INTSTA);
+    } while (tmp & DSI_BUSY);
+    ...
+}
 
-[Severity: High]
-If the context bank device was freed during driver unbind, will passing the
-unpinned device pointer to dma_free_attrs() during deferred fops release
-cause a Use-After-Free?
+If the DSI hardware hangs, loses its clock, or DSI_BUSY never clears for any
+other reason, the loop never terminates, which will permanently hang the CP=
+U.
 
->  	kfree(buffer);
-> =20
-
-> diff --git a/drivers/media/platform/qcom/iris/iris_vidc.c b/drivers/media=
-/platform/qcom/iris/iris_vidc.c
-> index 14d63dc76c9ba..26df872fb4fa1 100644
-> --- a/drivers/media/platform/qcom/iris/iris_vidc.c
-> +++ b/drivers/media/platform/qcom/iris/iris_vidc.c
-> @@ -107,7 +107,7 @@ iris_m2m_queue_init(void *priv, struct vb2_queue *src=
-_vq, struct vb2_queue *dst_
->  	src_vq->drv_priv =3D inst;
->  	src_vq->buf_struct_size =3D sizeof(struct iris_buffer);
->  	src_vq->min_reqbufs_allocation =3D MIN_BUFFERS;
-> -	src_vq->dev =3D inst->core->dev;
-> +	src_vq->dev =3D iris_get_cb_dev(inst, BUF_INPUT);
->  	src_vq->lock =3D &inst->ctx_q_lock;
->  	ret =3D vb2_queue_init(src_vq);
->  	if (ret)
-> @@ -121,7 +121,7 @@ iris_m2m_queue_init(void *priv, struct vb2_queue *src=
-_vq, struct vb2_queue *dst_
->  	dst_vq->drv_priv =3D inst;
->  	dst_vq->buf_struct_size =3D sizeof(struct iris_buffer);
->  	dst_vq->min_reqbufs_allocation =3D MIN_BUFFERS;
-> -	dst_vq->dev =3D inst->core->dev;
-> +	dst_vq->dev =3D iris_get_cb_dev(inst, BUF_OUTPUT);
->  	dst_vq->lock =3D &inst->ctx_q_lock;
-
-[Severity: High]
-Does assigning the dynamically created context bank device to the vb2_queue
-without taking a reference create a Use-After-Free risk?
-
-If the driver unbinds and the device is freed, the vb2_queue could still be
-accessed during deferred cleanup when the file descriptor is finally closed.
+> +	if (ret)
+> +		return dev_err_probe(&pdev->dev, ret, "Failed to request DSI irq\n");
+> +
 
 --=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260715-glymur-v9-=
-0-8cf2cbe12a07@oss.qualcomm.com?part=3D4
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260715135703.4654=
+0-1-angelogioacchino.delregno@collabora.com?part=3D5
 
