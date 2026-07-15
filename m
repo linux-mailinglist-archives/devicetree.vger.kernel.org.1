@@ -1,199 +1,142 @@
-Return-Path: <devicetree+bounces-326732-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-326735-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id Iv28Lsw9V2riHwEAu9opvQ
-	(envelope-from <devicetree+bounces-326732-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 09:59:08 +0200
+	id 2IJuDPg/V2pvIAEAu9opvQ
+	(envelope-from <devicetree+bounces-326735-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 10:08:24 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9F1F75BABF
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 09:59:07 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C14475BBA0
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 10:08:23 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=naoOr7K5;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326732-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-326732-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=geanix.com header.s=protonmail3 header.b=VL0GY8eF;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326735-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-326735-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=geanix.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id B1EE030074C1
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 07:58:43 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 106363019504
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 08:07:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48D9131B130;
-	Wed, 15 Jul 2026 07:58:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E67613C943B;
+	Wed, 15 Jul 2026 08:07:53 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from mail-244107.protonmail.ch (mail-244107.protonmail.ch [109.224.244.107])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1763C2931D1
-	for <devicetree@vger.kernel.org>; Wed, 15 Jul 2026 07:58:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 366A23B840E;
+	Wed, 15 Jul 2026 08:07:47 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1784102321; cv=none; b=TW/Q57e6tWewI7JCcLsALW8iPtJDU3E7eu41fMEiNCcHHnt0QLnDxAcuWgolUFrtlwvxP8vs++b4GJ6NUsEUXPq2+G0PaSRl57ZYR2hjXBJqzO+VbBLVl5FQOmf+OGo63AhjbjZUJfFXWQrOOYZEdhWa1ToKVlYGq3Wg5htvJwo=
+	t=1784102873; cv=none; b=hMXXAzRF/R+eXnkKO8CHjq2DyMA5aJjx5ZncVNX85nruzy6YZcct63ejUJO2JNs+wPFLDw5x47F33+z7Hil9GZ3TYerPnRY+FUHD5ctxRfy3fOlA6/0Ec9h3bPLkHsORs8VAH8kxPqUw01enqmibPiqFrmbSm3voTTDX8MLdRvo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1784102321; c=relaxed/simple;
-	bh=LkpO0tnGsZMb5t8iMQeCtxkCUVzeU73dpwO959Eo93k=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=s65AZfl66sxh/AuPGjIvRL6NCA2VKR/t42NDe6UFvTR6wQC0Xpd36Zt1gIEetYT+Do3mYD9sutJ1gdS/qeX43xldNzYfwWBz8uDhdjyHF8y6ozDAJQStNmAMtyOfONAACRF+GNUBC+aCUdiFtpTP150FcqvvxOF/POs0GKQ86aA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=naoOr7K5; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B05821F000E9;
-	Wed, 15 Jul 2026 07:58:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1784102320;
-	bh=moFLjJFa94jBTakZEpTYQAIJRzKAQpfyiG4QVaZtvV0=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=naoOr7K5Ucfc5XFQ+Kid+RRHV1zCjdVeK3Innj8bZ45Ut+Kt6MqEvccINRjmodT3n
-	 PYnRCk1Gg/zWJnPFJy2u5FfCKGoxpAERVWtSMbtH2/QH0rKZqnlZgVdSuOiHDvqaBS
-	 HEACjGgJLM/xZ7r1cC4Kfm5CNRO9VqxzwH806kpNdR7y1x3+Jn+pvSlU82Y6F8c0Wl
-	 sZerL6zZYzi9/+zw1oPiXGxdbKsQHlAI0u8kGub0r0ybfLSzCK4yPyHTdbJ2FUqOYR
-	 t4BWYO8k0PaByANLg9g8q4gUqO3OkySA8fArAQJKFXf4wSdXQAlaugDYfRAZU1Lwyz
-	 pjt3fTJXjaDwg==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v4 4/4] arm64: dts: qcom: Add PMIC thermal support for
- Shikra IQ2390S SoM platform
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Jishnu Prakash" <jishnu.prakash@oss.qualcomm.com>
-Cc: devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org
-In-Reply-To: <20260715-shikra_adc_support-v4-4-5e07b6d21429@oss.qualcomm.com>
-References: <20260715-shikra_adc_support-v4-0-5e07b6d21429@oss.qualcomm.com>
- <20260715-shikra_adc_support-v4-4-5e07b6d21429@oss.qualcomm.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Wed, 15 Jul 2026 07:58:39 +0000
-Message-Id: <20260715075839.B05821F000E9@smtp.kernel.org>
+	s=arc-20240116; t=1784102873; c=relaxed/simple;
+	bh=1fpr8AtMJXKT9efIsQAg18BMxxtX0BL6Ea/AaaiZu/4=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=BCoA/i5WiPDDQPtfiP8TAPcirSklM0qqilB3ew5bqhWoehMcVOw2y13WEAueWhVEl96wuOkp/jzrXTh4ipMejangMfoB8QIT7+izS6lPu3W/L5qkkaVh+A4ozazHSu7YNeZjQPgGN0ZQwoP4+8fjWGw+DzdUV5HtyOzU/W9t4Mk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=geanix.com; spf=pass smtp.mailfrom=geanix.com; dkim=pass (2048-bit key) header.d=geanix.com header.i=@geanix.com header.b=VL0GY8eF; arc=none smtp.client-ip=109.224.244.107
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=geanix.com;
+	s=protonmail3; t=1784102865; x=1784362065;
+	bh=F9KNvHokOnjzXB2tsPw05VMRFK/X762wrH2nvki6fTw=;
+	h=From:Subject:Date:Message-Id:To:Cc:From:To:Cc:Date:Subject:
+	 Reply-To:Feedback-ID:Message-ID:BIMI-Selector;
+	b=VL0GY8eF8z3QiH7wCs2AVhxbAKCygqGBbLwKe9FfwtCJaJ+KdWhwMGETTJGFG/uQr
+	 sASxBLgQJl81p333BKI8xgh1VVpY8rMTKmbB0zK3egZbCfRV6aSS0ALY0zyUAXhFwt
+	 rmsQS7Y77YHW3Ichy81Jmi/JvS+VAI18PxdZOhVUK5w9yOOmFqhfcNHxkMk4ERBpFx
+	 uCmd4ipUTH6RlLWMPZSRecATnWvxyVKcoveHAmm4G5q/BXy0Q3N4onLaD8UfhelZMi
+	 qvmV2lLjFptAwy+N+6xSJAHorDPeWlpMcUhrBCnCCob47KxngRAKH9FqIWzvWyei8L
+	 IklZXjsCMLPiw==
+X-Pm-Submission-Id: 4h0TLS0FkLz1DDrP
+From: Esben Haabendal <esben@geanix.com>
+Subject: [PATCH 0/2] io: accel: mma8452: Allow open drain interrupt pin
+ configuration
+Date: Wed, 15 Jul 2026 10:07:37 +0200
+Message-Id: <20260715-mma8452-open-drain-v1-0-b1dd2a440c60@geanix.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/x3MQQqAIBBA0avErBtQU5SuEi3EpppFGgoRiHdPW
+ r7F/xUKZaYC81Ah08OFU+yQ4wDh9PEg5K0blFBGaCHxurzTRmG6KeKWPUd00lgbtJysCdDDO9P
+ O7z9d1tY+Uj9VjWQAAAA=
+X-Change-ID: 20250401-mma8452-open-drain-81577c41375c
+To: Jonathan Cameron <jic23@kernel.org>, 
+ Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Martin Kepplinger <martink@posteo.de>, 
+ Sean Nyekjaer <sean@geanix.com>, David Lechner <dlechner@baylibre.com>, 
+ =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
+ Andy Shevchenko <andy@kernel.org>, 
+ Martin Kepplinger <martin.kepplinger@theobroma-systems.com>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Esben Haabendal <esben@geanix.com>
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1784102863; l=917;
+ i=esben@geanix.com; s=20240523; h=from:subject:message-id;
+ bh=1fpr8AtMJXKT9efIsQAg18BMxxtX0BL6Ea/AaaiZu/4=;
+ b=a79cjrT5qa69rUkYqt53VPeV6nxEWRF5VZJohn0QjbGdvg0LO+hi5K0ff45afLK7BE9TxwFUz
+ sebEqlH6OWYCguNVdDRrlc81+agiAFeXCHTnEql8TxWmDlPG+rDwye9
+X-Developer-Key: i=esben@geanix.com; a=ed25519;
+ pk=PbXoezm+CERhtgVeF/QAgXtEzSkDIahcWfC7RIXNdEk=
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[geanix.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[geanix.com:s=protonmail3];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-326732-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-326735-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:jic23@kernel.org,m:lars@metafoo.de,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:martink@posteo.de,m:sean@geanix.com,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:andy@kernel.org,m:martin.kepplinger@theobroma-systems.com,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:esben@geanix.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[esben@geanix.com,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	RCVD_COUNT_THREE(0.00)[3];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:jishnu.prakash@oss.qualcomm.com,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	RCPT_COUNT_THREE(0.00)[4];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[esben@geanix.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[geanix.com:+];
+	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,lists.linux.dev:replyto,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,sashiko.dev:url,qualcomm.com:email,smtp.kernel.org:mid]
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[geanix.com:from_mime,geanix.com:mid,geanix.com:email,geanix.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: B9F1F75BABF
+X-Rspamd-Queue-Id: 7C14475BBA0
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [High] Mismatched PMIC ADC channels and pinctrl configurations for thermi=
-stors.
---
+Extend the mma8452 driver with support for configuration of the
+interrupt line in open-drain mode, which is needed for hardware designs
+where the interrupt line is shared with other chips.
 
---- Patch [4]: [PATCH v4 4/4] arm64: dts: qcom: Add PMIC thermal support fo=
-r Shikra IQ2390S SoM platform ---
-commit 5e80ce0d3c9c4dc567c3d3d335a508d11f309e50
-Author: Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>
+Adding drive-open-drain property to mma8452 device-tree node for such
+designs to enable switching pin configuration to open-drain mode.
 
-arm64: dts: qcom: Add PMIC thermal support for Shikra IQ2390S SoM platform
+Signed-off-by: Esben Haabendal <esben@geanix.com>
+---
+Esben Haabendal (2):
+      dt-bindings: iio: accel: mma8452: Add drive-open-drain
+      iio: accel: mma8452: Allow open drain interrupt pin configuration
 
-This commit adds ADC channels for system thermistors used for thermal
-mitigation. It includes ADC_TM nodes for PA, quiet, and MSM thermistors,
-along with corresponding thermal zones.
+ .../devicetree/bindings/iio/accel/fsl,mma8452.yaml |  6 +++++
+ drivers/iio/accel/mma8452.c                        | 29 +++++++++++++++++++++-
+ 2 files changed, 34 insertions(+), 1 deletion(-)
+---
+base-commit: a13c140cc289c0b7b3770bce5b3ad42ab35074aa
+change-id: 20250401-mma8452-open-drain-81577c41375c
 
-> diff --git a/arch/arm64/boot/dts/qcom/shikra-iqs-som.dtsi b/arch/arm64/bo=
-ot/dts/qcom/shikra-iqs-som.dtsi
-> index 73945bf42112d..9ab0b44b00bed 100644
-> --- a/arch/arm64/boot/dts/qcom/shikra-iqs-som.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/shikra-iqs-som.dtsi
+Best regards,
+--  
+Esben Haabendal <esben@geanix.com>
 
-[ ... ]
-
-> +&pm8150_adc {
-> +	pinctrl-0 =3D <&pm8150_adc_gpio2_default>, <&pm8150_adc_gpio3_default>;
-> +	pinctrl-names =3D "default";
-> +
-
-[ ... ]
-
-> +	channel@52 {
-> +		reg =3D <ADC5_GPIO1_100K_PU>;
-> +		label =3D "gnss_therm";
-> +		qcom,ratiometric;
-> +		qcom,hw-settle-time =3D <200>;
-> +		qcom,pre-scaling =3D <1 1>;
-> +	};
-> +
-> +	channel@55 {
-> +		reg =3D <ADC5_GPIO4_100K_PU>;
-> +		label =3D "pa_therm";
-> +		qcom,ratiometric;
-> +		qcom,hw-settle-time =3D <200>;
-> +		qcom,pre-scaling =3D <1 1>;
-> +	};
-> +};
-
-[Severity: High]
-Is there a mismatch between the pinctrl configurations and the ADC channels
-being used?
-
-The pinctrl-0 property specifies configurations for gpio2 and gpio3, but the
-ADC channels instruct the hardware to read from ADC5_GPIO1 and ADC5_GPIO4.
-
-Could this result in the gnss_therm and pa_therm thermal zones reading
-garbage data since they point to unconfigured PMIC GPIOs?
-
-If the unconfigured pins float to a voltage that translates to a temperature
-above the 125=C2=B0C trip point, it might cause spurious system shutdowns or
-unnecessary throttling.
-
-[ ... ]
-
->  &pm8150_gpios {
-> +	pm8150_adc_gpio2_default: pm8150-adc-gpio2-state {
-> +		pins =3D "gpio2";
-> +		function =3D PMIC_GPIO_FUNC_NORMAL;
-> +		bias-high-impedance;
-> +	};
-> +
-> +	pm8150_adc_gpio3_default: pm8150-adc-gpio3-state {
-> +		pins =3D "gpio3";
-> +		function =3D PMIC_GPIO_FUNC_NORMAL;
-> +		bias-high-impedance;
-> +	};
-> +
-
-[Severity: High]
-Because these configurations explicitly target gpio2 and gpio3 instead of t=
-he
-pins actually used by the ADC, does forcing them into high-impedance mode
-risk breaking or interfering with whatever hardware is actually connected
-to them?
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260715-shikra_adc=
-_support-v4-0-5e07b6d21429@oss.qualcomm.com?part=3D4
 
