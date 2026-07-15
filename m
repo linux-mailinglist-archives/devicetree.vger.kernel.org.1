@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-326807-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-326808-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id YPq1K+pQV2qpJAEAu9opvQ
-	(envelope-from <devicetree+bounces-326807-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 11:20:42 +0200
+	id 9sV6JO1QV2qqJAEAu9opvQ
+	(envelope-from <devicetree+bounces-326808-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 11:20:45 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A96EC75C674
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 11:20:41 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7FFA675C679
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 11:20:44 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=Xjy2E3uY;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326807-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-326807-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=k5wzWDzD;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326808-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-326808-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 3F24F30013AA
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 09:17:33 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 299F93007A57
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 09:18:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7E3741DE16;
-	Wed, 15 Jul 2026 09:17:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5501D3E5A0E;
+	Wed, 15 Jul 2026 09:18:10 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2E1941D65D;
-	Wed, 15 Jul 2026 09:17:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0AA4C41D65C;
+	Wed, 15 Jul 2026 09:18:03 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1784107049; cv=none; b=K5tCBXPatbLjWwxGWuUzLIfzEb+O+VZRoJOXRQo22dR9t8II7EJaG/JVotCbpVC+s3qGbN28i4o4QDgZtfsByP6Jjn81Jjz0qJAXbRoOEsEYXawHLRX+x+XmkM8h+iqs8geus9fBBGq+9fXVpIE5r9rextpI+AxyiQgfWvGlF8E=
+	t=1784107087; cv=none; b=VBrOAroaE0u13890FKRliZIIm6lNgxzUBABx5VeU+tsvDBGPgGlkkJ64WfZMQjNOmNk6Isb5nEt5uDze5PjVqL4IM1e3gj7IvtgRrMaFz1HIIfZsP1tX5Ndu7T6bDKeQQ+yxWF8tKwiKt38MB6NhSnWE2bQ6gVMFax8ZDM5y9I8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1784107049; c=relaxed/simple;
-	bh=VgHMCGzNBXGaPywPybMQMIbKO8EQpYffRuRZpY/DQys=;
+	s=arc-20240116; t=1784107087; c=relaxed/simple;
+	bh=W8URg+6MQxwIHa3ueS6S2tn+BXkhDmp+il12nhY8l/U=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=IQOq+yMJFc61cCGaTtyxeLFQ0avBx2FmECtZ/uigoXNaPGDZ+H0pOCrMLPc+qIA2ADvmVunWHvWv7NGT5Rg+N0Df8xItjiyh0ZKK2n4L3fASZ7GLsFuprP+Q/91VEc3suezMDsPKrmTpZiB3zq6L6qtIZEb+M+JXvzbcVq/dkKQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Xjy2E3uY; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 18BC21F000E9;
-	Wed, 15 Jul 2026 09:17:24 +0000 (UTC)
+	 Message-Id; b=u8i9psn9OXt/tEFLYe40giMxH+vELTm6U8VAyiz0eo6NvRpuSJ6dxSG4sgh8dcSAy9wPvGhRZFTvDdKdrUZ3uUSGpBhDt0mJoRjtzOjWPLQS1P8N1YoKRAS9y/aWb25oUM/0W7BQeSxAXfDThI8EzczQTiTPo1mITq5seYWAbEg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=k5wzWDzD; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 661C21F000E9;
+	Wed, 15 Jul 2026 09:18:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1784107044;
-	bh=BMtuoqFSnZRAC/VAd7l7Q/Lccquxe4xx3tV4v3AAv9o=;
+	s=k20260515; t=1784107080;
+	bh=W8URg+6MQxwIHa3ueS6S2tn+BXkhDmp+il12nhY8l/U=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=Xjy2E3uYq21Yon4JMrD6i/FYSCf43J52rV2l10QDmWd2G9e9UCefPWROINhLqFV8j
-	 9DD+G7v1R8ZyuVDrueh16eDtOr8a+bLBdCi+Wgvg9SAAceKH5M+hc+u0KMdYW6GTxu
-	 LwFczGFs1YhDUb4A7ecP8dQX5e9yzZ3wSHZXuOyjq0u92PYFMlKgdR3tdzD/fET/Wy
-	 4c3wSbK9TdJxp8PGPf6Af4S7ETDBheUKerHsMTVeznjEU+hvrUxtZloefoEGcHNtjP
-	 gL/xRny6AI1FitBFzYrt2nEzqzJsRKomrBv10xAIUejhGJvLRBgaBE+0jv3L8Ae8eK
-	 4kIEUvo+R4C2A==
+	b=k5wzWDzD32EhqAO61Ip8h4aXV5VFTVCL4rYtC6WmzyqCmlwsUulwMwYBFvPzsm4Ql
+	 emxKCgbLMDd5jkV3JY3wLSE6v+B3rnVtWuBhtNK1yeJjcufJBf7j+Dt9yCqh+hBc1/
+	 xs9fRl2oCEw4Lx3SQKxR4w3MtKsGhguygkpISL3nXqVZGyaJ0IOdX8LfC8ztOtyDeM
+	 UbULtyYcibslLIAMBq8bXlKs7W7sNVa1bY4prviLRcXEUJOfCfQsJaNXMvMmeX8+lU
+	 nWzlU4/QrrFOGx9dFDsaNOVumHBw0S/t/kjfVZQM394+g0/sZWm/UNZa65epee7TaC
+	 OHit14MrZP6Jw==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v2 3/4] hwmon: (kb9002) Add driver for Kandou KB9002
- retimer
+Subject: Re: [PATCH v2 05/10] dt-bindings: power: apple,pmgr-pwrstate: Add
+ t6030 and t6031 compatibles
 Reply-To: sashiko-reviews@lists.linux.dev
-To: "Andy Chung" <Andy.Chung@amd.com>
-Cc: conor+dt@kernel.org, robh@kernel.org, linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20260715-kb9002-upstream-v2-3-2fd390383da5@amd.com>
-References: <20260715-kb9002-upstream-v2-0-2fd390383da5@amd.com>
- <20260715-kb9002-upstream-v2-3-2fd390383da5@amd.com>
+To: "Janne Grunau" <j@jannau.net>
+Cc: robh@kernel.org, linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org, conor+dt@kernel.org
+In-Reply-To: <20260715-apple-t603x-initial-devices-v2-5-df65b2485710@jannau.net>
+References: <20260715-apple-t603x-initial-devices-v2-0-df65b2485710@jannau.net>
+ <20260715-apple-t603x-initial-devices-v2-5-df65b2485710@jannau.net>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Wed, 15 Jul 2026 09:17:23 +0000
-Message-Id: <20260715091724.18BC21F000E9@smtp.kernel.org>
+Date: Wed, 15 Jul 2026 09:17:59 +0000
+Message-Id: <20260715091800.661C21F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,108 +71,70 @@ X-Spamd-Result: default: False [-3.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-326807-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-326808-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.linux.dev:replyto,sashiko.dev:url,smtp.kernel.org:mid,vger.kernel.org:from_smtp,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,amd.com:email];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.linux.dev:replyto,sashiko.dev:url,vger.kernel.org:from_smtp,smtp.kernel.org:mid,jannau.net:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns];
 	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:Andy.Chung@amd.com,m:conor+dt@kernel.org,m:robh@kernel.org,m:linux-hwmon@vger.kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:j@jannau.net,m:robh@kernel.org,m:linux-watchdog@vger.kernel.org,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
 	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	ALIAS_RESOLVED(0.00)[];
 	MID_RHS_MATCH_FROMTLD(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	PRECEDENCE_BULK(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	RCPT_COUNT_FIVE(0.00)[5];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
 	FROM_NO_DN(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
+	RCPT_COUNT_FIVE(0.00)[5]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: A96EC75C674
+X-Rspamd-Queue-Id: 7FFA675C679
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-- [Medium] The driver implements its own internal mutex for locking hardwar=
-e accesses instead of using the hwmon subsystem's `hwmon_lock()` API.
-- [Low] The `i2c_device_id` array is initialized using a positional instead=
- of a named initializer.
+- [Low] The commit message incorrectly duplicates 'apple,t6030-pmgr-pwrstat=
+e' when explaining the new compatible strings.
 --
 
---- Patch [3]: [PATCH v2 3/4] hwmon: (kb9002) Add driver for Kandou KB9002 =
-retimer ---
-commit 59c6448090144292eb629f4257436694b1eaaa0d
-Author: Andy Chung <Andy.Chung@amd.com>
+--- Patch [5]: [PATCH v2 05/10] dt-bindings: power: apple,pmgr-pwrstate: Ad=
+d t6030 and t6031 compatibles ---
+commit 0f321dd30362858c61b0d6995914cf56752d651f
+Author: Janne Grunau <j@jannau.net>
 
-hwmon: (kb9002) Add driver for Kandou KB9002 retimer
-   =20
-The Kandou KB9002 is an 8-lane PCIe 5.0 retimer that exposes an SMBus
-target with mandatory PEC. Add a hwmon driver reporting the firmware
-aggregated maximum die temperature as temp1_input, with the firmware
-version and boot status under debugfs.
+dt-bindings: power: apple,pmgr-pwrstate: Add t6030 and t6031 compatibles
 
-> diff --git a/drivers/hwmon/kb9002.c b/drivers/hwmon/kb9002.c
-> new file mode 100644
-> index 0000000000000..94c7d95b3fff5
-> --- /dev/null
-> +++ b/drivers/hwmon/kb9002.c
-[ ... ]
-> +struct kb9002_data {
-> +	struct i2c_client *client;
-> +	struct mutex lock;	/* serialises register accesses */
-> +};
-[ ... ]
-> +static int kb9002_fw_read(struct kb9002_data *data, u16 reg, u32 *val)
-> +{
-> +	struct i2c_client *client =3D data->client;
-> +	u8 addr[2];
-> +	u8 rbuf[I2C_SMBUS_BLOCK_MAX];
-> +	int ret;
-> +
-> +	put_unaligned_le16(reg, addr);
-> +
-> +	mutex_lock(&data->lock);
+This commit adds "apple,t6030-pmgr-pwrstate" and "apple,t6031-pmgr-pwrstate=
+"=20
+compatible strings for Apple M3 Pro, Max, and Ultra SoCs.
 
-[Severity: Medium]
-Is this custom mutex necessary? The hwmon subsystem guidelines state that
-drivers should use hwmon_lock() and hwmon_unlock() to serialize operations
-for attributes registered by other means.
-
-By using a custom internal mutex, does the driver bypass the standard
-subsystem synchronization architecture and introduce inefficient double-loc=
-king
-on sysfs reads, which are already protected by the hwmon core?
-
-[ ... ]
-> +static const struct i2c_device_id kb9002_id[] =3D {
-> +	{ KB9002_DEV_NAME },
-> +	{ }
-> +};
+> The pmgr-powerstate registers on Apple M3 Pro, Max and Ultra SoCs are
+> compatible with "apple,t8103-pmgr-pwrstate". Add
+> "apple,t6030-pmgr-pwrstate" for M3 Pro and "apple,t6030-pmgr-pwrstate"
+> for M3 Max and Ultra as per-SoC compatibles.
 
 [Severity: Low]
-This isn't a bug, but does this array initialization bypass the I2C
-subsystem guidelines?=20
-
-The I2C client initialization rules request that initialized arrays of type
-struct i2c_device_id use named initializers rather than positional
-initializers.
+This isn't a bug, but there appears to be a typo in the commit message. It=
+=20
+duplicates "apple,t6030-pmgr-pwrstate" instead of mentioning=20
+"apple,t6031-pmgr-pwrstate" for the M3 Max and Ultra.
 
 --=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260715-kb9002-ups=
-tream-v2-0-2fd390383da5@amd.com?part=3D3
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260715-apple-t603=
+x-initial-devices-v2-0-df65b2485710@jannau.net?part=3D5
 
