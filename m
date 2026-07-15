@@ -1,251 +1,189 @@
-Return-Path: <devicetree+bounces-326948-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-326947-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id w5+oL/t6V2rtOwEAu9opvQ
-	(envelope-from <devicetree+bounces-326948-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 14:20:11 +0200
+	id +ZYYK3N6V2qyOwEAu9opvQ
+	(envelope-from <devicetree+bounces-326947-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 14:17:55 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14D8A75E06C
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 14:20:11 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 281D575E018
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 14:17:55 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=ieee.org header.s=google header.b=NQGNb5C5;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326948-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-326948-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=reject) header.from=ieee.org;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=WERkBgi9;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326947-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-326947-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id BEFC930F6B2E
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 12:16:18 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 1F8B83034B41
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 12:16:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 153B546AEC5;
-	Wed, 15 Jul 2026 12:16:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1CD68453498;
+	Wed, 15 Jul 2026 12:16:13 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f41.google.com (mail-qv1-f41.google.com [209.85.219.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 043CE45107D
-	for <devicetree@vger.kernel.org>; Wed, 15 Jul 2026 12:16:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA50A44B663
+	for <devicetree@vger.kernel.org>; Wed, 15 Jul 2026 12:16:11 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1784117777; cv=none; b=REs7Zgsrui8LDJORC/S3tQ2NnljuEmSgCGzZSrsfsxs3VkNHbM+RUvxFWbffXgMKWUiEt1V7yoQZAb2XsylKmr4RS/LsfHQkElA0kXDzqiaf6+e5mDLDS6a6cDWoIM/iEtvdR9EIXPVdzqMwKekc8kBb3sOpfWgae1XVmUSEJlk=
+	t=1784117773; cv=none; b=IorW0pAi2kL4N6nDFygwhuBDeFbvBt2EYArGaFs2aegF4WCAuEUipAEIRe+YA3uC2VcWCDqk2OOhuUDBXFvvP2oN1rLnKUM7+mf1satVV0DjaFc+dVuHsLZS3DyGU4Q3oipqxHX8CNw+hMcT/LEo5HP3wIZBWCUuhmZoO6VJEWk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1784117777; c=relaxed/simple;
-	bh=lT/7WO1wjfB3oak0cuKJt8DGXn0vntMapQEjDanB03g=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=MQS20JDEF4CgJbZ+XBgNGOAMU8kHg9B+TvLf/kERkdTW+MA3UDXEc3YmwTdFrhZSVy6fi0c5A9jNOI+HvwX5gclmfPX95a1uPJHkQCp5X9uGSOhjzLDRgivgf803ZbXwYu2uxPZ84kPbxT7dGV+W17edBQdEA1lzY9Z+bXYqsXA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ieee.org; spf=pass smtp.mailfrom=ieee.org; dkim=pass (1024-bit key) header.d=ieee.org header.i=@ieee.org header.b=NQGNb5C5; arc=none smtp.client-ip=209.85.219.41
-Received: by mail-qv1-f41.google.com with SMTP id 6a1803df08f44-8f0d6853360so39255606d6.0
-        for <devicetree@vger.kernel.org>; Wed, 15 Jul 2026 05:16:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ieee.org; s=google; t=1784117773; x=1784722573; darn=vger.kernel.org;
-        h=content-transfer-encoding:content-type:in-reply-to:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=XYn30NuQBlpDBaqikH9GRFE2pdu5APUaoZom7kBIJ94=;
-        b=NQGNb5C5jnfBAQINK7wvlbn8IPZv3rcr2zxxsCoqDbuoSM09Y4mGJEh9XDLG/iAL/3
-         qAchGiyBkZN8PDlWyFGef/7O6UzbVIqJrBbe1/Agg1mNf773w698sQOrUuzL2Apb9PVq
-         Z5bR2xMkCXmoe2JR/W1paOmNEnbAiDRvckrWc=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1784117773; x=1784722573;
-        h=content-transfer-encoding:content-type:in-reply-to:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=XYn30NuQBlpDBaqikH9GRFE2pdu5APUaoZom7kBIJ94=;
-        b=GxIA+HcNN7X7wAIuFcYu05s7pHLrhBq2c17XqnnyAmPUcI2WbUCY/QDrJpiL3g9RGE
-         HDaH5lvl95vtUCqITVkRyg9YPrPpnaZ/PFWa0M4roi15HczYgM8Wn9z6FOlB102MNmQG
-         cjOu6tY5E4hudUfZOBzV6ztvum0OZb7ExO8OwSLIJjSpMnjLbmpRAw949dveHK/X3+eL
-         yP7khrG71MXKz+Z3gKQrAhO5KVnuog/N34lgI0TLldtDfBoK89pWW5fXb8VzO8JMQSwx
-         89s4zY0pYj28T0H+7alCUJb20cj4SoT/1P6Ayv+TxBQb6iheG2A3zW7h7hQf9bWoFhRe
-         +WnQ==
-X-Forwarded-Encrypted: i=1; AHgh+RpFQwn8cCT60Ixw5m5qYBn1o8QR6uCXxEwK5tdrz/qiiCW3cgZJWPZmHSMtjDnIu3zPgpF2QVoNVjP2@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy0BDkiVUm7fModwok+r9ypq59KXGtDrKoxB+qOrAucO1GBIFip
-	dm4BW+2fuAsOxTQvb3zWXd6iEJ6j+dpJWeVWYSJDCmtXEIyVFk0GNRUSwre/v0tpHg==
-X-Gm-Gg: AfdE7ckAH8yDlzOqbRsGW7ntzgN2Y+2CU7cRT+xdh7p/M/DqIZ47hZpMkRzbis69GOs
-	gN03dR3wvyC4EcxJV6eiVFiXNdryXvonHrN/aoCw6lqT7zwrvHQmK5g67ditoom2xFRCCkeJ/2g
-	cPfj4M+aONnRTj76HJs2S08ctrRKsbnwhzCfZ0776B5XzEh9tEwyjArBafwOmx0rRZAtL8hwKmk
-	8NAhPTTO8tiWQVDrz25ANXOjX0wk9p+tf/BUuKvI1H42Y+o99Kqe5Uop8IqtJ3XDkrHVpdeyqXZ
-	pc0odGQvXRcPkwyK7jikvVKIXzcOlNOAGTN4aZva5Z0xyxg+MkYuZlbFDQiQJIDKqfnZMcKY0p7
-	rqRBUGpGzYlUisJDHAqyWSRISYoVADz943AeQuo6IkgGIFdOr5z7U/dHIB543Ay9L/tWmilwDQX
-	bZC3wh9fTYUJW3uza01b40
-X-Received: by 2002:a05:6214:500e:b0:8ef:5b18:65ec with SMTP id 6a1803df08f44-9074c70b5cemr66890686d6.15.1784117772692;
-        Wed, 15 Jul 2026 05:16:12 -0700 (PDT)
-Received: from [10.211.55.5] ([73.62.185.64])
-        by smtp.googlemail.com with ESMTPSA id 6a1803df08f44-8ffd7c1fd2bsm193918296d6.27.2026.07.15.05.16.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 15 Jul 2026 05:16:11 -0700 (PDT)
-Message-ID: <358b1215-df7a-427f-89cc-55a6f2cf357c@ieee.org>
-Date: Wed, 15 Jul 2026 07:16:08 -0500
+	s=arc-20240116; t=1784117773; c=relaxed/simple;
+	bh=QxzK8XXntq2R1kM8gdqpulsQjVgmjcKiLADzEDk75U0=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=RFPaEVf7Egq/zxJdgnBUUbA4qWlx600p0YYt713Elk33gpLduoXURt6uASISxIQaX3vFNLJqZ+oG7r4pMKXM0VGP4te/VfdgHEI7X0HOZJQKAnHicrbsJYVVFBGUZo59z7C2SKpTlmK8joAx368PRUM++KVi4W7yfrcrfrNN+Ts=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WERkBgi9; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 420601F000E9;
+	Wed, 15 Jul 2026 12:16:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1784117771;
+	bh=Aju1Nm/1Oz33HHPZzL+hjfKIwC7EYZvZoblTL7P+vPI=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=WERkBgi9UzGHznyTGWlVsWqQbuRGdVtr/BEPBuyCa9LQ5gP/G8qTjdy+o+WD2ukvs
+	 46fq9j1gkoj1WpVAmMcH6z5+PNxy5+6hl0l6R/mv5YI9iVOqVbT1KOZjUyd5JQhdAB
+	 03vogw+Lm760nzS043H/y0O7J/jugOjSt4P2umEB3AeiXDsMtE+bBKBas1KTdJ6rym
+	 ETfQrbIbD6lgZRtNL4cj9M5yLQSq93kGSgMct4/tb2Ae9ZDGSncqw2cONBBYT5/stm
+	 xKbOaxuag/cw8UP+GDtXFnUeOLRAQ85SjzJw8igMie4HetKPvFV0UeCLD7SVA8XQ9y
+	 3EHcG0YSp5e9w==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v5 09/11] drm/mediatek: mtk_dsi: Enable PM Runtime on
+ probe
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "AngeloGioacchino Del Regno" <angelogioacchino.delregno@collabora.com>
+Cc: devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org, robh@kernel.org, conor+dt@kernel.org
+In-Reply-To: <20260715114916.19690-10-angelogioacchino.delregno@collabora.com>
+References: <20260715114916.19690-1-angelogioacchino.delregno@collabora.com>
+ <20260715114916.19690-10-angelogioacchino.delregno@collabora.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Wed, 15 Jul 2026 12:16:10 +0000
+Message-Id: <20260715121611.420601F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 11/14] net: ipa: Switch to generic PAS TZ APIs
-To: Bjorn Andersson <andersson@kernel.org>, Sumit Garg <sumit.garg@kernel.org>
-Cc: konradybcio@kernel.org, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
- freedreno@lists.freedesktop.org, linux-media@vger.kernel.org,
- netdev@vger.kernel.org, linux-wireless@vger.kernel.org,
- ath12k@lists.infradead.org, linux-remoteproc@vger.kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- robin.clark@oss.qualcomm.com, sean@poorly.run, akhilpo@oss.qualcomm.com,
- lumag@kernel.org, abhinav.kumar@linux.dev, jesszhan0024@gmail.com,
- marijn.suijten@somainline.org, airlied@gmail.com, simona@ffwll.ch,
- vikash.garodia@oss.qualcomm.com, bod@kernel.org, mchehab@kernel.org,
- elder@kernel.org, andrew+netdev@lunn.ch, davem@davemloft.net,
- edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
- jjohnson@kernel.org, mathieu.poirier@linaro.org,
- trilokkumar.soni@oss.qualcomm.com, mukesh.ojha@oss.qualcomm.com,
- pavan.kondeti@oss.qualcomm.com, jorge.ramirez@oss.qualcomm.com,
- tonyh@qti.qualcomm.com, vignesh.viswanathan@oss.qualcomm.com,
- srinivas.kandagatla@oss.qualcomm.com, amirreza.zarrabi@oss.qualcomm.com,
- jenswi@kernel.org, op-tee@lists.trustedfirmware.org,
- apurupa@qti.qualcomm.com, skare@qti.qualcomm.com,
- linux-kernel@vger.kernel.org, Sumit Garg <sumit.garg@oss.qualcomm.com>,
- Alex Elder <elder@riscstar.com>,
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-References: <20260702115835.167602-1-sumit.garg@kernel.org>
- <20260702115835.167602-12-sumit.garg@kernel.org> <alJp8jMzcw9EPZoy@baldur>
-Content-Language: en-US
-From: Alex Elder <elder@ieee.org>
-In-Reply-To: <alJp8jMzcw9EPZoy@baldur>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-1.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[ieee.org,reject];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[ieee.org:s=google];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FREEMAIL_CC(0.00)[kernel.org,vger.kernel.org,lists.freedesktop.org,lists.infradead.org,oss.qualcomm.com,poorly.run,linux.dev,gmail.com,somainline.org,ffwll.ch,lunn.ch,davemloft.net,google.com,redhat.com,linaro.org,qti.qualcomm.com,lists.trustedfirmware.org,riscstar.com];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-326947-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:email,smtp.kernel.org:mid,vger.kernel.org:from_smtp,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,sashiko.dev:url,lists.linux.dev:replyto];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:angelogioacchino.delregno@collabora.com,m:devicetree@vger.kernel.org,m:dri-devel@lists.freedesktop.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-326948-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER(0.00)[elder@ieee.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS(0.00)[m:andersson@kernel.org,m:sumit.garg@kernel.org,m:konradybcio@kernel.org,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:dri-devel@lists.freedesktop.org,m:freedreno@lists.freedesktop.org,m:linux-media@vger.kernel.org,m:netdev@vger.kernel.org,m:linux-wireless@vger.kernel.org,m:ath12k@lists.infradead.org,m:linux-remoteproc@vger.kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:robin.clark@oss.qualcomm.com,m:sean@poorly.run,m:akhilpo@oss.qualcomm.com,m:lumag@kernel.org,m:abhinav.kumar@linux.dev,m:jesszhan0024@gmail.com,m:marijn.suijten@somainline.org,m:airlied@gmail.com,m:simona@ffwll.ch,m:vikash.garodia@oss.qualcomm.com,m:bod@kernel.org,m:mchehab@kernel.org,m:elder@kernel.org,m:andrew+netdev@lunn.ch,m:davem@davemloft.net,m:edumazet@google.com,m:kuba@kernel.org,m:pabeni@redhat.com,m:jjohnson@kernel.org,m:mathieu.poirier@linaro.org,m:trilokkumar.soni@oss.qualcomm.com,m:mukesh.ojha@oss.qualcomm.com,m:pavan.kondeti@oss.qualcomm
- .com,m:jorge.ramirez@oss.qualcomm.com,m:tonyh@qti.qualcomm.com,m:vignesh.viswanathan@oss.qualcomm.com,m:srinivas.kandagatla@oss.qualcomm.com,m:amirreza.zarrabi@oss.qualcomm.com,m:jenswi@kernel.org,m:op-tee@lists.trustedfirmware.org,m:apurupa@qti.qualcomm.com,m:skare@qti.qualcomm.com,m:linux-kernel@vger.kernel.org,m:sumit.garg@oss.qualcomm.com,m:elder@riscstar.com,m:konrad.dybcio@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,m:andrew@lunn.ch,s:lists@lfdr.de];
-	DKIM_TRACE(0.00)[ieee.org:+];
+	FORWARDED(0.00)[lists@lfdr.de];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[elder@ieee.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCPT_COUNT_GT_50(0.00)[51];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,netdev];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	PRECEDENCE_BULK(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	FROM_NO_DN(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,riscstar.com:email,ieee.org:from_mime,ieee.org:dkim,ieee.org:mid]
+	RCPT_COUNT_FIVE(0.00)[5]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 14D8A75E06C
+X-Rspamd-Queue-Id: 281D575E018
 
-On 7/11/26 11:06 AM, Bjorn Andersson wrote:
-> On Thu, Jul 02, 2026 at 05:28:27PM +0530, Sumit Garg wrote:
->> From: Sumit Garg <sumit.garg@oss.qualcomm.com>
->>
->> Switch ipa client driver over to generic PAS TZ APIs. Generic PAS TZ
->> service allows to support multiple TZ implementation backends like QTEE
->> based SCM PAS service, OP-TEE based PAS service and any further future TZ
->> backend service.
->>
-> 
-> Please find an immutable branch with the dependencies for this patch at:
->    https://git.kernel.org/pub/scm/linux/kernel/git/qcom/linux.git 20260702115835.167602-2-sumit.garg@kernel.org
-> 
-> Alternatively, if you think there will be no conflicting patches in the
-> time leading up to next merge window provide an Ack and I can pick this
-> through the qcom tree.
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [Critical] Enabling PM runtime causes a kernel panic because the DSI devi=
+ce is never resumed, leaving its power domain off during register access.
+--
 
-I don't see any reason there would be any conflicts (certainly
-no difficult conflicts) with this commit, so I think you can
-safely take it with the others through the Qualcomm tree.
+--- Patch [9]: [PATCH v5 09/11] drm/mediatek: mtk_dsi: Enable PM Runtime on=
+ probe ---
+commit a4d6ef16908de6080f4fae3e792889c6f09b7a22
+Author: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-So if my ack is what you're looking for:
+drm/mediatek: mtk_dsi: Enable PM Runtime on probe
 
-Acked-by: Alex Elder <elder@riscstar.com>
+This commit enables PM runtime for the Mediatek DSI device during probe.
+It assumes the display pipeline's power-on functions will handle resuming
+and suspending the DSI device to manage its power domains.
 
-Thank you Sumit and Bjorn.
+> diff --git a/drivers/gpu/drm/mediatek/mtk_dsi.c b/drivers/gpu/drm/mediate=
+k/mtk_dsi.c
+> index 4d8a02cbee385..dc0c4e867179c 100644
+> --- a/drivers/gpu/drm/mediatek/mtk_dsi.c
+> +++ b/drivers/gpu/drm/mediatek/mtk_dsi.c
+> @@ -1733,6 +1733,10 @@ static int mtk_dsi_probe(struct platform_device *p=
+dev)
+>  	if (ret)
+>  		return dev_err_probe(&pdev->dev, ret, "Failed to request DSI irq\n");
+> =20
+> +	ret =3D devm_pm_runtime_enable(dev);
+> +	if (ret)
+> +		return ret;
 
-> 
-> Thanks,
-> Bjorn
-> 
->> Reviewed-by: Alex Elder <elder@riscstar.com>
->> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
->> Signed-off-by: Sumit Garg <sumit.garg@oss.qualcomm.com>
->> ---
->>   drivers/net/ipa/Kconfig    |  2 +-
->>   drivers/net/ipa/ipa_main.c | 13 ++++++++-----
->>   2 files changed, 9 insertions(+), 6 deletions(-)
->>
->> diff --git a/drivers/net/ipa/Kconfig b/drivers/net/ipa/Kconfig
->> index 01d219d3760c..a9aff1b7977d 100644
->> --- a/drivers/net/ipa/Kconfig
->> +++ b/drivers/net/ipa/Kconfig
->> @@ -6,7 +6,7 @@ config QCOM_IPA
->>   	depends on QCOM_RPROC_COMMON || (QCOM_RPROC_COMMON=n && COMPILE_TEST)
->>   	depends on QCOM_AOSS_QMP || QCOM_AOSS_QMP=n
->>   	select QCOM_MDT_LOADER
->> -	select QCOM_SCM
->> +	select QCOM_PAS
->>   	select QCOM_QMI_HELPERS
->>   	help
->>   	  Choose Y or M here to include support for the Qualcomm
->> diff --git a/drivers/net/ipa/ipa_main.c b/drivers/net/ipa/ipa_main.c
->> index 788dd99af2a4..3cd9e44680e9 100644
->> --- a/drivers/net/ipa/ipa_main.c
->> +++ b/drivers/net/ipa/ipa_main.c
->> @@ -14,7 +14,7 @@
->>   #include <linux/pm_runtime.h>
->>   #include <linux/types.h>
->>   
->> -#include <linux/firmware/qcom/qcom_scm.h>
->> +#include <linux/firmware/qcom/qcom_pas.h>
->>   #include <linux/soc/qcom/mdt_loader.h>
->>   
->>   #include "ipa.h"
->> @@ -624,10 +624,13 @@ static int ipa_firmware_load(struct device *dev)
->>   	}
->>   
->>   	ret = qcom_mdt_load(dev, fw, path, IPA_PAS_ID, virt, phys, size, NULL);
->> -	if (ret)
->> +	if (ret) {
->>   		dev_err(dev, "error %d loading \"%s\"\n", ret, path);
->> -	else if ((ret = qcom_scm_pas_auth_and_reset(IPA_PAS_ID)))
->> -		dev_err(dev, "error %d authenticating \"%s\"\n", ret, path);
->> +	} else {
->> +		ret = qcom_pas_auth_and_reset(IPA_PAS_ID);
->> +		if (ret)
->> +			dev_err(dev, "error %d authenticating \"%s\"\n", ret, path);
->> +	}
->>   
->>   	memunmap(virt);
->>   out_release_firmware:
->> @@ -758,7 +761,7 @@ static enum ipa_firmware_loader ipa_firmware_loader(struct device *dev)
->>   		return IPA_LOADER_INVALID;
->>   out_self:
->>   	/* We need Trust Zone to load firmware; make sure it's available */
->> -	if (qcom_scm_is_available())
->> +	if (qcom_pas_is_available())
->>   		return IPA_LOADER_SELF;
->>   
->>   	return IPA_LOADER_DEFER;
->> -- 
->> 2.53.0
->>
+[Severity: Critical]
+Will this cause a kernel panic when the DSI registers are accessed later?
 
+The commit message indicates that mtk_ddp_comp_power_on() will handle
+resuming the DSI device. However, looking at the display initialization,
+mtk_crtc_atomic_enable() only powers on the first component in the pipeline:
+
+drivers/gpu/drm/mediatek/mtk_crtc.c:mtk_crtc_atomic_enable() {
+        ...
+        struct mtk_ddp_comp *comp =3D mtk_crtc->ddp_comp[0];
+        ...
+        ret =3D mtk_ddp_comp_power_on(comp);
+        ...
+}
+
+Since ddp_comp[0] is typically an OVL or RDMA component rather than the DSI,
+the DSI device is never resumed and remains in the RPM_SUSPENDED state
+with its power domain off.
+
+When mtk_dsi_poweron() is subsequently called, it attempts to access the
+suspended hardware registers:
+
+drivers/gpu/drm/mediatek/mtk_dsi.c:mtk_dsi_poweron() {
+        ...
+        mtk_dsi_enable(dsi);
+
+        /* Bypass shadow and force commit only if the register is present */
+        if (data->reg_adv[DSI_SHADOW_DEBUG])
+                writel(FORCE_COMMIT | BYPASS_SHADOW,
+                       dsi->regs + data->reg_adv[DSI_SHADOW_DEBUG]);
+
+        mtk_dsi_reset_engine(dsi);
+        mtk_dsi_phy_timconfig(dsi);
+        ...
+}
+
+Does mtk_dsi_poweron() or an earlier path need to call
+pm_runtime_resume_and_get() directly before accessing these registers to
+prevent a synchronous external abort?
+
+> +
+>  	ret =3D mipi_dsi_host_register(&dsi->host);
+>  	if (ret < 0)
+>  		return dev_err_probe(dev, ret, "Failed to register DSI host\n");
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260715114916.1969=
+0-1-angelogioacchino.delregno@collabora.com?part=3D9
 
