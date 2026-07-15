@@ -1,330 +1,143 @@
-Return-Path: <devicetree+bounces-326703-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-326704-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id FA4mKX43V2oLHgEAu9opvQ
-	(envelope-from <devicetree+bounces-326703-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 09:32:14 +0200
+	id iUgKFZs3V2oXHgEAu9opvQ
+	(envelope-from <devicetree+bounces-326704-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 09:32:43 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8FFED75B747
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 09:32:13 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A17075B767
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 09:32:42 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b="hz/eNX/4";
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326703-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-326703-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=bootlin.com header.s=dkim header.b=xCZht4U0;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326704-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-326704-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=reject) header.from=bootlin.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id DBDC430214B4
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 07:31:12 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id CF4DF300A26F
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 07:31:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF40C3C4168;
-	Wed, 15 Jul 2026 07:31:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7EEDC37A488;
+	Wed, 15 Jul 2026 07:31:39 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F9332931CE
-	for <devicetree@vger.kernel.org>; Wed, 15 Jul 2026 07:31:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55AC83093B2
+	for <devicetree@vger.kernel.org>; Wed, 15 Jul 2026 07:31:36 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1784100667; cv=none; b=Ag2KavBTa3A8mz7yH0i3sDUeNVjtBumD7dQd1SSIN4gWn7Np8scXFuILFB6c1F1Za8sxrvRqzp6ZywNd7b8Dogzqyg+0FHk0X5iAETezO8XZSwEV17plGyXuzX7VY1eej8b9pBVN4vpNOtoMcx9FjOuzyn+Yzbz3HMhefdiKiaY=
+	t=1784100699; cv=none; b=Lvwy3IhtfA5k1HlV+nHbEBZi+13gcACFwGfjekOKYG13yp+cKgFa4iIBiYjRFT1bXG0K0LZBlyJVc/8OYYUi2D/mImxgp+7qV6liKwwhJaDQNjb2G5763ab7W58XY6/K/svbfKLPlMy+hb0zeddnJUxgNvItUKWKu05ATLBAuOw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1784100667; c=relaxed/simple;
-	bh=0RkbC0rM24sneMOpxA4CQJmyxD0lICSBq6fLF3Afbvc=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=giH/a6/6+1j2oU4sR8INKjT5BZCTeMCUQ6P4wILs1oXw+ldmTQianwPjUiWQ4XIY9sEbv6xgmvAbwbzxkKqYjWQ4Gz6ctaZ0xqLGEf4/jDB/25WZdMjcU6cQkBtYFlvJ1ZQGdD8StocNH8XOG8ItWQ6AOwr83dS//FbCKEDpQNQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hz/eNX/4; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 547BE1F000E9;
-	Wed, 15 Jul 2026 07:31:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1784100660;
-	bh=QReh1O5u2bovzbGXFRRogyP8tL8I5PK5yYF1XRHoWpc=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=hz/eNX/4TAfN/llRNOWAt/ie8k6W6C5UZSSCx8jZziBOJn6fQY5dXY7MVfbelYmuT
-	 8aBjPC1PdcleyCZfikQdxGMDRfSsZpYHw+RwD0nl7C7p3Jtu9A2PqVPZEd5N0+np6l
-	 LcBlSeJf5QNr/wBCun3lUOlLU5Jn7mJGUlx1lAJ7mrSdReZeKpyoxjgHnGuNJ/Bkrj
-	 R8ngx3bjM2f7DSUfJADWrLcswfiRznRhKUKOUy132SRkb/KJhFOgRKdJRtRN7+cy8z
-	 9tdaJdeTfG6aIy45fAVP/EtvQE3ts00FgZKOPQt9sFLH+4HgqV2SGbFTrufaHtjAfo
-	 ZBrAT2G//ZxIA==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v2 1/2] arm64: dts: qcom: ipq5210: Add nodes for
- multiple peripherals
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Varadarajan Narayanan" <varadarajan.narayanan@oss.qualcomm.com>
-Cc: devicetree@vger.kernel.org, conor+dt@kernel.org, robh@kernel.org
-In-Reply-To: <20260715-08-dts-v2-1-b060b68e0256@oss.qualcomm.com>
-References: <20260715-08-dts-v2-0-b060b68e0256@oss.qualcomm.com>
- <20260715-08-dts-v2-1-b060b68e0256@oss.qualcomm.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Wed, 15 Jul 2026 07:30:59 +0000
-Message-Id: <20260715073100.547BE1F000E9@smtp.kernel.org>
+	s=arc-20240116; t=1784100699; c=relaxed/simple;
+	bh=NkZnIY0ZJuD3kKkIQpTpSf9zNSsMF2kyntzkO6gNTb0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=mizxXgo+8Lqa5Vl+ZamENT1f/kYUDS2+o6JtcnG8Bc7jAL/3fODit3r8/NUzdSHnp6qEVTTlGZXM/nLyCxTGvTk93oiob4qUWCDQW1F/tu08TFNIWnovpUXR+7yVYwBO2b+G7PEm1rg3QBEjTaNKJFlVUhxU+cT7WjJXGg73wBA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=xCZht4U0; arc=none smtp.client-ip=185.246.84.56
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-02.galae.net (Postfix) with ESMTPS id 5E5921A0FD6;
+	Wed, 15 Jul 2026 07:31:34 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 2B90B6035C;
+	Wed, 15 Jul 2026 07:31:34 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id B5BFB11BD3BAD;
+	Wed, 15 Jul 2026 09:31:27 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1784100693; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:content-language:in-reply-to:references;
+	bh=cXCHgsII61RG+BUBR7dsv7oD4lN1OAQX9QZyrYgHcvA=;
+	b=xCZht4U04fO/TOsAkFDrKLYpZe1uko0+yNhTkhKLYV0ZEv+3eqD4UtcWXskfavCsrolDcR
+	NFxZ3wQdjcKFa+RY6/xRQDnO1bE0wu4Jh1lfp2lUchK8hLun1idHajZmvE1bpN6ubuCgon
+	otdq3TlljGiyQPUJxFWAOpqs8gTm33txPz0cTwKtS0rMQoW3lKe1gQ8r/lRTfmVuXno+aO
+	G4mB2VF6oh3dgaWwkO7FkmHqTk06eL+7WQv3927/CHT768lK30Fpjds4I/4x1ftOCqpsc0
+	DOGMvje48XYFUqfRj7bcusaxmbaW+ktUD4PPjCy9Eq1wzmCGryTs6PE1uE5deQ==
+Message-ID: <dc21b2fc-ae11-4fde-a5b9-09e2c6bee5c9@bootlin.com>
+Date: Wed, 15 Jul 2026 09:31:25 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC PATCH 01/10] net: stmmac: move XPCS lifetime management to
+ platform drivers
+To: Coia Prant <coiaprant@gmail.com>, kuba@kernel.org, davem@davemloft.net,
+ edumazet@google.com, pabeni@redhat.com, andrew+netdev@lunn.ch,
+ robh@kernel.org, krzk+dt@kernel.org, heiko@sntech.de
+Cc: netdev@vger.kernel.org, linux-rockchip@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-phy@lists.infradead.org, Christian Marangi <ansuelsmth@gmail.com>
+References: <20260714191341.690906-1-coiaprant@gmail.com>
+ <20260714191341.690906-2-coiaprant@gmail.com>
+From: Maxime Chevallier <maxime.chevallier@bootlin.com>
+Content-Language: en-US
+In-Reply-To: <20260714191341.690906-2-coiaprant@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Last-TLS-Session-Version: TLSv1.3
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-326704-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-326703-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:varadarajan.narayanan@oss.qualcomm.com,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com,kernel.org,davemloft.net,google.com,redhat.com,lunn.ch,sntech.de];
+	FORGED_SENDER(0.00)[maxime.chevallier@bootlin.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	FORGED_RECIPIENTS(0.00)[m:coiaprant@gmail.com,m:kuba@kernel.org,m:davem@davemloft.net,m:edumazet@google.com,m:pabeni@redhat.com,m:andrew+netdev@lunn.ch,m:robh@kernel.org,m:krzk+dt@kernel.org,m:heiko@sntech.de,m:netdev@vger.kernel.org,m:linux-rockchip@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-phy@lists.infradead.org,m:ansuelsmth@gmail.com,m:andrew@lunn.ch,m:krzk@kernel.org,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,gmail.com];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	RCPT_COUNT_THREE(0.00)[4];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[maxime.chevallier@bootlin.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[bootlin.com:+];
+	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,vger.kernel.org:from_smtp,qualcomm.com:email,smtp.kernel.org:mid]
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:from_mime,bootlin.com:dkim,bootlin.com:mid,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 8FFED75B747
+X-Rspamd-Queue-Id: 4A17075B767
 
-Thank you for your contribution! Sashiko AI review found 6 potential issue(=
-s) to consider:
-- [High] Missing `phys` and `phy-names` properties in the PCIe root control=
-ler nodes.
-- [High] The `gcc` node is missing the `#interconnect-cells =3D <1>;` prope=
-rty.
-- [High] The `gcc` clock-controller node is missing the reference to the `s=
-sphy_0` USB3 pipe clock provider.
-- [Medium] Missing `cooling-maps` in `cpu1-thermal` zone.
-- [Medium] Undocumented compatible strings and missing schema updates.
-- [Low] Missing interconnect dt-bindings header file causes build failure.
---
+Hi,
 
---- Patch [1]: [PATCH v2 1/2] arm64: dts: qcom: ipq5210: Add nodes for mult=
-iple peripherals ---
-commit 86962855e3cf6145af313fddfdeed7cd398a2a13
-Author: Varadarajan Narayanan <varadarajan.narayanan@oss.qualcomm.com>
++Christian
 
-arm64: dts: qcom: ipq5210: Add nodes for multiple peripherals
+On 7/14/26 21:08, Coia Prant wrote:
+> The current XPCS creation logic in stmmac_pcs_setup() is problematic
+> for several reasons.
+> 
+> First, if a device tree specifies a "pcs-handle" but no select_pcs()
+> callback is provided by the platform driver, the created XPCS is never
+> used. The phylink framework requires select_pcs() to actually return
+> the PCS to the core, so the pcs-handle property becomes effectively
+> useless without the matching callback. This is confusing for developers
+> who expect that specifying a pcs-handle in their device tree should be
+> sufficient to enable the PCS.
 
-Describe common IPQ5210 SoC peripherals in the base DTSI so board DTS files
-can enable the hardware they use.
+I think Christian's work on fwnode PCS would help a lot with that PCS
+handling in stmmac:
 
-Add nodes for USB, PCIe, QPIC NAND/BAM, QFPROM, TSENS and thermal zones.
-Also describe the CPU OPP table and CPU cooling cells needed for CPU
-frequency scaling and thermal throttling.
+https://lore.kernel.org/netdev/20260618125752.1223-1-ansuelsmth@gmail.com/
 
-> diff --git a/arch/arm64/boot/dts/qcom/ipq5210.dtsi b/arch/arm64/boot/dts/=
-qcom/ipq5210.dtsi
-> index 2cdc10529c489..8fc8673ef6763 100644
-> --- a/arch/arm64/boot/dts/qcom/ipq5210.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/ipq5210.dtsi
-> @@ -4,7 +4,9 @@
->   */
-> =20
->  #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +#include <dt-bindings/clock/qcom,apss-ipq.h>
->  #include <dt-bindings/clock/qcom,ipq5210-gcc.h>
-> +#include <dt-bindings/interconnect/qcom,ipq5210.h>
+I don't know when Christian plans to iterate, it could be worth using
+that new fwnode mechanism here ?
 
-[Severity: Low]
-Will this cause a build failure? This patch includes
-dt-bindings/interconnect/qcom,ipq5210.h, but it doesn't appear this header
-exists in the tree yet.
-
->  #include <dt-bindings/reset/qcom,ipq5210-gcc.h>
-> =20
->  / {
-
-[ ... ]
-
-> @@ -130,6 +178,170 @@ soc@0 {
->  		dma-ranges =3D <0 0 0 0 0x10 0>;
->  		ranges =3D <0 0 0 0 0x10 0>;
-> =20
-
-[ ... ]
-
-> +		tsens: thermal-sensor@4a9000 {
-> +			compatible =3D "qcom,ipq5210-tsens", "qcom,ipq5332-tsens";
-
-[Severity: Medium]
-Does this compatible string setup violate the qcom-tsens.yaml schema? The
-schema restricts "qcom,ipq5332-tsens" within an enum block that prohibits
-fallbacks, which causes dtbs_check to fail unconditionally here.
-Additionally, qcom,ipq5210-tsens appears to be undocumented.
-
-> +			reg =3D <0x0 0x004a9000 0x0 0x1000>,
-> +			      <0x0 0x004a8000 0x0 0x1000>;
-
-[ ... ]
-
-> @@ -146,8 +358,8 @@ gcc: clock-controller@1800000 {
->  			reg =3D <0x0 0x01800000 0x0 0x40000>;
->  			clocks =3D <&xo_board>,
->  				 <&sleep_clk>,
-> -				 <0>,
-> -				 <0>,
-> +				 <&pcie0_phy>,
-> +				 <&pcie1_phy>,
->  				 <0>,
->  				 <0>;
-
-[Severity: High]
-Should the 5th item in this clocks array be updated to <&ssphy_0>? The
-gcc-ipq5210 driver defines the USB3 PHY pipe clock source at parent index 4
-(DT_USB3_PHY0_CC_PIPE_CLK). Leaving this as <0> will leave the pipe clock
-without a parent and could break SuperSpeed USB operation.
-
->  			#clock-cells =3D <1>;
-> +			#reset-cells =3D <1>;
-> +			#power-domain-cells =3D <1>;
-
-[Severity: High]
-Is #interconnect-cells =3D <1>; missing here? The pcie0 and pcie1 nodes dec=
-lare
-gcc as an interconnect provider. The generic OF interconnect parsing will f=
-ail
-during the PCIe controller probe without this property.
-
->  		};
-> =20
-
-[ ... ]
-
-> @@ -243,6 +538,24 @@ watchdog@b017000 {
->  			clocks =3D <&sleep_clk>;
->  		};
-> =20
-> +		apcs_glb: mailbox@b111000 {
-> +			compatible =3D "qcom,ipq5210-apcs-apps-global",
-> +				     "qcom,ipq6018-apcs-apps-global";
-> +			reg =3D <0x0 0x0b111000 0x0 0x1000>;
-> +			#clock-cells =3D <1>;
-> +			clocks =3D <&a53pll>, <&xo_board>, <&gcc GPLL0>;
-> +			clock-names =3D "pll", "xo", "gpll0";
-> +			#mbox-cells =3D <1>;
-> +		};
-> +
-> +		a53pll: clock@b116000 {
-> +			compatible =3D "qcom,ipq5210-a53pll";
-
-[Severity: Medium]
-Is this compatible string documented in the YAML bindings? It appears to be
-missing, which will cause dtbs_check to fail.
-
-> +			reg =3D <0x0 0x0b116000 0x0 0x1000>;
-> +			#clock-cells =3D <0>;
-> +			clocks =3D <&xo_board>;
-> +			clock-names =3D "xo";
-> +		};
-> +
-
-[ ... ]
-
-> +		pcie1: pcie@50000000 {
-> +			compatible =3D "qcom,pcie-ipq5210", "qcom,pcie-ipq9574";
-
-[ ... ]
-
-> +			pcie1_port0: pcie@0 {
-> +				device_type =3D "pci";
-> +				reg =3D <0x0 0x0 0x0 0x0 0x0>;
-> +				bus-range =3D <0x01 0xff>;
-> +				phys =3D <&pcie1_phy>;
-
-[Severity: High]
-Will the QCOM PCIe host controller driver find the PHY here? The driver uses
-devm_phy_optional_get(dev, "pciephy") on the root PCIe device node. With the
-phys property nested inside the child pcie@0 port node and lacking the
-phy-names =3D "pciephy" property, the PHY initialization will silently fail.
-
-Should phys and phy-names be moved up to the parent pcie1 node?
-
-> +
-> +				#address-cells =3D <3>;
-> +				#size-cells =3D <2>;
-> +				ranges;
-> +			};
-> +		};
-> +
-> +		pcie0: pcie@70000000 {
-> +			compatible =3D "qcom,pcie-ipq5210", "qcom,pcie-ipq9574";
-
-[ ... ]
-
-> +			pcie0_port0: pcie@0 {
-> +				device_type =3D "pci";
-> +				reg =3D <0x0 0x0 0x0 0x0 0x0>;
-> +				bus-range =3D <0x01 0xff>;
-> +				phys =3D <&pcie0_phy>;
-
-[Severity: High]
-Similar to pcie1, should this phys property be moved to the parent pcie0
-node and accompanied by phy-names =3D "pciephy"? The PCIe interface won't
-initialize its physical layer correctly otherwise.
-
-> +
-> +				#address-cells =3D <3>;
-> +				#size-cells =3D <2>;
-> +				ranges;
-> +			};
-> +		};
-> +	};
-> +
-> +	thermal_zones: thermal-zones {
-
-[ ... ]
-
-> +		cpu1-thermal {
-> +			polling-delay-passive =3D <0>;
-> +			polling-delay =3D <0>;
-> +			thermal-sensors =3D <&tsens 15>;
-> +
-> +			trips {
-> +				cpu-critical {
-> +					temperature =3D <120000>;
-> +					hysteresis =3D <9000>;
-> +					type =3D "critical";
-> +				};
-> +
-> +				cpu-passive {
-> +					temperature =3D <110000>;
-> +					hysteresis =3D <9000>;
-> +					type =3D "passive";
-> +				};
-
-[Severity: Medium]
-Is there a cooling-maps block missing for this passive trip point? If heat
-is localized to CPU1, the thermal framework will reach this 110C trip point
-but take no action to throttle the CPU because there are no cooling devices
-mapped to it.
-
-> +			};
-> +		};
->  	};
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260715-08-dts-v2-=
-0-b060b68e0256@oss.qualcomm.com?part=3D1
+Maxime
 
