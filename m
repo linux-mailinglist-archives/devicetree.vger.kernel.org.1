@@ -1,333 +1,211 @@
-Return-Path: <devicetree+bounces-326940-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-326937-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id PR0sIkV4V2oLOwEAu9opvQ
-	(envelope-from <devicetree+bounces-326940-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 14:08:37 +0200
+	id 4iN8M/F6V2rqOwEAu9opvQ
+	(envelope-from <devicetree+bounces-326937-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 14:20:01 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 64CF375DED5
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 14:08:36 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id A7F7375E061
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 14:20:00 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=ti.com header.s=proofpoint-05-2026 header.b="QLIPp/bc";
-	dkim=pass header.d=ti.com header.s=selector1 header.b=qeZeTWa0;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326940-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-326940-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=ti.com;
-	arc=reject ("cv is fail on i=2")
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=Zq001a4q;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326937-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-326937-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 173ED3022686
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 12:08:24 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 7323F3018316
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 12:08:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A852449EB8;
-	Wed, 15 Jul 2026 12:08:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6797451044;
+	Wed, 15 Jul 2026 12:08:10 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0002e601.pphosted.com (mx0b-0002e601.pphosted.com [148.163.154.28])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 790E7446853;
-	Wed, 15 Jul 2026 12:08:16 +0000 (UTC)
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1784117302; cv=fail; b=C7VQ75MVm3IZvoczwKzOPUTZD89FpoaiuNyE9UVyH6lSK8udVP2SadBkj4BoF//eJoHKsIWxTge1nM5ASvA34VOd57VhuajrOLzCZo7XTQHZsonERKFkzkSBnvoPgamXt8g+gT8j2d44mPVtix68Wa/BaRlf2l2Dis8AbBWS3HM=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1784117302; c=relaxed/simple;
-	bh=0kZyiStKvkgLDaNsNmGfYKFCFJcO4lRwyq2lLsF3K7Q=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=cqQk1I6e6WKvpxVD2x+w2e2uUnDDhcpLFyvBGspWLkQyB/0YdIJM9yrbQJ4SmLXYwa9v6mlSUClvz14VJJLGIWPBl9k51c2Urg9ErttopVTYwuGnVE5RDno7bprRXjNje8Ea8PQqMPdYXVqjDjs0AKd4BU9dKlgAz6cAP8AmadM=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (2048-bit key) header.d=ti.com header.i=@ti.com header.b=QLIPp/bc; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=qeZeTWa0; arc=fail smtp.client-ip=148.163.154.28
-Received: from pps.filterd (m0374955.ppops.net [127.0.0.1])
-	by mx0b-0002e601.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 66FBfe6i805750;
-	Wed, 15 Jul 2026 07:08:06 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; h=cc
-	:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=
-	proofpoint-05-2026; bh=d49O000VpZf89/gEzusdUOILIrMCPdNMwu/YDOST7
-	us=; b=QLIPp/bciWcB/GZUl0Ypzu+qt6bOssJ50NuNBpkfkSz0nh4KGA34ikSv7
-	7p3lL7rsSy8na2N5YfVJ6M+njDAOeSWGtfWXwAiJu8OKEiNV8da7MKugDt+3Vu0H
-	pKiPhO/z9vMkYLIE9QoEmYMn74ktAaV8D9JdlhzwrAZhy9gaf9FKUZZKCTlXILzQ
-	ejkyvNgxNpEKbYPUJ0ALtWA0lskVc9NKd68HO0nE1tdijA8RDE9bB5OFys3SC1Q2
-	01oLiM4JpN+HrqKgk7E0YbYkB2mRWblE3hxPL35IoodkvE2KKMGeqdgZXD71HeAZ
-	cbF1E0PFQojD6TKSJaf6li7Oasc0A==
-Received: from ph7pr06cu001.outbound.protection.outlook.com (mail-westus3azon11010003.outbound.protection.outlook.com [52.101.201.3])
-	by mx0b-0002e601.pphosted.com (PPS) with ESMTPS id 4fe9jb04hw-1
-	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
-	Wed, 15 Jul 2026 07:08:06 -0500 (CDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=PeThDML/fie3/NfC/5ktDF/oEEeVRmqtVQC2GCwyp0DcwXeT7lNNref8kuBkulH1ReVx+ThTTdhgc3fXWcELj+6OCIk/P/DIEp4T8czwtKJQURdtuWLT3OSLRFCRQ4x0hVNHRxnMgkFK7QrI2rDjzF/yM3Ft1y8lWswlDkFUm3K/qqe2iO6VpYDHCDFEXcTsCh1aZJJxiQImmfGHKbqUS4WEBlc5JEqztTYImcyiw9ID7Q6HoVgeiEcLtLeua/iW3pP3S3qR9BI5ReC7ot4CxA9AEO/jh55KyP9ZZ4+hMiyyB1n0QwoK9fPVH5QGsR2TOcI3s0md1IPrVeXvFJxt2w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=d49O000VpZf89/gEzusdUOILIrMCPdNMwu/YDOST7us=;
- b=WNqBSFWiES9LDe8+Q68jdh+wd+Gz333DKkgJAkq97mcmbuwjd7I+pyShd2wXAt8Zb0mHvwi1Lo6IjItlBuW/J8aetINxVoobxrHO6gvZkqNLnoZ7YZ4rV5nQRNsW9XunMY5ex+hhwWE7owgJdzcCWYgIuL3USely1lLDdBozbW5zPfzz27Dkdzq2lmQ+oQZxHfdhuvoXv1OUsWnyft74Sx+A5qFVo+EnCvt92btRzufGIUbphvy73KiBhpiQZB+ezT5o3PnMAryt+USJxZvBfBDbBpaKnra4TkDbZ/RNAZVTq3hrao7zSpfduiFdkPWH+sSCkeoLF657SMdCgemggQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.21.194) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=ti.com;
- dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=d49O000VpZf89/gEzusdUOILIrMCPdNMwu/YDOST7us=;
- b=qeZeTWa03VDC/sRe1s1sQZ7leV4QbKMIeLbBUFjhbWV57vWoNFjmFCJ/eoTWqogyTMuGBqYSQN4gwhKIb3KOBDPO98t6Ke4CqIePo/aQ0DyVerASelxiMmdhMcO814wLRKuWc1RzDCMjsFR8mHROQC1Cqrq+iKqyF4pYTxZHTWI=
-Received: from CH0PR03CA0343.namprd03.prod.outlook.com (2603:10b6:610:11a::14)
- by SABPR10MB997940.namprd10.prod.outlook.com (2603:10b6:806:4f0::24) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.202.18; Wed, 15 Jul
- 2026 12:08:04 +0000
-Received: from CH3PEPF00000017.namprd21.prod.outlook.com
- (2603:10b6:610:11a:cafe::53) by CH0PR03CA0343.outlook.office365.com
- (2603:10b6:610:11a::14) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.223.12 via Frontend Transport; Wed,
- 15 Jul 2026 12:08:04 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.194)
- smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
- action=none header.from=ti.com;
-Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.21.194 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.21.194; helo=flwvzet200.ext.ti.com; pr=C
-Received: from flwvzet200.ext.ti.com (198.47.21.194) by
- CH3PEPF00000017.mail.protection.outlook.com (10.167.244.122) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.245.3 via Frontend Transport; Wed, 15 Jul 2026 12:08:02 +0000
-Received: from DFLE207.ent.ti.com (10.64.6.65) by flwvzet200.ext.ti.com
- (10.248.192.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.37; Wed, 15 Jul
- 2026 07:07:45 -0500
-Received: from DFLE203.ent.ti.com (10.64.6.61) by DFLE207.ent.ti.com
- (10.64.6.65) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.37; Wed, 15 Jul
- 2026 07:07:45 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE203.ent.ti.com
- (10.64.6.61) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.37 via Frontend
- Transport; Wed, 15 Jul 2026 07:07:45 -0500
-Received: from [10.24.52.205] (a0512632.dhcp.ti.com [10.24.52.205])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 66FC7dlG2419369;
-	Wed, 15 Jul 2026 07:07:41 -0500
-Message-ID: <47b4916d-88c1-41e1-b035-2e3d9ee609b5@ti.com>
-Date: Wed, 15 Jul 2026 17:37:38 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D9873C8728
+	for <devicetree@vger.kernel.org>; Wed, 15 Jul 2026 12:08:07 +0000 (UTC)
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1784117290; cv=none; b=tQY2WG3MkOBMtW0b8Pg8EDNw1kVVt/2XnmWTghlz8cTxHyjcKz3m9MIvpuYjU+tlo8oxMm/H2SNt/xygMF2tqH7kXC0SSzuwHvP2v27J/XvrGDuYKwy1ZTNxxR6qVDIVrbazd1TRrzcptp6+VXSBdA2TGBTx8zARfvZieL2CS+k=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1784117290; c=relaxed/simple;
+	bh=MiC0IzO5g84BliTKZFpiSSxYNfz6a/ZoFzHzbA5BxgM=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=ZIHzszV7zF1ryTODc+/Dk/Ra2gTh5WknZr3CTRi3y8+8WxXEAe9aTvBQRpWv9jtSxpzDEP6NeeLY+5J+6/7LknxTyn9Hu1KXOa/NJV323PvtSzhlGbcynZ1CUaoLq7kOs1fcSPX2sOgOSHuHLF0+EBxDfbUironSOdxVa3moo0I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Zq001a4q; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7C6F91F000E9;
+	Wed, 15 Jul 2026 12:08:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1784117285;
+	bh=im0CYS+xm4VMApFgpj4vISI9oS35l1ku55WZHFfzNL8=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=Zq001a4qPvf5ntgrGVKIwn5Ae+rkG4RT7jVPS3I57Z3kbwL4uCXl/R8CutWzDJbBk
+	 A5I5mYQFnvvWRI9c3intF9Ru/Sca4JksRiM7/XwHRYNcIGoVLBXJlXI8838VMI1IOs
+	 6R5q3EWUlrx+w5/TUZqCGekAfPYzGGTexs90BiYJtNocD+bXAJ3DgIgcmueNmgDeuy
+	 RupRif/4qV3WInbpc81dMJC+uj6VsrecIM40ovrIqsU7zzuIGjgFK7DsQtmvwbrTxD
+	 rZJMrYIwQi212iDbkuTg4pPagCoEB31xy56kAtWg76ixv1vO8g6oArO2S9Er1B1n+0
+	 AMqjlH9AZatJg==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v5 08/11] drm/mediatek: mtk_dsi: Add support for MT8196
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "AngeloGioacchino Del Regno" <angelogioacchino.delregno@collabora.com>
+Cc: robh@kernel.org, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, conor+dt@kernel.org
+In-Reply-To: <20260715114916.19690-9-angelogioacchino.delregno@collabora.com>
+References: <20260715114916.19690-1-angelogioacchino.delregno@collabora.com>
+ <20260715114916.19690-9-angelogioacchino.delregno@collabora.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Wed, 15 Jul 2026 12:08:05 +0000
+Message-Id: <20260715120805.7C6F91F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: ti: k3-am62l: Enable HDMI & DSI display
-To: Vignesh Raghavendra <vigneshr@ti.com>
-CC: <nm@ti.com>, <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <tomi.valkeinen@ideasonboard.com>,
-        <r-sharma3@ti.com>, <devarsht@ti.com>, <praneeth@ti.com>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20260513210942.692269-1-s-jain1@ti.com>
- <178393005159.2885601.13711892620228139345.b4-review@b4>
-Content-Language: en-US
-From: Swamil Jain <s-jain1@ti.com>
-In-Reply-To: <178393005159.2885601.13711892620228139345.b4-review@b4>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH3PEPF00000017:EE_|SABPR10MB997940:EE_
-X-MS-Office365-Filtering-Correlation-Id: b9c3c4b4-6c6a-4f8e-70e8-08dee269b83a
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|82310400026|1800799024|36860700016|376014|23010399003|3023799007|10067099003|22082099003|4143699003|56012099006|18002099003;
-X-Microsoft-Antispam-Message-Info:
-	jT33FtKha7MsXqaKcZzj7HbRUPgDp3NPLdcfHuWjDBhLi5zMcYDbtwYvaaEQKPzi76jJtilirngLR0L93U3d8QgoFI9COz40XQGD/10MA3/rdkB7wKJhKGZuyMZS6CvCP7dTBO1JGu9R0JywU9DPheP4NooQSc2969S8KNSP738IRslhKQbY9sbo5gH2O0sl+Dvl4l8cftfONaIxQQrzhzOSHSv9s9FehbLlCq0mZUs+Zx4E6g+qzaZtujfKelyqL/Y33TDziTh6CauGTWdqx5rhOk4O6aELIYIc3p7+Y8WSqlYdLYgEf9xz6XmRL2aEFudB2BaCYmROSllulXJR1fhJDw0b2XtlKf+upSrikmIKyabrFBqk47ROMA5PKnk+k+/U62atfvOLjqjel9qm53tMow4JT+6OhE7tGSFUw8Z0VHPv65QKHmbj/q0lLTDrxjgcRp4bCU7QiQ/EPoWyl908YuKkCSsnrsq8+PHwjQDP/AI8OUw4cvO65IoKke99bkgBKkw80ysPEHtS30kITqoK9mGpuJLZ3tGg8Zb1/k3yI4eUvpXmyHxNn9RcVLwZzOy2yegL+Ec3s7nszROxk5Lc7dd1w1uC+WG/yUVbCr1vIqmHsn1dwzIsUFa5xB2YqN+ub2IPU9+26Eia3dgcoffIbW4L6wWeVdvdY6ooLAwDF8WpwNdAXl+MJ7yys0Elf2SZPqe85KH29djxo2uvmw==
-X-Forefront-Antispam-Report:
-	CIP:198.47.21.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet200.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(82310400026)(1800799024)(36860700016)(376014)(23010399003)(3023799007)(10067099003)(22082099003)(4143699003)(56012099006)(18002099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	+Y27gHhBJ4QgT0USCU/edA2NRgdcNXM1fokXzW+p++WkQtzKCp7IGuPelJ+Jn62x2Aq0ktMrCmciDtSt0ax0ljXcY4EvUURbe6L6gvgUjZAcrLiRb49UHGyzo/t6IA8s7OyOPVS7eg5YpLoEylqe12ga63YVfgMN6QPf+0cH7Qg92a3AfF9G2jRJdEDwAI7XBThTLBffK1QJ5haNhhpWmyplvcra2IgJg6buxORWZrPBOx+rQqa7UG+u8xYf1fRfAs/XsGH5Q/J+P+96gE2IbVkKSYoMEL04FpiV2+10cWxRYhq34eDJD34CTfbiDfSu7YkU7tLNQSEQ+AWOvVir0vJdWIuQ2PmARrxzB/HcBRCoWceMMqifb0wAmtrl4nJQN45aj5ugICqdLNnpcLWktyrDl8l5v0bdvetwEUuxrto8PpuKbYlPZDrSioG3y58M
-X-Exchange-RoutingPolicyChecked:
-	Teg6KbIzkKslkP3RZ/KIPVL+q7i2K1OgUs8DM1l71jzup5EMTCIXsLc2GqeI+rQPImpGX6BmVLW6a8yCPLGdWz76i5LgbZY6C5cu1XuwcnM41XRxKdJ7Nh6uNuOsv1t4uWNW/9HQAEsJO8jVYkQCxh7Y/kKDL9tscsWrBI0Mxq+tPnuZm/YEwtLiKBGATkTiXOI9JU2+P4iRcvH7ElmF2kUkJ/5PFL8306UVJe1UZDWl54GbU9BcjGSfhmvRReLZJVnUEwd5so00Oga0epH4VpvChCSL3CZYBw78IPE/sTKXWz3wCanGyGk/AJ4UuxFipCUx7Eccmqjg3ztMwkA8Xw==
-X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Jul 2026 12:08:02.2547
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: b9c3c4b4-6c6a-4f8e-70e8-08dee269b83a
-X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.194];Helo=[flwvzet200.ext.ti.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	CH3PEPF00000017.namprd21.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SABPR10MB997940
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNzE1MDEyMCBTYWx0ZWRfXwiVNpZ1OTXZ1
- aqDGXJJg6gBnpoghrSHINLUweTEZ7IMQ29P3iIUct4DH5VMrjArXAZOH8vEM+iKD86orIe50H9R
- C9K3y3kUwsmdjuHJD+WqO34l/3UlDmPVOduARNC3HVbpMCOUSQsAgt9WKVK7DT/++AKv4yJXO5K
- CNDbOFiO4Ehx/glMTwB9X6CnYmfMUB1P8/B5MNyHBgueOsV/28pnneN2wDMkfOdI+sYR4dtpzPW
- guJn1natcu7chqSg9j0wo9dtCfN2dbRLJEt5tzZfhHEM5jScHJMkzBAYoPv/AmPG1iOM8+95xnX
- ZkVoWo/iNpT9CYbKqBErnKIB/dcL3kVNMuDFRbSdUFIQvEjYQ3AbZqg5qTTsEcs8L1SB/ZlEeGr
- smfMDuF0CoPzYpgFwUujwRmwo0zwqlXTjZqBlTO8g58rAGFjYLRYDOlh+YmET5+EDpNywKqRbyP
- m+0gxVexNph4cbkztlg==
-X-Proofpoint-Spam-Info: AW1haW4tMjYwNzE1MDEyMCBTYWx0ZWRfX0lX5kU1OD0KV
- hhGHXd/JhhndyPc3Xp9bfFvpr7bOWSP78pOFfMg077wJCRhm+a/ny5akN1lYmVEXD2e14JHPSUc
- jEx1D1lnEGNp3Pi3sBFzSn6NlrT0uAk=
-X-Proofpoint-GUID: uaJ1YUcgprUHH7mcrty2w1AcqWojWEJw
-X-Authority-Analysis: v=2.4 cv=ROqD2Yi+ c=1 sm=1 tr=0 ts=6a577826 cx=c_pps
- a=LQDsqUhXq6x2TIKBD9Oruw==:117 a=iwqwCZQqcuTv3JOpYdM7/Q==:17
- a=6eWqkTHjU83fiwn7nKZWdM+Sl24=:19 a=IkcTkHD0fZMA:10 a=RAioF0-LDSMA:10
- a=V5UXEbMT0ywA:10 a=VkNPw1HP01LnGYTKEx00:22 a=Z8NIEmU8O1QQgoT56wFK:22
- a=fPAWb5peG099m5CrUpKH:22 a=VwQbUJbxAAAA:8 a=sozttTNsAAAA:8
- a=nIZuoBpWME8S4zVf_BkA:9 a=QEXdDO2ut3YA:10
-X-Proofpoint-ORIG-GUID: uaJ1YUcgprUHH7mcrty2w1AcqWojWEJw
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.134,FMLib:17.12.100.49
- definitions=2026-07-15_02,2026-07-15_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- bulkscore=0 malwarescore=0 clxscore=1015 spamscore=0 adultscore=0
- priorityscore=1501 phishscore=0 lowpriorityscore=0 impostorscore=0
- suspectscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2606150000
- definitions=main-2607150120
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [1.34 / 15.00];
+X-Spamd-Result: default: False [-1.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	DMARC_POLICY_ALLOW(-0.50)[ti.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[ti.com:s=proofpoint-05-2026,ti.com:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	TAGGED_FROM(0.00)[bounces-326940-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:vigneshr@ti.com,m:nm@ti.com,m:kristo@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:tomi.valkeinen@ideasonboard.com,m:r-sharma3@ti.com,m:devarsht@ti.com,m:praneeth@ti.com,m:linux-arm-kernel@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[s-jain1@ti.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-326937-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,vger.kernel.org:from_smtp,lists.linux.dev:replyto,smtp.kernel.org:mid,collabora.com:email];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_TWELVE(0.00)[12];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[s-jain1@ti.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[ti.com:+];
+	FORGED_RECIPIENTS(0.00)[m:angelogioacchino.delregno@collabora.com,m:robh@kernel.org,m:dri-devel@lists.freedesktop.org,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	PRECEDENCE_BULK(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,ti.com:from_mime,ti.com:mid,ti.com:email,ti.com:dkim]
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	RCPT_COUNT_FIVE(0.00)[5];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	FROM_NO_DN(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 64CF375DED5
+X-Rspamd-Queue-Id: A7F7375E061
 
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
+s) to consider:
+- [High] Dimensional mismatch in QoS Anti-Latency FIFO threshold calculatio=
+ns results in grossly inflated thresholds.
+- [Medium] Unconditional mask of `DSI_VDE` can silently corrupt the `DSI_ST=
+ART` register on generic SoCs.
+--
 
+--- Patch [8]: [PATCH v5 08/11] drm/mediatek: mtk_dsi: Add support for MT81=
+96 ---
+commit 1786ad54a3e9896a0d86f110a26f6c5cb91b0619
+Author: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-On 7/13/26 13:37, Vignesh Raghavendra wrote:
-> On Thu, 14 May 2026 02:39:42 +0530, Swamil Jain <s-jain1@ti.com> wrote:
->> Enable DSS, DSI and HDMI related nodes and pinmuxes.
->>
-> 
-> Don't see any Pinmux node added? did you miss them?
+drm/mediatek: mtk_dsi: Add support for MT8196
 
-Added in v2: 
-https://lore.kernel.org/all/20260528133529.3476499-1-s-jain1@ti.com/
+Add support for the new DSI IP found in the Kompanio Ultra MT8196 SoC.
+It requires initialization of QoS parameters and can use a DSI SRAM
+reserved buffer.
 
-> Also, DSI still remains disabled?
-> 
+> diff --git a/drivers/gpu/drm/mediatek/mtk_dsi.c b/drivers/gpu/drm/mediate=
+k/mtk_dsi.c
+> index 3f58683be70fa..4d8a02cbee385 100644
+> --- a/drivers/gpu/drm/mediatek/mtk_dsi.c
+> +++ b/drivers/gpu/drm/mediatek/mtk_dsi.c
 
-Keeping HDMI out-of-box, dsi can be enabled using panel overlays.
+[ ... ]
 
->>
->>
->> diff --git a/arch/arm64/boot/dts/ti/k3-am62l-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62l-main.dtsi
->> index 80615ca1e01a..1d255c9138db 100644
->> --- a/arch/arm64/boot/dts/ti/k3-am62l-main.dtsi
->> +++ b/arch/arm64/boot/dts/ti/k3-am62l-main.dtsi
->> @@ -584,4 +584,51 @@ scmi_shmem: sram@0 {
->>   			bootph-all;
->>   		};
->>   	};
->> +
->> +	dss: dss@30200000 {
-> 
-> New nodes need to added in sorted order as per their addresses in this
-> dtsi file.
+> @@ -776,6 +873,102 @@ static int mtk_dsi_set_dsc_params(struct mtk_dsi *d=
+si)
 
-Yeah, sure.
+[ ... ]
 
-> 
->> [ ... skip 17 lines ... ]
->> +		};
->> +	};
->> +
->> +	dphy_tx0: phy@301c0000 {
->> +		compatible = "ti,j721e-dphy";
->> +		reg = <0x0 0x301c0000 0x0 0x1000>;
-> 
-> reg = <0x00 0x301c0000 0x00 0x1000>;
-> 
+> +	/* Read as: [Data rate (MHz)] * [Number of DSI lanes] / [8 buffer block=
+s] */
+> +	tmp =3D (u64)dsi->data_rate * dsi->lanes;
+> +	data_rate_per_buf =3D div_u64(tmp, 8 * buffer_unit * HZ_PER_MHZ);
+> +
+> +	/*
+> +	 * Anti-latency buffer output threshold for absolute timer mode: this
+> +	 * parameter controls the maximum amount of output data that the FIFO
+> +	 * can hold before running out of buffer space.
+> +	 *
+> +	 * The data will therefore be sent either when the DSI IP0s internal
+> +	 * vblank vs bus QoS timer expires or when it reaches the amount of
+> +	 * buffers set in BUF_OUT_VALID_THRESHOLD (regardless of QoS) to avoid
+> +	 * partially, or entirely, losing frame(s).
+> +	 */
+> +	out_valid_thresh =3D MTK_DSI_DEFAULT_QOS_VALID_FIFO_US * data_rate_per_=
+buf;
+> +	out_valid_thresh =3D min(out_valid_thresh, MTK_DSI_MAX_FIFO_BYTES - 1);
 
-Ack.
+[Severity: High]
+Does this mix dimensional units? out_valid_thresh is calculated using
+data_rate_per_buf (which appears to be in blocks), but it is capped
+against MTK_DSI_MAX_FIFO_BYTES, which is in bytes. Will this prevent the cap
+from functioning correctly?
 
->> +		clocks = <&scmi_clk 348>, <&scmi_clk 343>;
->> +		clock-names = "psm", "pll_ref";
->> +		#phy-cells = <0>;
->> +		power-domains = <&scmi_pds 86>;
->> +		assigned-clocks = <&scmi_clk 343>;
->> +		assigned-clock-parents = <&scmi_clk 341>;
->> +		assigned-clock-rates = <25000000>;
->> +		status = "disabled";
->> +	};
->> +
->> +	dsi0: dsi@30500000 {
->> +		compatible = "ti,j721e-dsi";
->> +		reg = <0x0 0x30500000 0x0 0x100000>, <0x0 0x30270000 0x0 0x100>;
-> 
-> reg = <0x00 0x30500000 0x00 0x100000>,
-> 		      <0x00 0x30270000 0x00 0x100>;
-> 
+> +	mtk_dsi_mask(dsi, reg_qos[DSI_QOS_BUF_CON1], BUF_OUT_VALID_THRESH, out_=
+valid_thresh);
+> +
+> +	/* Enable ULTRA signal trigger between SOF and VACT */
+> +	mtk_dsi_mask(dsi, data->reg_adv[DSI_VDE], VDE_BLOCK_ULTRA, 0);
 
-Ack.
+[Severity: Medium]
+If a future patch enables HW buffers for an older SoC (as the commit message
+suggests is possible) but doesn't define DSI_VDE in reg_adv, will
+reg_adv[DSI_VDE] evaluate to 0?
 
->> +		clocks = <&scmi_clk 155>, <&scmi_clk 158>;
->> +		clock-names = "dsi_p_clk", "dsi_sys_clk";
->> +		power-domains = <&scmi_pds 38>;
->> +		interrupt-parent = <&gic500>;
-> 
-> GIC is implied, drop.
-> 
+If so, this offset might map to DSI_START in the main register space. Could
+this silently clear BIT(29) of the DSI_START register? Would it be safer
+to check if DSI_VDE is defined before applying this mask?
 
-Will drop in next rev.
+> +
+> +	/* Calculate fill rate with line counter mode for DSI Video Mode */
+> +	if (dsi->format =3D=3D MIPI_DSI_FMT_RGB565)
+> +		dsi_buf_bpp =3D 2;
+> +	else
+> +		dsi_buf_bpp =3D 3;
+> +
+> +	pclk_mhz =3D dsi->vm.pixelclock / HZ_PER_MHZ;
+> +	fill_rate =3D div_u64((u64)pclk_mhz * data->pixels_per_iter * dsi_buf_b=
+pp,
+> +			    buffer_unit);
+> +
+> +	/* Calculate QoS Anti-Latency parameters */
+> +	sodi_hi =3D MTK_DSI_MAX_FIFO_BYTES * num_hw_buffers;
+> +	sodi_hi -=3D (fill_rate - data_rate_per_buf) * 12 / 10;
 
->> +		interrupts = <GIC_SPI 57 IRQ_TYPE_LEVEL_HIGH>;
->> +		phys = <&dphy_tx0>;
->> +		phy-names = "dphy";
->> +		status = "disabled";
-> 
-> Don't you need dsi*_ports ?
-> 
->>
+[Severity: High]
+Is it possible we are also mixing bytes and blocks here? MTK_DSI_MAX_FIFO_B=
+YTES
+is used without dividing by buffer_unit, which could result in a threshold
+of 1554 blocks instead of 1554 bytes.
 
-Yes, Udit pointed in v2: 
-https://lore.kernel.org/all/cb4c1b80-40c0-4e63-bfa8-65a68c577999@ti.com/
-Will add ports info. in next rev.
+Could this grossly inflated threshold prevent the hardware from asserting
+the anti-latency trigger and cause FIFO over/underflows?
 
->> diff --git a/arch/arm64/boot/dts/ti/k3-am62l3-evm.dts b/arch/arm64/boot/dts/ti/k3-am62l3-evm.dts
->> index a1af4571a815..7462921e2180 100644
->> --- a/arch/arm64/boot/dts/ti/k3-am62l3-evm.dts
->> +++ b/arch/arm64/boot/dts/ti/k3-am62l3-evm.dts
->> @@ -192,6 +204,36 @@ exp2: gpio@23 {
->>   		bootph-all;
->>   	};
->>   
->> +	sii9022: bridge-hdmi@3b {
->> +		compatible = "sil,sii9022";
->> +		reg = <0x3b>;
->> +		interrupt-parent = <&exp1>;
-> 
-> Is there a reset line to the chip, I see GPIO_HDMI_RSTn in exp2 GPIO
-> expander, does that need to be hooked up somewhere?
-> 
+> +	sodi_lo =3D MTK_DSI_DEFAULT_QOS_SODI_LO_OVERHEAD * data_rate_per_buf;
 
-It is optional, HDMI output works fine without reset-gpios.
-
-Regards,
-Swamil.
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260715114916.1969=
+0-1-angelogioacchino.delregno@collabora.com?part=3D8
 
