@@ -1,149 +1,170 @@
-Return-Path: <devicetree+bounces-327048-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-327049-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 25t7LfmNV2pkWwAAu9opvQ
-	(envelope-from <devicetree+bounces-327048-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 15:41:13 +0200
+	id 72w0Mu+PV2qAXAAAu9opvQ
+	(envelope-from <devicetree+bounces-327049-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 15:49:35 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D9EB75ECE6
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 15:41:13 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id CCCA675EF95
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 15:49:34 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=geanix.com header.s=protonmail3 header.b=kr+XCncP;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-327048-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-327048-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=geanix.com;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=F00U7Z0s;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-327049-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-327049-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id DAB943072FDF
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 13:34:30 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 85E1F303AE77
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 13:35:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F0F82BEC5F;
-	Wed, 15 Jul 2026 13:34:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B7B42E0B71;
+	Wed, 15 Jul 2026 13:35:52 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-106113.protonmail.ch (mail-106113.protonmail.ch [79.135.106.113])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE48329AAFA;
-	Wed, 15 Jul 2026 13:34:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4453A2BEFEB
+	for <devicetree@vger.kernel.org>; Wed, 15 Jul 2026 13:35:51 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1784122469; cv=none; b=UuMBwdlKzGDAslffsejTuWPq2l+Ztym4dzAgZ1LELIvV7Nfxeu889JPLhgGZQzTe5qjXyjjHT5NuM7rwwWYwT1VQDzHPmVZcg6KeAJROmXEwIg2CXaAa3+QI70pQaWRH7SKMaBCM35rNOUz3GD9vgqec4lyxjRzy1YPL5+aQU08=
+	t=1784122552; cv=none; b=Cgn2hoIubSgGb/OMHho3IwLN0MsFCIteBxe/ghp0kjV0bjyTJyRwQIYMeIz0SkVryW1oex02cAtibhHfp/2u1XpxJYruT15T0DuIqcyDhAdO02pI+ZQndghFQdl1J9QwwcuaMv/1ZieVz+OfSEGBSbgVg1Trxe1PHdiTWkCPMfQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1784122469; c=relaxed/simple;
-	bh=EH95bEevB45vxfH2KqHvjnVJ226QdA1HvBdpeO/qbwo=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=NcQG5xtAsKzBftFoKjy0Pg8d/TZEzTP/sg9eGQGRyBB3LYG0jUQdIrHVN8z8mO5EWy7BeuUgTBs7yPdKej7RLUBeUZarm5r2IOcgas82/Cl+vGG95gHYo895pAjRas6+F77TlgNQWLHzNa0nAMzV27YMWz6LConVl/vcG0+88XE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=geanix.com; spf=pass smtp.mailfrom=geanix.com; dkim=pass (2048-bit key) header.d=geanix.com header.i=@geanix.com header.b=kr+XCncP; arc=none smtp.client-ip=79.135.106.113
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=geanix.com;
-	s=protonmail3; t=1784122465; x=1784381665;
-	bh=echToQREUj3vG9DGTBHTEImDNDMRsG75DxT+FmAyuVE=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:From:To:
-	 Cc:Date:Subject:Reply-To:Feedback-ID:Message-ID:BIMI-Selector;
-	b=kr+XCncPbRXLzNteWA0HsFtZg+sLXFrZHVJ0eKi/guUuYzvp621RDZAgPjSz9Fdrx
-	 4SEQ3gxt4CrBlzihTyfs4uZSAOjBKtYeoou/RyH6/gtnrE4bDHg4oUH8NzHwB95XD0
-	 UY+ZQPY67n1HbS8pTjA0INAwVyhV+nECf9oj/uLpI6H7TiDQeJ5N06TZqiPwoJdE5A
-	 SF0lBtG/GFDhJ+eNyMZ3KZ2rtvaSV17Dp+cuNiiR/bynzyi6pJcMPniR6Ab4uUTe8x
-	 DrroX1CzyDtiypONcXMF1IIw9WbZU+WgiTn+YPt1VipxojbIDOdqTyAHhJHKe12Lcg
-	 Y6SHqKyIbiLJw==
-X-Pm-Submission-Id: 4h0cbK44JCz1DDp8
-From: Esben Haabendal <esben@geanix.com>
-To: Nuno =?utf-8?Q?S=C3=A1?= <noname.nuno@gmail.com>
-Cc: "Joshua Crofts" <joshua.crofts1@gmail.com>,  "Jonathan Cameron"
- <jic23@kernel.org>,  "David Lechner" <dlechner@baylibre.com>,  Nuno
- =?utf-8?Q?S=C3=A1?=
- <nuno.sa@analog.com>,  "Andy Shevchenko" <andy@kernel.org>,  "Rob Herring"
- <robh@kernel.org>,  "Krzysztof Kozlowski" <krzk+dt@kernel.org>,  "Conor
- Dooley" <conor+dt@kernel.org>,  "Nikita Travkin" <nikita@trvn.ru>,
-  <linux-iio@vger.kernel.org>,  <devicetree@vger.kernel.org>,
-  <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 0/4] iio: light: ltr501: Add ltr329 support
-In-Reply-To: <4bn5dd27ie653f5324pluaoamua4bxdbmxm47rif4yumxxl5un@anbjqozl6ovj>
-	("Nuno =?utf-8?Q?S=C3=A1=22's?= message of "Wed, 15 Jul 2026 15:17:33
- +0200")
-References: <20260715-liteon-ltr329-v2-0-d18af55edab5@geanix.com>
-	<20260715145546.00005bc8@gmail.com>
-	<ogdkxj4ZPDLgQIc_jewPR02n-ZectyMClJB4lA4rGII_4X8v_0xYewFp4giLg9iKesMQBgcKIUVYCLjFnzY9yA==@protonmail.internalid>
-	<4bn5dd27ie653f5324pluaoamua4bxdbmxm47rif4yumxxl5un@anbjqozl6ovj>
-Date: Wed, 15 Jul 2026 15:34:20 +0200
-Message-ID: <87pl0oml5v.fsf@geanix.com>
-User-Agent: Gnus/5.13 (Gnus v5.13)
+	s=arc-20240116; t=1784122552; c=relaxed/simple;
+	bh=0MngHMadLnBhsaxyfscdVsSyyc+f3pE7XDXnfKxKl3M=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=cEruLVDKVAaWN+2jvHLOE35gxq5q0m1TnICVg2UrqZlCJQh3ANpGj+TC1j4mvHHmu++F7Ama7EF4vmgTwItxc8I9J1lQUN3Tl8XAcA9yW3+2mKd0+VWZGtkKEpzDBbtkZiXtcxRzXBnDO0BGbnkycsmBrgkDxi9KnjkEtomz4og=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=F00U7Z0s; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AE7AF1F000E9;
+	Wed, 15 Jul 2026 13:35:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1784122550;
+	bh=sijvTncilwrcraimBsnS09tT7sZ3tiESdDbOH+qGC0U=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=F00U7Z0s2wTUqE2auhMnwTOvoBrLmukalg+ddQpB5yqbDSJ8YQC91fjd9s/nHfEDM
+	 uddVl30Zx5xdbiKahkT29hpAAM1b/iJrboPX4mvpL1C2/TfEDWAaFSfi7mJsJ4WLAV
+	 kHEl/vpwpsySy+1DJtW8zyj6/kFe0MRFVz8iN+UChSYbXhYA0LVDRfaUKzbTG75PO8
+	 D6CC6+B9H/YUMZfpoabVPeimFRmQX7bTWkfAsJnp5VTBjcJtUXKjue+yBgHtS1cXRJ
+	 vqUuGmDx8IWVHcEJOzqWGYyOAF/Pe3E1yVTdBIbCYr0W8sMQWIuDbQSkjTzSqFe4zz
+	 izEe1Uma2RRFg==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v3 1/2] dt-bindings: pinctrl:
+ qcom,milos-lpass-lpi-pinctrl: Add Eliza pinctrl
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Ravi Hothi" <ravi.hothi@oss.qualcomm.com>
+Cc: robh@kernel.org, devicetree@vger.kernel.org, conor+dt@kernel.org
+In-Reply-To: <20260715132150.1322663-2-ravi.hothi@oss.qualcomm.com>
+References: <20260715132150.1322663-1-ravi.hothi@oss.qualcomm.com>
+ <20260715132150.1322663-2-ravi.hothi@oss.qualcomm.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Wed, 15 Jul 2026 13:35:50 +0000
+Message-Id: <20260715133550.AE7AF1F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-1.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[geanix.com,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[geanix.com:s=protonmail3];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[3];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:noname.nuno@gmail.com,m:joshua.crofts1@gmail.com,m:jic23@kernel.org,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:andy@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:nikita@trvn.ru,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:nonamenuno@gmail.com,m:joshuacrofts1@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FREEMAIL_TO(0.00)[gmail.com];
-	FORGED_SENDER(0.00)[esben@geanix.com,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	TAGGED_FROM(0.00)[bounces-327048-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-327049-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:ravi.hothi@oss.qualcomm.com,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[geanix.com:+];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[esben@geanix.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[gmail.com,kernel.org,baylibre.com,analog.com,trvn.ru,vger.kernel.org];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	RCPT_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,msgid.link:url,vger.kernel.org:from_smtp,geanix.com:dkim,geanix.com:email,geanix.com:mid,geanix.com:from_mime]
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,vger.kernel.org:from_smtp,sashiko.dev:url,qualcomm.com:email,smtp.kernel.org:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 2D9EB75ECE6
+X-Rspamd-Queue-Id: CCCA675EF95
 X-Rspamd-Action: no action
 
-Nuno S=C3=A1 <noname.nuno@gmail.com> writes:
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [Medium] Schema validation failure for Eliza compatible string due to sca=
+lar `const` comparison against an array.
+--
 
-> On Wed, Jul 15, 2026 at 02:55:46PM +0200, Joshua Crofts wrote:
->> On Wed, 15 Jul 2026 14:27:22 +0200
->> Esben Haabendal <esben@geanix.com> wrote:
->>
->> > The LiteON LTR-329ALS-01 chip is similar to the LTR-303ALS-01, except =
-for
->> > interrupt support and related registers, which LTR-329ALS-01 does not =
-have.
->> >
->> > Signed-off-by: Esben Haabendal <esben@geanix.com>
->> > ---
->> > Changes in v2:
->> > - Fixed error handling when irq is defined for a chip that does not su=
-pport
->> >   irq, powering the chip down again.
->> > - Added simlar fix to error handling of devm_request_threaded_irq() er=
-ror
->> >   handling, powering the chip down again on failure.
->> > - Added explicit #include <linux/array_size.h>.
->> > - Link to v1: https://patch.msgid.link/20260715-liteon-ltr329-v1-0-31f=
-027051594@geanix.com
->> >
->>
->> Quick process thing, please wait at least 24 hours before sending
->> a new version - let it sit on the mailing list so other reviewers
->> can send feedback! Larger series should wait a couple of days.
->
-> Yeah, as a nice rule of thumb at least a couple of days.
+--- Patch [1]: [PATCH v3 1/2] dt-bindings: pinctrl: qcom,milos-lpass-lpi-pi=
+nctrl: Add Eliza pinctrl ---
+commit 8578b655d5c47b4337e1837fe83f459a7fed7346
+Author: Ravi Hothi <ravi.hothi@oss.qualcomm.com>
 
-Fair enough.
+dt-bindings: pinctrl: qcom,milos-lpass-lpi-pinctrl: Add Eliza pinctrl
 
-/Esben
+This commit documents the compatible string for the Qualcomm Eliza SoC LPASS
+LPI pin controller. It also updates the schema to reflect that Eliza only
+has a single reg entry because it uses a different slew rate register layou=
+t.
+
+> diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,milos-lpass-l=
+pi-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,milos-lpas=
+s-lpi-pinctrl.yaml
+> index 73e84f1885911..86c1da0f577c9 100644
+> --- a/Documentation/devicetree/bindings/pinctrl/qcom,milos-lpass-lpi-pinc=
+trl.yaml
+> +++ b/Documentation/devicetree/bindings/pinctrl/qcom,milos-lpass-lpi-pinc=
+trl.yaml
+
+[ ... ]
+
+> @@ -74,6 +77,19 @@ $defs:
+>  allOf:
+>    - $ref: qcom,lpass-lpi-common.yaml#
+> =20
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          const: qcom,eliza-lpass-lpi-pinctrl
+
+[Severity: Medium]
+Since the compatible property is evaluated as an array in device tree
+schemas, will this scalar const comparison always evaluate to false?
+
+It appears this would cause the validation tool to incorrectly take the else
+branch, enforcing minItems: 2 on the reg property even for valid Eliza
+device trees.
+
+Should this be using contains: const: instead to correctly match the array?
+
+> +    then:
+> +      properties:
+> +        reg:
+> +          maxItems: 1
+> +    else:
+> +      properties:
+> +        reg:
+> +          minItems: 2
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260715132150.1322=
+663-1-ravi.hothi@oss.qualcomm.com?part=3D1
 
