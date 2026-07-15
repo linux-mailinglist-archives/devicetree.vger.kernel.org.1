@@ -1,161 +1,224 @@
-Return-Path: <devicetree+bounces-326681-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-326683-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id c4oUD+gtV2oMHAEAu9opvQ
-	(envelope-from <devicetree+bounces-326681-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 08:51:20 +0200
+	id aM0KB+8wV2qoHAEAu9opvQ
+	(envelope-from <devicetree+bounces-326683-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 09:04:15 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2EE4B75B3CC
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 08:51:19 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5FD8875B473
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 09:04:14 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=KPchxVhL;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326681-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-326681-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=intel.com;
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=VyOpdmw7;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326683-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-326683-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=gmail.com;
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 294A33004D95
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 06:51:16 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 2B580300B9F0
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 07:04:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0516531E82E;
-	Wed, 15 Jul 2026 06:51:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B89592DA75B;
+	Wed, 15 Jul 2026 07:04:12 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ot1-f53.google.com (mail-ot1-f53.google.com [209.85.210.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C95921CC71;
-	Wed, 15 Jul 2026 06:51:12 +0000 (UTC)
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1784098274; cv=none; b=cXeLWs06FibLKxuHyRdnWM6lJ4MIlzfP7+GNX7UBltzgEln/QI03FL+VVgWWCcJM4w2SyEdrRq8ZB1kWq/ZUDmOqCJ9aFkPFyMAzjrT1gnjhRnM7VP6gH8TRuMCRAOVVJzeG6UU8QvkbcPgfIlB7nFh4nPcJtwza83bfFugMmr4=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1784098274; c=relaxed/simple;
-	bh=jm3Fp1OxVfLWQNXEgcghvnmtKSa9n+UQn9qCVN6+yc8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gzntDo8s1n/32HG14C18pLhWL7Tvi0pHPJhJTUD3Or4wyOSFRh477aL8rX+IQffnLwRQ92XSdnju1C6R+XZUHY/H8HD03EqlADBBSze3v4vtFdmFKkq4xYS/042dI5gn7Jt2+uLZe+XrjP8O4RDvhOxF+8CqZJUzPNQmEORkJA8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=KPchxVhL; arc=none smtp.client-ip=192.198.163.15
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1784098273; x=1815634273;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=jm3Fp1OxVfLWQNXEgcghvnmtKSa9n+UQn9qCVN6+yc8=;
-  b=KPchxVhL7K0/2dJv8Yo9BOOR5vh/VRh1K5EtZ7tIstmXnK/+N+FXZbxq
-   08tiVQyiO4f/iujCRgg27/ziKdSrjWXQgdvlf6i+2dtdhOFPRblqEV2Da
-   ZgvUzmZxTGbaAsqqIm9KdCPB7ymi028XA4WWQs7oiSPiXgLXU5DbJ41ln
-   T9GWzYMPKbUWPuQkXmxk/2VmJ50WU32mSLNpnj9jLFd1uYydzexGFRNnL
-   CyN9reAiq4WpxurjQn1GcnaOLlKmtm2y3vn5y96a5vje6XlSb4WfeOjJE
-   XN83We+Zy00qnYNtjDL064mrqPfTB90khBt2mSU9tm6+My7l8eiFbkq1W
-   Q==;
-X-CSE-ConnectionGUID: /lp2AuI7RKyZrhh5PXIEXg==
-X-CSE-MsgGUID: LWnpeLBHQPyFcGJEdqNZCg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11847"; a="84843826"
-X-IronPort-AV: E=Sophos;i="6.25,165,1779174000"; 
-   d="scan'208";a="84843826"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
-  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Jul 2026 23:51:12 -0700
-X-CSE-ConnectionGUID: FgmvN1u7Romd21DsaFUtUw==
-X-CSE-MsgGUID: GMTfaPmVQuaB2s3PLm5nMQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,165,1779174000"; 
-   d="scan'208";a="286155256"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost) ([10.245.244.44])
-  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Jul 2026 23:51:08 -0700
-Date: Wed, 15 Jul 2026 09:51:06 +0300
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Stefan Popa <stefan.popa@analog.com>
-Cc: Jonathan Cameron <jic23@kernel.org>, linux-iio@vger.kernel.org,
-	David Lechner <dlechner@baylibre.com>, Nuno Sa <nuno.sa@analog.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Siratul Islam <siratul.islam@linux.dev>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@baylibre.com>,
-	Ciprian Hegbeli <ciprian.hegbeli@analog.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 0/2] iio: adc: add MAX40080 current-sense amplifier
- driver
-Message-ID: <alct2kGoQAC8pNMd@ashevche-desk.local>
-References: <20260715063652.368501-1-stefan.popa@analog.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 458ED1C5F27
+	for <devicetree@vger.kernel.org>; Wed, 15 Jul 2026 07:04:11 +0000 (UTC)
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1784099052; cv=pass; b=B/pOQN8LFsgtUgu5WapVcF4VuCuS83anj0lftB6f2MBc3x8Gr1uywUOv1GCbB3jbecQC8UmH9HMYIpk/6cBtVE9fzYpIJIIf95W0BqKBoNbjWF5Tb1S/d7RZkmKwqOrBPie0yLjrg8rYfUWvt4TxSUR/8+L/E/cxQCvYuOF50zQ=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1784099052; c=relaxed/simple;
+	bh=ifJqXZ4ZAmIfzckP1/3gX562cvXWbJvgz42X1CY3OO4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=owT3L3akjkC4N0kaMa4fpQFtHln0Bd5zlzTNZ6NrlYG93FI8CuQLSn3Grx5tzxUFo54bOcVgDUldTD5hLhGSQyZV1q/W5NAvCMh9NNba6KHSJ+xKEA45pmTQPhgoQw6zeQLF94ezBcMcSf0ISPo6Knw2LgPqpJu42PncYBOlsdU=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VyOpdmw7; arc=pass smtp.client-ip=209.85.210.53
+Received: by mail-ot1-f53.google.com with SMTP id 46e09a7af769-7e9fc323873so767189a34.0
+        for <devicetree@vger.kernel.org>; Wed, 15 Jul 2026 00:04:11 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1784099050; cv=none;
+        d=google.com; s=arc-20260327;
+        b=LvvNvKIilkiiYsZTT4C4u6SKvG1w5h/Z8AADxS/zImlIV80Iq0ZvsyFgO5iicqyLy3
+         zU5zP0KT+7D192vGPn85i2qxSxVVf16J/g+fyrwqIxEncE+i5U2wsRQPhX7zP/tdXWta
+         xMjOK3UXw6t6exkqVA9NzBx63euR39lLaUe57njtrY4rRMixWhKPLpbaitQe/g+dx/Ms
+         2UydCK3B1FHSLcD6qZrSpamvbwwyuOrbC+DX82AIfqefPujthlfZBzR1bCTjA3RTua3K
+         Cxa6cJ5iSFoEm/ozgxTumSNMlWFy871544H0tPzMSoBhKV+S9nYmD8WJYBMJkf2g8VGl
+         Dr4A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=Z6gxrK21sxCB/eCMN/j8yC9AHCK9IHMw89lMoZ6UyRY=;
+        fh=bYm7Xo2OxCqS8Wf7ayxQcfvvq3Ngm/c+s+iIu+Rm7qA=;
+        b=appevhe3DWGbcGnZf1l/Wl0/Tc7hGTXe/cGkVDHpeJxoItNc3Eds9fkpN3rOe9wC6R
+         FDm+e+syA+hJAqDbCMXgixY+NvcdBVIbmvii9FBxJvZbn8/krwT7+OxgPgtbcE0G+SW3
+         2/Yz9XQZ1X4gxphZ3574kMz1NZ/1og7iTqdlmfo4nJOL1304fDnfY1y4O6tEp30CVpok
+         Pi9nBTeKouYYLikakhpz7PQRnm3i7gl/wMfFB5sN7/56aJ66GyUfZZiKwp+2KD1csPFJ
+         hpAbRDfac90ET3Emp5zGWb7wBhC1sLpTD3NsbkzWQpH+CG0ZE3eq0QB5QqCja726AHo2
+         7GJQ==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1784099050; x=1784703850; darn=vger.kernel.org;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=Z6gxrK21sxCB/eCMN/j8yC9AHCK9IHMw89lMoZ6UyRY=;
+        b=VyOpdmw7wb7mM0tYcXSpzSp0fxwQuV0ze58pUxtK1JNS1JZzeFSyHSrNZcap6TKmn7
+         zvi6o7FvkZ65KHHs7Zoh6xENQ/Wm0SHgRfs21W5G38GamS+WEOGkZ5sEkWhhnlEnxHfT
+         Jxa6tX3546S+S5k9pYkuy7N/Tt7SfdqvZxylPDXXJgARD4yw9l8kKHIUM5athhy8B1cJ
+         3S6Kw/m4rRQ/cLeyuKZUjKj30iETDAFs1KGD7QkYap45RDv51k7/2Fpp+g9ApYXVWAVY
+         mXnTbYUi6qVPc6OWmQ83WA83t/v9dQx+fRzOxvclRxEAHR+919aiqJRVhnqBmELM+mpF
+         BfcA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1784099050; x=1784703850;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=Z6gxrK21sxCB/eCMN/j8yC9AHCK9IHMw89lMoZ6UyRY=;
+        b=km+N5oNtR8HciB+XlAUh+71/LhK/p+eCYh1ld87slR8hlGAdopLnmX9nVKNVnoa9tU
+         //iZCNU9h+Gtmi5sDSdqyXrdsiOK1bblRqOIF6J5BEnnee3t9wWLk14fZ2h2eH6e4sv4
+         coqkmVv13dgbnfdMJjHxftw1fI+Xr0Sl/FoxGNvd0n5aWLcXid6k9engMsLb+iGsNbwe
+         LpqT9kDmDduYId/II6b+EwqEk7yM3AzExKfg3fEpvAaGg/9bfVkRRALWW3ouR/OL9kl2
+         ROpSK0MiF2uYlqupOwHRkQ44HzSdC3YR1PeCeAqoAeUaOMbfpmrALjlwRBPWOmjQAH19
+         Aw8w==
+X-Forwarded-Encrypted: i=1; AHgh+RpO4+nSL0jbo+cOZKPunY47iXvS/rltJtncl+Ep0H87l2BwFcFOJvpFwQaX1lCck/AyJzY3a3aoTrEU@vger.kernel.org
+X-Gm-Message-State: AOJu0YwD03SrGZi0oJZWANTvMujIb+0w1hDjrlA0ynkRxCrqabjk9e/N
+	PikSt9zIhJXTJdkOMKvzPLDtWss1W0bYxcPtinbaY15740jWAZfmC0+OZNhCAbRrdawlBACmO2d
+	ZWf+B1Yq0Ltx1h1pV/taubsFTfFyVFrTmA7MsclU=
+X-Gm-Gg: AfdE7clZsTpwGZJVZAvCt6c0QdWvw65xAV8Ns1G8MFCxZ18pOvHoX+ITaxsoGw1KUu8
+	cRpS2rdO/mxnirPXaRXPXUgTSmZuXr6PJWA8UnYNQw4tLFNxO+Rxrzc9RE90z0VAHeiQEdeIONu
+	YTC80+k7EWCuh86vSd+Iemf3WBSTnf+3sILHDEPnEgvdxvXtUkNegApTqnD9HK/Jw8WWKvNYf0p
+	12vpUxpQQX4IcrY8Z40+HpJR1S53aGWGFOEubc6AcwSaluDsGQmxGDfZGDpr29So9e6A3cOSke7
+	Rlw+42mp+LV3B0Ws+vzyA9oO/1foRF8=
+X-Received: by 2002:a05:690e:408a:b0:668:f57:890d with SMTP id
+ 956f58d0204a3-6680f579a70mr2127791d50.6.1784098550460; Tue, 14 Jul 2026
+ 23:55:50 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260715063652.368501-1-stefan.popa@analog.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+References: <20260715051939.64652-1-royalnet026@gmail.com> <20260715051939.64652-2-royalnet026@gmail.com>
+ <20260715055448.AEA021F000E9@smtp.kernel.org>
+In-Reply-To: <20260715055448.AEA021F000E9@smtp.kernel.org>
+From: Royal Net <royalnet026@gmail.com>
+Date: Wed, 15 Jul 2026 08:55:37 +0200
+X-Gm-Features: AUfX_myzakcKGN9vlq_qc4LRJvv-oSEDxuwqFd24WcJAwYA-kTmTVF-i9eX42Ks
+Message-ID: <CAEWPSH7OqecBKvxUVtwFe4B9y0-=gsQ7vy6kdBHx-Nsne-Ct1g@mail.gmail.com>
+Subject: Re: [RFC PATCH 1/2] dt-bindings: media: snps,dw-hdmi-rx: add #sound-dai-cells
+To: sashiko-reviews@lists.linux.dev
+Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, robh@kernel.org, 
+	Dmitry Osipenko <dmitry.osipenko@collabora.com>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
+	linux-media@vger.kernel.org, kernel@collabora.com, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-5.16 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[intel.com:d:+,kernel.org:s:+];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+X-Spamd-Result: default: False [-2.16 / 15.00];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-326683-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-326681-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:stefan.popa@analog.com,m:jic23@kernel.org,m:linux-iio@vger.kernel.org,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:siratul.islam@linux.dev,m:u.kleine-koenig@baylibre.com,m:ciprian.hegbeli@analog.com,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:sashiko-reviews@lists.linux.dev,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:dmitry.osipenko@collabora.com,m:mchehab@kernel.org,m:linux-media@vger.kernel.org,m:kernel@collabora.com,m:linux-kernel@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	FORGED_SENDER(0.00)[andriy.shevchenko@linux.intel.com,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER(0.00)[royalnet026@gmail.com,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
 	FORWARDED(0.00)[lists@lfdr.de];
-	DKIM_TRACE(0.00)[intel.com:+];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@linux.intel.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[royalnet026@gmail.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ashevche-desk.local:mid,vger.kernel.org:from_smtp,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,intel.com:dkim,linux.intel.com:from_mime]
+	RCPT_COUNT_SEVEN(0.00)[9];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 2EE4B75B3CC
+X-Rspamd-Queue-Id: 5FD8875B473
 
-On Wed, Jul 15, 2026 at 09:36:15AM +0300, Stefan Popa wrote:
-> This series adds support for the Maxim MAX40080, a bidirectional
-> current-sense amplifier with an integrated 12-bit ADC and an I2C/SMBus
-> interface. It measures the voltage across an external shunt resistor and
-> the input bus voltage.
-> 
-> The driver operates in direct (INDIO_DIRECT_MODE) mode. Each raw read
-> triggers a single on-demand conversion (SMBus Quick Command) and reads
-> back the matched current/voltage pair, so results are always fresh. It
-> exposes the current and voltage channels with raw and scale attributes,
-> a configurable oversampling (digital averaging) ratio, and PEC-protected
-> register access. The two selectable current-sense ranges are exposed
-> through scale/scale_available; the current scale is derived from the
-> shunt-resistor-micro-ohms device-tree property.
-> 
-> Tested on hardware with four MAX40080 devices on an I2C bus.
-> 
-> Regarding Andy's question about *iv being updated even on error in
-> read_poll_timeout: yes, this is intentional. The poll loop must update
-> *iv on each iteration to check the valid bit. On timeout (conversion
-> never completes), *iv contains the last-read value with the valid bit
-> still clear, but the caller always checks the return value first —
-> "if (ret) return ret;" prevents any use of the stale data.
+> Should the constraint be set to 0 to follow standard device tree
+> norms?
 
-My point also is that we can do it only once. And since the above a comment is
-a must. See more in the comment I'm going to give against individual piece of
-code.
+Fair point. The current RFC wires up a single I2S DAI, and for a
+single-DAI provider 0 is indeed the norm -- rockchip,dw-hdmi does
+exactly that for its one DAI on the TX side.
 
--- 
-With Best Regards,
-Andy Shevchenko
+The reason I picked 1 is that the controller also has an S/PDIF
+audio output path (the vendor driver exposes both I2S and S/PDIF
+DAIs through hdmi-codec), so a DAI index becomes meaningful if that
+second path is wired up later.
 
+Unless the DT maintainers prefer keeping 1 from the start to avoid
+changing the cell count if/when the S/PDIF DAI is added, I'll switch
+to const: 0 in the next revision -- please let me know which you'd
+prefer.
 
+Igor
+
+On Wed, Jul 15, 2026 at 7:54=E2=80=AFAM <sashiko-bot@kernel.org> wrote:
+>
+> Thank you for your contribution! Sashiko AI review found 1 potential issu=
+e(s) to consider:
+> - [Medium] Incorrect cell count constraint for single-DAI provider.
+> --
+>
+> --- Patch [1]: [RFC PATCH 1/2] dt-bindings: media: snps,dw-hdmi-rx: add #=
+sound-dai-cells ---
+> commit e6b0bac0b97f568ce749084e6c1e728bcd258b10
+> Author: Igor Paunovic <royalnet026@gmail.com>
+> dt-bindings: media: snps,dw-hdmi-rx: add #sound-dai-cells
+>
+> This commit adds the #sound-dai-cells property to the HDMI RX controller
+> bindings, enabling a generic audio codec to capture incoming embedded aud=
+io.
+>
+> > diff --git a/Documentation/devicetree/bindings/media/snps,dw-hdmi-rx.ya=
+ml b/Documentation/devicetree/bindings/media/snps,dw-hdmi-rx.yaml
+> > index b7f6c87d0e06a..83c10d9997c8e 100644
+> > --- a/Documentation/devicetree/bindings/media/snps,dw-hdmi-rx.yaml
+> > +++ b/Documentation/devicetree/bindings/media/snps,dw-hdmi-rx.yaml
+> > @@ -78,6 +78,13 @@ properties:
+> >        The phandle of the syscon node for the Video Output GRF register
+> >        to enable EDID transfer through SDAIN and SCLIN.
+> >
+> > +  "#sound-dai-cells":
+> > +    const: 1
+> > +    description:
+> > +      The HDMI RX controller registers a generic HDMI audio codec so t=
+he
+> > +      audio embedded in the incoming stream can be captured. A value o=
+f 1
+> > +      lets a sound card reference the audio DAI as <&hdmirx 0>.
+>
+> [Severity: Medium]
+> Is this cell count constraint correct for a single-DAI provider?
+>
+> Looking at properties:#sound-dai-cells, the hardware exposes only a singl=
+e
+> generic audio DAI. Requiring a cell count of 1 forces device tree nodes t=
+o
+> use a non-standard syntax like <&hdmirx 0> instead of just <&hdmirx> for =
+a
+> single resource.
+>
+> Should the constraint be set to 0 to follow standard device tree norms?
+>
+> --
+> Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260715051939.64=
+652-1-royalnet026@gmail.com?part=3D1
 
