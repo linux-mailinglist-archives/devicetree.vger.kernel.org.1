@@ -1,165 +1,191 @@
-Return-Path: <devicetree+bounces-327123-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-327115-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 6w6PEdGYV2rEXgAAu9opvQ
-	(envelope-from <devicetree+bounces-327123-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 16:27:29 +0200
+	id R36PDB6cV2p2XwAAu9opvQ
+	(envelope-from <devicetree+bounces-327115-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 16:41:34 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id CEF8A75F608
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 16:27:28 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 617DB75F7ED
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 16:41:33 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=bootlin.com header.s=dkim header.b=jCHh+5mS;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-327123-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-327123-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=reject) header.from=bootlin.com;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=Mn0ssgMg;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-327115-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-327115-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id CDB02306DF8B
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 14:23:37 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 451CF3066249
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 14:22:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 178813644C9;
-	Wed, 15 Jul 2026 14:23:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5E6C35B137;
+	Wed, 15 Jul 2026 14:22:25 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3EEA34DCF3;
-	Wed, 15 Jul 2026 14:23:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB6B3341660
+	for <devicetree@vger.kernel.org>; Wed, 15 Jul 2026 14:22:24 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1784125394; cv=none; b=rSzwAVjJ9DDTPbTKtx0lSzeO1NkZ0pKD4KngJY8yjAmnR+1nQVSin0xoHa62elPdRzU3jNtTp6TgdHU7pAO7VEpDQYG1481EC65+xSwzhXfKGXFutfPs2+xXEAcSia1TDkXG8hpiFLfynMKtu6mphjQQG8ak7PzOiw+CtJwNmUE=
+	t=1784125345; cv=none; b=Od8QeARrF5v4986Jwy1RmG61jnlEGF11NtZCTGC6E/aHv/6stY+XlZFt0za2BEF8DwPyGsSvnJWqzH9zYk3f1umLzzoCtq5/FHUqWhOV0J8EXmAA4Up76B2DIJVJAi6qL+hN5jMoHWqrAEOhZP7f2y1Xagdh9pfnQv1YTHyj1G4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1784125394; c=relaxed/simple;
-	bh=IHC3taB/c1hjjbHV78+MpFaKPexGySK661G3gH5QQQ8=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=dJodKhg4l2/iBCPelOxZORhHpOkwtyg/wopyaoXtgVKIO9fSz53mH3VPKwtBCO4YcoczvBeqbQRbtXeC/0yi2PjtFp4QPf0O6ItHodkds+9dBC/IZCGTqebTsho21YKf8Go3dpstGBFAdPhWDaPfeikrgjWqs5Q1w9SZjlN1qk8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=jCHh+5mS; arc=none smtp.client-ip=185.246.85.4
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id 2FF7D4E40DEB;
-	Wed, 15 Jul 2026 14:23:11 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 043626035C;
-	Wed, 15 Jul 2026 14:23:11 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 6B13B11BD3C48;
-	Wed, 15 Jul 2026 16:23:06 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1784125389; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=vqW9/RH3UDRT9Qj8/JqT5f9mnBCAvdontHcYO/WHgd0=;
-	b=jCHh+5mSqWJGPEMJCW2ZdS+hBNKqYUUIvmvD/r5Z3kKVCIMpFuLVM7LglyXS3hYez0zC7Q
-	lgzvKjHzRsoxs1M/J9LHI2G9OASSGx5lZRH5ch/3gt/URR5qdFew7QHX8zTR/q5gUCtA0y
-	9OcCIG7xVLbiBzEyJabvO/aIrEpXIpFhlDSU+z2tEu1Z71DBTyWZWckBxBt6DlnFfvlgzV
-	ozLJMv0Ex6uWKB374KCz01Laez/H+06iaNu4YYNW5ZpYRGy9sO7TYTNsqrIKTaDXPEkDqc
-	3f+OkZLafYTvt/SdD/D9yfqWXLdcPbh/S8sJQIN7pBYSj9vorF620JhRi8qbMQ==
-From: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
-Date: Wed, 15 Jul 2026 16:22:23 +0200
-Subject: [PATCH v2 6/7] arm64: dts: nuvoton: npcm845-evb: Import optee node
- from u-boot device tree
+	s=arc-20240116; t=1784125345; c=relaxed/simple;
+	bh=P37kUQ4vs1u7Grxe+A4HPyCFhRSUVIeLGmF2JEnTgc0=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=uy2/Tcf3urcZAsG6/CpUDK868R5jvAy6x658aQiPLGoQheHSw2/070t4J25mS43F4d/Ynew0YqrjLyKLLEKL2HEAS8Lyk8wFmeziSRgD4y6ftoLATKUj1SHzvOuvDYWb+6dM1xQtiNc71l99ezJnGYm95YKkmB92jJjGKNvzp7A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Mn0ssgMg; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5FA721F00A3A;
+	Wed, 15 Jul 2026 14:22:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1784125344;
+	bh=C74ppi/aF2wD3K36a/1eTvUuHBCv2GTf1Iuw5l272oc=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=Mn0ssgMgz07zKJj/mk99fez7rR+Uka+C8MAPTiAf4dBQpi7pWenO5a9cZMRcMTIRR
+	 hfzq+V6dVgyxvrYzZ+heMOzICZcflDw0bH7hyDHSNzq0GixSKpiNXlzpC4UPL0qdzc
+	 T6+iypHMgWXEv7OSvkpeZL2ejg3+yzf6q0Ozi47kD1BOA7n+yiDN27pkOqgJpoZKRm
+	 Wyxl4sdzCGWEKNrPPaToIECUMg7UDAQnqpTvFTD4neHxr/VRP0bz/0A97p9R4nXxEr
+	 9P5Ev3um+4aEzAEToqSnU560dNSLe4ygc9haThR+ZheBQ6WzEtUzheBQ3ikY5Cmzd2
+	 gGSJ9zq0wIUBA==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v9 01/14] dt-bindings: media: qcom,glymur-iris: Add
+ glymur video codec
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Vishnu Reddy" <busanna.reddy@oss.qualcomm.com>
+Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, robh@kernel.org
+In-Reply-To: <20260715-glymur-v9-1-8cf2cbe12a07@oss.qualcomm.com>
+References: <20260715-glymur-v9-0-8cf2cbe12a07@oss.qualcomm.com>
+ <20260715-glymur-v9-1-8cf2cbe12a07@oss.qualcomm.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Wed, 15 Jul 2026 14:22:23 +0000
+Message-Id: <20260715142224.5FA721F00A3A@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260715-mathieu-uboot-dts-import-v2-6-bc931417bd0e@bootlin.com>
-References: <20260715-mathieu-uboot-dts-import-v2-0-bc931417bd0e@bootlin.com>
-In-Reply-To: <20260715-mathieu-uboot-dts-import-v2-0-bc931417bd0e@bootlin.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>, 
- Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>, 
- Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
- Alexandre Torgue <alexandre.torgue@foss.st.com>, 
- Wei Xu <xuwei5@hisilicon.com>, Andrew Jeffery <andrew@codeconstruct.com.au>, 
- Avi Fishman <avifishman70@gmail.com>, Tomer Maimon <tmaimon77@gmail.com>, 
- Tali Perry <tali.perry1@gmail.com>, Patrick Venture <venture@google.com>, 
- Nancy Yuen <yuenn@google.com>, Benjamin Fair <benjaminfair@google.com>
-Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- devicetree@vger.kernel.org, imx@lists.linux.dev, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- linux-stm32@st-md-mailman.stormreply.com, openbmc@lists.ozlabs.org, 
- Tom Rini <trini@konsulko.com>, Peter Robinson <pbrobinson@gmail.com>, 
- Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1784125361; l=914;
- i=mathieu.dubois-briand@bootlin.com; s=20241219; h=from:subject:message-id;
- bh=IHC3taB/c1hjjbHV78+MpFaKPexGySK661G3gH5QQQ8=;
- b=bgWqx8KohO0XJrnfz+GLlQpVE6GEn8Z93UF4IF2roK3EhSVFxBk37S1KardQDiqfU77GWz0DV
- L/kDBBfUD2jDqGn7tTv+Br97x5FKS88gkcUNYqdJaY2vbbKnW65ABzJ
-X-Developer-Key: i=mathieu.dubois-briand@bootlin.com; a=ed25519;
- pk=1PVTmzPXfKvDwcPUzG0aqdGoKZJA3b9s+3DqRlm0Lww=
-X-Last-TLS-Session-Version: TLSv1.3
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-1.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
-	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-327123-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FREEMAIL_TO(0.00)[kernel.org,nxp.com,pengutronix.de,gmail.com,foss.st.com,hisilicon.com,codeconstruct.com.au,google.com];
-	FORGED_SENDER(0.00)[mathieu.dubois-briand@bootlin.com,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[27];
-	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:Frank.Li@nxp.com,m:s.hauer@pengutronix.de,m:kernel@pengutronix.de,m:festevam@gmail.com,m:mcoquelin.stm32@gmail.com,m:alexandre.torgue@foss.st.com,m:xuwei5@hisilicon.com,m:andrew@codeconstruct.com.au,m:avifishman70@gmail.com,m:tmaimon77@gmail.com,m:tali.perry1@gmail.com,m:venture@google.com,m:yuenn@google.com,m:benjaminfair@google.com,m:thomas.petazzoni@bootlin.com,m:devicetree@vger.kernel.org,m:imx@lists.linux.dev,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:linux-stm32@st-md-mailman.stormreply.com,m:openbmc@lists.ozlabs.org,m:trini@konsulko.com,m:pbrobinson@gmail.com,m:mathieu.dubois-briand@bootlin.com,m:krzk@kernel.org,m:conor@kernel.org,m:mcoquelinstm32@gmail.com,m:taliperry1@gmail.com,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FREEMAIL_CC(0.00)[bootlin.com,vger.kernel.org,lists.linux.dev,lists.infradead.org,st-md-mailman.stormreply.com,lists.ozlabs.org,konsulko.com,gmail.com];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-327115-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[mathieu.dubois-briand@bootlin.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[bootlin.com:+];
-	ALIAS_RESOLVED(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:busanna.reddy@oss.qualcomm.com,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,bootlin.com:dkim,bootlin.com:email,bootlin.com:mid,bootlin.com:from_mime,vger.kernel.org:from_smtp]
+	ALIAS_RESOLVED(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCPT_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,smtp.kernel.org:mid,qualcomm.com:email,vger.kernel.org:from_smtp,sashiko.dev:url,lists.linux.dev:replyto]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: CEF8A75F608
+X-Rspamd-Queue-Id: 617DB75F7ED
 X-Rspamd-Action: no action
 
-U-Boot is defining its own device tree for this platform. Among all
-differences, a firmware node to enable communication with OP-TEE is
-added. Importing this node here will reduce these differences.
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [Low] Unnecessary `#address-cells` and `#size-cells` properties on a node=
+ without addressable children.
+--
 
-Signed-off-by: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
----
- arch/arm64/boot/dts/nuvoton/nuvoton-npcm845-evb.dts | 7 +++++++
- 1 file changed, 7 insertions(+)
+--- Patch [1]: [PATCH v9 01/14] dt-bindings: media: qcom,glymur-iris: Add g=
+lymur video codec ---
+commit 8ca344fa9395fcf1d13bd1ea93de8bee21a5c176
+Author: Vishnu Reddy <busanna.reddy@oss.qualcomm.com>
 
-diff --git a/arch/arm64/boot/dts/nuvoton/nuvoton-npcm845-evb.dts b/arch/arm64/boot/dts/nuvoton/nuvoton-npcm845-evb.dts
-index 5edf5d13342d..6be771e581df 100644
---- a/arch/arm64/boot/dts/nuvoton/nuvoton-npcm845-evb.dts
-+++ b/arch/arm64/boot/dts/nuvoton/nuvoton-npcm845-evb.dts
-@@ -26,6 +26,13 @@ refclk: refclk-25mhz {
- 		clock-frequency = <25000000>;
- 		#clock-cells = <0>;
- 	};
-+
-+	firmware {
-+		optee: optee {
-+			compatible = "linaro,optee-tz";
-+			method = "smc";
-+		};
-+	};
- };
- 
- &serial0 {
+dt-bindings: media: qcom,glymur-iris: Add glymur video codec
 
--- 
-2.47.3
+This commit adds the device tree binding for the Qualcomm Glymur Iris video
+codec. It introduces a new dual-core architecture requiring additional
+power domains and clocks, and updates the maxItems limits in the common
+venus schema to accommodate these changes.
 
+> diff --git a/Documentation/devicetree/bindings/media/qcom,glymur-iris.yam=
+l b/Documentation/devicetree/bindings/media/qcom,glymur-iris.yaml
+> new file mode 100644
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/qcom,glymur-iris.yaml
+> @@ -0,0 +1,255 @@
+[ ... ]
+> +  interconnect-names:
+> +    items:
+> +      - const: cpu-cfg
+> +      - const: video-mem
+> +
+> +  '#address-cells':
+> +    const: 2
+> +
+> +  '#size-cells':
+> +    const: 2
+
+[Severity: Low]
+Are these properties necessary here? The schema strictly enforces const: 2
+for #address-cells and #size-cells at the root node, but none of the child
+nodes (non-pixel, pixel, firmware) define a reg property, and the parent
+does not define a ranges property.=20
+
+Will this cause the DeviceTree compiler (dtc) to emit an=20
+avoid_unnecessary_addr_size warning when compiling device trees using this
+node?
+
+> +
+> +  non-pixel:
+> +    type: object
+[ ... ]
+> +        resets =3D <&gcc_video_axi0c_clk_ares>,
+> +                 <&gcc_video_axi0_clk_ares>,
+> +                 <&videocc_mvs0c_freerun_clk_ares>,
+> +                 <&videocc_mvs0_freerun_clk_ares>,
+> +                 <&gcc_video_axi1_clk_ares>,
+> +                 <&videocc_mvs1_freerun_clk_ares>;
+> +        reset-names =3D "core_bus",
+> +                      "vcodec0_bus",
+> +                      "core",
+> +                      "vcodec0_core",
+> +                      "vcodec1_bus",
+> +                      "vcodec1_core";
+> +
+> +        #address-cells =3D <2>;
+> +        #size-cells =3D <2>;
+
+[Severity: Low]
+Does the example need #address-cells and #size-cells? It demonstrates their
+use without any child nodes containing reg properties, which directly cause=
+s a
+dtc warning during dt_binding_check validation.
+
+> +
+> +        non-pixel {
+> +            iommus =3D <&apps_smmu 0x1940 0x0000>,
+> +                     <&apps_smmu 0x1944 0x0000>,
+> +                     <&apps_smmu 0x19e0 0x0000>;
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260715-glymur-v9-=
+0-8cf2cbe12a07@oss.qualcomm.com?part=3D1
 
