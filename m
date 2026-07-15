@@ -1,194 +1,333 @@
-Return-Path: <devicetree+bounces-326936-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-326940-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id s2StDlR5V2paOwEAu9opvQ
-	(envelope-from <devicetree+bounces-326936-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 14:13:08 +0200
+	id PR0sIkV4V2oLOwEAu9opvQ
+	(envelope-from <devicetree+bounces-326940-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 14:08:37 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9DDD175DF75
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 14:13:07 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 64CF375DED5
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 14:08:36 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=jUPtO4Tm;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326936-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-326936-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
+	dkim=pass header.d=ti.com header.s=proofpoint-05-2026 header.b="QLIPp/bc";
+	dkim=pass header.d=ti.com header.s=selector1 header.b=qeZeTWa0;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326940-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-326940-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=ti.com;
+	arc=reject ("cv is fail on i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 8FD023073423
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 12:07:34 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 173ED3022686
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 12:08:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73F504508F8;
-	Wed, 15 Jul 2026 12:07:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A852449EB8;
+	Wed, 15 Jul 2026 12:08:23 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from mx0b-0002e601.pphosted.com (mx0b-0002e601.pphosted.com [148.163.154.28])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8AE6448CE1
-	for <devicetree@vger.kernel.org>; Wed, 15 Jul 2026 12:07:28 +0000 (UTC)
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1784117251; cv=none; b=dPJcLdeou0utX/7H0vQPcGQf/2xOteYxeqaZ8tFnFKcBYymbdG6ws6pVREHyU/d+GdI3G4LGOlUZuJ2aEAWjglMA8wgmA2acCKjR6JjBO0cfcJZ/mo3W386o0GVuDx+bEE2a7d8z+I6go4/vLV7U65mPD5mboEwwZTjFZq3jmr4=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1784117251; c=relaxed/simple;
-	bh=f2Zj74TZ4DoqiACSYtc5w8cY4fNh79DTd3mLuz53jr8=;
-	h=From:In-Reply-To:MIME-Version:References:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=CXk66a0hUSoq9pq0osro0o3RB7h5N9jmdapiF/9hSfws+8iLd78DceCEtzyXyPRIb8FRFCvbgSqPPMiwPcs5I5Beo++kmXK5gzwfEgVXobmaGYEN757zLMUPl154Y6A9dLzg/nnndB/bEsPr/Tc+LVIRlwoIvuUsv6mI1BhuSMo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jUPtO4Tm; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DCD951F00AC4
-	for <devicetree@vger.kernel.org>; Wed, 15 Jul 2026 12:07:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1784117247;
-	bh=WKCD7udqW/dT/0NFTWMaszCBVogtz2n64C25G28PPzI=;
-	h=From:In-Reply-To:References:Date:Subject:To:Cc;
-	b=jUPtO4TmXWvKD6eVqarB6nND7C9CbCfqI4DZilWUuQsXs58IY2LKHAYW/9/UftPlG
-	 5NnY474P1UpxEq8iAuriDwq823SdNxpFYSDmYFwRa0+eJUditjoelUarTs/syRL1tW
-	 mDnk1MW5/W5GThHqnEiQMY5kG2nUKu+T/tFeK+0/ou6SZ0u+41PnpucAD8tvGaa3G4
-	 PUNVF2lQa2PNcMMjH9fYApkcUb1jSjkwpOs6TforYx5dKcyWPD35GnGgH9kV7tXRPO
-	 8cbXrrlltHhmsAFIiWULbWzrOucd6kDYcPfq+8KuqLE5qzNJVAy5+AOebFE0CltSmQ
-	 UBTeKSn9OFmmg==
-Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-39c7ce122c7so48979051fa.2
-        for <devicetree@vger.kernel.org>; Wed, 15 Jul 2026 05:07:27 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AHgh+RrojpgsD9TqitJVrHUG3Jrq3SKhm5OxNy3v+DUj/nU8AtM32wwUVdT+WmDirtZczZ1NURIkBpLOvElZ@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyn+iYwaS3lqprtqN5/Rk9L9IeFPXFTx98w8QpHc+dUkYbGJM0+
-	lTjGTKMYay+tv94uAQaDV+sKcHgpoBIjrIZfrC8dPlAFfS83yWkQvRm0vx51OIaf8fEMXwLgPQB
-	EqKVF/KlDun51x/5AuwhhtBse2eDC7p8gr4yORakmdQ==
-X-Received: by 2002:a05:6512:3ca1:b0:5ae:bb4b:9357 with SMTP id
- 2adb3069b0e04-5b159b76543mr1504606e87.27.1784117246567; Wed, 15 Jul 2026
- 05:07:26 -0700 (PDT)
-Received: from 969154062570 named unknown by gmailapi.google.com with
- HTTPREST; Wed, 15 Jul 2026 05:07:24 -0700
-Received: from 969154062570 named unknown by gmailapi.google.com with
- HTTPREST; Wed, 15 Jul 2026 05:07:24 -0700
-From: Bartosz Golaszewski <brgl@kernel.org>
-In-Reply-To: <20260703-block-as-nvmem-v8-4-98ae32bfc49a@oss.qualcomm.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 790E7446853;
+	Wed, 15 Jul 2026 12:08:16 +0000 (UTC)
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1784117302; cv=fail; b=C7VQ75MVm3IZvoczwKzOPUTZD89FpoaiuNyE9UVyH6lSK8udVP2SadBkj4BoF//eJoHKsIWxTge1nM5ASvA34VOd57VhuajrOLzCZo7XTQHZsonERKFkzkSBnvoPgamXt8g+gT8j2d44mPVtix68Wa/BaRlf2l2Dis8AbBWS3HM=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1784117302; c=relaxed/simple;
+	bh=0kZyiStKvkgLDaNsNmGfYKFCFJcO4lRwyq2lLsF3K7Q=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=cqQk1I6e6WKvpxVD2x+w2e2uUnDDhcpLFyvBGspWLkQyB/0YdIJM9yrbQJ4SmLXYwa9v6mlSUClvz14VJJLGIWPBl9k51c2Urg9ErttopVTYwuGnVE5RDno7bprRXjNje8Ea8PQqMPdYXVqjDjs0AKd4BU9dKlgAz6cAP8AmadM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (2048-bit key) header.d=ti.com header.i=@ti.com header.b=QLIPp/bc; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=qeZeTWa0; arc=fail smtp.client-ip=148.163.154.28
+Received: from pps.filterd (m0374955.ppops.net [127.0.0.1])
+	by mx0b-0002e601.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 66FBfe6i805750;
+	Wed, 15 Jul 2026 07:08:06 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; h=cc
+	:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=
+	proofpoint-05-2026; bh=d49O000VpZf89/gEzusdUOILIrMCPdNMwu/YDOST7
+	us=; b=QLIPp/bciWcB/GZUl0Ypzu+qt6bOssJ50NuNBpkfkSz0nh4KGA34ikSv7
+	7p3lL7rsSy8na2N5YfVJ6M+njDAOeSWGtfWXwAiJu8OKEiNV8da7MKugDt+3Vu0H
+	pKiPhO/z9vMkYLIE9QoEmYMn74ktAaV8D9JdlhzwrAZhy9gaf9FKUZZKCTlXILzQ
+	ejkyvNgxNpEKbYPUJ0ALtWA0lskVc9NKd68HO0nE1tdijA8RDE9bB5OFys3SC1Q2
+	01oLiM4JpN+HrqKgk7E0YbYkB2mRWblE3hxPL35IoodkvE2KKMGeqdgZXD71HeAZ
+	cbF1E0PFQojD6TKSJaf6li7Oasc0A==
+Received: from ph7pr06cu001.outbound.protection.outlook.com (mail-westus3azon11010003.outbound.protection.outlook.com [52.101.201.3])
+	by mx0b-0002e601.pphosted.com (PPS) with ESMTPS id 4fe9jb04hw-1
+	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
+	Wed, 15 Jul 2026 07:08:06 -0500 (CDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=PeThDML/fie3/NfC/5ktDF/oEEeVRmqtVQC2GCwyp0DcwXeT7lNNref8kuBkulH1ReVx+ThTTdhgc3fXWcELj+6OCIk/P/DIEp4T8czwtKJQURdtuWLT3OSLRFCRQ4x0hVNHRxnMgkFK7QrI2rDjzF/yM3Ft1y8lWswlDkFUm3K/qqe2iO6VpYDHCDFEXcTsCh1aZJJxiQImmfGHKbqUS4WEBlc5JEqztTYImcyiw9ID7Q6HoVgeiEcLtLeua/iW3pP3S3qR9BI5ReC7ot4CxA9AEO/jh55KyP9ZZ4+hMiyyB1n0QwoK9fPVH5QGsR2TOcI3s0md1IPrVeXvFJxt2w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=d49O000VpZf89/gEzusdUOILIrMCPdNMwu/YDOST7us=;
+ b=WNqBSFWiES9LDe8+Q68jdh+wd+Gz333DKkgJAkq97mcmbuwjd7I+pyShd2wXAt8Zb0mHvwi1Lo6IjItlBuW/J8aetINxVoobxrHO6gvZkqNLnoZ7YZ4rV5nQRNsW9XunMY5ex+hhwWE7owgJdzcCWYgIuL3USely1lLDdBozbW5zPfzz27Dkdzq2lmQ+oQZxHfdhuvoXv1OUsWnyft74Sx+A5qFVo+EnCvt92btRzufGIUbphvy73KiBhpiQZB+ezT5o3PnMAryt+USJxZvBfBDbBpaKnra4TkDbZ/RNAZVTq3hrao7zSpfduiFdkPWH+sSCkeoLF657SMdCgemggQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 198.47.21.194) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=ti.com;
+ dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=d49O000VpZf89/gEzusdUOILIrMCPdNMwu/YDOST7us=;
+ b=qeZeTWa03VDC/sRe1s1sQZ7leV4QbKMIeLbBUFjhbWV57vWoNFjmFCJ/eoTWqogyTMuGBqYSQN4gwhKIb3KOBDPO98t6Ke4CqIePo/aQ0DyVerASelxiMmdhMcO814wLRKuWc1RzDCMjsFR8mHROQC1Cqrq+iKqyF4pYTxZHTWI=
+Received: from CH0PR03CA0343.namprd03.prod.outlook.com (2603:10b6:610:11a::14)
+ by SABPR10MB997940.namprd10.prod.outlook.com (2603:10b6:806:4f0::24) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.202.18; Wed, 15 Jul
+ 2026 12:08:04 +0000
+Received: from CH3PEPF00000017.namprd21.prod.outlook.com
+ (2603:10b6:610:11a:cafe::53) by CH0PR03CA0343.outlook.office365.com
+ (2603:10b6:610:11a::14) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.223.12 via Frontend Transport; Wed,
+ 15 Jul 2026 12:08:04 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.194)
+ smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
+ action=none header.from=ti.com;
+Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
+ 198.47.21.194 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.21.194; helo=flwvzet200.ext.ti.com; pr=C
+Received: from flwvzet200.ext.ti.com (198.47.21.194) by
+ CH3PEPF00000017.mail.protection.outlook.com (10.167.244.122) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.245.3 via Frontend Transport; Wed, 15 Jul 2026 12:08:02 +0000
+Received: from DFLE207.ent.ti.com (10.64.6.65) by flwvzet200.ext.ti.com
+ (10.248.192.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.37; Wed, 15 Jul
+ 2026 07:07:45 -0500
+Received: from DFLE203.ent.ti.com (10.64.6.61) by DFLE207.ent.ti.com
+ (10.64.6.65) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.37; Wed, 15 Jul
+ 2026 07:07:45 -0500
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE203.ent.ti.com
+ (10.64.6.61) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.37 via Frontend
+ Transport; Wed, 15 Jul 2026 07:07:45 -0500
+Received: from [10.24.52.205] (a0512632.dhcp.ti.com [10.24.52.205])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 66FC7dlG2419369;
+	Wed, 15 Jul 2026 07:07:41 -0500
+Message-ID: <47b4916d-88c1-41e1-b035-2e3d9ee609b5@ti.com>
+Date: Wed, 15 Jul 2026 17:37:38 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260703-block-as-nvmem-v8-0-98ae32bfc49a@oss.qualcomm.com> <20260703-block-as-nvmem-v8-4-98ae32bfc49a@oss.qualcomm.com>
-Date: Wed, 15 Jul 2026 05:07:24 -0700
-X-Gmail-Original-Message-ID: <CAMRc=MdNehSRQT3MUs+QtbZsHcUCS8YjyZchTgHCVv-HaLQkeA@mail.gmail.com>
-X-Gm-Features: AUfX_mzq1KbXpXfl_bzC2i2_CZOvOZaRAVu5gjRfir9Gou3fViKyrxWRMFDDFs8
-Message-ID: <CAMRc=MdNehSRQT3MUs+QtbZsHcUCS8YjyZchTgHCVv-HaLQkeA@mail.gmail.com>
-Subject: Re: [PATCH v8 4/9] nvmem: layouts: Support fixed-layout as the nvmem
- device node itself
-To: Loic Poulain <loic.poulain@oss.qualcomm.com>
-Cc: linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	linux-block@vger.kernel.org, linux-wireless@vger.kernel.org, 
-	ath10k@lists.infradead.org, linux-bluetooth@vger.kernel.org, 
-	netdev@vger.kernel.org, daniel@makrotopia.org, Ulf Hansson <ulfh@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Jens Axboe <axboe@kernel.dk>, Johannes Berg <johannes@sipsolutions.net>, 
-	Jeff Johnson <jjohnson@kernel.org>, Bartosz Golaszewski <brgl@kernel.org>, 
-	Marcel Holtmann <marcel@holtmann.org>, Luiz Augusto von Dentz <luiz.dentz@gmail.com>, 
-	Balakrishna Godavarthi <quic_bgodavar@quicinc.com>, Rocky Liao <quic_rjliao@quicinc.com>, 
-	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Simon Horman <horms@kernel.org>, 
-	Srinivas Kandagatla <srini@kernel.org>, Andrew Lunn <andrew@lunn.ch>, 
-	Heiner Kallweit <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>, 
-	Saravana Kannan <saravanak@kernel.org>, Christian Marangi <ansuelsmth@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: ti: k3-am62l: Enable HDMI & DSI display
+To: Vignesh Raghavendra <vigneshr@ti.com>
+CC: <nm@ti.com>, <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <tomi.valkeinen@ideasonboard.com>,
+        <r-sharma3@ti.com>, <devarsht@ti.com>, <praneeth@ti.com>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20260513210942.692269-1-s-jain1@ti.com>
+ <178393005159.2885601.13711892620228139345.b4-review@b4>
+Content-Language: en-US
+From: Swamil Jain <s-jain1@ti.com>
+In-Reply-To: <178393005159.2885601.13711892620228139345.b4-review@b4>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CH3PEPF00000017:EE_|SABPR10MB997940:EE_
+X-MS-Office365-Filtering-Correlation-Id: b9c3c4b4-6c6a-4f8e-70e8-08dee269b83a
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|82310400026|1800799024|36860700016|376014|23010399003|3023799007|10067099003|22082099003|4143699003|56012099006|18002099003;
+X-Microsoft-Antispam-Message-Info:
+	jT33FtKha7MsXqaKcZzj7HbRUPgDp3NPLdcfHuWjDBhLi5zMcYDbtwYvaaEQKPzi76jJtilirngLR0L93U3d8QgoFI9COz40XQGD/10MA3/rdkB7wKJhKGZuyMZS6CvCP7dTBO1JGu9R0JywU9DPheP4NooQSc2969S8KNSP738IRslhKQbY9sbo5gH2O0sl+Dvl4l8cftfONaIxQQrzhzOSHSv9s9FehbLlCq0mZUs+Zx4E6g+qzaZtujfKelyqL/Y33TDziTh6CauGTWdqx5rhOk4O6aELIYIc3p7+Y8WSqlYdLYgEf9xz6XmRL2aEFudB2BaCYmROSllulXJR1fhJDw0b2XtlKf+upSrikmIKyabrFBqk47ROMA5PKnk+k+/U62atfvOLjqjel9qm53tMow4JT+6OhE7tGSFUw8Z0VHPv65QKHmbj/q0lLTDrxjgcRp4bCU7QiQ/EPoWyl908YuKkCSsnrsq8+PHwjQDP/AI8OUw4cvO65IoKke99bkgBKkw80ysPEHtS30kITqoK9mGpuJLZ3tGg8Zb1/k3yI4eUvpXmyHxNn9RcVLwZzOy2yegL+Ec3s7nszROxk5Lc7dd1w1uC+WG/yUVbCr1vIqmHsn1dwzIsUFa5xB2YqN+ub2IPU9+26Eia3dgcoffIbW4L6wWeVdvdY6ooLAwDF8WpwNdAXl+MJ7yys0Elf2SZPqe85KH29djxo2uvmw==
+X-Forefront-Antispam-Report:
+	CIP:198.47.21.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet200.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(82310400026)(1800799024)(36860700016)(376014)(23010399003)(3023799007)(10067099003)(22082099003)(4143699003)(56012099006)(18002099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	+Y27gHhBJ4QgT0USCU/edA2NRgdcNXM1fokXzW+p++WkQtzKCp7IGuPelJ+Jn62x2Aq0ktMrCmciDtSt0ax0ljXcY4EvUURbe6L6gvgUjZAcrLiRb49UHGyzo/t6IA8s7OyOPVS7eg5YpLoEylqe12ga63YVfgMN6QPf+0cH7Qg92a3AfF9G2jRJdEDwAI7XBThTLBffK1QJ5haNhhpWmyplvcra2IgJg6buxORWZrPBOx+rQqa7UG+u8xYf1fRfAs/XsGH5Q/J+P+96gE2IbVkKSYoMEL04FpiV2+10cWxRYhq34eDJD34CTfbiDfSu7YkU7tLNQSEQ+AWOvVir0vJdWIuQ2PmARrxzB/HcBRCoWceMMqifb0wAmtrl4nJQN45aj5ugICqdLNnpcLWktyrDl8l5v0bdvetwEUuxrto8PpuKbYlPZDrSioG3y58M
+X-Exchange-RoutingPolicyChecked:
+	Teg6KbIzkKslkP3RZ/KIPVL+q7i2K1OgUs8DM1l71jzup5EMTCIXsLc2GqeI+rQPImpGX6BmVLW6a8yCPLGdWz76i5LgbZY6C5cu1XuwcnM41XRxKdJ7Nh6uNuOsv1t4uWNW/9HQAEsJO8jVYkQCxh7Y/kKDL9tscsWrBI0Mxq+tPnuZm/YEwtLiKBGATkTiXOI9JU2+P4iRcvH7ElmF2kUkJ/5PFL8306UVJe1UZDWl54GbU9BcjGSfhmvRReLZJVnUEwd5so00Oga0epH4VpvChCSL3CZYBw78IPE/sTKXWz3wCanGyGk/AJ4UuxFipCUx7Eccmqjg3ztMwkA8Xw==
+X-OriginatorOrg: ti.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Jul 2026 12:08:02.2547
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: b9c3c4b4-6c6a-4f8e-70e8-08dee269b83a
+X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.194];Helo=[flwvzet200.ext.ti.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	CH3PEPF00000017.namprd21.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SABPR10MB997940
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNzE1MDEyMCBTYWx0ZWRfXwiVNpZ1OTXZ1
+ aqDGXJJg6gBnpoghrSHINLUweTEZ7IMQ29P3iIUct4DH5VMrjArXAZOH8vEM+iKD86orIe50H9R
+ C9K3y3kUwsmdjuHJD+WqO34l/3UlDmPVOduARNC3HVbpMCOUSQsAgt9WKVK7DT/++AKv4yJXO5K
+ CNDbOFiO4Ehx/glMTwB9X6CnYmfMUB1P8/B5MNyHBgueOsV/28pnneN2wDMkfOdI+sYR4dtpzPW
+ guJn1natcu7chqSg9j0wo9dtCfN2dbRLJEt5tzZfhHEM5jScHJMkzBAYoPv/AmPG1iOM8+95xnX
+ ZkVoWo/iNpT9CYbKqBErnKIB/dcL3kVNMuDFRbSdUFIQvEjYQ3AbZqg5qTTsEcs8L1SB/ZlEeGr
+ smfMDuF0CoPzYpgFwUujwRmwo0zwqlXTjZqBlTO8g58rAGFjYLRYDOlh+YmET5+EDpNywKqRbyP
+ m+0gxVexNph4cbkztlg==
+X-Proofpoint-Spam-Info: AW1haW4tMjYwNzE1MDEyMCBTYWx0ZWRfX0lX5kU1OD0KV
+ hhGHXd/JhhndyPc3Xp9bfFvpr7bOWSP78pOFfMg077wJCRhm+a/ny5akN1lYmVEXD2e14JHPSUc
+ jEx1D1lnEGNp3Pi3sBFzSn6NlrT0uAk=
+X-Proofpoint-GUID: uaJ1YUcgprUHH7mcrty2w1AcqWojWEJw
+X-Authority-Analysis: v=2.4 cv=ROqD2Yi+ c=1 sm=1 tr=0 ts=6a577826 cx=c_pps
+ a=LQDsqUhXq6x2TIKBD9Oruw==:117 a=iwqwCZQqcuTv3JOpYdM7/Q==:17
+ a=6eWqkTHjU83fiwn7nKZWdM+Sl24=:19 a=IkcTkHD0fZMA:10 a=RAioF0-LDSMA:10
+ a=V5UXEbMT0ywA:10 a=VkNPw1HP01LnGYTKEx00:22 a=Z8NIEmU8O1QQgoT56wFK:22
+ a=fPAWb5peG099m5CrUpKH:22 a=VwQbUJbxAAAA:8 a=sozttTNsAAAA:8
+ a=nIZuoBpWME8S4zVf_BkA:9 a=QEXdDO2ut3YA:10
+X-Proofpoint-ORIG-GUID: uaJ1YUcgprUHH7mcrty2w1AcqWojWEJw
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.134,FMLib:17.12.100.49
+ definitions=2026-07-15_02,2026-07-15_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ bulkscore=0 malwarescore=0 clxscore=1015 spamscore=0 adultscore=0
+ priorityscore=1501 phishscore=0 lowpriorityscore=0 impostorscore=0
+ suspectscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2606150000
+ definitions=main-2607150120
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+X-Spamd-Result: default: False [1.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	DMARC_POLICY_ALLOW(-0.50)[ti.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[ti.com:s=proofpoint-05-2026,ti.com:s=selector1];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[36];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-326936-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	TAGGED_FROM(0.00)[bounces-326940-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:loic.poulain@oss.qualcomm.com,m:linux-mmc@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-msm@vger.kernel.org,m:linux-block@vger.kernel.org,m:linux-wireless@vger.kernel.org,m:ath10k@lists.infradead.org,m:linux-bluetooth@vger.kernel.org,m:netdev@vger.kernel.org,m:daniel@makrotopia.org,m:ulfh@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:andersson@kernel.org,m:konradybcio@kernel.org,m:axboe@kernel.dk,m:johannes@sipsolutions.net,m:jjohnson@kernel.org,m:brgl@kernel.org,m:marcel@holtmann.org,m:luiz.dentz@gmail.com,m:quic_bgodavar@quicinc.com,m:quic_rjliao@quicinc.com,m:davem@davemloft.net,m:edumazet@google.com,m:kuba@kernel.org,m:pabeni@redhat.com,m:horms@kernel.org,m:srini@kernel.org,m:andrew@lunn.ch,m:hkallweit1@gmail.com,m:linux@armlinux.org.uk,m:saravanak@kernel.org,m:ansuelsmth@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:luizdentz@gmail.com,s:lists@lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:vigneshr@ti.com,m:nm@ti.com,m:kristo@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:tomi.valkeinen@ideasonboard.com,m:r-sharma3@ti.com,m:devarsht@ti.com,m:praneeth@ti.com,m:linux-arm-kernel@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[brgl@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,makrotopia.org,kernel.org,kernel.dk,sipsolutions.net,holtmann.org,gmail.com,quicinc.com,davemloft.net,google.com,redhat.com,lunn.ch,armlinux.org.uk];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,mail.gmail.com:mid,qualcomm.com:email];
+	FORGED_SENDER(0.00)[s-jain1@ti.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[brgl@kernel.org,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	RCVD_COUNT_TWELVE(0.00)[12];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[s-jain1@ti.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[ti.com:+];
 	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,ti.com:from_mime,ti.com:mid,ti.com:email,ti.com:dkim]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 9DDD175DF75
+X-Rspamd-Queue-Id: 64CF375DED5
 
-On Fri, 3 Jul 2026 15:45:17 +0200, Loic Poulain
-<loic.poulain@oss.qualcomm.com> said:
-> of_nvmem_layout_get_container() only looks for a child node named
-> "nvmem-layout" to locate the cell definitions. This does not cover
-> providers whose device tree node is itself the fixed-layout container,
-> such as an eMMC boot partition block device whose fwnode points directly
-> at a "fixed-layout" compatible partitions node.
->
-> When no "nvmem-layout" child is present, fall back to returning the nvmem
-> device node itself if it is compatible with "fixed-layout", so that its
-> cells are parsed by nvmem_add_cells_from_fixed_layout().
->
-> Signed-off-by: Loic Poulain <loic.poulain@oss.qualcomm.com>
-> ---
->  drivers/nvmem/layouts.c | 13 ++++++++++++-
->  1 file changed, 12 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/nvmem/layouts.c b/drivers/nvmem/layouts.c
-> index b90584e1b99eab4217cbe7ec48373e18a7caf0dc..efa631ce7283bdd6c8ecda75915911b5e3a33c99 100644
-> --- a/drivers/nvmem/layouts.c
-> +++ b/drivers/nvmem/layouts.c
-> @@ -167,7 +167,18 @@ static int nvmem_layout_bus_populate(struct nvmem_device *nvmem,
->
->  struct device_node *of_nvmem_layout_get_container(struct nvmem_device *nvmem)
->  {
-> -	return of_get_child_by_name(nvmem->dev.of_node, "nvmem-layout");
-> +	struct device_node *np;
-> +
-> +	/* Search for nvmem-layout child */
-> +	np = of_get_child_by_name(nvmem->dev.of_node, "nvmem-layout");
-> +	if (np)
-> +		return np;
-> +
-> +	/* The nvmem of_node is itself a fixed-layout node */
-> +	if (of_device_is_compatible(nvmem->dev.of_node, "fixed-layout"))
-> +		return of_node_get(nvmem->dev.of_node);
-> +
-> +	return NULL;
->  }
->  EXPORT_SYMBOL_GPL(of_nvmem_layout_get_container);
->
->
-> --
-> 2.34.1
->
->
 
-I have it on my TODO list to convert nvmem layouts to be fwnode-agnostic. While
-I'm not sure when I'll have the time to look into it, I think it makes sense
-to not introduce any new OF-specific interfaces. Can you make it into:
 
-  struct fwnode_handle *nvmem_layout_get_container_node(struct
-nvmem_device *nvmem);
+On 7/13/26 13:37, Vignesh Raghavendra wrote:
+> On Thu, 14 May 2026 02:39:42 +0530, Swamil Jain <s-jain1@ti.com> wrote:
+>> Enable DSS, DSI and HDMI related nodes and pinmuxes.
+>>
+> 
+> Don't see any Pinmux node added? did you miss them?
 
-by replacing of_get_child_by_name() with fwnode_get_name_child_node() and
-of_device_is_compatible() with device_is_compatible()? That would mean less
-churn in the future.
+Added in v2: 
+https://lore.kernel.org/all/20260528133529.3476499-1-s-jain1@ti.com/
 
-Other than that, it looks good.
+> Also, DSI still remains disabled?
+> 
 
-Bart
+Keeping HDMI out-of-box, dsi can be enabled using panel overlays.
+
+>>
+>>
+>> diff --git a/arch/arm64/boot/dts/ti/k3-am62l-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62l-main.dtsi
+>> index 80615ca1e01a..1d255c9138db 100644
+>> --- a/arch/arm64/boot/dts/ti/k3-am62l-main.dtsi
+>> +++ b/arch/arm64/boot/dts/ti/k3-am62l-main.dtsi
+>> @@ -584,4 +584,51 @@ scmi_shmem: sram@0 {
+>>   			bootph-all;
+>>   		};
+>>   	};
+>> +
+>> +	dss: dss@30200000 {
+> 
+> New nodes need to added in sorted order as per their addresses in this
+> dtsi file.
+
+Yeah, sure.
+
+> 
+>> [ ... skip 17 lines ... ]
+>> +		};
+>> +	};
+>> +
+>> +	dphy_tx0: phy@301c0000 {
+>> +		compatible = "ti,j721e-dphy";
+>> +		reg = <0x0 0x301c0000 0x0 0x1000>;
+> 
+> reg = <0x00 0x301c0000 0x00 0x1000>;
+> 
+
+Ack.
+
+>> +		clocks = <&scmi_clk 348>, <&scmi_clk 343>;
+>> +		clock-names = "psm", "pll_ref";
+>> +		#phy-cells = <0>;
+>> +		power-domains = <&scmi_pds 86>;
+>> +		assigned-clocks = <&scmi_clk 343>;
+>> +		assigned-clock-parents = <&scmi_clk 341>;
+>> +		assigned-clock-rates = <25000000>;
+>> +		status = "disabled";
+>> +	};
+>> +
+>> +	dsi0: dsi@30500000 {
+>> +		compatible = "ti,j721e-dsi";
+>> +		reg = <0x0 0x30500000 0x0 0x100000>, <0x0 0x30270000 0x0 0x100>;
+> 
+> reg = <0x00 0x30500000 0x00 0x100000>,
+> 		      <0x00 0x30270000 0x00 0x100>;
+> 
+
+Ack.
+
+>> +		clocks = <&scmi_clk 155>, <&scmi_clk 158>;
+>> +		clock-names = "dsi_p_clk", "dsi_sys_clk";
+>> +		power-domains = <&scmi_pds 38>;
+>> +		interrupt-parent = <&gic500>;
+> 
+> GIC is implied, drop.
+> 
+
+Will drop in next rev.
+
+>> +		interrupts = <GIC_SPI 57 IRQ_TYPE_LEVEL_HIGH>;
+>> +		phys = <&dphy_tx0>;
+>> +		phy-names = "dphy";
+>> +		status = "disabled";
+> 
+> Don't you need dsi*_ports ?
+> 
+>>
+
+Yes, Udit pointed in v2: 
+https://lore.kernel.org/all/cb4c1b80-40c0-4e63-bfa8-65a68c577999@ti.com/
+Will add ports info. in next rev.
+
+>> diff --git a/arch/arm64/boot/dts/ti/k3-am62l3-evm.dts b/arch/arm64/boot/dts/ti/k3-am62l3-evm.dts
+>> index a1af4571a815..7462921e2180 100644
+>> --- a/arch/arm64/boot/dts/ti/k3-am62l3-evm.dts
+>> +++ b/arch/arm64/boot/dts/ti/k3-am62l3-evm.dts
+>> @@ -192,6 +204,36 @@ exp2: gpio@23 {
+>>   		bootph-all;
+>>   	};
+>>   
+>> +	sii9022: bridge-hdmi@3b {
+>> +		compatible = "sil,sii9022";
+>> +		reg = <0x3b>;
+>> +		interrupt-parent = <&exp1>;
+> 
+> Is there a reset line to the chip, I see GPIO_HDMI_RSTn in exp2 GPIO
+> expander, does that need to be hooked up somewhere?
+> 
+
+It is optional, HDMI output works fine without reset-gpios.
+
+Regards,
+Swamil.
 
