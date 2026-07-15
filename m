@@ -1,210 +1,259 @@
-Return-Path: <devicetree+bounces-326725-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-326731-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id lWa6A849V2rkHwEAu9opvQ
-	(envelope-from <devicetree+bounces-326725-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 09:59:10 +0200
+	id 0axzDE0+V2oTIAEAu9opvQ
+	(envelope-from <devicetree+bounces-326731-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 10:01:17 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 570C475BAC7
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 09:59:09 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id E298475BB18
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 10:01:11 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=SZ30F6qK;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326725-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-326725-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=S5VZ30UP;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326731-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-326731-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=gmail.com;
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A3AF93012272
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 07:55:33 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 8F776308B37E
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 07:58:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C2782F39B5;
-	Wed, 15 Jul 2026 07:55:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41C713C818D;
+	Wed, 15 Jul 2026 07:58:02 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej2-f1.google.com (mail-ej2-f1.google.com [74.125.228.129])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12D4D2F7EFC
-	for <devicetree@vger.kernel.org>; Wed, 15 Jul 2026 07:55:31 +0000 (UTC)
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1784102133; cv=none; b=KKYitZDrVqSqeyB/modEd/Ii/40AsO/OvFIV80F8xcHxto7fItAk7UTwuJfHlbEYflkq7Pevk30qJKxqanynzKRlv/ySldvN0tf5UyyekjtXM6YrrGTSNmzTXxh33Tt6Su5m9ElUcN6xc8YQyfJYRzcZc1166kdt/g0WBYFTNG4=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1784102133; c=relaxed/simple;
-	bh=0w0zSlvrcQuSTr/AmOiIs1Y4bOFDxfyzhUgdeHb/gGs=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=Z7BQ/D7JhRZty0TpJhY4tiz7SR5mGfbVkyVvi221dLPmOsy8nfBBvt7nEHa/LMljGa0qGFhUdzujzu9QOyVXhMVdYhQTiNq+cx1yU+l/9cjbmupqCFZZGq8Mbb6jPeZZcUgkB74vrNUJ5P+9oidknMb5J79r4LvJf5+uiGbkyI4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SZ30F6qK; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 75E061F000E9;
-	Wed, 15 Jul 2026 07:55:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1784102131;
-	bh=pRkt9oxpTYa/kMADIATZRJyFgtinUWhIZXYxw+8mn2k=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=SZ30F6qKnMF0RZQ87IcX6j7ulbOaxFVFZgONhk8CHgrvRUK7X4IZr+gyM1OgB2o92
-	 cDE87LCKgEWNJDs5+NbzaPrvPypXI8ghtxhrhOHe9vOnqKVlXgYvLpbNWphXMI0Kph
-	 b3/faF8N/ilgQ5fWH0dWlO5WHSX1kSXYUdIRBoMHd6GXbkKdkrGxmtSVXyPKpQ1SaD
-	 k6QpqqefKzViMZ8h9DIR3puqEd05dhHgVG5ExNQO0cPN+WxFWWAyXaTZgEAMoCilm6
-	 t0Dgxd4HmOP7HlANmu939Esj4OFnEtpmPp7bDez+zDkqoW7EZjhSKJUl7pwAe2f688
-	 13sMRfmQxEjPw==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v4 3/4] arm64: dts: qcom: Add PMIC thermal support for
- Shikra CQ2390M SoM platform
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Jishnu Prakash" <jishnu.prakash@oss.qualcomm.com>
-Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20260715-shikra_adc_support-v4-3-5e07b6d21429@oss.qualcomm.com>
-References: <20260715-shikra_adc_support-v4-0-5e07b6d21429@oss.qualcomm.com>
- <20260715-shikra_adc_support-v4-3-5e07b6d21429@oss.qualcomm.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Wed, 15 Jul 2026 07:55:31 +0000
-Message-Id: <20260715075531.75E061F000E9@smtp.kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9742D3C65FD
+	for <devicetree@vger.kernel.org>; Wed, 15 Jul 2026 07:58:00 +0000 (UTC)
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1784102282; cv=pass; b=TojQ6oShUQX1XNzCItY2cVT0afufXgkFhtRM41MSZkQK9WTNtBHKQu3ZDHWFHxMGuqtsjoRfS3c9/L0CLFN3FAVhfXrDd5vWj3gRhHPeupfevrHP4/IeXoat55nd9KAmmkJ7L6BuhwgWKN67E3kscnq1OJbFhtB28nBzeaa3jWw=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1784102282; c=relaxed/simple;
+	bh=4EV96JQm9dcVbfWRPQAuM7LuZkxzfemPOuDAZdxRrMw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=LmmEg2YmN/doRtXlmwSlIU+92XlzRKPUaALMj/lGbVQDg3bIHbpQ82okctX1+7k2Qx32ZocnFwbSQoc3M/5ZJsSohIgbAfvvzCm8XOJ6Tq5tFYd87bKFdCWMc63COwNVtcAhHqznS/gmihliDpTtR3Zn3Vb4gadBEz7PldZTceA=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=S5VZ30UP; arc=pass smtp.client-ip=74.125.228.129
+Received: by mail-ej2-f1.google.com with SMTP id a640c23a62f3a-c15e0279316so85336066b.0
+        for <devicetree@vger.kernel.org>; Wed, 15 Jul 2026 00:58:00 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1784102279; cv=none;
+        d=google.com; s=arc-20260327;
+        b=MVJUH9P31/JhWFSY+RWe1aLFNt2lGYVwzgzDSlnN+U2YnjdGt66dAC7ZX5KdliSEbg
+         ZroFPy4Z23XTR+eVCe1bqfHWJlsN9JPQ0p2qUlV5o6dcrPG3Dhf8tByfqPsUxLpuvIKu
+         oY3JP2MvbMAmpahb4vJ38AloLcKIHlbzxOPWx+LQbrlDvYQW6POgHYPtR8wv1tUpvWUx
+         asea9/hhErwwd4gVShvO9jWJsks6ycNL95qgkeOIaM2mdH0dRFoy8zdxZ9dcYKXz52C6
+         PkALtpjQHbdJM894bO4XYYPgscC6akB8gnJmFjFDqRb2SvNshis8xdNffhwTJRFFrl37
+         tgbw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=wJj9Wc7Rwy3gTAMQK9yQ4wfZtHEgVyepO/YIt/wDURE=;
+        fh=WNyKI07wX410TBODGdS83ZdJgrQjAwj+pNXqCP60Yvg=;
+        b=H7tpM+wMVSNKSxdnEKSkbj8pvlm6w3ytEYbGsyBFlMlpvmDpiEfuwWZJ1QTi/V1Nbp
+         1lFGzd9AKCfULT8o9J7YyyCYbga0e5UWzE5CQVa8IKPN0OHVUWLaGv3tuaAf/mf1i3uo
+         Lo4QD4yMr/7kTnMggf6BUvEaJ5C/mKXxT9oOQL+Me/c9XSD/401OflVvcmclDarq1CVi
+         10uOuaiq/ioHx66tv6lk+IvBYYonVyfJLgmx0btZZktjELst3M/Abpr1KuwBvExlocCl
+         FiC9VTMRO/p+H7WAAV/uMK9uT0FvYI6gFQBtBOgp/6yZ8oJIfwLCiQC94xhGaYtbDf9D
+         rsKg==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1784102279; x=1784707079; darn=vger.kernel.org;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=wJj9Wc7Rwy3gTAMQK9yQ4wfZtHEgVyepO/YIt/wDURE=;
+        b=S5VZ30UPxaQOYzUrF3XdoqpygIlSrwBPpYFNpJMZnpITfpEW/J5pSNZkmY670sMQ0F
+         Yu+hxWsPMwnXklkamy7Cu7nZwKvOoTkJQo+k0BFn7i3HMoYrFqhfhXoUnFms5Ago141C
+         HT7CL2baNN4o1xHMTgbEfCNdy9jbC+H+RZsodCqmxP9ED65um8AP/JX8YqZVZeCsYJHM
+         6zblf2fG//PqTFOwBoBnFiq1zrre8SGhU51mYzXWuUg4egpSvidTTIY36YLaaYFZMiBo
+         wDdsod+SkbPqSQlk7E0h/S8JJw/+kF48AddhTsGfWJPaDcU1HJn7uzMOtasaKKsbLXAQ
+         gUcQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1784102279; x=1784707079;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=wJj9Wc7Rwy3gTAMQK9yQ4wfZtHEgVyepO/YIt/wDURE=;
+        b=Q7SxD0b/xUNOj7YhPeqjJv+qp+xSecNVHIBZRX6lSB3Prz8TAgWE8WsDBARoptLTRF
+         E3Q+drqKTk0RXxie+NIse2LxdO+qciGX3wM4y1yKoOad2Tqmo0WLrUHtLXz+xX4HKYuw
+         qraF/4P2OkfEz9FZ6bTVEO/YHM5hboWdS0j2xdmTh/PsM07ZR8kSaRQYql5fPJOHE2dH
+         e40+fqTrI7aoZ2lMIEhEIuJYrvr4Q5ZbXc3TXV4v6mMi7VCDzHODQKhW5ElNRq4D/anM
+         jtvPyf2HphMLEUWod/bwASCfDqG3RIiSczIbM6qCt0Si2B1oPnMutffRZ6xe6exTeqrq
+         TfSQ==
+X-Forwarded-Encrypted: i=1; AHgh+RpHHk8v0IZPZp2hWxOriB5LK7ZJKVa70Im6Rus+R9XVIeD6GmIrDGsjF55M6jTngcuGz7ccSZ8yxE01@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx0ZjsjpPV6GR5Qil6LGs/flHQPjRRXpkncAohC+hDYY/t0ZgF2
+	1LpGSvb4Zte+tCVT6j9npAeQ/ned3RsoVDvEYwQUrJSHbEl4GYzDGzmZeEA0GOVgoULm01z3JfX
+	AzUz5veaoYh6nIFMP8GgCaPzW4Qi/6zs=
+X-Gm-Gg: AfdE7cnlS9BN3wGBlgvq3yj9k3JcRHvSOzLoK6hE3pVGmiDMklzYUDN+DlVv6VutUFX
+	gL7W22XjiOCaRtBUmWQ4FYs9jVpyPyn792NBRfN/ShLd+xMbJ7oUT0gYqPgvbenQJUn7hFa/tyQ
+	eQK/TXCx++2oGOAm7phq2ae7MOzMcZtqANP7TfqxpVqF5TdEYCqDGAty+NmtjiGfl5/XUlL4bpT
+	uSIWrhAqnhLZ4Vc6DwnL7UCljbYNo/576ygxB9FTKse4FG2NhU0Ku26DMGIobETBegeg8pjdGGs
+	FCVODZGjAFSRoZvPd7xCKw==
+X-Received: by 2002:a17:906:9fce:b0:c16:11b2:ae9b with SMTP id
+ a640c23a62f3a-c161e98c3ecmr826018266b.17.1784102278649; Wed, 15 Jul 2026
+ 00:57:58 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+References: <20260714191341.690906-1-coiaprant@gmail.com> <20260714191341.690906-8-coiaprant@gmail.com>
+ <4823c1d9-51d9-45fa-a96c-f2caab1cb29e@bootlin.com>
+In-Reply-To: <4823c1d9-51d9-45fa-a96c-f2caab1cb29e@bootlin.com>
+From: Coia Prant <coiaprant@gmail.com>
+Date: Wed, 15 Jul 2026 15:57:47 +0800
+X-Gm-Features: AUfX_mz1XbF_hj8SltUaP6VQCiYz735WcPjxUivwpVyatqEOGiO47eZKOAvcnaA
+Message-ID: <CALj3r0h4cFd-tp9-UVxihL9-a1W7_4nvnKoXW_cP5WECKc66Hw@mail.gmail.com>
+Subject: Re: [RFC PATCH 07/10] net: pcs: xpcs: add Rockchip RK3568 platform
+ glue driver
+To: Maxime Chevallier <maxime.chevallier@bootlin.com>
+Cc: kuba@kernel.org, davem@davemloft.net, edumazet@google.com, 
+	pabeni@redhat.com, andrew+netdev@lunn.ch, robh@kernel.org, krzk+dt@kernel.org, 
+	heiko@sntech.de, netdev@vger.kernel.org, linux-rockchip@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-phy@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:maxime.chevallier@bootlin.com,m:kuba@kernel.org,m:davem@davemloft.net,m:edumazet@google.com,m:pabeni@redhat.com,m:andrew+netdev@lunn.ch,m:robh@kernel.org,m:krzk+dt@kernel.org,m:heiko@sntech.de,m:netdev@vger.kernel.org,m:linux-rockchip@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-phy@lists.infradead.org,m:andrew@lunn.ch,m:krzk@kernel.org,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-326725-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:jishnu.prakash@oss.qualcomm.com,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FORGED_SENDER(0.00)[coiaprant@gmail.com,devicetree@vger.kernel.org];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	MIME_TRACE(0.00)[0:+];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	TAGGED_FROM(0.00)[bounces-326731-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCPT_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[coiaprant@gmail.com,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	RSPAMD_EMAILBL_FAIL(0.00)[coiaprant@gmail.com:query timed out];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,lists.linux.dev:replyto,smtp.kernel.org:mid,qualcomm.com:email,sashiko.dev:url,vger.kernel.org:from_smtp]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,radxa.com:url,bootlin.com:email,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 570C475BAC7
+X-Rspamd-Queue-Id: E298475BB18
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
-s) to consider:
-- [High] Missing `polling-delay` in thermal zones using `generic-adc-therma=
-l` renders thermal mitigation non-functional.
-- [Medium] Mismatch between ADC channel definitions and pinctrl configurati=
-ons causes bogus sensor readings.
---
+Maxime Chevallier <maxime.chevallier@bootlin.com> =E4=BA=8E2026=E5=B9=B47=
+=E6=9C=8815=E6=97=A5=E5=91=A8=E4=B8=89 15:43=E5=86=99=E9=81=93=EF=BC=9A
+>
+> Hi,
+>
+> On 7/14/26 21:08, Coia Prant wrote:
+> > The RK3568 SoC integrates a Synopsys DesignWare XPCS that is accessed
+> > via APB3 memory-mapped registers.
+> > This driver provides the glue logic to make the XPCS accessible to
+> > the generic pcs-xpcs core.
+> >
+> > The XPCS block contains four MII ports (0..3), each of which can be
+> > routed to GMAC0 or GMAC1 via the pcs-handle property in the MAC node.
+> > The hardware maps these ports to different MMDs:
+> >   - port 0: MMD 7 (ROCKCHIP_MMD_MII)
+> >   - port 1: MMD 2 (ROCKCHIP_MMD_MII1)
+> >   - port 2: MMD 3 (ROCKCHIP_MMD_MII2)
+> >   - port 3: MMD 4 (ROCKCHIP_MMD_MII3)
+> >
+> > This driver creates a virtual MDIO bus that translates MDIO operations
+> > to APB3 register accesses, with proper address remapping for each port.
+> > The generic xpcs driver then creates a phylink_pcs instance on top of
+> > this bus, allowing the MAC to use the PCS via the standard phylink API.
+> >
+> > Link: https://dl.radxa.com/rock3/docs/hw/datasheet/Rockchip%20RK3568%20=
+TRM%20Part2%20V1.1-20210301.pdf (Page 2078)
+> > Signed-off-by: Coia Prant <coiaprant@gmail.com>
+>
+> [...]
+>
+> > +static int xpcs_rk_probe(struct platform_device *pdev)
+> > +{
+> > +     struct dw_xpcs_rk *pxpcs;
+> > +     int ret;
+> > +
+> > +     pxpcs =3D xpcs_rk_create_data(pdev);
+> > +     if (IS_ERR(pxpcs))
+> > +             return PTR_ERR(pxpcs);
+> > +
+> > +     /*
+> > +      * The XPCS may be attached to a power domain (e.g. PD_PIPE). The=
+ domain
+> > +      * must be powered on before any register access, otherwise the S=
+oC will
+> > +      * trigger a synchronous external abort (SError).
+> > +      *
+> > +      * Accessing the XPCS registers also requires a TX clock from the=
+ SerDes,
+> > +      * which is needed for the soft reset.
+> > +      */
+> > +     ret =3D xpcs_rk_serdes_phy_init(pxpcs);
+> > +     if (ret)
+> > +             return ret;
+> > +
+> > +     ret =3D xpcs_rk_serdes_phy_poweron(pxpcs);
+> > +     if (ret)
+> > +             return ret;
+> >
+> There are 2 unusual things here.
+>
+> The first one is that you manage the serdes phy from the PCS driver, usua=
+lly it's
+> the MAC driver doing so. In stmmac, we have the serdes_poweron and serdes=
+_poweroff
+> callbacks to hook into for Serdes control.
+>
+> The second thing is that you're setting the serdes ON at probe time, ther=
+e's no
+> dynamic control of it. Usually we try to only power this on at admin-up t=
+ime.
+>
+> Can you explain the rationale behind controlling the serdes here directly=
+, and not
+> from the MAC driver ? I don't see any mention of that in the commit log, =
+and I'm not
+> convinced this is the correct approach.
+>
+> Maxime
 
---- Patch [3]: [PATCH v4 3/4] arm64: dts: qcom: Add PMIC thermal support fo=
-r Shikra CQ2390M SoM platform ---
-commit 0bee643f0fa64e35671928d7a4baae1362c3d049
-Author: Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>
+Hi Maxime,
 
-arm64: dts: qcom: Add PMIC thermal support for Shikra CQ2390M SoM platform
+Thanks for the review.
 
-This commit adds ADC channels for pa, quiet, and msm thermistors along with
-their ADC thermal bridge nodes. It also configures thermal zones for PMIC
-thermal mitigation on the Shikra CQ2390M SoM platform.
+This is intentional. The SerDes is attached to the XPCS node because
+on RK3568, a single SerDes serves all four XPCS MII ports in QSGMII
+mode. If we managed it from dwmac-rk, we would need complex
+refcounting across multiple MAC instances. Keeping it at the XPCS
+level simplifies the design and prepares for future QSGMII support.
 
-> diff --git a/arch/arm64/boot/dts/qcom/shikra-cqm-som.dtsi b/arch/arm64/bo=
-ot/dts/qcom/shikra-cqm-som.dtsi
-> index dc3861489f64d..139d0ad0b1ab2 100644
-> --- a/arch/arm64/boot/dts/qcom/shikra-cqm-som.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/shikra-cqm-som.dtsi
+The probe-time power-on is a one-time initialization (mode selection),
+not a runtime power toggle. The actual power is controlled by the
+PD_PIPE domain via PM runtime. Also, phy_power_on() on this PHY is
+effectively a no-op; only phy_init() is required.
 
-[ ... ]
+I considered the stmmac serdes_poweron/serdes_poweroff callbacks, but
+they do not handle shared SerDes well. I am happy to rework if the
+community prefers otherwise, but this approach seems cleaner for
+multi-port setups.
 
-> +	thermal-zones {
-> +		sys-1-thermal {
-> +			polling-delay-passive =3D <2000>;
-> +			thermal-sensors =3D <&pa_therm_bridge>;
-
-[Severity: High]
-Does this thermal zone require a polling-delay property to function correct=
-ly?
-
-The generic-adc-thermal driver relies entirely on software polling by the
-thermal core since it doesn't support hardware temperature interrupts. Beca=
-use
-the trips defined below are only "hot" and not for passive cooling, passive
-cooling is never engaged.
-
-Without a polling-delay property, the core defaults to 0 and might never
-schedule the delayed work to read the ADC, effectively disabling thermal
-mitigation.
-
-> +
-> +			trips {
-> +				active-config0 {
-> +					temperature =3D <80000>;
-> +					hysteresis =3D <2000>;
-> +					type =3D "hot";
-> +				};
-> +			};
-> +		};
-
-[ ... ]
-
-> +&pm4125_adc {
-> +	pinctrl-0 =3D <&pm4125_adc_gpio5_default>, <&pm4125_adc_gpio6_default>;
-> +	pinctrl-names =3D "default";
-> +
-> +	channel@4d {
-> +		reg =3D <ADC5_AMUX_THM1_100K_PU>;
-> +		label =3D "pa_therm";
-
-[ ... ]
-
-> +	channel@54 {
-> +		reg =3D <ADC5_GPIO3_100K_PU>;
-> +		label =3D "chgr_skin";
-> +		qcom,ratiometric;
-> +		qcom,hw-settle-time =3D <200>;
-> +		qcom,pre-scaling =3D <1 1>;
-> +	};
-> +
-> +	channel@55 {
-> +		reg =3D <ADC5_GPIO4_100K_PU>;
-> +		label =3D "gnss_therm";
-
-[Severity: Medium]
-Is there a mismatch between the pinctrl configuration and the ADC channels
-being added here?
-
-The pinctrl property for the ADC node configures gpio5 and gpio6 for ADC us=
-e,
-but these new channels are mapped to ADC5_GPIO3 and ADC5_GPIO4.
-
-Will these channels read from unconfigured pins and produce incorrect
-temperature readings?
-
-> +		qcom,ratiometric;
-> +		qcom,hw-settle-time =3D <200>;
-> +		qcom,pre-scaling =3D <1 1>;
-> +	};
->  };
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260715-shikra_adc=
-_support-v4-0-5e07b6d21429@oss.qualcomm.com?part=3D3
+Thanks,
+Coia
 
