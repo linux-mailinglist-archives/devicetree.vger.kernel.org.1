@@ -1,79 +1,79 @@
-Return-Path: <devicetree+bounces-326657-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-326658-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id Ps91BUcoV2qJGQEAu9opvQ
-	(envelope-from <devicetree+bounces-326657-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 08:27:19 +0200
+	id ex1gLQQoV2p8GQEAu9opvQ
+	(envelope-from <devicetree+bounces-326658-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 08:26:12 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7676175B0BB
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 08:27:18 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD0E275B09A
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 08:26:11 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amarulasolutions.com header.s=google header.b=bjLuXSet;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326657-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-326657-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=amarulasolutions.com header.s=google header.b=NiPRI2m+;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326658-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-326658-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=none) header.from=amarulasolutions.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 4ABC830D627C
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 06:23:23 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 916093037AEA
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 06:23:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32B73339B3D;
-	Wed, 15 Jul 2026 06:22:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63CF933893D;
+	Wed, 15 Jul 2026 06:22:36 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
+Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A249A332909
-	for <devicetree@vger.kernel.org>; Wed, 15 Jul 2026 06:22:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2CF531B130
+	for <devicetree@vger.kernel.org>; Wed, 15 Jul 2026 06:22:34 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1784096554; cv=none; b=SVQsM+7CT9CMUkq7FIb+YYb1IX8aOm8ERHIqXuQ/ATpmFiLgFwC4XBpa72Sda5mAV+sgycc2tAI0qh2U29qWsdnueljzpiJvkjVsAxozCKNpf9NLvYHoi57wZmyB2u1vBgASG2Q9La/ah0rlIvgteRXS0s8354rmkNHtY/R39mM=
+	t=1784096556; cv=none; b=BwwlVu0evumPDFzo6Cx0QcFznEfqhHDIf+Hi5CYgNaprfsBQ9+5rUpuNPGJ1FJA1MIBlKFsP3pri8o252eewGTs2czWsn72uef491OwTDbhLAJD5cTkgRwmpr+Q7kZ4fcQjIJiy/QwH9eYFWkzq4OO4z691o/4VVRJJyFD1v/iM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1784096554; c=relaxed/simple;
-	bh=QGlJqg03ZdMuDaIsMrA23hhc5s89rjWq4ym3XRlGfDY=;
+	s=arc-20240116; t=1784096556; c=relaxed/simple;
+	bh=rnWLEFiDlBBvcqgAYzjKZ4XFL5fis/NEoP1Gp9rYwhI=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=ealM1mY/YAytooPVMdorhNAuCr8M2FQoa+BsFQYG/mqF2LF+a+ZB8QYalKSj+RgPDrqX7VGeOWr1KZw1266Qk8DOqPAIMl/AusNv60gcWZzJDSke8jRx66tqKmdHpb4Q2ro8GBnr0NA8coGhzpqj7dumL92OZN3ovovPum3xPCU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com; spf=pass smtp.mailfrom=amarulasolutions.com; dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b=bjLuXSet; arc=none smtp.client-ip=209.85.218.41
-Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-c15bf399d3bso219315766b.2
-        for <devicetree@vger.kernel.org>; Tue, 14 Jul 2026 23:22:32 -0700 (PDT)
+	 MIME-Version; b=pQRXYqXzUUkvvPnXFWFURuPvNKHXnUIbhKSNKplTWMH1PQz9MF7abi/JQfx0Bmby5UpH0drgWmcmon6WbDJAXnO8uc2AJBzY4tfZ04AsxUCFehBVOVBsKJFwctWiZZ2T4xhcqhuuWPyi87Apg5aqqO0UCAy+WBGnvCdukUY05aA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com; spf=pass smtp.mailfrom=amarulasolutions.com; dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b=NiPRI2m+; arc=none smtp.client-ip=209.85.208.49
+Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-69c7ab350e9so5080195a12.0
+        for <devicetree@vger.kernel.org>; Tue, 14 Jul 2026 23:22:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google; t=1784096551; x=1784701351; darn=vger.kernel.org;
+        d=amarulasolutions.com; s=google; t=1784096553; x=1784701353; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=Y9eicy7qFkVmMZW611/qMDh6GaEBG59Bdrl7IT5yIvE=;
-        b=bjLuXSetGv7LWUeXH+GOp5rKXdFfDpocrD/oLjoNWUe1zWSfXLdGTv03xT8ewB1mn4
-         BDoaJsxb4w2oWKGF6GhA8NUOMQF7djyekEmrPRd3P1YCw6URPma1zeY/1bDHTSCPkODV
-         l2hFFpYagl/MySD43JCJ8WnvLbNisTkeACSQ4=
+        bh=FfOZA6iVrDUHFVdgseSiT/wEZUNJjAsJQt2ibv2Z8NQ=;
+        b=NiPRI2m+L7jZtH+kKY5CMTTcNJfrA8G3nhzhHwL8h53sbVbQmjqraW0/jj07rr5ytM
+         JUg6QoP7+xmHzAjYMwi1fOIUyogI60AXjyxiDAi8rd33NbTxTpuqsUWXspupaixPZ+vR
+         dCe0N6d8Ll7qrQ8oxhkkBgub+TRVQHiry3390=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1784096551; x=1784701351;
+        d=1e100.net; s=20251104; t=1784096553; x=1784701353;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=Y9eicy7qFkVmMZW611/qMDh6GaEBG59Bdrl7IT5yIvE=;
-        b=n/SaVqEXcPhqXuhVu1gNuZkRmGoXYouGta8/eiVuKCSA4O+ymbwLcOrldA/LLtDqPg
-         y6j90gy2igjzP96a6RytFg6dhCB5DtDRHCESUwqz13u8rIXL6iHETgwqh4Tl+0bCjEaF
-         SY2pK8t+Y29wIVHx+wfB+h2ibDtb2mIaoiD7s1JLlAJRit5n+1+qHxSp19tWkWAVzUIx
-         HtI3pcfGngWZLTyni6qVOMWy0+PhhF6rZVrgv3HeEcEFft2arKyv4wEIymklQJSB7P+d
-         LN4MjJsvNR9Y3uaUGZHejNXA8CM6l2f1C3F3mbZz8ntlatcnZ+iQHtswITdPdDv4S/lK
-         e69A==
-X-Forwarded-Encrypted: i=1; AHgh+RqgrhDS2TsRmoXZFbjJzBrW3yOHJ6DEm2BeEnaoXQth1aYrjA+8nMlmLPBvyYPVO3Ld2VzUhuKtNVfI@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz0rdzcXgPBxze+vhyvJnsHh+0ZbrfO839uuTZeh9XKMkv3YNT2
-	OS47U9VXHP5tez+NIY0HY1rditcUzuf1OB1rKf+EWu/FO7Q+7o6KiO3KQdhmafWuQAE=
-X-Gm-Gg: AfdE7ck+JZ+6Tm89C0g+w3vA64uaLtSJfObx1yvcZ6j7FDgplE2Bq7MwaNV7sTAr4T1
-	0Ls71M5vLW98cW43ajJrumOfvyQcXTt0gpcYaml8vQolIW6hUpk18Uz0eQ2xiwHV1HSPEfGouhM
-	3fh/FHdQNzYko3qqunh1acl6iPm/L18kZ1dc9ssmgt1vcONSHQ9ZsBn2nj/J64dG4Lki3Bk/a4d
-	r2lYciom3H+DOYSic80BeoY66oeo1FSqmjvyDR8nwsXkxrYO+hRIUd1+4huDD7/4l71AqTg4DlZ
-	rg2w4TouIIFr7d5jjvHk3F3ArWMdlI67Tr5f31QXLInR9NzzidKQmHdnBkYV4ldSjvi4ZaEB4eg
-	oHEsdxj1cgBF9VG6u4AxZWoGytnxZuHXSe/9UEEquNIgxinZJRVzZc4YzAQFs5nG3dkm6HRIlmQ
-	JrHOLJUVaTaOymCTsnWxeUfMgrtn8gVqh8M2G4ZCeNip/k6XyucYeshqJIfF8vkb/3feu2Zg7Ry
-	HdNggIPvTzb
-X-Received: by 2002:a17:907:97d5:b0:c12:b2dc:4834 with SMTP id a640c23a62f3a-c161ea6d217mr823641266b.57.1784096550856;
-        Tue, 14 Jul 2026 23:22:30 -0700 (PDT)
+        bh=FfOZA6iVrDUHFVdgseSiT/wEZUNJjAsJQt2ibv2Z8NQ=;
+        b=fYhxPbhfxda3puBVZybmxoXmJDdb0qGYq9RsuEcib8+SytcqkfXuRgMHZn5Y2/vRKl
+         VtJrHn1FniSjysfWfByU+voiE8Iu2iBWcJAoAbQzsbEOdP3l9IYHmI4EfqCFNQbo7Ith
+         04Jt6Li958f2SzSwTY9SPQVLCLBGzVqDy4EXM1Glg7Hq9PAQNlgIupxu4kJI9Ji13tJs
+         zpID6B4BekrvaBy2hCF8FFRJhhDXPjkbEz7jvUVSWzb3E5DkQHwqvzG/GTG9eoBZ+7mL
+         fwG/mSmA7Dks1tnqTvawB3MQWeXzUWUEsNaPsa82BOlthisoJCyjbx5kQLEIrF4cxNE1
+         gVGQ==
+X-Forwarded-Encrypted: i=1; AHgh+RrJq+oDO8LpYXaRHGtl5tucBtPzr6bV5PUxvMVZZSWcar976GAxrLQY79wSxpHLFijMuJZjch4nT5jX@vger.kernel.org
+X-Gm-Message-State: AOJu0YxdO6pBM4kkQWRqg8fX+tmmXAn3HDI1D+KaDfEfGQhNGOpI70kW
+	qGQSo20jhpDZutHLsp20RyIY81ixBkEY2BAaSwnnpz1fNhKhGQoH2YUjA8lmxHeCR10=
+X-Gm-Gg: AfdE7ckYGlQwAidtfex4pab1TLZAlYvgDWyv26WC2RYivQf81qjBCwKpEs6Nnx9jtQy
+	JxqyDkVyTTLv4gMt16vHb4wauAFoT0HfzgJaItWppWdfAZzIA9oyoVdmh4Vw3V04QlA9BWFNiRo
+	uLMcLeFsApB3zCTLhQflX8mVIhfvd3tO4+KiaTLrhYTWscPChQ30kcP3EpQEGFZFeFlPauZpST4
+	VB0Ir4sTR75O9DNi2EEhcjqK2fMHUHdeTamDfShs446EExTG4Is/xSUs2MwJBr4D3cPuFbc9EZe
+	F8R8+zqRxkI3BEL+7Z75UDs5Yb++cNnaCQXdvvIbX3xeuhhonltxuvoSteUiVFKDYL9XEYR7vlk
+	22PUWH5cRmtthQb2hB+2hfp3aui0hi79DkFOa2AjKy1z8dwObEXRid69kf9CcE8czrm0xM8XukH
+	gpGz5G2k8xYKafcYN5EsoteLEEXYlCt0Oid7/B5fpDeRxoBwezwYQ1n0f41X2hML2s65xvFkI78
+	eHqh726nhsU
+X-Received: by 2002:a17:907:3e9f:b0:c12:86a3:5425 with SMTP id a640c23a62f3a-c16794d6874mr98915166b.62.1784096552988;
+        Tue, 14 Jul 2026 23:22:32 -0700 (PDT)
 Received: from dario-ThinkPad-P14s-Gen-5.. ([2.196.41.101])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-c15d0c3cf1esm1028820366b.44.2026.07.14.23.22.28
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-c15d0c3cf1esm1028820366b.44.2026.07.14.23.22.31
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Jul 2026 23:22:30 -0700 (PDT)
+        Tue, 14 Jul 2026 23:22:32 -0700 (PDT)
 From: Dario Binacchi <dario.binacchi@amarulasolutions.com>
 To: linux-kernel@vger.kernel.org
 Cc: michael@amarulasolutions.com,
@@ -81,6 +81,7 @@ Cc: michael@amarulasolutions.com,
 	domenico.acri@engicam.com,
 	linux-amarula@amarulasolutions.com,
 	Dario Binacchi <dario.binacchi@amarulasolutions.com>,
+	Olivier Moysan <olivier.moysan@foss.st.com>,
 	Alexandre Torgue <alexandre.torgue@foss.st.com>,
 	Conor Dooley <conor+dt@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -89,9 +90,9 @@ Cc: michael@amarulasolutions.com,
 	devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-stm32@st-md-mailman.stormreply.com
-Subject: [RESEND PATCH v7 09/16] arm64: dts: st: add pwm2/pwm4 pins for stm32mp25
-Date: Wed, 15 Jul 2026 08:20:26 +0200
-Message-ID: <20260715062201.3599458-10-dario.binacchi@amarulasolutions.com>
+Subject: [RESEND PATCH v7 10/16] arm64: dts: st: add sai1 pins for stm32mp25
+Date: Wed, 15 Jul 2026 08:20:27 +0200
+Message-ID: <20260715062201.3599458-11-dario.binacchi@amarulasolutions.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260715062201.3599458-1-dario.binacchi@amarulasolutions.com>
 References: <20260715062201.3599458-1-dario.binacchi@amarulasolutions.com>
@@ -110,18 +111,18 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[amarulasolutions.com,none];
 	R_DKIM_ALLOW(-0.20)[amarulasolutions.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[14];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	FREEMAIL_CC(0.00)[amarulasolutions.com,engicam.com,foss.st.com,kernel.org,gmail.com,vger.kernel.org,lists.infradead.org,st-md-mailman.stormreply.com];
-	TAGGED_FROM(0.00)[bounces-326657-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-326658-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:linux-kernel@vger.kernel.org,m:michael@amarulasolutions.com,m:francesco.utel@engicam.com,m:domenico.acri@engicam.com,m:linux-amarula@amarulasolutions.com,m:dario.binacchi@amarulasolutions.com,m:alexandre.torgue@foss.st.com,m:conor+dt@kernel.org,m:krzk+dt@kernel.org,m:mcoquelin.stm32@gmail.com,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-stm32@st-md-mailman.stormreply.com,m:conor@kernel.org,m:krzk@kernel.org,m:mcoquelinstm32@gmail.com,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:linux-kernel@vger.kernel.org,m:michael@amarulasolutions.com,m:francesco.utel@engicam.com,m:domenico.acri@engicam.com,m:linux-amarula@amarulasolutions.com,m:dario.binacchi@amarulasolutions.com,m:olivier.moysan@foss.st.com,m:alexandre.torgue@foss.st.com,m:conor+dt@kernel.org,m:krzk+dt@kernel.org,m:mcoquelin.stm32@gmail.com,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-stm32@st-md-mailman.stormreply.com,m:conor@kernel.org,m:krzk@kernel.org,m:mcoquelinstm32@gmail.com,s:lists@lfdr.de];
 	FORGED_SENDER(0.00)[dario.binacchi@amarulasolutions.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
@@ -132,76 +133,83 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	DKIM_TRACE(0.00)[amarulasolutions.com:+];
 	RCVD_COUNT_FIVE(0.00)[5];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	ALIAS_RESOLVED(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,vger.kernel.org:from_smtp,amarulasolutions.com:from_mime,amarulasolutions.com:mid,amarulasolutions.com:email,amarulasolutions.com:dkim]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,vger.kernel.org:from_smtp,amarulasolutions.com:from_mime,amarulasolutions.com:mid,amarulasolutions.com:email,amarulasolutions.com:dkim,st.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 7676175B0BB
+X-Rspamd-Queue-Id: AD0E275B09A
 
-Add the pwm2 and pwm4 pins used on MicroGEA-STM32MP257-RMM board.
+Add the sai1 pins used on MicroGEA-STM32MP257-RMM board.
 
 Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+Reviewed-by: Olivier Moysan <olivier.moysan@foss.st.com>
+
 ---
 
-(no changes since v1)
+Changes in v7:
+- Add Reviewed-by tag of Olivier Moysan
 
- arch/arm64/boot/dts/st/stm32mp25-pinctrl.dtsi | 34 +++++++++++++++++++
- 1 file changed, 34 insertions(+)
+ arch/arm64/boot/dts/st/stm32mp25-pinctrl.dtsi | 45 +++++++++++++++++++
+ 1 file changed, 45 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/st/stm32mp25-pinctrl.dtsi b/arch/arm64/boot/dts/st/stm32mp25-pinctrl.dtsi
-index 6482dd47e977..695c9d771853 100644
+index 695c9d771853..002fbc724b9d 100644
 --- a/arch/arm64/boot/dts/st/stm32mp25-pinctrl.dtsi
 +++ b/arch/arm64/boot/dts/st/stm32mp25-pinctrl.dtsi
-@@ -433,6 +433,23 @@ pins {
+@@ -520,6 +520,51 @@ pins {
  		};
  	};
  
 +	/omit-if-no-ref/
-+	pwm2_pins_a: pwm2-0 {
++	sai1a_pins_a: sai1a-0 {
++		pins1 {
++			pinmux = <STM32_PINMUX('D', 9, AF3)>, /* SAI1_SD_A */
++				 <STM32_PINMUX('D', 8, AF3)>, /* SAI1_FS_A */
++				 <STM32_PINMUX('D', 10, AF3)>; /* SAI1_SCK_A */
++			bias-disable;
++			drive-push-pull;
++			slew-rate = <1>;
++		};
++		pins2 {
++			pinmux = <STM32_PINMUX('D', 11, AF3)>; /* SAI1_MCLK_A */
++			bias-disable;
++			drive-push-pull;
++			slew-rate = <2>;
++		};
++	};
++
++	/omit-if-no-ref/
++	sai1a_sleep_pins_a: sai1a-sleep-0 {
 +		pins {
-+			pinmux = <STM32_PINMUX('I', 7, AF7)>; /* TIM2_CH1 */
-+			bias-pull-down;
++			pinmux = <STM32_PINMUX('D', 9, ANALOG)>, /* SAI1_SD_A */
++				 <STM32_PINMUX('D', 8, ANALOG)>, /* SAI1_FS_A */
++				 <STM32_PINMUX('D', 10, ANALOG)>, /* SAI1_SCK_A */
++				 <STM32_PINMUX('D', 11, ANALOG)>; /* SAI1_MCLK_A */
++		};
++	};
++
++	/omit-if-no-ref/
++	sai1b_pins_a: sai1b-0 {
++		pins {
++			pinmux = <STM32_PINMUX('D', 4, AF4)>; /* SAI1_SD_B */
++			bias-disable;
 +			drive-push-pull;
 +			slew-rate = <0>;
 +		};
 +	};
 +
 +	/omit-if-no-ref/
-+	pwm2_sleep_pins_a: pwm2-sleep-0 {
++	sai1b_sleep_pins_a: sai1b-sleep-0 {
 +		pins {
-+			pinmux = <STM32_PINMUX('I', 7, ANALOG)>; /* TIM2_CH1 */
++			pinmux = <STM32_PINMUX('D', 4, ANALOG)>; /* SAI1_SD_B */
 +		};
 +	};
 +
  	/omit-if-no-ref/
- 	pwm3_pins_a: pwm3-0 {
- 		pins {
-@@ -450,6 +467,23 @@ pins {
- 		};
- 	};
- 
-+	/omit-if-no-ref/
-+	pwm4_pins_a: pwm4-0 {
-+		pins {
-+			pinmux = <STM32_PINMUX('A', 12, AF7)>; /* TIM4_CH1 */
-+			bias-pull-down;
-+			drive-push-pull;
-+			slew-rate = <0>;
-+		};
-+	};
-+
-+	/omit-if-no-ref/
-+	pwm4_sleep_pins_a: pwm4-sleep-0 {
-+		pins {
-+			pinmux = <STM32_PINMUX('A', 12, ANALOG)>; /* TIM4_CH1 */
-+		};
-+	};
-+
- 	/omit-if-no-ref/
- 	pwm8_pins_a: pwm8-0 {
- 		pins {
+ 	sdmmc1_b4_pins_a: sdmmc1-b4-0 {
+ 		pins1 {
 -- 
 2.43.0
 
