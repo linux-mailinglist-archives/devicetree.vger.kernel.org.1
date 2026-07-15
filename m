@@ -1,224 +1,161 @@
-Return-Path: <devicetree+bounces-326679-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-326681-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id Pal5MtosV2rTGwEAu9opvQ
-	(envelope-from <devicetree+bounces-326679-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 08:46:50 +0200
+	id c4oUD+gtV2oMHAEAu9opvQ
+	(envelope-from <devicetree+bounces-326681-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 08:51:20 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6DABF75B353
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 08:46:50 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2EE4B75B3CC
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 08:51:19 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=cCrbJzJ4;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326679-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-326679-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=intel.com header.s=Intel header.b=KPchxVhL;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326681-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-326681-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=intel.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id DB7A83001FF4
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 06:46:49 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 294A33004D95
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 06:51:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BFBF322C88;
-	Wed, 15 Jul 2026 06:46:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0516531E82E;
+	Wed, 15 Jul 2026 06:51:15 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C0D8322C67
-	for <devicetree@vger.kernel.org>; Wed, 15 Jul 2026 06:46:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C95921CC71;
+	Wed, 15 Jul 2026 06:51:12 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1784098007; cv=none; b=j+gvgOQRjggwXwartZ49mlBGIy2tmX08E6qIgzvoctvO1m8Et32vf31qq91vaAj9VXydAejq+47s33EAGi19kQdXodgEn94AbQcyHrSwXDouECxX1lYNiCpoXUacBBKj7tQBMi5p4eQ8fXeb9uxrme8eaxpdNDpnyU1Qzc6T2lQ=
+	t=1784098274; cv=none; b=cXeLWs06FibLKxuHyRdnWM6lJ4MIlzfP7+GNX7UBltzgEln/QI03FL+VVgWWCcJM4w2SyEdrRq8ZB1kWq/ZUDmOqCJ9aFkPFyMAzjrT1gnjhRnM7VP6gH8TRuMCRAOVVJzeG6UU8QvkbcPgfIlB7nFh4nPcJtwza83bfFugMmr4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1784098007; c=relaxed/simple;
-	bh=r70gIHOCa96xm3osPf5o2O+aRbf4jADYvT4CupW/ceo=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=fiVB234w8us8yFEOebLSXbVuELu1m9uCi6Uoa4sYx5oqIGvom9TlVt8LzTDaK0QyFChlAWbtfHX9LwVYaf88n4ZomE0D2gTdnnDhMvVTAi9h3XATz0PzIVpKYSDJx9FZqRinbBkrjuIgnsGhWnSmSWSgYZLcjAWoCJF2DGleYb4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cCrbJzJ4; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F02291F000E9;
-	Wed, 15 Jul 2026 06:46:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1784098005;
-	bh=CpKTe8r58YwfttiBhK9s4R4YHWTzZie/YmvY10WlbnE=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=cCrbJzJ4XuBkAaBNjiUwMBircLcWQNcPPL0S7YM/2k8A6TZH0Y7VqOlWYnioWokMt
-	 Bg2mWDNJZ4GwkABxA+X2D7mV/pxOkdZkVjQaWRUqRTNDvkqfUtF4JHKU5SHSgJTCHw
-	 po4A8bXBNpIayAl1NRCjet0N/CQuvfbkZ8kckeOL248MxMb9yUqo5syOrOf0TXXa+9
-	 s8CFdeiD8aLePJ9JYDNb8L1GKm09JWuf6QdbKrZeIS1pPTlk2pHEPfG334Oj43YX6o
-	 p8OtjngKr5/MocMu1ECTn+ohJH/cFkn6sZUUsx23m+kT3/42joqYm8I+RuBHa0/VeT
-	 YzFkYWE0TINRQ==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v3 2/2] iio: adc: add MAX40080 current-sense amplifier
+	s=arc-20240116; t=1784098274; c=relaxed/simple;
+	bh=jm3Fp1OxVfLWQNXEgcghvnmtKSa9n+UQn9qCVN6+yc8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=gzntDo8s1n/32HG14C18pLhWL7Tvi0pHPJhJTUD3Or4wyOSFRh477aL8rX+IQffnLwRQ92XSdnju1C6R+XZUHY/H8HD03EqlADBBSze3v4vtFdmFKkq4xYS/042dI5gn7Jt2+uLZe+XrjP8O4RDvhOxF+8CqZJUzPNQmEORkJA8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=KPchxVhL; arc=none smtp.client-ip=192.198.163.15
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1784098273; x=1815634273;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=jm3Fp1OxVfLWQNXEgcghvnmtKSa9n+UQn9qCVN6+yc8=;
+  b=KPchxVhL7K0/2dJv8Yo9BOOR5vh/VRh1K5EtZ7tIstmXnK/+N+FXZbxq
+   08tiVQyiO4f/iujCRgg27/ziKdSrjWXQgdvlf6i+2dtdhOFPRblqEV2Da
+   ZgvUzmZxTGbaAsqqIm9KdCPB7ymi028XA4WWQs7oiSPiXgLXU5DbJ41ln
+   T9GWzYMPKbUWPuQkXmxk/2VmJ50WU32mSLNpnj9jLFd1uYydzexGFRNnL
+   CyN9reAiq4WpxurjQn1GcnaOLlKmtm2y3vn5y96a5vje6XlSb4WfeOjJE
+   XN83We+Zy00qnYNtjDL064mrqPfTB90khBt2mSU9tm6+My7l8eiFbkq1W
+   Q==;
+X-CSE-ConnectionGUID: /lp2AuI7RKyZrhh5PXIEXg==
+X-CSE-MsgGUID: LWnpeLBHQPyFcGJEdqNZCg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11847"; a="84843826"
+X-IronPort-AV: E=Sophos;i="6.25,165,1779174000"; 
+   d="scan'208";a="84843826"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Jul 2026 23:51:12 -0700
+X-CSE-ConnectionGUID: FgmvN1u7Romd21DsaFUtUw==
+X-CSE-MsgGUID: GMTfaPmVQuaB2s3PLm5nMQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,165,1779174000"; 
+   d="scan'208";a="286155256"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost) ([10.245.244.44])
+  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Jul 2026 23:51:08 -0700
+Date: Wed, 15 Jul 2026 09:51:06 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Stefan Popa <stefan.popa@analog.com>
+Cc: Jonathan Cameron <jic23@kernel.org>, linux-iio@vger.kernel.org,
+	David Lechner <dlechner@baylibre.com>, Nuno Sa <nuno.sa@analog.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Siratul Islam <siratul.islam@linux.dev>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@baylibre.com>,
+	Ciprian Hegbeli <ciprian.hegbeli@analog.com>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 0/2] iio: adc: add MAX40080 current-sense amplifier
  driver
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Stefan Popa" <stefan.popa@analog.com>
-Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20260715063652.368501-3-stefan.popa@analog.com>
+Message-ID: <alct2kGoQAC8pNMd@ashevche-desk.local>
 References: <20260715063652.368501-1-stefan.popa@analog.com>
- <20260715063652.368501-3-stefan.popa@analog.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Wed, 15 Jul 2026 06:46:44 +0000
-Message-Id: <20260715064644.F02291F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260715063652.368501-1-stefan.popa@analog.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-5.16 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[intel.com:d:+,kernel.org:s:+];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-326679-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:stefan.popa@analog.com,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-326681-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:stefan.popa@analog.com,m:jic23@kernel.org,m:linux-iio@vger.kernel.org,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:siratul.islam@linux.dev,m:u.kleine-koenig@baylibre.com,m:ciprian.hegbeli@analog.com,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	HAS_ORG_HEADER(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	FORGED_SENDER(0.00)[andriy.shevchenko@linux.intel.com,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ALIAS_RESOLVED(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	DKIM_TRACE(0.00)[intel.com:+];
+	MISSING_XM_UA(0.00)[];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	RCPT_COUNT_THREE(0.00)[4];
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@linux.intel.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,analog.com:email,analog.com:url,smtp.kernel.org:mid,sashiko.dev:url,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,lists.linux.dev:replyto]
+	ALIAS_RESOLVED(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[ashevche-desk.local:mid,vger.kernel.org:from_smtp,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,intel.com:dkim,linux.intel.com:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 6DABF75B353
+X-Rspamd-Queue-Id: 2EE4B75B3CC
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [Medium] Missing lock protection around `st->range` and `st->oversampling=
-_ratio` updates causes hardware state desynchronization and torn reads.
---
+On Wed, Jul 15, 2026 at 09:36:15AM +0300, Stefan Popa wrote:
+> This series adds support for the Maxim MAX40080, a bidirectional
+> current-sense amplifier with an integrated 12-bit ADC and an I2C/SMBus
+> interface. It measures the voltage across an external shunt resistor and
+> the input bus voltage.
+> 
+> The driver operates in direct (INDIO_DIRECT_MODE) mode. Each raw read
+> triggers a single on-demand conversion (SMBus Quick Command) and reads
+> back the matched current/voltage pair, so results are always fresh. It
+> exposes the current and voltage channels with raw and scale attributes,
+> a configurable oversampling (digital averaging) ratio, and PEC-protected
+> register access. The two selectable current-sense ranges are exposed
+> through scale/scale_available; the current scale is derived from the
+> shunt-resistor-micro-ohms device-tree property.
+> 
+> Tested on hardware with four MAX40080 devices on an I2C bus.
+> 
+> Regarding Andy's question about *iv being updated even on error in
+> read_poll_timeout: yes, this is intentional. The poll loop must update
+> *iv on each iteration to check the valid bit. On timeout (conversion
+> never completes), *iv contains the last-read value with the valid bit
+> still clear, but the caller always checks the return value first —
+> "if (ret) return ret;" prevents any use of the stale data.
 
---- Patch [2]: [PATCH v3 2/2] iio: adc: add MAX40080 current-sense amplifie=
-r driver ---
-commit 6f9d9d6fa7d25018a7143edc9a8c9183463f1900
-Author: Stefan Popa <stefan.popa@analog.com>
+My point also is that we can do it only once. And since the above a comment is
+a must. See more in the comment I'm going to give against individual piece of
+code.
 
-iio: adc: add MAX40080 current-sense amplifier driver
+-- 
+With Best Regards,
+Andy Shevchenko
 
-The MAX40080 is a bidirectional current-sense amplifier with an
-integrated 12-bit ADC and an I2C/SMBus interface. It measures the
-voltage across an external shunt resistor and the input bus voltage,
-storing the results in an internal FIFO.
 
-Link: https://www.analog.com/media/en/technical-documentation/data-sheets/M=
-AX40080.pdf
-
-> diff --git a/drivers/iio/adc/max40080.c b/drivers/iio/adc/max40080.c
-> new file mode 100644
-> index 0000000000000..a0c1144cfda7c
-> --- /dev/null
-> +++ b/drivers/iio/adc/max40080.c
-[ ... ]
-> +static int max40080_set_range(struct max40080_state *st, unsigned int ra=
-nge)
-> +{
-> +	int ret;
-> +
-> +	ret =3D max40080_update_bits(st, MAX40080_REG_CFG, MAX40080_CFG_RANGE_M=
-SK,
-> +				   FIELD_PREP(MAX40080_CFG_RANGE_MSK, range));
-> +	if (ret)
-> +		return ret;
-> +
-> +	st->range =3D range;
-
-[Severity: Medium]
-Could a race condition here cause the software cache to become desynchroniz=
-ed
-with the hardware state?
-
-Since max40080_update_bits() releases st->lock before returning, concurrent
-writes to the scale attribute could interleave their hardware updates and
-software cache updates, leaving the hardware set to one range and the cache
-set to another.
-
-> +
-> +	return 0;
-> +}
-[ ... ]
-> +static int max40080_set_oversampling_ratio(struct max40080_state *st, in=
-t val)
-> +{
-> +	int filter;
-> +	int ret;
-> +
-> +	filter =3D max40080_oversampling_to_filter(val);
-> +	if (filter < 0)
-> +		return filter;
-> +
-> +	ret =3D max40080_update_bits(st, MAX40080_REG_CFG, MAX40080_CFG_FILTER_=
-MSK,
-> +				   FIELD_PREP(MAX40080_CFG_FILTER_MSK, filter));
-> +	if (ret)
-> +		return ret;
-> +
-> +	st->oversampling_ratio =3D val;
-
-[Severity: Medium]
-Similar to st->range above, could st->oversampling_ratio become desynchroni=
-zed
-with the hardware state due to being updated outside the lock?
-
-> +
-> +	return 0;
-> +}
-> +
-> +static int max40080_read_raw(struct iio_dev *indio_dev,
-> +			     struct iio_chan_spec const *chan,
-> +			     int *val, int *val2, long mask)
-> +{
-> +	struct max40080_state *st =3D iio_priv(indio_dev);
-> +	int ret;
-> +
-> +	switch (mask) {
-[ ... ]
-> +	case IIO_CHAN_INFO_SCALE:
-> +		/*
-> +		 * The selectable current-sense range is exposed through
-> +		 * scale: each RANGE setting has its own precomputed
-> +		 * mA-per-code value. Userspace picks the range by writing
-> +		 * the matching scale.
-> +		 */
-> +		switch (chan->type) {
-> +		case IIO_CURRENT:
-> +			*val =3D st->current_scale[st->range][0];
-> +			*val2 =3D st->current_scale[st->range][1];
-
-[Severity: Medium]
-Can this cause a torn read if st->range is updated concurrently?
-
-Since st->range is used twice as an array index without taking st->lock,
-concurrent writes could cause val and val2 to be mixed from different range=
-s.
-
-> +			return IIO_VAL_INT_PLUS_NANO;
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260715063652.3685=
-01-1-stefan.popa@analog.com?part=3D2
 
