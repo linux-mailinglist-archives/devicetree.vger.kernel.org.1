@@ -1,275 +1,218 @@
-Return-Path: <devicetree+bounces-326755-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-326757-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id SI3JHclIV2psIgEAu9opvQ
-	(envelope-from <devicetree+bounces-326755-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 10:46:01 +0200
+	id iWELBr5JV2qoIgEAu9opvQ
+	(envelope-from <devicetree+bounces-326757-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 10:50:06 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F11F75C049
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 10:46:01 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A8DC75C0CB
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 10:50:05 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=DpepXURs;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326755-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-326755-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=gmail.com;
+	dkim=pass header.d=bootlin.com header.s=dkim header.b=v0kbq9Wp;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326757-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-326757-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=reject) header.from=bootlin.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 7261630281AB
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 08:46:00 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 1F9B23004056
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 08:50:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB8DB3D2FF0;
-	Wed, 15 Jul 2026 08:45:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B42BE3D75A9;
+	Wed, 15 Jul 2026 08:49:59 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D3073CF054
-	for <devicetree@vger.kernel.org>; Wed, 15 Jul 2026 08:45:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 701673D890E;
+	Wed, 15 Jul 2026 08:49:47 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1784105156; cv=none; b=J5PoNelBJEecG+hXvJlSkenBtD4erWmqa8X9c2dhzBHS9gPPOvCToOSkFVbeQi/c2il8Ax1LXFerpDTH8TIj10BfrYImsHTLud9zHlvdCDWN5cTjPCB4FVrwjtExWk9D2Mp0Xi3LbAkkWCQYbnZZRKGTyMQVhj3qYbpnW9oIOd0=
+	t=1784105395; cv=none; b=DPM6JCC7VSPWaXdKvqf7KDUBF1CcuhGZe4/DbnHHc7SrkaDtVkRH0eQ07kUNaxXzPs6a4uqJEOQ8KEuAMb90BscD+o5Lc+sp9+Y7iag57tmR61bjIJ54tKUIfClTZ9Y2G7gkihUdOf88hsrBiTf89+Q1Rs1OU6NriwZR4k3ydkI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1784105156; c=relaxed/simple;
-	bh=eafklUz/Nihxt4G0Y/5YOLYKvHeikJPXuRmnhgcXHh0=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=D8J5o/6DQWjXWy7DuZNo+iXgCUUw91BdczOaAZ7TdFYRaFLzu6yTVyuEyysQSInbzXf3+ubz//++7Tln0xnycOPYJ6cqnymfhI6MefGSxIjFRO6z1a2Ac4MS2PvzaZW9oHEtxWZrl35dnm9mzGYBkC+r1k3rFmxwaOrEyldEPIk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DpepXURs; arc=none smtp.client-ip=209.85.221.53
-Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-474560436c3so1361552f8f.0
-        for <devicetree@vger.kernel.org>; Wed, 15 Jul 2026 01:45:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1784105146; x=1784709946; darn=vger.kernel.org;
-        h=content-transfer-encoding:content-type:mime-version:references
-         :in-reply-to:message-id:subject:cc:to:from:date:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=HqhbTpyt7Pwu4H6jri5SJXn72wEdVDjqv1xv5v6hVLQ=;
-        b=DpepXURsGO+PHl3fwOc6BOyBNiq5HwMl4MxMVuV1BD/3w6eVSxLhzdP3OV6p+Xt13R
-         QYzZkD49NDzYzI7PEjwC4C1PiFhabD+XBFk142IYe3Tnzyz2yApBRuJlrvSYtExmVqE8
-         RBfw+hoeBZuabjxNJJkk/kqCgS1461NP88RHUcCUbaHmmAaTPmiHEj0KnXEpyHldYgJL
-         MeUarCQ2FVhrp7gxxDggMqlNj9HBUMGFSQaQdDYOTK8MA5SGC7j3xwVXpTEvM9sPTUiP
-         +GywDoH0zsI+vPsKi7ObK4DcHT8Dwk7Dhz5ioUZUX2ayg68hLXVlWQNYdUTFF3WhgdTz
-         YpDA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1784105146; x=1784709946;
-        h=content-transfer-encoding:content-type:mime-version:references
-         :in-reply-to:message-id:subject:cc:to:from:date:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=HqhbTpyt7Pwu4H6jri5SJXn72wEdVDjqv1xv5v6hVLQ=;
-        b=Wd4x1l8IIlkc26FayteV7/c4kj7dS6X05SZ70TMvwhwQyPt6wz92zsrDGQ/RVGE0KC
-         yTwxDhJucgWPzY74E5dteJY/Mh5Gl10ewhNs6EpVB0p+qMcXr1dWgY10XBbtyTWOBtPt
-         tGswQkODCsSORRkiECrmeyh48Nn9pBKJKD+aMVkMgWf0VOXLSDVgnLnJybx6FvMOQa1X
-         KYjNY4+hQR3A23dLO15gcXkbnKW6a2jJ2Cy4DGzUSK4L/k08K5yKNxfUcBjkBQt6QftP
-         UfygC11UktJMWeJKkf6rcLM3l9bP21PEMr24Irmch45NjFMCbZGbBIaUi6mKn+4BjvM8
-         hcQA==
-X-Forwarded-Encrypted: i=1; AHgh+RrxBrJXZbqNBRGTmvRTQIWEUk4E4dbo51YQ0FN+jQLObWfesQJ7qIK2NvJFm2yAbyJW2LnIckgUZChp@vger.kernel.org
-X-Gm-Message-State: AOJu0YwKx8wGIwRnLmFQrUrbkRSFQDjvDAnjBmuuLxbdHSadNAfIN+qy
-	I2jYwKb1hqCLbF9U220ZMuCgb3T9T9OFeY2TGoszfTieuf5qkTOEF9vE
-X-Gm-Gg: AfdE7cl0d0ELCL/acxDfLneGwMu1KW85CN3U1L646bmxwlv44WFa4tI28RjdYp36Amt
-	V42LJzbILtlxfsnrLA4Q8PB96dMC+fMp9ZVFXiJvCU2y9H60CrD6Qn6lOR0Mz1svssO3EWCRS7r
-	mqGlHAnOIeKuzi5QqxsWj1FLr6be9nBfhPxEx0mIhNe2kftwjWrEWE9blybTLXqMJKA6T5+PqZ+
-	/cDxAC6zRodEUUVX5Ag+Uvczz3+A3JW5txLU7YSbdXejGubajbF9q1F/c829E8Fwo8KLfpex7fz
-	Zxwgoq1usGPx5s9nmtO5FTRIArK2lP/6N9mbxFqCIz0plC/aU0J2DJEmYSto2sDfv/NaWZu2RIc
-	yoV8127tiNloswSsFHJDfiVLj1BBtzS9yv7JoEDiBYe1WuXjNJJoeBq77TfjpnYh9A4WR3nOJjx
-	9q70N6aT1bzZeaQtX2vwXsJOyetJ7E/exmys6Eytd10MOygroC3xtQpHq8P9W8YeDXuQJtpmEbW
-	RtNdQg++RQTELjEwj4C1nFBsHGCAq+HoJ1vAz84Q7glPucgiraN1tZD48K3TnmsbhLSbtWmQ0Gn
-	OklsDlPknUYyiNo3a1+Gut4h7wDhbBvW9Rvcnz7OtXDwVATZ3kWCUNjBqlxvKNoHUOZJnDNe/tX
-	gsR1iShu1ha9gmp603jrNFEM=
-X-Received: by 2002:a05:6000:25fe:b0:476:d52b:b85 with SMTP id ffacd0b85a97d-47f2dcc0208mr19425011f8f.16.1784105144565;
-        Wed, 15 Jul 2026 01:45:44 -0700 (PDT)
-Received: from localhost (90-182-112-124.rcp.o2.cz. [90.182.112.124])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-47f464a973fsm15495170f8f.17.2026.07.15.01.45.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Jul 2026 01:45:44 -0700 (PDT)
-Date: Wed, 15 Jul 2026 10:45:42 +0200
-From: Joshua Crofts <joshua.crofts1@gmail.com>
-To: Esben Haabendal <esben@geanix.com>
-Cc: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen
- <lars@metafoo.de>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Martin Kepplinger
- <martink@posteo.de>, Sean Nyekjaer <sean@geanix.com>, David Lechner
- <dlechner@baylibre.com>, Nuno =?ISO-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
- Andy Shevchenko <andy@kernel.org>, Martin Kepplinger
- <martin.kepplinger@theobroma-systems.com>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] iio: accel: mma8452: Allow open drain interrupt pin
- configuration
-Message-ID: <20260715104542.0000433d@gmail.com>
-In-Reply-To: <20260715-mma8452-open-drain-v1-2-b1dd2a440c60@geanix.com>
-References: <20260715-mma8452-open-drain-v1-0-b1dd2a440c60@geanix.com>
-	<20260715-mma8452-open-drain-v1-2-b1dd2a440c60@geanix.com>
-X-Mailer: Claws Mail 4.4.0 (GTK 3.24.51; x86_64-w64-mingw32)
+	s=arc-20240116; t=1784105395; c=relaxed/simple;
+	bh=MmarBasXfQmC5MEBsnaG4oLh0ejHeaQIQu1QoJ4BW7g=;
+	h=MIME-Version:Content-Type:Subject:From:To:Cc:In-Reply-To:
+	 References:Date:Message-Id; b=pMSrYCSwnnud+ox9BGBvFEigdhzOlGi+W7B1BAfRSyvIC108BC8yta2i1mHuR8sOj3lvg5iCmZqSoSNxUa11wYsbQu5lHgXu3h9M319TR2ziv+ZhzZBBXdgUK5kxxKQ/o1SyhrEOj+uNA28RBd1bE9IEBq2RvSlIPUVSeDDPRyA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=v0kbq9Wp; arc=none smtp.client-ip=185.246.85.4
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-03.galae.net (Postfix) with ESMTPS id 2ADF64E40DC9;
+	Wed, 15 Jul 2026 08:49:43 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id F0D8D6035C;
+	Wed, 15 Jul 2026 08:49:42 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 51F9311BD3C24;
+	Wed, 15 Jul 2026 10:49:34 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1784105381; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=rFNGUCLtwL0J9UMzLUhMW3/R8y1OqX7JmKnCzawnBV4=;
+	b=v0kbq9Wp0Snw1mUEYQk9jToT+RDLdlswU2d0gC17xE5U6j9w26ZQcy27tuDIGkUnAsWC1r
+	mfHKBcv8AJCFniJb3MRRErQT9zgqyu8yiiG8WlCormo77+OHu3roSFs/eepL/Uc4wb9WV1
+	FbHWqZcpMDLxwYSTsZt8U3SBiWe14c6eWGWevDaw7Dgp2wSempFJvZIklMt7ywWFux98Zm
+	MFBSwcNJRqJbqxBhDAMGbIV6SF3THRFUdD+AyVAuTBGTmxgDX9iIQaY/gXXJ2nLOVIu9xj
+	6NP6WpfY8ydvPcYOcFNuJvo9SL3ml07T795y/M9jWuPy4Zf6L+qUYNadwe6HRA==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+Subject: Re: [PATCH v4 2/2] drm/bridge: ti-sn65dsi83: Add reversed lvds
+ lanes support
+From: Luca Ceresoli <luca.ceresoli@bootlin.com>
+To: Wojciech Dubowik <wojciech.dubowik@mt.com>
+Cc: linux-kernel@vger.kernel.org, Andrzej Hajda <andrzej.hajda@intel.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Luca Ceresoli <luca.ceresoli@bootlin.com>, David Airlie <airlied@gmail.com>, 
+ Simona Vetter <simona@ffwll.ch>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>, Marek Vasut <marex@denx.de>, 
+ dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+In-Reply-To: <20260713082622.52985-3-wojciech.dubowik@mt.com>
+References: <20260713082622.52985-1-wojciech.dubowik@mt.com>
+ <20260713082622.52985-3-wojciech.dubowik@mt.com>
+Date: Wed, 15 Jul 2026 10:49:31 +0200
+Message-Id: <178410537112.253594.1490996314225033236.b4-review@b4>
+X-Mailer: b4 0.15.2
+X-Last-TLS-Session-Version: TLSv1.3
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
+	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-326755-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-326757-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:wojciech.dubowik@mt.com,m:linux-kernel@vger.kernel.org,m:andrzej.hajda@intel.com,m:neil.armstrong@linaro.org,m:rfoss@kernel.org,m:Laurent.pinchart@ideasonboard.com,m:jonas@kwiboo.se,m:jernej.skrabec@gmail.com,m:luca.ceresoli@bootlin.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:Frank.Li@nxp.com,m:s.hauer@pengutronix.de,m:kernel@pengutronix.de,m:festevam@gmail.com,m:marex@denx.de,m:dri-devel@lists.freedesktop.org,m:devicetree@vger.kernel.org,m:imx@lists.linux.dev,m:linux-arm-kernel@lists.infradead.org,m:jernejskrabec@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[luca.ceresoli@bootlin.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[26];
 	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FORGED_SENDER(0.00)[joshuacrofts1@gmail.com,devicetree@vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FORGED_RECIPIENTS(0.00)[m:esben@geanix.com,m:jic23@kernel.org,m:lars@metafoo.de,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:martink@posteo.de,m:sean@geanix.com,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:andy@kernel.org,m:martin.kepplinger@theobroma-systems.com,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	FORWARDED(0.00)[lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[bootlin.com:+];
 	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[joshuacrofts1@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	FROM_NEQ_ENVFROM(0.00)[luca.ceresoli@bootlin.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[vger.kernel.org,intel.com,linaro.org,kernel.org,ideasonboard.com,kwiboo.se,gmail.com,bootlin.com,ffwll.ch,linux.intel.com,suse.de,nxp.com,pengutronix.de,denx.de,lists.freedesktop.org,lists.linux.dev,lists.infradead.org];
 	ALIAS_RESOLVED(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:url,bootlin.com:from_mime,bootlin.com:dkim,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,vger.kernel.org:from_smtp,mt.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 0F11F75C049
+X-Rspamd-Queue-Id: 2A8DC75C0CB
 
-On Wed, 15 Jul 2026 10:07:39 +0200
-Esben Haabendal <esben@geanix.com> wrote:
+On Mon, 13 Jul 2026 10:26:20 +0200, Wojciech Dubowik <wojciech.dubowik@mt.com> wrote:
 
-> When sharing interrupt line with other chips, the interrupt pin most
-> likely needs to be configured in open-drain mode instead of push-pull.
-> If this is needed, you must add drive-open-drain property to the
-> device-tree.
+Hello Wojciech,
 
-Why are you mentioning the device tree in the commit message? Just keep
-the first sentence + a short description of what you added/changed/removed.
-
-> Signed-off-by: Esben Haabendal <esben@geanix.com>
-> ---
->  drivers/iio/accel/mma8452.c | 29 ++++++++++++++++++++++++++++-
->  1 file changed, 28 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/iio/accel/mma8452.c b/drivers/iio/accel/mma8452.c
-> index 7d683686dd9d..a20c02ce0b9c 100644
-> --- a/drivers/iio/accel/mma8452.c
-> +++ b/drivers/iio/accel/mma8452.c
-> @@ -81,6 +81,8 @@
->  #define  MMA8452_CTRL_REG2_RST			BIT(6)
->  #define  MMA8452_CTRL_REG2_MODS_SHIFT		3
->  #define  MMA8452_CTRL_REG2_MODS_MASK		0x1b
-> +#define MMA8452_CTRL_REG3			0x2c
-> +#define  MMA8452_CTRL_REG3_PP_OD		BIT(0)
-
-I know that the defines are completely incorrectly aligned, but please
-ensure that at least all the defines in this block are aligned.
-
-Also, consider sending a patch which aligns all the other defines.
-
->  #define MMA8452_CTRL_REG4			0x2d
->  #define MMA8452_CTRL_REG5			0x2e
->  #define MMA8452_OFF_X				0x2f
-> @@ -108,6 +110,7 @@ struct mma8452_data {
->  	struct iio_mount_matrix orientation;
->  	u8 ctrl_reg1;
->  	u8 data_cfg;
-> +	bool open_drain;
-
-Hmm, i checked pahole and it says there is a 1 byte hole, maybe try some more
-reordering to pack it?
-
->  	const struct mma_chip_info *chip_info;
->  	int sleep_val;
->  	struct regulator *vdd_reg;
-> @@ -646,6 +649,22 @@ static int mma8452_set_power_mode(struct mma8452_data *data, u8 mode)
->  	return mma8452_change_config(data, MMA8452_CTRL_REG2, reg);
->  }
+>
+> diff --git a/drivers/gpu/drm/bridge/ti-sn65dsi83.c b/drivers/gpu/drm/bridge/ti-sn65dsi83.c
+> index e6dbe51d0dba..d676ea3b40e8 100644
+> --- a/drivers/gpu/drm/bridge/ti-sn65dsi83.c
+> +++ b/drivers/gpu/drm/bridge/ti-sn65dsi83.c
+> @@ -148,6 +148,18 @@ enum sn65dsi83_lvds_term {
+>  	OHM_200
+>  };
 >  
-> +static int mma8452_set_interrupt_pin_mode(struct mma8452_data *data)
-> +{
-> +	int reg;
-> +
-> +	reg = i2c_smbus_read_byte_data(data->client, MMA8452_CTRL_REG3);
-> +	if (reg < 0)
-> +		return reg;
-> +
-> +	if (data->open_drain)
-> +		reg |= MMA8452_CTRL_REG3_PP_OD;
-> +	else
-> +		reg &= ~MMA8452_CTRL_REG3_PP_OD;
-> +
-> +	return i2c_smbus_write_byte_data(data->client, MMA8452_CTRL_REG3, reg);
-> +}
-> +
->  /* returns >0 if in freefall mode, 0 if not or <0 if an error occurred */
->  static int mma8452_freefall_mode_enabled(struct mma8452_data *data)
->  {
-> @@ -1666,6 +1685,9 @@ static int mma8452_probe(struct i2c_client *client)
->  			goto disable_regulators;
+> +enum {
+> +	NORMAL_LANE_MAPPING,
+> +	REVERSE_LANE_MAPPING,
+
+Please use a fixed prefix and use the suffix to differentiate:
+
+  LANE_MAPPING_NORMAL,
+  LANE_MAPPING_REVERSE,
+
+> @@ -854,6 +873,37 @@ static int sn65dsi83_parse_lvds_endpoint(struct sn65dsi83 *ctx, int channel)
+>  		goto exit;
 >  	}
 >  
-> +	data->open_drain = device_property_read_bool(&client->dev, "drive-open-drain");
-> +	mma8452_set_interrupt_pin_mode(data);
+> +	ret_data = of_property_read_u32_array(endpoint, "data-lanes", data_lanes,
+> +			ARRAY_SIZE(data_lanes));
+> +	if (ret_data != 0 && ret_data != -EINVAL) {
+> +		ret = ret_data;
+> +		goto exit;
 
-You're not checking the return value here.
+The goto-based error handling is getting trickier and trickier with more
+error conditions. Can you please add a preliminary commit in this series
+that replaces:
+
+ -struct device_node *endpoint;
+ -endpoint = of_graph_get_endpoint_by_regs(dev->of_node, endpoint_reg, -1);
+ +struct device_node *endpoint __free(device_node) =
+ +         of_graph_get_endpoint_by_regs(dev->of_node, endpoint_reg, -1);
+
+and removes the entire "ret = foo; goto exit;" logic with simple returns?
+
+> +	}
+> +
+> +	if (!ret_data) {
+> +		for (i = 0; i < ARRAY_SIZE(supported_data_lane_mapping); i++) {
+> +			for (j = 0; j < DATA_LANES_COUNT; j++) {
+> +				if (data_lanes[j] != supported_data_lane_mapping[i][j])
+> +					break;
+> +			}
+> +
+> +			if (j == DATA_LANES_COUNT)
+> +				break;
+> +		}
+
+I think a memcmp() can simplify the implementation if you use the same data
+type (u32) for data_lanes and supported_data_lane_mapping[].
 
 > +
->  	data->ctrl_reg1 = MMA8452_CTRL_ACTIVE |
->  			  (MMA8452_CTRL_DR_DEFAULT << MMA8452_CTRL_DR_SHIFT);
->  
-> @@ -1683,7 +1705,8 @@ static int mma8452_probe(struct i2c_client *client)
->  
->  	if (client->irq) {
->  		ret = request_threaded_irq(client->irq, NULL, mma8452_interrupt,
-> -					   IRQF_TRIGGER_LOW | IRQF_ONESHOT,
-> +					   IRQF_TRIGGER_LOW | IRQF_ONESHOT |
-> +					   data->open_drain ? IRQF_SHARED : 0,
+> +		switch (i) {
+> +		case NORMAL_LANE_MAPPING:
+> +			break;
+> +		case REVERSE_LANE_MAPPING:
+> +			ctx->lvds_reverse_lanes_conf[channel] = true;
+> +			break;
+> +		default:
+> +			dev_err(dev, "invalid data lanes mapping\n");
+> +			ret = -EINVAL;
+> +			goto exit;
+> +		}
+> +	}
 
-Sashiko raises a pretty fun issue: the statement
+And perhaps the whole if (!ret_data) here can be simplified a lot as this
+(pseudocode, not tested):
 
-IRQF_TRIGGER_LOW | IRQF_ONESHOT | data->open_drain ? IRQF_SHARED : 0
+  if (!ret_data) {
+      if (memcmp(data_lanes[j], supported_data_lane_mapping[NORMAL_LANE_MAPPING], size) == 0)
+          break;
+      else if (memcmp(data_lanes[j], supported_data_lane_mapping[REVERSE_LANE_MAPPING], size) == 0)
+          ctx->lvds_reverse_lanes_conf[channel] = true;
+      else
+          return dev_err_probe(...);
+  }
 
-is actually evaluated as
-
-(IRQF_TRIGGER_LOW | IRQF_ONESHOT | data->open_drain) ? IRQF_SHARED : 0
-
-Bitwise OR precedes the ternary operator.
-
-You should wrap the data->open_drain ternary in parenthesis.
-
->  					   client->name, indio_dev);
->  		if (ret)
->  			goto buffer_cleanup;
-> @@ -1800,6 +1823,10 @@ static int mma8452_runtime_resume(struct device *dev)
->  		return ret;
->  	}
->  
-> +	ret = mma8452_set_interrupt_pin_mode(data);
-> +	if (ret < 0)
-> +		goto runtime_resume_failed;
-
-You can just have if (ret), as only 0 is successful.
-
-> +
->  	ret = mma8452_active(data);
->  	if (ret < 0)
->  		goto runtime_resume_failed;
-> 
-
-
+Luca
 
 -- 
-Kind regards
+Luca Ceresoli, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
-CJD
 
