@@ -1,165 +1,155 @@
-Return-Path: <devicetree+bounces-326950-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-326955-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id qY9OD9h6V2rcOwEAu9opvQ
-	(envelope-from <devicetree+bounces-326950-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 14:19:36 +0200
+	id bi5vJPh8V2r4JwAAu9opvQ
+	(envelope-from <devicetree+bounces-326955-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 14:28:40 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C298475E053
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 14:19:35 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1AC7875E1D5
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 14:28:40 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=collabora.com header.s=mail header.b="J5/9iFtZ";
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326950-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-326950-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=collabora.com;
+	dkim=pass header.d=sang-engineering.com header.s=k1 header.b=TNGSDlND;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326955-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-326955-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=none;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id C938A3009F2C
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 12:19:34 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6F3CC3008756
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 12:23:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A15E7446853;
-	Wed, 15 Jul 2026 12:19:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36D4044C65F;
+	Wed, 15 Jul 2026 12:23:52 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B53A4418DC
-	for <devicetree@vger.kernel.org>; Wed, 15 Jul 2026 12:19:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 071F944682F
+	for <devicetree@vger.kernel.org>; Wed, 15 Jul 2026 12:23:46 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1784117972; cv=none; b=eZtJDl1PZNYXkZJf3X/KYo855eTJCf5z/1P5/UUFo8xCw0TIcjHOhuZTZsf7EOrMf5Fuu3GQ1wwNsooLaAU7k9uhGJGLM5V90SSTvu+E9L6ISAmx89ggFWBdEYucrGjUmkmdVl1SPf0lTF6Q8CUwVYeU6fiiZazAdmASrdyLgSA=
+	t=1784118232; cv=none; b=ngqKVMAsrc3hbpU2ypZCQJ0dGme3UyLgoHGBe3JJeQx98vbzoGqFSYafbm61X1dAEUKHXlstVPGNydwvRkcxV8nGnuj2LL+fyJgPPHrz5E7zWuEHtNJ78dIGJ5kcgP3o7j1RwJ9dr2OqBmdvdhRRh+blyBcyHRkyYc+j79ctAHU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1784117972; c=relaxed/simple;
-	bh=GwgR0uDlU7raDjnYwmqupcREvOTo+vbqF9PgmiaMa0o=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Xu42G2XJ4a3RjmY/an3hVAJebap0UMyWjuJLhMqX5pUQLuhLnMx/OjQfKC/DaiTPLXS6tO6GSSZTdMs3ec6ReHP0RJMf+X6g+jjidShlE1o859Xvijq8ezQHz1Zd6Dtxw+XpStowD/yZE7eBJnRUuQczY8k1Vr2WVsGGdf4uR+A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=J5/9iFtZ; arc=none smtp.client-ip=148.251.105.195
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1784117969;
-	bh=GwgR0uDlU7raDjnYwmqupcREvOTo+vbqF9PgmiaMa0o=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=J5/9iFtZJFrG3V6FNALKifW13kVwgqclKBNmX1t3GsIbmfnf4tadH2GNOt38hBP++
-	 SVA2LV1DwhZM0d3Mf/gnl0XOwXO4UeaqmCHHySMvG7EuMt7e45/Xd5uS1vluFs2XJQ
-	 uYIsbJ5py8A8kvuQ/YZOVTIRA2UsBy/TyDCm7ysPU7BjatVL6fTmjAgnH5gYxcPSDE
-	 IBTYsCG/nqFfqJKTlPKGGH/nxJ4VT2YlLTE76+l7oLJ3vawQow8OCpX2haxavPFBIq
-	 XERR7+Ea1BOWxJMtECpaYieIQUFP5SlUETB2EFt+8te570G9gjObgsOm9thOrSni/D
-	 LhZ0gxIfVIeZA==
-Received: from [100.64.1.21] (unknown [100.64.1.21])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange x25519)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 2EC5517E07AA;
-	Wed, 15 Jul 2026 14:19:29 +0200 (CEST)
-Message-ID: <ab158fcd-5d6b-4b9f-9eb0-6b135ea7b1eb@collabora.com>
-Date: Wed, 15 Jul 2026 14:19:28 +0200
+	s=arc-20240116; t=1784118232; c=relaxed/simple;
+	bh=bDAOPe5Qcuz1UX//tXS59VnDMR5cUxqww/YP5Nf/abY=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=mQz0Nqm2Sq35f/LrAU7EgrzzLEG5VjlNJF8a05qFuJlRklyIw6jIdmUdLVUeq5BDhNCR/SQfyfqcx+N6vdkb9x+pfNRiSgznewG3+gs2BGdybZe7XY1ioCVJHyK87YBHMgSr/Nuw0MIfbc2Ze+o0Yb5QMQ2GMqjX8fP/a2w7W58=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=TNGSDlND; arc=none smtp.client-ip=194.117.254.33
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=from:to:cc:subject:date:message-id
+	:mime-version:content-transfer-encoding; s=k1; bh=8CvlUGuiNoEinh
+	8lQW/4EuXAkmHCwLSgBalcuIStamE=; b=TNGSDlNDYKgHCD6khSgdY6YCzV+rxC
+	45lVPXWq3pg1SHp79mPk6qSUh/6tyyKVnlaX0Ngg6aDUOp7keHEvnbZNB4l23DOB
+	s5l1Vr6W7GofKutisNLF+8vj5oYh1EFC2vYy3Ub4J4LI9DDnC/sNhO7IQnL0WGfY
+	mFE9hYX9qyvgjDFDGN5YIqrJlKo58dgT4BQwsOnYimo1O6lksmBSVjmXt4YKc+i7
+	YGJmkIpcxU2UZ6boDmtjJ8+bk5iVffxqI86O1nEsyVLegKKabGKMJ0+kYQxtgC/2
+	5aBlinKWmKDQDOWWSo41GMDii0Rxeemq1YEhRSqD9+MHRjrlryQVUiHw==
+Received: (qmail 682654 invoked from network); 15 Jul 2026 14:23:44 +0200
+Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 15 Jul 2026 14:23:44 +0200
+X-UD-Smtp-Session: l3s3148p1@7Lv7ZKVW9JcujntW
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: linux-renesas-soc@vger.kernel.org
+Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org
+Subject: [PATCH] ARM: dts: renesas: r9a06g032-rzn1d400-eb: enable GPIOs on CN12
+Date: Wed, 15 Jul 2026 14:21:05 +0200
+Message-ID: <20260715122341.47838-2-wsa+renesas@sang-engineering.com>
+X-Mailer: git-send-email 2.47.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 10/11] dt-bindings: display: mediatek: wdma: Add
- compatibles for more SoCs
-To: sashiko-reviews@lists.linux.dev
-Cc: conor+dt@kernel.org, dri-devel@lists.freedesktop.org, robh@kernel.org,
- devicetree@vger.kernel.org
-References: <20260715114916.19690-1-angelogioacchino.delregno@collabora.com>
- <20260715114916.19690-11-angelogioacchino.delregno@collabora.com>
- <20260715121553.103AE1F000E9@smtp.kernel.org>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20260715121553.103AE1F000E9@smtp.kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [-1.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
-	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[sang-engineering.com:s=k1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-326950-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:sashiko-reviews@lists.linux.dev,m:conor+dt@kernel.org,m:dri-devel@lists.freedesktop.org,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-326955-lists,devicetree=lfdr.de,renesas];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[angelogioacchino.delregno@collabora.com,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[sang-engineering.com,glider.be,gmail.com,kernel.org,vger.kernel.org];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER(0.00)[wsa@sang-engineering.com,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[collabora.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	RCPT_COUNT_FIVE(0.00)[5];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	TO_DN_NONE(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[angelogioacchino.delregno@collabora.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS(0.00)[m:linux-renesas-soc@vger.kernel.org,m:wsa+renesas@sang-engineering.com,m:geert+renesas@glider.be,m:magnus.damm@gmail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:wsa@sang-engineering.com,m:geert@glider.be,m:magnusdamm@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	RBL_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[172.234.253.10:from];
+	RCVD_COUNT_THREE(0.00)[4];
+	DMARC_NA(0.00)[sang-engineering.com];
+	DKIM_TRACE(0.00)[sang-engineering.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	DNSWL_BLOCKED(0.00)[100.90.174.1:received,172.234.253.10:from,194.117.254.33:received];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[wsa@sang-engineering.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	RECEIVED_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[194.117.254.33:received,100.90.174.1:received];
+	DWL_DNSWL_BLOCKED(0.00)[sang-engineering.com:dkim];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,collabora.com:from_mime,collabora.com:mid,collabora.com:email,collabora.com:dkim]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: C298475E053
+X-Rspamd-Queue-Id: 1AC7875E1D5
+X-Rspamd-Action: no action
 
-On 7/15/26 14:15, sashiko-bot@kernel.org wrote:
-> Thank you for your contribution! Sashiko AI review found 1 potential issue(s) to consider:
-> - [Medium] Inconsistent compatibility fallback for 64-bit SoCs (MT8192/MT8195) violating hardware constraints described in the commit.
-> --
-> 
-> --- Patch [10]: [PATCH v5 10/11] dt-bindings: display: mediatek: wdma: Add compatibles for more SoCs ---
-> commit ffb6d1b73de2ee2d9fba381dca064a6d8fef7acf
-> Author: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> 
-> dt-bindings: display: mediatek: wdma: Add compatibles for more SoCs
-> 
-> This commit adds missing compatibles for the Write DMA hardware in the
-> Display Controller for Dimensity 1200 (MT6893) and Kompanio
-> 500/520/820/1200 (MT8183/MT8186/MT8192/MT8195).
-> 
->> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,wdma.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,wdma.yaml
->> --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,wdma.yaml
->> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,wdma.yaml
->> @@ -22,11 +22,16 @@ properties:
->>     compatible:
->>       oneOf:
->>         - enum:
->> +          - mediatek,mt6893-disp-wdma
->>             - mediatek,mt8173-disp-wdma
->>         - items:
->>             - enum:
->>                 - mediatek,mt6795-disp-wdma
->>                 - mediatek,mt8167-disp-wdma
->> +              - mediatek,mt8183-disp-wdma
->> +              - mediatek,mt8186-disp-wdma
->> +              - mediatek,mt8192-disp-wdma
->> +              - mediatek,mt8195-disp-wdma
->>             - const: mediatek,mt8173-disp-wdma
-> 
-> [Severity: Medium]
-> The commit message explicitly excludes MT6893 from falling back to
-> MT8173 because it introduces support for destination addresses larger
-> than 32 bits. Should this same rule apply to MT8192 and MT8195?
-> 
-> Since MT8195 (Kompanio 1200) and MT6893 (Dimensity 1200) are the same
-> generation of SoCs sharing the same IP, grouping MT8192 and MT8195 here
-> implies they can safely fall back to the legacy 32-bit driver.
+CN12 offers some GPIOs independently of switch settings. Add the nodes.
+Verified all the pins with a multimeter successfully.
 
-What?! No!! They're not the same SoC generation, and THAT is also why they
-are not compatible with each other?!?!?!?!?!?! :-)))))
+Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+---
 
-Cheers!
+ .../boot/dts/renesas/r9a06g032-rzn1d400-eb.dts  | 17 +++++++++++++++++
+ 1 file changed, 17 insertions(+)
 
-> 
-> If an OS binds a legacy 32-bit driver to the MT8195 WDMA using this
-> fallback, won't it misprogram the DMA addresses by truncating them to 32
-> bits when attempting a DMA operation above 4GB?
-> 
+diff --git a/arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-eb.dts b/arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-eb.dts
+index ead379988fb1..7d6ddc91bb2e 100644
+--- a/arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-eb.dts
++++ b/arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-eb.dts
+@@ -57,6 +57,12 @@ &gpio2 {
+ 	status = "okay";
+ };
+ 
++&gpio2b {
++	pinctrl-0 = <&pins_gpio2b>;
++	pinctrl-names = "default";
++	status = "okay";
++};
++
+ &i2c2 {
+ 	/* Sensors are different across revisions. All are LM75B compatible */
+ 	sensor@49 {
+@@ -136,6 +142,17 @@ pins_eth2: pins-eth2 {
+ 		bias-disable;
+ 	};
+ 
++	pins_gpio2b: pins-gpio2b {
++		pinmux = <RZN1_PINMUX(164, RZN1_FUNC_GPIO)>,
++			 <RZN1_PINMUX(165, RZN1_FUNC_GPIO)>,
++			 <RZN1_PINMUX(166, RZN1_FUNC_GPIO)>,
++			 <RZN1_PINMUX(167, RZN1_FUNC_GPIO)>,
++			 <RZN1_PINMUX(168, RZN1_FUNC_GPIO)>,
++			 <RZN1_PINMUX(169, RZN1_FUNC_GPIO)>;
++		drive-strength = <6>;
++		bias-disable;
++	};
++
+ 	pins_mdio0: pins-mdio0 {
+ 		pinmux = <RZN1_PINMUX(150, RZN1_FUNC_MDIO0_GMAC0)>,
+ 			 <RZN1_PINMUX(151, RZN1_FUNC_MDIO0_GMAC0)>;
+-- 
+2.47.3
+
 
