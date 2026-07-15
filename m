@@ -1,222 +1,241 @@
-Return-Path: <devicetree+bounces-326789-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-326784-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id sy0METhQV2prJAEAu9opvQ
-	(envelope-from <devicetree+bounces-326789-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 11:17:44 +0200
+	id clNyFihOV2rQIwEAu9opvQ
+	(envelope-from <devicetree+bounces-326784-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 11:08:56 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9441275C5BA
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 11:17:43 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id E92BB75C3F4
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 11:08:55 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20201202 header.b=nK6Frkh3;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326789-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-326789-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=O1c8wJm6;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326784-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-326784-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E5335316240E
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 09:09:37 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id E121D3011798
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 09:08:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA4AB3F1653;
-	Wed, 15 Jul 2026 09:09:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 175EC3EB0FA;
+	Wed, 15 Jul 2026 09:08:47 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1D1F3EDE59;
-	Wed, 15 Jul 2026 09:09:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF5463E3DA2
+	for <devicetree@vger.kernel.org>; Wed, 15 Jul 2026 09:08:45 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1784106561; cv=none; b=kUMgxNH1PAd8VVCAWcpu+BptagrNcUBKgBTicHlVp4sjNWX0xNfVzLhySupQPJ/N6P/irQRZV2QkG8/lbm3RnsfhoKX0iWHyMISUgkQisMUAaXjp+6zju1BKKl7fdBkTyOsE16TvTIxeU/G/1hyyAx5TBI+ZSSVJ6z2gEmgPTdE=
+	t=1784106527; cv=none; b=NWGzODBa088dC4ianQCWTdHSHX5qjLnUuMengbAVYSIPhoZ1xRY6pDlKO8nFnlGKnGptGeogFa+WJHQiJhoxQ+mIGBsYSpF6i/fneZWa6Wnq4M3cuUBXbag4HnyzR6+Qg2MCpZ98khtV/x+DFteGXhcOCDDYvvXrXYeSKVWJwPM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1784106561; c=relaxed/simple;
-	bh=12v4kLfM0t53W8e1jIm92V7bHObkh5Z/3ph0XkzStPQ=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=RropRS0sAKfd7IPbMaSCoudKM3bjwpbeTpiORdfUjHiXosUmxaqCpWZUAgqXEbNx6LqUNy9MKU7lqBotCNajCAklvNVWQ528su+QGxg42495Bp7uTIQROBQE8tDKR475OEbk+dN8eaPH0TZxF3pODvJwfynOw49d5bIMr/w5wUc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nK6Frkh3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 8B3D9C2BD01;
-	Wed, 15 Jul 2026 09:09:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1784106561;
-	bh=12v4kLfM0t53W8e1jIm92V7bHObkh5Z/3ph0XkzStPQ=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=nK6Frkh3OBSy57BXYR8scrdihVLTCkjjZy8diwqh5FZw7Zw1QPavvK8KAs7zqoWEg
-	 T/qibLbQgujb4MOJVufcsJ3BqvfDPquLdAsRXrzdqDSmnQUJoXWWnlAqLJyxvRLyA9
-	 9dJGV9hKNcGtfqrc/yKOrSQ/d8SiCa9dfUPQYws2UPJVaPQ0uaHBwxJy0tO3FYa9wK
-	 tVoFbnHPZIMgmlDmOJ6ImSLkMkT/STqRTmi0qiiwVl+GUESXWUj6ro3UPyC9WCOwgj
-	 Hb9SvqRLzWC2YWQiiRs7tU38L0CkFYDOM+RlxwT8SyXT1wy1Hc6KCY3ilM6f+N5/Ev
-	 /etkZjEjY14ig==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 7143AC4450F;
-	Wed, 15 Jul 2026 09:09:21 +0000 (UTC)
-From: Andy Chung via B4 Relay <devnull+Andy.Chung.amd.com@kernel.org>
-Date: Wed, 15 Jul 2026 17:08:38 +0800
-Subject: [PATCH v2 4/4] hwmon: (kb9002) Add documentation
+	s=arc-20240116; t=1784106527; c=relaxed/simple;
+	bh=0RXsWghRInBDk4UyfWlhAOA9h3GcNKFcDQAOzMhwCZA=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=WdVfe8VLM4WXShZMKS+z7Rx3NyBrGy5/qADBNfM2YCPqrTGeHEU2F9ee5E9FwsIh4ExQ8rcgfJg6TFPF00YaLaXfRywozPL1pUEFZo9oiF3XN8mhznQVJSk2uKKe22QMob4kWFL1v3f1r7xHDCUSOy3LYxlgS3Akb1lKLdvl2lA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=O1c8wJm6; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3E1561F000E9;
+	Wed, 15 Jul 2026 09:08:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1784106525;
+	bh=F1UsryzJNhgOIwO8WAQz6hw83ITJHzetM231WkAZ9Gw=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=O1c8wJm6IoYGLYq2YnbRxMU3Xk+LG+u6EmCU+uDWejqTyANvDo5I8CQdfPMe6rEfR
+	 d5DcXaYOg+Mq6wg4ypwjlVq/DIdkLVTTDsuRkZBGMbQ6T3rJ9Wwy0fNaX9FW9170xE
+	 j/PmbOkCq8LuWvYrLDKi0aTgag6z6W4eHewAXxAmx68EYWsniW4D5uC90oc5tRW3xr
+	 DXmGEiJl5obgPRBvuRwfPqu64QP+Z+gv4ZXVgGvAtWbDzUZ8V2dwwU4Zao3PKYqw1t
+	 KF4GwECVMP0whQ0/cvvHawX/1MwjiIdbUdSarA0bKCz3N/CWnaMRIlhYlXfwHu4XrG
+	 3b8x1z/mTU8vQ==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v5 03/16] power: sequencing: Add pwrseq_power_is_on()
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Chen-Yu Tsai" <wenst@chromium.org>
+Cc: devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org
+In-Reply-To: <20260715085348.3457359-4-wenst@chromium.org>
+References: <20260715085348.3457359-1-wenst@chromium.org>
+ <20260715085348.3457359-4-wenst@chromium.org>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Wed, 15 Jul 2026 09:08:44 +0000
+Message-Id: <20260715090845.3E1561F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260715-kb9002-upstream-v2-4-2fd390383da5@amd.com>
-References: <20260715-kb9002-upstream-v2-0-2fd390383da5@amd.com>
-In-Reply-To: <20260715-kb9002-upstream-v2-0-2fd390383da5@amd.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Andy Chung <andy.chung@amd.com>, 
- Guenter Roeck <linux@roeck-us.net>, Jonathan Corbet <corbet@lwn.net>, 
- Shuah Khan <skhan@linuxfoundation.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-hwmon@vger.kernel.org, linux-doc@vger.kernel.org, 
- Andy Chung <Andy.Chung@amd.com>
-X-Mailer: b4 0.15.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1784106525; l=3142;
- i=Andy.Chung@amd.com; s=20260327; h=from:subject:message-id;
- bh=N49+QrvixV76oNVim+qejmy5UhGOUcqywymzDOcJACo=;
- b=zZ6aRKFfqNlk6jBV8GQA33hkWntZJMk1yvIiBUghf/dKfD0R2qzpU517LRtgWUYGYU4uiMaKa
- mJVDwnAKyCdDGvhSJpeXSicA/CnSrvFlm/hq+LZy1bALHjqnj9KFSwU
-X-Developer-Key: i=Andy.Chung@amd.com; a=ed25519;
- pk=X2gaHRnhU2q5hvMjkC6xmIcC03vKNvHY9CQRdsj9ecM=
-X-Endpoint-Received: by B4 Relay for Andy.Chung@amd.com/20260327 with
- auth_id=696
-X-Original-From: Andy Chung <Andy.Chung@amd.com>
-Reply-To: Andy.Chung@amd.com
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.66 / 15.00];
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-326789-lists,devicetree=lfdr.de,Andy.Chung.amd.com];
-	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:andy.chung@amd.com,m:linux@roeck-us.net,m:corbet@lwn.net,m:skhan@linuxfoundation.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-hwmon@vger.kernel.org,m:linux-doc@vger.kernel.org,m:Andy.Chung@amd.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
-	FORWARDED(0.00)[lists@lfdr.de];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	HAS_REPLYTO(0.00)[Andy.Chung@amd.com];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-326784-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:mid,amd.com:email,amd.com:replyto,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:wenst@chromium.org,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ALIAS_RESOLVED(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	RCPT_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.linux.dev:replyto,smtp.kernel.org:mid,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,chromium.org:email,sashiko.dev:url,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 9441275C5BA
+X-Rspamd-Queue-Id: E92BB75C3F4
 
-From: Andy Chung <Andy.Chung@amd.com>
+Thank you for your contribution! Sashiko AI review found 4 potential issue(=
+s) to consider:
 
-Document the sysfs and debugfs interfaces of the Kandou KB9002 hwmon
-driver.
+New issues:
+- [Medium] The !CONFIG_POWER_SEQUENCING stub for pwrseq_power_is_on() uncon=
+ditionally returns -ENOSYS, breaking support for optional descriptors.
+- [Medium] Unprotected lockless read of `desc->powered_on` in `pwrseq_power=
+_is_on()` constitutes a data race.
 
-Signed-off-by: Andy Chung <Andy.Chung@amd.com>
----
- Documentation/hwmon/index.rst  |  1 +
- Documentation/hwmon/kb9002.rst | 65 ++++++++++++++++++++++++++++++++++++++++++
- 2 files changed, 66 insertions(+)
+Pre-existing issues:
+- [High] The stubs for pwrseq_power_on() and pwrseq_power_off() uncondition=
+ally return -ENOSYS, breaking optional descriptors when CONFIG_POWER_SEQUEN=
+CING is disabled.
+- [High] Lockless TOCTOU race on `desc->powered_on` in `pwrseq_power_on()` =
+and `pwrseq_power_off()` allows concurrent calls to leak `enable_count` ref=
+erences.
+--
 
-diff --git a/Documentation/hwmon/index.rst b/Documentation/hwmon/index.rst
-index 226789376217..9dc796d087dc 100644
---- a/Documentation/hwmon/index.rst
-+++ b/Documentation/hwmon/index.rst
-@@ -112,6 +112,7 @@ Hardware Monitoring Kernel Drivers
-    jc42
-    k10temp
-    k8temp
-+   kb9002
-    kbatt
-    kfan
-    lan966x
-diff --git a/Documentation/hwmon/kb9002.rst b/Documentation/hwmon/kb9002.rst
-new file mode 100644
-index 000000000000..e6d8d9c78923
---- /dev/null
-+++ b/Documentation/hwmon/kb9002.rst
-@@ -0,0 +1,65 @@
-+.. SPDX-License-Identifier: GPL-2.0-or-later
-+
-+Kernel driver kb9002
-+====================
-+
-+Supported chips:
-+
-+  * Kandou KB9002
-+
-+    Prefix: 'kb9002'
-+
-+    Addresses scanned: -
-+
-+    Datasheet: KA-015171-PD (available from Kandou under NDA)
-+
-+Author: Andy Chung <andy.chung@amd.com>
-+
-+Description
-+-----------
-+
-+The Kandou KB9002 is an 8-lane PCIe 5.0 retimer with an integrated
-+microcontroller. It exposes an SMBus 3.0 target (with mandatory PEC)
-+on its sideband interface. The internal firmware aggregates per-lane
-+die temperatures and publishes the maximum value through a 16-bit
-+addressed register window.
-+
-+This driver reports that aggregated maximum as the only hwmon
-+temperature channel. The running firmware version and the firmware
-+boot status are exposed under debugfs.
-+
-+sysfs interface
-+---------------
-+
-+==================  ===============================================
-+temp1_input         Aggregated maximum die temperature across all
-+                    active lanes (millidegrees Celsius).
-+temp1_label         Always "kb9002".
-+==================  ===============================================
-+
-+debugfs interface
-+-----------------
-+
-+Files live in the per-client debugfs directory created by the I2C
-+core: ``/sys/kernel/debug/i2c/i2c-<bus>/<bus>-<addr>/``.
-+
-+==================  ===============================================
-+fw_ver              Running firmware version in
-+                    "major.minor.patch.suffix" format. Read-only.
-+fw_load_status      Firmware boot status: "normal" once firmware has
-+                    finished initialising, "abnormal" otherwise.
-+                    Read-only.
-+==================  ===============================================
-+
-+Notes
-+-----
-+
-+The driver requires ``I2C_FUNC_SMBUS_BLOCK_DATA``,
-+``I2C_FUNC_SMBUS_PEC`` and ``I2C_FUNC_I2C`` from the host adapter. The
-+last is needed only during probe for the host-interface mode switch;
-+runtime accesses use SMBus block transactions exclusively.
-+
-+The retimer's SMBus address is configurable on three strap pins and
-+ranges from 0x20 to 0x27. The address is selected through device tree
-+(or i2c board info) the same way as any other I2C device; the driver
-+does not auto-detect.
+--- Patch [3]: [PATCH v5 03/16] power: sequencing: Add pwrseq_power_is_on()=
+ ---
+commit 32144de8b3a9da0a0745b35617cfc4d0359911df
+Author: Chen-Yu Tsai <wenst@chromium.org>
 
--- 
-2.34.1
+power: sequencing: Add pwrseq_power_is_on()
 
+This commit introduces pwrseq_power_is_on() to expose the internal power-on
+state tracking to consumers, eliminating the need for local tracking. The A=
+PI
+handles optional descriptors by returning 1 if the descriptor is NULL.
 
+> diff --git a/drivers/power/sequencing/core.c b/drivers/power/sequencing/c=
+ore.c
+> index 02f42da915985..db8c91be10c95 100644
+> --- a/drivers/power/sequencing/core.c
+> +++ b/drivers/power/sequencing/core.c
+> @@ -968,6 +968,25 @@ int pwrseq_power_off(struct pwrseq_desc *desc)
+>  }
+>  EXPORT_SYMBOL_GPL(pwrseq_power_off);
+
+[Severity: High]
+This is a pre-existing issue, but could the lockless check of
+desc->powered_on in pwrseq_power_on() and pwrseq_power_off() cause a race
+condition that leaks enable_count references?
+
+If two threads concurrently invoke pwrseq_power_on() with the same descript=
+or,
+both could bypass the early check locklessly:
+
+    if (!desc || desc->powered_on)
+        return 0;
+
+They then sequentially acquire pwrseq->state_lock, but neither re-validates
+the flag inside the critical section. Both execute pwrseq_unit_enable(),
+incrementing enable_count twice.
+
+When pwrseq_power_off() is called later, the first invocation decrements the
+count and clears desc->powered_on. The second invocation sees
+desc->powered_on =3D=3D false locklessly and returns early, leaving enable_=
+count
+permanently elevated.
+
+> +/**
+> + * pwrseq_power_is_on() - Queries the last requested state of the power =
+sequencer.
+> + * @desc: Descriptor referencing the power sequencer.
+> + *
+> + * This returns the last requested state of the power sequencer.
+> + *
+> + * Returns:
+> + * On success, 1 for on or desc is NULL (optional) and 0 for off;
+> + * negative error number on failure.
+> + */
+> +int pwrseq_power_is_on(struct pwrseq_desc *desc)
+> +{
+> +	if (!desc)
+> +		return 1;
+> +
+> +	return desc->powered_on;
+
+[Severity: Medium]
+Does this lockless read of desc->powered_on need READ_ONCE() to prevent data
+races?
+
+Since desc->powered_on can be concurrently modified by pwrseq_power_on()
+and pwrseq_power_off(), reading it without protection might lead to unsafe
+compiler optimizations.
+
+> +}
+> +EXPORT_SYMBOL_GPL(pwrseq_power_is_on);
+
+[ ... ]
+
+> diff --git a/include/linux/pwrseq/consumer.h b/include/linux/pwrseq/consu=
+mer.h
+> index 3c907c9e1885d..3c6122bd02057 100644
+> --- a/include/linux/pwrseq/consumer.h
+> +++ b/include/linux/pwrseq/consumer.h
+
+[ ... ]
+
+> @@ -53,6 +54,11 @@ static inline int pwrseq_power_off(struct pwrseq_desc =
+*desc)
+>  	return -ENOSYS;
+>  }
+
+[Severity: High]
+This is a pre-existing issue, but do the stubs for pwrseq_power_on() and
+pwrseq_power_off() also break optional descriptors?
+
+If a driver invokes pwrseq_power_on(NULL) on a kernel without power
+sequencing enabled, returning -ENOSYS instead of 0 defeats the purpose of
+an optional descriptor, as consumers checking for errors will abort their
+operations.
+
+> +static inline int pwrseq_power_is_on(struct pwrseq_desc *desc)
+> +{
+> +	return -ENOSYS;
+> +}
+
+[Severity: Medium]
+When CONFIG_POWER_SEQUENCING is disabled, does this stub break the contract
+for optional descriptors?
+
+The commit message mentions returning 1 if the descriptor is NULL (optional=
+),
+but this stub unconditionally returns -ENOSYS. This will cause consumers
+checking the power state of an optional descriptor to receive a negative
+error code instead of the expected 1.
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260715085348.3457=
+359-1-wenst@chromium.org?part=3D3
 
