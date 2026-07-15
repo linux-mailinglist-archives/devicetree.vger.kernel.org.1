@@ -1,333 +1,234 @@
-Return-Path: <devicetree+bounces-326775-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-326780-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 2QiXBiJNV2qUIwEAu9opvQ
-	(envelope-from <devicetree+bounces-326775-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 11:04:34 +0200
+	id Led+NO9MV2qGIwEAu9opvQ
+	(envelope-from <devicetree+bounces-326780-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 11:03:43 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8434B75C345
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 11:04:33 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7193F75C313
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 11:03:43 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=chromium.org header.s=google header.b=OVszIwLS;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326775-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-326775-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=chromium.org;
+	dkim=none;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326780-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-326780-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=none;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id EF17530B124A
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 08:57:35 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 10405301B011
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 09:03:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0AAE93EB0F2;
-	Wed, 15 Jul 2026 08:55:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F00DB3EA953;
+	Wed, 15 Jul 2026 09:02:58 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f175.google.com (mail-pf1-f175.google.com [209.85.210.175])
+Received: from mail-vk1-f177.google.com (mail-vk1-f177.google.com [209.85.221.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57DD43EB116
-	for <devicetree@vger.kernel.org>; Wed, 15 Jul 2026 08:55:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E097B3E3DA2
+	for <devicetree@vger.kernel.org>; Wed, 15 Jul 2026 09:02:52 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1784105739; cv=none; b=HZ2tbUG335csFs7X5gx4jPCXCtXGAHfftAznwNKJFBtnTAI+IuUkM3elcMDMLU4MZCvOWpe4JdZfzSyp8KwsiQh6y3kDioBtK5Ch5PrwKBSTNs0ti7CxONmTUcLpkWd3EVyuKIuS0BI5P3ZTzhvS4yLsSFz8JXVsW9TcyzNYOzY=
+	t=1784106177; cv=none; b=Vp+6Otz6O9A33MuZeF4+7rMWgRR6fZYblshNSWnBoTaEuZ+Tr8DlGAJlMSlmsTw1+hC8KOOe3KMka47KIsRtTopfrcLvxNIT/lFIaMi84Sc6gMph9AzSqQc1Lxj/+uKDGEqpmjxWHdLK2ker2mO580F9aHzgFJsi+2m0FDvd2Us=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1784105739; c=relaxed/simple;
-	bh=YJyU75cpPuviW3DeoVCtVsycwY35EMz4CrOCdWp2v74=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=mc0VyGebLrtz3B3bLuteojogjec0OXOng90yii5htGVgGjEs7Ef/eqNidF7oMi0E2L7BqLABFiL9+RkvkBWweUeZOTV+NcV3p1HkniNjyEgc+svSxhUOfYI9WkC0T5isc7KQPsUQLxSbPgNropxgXvktYCX9GGqd9WY8QTYNOwI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=OVszIwLS; arc=none smtp.client-ip=209.85.210.175
-Received: by mail-pf1-f175.google.com with SMTP id d2e1a72fcca58-84a652535dcso370564b3a.3
-        for <devicetree@vger.kernel.org>; Wed, 15 Jul 2026 01:55:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1784105733; x=1784710533; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=fzcA9TG2yqej8iZO6JRem4wjlVQiv9Z5qdYjer6rUOE=;
-        b=OVszIwLS7H8jiqE+d2DA2xPOT8UD7FSvMFhYDyZYT7/CL1w2FW4FSln6Z6V63NeATU
-         R/fFeOrvCXNGaIKFMIOAnuZpho1aiq2jCYiY5ZRKWQshFQv2EQUWDDKgpBCNwPI9CnD0
-         F/DTNpxO9rBgMZHeVDybxLXFqlVr1VIEwVCxQ=
+	s=arc-20240116; t=1784106177; c=relaxed/simple;
+	bh=4p7JA6EZMNI8+iBrijHrUHNSvFWoAG8Fnu6BsUPc+bA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=JD8TlhlS+3CpWPNQLk5QsIFA57SCmBP6RbrVVhWOn4ndvKoayeCAjHHnU7+D/hq7rvY7KO9LD5ToCOgB23/dUnjvO8llcnKFSPoTHVPTlfNU7D96f7SnBOqfvO+MFbbQGhYyAVw4Tmcx5fXo5dJ72513vJ4suOY3ROOV6Ru2LrM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.177
+Received: by mail-vk1-f177.google.com with SMTP id 71dfb90a1353d-5bfd1df4835so2064079e0c.2
+        for <devicetree@vger.kernel.org>; Wed, 15 Jul 2026 02:02:51 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1784105733; x=1784710533;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=fzcA9TG2yqej8iZO6JRem4wjlVQiv9Z5qdYjer6rUOE=;
-        b=cJR+wAmDnd/ptXrlMu4Br6f1LmQMydoNme437MWWDhElf5KZAwqwy2nXBk8D3HZnxn
-         8H3HCxs57zW8cJpRk5lWFdLLeniu2agxCArRljCQTrvI8Ud24EFaINq/ssxmls1MVgNk
-         Lfl8gBddnBpS0b9KHXGm1fIIIVx+5HBMxKLJox4/LkuREoJLer3KV/RHtWOydE3qn53g
-         sAHEvoTRvp6I8xT/dMyzN+fBRXwptC96xh4O8eVjTu/efIb2GCxL5EEDlMbRTRVx81G4
-         sSva/S1bpV/XqA2Z3/D2hAPaRqiMiPICMM0H9KCZV00CZ864zLTiNPiW6ztBFXh1CwfC
-         taFg==
-X-Forwarded-Encrypted: i=1; AHgh+RqJ+NWSt2qpjL4weNI6KEQ/WOt0rafyYte/M1SCJBiNPgTw6lmOliLH+7Yajm7MGnrj8umz6OuyTXJQ@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw05ehN5adXd8rytdwqS7nQtld/w7d7Fxo1PbBiLJf5lJqTKrP/
-	kwrezhb8fYq0+ZPaspFfHEjhaEWQWEFhZdgLkmU9HlTeACn4uFxbcltiOcHXRYlxUQ==
-X-Gm-Gg: AfdE7clwHCJjy9vHfg4fre4ekeJt1lU0Dv9DHxXGQzWYAuappDnq8Jrc6MKpZey5A78
-	CXI1Mv5UHps8tOOcv6dV7FWrHLDbJGDBGer1u+mFjf3tNRuWelaqsaOt4UiKeRzqX4vvURqMgfV
-	80Xy04IrsIDK9t4NxvTTaF17uGbZoMjFfOlTYemgFHA6dt+pXPpfxV4ZyxMp3h/jV7Qo/aOieHF
-	0txxYr/26OByWRXSlrxePF2KCWtCR+g31jbLpZeZ/GbB+gI32USmDOPhlBAVXvHIR0N3dVeE5dS
-	QOWdYrF+cCOmS9pmosuDTSGc0kTyMxNTS1u0UClnWujX2M4xYBFGzFb89NHVOgUGCULEz4SFqPQ
-	wSE7JAlhojI39SHJocDtVxM7RB1XgiplvKc+ipfKrn8xTmwA3QS5+kvf1cY+34OZswfyjJemV50
-	f07M1abI2RwuYQ3jqUiRWFo05IuHwcPpMFCFcB0Cegnmdd0bqyScjzEezNtv+hzsuwzyFq3w==
-X-Received: by 2002:a05:6a00:368d:b0:848:56ff:6ced with SMTP id d2e1a72fcca58-84a6723d613mr1884956b3a.8.1784105733495;
-        Wed, 15 Jul 2026 01:55:33 -0700 (PDT)
-Received: from wenstp920.tpe.corp.google.com ([2a00:79e0:201d:8:47d7:4aa5:a6f8:2279])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-84a4f819117sm2757491b3a.59.2026.07.15.01.55.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Jul 2026 01:55:33 -0700 (PDT)
-From: Chen-Yu Tsai <wenst@chromium.org>
-To: Bartosz Golaszewski <brgl@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	Daniel Scally <djrscally@gmail.com>,
-	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Danilo Krummrich <dakr@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: Wei Deng <wei.deng@oss.qualcomm.com>,
-	Chen-Yu Tsai <wenst@chromium.org>,
-	linux-acpi@vger.kernel.org,
-	driver-core@lists.linux.dev,
-	linux-pm@vger.kernel.org,
-	linux-usb@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-mediatek@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	Alan Stern <stern@rowland.harvard.edu>
-Subject: [PATCH v5 16/16] arm64: dts: mediatek: mt8188-geralt: Add WiFi/BT as M.2 E-key slot
-Date: Wed, 15 Jul 2026 16:53:46 +0800
-Message-ID: <20260715085348.3457359-17-wenst@chromium.org>
-X-Mailer: git-send-email 2.55.0.141.g00534a21ce-goog
-In-Reply-To: <20260715085348.3457359-1-wenst@chromium.org>
-References: <20260715085348.3457359-1-wenst@chromium.org>
+        d=1e100.net; s=20251104; t=1784106167; x=1784710967;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=ByrjGjRxl6chD7mBfQkVFOKBnkOxHgRz/c3eqExfhhU=;
+        b=Mo1J9ekV/3bg2RUg4xeaSF+WESuQpuuhILZPcHB6az9kEUBid+1NE+iFdqgK5JH4av
+         KbdGlMwkwURO6dGW+ZYPelUNMMh7Fb2x2yJc7HkcyYjZZopoyY3tyJuDN0o24xmeGf6v
+         SRrX5qfZu/S1zCK9fUtavj0y6QVqTVier5lQKDZJyPiu2fjJgFhlv5BSKj95wuoKxo1M
+         SLWQSwyVkBTMAv158j9z2P9AM56q14bOtS/612JX/5iCGRP0ixj9fPbZGzpPZxlJf9Kx
+         J/nsDzd61lQWWLyzLGin1bRSul6ZKOkb9HR40vTyMUU8hBWeqSWwPiKitZpUlFufXTYD
+         3h7g==
+X-Forwarded-Encrypted: i=1; AHgh+RoOxnlxo3gDF18/UwcsSwn4HxX/kRWbXYppK1lZeIXXU2sIA6wF5BaTbVUJ7V5WSYrMgIvLU5WBfsyj@vger.kernel.org
+X-Gm-Message-State: AOJu0YwqnbijlE/EosHOQOdY8cj3lyi/hd1hfiynJ1Fs17ytyefThHcn
+	Z66/YdBMcZ0G4nNVDkL1QpVLxeJDYt5OPDwvYAwuERPXP9Z3YzARUcn6QYwJV9Ghm/w=
+X-Gm-Gg: AfdE7ckQtTsM4rAfaZ0eFQtTvwVMD0ceC8Ughrt6Ly4rieV+8XY2SVMvt6LnUAQ9em5
+	bwcZ6BBQUYRlM8laAfgcoWf9stUmPlsrosxOhNUfmA08ACzT+k7+rtKaC0rsILzgTvpDO3pfy67
+	uCaWUURmSad3e2leCChynyg0WtAzdzSLqPSVkugEuN40vh8v+B64lCgrpv3g/8FXwb/VUfkzkub
+	2u8jkrBpXnSccrtTxgF6IHydiBmp2lQtn0L5PnDuy//ZKonW+hEl1DRBfBKjgFMWDOB6CtvhO4Z
+	D1MjN5WIdRFu511T1F30HMUp6ItNvV1vzDyrh0ncnl1czXrCPeXY+oQaIfY7mK4fTLe1yMLNluq
+	nDDljajlhvagpiOA1lstJ7UImPqpWAq2bfboA1uFUcUQJ37+laqv5Aeu3T9W2Pn+iMkGQF79WhZ
+	iz6QcYo6DtemzVpkUCj9HhXmpKOoul66MWEtbcZ+PIGSpiRNalOrNodWAaiIWn
+X-Received: by 2002:a05:6122:7d2:b0:575:634a:a604 with SMTP id 71dfb90a1353d-5c11628b0c5mr3371857e0c.6.1784106167008;
+        Wed, 15 Jul 2026 02:02:47 -0700 (PDT)
+Received: from mail-ua1-f41.google.com (mail-ua1-f41.google.com. [209.85.222.41])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-5bfd84a1e6csm5396128e0c.14.2026.07.15.02.02.46
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 15 Jul 2026 02:02:46 -0700 (PDT)
+Received: by mail-ua1-f41.google.com with SMTP id a1e0cc1a2514c-9691bfc9f81so2953379241.0
+        for <devicetree@vger.kernel.org>; Wed, 15 Jul 2026 02:02:46 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AHgh+Rq//bPjPn2MqqJofBfmXUXynzdb9UhvGLyRxbjEUEVPRjVeej6C9B/6wORQW3lX2ZtEIiFLvGi1NMcP@vger.kernel.org
+X-Received: by 2002:a05:6102:e0d:b0:738:fd01:5b60 with SMTP id
+ ada2fe7eead31-74587311ce1mr3372984137.3.1784105677124; Wed, 15 Jul 2026
+ 01:54:37 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20260702123112.161160-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <CAMuHMdUhiBAcJ6P7j0ZxL+0AbVqz88PMo7YX9UiYOK8jM61D1Q@mail.gmail.com> <CA+V-a8uUxfDx2Xnb3uFg2=R+eYnzVmAv4PoEYeXGwAbANxG5Bg@mail.gmail.com>
+In-Reply-To: <CA+V-a8uUxfDx2Xnb3uFg2=R+eYnzVmAv4PoEYeXGwAbANxG5Bg@mail.gmail.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 15 Jul 2026 10:54:25 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdVQWnp3ipR8xLv3PBVax3sDrZeoH6uw6Cjygf7EZT8EgQ@mail.gmail.com>
+X-Gm-Features: AUfX_mxDHx3n63ocxRYS-KeudKm3TNmAE-PyMFFvcB9KNeYvoVs9ROnUvj_T4n0
+Message-ID: <CAMuHMdVQWnp3ipR8xLv3PBVax3sDrZeoH6uw6Cjygf7EZT8EgQ@mail.gmail.com>
+Subject: Re: [PATCH RFC v2 0/9] Add System Controller support for RZ/T2H and
+ RZ/N2H SoCs
+To: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Brian Masney <bmasney@redhat.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck <linux@roeck-us.net>, 
+	Magnus Damm <magnus.damm@gmail.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
+	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-watchdog@vger.kernel.org, 
+	Prabhakar <prabhakar.csengg+renesas@gmail.com>, Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [0.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[chromium.org,none];
-	R_DKIM_ALLOW(-0.20)[chromium.org:s=google];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-326775-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[25];
-	FREEMAIL_TO(0.00)[kernel.org,linuxfoundation.org,linux.intel.com,gmail.com,collabora.com];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:brgl@kernel.org,m:gregkh@linuxfoundation.org,m:andriy.shevchenko@linux.intel.com,m:djrscally@gmail.com,m:heikki.krogerus@linux.intel.com,m:sakari.ailus@linux.intel.com,m:rafael@kernel.org,m:dakr@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:matthias.bgg@gmail.com,m:angelogioacchino.delregno@collabora.com,m:wei.deng@oss.qualcomm.com,m:wenst@chromium.org,m:linux-acpi@vger.kernel.org,m:driver-core@lists.linux.dev,m:linux-pm@vger.kernel.org,m:linux-usb@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-mediatek@lists.infradead.org,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:mani@kernel.org,m:stern@rowland.harvard.edu,m:krzk@kernel.org,m:conor@kernel.org,m:matthiasbgg@gmail.com,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[wenst@chromium.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[wenst@chromium.org,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[chromium.org:+];
-	RCVD_COUNT_FIVE(0.00)[5];
+	RCVD_TLS_LAST(0.00)[];
+	DMARC_NA(0.00)[linux-m68k.org];
+	TAGGED_FROM(0.00)[bounces-326780-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:prabhakar.csengg@gmail.com,m:mturquette@baylibre.com,m:sboyd@kernel.org,m:bmasney@redhat.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:wim@linux-watchdog.org,m:linux@roeck-us.net,m:magnus.damm@gmail.com,m:p.zabel@pengutronix.de,m:linux-renesas-soc@vger.kernel.org,m:linux-clk@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-watchdog@vger.kernel.org,m:prabhakar.csengg+renesas@gmail.com,m:biju.das.jz@bp.renesas.com,m:fabrizio.castro.jz@renesas.com,m:prabhakar.mahadev-lad.rj@bp.renesas.com,m:prabhakarcsengg@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:magnusdamm@gmail.com,s:lists@lfdr.de];
+	FREEMAIL_TO(0.00)[gmail.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[20];
+	FORGED_SENDER(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FREEMAIL_CC(0.00)[baylibre.com,kernel.org,redhat.com,linux-watchdog.org,roeck-us.net,gmail.com,pengutronix.de,vger.kernel.org,bp.renesas.com,renesas.com];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	TO_DN_SOME(0.00)[];
+	R_DKIM_NA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[chromium.org:from_mime,chromium.org:mid,chromium.org:email,chromium.org:dkim,vger.kernel.org:from_smtp,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[renesas.com:email,linux-m68k.org:email,linux-m68k.org:from_mime,mail.gmail.com:mid,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 8434B75C345
+X-Rspamd-Queue-Id: 7193F75C313
 
-The MT8188 Geralt design features a chip-on-board WiFi/BT solution. This
-is a M.2 E-key WiFi/BT board layout directly inserted into the mainboard
-design. The connections to the rest of the board are almost the same as
-if it were a separate M.2 card. The only addition is the PMU_EN pin on
-the chip; on M.2 cards this would be tied to the primary power source.
+Hi Prabhakar,
 
-Model the chip-on-board WiFi/BT solution as a M.2 E-key slot with PCIe,
-USB and auxiliary signals. The PMU_EN pin, which enables the internal
-power controls and regulators, is modeled as a regulator fed by the
-pp3300_wlan regulator. Since power sequencing is now correctly modeled
-using the M.2 E-key slot, drop the "regulator-always-on" property one
-pp3300_wlan regulator. Also drop the comment in xhci2 saying "MT7921's
-power is controlled by PCIe".
+On Tue, 14 Jul 2026 at 15:27, Lad, Prabhakar <prabhakar.csengg@gmail.com> w=
+rote:
+> On Mon, Jul 13, 2026 at 5:00=E2=80=AFPM Geert Uytterhoeven <geert@linux-m=
+68k.org> wrote:
+> > On Thu, 2 Jul 2026 at 14:31, Prabhakar <prabhakar.csengg@gmail.com> wro=
+te:
+> > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > > This series adds support for the System Controller (SYSC) blocks foun=
+d on
+> > > the Renesas RZ/T2H and RZ/N2H SoCs. These blocks handle critical low-=
+power
+> > > management and access control functions.
+> > >
+> > > Hardware Architecture & Dependency Challenges:
+> > > ----------------------------------------------
+> > > The SYSC in these SoCs is a multi-functional block responsible for:
+> > >     - Clock & Reset Control
+> > >     - Low Power Management
+> > >     - Clock Monitor (CLMA)
+> > >     - Access Control
+> > >
+> > > A key architectural detail is that these SYSC blocks are physically l=
+ocated
+> > > within the CPG/MSSR (Clock Pulse Generator / Module Standby Software =
+Reset)
+> > > address space. While the CPG/MSSR driver is already implemented and
+> > > functional for these SoCs, the integration of SYSC adds a layer of
+> > > complexity due to a cyclic dependency:
+> > >     - SYSC requires CPG: The system controller needs a clock to opera=
+te.
+> > >     - CPG requires SYSC: Access control registers within the SYSC con=
+tain
+> > >       bits necessary to control the PLLs managed by the CPG.
+> > >
+> > > If implemented as a completely separate top-level system controller n=
+ode, we
+> > > would face a cyclic dependency between the CPG and SYSC drivers durin=
+g the
+> > > boot process.
+> > >
+> > > Proposed Implementation
+> > > ----------------------------
+> > > To resolve this, the SYSC blocks are represented as child nodes of th=
+e
+> > > CPG/MSSR controller in the device tree. The SYSC regmap is registered
+> > > directly against the CPG device node. This hierarchy correctly models=
+ the
+> > > hardware address space while allowing the drivers to share resources
+> > > without deadlock.
+> > >
+> > > I am sending this as an RFC specifically to get feedback on the
+> > > implementation of the SYSC as child nodes of the CPG to resolve the
+> > > dependency cycle.
+> >
+> > Personally, I am not a big fan of subnodes.  I assume you are using
+> > subnodes because you can register only a single regmap per syscon node?
+> Yes so that the consumers don't have to specify it by indexing.
+>
+> > Would it be possible to just extend the existing clock-controller
+> > node with two more reg entries, and expose them through a single
+> > combined regmap?
+> >
+> That should be possible. Or would you prefer just to extend the sizes
+> and create a single regmap for it?
+>
+>                cpg: clock-controller@80280000 {
+>                         compatible =3D "renesas,r9a09g077-cpg-mssr";
+> -                       reg =3D <0 0x80280000 0 0x10000>,
+> -                             <0 0x81280000 0 0x10000>;
+> +                       reg =3D <0 0x80280000 0 0x20000>,
+> +                             <0 0x81280000 0 0x20000>;
 
-Also drop the voltage range on the pp3300_wlan regulator. This
-"regulator" is just a load switch and does not provide any regulation.
+Yes, as they are contiguous.
+These registers are not accessed unless there's a user specified in
+the DTB, right? So there is no issue when booting an old DTB that has
+the short reg blocks.
 
-Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
----
-Changes since v2:
-- Drop default GPIO output state from kill pins pinconfig
----
- .../boot/dts/mediatek/mt8188-geralt.dtsi      | 92 ++++++++++++++++++-
- 1 file changed, 88 insertions(+), 4 deletions(-)
+Gr{oetje,eeting}s,
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8188-geralt.dtsi b/arch/arm64/boot/dts/mediatek/mt8188-geralt.dtsi
-index dee946309121..73b5c0fdeae6 100644
---- a/arch/arm64/boot/dts/mediatek/mt8188-geralt.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8188-geralt.dtsi
-@@ -88,13 +88,11 @@ pp3300_z1: regulator-pp3300-z1 {
- 	pp3300_wlan: regulator-pp3300-wlan {
- 		compatible = "regulator-fixed";
- 		regulator-name = "pp3300_wlan";
--		regulator-always-on;
--		regulator-min-microvolt = <3300000>;
--		regulator-max-microvolt = <3300000>;
- 		enable-active-high;
- 		gpio = <&pio 12 GPIO_ACTIVE_HIGH>;
- 		pinctrl-0 = <&wlan_en>;
- 		pinctrl-names = "default";
-+		/* load switch */
- 		vin-supply = <&pp3300_z1>;
- 	};
- 
-@@ -161,6 +159,17 @@ ppvar_mipi_disp_avee: regulator-ppvar-mipi-disp-avee {
- 		vin-supply = <&pp5000_z1>;
- 	};
- 
-+	/* PMU_EN pin controls internal regulators and power sequence */
-+	wlan_pmu: regulator-wlan-pmu {
-+		compatible = "regulator-fixed";
-+		regulator-name = "wlan-pmu";
-+		enable-active-high;
-+		gpio = <&pio 145 GPIO_ACTIVE_HIGH>;
-+		pinctrl-0 = <&wlan_pmu_en>;
-+		pinctrl-names = "default";
-+		vin-supply = <&pp3300_wlan>;
-+	};
-+
- 	reserved_memory: reserved-memory {
- 		#address-cells = <2>;
- 		#size-cells = <2>;
-@@ -195,6 +204,39 @@ adsp_dma_mem: memory@61000000 {
- 			no-map;
- 		};
- 	};
-+
-+	wifi-bt-connector {
-+		compatible = "pcie-m2-e-connector";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&m2_e_key_kill_pins>;
-+		vpcie1v8-supply = <&mt6359_vcn18_ldo_reg>;
-+		vpcie3v3-supply = <&wlan_pmu>;
-+		w-disable1-gpios = <&pio 13 GPIO_ACTIVE_LOW>;
-+		w-disable2-gpios = <&pio 14 GPIO_ACTIVE_LOW>;
-+
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			/* PCIe for WiFi */
-+			port@0 {
-+				reg = <0>;
-+
-+				wifi_ep: endpoint {
-+					remote-endpoint = <&pcie_ep>;
-+				};
-+			};
-+
-+			/* USB for Bluetooth */
-+			port@2 {
-+				reg = <2>;
-+
-+				bt_ep: endpoint {
-+					remote-endpoint = <&usb2_ep>;
-+				};
-+			};
-+		};
-+	};
- };
- 
- &adsp {
-@@ -659,6 +701,22 @@ &pcie {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pcie_pins>;
- 	status = "okay";
-+
-+	pcie@0 {
-+		compatible = "pciclass,0604";
-+		reg = <0 0 0 0 0>;
-+		device_type = "pci";
-+		num-lanes = <1>;
-+		#address-cells = <3>;
-+		#size-cells = <2>;
-+		ranges;
-+
-+		port {
-+			pcie_ep: endpoint {
-+				remote-endpoint = <&wifi_ep>;
-+			};
-+		};
-+	};
- };
- 
- &pciephy {
-@@ -1002,6 +1060,13 @@ pins-bus {
- 		};
- 	};
- 
-+	m2_e_key_kill_pins: m2-e-key-kill-pins {
-+		pins-kill {
-+			pinmux = <PINMUX_GPIO13__FUNC_B_GPIO13>,
-+				 <PINMUX_GPIO14__FUNC_B_GPIO14>;
-+		};
-+	};
-+
- 	mipi_disp_avdd_en: mipi-disp-avdd-en-pins {
- 		pins-en-ppvar-mipi-disp {
- 			pinmux = <PINMUX_GPIO3__FUNC_B_GPIO3>;
-@@ -1174,6 +1239,13 @@ pins-bus {
- 		};
- 	};
- 
-+	wlan_pmu_en: wlan-pmu-en-pins {
-+		pins-wlan-pmu-en {
-+			pinmux = <PINMUX_GPIO145__FUNC_B_GPIO145>;
-+			output-low;
-+		};
-+	};
-+
- 	wlan_en: wlan-en-pins {
- 		pins-en-pp3300-wlan {
- 			pinmux = <PINMUX_GPIO12__FUNC_B_GPIO12>;
-@@ -1417,10 +1489,22 @@ vdosys1_ep_ext: endpoint@1 {
- };
- 
- &xhci2 {
--	/* no power supply since MT7921's power is controlled by PCIe */
- 	/* MT7921's USB BT has issues with USB2 LPM */
- 	usb2-lpm-disable;
- 	status = "okay";
-+
-+	ports {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		port@1 {
-+			reg = <1>;
-+
-+			usb2_ep: endpoint {
-+				remote-endpoint = <&bt_ep>;
-+			};
-+		};
-+	};
- };
- 
- #include <arm/cros-ec-keyboard.dtsi>
--- 
-2.55.0.795.g602f6c329a-goog
+                        Geert
 
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
