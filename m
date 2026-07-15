@@ -1,187 +1,235 @@
-Return-Path: <devicetree+bounces-326616-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-326618-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id kpp8IT/1VmpCDgEAu9opvQ
-	(envelope-from <devicetree+bounces-326616-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 04:49:35 +0200
+	id uQBeH6f4Vmo1DwEAu9opvQ
+	(envelope-from <devicetree+bounces-326618-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 05:04:07 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1376F75A250
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 04:49:35 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0297F75A321
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 05:04:07 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=TH6iBuJ6;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326616-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-326616-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=ioVAyP0F;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326618-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-326618-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=gmail.com;
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 5367F301D630
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 02:49:34 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id DB2B53014DA9
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 03:02:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF53536F415;
-	Wed, 15 Jul 2026 02:49:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84FFE2931F1;
+	Wed, 15 Jul 2026 03:02:00 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f175.google.com (mail-lj1-f175.google.com [209.85.208.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDF6137C0FD
-	for <devicetree@vger.kernel.org>; Wed, 15 Jul 2026 02:49:32 +0000 (UTC)
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1784083773; cv=none; b=EMW0ylKd4Cw0iQzznejkqZDsdahS/S9bDDX76FKEBK8pFRq2bOqKd8nuFhRg1qJwyKuMM3RSl30ndjZVW3FlKhtYuksR0JXVGPF7U2URg06/W7FKdAUlGVqpraDHUHzCmAE4cYzhsZGz5LFrqZvpAJlQrqliTeIcAQfpfRbh4zk=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1784083773; c=relaxed/simple;
-	bh=Y+ZbpH4CGll4roRmaIFQ97/HLEi/vEwhOVaAYnFO9aM=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=ZzRr8YSDCxkTaaQKzdffZWWDIvuceM/Nd2NjNB0yFcveDEeX/5x/rrkIOntXa8hx4eB08zrSMEqK7LR4H7FW+Z75zac/uSn+UHAYBsW9oB4iQyEg23zYtQ9zPv2nY4N4pba4Z4oXfrHp1sFUPVZdWVEfJpOnA+yw/T/LldKx9i4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TH6iBuJ6; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 31A621F00A3D;
-	Wed, 15 Jul 2026 02:49:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1784083772;
-	bh=YfNmx0+jpASs2ZhCzHjFfFC+fIcjATjY28vZyvYAbqo=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=TH6iBuJ6Vz51MfmlpBACprw01vCpjC12pxI+fYQCqYLpJYIHOHL+lNUBlGLg3cRSz
-	 HkiqiGs9uYV3bEzpq7aM39GJbGiViWB+z889kkJ659VA/ZMBuZBfUYwKTJV2tkw48i
-	 Of5HaCs7EGhveAzhTsGViHuMt+reivofDNUAuF3+MOBPFLxlr1dIJrcd/4iZ3VILgD
-	 1AedzqYk1tisd7+PHkPnyZi1IV8zjr6A46fhWhpAxc49pvINThur2MYs2TFSyi2gb4
-	 KKa6DCZezjxZE13GnPEkE6Zbcq+dwX+TJyCVboViIGKD/Yrk9ka1S4ZnPf9vMQ4nwI
-	 x4hLLpR9AB2Cw==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 2/3] clk: qcom: tcsrcc-x1e80100: Migrate to clk_ref
- helper
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Qiang Yu" <qiang.yu@oss.qualcomm.com>
-Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20260714-hamoa_tcsr_qref_0714_2-v1-2-13047922a376@oss.qualcomm.com>
-References: <20260714-hamoa_tcsr_qref_0714_2-v1-0-13047922a376@oss.qualcomm.com>
- <20260714-hamoa_tcsr_qref_0714_2-v1-2-13047922a376@oss.qualcomm.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Wed, 15 Jul 2026 02:49:31 +0000
-Message-Id: <20260715024932.31A621F00A3D@smtp.kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CABFD288B8
+	for <devicetree@vger.kernel.org>; Wed, 15 Jul 2026 03:01:58 +0000 (UTC)
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1784084520; cv=pass; b=DOfPQtkCMJjcCgYmfpY7yJVSBsh07quJqf17GRLPkbFfykA8BImpfmvk3FVO+//nVwH1R+r1ijY/cc9V/HRiZODPQvlK2bL26ype7Aa9jbY70PoWIs1Gz9GJgT7b4iKMiOp3TT+x6WYYdSkZVNyrG315CkwipOhXeJdiOcFWsO0=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1784084520; c=relaxed/simple;
+	bh=gztsi8R3KcnU2Y68ziTBqFgTiO1IhBQcSODvmhfJT5c=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=lQONx5ndJuVFwmSNCxwCMSMKqQuz/TILKXt3gz94JMBDKmD7XQL+Kak1uFVYYQrDxNWbVLida0dGUGTDIqebrKPyqoHVXZHseN82GkU39u0y6qsJFuQiEkFWaFBf3VZt1ZlV5bsLz+S2BtHTiuoTR083RTJRDtIt1iIekZNEqhE=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ioVAyP0F; arc=pass smtp.client-ip=209.85.208.175
+Received: by mail-lj1-f175.google.com with SMTP id 38308e7fff4ca-39ca300db70so29642401fa.2
+        for <devicetree@vger.kernel.org>; Tue, 14 Jul 2026 20:01:58 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1784084517; cv=none;
+        d=google.com; s=arc-20260327;
+        b=px2vblGdRmORMdl+WUeDbsEzy7hgnxp3JTt8TRt6GIHCsD2zrsupLy5iJp4Il2EdDi
+         rxVXLHg3QE9h8WT29HCNDUUGAmxETN7s9ovp7pEiqjnrMosXBJrG0AaNHDZOx6w0Sy1t
+         eSQYLnnqDUl0lta5TbxXe4U3wHPrU3JKy6ZhqNMvoinzV499EGGxka+ZTrvjW70zTsYI
+         C2O6y9KArgYmAk6c3ePHwopVDxH/fdrSLUSpCBhL1lrFnrEMGhq0AiDkY1eh6RLz+MG0
+         L/f/zMCkJxMbzNMh3ajZaL20jI7qX5b2wWqGaX1cM3hJ9NCtvQH5moMKj4uiVEWJ6xa+
+         TVEA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=GQ8XxR+wtylpl+/xkqDI0BX56oI+EqOnmpPGTUlwx6U=;
+        fh=2WhS+ubK6sCE8v8PdGJ7T9hs1JysAuPsG0HkwlQDKMM=;
+        b=fYw1xO4SPJIPjec3Uv0jaHTII51fcH4CanxXvSijf3vd/1bNRMTLpYrL6Cgfd0FVta
+         LGGMrP5SjWz2AElEw0pCWAg3g9Fy4/3UQvKEPpv0ugkA1iB3GBqdzz8hVE1npfmi61LN
+         o/Zdx7AfCrz4l1gz8PFGhYmDqN0+909AQwAMFVevYdgwe3gs/5IktxP0wckfcmGHfTlQ
+         PUuOsNw1NfsatyBDAQLvlJIUdomtJgyur9NQfNawknQQsJR8T0pI70lEPP3lGk+Kuqtu
+         sGCe+U+5JZATQ0XCd7vnvmXXwuDb33ks0t+CF22uNPk2uN58celhHM+KH2pcoJUER1Ks
+         AEUA==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1784084517; x=1784689317; darn=vger.kernel.org;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=GQ8XxR+wtylpl+/xkqDI0BX56oI+EqOnmpPGTUlwx6U=;
+        b=ioVAyP0F9MUNE71P5kQ8il5qAayvaiadBfcgm5D1LMivu98tZwvhUTJpBSNn2hd1U7
+         ChYfEZ5anj5XmVOqvVXjLNwmpSwX6I25ImvSxCvwhda7InJ0+owWsPvijsVHdZAJy1WX
+         p/fYf2JRc80o8Ofcgf7IFUsAwSIU/auT8ASPZyEBLhOkRA3FJBUiRKDvWE8tL+Jfah9v
+         /Qmtz9UHdKzRgCu5PUOy8vJK4SYMXOduihfY6QslzqG6MaGWbogUnhf1uLTg0oxf7pKi
+         3PzhC1rqNJ4UVlWkkybyWLO64LjPL33M/QaI5mf9xuH++b4/Ba1ZfTQQh3AeRHzQubSR
+         9DGg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1784084517; x=1784689317;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=GQ8XxR+wtylpl+/xkqDI0BX56oI+EqOnmpPGTUlwx6U=;
+        b=dmWGx/d+w8zVR2TS5cy4npwtwd4kla3LtC3c/Xdkg6ZQHwnccul21xVOyO7lDTCXQ7
+         JtphAMXZVV8qmrPC6X6c6ug/xsZOZQQ+0hvRvkhGNDh+zxo1N+C/v0XOtbnMQe3hH83+
+         TxrNSivS8yCPqpjWmDRbaLcaSPl4SCnnwUa8iIE+avgYI8gO7tkou4gLDkPF1OIaemg9
+         fc6cRZynMNldQ5ocy1VvnmRbCp9AjXcU6Ofwkghk0NwgONTRjYOi3Sw535EHF7CU/lqt
+         i1hVY80xLA2XQVqG67oP9b7IVGgZU0e+J5Y8EyA3y7DPAwiMIDMxIb9/lxQ8yqpDL2kO
+         xpEw==
+X-Forwarded-Encrypted: i=1; AHgh+RpBwShuUWaUYacZ2Rfve25DBTGITigpujQ0Pe1pthhk48XRMnOamjq27m90tK5ROtbWStpLoQXhqOIY@vger.kernel.org
+X-Gm-Message-State: AOJu0YwKsk3mB+B9ZDwl9NZpUMu+PO8eaJcERJP/XSqsrV1j+8STZKhL
+	pEiMjAPAhE+O3rZxGIGyDBXOUTrp/apuw0OgTpRDVDzhQyA5mnmtOzEoTweJhPVK6IvPQpIyok0
+	uPfMm+qmXGWG/bOe/Xu1rPZsNK0G2Pec=
+X-Gm-Gg: AfdE7ckTWvOakb4KATozMtw42j3PtlZup/r/LGVittwZdFOffdp2eXFaOsu54wW5R/w
+	uDwbhLHbE5qzVJid/q93bVcQFat++ttMVmEl3idDXXTHkqRl8kqKAMCbRQtQ2UHIytLQ/pX2bPa
+	q6H5m7k/hGqHtrMUAeAfy5kG6HDp9Te1cEYOPievDL8oM6Aiq7nLjnTaClwlyIafL5FraG8SJky
+	fK1JGGc/eEI35q4Z/L10f5MYDV710bkGR4CyPoABgQvvCgDU6D3XLAljwNLEGbce6BBIZP5eAm1
+	oUqbct173RuRvX2iPlZ7XsnIOzkn9vvjv7srhaq6IsZ9FY1JcOJ1pg==
+X-Received: by 2002:a2e:a902:0:b0:39c:9aa0:799f with SMTP id
+ 38308e7fff4ca-39db6d92796mr2546101fa.33.1784084516752; Tue, 14 Jul 2026
+ 20:01:56 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+References: <20260109043352.3072933-1-mr.nuke.me@gmail.com>
+ <178370682987.2572738.13491033810212556744.b4-ty@kernel.org>
+ <20260714214519.GA2851152-robh@kernel.org> <CADi83T6kdqo-x0bcCGspni_e6ysEY6sud1AmZ4-utveA0rpLQA@mail.gmail.com>
+ <CAL_JsqKN0J_03_o8Na8-y=x7ny9g7vhSqa73XSu_d_D8P45dVw@mail.gmail.com>
+In-Reply-To: <CAL_JsqKN0J_03_o8Na8-y=x7ny9g7vhSqa73XSu_d_D8P45dVw@mail.gmail.com>
+From: Alexandru Gagniuc <mr.nuke.me@gmail.com>
+Date: Tue, 14 Jul 2026 22:01:44 -0500
+X-Gm-Features: AUfX_mzpMEopUQE7TosDVBxiXPh_gfwtw_3Imj28x21OlNZglehtbqTvg-XngPU
+Message-ID: <CADi83T6uU+L5+SxnZsHN8ejUZ1JfQxv01q92wF_y6MbVsOu=wg@mail.gmail.com>
+Subject: Re: (subset) [PATCH v2 0/9] remoteproc: qcom_q6v5_wcss: add native
+ ipq9574 support
+To: Rob Herring <robh@kernel.org>
+Cc: Bjorn Andersson <andersson@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Michael Turquette <mturquette@baylibre.com>, linux-remoteproc@vger.kernel.org, 
+	Mathieu Poirier <mathieu.poirier@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Stephen Boyd <sboyd@kernel.org>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, linux-arm-msm@vger.kernel.org, 
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>, 
+	linux-clk@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-326616-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-326618-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:andersson@kernel.org,m:krzk+dt@kernel.org,m:mturquette@baylibre.com,m:linux-remoteproc@vger.kernel.org,m:mathieu.poirier@linaro.org,m:conor+dt@kernel.org,m:konradybcio@kernel.org,m:sboyd@kernel.org,m:p.zabel@pengutronix.de,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-clk@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[mrnukeme@gmail.com,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	FORWARDED(0.00)[lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:qiang.yu@oss.qualcomm.com,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	RCPT_COUNT_THREE(0.00)[4];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[mrnukeme@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	ALIAS_RESOLVED(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,vger.kernel.org:from_smtp,sashiko.dev:url,qualcomm.com:email,smtp.kernel.org:mid,lists.linux.dev:replyto]
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,lkml.org:url,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 1376F75A250
+X-Rspamd-Queue-Id: 0297F75A321
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [Low] The patch relies on an undeclared structure, an undeclared function=
-, and a non-existent header file, which will cause a fatal build error.
---
-
---- Patch [2]: [PATCH 2/3] clk: qcom: tcsrcc-x1e80100: Migrate to clk_ref h=
-elper ---
-commit c9be5146280c763b773fd80f0650fab3bbb0c928
-Author: Qiang Yu <qiang.yu@oss.qualcomm.com>
-
-clk: qcom: tcsrcc-x1e80100: Migrate to clk_ref helper
-
-Replaces local clk_branch-based clkref definitions with descriptor-based
-registration via qcom_clk_ref_probe(). This simplifies the driver to
-focus on metadata and reuses common runtime logic.
-
-> diff --git a/drivers/clk/qcom/tcsrcc-x1e80100.c b/drivers/clk/qcom/tcsrcc=
--x1e80100.c
-> index 0b05c27b619b6..ad1f6be83a53e 100644
-> --- a/drivers/clk/qcom/tcsrcc-x1e80100.c
-> +++ b/drivers/clk/qcom/tcsrcc-x1e80100.c
-> @@ -5,252 +5,141 @@
->   */
-> =20
->  #include <linux/clk-provider.h>
-> +#include <linux/clk/qcom.h>
-
-[Severity: Low]
-Does this header exist in the kernel tree? It appears that <linux/clk/qcom.=
-h>
-is missing, which will cause a fatal build error.
-
->  #include <linux/module.h>
-> +#include <linux/of.h>
-
-[ ... ]
-
-> +static const struct regmap_config tcsr_cc_x1e80100_regmap_config =3D {
-> +	.reg_bits =3D 32,
-> +	.reg_stride =3D 4,
-> +	.val_bits =3D 32,
-> +	.max_register =3D 0x2f000,
-> +	.fast_io =3D true,
-> +};
-> =20
-> +static const struct qcom_clk_ref_desc * const tcsr_cc_x1e80100_clk_descs=
-[] =3D {
-
-[Severity: Low]
-Since the header is missing, is struct qcom_clk_ref_desc defined anywhere?
-This seems to also cause a build error.
-
-> +	[TCSR_EDP_CLKREF_EN] =3D &(const struct qcom_clk_ref_desc) {
-> +		.name =3D "tcsr_edp_clkref_en",
-
-[ ... ]
-
->  static int tcsr_cc_x1e80100_probe(struct platform_device *pdev)
->  {
-> -	return qcom_cc_probe(pdev, &tcsr_cc_x1e80100_desc);
-> +	return qcom_clk_ref_probe(pdev, &tcsr_cc_x1e80100_regmap_config,
-> +				  tcsr_cc_x1e80100_clk_descs,
-> +				  ARRAY_SIZE(tcsr_cc_x1e80100_clk_descs));
-
-[Severity: Low]
-Is qcom_clk_ref_probe() declared elsewhere? It seems to be missing along wi=
-th
-the header and the struct definition. Should there be a prerequisite patch
-introducing these helpers?
-
->  }
+On Tue, Jul 14, 2026 at 9:29=E2=80=AFPM Rob Herring <robh@kernel.org> wrote=
+:
 >
+> On Tue, Jul 14, 2026 at 5:50=E2=80=AFPM Alexandru Gagniuc <mr.nuke.me@gma=
+il.com> wrote:
+> >
+> > Hi Rob
+> >
+> >
+> > On Tue, Jul 14, 2026, 17:45 Rob Herring <robh@kernel.org> wrote:
+> >>
+> >> On Fri, Jul 10, 2026 at 01:07:04PM -0500, Bjorn Andersson wrote:
+> >> >
+> >> > On Thu, 08 Jan 2026 22:33:35 -0600, Alexandru Gagniuc wrote:
+> >> > > Support loading remoteproc firmware on IPQ9574 with the qcom_q6v5_=
+wcss
+> >> > > driver. This firmware is usually used to run ath11k firmware and e=
+nable
+> >> > > wifi with chips such as QCN5024.
+> >> > >
+> >> > > When submitting v1, I learned that the firmware can also be loaded=
+ by
+> >> > > the trustzone firmware. Since TZ is not shipped with the kernel, i=
+t
+> >> > > makes sense to have the option of a native init sequence, as not a=
+ll
+> >> > > devices come with the latest TZ firmware.
+> >> > >
+> >> > > [...]
+> >> >
+> >> > Applied, thanks!
+> >> >
+> >> > [1/9] remoteproc: qcom_q6v5_wcss: drop unused clocks from q6v5 struc=
+t
+> >> >       commit: 22afc6163c0c7a144d24a09352b87719d64d5f65
+> >> > [2/9] dt-bindings: remoteproc: qcom,ipq8074-wcss-pil: convert to DT =
+schema
+> >> >       commit: 2a756ac4d98efc97503629fcaddb2e7c46255824
+> >> > [4/9] dt-bindings: remoteproc: qcom: add IPQ9574 image loader
+> >> >       commit: bc33b5b5e23a389e660c3d696cd2e043fdf33ef7
+> >>
+> >> Why is a 6 month old patchset with reported errors being applied?
+> >> Anyways, linux-next is now broken. Please fix.
+> >
+> >
+> > I must have missed the error reports. Can you please point me in the ri=
+ght direction? I'll get on this ASAP.
+>
+> "make dt_binding_check" on linux-next.
 
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260714-hamoa_tcsr=
-_qref_0714_2-v1-0-13047922a376@oss.qualcomm.com?part=3D2
+I see the issue:
+
+      DTC [C] Documentation/devicetree/bindings/remoteproc/qcom,ipq8074-wcs=
+s-pil.example.dtb
+    Lexical error:
+Documentation/devicetree/bindings/remoteproc/qcom,ipq8074-wcss-pil.example.=
+dts:49.28-51
+Unexpected 'GCC_ANOC_WCSS_AXI_M_CLK'
+    ...
+
+This is easily fixed by applying PATCH 3/9 of this series ("dt-bindings:
+clock: gcc-ipq9574: add wcss remoteproc clocks") [1]. It defines the clocks
+used in the yaml example, which resolves the issues. `make dt_binding_check=
+`
+is clean afterwards.
+
+Would you like me to resubmit this patch for linux-next?
+
+Alex
+
+[1] lkml.org/lkml/2026/1/8/2278
+
+
+> Rob
 
