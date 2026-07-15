@@ -1,164 +1,157 @@
-Return-Path: <devicetree+bounces-326779-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-326781-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id MsDjG5ZMV2pqIwEAu9opvQ
-	(envelope-from <devicetree+bounces-326779-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 11:02:14 +0200
+	id IZlxKBBPV2oUJAEAu9opvQ
+	(envelope-from <devicetree+bounces-326781-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 11:12:48 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id D340475C2B3
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 11:02:09 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E665575C4BA
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 11:12:47 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=none;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326779-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-326779-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=none;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=dne2sUAd;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326781-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-326781-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 71EB03034E64
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 09:01:37 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 5640530A8690
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 09:03:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 315A23E022E;
-	Wed, 15 Jul 2026 09:01:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 110F33EB0F2;
+	Wed, 15 Jul 2026 09:03:22 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vs1-f50.google.com (mail-vs1-f50.google.com [209.85.217.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0E773D75DC
-	for <devicetree@vger.kernel.org>; Wed, 15 Jul 2026 09:01:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 722A93EAC74
+	for <devicetree@vger.kernel.org>; Wed, 15 Jul 2026 09:03:12 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1784106092; cv=none; b=XCWB1I4CkFliwbJL++YUFXS/t7hQYzv37anQ+rDU+keBVzL/tkOq/CVR9nsXd8Puh3EBnPpzX5sz+Pk1P4B0yyj6ob3IcM6Sjz0bKfSjTitP2C0aeBz+YDqvScGZL854Ul28psHXcMvQyScAjLXMtMYYDrdTz/lW83ZiKDn8SAk=
+	t=1784106199; cv=none; b=nUpu3ECbwRaDYIoS2oeTAf1gWMu95F5u7mbU57/npgNh5k84vJv+48eEDV/BUg/mcaVElQoyD7RGSoIznsBhJCHK+ersAYI3uv8c/rBpqN8Cc9FKC2hPq+oITsZoe6dMcaEojxHA9AoLHSXzbk5C971p3kTEJuSUTwWJe3qng1k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1784106092; c=relaxed/simple;
-	bh=4D+d1b3Trs/CMs5Bj38QykZaXyZasuM9OpqfOKndXxo=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=JPNxA0VcjKhEVnFTdyVwf//Dvmi0wMLYqcUbt4iiG6RoF275yiS0tTHxQBTOIGlvM7eZhxT3n/oOTLjxDXQ8ChxfxDYRZqUoCdggENEBTsRRk0JiCWLOfre9KJiyvy1TcOqt2mVB0Tpu5vdkGT5EgMDlqnEyIbnVksFjsZzP9CE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.50
-Received: by mail-vs1-f50.google.com with SMTP id ada2fe7eead31-73a442f7cd3so1214665137.3
-        for <devicetree@vger.kernel.org>; Wed, 15 Jul 2026 02:01:27 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1784106086; x=1784710886;
-        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
-         :references:mime-version:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to:content-type;
-        bh=7NaVzb/e9FWmfB5ARe3x7cY0vDrs37XFuu/XUXFp10g=;
-        b=THOHfEn5R9pznyNFYO5I1s2phBYVAI1gSZARLG0Fu486d9xJddG/4deXWvHsy5MK9s
-         eVdFxUysZqiRLDJ37zSwXqmcnKDX/o4BQNdNr/1An2HrPRfOVI846k/Axs95tYtRqscH
-         CskbbsiZfmVVd8QOc2utXcMs7cIc7dMxS2nzEsXJEehr2f9IuONrgOQd/TMi7X4kzZhQ
-         YLoJov/UJtXwl4afsjEFyuiJzg0aDi7dAhsIdjHyRMQQTqmA5tmTvOmTKiEs0dH9D1+N
-         l1LGP9l+bnue4OXWqJrC4sSJtZ8aGXvD//WMC11SIwd+vBsjjQ4VhBi1WklkOAxsCe63
-         8vNg==
-X-Forwarded-Encrypted: i=1; AHgh+RpVPdni4GhRX9SqzUnCmEyMk8z5ywJTLYs9wMYu4G53jRMaO8RcQBaTbc+DpYWCNWx73/75ynZ/c6+u@vger.kernel.org
-X-Gm-Message-State: AOJu0YywUxwMQEs1aCmlaPswPSEhhb4W41xVj1KhxH/qnAHH1rbh7uZa
-	x/HRLs7iBpVI3qO9QlW0Tq1ylLllNIKC3w0eBJObSM1d5NUiMM8sjHJWi+pafmnHnuA=
-X-Gm-Gg: AfdE7cn9W3/w9BLP0uVmz8jiUGzERk1M1f8LzxUcNTNUFuO6MJcN6/UNS/m7ILcbUd6
-	Sea096+wP9z+h0kK/re1AnG4cXRFPzVc6SDa0AT1umx0hjte1cRG1G9wduyJQhy/R5a7OaktHZj
-	0eZyYKxesrYVuSTOAWMLPiS+6+8VSrTxr6FzF4u42Fqq/wpcWSJTBDEA8lYGDeOrbHTSpPOu/rs
-	NMau3FJyPdyazbKXkphg+nldVIItHKcHKRVGIRlKeb5+J3u9rpP+rGgaSBMcTrIm3QVJpXiWau7
-	BBHC9Gxn7UN0l3wPSSkPpqToTG/BtUu7SMZdsTWEXYqjDRobHnULnEqn27+ZBk90PjZQjMxwBSD
-	U2jPCvNnl7fkOh846kQXmpDQLvcJzzxs7vmqMMtcEZIpLyc3JODT2ALlVSrstdUBIfcjinaJSnS
-	7Wv8xejamFJvUUBIw6tX/2qmHGCDsJnldSn1V+JuTqrBcLFGa/Csqs+g==
-X-Received: by 2002:a05:6102:441d:b0:737:783d:1912 with SMTP id ada2fe7eead31-74533c40608mr10805714137.12.1784106085761;
-        Wed, 15 Jul 2026 02:01:25 -0700 (PDT)
-Received: from mail-vk1-f176.google.com (mail-vk1-f176.google.com. [209.85.221.176])
-        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-744d6e38b3bsm11612411137.10.2026.07.15.02.01.23
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 15 Jul 2026 02:01:24 -0700 (PDT)
-Received: by mail-vk1-f176.google.com with SMTP id 71dfb90a1353d-5bf9466412fso1141849e0c.1
-        for <devicetree@vger.kernel.org>; Wed, 15 Jul 2026 02:01:23 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AHgh+RpQ7Kd+MKLTSboX3EN79XxvYyhcfG7EsV2tc3TXNNmR/t1LI7ELqo8UahlgfIeKGDjBnm3oEMSYjZGz@vger.kernel.org
-X-Received: by 2002:a05:6122:787:b0:5a5:3eea:4513 with SMTP id
- 71dfb90a1353d-5bfbf34947bmr9390069e0c.12.1784106083256; Wed, 15 Jul 2026
- 02:01:23 -0700 (PDT)
+	s=arc-20240116; t=1784106199; c=relaxed/simple;
+	bh=X1XMTWVg3Zzw6NpTKuODTCrxrZ/CnigkcsSR1p77t3c=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=P6YpoGsEb1NUBuPZfAFM5pfN7s54dtRcuhcG5e66Be6NewMagXMzAaBRotwZkHLue62wBmKSkycVb8ZBQeZ0C/crclwnRDOfAiU2sPBGtco5IUoBd1J0HCXhDGi3cTiHgBPmkzYw2hoxoASi9QoEiENEHphszHevStgbWJK6a7Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dne2sUAd; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 26F5F1F000E9;
+	Wed, 15 Jul 2026 09:03:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1784106190;
+	bh=JWBQi35epvN8taOvpcmt7da362kMbsa+hjOixhsDKNc=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=dne2sUAdjIJr0EG/hufEaRbC3SIA7vzy3j36QthznSg17ed+9Be8ZY2AcvuGFMuGq
+	 FYxTwshvYPPMaDaAVJYmrPCnVd/bjMBCkS3g2G2FSsjnLFrlmE3VTXFtFI3TKGMtSs
+	 wRoWw4ppNYihNGMPckvSkkVz6LzMXrh2o7e3/1SuSzBn0A4UW02pwXNqQ02qyNcvNb
+	 juK+OyOs0WQ+XQLdkwc2IUnfrlXvGbN6Mz+jdtuu7sIuCML1f99yDp8X+v6Dcjwn8x
+	 2mj1Z7sB2zFAPzb/JXjHt7BDbITnqdWC0hjjaAu3cjZ9Ne49MHPkzi3H82alqlnQuO
+	 7SRhrBsfpgeTA==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v5 01/16] device property: Add
+ fwnode_graph_get_port_by_id()
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Chen-Yu Tsai" <wenst@chromium.org>
+Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260715085348.3457359-2-wenst@chromium.org>
+References: <20260715085348.3457359-1-wenst@chromium.org>
+ <20260715085348.3457359-2-wenst@chromium.org>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Wed, 15 Jul 2026 09:03:09 +0000
+Message-Id: <20260715090310.26F5F1F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-References: <20260714173315.1981708-1-claudiu.beznea+renesas@tuxon.dev>
-In-Reply-To: <20260714173315.1981708-1-claudiu.beznea+renesas@tuxon.dev>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Wed, 15 Jul 2026 11:01:10 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdULuz6E+zHt5W9Z9ik05ALSyMz4tkV-mGRTg3Nh=Wx_Hw@mail.gmail.com>
-X-Gm-Features: AUfX_mwvtCJ6mQlGxoH1JvfSPfIrIHfInpMsp-NWrZ7U05hkN4A9x-SDsqPOads
-Message-ID: <CAMuHMdULuz6E+zHt5W9Z9ik05ALSyMz4tkV-mGRTg3Nh=Wx_Hw@mail.gmail.com>
-Subject: Re: [PATCH v3 0/8] can: rcar_canfd: Add support for Renesas RZ/G3S
-To: Claudiu Beznea <claudiu.beznea+renesas@tuxon.dev>
-Cc: mkl@pengutronix.de, mailhol@kernel.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, geert+renesas@glider.be, 
-	magnus.damm@gmail.com, mturquette@baylibre.com, sboyd@kernel.org, 
-	bmasney@redhat.com, biju.das.jz@bp.renesas.com, 
-	fabrizio.castro.jz@renesas.com, claudiu.beznea@tuxon.dev, 
-	linux-can@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-clk@vger.kernel.org, Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.04 / 15.00];
+X-Spamd-Result: default: False [-1.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-326779-lists,devicetree=lfdr.de];
-	DMARC_NA(0.00)[linux-m68k.org];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:claudiu.beznea+renesas@tuxon.dev,m:mkl@pengutronix.de,m:mailhol@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:geert+renesas@glider.be,m:magnus.damm@gmail.com,m:mturquette@baylibre.com,m:sboyd@kernel.org,m:bmasney@redhat.com,m:biju.das.jz@bp.renesas.com,m:fabrizio.castro.jz@renesas.com,m:claudiu.beznea@tuxon.dev,m:linux-can@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-renesas-soc@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-clk@vger.kernel.org,m:claudiu.beznea.uj@bp.renesas.com,m:krzk@kernel.org,m:conor@kernel.org,m:geert@glider.be,m:magnusdamm@gmail.com,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[20];
-	FREEMAIL_CC(0.00)[pengutronix.de,kernel.org,glider.be,gmail.com,baylibre.com,redhat.com,bp.renesas.com,renesas.com,tuxon.dev,vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-326781-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS(0.00)[m:wenst@chromium.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
-	R_DKIM_NA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tuxon.dev:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,mail.gmail.com:mid,renesas.com:email,linux-m68k.org:email,linux-m68k.org:from_mime,vger.kernel.org:from_smtp]
+	FROM_NO_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCPT_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: D340475C2B3
+X-Rspamd-Queue-Id: E665575C4BA
 
-Hi Claudiu,
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [Low] The patch adds two conflicting declarations for `fwnode_graph_get_p=
+ort_by_id` in `include/linux/property.h`, which will break the build.
+--
 
-On Tue, 14 Jul 2026 at 19:33, Claudiu Beznea
-<claudiu.beznea+renesas@tuxon.dev> wrote:
-> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->
-> Hi,
->
-> Series adds CAN support for the Renesas RZ/G3S SoC. Along with it a typo
-> fix patch was added on the CAN driver.
->
-> Thank you,
-> Claudiu
->
-> Changes in v3:
-> - addressed sashiko review comments
+--- Patch [1]: [PATCH v5 01/16] device property: Add fwnode_graph_get_port_=
+by_id() ---
+commit 88979df4c2fc6de15d7726e00adc783bff896bbd
+Author: Chen-Yu Tsai <wenst@chromium.org>
 
-FTR, this doesn't provide any real information.
-Fortunately you do list the actual changes in the individual patches ;-)
+device property: Add fwnode_graph_get_port_by_id()
 
-Gr{oetje,eeting}s,
+This commit introduces a helper function to retrieve a reference to a port=
+=20
+firmware node by its ID. It includes a flags parameter to allow callers to=
+=20
+specify whether incomplete ports should be returned.
 
-                        Geert
+[ ... ]
+> diff --git a/include/linux/property.h b/include/linux/property.h
+> index 14c304db46648..480ba8646bcc8 100644
+> --- a/include/linux/property.h
+> +++ b/include/linux/property.h
+> @@ -505,6 +505,9 @@ int fwnode_get_phy_mode(const struct fwnode_handle *f=
+wnode);
+> =20
+>  void __iomem *fwnode_iomap(struct fwnode_handle *fwnode, int index);
+> =20
+> +struct fwnode_handle *fwnode_graph_get_port_by_id(struct fwnode_handle *=
+fwnode, u32 id);
+> +struct fwnode_handle *fwnode_graph_get_port_by_id(struct fwnode_handle *=
+fwnode, u32 id,
+> +						  unsigned long flags);
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+[Severity: Low]
+Does this cause a build failure? It looks like there are two conflicting=20
+declarations for fwnode_graph_get_port_by_id() with different signatures.=20
+Since C doesn't support function overloading, will this result in a=20
+'conflicting types' compilation error when the header is included?
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+>  struct fwnode_handle *fwnode_graph_get_next_endpoint(
+>  	const struct fwnode_handle *fwnode, struct fwnode_handle *prev);
+>  struct fwnode_handle *
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260715085348.3457=
+359-1-wenst@chromium.org?part=3D1
 
