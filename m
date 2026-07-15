@@ -1,218 +1,182 @@
-Return-Path: <devicetree+bounces-327129-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-327135-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id S4D8CpyZV2r4XgAAu9opvQ
-	(envelope-from <devicetree+bounces-327129-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 16:30:52 +0200
+	id NZVlJv2cV2qlXwAAu9opvQ
+	(envelope-from <devicetree+bounces-327135-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 16:45:17 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id A159475F6B0
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 16:30:51 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id B388275F874
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 16:45:16 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=lT+pZg9Q;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-327129-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-327129-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=gmail.com;
+	dkim=pass header.d=kernel.org header.s=k20201202 header.b=fOIOV+nK;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-327135-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-327135-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 12DD7303670E
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 14:26:08 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 63E35333E500
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 14:34:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F29D37CD33;
-	Wed, 15 Jul 2026 14:26:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D87247F2DB;
+	Wed, 15 Jul 2026 14:30:47 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACF4337BE78
-	for <devicetree@vger.kernel.org>; Wed, 15 Jul 2026 14:26:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BB2F47ECD6;
+	Wed, 15 Jul 2026 14:30:46 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1784125565; cv=none; b=myZVVkUXX44n4UNCLjVeK56AizbT+ECrpAFRchLjo2IJ+aBV/c8TSUcC5nHIjLxJM6QWd60X3MvliVae2KmG44FSZ0V+vZdQdi5lcjMo9BKMjRN/xiTaOafYbUCuDKr9Y69Xn8epTw761KhupCHo6HF9HjmdStXT+9zI+xXGFd0=
+	t=1784125847; cv=none; b=VALkoMfu3io0+fj2uKFr+4N0nU3I2fUyCPoL3EbOuC29KY57qDPCPprEsH5U75A7FfJniHK/ZEDy+hXloh2R+4Ghfjh4M3NcAU1QbtHXJTqzsj951ILzXyncEwrUMqAffzcz+C591AybiLNZrfWAu26+f4wiPq/gOxmVR02qJII=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1784125565; c=relaxed/simple;
-	bh=KDg6y/VRh0fzXIGdR9844R5VIP6RvFEHoi8boxQALD4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=O2iIySP/sxOu9PIacRsGG+Y7/33rfJEUbUvMTWx4tzwR6J0IGiWQx1UtPriClyU2xkPeK6Jgc3Vpw+s5NwAwPvk62vQ/NawEg1ZTeYeyaDGZqgis0knkq3PBVL6PXh/bjK7quHAsvR5HNmW+bkubZsDTVjwpORx3waQMnAVgx0Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lT+pZg9Q; arc=none smtp.client-ip=209.85.208.53
-Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-697bd21fdc2so967557a12.1
-        for <devicetree@vger.kernel.org>; Wed, 15 Jul 2026 07:26:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1784125562; x=1784730362; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :content-type:mime-version:references:message-id:subject:cc:to:from
-         :date:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=DfRoD+O3mIvLnBy5agZdWlJiUBWYTenY0lfFk8hTVeY=;
-        b=lT+pZg9Q5FcEnsWFGmhiUTGsngqtfmFmn+fOt9Ac6BsJVy81e486CxPEIb1o6rCqj9
-         ubAMyJy7M5IFnmc5Sk4fXUO+MMZytra/9+or1NiK9WmH/uJ4oWXI7hdExh2b4JQXKoBm
-         gEEDlcAPSgACH0HMW5UZC3nNXqH1Eiz6aT9AIWq2Ufg11l+BEXB6bk726bwAeYawQcA4
-         dDTt+dNYFRBtq68wkfJ0zohPY0cj/QAKEOlUowE5/jFQgE0jwpn6zgPpVPOe/PN/EOhk
-         VOaGc/XTAezvtTkePQTZCZkCFfqz0Y9P7EaUtvVeOWzyDdR7Oc2WQbxckZuZxZx86uPu
-         bpZA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1784125562; x=1784730362;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :content-type:mime-version:references:message-id:subject:cc:to:from
-         :date:x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to:content-type;
-        bh=DfRoD+O3mIvLnBy5agZdWlJiUBWYTenY0lfFk8hTVeY=;
-        b=LSE4SPDQqH5i6P8+Aij3X6Ow0P3VKzL7aJcSfcX8xq5djDF9A/2IEx733at2aDF6AW
-         MfoixbSIA13JLRKkHatrV/4QU54nBRT5zJCZ7QmUN9waadHkoYkaOACcVtJWRljVusqR
-         ShsnP5qC1/xynIN9h2HkymJUSMq2HXYxCV1T0PG39S/ZFJpGviZxv/BwH2LD2Xg30lWc
-         tu7Wwkq86FCMcVph6QSktYHoCeE77iyo5GMMjZCx6dVvIzroDw7Hfdn+Fr20kn9Y2N5H
-         17Bgboo0g1PlbqiziqtnspwOlIqxARFuw1WvF55xalMtGQgI1tbYIJoH+ASxD9/IEyBM
-         3URg==
-X-Forwarded-Encrypted: i=1; AHgh+Rr6DJeqxyP+fqTML+yuYDpYs9gSFbRGg3vReARqtrC9c8cZEmj/zTiLtoFss/xgzwKnNkt+ir5rkGwm@vger.kernel.org
-X-Gm-Message-State: AOJu0YzaZ3ajY2xs9mRspXxK8VVFQ1lanRqOV0C+DWtc+jEgDiOsBnV2
-	bV3usj+jrR7YfveeHPgY3AyrfKH+O/7urKBrxXMOXI11ysQyhRCX3E4D
-X-Gm-Gg: AfdE7ckAUtDjRnKOo1G0SbsTEevQhCoaDS5gEQIfdXkI71Q0xivwfjlIz/sHtZAQKhX
-	a0U6HPlPQwPjFNGXtWSeJkyotfHkMErfM1cBbDU4RcT231hX5dfePX421bOJdZwHcZ7kBl3DVPf
-	/ZU/jxLUbOaesCfC46jEB55qvY+fP6Gz8XE/b42rB3amjuwZG22gGPOUh7xSyU37EslERM3EcT/
-	EMlMmcXKHv6yTxvMgPY3BDsiGQtPo+1SrJSSI1N38hPKJ8JPi+2gCeM9mE53OrNU/qGQ1ehj181
-	3tm7QY96YLt61AgY9Xxa8LCZrv5Nz8hOdcbjfAOAsqYywdeChXNzUnh9RY015QpfNi2vkh7gHCI
-	jUjAekwXyv7uy+62JUNunbOuixoujniInxf14K3HUxRgzsftLvl1ByYjZjySYEp+rTLlg3yC+hK
-	zSw0+7gQbpUKjIHdrdt4OjKb7cpTo=
-X-Received: by 2002:a17:906:f5a1:b0:c16:12ff:dc8b with SMTP id a640c23a62f3a-c161f3b58ecmr970705666b.54.1784125561706;
-        Wed, 15 Jul 2026 07:26:01 -0700 (PDT)
-Received: from NSA-L02.ad.analog.com ([137.71.226.102])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-c1687317c58sm39978566b.36.2026.07.15.07.26.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Jul 2026 07:26:01 -0700 (PDT)
-Date: Wed, 15 Jul 2026 16:25:58 +0200
-From: Nuno =?utf-8?B?U8Oh?= <noname.nuno@gmail.com>
-To: Esben Haabendal <esben@geanix.com>
-Cc: Jonathan Cameron <jic23@kernel.org>, 
-	David Lechner <dlechner@baylibre.com>, Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>, 
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Nikita Travkin <nikita@trvn.ru>, Maslov Dmitry <maslovdmitry@seeed.cc>, linux-iio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 3/4] iio: light: ltr501: Add ltr329 driver support
-Message-ID: <lax5ggtixwejynztwul5brnkciq4gq5scbd4cuoyev2w3hgcti@dflf7hnw4rgq>
-References: <20260715-liteon-ltr329-v2-0-d18af55edab5@geanix.com>
- <20260715-liteon-ltr329-v2-3-d18af55edab5@geanix.com>
- <Q-ueoELrVUGcnBAEpAJE8z7yejEFFfSQBfk5ZeoZgVu4Cf1NwcMQRiRH-cvknalrNQBzoSJDMCG7w56-0MrHVw==@protonmail.internalid>
- <6vro5bil5b5j72rigujnm5zj4ot56rtwgs4fvn6xydybxpi4rz@vrc6p6bbkl3m>
- <87ldbcmkr5.fsf@geanix.com>
+	s=arc-20240116; t=1784125847; c=relaxed/simple;
+	bh=U4a0eEwRgxFtUxzDorP3YDS/+sPMrC9tNbuL6WM9UkY=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=rl5iXDoOxJWI576u5USaZV5plE6gqVcsivAtv1ryp7AFuHLMBCkPuloZ5AtmBThHm0itmQHnRHZnYmG3eQlYOq0fSafdepLzQjJ5MJO8ySgC4rmAA9O4oRXBoj73klJOv1XAw56yrYwIhQZuTNeNLVta1aE+AwcZaMFM0Z7drW0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fOIOV+nK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id A5E2EC2BCF4;
+	Wed, 15 Jul 2026 14:30:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1784125846;
+	bh=U4a0eEwRgxFtUxzDorP3YDS/+sPMrC9tNbuL6WM9UkY=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=fOIOV+nKlnlMTRRNvFdkO9exkl0d/p+6osJvqWdjw5yz7gZf0BoKR8RxuGaKlpbaN
+	 v4WP73Rmbh5Nj2v52PJM+ABLBz48cNuVtYelQchKJsXkRykQOjUo62pvcgOC1MW3Sp
+	 nYnkpptXQSGHca6Pz2/RHpHIZ+lsYtxdChuJFIciPJahTRBxq58lAi3EIH4n2LBGS2
+	 9tg6THt4QK1nzqkxeaEmg0MHejzCxtp7GzOHAiY8p3r1ROAfna6sQzv+vxFHJ20jWB
+	 FBy6qIOqZkCAAkv7aOSKBtiJ+zHexJ+6OSmrEVTvsTNhsII9yqP1UkBZX9UJ6ztvCH
+	 Ks6naoRux9UBg==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 68FF4C4450E;
+	Wed, 15 Jul 2026 14:30:46 +0000 (UTC)
+From: Roman Vivchar via B4 Relay <devnull+rva333.protonmail.com@kernel.org>
+Subject: [PATCH 0/3] nvmem: mtk-efuse: mt6572 support
+Date: Wed, 15 Jul 2026 17:27:45 +0300
+Message-Id: <20260715-6572-nvmem-v1-0-9c13be99d077@protonmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <87ldbcmkr5.fsf@geanix.com>
-X-Spamd-Result: default: False [-0.16 / 15.00];
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/yXMQQ5AMBBA0avIrDVpK1VcRSyowUiUtIhEenfF8
+ i3+v8GjI/RQJTc4PMnTaiNEmoCZWjsioz4aJJc514KzXGnJ7LngwrArC6NbnWVKQAw2hwNd36x
+ ufvujm9Hs7wFCeABHU1ErbgAAAA==
+X-Change-ID: 20260710-6572-nvmem-eb98c7a73351
+To: Srinivas Kandagatla <srini@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Andrew-CT Chen <andrew-ct.chen@mediatek.com>, 
+ Lala Lin <lala.lin@mediatek.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+ Roman Vivchar <rva333@protonmail.com>
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1784125843; l=1429;
+ i=rva333@protonmail.com; s=20260510; h=from:subject:message-id;
+ bh=U4a0eEwRgxFtUxzDorP3YDS/+sPMrC9tNbuL6WM9UkY=;
+ b=03XDj4hi0Z8BteGiFo8GSSj6uxAV07iQFY/V23QkS9yDXv+FW+Thcakqgd+bCnEGxdxAJuD3r
+ sK2kJDP2RMdDslq6bbx10lP1zKvhvvEldIpD1RMySyPzY9jfcvnPmZX
+X-Developer-Key: i=rva333@protonmail.com; a=ed25519;
+ pk=zww/nWjBGoQ4POXCG0BV6fx2iuXK6jx77rsKPA5YK5Y=
+X-Endpoint-Received: by B4 Relay for rva333@protonmail.com/20260510 with
+ auth_id=777
+X-Original-From: Roman Vivchar <rva333@protonmail.com>
+Reply-To: rva333@protonmail.com
+X-Spamd-Result: default: False [-1.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	FREEMAIL_REPLYTO_NEQ_FROM(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-327129-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-327135-lists,devicetree=lfdr.de,rva333.protonmail.com];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER(0.00)[nonamenuno@gmail.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS(0.00)[m:srini@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:matthias.bgg@gmail.com,m:angelogioacchino.delregno@collabora.com,m:andrew-ct.chen@mediatek.com,m:lala.lin@mediatek.com,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-mediatek@lists.infradead.org,m:rva333@protonmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:matthiasbgg@gmail.com,s:lists@lfdr.de];
+	FREEMAIL_REPLYTO(0.00)[protonmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FORGED_RECIPIENTS(0.00)[m:esben@geanix.com,m:jic23@kernel.org,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:andy@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:nikita@trvn.ru,m:maslovdmitry@seeed.cc,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[13];
 	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	FREEMAIL_TO(0.00)[kernel.org,gmail.com,collabora.com,mediatek.com];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp,protonmail.com:replyto,protonmail.com:email,protonmail.com:mid];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	HAS_REPLYTO(0.00)[rva333@protonmail.com];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[nonamenuno@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	FROM_HAS_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,protonmail.com];
 	ALIAS_RESOLVED(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,vger.kernel.org:from_smtp,geanix.com:email,analog.com:email]
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: A159475F6B0
+X-Rspamd-Queue-Id: B388275F874
 X-Rspamd-Action: no action
 
-On Wed, Jul 15, 2026 at 03:43:10PM +0200, Esben Haabendal wrote:
-> Nuno Sá <noname.nuno@gmail.com> writes:
-> 
-> > On Wed, Jul 15, 2026 at 02:27:25PM +0200, Esben Haabendal wrote:
-> >> This adds support for the LTR-329ALS-01 chip, which is similar to
-> >> LTR-303ALS-01, except for interrupt, which LTR-329ALS-01 chip does not
-> >> have.
-> >>
-> >> Signed-off-by: Esben Haabendal <esben@geanix.com>
-> >> ---
-> >
-> > Hi, I have a small not below. Kind of personal preference though. But
-> > what Joshua mentioned should be addressed. With that:
-> >
-> > Reviewed-by: Nuno Sá <nuno.sa@analog.com>
-> >
-> >>  drivers/iio/light/ltr501.c | 33 +++++++++++++++++++++++++++++++++
-> >>  1 file changed, 33 insertions(+)
-> >>
-> >> diff --git a/drivers/iio/light/ltr501.c b/drivers/iio/light/ltr501.c
-> >> index 7d045be78c6d..379e57ac5f5b 100644
-> >> --- a/drivers/iio/light/ltr501.c
-> >> +++ b/drivers/iio/light/ltr501.c
-> >> @@ -15,6 +15,7 @@
-> >>  #include <linux/delay.h>
-> >>  #include <linux/regmap.h>
-> >>  #include <linux/regulator/consumer.h>
-> >> +#include <linux/array_size.h> // for ARRAY_SIZE
-> >>
-> >
-> > ...
-> >
-> >>
-> >> +	if (!ltr501_has_irq_support(data->chip_info))
-> >> +		return 0;
-> >> +
-> >>  	if (val < 0 || val2 < 0)
-> >>  		return -EINVAL;
-> >>
-> >> @@ -1257,6 +1270,18 @@ static const struct ltr501_chip_info ltr501_chip_info_tbl[] = {
-> >>  		.channels = ltr301_channels,
-> >>  		.no_channels = ARRAY_SIZE(ltr301_channels),
-> >>  	},
-> >> +	[ltr329] = {
-> >> +		.partid = 0x0A,
-> >> +		.als_gain = ltr559_als_gain_tbl,
-> >> +		.als_gain_tbl_size = ARRAY_SIZE(ltr559_als_gain_tbl),
-> >> +		.als_mode_active = BIT(0),
-> >> +		.als_gain_mask = BIT(2) | BIT(3) | BIT(4),
-> >> +		.als_gain_shift = 2,
-> >> +		.info = &ltr301_info_no_irq,
-> >> +		.info_no_irq = &ltr301_info_no_irq,
-> >> +		.channels = ltr301_channels,
-> >> +		.no_channels = ARRAY_SIZE(ltr301_channels),
-> >
-> > Instead of playing the above game with info vs info_no_irq, an explicit
-> > has_no_irq would probably be better. I mean conceptually if the pointers
-> > are the same, it could also mean that both are with IRQ support. With
-> > it, I think it would be safe to leave the .info pointer as NULL as it
-> > would be always overwritten.
-> >
-> > Having said the above, so strong feelings about it so up to you :)
-> 
-> Calling it has_irq would avoid double negation. But we would then have
-> to set it to true in most of the entries (all except ltr329 for now).
+This patch series adds MediaTek mt6572 efuse support. Unlike newer SoCs,
+its efuse controller doesn't work properly with 8-bit reads, leading to
+invalid data with current mtk-efuse driver implementation.
 
-Yeps, that´s is why I proposed has_no_* :)
+This behavior can be observed with devmem (0x10009174 and 0x10009178 are
+thermal calibration cells):
+~ # devmem 0x10009174 32
+0x00CDD4CD
+~ # devmem 0x10009178 32
+0x0F76865D
+~ # devmem 0x10009174 8
+0xCD
+~ # devmem 0x10009175 8
+0x00
+~ # devmem 0x10009176 8
+0x00
+~ # devmem 0x10009177 8
+0x00
+~ # devmem 0x10009178 8
+0x5D
+~ # devmem 0x10009179 8
+0x00
+~ # devmem 0x1000917a 8
+0x00
+~ # devmem 0x1000917b 8
+0x00
 
-- Nuno Sá
+Patch 1 adds dt-bindings compatible for the mt6572,
+Patch 2 adds platform data option to use aligned 32-bit reads instead
+of plain readb().
+Patch 3 adds platform data for mt6572 SoC.
 
-> 
-> I will give it a spin.
-> 
-> /Esben
+Signed-off-by: Roman Vivchar <rva333@protonmail.com>
+---
+Roman Vivchar (3):
+      dt-bindings: nvmem: mediatek: efuse: add mt6572
+      nvmem: mtk-efuse: add support for 32-bit aligned reads
+      nvmem: mtk-efuse: add mt6572 support
+
+ .../devicetree/bindings/nvmem/mediatek,efuse.yaml  |  1 +
+ drivers/nvmem/mtk-efuse.c                          | 37 ++++++++++++++++++++--
+ 2 files changed, 35 insertions(+), 3 deletions(-)
+---
+base-commit: 8cd9520d35a6c38db6567e97dd93b1f11f185dc6
+change-id: 20260710-6572-nvmem-eb98c7a73351
+
+Best regards,
+--  
+Roman Vivchar <rva333@protonmail.com>
+
+
 
