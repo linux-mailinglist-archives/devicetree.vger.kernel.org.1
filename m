@@ -1,127 +1,171 @@
-Return-Path: <devicetree+bounces-326939-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-326941-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 8dWeCD94V2oHOwEAu9opvQ
-	(envelope-from <devicetree+bounces-326939-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 14:08:31 +0200
+	id 9cgQH5J5V2plOwEAu9opvQ
+	(envelope-from <devicetree+bounces-326941-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 14:14:10 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A33775DEC5
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 14:08:30 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id C5F1E75DF89
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 14:14:09 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=collabora.com header.s=mail header.b="T6Uu3n//";
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326939-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-326939-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=collabora.com;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=Q84hagRT;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326941-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-326941-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 3B71D3006797
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 12:08:21 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C796A305364A
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 12:10:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C3EF438474;
-	Wed, 15 Jul 2026 12:08:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56B1E435A8A;
+	Wed, 15 Jul 2026 12:10:32 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74D6C3C76BE
-	for <devicetree@vger.kernel.org>; Wed, 15 Jul 2026 12:08:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DAD18434E55
+	for <devicetree@vger.kernel.org>; Wed, 15 Jul 2026 12:10:29 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1784117298; cv=none; b=tDfuRjuwUYh6hn1j08TZSWBlleOYvD0m4UheziiTfePp5rEQzPf9xvMedNwxAdUtl7NvNB4H/rNCPVJtQ2z1tF5b+u1dnZhtVRcGjZ9uoYBikiG8GPnJ4MTqVDvV7a2u8NwhnZ6eGmkN0tkRJjF9r2i1aZwuB1ALDsw1EHlxyvc=
+	t=1784117432; cv=none; b=BJjUL+VWl18uo1Zv8UuRYbO5XQXinBQV63Ol6DeZZNA5cZfNMShqAdi/l1ROGaF5RE8x6/HDNBLLpgzpcrRsTZl1yo6K13Tf6jEhGxIAQy+pHf05hHriCNj/Td3C149QwnsjgAhH1IUT2SiJXOg3rlEPQCWH82cyd83oIFTPjGE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1784117298; c=relaxed/simple;
-	bh=kZ8B6PqVpKRnm9lEDxPxgNuLZ8wfBWvlNO08Nmm7Ex8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=PXt77iTTdQZaBc/tmx9q0UcMnP5OfYO/ksFfY69bNpmHJg+RD2HqBEug5kY1CrMBqTECAfnS4roBp+FbFmIngA1oXMnJNu6abKDyB87m++o6Fkx8Qdj1oXzX5lSZqb6FnsIJilzCbxve0kAG8EHk+AvtvSzsiWYbBaJRy84wB5Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=T6Uu3n//; arc=none smtp.client-ip=148.251.105.195
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1784117293;
-	bh=kZ8B6PqVpKRnm9lEDxPxgNuLZ8wfBWvlNO08Nmm7Ex8=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=T6Uu3n//rD8pkulKNPFoiFvcZ/NQpewYDcs1bjwXmZFtyP0kx9LBrxViHfvfFfcGb
-	 AsLapHGpPWgEU3soGCwi6on+3r5E3o/LgGbZwrgO8T6lTLwhlu7bYAI+bADjjzMjtf
-	 iZ8L57qkTlo+w1LE7BOvVERBPdNaAawBe7VxqfzgseI/mLvfqubLdwlQ46/BT8LdYi
-	 hPJFN27QEebjbnW+loTRjE8UtaQ2X/rE6CyGO6WZ08UHobUrPwC/AEcMeVVRXAFenZ
-	 Z5zy3ZIl9JawjQBu+xbhZrf24Mv82E9o+qD69sW9t6oj06ThPjLYLYMQxg5LNhQmtD
-	 hOSunbO3wYcOA==
-Received: from [100.64.1.21] (unknown [100.64.1.21])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id CC1EA17E0A4E;
-	Wed, 15 Jul 2026 14:08:12 +0200 (CEST)
-Message-ID: <f54dd723-de91-4166-9645-9d8d8cc3aaad@collabora.com>
-Date: Wed, 15 Jul 2026 14:08:12 +0200
+	s=arc-20240116; t=1784117432; c=relaxed/simple;
+	bh=PYNLDHGO6ov8H5x5qqX5IZL4rw+a3BqAyT9tBi7RhC4=;
+	h=From:In-Reply-To:MIME-Version:References:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Xj9GRaIz886B8cmdU0qTgotQGx2ctkMlRna+Ru5KOzm0RUfq2oBNeRTSh3XcXv1Vz5zWPkzqM3Lz1J3j7nLUp118bA2YY5MHiFDsSKN2zcOV0+H9POyz29oWEZa9g+N4ZYFNzhxxgDa/+CQO9A/kRdjr6535UPdfyoLl24JBp8s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Q84hagRT; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9D9F41F0155E
+	for <devicetree@vger.kernel.org>; Wed, 15 Jul 2026 12:10:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1784117429;
+	bh=DMCjy06zEXDnbWum2gCuxx6nJG7pOKzGSJuwH+iOivg=;
+	h=From:In-Reply-To:References:Date:Subject:To:Cc;
+	b=Q84hagRT5mPR6Sg5DtuRlLw+qHQbfE0zv769VXXV9fdXQpiVBljonlJJa72YMpf7y
+	 iYZKdHDeOLn8CpItSXEjn1bhf/D4qCsfnSPEa7/PTcNChMqAhAqIRMVv6IPYnjTWNf
+	 f6fX48BpqcIK+ON+887Wu4FNF344byUQrM0B06tKW0vZac2Mc7MOJY+3WBJGIbOU+Y
+	 s+XfEqlz2dR3TJcJ/wfD5eHKBMjk+CX2g65Qv7jgY9vFpJ/lCvVHcRqKIqgqNj8AG2
+	 O0InDdM9pynSkxccpuvAM61EcsTe+9yFBOyTSh9Ps6BNkic3e+7+aR0leWcj1IPoJc
+	 1hyWYWU7Tv3Eg==
+Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-5aec201b582so5151189e87.1
+        for <devicetree@vger.kernel.org>; Wed, 15 Jul 2026 05:10:29 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AHgh+RqKgrD1C/lYikLmNHm/fn+m5cWXPdM5FdSp86TkDQIqGs0MnNSBj3mcfn2TwFGJ6kSGrPw0ohrxN+y7@vger.kernel.org
+X-Gm-Message-State: AOJu0YxRj+qZPz9EDcYbq4WcuqxV9zWd2WgIjad5s2Uc2hE/oUlV87aa
+	YaSX/wD3niv4TwTmWSYvlf5xE03qdqh4dODGVTTNz3UrOJVV56+1BWBA0Zf78DHJ+Hufuh14qTf
+	9DG3vlRLJTRsCGCH1mlBS8selezlPnhWCpDHLkLJQZg==
+X-Received: by 2002:a05:6512:2507:b0:5ae:bcf8:e7d0 with SMTP id
+ 2adb3069b0e04-5b15d7baf00mr578542e87.55.1784117428284; Wed, 15 Jul 2026
+ 05:10:28 -0700 (PDT)
+Received: from 969154062570 named unknown by gmailapi.google.com with
+ HTTPREST; Wed, 15 Jul 2026 12:10:26 +0000
+Received: from 969154062570 named unknown by gmailapi.google.com with
+ HTTPREST; Wed, 15 Jul 2026 12:10:26 +0000
+From: Bartosz Golaszewski <brgl@kernel.org>
+In-Reply-To: <aldS3qTympJuVXYj@ashevche-desk.local>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 05/11] drm/mediatek: mtk_dsi: Enable interrupt at
- component bind time
-To: sashiko-reviews@lists.linux.dev
-Cc: dri-devel@lists.freedesktop.org, robh@kernel.org,
- devicetree@vger.kernel.org, conor+dt@kernel.org
-References: <20260715114916.19690-1-angelogioacchino.delregno@collabora.com>
- <20260715114916.19690-6-angelogioacchino.delregno@collabora.com>
- <20260715120436.A9AEC1F000E9@smtp.kernel.org>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20260715120436.A9AEC1F000E9@smtp.kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20260715085348.3457359-1-wenst@chromium.org> <20260715085348.3457359-4-wenst@chromium.org>
+ <aldS3qTympJuVXYj@ashevche-desk.local>
+Date: Wed, 15 Jul 2026 12:10:26 +0000
+X-Gmail-Original-Message-ID: <CAMRc=MfHmejks83bPfe3fKzAzFySGXk2GHMA9oZdMQj0f44eTA@mail.gmail.com>
+X-Gm-Features: AUfX_mxpntQH8Qnw3cJ2vX6VfUBu9N4HciM9BCR-9eipAChzpXbQ2rXlvYEnYl8
+Message-ID: <CAMRc=MfHmejks83bPfe3fKzAzFySGXk2GHMA9oZdMQj0f44eTA@mail.gmail.com>
+Subject: Re: [PATCH v5 03/16] power: sequencing: Add pwrseq_power_is_on()
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: Bartosz Golaszewski <brgl@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Daniel Scally <djrscally@gmail.com>, Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
+	Sakari Ailus <sakari.ailus@linux.intel.com>, "Rafael J. Wysocki" <rafael@kernel.org>, 
+	Danilo Krummrich <dakr@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+	Wei Deng <wei.deng@oss.qualcomm.com>, linux-acpi@vger.kernel.org, 
+	driver-core@lists.linux.dev, linux-pm@vger.kernel.org, 
+	linux-usb@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-mediatek@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, Manivannan Sadhasivam <mani@kernel.org>, 
+	Alan Stern <stern@rowland.harvard.edu>, 
+	Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>, Chen-Yu Tsai <wenst@chromium.org>
+Content-Type: text/plain; charset="UTF-8"
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-3.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
-	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-326939-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:sashiko-reviews@lists.linux.dev,m:dri-devel@lists.freedesktop.org,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[angelogioacchino.delregno@collabora.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[26];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-326941-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[collabora.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCPT_COUNT_FIVE(0.00)[5];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	TO_DN_NONE(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[angelogioacchino.delregno@collabora.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS(0.00)[m:andriy.shevchenko@linux.intel.com,m:brgl@kernel.org,m:gregkh@linuxfoundation.org,m:djrscally@gmail.com,m:heikki.krogerus@linux.intel.com,m:sakari.ailus@linux.intel.com,m:rafael@kernel.org,m:dakr@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:matthias.bgg@gmail.com,m:angelogioacchino.delregno@collabora.com,m:wei.deng@oss.qualcomm.com,m:linux-acpi@vger.kernel.org,m:driver-core@lists.linux.dev,m:linux-pm@vger.kernel.org,m:linux-usb@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-mediatek@lists.infradead.org,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:mani@kernel.org,m:stern@rowland.harvard.edu,m:bartosz.golaszewski@oss.qualcomm.com,m:wenst@chromium.org,m:krzk@kernel.org,m:conor@kernel.org,m:matthiasbgg@gmail.com,s:lists@lfdr.de];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[brgl@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[kernel.org,linuxfoundation.org,gmail.com,linux.intel.com,collabora.com,oss.qualcomm.com,vger.kernel.org,lists.linux.dev,lists.infradead.org,rowland.harvard.edu,chromium.org];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,mail.gmail.com:mid,intel.com:email,vger.kernel.org:from_smtp];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[brgl@kernel.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	ALIAS_RESOLVED(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,collabora.com:from_mime,collabora.com:dkim,collabora.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 3A33775DEC5
+X-Rspamd-Queue-Id: C5F1E75DF89
 
-On 7/15/26 14:04, sashiko-bot@kernel.org wrote:
-> Thank you for your contribution! Sashiko AI review found 3 potential issue(s) to consider:
-> 
-> Pre-existing issues:
-> - [High] Unsafe IRQ enablement before clocks are enabled leads to hard lockup or interrupt storm.
-> - [High] Data race on `dsi->irq_data` can lead to lost wakeups and hardware reset.
-> - [Medium] Unconditional return of IRQ_HANDLED defeats spurious interrupt detection.
-> --
-> 
+On Wed, 15 Jul 2026 11:29:02 +0200, Andy Shevchenko
+<andriy.shevchenko@linux.intel.com> said:
+> On Wed, Jul 15, 2026 at 04:53:33PM +0800, Chen-Yu Tsai wrote:
+>> The power sequencing consumer API already does power on state tracking
+>> internally. Expose the state to consumers through pwrseq_power_is_on()
+>> so that they don't have to reimplement it locally.
+>
+> Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+>
+> ...
+>
+>> +/**
+>> + * pwrseq_power_is_on() - Queries the last requested state of the power sequencer.
+>> + * @desc: Descriptor referencing the power sequencer.
+>> + *
+>> + * This returns the last requested state of the power sequencer.
+>> + *
+>> + * Returns:
+>> + * On success, 1 for on or desc is NULL (optional) and 0 for off;
+>> + * negative error number on failure.
+>
+> I would rephrase it a bit.
+>
+>  * On success, 1 for on and 0 for off; negative error number on failure.
+>  * If desc is NULL (means optional) return 1.
+>
+> And this rises a question: why 1? Shouldn't it be some "unknown" state?
+> (But since Bart Acked this, this doesn't prevent the patch to go, you
+>  got my tag above.)
+>
 
-Pre existing issues aren't even really much of an issue.
+No, this is good feedback. Maybe we should prefer an enum like so:
 
-This shall not block this series.
+enum pwrseq_state {
+	PWRSEQ_POWER_UNKNOWN,
+	PWRSEQ_POWER_ON,
+	PWRSEQ_POWER_OFF
+};
 
-
+Bart
 
