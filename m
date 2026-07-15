@@ -1,253 +1,212 @@
-Return-Path: <devicetree+bounces-327127-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-327128-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id gx29JJGcV2qMXwAAu9opvQ
-	(envelope-from <devicetree+bounces-327127-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 16:43:29 +0200
+	id PrzIJqKcV2qRXwAAu9opvQ
+	(envelope-from <devicetree+bounces-327128-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 16:43:46 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A88975F832
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 16:43:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F2CF75F842
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 16:43:45 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=cPlEjEXv;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-327127-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-327127-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=geanix.com header.s=protonmail3 header.b=ljbkJQYP;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-327128-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-327128-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=geanix.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 18040303AE7F
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 14:25:21 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 9EAAE303BEDA
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 14:25:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 393FA377AA7;
-	Wed, 15 Jul 2026 14:25:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A47C37BE6F;
+	Wed, 15 Jul 2026 14:25:36 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from mail-106111.protonmail.ch (mail-106111.protonmail.ch [79.135.106.111])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0D4E36404B
-	for <devicetree@vger.kernel.org>; Wed, 15 Jul 2026 14:25:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F284372B2B
+	for <devicetree@vger.kernel.org>; Wed, 15 Jul 2026 14:25:29 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1784125517; cv=none; b=XcJz4euIOOj957skpng6eanRQ9S0heCyUkMFkpKNZyqgv1ZDc4+1GjflCTmOhEKzECW7tSnJofDLYNEsdzxGGHXgyraSjroqpAiF4M0LvMSx7aAqihhg4DVtDv6QxooJSLQA9zENYy1B+h24hR9qC2hiQzVm43dx89k87ln08Bk=
+	t=1784125535; cv=none; b=IYxRgESAh+aerjTQa6G9MpC+G/VgMeRtmGhe0pkfdpXmpusqbsJ8WuTcaHS5QTJxEFdLzyjigbP5TdHCBZS8/AOots7lfc/3uy/MZd44MgY9cwEhMuQzTVvOA+KzDSUR5gFBSK+5bWlB9DelQ88JsAPdWjG3WosqfYSJrbCUj6E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1784125517; c=relaxed/simple;
-	bh=0wECjlTKYdTG/nGW53Gfh7zMzkV8H7LTD/yRHgz4A4w=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=fGx6n0cNp9TS7PQH2/LI+TqhLcqqE9ji3Atv+OL2Ti4zE5wpQjfWjboxBx5ECQ+w5nutYzeFEu+mGDI1y9e5VjeYk2VndaGEDhD5YmLo+7v5+9FHdlYJ1wFLZIYjutohGBvyLTrUccWSEohtjMbtt/PZZH6JX739tPFGsv1k1wY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cPlEjEXv; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A15CD1F000E9;
-	Wed, 15 Jul 2026 14:25:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1784125514;
-	bh=Q6rpGCj2mXJOH0DUXBRPr+rXAxWYkPLRpQv5jQmdMP0=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=cPlEjEXveHt12oduvC0sQ5sSK0JoBlTeylHUh3enIpywLdm6n9aKhMJOew3+gz6fP
-	 xNF911oyQn6b8S9h7FLhmuhb+4VqUJ8UJI8Q7AFbyQNeF8JxuB89W90dToCOkBhUNk
-	 nfwzLSX6RbOFN6KSSup0LENtmgF6m30/ZqyOtZQnYfnDrPghsiVqLBpE2QXtqpNase
-	 xkM7sU/pyoZL1UklV3BC0Xpbh+I3kWJk3PBmcNSdU0EHf4TRPK+rtECPRDe9WFOzaz
-	 tlII3wAy0LC/zGu+bbS75WThyiUR8rYD0jNjWodU9UmuqSTvSJIDpntMW6aUJXFip0
-	 XHtm3niu1A55g==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v6 04/11] drm/mediatek: mtk_dsi: Cleanup encoder if
- reset fails during bind
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "AngeloGioacchino Del Regno" <angelogioacchino.delregno@collabora.com>
-Cc: conor+dt@kernel.org, robh@kernel.org, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org
-In-Reply-To: <20260715135703.46540-5-angelogioacchino.delregno@collabora.com>
-References: <20260715135703.46540-1-angelogioacchino.delregno@collabora.com>
- <20260715135703.46540-5-angelogioacchino.delregno@collabora.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Wed, 15 Jul 2026 14:25:13 +0000
-Message-Id: <20260715142513.A15CD1F000E9@smtp.kernel.org>
+	s=arc-20240116; t=1784125535; c=relaxed/simple;
+	bh=GeDIbgRlS6fUdbHKGckyqDNBmPLZ9jcqValoYs8kUdA=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=KOceQv3PGa4Uc9GaAm/AZm2GRTTD6ZjNmkXthMNALCyPBOYkYvZzxXn5HOMQV6tKQooCVyn6pDbFDglKOCUJoyCpYTRU8Qe4VYPVyktTsBKdL1Tb9wqor3Vy/Axkl9GmObS5xI+vhx2UWr5+mro4y6STPlQf7yzOdSZPplZfOWg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=geanix.com; spf=pass smtp.mailfrom=geanix.com; dkim=pass (2048-bit key) header.d=geanix.com header.i=@geanix.com header.b=ljbkJQYP; arc=none smtp.client-ip=79.135.106.111
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=geanix.com;
+	s=protonmail3; t=1784125527; x=1784384727;
+	bh=fmOsYysRo/2GaRHkitPrIZI9ffCTiu0UYR2lmYlNZUo=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:From:To:
+	 Cc:Date:Subject:Reply-To:Feedback-ID:Message-ID:BIMI-Selector;
+	b=ljbkJQYP+exDy5BAHGvDzdBoIG/IlFxEvX8A7cHCTMSkGvgz+kX5K2+dBbuCvfWpa
+	 zmGNZoW3p7RiroHBbBl+OIgcsgj/jf1vWcpp3jua0Fz4Mek7ALl04sJaGBGNVp75NT
+	 CXV5jRXqU6nW7MU/nU7DHkxFmMVsVPQBCjGt7/bCBWSRDjI9Wg+HIFUAcURCpJKdT3
+	 Tlbcm25RF7WGPq7yNoumsOT2PoB1UvadacdG5eXhr7wu1YEH/2tR7+JKwUwrtmVOaw
+	 rGQiY9MBVkvSutkSGyIAgx02+Xe0Yqp3TN6NXgxqOEirTs37rz3p//i1NEo92qROuM
+	 /j34YGKBISrvA==
+X-Pm-Submission-Id: 4h0dk9633pz2ScmM
+From: Esben Haabendal <esben@geanix.com>
+To: "Andy Shevchenko" <andriy.shevchenko@intel.com>
+Cc: "Jonathan Cameron" <jic23@kernel.org>,  "Lars-Peter Clausen"
+ <lars@metafoo.de>,  "Rob Herring" <robh@kernel.org>,  "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>,  "Conor Dooley" <conor+dt@kernel.org>,
+  "Martin Kepplinger" <martink@posteo.de>,  "Sean Nyekjaer"
+ <sean@geanix.com>,  "David Lechner" <dlechner@baylibre.com>,  Nuno
+ =?utf-8?Q?S=C3=A1?=
+ <nuno.sa@analog.com>,  "Andy Shevchenko" <andy@kernel.org>,  "Martin
+ Kepplinger" <martin.kepplinger@theobroma-systems.com>,
+  <linux-iio@vger.kernel.org>,  <devicetree@vger.kernel.org>,
+  <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 2/2] iio: accel: mma8452: Allow open drain interrupt pin
+ configuration
+In-Reply-To: <aleQVYrK9YBoLqGl@ashevche-desk.local> (Andy Shevchenko's message
+	of "Wed, 15 Jul 2026 16:51:17 +0300")
+References: <20260715-mma8452-open-drain-v1-0-b1dd2a440c60@geanix.com>
+	<20260715-mma8452-open-drain-v1-2-b1dd2a440c60@geanix.com>
+	<cA7m1VgJxkr39GAxpnMPw9PVIKX2TR8Ju4Q0m6L2SxS_jJNITfZ6AA5LOeMIK0jGFXaUptY1_vPhDd_imWw5FQ==@protonmail.internalid>
+	<aldH3vtk_eKh6oCC@ashevche-desk.local> <87ldbco582.fsf@geanix.com>
+	<Tu8Mavh-mfl8Vv75Oab3vrghtEbTXiYPZ4qhj6RZv8xe5nWKP4lG1KSuJXEQfyKeio7zv9myLbmifMjFTl8juA==@protonmail.internalid>
+	<aleQVYrK9YBoLqGl@ashevche-desk.local>
+Date: Wed, 15 Jul 2026 16:25:20 +0200
+Message-ID: <874ii0misv.fsf@geanix.com>
+User-Agent: Gnus/5.13 (Gnus v5.13)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+MIME-Version: 1.0
+Content-Type: text/plain
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[geanix.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[geanix.com:s=protonmail3];
 	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	TAGGED_FROM(0.00)[bounces-327127-lists,devicetree=lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:email,sashiko.dev:url,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,vger.kernel.org:from_smtp,lists.linux.dev:replyto,smtp.kernel.org:mid];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:angelogioacchino.delregno@collabora.com,m:conor+dt@kernel.org,m:robh@kernel.org,m:dri-devel@lists.freedesktop.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-327128-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:andriy.shevchenko@intel.com,m:jic23@kernel.org,m:lars@metafoo.de,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:martink@posteo.de,m:sean@geanix.com,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:andy@kernel.org,m:martin.kepplinger@theobroma-systems.com,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[3];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[esben@geanix.com,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	RCPT_COUNT_FIVE(0.00)[5];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FROM_NO_DN(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[esben@geanix.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[geanix.com:+];
+	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,intel.com:email,geanix.com:dkim,geanix.com:mid,geanix.com:from_mime,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 8A88975F832
+X-Rspamd-Queue-Id: 9F2CF75F842
 X-Rspamd-Action: no action
 
-Thank you for your contribution! Sashiko AI review found 4 potential issue(=
-s) to consider:
+"Andy Shevchenko" <andriy.shevchenko@intel.com> writes:
 
-Pre-existing issues:
-- [High] Unprotected read-modify-write of shared state `dsi->irq_data` acro=
-ss process and hardirq contexts.
-- [High] Incorrect handling of `wait_event_interruptible_timeout()` return =
-value treats interrupted system calls as successful operations.
-- [High] Infinite busy-wait loop in the hardware interrupt handler.
-- [High] DSI Host is registered before the interrupt handler is requested, =
-causing timeouts during panel probe.
---
+> On Wed, Jul 15, 2026 at 01:35:41PM +0200, Esben Haabendal wrote:
+>> "Andy Shevchenko" <andriy.shevchenko@intel.com> writes:
+>> > On Wed, Jul 15, 2026 at 10:07:39AM +0200, Esben Haabendal wrote:
+>
+> ...
+>
+>> >>  	if (client->irq) {
+>> >>  		ret = request_threaded_irq(client->irq, NULL, mma8452_interrupt,
+>> >> -					   IRQF_TRIGGER_LOW | IRQF_ONESHOT,
+>> >> +					   IRQF_TRIGGER_LOW | IRQF_ONESHOT |
+>> >> +					   data->open_drain ? IRQF_SHARED : 0,
+>> >>  					   client->name, indio_dev);
+>> >
+>> > Why do we care?
+>>
+>> Care about what exactly?
+>
+> About exclusivity of the interrupt.
 
---- Patch [4]: [PATCH v6 04/11] drm/mediatek: mtk_dsi: Cleanup encoder if r=
-eset fails during bind ---
-commit 4140e363279861f85198ff2dac937aba26d9610b
-Author: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-drm/mediatek: mtk_dsi: Cleanup encoder if reset fails during bind
+Ok.
 
-This commit adds an error handling path during DSI component binding. It
-ensures the encoder is properly cleaned up if the optional device reset
-fails, avoiding a potential use-after-free on module removal.
+>> We need to add IRQF_SHARED flag in order to allow shared interrupt, and
+>> we should not add it when using (the default) push-pull mode.
+>
+> Why not? How would it make any difference from SW perspective?
 
-> diff --git a/drivers/gpu/drm/mediatek/mtk_dsi.c b/drivers/gpu/drm/mediate=
-k/mtk_dsi.c
-> index 3237dc765701d..e4a156a474e08 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_dsi.c
-> +++ b/drivers/gpu/drm/mediatek/mtk_dsi.c
-> @@ -1090,7 +1090,13 @@ static int mtk_dsi_bind(struct device *dev, struct=
- device *master, void *data)
->  	if (ret)
->  		return ret;
-> =20
-> -	return device_reset_optional(dev);
-> +	ret =3D device_reset_optional(dev);
-> +	if (ret) {
-> +		drm_encoder_cleanup(&dsi->encoder);
-> +		return ret;
-> +	}
-> +
-> +	return 0;
->  }
-> =20
->  static void mtk_dsi_unbind(struct device *dev, struct device *master,
+Not adding the IRQF_SHARED flag prevents use with shared interrupts. I
+think we are on the same page on that.
 
-While reviewing this file, I noticed a few pre-existing regressions in other
-parts of the code.
+Unconditional adding IRQF_SHARED flag would allow configurations where
+other devices share interrupt line with mma8452 compatible chip
+configured with push-pull, resulting in broken or unpredictable results.
+I don't see why we should not care about that.
 
-[Severity: High]
-This isn't a bug introduced by this patch, but does this code risk losing
-interrupts?
+> Yes, I understand the HW case.
+>
+>> > The (hidden) problem this will have in the future is that the IRQ core
+>> > will splat a warning in case that other shared IRQs might be
+>> > configured with different flags. Putting that flag conditionally makes
+>> > it a mine field for the users. Instead just unconditionally add that
+>> > flag and we will get reports as soon as there will be a user that
+>> > shares the same interrupt pin with some other devices which drivers do
+>> > not use the same settings.
+>>
+>> If we add the IRQF_SHARED flag unconditionally, it will be set also when
+>> push-pull mode is enabled. I don't see how the kernel will be able to
+>> notice that that is not going to work. If you have another device that
+>> uses IRQF_TRIGGER_LOW|IRF_ONESHOT|IRQF_SHARED, it will not work with the
+>> MMA8452 device when configured as push-pull.
+>
+> Right, and why do we care (again)?
 
-In drivers/gpu/drm/mediatek/mtk_dsi.c, mtk_dsi_irq_data_clear() modifies
-shared state from process context:
+Why we care that the system as a whole (SW on top of HW) will not work?
 
-static void mtk_dsi_irq_data_clear(struct mtk_dsi *dsi, u32 irq_bit)
-{
-        dsi->irq_data &=3D ~irq_bit;
-}
+If we don't care about that, why do we even have this IRQF_SHARED flag?
+The only purpose of that is to tell the kernel that this particular
+device / interrupt will work with shared interrupt or not.
 
-Meanwhile, the hardirq handler calls mtk_dsi_irq_data_set():
+Isn't that exactly what I do with this change? Nothing more, nothing less.
 
-static void mtk_dsi_irq_data_set(struct mtk_dsi *dsi, u32 irq_bit)
-{
-        dsi->irq_data |=3D irq_bit;
-}
+> It's pure DT/FW/HW issue, not an SW issue.
+> Otherwise it will become a carefully placed mine for the poor user who will
+> use these flags and try to share an interrupt with the mma8452 device which
+> has no set property and uses push-pull mode.
 
-Because the process context modification is a non-atomic read-modify-write
-without disabling interrupts, could an interrupt firing between the read
-and write cause the bit set by the interrupt handler to be overwritten and
-lost, leading to spurious timeouts?
+I don't get how you see it like that. Adding IRQF_SHARED unconditionally
+would create exactly the mine field you are talking about. Poor users
+can specify a system configuration (DT) that tries to use a shared
+interrupt line, but configures the mma8452 compatible chip in push-pull.
+The poor user will not only be poor, but also unhappy.
 
+By applying the IRQF_SHARED dynamically, the kernel will be able to fail
+in a controlled manner instead, making it much less painful to create a
+working system configuration (DT)
 
-[Severity: High]
-This is a pre-existing issue, but does this negation correctly handle
-signal interruptions?
+Going back to your poor user story above, if the poor user tries to
+share the interrupt pin with the mma8452 device, it will get an error
+(just as it is with the kernel today). The device does not support
+shared interrupts. Reading the DT bindings documentation, the user
+should be able to find the drive-open-drain property, and add that to
+the device-tree to make things work. Maybe even consider if that is
+compatible with the hardware being used.
 
-In mtk_dsi_host_send_cmd(), the code checks the return value of
-mtk_dsi_wait_for_irq_done():
+If IRQF_SHARED was set unconditionally, the user would not get an error,
+but most likely would get a system where no irq's were raised for the
+other chips. I sincerely believe that debugging this is much more
+painful than reading device-tree bindings.
 
-        if (!mtk_dsi_wait_for_irq_done(dsi, flag, 2000))
-                return -ETIME;
-        else
-                return 0;
+> Did I miss anything?
 
-A similar check exists in mtk_dsi_switch_to_cmd_mode():
+I don't know. Maybe I am missing the obvious here.
 
-        if (!mtk_dsi_wait_for_irq_done(dsi, irq_flag, t)) {
-                drm_err(drm, "failed to switch cmd mode\n");
-                return -ETIME;
-        } else {
-                return 0;
-        }
-
-Since mtk_dsi_wait_for_irq_done() returns the result of
-wait_event_interruptible_timeout(), it can return -ERESTARTSYS if
-interrupted by a signal. Because -ERESTARTSYS is non-zero, this evaluates to
-false, taking the else branch and returning 0 (success). Could this cause
-the driver to falsely assume the hardware operation completed successfully
-and read uninitialized or stale data?
-
-
-[Severity: High]
-This is a pre-existing issue, but is it safe to poll this register
-indefinitely inside the hardirq handler?
-
-In mtk_dsi_irq(), the driver enters a loop waiting for DSI_BUSY to clear:
-
-                do {
-                        mtk_dsi_mask(dsi, DSI_RACK, RACK, RACK);
-                        tmp =3D readl(dsi->regs + DSI_INTSTA);
-                } while (tmp & DSI_BUSY);
-
-Since this runs in hardirq context without a timeout or counter, if a
-hardware malfunction keeps the DSI_BUSY bit asserted, could this cause the
-CPU to spin indefinitely with interrupts disabled, causing a hard lockup?
-
-
-[Severity: High]
-This isn't a bug introduced by this patch, but is the DSI host registered
-too early?
-
-In mtk_dsi_probe(), mipi_dsi_host_register() is called before the interrupt
-handler is requested:
-
-        ret =3D mipi_dsi_host_register(&dsi->host);
-        if (ret < 0)
-                return dev_err_probe(dev, ret, "Failed to register DSI host=
-\n");
-
-        ret =3D devm_request_irq(&pdev->dev, irq_num, mtk_dsi_irq,
-                               IRQF_TRIGGER_NONE, dev_name(&pdev->dev), dsi=
-);
-
-Registering the host immediately triggers enumeration and probing of child
-panel drivers. If a panel driver sends a DCS command during its probe()
-routine before devm_request_irq() completes, the hardware interrupt will be
-missed. Could this cause the wait queue to time out and the panel probe to
-spuriously fail?
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260715135703.4654=
-0-1-angelogioacchino.delregno@collabora.com?part=3D4
+/Esben
 
