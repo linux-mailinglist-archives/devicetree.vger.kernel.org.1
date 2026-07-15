@@ -1,78 +1,79 @@
-Return-Path: <devicetree+bounces-326761-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-326762-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id rDgaJuNKV2rrIgEAu9opvQ
-	(envelope-from <devicetree+bounces-326761-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 10:54:59 +0200
+	id ZYApGwFOV2rLIwEAu9opvQ
+	(envelope-from <devicetree+bounces-326762-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 11:08:17 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2AE7675C17C
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 10:54:59 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 71EF775C3DF
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 11:08:16 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=chromium.org header.s=google header.b="ijHjYnM/";
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326761-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-326761-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=chromium.org header.s=google header.b=VZgYdqBM;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326762-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-326762-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=none) header.from=chromium.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id B355B300B5B3
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 08:54:45 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6A9FA301990A
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 08:55:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 967503D9667;
-	Wed, 15 Jul 2026 08:54:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6018C3D9DBD;
+	Wed, 15 Jul 2026 08:54:38 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f179.google.com (mail-pf1-f179.google.com [209.85.210.179])
+Received: from mail-pf1-f178.google.com (mail-pf1-f178.google.com [209.85.210.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8C1B3D954C
-	for <devicetree@vger.kernel.org>; Wed, 15 Jul 2026 08:54:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA6703D8918
+	for <devicetree@vger.kernel.org>; Wed, 15 Jul 2026 08:54:36 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1784105674; cv=none; b=kuBH4e/jCp9rGbHQb8pf+T7GroV5Ad/xwxViiUHnI+jJSGyKlyiL2hEIaQ4y9An8aGeXxg2XyIKvFrnLAMTblkabghVUIwFQqisf5hv50G2ArTLfzHuJLiZ9GwgdnLTsmQG2dQbSaXPWzJFkeGdOJgtafdg+mXIH+ASMpZS7TZg=
+	t=1784105678; cv=none; b=mUN3cK8BBr9RR522l2qsPJ+bskTZxkZ4PEhIHqdA3RCkm2IVDcWiYOL/DjOi+EXZT9PXZInfFYzwcb75xXZp9wRpJf5xQdJ6Js+9M+ees74fgKH6HeD5tdLUyKqny+6MIQ+CNl4jcjKRrucn/L51SLxYHdWDHa9TMgWhG8urnjI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1784105674; c=relaxed/simple;
-	bh=rdGoAErDNJBoyYumylqg66ArDzAHOM3wX5UO22Ntd3k=;
+	s=arc-20240116; t=1784105678; c=relaxed/simple;
+	bh=OlqZwr18Cpifvs6/MASST22KmUKK2zb2fxpZOLeBWT0=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=lpF3Hz47y5Fp0mTJqpoV+rB16cL3jbK2qd9c/OxwqRp1qdFUyDM84ZsdnkelFt5KrMjsN8dwyQq8Vv9Ltkgg+K5DL50vjx+rx3FqxviTaUK+JjrCk8CCRFPRAltWT2vFUQvJvruJNOTKApyue4p41khZtV+IPvGaNuqbbJ+iPcs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=ijHjYnM/; arc=none smtp.client-ip=209.85.210.179
-Received: by mail-pf1-f179.google.com with SMTP id d2e1a72fcca58-84862b0d5aeso5531107b3a.2
-        for <devicetree@vger.kernel.org>; Wed, 15 Jul 2026 01:54:31 -0700 (PDT)
+	 MIME-Version; b=KZKxnVk2DssIBr4OlUA9dW8NqiO7zVGz8OvIPEUvsP7LHV0TCjB/OrXGvBxZPP2Pot1lyXVIqbcbVNKa0LyRXoJIIFaV3poM1QSnLdcZUKNSr+rEOH0XrvxNy38NLofGqVIX6dwq0b6HAkMauUggDUAbed+OindkNjTKxVV1sOw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=VZgYdqBM; arc=none smtp.client-ip=209.85.210.178
+Received: by mail-pf1-f178.google.com with SMTP id d2e1a72fcca58-84a4d8fd6ecso1822889b3a.1
+        for <devicetree@vger.kernel.org>; Wed, 15 Jul 2026 01:54:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1784105671; x=1784710471; darn=vger.kernel.org;
+        d=chromium.org; s=google; t=1784105676; x=1784710476; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=tiAJexuP13y6uWXyvfEXpTcy6egDm283JzaUjb9zN+o=;
-        b=ijHjYnM/3tgn+KlB+XxWanrduV9o18Y3avJUFrunGxFuIrrYkuL+D12bpNP/I7jtPY
-         qMpapp6Z9xkr0JBfggFmD+XgiixuwdlgM0SMgqxpKpkvVwkGXfpgfim+SJsMYS7md3QT
-         y3nIvdooeKsthPUoeQI4b7aPmyGfWsCZejwb4=
+        bh=dYICwpllA6REcHU83KV0EGKSQt2kKv+TAZuxEKEYalU=;
+        b=VZgYdqBM9Bta0pcAAOAqBbcozTRYHYk57aR3CCuV4FYSSO4JxeTaLeOzu0Mpkt7PCU
+         c4vU4T8TZ6DPuoPQ7wX5fWouPMzzxJ7aTFnDf+Ucl//tVoUCevXtg/Zi3zPLXN4SfZO6
+         KOJcR9CfC2XR4tZCmOUeRaGrFgodnGv1Yt2LE=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1784105671; x=1784710471;
+        d=1e100.net; s=20251104; t=1784105676; x=1784710476;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=tiAJexuP13y6uWXyvfEXpTcy6egDm283JzaUjb9zN+o=;
-        b=oY93w803HawNCZzEcoRp9oBqOE2NztXUN74zurbf+C4I+D090vlW2JaoNRO1k+tO2c
-         0pVO9DNLucZ3xKAMfmvYkh2x4CQiCmxhzPtYmlmcQ0agP9pJVz/PACHW4QuxwvKMlhzT
-         6UxK+x71MsuxlYj0nTSkhYmLWLXS7e7Me2lr5mQc6tO6fq5lcp5YN/XYpbUwCzij3olX
-         InK0ahnWrNJLCDm+UT12zlZJwm0lB8kT+JlNjgpDsxV4pQ8ZtIbktYEQ6kn1gkfL/Mtl
-         DQjWvrspkTxpl1FTBRw5dHZ3TDKteSDx3dlQfhkke/VbLoz2MJ3khekHSnq0CA3sLFlZ
-         f40w==
-X-Forwarded-Encrypted: i=1; AHgh+RqOgAXecAIZXS25USaRr0v7BT0O/uak1fTZ47YnfXDXeh+XHqhX36TmWrTv3iryXsFU5eHHGuR/xTVf@vger.kernel.org
-X-Gm-Message-State: AOJu0YxEkTi8wMCRckaNvSeG9F3CbMwQjtsL3sYJa1Eey14SIAqXxZe6
-	ZsoaSa+6PJ3TEDo7bFGVJWjsthFZOQn5JcmX3iskicyIG+yI+iQG/vBPTBpE3wW54g==
-X-Gm-Gg: AfdE7cl5QS+I2WV0F4ZmbDGWcOm/bRA8tMF+vf7Z7wZ+UQEvzTb9GZQ1DL4sAgmhG6/
-	/KkcO4B/N1MbDupGY/piF9enH4tW+fYpkLqjRbFbrv0ltCQx1of0NPqLF7Vb9ooNPl9Nvtg/4F9
-	W3n/pw+fuFkvzOHKPDwezjnTEy6Oit6IfNfVCvUQFUBJkcV3UuhD5R/i+R2J7wt/ld4iZQFrO3e
-	siNpHlwaUZF0PipZgSYDuQdcYyjWb891BNH3BnIiRNK+3+GabCosFj2Uey/9uoUDEnusn5t2T5I
-	/qY8TpqWxMXmailKK7xLEot4fATbXikOG5rTQOdlvkrzpik5KPUmCVVYiBhIWvyuwhsIQOB7HY1
-	SKCjXxTsKIpNbsN/W0bXp/SxC9Px1/Dn3wONkZxZsBH7eRijiqyROV213af5n1wjrZZEgq6f6lE
-	Xeds+gm7SILE7KArtkPhz9WD/HXKwxeTDC2sXXtF3KXi2R3TpV685/Nnqnwk8l+eqcf2ACxQ==
-X-Received: by 2002:a05:6a00:2d19:b0:848:44ae:47c1 with SMTP id d2e1a72fcca58-84a559964ccmr5439963b3a.78.1784105671342;
-        Wed, 15 Jul 2026 01:54:31 -0700 (PDT)
+        bh=dYICwpllA6REcHU83KV0EGKSQt2kKv+TAZuxEKEYalU=;
+        b=CJUcygxpnu+A6K+dQ9X1kfuwHcxcyiMN1hJSf3JQkiypNdbJr4bhZtPvapBWoVigq0
+         SrsxCbj4p/x9opL9Cg1Gb/xcGZtv9SRVQvi7HymHLaraeRTZ+X365ISGIQaFoVvgokkP
+         W2a/cP2mOY6vVorv5x1zBDbm/UOoUcm/XRbT2AbH74chaUAN+aWsRz/QlcOzYK49Gved
+         X6Lkyb2UGxqPdJPpXX8zBg+KdWoYA8jkmZPTNePQhT5KGk91xCiaxV8dr6/FSz/w7Umz
+         ZwKk4ij7s8SRxIwpxuMg2XuXLAzCfxQHTnqZYt8zf8/QNRnYU6Yo25o49OuFMNOBGSvf
+         U4Gw==
+X-Forwarded-Encrypted: i=1; AHgh+Rp/+3ubJXgdedh+nZicop/S8wLCiw9NoVNCgT30Rg5M+gVqgNUrxDfW5TW5B8wGTqLPPnT6NKqpgZ4A@vger.kernel.org
+X-Gm-Message-State: AOJu0YwrwYdhfqTvg2TI6HB9ZPKF0fP3C1zyKufLQTE+gBTV3x8ptuWK
+	cHqys4L5YE302aGshMEUZX5fgz4aSkIFySsn54mGHRnmQlCZ6ShCeKlx+CU3wBmCCg==
+X-Gm-Gg: AfdE7cn48ezalFeKBJQuHwqrQOsGe4ZkcXnvZ4JCip8SUv5oRaBSOqhJ7SLu44hq73y
+	jL5vhu9IayvTKIQry4yGbMmuGLJkF1c48EbC83r8ln+uw1vlHwA8jDkiZOuhsNoGKwYfoFFFL0w
+	jgt6IcEZ9NLpLWAB7YYYsJVKEF6Nu/gvyRWYXF4Q5DtHtb99pCAtzHWxFuwJLJKo/FWY4/cAkPC
+	NUko50p89D+GJ2s8+Zn3g7iIS8/s5E70Ez0ForZuQ1UE9uU91SbigzVsdIwIXp4ueBxG7+rlSwJ
+	WpmgSDg5wGEgu+/n/1ZSva6yTCbJp2gN489kmPBL1KIjGbN4pyJpqbLrprRud2HUeLMRkczVn0g
+	iiRL/RvdbZ6IXKWHPVJB/fdUVoPPWwbiHvtyuIbYqFnijDCyyOYlB/1glTRm3Dt5iAxq2LQYRQk
+	wn0GsGM3XIDOuvS7NYQGG+EnvTsjsYVvTWf1i5HrZA7Kc3wmKlPNQoLgSLsGpea8bmMs3y78lfa
+	+Ioev54
+X-Received: by 2002:a05:6a00:17a4:b0:848:88e6:95d3 with SMTP id d2e1a72fcca58-84a673928d8mr1756444b3a.72.1784105676023;
+        Wed, 15 Jul 2026 01:54:36 -0700 (PDT)
 Received: from wenstp920.tpe.corp.google.com ([2a00:79e0:201d:8:47d7:4aa5:a6f8:2279])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-84a4f819117sm2757491b3a.59.2026.07.15.01.54.26
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-84a4f819117sm2757491b3a.59.2026.07.15.01.54.31
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Jul 2026 01:54:31 -0700 (PDT)
+        Wed, 15 Jul 2026 01:54:35 -0700 (PDT)
 From: Chen-Yu Tsai <wenst@chromium.org>
 To: Bartosz Golaszewski <brgl@kernel.org>,
 	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
@@ -98,11 +99,10 @@ Cc: Wei Deng <wei.deng@oss.qualcomm.com>,
 	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
 	Manivannan Sadhasivam <mani@kernel.org>,
-	Alan Stern <stern@rowland.harvard.edu>,
-	Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
-Subject: [PATCH v5 03/16] power: sequencing: Add pwrseq_power_is_on()
-Date: Wed, 15 Jul 2026 16:53:33 +0800
-Message-ID: <20260715085348.3457359-4-wenst@chromium.org>
+	Alan Stern <stern@rowland.harvard.edu>
+Subject: [PATCH v5 04/16] usb: hub: Use assign_bit() in usb_hub_set_port_power()
+Date: Wed, 15 Jul 2026 16:53:34 +0800
+Message-ID: <20260715085348.3457359-5-wenst@chromium.org>
 X-Mailer: git-send-email 2.55.0.141.g00534a21ce-goog
 In-Reply-To: <20260715085348.3457359-1-wenst@chromium.org>
 References: <20260715085348.3457359-1-wenst@chromium.org>
@@ -121,16 +121,16 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[chromium.org,none];
 	R_DKIM_ALLOW(-0.20)[chromium.org:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-326761-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[26];
+	TAGGED_FROM(0.00)[bounces-326762-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[25];
 	FREEMAIL_TO(0.00)[kernel.org,linuxfoundation.org,linux.intel.com,gmail.com,collabora.com];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:brgl@kernel.org,m:gregkh@linuxfoundation.org,m:andriy.shevchenko@linux.intel.com,m:djrscally@gmail.com,m:heikki.krogerus@linux.intel.com,m:sakari.ailus@linux.intel.com,m:rafael@kernel.org,m:dakr@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:matthias.bgg@gmail.com,m:angelogioacchino.delregno@collabora.com,m:wei.deng@oss.qualcomm.com,m:wenst@chromium.org,m:linux-acpi@vger.kernel.org,m:driver-core@lists.linux.dev,m:linux-pm@vger.kernel.org,m:linux-usb@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-mediatek@lists.infradead.org,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:mani@kernel.org,m:stern@rowland.harvard.edu,m:bartosz.golaszewski@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,m:matthiasbgg@gmail.com,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:brgl@kernel.org,m:gregkh@linuxfoundation.org,m:andriy.shevchenko@linux.intel.com,m:djrscally@gmail.com,m:heikki.krogerus@linux.intel.com,m:sakari.ailus@linux.intel.com,m:rafael@kernel.org,m:dakr@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:matthias.bgg@gmail.com,m:angelogioacchino.delregno@collabora.com,m:wei.deng@oss.qualcomm.com,m:wenst@chromium.org,m:linux-acpi@vger.kernel.org,m:driver-core@lists.linux.dev,m:linux-pm@vger.kernel.org,m:linux-usb@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-mediatek@lists.infradead.org,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:mani@kernel.org,m:stern@rowland.harvard.edu,m:krzk@kernel.org,m:conor@kernel.org,m:matthiasbgg@gmail.com,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
 	FORGED_SENDER(0.00)[wenst@chromium.org,devicetree@vger.kernel.org];
@@ -143,93 +143,57 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	DKIM_TRACE(0.00)[chromium.org:+];
 	RCVD_COUNT_FIVE(0.00)[5];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	ALIAS_RESOLVED(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,vger.kernel.org:from_smtp,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,chromium.org:from_mime,chromium.org:mid,chromium.org:email,chromium.org:dkim]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[chromium.org:from_mime,chromium.org:mid,chromium.org:email,chromium.org:dkim,vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 2AE7675C17C
+X-Rspamd-Queue-Id: 71EF775C3DF
 
-The power sequencing consumer API already does power on state tracking
-internally. Expose the state to consumers through pwrseq_power_is_on()
-so that they don't have to reimplement it locally.
+usb_hub_set_port_power() open-codes assign_bit(). Just use the
+assign_bit() macro instead. This makes subsequent additions to
+usb_hub_set_port_power() easier to read.
 
-Acked-by: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
+This change does not introduce any functional changes.
+
+Suggested-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
 ---
+Attributing suggestion to Andy, since the change was originally
+requested as part of a review.
+
 Changes since v4:
-- Make pwrseq_power_is_on() return 1 if descriptor is NULL, i.e. if
-  the descriptor is optional, matching the other pwrseq consumer APIs
-
-Changes since v3:
-- Added missing stub function for !POWER_SEQUENCING
-
-Changes since v2:
-- New patch
-
-Needs to go in with "usb: hub: Power on connected M.2 E-key connectors"
-as it is a build time dependency. Bartosz wants the change on an
-immutable branch to pull into the pwrseq tree.
+- New patch (split out from "usb: hub: Power on connected M.2 E-key
+  connectors with power sequencing API") (Andy)
 ---
- drivers/power/sequencing/core.c | 19 +++++++++++++++++++
- include/linux/pwrseq/consumer.h |  6 ++++++
- 2 files changed, 25 insertions(+)
+ drivers/usb/core/hub.c | 6 ++----
+ 1 file changed, 2 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/power/sequencing/core.c b/drivers/power/sequencing/core.c
-index 02f42da91598..db8c91be10c9 100644
---- a/drivers/power/sequencing/core.c
-+++ b/drivers/power/sequencing/core.c
-@@ -968,6 +968,25 @@ int pwrseq_power_off(struct pwrseq_desc *desc)
- }
- EXPORT_SYMBOL_GPL(pwrseq_power_off);
+diff --git a/drivers/usb/core/hub.c b/drivers/usb/core/hub.c
+index 9b2bf608f9cc..36342c5718bb 100644
+--- a/drivers/usb/core/hub.c
++++ b/drivers/usb/core/hub.c
+@@ -10,6 +10,7 @@
+  * Released under the GPLv2 only.
+  */
  
-+/**
-+ * pwrseq_power_is_on() - Queries the last requested state of the power sequencer.
-+ * @desc: Descriptor referencing the power sequencer.
-+ *
-+ * This returns the last requested state of the power sequencer.
-+ *
-+ * Returns:
-+ * On success, 1 for on or desc is NULL (optional) and 0 for off;
-+ * negative error number on failure.
-+ */
-+int pwrseq_power_is_on(struct pwrseq_desc *desc)
-+{
-+	if (!desc)
-+		return 1;
-+
-+	return desc->powered_on;
-+}
-+EXPORT_SYMBOL_GPL(pwrseq_power_is_on);
-+
- /**
-  * pwrseq_to_device() - Get the pwrseq device pointer from a descriptor.
-  * @desc: Descriptor referencing the power sequencer.
-diff --git a/include/linux/pwrseq/consumer.h b/include/linux/pwrseq/consumer.h
-index 3c907c9e1885..3c6122bd0205 100644
---- a/include/linux/pwrseq/consumer.h
-+++ b/include/linux/pwrseq/consumer.h
-@@ -22,6 +22,7 @@ devm_pwrseq_get(struct device *dev, const char *target);
++#include <linux/bitops.h>
+ #include <linux/kernel.h>
+ #include <linux/errno.h>
+ #include <linux/module.h>
+@@ -896,10 +897,7 @@ int usb_hub_set_port_power(struct usb_device *hdev, struct usb_hub *hub,
+ 	if (ret)
+ 		return ret;
  
- int pwrseq_power_on(struct pwrseq_desc *desc);
- int pwrseq_power_off(struct pwrseq_desc *desc);
-+int pwrseq_power_is_on(struct pwrseq_desc *desc);
- 
- struct device *pwrseq_to_device(struct pwrseq_desc *desc);
- 
-@@ -53,6 +54,11 @@ static inline int pwrseq_power_off(struct pwrseq_desc *desc)
- 	return -ENOSYS;
+-	if (set)
+-		set_bit(port1, hub->power_bits);
+-	else
+-		clear_bit(port1, hub->power_bits);
++	assign_bit(port1, hub->power_bits, set);
+ 	return 0;
  }
  
-+static inline int pwrseq_power_is_on(struct pwrseq_desc *desc)
-+{
-+	return -ENOSYS;
-+}
-+
- static inline struct device *pwrseq_to_device(struct pwrseq_desc *desc)
- {
- 	return NULL;
 -- 
 2.55.0.795.g602f6c329a-goog
 
