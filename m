@@ -1,163 +1,411 @@
-Return-Path: <devicetree+bounces-326669-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-326674-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id R2hlEFMrV2ovGgEAu9opvQ
-	(envelope-from <devicetree+bounces-326669-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 08:40:19 +0200
+	id JEIJGI4sV2q/GwEAu9opvQ
+	(envelope-from <devicetree+bounces-326674-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 08:45:34 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 933B875B22A
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 08:40:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D1B2075B331
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 08:45:33 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=samsung.com header.s=mail20170921 header.b=rZm0u0TU;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326669-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-326669-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=samsung.com;
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=l797vVjg;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326674-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-326674-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=gmail.com;
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 401973051D24
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 06:39:08 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 20DD43009B39
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 06:42:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24E0B313E24;
-	Wed, 15 Jul 2026 06:39:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDF4C313E1D;
+	Wed, 15 Jul 2026 06:42:34 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout1.w1.samsung.com (mailout1.w1.samsung.com [210.118.77.11])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yx1-f49.google.com (mail-yx1-f49.google.com [74.125.224.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B17C9225413
-	for <devicetree@vger.kernel.org>; Wed, 15 Jul 2026 06:39:03 +0000 (UTC)
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1784097547; cv=none; b=m8DRio6+BpIINPUc5lnOSAY0uvQA8RobBNUcF0X6j4e+CMZn66Ju88s1fdRI3jOwAs8HyTs8G9ewodkAnqnt6k13eI2FcNDVL8Qyq4MLEfihN+TAQjTlb4VXOPdHZB7onWFMIOLIjDwf0dp3pBR3SeJdpTNMy4DwhWzrY7Ekpds=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1784097547; c=relaxed/simple;
-	bh=xMr/202VPSLUku89NjyrrMJcJ4+vAjRw0LAGM1EznR4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:From:In-Reply-To:
-	 Content-Type:References; b=CMY/CkISVa/wluocZh1YF78t//GuxCm8cDnBTGm6cjuvoE2MOxxd7U+nfI41mikApg5oonlGgSue1J4oYNLJCFpyR+ZtLogM8BmxVC6eJs7W/p/B7SFjfewWbRh0Py4eDIFASXVUbm3OHYrHDOq9HLknCo2Zl606Wz6dD8tNnfY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=rZm0u0TU; arc=none smtp.client-ip=210.118.77.11
-Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
-	by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20260715063901euoutp01cd86d1100d605512225615551ec8dced~CY0MAuLgF0727407274euoutp01h
-	for <devicetree@vger.kernel.org>; Wed, 15 Jul 2026 06:39:01 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20260715063901euoutp01cd86d1100d605512225615551ec8dced~CY0MAuLgF0727407274euoutp01h
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1784097541;
-	bh=QkIx5HxAGLBRNJ/u+bxOfaKWM8km5UQDkUuQ/qbWx8w=;
-	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
-	b=rZm0u0TUVeuWMDh1jB5qpJPX96mVS+ZsTLoHkct8uwfZ7LQWoc4uMZVSGJR9syKSs
-	 QTIUF+5B0nBTc8i7gGrvruhyYotlVx7TnvEqky6QLm8fTTCbKTrvwiQf9uNG97wRk+
-	 57pCrAi5r+O9rLWFnyj1CWSOkITJgz5NkjIrLpVk=
-Received: from eusmtip2.samsung.com (unknown [203.254.199.222]) by
-	eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
-	20260715063901eucas1p2a4c2d72e4d9dbd9fd2f1e686d1a6c89c~CY0LqDzKi0392503925eucas1p20;
-	Wed, 15 Jul 2026 06:39:01 +0000 (GMT)
-Received: from [106.210.134.192] (unknown [106.210.134.192]) by
-	eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
-	20260715063900eusmtip24c15585bd6a665ad2131db656f6322a2~CY0KnnnAY0426404264eusmtip2S;
-	Wed, 15 Jul 2026 06:39:00 +0000 (GMT)
-Message-ID: <3dac25b9-a464-4350-aff5-0ada4dc1d65e@samsung.com>
-Date: Wed, 15 Jul 2026 08:38:59 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC30431E83C
+	for <devicetree@vger.kernel.org>; Wed, 15 Jul 2026 06:42:32 +0000 (UTC)
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1784097754; cv=pass; b=l7sM+LRUbtj3Gg8zm3Lr9fvNYdVohMZ/2CceG8J2wCkfM0poCXKRrQeuAOm5HGl8O1vyMi6VTd5xSI24iOkdeQvcUUY3ZdOLdV6y0jt3vt/8tJws8oMg+qSAmn9dMpMvK6rnndm8oy6kNZoYGthnUxiFal91KtGf4uJbLtSOXt8=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1784097754; c=relaxed/simple;
+	bh=2lATJlO+d4dX1ZGzZ6Ij2Thcx3Vi5FaF9agRcuMNiUg=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=qef9DJxxwdHeZLpSPVKMDl6P1W1rHwAGTfSubCnXMcPWVqn6Z0Air8NiUD9bu1zCIMwGE+qq/b5Whw34kL83RrJFjMv6VxfEifhzjFXy5eYbRJvaPDXVSA91/PIz14bI3+Igbl53wGu4TVQuniRxOuIJ3bOIgWnypu3zDslJvio=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=l797vVjg; arc=pass smtp.client-ip=74.125.224.49
+Received: by mail-yx1-f49.google.com with SMTP id 956f58d0204a3-662d984bedeso781846d50.2
+        for <devicetree@vger.kernel.org>; Tue, 14 Jul 2026 23:42:32 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1784097752; cv=none;
+        d=google.com; s=arc-20260327;
+        b=o7Y49T7vKw+vME9oa/rxKN0hUbuKDx45yQaZuiFjW2S3ckgZbZ2MulBP4L5ZdaxGaQ
+         k9HA2v5ptdntgNQ067tKfvTZer7Dnoy1gUI/f0kEu3v2bpLVKg073AmDhxZ/A3KvbEcE
+         FRofMfs7v3WwFASuPd0xtnouPYg6XVtoYdaJgJXlikmE/kia0W5tWpRfsgqxh/XTc1db
+         uALTNleNVnHoAdFp2t//BCbXpoL+GrDs6N+aX4CFLrG9SHG/8QHHkIFc3PdZNUzAtQ2P
+         r7IbxAYiWUuJBfKSjTT8wYTBzfRuUn74uRePf9Dfhn5ie+65K7RbIXa5Xyv/v7kNk98G
+         cvaw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=IC2NFXdk1sBeNCjIzes4BsGyhl+tCtt5hT8/Hup8Wto=;
+        fh=x0bPAVX9WiIV1EKTf0EZ397ICilfV3uoNhph4hP3cgs=;
+        b=mGDTHVI3tshcry0vp+su3RnkKAJ6ceHrh0UPKymg6py3CSNeRqzTsal/XVwzg6jCgv
+         OtxfhmxsOS49cJGSa7jTJ9qw66l4KqU23+7/jLnnME33J3wsADALHbtoigY6TvVfq8br
+         Qt6lurftzCVafskOkJyjb3395dXBXxVtWnZHlRo+58x9aov4lM6cx/8E82NB8KwOqn+Q
+         AzitYS8N77GrFE1gh2ZqhPxm53tSgDdmUK2PZkdRv/5oj6/Lu9UTqjp39It6KhW5v4Ih
+         dhRDudUFEYxXvHBagQ57cwHpTZ19zPcvkn6Y4PINidYoXqnu/sd+Wm5sXROC06OEmRcT
+         uScg==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1784097752; x=1784702552; darn=vger.kernel.org;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=IC2NFXdk1sBeNCjIzes4BsGyhl+tCtt5hT8/Hup8Wto=;
+        b=l797vVjgtB7xMulmmmx2Gp6jFggBW8+/CJeVOxVaUvdl7kUtXEDz1GoaQTQfFzQpOc
+         W1kQ6Ds1H0+XUMkOiAXbmIhYZF/rh9tVVG269SiY4OolColIC93SHUeg1lB87JeuQ+kJ
+         bbt3e2sRanGIPDprOQWHQFhUZ5iZF1xIGIu3n3lr409kKBKQ0uPSzEnSMBROZHeiArr7
+         E/fj0Tgo4HPq5m0LMv9BNE5TtutWj8yj30yEk02SWCe/7DDojduwOIqtdp3FyKKvX8lr
+         ySLpAL9YbXbPmomOag6r94ZbqHVEQO8fM+plRR03qO0D+rk/swredMmwIkwXgnsWScKe
+         du1A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1784097752; x=1784702552;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=IC2NFXdk1sBeNCjIzes4BsGyhl+tCtt5hT8/Hup8Wto=;
+        b=nZRikl52DnEPEmmnoH2tbmxS27gjYNz8ah1Y+be+Scl7KxXvL80nLBcPBuxhiDyiq0
+         hC+G7ek1urRQvGkEvp4o7HKUQ7kB8PUc2UyKZsQ1gTIBbSpQZmUREU6AvB++aJUQ5JyD
+         ev1PX/Owr/sFlVNQfSTaTCBcQ/6NoOzurnXYsSsNHTYYbKqHXOsZ7qC+pnCcbL62QdNO
+         fmGG7KbtTaM3rMxygdxKSphtBqoFPq56U6IvOrY+2b51BM/cAp+1MhwC53p5NlbS4C/z
+         beaXRepvHEEUuQvZIGpa+nCsOtriv9Lit6O7nsyolkYJO/j5PUi2POAbfP3Zu9Bkqra/
+         wpZg==
+X-Forwarded-Encrypted: i=1; AHgh+RrBZbH6DyVwjQcMUb1g9Keb8U9q/QAsiM5lIQu/x0WZCI/r4PedhMLUt/fPnzlpyAbee3wkVWyUrHHD@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx/e63ehZqXQ4t4rhYxdDv/9Zd1LnC8/jXATjTQHyWjiauOzoI4
+	TWjPg76YOQ8Lh73sR9meQ2lemoDtYkTM75x+IfMBg7jyuj5gIkntLdQIOhJDM69tewi1GtHwkrg
+	RPeiH14rjzlqYF1VJyV+2EN/TSbFwS7qzy95uCAc=
+X-Gm-Gg: AfdE7cmeiBbwqbGUQOjvL45/4EAq34CjkB2cklqQZQEviswrohiVNqEMoVuvmerByJk
+	CUiJfcKesGr0+dGGY7oWg+awV39v9cOhRJT86Zb5g6xsyPc/SOqovMC9AD/s5Bkdvt0K4rjZSA0
+	Em8vmNce948fY0KnAXH8PgUIMc3ZIjqndaAm13RKWojQDP1kCsB3OHHOd6Rq09wjUXgxNPR/1zj
+	9Xj4PQaUvqqMOlXM6QnI0jL1ua0wxEFvyADCgYVFtG8Cm27uOGTw2ntdaEyD0gLQnQlTDkpTvCL
+	TAemH2m36mCElosT0Jtxd/Z1KYP1k3Ldvsz5SODoJw==
+X-Received: by 2002:a05:690e:450c:20b0:664:aa85:a7c0 with SMTP id
+ 956f58d0204a3-667d7f18d23mr8030795d50.7.1784097751826; Tue, 14 Jul 2026
+ 23:42:31 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Betterbird (Windows)
-Subject: Re: [PATCH 1/7] dt-bindings: interrupt-controller: mpm: Document
- power-domains property
-To: Marc Zyngier <maz@kernel.org>, Sneh Mankad
-	<sneh.mankad@oss.qualcomm.com>, Ulf Hansson <ulf.hansson@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio
-	<konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
-	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Thomas Gleixner
-	<tglx@kernel.org>, Shawn Guo <shawn.guo@linaro.org>,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Content-Language: en-US
-From: Marek Szyprowski <m.szyprowski@samsung.com>
-In-Reply-To: <87ik6i6i22.wl-maz@kernel.org>
-Content-Transfer-Encoding: 7bit
-X-CMS-MailID: 20260715063901eucas1p2a4c2d72e4d9dbd9fd2f1e686d1a6c89c
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20260715063901eucas1p2a4c2d72e4d9dbd9fd2f1e686d1a6c89c
-X-EPHeader: CA
-X-CMS-RootMailID: 20260715063901eucas1p2a4c2d72e4d9dbd9fd2f1e686d1a6c89c
-References: <20260713-b4-shikra_lpm_addition-v1-0-3d858df2cbbf@oss.qualcomm.com>
-	<20260713-b4-shikra_lpm_addition-v1-1-3d858df2cbbf@oss.qualcomm.com>
-	<87ik6i6i22.wl-maz@kernel.org>
-	<CGME20260715063901eucas1p2a4c2d72e4d9dbd9fd2f1e686d1a6c89c@eucas1p2.samsung.com>
+References: <20260715051939.64652-1-royalnet026@gmail.com> <20260715051939.64652-3-royalnet026@gmail.com>
+ <20260715054820.E992E1F000E9@smtp.kernel.org>
+In-Reply-To: <20260715054820.E992E1F000E9@smtp.kernel.org>
+From: Royal Net <royalnet026@gmail.com>
+Date: Wed, 15 Jul 2026 08:42:19 +0200
+X-Gm-Features: AUfX_myD8dUZJn8UTdwbwOxs0r4AyRD-gaAa80tNslmI0JKUudkW6-nC1ipiUy0
+Message-ID: <CAEWPSH6FTku9cY2i=R=v6saVP+uFJrNmb0dGFvTB9rPuata+EQ@mail.gmail.com>
+Subject: Re: [RFC PATCH 2/2] media: synopsys: hdmirx: add HDMI audio capture support
+To: sashiko-reviews@lists.linux.dev
+Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-5.15 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[samsung.com:d:+,kernel.org:s:+];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[samsung.com,none];
-	R_DKIM_ALLOW(-0.20)[samsung.com:s=mail20170921];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	XM_UA_NO_VERSION(0.01)[];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[13];
 	FORWARDED(0.00)[lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-326674-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:maz@kernel.org,m:sneh.mankad@oss.qualcomm.com,m:ulf.hansson@oss.qualcomm.com,m:andersson@kernel.org,m:konradybcio@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:tglx@kernel.org,m:shawn.guo@linaro.org,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[m.szyprowski@samsung.com,devicetree@vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-326669-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER(0.00)[royalnet026@gmail.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS(0.00)[m:sashiko-reviews@lists.linux.dev,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[m.szyprowski@samsung.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[samsung.com:+];
-	ALIAS_RESOLVED(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	TO_DN_SOME(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCPT_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	TO_DN_NONE(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[royalnet026@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	ALIAS_RESOLVED(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,samsung.com:from_mime,samsung.com:dkim,samsung.com:mid,vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+	FREEMAIL_FROM(0.00)[gmail.com];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,vger.kernel.org:from_smtp,mail.gmail.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 933B875B22A
+X-Rspamd-Queue-Id: D1B2075B331
 
-On 13.07.2026 17:11, Marc Zyngier wrote:
-> On Mon, 13 Jul 2026 11:25:41 +0100,
-> Sneh Mankad <sneh.mankad@oss.qualcomm.com> wrote:
->> Remove #power-domain-cells property and add power-domains property for
->> MPM device.
->>
->> Signed-off-by: Sneh Mankad <sneh.mankad@oss.qualcomm.com>
->> ---
->>  .../devicetree/bindings/interrupt-controller/qcom,mpm.yaml          | 6 +++---
->>  1 file changed, 3 insertions(+), 3 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/interrupt-controller/qcom,mpm.yaml b/Documentation/devicetree/bindings/interrupt-controller/qcom,mpm.yaml
->> index ebb40c48950ab3a8fc86f5708acfc33c33d68993..3f9645fbc3c20633077aaa589e5d5a43928dab51 100644
->> --- a/Documentation/devicetree/bindings/interrupt-controller/qcom,mpm.yaml
->> +++ b/Documentation/devicetree/bindings/interrupt-controller/qcom,mpm.yaml
->> @@ -68,8 +68,8 @@ properties:
->>          - description: MPM pin number
->>          - description: GIC SPI number for the MPM pin
->>  
->> -  '#power-domain-cells':
->> -    const: 0
->> +  power-domains:
->> +    maxItems: 1
-> What makes you think it is OK to change an existing binding in an
-> incompatible way?
+Thanks for the thorough pass -- all five are in the new code, so all
+five are mine to fix. Ack on each:
 
+> - [High] Passing an ERR_PTR to platform_device_unregister() causes
+> a kernel panic during module removal.
 
-Ulf suggests that this has been modeled upside down in the initial
-submission:
+Confirmed. hdmirx_register_audio_device() leaves the ERR_PTR in
+audio_pdev when registration fails (probe intentionally only warns),
+and the NULL check in hdmirx_remove() doesn't catch an ERR_PTR. Will
+store NULL on failure so the existing check works.
 
-https://lore.kernel.org/all/CAPx+jO9d1qH12mxg-n1rkbp6Xd__sdrSMeoc7CPELE+jgxRYHA@mail.gmail.com/
+> - [High] Flawed teardown ordering and failure to clear the
+> audio_streaming flag in hdmirx_remove() allows the delayed work
+> to re-arm, leading to a Use-After-Free.
 
-Best regards
--- 
-Marek Szyprowski, PhD
-Samsung R&D Institute Poland
+Confirmed. The self-rearm guard was added for audio_shutdown() but
+remove() never clears audio_streaming, so a worker instance running
+at removal time can re-arm after cancel_delayed_work_sync() returns.
+Will clear the flag first, unregister the codec device (tearing down
+the stream), and cancel the work last.
 
+> - [High] Concurrent unprotected access to shared audio state
+> variables between ALSA `hw_params` and the background worker.
+
+Confirmed. A repeated hw_params without an intervening shutdown can
+race the worker over audio_fs/audio_clkrate/audio_pre_state. Plan is
+to stop the worker (clear the flag + cancel_delayed_work_sync) at the
+top of hw_params before touching shared state, which keeps the worker
+the only writer while it is armed and avoids introducing a lock.
+> - [Medium] Unconditional access to `clks[1]` causes an
+> out-of-bounds read if the Device Tree specifies only one clock.
+
+Agreed -- index-based access is fragile even though the binding lists
+the audio clock. Will resolve the "audio" clock by name from the bulk
+clock data once at probe time and cache the pointer.
+> - [Low] The audio worker item silently migrates from an unbound
+> workqueue to the default CPU-bound workqueue after its first
+> execution.
+
+Confirmed; the re-arm path uses schedule_delayed_work() while the
+initial queueing uses system_unbound_wq. Will use
+queue_delayed_work(system_unbound_wq, ...) consistently.
+
+All five will be addressed in the next revision, together with any
+design-level feedback on the RFC itself.
+
+Igor
+
+On Wed, Jul 15, 2026 at 7:48=E2=80=AFAM <sashiko-bot@kernel.org> wrote:
+>
+> Thank you for your contribution! Sashiko AI review found 5 potential issu=
+e(s) to consider:
+> - [High] Passing an ERR_PTR to platform_device_unregister() causes a kern=
+el panic during module removal.
+> - [High] Flawed teardown ordering and failure to clear the audio_streamin=
+g flag in hdmirx_remove() allows the delayed work to re-arm, leading to a U=
+se-After-Free.
+> - [High] Concurrent unprotected access to shared audio state variables be=
+tween ALSA `hw_params` and the background worker.
+> - [Medium] Unconditional access to `clks[1]` causes an out-of-bounds read=
+ if the Device Tree specifies only one clock.
+> - [Low] The audio worker item silently migrates from an unbound workqueue=
+ to the default CPU-bound workqueue after its first execution.
+> --
+>
+> --- Patch [2]: [RFC PATCH 2/2] media: synopsys: hdmirx: add HDMI audio ca=
+pture support ---
+> commit a0cbe815be5692f1b4e770ef5f613ff1fa0b7862
+> Author: Igor Paunovic <royalnet026@gmail.com>
+>
+> media: synopsys: hdmirx: add HDMI audio capture support
+>
+> The Synopsys DesignWare HDMI RX controller extracts the audio stream
+> embedded in the incoming HDMI signal and feeds it to an on-SoC I2S
+> controller. Expose it as an ALSA capture device by registering the
+> generic hdmi-codec as a child of the controller.
+>
+> > diff --git a/drivers/media/platform/synopsys/hdmirx/snps_hdmirx.c b/dri=
+vers/media/platform/synopsys/hdmirx/snps_hdmirx.c
+> > --- a/drivers/media/platform/synopsys/hdmirx/snps_hdmirx.c
+> > +++ b/drivers/media/platform/synopsys/hdmirx/snps_hdmirx.c
+>
+> [ ... ]
+>
+> > +static void hdmirx_audio_clk_ppm_inc(struct snps_hdmirx_dev *hdmirx_de=
+v, int ppm)
+> > +{
+> > +     int delta, inc;
+> > +     long rate =3D hdmirx_dev->audio_clkrate;
+> > +
+> > +     if (ppm < 0) {
+> > +             ppm =3D -ppm;
+> > +             inc =3D -1;
+> > +     } else {
+> > +             inc =3D 1;
+> > +     }
+> > +     delta =3D (int)div64_u64((u64)rate * ppm + 500000, 1000000);
+> > +     delta *=3D inc;
+> > +     rate =3D hdmirx_dev->audio_clkrate + delta;
+> > +     clk_set_rate(hdmirx_dev->clks[1].clk, rate);
+>
+> [Severity: Medium]
+> Does this code access the clock array out of bounds if the device tree on=
+ly
+> provides one clock?
+>
+> The probe function uses devm_clk_bulk_get_all() which only guarantees
+> num_clks >=3D 1, but this unconditionally accesses index 1.
+>
+> > +     hdmirx_dev->audio_clkrate =3D rate;
+> > +}
+>
+> [ ... ]
+>
+> > +static void hdmirx_audio_work(struct work_struct *work)
+> > +{
+>
+> [ ... ]
+>
+> > +     /* Only re-arm while streaming; avoids a self-reschedule race wit=
+h
+> > +      * cancel_delayed_work_sync() in audio_shutdown().
+> > +      */
+> > +     if (READ_ONCE(hdmirx_dev->audio_streaming))
+> > +             schedule_delayed_work(&hdmirx_dev->audio_work,
+> > +                                   msecs_to_jiffies(delay));
+>
+> [Severity: Low]
+> Does this cause the worker to silently migrate to the default system_wq?
+>
+> The worker is initially queued on system_unbound_wq using mod_delayed_wor=
+k(),
+> but schedule_delayed_work() implicitly targets the default CPU-bound
+> workqueue.
+>
+> > +}
+> > +
+> > +static int hdmirx_audio_hw_params(struct device *dev, void *data,
+> > +                               struct hdmi_codec_daifmt *fmt,
+> > +                               struct hdmi_codec_params *hparms)
+> > +{
+> > +     struct snps_hdmirx_dev *hdmirx_dev =3D dev_get_drvdata(dev);
+> > +     u32 fs;
+> > +
+> > +     fs =3D hdmirx_audio_fs(hdmirx_dev);
+> > +     if (!fs)
+> > +             fs =3D hparms ? hparms->sample_rate : 48000;
+> > +     if (!fs)
+> > +             fs =3D 48000;
+> > +
+> > +     hdmirx_dev->audio_fs =3D fs;
+> > +     hdmirx_dev->audio_clkrate =3D fs * 128;
+>
+> [Severity: High]
+> Can concurrent ALSA hw_params ioctl calls race with the background worker=
+ here?
+>
+> ALSA allows consecutive hw_params calls, which could modify audio_fs,
+> audio_clkrate, and audio_pre_state locklessly while the worker is already
+> executing on another CPU.
+>
+> Could this concurrent access result in an invalid clock frequency calcula=
+tion?
+>
+> > +     clk_set_rate(hdmirx_dev->clks[1].clk, fs * 128);
+> > +
+> > +     hdmirx_audio_fifo_reinit(hdmirx_dev);
+> > +     hdmirx_writel(hdmirx_dev, AUDIO_FIFO_THR_PASS, HDMIRX_AUDIO_INIT_=
+FIFO_STATE);
+> > +     hdmirx_writel(hdmirx_dev, AUDIO_FIFO_THR,
+> > +                   AFIFO_THR_LOW_QST(0x20) | AFIFO_THR_HIGH_QST(0x160)=
+);
+> > +     hdmirx_writel(hdmirx_dev, AUDIO_FIFO_MUTE_THR,
+> > +                   AFIFO_THR_MUTE_LOW_QST(0x8) | AFIFO_THR_MUTE_HIGH_Q=
+ST(0x178));
+> > +
+> > +     hdmirx_update_bits(hdmirx_dev, AUDIO_PROC_CONFIG0, I2S_EN, I2S_EN=
+);
+> > +     hdmirx_update_bits(hdmirx_dev, GLOBAL_SWENABLE, AUDIO_ENABLE, AUD=
+IO_ENABLE);
+> > +
+> > +     hdmirx_dev->audio_pre_state =3D 0;
+> > +     WRITE_ONCE(hdmirx_dev->audio_streaming, true);
+> > +     mod_delayed_work(system_unbound_wq, &hdmirx_dev->audio_work,
+> > +                      msecs_to_jiffies(200));
+> > +
+> > +     dev_dbg(dev, "audio hw_params: fs=3D%u\n", fs);
+> > +     return 0;
+> > +}
+>
+> [ ... ]
+>
+> > @@ -2765,6 +3001,10 @@ static int hdmirx_probe(struct platform_device *=
+pdev)
+> >                                                      V4L2_DEBUGFS_IF_AV=
+I, hdmirx_dev,
+> >                                                      hdmirx_debugfs_if_=
+read);
+> >
+> > +     ret =3D hdmirx_register_audio_device(hdmirx_dev);
+> > +     if (ret)
+> > +             dev_warn(dev, "failed to register HDMI audio codec: %d\n"=
+, ret);
+> > +
+>
+> [Severity: High]
+> If platform_device_register_full() fails in hdmirx_register_audio_device(=
+),
+> it returns an ERR_PTR which is stored in hdmirx_dev->audio_pdev.
+>
+> Since this failure only logs a warning and allows the probe to succeed, w=
+on't
+> the check in hdmirx_remove() evaluate to true?
+>
+> if (hdmirx_dev->audio_pdev)
+>     platform_device_unregister(hdmirx_dev->audio_pdev);
+>
+> Will this cause a kernel panic when platform_device_unregister() attempts=
+ to
+> dereference the ERR_PTR?
+>
+> >       return 0;
+> >
+> >  err_unreg_video_dev:
+> > @@ -2784,6 +3024,10 @@ static void hdmirx_remove(struct platform_device=
+ *pdev)
+> >       struct device *dev =3D &pdev->dev;
+> >       struct snps_hdmirx_dev *hdmirx_dev =3D dev_get_drvdata(dev);
+> >
+> > +     cancel_delayed_work_sync(&hdmirx_dev->audio_work);
+> > +     if (hdmirx_dev->audio_pdev)
+> > +             platform_device_unregister(hdmirx_dev->audio_pdev);
+> > +
+>
+> [Severity: High]
+> Could the worker re-arm itself after this cancelation?
+>
+> If the worker is running during removal, cancel_delayed_work_sync() waits=
+ for
+> it to finish. However, because audio_streaming is not set to false prior =
+to
+> this call, the worker will see audio_streaming =3D=3D true and re-arm its=
+elf.
+>
+> Additionally, since platform_device_unregister() is called after the time=
+r
+> cancelation, could userspace trigger a concurrent hw_params ioctl and re-=
+arm
+> the timer through that path?
+>
+> Will the re-armed timer execute on freed memory after the device is remov=
+ed?
+>
+> >       v4l2_debugfs_if_free(hdmirx_dev->infoframes);
+> >       debugfs_remove_recursive(hdmirx_dev->debugfs_dir);
+>
+> --
+> Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260715051939.64=
+652-1-royalnet026@gmail.com?part=3D2
 
