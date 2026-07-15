@@ -1,352 +1,224 @@
-Return-Path: <devicetree+bounces-326687-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-326684-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id +4YvGuwxV2riHAEAu9opvQ
-	(envelope-from <devicetree+bounces-326687-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 09:08:28 +0200
+	id FgqtFKExV2rGHAEAu9opvQ
+	(envelope-from <devicetree+bounces-326684-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 09:07:13 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2EC675B4D0
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 09:08:27 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB4B875B494
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 09:07:12 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20201202 header.b=twRpdbSt;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326687-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-326687-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
+	dkim=pass header.d=NXP1.onmicrosoft.com header.s=selector1-NXP1-onmicrosoft-com header.b=u8ZKU7X9;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326684-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-326684-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=fail reason="SPF not aligned (relaxed), DKIM not aligned (relaxed)" header.from=nxp.com (policy=none);
+	arc=reject ("cv is fail on i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id F41F4303FFA1
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 07:07:36 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id B578E30138B6
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 07:07:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7977842BC34;
-	Wed, 15 Jul 2026 07:07:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B04B831A556;
+	Wed, 15 Jul 2026 07:07:10 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from AS8PR04CU009.outbound.protection.outlook.com (mail-westeuropeazon11011030.outbound.protection.outlook.com [52.101.70.30])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B25EA331EBB;
-	Wed, 15 Jul 2026 07:07:33 +0000 (UTC)
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1784099253; cv=none; b=bS4/kq7MEB98jAHQhRDdHz8/WCbKf3c1WBNKLedqWe8st1pumlkcdIaXYaLxbAOEH48RAntV0YaVRwUG2fLySONBacyHp9wOthF4k612TagRDz7PBx2KmOHPQFlTMIugMjVaohFIgl2QePutF6eYTs4amyhpS5X3jXoG0uNoewc=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1784099253; c=relaxed/simple;
-	bh=QGf9BBX6AkfyVO0p02JJFgLjvrNqK+HVgiTlvNO1QfA=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=bDT/Pxe7BIHWd9Od8PqTyZuxFlzuPsu0aiJkw+yL4EUHZG+31ykOgyVSdVYfoGaFuRURlNOaB84PVyYUjlOxHD1h+PCub9wG3CcJVWlrZq+9qQxDSYyE4EOTmGh5ZGaGJW6Z6t0GvasWUMQRlpXJD5ZndAK3GzGOk+QxMiLislw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=twRpdbSt; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 3173BC2BCF5;
-	Wed, 15 Jul 2026 07:07:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1784099252;
-	bh=QGf9BBX6AkfyVO0p02JJFgLjvrNqK+HVgiTlvNO1QfA=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=twRpdbStknLgIi9QTGMLNHdqWAY7uxzyfVXn7JQw1OzjKNe6aun2Mw1vRa6o3so1I
-	 IbQbtUDLO3mZmAofNyLjkxokZcaSNW/FQ/aaMrt1dTI7//O/yxXP0oDhW9va5UAZsg
-	 DJIQifukUPpOy+uNFwiRRojw1zwWUv7hMjR+pQUyNChzXwX3KXUvuswpxVSZWeVDUc
-	 kifAtgs294dDpuZXTFcEukKN94rL2HF/dd4AnevIB0IVGHoIzBmCgj/Yj1Ro6USLZy
-	 MVDGFlTVBtM+/WOJHDwxChkhkBjfm6S+FqYNCECHjNsj0gLpBgSxebnEyaOE3a6ftn
-	 bShwBEGQOgERA==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1D944C4450C;
-	Wed, 15 Jul 2026 07:07:32 +0000 (UTC)
-From: Esteban Urrutia via B4 Relay <devnull+esteuwu.proton.me@kernel.org>
-Date: Wed, 15 Jul 2026 03:06:56 -0400
-Subject: [PATCH v2 3/3] phy: qcom: qmp-combo: Add SM8475 support
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47D901DD0EF;
+	Wed, 15 Jul 2026 07:07:09 +0000 (UTC)
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1784099230; cv=fail; b=HmBlHptlw7LeauAr7xGSbFpgsiIzEi84+p6kc5sp18/UBabK/hqyIjOAckHJ/GxT8abtA/SHBexXImHfdeKB1qHHFhb1Ie2rrfe1h9+5XuG89e/6LNtkKT8iwRR89uqxg9FhMoTRtACRuIgafHW52zKSVUfotW/aMt0gqeLmKHs=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1784099230; c=relaxed/simple;
+	bh=CP1jebttCZbcv25iwOkQnSS3s9enCjA8qwJE6pIRhhc=;
+	h=From:Subject:Date:Message-Id:Content-Type:To:Cc:MIME-Version; b=KXGQ0Jj3NVaQUYOacRgg/d8ps3qCCBADt5EemIDMT9KaBHLcVXn4mk6HTN3bOlvJ2SHwQt4hoFLMXrAuE8CsrWE6gsw0VEgNLpTDejbgjiUiipDeaIiVW3wadpMafRejxyjoYIbZZuQ1IPoPCGq7q72DO/7iP/ARWRMUsMYd1lQ=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=u8ZKU7X9; arc=fail smtp.client-ip=52.101.70.30
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=SZKmM3JjW0YyP5ZIMT0HRS2h5SBJ6pCTBkrSMEFH8fQu4FUjJ6dORDgbKNLQeALfeUQF4LNNkkDRedX6TGZX/1nILQKvudylnRiQ4VsgnL0fv+WXJhBONY02kNidatWUnVZdyd6TsD0LF45xnRb0ms1Y2vGQi8yiLcQyMzaUzFKz0EmlT5O6v6zAZq/TYyAlOn5o1WtOIMcwat4uKfPDrQJbXuTd8eLi+sT1mKzS3ntUHEsudhhUWZyXqNedGGudDRQS+4+7DWY1bUeBkVynL+ABoE1j7Gs1c1OMN8zpJAra62qh3C3ACSs2phJdy019jKIvwFveMcBT10DsMLgUxw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=GSXRXXjerYQypy39ddJL2lldZmR4+yFXgdSnZ4r8uq0=;
+ b=vVhZOPF/RjC1Nq9GegywhfV894pyhh3sNJgvbhdAnm+RFIHHR/PeuYLH6GpgMYd43vqTKeLZP52sQbcoCoKDTfc5UReYevhypmEoYreiitQH0D3O5euO6U/zMVMawZ+Oqt+aDAWG+KK3fV7OMRr35syFOfczN8/gpgs4oZdD6MojRsXZk4yQIJ3VRdGP6Uh648Z2W4rh2vbxbLOz+iPa2PUMtJSv3L+n+4dw9KG6fpR6i/3aaFIvik76d+/ffWT5VNQdBPo90iDjC9oU8H95h/+IP81oYh2rMcIQAiv3vNaKhxu4p3DlZ4Z8QKLfmmb2uE0qVXt3xQ1nxrDur98bdQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector1-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=GSXRXXjerYQypy39ddJL2lldZmR4+yFXgdSnZ4r8uq0=;
+ b=u8ZKU7X9WOPrICoYAhA1HcTQzKfJW4w2eEX/XtR37RaCio4SsaxZLXjLiq8iUNoWsYTqPkA0w2PdN6XPH0au4sBBTEjjI8TU++iTT3aauV0yOTRjMS7Jkv2ZNDuoitn9lB+ScKSwUfuCMK6o1A6SamOgxgLE7B8Vi8UKAFXBe2v1PJcz6alcR62/Hfkw2N/RZp6xfzIZ9VZIUHi7bv7znxH+vesKXC0ENOiNC3ExS2r+3zHQskahyIBtegHFWCZhwThaD7NLw/Kf6ycJjLH0rAfIoI3LSn1IigHros0N3upIwBkkkqvyKvb6mYYYa0qgVdzIixd9oJzH0uJqkt3BDQ==
+Received: from AM8PR04MB7874.eurprd04.prod.outlook.com (2603:10a6:20b:24d::9)
+ by PA4PR04MB8064.eurprd04.prod.outlook.com (2603:10a6:102:cf::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.223.10; Wed, 15 Jul
+ 2026 07:07:06 +0000
+Received: from AM8PR04MB7874.eurprd04.prod.outlook.com
+ ([fe80::ac38:1699:6f18:c5d9]) by AM8PR04MB7874.eurprd04.prod.outlook.com
+ ([fe80::ac38:1699:6f18:c5d9%3]) with mapi id 15.21.0202.018; Wed, 15 Jul 2026
+ 07:07:06 +0000
+From: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Subject: [PATCH 0/4] arm64: dts: freescale: Add remoteproc support for i.MX
+ EVKs
+Date: Wed, 15 Jul 2026 15:10:36 +0800
+Message-Id: <20260715-imx-rproc-dts-v1-0-d02b583c507b@nxp.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAGwyV2oC/yXMywqEMAxA0V+RrCegBevjV2QWWlON4INERSj+u
+ 3VmeRb3BlASJoU6CSB0svK6RGSfBNzYLgMh99FgUmPTIsuR5wtlk9VhvytaV5S+NDY3voLYbEK
+ er9+v+f6tRzeR298J3PcDXxqrpnEAAAA=
+X-Change-ID: 20260715-imx-rproc-dts-6c78f82652f9
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>
+Cc: devicetree@vger.kernel.org, imx@lists.linux.dev, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Peng Fan <peng.fan@nxp.com>, Biwen Li <biwen.li@nxp.com>
+X-Mailer: b4 0.16-dev-7bc12
+X-ClientProxiedBy: MA5PR01CA0206.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:1b0::10) To AM8PR04MB7874.eurprd04.prod.outlook.com
+ (2603:10a6:20b:24d::9)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260715-sm8475-bup-usbss-v2-3-2d8def39b190@proton.me>
-References: <20260715-sm8475-bup-usbss-v2-0-2d8def39b190@proton.me>
-In-Reply-To: <20260715-sm8475-bup-usbss-v2-0-2d8def39b190@proton.me>
-To: Vinod Koul <vkoul@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- phone-devel@vger.kernel.org, Esteban Urrutia <esteuwu@proton.me>
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1784099250; l=10839;
- i=esteuwu@proton.me; s=20260622; h=from:subject:message-id;
- bh=BURT4AAw0Xx8A6vxbxhEi8B5tPnumv/tHBWqVQYyXp8=;
- b=U7vcYax2zZkDVJo41e5CKkOA2kXsTlEsX4aIK3BNxCW9risBpg5A5F7KYS4LwZrVK8FnZ39nv
- 5glvaDECqATAOJlJ+pfu7mV6GdYoFtzlveHt5UZixK+wa2F1rW3vKYt
-X-Developer-Key: i=esteuwu@proton.me; a=ed25519;
- pk=wToFt4mOAWkzbqb15Ye1hrhevI13vK9BcMUFiQ/me1M=
-X-Endpoint-Received: by B4 Relay for esteuwu@proton.me/20260622 with
- auth_id=835
-X-Original-From: Esteban Urrutia <esteuwu@proton.me>
-Reply-To: esteuwu@proton.me
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM8PR04MB7874:EE_|PA4PR04MB8064:EE_
+X-MS-Office365-Filtering-Correlation-Id: 04fbca1b-563e-40b7-8af4-08dee23fad6e
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|7416014|23010399003|376014|1800799024|366016|19092799006|56012099006|11063799006|18002099003;
+X-Microsoft-Antispam-Message-Info:
+	SMzkvubIsjeD03X07KzDegxj5MRjAbDxChYbkI0y5CkqIcYh09c+XKm/s5WX7G/Yj/DWh/WNb8sjo2DcT3Dxi48R+lhQkM8VCwVn3zfNcUJQS/dvZ2Yh3yzxJGQ0RIc6ccIIw/a8XahrAsmdby20DyzLZLbetU9CtZHHTGfZI+Trkmp5xjOqzZNhd1GcX14VppW35aDPEFFi+ZV0K92aXRxMARfoAJKkDQJ35ABYRw//GeJBzY3iiQ/Zb04T2Az4cGkkxNaFYY6QqLrH/RaxfL8CuDVUcZwt2p6fuamVOAX5ndofMiHuj6nkdwFuMs/hVqoKfjy22Ob5TjpWlaGH3zWrVbhWr/rfKQx6V4FcPTNE2K3fXrlmoN+S6/EDdw2q6srlWlKW7Yi1kQGvEgjhj6WXIgGNdfXz9DbH2ESbf8mw/FbsI9fYexExf+nefO7qbnWJ0TVy9URQVsNeaIEK/DGJHYBxuSTMXKwTxcDnrs50qf6g15NIkd+w3ofINhwm6fvxwLhemOCAdWulYoD6hfwkDDute1qBFpapVMN9pTGYedbahIqLDch4WvgQyraF0JVKQivEryAEJzVRHkar/YmUFuB1hU4QJgjHYJ+OnovFGAiZwAfEUylCsQX03RK5f6IzNRh9O5+eaVfwGgp5ITu4YkVWTKBGb7A27koApO0=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM8PR04MB7874.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(23010399003)(376014)(1800799024)(366016)(19092799006)(56012099006)(11063799006)(18002099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?N1Q4K3l6aU1yMEtycnlZdXFOVlJwWVdOYzBmVTFHbGtHRzRHK1g4TGZKMDRO?=
+ =?utf-8?B?d25zYVNWNlc0WEZpWUtyVVRYYUMwRTBkKy9iSm1DSDlieVJQYVlwK3dWOE84?=
+ =?utf-8?B?eWphVm10aE5yTUlCUkR5QXJNcTczUmpDR0RFS2w2L0J4NDlVK2luZmZPSTBE?=
+ =?utf-8?B?cnpFYk43RTVteXFCcXJLUmZDdkhRaWhVMGttTHRjWUlrc3FvN3ZvdUdhOWZD?=
+ =?utf-8?B?ME8yREhGa0xzTjN3aDVLOFY2aUwvQUk0LzJuaEM3NFhYNVFWbVd0R3BtcE1W?=
+ =?utf-8?B?QnFKU2djMUNJdFNhVVoxZHAzTE00U1RGY2xvdGxUUmh6VEVtekFONWRtNlg0?=
+ =?utf-8?B?d0RzSVpReHVaQlFrdXBXODQrSEcvS1ZGR3gyM2wzc0ltejRES2MwdWZyM01m?=
+ =?utf-8?B?SWdmMHZFSUt1bFpuNXNDdDNpMVRadmV5Q01XTEptTVZWRDVXYmxaN1M3YTFk?=
+ =?utf-8?B?OEZiWWlLMlJPS2pMbVZHRys0eXpDZC8ycjBpZlRnWVU2S1lpUkdsL2RiMzJt?=
+ =?utf-8?B?Z0Y2cVAvRFg3c2JLWHRNamoxY3pvRURoMFBEdHZCSXpEVFh0VTF6d1F5bXkz?=
+ =?utf-8?B?bHI4ajA1Z04vSWE4Z3pZdlAraEw0dkEyNStRbjJNcmFybnRqRWg4WVMydzY1?=
+ =?utf-8?B?MVVIYWljTWhSVjdoSzRrUzZFZGlPcFk2RzkyU1NjSC9jZHA4dklIMy84ZkJN?=
+ =?utf-8?B?ZHNhdUlnV0RYNVZYZVdWL3IxbFc4dGJSK3RIa0M2aFJOMDNwV2N1cWYyOHFD?=
+ =?utf-8?B?VERIVE4vUDFLQjNwTnYxTThBSkxlSTB6NXpBZXUvc0hqK1VNb3p3NFpORUpw?=
+ =?utf-8?B?ZTRRYjJVV0JuYUVXUXNHeDFJVUtkMk9EMkNxaVRuM01OMUwyVmluRkRSb0dj?=
+ =?utf-8?B?dTlNLzBSSEI2WXRMbUxwOER3WXhSK1B2eDNmMHVleUovSlBuTDJlN25GVXJx?=
+ =?utf-8?B?QVc5bzBoNHpSY1NkZktXdkkvWXg0VlBPSTNHeXU4UmNUc2E4S1o1L1R6dVQy?=
+ =?utf-8?B?bmZWV1NlRTdnWi9BUE9jQTNwWW9GK1FlUlUva0Q5QVhxbzlLcUJJOVBEREZ1?=
+ =?utf-8?B?YW9PQVYzcVBrQXVFSzlmcTJIWTV0bkUzRjhYU0l0S3A3cUdqbUE1MmpFMzEy?=
+ =?utf-8?B?TEhyREJ2V2JIcHpYelFvUThnb3VPSlVQMytvUjByTFpwZXVtMWpFK3FoYXpK?=
+ =?utf-8?B?MllyUDlVenBlRGdNdXl0ZDFkSFNmNDJIaXNlRTJRMHBwM1c2YWpvdHNNaGQx?=
+ =?utf-8?B?UDhSNzE4SkF6Sko5VnVGSDlWYUpYUzhrUmJURlNVdGNMMnRXOWpieG9LT29L?=
+ =?utf-8?B?RHZ1U3hHcXVxUnB5RmoxZm9iMGdseVh3TmJTaVFOb3VKUnFHSUE0Wnl4TWlC?=
+ =?utf-8?B?K2lENHNjQXRrVUlrNks0OWRMUUoveHNrcFMyNEdIWVYwVmExMzhSOURLdkY3?=
+ =?utf-8?B?V2VlV3NHM3NKNkplcVV3cWdQUnVXK3FMSCtkMDRvSkcyZVFma1FIdUZFYUZr?=
+ =?utf-8?B?aXB0SkJIMEpJYlBKZklwV2ZLMHBJYzdmNG16YVV5WkJSbkh6NE1saEdMWTdP?=
+ =?utf-8?B?bk1LSG1ZRFl6d0dGdllhVCtDeS9BN29jQU1OTFJVQldaZU40SC9pOFJKcDRY?=
+ =?utf-8?B?SVZ1T0w3ZndKRVFPWElIb1cxSlhHd1VBbnBzRVZJQTQvNW96MTB2bnZhSU1a?=
+ =?utf-8?B?cVl4N3VGaGFHZ2Q1eTQyL1QzNjFvbTFuWlMwdkZDZHpNZGpWTE1lQ0pnUGdR?=
+ =?utf-8?B?SlhDU3pHemUxTmNWV1RNWk5XcjBMNjZaVEc3Q056WTNHUUpBSnhuSnNDdmYv?=
+ =?utf-8?B?UndMWHZZU01rV0taSEhLZit3U3BwYzhRRlBCS0F3UUdhK0RmaTRTbkRRUmtZ?=
+ =?utf-8?B?S2Q4cXdsTmI2UWdjYXZiMWFBZ1dWWDIrYWV2d1FmTzltR0RhckI5dFZIU0ZW?=
+ =?utf-8?B?bWk5K3JQTENjdjVGYTdjOWl2RkJxUHBaUkp2bWRwZ0Q5MFdBcm1ZZ2ExdTVu?=
+ =?utf-8?B?TXJFN3BVUkd6U3RYeWhiSVBjODMxZUxuQXZmdlVmMjRhb0lkbTMvZnRNOHlz?=
+ =?utf-8?B?SlU1NVR4ckJ3YWR1VkpmUndUWC9lR0tsdHV4NDluemM1ZjVyVUNKUzJSSHBx?=
+ =?utf-8?B?Vzlnb2lFTGtpK0F5VjE5SEJXTjM2dGlsRWl6NkxCZ21KV3pCdWk0a3lsL1Zw?=
+ =?utf-8?B?U3R1OEdvci9kblVoVmJrNE56TG5yNnBnQnllUDRIVFN3bHZWVzc0QVU4dXNu?=
+ =?utf-8?B?MzkxazZ6aEpOMngxUW04K3crT3p3NU5ucGI0WWV2dmFqOXZ4YXlqeFhWcm9S?=
+ =?utf-8?B?SHJMUmxGTnF6azg0YU9ab1NwOWlEQWt4UWEra0pQem1UVExtKzVOT2dPd0tV?=
+ =?utf-8?Q?F0X5n7nDZDhsCLa0JvufeG0DaGDgZVW5YjM5C?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 04fbca1b-563e-40b7-8af4-08dee23fad6e
+X-MS-Exchange-CrossTenant-AuthSource: AM8PR04MB7874.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Jul 2026 07:07:06.0641
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: +YDjYuxioyRj+UPyK+cn1AIkXOpDOLC9ufPcm5dAtND+tgVN/jJJ/NcprhEmfmpNdx3DJc2zkMjj3CYXXTIFvnBKBIZ7Yv6Sbs0rVaP9Aoex8JWd7nt1pNYAQlHnKgp+
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA4PR04MB8064
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+X-Spamd-Result: default: False [1.94 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[NXP1.onmicrosoft.com:s=selector1-NXP1-onmicrosoft-com];
 	MAILLIST(-0.15)[generic];
+	DMARC_POLICY_SOFTFAIL(0.10)[nxp.com : SPF not aligned (relaxed), DKIM not aligned (relaxed),none];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-326687-lists,devicetree=lfdr.de,esteuwu.proton.me];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:vkoul@kernel.org,m:neil.armstrong@linaro.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-arm-msm@vger.kernel.org,m:linux-phy@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:phone-devel@vger.kernel.org,m:esteuwu@proton.me,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-326684-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:Frank.Li@nxp.com,m:s.hauer@pengutronix.de,m:kernel@pengutronix.de,m:festevam@gmail.com,m:devicetree@vger.kernel.org,m:imx@lists.linux.dev,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:peng.fan@nxp.com,m:biwen.li@nxp.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[kernel.org,nxp.com,pengutronix.de,gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[peng.fan@oss.nxp.com,devicetree@vger.kernel.org];
 	FORWARDED(0.00)[lists@lfdr.de];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	HAS_REPLYTO(0.00)[esteuwu@proton.me];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[NXP1.onmicrosoft.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NEQ_ENVFROM(0.00)[peng.fan@oss.nxp.com,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[proton.me:mid,proton.me:email,proton.me:replyto,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,oss.nxp.com:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: F2EC675B4D0
+X-Rspamd-Queue-Id: AB4B875B494
 
-From: Esteban Urrutia <esteuwu@proton.me>
+This series adds remoteproc node and reserved memory regions for the
+i.MX95, i.MX952 and i.MX943 EVK boards.
 
-Has been tested with the following capabilities:
-- USB Type-C at 10Gb/s
-- DP Alt Mode, using HBR2
-- USB Type-C at 480Mb/s + DP Alt Mode, using HBR2
+- Patch 1 adds CM7 support for imx95-19x19-evk
+- Patch 2 adds CM7 support for imx952-evk
+- Patch 3 adds CM7-0, CM7-1 and CM33S support for imx943-evk
+- Patch 4, update resource table address for i.MX8ULP-EVK
 
-RX and PCS USB tables had to be added, while serdes, TX and PCS tables were
-reused from other SoCs.
-Since SM8475 uses a v1 PLL, add and use v1 PLL tables as well.
+Each patch defines the remoteproc device node with mailbox channels
+and the associated reserved memory regions (firmware memory, virtio
+vring buffers, resource tables and shared DMA pools).
 
-Signed-off-by: Esteban Urrutia <esteuwu@proton.me>
+Signed-off-by: Peng Fan <peng.fan@nxp.com>
 ---
- drivers/phy/qualcomm/phy-qcom-qmp-combo.c | 169 ++++++++++++++++++++++++++++++
- 1 file changed, 169 insertions(+)
+Biwen Li (1):
+      arm64: dts: imx8ulp-evk: Update rpmsg resource table address
 
-diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-combo.c b/drivers/phy/qualcomm/phy-qcom-qmp-combo.c
-index 36361ac02855..6028752aaac1 100644
---- a/drivers/phy/qualcomm/phy-qcom-qmp-combo.c
-+++ b/drivers/phy/qualcomm/phy-qcom-qmp-combo.c
-@@ -1063,6 +1063,55 @@ static const struct qmp_phy_init_tbl sm8350_usb3_pcs_usb_tbl[] = {
- 	QMP_PHY_INIT_CFG(QPHY_V5_PCS_USB3_RXEQTRAINING_DFE_TIME_S2, 0x07),
- };
- 
-+static const struct qmp_phy_init_tbl sm8475_usb3_rx_tbl[] = {
-+	QMP_PHY_INIT_CFG(QSERDES_V6_RX_UCDR_FO_GAIN, 0x0a),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_RX_UCDR_SO_GAIN, 0x06),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_RX_UCDR_FASTLOCK_FO_GAIN, 0x2f),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_RX_UCDR_SO_SATURATION_AND_ENABLE, 0x7f),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_RX_UCDR_FASTLOCK_COUNT_LOW, 0xff),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_RX_UCDR_FASTLOCK_COUNT_HIGH, 0x0f),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_RX_UCDR_PI_CONTROLS, 0x99),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_RX_UCDR_SB2_THRESH1, 0x08),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_RX_UCDR_SB2_THRESH2, 0x08),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_RX_UCDR_SB2_GAIN1, 0x00),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_RX_UCDR_SB2_GAIN2, 0x08),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_RX_AUX_DATA_TCOARSE_TFINE, 0xa0),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_RX_VGA_CAL_CNTRL1, 0x54),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_RX_VGA_CAL_CNTRL2, 0x0f),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_RX_GM_CAL, 0x13),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_RX_RX_EQU_ADAPTOR_CNTRL2, 0x0f),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_RX_RX_EQU_ADAPTOR_CNTRL3, 0x4a),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_RX_RX_EQU_ADAPTOR_CNTRL4, 0x0a),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_RX_RX_IDAC_TSETTLE_LOW, 0x07),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_RX_RX_IDAC_TSETTLE_HIGH, 0x00),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_RX_RX_EQ_OFFSET_ADAPTOR_CNTRL1, 0x47),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_RX_SIGDET_CNTRL, 0x04),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_RX_SIGDET_DEGLITCH_CNTRL, 0x0e),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_RX_RX_MODE_00_LOW, 0x3f),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_RX_RX_MODE_00_HIGH, 0xff),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_RX_RX_MODE_00_HIGH2, 0xff),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_RX_RX_MODE_00_HIGH3, 0xdf),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_RX_RX_MODE_00_HIGH4, 0xfe),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_RX_RX_MODE_01_LOW, 0xdc),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_RX_RX_MODE_01_HIGH, 0x5c),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_RX_RX_MODE_01_HIGH2, 0x9c),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_RX_RX_MODE_01_HIGH3, 0x1d),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_RX_RX_MODE_01_HIGH4, 0x09),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_RX_DFE_EN_TIMER, 0x04),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_RX_DFE_CTLE_POST_CAL_OFFSET, 0x38),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_RX_DCC_CTRL1, 0x0c),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_RX_VTH_CODE, 0x10),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_RX_SIGDET_CAL_CTRL1, 0x14),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_RX_SIGDET_CAL_TRIM, 0x08),
-+};
-+
-+static const struct qmp_phy_init_tbl sm8475_usb3_pcs_usb_tbl[] = {
-+	QMP_PHY_INIT_CFG(QPHY_V6_PCS_USB3_LFPS_DET_HIGH_COUNT_VAL, 0xf8),
-+	QMP_PHY_INIT_CFG(QPHY_V6_PCS_USB3_RXEQTRAINING_DFE_TIME_S2, 0x07),
-+	QMP_PHY_INIT_CFG(QPHY_V6_PCS_USB3_RCVR_DTCT_DLY_U3_L, 0x40),
-+	QMP_PHY_INIT_CFG(QPHY_V6_PCS_USB3_RCVR_DTCT_DLY_U3_H, 0x00),
-+};
-+
- static const struct qmp_phy_init_tbl sm8550_usb3_serdes_tbl[] = {
- 	QMP_PHY_INIT_CFG(QSERDES_V6_COM_SSC_STEP_SIZE1_MODE1, 0xc0),
- 	QMP_PHY_INIT_CFG(QSERDES_V6_COM_SSC_STEP_SIZE2_MODE1, 0x01),
-@@ -1337,6 +1386,29 @@ static const struct qmp_phy_init_tbl qmp_v5_5nm_dp_tx_tbl[] = {
- 	QMP_PHY_INIT_CFG(QSERDES_V5_5NM_TX_TX_BAND, 0x01),
- };
- 
-+static const struct qmp_phy_init_tbl qmp_v6_dp_v1_serdes_tbl[] = {
-+	QMP_PHY_INIT_CFG(QSERDES_V6_COM_SVS_MODE_CLK_SEL, 0x15),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_COM_SYSCLK_EN_SEL, 0x3b),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_COM_SYS_CLK_CTRL, 0x02),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_COM_CLK_ENABLE1, 0x0c),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_COM_SYSCLK_BUF_ENABLE, 0x06),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_COM_CLK_SELECT, 0x30),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_COM_PLL_IVCO, 0x0f),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_COM_PLL_CCTRL_MODE0, 0x36),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_COM_PLL_RCTRL_MODE0, 0x16),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_COM_CP_CTRL_MODE0, 0x06),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_COM_DIV_FRAC_START1_MODE0, 0x00),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_COM_CMN_CONFIG_1, 0x12),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_COM_INTEGLOOP_GAIN0_MODE0, 0x3f),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_COM_INTEGLOOP_GAIN1_MODE0, 0x00),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_COM_VCO_TUNE_MAP, 0x00),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_COM_BG_TIMER, 0x0e),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_COM_PLL_CORE_CLK_DIV_MODE0, 0x14),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_COM_VCO_TUNE_CTRL, 0x00),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_COM_PLL_BIAS_EN_CLK_BUFLR_EN, 0x17),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_COM_CORE_CLK_EN, 0x0f),
-+};
-+
- static const struct qmp_phy_init_tbl qmp_v6_dp_v1_1_serdes_tbl[] = {
- 	QMP_PHY_INIT_CFG(QSERDES_V6_COM_SVS_MODE_CLK_SEL, 0x15),
- 	QMP_PHY_INIT_CFG(QSERDES_V6_COM_SYSCLK_EN_SEL, 0x3b),
-@@ -1471,6 +1543,54 @@ static const struct qmp_phy_init_tbl qmp_v8_n3p_dp_tx_tbl[] = {
- 	QMP_PHY_INIT_CFG(QSERDES_V8_LALB_TX1_RESTRIM_POST_CAL_OFFSET, 0x10),
- };
- 
-+static const struct qmp_phy_init_tbl qmp_v6_dp_v1_serdes_tbl_rbr[] = {
-+	QMP_PHY_INIT_CFG(QSERDES_V6_COM_HSCLK_SEL_1, 0x05),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_COM_DEC_START_MODE0, 0x69),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_COM_DIV_FRAC_START2_MODE0, 0x80),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_COM_DIV_FRAC_START3_MODE0, 0x07),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_COM_LOCK_CMP1_MODE0, 0x6f),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_COM_LOCK_CMP2_MODE0, 0x08),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_COM_LOCK_CMP_EN, 0x04),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_COM_BIN_VCOCAL_CMP_CODE1_MODE0, 0xe2),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_COM_BIN_VCOCAL_CMP_CODE2_MODE0, 0x18),
-+};
-+
-+static const struct qmp_phy_init_tbl qmp_v6_dp_v1_serdes_tbl_hbr[] = {
-+	QMP_PHY_INIT_CFG(QSERDES_V6_COM_HSCLK_SEL_1, 0x03),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_COM_DEC_START_MODE0, 0x69),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_COM_DIV_FRAC_START2_MODE0, 0x80),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_COM_DIV_FRAC_START3_MODE0, 0x07),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_COM_LOCK_CMP1_MODE0, 0x0f),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_COM_LOCK_CMP2_MODE0, 0x0e),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_COM_LOCK_CMP_EN, 0x08),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_COM_BIN_VCOCAL_CMP_CODE1_MODE0, 0xe2),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_COM_BIN_VCOCAL_CMP_CODE2_MODE0, 0x18),
-+};
-+
-+static const struct qmp_phy_init_tbl qmp_v6_dp_v1_serdes_tbl_hbr2[] = {
-+	QMP_PHY_INIT_CFG(QSERDES_V6_COM_HSCLK_SEL_1, 0x01),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_COM_DEC_START_MODE0, 0x8c),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_COM_DIV_FRAC_START2_MODE0, 0x00),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_COM_DIV_FRAC_START3_MODE0, 0x0a),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_COM_LOCK_CMP1_MODE0, 0x1f),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_COM_LOCK_CMP2_MODE0, 0x1c),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_COM_LOCK_CMP_EN, 0x08),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_COM_BIN_VCOCAL_CMP_CODE1_MODE0, 0x2e),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_COM_BIN_VCOCAL_CMP_CODE2_MODE0, 0x21),
-+};
-+
-+static const struct qmp_phy_init_tbl qmp_v6_dp_v1_serdes_tbl_hbr3[] = {
-+	QMP_PHY_INIT_CFG(QSERDES_V6_COM_HSCLK_SEL_1, 0x00),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_COM_DEC_START_MODE0, 0x69),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_COM_DIV_FRAC_START2_MODE0, 0x80),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_COM_DIV_FRAC_START3_MODE0, 0x07),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_COM_LOCK_CMP1_MODE0, 0x2f),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_COM_LOCK_CMP2_MODE0, 0x2a),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_COM_LOCK_CMP_EN, 0x08),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_COM_BIN_VCOCAL_CMP_CODE1_MODE0, 0xe2),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_COM_BIN_VCOCAL_CMP_CODE2_MODE0, 0x18),
-+};
-+
- static const struct qmp_phy_init_tbl qmp_v6_dp_v1_1_serdes_tbl_rbr[] = {
- 	QMP_PHY_INIT_CFG(QSERDES_V6_COM_HSCLK_SEL_1, 0x05),
- 	QMP_PHY_INIT_CFG(QSERDES_V6_COM_DEC_START_MODE0, 0x34),
-@@ -2838,6 +2958,51 @@ static const struct qmp_phy_cfg sm8350_usb3dpphy_cfg = {
- 	.has_pwrdn_delay	= true,
- };
- 
-+static const struct qmp_phy_cfg sm8475_usb3dpphy_cfg = {
-+	.offsets		= &qmp_combo_offsets_v3,
-+
-+	.serdes_tbl		= sar2130p_usb3_serdes_tbl,
-+	.serdes_tbl_num		= ARRAY_SIZE(sar2130p_usb3_serdes_tbl),
-+	.tx_tbl			= sm8550_usb3_tx_tbl,
-+	.tx_tbl_num		= ARRAY_SIZE(sm8550_usb3_tx_tbl),
-+	.rx_tbl			= sm8475_usb3_rx_tbl,
-+	.rx_tbl_num		= ARRAY_SIZE(sm8475_usb3_rx_tbl),
-+	.pcs_tbl		= sm8550_usb3_pcs_tbl,
-+	.pcs_tbl_num		= ARRAY_SIZE(sm8550_usb3_pcs_tbl),
-+	.pcs_usb_tbl		= sm8475_usb3_pcs_usb_tbl,
-+	.pcs_usb_tbl_num	= ARRAY_SIZE(sm8475_usb3_pcs_usb_tbl),
-+
-+	.dp_serdes_tbl		= qmp_v6_dp_v1_serdes_tbl,
-+	.dp_serdes_tbl_num	= ARRAY_SIZE(qmp_v6_dp_v1_serdes_tbl),
-+	.dp_tx_tbl		= qmp_v6_dp_tx_tbl,
-+	.dp_tx_tbl_num		= ARRAY_SIZE(qmp_v6_dp_tx_tbl),
-+
-+	.serdes_tbl_rbr		= qmp_v6_dp_v1_serdes_tbl_rbr,
-+	.serdes_tbl_rbr_num	= ARRAY_SIZE(qmp_v6_dp_v1_serdes_tbl_rbr),
-+	.serdes_tbl_hbr		= qmp_v6_dp_v1_serdes_tbl_hbr,
-+	.serdes_tbl_hbr_num	= ARRAY_SIZE(qmp_v6_dp_v1_serdes_tbl_hbr),
-+	.serdes_tbl_hbr2	= qmp_v6_dp_v1_serdes_tbl_hbr2,
-+	.serdes_tbl_hbr2_num	= ARRAY_SIZE(qmp_v6_dp_v1_serdes_tbl_hbr2),
-+	.serdes_tbl_hbr3	= qmp_v6_dp_v1_serdes_tbl_hbr3,
-+	.serdes_tbl_hbr3_num	= ARRAY_SIZE(qmp_v6_dp_v1_serdes_tbl_hbr3),
-+
-+	.swing_hbr_rbr		= &qmp_dp_v5_voltage_swing_hbr_rbr,
-+	.pre_emphasis_hbr_rbr	= &qmp_dp_v6_pre_emphasis_hbr_rbr,
-+	.swing_hbr3_hbr2	= &qmp_dp_v5_voltage_swing_hbr3_hbr2,
-+	.pre_emphasis_hbr3_hbr2 = &qmp_dp_v5_pre_emphasis_hbr3_hbr2,
-+
-+	.dp_aux_init		= qmp_v4_dp_aux_init,
-+	.configure_dp_tx	= qmp_v4_configure_dp_tx,
-+	.configure_dp_clocks	= qmp_v3_configure_dp_clocks,
-+	.configure_dp_phy	= qmp_v4_configure_dp_phy,
-+
-+	.regs			= qmp_v6_usb3phy_regs_layout,
-+	.reset_list		= msm8996_usb3phy_reset_l,
-+	.num_resets		= ARRAY_SIZE(msm8996_usb3phy_reset_l),
-+	.vreg_list		= qmp_phy_vreg_l,
-+	.num_vregs		= ARRAY_SIZE(qmp_phy_vreg_l),
-+};
-+
- static const struct qmp_phy_cfg sm8550_usb3dpphy_cfg = {
- 	.offsets		= &qmp_combo_offsets_v3,
- 
-@@ -5001,6 +5166,10 @@ static const struct of_device_id qmp_combo_of_match_table[] = {
- 		.compatible = "qcom,sm8450-qmp-usb3-dp-phy",
- 		.data = &sm8350_usb3dpphy_cfg,
- 	},
-+	{
-+		.compatible = "qcom,sm8475-qmp-usb3-dp-phy",
-+		.data = &sm8475_usb3dpphy_cfg,
-+	},
- 	{
- 		.compatible = "qcom,sm8550-qmp-usb3-dp-phy",
- 		.data = &sm8550_usb3dpphy_cfg,
+Peng Fan (3):
+      arm64: dts: imx95-19x19-evk: Add CM7 node and related memory nodes
+      arm64: dts: imx952-evk: Add CM7 node and related memory nodes
+      arm64: dts: imx943-evk: Add CM7 and CM33S nodes
 
--- 
-2.55.0
+ arch/arm64/boot/dts/freescale/imx8ulp-evk.dts     |   4 +-
+ arch/arm64/boot/dts/freescale/imx943-evk.dts      | 135 ++++++++++++++++++++++
+ arch/arm64/boot/dts/freescale/imx95-19x19-evk.dts |  46 ++++++++
+ arch/arm64/boot/dts/freescale/imx952-evk.dts      |  50 ++++++++
+ 4 files changed, 233 insertions(+), 2 deletions(-)
+---
+base-commit: cc2b5f627e8ccbae1188ef2d8be3e451d7f933a5
+change-id: 20260715-imx-rproc-dts-6c78f82652f9
 
+Best regards,
+--  
+Peng Fan <peng.fan@nxp.com>
 
 
