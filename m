@@ -1,216 +1,188 @@
-Return-Path: <devicetree+bounces-327132-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-327137-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 05iUHpybV2pgXwAAu9opvQ
-	(envelope-from <devicetree+bounces-327132-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 16:39:24 +0200
+	id TbmDMAOeV2roXwAAu9opvQ
+	(envelope-from <devicetree+bounces-327137-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 16:49:39 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44A5675F7AA
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 16:39:23 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2595A75F904
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 16:49:39 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=mGv4iySm;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-327132-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-327132-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=9elements.com header.s=google header.b=ZypbwYTK;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-327137-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-327137-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=9elements.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 1B5E23273675
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 14:31:42 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A98B033CB0E5
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 14:37:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DB53391E60;
-	Wed, 15 Jul 2026 14:29:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E10163911CF;
+	Wed, 15 Jul 2026 14:31:34 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4A3D390CB8
-	for <devicetree@vger.kernel.org>; Wed, 15 Jul 2026 14:29:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA2623914E2
+	for <devicetree@vger.kernel.org>; Wed, 15 Jul 2026 14:31:30 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1784125781; cv=none; b=HI+PUIW3ZcnuSEAoye+k4aWwFitpWZ8+d5+r0ompbQhspPH42NDhb+OouJe9YSRgehm4g2Ic7IKimbi2ei7KcOIVb8Pee9PFP3e7XUShEl/iiATDKreUcyV8EuciPl1+ESIHMoNKUuvlaC1Ucv2X+BJzbzSHJvysEHRkpCrnT9o=
+	t=1784125894; cv=none; b=KSEIP24JsysnLlyvH7I9DszQ6XGXbXq0D0Lu0v8WZMgP3cyzHZneBGQMXHUfT105EmlZcepdOsLSSSwY1PPYfRsRhMSJQ1hbbBNX1RZxRDxn1H8X5ww0jEmGl1Pmxeb1IR2Y4Z+KIqTN+C/CzyhWTgqShAgVyQ+nKpUMx5F6iRE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1784125781; c=relaxed/simple;
-	bh=D9ckNu9SvaeYTC9gvFquLy4a6lU9h26W2+CrcrrHhtw=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=urKPvKNYVUWYD3v90KCyh4fsNKn5UHcRS9IvaMhKWCnvVGBLRgThPTqwE2HGxHHgSSemAX3PlXSOIUTRgUXXwOFTcOx21YAzXVG6+uwX96i0os/Hh/CTD8LbCW51yaM9DvmBeaIVLIREmrPwsedqHqP+phetEQLtzybq9G3lng4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mGv4iySm; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DCC281F000E9;
-	Wed, 15 Jul 2026 14:29:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1784125780;
-	bh=im1k+IfTUTLk3amJC9dHFxUNEwpUogrUfZBR4wgapVo=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=mGv4iySmB8Qgcxphg9g6l8W8V7oZugFuufB/viYqV9llWLLCAEXopxzn/xjvaD5O8
-	 SYhbfy+K9gVsTc66/ANI+1TtpPxi0LA+WHQjqBiTVhmdp6Lt93PNdeUoDskZCwD+aA
-	 9h3XiP7liSV3CG88kRgdJtKoDzUUsrjA70Hdjp0Gv1+MAVHoOb9qeHRctvhIqcoL8U
-	 Uwi8TWxawTcqe/Gy6ue/6gXvg1x0tm4HGy2XovOgX4R18z4P+iPhqyAkwnu52jViai
-	 ZhodIvrtn+xI5AFVGc1KBHa3FIQWl+41qdche/Vk0RJwf0j9tney5FCFlYVsg+KJI7
-	 N/Irh9w1AP0Qw==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v6 05/11] drm/mediatek: mtk_dsi: Enable interrupt at
- component bind time
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "AngeloGioacchino Del Regno" <angelogioacchino.delregno@collabora.com>
-Cc: robh@kernel.org, conor+dt@kernel.org, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org
-In-Reply-To: <20260715135703.46540-6-angelogioacchino.delregno@collabora.com>
-References: <20260715135703.46540-1-angelogioacchino.delregno@collabora.com>
- <20260715135703.46540-6-angelogioacchino.delregno@collabora.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Wed, 15 Jul 2026 14:29:39 +0000
-Message-Id: <20260715142939.DCC281F000E9@smtp.kernel.org>
+	s=arc-20240116; t=1784125894; c=relaxed/simple;
+	bh=JBebJb4jcuu7x0vRBxHn+90SiQlNqxWidAhC89Jq7t8=;
+	h=MIME-Version:Content-Type:Subject:From:To:Cc:In-Reply-To:
+	 References:Date:Message-Id; b=BrDOV+yZCwD9PxnlA8PL+SXuwuV2DEguPsTJUo9cvEmPiZxD1xTOfr5Z3LRdKBvOM3+cRlB15TmsbJnA0cHzL6HJGingS++uV8VETaYCq3EyU0YvOmfhgm/PmKisw6yE/8GRAEtlVoi3r4XnnsRa1lDgC97citP3kTPkaBBDipU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=9elements.com; spf=pass smtp.mailfrom=9elements.com; dkim=pass (2048-bit key) header.d=9elements.com header.i=@9elements.com header.b=ZypbwYTK; arc=none smtp.client-ip=209.85.128.49
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-493c7902f47so46617615e9.1
+        for <devicetree@vger.kernel.org>; Wed, 15 Jul 2026 07:31:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=9elements.com; s=google; t=1784125888; x=1784730688; darn=vger.kernel.org;
+        h=message-id:date:references:in-reply-to:cc:to:from:subject
+         :content-transfer-encoding:content-type:mime-version:from:to:cc
+         :subject:date:message-id:reply-to:content-type;
+        bh=/PBmppuhCNxseIU2k0JL0kCPG9sQNuCzK5Mbh3VeYEY=;
+        b=ZypbwYTK2Ky1BlDSrM/NiejCWGVA9flQutMHeuCuNZycoiKrv99oq1qnoX2kV9RwHw
+         J0nrS6DG6yR7blGBzFnbjzo7OZTLGNRIwKfRjsb8A5/UnttuHwuLpPu0lmCjgF4elMm9
+         L2BbjaFdXLwO+lxduSOMDqrfzNu598yskskCYcH5btndmb+re3LgGPO64XhrzTAjeqtq
+         pYbWpqHMtdI1KKida3gEPIekHockrATpiqY7C2hgIqffKRNTTNvyxhspoA6aOMKkPdGm
+         qcBzzTgj7l6KV0XNbq5khYtNJqKCw6iBbma8/ANoTZ9FDabOpJOUTri79Tpa0sSRMzoZ
+         hIsA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1784125888; x=1784730688;
+        h=message-id:date:references:in-reply-to:cc:to:from:subject
+         :content-transfer-encoding:content-type:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=/PBmppuhCNxseIU2k0JL0kCPG9sQNuCzK5Mbh3VeYEY=;
+        b=iOBusLadCrA2PsBgCPV6t4nDeFqMLWU3MYQ8EMmeq1i8F+EXvPpv6VZq1fJdO0pKqJ
+         DG0adlMB4RX4h5GsD1Otuhtfo49MGlSE+rp1/y0nNJtNnvbKJ2jq8zwb+p02HVH/yr6x
+         Y66npmd5u7LfOPnE3s3mn+DMDMb7xbRhMArXU2NBnKLVlyVz8A2h9UwhwDBShWtluu7d
+         MarPslbt/BVT6Byz4n3leSqs7+dEvEtYMw65zH0fz4GCd6w3yx+bicXSS9Sz3xqUtopl
+         iO96bGihQRLiPP+GO+K0Guz+3eQfH89zbb/i3BdrY1VXGnGr8QE9RvRcF6B/4GbVS26R
+         plhg==
+X-Forwarded-Encrypted: i=1; AHgh+RoKznBJBPgIu5NI79AJm/ALFIQ3roa9w5nRZTFwcWC89/Cbz36EJ6BxfipsTJxsQ4btrYGiWwEEx8jQ@vger.kernel.org
+X-Gm-Message-State: AOJu0YwOlpIfBwCFrdopGUqHmkpoZPmzEncWB6dTCYlukQgz0/+/Qbxs
+	DHUyayOG6lPc3bCk4jqol7ltDlm1tUwtQWROkMrJXrlnzv5mLuwgdHWSFAL8128nFAlDn1B34bX
+	h2y7tWvdJRhCN
+X-Gm-Gg: AfdE7cm9hIyMmG/Aku9U+/H9Mbt1rcYanxyEZbGAL9uKWIRc3GpPq5lUnVYheSod7FT
+	i86paPz4z2wEVo+BAH1lh4V9h028ZnoHpNwJprZ341rUTwu4DWd8qYGet4T8RTDlyE0NsPVc4ef
+	+CpuxOBBhHaXZri4PNTJlvFE3PoxCC4vVde2eqn2dgxXwDU2FCqj32qRXDg2UbjDb4RvXGnszOU
+	eM8UVARBzqj8FYgr4jQKKzprXUsPknNiJvikhZ+bZR3nyvjSTxar168CfzP5J5dK6UwmT8dfD+f
+	woaR6hdl0lZ94rHPQZSe3fd1yn6qW2B5cZQAHTz275fxSWtWJ3uFiTm3WXDE8AG5yph4ENgyDLa
+	oXpndy0EAxuE2qBtPgC/ps/x6N+0JAMtpz4lJpeVSd0Rr5lN/qUHriMj8e92lNxQkW6P8Qf/6UC
+	OVPdBqWmqV2VmKwa3MWYlXSMTr33cRVR4FfzM7mR47BDpQdRD6lnJ5zuAOlBtjRpQ0C8Piv6XUO
+	h0NAL7Uyfv0Qn/U
+X-Received: by 2002:a05:600c:8115:b0:493:aa0a:45ad with SMTP id 5b1f17b1804b1-4953c14f78dmr32474645e9.2.1784125887641;
+        Wed, 15 Jul 2026 07:31:27 -0700 (PDT)
+Received: from [192.168.2.28] (p200300cb8704a900f059545e4a985631.dip0.t-ipconnect.de. [2003:cb:8704:a900:f059:545e:4a98:5631])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-495087366c0sm280236385e9.7.2026.07.15.07.31.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 15 Jul 2026 07:31:27 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH] ARM: dts: aspeed-g6: add pcie-lpc and pcie-kcs4
+From: Tan Siewert <tan.siewert@9elements.com>
+To: =?utf-8?q?Gr=C3=A9goire_Layet?= <gregoire.layet@9elements.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, 
+ Andrew Jeffery <andrew@codeconstruct.com.au>, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org, 
+ linux-kernel@vger.kernel.org
+In-Reply-To: <de49f2032f5b1f170161dcd6191c0daa48f0b0c2.1784117715.git.gregoire.layet@9elements.com>
+References: <de49f2032f5b1f170161dcd6191c0daa48f0b0c2.1784117715.git.gregoire.layet@9elements.com>
+Date: Wed, 15 Jul 2026 16:31:23 +0200
+Message-Id: <178412588365.243141.16731478852761544781.b4-review@b4>
+X-Mailer: b4 0.16-dev
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1784125887; l=1599;
+ i=tan.siewert@9elements.com; s=20260527; h=from:subject:message-id;
+ bh=JBebJb4jcuu7x0vRBxHn+90SiQlNqxWidAhC89Jq7t8=;
+ b=2EvNZFMIlLmhR89ccAd8ZS4HjM7x2BcXOqQidZyE+xoKd8+yYA0umsKD0IHfhb6FFnA6BrCOH
+ UvXNmryk/sVD5AzueTiADnnFB+O/J1ykpDm5t7mVugXdP7qpI2GTpYn
+X-Developer-Key: i=tan.siewert@9elements.com; a=ed25519;
+ pk=ORQd/zQf+LsAvJGXP1CjQwVO6t6iEOGq/eGUsmRVTG4=
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[9elements.com,quarantine];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[9elements.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-327137-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	TAGGED_FROM(0.00)[bounces-327132-lists,devicetree=lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,lists.linux.dev:replyto,smtp.kernel.org:mid,sashiko.dev:url,vger.kernel.org:from_smtp,collabora.com:email];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:angelogioacchino.delregno@collabora.com,m:robh@kernel.org,m:conor+dt@kernel.org,m:dri-devel@lists.freedesktop.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER(0.00)[tan.siewert@9elements.com,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:gregoire.layet@9elements.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:joel@jms.id.au,m:andrew@codeconstruct.com.au,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-aspeed@lists.ozlabs.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORWARDED(0.00)[lists@lfdr.de];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[9elements.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCPT_COUNT_FIVE(0.00)[5];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FROM_NO_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[tan.siewert@9elements.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
+	RCPT_COUNT_SEVEN(0.00)[10];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,9elements.com:dkim,9elements.com:email,9elements.com:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 44A5675F7AA
+X-Rspamd-Queue-Id: 2595A75F904
 X-Rspamd-Action: no action
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
-s) to consider:
+> Add pcie_lpc node and pcie_kcs4 child to the ast2600 g6 common dtsi.
+> 
+> The ASPEED AST2600 has a PCIe to LPC controller. It includes a KCS
+> interface on channel 4. This is a fully KCS-compatible interface
+> that is exposed over PCIe.
+> 
+> This can be used by the host for IPMI when the PCIe BMC Device is
+> activated.
+> 
+> While the datasheet provides interrupt numbers for KCS channels 1, 2,
+> 3 and 4 over PCI, not all 4 are described in the "PCIe to LPC Controller"
+> section. Since only the KCS channel 4 is described, only this channel is
+> added.
+> 
+> Ordered next to existing lpc node for address ordering.
+> Use existing "aspeed,ast2600-lpc-v2" compatible string.
+> The pcie_kcs4 uses existing "aspeed,ast2600-kcs-bmc" compatible as it's a
+> standard KCS interface.
+> 
+> Signed-off-by: Grégoire Layet <gregoire.layet@9elements.com>
+>
+> diff --git a/arch/arm/boot/dts/aspeed/aspeed-g6.dtsi b/arch/arm/boot/dts/aspeed/aspeed-g6.dtsi
+> index 56bb3b0444f7..ac351f01048f 100644
+> --- a/arch/arm/boot/dts/aspeed/aspeed-g6.dtsi
+> +++ b/arch/arm/boot/dts/aspeed/aspeed-g6.dtsi
+> @@ -658,6 +658,21 @@ ibt: ibt@140 {
+>  				};
+>  			};
+>  
+> +			pcie_lpc: pcie-lpc@1e789800 {
 
-Pre-existing issues:
-- [High] Data race on `dsi->irq_data` between process context and hardirq c=
-ontext can cause false positive interrupt completions.
-- [High] Unbounded hardware polling loop in hardirq handler can lock up the=
- CPU.
---
+lpc@1e789000 already maps 0x1e789000-0x1e78a000 and 0x1e789914 falls inside it,
+so you're describing a second `ast2600-lpc-v2` node which is unnecessary.
 
---- Patch [5]: [PATCH v6 05/11] drm/mediatek: mtk_dsi: Enable interrupt at =
-component bind time ---
-commit 869a346c570d4022e4d54a10b57fcff068a735b6
-Author: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Suggestion: Merge pcie_kcs4 into lpc@1e789000 and use 914 as offset. That way
+you don't accidentally cause an overlap for the devices if you describe more in
+the future.
 
-drm/mediatek: mtk_dsi: Enable interrupt at component bind time
+	Tan
 
-Having the DSI interrupt enabled before actually binding the DSI
-component to the display controller driver is both useless and dangerous.
-This commit fixes this by requesting the interrupt with IRQF_NO_AUTOEN,
-and enabling it only when binding DSI to its display controller component.
-
-> diff --git a/drivers/gpu/drm/mediatek/mtk_dsi.c b/drivers/gpu/drm/mediate=
-k/mtk_dsi.c
-> index e4a156a474e08..070d7d555bdbe 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_dsi.c
-> +++ b/drivers/gpu/drm/mediatek/mtk_dsi.c
-> @@ -225,6 +225,7 @@ struct mtk_dsi {
->  	int refcount;
->  	bool enabled;
->  	bool lanes_ready;
-> +	int irq;
->  	u32 irq_data;
-
-[Severity: High]
-This isn't a bug introduced by this patch, but can the data race on
-dsi->irq_data between process context and hardirq context cause false posit=
-ive
-interrupt completions?
-
-The dsi->irq_data variable is modified locklessly using read-modify-write
-operations:
-
-drivers/gpu/drm/mediatek/mtk_dsi.c:mtk_dsi_irq_data_clear() {
-    ...
-    dsi->irq_data &=3D ~irq_bit;
-    ...
-}
-
-drivers/gpu/drm/mediatek/mtk_dsi.c:mtk_dsi_irq_data_set() {
-    ...
-    dsi->irq_data |=3D irq_bit;
-    ...
-}
-
-If a delayed interrupt sets a flag while a process on another CPU is cleari=
-ng
-a different flag for a new command, the process's clear operation can be lo=
-st
-if the interrupt handler overwrites it.
-
-The previously cleared flag remains set, causing mtk_dsi_wait_for_irq_done()
-to falsely return success.
-
->  	wait_queue_head_t irq_wait_queue;
->  	const struct mtk_dsi_driver_data *driver_data;
->  };
-
-[ ... ]
-
-> @@ -1381,17 +1385,15 @@ static int mtk_dsi_probe(struct platform_device *=
-pdev)
-> =20
->  	platform_set_drvdata(pdev, dsi);
-> =20
-> +	ret =3D devm_request_irq(&pdev->dev, dsi->irq, mtk_dsi_irq,
-> +			       IRQF_NO_AUTOEN, dev_name(&pdev->dev), dsi);
-
-[Severity: High]
-This isn't a bug introduced by this patch, but could the unbounded hardware
-polling loop in the mtk_dsi_irq() hardirq handler lock up the CPU?
-
-The mtk_dsi_irq() function runs in hardirq context and uses an unbounded lo=
-op
-to wait for the hardware:
-
-drivers/gpu/drm/mediatek/mtk_dsi.c:mtk_dsi_irq() {
-    ...
-    do {
-        mtk_dsi_mask(dsi, DSI_RACK, RACK, RACK);
-        tmp =3D readl(dsi->regs + DSI_INTSTA);
-    } while (tmp & DSI_BUSY);
-    ...
-}
-
-If the DSI hardware hangs, loses its clock, or DSI_BUSY never clears for any
-other reason, the loop never terminates, which will permanently hang the CP=
-U.
-
-> +	if (ret)
-> +		return dev_err_probe(&pdev->dev, ret, "Failed to request DSI irq\n");
-> +
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260715135703.4654=
-0-1-angelogioacchino.delregno@collabora.com?part=3D5
+-- 
+Tan Siewert <tan.siewert@9elements.com>
 
