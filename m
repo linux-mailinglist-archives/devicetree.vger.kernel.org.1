@@ -1,241 +1,239 @@
-Return-Path: <devicetree+bounces-327133-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-327131-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id J7DVDL2dV2raXwAAu9opvQ
-	(envelope-from <devicetree+bounces-327133-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 16:48:29 +0200
+	id b7d+DWibV2pVXwAAu9opvQ
+	(envelope-from <devicetree+bounces-327131-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 16:38:32 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id C06E775F8D7
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 16:48:28 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6465175F789
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 16:38:31 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20201202 header.b=Dzri78mg;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-327133-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-327133-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=G2nEikEl;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-327131-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-327131-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id A6D26322B8DC
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 14:34:44 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C446E32289F8
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 14:30:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D99D47F2DF;
-	Wed, 15 Jul 2026 14:30:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D26F3812D0;
+	Wed, 15 Jul 2026 14:29:31 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BBD847ECEC;
-	Wed, 15 Jul 2026 14:30:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3757384CC8
+	for <devicetree@vger.kernel.org>; Wed, 15 Jul 2026 14:29:29 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1784125847; cv=none; b=Fx48Op9wv7h+iDoygBNgCMKBYxTvtsNqAE4GZEe44fpBWtEBWmlnSYaluKg9oyYFL98zCWIr9s7LrPujwVl5e2it0kkYaOaVZbo5trumhBh6bLp/opeIc687NtDKGsKceO1y9F6/yb7zLP/awOx13Iva0M805iHHuvZbtmci6ow=
+	t=1784125771; cv=none; b=KO5O7LicUxXYEXf0MJbVzAHefv/OEPngnZsMKJQvZGG6/J+xwVJXRQC31STzIBgWWfGeZUzvsrG8bLvvQ+rYNyCx/5+C5yy03d6gFaMVu1GZXZKiIRgM3x10/HeH49JE5fFR35KQa69a0fUBOl94KOZxB/QzKq/hA2uwYOWmnr0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1784125847; c=relaxed/simple;
-	bh=bxddUKlpQ/zaqaV7lCBZr3OZ5pRRSWUAginc50C9BCA=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=BFyW67bsZ9N1rpfHITh6YiqfVnxop1enjtIpshahjc1Pf0qVC8K9b3zdfJq0L5FctFXSvpp465Cjjra+FTDjgqB2YJqOq9o9ExM36BBaPtQsTUgbkA4tqQ6ggaUblcRntRgpO94bbz2cXN4xK9LCvPlxJ1h7SnWZlPOs7JqwHNs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Dzri78mg; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id B7B50C2BCF5;
-	Wed, 15 Jul 2026 14:30:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1784125846;
-	bh=bxddUKlpQ/zaqaV7lCBZr3OZ5pRRSWUAginc50C9BCA=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=Dzri78mgMSZBmHzQ+S7tmPsBIUdYNCz8FgeGhmJ/4BSxxnqZ9UhouMpYb4pGsrCUH
-	 65Geo5DYXPL9TA/pUDsvslbDK8/GoIcCFP+cN0LDnhDIUbHpafmCgwgygWE5oz89P7
-	 0SG8j4jDbog1szeSXPNTSkqtUms7FI4CrpPHIviKujSHfBXdRymSUEJxL8F16bD1VU
-	 b2VEVkn1J530ytmU6LJ11UlOeGZZ3ztwQ6UQMrVgs4ROecC4xfHOCFsyKladKGxVve
-	 LVauxnMabUllfewYuum3eyo0hR/vGh/H0yMB8Wzd9/QwHXksTiW75eb6rSFPW3FOie
-	 nAMXhDFURrs1A==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 95187C4450F;
-	Wed, 15 Jul 2026 14:30:46 +0000 (UTC)
-From: Roman Vivchar via B4 Relay <devnull+rva333.protonmail.com@kernel.org>
-Date: Wed, 15 Jul 2026 17:27:47 +0300
-Subject: [PATCH 2/3] nvmem: mtk-efuse: add support for 32-bit aligned reads
+	s=arc-20240116; t=1784125771; c=relaxed/simple;
+	bh=ScbIOVEUnT3zehrLYFdeTzj7gPYvUax8I8Qq1w8H4b8=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=K/5WXNTUPW43TYmlyHFFuhtvxXxSfxFFbpqi1+MX2tLmm08BwXLPN0PcXN0GdDmYopu0/6UVn7Xnf7ORup/y38OH80fgk9RDVBoBVU8v76OVtt1ieIfg/g3QUkSBm6AAT+hyVbs9AIYjV2t8klGJTEj6DTNFQo8hVE2eu7ul+bw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=G2nEikEl; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1E59D1F000E9;
+	Wed, 15 Jul 2026 14:29:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1784125769;
+	bh=CrZM1NAmc6btMb5eriTuJ096vYkU1ZlIHWopfY91/A8=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=G2nEikElsviHzKJlWvX8ANcRD+mej5fCiJ/eciH8DFH6JfvlOW/oHnC9TTcGs9Oxu
+	 i1IsHofcxrBEqrONfUtRVkrKTGn+com9LbHsU51UYCaCSYWUA41wkPIfZCV8/5eNot
+	 i2rju9WFUVh1mQmNwA/h4SDsZm/srsKFzgAY/OezR1XG7csqdgDFbj9ONnco4gOYce
+	 fMLE/7+0U3SDe1WOUnngCKbJzynODYRtqaR0V/rOEYuioLxovg29zJ+b3B8PNVf9QD
+	 XRK3HrjhfL5JPW/PmY7rUwZ3cz9fFgxSXQgDEMu/2dnjvNFzsCUo1B1YUe/xUjFjZm
+	 jE0XuY1gdxflw==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v9 04/14] media: iris: Add helper to select relevant
+ context bank device
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Vishnu Reddy" <busanna.reddy@oss.qualcomm.com>
+Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260715-glymur-v9-4-8cf2cbe12a07@oss.qualcomm.com>
+References: <20260715-glymur-v9-0-8cf2cbe12a07@oss.qualcomm.com>
+ <20260715-glymur-v9-4-8cf2cbe12a07@oss.qualcomm.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Wed, 15 Jul 2026 14:29:28 +0000
+Message-Id: <20260715142929.1E59D1F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260715-6572-nvmem-v1-2-9c13be99d077@protonmail.com>
-References: <20260715-6572-nvmem-v1-0-9c13be99d077@protonmail.com>
-In-Reply-To: <20260715-6572-nvmem-v1-0-9c13be99d077@protonmail.com>
-To: Srinivas Kandagatla <srini@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Andrew-CT Chen <andrew-ct.chen@mediatek.com>, 
- Lala Lin <lala.lin@mediatek.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
- Roman Vivchar <rva333@protonmail.com>
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1784125843; l=3135;
- i=rva333@protonmail.com; s=20260510; h=from:subject:message-id;
- bh=gOEk3xV/ih0Hcv+/D9l/u/kTXVslxW9X99D1kWTUUDw=;
- b=q7erFPeQUkoybLyUukh26Ulgz+g/gbaNCEYnLZ0l2O9BHFQ2r6pMpOfwAeh02qLqtGkF7s0QU
- V4bXXhD1MkXAi4268YXyYMS/PwzfqYCaVW+w+m+jt4am6mOtThmMMc0
-X-Developer-Key: i=rva333@protonmail.com; a=ed25519;
- pk=zww/nWjBGoQ4POXCG0BV6fx2iuXK6jx77rsKPA5YK5Y=
-X-Endpoint-Received: by B4 Relay for rva333@protonmail.com/20260510 with
- auth_id=777
-X-Original-From: Roman Vivchar <rva333@protonmail.com>
-Reply-To: rva333@protonmail.com
 X-Spamd-Result: default: False [-1.66 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	FREEMAIL_REPLYTO_NEQ_FROM(2.00)[];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-327133-lists,devicetree=lfdr.de,rva333.protonmail.com];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:srini@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:matthias.bgg@gmail.com,m:angelogioacchino.delregno@collabora.com,m:andrew-ct.chen@mediatek.com,m:lala.lin@mediatek.com,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-mediatek@lists.infradead.org,m:rva333@protonmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:matthiasbgg@gmail.com,s:lists@lfdr.de];
-	FREEMAIL_REPLYTO(0.00)[protonmail.com];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-327131-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:busanna.reddy@oss.qualcomm.com,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[13];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[kernel.org,gmail.com,collabora.com,mediatek.com];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,protonmail.com:replyto,protonmail.com:email,protonmail.com:mid,mediatek.com:email];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	HAS_REPLYTO(0.00)[rva333@protonmail.com];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,protonmail.com];
-	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[]
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ALIAS_RESOLVED(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCPT_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,qualcomm.com:email,vger.kernel.org:from_smtp,sashiko.dev:url,lists.linux.dev:replyto,smtp.kernel.org:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: C06E775F8D7
+X-Rspamd-Queue-Id: 6465175F789
 X-Rspamd-Action: no action
 
-From: Roman Vivchar <rva333@protonmail.com>
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
+s) to consider:
 
-Some MediaTek SoCs, such as mt6572, don't support 8-bit reads, leading
-to zeroes or garbage data. 32-bit aligned reads must be used instead.
+New issues:
+- [High] Using dynamically created context bank devices without taking a re=
+ference via get_device() creates a Use-After-Free risk when file descriptor=
+s outlive device unbind.
 
-Introduce an 'needs_aligned_read' field to the platform data to enforce
-32-bit aligned register access. All reads will be performed by reading
-4-byte words and masking them.
+Pre-existing issues:
+- [High] The `struct iris_core` is allocated via devres but is accessed in =
+V4L2 deferred release paths, causing a Use-After-Free if a file descriptor =
+is closed after driver unbind.
+--
 
-Signed-off-by: Roman Vivchar <rva333@protonmail.com>
----
- drivers/nvmem/mtk-efuse.c | 31 ++++++++++++++++++++++++++++---
- 1 file changed, 28 insertions(+), 3 deletions(-)
+--- Patch [4]: [PATCH v9 04/14] media: iris: Add helper to select relevant =
+context bank device ---
+commit ff67c19893e13d3ddb40ea541f363dbf54e13228
+Author: Vikash Garodia <vikash.garodia@oss.qualcomm.com>
 
-diff --git a/drivers/nvmem/mtk-efuse.c b/drivers/nvmem/mtk-efuse.c
-index af953e1d9230..1462f2760818 100644
---- a/drivers/nvmem/mtk-efuse.c
-+++ b/drivers/nvmem/mtk-efuse.c
-@@ -4,6 +4,7 @@
-  * Author: Andrew-CT Chen <andrew-ct.chen@mediatek.com>
-  */
- 
-+#include <linux/align.h>
- #include <linux/device.h>
- #include <linux/module.h>
- #include <linux/mod_devicetable.h>
-@@ -14,10 +15,12 @@
- 
- struct mtk_efuse_pdata {
- 	bool uses_post_processing;
-+	bool needs_aligned_read;
- };
- 
- struct mtk_efuse_priv {
- 	void __iomem *base;
-+	const struct mtk_efuse_pdata *data;
- };
- 
- static int mtk_reg_read(void *context,
-@@ -28,6 +31,26 @@ static int mtk_reg_read(void *context,
- 	u8 *val = _val;
- 	int i;
- 
-+	if (priv->data->needs_aligned_read) {
-+		u32 pos, shift, val32;
-+
-+		for (i = 0; i < bytes; i++, val++) {
-+			pos = reg + i;
-+
-+			/*
-+			 * Read on 32-bit word boundary or if it's the first
-+			 * iteration
-+			 */
-+			if (i == 0 || IS_ALIGNED(pos, 4))
-+				val32 = readl(priv->base + (pos & ~3));
-+
-+			shift = (pos & 3) * 8;
-+			*val = (val32 >> shift) & 0xff;
-+		}
-+
-+		return 0;
-+	}
-+
- 	for (i = 0; i < bytes; i++, val++)
- 		*val = readb(addr + i);
- 
-@@ -67,7 +90,6 @@ static int mtk_efuse_probe(struct platform_device *pdev)
- 	struct nvmem_device *nvmem;
- 	struct nvmem_config econfig = {};
- 	struct mtk_efuse_priv *priv;
--	const struct mtk_efuse_pdata *pdata;
- 	struct platform_device *socinfo;
- 
- 	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-@@ -78,7 +100,8 @@ static int mtk_efuse_probe(struct platform_device *pdev)
- 	if (IS_ERR(priv->base))
- 		return PTR_ERR(priv->base);
- 
--	pdata = device_get_match_data(dev);
-+	priv->data = device_get_match_data(dev);
-+
- 	econfig.add_legacy_fixed_of_cells = true;
- 	econfig.stride = 1;
- 	econfig.word_size = 1;
-@@ -86,7 +109,7 @@ static int mtk_efuse_probe(struct platform_device *pdev)
- 	econfig.size = resource_size(res);
- 	econfig.priv = priv;
- 	econfig.dev = dev;
--	if (pdata->uses_post_processing)
-+	if (priv->data->uses_post_processing)
- 		econfig.fixup_dt_cell_info = &mtk_efuse_fixup_dt_cell_info;
- 	nvmem = devm_nvmem_register(dev, &econfig);
- 	if (IS_ERR(nvmem))
-@@ -103,10 +126,12 @@ static int mtk_efuse_probe(struct platform_device *pdev)
- 
- static const struct mtk_efuse_pdata mtk_mt8186_efuse_pdata = {
- 	.uses_post_processing = true,
-+	.needs_aligned_read = false,
- };
- 
- static const struct mtk_efuse_pdata mtk_efuse_pdata = {
- 	.uses_post_processing = false,
-+	.needs_aligned_read = false,
- };
- 
- static const struct of_device_id mtk_efuse_of_match[] = {
+media: iris: Add helper to select relevant context bank device
 
--- 
-2.54.0
+This commit introduces a helper to associate the appropriate context bank=20
+device with different buffer types. It updates the internal buffer allocati=
+on=20
+and queue initialization to use this dynamically selected device instead of=
+=20
+always defaulting to the main core device.
 
+> diff --git a/drivers/media/platform/qcom/iris/iris_buffer.c b/drivers/med=
+ia/platform/qcom/iris/iris_buffer.c
+> index 246ad0abbac35..249c9f1d0d5da 100644
+> --- a/drivers/media/platform/qcom/iris/iris_buffer.c
+> +++ b/drivers/media/platform/qcom/iris/iris_buffer.c
+> @@ -545,7 +545,7 @@ static int iris_create_internal_buffer(struct iris_in=
+st *inst,
+>  	buffer->buffer_size =3D buffers->size;
+>  	buffer->dma_attrs =3D DMA_ATTR_WRITE_COMBINE | DMA_ATTR_NO_KERNEL_MAPPI=
+NG;
+> =20
+> -	buffer->kvaddr =3D dma_alloc_attrs(core->dev, buffer->buffer_size,
+> +	buffer->kvaddr =3D dma_alloc_attrs(dev, buffer->buffer_size,
+>  					 &buffer->device_addr, GFP_KERNEL, buffer->dma_attrs);
 
+[Severity: High]
+Could this lead to a Use-After-Free of the context bank device?
+
+When a userspace application opens the video device file descriptor,
+iris_create_internal_buffer() allocates internal buffers using the context
+bank device. If the driver is subsequently unbound (e.g., via sysfs) and the
+context bank devices are unregistered and freed, the application could later
+close the file descriptor.
+
+Should a reference be taken on the context bank device pointer via
+get_device() to ensure it outlives deferred file operations cleanup?
+
+>  	if (!buffer->kvaddr) {
+>  		kfree(buffer);
+
+[ ... ]
+
+> @@ -682,10 +682,10 @@ int iris_queue_internal_buffers(struct iris_inst *i=
+nst, u32 plane)
+> =20
+>  int iris_destroy_internal_buffer(struct iris_inst *inst, struct iris_buf=
+fer *buffer)
+>  {
+> -	struct iris_core *core =3D inst->core;
+> +	struct device *dev =3D iris_get_cb_dev(inst, buffer->type);
+
+[Severity: High]
+This is a pre-existing issue, but is it possible for inst->core to be freed
+before this deferred cleanup is called?
+
+In drivers/media/platform/qcom/iris/iris_probe.c, the core structure is
+allocated via devm_kzalloc(). If the driver is unbound while a file
+descriptor is open, devres will free the iris_core structure. When the file
+descriptor is later closed, deferred release paths (such as
+iris_check_num_queued_internal_buffers() in iris_vidc.c, or here calling
+iris_get_cb_dev()) will dereference inst->core, resulting in a Use-After-Fr=
+ee.
+
+> =20
+>  	list_del(&buffer->list);
+> -	dma_free_attrs(core->dev, buffer->buffer_size, buffer->kvaddr,
+> +	dma_free_attrs(dev, buffer->buffer_size, buffer->kvaddr,
+>  		       buffer->device_addr, buffer->dma_attrs);
+
+[Severity: High]
+If the context bank device was freed during driver unbind, will passing the
+unpinned device pointer to dma_free_attrs() during deferred fops release
+cause a Use-After-Free?
+
+>  	kfree(buffer);
+> =20
+
+> diff --git a/drivers/media/platform/qcom/iris/iris_vidc.c b/drivers/media=
+/platform/qcom/iris/iris_vidc.c
+> index 14d63dc76c9ba..26df872fb4fa1 100644
+> --- a/drivers/media/platform/qcom/iris/iris_vidc.c
+> +++ b/drivers/media/platform/qcom/iris/iris_vidc.c
+> @@ -107,7 +107,7 @@ iris_m2m_queue_init(void *priv, struct vb2_queue *src=
+_vq, struct vb2_queue *dst_
+>  	src_vq->drv_priv =3D inst;
+>  	src_vq->buf_struct_size =3D sizeof(struct iris_buffer);
+>  	src_vq->min_reqbufs_allocation =3D MIN_BUFFERS;
+> -	src_vq->dev =3D inst->core->dev;
+> +	src_vq->dev =3D iris_get_cb_dev(inst, BUF_INPUT);
+>  	src_vq->lock =3D &inst->ctx_q_lock;
+>  	ret =3D vb2_queue_init(src_vq);
+>  	if (ret)
+> @@ -121,7 +121,7 @@ iris_m2m_queue_init(void *priv, struct vb2_queue *src=
+_vq, struct vb2_queue *dst_
+>  	dst_vq->drv_priv =3D inst;
+>  	dst_vq->buf_struct_size =3D sizeof(struct iris_buffer);
+>  	dst_vq->min_reqbufs_allocation =3D MIN_BUFFERS;
+> -	dst_vq->dev =3D inst->core->dev;
+> +	dst_vq->dev =3D iris_get_cb_dev(inst, BUF_OUTPUT);
+>  	dst_vq->lock =3D &inst->ctx_q_lock;
+
+[Severity: High]
+Does assigning the dynamically created context bank device to the vb2_queue
+without taking a reference create a Use-After-Free risk?
+
+If the driver unbinds and the device is freed, the vb2_queue could still be
+accessed during deferred cleanup when the file descriptor is finally closed.
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260715-glymur-v9-=
+0-8cf2cbe12a07@oss.qualcomm.com?part=3D4
 
