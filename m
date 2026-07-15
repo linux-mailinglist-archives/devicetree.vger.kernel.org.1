@@ -1,188 +1,168 @@
-Return-Path: <devicetree+bounces-327063-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-327064-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id sOlCGY2QV2qhXAAAu9opvQ
-	(envelope-from <devicetree+bounces-327063-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 15:52:13 +0200
+	id COSMLmaUV2qeXQAAu9opvQ
+	(envelope-from <devicetree+bounces-327064-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 16:08:38 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id D50ED75EFFB
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 15:52:12 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id F01FA75F29E
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 16:08:37 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=NHIJGbXa;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-327063-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-327063-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=intel.com;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=oyal3+F6;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-327064-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-327064-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 127F63042109
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 13:51:35 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 35876306E89D
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 13:51:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 318A8318146;
-	Wed, 15 Jul 2026 13:51:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBA693126DF;
+	Wed, 15 Jul 2026 13:51:57 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09AF8305680;
-	Wed, 15 Jul 2026 13:51:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B249305680;
+	Wed, 15 Jul 2026 13:51:56 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1784123486; cv=none; b=Bjana8RK9CkDQ7WO/5LJMNxfLFtlXOB7l2HU/UocGr5+5SPYMmpV5rrm/YwDQH08Wzp22m4rt2Z5mZUQz4Q4+LpCm0t8/q6kmZTMFl2C6vLdecTPHD60bbgYHHBvq8rEeiWoqntVBzjWclaGmH391C6fnRSInzSSnGwkw/XcOWk=
+	t=1784123517; cv=none; b=lw3sjWp2CCW8m9IGfY/V+FLDc6jTJY0HVs4BF7dnqRPMMTscuxVTLwF71HJc4rvh+QbRfMUjkA8YfWMeuR4cmQa56MsM0+r3ksmazRUJ6NyGtzvW629IVdgNPoQreVsEuM8gSUq3rLrlFo6/ha5jIjk/Y1h9aNY3BdIo1V2go4Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1784123486; c=relaxed/simple;
-	bh=ABx0kwYwMnS/WRBfVqJ+sIBtknov3lHYZT3/oXnnARU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=t/73AYZhXjf30rQsOQTACPLcXPsHfs2GPNELVD1aYTckx9p6r62Y5D27vuW60n0aErX2041VJFcBugiXRSp6vZBRNte2n90GnuVNnbSxDV7Ju6ARwqRXlybIIpBqEWOpUBdV85hgGZTxeRs7sbXGZh8rkT8ktPB7Z/BX8BTHGh0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=NHIJGbXa; arc=none smtp.client-ip=192.198.163.7
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1784123484; x=1815659484;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=ABx0kwYwMnS/WRBfVqJ+sIBtknov3lHYZT3/oXnnARU=;
-  b=NHIJGbXaMWwabKiy999N9ot8W7w0fR4n53ChTd2ZOz/waD1Mb2VtpoR7
-   WU6/yM7AfWKMiqQA//ZUylT6qY08EY4Zq3CCwwhs3oNS3Qh1gpGaASKAq
-   +3p3p3jqxfaVcENDvBNRu9AwHzNiEg67NujM7ryT9a9QbLOR4UNhS5kU/
-   vfbVQS/KmACFMvjhDgT5Cn3l9hWWwvUNg8P8Z5+D7TOK8cp7yAmgslAyD
-   IUHBf2iE3YYUK2ftsHOTNd/AeeybF7PXjfcnmDNKhs+znnFNHMx3yl7Bz
-   WPx/nR9JTWAp4lr2V6HKIheWcV2LRMVnAFrrjQ/SnHSWiYpV05e7Ox88m
-   g==;
-X-CSE-ConnectionGUID: sqIYOpmmQ2eTBPH9+lcaCA==
-X-CSE-MsgGUID: I1HFga/eQ6y/NjQGXXf4uA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11847"; a="110306762"
-X-IronPort-AV: E=Sophos;i="6.25,165,1779174000"; 
-   d="scan'208";a="110306762"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
-  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Jul 2026 06:51:23 -0700
-X-CSE-ConnectionGUID: 4mvBir93Qn6oNh+qUbVaBg==
-X-CSE-MsgGUID: iZFvdGvWQQqry38a7Hrusw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,165,1779174000"; 
-   d="scan'208";a="256836623"
-Received: from mkosciow-mobl1.ger.corp.intel.com (HELO localhost) ([10.245.244.129])
-  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Jul 2026 06:51:19 -0700
-Date: Wed, 15 Jul 2026 16:51:17 +0300
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Esben Haabendal <esben@geanix.com>
-Cc: Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Martin Kepplinger <martink@posteo.de>,
-	Sean Nyekjaer <sean@geanix.com>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>,
-	Martin Kepplinger <martin.kepplinger@theobroma-systems.com>,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] iio: accel: mma8452: Allow open drain interrupt pin
- configuration
-Message-ID: <aleQVYrK9YBoLqGl@ashevche-desk.local>
-References: <20260715-mma8452-open-drain-v1-0-b1dd2a440c60@geanix.com>
- <20260715-mma8452-open-drain-v1-2-b1dd2a440c60@geanix.com>
- <cA7m1VgJxkr39GAxpnMPw9PVIKX2TR8Ju4Q0m6L2SxS_jJNITfZ6AA5LOeMIK0jGFXaUptY1_vPhDd_imWw5FQ==@protonmail.internalid>
- <aldH3vtk_eKh6oCC@ashevche-desk.local>
- <87ldbco582.fsf@geanix.com>
+	s=arc-20240116; t=1784123517; c=relaxed/simple;
+	bh=/aKDa2kaqUVRk9ufeRGSTFGuljIVmQiABhfBmKVd91I=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=E1oOrU6CGhVwK3/W3dezChGQelLuvVIf03nuaRirUvofvXWi539JJ991F0owERHKxCsyqBmtW6poJxpD5WxBvQ7vrAJInKZcArOF7d3LViEDnpZFeELKWazfdmoRSEzNDKbAH4y1p52l4zE4v5dexsWVursia0r/PniT06F2Fw8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oyal3+F6; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E5C311F000E9;
+	Wed, 15 Jul 2026 13:51:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1784123516;
+	bh=hZoF7RerIR03yZN4MonDtp4YtuKsc+TsPXE0SJkdkUE=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=oyal3+F6tj/+ZlA9CIbnH+YxbMnHHyabmXQYG4oBfPbFwnfWq6zwO9Zh64mLTIYCE
+	 eq0WjjsopygRa00PIyDK4mPgrosr6wTUytmKJpBALTlqS6neK7sq//Q8Pqh/DoCo7g
+	 CTDDOcdeS0zHyNx6sasrGuFnJWZzx5hfdLY+3U9kL8Lfb6XQWDRii4eCOVpB8PHerC
+	 +7uYkoMPTQtX+U5XBLCV/STi/oFodN/LrfY0aThOYjdnOtPtBxoypRRzQZws8gDWdZ
+	 igsskStsQpcZgDrweEjvzXtS1vUcfEDUyCOlbMg3+aEvnsJ+wl4osrtEoFLqzw1XBq
+	 g8nMQk6Gh270Q==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v6 1/4] dt-bindings: leds: nxp,pca963x: fix reg maximum
+ for pca9635
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Loic Poulain" <loic.poulain@oss.qualcomm.com>
+Cc: robh@kernel.org, devicetree@vger.kernel.org, conor+dt@kernel.org, linux-leds@vger.kernel.org, lee@kernel.org
+In-Reply-To: <20260715-monza-leds-v6-1-d1724bb7fe3d@oss.qualcomm.com>
+References: <20260715-monza-leds-v6-0-d1724bb7fe3d@oss.qualcomm.com>
+ <20260715-monza-leds-v6-1-d1724bb7fe3d@oss.qualcomm.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Wed, 15 Jul 2026 13:51:55 +0000
+Message-Id: <20260715135155.E5C311F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <87ldbco582.fsf@geanix.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
-X-Spamd-Result: default: False [-3.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[intel.com:d:+,kernel.org:s:+];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-3.16 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-327063-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[15];
+	TAGGED_FROM(0.00)[bounces-327064-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	HAS_ORG_HEADER(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:esben@geanix.com,m:jic23@kernel.org,m:lars@metafoo.de,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:martink@posteo.de,m:sean@geanix.com,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:andy@kernel.org,m:martin.kepplinger@theobroma-systems.com,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	RBL_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[172.232.135.74:from];
-	FORGED_SENDER(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[intel.com:+];
-	ALIAS_RESOLVED(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,lists.linux.dev:replyto,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,smtp.kernel.org:mid,sashiko.dev:url,vger.kernel.org:from_smtp];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
-	RECEIVED_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[100.90.174.1:received,192.198.163.7:received,10.64.159.149:received];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	FORGED_RECIPIENTS(0.00)[m:loic.poulain@oss.qualcomm.com,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:linux-leds@vger.kernel.org,m:lee@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	PRECEDENCE_BULK(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:from_mime,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,vger.kernel.org:from_smtp,ashevche-desk.local:mid]
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCPT_COUNT_FIVE(0.00)[6];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	FROM_NO_DN(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: D50ED75EFFB
+X-Rspamd-Queue-Id: F01FA75F29E
 X-Rspamd-Action: no action
 
-On Wed, Jul 15, 2026 at 01:35:41PM +0200, Esben Haabendal wrote:
-> "Andy Shevchenko" <andriy.shevchenko@intel.com> writes:
-> > On Wed, Jul 15, 2026 at 10:07:39AM +0200, Esben Haabendal wrote:
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [Medium] The commit message claims to tighten the node name regex from `[=
+0-9a-f]+` to `[0-9a-f]` to match the single-digit hardware limit. However, =
+this change was only applied to the top-level `patternProperties`. The corr=
+esponding regexes inside the `allOf` conditional blocks for older chip gene=
+rations were neglected and still allow multiple hex digits.
+--
 
-...
+--- Patch [1]: [PATCH v6 1/4] dt-bindings: leds: nxp,pca963x: fix reg maxim=
+um for pca9635 ---
+commit a500d493e0680c38dffc3b668e4fe9888ec4d0bd
+Author: Loic Poulain <loic.poulain@oss.qualcomm.com>
+Subject: dt-bindings: leds: nxp,pca963x: fix reg maximum for pca9635
 
-> >>  	if (client->irq) {
-> >>  		ret = request_threaded_irq(client->irq, NULL, mma8452_interrupt,
-> >> -					   IRQF_TRIGGER_LOW | IRQF_ONESHOT,
-> >> +					   IRQF_TRIGGER_LOW | IRQF_ONESHOT |
-> >> +					   data->open_drain ? IRQF_SHARED : 0,
-> >>  					   client->name, indio_dev);
-> >
-> > Why do we care?
-> 
-> Care about what exactly?
+This commit increases the maximum reg value to 15 in the top-level led node
+to support 16 channels on the pca9635. It refactors the allOf conditionals
+to give pca9634 its own block and changes the top-level regex constraint to
+match a single hexadecimal digit.
 
-About exclusivity of the interrupt.
+> diff --git a/Documentation/devicetree/bindings/leds/nxp,pca963x.yaml b/Do=
+cumentation/devicetree/bindings/leds/nxp,pca963x.yaml
+> index 938d0e48fe51b..4fda602912f7a 100644
+> --- a/Documentation/devicetree/bindings/leds/nxp,pca963x.yaml
+> +++ b/Documentation/devicetree/bindings/leds/nxp,pca963x.yaml
 
-> We need to add IRQF_SHARED flag in order to allow shared interrupt, and
-> we should not add it when using (the default) push-pull mode.
+[ ... ]
 
-Why not? How would it make any difference from SW perspective?
-Yes, I understand the HW case.
+> @@ -88,7 +88,13 @@ allOf:
+>            properties:
+>              reg:
+>                maximum: 3
+> -    else:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - nxp,pca9634
+> +    then:
+>        patternProperties:
+>          "^led@[0-9a-f]+$":
 
-> > The (hidden) problem this will have in the future is that the IRQ core
-> > will splat a warning in case that other shared IRQs might be
-> > configured with different flags. Putting that flag conditionally makes
-> > it a mine field for the users. Instead just unconditionally add that
-> > flag and we will get reports as soon as there will be a user that
-> > shares the same interrupt pin with some other devices which drivers do
-> > not use the same settings.
-> 
-> If we add the IRQF_SHARED flag unconditionally, it will be set also when
-> push-pull mode is enabled. I don't see how the kernel will be able to
-> notice that that is not going to work. If you have another device that
-> uses IRQF_TRIGGER_LOW|IRF_ONESHOT|IRQF_SHARED, it will not work with the
-> MMA8452 device when configured as push-pull.
+[Severity: Medium]
+The commit message states the regex is tightened to single-digit [0-9a-f],
+but is it intentional that the patternProperties inside the allOf blocks for
+older generations still use the multiple-digit [0-9a-f]+ pattern?
 
-Right, and why do we care (again)? It's pure DT/FW/HW issue, not an SW issue.
-Otherwise it will become a carefully placed mine for the poor user who will
-use these flags and try to share an interrupt with the mma8452 device which
-has no set property and uses push-pull mode.
+While the top-level constraint handles the validation correctly, retaining
+the '+' in the nested conditional blocks for pca9634 (and the pca9632 and
+pca9633 block just above this hunk) leaves the schema internally
+inconsistent with the stated intent.
 
-Did I miss anything?
+>            properties:
+>              reg:
 
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260715-monza-leds=
+-v6-0-d1724bb7fe3d@oss.qualcomm.com?part=3D1
 
