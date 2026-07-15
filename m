@@ -1,207 +1,138 @@
-Return-Path: <devicetree+bounces-326743-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-326745-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id fSJpE2xCV2oKIQEAu9opvQ
-	(envelope-from <devicetree+bounces-326743-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 10:18:52 +0200
+	id ARsUGipEV2phIQEAu9opvQ
+	(envelope-from <devicetree+bounces-326745-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 10:26:18 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38F7D75BCD4
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 10:18:51 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5601275BD9A
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 10:26:17 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=Y+vkypAF;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326743-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-326743-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=geanix.com header.s=protonmail3 header.b=tB7mvfhf;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326745-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-326745-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=geanix.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 379183006825
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 08:18:48 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 09D8D3028137
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 08:24:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B75323CB2EA;
-	Wed, 15 Jul 2026 08:18:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60DEB3CD8B8;
+	Wed, 15 Jul 2026 08:24:02 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from mail-43172.protonmail.ch (mail-43172.protonmail.ch [185.70.43.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 695123C2B80
-	for <devicetree@vger.kernel.org>; Wed, 15 Jul 2026 08:18:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4C343CC323;
+	Wed, 15 Jul 2026 08:23:59 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1784103526; cv=none; b=tdBgBd6q9UePPjOXey6lX4wFMx+crv/fXuROYaz+QkV6wGtefpq9sE6QLiTMme5NZv1reU/bj351CXXkS6Er9muNK4MM/X9XOaL0U1PfBYuRHJy/N3+cVan5TtK0k4kxg3ddQOuoyFZ7ra/jGj4VRSu+i4t378mH09IskqWL4ok=
+	t=1784103842; cv=none; b=l/kgvqDz9tkJy+qAUjb6EksWiSTU8UvD7+bwo7LHPCFPaCgPwRudY3fTpkgIALldC8VIBbQBKPy4gyTgrm8jMs2zfxzM2Sq9/jB5l9DJe0n7YITeTlrxyw62bLGMIwieqmrlBdIBBqsWCYTvOsyHUbo5JbrcR5ZtcgsIRmSjwls=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1784103526; c=relaxed/simple;
-	bh=tL9ke4GV6oGp+YWHUNQKE8E8soXN35upf5Ca2OWsGO4=;
-	h=From:In-Reply-To:MIME-Version:References:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=s4ia71aby8V3+gQzLEIwoCTMygMBM/Q9Wu34bhs4z7YWfhWpGlI1pLlzJ0Hpexgo1Sa1BCI9viFv8ZzRia2yQo3Z3/5E2l9YnIw5rZnFb+d5jj8sa3/7uZLPDq4BWYV/YyfOz8cRDCVXlpqcLDYtvcB30lX1Tfn2c0I7I9q4cRc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Y+vkypAF; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2F76A1F01558
-	for <devicetree@vger.kernel.org>; Wed, 15 Jul 2026 08:18:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1784103525;
-	bh=8hGVZh4PoHLjhUPeUZDk7YT9r2Csoy+q60RG1t1sPcs=;
-	h=From:In-Reply-To:References:Date:Subject:To:Cc;
-	b=Y+vkypAFF2VaKmeNBsJM168DosyIXULOV/1fpLuzsTul1sgGvXaBR4KZ6xOeIC+2j
-	 Ci+eiuoe5uMuHswoUkQiT4cMDUrKyJHoTFFQmF37me/jk2bry6CyrZbFe4/+NfwFcX
-	 SG7ighaYJUwUSjtA22Qc2YIC4pFU+ExRU41dvQRVxxFMEEaWzAjIETlABGoFhH67vD
-	 hcmZwvOC5bee6CUqAe029xw9LtrSlXAKvUsDYQycVXhHx0+E6TaxSvcfjZ5xskzofp
-	 L3QcfMeKA0I8rSRy0J4LVEzwZYEL7usUigDcxEmdjKlPkyB9vRYGbpTIPLxVrXraLs
-	 6i7e19kgfMjHw==
-Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-39d560a1dd4so1540751fa.1
-        for <devicetree@vger.kernel.org>; Wed, 15 Jul 2026 01:18:45 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AHgh+RqkXTx4SXQZBa43HxFllb2LOUHCuK1kWsvlU8KI9CayFsjrxfwvY+xXFYsf9gAg7J2RccvDyZ+1+gTg@vger.kernel.org
-X-Gm-Message-State: AOJu0YzR3X1seNEcPuy7YtPEExR7AvdG1By9MDEvFzlqoHW5Ox3E8tTQ
-	XTMn1QUuS2+f0VfSOkolzqK2Eya6wrrjQ90SXSKavK/tYMM4+N91bQzgYAxmLyoDo2ibDCTD449
-	Y8mLhrO+Dsstg6qDGLBlbTr8HOZvIiE/UTS02IGOa5Q==
-X-Received: by 2002:a2e:a58f:0:b0:39c:7919:fcf1 with SMTP id
- 38308e7fff4ca-39db6d81975mr4644921fa.33.1784103523816; Wed, 15 Jul 2026
- 01:18:43 -0700 (PDT)
-Received: from 969154062570 named unknown by gmailapi.google.com with
- HTTPREST; Wed, 15 Jul 2026 01:18:41 -0700
-Received: from 969154062570 named unknown by gmailapi.google.com with
- HTTPREST; Wed, 15 Jul 2026 01:18:41 -0700
-From: Bartosz Golaszewski <brgl@kernel.org>
-In-Reply-To: <20260711210131.236025-3-marex@nabladev.com>
+	s=arc-20240116; t=1784103842; c=relaxed/simple;
+	bh=ISJBKGJ7uSFseLhyCH5QRJqorkE7h+r0Ey2aHLG/b9Y=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=lbI7obTEsgQy1hJkdRdE31CAN3rN4AVR0xbkA7tC0UMZB+jnTs3Seucvkd6awFU6hLAdBzNG1xY2a+0s3Q/aoWwISfPKSBDCHpUVGfY+E+uRa+ZHUystL1zALj97CvoecZr86hGw0q02Wt8UWSzE7xMk2c7tHHVdbu4fnV097VU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=geanix.com; spf=pass smtp.mailfrom=geanix.com; dkim=pass (2048-bit key) header.d=geanix.com header.i=@geanix.com header.b=tB7mvfhf; arc=none smtp.client-ip=185.70.43.172
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=geanix.com;
+	s=protonmail3; t=1784103831; x=1784363031;
+	bh=unDUrRWYn3Y987s3XbMj+BF1h22T+O5Je+Wh+r3sqXs=;
+	h=From:Subject:Date:Message-Id:To:Cc:From:To:Cc:Date:Subject:
+	 Reply-To:Feedback-ID:Message-ID:BIMI-Selector;
+	b=tB7mvfhfItEK+LX8UNjZtIhVIn+I1DuyuzSAH/Yi5W06p664hWPtTAtLbSGTsYysg
+	 H3u2YJ750TrnV+Kqs2AZ69Ez695GLLQ/NK0VS7ooqTP1TvYcu+2IQmmOWCY6HYQyi8
+	 8u3sQMK2aozww2Vv06PnPBB+tY9PkSrSntEgRJLd+vh2kEKVHBNoHWjDDBz8n8f48e
+	 /pskK+IEff41/exX0BIwzRUVCtMNLmbZmeB8JDzVCESG2Wj/PbvjIt3kDphxxSBrnD
+	 iGU0zRdb0C+9jrIIBAY0OlyGhpHU8RTt6UO/hMi3L6kNYHlT8ZO+YMPLXu/wwVTX+h
+	 G889lpqf0zK3A==
+X-Pm-Submission-Id: 4h0Tj12L3Hz1DFDy
+From: Esben Haabendal <esben@geanix.com>
+Subject: [PATCH 0/3] iio: light: ltr501: Add ltr329 support
+Date: Wed, 15 Jul 2026 10:23:47 +0200
+Message-Id: <20260715-liteon-ltr329-v1-0-31f027051594@geanix.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260711210131.236025-1-marex@nabladev.com> <20260711210131.236025-3-marex@nabladev.com>
-Date: Wed, 15 Jul 2026 01:18:41 -0700
-X-Gmail-Original-Message-ID: <CAMRc=McWngnxX1TE7jj+4hr25PN6o4rZGW+Jm2CivXtzA53CwA@mail.gmail.com>
-X-Gm-Features: AUfX_mwKBsfMiGTO8O5kdCZA1clS20B1ees3zGV3oL0u74_c0uWhHuUReKtAFA8
-Message-ID: <CAMRc=McWngnxX1TE7jj+4hr25PN6o4rZGW+Jm2CivXtzA53CwA@mail.gmail.com>
-Subject: Re: [PATCH 02/10] dt-bindings: gpio: pca95xx: Document Kinetic KTS1622
-To: Marek Vasut <marex@nabladev.com>, 
-	Konstantin Ryabitsev <konstantin@linuxfoundation.org>
-Cc: linux-arm-kernel@lists.infradead.org, 
-	Alexandre Torgue <alexandre.torgue@foss.st.com>, Bartosz Golaszewski <brgl@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Linus Walleij <linusw@kernel.org>, Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, 
-	kernel@dh-electronics.com, linux-gpio@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/yXMTQ5AMBBA4avIrDUxJfVzFbFQBiNS0pZIxN0Vy
+ 2/x3gWOLJODKrrA0sGOVxOAcQTd1JqRBPfBIBOpkhxRLOxpNWLxNpWlaFPSKDPMCqUgNJulgc/
+ vVze/3a5n6vw7gft+ACSCfFxxAAAA
+X-Change-ID: 20260711-liteon-ltr329-a3eb12414866
+To: Jonathan Cameron <jic23@kernel.org>, 
+ David Lechner <dlechner@baylibre.com>, 
+ =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
+ Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Nikita Travkin <nikita@trvn.ru>, 
+ Maslov Dmitry <maslovdmitry@seeed.cc>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Esben Haabendal <esben@geanix.com>, 
+ Jonathan Cameron <jic23@kernel.org>
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1784103828; l=764;
+ i=esben@geanix.com; s=20240523; h=from:subject:message-id;
+ bh=ISJBKGJ7uSFseLhyCH5QRJqorkE7h+r0Ey2aHLG/b9Y=;
+ b=15+tw1F66c9jJ9BzSEZHWHsr1nvGfQGkTuGr+/uoTvdVCFK+itYLyzacKbJiK5ryQwaYPdS04
+ R6SHbn1mMcKA/CybZH5PNUxn8MRnbdYNHz5KidOnhH02rYovE2NZIbw
+X-Developer-Key: i=esben@geanix.com; a=ed25519;
+ pk=PbXoezm+CERhtgVeF/QAgXtEzSkDIahcWfC7RIXNdEk=
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	DMARC_POLICY_ALLOW(-0.50)[geanix.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[geanix.com:s=protonmail3];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-326743-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	FORGED_SENDER(0.00)[brgl@kernel.org,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS(0.00)[m:marex@nabladev.com,m:konstantin@linuxfoundation.org,m:linux-arm-kernel@lists.infradead.org,m:alexandre.torgue@foss.st.com,m:brgl@kernel.org,m:conor+dt@kernel.org,m:krzk+dt@kernel.org,m:linusw@kernel.org,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:kernel@dh-electronics.com,m:linux-gpio@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-stm32@st-md-mailman.stormreply.com,m:conor@kernel.org,m:krzk@kernel.org,s:lists@lfdr.de];
-	FORWARDED(0.00)[lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-326745-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:jic23@kernel.org,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:andy@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:nikita@trvn.ru,m:maslovdmitry@seeed.cc,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:esben@geanix.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[esben@geanix.com,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[nabladev.com:email,mail.gmail.com:mid,dh-electronics.com:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,vger.kernel.org:from_smtp,infradead.org:email,stormreply.com:email,st.com:email];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[brgl@kernel.org,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	RCVD_COUNT_THREE(0.00)[3];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[esben@geanix.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[geanix.com:+];
+	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,geanix.com:from_mime,geanix.com:mid,geanix.com:email,geanix.com:dkim,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 38F7D75BCD4
+X-Rspamd-Queue-Id: 5601275BD9A
 
-On Sat, 11 Jul 2026 22:59:31 +0200, Marek Vasut <marex@nabladev.com> said:
-> The Kinetic Technologies KTS1622 is a 16-bit general-purpose I/O
-> expander via the I2C bus for microcontrollers when additional I/Os
-> are needed while keeping interconnections to the minimum. Datasheet
-> comparison suggests that it is compatible with TCAL6416, add the
-> compatible string and TCAL6416 as a fallback compatible.
->
-> Signed-off-by: Marek Vasut <marex@nabladev.com>
-> ---
-> Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>
-> Cc: Bartosz Golaszewski <brgl@kernel.org>
-> Cc: Conor Dooley <conor+dt@kernel.org>
-> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-> Cc: Linus Walleij <linusw@kernel.org>
-> Cc: Rob Herring <robh@kernel.org>
-> Cc: devicetree@vger.kernel.org
-> Cc: kernel@dh-electronics.com
-> Cc: linux-arm-kernel@lists.infradead.org
-> Cc: linux-gpio@vger.kernel.org
-> Cc: linux-kernel@vger.kernel.org
-> Cc: linux-stm32@st-md-mailman.stormreply.com
-> ---
->  Documentation/devicetree/bindings/gpio/gpio-pca95xx.yaml | 3 +++
->  1 file changed, 3 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/gpio/gpio-pca95xx.yaml b/Documentation/devicetree/bindings/gpio/gpio-pca95xx.yaml
-> index 4f955f855e1ab..4631388a7d914 100644
-> --- a/Documentation/devicetree/bindings/gpio/gpio-pca95xx.yaml
-> +++ b/Documentation/devicetree/bindings/gpio/gpio-pca95xx.yaml
-> @@ -22,6 +22,9 @@ properties:
->        - items:
->            - const: diodes,pi4ioe5v6534q
->            - const: nxp,pcal6534
-> +      - items:
-> +          - const: kinetic,kts1622
-> +          - const: ti,tcal6416
->        - items:
->            - enum:
->                - exar,xra1202
-> --
-> 2.53.0
->
->
+The LiteON LTR-329ALS-01 chip is similar to the LTR-303ALS-01, except for
+interrupt support and related registers, which LTR-329ALS-01 does not have.
 
-Hi Konstantin!
-
-I applied this patch with b4 and tried to generate the .thanks email. It failed
-like so:
-
-$ b4 ty -all
-Auto-thankanating commits in gpio/for-next
-Found 9 of your commits since 1.week
-Calculating patch hashes, may take a moment...
-  Located: [PATCH 00/10] arm64: dts: st: Add support for DH
-electronics STM32MP23xx/STM32MP25xx DHCOS SoM and Breakout Board and
-DHSBC
+Signed-off-by: Esben Haabendal <esben@geanix.com>
 ---
-Generating 1 thank-you letters
-  Writing: ./marex_nabladev_com_patch_00_10_arm64_dts_st_add_support_for_dh_electronics_stm32mp23xx_stm32mp25xx_dhcos_som_and_breakout_board_and_dhsbc.thanks
-Traceback (most recent call last):
-  File "/usr/bin/b4", line 8, in <module>
-    sys.exit(cmd())
-             ~~~^^
-  File "/usr/lib/python3/dist-packages/b4/command.py", line 417, in cmd
-    cmdargs.func(cmdargs)
-    ~~~~~~~~~~~~^^^^^^^^^
-  File "/usr/lib/python3/dist-packages/b4/command.py", line 113, in cmd_ty
-    b4.ty.main(cmdargs)
-    ~~~~~~~~~~^^^^^^^^^
-  File "/usr/lib/python3/dist-packages/b4/ty.py", line 681, in main
-    auto_thankanator(cmdargs)
-    ~~~~~~~~~~~~~~~~^^^^^^^^^
-  File "/usr/lib/python3/dist-packages/b4/ty.py", line 386, in auto_thankanator
-    send_messages(applied, wantbranch, cmdargs)
-    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3/dist-packages/b4/ty.py", line 452, in send_messages
-    with open(outfile, 'wb') as fh:
-         ~~~~^^^^^^^^^^^^^^^
-OSError: [Errno 36] File name too long:
-'./marex_nabladev_com_patch_00_10_arm64_dts_st_add_support_for_dh_electronics_stm32mp23xx_stm32mp25xx_dhcos_som_and_breakout_board_and_dhsbc.thanks'
+Esben Haabendal (3):
+      dt-bindings: iio: light: ltr501: Add missing ltr303 compatible
+      dt-bindings: iio: light: ltr501: Add ltr329 compatible
+      iio: light: ltr501: Add ltr329 driver support
 
-The name is under the 255 byte limit, is this a b4 bug/limitation?
+ .../bindings/iio/light/liteon,ltr501.yaml          |  2 ++
+ drivers/iio/light/ltr501.c                         | 31 ++++++++++++++++++++++
+ 2 files changed, 33 insertions(+)
+---
+base-commit: 8cdeaa50eae8dad34885515f62559ee83e7e8dda
+change-id: 20260711-liteon-ltr329-a3eb12414866
 
-Thanks,
-Bart
+Best regards,
+--  
+Esben Haabendal <esben@geanix.com>
+
 
