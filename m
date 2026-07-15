@@ -1,251 +1,458 @@
-Return-Path: <devicetree+bounces-327007-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-327009-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id yglFGUaGV2r7WAAAu9opvQ
-	(envelope-from <devicetree+bounces-327007-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 15:08:22 +0200
+	id 2jKzH8OFV2rHWAAAu9opvQ
+	(envelope-from <devicetree+bounces-327009-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 15:06:11 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE87B75E7A2
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 15:08:21 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7429975E74A
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 15:06:10 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=collabora.com header.s=zohomail header.b=cqRHtmDI;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-327007-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-327007-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=collabora.com;
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=2")
+	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b="Xk5IjJ/W";
+	dkim=pass header.d=oss.qualcomm.com header.s=google header.b=foyRKAKj;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-327009-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-327009-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=reject) header.from=qualcomm.com;
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A709E3053EA5
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 13:01:35 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 803C030439B9
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 13:02:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7564247F2CC;
-	Wed, 15 Jul 2026 13:00:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75BDD442105;
+	Wed, 15 Jul 2026 13:01:48 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-op-o11.zoho.com (sender4-op-o11.zoho.com [136.143.188.11])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EBA1447F2E0;
-	Wed, 15 Jul 2026 13:00:06 +0000 (UTC)
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1784120408; cv=pass; b=UVUnIBM97LlPEuMtcWyCRkPZc8fAGlOtUztdRcnb5JSx8RceELsKmCSHQ0p2Q+0+LS6Wl0DjFpWKPodmM9BzpNs4SS0FMWooIbjYv7aUJDBnX42rEyy6fH09rePowUWvUfhNAcwDH/nlJNqWtw3B9Ru1kYq39aSn8jA2I3MxA+c=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1784120408; c=relaxed/simple;
-	bh=SQEqNE5wPkXDM7mVRcDJc6CUwQU/GiabL6D9qOKl4ag=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rph8RstWapjcZ8RLxWVJ+31gfhlhQZRMK3X/3KPu8KDVAXIxiYH4bMZIzuRM2kDflSSLjOMT2i3B0GLJS+rXsSDRdvqGpnz4ooWgsG0YCpQuN1xmqC5tSFRcDhcTOPsg/9BL1OvoVC33zsNp2xl7WfURtEAZv4mo8F/VMHiA6S4=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b=cqRHtmDI; arc=pass smtp.client-ip=136.143.188.11
-ARC-Seal: i=1; a=rsa-sha256; t=1784120392; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=FM7czj7K2CkmMbBVXgS79FibJ36YLwn4Hg9YN5g7Jz7qfXL1WD3cZJKr7dG07rRPg41C+Di21/oDmrjD4olFi0h7VCaJkb6VZ2jzc2z18bhqA8e3eleLdZYb10Unp6syUUCJoOrFXH5FWPZ2XJ96XIerXInUqLCpn/JnXCf2ie0=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1784120392; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=0X9a2/9rf8so0cbamy4a/Ax3kfWAme7PBrmR3FMvRE0=; 
-	b=NyHCI8B6SLz+C0CvF6xmc294Op3ohG6R9roXQI/oz2BsUczccAXbgp3i7Ki1HbDH6UFNNwmfBvFzUoELAvEFsyG/z6OxcWF6C1CF2d68rH6lsfm59/RUwJTlMVGoFO4GUPxuUS5cySCt6kgWCaBDtoFlK6sQlgdIU5F96bfnrI4=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=sebastian.reichel@collabora.com;
-	dmarc=pass header.from=<sebastian.reichel@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1784120392;
-	s=zohomail; d=collabora.com; i=sebastian.reichel@collabora.com;
-	h=Date:Date:From:From:To:To:Cc:Cc:Subject:Subject:Message-ID:References:MIME-Version:Content-Type:In-Reply-To:Message-Id:Reply-To;
-	bh=0X9a2/9rf8so0cbamy4a/Ax3kfWAme7PBrmR3FMvRE0=;
-	b=cqRHtmDIFEstJG3eByxH4uI0E58jrJu7IrO11AOWVBcHoT7Hk8BGpeHsQTTE3WMi
-	TSDWjYl6ttng2M3Bwzop13zj+SxX0Ltq6udjbuicECamKjV2zTtCPoKE12bNctCXQ5P
-	g9I0vZNuBhG66YPPBcqB1fUqdpJPg11XUA6RhgZc=
-Received: by mx.zohomail.com with SMTPS id 1784120390457969.5152214020392;
-	Wed, 15 Jul 2026 05:59:50 -0700 (PDT)
-Received: by venus (Postfix, from userid 1000)
-	id C6033180820; Wed, 15 Jul 2026 14:59:46 +0200 (CEST)
-Date: Wed, 15 Jul 2026 14:59:46 +0200
-From: Sebastian Reichel <sebastian.reichel@collabora.com>
-To: Royal Net <royalnet026@gmail.com>
-Cc: sashiko-reviews@lists.linux.dev, conor+dt@kernel.org, 
-	devicetree@vger.kernel.org, robh@kernel.org, Dmitry Osipenko <dmitry.osipenko@collabora.com>, 
-	Mauro Carvalho Chehab <mchehab@kernel.org>, linux-media@vger.kernel.org, kernel@collabora.com, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [RFC PATCH 1/2] dt-bindings: media: snps,dw-hdmi-rx: add
- #sound-dai-cells
-Message-ID: <aleBPE5YHlC7pLpi@venus>
-References: <20260715051939.64652-1-royalnet026@gmail.com>
- <20260715051939.64652-2-royalnet026@gmail.com>
- <20260715055448.AEA021F000E9@smtp.kernel.org>
- <CAEWPSH7OqecBKvxUVtwFe4B9y0-=gsQ7vy6kdBHx-Nsne-Ct1g@mail.gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7323841DEF1
+	for <devicetree@vger.kernel.org>; Wed, 15 Jul 2026 13:01:45 +0000 (UTC)
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1784120508; cv=none; b=mVupxnn8wwn40uIudUwY17u7LjDlbIV+s57BFwoiWzKXIPkmTu/0hFrTJFmNV6SebrHe/RGDrxN3g0jx2g5qJ6LlINvTVe1oRPrmQzk3BMgE4bdv8034WPPxnDOfHjRaPDMR46Dwuiqgv2fYtI952Jd+jP3tkzjPo2XHIRrm0kE=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1784120508; c=relaxed/simple;
+	bh=W2KrwNxFKLq1tJiXLUOCfFm1U2VhB5XaO6pzS5pKm2I=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=L7zsoVLbr+dE+z5IHeHtlwO9FR8Mlwe86VOwKHsvj2BFGwyL/TnWfeiYjBKvvGZD2rtyAqcWwEnyyGVyzADIh+RPrXUjhkKyRE45/xgM6wY08al4KLCCywxVa1teDbWVeiuHTOmLvmyStk9bEZ+dxWG0X40HhY5Ua8K9pMjR1/k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Xk5IjJ/W; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=foyRKAKj; arc=none smtp.client-ip=205.220.180.131
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 66FBchnX3707608
+	for <devicetree@vger.kernel.org>; Wed, 15 Jul 2026 13:01:44 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=DQAD5+iPQQ42jpX4PTueqH
+	matnJoZe8bRwUIsSmcMaI=; b=Xk5IjJ/W0O+yG3zyfuM5YsX4gwbrLfCt8QZOPO
+	W95/xXUgaEGqZxDeH16t99he1fICnPXd8XX67SpcMSwBY4JEfGopBh029HrBCmey
+	wEDDgF9GtrZy6QdTfYnPxaTjfO4To2ZB6lk5WoZBoaMqJbO2cebgU3xrwL49rRJA
+	AZsC3vlD1WO+67oecOSIzhakSP2McNWsjTkyWt3H7p5QCbPn9paEy5TAITXeBv3r
+	sx+/6OjZ7/GRu1JUo9DWn0XwpcEWqnVPfKi36DTTFHIOKhMxP8CUIgIj6rnA4wAc
+	4L2AFGeEjOK/GCK1ku76kQYK1eSUmSeUQVFKA83r8wfWdvrw==
+Received: from mail-pl1-f200.google.com (mail-pl1-f200.google.com [209.85.214.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4fe7nmgsea-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 15 Jul 2026 13:01:44 +0000 (GMT)
+Received: by mail-pl1-f200.google.com with SMTP id d9443c01a7336-2cceabd70f5so49030705ad.1
+        for <devicetree@vger.kernel.org>; Wed, 15 Jul 2026 06:01:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1784120503; x=1784725303; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:content-type
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+         :reply-to:content-type;
+        bh=DQAD5+iPQQ42jpX4PTueqHmatnJoZe8bRwUIsSmcMaI=;
+        b=foyRKAKjjgwWyBdPklHaj9Ei/m/BPteBEK4YddWSN3ZL8QKTkzUlr+iOVzxEaR5+wD
+         hApX1SY8OEOmhqUt9PhdowDc+tOfJulIfY1cq6WtAudbiqI+VDMxFldxMINlUu5zOCXT
+         3Rau7Nr+eFna4uge7eFJtfCXuMpGAbfQqdBlV/AQrz2aj6wRIL45jOIfZaN7EjnLmGTg
+         HXIQ8Zb0SY3RIYgmhZDQtwujzSSEhDw5VKfoxoj2qe+MbcBUqNXmkYaYj7rp6jZlZ2fC
+         kudL6TXhZ/kQb26XbQj514Y80lo4AMxpiEcpR/UwOru41GPczAPqQ4ZAIt69HjM7Vo74
+         TGIg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1784120503; x=1784725303;
+        h=cc:to:message-id:content-transfer-encoding:content-type
+         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to:content-type;
+        bh=DQAD5+iPQQ42jpX4PTueqHmatnJoZe8bRwUIsSmcMaI=;
+        b=K6LKyuJB/PJVE0KsEGHVsb0Lu/8dqB2K2GLSIPXi2N8ru6YGZhIa6bwzWhpuk/S3NQ
+         gVTU6nJF2OmmLtJgccxmv3XbCCVqlgHyJsPZHONTbO4W+LVf3M7K9ilOz6fXV+nJrRSf
+         wxX0/4/2ho0NlTae7B5TwsAaiISa404hE3Fv3E00/jLei+QKyqMbgA8tNdhZO0By29jC
+         DofQ3zo5ogYKSbIypWSItWShhu24f6gkK6yRvTlkTJsATZMLSndD1PB9uzRRw5ePm6Uz
+         hzQRSMuZuZC3ZXg345eOsc1qHTXC2u/tOhMVNTy1A1+fSJ2fWJ0iS2shFWgTqXdHFWrP
+         BXPQ==
+X-Forwarded-Encrypted: i=1; AHgh+RquOeaR1IGA4D06MCwA9iIPbED+6StlgpEK2DMBFfoi6vmFfdk7px9ifFr8kjAIzkZbDoeJ2XGB0ZnW@vger.kernel.org
+X-Gm-Message-State: AOJu0YxpDiHhOWpxLIG6SbqoU5+A0zS4AgGm259y8D078zTkVqulCve9
+	Wu9bbPURi7r+ejFqIKEFIDrpUYJ7ixqa5HN3GoB3X+X90chMxgTfrewVslWbyH2UyTtNuYvkbGc
+	kC1Nc5Uwi9RRFISfGqjduQOvHkl7drJxMlm0OEBeq19BwiIKvDD1ES3UmYU6sNojZ
+X-Gm-Gg: AfdE7ckPnjUnv4UPzKNoFCbqnXAh9N9xRRJa1PJb+Gd8i3I/EyttwaNb+XdGJHpItWE
+	Vs186mHKkRTRhHeIQJObcrqNPMwc2nVLqXPs8HfatdfAUE08S4cOMmfIJpJOafqT1szfntSbPBz
+	Ze83yykwV8juXpVMgLRUeShRbG5EChkJX3cNc9FCElspxtkj98CZC01L+2Sgvq31zOtScBKL9kP
+	5rMZGA9dAThzaZgkYDxngrZUNpSAyjiVeqLquJm/cV0kLRprtHdpNMFrGcY7rALStLGhzDhoAll
+	zYGagARZbHIpCxvMi6r1F4lrltulwc/SjJlKK2YwnQbrKYKXeoPX7kRrA0Us3Weu35cFalqCEVI
+	DQEqKJoGtSVkMdkSc78a1lgzoDgjxNABjLwO5yI0=
+X-Received: by 2002:a17:902:ecc2:b0:2ca:a03a:29b2 with SMTP id d9443c01a7336-2ce9e59e1e2mr172806535ad.8.1784120502861;
+        Wed, 15 Jul 2026 06:01:42 -0700 (PDT)
+X-Received: by 2002:a17:902:ecc2:b0:2ca:a03a:29b2 with SMTP id d9443c01a7336-2ce9e59e1e2mr172805775ad.8.1784120502060;
+        Wed, 15 Jul 2026 06:01:42 -0700 (PDT)
+Received: from hu-mkshah-hyd.qualcomm.com ([202.46.22.19])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2cf106de049sm1922255ad.68.2026.07.15.06.01.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 15 Jul 2026 06:01:41 -0700 (PDT)
+From: Maulik Shah <maulik.shah@oss.qualcomm.com>
+Date: Wed, 15 Jul 2026 18:31:30 +0530
+Subject: [PATCH v5] arm64: dts: qcom: x1e80100: Add deepest idle state
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="ia3gqxw75or2z2nr"
-Content-Disposition: inline
-In-Reply-To: <CAEWPSH7OqecBKvxUVtwFe4B9y0-=gsQ7vy6kdBHx-Nsne-Ct1g@mail.gmail.com>
-X-Zoho-Virus-Status: 1
-X-Zoho-AV-Stamp: zmail-av-0.2.10.1.5.2/284.55.37
-X-ZohoMailClient: External
-X-Spamd-Result: default: False [-2.26 / 15.00];
-	SIGNED_PGP(-2.00)[];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[collabora.com:s=zohomail];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+Message-Id: <20260715-hamoa_pdc_v3-v5-1-00440cfaf711@oss.qualcomm.com>
+X-B4-Tracking: v=1; b=H4sIAKmEV2oC/22O4QqCMBSFX0X2O2XTbVq/eo8Imds1F+l0UynEd
+ 2+aIEVwuXAO537nTsiB1eDQKZiQhVE7bRov2CFAshLNDUKtvEYxjjnmmIWVqI3IWyXzMQm5EoX
+ MKMMxkciftBZK/Vxxl+tHu6G4g+wXxpaw0A2+p99jlXa9sa/1iTFZ3K2P8O8+PzikKgPCMAWRs
+ rNxLuoG8ZCmriO/0MIb6c5IcfrDoJ6hSkVKKhIB2fEPY57nN6XEC4MaAQAA
+X-Change-ID: 20260605-hamoa_pdc_v3-6dabc845021c
+To: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Thomas Gleixner <tglx@kernel.org>,
+        Linus Walleij <linusw@kernel.org>,
+        Bartosz Golaszewski <brgl@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
+        Sneh Mankad <sneh.mankad@oss.qualcomm.com>,
+        Daniel J Blueman <daniel@quora.org>,
+        Maulik Shah <maulik.shah@oss.qualcomm.com>
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1784120496; l=11164;
+ i=maulik.shah@oss.qualcomm.com; s=20240109; h=from:subject:message-id;
+ bh=W2KrwNxFKLq1tJiXLUOCfFm1U2VhB5XaO6pzS5pKm2I=;
+ b=l9mZJVFsDVxuzfYEXQBHQobUkDCYArgZhBLHh6vNdKY5sPmuccU+R0ImYxPqwujAL+CiE/3qQ
+ 3c31ovdI27dB4Q3Jmj9EeWTcHuF4v8szShcGTRwOsahAVdBHeFgxxqb
+X-Developer-Key: i=maulik.shah@oss.qualcomm.com; a=ed25519;
+ pk=bd9h5FIIliUddIk8p3BlQWBlzKEQ/YW5V+fe759hTWQ=
+X-Proofpoint-Spam-Info: AW1haW4tMjYwNzE1MDEyOSBTYWx0ZWRfXwT1vQQVzPP9A
+ os8pf1sHEnJ8HjLi1aar21jpqz/qNFpXvzm9Fy12S40ArfR+KNuFU9d0B45ZC9CTrCSvD/vRa1C
+ Mvy3RbHuTS9xHRHiPQDHj9dqL9shIR8=
+X-Authority-Analysis: v=2.4 cv=cuGrVV4i c=1 sm=1 tr=0 ts=6a5784b8 cx=c_pps
+ a=IZJwPbhc+fLeJZngyXXI0A==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+ a=IkcTkHD0fZMA:10 a=RAioF0-LDSMA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=_glEPmIy2e8OvE2BGh3C:22
+ a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=bC-a23v3AAAA:8 a=t9ty7G3lAAAA:8
+ a=r-41rxsc7uDkY-bGQgsA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=uG9DUKGECoFWVXl0Dc02:22 a=FO4_E8m0qiDe52t0p3_H:22 a=CsAS6f0m0zARWR-uHzm3:22
+X-Proofpoint-ORIG-GUID: yHgOFgKNZQg9L7Y_wPe_eSv1taE3EhwI
+X-Proofpoint-GUID: yHgOFgKNZQg9L7Y_wPe_eSv1taE3EhwI
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNzE1MDEyOSBTYWx0ZWRfXwX6SSG191O+7
+ HMFh/RrLpTT7xyvCopMODdr70pLuS3DpSDMwtqjXgTbMYMYf6tz9bhdTGK5zQreEePtZR0sssA+
+ 3638ySTp5E4f7R57INPEVu9LT4Xnf3ZJde3tJygt5J61ukdyQ0vr9+XjO1WVIz0YGaqSfk4sOYD
+ iC2OlCtTLW0FQOTIZ8ElqGz9QpJQ73xeXWt+2ypFAK6ikLfEvZJbE+7S9FCHuG8ydn0WtaWtSXN
+ Pu7CMy79r9CWimvLeTbaSuzw4HJC/PdRdAqq/4voEVuj5JjYAzFv/voM33X6MsrHZMV6DId+Rg8
+ uCuw6gX0MyPjfApnz2GzIZllpHW3b7iqej+siDZno7Ih0heerkr3KvLuc6ikCR3D9pz+UhekJr9
+ Ck2LuqzIQFgl6UjhDTGoq10qQXSmmfZmCamtpuraoffXlf4AEJ08oN4UZTcOE4ElJXN4UAKW0ha
+ 7XBK3cdh91VKUSjlg0g==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.134,FMLib:17.12.100.49
+ definitions=2026-07-15_02,2026-07-15_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 adultscore=0 bulkscore=0 lowpriorityscore=0 malwarescore=0
+ phishscore=0 priorityscore=1501 spamscore=0 suspectscore=0 impostorscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2606150000 definitions=main-2607150129
+X-Spamd-Result: default: False [-2.16 / 15.00];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	TAGGED_FROM(0.00)[bounces-327009-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-327007-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[gmail.com];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[sebastian.reichel@collabora.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS(0.00)[m:andersson@kernel.org,m:konradybcio@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:tglx@kernel.org,m:linusw@kernel.org,m:brgl@kernel.org,m:linux-arm-msm@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-gpio@vger.kernel.org,m:sneh.mankad@oss.qualcomm.com,m:daniel@quora.org,m:maulik.shah@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:royalnet026@gmail.com,m:sashiko-reviews@lists.linux.dev,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:dmitry.osipenko@collabora.com,m:mchehab@kernel.org,m:linux-media@vger.kernel.org,m:kernel@collabora.com,m:linux-kernel@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	FORGED_SENDER(0.00)[maulik.shah@oss.qualcomm.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[quora.org:email,vger.kernel.org:from_smtp,oss.qualcomm.com:dkim,oss.qualcomm.com:mid,oss.qualcomm.com:from_mime,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sebastian.reichel@collabora.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[collabora.com:+];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[maulik.shah@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,collabora.com:dkim,collabora.com:from_mime,sashiko.dev:url,venus:mid]
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: AE87B75E7A2
+X-Rspamd-Queue-Id: 7429975E74A
 X-Rspamd-Action: no action
 
+CPU subsystem deepest idle state can lead SoC to low power mode like CxPC
+(chip rail power collapse). SoC deepest low power mode requires the PDC
+interrupt controller to wake up the SoC as the GIC interrupt controller
+is on Cx (chip rail) and will not be functional to wake up the CPU.
 
---ia3gqxw75or2z2nr
-Content-Type: text/plain; protected-headers=v1; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [RFC PATCH 1/2] dt-bindings: media: snps,dw-hdmi-rx: add
- #sound-dai-cells
-MIME-Version: 1.0
+PDC monitors both direct SPI interrupts and GPIOs used as interrupts
+in SoC low power mode. Further all wake up capable interrupts gets routed
+via PDC to GIC when SoC is out of low power mode.
 
-Hello Igor,
+The wake up capable GPIOs used as interrupts were by passing PDC on x1e
+with commit 602cb14e310a ("pinctrl: qcom: x1e80100: Bypass PDC wakeup
+parent for now") as a result CPU deepest idle state was not added so
+far.
 
-On Wed, Jul 15, 2026 at 08:55:37AM +0200, Royal Net wrote:
-> > Should the constraint be set to 0 to follow standard device tree
-> > norms?
->=20
-> Fair point. The current RFC wires up a single I2S DAI, and for a
-> single-DAI provider 0 is indeed the norm -- rockchip,dw-hdmi does
-> exactly that for its one DAI on the TX side.
->=20
-> The reason I picked 1 is that the controller also has an S/PDIF
-> audio output path (the vendor driver exposes both I2S and S/PDIF
-> DAIs through hdmi-codec), so a DAI index becomes meaningful if that
-> second path is wired up later.
->=20
-> Unless the DT maintainers prefer keeping 1 from the start to avoid
-> changing the cell count if/when the S/PDIF DAI is added, I'll switch
-> to const: 0 in the next revision -- please let me know which you'd
-> prefer.
+The blocker for enabling deepest idle state was GPIO IRQ wakeup support.
+The x1e80100 PDC can operate in two modes: pass-through mode (GPIO
+IRQs forwarded directly to GIC without latching at PDC) and secondary
+controller mode (PDC latches GPIO IRQs and sends them as level IRQs to
+GIC).
 
-It should be 1 from the start as the DT binding is supposed to
-describe the hardware and be stable. But in the next version you
-should look into updating the commit descriptions to be less about
-the kernel driver and more about the hardware. Maybe something like
+All the SoCs on Linux so far worked in pass-through mode of PDC.
+On some x1e boards the firmware configures the PDC in secondary controller
+mode, which caused GPIO interrupt storms as the level latched at PDC gets
+never cleared.
 
-> The HDMI RX controller has two digital audio interfaces, one for
-> I2S and one for S/PDIF. Allow referencing connections from audio
-> codecs to these interfaces by documenting the missing #sound-dai-cells
-> property.
+The secondary mode is originally a requirement for windows SW platforms
+(which could not work with all types of interrupts and require level
+interrupts for GPIOs). Initially shipped windows firmware did not have
+SCM interface to configure PDC back to pass-through mode if with such
+firmware Linux is booted up.
 
-Apart from that it makes sense to document that argument 0 means
-I2S and argument 1 means S/PDIF interface in the property description.
+PDC irqchip has got secondary mode and SCM interface support to configure
+PDC irqchip mode to pass-through mode on newer firmware where SCM interface
+is available and for older firmware on which SCM interface is not present
+PDC irqchip works in secondary irqchip mode [1]. Above mentioned commit is
+also reverted via [1].
 
-Last but not least drop "A value of 1 lets a sound card reference
-the audio DAI as <&hdmirx 0>.". Instead you can add this to the
-example section at the end of the file.
+With PDC now working on older firmware as well add the CPU deepest idle
+state domain_ss3.
 
-Greetings,
+The newly added domain_ss3 state has entry/exit latencies of 2500 us.
+The shallower cluster_cl5 state had entry/exit latencies of 2200/4000 us
+which are higher than the deeper state. This create an inconsistency that
+would confuse the idle governor. Correct cluster_cl5 latencies to 2000 us
+each to match production configuration values.
 
--- Sebastian
+[1] https://lore.kernel.org/linux-arm-msm/20260707-hamoa_pdc_v3-v4-0-dfd1f4a3ae89@oss.qualcomm.com/#t
 
->=20
-> Igor
->=20
-> On Wed, Jul 15, 2026 at 7:54=E2=80=AFAM <sashiko-bot@kernel.org> wrote:
-> >
-> > Thank you for your contribution! Sashiko AI review found 1 potential is=
-sue(s) to consider:
-> > - [Medium] Incorrect cell count constraint for single-DAI provider.
-> > --
-> >
-> > --- Patch [1]: [RFC PATCH 1/2] dt-bindings: media: snps,dw-hdmi-rx: add=
- #sound-dai-cells ---
-> > commit e6b0bac0b97f568ce749084e6c1e728bcd258b10
-> > Author: Igor Paunovic <royalnet026@gmail.com>
-> > dt-bindings: media: snps,dw-hdmi-rx: add #sound-dai-cells
-> >
-> > This commit adds the #sound-dai-cells property to the HDMI RX controller
-> > bindings, enabling a generic audio codec to capture incoming embedded a=
-udio.
-> >
-> > > diff --git a/Documentation/devicetree/bindings/media/snps,dw-hdmi-rx.=
-yaml b/Documentation/devicetree/bindings/media/snps,dw-hdmi-rx.yaml
-> > > index b7f6c87d0e06a..83c10d9997c8e 100644
-> > > --- a/Documentation/devicetree/bindings/media/snps,dw-hdmi-rx.yaml
-> > > +++ b/Documentation/devicetree/bindings/media/snps,dw-hdmi-rx.yaml
-> > > @@ -78,6 +78,13 @@ properties:
-> > >        The phandle of the syscon node for the Video Output GRF regist=
-er
-> > >        to enable EDID transfer through SDAIN and SCLIN.
-> > >
-> > > +  "#sound-dai-cells":
-> > > +    const: 1
-> > > +    description:
-> > > +      The HDMI RX controller registers a generic HDMI audio codec so=
- the
-> > > +      audio embedded in the incoming stream can be captured. A value=
- of 1
-> > > +      lets a sound card reference the audio DAI as <&hdmirx 0>.
-> >
-> > [Severity: Medium]
-> > Is this cell count constraint correct for a single-DAI provider?
-> >
-> > Looking at properties:#sound-dai-cells, the hardware exposes only a sin=
-gle
-> > generic audio DAI. Requiring a cell count of 1 forces device tree nodes=
- to
-> > use a non-standard syntax like <&hdmirx 0> instead of just <&hdmirx> fo=
-r a
-> > single resource.
-> >
-> > Should the constraint be set to 0 to follow standard device tree norms?
-> >
-> > --
-> > Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260715051939.=
-64652-1-royalnet026@gmail.com?part=3D1
+Tested-by: Daniel J Blueman <daniel@quora.org>
+Signed-off-by: Maulik Shah <maulik.shah@oss.qualcomm.com>
+---
+There are two modes PDC irqchip can work in
+        - pass through mode
+        - secondary controller mode
 
---ia3gqxw75or2z2nr
-Content-Type: application/pgp-signature; name="signature.asc"
+Secondary mode is supported depending on SoC using PDC HW Version v3.0
+or higher.
 
------BEGIN PGP SIGNATURE-----
++------------------------------------------------------------------------+
+| SoC             |  SM8350, SM8450  | SM8550, Hamoa   | SM8650, SM8750  |
+|----------------------------------------------------------- ------------|
+| Version         |        v2.7      |       v3.0        |       v3.2    |
+|------------------------------------------------------------------------|
+| Pass through    |        Yes       |       Yes         |       Yes     |
+|------------------------------------------------------------------------|
+| Secondary       |        No        |       Yes         |       Yes     |
++------------------------------------------------------------------------+
 
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmpXhD4ACgkQ2O7X88g7
-+ppfpBAAoMfCHMu9qD2CD/CNFbUADMwm3P0NAEq/3wLsWPIcjMi9g5dYd0x9m5i8
-VTPrWdmxTCODAo+grzk2NDizo2zv0RRb0jR0gTkkvw1iE6v4WKBcQ1LgeVC5i+/4
-BPGFALjP6kPIJqzFVEPtBpPEwpk8BGbzM8Lrjew7JHtwOAwa6pdIslCUBfJjAtTI
-Y7vHm8I39dYtwjLYXkWSxVUYoO4uo7KwNVifY1CBk5WzfbWD5CIs9xHjga0nHK0N
-VrccjNeo5Nt77JOQpFiiPVEqzG3yjeC+n2iue/DfzTnTyR3kb+F5PEaRCDktc+Ng
-DxkQfxHpAqhYLiz0eifQF7zomNhYZLVq/8Up1dgktkmYLOem+gMGFOaVN9hGLXOv
-Fjl3fv1CdK+EETrC7qi75KZ0XZoXoyHOVmrFSKfVvzIScKrUjj4QL+hv5mn8HfQd
-X8S0Fn0nz7uaJ8Y3yGWAUJHfyUrCEfzGJ9+0GgnmICuIIpPgnDDIbTypQE0Ib2i1
-rrWck1/Ax4NqQxOnz7sCvWEAnYVrWPPAPKnbXMNfoAyZfhdQLiv6AmcfdgLaeO3U
-TwCJGeNZgPIewgmZvjIUJM9pj2yVhD7Aek/hWDUryiFnCNx0Gy1cFq51j+Q7yEV8
-z3Q/aUZg7u2wLYVijmBlAbzkfK3IbWa9I7dCapxERdkrGJA2pdU=
-=EQ7t
------END PGP SIGNATURE-----
+All PDC irqchip supports pass through mode in which both Direct SPIs and
+GPIO IRQs (as SPIs) are sent to GIC without latching at PDC, PDC only does
+inversion when needed for falling edge to rising edge or level low to level
+high, as the GIC do not support falling edge/level low interrupts.
 
---ia3gqxw75or2z2nr--
+Newer PDCs (v3.0 onwards) also support additional secondary controller mode
+where PDC latches GPIO IRQs and sends to GIC as level type IRQ. Direct SPIs
+still works same as pass through mode without latching at PDC even in
+secondary controller mode.
+
+All the SoCs defaulted to pass through mode with the exception of some x1e.
+
+x1e PDC may be set to secondary controller mode for builds on CRD boards
+whereas it may be set to pass through mode for IoT-EVK boards. The mode
+configuration is done in firmware and initially shipped windows firmware
+did not have SCM interface to read or modify the PDC configuration.
+Later only write access is opened up for non secure world.
+
+Using the write access available add changes to modify the PDC mode to
+pass through mode via SCM write. When the write fails (on older firmware)
+assume to work in secondary mode.
+
+As the deepest idle state as the PDC can now wake up SoC from GPIOs and
+revert commit 602cb14e310a ("pinctrl: qcom: x1e80100: Bypass PDC wakeup
+parent for now").
+
+The series has been tested on x1e80100 CRD with both old and new firmware
+and also on kaanapali. Test conducted with tlmm-test module after
+applying [3] as test module needed to be fixed first.
+
+All 17/17 passes in pass through mode and 16/17 passes in secondary mode.
+Failing test tlmm_test_rising_while_disabled seems to be because when in
+irq disabled state PDC is not latching the edge interrupt.
+
+Test #1: Pass through mode on x1e80100 CRD (New firmware)
+
+root@qcom-armv8a:~# insmod tlmm-test.ko gpio=91
+
+KTAP version 1
+1..1
+    KTAP version 1
+    # Subtest: tlmm-test
+    # module: tlmm_test
+    1..17
+    ok 1 tlmm_test_silent_rising
+    ok 2 tlmm_test_silent_falling
+    ok 3 tlmm_test_silent_low
+    ok 4 tlmm_test_silent_high
+    ok 5 tlmm_test_rising
+    ok 6 tlmm_test_falling
+    ok 7 tlmm_test_high
+    ok 8 tlmm_test_low
+    ok 9 tlmm_test_rising_in_handler
+    ok 10 tlmm_test_falling_in_handler
+    ok 11 tlmm_test_thread_rising
+    ok 12 tlmm_test_thread_falling
+    ok 13 tlmm_test_thread_high
+    ok 14 tlmm_test_thread_low
+    ok 15 tlmm_test_thread_rising_in_handler
+    ok 16 tlmm_test_thread_falling_in_handler
+    ok 17 tlmm_test_rising_while_disabled
+
+ok 1 tlmm-test
+
+Test #2: Secondary mode on x1e80100 CRD (Old firmware)
+
+root@qcom-armv8a:~# insmod tlmm-test.ko gpio=91
+
+KTAP version 1
+1..1
+    KTAP version 1
+    # Subtest: tlmm-test
+    # module: tlmm_test
+    1..17
+    ok 1 tlmm_test_silent_rising
+    ok 2 tlmm_test_silent_falling
+    ok 3 tlmm_test_silent_low
+    ok 4 tlmm_test_silent_high
+    ok 5 tlmm_test_rising
+    ok 6 tlmm_test_falling
+    ok 7 tlmm_test_high
+    ok 8 tlmm_test_low
+    ok 9 tlmm_test_rising_in_handler
+    ok 10 tlmm_test_falling_in_handler
+    ok 11 tlmm_test_thread_rising
+    ok 12 tlmm_test_thread_falling
+    ok 13 tlmm_test_thread_high
+    ok 14 tlmm_test_thread_low
+    ok 15 tlmm_test_thread_rising_in_handler
+    ok 16 tlmm_test_thread_falling_in_handler
+    # tlmm_test_rising_while_disabled: ASSERTION FAILED at drivers/pinctrl/qcom/tlmm-test.c:545
+    Expected atomic_read(&priv->intr_count) == 1, but
+        atomic_read(&priv->intr_count) == 0 (0x0)
+    not ok 17 tlmm_test_rising_while_disabled
+
+not ok 1 tlmm-test
+root@qcom-armv8a:~#
+
+v2 series is dependent on [1] as mostly all changes are already reviewed.
+v3 series is dependent on [2] which is already merged in linux-next
+
+[1] https://lore.kernel.org/linux-arm-msm/20260410184124.1068210-1-mukesh.ojha@oss.qualcomm.com/
+[2] https://lore.kernel.org/linux-arm-msm/20260527095426.2324504-1-mukesh.ojha@oss.qualcomm.com/
+[3] https://lore.kernel.org/linux-arm-msm/20260529-tlmm_test_changes-v1-0-88bfdccb4369@oss.qualcomm.com/
+---
+Changes in v5:
+- Drop already merged v4 changes 1 to 6
+- Add detailed commit message for adding deepest idle state
+- Add Tested-by: Daniel J Blueman <daniel@quora.org>
+- Link to v4: https://patch.msgid.link/20260707-hamoa_pdc_v3-v4-0-dfd1f4a3ae89@oss.qualcomm.com
+
+Changes in v4:
+- pdc_setup_pin_mapping() use dev argument and use dev->of_node within
+- Merge v3 patch 2 and 3 into single change
+- guard pdc->lock for all pdc->enable_intr() function call for HW v2.7,3.0
+- Move lock init before pdc_setup_pin_mapping() for bad spinlock on v3
+- Removed unused num_gpios
+- Add comment in qcom_pdc_gic_secondary_set_type() from v2
+- Modify primary case in qcom_pdc_alloc()
+- Remove pdc->version checks from pdc_unmask/clear_gpio_cfg()
+- Formatting and commit text updates
+- Link to v3: https://patch.msgid.link/20260616-hamoa_pdc_v3-v3-0-4d8e1504ea75@oss.qualcomm.com
+
+Changes in v3:
+- Add test results in cover letter with tlmm-test module
+- Fix coding style and struct defination
+- Convert raw_spin_lock to guard(raw_spin_lock) and remove _irqsave
+- Use bit number instead of GENMASK() for single bit fields
+- Use __assign_bit() and __clear_bit() APIs for single bit modifications
+- Use devm_ioremap() instead of ioremap()
+- Use devm_kcalloc() instead of kzalloc_objs()
+- Add separate irq chips for pass through and secondary mode IRQs
+- Add IRQCHIP_EOI_THREADED flag for threaded IRQ on pinctrl irqchip
+- Link to v2: https://patch.msgid.link/20260526-hamoa_pdc-v2-0-f6857af1ce91@oss.qualcomm.com
+
+Changes in v2:
+- Update to mention SoC names along with PDC versions in cover letter
+- Drop devicetree change to remove scm interconnects
+- Use qcom_scm_is_available() to wait for dependency on SCM
+- Drop binding change mentioning qcom,qmp and PDC config reg
+- Restructure version support and move all statics to struct pdc_desc
+- Remove pdc_enable_intr() wrapper
+- Differentiate direct SPI and GPIOs as SPI using PDC IRQ PARAM reg
+- Add changes to make PDC work in secondary controller mode
+- Rework and include Stephan's change to invoke irq_ack() for edge interrupt
+- Mention dependency via b4 prerequisites and cover letter
+- Link to v1: https://lore.kernel.org/r/20260312-hamoa_pdc-v1-0-760c8593ce50@oss.qualcomm.com
+---
+ arch/arm64/boot/dts/qcom/hamoa.dtsi | 14 +++++++++++---
+ 1 file changed, 11 insertions(+), 3 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/qcom/hamoa.dtsi b/arch/arm64/boot/dts/qcom/hamoa.dtsi
+index 09527dcf9576..f01eccb67ee2 100644
+--- a/arch/arm64/boot/dts/qcom/hamoa.dtsi
++++ b/arch/arm64/boot/dts/qcom/hamoa.dtsi
+@@ -300,10 +300,18 @@ cluster_cl4: cluster-sleep-0 {
+ 			cluster_cl5: cluster-sleep-1 {
+ 				compatible = "domain-idle-state";
+ 				arm,psci-suspend-param = <0x01000054>;
+-				entry-latency-us = <2200>;
+-				exit-latency-us = <4000>;
++				entry-latency-us = <2000>;
++				exit-latency-us = <2000>;
+ 				min-residency-us = <7000>;
+ 			};
++
++			domain_ss3: domain-sleep-0 {
++				compatible = "domain-idle-state";
++				arm,psci-suspend-param = <0x0200c354>;
++				entry-latency-us = <2500>;
++				exit-latency-us = <2500>;
++				min-residency-us = <9000>;
++			};
+ 		};
+ 	};
+ 
+@@ -462,7 +470,7 @@ cluster_pd2: power-domain-cpu-cluster2 {
+ 
+ 		system_pd: power-domain-system {
+ 			#power-domain-cells = <0>;
+-			/* TODO: system-wide idle states */
++			domain-idle-states = <&domain_ss3>;
+ 		};
+ 	};
+ 
+
+---
+base-commit: cc2b5f627e8ccbae1188ef2d8be3e451d7f933a5
+change-id: 20260605-hamoa_pdc_v3-6dabc845021c
+
+Best regards,
+--  
+Maulik Shah <maulik.shah@oss.qualcomm.com>
+
 
