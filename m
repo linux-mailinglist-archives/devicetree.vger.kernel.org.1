@@ -1,215 +1,169 @@
-Return-Path: <devicetree+bounces-326981-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-326985-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id CxacMJx/V2qdTQAAu9opvQ
-	(envelope-from <devicetree+bounces-326981-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 14:39:56 +0200
+	id BMo7Ng6AV2rHTQAAu9opvQ
+	(envelope-from <devicetree+bounces-326985-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 14:41:50 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3261175E40C
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 14:39:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B6E875E46F
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 14:41:50 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=NXP1.onmicrosoft.com header.s=selector1-NXP1-onmicrosoft-com header.b=ebYzLh+a;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326981-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-326981-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=fail reason="SPF not aligned (relaxed), DKIM not aligned (relaxed)" header.from=nxp.com (policy=none);
-	arc=reject ("cv is fail on i=2")
+	dkim=pass header.d=geanix.com header.s=protonmail3 header.b=QF1bh6ZR;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326985-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-326985-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=geanix.com;
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 6A782302350E
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 12:32:19 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 0AF10303EC36
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 12:33:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0232D47ECC2;
-	Wed, 15 Jul 2026 12:30:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DE4143B3CB;
+	Wed, 15 Jul 2026 12:33:38 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from DB3PR0202CU003.outbound.protection.outlook.com (mail-northeuropeazon11010066.outbound.protection.outlook.com [52.101.84.66])
+Received: from mail-244108.protonmail.ch (mail-244108.protonmail.ch [109.224.244.108])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C9A547A0B0;
-	Wed, 15 Jul 2026 12:30:47 +0000 (UTC)
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1784118648; cv=fail; b=ZpJAVVDEs4aHRRqVwYctfRA2P6Iq1q0TXJkMyfq6uH0DaKZaJ19x2AdO+x+MhDyPtIg4P75v+fnja2+W8FFR/f22Z4+BtVcJiWXD/REsq515w6JJ6CPocuWN9I55FN7DhAygTp+0+ZFJoCqGu/cpeC/fcjWmuMQ7o1pZdQkSx4E=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1784118648; c=relaxed/simple;
-	bh=otG8oteZoO5nsuMM0YSzauJt/PyLsxFOUTmIESAc1t8=;
-	h=From:Date:Subject:Content-Type:Message-Id:References:In-Reply-To:
-	 To:Cc:MIME-Version; b=SSnZMEAaANYiNsPIzCa7MtdgF+Zb5C6zM7QxlPOy7FdafuR2OvYpzsQRICThYkJT8DmgE1VMPEySM/8K+7wWe84aaJM2UpUy+1Fj8qUznnYh0cEriF+TRGNCcGlqz43P2E0L/hK2TM19uf/kE9rj6q/FI/gjxBtlYyhcCVGZPQ0=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=ebYzLh+a; arc=fail smtp.client-ip=52.101.84.66
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=lXUhr+lpw/u0oilRhx011vJpztdu8fPyXXSosV1QXqioJGiFX+Pj1fRAtG4FCRgK6ejmdgO8kSX7mIG6ogNOzMuMOSKknd7f57zSRWZOg2r0pVvDkIXd/xLJiWv6nbXfpDeRXZ23f+vGjVuWSbwT+ag6iDcWGyUmeEC8rw52Dc3tkrG2Ky0JvDaaWCsE9iQ7pcK+67W5tYZOxLy65TzbFIRkK0B2+AT4i9kS9241rj6ZkDwbZJfeynWgkB8pg0yfdI1sCib5fh2Y9ozPTIR+WWiDFusgVpsUeyAHsIt7m23BrnzmvLictZf3S73UMnrQ+SiO+MeV+WVT5GA+nWoQUA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=j5YzhyrUcudFiHsttxrR4skqR0APEgQNzPTocQAdW8Y=;
- b=ZpKFVG640QPVqQ+eiNTWTHE/lvDKvYCWaIY3RgPpROvnsHjg4isdvhuwB8mUW62/JgOIsX/QcSq1PbijsF0LzbKA66xATETHsdPjq8no6YY3y000ZXXKTFI9Y+qP/RUz9mtJMeqdrsLsgGmWBTWwbxRrn1hTMGmzFzxg3UUtTUob3AVfbPm8WyoTOOeMKh5xrr3t0hh5AC2VDpSJ/whp4TRuuV34DxufjN1XZaTEIX1xkPnG+pVUuy2b5uBT6WUbbGexPri8ZUgNcMMiXmF4w5k43KvSRakgnvl5+axioh/1/vvk2770Md26GXOeQiWzu9DkPLb2e908mIWMcwdyXg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector1-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=j5YzhyrUcudFiHsttxrR4skqR0APEgQNzPTocQAdW8Y=;
- b=ebYzLh+azW3z/zOEGM36AUPluL/NhdHWYvNG4Tdvc/Rtxn8OeFzsJdAqN40ix/mEFHYvM6i51xyT3POIffVpjI0Tc2P2Ngdo/SXDaSShfv9uQMbJWXBZUCNsW8KHxhigZi4IbOA9DPGcJO7z0fO9LpqlYnd2cvFuQv2WmFFLQNA8yi8i9zKCq2zR/CjGLkzWgbeqEtTfMsFNxSOuJfLaC5xn2Wo45yqtMmQuY+tdQPSU0kz8XTdpUoaUHPnvFur8/0vCO7FkEksgOSHhxGtJyiFDhTE4NMo8rHsQ8wNLxJGJAmyiET8ui3HzX7WMAzagkPQWH/8flCc9D0jCqGjYww==
-Received: from AM8PR04MB7874.eurprd04.prod.outlook.com (2603:10a6:20b:24d::9)
- by VI0PR04MB12133.eurprd04.prod.outlook.com (2603:10a6:800:313::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.223.9; Wed, 15 Jul
- 2026 12:30:44 +0000
-Received: from AM8PR04MB7874.eurprd04.prod.outlook.com
- ([fe80::ac38:1699:6f18:c5d9]) by AM8PR04MB7874.eurprd04.prod.outlook.com
- ([fe80::ac38:1699:6f18:c5d9%3]) with mapi id 15.21.0202.018; Wed, 15 Jul 2026
- 12:30:44 +0000
-From: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Date: Wed, 15 Jul 2026 20:33:10 +0800
-Subject: [PATCH 9/9] arm64: dts: imx8ulp-9x9-evk: Rename model string to
- reflect die size
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260715-imx8ulp-dts-v1-9-19651358b599@nxp.com>
-References: <20260715-imx8ulp-dts-v1-0-19651358b599@nxp.com>
-In-Reply-To: <20260715-imx8ulp-dts-v1-0-19651358b599@nxp.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>, 
- Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>
-Cc: devicetree@vger.kernel.org, imx@lists.linux.dev, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Peng Fan <peng.fan@nxp.com>
-X-Mailer: b4 0.16-dev-7bc12
-X-ClientProxiedBy: SI2PR06CA0014.apcprd06.prod.outlook.com
- (2603:1096:4:186::11) To AM8PR04MB7874.eurprd04.prod.outlook.com
- (2603:10a6:20b:24d::9)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02CBE438486
+	for <devicetree@vger.kernel.org>; Wed, 15 Jul 2026 12:33:36 +0000 (UTC)
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1784118818; cv=none; b=hUP9CV6eSZROreqPEo0a/wVXcvfAj/3+iK1TE3jl2LUKaANRqCCVkzcW2G0EoLnOASooKCjJunQWuCkeRGLdCKqeWFIrWJtM/VdJrX8A5WfeWcRpYQixoJdQf5LYic/N4/jOgJPJbbmNjCcepO9xNUrQxi7at5n0AttdleseU4A=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1784118818; c=relaxed/simple;
+	bh=qG3Ue0S1FKxy2vdyUX3YqpYFsnFnY2kugwsKFAUKAIA=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=YXgOJi63L5w8BwgVbO0h+TO7xByCxVHcpXCftyNIJMf2s+EsnL1WpXGnHsF/bYQxuXvjUp8OjO0bGWarKdAwx+1zA1K3kk4wuKY/yorz0KNsnK5AHFrHhusVuToS0QKERbg27Gb5qNLO/bO4/4Xt8TEsVhbOvsxznvKKViCLImU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=geanix.com; spf=pass smtp.mailfrom=geanix.com; dkim=pass (2048-bit key) header.d=geanix.com header.i=@geanix.com header.b=QF1bh6ZR; arc=none smtp.client-ip=109.224.244.108
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=geanix.com;
+	s=protonmail3; t=1784118814; x=1784378014;
+	bh=5J7JYYHHFNVk41nCvp3IxlyKwZwhxolSSSPevsAkazY=;
+	h=From:Subject:Date:Message-Id:To:Cc:From:To:Cc:Date:Subject:
+	 Reply-To:Feedback-ID:Message-ID:BIMI-Selector;
+	b=QF1bh6ZRL6FIb778YiqGn4sflZoc+fwFkATkUUMtQr1arwb5P+SItHR5lk9k7Pod+
+	 O3ppsfsnQyq63cakaXlz/WQqIJJlBJtKeiV+81kwAkDMIvojuwPsIxvBuQSnczBlap
+	 BmfYo6dN4s8WoYecCl8UfDtql2V83Kr0yg2fkne1FBgxQmaZjhrVQppICxqFqSYXdc
+	 aPBs5aqsi1be1lY6rBSES+TdYbeLBwmjmeNgYA5hjm/Y3QK455MogQgzjtncG9Khjx
+	 ESz+g7gsiEA06JUGZ286brHbALyGPi0lJ9LrvMf2uR0hBFlyxbyWiJTJYuJtIWegpj
+	 5XPPJP64WnX7g==
+X-Pm-Submission-Id: 4h0bF75nYHz1DFDy
+From: Esben Haabendal <esben@geanix.com>
+Subject: [PATCH v2 0/3] io: accel: mma8452: Allow open drain interrupt pin
+ configuration
+Date: Wed, 15 Jul 2026 14:33:26 +0200
+Message-Id: <20260715-mma8452-open-drain-v2-0-95be9f5f4795@geanix.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM8PR04MB7874:EE_|VI0PR04MB12133:EE_
-X-MS-Office365-Filtering-Correlation-Id: b1d95974-446a-4842-c6c8-08dee26ce418
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|7416014|376014|23010399003|19092799006|1800799024|366016|11063799006|56012099006|18002099003|22082099003|10067099003;
-X-Microsoft-Antispam-Message-Info:
-	wsFkYxd9WgMsfY9dYrGlWudRr6Yy5uljHc7/NchTPU1LIDUs+eRMLR+QFGofY5LyGE8KPoxVxxxoVgkwAfs5lplGB4GH8OFEE5Ri3DQhmwJpVgn1hOs57CdDar8olyOsCa1124+98otu4tFjNdW+nPRYwRJY3SSdlOq9LKgAgis0e9ouiLvNdHaH0MT75psk7DOcWfIlYO7LyP+d9TGQX6WXd+7DR0ylSV5Yv8+k0Tsu4X4nI9CqW5nbz1k25QKlk2SbiWq7qlwXUTnnJqyKg7C5/mbC/mGRDR3vCqGz7qKZSDr5vpMxlaTP9XmfBiqh0aghYF5ErjvjeFjX/5LUokMLLXpoYNnq6MQwzA7rk0yv9PdaisRstwit2KCEAUldOKjtDnkakq4xP82jxKQsO3CYVHek87Pu3v6kzt+mFkq+ZYvAvZMlAQw9NZzaStqyb8iXKury9SvD3btctUwg4yW1+s8pN+DCyq7bxruwFSIhmFfDvTFriSA3oLjx2ZKGmbFn+Z/FQfcXImEqPUXDlms9AQ7MEONU/Jt3xfyd5b/58rDADhUn02EHyoLHyBoqoBvocDSgrssm8k/C1pCKEduJSyBNg4/upJVRji7uqqG3PTR/PosOaQmfp6kNBLCxixMIEhMpTL1nsGAtjdNkKrZDKkx31M0B5FaRq0flrhU=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM8PR04MB7874.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(23010399003)(19092799006)(1800799024)(366016)(11063799006)(56012099006)(18002099003)(22082099003)(10067099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?aXF5Nk1ickhFQm8rOUJpdFVaaXMwbHl1alJVMkRVVWN0NFFEeDJVaTVyVE9n?=
- =?utf-8?B?OCt1Q2plWC93UnNJOGtVYXpQUUoyZWtQeTA3NDduOGVrT1ZVVWxVM0NObHZR?=
- =?utf-8?B?SG9GTjBiZE5hNlV0QWNOdkNrdUZsaEIxZGZ6Mm5yV0FrL0ZtSm8yZ3ltL3Fy?=
- =?utf-8?B?VVQ2REZ2b2Z0MUN6VUxBWS94ZmxWZFJPVEd5a2VuZVZkOU1JOVJaeTVwS2Ro?=
- =?utf-8?B?NDdOaEhrSVM5b25ZZ2xRbjBQakppeXlac3EvbjVQS1FzUENqakhUTHRrdkdo?=
- =?utf-8?B?WlJmeWI2Q210WjdCdHVUYk5DMndIcUtpN252QW9qR0srQXJoQ1h0akxLZW0v?=
- =?utf-8?B?OWsxUjk0SXZ5cW81YVptVGRVUmJYaExGTDRQcG1xRys0L1p0WHMzUDhQMXlU?=
- =?utf-8?B?M0pCVC9wYTczUW1xcjlQaDVVcTFQTEVlVzRmYWV0eGhqRG03eGRHZ0V4YUJS?=
- =?utf-8?B?L3BxV2duSFU5T2xQalB1cUNjbWZWUWhWSDNOMEUrMXZrNGFqT2tsM3g2R2s4?=
- =?utf-8?B?SE1xNHBDc2RUemtHNUg1bHNUbGtmeGtUd1JEQUIyTWJBT25lbi80N1dIbDZH?=
- =?utf-8?B?UGRsZktGdnc1Q0Z0Yzc5K0tWUmpvWGxhamZPSWRxYkE1bmR3bm9VQksvSXBT?=
- =?utf-8?B?a1IyR25MY2pSTHZhbTc0bVFuZUVmNFBLTGpQa2Rib0RSbFJ5emE4NWJzdWZD?=
- =?utf-8?B?V2ZYeVNpT09RODFqZTV1ZjQxYXY2bXYzQ0szc1ZaUDFnclRPMTNaekRvdGww?=
- =?utf-8?B?TTZGNFlCOGFOOUt0OGtvMlZNbGlpL01LU1k1YWR5b1dxcld0bkp2M3NOeTAy?=
- =?utf-8?B?NnNlMmI5a2hkaFcwQ2hUMVBmdWZGY285d29ocFFVbENna09oTElXQWh2L2Vo?=
- =?utf-8?B?V3crT25VcVRjaGhhMjNEejFvMTBBd255dlVwTEN0VnlTSkxmSGt6aHFLd2FP?=
- =?utf-8?B?WEFvZit2MkVnSzhDemlkQnd2b3plWGRFRW9oMlpxQ3Q1dG1ONmpYYVRaUlR4?=
- =?utf-8?B?Z1JRYXBKc2wxYWdmZTN6ajhYcWRxZTI4YXhJOHFRS3NGbDlPYlJuVmR3cUpK?=
- =?utf-8?B?SUIwa3E2UUJma0ZaMlBWbERmU2VkbE9hellrY0hoQzArbjY3SElDQkJKZlRa?=
- =?utf-8?B?ZUlnWS9rTGY2V3A0YmhWR2hZbE9CaFIrWktERGFRYjREdmphdjhpRVJmSVk0?=
- =?utf-8?B?NzAxc0x4c1ByWE95ajBNUnN0UjlOc2taV3huNVdTVjFzTEIwUmN4TDhQaHAr?=
- =?utf-8?B?ZUVxRm9xUlc1VHQvSmRBcEdtZzluaklqUklUZ2UyUFhJelp2WXNwdWgwZWt2?=
- =?utf-8?B?QWpCakZBK28zS1lxdERFNGVOakk2TWtrelhYbkRTTkd4bldsYitRZnBWNUFP?=
- =?utf-8?B?cG1KUy9ZVWgzcHZ2QUlaZjN2YWk3V21VVkZEWHZsYWZUcmdKYkF3WkJFWC9C?=
- =?utf-8?B?Mklma3pid2pyaklldlE5M1Q5SWtiK0h0K3lCMlExckhwYis5UDErYkVubmta?=
- =?utf-8?B?M3NNbkI2ZnduN3VqQVBxTXZucDAvSzFvSXBXczN3Y0ZJSjhMYXR3VzhVSjVt?=
- =?utf-8?B?YTZFbzhYMExWd29oRnZyVmtvWXQ3UWpqY2RWQUtQU25ZdnZPUmQrM1JVY2pB?=
- =?utf-8?B?NGNUQ3lzTENmZWx5M09VeFFHM0ovMnFsM1VUWmxZcTdrc1BNa0h5THc1NEx4?=
- =?utf-8?B?QlVPWGNobFdmWFlscXZSSDhkdW1NN2NUVGgwdEYrNURuUG9iRTVqTE9JbjNx?=
- =?utf-8?B?dkJ2dVhCZjZnUTFVWU1pSnpha0oxMDdkcWxCelhBWW5BaFZDSnV3ZDBXTWhl?=
- =?utf-8?B?Um4vaWRPdmRkNGZHeHhlMTBLWFhKdXhXMzB1UmRnUHRvNG5ZLzB2bFZNdzZR?=
- =?utf-8?B?MDFSakhjZGNlTDFpQ2dyOTVObldCdnh4Qnc2VDljNm5IdElHT2pMQlo1bDM1?=
- =?utf-8?B?cHExdEs1YTh4VUZwRUNNV0Ztdnk1aVk4eSt2L3ZPWHRoTzlmUGV5anM5RjdN?=
- =?utf-8?B?SjZBKytWanoxNlBzZ2h3L291VmZlY1JCK0xIL2ZjZXNCTUM0c1VLd2hCWXdX?=
- =?utf-8?B?WThiWXIvSHBua2NTQVArdFpsS3E1RmhwSTdMdXp6LzY1c2huZkFSMDZiWHpj?=
- =?utf-8?B?eUpZSjBIVis5VjUyMlordm9HVnVNUDRPMTZwSWVZNnV5QW5mWTFoNmdYbFVz?=
- =?utf-8?B?N1VFanU0OVdTQlpXaGFwbWtCNHV6MnhzV254ZXl4dzZleTVNMmZrbTZDTDdt?=
- =?utf-8?B?aklEY2NoMTJqUncyd0dXN0Q5WWVkeno4MGd5UTg3NWtteEMrZVJrNXdCNmkv?=
- =?utf-8?B?R2NzWEFvVHhPd0pJRW95blgxZUtkcW9GSWJ5LzV3dFVnY1RPWTJUUTByOGZP?=
- =?utf-8?Q?MzeaSQjPqmbX5QUQprqvjWKvQGDWSLRSg18xb?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b1d95974-446a-4842-c6c8-08dee26ce418
-X-MS-Exchange-CrossTenant-AuthSource: AM8PR04MB7874.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Jul 2026 12:30:44.5464
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: p6wkotZaPoAYWePoGXxibBYXeXzE88t6EFTd9wkyiXzTJa3c/p8HFRl/onR+4XV+v0y04JVC2rTAneo1jIgbzAWyu7ORf0sletImUB+wuxn2ovsd59ZuOCzKgdOPwQW5
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI0PR04MB12133
-X-Spamd-Result: default: False [1.94 / 15.00];
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/22NQQ6DIBBFr2JYdxqGgpiueo/GBYWpzkIw0Bgb4
+ 92Lrrt8L/nvb6JQZiri3mwi08KFU6ygLo3wo4sDAYfKQkllpJYI0+Q6bRSkmSKE7DhCh8Zar/F
+ mjRd1OGd683pGn33lkcsn5e/5seBhj1wrLZp/uQVBwgtDUE5r6Vv5GMhFXq8+TaLf9/0Hv99YG
+ bUAAAA=
+X-Change-ID: 20250401-mma8452-open-drain-81577c41375c
+To: Jonathan Cameron <jic23@kernel.org>, 
+ Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Martin Kepplinger <martink@posteo.de>, 
+ Sean Nyekjaer <sean@geanix.com>, David Lechner <dlechner@baylibre.com>, 
+ =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
+ Andy Shevchenko <andy@kernel.org>, 
+ Martin Kepplinger <martin.kepplinger@theobroma-systems.com>
+Cc: Esben Haabendal <esben@geanix.com>, linux-iio@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1784118811; l=1965;
+ i=esben@geanix.com; s=20240523; h=from:subject:message-id;
+ bh=qG3Ue0S1FKxy2vdyUX3YqpYFsnFnY2kugwsKFAUKAIA=;
+ b=4UCvtVcNEYzhyQPX0R+eSf08mi3S0yQX7bVSNJsvYIbkU75oh3hIesHANUsfREk84qrvyouaP
+ XmecA7j5WF5Cp6GVJgVfYm2qEJ8rCItlJOK/ehjPktaphlXluEGtY8G
+X-Developer-Key: i=esben@geanix.com; a=ed25519;
+ pk=PbXoezm+CERhtgVeF/QAgXtEzSkDIahcWfC7RIXNdEk=
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[geanix.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[geanix.com:s=protonmail3];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[NXP1.onmicrosoft.com:s=selector1-NXP1-onmicrosoft-com];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[nxp.com : SPF not aligned (relaxed), DKIM not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-326981-lists,devicetree=lfdr.de];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:Frank.Li@nxp.com,m:s.hauer@pengutronix.de,m:kernel@pengutronix.de,m:festevam@gmail.com,m:devicetree@vger.kernel.org,m:imx@lists.linux.dev,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:peng.fan@nxp.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-326985-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:jic23@kernel.org,m:lars@metafoo.de,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:martink@posteo.de,m:sean@geanix.com,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:andy@kernel.org,m:martin.kepplinger@theobroma-systems.com,m:esben@geanix.com,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[esben@geanix.com,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[peng.fan@oss.nxp.com,devicetree@vger.kernel.org];
-	FREEMAIL_TO(0.00)[kernel.org,nxp.com,pengutronix.de,gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	RCVD_COUNT_THREE(0.00)[3];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
+	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[peng.fan@oss.nxp.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[NXP1.onmicrosoft.com:+];
+	FROM_NEQ_ENVFROM(0.00)[esben@geanix.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[geanix.com:+];
 	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	TO_DN_SOME(0.00)[]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 3261175E40C
+X-Rspamd-Queue-Id: 2B6E875E46F
 X-Rspamd-Action: no action
 
-From: Peng Fan <peng.fan@nxp.com>
+Extend the mma8452 driver with support for configuration of the
+interrupt line in open-drain mode, which is needed for hardware designs
+where the interrupt line is shared with other chips.
 
-Rename the board model from "NXP i.MX8ULP EVK9" to "NXP i.MX8ULP 9x9
-EVK" to follow the i.MX naming convention where the die size (9x9 mm)
-is used instead of an opaque board revision suffix.
+Adding drive-open-drain property to mma8452 device-tree node for such
+designs to enable switching pin configuration to open-drain mode.
 
-Signed-off-by: Peng Fan <peng.fan@nxp.com>
+Signed-off-by: Esben Haabendal <esben@geanix.com>
 ---
- arch/arm64/boot/dts/freescale/imx8ulp-9x9-evk.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Changes in v2:
+- Commit message of patch 2 updated.
+- Operator precedence bug fixed in flags argument to
+  request_threaded_irq().
+- Always check return value of mma8452_set_interrupt_pin_mode(), and just
+  check for non-zero value.
+- Added new patch with optimization of struct mma8452_data ordering.
+- Link to v1: https://patch.msgid.link/20260715-mma8452-open-drain-v1-0-b1dd2a440c60@geanix.com
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8ulp-9x9-evk.dts b/arch/arm64/boot/dts/freescale/imx8ulp-9x9-evk.dts
-index 71c66c58edc4d..e6bc6e6555f57 100644
---- a/arch/arm64/boot/dts/freescale/imx8ulp-9x9-evk.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8ulp-9x9-evk.dts
-@@ -8,7 +8,7 @@
- #include "imx8ulp-evk.dts"
- 
- / {
--	model = "NXP i.MX8ULP EVK9";
-+	model = "NXP i.MX8ULP 9x9 EVK";
- 	compatible = "fsl,imx8ulp-9x9-evk", "fsl,imx8ulp";
- 
- 	gpio-keys {
+To: Jonathan Cameron <jic23@kernel.org>
+To: Lars-Peter Clausen <lars@metafoo.de>
+To: Rob Herring <robh@kernel.org>
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>
+To: Conor Dooley <conor+dt@kernel.org>
+To: Martin Kepplinger <martink@posteo.de>
+To: Sean Nyekjaer <sean@geanix.com>
+To: David Lechner <dlechner@baylibre.com>
+To: Nuno Sá <nuno.sa@analog.com>
+To: Andy Shevchenko <andy@kernel.org>
+To: Martin Kepplinger <martin.kepplinger@theobroma-systems.com>
+Cc: linux-iio@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
 
--- 
-2.34.1
+---
+Esben Haabendal (3):
+      dt-bindings: iio: accel: mma8452: Add drive-open-drain
+      iio: accel: mma8452: Allow open drain interrupt pin configuration
+      iio: accel: mma8452: Optimize struct mm8452_data member orders
+
+ .../devicetree/bindings/iio/accel/fsl,mma8452.yaml |  6 ++++
+ drivers/iio/accel/mma8452.c                        | 38 +++++++++++++++++++---
+ 2 files changed, 40 insertions(+), 4 deletions(-)
+---
+base-commit: a13c140cc289c0b7b3770bce5b3ad42ab35074aa
+change-id: 20250401-mma8452-open-drain-81577c41375c
+
+Best regards,
+--  
+Esben Haabendal <esben@geanix.com>
 
 
