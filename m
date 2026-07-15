@@ -1,201 +1,158 @@
-Return-Path: <devicetree+bounces-326678-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-326680-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id YxBOOCctV2rqGwEAu9opvQ
-	(envelope-from <devicetree+bounces-326678-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 08:48:07 +0200
+	id OmmWGd4sV2rVGwEAu9opvQ
+	(envelope-from <devicetree+bounces-326680-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 08:46:54 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BCE375B384
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 08:48:07 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 651AE75B35B
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 08:46:53 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=ew.tq-group.com header.s=default2602 header.b=G7zdkKUC;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326678-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-326678-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=ew.tq-group.com;
+	dkim=pass header.d=intel.com header.s=Intel header.b=ka8zdmea;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326680-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-326680-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=intel.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C11253031CE6
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 06:45:37 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 9BBB330034A9
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 06:46:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B37D31F985;
-	Wed, 15 Jul 2026 06:45:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C322A31F9AC;
+	Wed, 15 Jul 2026 06:46:49 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from www537.your-server.de (www537.your-server.de [188.40.3.216])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DD2E31F995;
-	Wed, 15 Jul 2026 06:45:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B925830C17B;
+	Wed, 15 Jul 2026 06:46:46 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1784097937; cv=none; b=gkkgIBLQYScCj3lyhusFH07g0vSbP0qA9D698nBbRTaSLqMsMVl4guNEmfiRDv07KBlAnR7QJbMQw++oR3jx0BpfRF6cYF7a6N02t0xvl7/pa5mwnnzlrGTgTLMYf10I8lRw7E0qdNgFduEyx3MtmH3ILZkYT7D+1uohxHzjpHw=
+	t=1784098009; cv=none; b=caD+V0i4iT+PgmczIQV5C8c5JB7CHl5PtKYf69MB0Ffmiufv5zyyVEMRUE+lKQ2Ms6BIRL19ezl8gF5zCFPSOVSCq4hSoySH+fC/yLWf8yftvxY1zkS1JThkYLn4igsPTDrTj0k8lY9HK0voAxM5+DBAf4+fQ9fDyHESRyDv0t8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1784097937; c=relaxed/simple;
-	bh=NCYbY8ASteWFE28nnDC4+QOGRmwy/KpIhVSQPXAZwJw=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ExpjJMs2ccMqc0adXse5lGhlz4rUl4FZhfl/3EOzuUmDdfL3Mv7l5wWXsQNWkD8aaUBJotG/kiIWx4k1JfA7fQ22AeT65VopnB2Fky5ZfqXaaWaKnHCf/8mhA+JvCRxc1Ydxf2ny4x3baFV3n019XONXoM8ulMIPTLjxUbDC+gI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=G7zdkKUC; arc=none smtp.client-ip=188.40.3.216
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=ew.tq-group.com; s=default2602; h=Content-Type:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender
-	:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=vM1HZpnp+xMsMpc2d7PzrpEfeSafS28iCXXhm4fqmZs=; b=G7zdkKUCdw+mCBSiqSjIFj+c6/
-	BG65JmaLZHj6u1BTNFQYNUMd8OEBFbxJIuLSEf0M9HPcVD6NgsWZGcUcHf206rfwU1iqnDia0xx3D
-	ikyadVNDYWUp5XRUzDVKaCDwqhLO6y9hMd1869VlofVxcmnhUloAuZSDVY4DPOVIDzNTiIm271XKL
-	bwWkndtimdcNwN68ScTSPPMO2WlCDkgZBSKgeBQPXi6wBxFiaSxMr78swc1bIZWikkGS2Cu7/yWu9
-	KMfvmbpHMYROy+2Lv75Dg30tjvfscIpB0i8Y3yvvq1oGhsACn/vmVzsCHoI5b6bLYw1vr3bQeY4/8
-	SwyFmzxA==;
-Received: from sslproxy02.your-server.de ([78.47.166.47])
-	by www537.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.96.2)
-	(envelope-from <alexander.stein@ew.tq-group.com>)
-	id 1wjtN5-000BJu-1x;
-	Wed, 15 Jul 2026 08:45:31 +0200
-Received: from localhost ([127.0.0.1])
-	by sslproxy02.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <alexander.stein@ew.tq-group.com>)
-	id 1wjtN5-000Enz-0l;
-	Wed, 15 Jul 2026 08:45:31 +0200
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: sashiko-reviews@lists.linux.dev, Frank Li <Frank.li@oss.nxp.com>
-Cc: imx@lists.linux.dev, conor+dt@kernel.org, Frank.Li@kernel.org,
- devicetree@vger.kernel.org, robh@kernel.org, wsa+renesas@sang-engineering.com
-Subject: Re: [PATCH v8 1/1] arm64: dts: add tqma9596la-mba95xxca
-Date: Wed, 15 Jul 2026 08:45:30 +0200
-Message-ID: <8709657.T7Z3S40VBb@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <alZW0l9rJpn8L0Mh@SMW015318>
-References:
- <20260714143154.787825-1-alexander.stein@ew.tq-group.com>
- <20260714150126.09D971F000E9@smtp.kernel.org> <alZW0l9rJpn8L0Mh@SMW015318>
+	s=arc-20240116; t=1784098009; c=relaxed/simple;
+	bh=xTb1P18qTS4x2GH0IW0oXDegvzQvgVfn8qsozOtrSPg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=JSf/eZ+qKHsKbNBcSPbsvRlHLysNhN0IGcOxvWq89+vf5vlprhQqvmvzwyJzjfHasnRC3A4ry6W8mK8uNKIT8O2aPcTXGuwDhoT6mifmKCvXOwyYac5KUhEthCmLBMfVCCmIlRXqeo/jlcPT+ryXDrq5aP6mwGZrnQXpi4xPRuA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=ka8zdmea; arc=none smtp.client-ip=192.198.163.7
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1784098007; x=1815634007;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=xTb1P18qTS4x2GH0IW0oXDegvzQvgVfn8qsozOtrSPg=;
+  b=ka8zdmea8IFggr9YLdjJfE7GGJ+kYBCAIfu2BDACoZNhNgo98LFJ/BxI
+   i/5sQanYMUJgVXoxAdshnZilH24wSwMAj4tPRaTLvq+6Z8MNQgqif2e7Q
+   BJulZMdX458xX/CcC4pLV2gkaA2sI4/OmrO4akY9pkftjG58nnvKv14sp
+   HnPzhiesZsmR3jYDY+ZOwx8XFIZp9sSSqNIJrTHXCL25fRkUdGqyNaS7C
+   odhi63g55OHIALpbBC8wBv+3fSL3juh/s0uvFv16rwPm8sAyveR3DfluJ
+   ESnF4xnlaxWpfEvd5z3jZVD/g8OuOkSAGEZmu18me2GAU5w0MVgQ7yTjL
+   g==;
+X-CSE-ConnectionGUID: zk7s8upoSviI3Wmb1Hg2gg==
+X-CSE-MsgGUID: eh/fN7dmQDqrDTJzXNXlUA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11847"; a="110273546"
+X-IronPort-AV: E=Sophos;i="6.25,165,1779174000"; 
+   d="scan'208";a="110273546"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Jul 2026 23:46:45 -0700
+X-CSE-ConnectionGUID: 2Ffx0br5Tr64//QD3nI7jA==
+X-CSE-MsgGUID: t4cR1dOeSZ2SCw4ZFSktfQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,165,1779174000"; 
+   d="scan'208";a="260380591"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost) ([10.245.244.44])
+  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Jul 2026 23:46:41 -0700
+Date: Wed, 15 Jul 2026 09:46:38 +0300
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: David Lechner <dlechner@baylibre.com>
+Cc: Jakub Szczudlo <jakubszczudlo40@gmail.com>, linux-iio@vger.kernel.org,
+	jic23@kernel.org, nuno.sa@analog.com, andy@kernel.org,
+	marcelo.schmitt@analog.com, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, mike.looijmans@topic.nl,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	jorge.marques@analog.com, antoniu.miclaus@analog.com,
+	mazziesaccount@gmail.com, jishnu.prakash@oss.qualcomm.com,
+	duje@dujemihanovic.xyz, wens@kernel.org,
+	sakari.ailus@linux.intel.com, linusw@kernel.org
+Subject: Re: [PATCH v7 0/3] iio: adc: ti-ads1100: Add support for TI ADS1110
+ to ti-ads1100 driver
+Message-ID: <alcszm5-9alInIo0@ashevche-desk.local>
+References: <20260714195528.597753-1-jakubszczudlo40@gmail.com>
+ <66b7b01f-0e79-4387-9b68-92858ccc1fe7@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
-X-Virus-Scanned: Clear (ClamAV 1.4.3/28060/Tue Jul 14 08:25:07 2026)
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <66b7b01f-0e79-4387-9b68-92858ccc1fe7@baylibre.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-3.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[intel.com:d:+,kernel.org:s:+];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[ew.tq-group.com,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[ew.tq-group.com:s=default2602];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-326678-lists,devicetree=lfdr.de];
-	TO_DN_SOME(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[21];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-326680-lists,devicetree=lfdr.de];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:sashiko-reviews@lists.linux.dev,m:Frank.li@oss.nxp.com,m:imx@lists.linux.dev,m:conor+dt@kernel.org,m:Frank.Li@kernel.org,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:wsa+renesas@sang-engineering.com,m:conor@kernel.org,m:wsa@sang-engineering.com,s:lists@lfdr.de];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FORGED_SENDER(0.00)[alexander.stein@ew.tq-group.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS(0.00)[m:dlechner@baylibre.com,m:jakubszczudlo40@gmail.com,m:linux-iio@vger.kernel.org,m:jic23@kernel.org,m:nuno.sa@analog.com,m:andy@kernel.org,m:marcelo.schmitt@analog.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:mike.looijmans@topic.nl,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:jorge.marques@analog.com,m:antoniu.miclaus@analog.com,m:mazziesaccount@gmail.com,m:jishnu.prakash@oss.qualcomm.com,m:duje@dujemihanovic.xyz,m:wens@kernel.org,m:sakari.ailus@linux.intel.com,m:linusw@kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	HAS_ORG_HEADER(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	ALIAS_RESOLVED(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[alexander.stein@ew.tq-group.com,devicetree@vger.kernel.org];
-	PRECEDENCE_BULK(0.00)[];
-	DKIM_TRACE(0.00)[ew.tq-group.com:+];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	FORGED_SENDER(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[gmail.com,vger.kernel.org,kernel.org,analog.com,topic.nl,oss.qualcomm.com,dujemihanovic.xyz,linux.intel.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tq-group.com:email,tq-group.com:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,ew.tq-group.com:from_mime,ew.tq-group.com:dkim,steina-w:mid]
+	MISSING_XM_UA(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,baylibre.com:email,intel.com:from_mime,intel.com:email,intel.com:dkim]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 3BCE375B384
+X-Rspamd-Queue-Id: 651AE75B35B
 
-Am Dienstag, 14. Juli 2026, 17:33:38 CEST schrieb Frank Li:
-> On Tue, Jul 14, 2026 at 03:01:25PM +0000, sashiko-bot@kernel.org wrote:
-> > Thank you for your contribution! Sashiko AI review found 1 potential is=
-sue(s) to consider:
-> > - [Medium] Unreferenced 10G SFP regulator will be unconditionally disab=
-led by the regulator core.
-> > --
-> >
-> > --- Patch [1]: [PATCH v8 1/1] arm64: dts: add tqma9596la-mba95xxca ---
-> > commit b7aa596cf679be039938abc33965834ed28f5c60
-> > Author: Markus Niebel <Markus.Niebel@ew.tq-group.com>
-> >
-> > arm64: dts: add tqma9596la-mba95xxca
-> >
-> > This adds support for TQMa95xxLA modules, designed to be soldered
-> > on a carrier board. MBa95xxCA is a carrier reference board / starter kit
-> > design.
-> >
-> > > diff --git a/arch/arm64/boot/dts/freescale/imx95-tqma9596la-mba95xxca=
-=2Edts b/arch/arm64/boot/dts/freescale/imx95-tqma9596la-mba95xxca.dts
-> > > new file mode 100644
-> > > index 0000000000000..1d745d66997cb
-> > > --- /dev/null
-> > > +++ b/arch/arm64/boot/dts/freescale/imx95-tqma9596la-mba95xxca.dts
-> >
-> > [ ... ]
-> >
-> > > +	reg_3v3a_10g: regulator-3v3a-10g {
-> > > +		compatible =3D "regulator-fixed";
-> > > +		regulator-name =3D "3V3A_10G";
-> > > +		regulator-min-microvolt =3D <3300000>;
-> > > +		regulator-max-microvolt =3D <3300000>;
-> > > +		gpio =3D <&expander2 15 GPIO_ACTIVE_HIGH>;
-> > > +		startup-delay-us =3D <2000>;
-> > > +		enable-active-high;
-> > > +	};
-> >
-> > [ ... ]
-> >
-> > > +	sfp_xfi: sfp-xfi {
-> > > +		compatible =3D "sff,sfp";
-> > > +		pinctrl-names =3D "default";
-> > > +		pinctrl-0 =3D <&pinctrl_sfp>;
-> > > +		i2c-bus =3D <&lpi2c7>;
-> > > +		maximum-power-milliwatt =3D <2000>;
-> > > +		mod-def0-gpios =3D <&expander1 3 GPIO_ACTIVE_LOW>;
-> > > +		tx-fault-gpios =3D <&gpio2 30 GPIO_ACTIVE_HIGH>;
-> > > +		los-gpios =3D <&gpio2 31 GPIO_ACTIVE_HIGH>;
-> > > +		tx-disable-gpios =3D <&expander2 2 GPIO_ACTIVE_HIGH>;
-> > > +	};
-> >
-> > [Severity: Medium]
-> > Will the 10G SFP regulator be turned off by the regulator core?
-> >
-> > The reg_3v3a_10g regulator is defined without regulator-always-on, and =
-the
-> > sfp_xfi node seems to be missing the vcc-supply =3D <&reg_3v3a_10g>; pr=
-operty
-> > to link the SFP to its power source.
-> >
-> > Since it lacks consumers, won't the regulator core automatically disabl=
-e this
-> > unused regulator at the end of boot and unconditionally turn off power =
-to the
-> > 10G interface?
->=20
-> Is it true?
+On Tue, Jul 14, 2026 at 03:20:18PM -0500, David Lechner wrote:
+> On 7/14/26 2:55 PM, Jakub Szczudlo wrote:
+> > Add support for the TI ADS1110 to the existing ADS1100 ADC IIO driver.
+> > The ADS1110 is pin-to-pin compatible with the ADS1100 while providing
+> > higher resolution and an internal voltage reference. This patch series
+> > extends driver support for ADS1110, updates device tree bindings and
+> > Kconfig text, and improves the overall hardware description for the
+> > TI ADS1100 family.
+> > 
+> > Tested on: Raspberry pi 3b+ with 7.0 stable kernel
+> 
+> Hopefully this applies on the iio/testing branch? A lot could have changed
+> since 7.0.
 
-That's true, the regulator will be disabled. But currently there is no
-XFI/10G support anyway, so nothing will be disabled. This regulator is
-taken from downstream where XFI already is supported.
+> > ---
+> I made some suggestions for cosmetic improvements, but good enough for
+> 
+> Reviewed-by: David Lechner <dlechner@baylibre.com>
 
-Best regards,
-Alexander
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
++1 here, but I think the chip_info naming and actually -ENODATA are good to be
+in from day 1. Assuming that is going to be addressed in v8,
+Reviewed-by: Andy Shevchenko <andriy.shevchenko@intel.com>
+
+-- 
+With Best Regards,
+Andy Shevchenko
 
 
 
