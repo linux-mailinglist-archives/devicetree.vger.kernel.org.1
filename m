@@ -1,182 +1,345 @@
-Return-Path: <devicetree+bounces-326717-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-326719-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id XtHlC1s7V2o2HwEAu9opvQ
-	(envelope-from <devicetree+bounces-326717-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 09:48:43 +0200
+	id rIERN207V2o/HwEAu9opvQ
+	(envelope-from <devicetree+bounces-326719-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 09:49:01 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 93FE675B977
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 09:48:42 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 33E9D75B986
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 09:49:01 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=bootlin.com header.s=dkim header.b="y3/wcrVG";
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326717-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-326717-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=reject) header.from=bootlin.com;
+	dkim=pass header.d=lontium.com header.s=default header.b=PcFVwjnO;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326719-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-326719-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=none;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2E78831848B0
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 07:43:09 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E18BE31169E5
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 07:43:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7A4B3C4B93;
-	Wed, 15 Jul 2026 07:43:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A36A3C3791;
+	Wed, 15 Jul 2026 07:43:21 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
+Received: from out28-101.mail.aliyun.com (out28-101.mail.aliyun.com [115.124.28.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0B803C4B68
-	for <devicetree@vger.kernel.org>; Wed, 15 Jul 2026 07:43:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B4253C2BB4
+	for <devicetree@vger.kernel.org>; Wed, 15 Jul 2026 07:43:17 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1784101384; cv=none; b=egCTKl7hkrIM4nf6/nzfMn1STQcGTSoHOShNh09kELPxQhTC58gOWtSgfHpJiDWGqOXQ+FA9OB5Ej+3KMeDyDaaK/siNbrYtRF7BU997DYwZ2Y5a/V8LpXuAJfnEhloES61UJ+dWMG/WmsosBxQMAOSa7ufQGZQen0+GQTaTfYc=
+	t=1784101401; cv=none; b=caWtDR4b4JYmTuwxMHbpjMaj74jLZH8zOMfjnQnzKzJ0zZ1GckrSHeqRIB/StFk8COFdaWRoJti9Z1iyDIFiZ3FxTeIS5AOJXmDEwV0dHiRBylwlS2J17XeqVilvqNJkrv7dfaSmexYl1GeavvePlDgGZmlRG3Wuri+wkxrk0xc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1784101384; c=relaxed/simple;
-	bh=NcAElaD8sUPAH/N68yI6IGuU8KvxdjdQAR9Xh87DRg8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=d+X6p78DJaDd8nQm35xURRUPpO9iy6cJF6gdUTsv4iF6mJw9evRY8RMSxW6v4p2l5MiQ87agcx0wVYMpcZtwoN0EIus5SO0hYze087F9iT3aLoB0J7ghAhW6b2aSDURTyCq8PtHgcKc7GKXsjFuDiW4kwe/Y/WlLmkL/AKQRHEs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=y3/wcrVG; arc=none smtp.client-ip=185.171.202.116
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id 03312C2B9C3;
-	Wed, 15 Jul 2026 07:43:16 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id F1C456035C;
-	Wed, 15 Jul 2026 07:42:59 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id CB67711BD3B89;
-	Wed, 15 Jul 2026 09:42:53 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1784101378; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:content-language:in-reply-to:references;
-	bh=l5VRDyCcYFi+uaCDadAWQtjOhPYTHQGMGvYp4MEsRiQ=;
-	b=y3/wcrVGRpQenD/40dpK7mGAXs97/j8JkHoT+sK0VgLZinBzeYlHoLP8kzwe2UbK4+tz2g
-	djqHOAubn8ocLtRmxM6vaheZzZHK31iZQfroJsyvLqQY93fv2pltcPCnX8/T0+8U/sunGg
-	rU4uqX4GolCr7k6FV4MYeWSkOZuKM1OwuSlP6Sw93YvHdebR81roekBgtTq6/OAc6XK5CT
-	YFSVNKLzPLI7cGBKPywgofVBbdPLwAhcawjlVcJB/NyTTRayvg+88Q7GpvgGW+8PpPa1Wi
-	kw3vnVowNZ/59rqdDoZIZ/q+20TK2bP51wBp+G4X9gSdHHsSJ8pv6FTuPXXt3w==
-Message-ID: <4823c1d9-51d9-45fa-a96c-f2caab1cb29e@bootlin.com>
-Date: Wed, 15 Jul 2026 09:42:52 +0200
+	s=arc-20240116; t=1784101401; c=relaxed/simple;
+	bh=eYwuW4vmV1NRfCF9e/kPy7g+6JHXYDajt+Al5Gz8oqw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=EXQT7hN83dix9aiFWXUoFtjMnKwPbbmPvo7aMlm+/o8KX3KevDVv/3olYeeFqys2jzBemWgfGCxBVg8t7OxDMBSVM1sQou07JdYeAH6IzDMCbFH2X2cJAuy7aeWpLQzLs/3Pb9Cl1cei7Lu1NX/bUpZHl/2ZIdseilmv9C1dIu8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=lontium.com; spf=pass smtp.mailfrom=lontium.com; dkim=pass (2048-bit key) header.d=lontium.com header.i=@lontium.com header.b=PcFVwjnO; arc=none smtp.client-ip=115.124.28.101
+DKIM-Signature:v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=lontium.com; s=default;
+	t=1784101390; h=MIME-Version:From:Date:Message-ID:Subject:To:Content-Type;
+	bh=fYczancSDpXTTTTzNgOct5Z1D1AO/aaqYRYfDjK901E=;
+	b=PcFVwjnOX47F4YoOqPD7iXagUXRsuQyI2jhPwz05Pht1tDsqJcEU3Zg4llRry5HWiXWvOk+NGNU755ICxpLzm332qIUewucT6zJtJn8eReerTFsHaX430A86nwcvhp2hEbUi1OIbtkGc6CCVJIou8NXM8CQEEDUgNUZiI85IqcAsr3wNuyCqRiNYqcOrdFKc55xiSQriSMJZU4uIOCH09CjxjIhbo04A8sqCxoM+QFEZtaw8QJaWr6s77FepaSjEpa3ujzmMHITRiWPCKLyz2FJNaBdsn5A3BPULhGjLOMhPd8yx4SAngUaA2c9zW6jaHVYC2n/8Gn5hz/lmG35c2g==
+X-Alimail-AntiSpam:AC=CONTINUE;BC=0.07436262|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_regular_dialog|0.0027374-0.000409488-0.996853;FP=3276738345256568050|0|0|0|0|-1|-1|-1;HT=maildocker-contentspam033045018182;MF=syyang@lontium.com;NM=1;PH=DS;RN=1;RT=1;SR=0;TI=SMTPD_---.iLoJYfg_1784101388;
+Received: from mail-oi1-f174.google.com(mailfrom:syyang@lontium.com fp:SMTPD_---.iLoJYfg_1784101388 cluster:ay29)
+          by smtp.aliyun-inc.com;
+          Wed, 15 Jul 2026 15:43:09 +0800
+Received: by mail-oi1-f174.google.com with SMTP id 5614622812f47-4877a7b451dso3051989b6e.0
+        for <devicetree@vger.kernel.org>; Wed, 15 Jul 2026 00:43:09 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AHgh+RpG6A90o7GIeUiZXxVPvkW/mksmTLBBkDMMwWmlyvGs8iH4PXQfdBy0wywmOmblkZO4XyGUHKqm3nvG@vger.kernel.org
+X-Gm-Message-State: AOJu0YzbGNMC4Ur/1iVAy0Hb+SoSdfCAFeapQOCUJP/ZRxeZ/oh81tb2
+	yZj8eBjvqEgzPb0SJuL0GXOOZCB2tT1X40JJRsSzEV5TvMeAUux3jJcomFYZ+/bvEnAWEWwAlG3
+	Boc+QCq++d14pSQw2FYhfg0KKj88/S28=
+X-Received: by 2002:a05:6808:1986:b0:4a4:68a9:5f04 with SMTP id
+ 5614622812f47-4a495ff24eemr1298337b6e.27.1784101387714; Wed, 15 Jul 2026
+ 00:43:07 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH 07/10] net: pcs: xpcs: add Rockchip RK3568 platform
- glue driver
-To: Coia Prant <coiaprant@gmail.com>, kuba@kernel.org, davem@davemloft.net,
- edumazet@google.com, pabeni@redhat.com, andrew+netdev@lunn.ch,
- robh@kernel.org, krzk+dt@kernel.org, heiko@sntech.de
-Cc: netdev@vger.kernel.org, linux-rockchip@lists.infradead.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-phy@lists.infradead.org
-References: <20260714191341.690906-1-coiaprant@gmail.com>
- <20260714191341.690906-8-coiaprant@gmail.com>
-From: Maxime Chevallier <maxime.chevallier@bootlin.com>
-Content-Language: en-US
-In-Reply-To: <20260714191341.690906-8-coiaprant@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Last-TLS-Session-Version: TLSv1.3
+References: <20260715015438.2770155-1-syyang@lontium.com> <20260715015438.2770155-3-syyang@lontium.com>
+ <20260715020616.B73771F000E9@smtp.kernel.org>
+In-Reply-To: <20260715020616.B73771F000E9@smtp.kernel.org>
+From: Sunyun Yang <syyang@lontium.com>
+Date: Wed, 15 Jul 2026 15:42:55 +0800
+X-Gmail-Original-Message-ID: <CAFQXuNZdwNxbAsnK7P4zs0eZnm4pN+6kKkO-aP6Q_higPEW-yg@mail.gmail.com>
+X-Gm-Features: AUfX_mxYgF1LKb3HBSUHlun9wnYnCA6QN_5HsLuDULVayA3SKvsDowqxL49a2q4
+Message-ID: <CAFQXuNZdwNxbAsnK7P4zs0eZnm4pN+6kKkO-aP6Q_higPEW-yg@mail.gmail.com>
+Subject: Re: [PATCH v17 2/2] drm/bridge: Add Lontium LT7911EXC eDP to MIPI DSI bridge
+To: sashiko-reviews@lists.linux.dev
+Cc: robh@kernel.org, conor+dt@kernel.org, dri-devel@lists.freedesktop.org, 
+	devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
-	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[lontium.com:s=default];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-326717-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com,kernel.org,davemloft.net,google.com,redhat.com,lunn.ch,sntech.de];
-	FORGED_SENDER(0.00)[maxime.chevallier@bootlin.com,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	FORGED_RECIPIENTS(0.00)[m:coiaprant@gmail.com,m:kuba@kernel.org,m:davem@davemloft.net,m:edumazet@google.com,m:pabeni@redhat.com,m:andrew+netdev@lunn.ch,m:robh@kernel.org,m:krzk+dt@kernel.org,m:heiko@sntech.de,m:netdev@vger.kernel.org,m:linux-rockchip@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-phy@lists.infradead.org,m:andrew@lunn.ch,m:krzk@kernel.org,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-326719-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	DMARC_NA(0.00)[lontium.com];
+	FORGED_SENDER(0.00)[syyang@lontium.com,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS(0.00)[m:sashiko-reviews@lists.linux.dev,m:robh@kernel.org,m:conor+dt@kernel.org,m:dri-devel@lists.freedesktop.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[lontium.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	MISSING_XM_UA(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[maxime.chevallier@bootlin.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[bootlin.com:+];
-	ALIAS_RESOLVED(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[syyang@lontium.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_NONE(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp,bootlin.com:from_mime,bootlin.com:dkim,bootlin.com:mid,radxa.com:url]
+	ALIAS_RESOLVED(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[5];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,vger.kernel.org:from_smtp,bridge.dev:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,mail.gmail.com:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 93FE675B977
+X-Rspamd-Queue-Id: 33E9D75B986
 
-Hi,
-
-On 7/14/26 21:08, Coia Prant wrote:
-> The RK3568 SoC integrates a Synopsys DesignWare XPCS that is accessed
-> via APB3 memory-mapped registers.
-> This driver provides the glue logic to make the XPCS accessible to
-> the generic pcs-xpcs core.
-> 
-> The XPCS block contains four MII ports (0..3), each of which can be
-> routed to GMAC0 or GMAC1 via the pcs-handle property in the MAC node.
-> The hardware maps these ports to different MMDs:
->   - port 0: MMD 7 (ROCKCHIP_MMD_MII)
->   - port 1: MMD 2 (ROCKCHIP_MMD_MII1)
->   - port 2: MMD 3 (ROCKCHIP_MMD_MII2)
->   - port 3: MMD 4 (ROCKCHIP_MMD_MII3)
-> 
-> This driver creates a virtual MDIO bus that translates MDIO operations
-> to APB3 register accesses, with proper address remapping for each port.
-> The generic xpcs driver then creates a phylink_pcs instance on top of
-> this bus, allowing the MAC to use the PCS via the standard phylink API.
-> 
-> Link: https://dl.radxa.com/rock3/docs/hw/datasheet/Rockchip%20RK3568%20TRM%20Part2%20V1.1-20210301.pdf (Page 2078)
-> Signed-off-by: Coia Prant <coiaprant@gmail.com>
-
-[...]
-
-> +static int xpcs_rk_probe(struct platform_device *pdev)
-> +{
-> +	struct dw_xpcs_rk *pxpcs;
-> +	int ret;
-> +
-> +	pxpcs = xpcs_rk_create_data(pdev);
-> +	if (IS_ERR(pxpcs))
-> +		return PTR_ERR(pxpcs);
-> +
-> +	/*
-> +	 * The XPCS may be attached to a power domain (e.g. PD_PIPE). The domain
-> +	 * must be powered on before any register access, otherwise the SoC will
-> +	 * trigger a synchronous external abort (SError).
-> +	 *
-> +	 * Accessing the XPCS registers also requires a TX clock from the SerDes,
-> +	 * which is needed for the soft reset.
-> +	 */
-> +	ret = xpcs_rk_serdes_phy_init(pxpcs);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = xpcs_rk_serdes_phy_poweron(pxpcs);
-> +	if (ret)
-> +		return ret;
+<sashiko-bot@kernel.org> =E4=BA=8E2026=E5=B9=B47=E6=9C=8815=E6=97=A5=E5=91=
+=A8=E4=B8=89 10:06=E5=86=99=E9=81=93=EF=BC=9A
 >
-There are 2 unusual things here.
+> Thank you for your contribution! Sashiko AI review found 5 potential issu=
+e(s) to consider:
+> - [High] Missing cleanup of `output_bridge` in `mipi_dsi_host_detach` pre=
+vents DSI device rebinds and causes use-after-free.
 
-The first one is that you manage the serdes phy from the PCS driver, usually it's
-the MAC driver doing so. In stmmac, we have the serdes_poweron and serdes_poweroff
-callbacks to hook into for Serdes control.
+Intentional design, consistent with cdns-dsi-core.c cdns_dsi_detach()
+(lines 1082-1091) which does not clear output->dev. Clearing
+output_bridge would allow re-attach, causing devm_drm_of_get_bridge()
+to allocate new devres without freeing the previous one, resulting in
+a real memory leak. The DRM bridge framework does not support dynamic
+bridge chain reconfiguration. No use-after-free: the -EBUSY guard
+returns before dereferencing output_bridge, and bridge_attach is not
+called by the SoC encoder after drm_bridge_remove().
 
-The second thing is that you're setting the serdes ON at probe time, there's no
-dynamic control of it. Usually we try to only power this on at admin-up time.
+> - [High] Sysfs attribute `lt7911exc_firmware` is accessible before the dr=
+iver has finished initialization in `probe`, leading to a kernel panic.
 
-Can you explain the rationale behind controlling the serdes here directly, and not
-from the MAC driver ? I don't see any mention of that in the commit log, and I'm not
-convinced this is the correct approach.
+False positive. The driver core creates dev_groups sysfs attributes
+AFTER probe() returns successfully. In drivers/base/dd.c
+really_probe(), call_driver_probe() (line 706) executes before
+device_add_groups(dev, drv->dev_groups) (line 725). By the time the
+sysfs file is visible to userspace, all mutexes, workqueue, and regmap
+are fully initialized. There is no window where userspace can access
+the sysfs attribute before initialization completes.
 
-Maxime
+> - [High] Asynchronous firmware upgrade worker accesses `bridge.dev` witho=
+ut holding a reference, causing a Use-After-Free if the DRM display control=
+ler unbinds.
+
+This is a known DRM bridge framework limitation, not specific to this
+driver. drm_bridge_remove() does not clear bridge.dev, so all bridge
+drivers calling drm_kms_helper_hotplug_event() share this risk. A
+proper fix requires framework-level bridge-to-drm_device lifetime
+tracking. Triggering requires root sysfs access to start firmware
+upgrade while simultaneously unbinding the DRM master driver =E2=80=94 an
+administrator operation outside normal usage.
+
+> - [Medium] Driver illegitimately mutates the state of a downstream bridge=
+ object by explicitly modifying `pre_enable_prev_first`.
+
+Hardware constraint. The DSI output stream (register 0xe0b0) must be
+enabled after the panel is powered on. The override is safe because
+transfer() is a stub =E2=80=94 panel DCS commands are silently discarded an=
+d
+panel initialization is handled entirely by the chip's internal
+firmware. The panel driver's prepare_prev_first preference is
+therefore irrelevant for this chip. The comment above the assignment
+documents this rationale.
+
+> - [Low] The `lt7911exc->removed` flag is read without a lock or memory ba=
+rrier in the firmware upgrade work, leading to a data race.
+
+Valid.
+
+> --
+>
+> --- Patch [2]: [PATCH v17 2/2] drm/bridge: Add Lontium LT7911EXC eDP to M=
+IPI DSI bridge ---
+> commit f9cec7dee2928b841f4104ddf68c1ebfeffba41a
+> Author: Sunyun Yang <syyang@lontium.com>
+>
+> drm/bridge: Add Lontium LT7911EXC eDP to MIPI DSI bridge
+>
+> Add support for the Lontium LT7911EXC bridge chip, which converts
+> eDP input to MIPI DSI output using an internal firmware-controlled
+> pipeline.
+>
+> > diff --git a/drivers/gpu/drm/bridge/lontium-lt7911exc.c b/drivers/gpu/d=
+rm/bridge/lontium-lt7911exc.c
+> > new file mode 100644
+> > index 0000000000000..5b7a184e96194
+> > --- /dev/null
+> > +++ b/drivers/gpu/drm/bridge/lontium-lt7911exc.c
+>
+> [ ... ]
+>
+> > @@ -458,6 +458,25 @@ static void lt7911exc_firmware_upgrade_work(struct=
+ work_struct *work)
+> >  out_mcu_run:
+> >       scoped_guard(mutex, &lt7911exc->ocm_lock)
+> >               lt7911exc_inside_mcu_run(lt7911exc);
+> >
+> >  out_release_fw:
+> >       release_firmware(fw);
+> >
+> >  out_unlock_upgrade:
+> >       scoped_guard(mutex, &lt7911exc->ocm_lock) {
+> >               if (!lt7911exc->removed)
+> >                       lt7911exc->upgrade =3D false;
+> >       }
+> >
+> >       /* Notify DRM to re-trigger modeset after firmware upgrade */
+> >       if (!lt7911exc->removed && lt7911exc->bridge.dev)
+>
+> [Severity: Low]
+> Is there a data race on the removed flag here?
+>
+> The lt7911exc->removed flag is set under ocm_lock in lt7911exc_remove(), =
+but
+> it is read here outside of any lock or memory barrier.
+>
+> While cancel_work_sync() in the remove path prevents a logical use-after-=
+free,
+> could this still trigger unmarked data race warnings from KCSAN?
+>
+> [Severity: High]
+> Can this code trigger a use-after-free if the DRM display controller unbi=
+nds?
+>
+> The firmware upgrade work accesses bridge.dev asynchronously. The bridge.=
+dev
+> pointer is assigned when the DRM master attaches, but the I2C bridge driv=
+er
+> holds no reference to it.
+>
+> If a user starts a firmware upgrade via sysfs and then unbinds the DRM
+> master driver before the async work completes, the drm_device is freed.
+>
+> Does this leave a dangling pointer that the worker will then dereference =
+in
+> drm_kms_helper_hotplug_event()?
+>
+> >               drm_kms_helper_hotplug_event(lt7911exc->bridge.dev);
+> >
+> >       mutex_unlock(&lt7911exc->upgrade_lock);
+> >  }
+>
+> [ ... ]
+>
+> > @@ -515,10 +515,31 @@ static int lt7911exc_dsi_host_attach(struct mipi_=
+dsi_host *host, struct mipi_dsi_device *dev)
+> >       lt7911exc->output_bridge =3D bridge;
+> >
+> >       /*
+> >        * Force panel-first enable order: the DSI output stream (0xe0b0)
+> >        * must not be enabled before the panel is powered on.
+> >        * This override is safe because LT7911EXC's transfer() is a stub=
+ =E2=80=94
+> >        * panel DCS commands are silently discarded and panel init is do=
+ne
+> >        * by the chip's internal firmware. The panel driver's
+> >        * prepare_prev_first preference is therefore irrelevant here.
+> >        */
+> >       lt7911exc->output_bridge->pre_enable_prev_first =3D false;
+>
+> [Severity: Medium]
+> Is it safe to explicitly mutate the state of a downstream bridge object?
+>
+> The downstream bridge object belongs to the panel driver. Overriding its
+> pre_enable_prev_first flag violates object ownership and could disrupt th=
+e
+> panel's expected power-on sequence.
+>
+> Could this cause the panel to fail to power on correctly?
+>
+> >
+> >       drm_bridge_add(&lt7911exc->bridge);
+> >
+> >       return 0;
+> >  }
+> >
+> >  static int lt7911exc_dsi_host_detach(struct mipi_dsi_host *host, struc=
+t mipi_dsi_device *dev)
+> >  {
+> >       struct lt7911exc *lt7911exc =3D dsi_host_to_lt7911exc(host);
+> >
+> >       drm_bridge_remove(&lt7911exc->bridge);
+> >
+> >       return 0;
+> >  }
+>
+> [Severity: High]
+> Does this missing cleanup prevent DSI device rebinds and cause a
+> use-after-free?
+>
+> In lt7911exc_dsi_host_attach(), output_bridge is initialized, but it is n=
+ever
+> cleared back to NULL in this detach function.
+>
+> If the downstream DSI panel is unbound via sysfs, the old wrapper remains=
+,
+> pointing to a freed panel.
+>
+> If the panel is subsequently rebound, the check for output_bridge in
+> lt7911exc_dsi_host_attach() will falsely trigger and return -EBUSY,
+> permanently breaking the display pipeline. Should output_bridge be set to
+> NULL here?
+>
+> [ ... ]
+>
+> > @@ -662,11 +662,20 @@ static int lt7911exc_probe(struct i2c_client *cli=
+ent)
+> >       lt7911exc =3D devm_drm_bridge_alloc(dev, struct lt7911exc, bridge=
+, &lt7911exc_bridge_funcs);
+> >       if (IS_ERR(lt7911exc))
+> >               return dev_err_probe(dev, PTR_ERR(lt7911exc), "drm bridge=
+ alloc failed.\n");
+> >
+> >       dev_set_drvdata(dev, lt7911exc);
+> >
+> >       lt7911exc->dev =3D dev;
+> >       lt7911exc->upgrade =3D false;
+> >       lt7911exc->removed =3D false;
+> >
+> >       ret =3D devm_mutex_init(dev, &lt7911exc->ocm_lock);
+>
+> [Severity: High]
+> Could a concurrent sysfs write during probe trigger a kernel panic?
+>
+> Because lt7911exc_attr_groups is attached via driver.dev_groups, the driv=
+er
+> core creates the sysfs files before probe() runs.
+>
+> Here, dev_set_drvdata() exposes the struct before ocm_lock, upgrade_lock,
+> and the work struct are initialized.
+>
+> If a user writes to the sysfs file during this window,
+> lt7911exc_firmware_store() will retrieve the partially initialized struct=
+ and
+> attempt to lock the uninitialized mutex. Should the drvdata be set after
+> initialization is complete?
+>
+> >       if (ret)
+> >               return dev_err_probe(dev, ret, "failed to init mutex\n");
+> >
+> >       ret =3D devm_mutex_init(dev, &lt7911exc->upgrade_lock);
+>
+> [ ... ]
+>
+> --
+> Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260715015438.27=
+70155-1-syyang@lontium.com?part=3D2
 
