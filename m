@@ -1,232 +1,207 @@
-Return-Path: <devicetree+bounces-326648-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-326664-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id vgr8HYMnV2piGQEAu9opvQ
-	(envelope-from <devicetree+bounces-326648-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 08:24:03 +0200
+	id 4LleBH4pV2rJGQEAu9opvQ
+	(envelope-from <devicetree+bounces-326664-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 08:32:30 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC35E75B04B
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 08:24:02 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B39F75B146
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 08:32:29 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=f7wPHOrk;
-	dkim=pass header.d=oss.qualcomm.com header.s=google header.b=doVS7NL6;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326648-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-326648-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=reject) header.from=qualcomm.com;
+	dkim=pass header.d=intel.com header.s=Intel header.b=Q2TbwCJN;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326664-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-326664-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=intel.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 02A6830727CC
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 06:22:33 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 000FC3020A51
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 06:32:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B21CF31AAA8;
-	Wed, 15 Jul 2026 06:22:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A662530C151;
+	Wed, 15 Jul 2026 06:32:26 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 201DA313546
-	for <devicetree@vger.kernel.org>; Wed, 15 Jul 2026 06:22:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3AC7313283;
+	Wed, 15 Jul 2026 06:32:24 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1784096537; cv=none; b=GTcMh3oE2etZOK+rnF9xU9pdhCVjKduYXBfQ6P+FBKsOxJnbXmu5bzWnsD11XOWmJb0ckubezmxo23NdagUsPLnosP24faB9dbZ/Gnj+lLfiqOlCzedBjU8C+kG3W2smcUiJ/oL3+k/jBTjxiCgwO7hlld/MCzta5rr8siZbaEU=
+	t=1784097146; cv=none; b=hmMuCUkR420EtdjvR0wCGThlG+haGCQVaF+QBHS8IKoXqjc7nJAAa2dt7FJ9oxFaFvqRyAqJScjqyZiE1sUFeOvlbfGFa2fnAgvGTNmenPHUt4wwiD+jH9ruL9nD5VkLnQHRQkTsEyVoYotmA2uA3B4FWvrd9XZkOnpziJAIS0I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1784096537; c=relaxed/simple;
-	bh=+bo4RFif1gu/wGo6HC5YBl1wzRAY1rIbep+HIpYss5A=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=pNVXUmr5Y9cYewgP3W2wPuH0LG9tqd8gq5Ixt2c8rY/ffxQ4eJ2o19OG7jRSp9BqmZs/nRgSvuWDD3OXjBc0/1EaADV0zbcvuU/j+o2LRaq8saVkfGy127ANKCuAp7c4voua2yhJjkWJO/C1D8BU6BTQZQdEsMybARc12ZjcoLY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=f7wPHOrk; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=doVS7NL6; arc=none smtp.client-ip=205.220.180.131
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 66F3lGuL2555502
-	for <devicetree@vger.kernel.org>; Wed, 15 Jul 2026 06:22:15 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	PnZim5DOaYpiQZz5/Qs4xB+vmbZsDrFngCnriAgpVuE=; b=f7wPHOrkQEeqGkid
-	C8CX445v8cZ6A86F9TYy45JgTKWXq2JEX4Q4XnxwY0/eHnpfhYwjxFv/x8Db6dXq
-	vLfVjY+wI3JA9WC5gDiwWhivZ93mDTa5aGwioaNq1TUb2QEmeg9qvRozSeAn8ftr
-	PLL9NJUr++bF2TzO1+6MOqHnMNrqhO40ErUP1bkU2VsizNvj88q68AVu2RM9DzJu
-	HKk1haZ0KThJq9yplJhmrnJrdQDKs6QtsexrEHsI7wPb/cZ2kM/lf+7y+bdej5qA
-	LBVfqwqXBCsHs/G0isd5Dd5KhYVZHN22BRFgjFYsPBOsSDX5vEAJ7S3BhRVonYL1
-	STxIXA==
-Received: from mail-pl1-f200.google.com (mail-pl1-f200.google.com [209.85.214.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4fds9kt8sy-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 15 Jul 2026 06:22:14 +0000 (GMT)
-Received: by mail-pl1-f200.google.com with SMTP id d9443c01a7336-2cefa1a2be6so14293175ad.0
-        for <devicetree@vger.kernel.org>; Tue, 14 Jul 2026 23:22:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1784096534; x=1784701334; darn=vger.kernel.org;
-        h=content-transfer-encoding:content-type:in-reply-to:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=PnZim5DOaYpiQZz5/Qs4xB+vmbZsDrFngCnriAgpVuE=;
-        b=doVS7NL6uaFIjZANOY13v+wECpk1x+GX80QAa2WdVmKldXKl3EQPVkyqulgwZ3Y8/t
-         7kcAU+lbHEsvfDVnIGj8IEp/fxss/A+K3R8XsmIy1viFYzNVLgFiPHYalXXnk2Q6PwHV
-         BQgVaikxlqfUD58t9RLY9HG73S17S28tayWBxODptEiXUj6c7IDtaKDN81AxvTZK52Dk
-         LYxGMl63pvVrNw8TQzYD4HDxqk3HrT022cOZ8EPkaJiA3q1HtdNPLjZ07jTZrPV8vWm0
-         sloRKuUhl7ilrXRfbw7f//K3Msw7BS5BM/0BK8QajtxWqI29MD9ubcC4EcdrQssMiAET
-         fW+Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1784096534; x=1784701334;
-        h=content-transfer-encoding:content-type:in-reply-to:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=PnZim5DOaYpiQZz5/Qs4xB+vmbZsDrFngCnriAgpVuE=;
-        b=WEmSu7T6chv+OHpx7OG9Vom/uPrYo59mXbVxqRMnJHPYIUoq6pmfUH4jx1IYTRGqxP
-         dHG22UrnBdjNhNRGMh0arqEyEB7IyGCCCMrdb5xrK0GP1ZIzzbbol4ct3V/pzSQcc8wv
-         4Kx4P9fOoPo9xNZpHKt/Kwa5mUcUVaSs+ZR7/jR1Djr0OBG6i+hNjAgCINOsGWxeFk2r
-         er4XdgejrA8gHyM77oio+OzJ8O7t6jXaLF7PCYyWnqdTR2bw7PPp+mS4FNInAadjjvnG
-         eV5Khb4pC/H9DnKKtPscQ+TRIaRZSAEWJgyfG2Yhwx0cgYZLge4SDkZsDVV5LHhnOIfo
-         696w==
-X-Forwarded-Encrypted: i=1; AHgh+Ro9dDQ8CJtI3HX5BPzku/910K1B7tH1jsuXNmZUwDEUkeD6tmvp+rd+fsJggcHkhtMm91RBdvT9FATR@vger.kernel.org
-X-Gm-Message-State: AOJu0YzDss/pqVK9QdRg+i+ePViZNqLHV4J8NLpSkWwZBkBc6dzohJez
-	9pTt79xQUSFWkGX/jrc3SnfCFmnEGFixjA6vMnBH4IoyOXRZHKNKNZ3z8GulSx3VP5m4YNuldY6
-	Y4Y6LBDEGVPr7eYD6Y+zGWOFPP1erUs5icuLPOnCT2+GMA0MHyvOlni0G6aefWMnxhwze40zG
-X-Gm-Gg: AfdE7ckM8zIUvKBp9AZMwhF2nd53pJjGEwoXn4GX6MfdHaOj+UoS8YPyVB9sMXltbUE
-	St/eF1BQkOPWXJ4SV9LzztWkzmWQtHWkdJ+fyPv9IQgcVLvMrHf1fYyD2g2bAJdYtzKki5kSLOL
-	B+pWNMaqHJlEBBLgon4TsuPd5abxXdKD2t7fWeh7AqkJ9wtUcna4FEN2/pzhkOobQCiDCA5aCIW
-	GfbQ+B3UFhm8fhrmBSGAtlNBR7lYnkMd2q3qn0dZoLb4305Oz1sflR7aHx+tixGx1xxFLPJ5Aj1
-	5ppw8nOXqFXdl7n6ePQk8iz8Hj7ARpgihoGJ3/pKfMZJHFI7qTbzo+SeOIAncf+sQlvP32MeEZg
-	NEu34SeL8LdlRrlWRnnKq9fgoEpns0GL5fEGA0mi8
-X-Received: by 2002:a17:903:2a88:b0:2c9:d8c6:1db8 with SMTP id d9443c01a7336-2ce9f284e45mr158543255ad.28.1784096533779;
-        Tue, 14 Jul 2026 23:22:13 -0700 (PDT)
-X-Received: by 2002:a17:903:2a88:b0:2c9:d8c6:1db8 with SMTP id d9443c01a7336-2ce9f284e45mr158542975ad.28.1784096533314;
-        Tue, 14 Jul 2026 23:22:13 -0700 (PDT)
-Received: from [10.217.198.242] ([202.46.22.19])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2cf08fd77dasm2386245ad.72.2026.07.14.23.22.09
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 14 Jul 2026 23:22:12 -0700 (PDT)
-Message-ID: <018990d8-2a6a-4725-8aee-af221057d664@oss.qualcomm.com>
-Date: Wed, 15 Jul 2026 11:52:07 +0530
+	s=arc-20240116; t=1784097146; c=relaxed/simple;
+	bh=RgFSZ4GcQNxSGk/4lQiMQnPxmHi1gAvKmjEWlI5TUMQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=lynxQIEOGTtCroC/NLEeIJfX9UkGQ57sfPKj+4wUlMgyjCbPNkaXFwQMFpRlyp1Jrcki+U8pPKJoBnLAH9nQIY6oJj1Lz5TVZJ2jxMzrSFXyd6XIsUCCxRgax+gq4b2TuF+0CbyTlm/zwlzqOiXXNKeEAe2++hnkzky4Gaf+jWs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Q2TbwCJN; arc=none smtp.client-ip=192.198.163.15
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1784097145; x=1815633145;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=RgFSZ4GcQNxSGk/4lQiMQnPxmHi1gAvKmjEWlI5TUMQ=;
+  b=Q2TbwCJNmrZaYb5Qd80ZDc5UTaurU4mwkq6Hr4uRF5QPJjMH3HPmqKD6
+   PkA6QyAg+tfpSNxNU/YH8Y7qRUKG8+I8vSRlzHnLpbAXuSxbicotmPbFF
+   GhdDu0MtcTlWMH9wB4aevZf7F0AGV42vKz36ZxbibDz1mVnnAWHq0FRWV
+   If7ua3SEV21gdOqIKOqBdA53Q8GZ0HaejxsJqSFaiQXjJon3ne554HiDp
+   adiX5LK5SzXSXgNsd2/LS34f2pmVL9mksMsaqtmMjorF2RJDiUatAZqDA
+   gZDPtaTHePRD+YmxK1AycJ0aW4jcZqqkhgqNhW5adMNHLLr9CBa3vTQxy
+   w==;
+X-CSE-ConnectionGUID: +LQO0EBGTcyfoHYW7ufkIw==
+X-CSE-MsgGUID: 09u5F7t1QVynrWvNSIzYhQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11847"; a="84842206"
+X-IronPort-AV: E=Sophos;i="6.25,165,1779174000"; 
+   d="scan'208";a="84842206"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Jul 2026 23:32:22 -0700
+X-CSE-ConnectionGUID: 0DPTEpseSdSJFiU6iNrQpg==
+X-CSE-MsgGUID: fImbR2beQzyJHFlgMfVyjQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,165,1779174000"; 
+   d="scan'208";a="254332119"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost) ([10.245.244.44])
+  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Jul 2026 23:32:18 -0700
+Date: Wed, 15 Jul 2026 09:32:15 +0300
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Jonathan Cameron <jonathan.cameron@oss.qualcomm.com>
+Cc: Rodrigo Alencar <455.rodrigo.alencar@gmail.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Rodrigo Alencar via B4 Relay <devnull+rodrigo.alencar.analog.com@kernel.org>,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+	linux-hardening@vger.kernel.org,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	David Lechner <dlechner@baylibre.com>,
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Shuah Khan <skhan@linuxfoundation.org>, Kees Cook <kees@kernel.org>,
+	"Gustavo A. R. Silva" <gustavoars@kernel.org>
+Subject: Re: [PATCH v7 07/17] iio: test: add kunit tests for channel prefix
+ naming generation
+Message-ID: <alcpb-7GVSfk6jFB@ashevche-desk.local>
+References: <20260707-ad9910-iio-driver-v7-0-a4ec30f63700@analog.com>
+ <20260707-ad9910-iio-driver-v7-7-a4ec30f63700@analog.com>
+ <20260712020928.2c8d1667@jic23-huawei>
+ <egyms7ulkxsgu4pvfkoruelec3sf6ca4bndcuqkvxljrdluqwu@edlqne7oy3xs>
+ <20260714180812.000070c4@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 7/7] arm64: dts: qcom: x1e80100: Add deepest idle state
-To: Bjorn Andersson <andersson@kernel.org>
-Cc: Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>, Thomas Gleixner <tglx@kernel.org>,
-        Linus Walleij <linusw@kernel.org>,
-        Bartosz Golaszewski <brgl@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-gpio@vger.kernel.org, Sneh Mankad <sneh.mankad@oss.qualcomm.com>
-References: <20260707-hamoa_pdc_v3-v4-0-dfd1f4a3ae89@oss.qualcomm.com>
- <20260707-hamoa_pdc_v3-v4-7-dfd1f4a3ae89@oss.qualcomm.com>
- <alKEUhRgyoPs0q0c@baldur>
-Content-Language: en-US
-From: "Maulik Shah (mkshah)" <maulik.shah@oss.qualcomm.com>
-In-Reply-To: <alKEUhRgyoPs0q0c@baldur>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Authority-Analysis: v=2.4 cv=Q63iJY2a c=1 sm=1 tr=0 ts=6a572716 cx=c_pps
- a=IZJwPbhc+fLeJZngyXXI0A==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
- a=IkcTkHD0fZMA:10 a=RAioF0-LDSMA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=gowsoOTTUOVcmtlkKump:22
- a=VwQbUJbxAAAA:8 a=pOI47-Q_PV5DkGHPJZYA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=uG9DUKGECoFWVXl0Dc02:22
-X-Proofpoint-ORIG-GUID: kc1seDwRToMFK4UAmo10bVqeNn_SF786
-X-Proofpoint-Spam-Info: AW1haW4tMjYwNzE1MDA1NyBTYWx0ZWRfX7EBfGdbEMRRP
- Gv/URoqOBcRxjF+sMCaH1LA3ixzY+q6FptBRBegDzX7X0FKYYbFuZ5xAWa8Ja08zLOPQrEIwVGU
- Vajp931OsyDAc71UAYSg2SF6AUO6zIY=
-X-Proofpoint-GUID: kc1seDwRToMFK4UAmo10bVqeNn_SF786
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNzE1MDA1NyBTYWx0ZWRfX6X2kHutKe7QB
- TBAi8rTOX21qCtnf6HDsplRDXDj5xpOocRe1rY4pdbDRHgqZJuJNo5Rxi2ASrZVYLItPY9+ZAN9
- E/lumwJFIqlLAeFKa6l8rnsYhaFXaXpMelJNuy4AW+uKIbnKDFP3o9ZqXZhfXjvl9IyMYMpsYX6
- n0RBEGuBrU+ZaST/1PVfrU0MUe/P8TedvG2TcBxmTOv4a9YwzxiLsp2UZljg+E2HE9YQB6NxVzP
- ft9oTQvJSFcKnKz9jJGXnOpeULu17FUFf4/7gXN+MQV1+oEN/2gsjajvdv2nbKccPv8pqrQJawt
- ZHCColW/gP5HWsTl7VvCQpPXWFRk0OuVfBB4SM1ybBX9IRwyRT6hNIgwT4hIEG+Xfq+DsP1F5kZ
- dCjUynYkTg3rw2Vicx4Mi80v0MregAFXlMXuUMLjXFCPmXcHwG5x8pyOfzfHC0+8WOkNZXAMHwv
- zuA8G+p0vnJPOnIH6Aw==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.134,FMLib:17.12.100.49
- definitions=2026-07-15_02,2026-07-14_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 lowpriorityscore=0 adultscore=0 suspectscore=0 bulkscore=0
- phishscore=0 impostorscore=0 malwarescore=0 priorityscore=1501 clxscore=1015
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2606150000 definitions=main-2607150057
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260714180812.000070c4@oss.qualcomm.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-3.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[intel.com:d:+,kernel.org:s:+];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-326648-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[13];
 	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[21];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-326664-lists,devicetree=lfdr.de];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:andersson@kernel.org,m:konradybcio@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:tglx@kernel.org,m:linusw@kernel.org,m:brgl@kernel.org,m:linux-arm-msm@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-gpio@vger.kernel.org,m:sneh.mankad@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:jonathan.cameron@oss.qualcomm.com,m:455.rodrigo.alencar@gmail.com,m:jic23@kernel.org,m:devnull+rodrigo.alencar.analog.com@kernel.org,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-doc@vger.kernel.org,m:linux-hardening@vger.kernel.org,m:lars@metafoo.de,m:Michael.Hennerich@analog.com,m:dlechner@baylibre.com,m:andy@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:p.zabel@pengutronix.de,m:corbet@lwn.net,m:skhan@linuxfoundation.org,m:kees@kernel.org,m:gustavoars@kernel.org,m:455rodrigoalencar@gmail.com,m:devnull@kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	HAS_ORG_HEADER(0.00)[];
+	FORGED_SENDER(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[gmail.com,kernel.org,vger.kernel.org,metafoo.de,analog.com,baylibre.com,pengutronix.de,lwn.net,linuxfoundation.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[maulik.shah@oss.qualcomm.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,oss.qualcomm.com:from_mime,oss.qualcomm.com:dkim,oss.qualcomm.com:mid,vger.kernel.org:from_smtp,qualcomm.com:dkim];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[maulik.shah@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	ALIAS_RESOLVED(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	MISSING_XM_UA(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,rodrigo.alencar.analog.com,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,intel.com:from_mime,intel.com:dkim,ashevche-desk.local:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: DC35E75B04B
+X-Rspamd-Queue-Id: 5B39F75B146
 
+On Tue, Jul 14, 2026 at 06:08:12PM -0700, Jonathan Cameron wrote:
+> On Mon, 13 Jul 2026 10:52:56 +0100
+> Rodrigo Alencar <455.rodrigo.alencar@gmail.com> wrote:
+> > On 12/07/26 02:09, Jonathan Cameron wrote:
+> > > On Tue, 07 Jul 2026 15:04:28 +0100
+> > > Rodrigo Alencar via B4 Relay <devnull+rodrigo.alencar.analog.com@kernel.org> wrote:
 
+...
 
-On 7/11/2026 11:37 PM, Bjorn Andersson wrote:
-> On Tue, Jul 07, 2026 at 02:51:39PM +0530, Maulik Shah wrote:
->> Add deepest idle state as GPIO IRQs can work as wakeup capable interrupts
->> in deepest idle state.
->>
+> > > > Because __iio_chan_prefix_emit() is static, the test translation unit
+> > > > is pulled into industrialio-core.c.  
+
+KUnit also has static/non-static automation via a macro (defined in the
+kunit/visibility.h) and I see that's used in the below example.
+
+> > > Isn't there some magic route cases like this that makes it non static
+> > > only when self tests are enabled? 
+> > > Claude tells me to look at include/kunit/visibility.h  
+> > 
+> > There is, Although I think that using
+> > 
+> > 	#if IS_ENABLED(CONFIG_IIO_CHANNEL_PREFIX_KUNIT_TEST)
+> > 		#include "test/iio-test-channel-prefix.c"
+> > 	#endif
+> > 
+> > was more straight forward, less invasive and easier to change than..
+
+Maybe, but thanks to this thread, I fixed other modules that use their own
+approach to use the standard KUnit infra for this (as below).
+
+> > 	/* In "drivers/iio/industrialio-core.c" */
+> > 
+> > 	#include <kunit/visibility.h>
+> > 	...
+> > 	VISIBLE_IF_KUNIT ssize_t __iio_chan_prefix_emit(...)
+> > 	{
+> > 	...
+> > 	}
+> > 	EXPORT_SYMBOL_IF_KUNIT(__iio_chan_prefix_emit);
+> > 
+> > 	/* In "iio_core.h" */
+> > 
+> > 	#if IS_ENABLED(CONFIG_KUNIT)
+> > 		ssize_t __iio_chan_prefix_emit(...);
+> > 	#endif
+> > 
+> > 	/* In "drivers/iio/test/iio-test-channel-prefix.c" */
+> > 
+> > 	#include <kunit/visibility.h>
+> > 	#include <iio_core.h>
+> > 	...
+> > 	MODULE_IMPORT_NS("EXPORTED_FOR_KUNIT_TESTING");
+> > 	...
+> > 	// Use __iio_chan_prefix_emit() in tests
 > 
-> There's a lot of implied background in this sentence. When you write
-> commit messages, please intend for them to be read by someone who don't
-> have your background insight to the problem. In fact, if someone asks
-> you about this sentence in 5 years would you be able to retell exactly
-> why we ended up with this patch?
-> 
-> Please rewrite this to start with a problem description, then describe
-> the user-visible change.
+> I'd rather this wasn't built into the core module.  So prefer you jump
+> though those hoops.
 
-Agree. Added in v5.
+Hmm... The above (while being verbose) is the standard way of how we export
+symbols for KUnit tests. Do you have a better alternative that everyone can
+use? (Not only IIO subsystem.)
 
-> 
-> https://docs.kernel.org/process/submitting-patches.html#describe-your-changes
-> 
->> Update entry/exit-latency-us to follow DSDT for cluster_cl5 idle state.
-> 
-> I don't have strong opinions about bundling this part of the change - it
-> could be argued that it's a separate change, but I won't force it.
-> 
-> But as written I think any reasonable language parser would consider
-> this to be related to the addition of the deepest idle state, not "While
-> we're adding the new state, also adjust the cluster_cl5 latencies with
-> values from production configuration."
+-- 
+With Best Regards,
+Andy Shevchenko
 
-Added in v5 commit message on why its bundled in same change, 
 
-"The newly added domain_ss3 state has entry/exit latencies of 2500 us.
-The shallower cluster_cl5 state had entry/exit latencies of 2200/4000 us
-which are higher than the deeper state — an inconsistency that would
-confuse the idle governor. Correct cluster_cl5 latencies to 2000 us each
-to match production configuration values".
-
-Thanks,
-Maulik
 
