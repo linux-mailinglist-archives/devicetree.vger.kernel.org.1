@@ -1,63 +1,64 @@
-Return-Path: <devicetree+bounces-326784-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-326790-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id clNyFihOV2rQIwEAu9opvQ
-	(envelope-from <devicetree+bounces-326784-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 11:08:56 +0200
+	id aUQxHgtRV2qzJAEAu9opvQ
+	(envelope-from <devicetree+bounces-326790-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 11:21:15 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id E92BB75C3F4
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 11:08:55 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id E2E6D75C698
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 11:21:14 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=O1c8wJm6;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326784-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-326784-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=RB93WFTw;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326790-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-326790-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id E121D3011798
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 09:08:47 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C064F31BC178
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 09:10:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 175EC3EB0FA;
-	Wed, 15 Jul 2026 09:08:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A592F3EFFB8;
+	Wed, 15 Jul 2026 09:09:46 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF5463E3DA2
-	for <devicetree@vger.kernel.org>; Wed, 15 Jul 2026 09:08:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCCDB3ECBCD
+	for <devicetree@vger.kernel.org>; Wed, 15 Jul 2026 09:09:44 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1784106527; cv=none; b=NWGzODBa088dC4ianQCWTdHSHX5qjLnUuMengbAVYSIPhoZ1xRY6pDlKO8nFnlGKnGptGeogFa+WJHQiJhoxQ+mIGBsYSpF6i/fneZWa6Wnq4M3cuUBXbag4HnyzR6+Qg2MCpZ98khtV/x+DFteGXhcOCDDYvvXrXYeSKVWJwPM=
+	t=1784106586; cv=none; b=HEW+SOwVc/yJu+wZkXdK7ODMGOvKNIjoYpdkd45q5/Uub0F6gaPiayhFrPEOuoHSE75T/CcnZPoPpp0KbfnVQitGpn/RAZBaQEcYRpV4ANIpSxLuoQmU3hn+07MCbrdVUjEUlZqZPTK91fh5Jx1lryMgNRciFYzpEZ3GPoM7tK4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1784106527; c=relaxed/simple;
-	bh=0RXsWghRInBDk4UyfWlhAOA9h3GcNKFcDQAOzMhwCZA=;
+	s=arc-20240116; t=1784106586; c=relaxed/simple;
+	bh=1QcU48bIpCfSkvx5akklVj8+Ls69ZBvswDKJZVFWKcw=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=WdVfe8VLM4WXShZMKS+z7Rx3NyBrGy5/qADBNfM2YCPqrTGeHEU2F9ee5E9FwsIh4ExQ8rcgfJg6TFPF00YaLaXfRywozPL1pUEFZo9oiF3XN8mhznQVJSk2uKKe22QMob4kWFL1v3f1r7xHDCUSOy3LYxlgS3Akb1lKLdvl2lA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=O1c8wJm6; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3E1561F000E9;
-	Wed, 15 Jul 2026 09:08:45 +0000 (UTC)
+	 Message-Id; b=V2CGxga2IYQkTi3iSCwLNUtbScbrqT7prIwtoD2kFO3nfvYMQgdR3NYVWyEqtOThh3RS85GXG0PB+8KdkOI+gS+8EoX7FvGxtA/5XbEK2JO4UdA8uF4jpfBqlz5vbxEChNtJuZ4Ao0ypguhrBhT3OKKX2BEBav21iWkK6k7ip4I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RB93WFTw; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2B4441F000E9;
+	Wed, 15 Jul 2026 09:09:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1784106525;
-	bh=F1UsryzJNhgOIwO8WAQz6hw83ITJHzetM231WkAZ9Gw=;
+	s=k20260515; t=1784106584;
+	bh=GESY8UzzCNAxbKi1s7waLWnrQBjElWqOj/3JzDYGHWA=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=O1c8wJm6IoYGLYq2YnbRxMU3Xk+LG+u6EmCU+uDWejqTyANvDo5I8CQdfPMe6rEfR
-	 d5DcXaYOg+Mq6wg4ypwjlVq/DIdkLVTTDsuRkZBGMbQ6T3rJ9Wwy0fNaX9FW9170xE
-	 j/PmbOkCq8LuWvYrLDKi0aTgag6z6W4eHewAXxAmx68EYWsniW4D5uC90oc5tRW3xr
-	 DXmGEiJl5obgPRBvuRwfPqu64QP+Z+gv4ZXVgGvAtWbDzUZ8V2dwwU4Zao3PKYqw1t
-	 KF4GwECVMP0whQ0/cvvHawX/1MwjiIdbUdSarA0bKCz3N/CWnaMRIlhYlXfwHu4XrG
-	 3b8x1z/mTU8vQ==
+	b=RB93WFTw0n1DJfgUjqw9fcb8stZYhXbM86LlCH/OidrMc3if2Hcz4BRMET3RVH3pd
+	 CoKPX+HkaRZa3D1zEBYsR3w8JHjJotUQX6E219/drzs/mrYL37exkW28WjrUqxt7CI
+	 yezctWwhyhfjU5HgPv6/6oMDqluEdu9MtRmC/YMBjAQmsoe28cl0FDpj7epzA04X18
+	 04f0WIDqKgO8ptzhwMgpdr2Bx1KsM+TX8a2gBVCCoF/o+BurjJX6ZC1s75Ko607oOO
+	 +5iOJ53O0/VEpYLrUZIiRg5WFJNyTfbpoPV1xu2GSfhWIzvA1NYxAray5ReUDoVUHP
+	 QjTWYO2jBJzpg==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v5 03/16] power: sequencing: Add pwrseq_power_is_on()
+Subject: Re: [PATCH v5 02/16] device property: Add
+ fwnode_graph_get_next_port_endpoint()
 Reply-To: sashiko-reviews@lists.linux.dev
 To: "Chen-Yu Tsai" <wenst@chromium.org>
 Cc: devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org
-In-Reply-To: <20260715085348.3457359-4-wenst@chromium.org>
+In-Reply-To: <20260715085348.3457359-3-wenst@chromium.org>
 References: <20260715085348.3457359-1-wenst@chromium.org>
- <20260715085348.3457359-4-wenst@chromium.org>
+ <20260715085348.3457359-3-wenst@chromium.org>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Wed, 15 Jul 2026 09:08:44 +0000
-Message-Id: <20260715090845.3E1561F000E9@smtp.kernel.org>
+Date: Wed, 15 Jul 2026 09:09:43 +0000
+Message-Id: <20260715090944.2B4441F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,13 +72,13 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-326784-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-326790-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
@@ -98,144 +99,142 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FROM_NO_DN(0.00)[];
 	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCPT_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.linux.dev:replyto,smtp.kernel.org:mid,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,chromium.org:email,sashiko.dev:url,vger.kernel.org:from_smtp]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[smtp.kernel.org:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,sashiko.dev:url,vger.kernel.org:from_smtp,lists.linux.dev:replyto]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: E92BB75C3F4
+X-Rspamd-Queue-Id: E2E6D75C698
 
-Thank you for your contribution! Sashiko AI review found 4 potential issue(=
+Thank you for your contribution! Sashiko AI review found 3 potential issue(=
 s) to consider:
 
 New issues:
-- [Medium] The !CONFIG_POWER_SEQUENCING stub for pwrseq_power_is_on() uncon=
-ditionally returns -ENOSYS, breaking support for optional descriptors.
-- [Medium] Unprotected lockless read of `desc->powered_on` in `pwrseq_power=
-_is_on()` constitutes a data race.
+- [High] The new `fwnode_graph_get_next_port_endpoint()` helper breaks the =
+`fwnode` graph abstraction by hardcoding OF-specific naming conventions, wh=
+ich will silently ignore valid ACPI and software node endpoints.
+- [Medium] `fwnode_graph_get_next_port_endpoint()` fails to unconditionally=
+ put the `prev` fwnode reference if an invalid `port` is provided, violatin=
+g its documented API contract.
 
 Pre-existing issues:
-- [High] The stubs for pwrseq_power_on() and pwrseq_power_off() uncondition=
-ally return -ENOSYS, breaking optional descriptors when CONFIG_POWER_SEQUEN=
-CING is disabled.
-- [High] Lockless TOCTOU race on `desc->powered_on` in `pwrseq_power_on()` =
-and `pwrseq_power_off()` allows concurrent calls to leak `enable_count` ref=
-erences.
+- [High] This problem wasn't introduced by this patch, but iterating over e=
+ndpoints using `fwnode_get_next_child_node()` causes an infinite loop and U=
+se-After-Free when a device has secondary fwnodes attached.
 --
 
---- Patch [3]: [PATCH v5 03/16] power: sequencing: Add pwrseq_power_is_on()=
- ---
-commit 32144de8b3a9da0a0745b35617cfc4d0359911df
+--- Patch [2]: [PATCH v5 02/16] device property: Add fwnode_graph_get_next_=
+port_endpoint() ---
+commit 8a16a51eeb8e99439d5b85ce61789ff1153e9060
 Author: Chen-Yu Tsai <wenst@chromium.org>
 
-power: sequencing: Add pwrseq_power_is_on()
+device property: Add fwnode_graph_get_next_port_endpoint()
 
-This commit introduces pwrseq_power_is_on() to expose the internal power-on
-state tracking to consumers, eliminating the need for local tracking. The A=
-PI
-handles optional descriptors by returning 1 if the descriptor is NULL.
+Adds a helper function to iterate through the endpoint firmware nodes
+under a given port. This is intended to be used in USB power sequencing
+integration to verify graph connections and supported connector types.
 
-> diff --git a/drivers/power/sequencing/core.c b/drivers/power/sequencing/c=
-ore.c
-> index 02f42da915985..db8c91be10c95 100644
-> --- a/drivers/power/sequencing/core.c
-> +++ b/drivers/power/sequencing/core.c
-> @@ -968,6 +968,25 @@ int pwrseq_power_off(struct pwrseq_desc *desc)
+> diff --git a/drivers/base/property.c b/drivers/base/property.c
+> index 0bd45f8b01c14..62c6221d65d05 100644
+> --- a/drivers/base/property.c
+> +++ b/drivers/base/property.c
+
+[ ... ]
+
+> @@ -1099,6 +1099,31 @@ int fwnode_irq_get_byname(const struct fwnode_hand=
+le *fwnode, const char *name)
 >  }
->  EXPORT_SYMBOL_GPL(pwrseq_power_off);
-
-[Severity: High]
-This is a pre-existing issue, but could the lockless check of
-desc->powered_on in pwrseq_power_on() and pwrseq_power_off() cause a race
-condition that leaks enable_count references?
-
-If two threads concurrently invoke pwrseq_power_on() with the same descript=
-or,
-both could bypass the early check locklessly:
-
-    if (!desc || desc->powered_on)
-        return 0;
-
-They then sequentially acquire pwrseq->state_lock, but neither re-validates
-the flag inside the critical section. Both execute pwrseq_unit_enable(),
-incrementing enable_count twice.
-
-When pwrseq_power_off() is called later, the first invocation decrements the
-count and clears desc->powered_on. The second invocation sees
-desc->powered_on =3D=3D false locklessly and returns early, leaving enable_=
-count
-permanently elevated.
-
+>  EXPORT_SYMBOL(fwnode_irq_get_byname);
+> =20
 > +/**
-> + * pwrseq_power_is_on() - Queries the last requested state of the power =
-sequencer.
-> + * @desc: Descriptor referencing the power sequencer.
+> + * fwnode_graph_get_next_port_endpoint - Get next endpoint firmware node=
+ in port
+> + * @port: Pointer to the target port firmware node
+> + * @prev: Previous endpoint node or %NULL to get the first
 > + *
-> + * This returns the last requested state of the power sequencer.
+> + * The caller is responsible for calling fwnode_handle_put() on the retu=
+rned
+> + * fwnode pointer. Note that this function also puts a reference to @prev
+> + * unconditionally.
 > + *
-> + * Returns:
-> + * On success, 1 for on or desc is NULL (optional) and 0 for off;
-> + * negative error number on failure.
+> + * Return: an endpoint firmware node pointer or %NULL if no more endpoin=
+ts
+> + * are available.
 > + */
-> +int pwrseq_power_is_on(struct pwrseq_desc *desc)
+> +struct fwnode_handle *fwnode_graph_get_next_port_endpoint(const struct f=
+wnode_handle *port,
+> +							  struct fwnode_handle *prev)
 > +{
-> +	if (!desc)
-> +		return 1;
-> +
-> +	return desc->powered_on;
-
-[Severity: Medium]
-Does this lockless read of desc->powered_on need READ_ONCE() to prevent data
-races?
-
-Since desc->powered_on can be concurrently modified by pwrseq_power_on()
-and pwrseq_power_off(), reading it without protection might lead to unsafe
-compiler optimizations.
-
-> +}
-> +EXPORT_SYMBOL_GPL(pwrseq_power_is_on);
-
-[ ... ]
-
-> diff --git a/include/linux/pwrseq/consumer.h b/include/linux/pwrseq/consu=
-mer.h
-> index 3c907c9e1885d..3c6122bd02057 100644
-> --- a/include/linux/pwrseq/consumer.h
-> +++ b/include/linux/pwrseq/consumer.h
-
-[ ... ]
-
-> @@ -53,6 +54,11 @@ static inline int pwrseq_power_off(struct pwrseq_desc =
-*desc)
->  	return -ENOSYS;
->  }
+> +	do {
+> +		prev =3D fwnode_get_next_child_node(port, prev);
 
 [Severity: High]
-This is a pre-existing issue, but do the stubs for pwrseq_power_on() and
-pwrseq_power_off() also break optional descriptors?
+This is a pre-existing issue, but iterating over endpoints using
+fwnode_get_next_child_node() can cause an infinite loop and a use-after-free
+if a device has secondary fwnodes attached.
 
-If a driver invokes pwrseq_power_on(NULL) on a kernel without power
-sequencing enabled, returning -ENOSYS instead of 0 defeats the purpose of
-an optional descriptor, as consumers checking for errors will abort their
-operations.
+If a device port has both primary children and a secondary fwnode, the prim=
+ary
+ops finish and drop the reference to the last primary child, returning NULL.
+Then, fwnode_get_next_child_node() incorrectly passes this same dropped chi=
+ld
+pointer to the secondary ops:
 
-> +static inline int pwrseq_power_is_on(struct pwrseq_desc *desc)
-> +{
-> +	return -ENOSYS;
-> +}
+drivers/base/property.c:fwnode_get_next_child_node() {
+	/* Try to find a child in primary fwnode */
+	next =3D fwnode_call_ptr_op(fwnode, get_next_child_node, child);
+	if (next)
+		return next;
+
+	/* When no more children in primary, continue with secondary */
+	return fwnode_call_ptr_op(fwnode->secondary, get_next_child_node, child);
+}
+
+This can result in a double-put. Furthermore, when traversing secondary
+children, the primary ops don't recognize the software node, treat it as NU=
+LL,
+and return the first primary child again, creating an infinite loop.
 
 [Severity: Medium]
-When CONFIG_POWER_SEQUENCING is disabled, does this stub break the contract
-for optional descriptors?
+Does this fail to unconditionally put the prev reference if the provided po=
+rt
+is invalid?
 
-The commit message mentions returning 1 if the descriptor is NULL (optional=
-),
-but this stub unconditionally returns -ENOSYS. This will cause consumers
-checking the power state of an optional descriptor to receive a negative
-error code instead of the expected 1.
+If a caller passes a valid prev node but port is NULL or an error pointer,
+fwnode_get_next_child_node() returns early without dropping prev:
+
+drivers/base/property.c:fwnode_get_next_child_node() {
+	struct fwnode_handle *next;
+
+	if (IS_ERR_OR_NULL(fwnode))
+		return NULL;
+    ...
+}
+
+Could this lead to a reference count leak, violating the documented API
+contract that prev is unconditionally put?
+
+> +		if (fwnode_name_eq(prev, "endpoint"))
+
+[Severity: High]
+Does hardcoding this string match break the fwnode graph abstraction for
+non-DeviceTree platforms?
+
+By strictly matching the "endpoint" prefix, this bypasses the provider-spec=
+ific
+fwnode_operations, which could silently ignore valid ACPI and software node
+endpoints that don't follow this exact naming scheme. Shouldn't this rely on
+the backend-specific graph_get_next_endpoint operations instead?
+
+> +			break;
+> +	} while (prev);
+> +
+> +	return prev;
+> +}
+> +EXPORT_SYMBOL_GPL(fwnode_graph_get_next_port_endpoint);
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260715085348.3457=
-359-1-wenst@chromium.org?part=3D3
+359-1-wenst@chromium.org?part=3D2
 
