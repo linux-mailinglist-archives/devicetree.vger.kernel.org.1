@@ -1,222 +1,406 @@
-Return-Path: <devicetree+bounces-326970-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-326971-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id jNcwKjt9V2qzSQAAu9opvQ
-	(envelope-from <devicetree+bounces-326970-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 14:29:47 +0200
+	id i1kTJR1+V2rfSwAAu9opvQ
+	(envelope-from <devicetree+bounces-326971-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 14:33:33 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48E6B75E223
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 14:29:47 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id F1B7375E2D5
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 14:33:30 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=QloyeeZA;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326970-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-326970-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=J13QdJl6;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326971-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-326971-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id D105E309C2B5
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 12:28:02 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id DE68130478A9
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 12:28:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A62DC477E21;
-	Wed, 15 Jul 2026 12:27:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7451D477E20;
+	Wed, 15 Jul 2026 12:28:03 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60FA2472768
-	for <devicetree@vger.kernel.org>; Wed, 15 Jul 2026 12:27:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE16A477999
+	for <devicetree@vger.kernel.org>; Wed, 15 Jul 2026 12:28:01 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1784118476; cv=none; b=PCO/aRVMSKVHrXQI12ZEDPjyKpdJ+ghj5eGGBY5s5OmfiQxld6uRyUK5lEzhYKuSOZ+vT2775IaKxRFYfl7f3BUEoIhYq34MPdNjNOqszAcZZ87QSuTvsgUqWVnU1XrLUT8mT02U+pR3M+mQHrGgvufJA5TE/L/5uFHl80SgTpI=
+	t=1784118483; cv=none; b=J7TTVAtNRVeyX3GX14U9i1ENaLxecByclxWUACb/Wrw7iyXd6q6Z6RaWIcqBe4aLNKpODEp0wrm01xzTRneMRYnc/4qVfbJ/L3SpgDT8Er2ocls5+diJRjU0wJBA1YlxO4IPbk9MUiyHMgow9pZLp3fl2jCT+PggdZ4tdkxqUy8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1784118476; c=relaxed/simple;
-	bh=FyvVJli3cTKUMPT5HpsOpQIxQvLLkFu+nSooG+r5XBo=;
-	h=From:In-Reply-To:MIME-Version:References:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=XQkEdH4y1URrfOPwa84zRo0U/qIS2vMvGkQG5ypcXNU25EVySzdIvlwb46zgjiBFfzyY5LgJNUG/UfLFGHwqO2Cdg4s1zhKNP91XVQIVYcNwn/CHhcaauNbitIA2LEzKE7EJSIJ8vS4k2n/plQqN7XTe5Z1OkJlpTB72s6b3aM0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QloyeeZA; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1F8C41F00ADE
-	for <devicetree@vger.kernel.org>; Wed, 15 Jul 2026 12:27:55 +0000 (UTC)
+	s=arc-20240116; t=1784118483; c=relaxed/simple;
+	bh=n+MCVXtWdzpGGg9wChWMout0tVe/0ZKgDQu4yvvWdVs=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=uN9fGFNJ7DW/dsEk2H9rQEBX8oe1f0/RiOKnGJZVV0kjuvicW4aKyUM/riMLHSwaEqvFV8fJ+I5Pe1R3CczQKR7myudt/g8RFu1XKh1pwyMj49bBrvPk6iC00F26396airaTPBu/tjPibUKbCfcTHSH5tH24KAoYYblNViaEnS4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=J13QdJl6; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7EDAA1F000E9;
+	Wed, 15 Jul 2026 12:28:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1784118475;
-	bh=j28hcJjQkZPaS3yZ4782JQxyz8Zd4wPyi3h2uE2kkXA=;
-	h=From:In-Reply-To:References:Date:Subject:To:Cc;
-	b=QloyeeZA+L0U0Nakkwr/lWVJ2epmV8vXIHzwlA6j94fp0HUd+UPMioZEIUHbjDN8W
-	 iKIdi3aCx+rXYWbmwTIh1ICFS6PFQssNjQAquhZJqFjg0wA+njAN4N57PbyX7F9jNB
-	 WUXt06OccYpYq0vonrNCnwKy5yOELeoBdgAtUg/Q36E0h9C2Ls8aJLO14r7o82lxGp
-	 /FiDjbu1eD3n4ltGunskB6hppF21R6j9g5Zujnk0NI6TvUJOrZ4jy2IsFX0nUWRTwf
-	 qsO7X2nTHn4u7dgR8dLHesPpOA7XOin9U5dPJEmjhmViRqSGvWZNPtZNbaLKb5KvK4
-	 fP5r1UYPLKo9w==
-Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-5aea0fff535so2238189e87.3
-        for <devicetree@vger.kernel.org>; Wed, 15 Jul 2026 05:27:55 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AHgh+RqiBSXlbJqsqVsdpsjNGUaoBjT1Xz7CGYnfLvPUw+11EawPf5Pzy7ExDa1IVaz4g7HuIPqTUMjU5IMV@vger.kernel.org
-X-Gm-Message-State: AOJu0YxwbQtZ+FVSytvhSAoaioldhrHA4DJoF0JrSBkmFD5DNoYVuu92
-	5jmSQogiZ/s0Eetb3HzeiEb6Hv0dX8PSrz7ufJV/rC5XfJlFeO0BTyx7gn6NUFoabqNOWgAihm3
-	AWY30F9LLaQdBgdAPZN/wzTOBau84evnYYKn5fzAsgA==
-X-Received: by 2002:a05:6512:250f:b0:5b1:544e:7185 with SMTP id
- 2adb3069b0e04-5b1544e721amr2489500e87.40.1784118473678; Wed, 15 Jul 2026
- 05:27:53 -0700 (PDT)
-Received: from 969154062570 named unknown by gmailapi.google.com with
- HTTPREST; Wed, 15 Jul 2026 05:27:51 -0700
-Received: from 969154062570 named unknown by gmailapi.google.com with
- HTTPREST; Wed, 15 Jul 2026 05:27:51 -0700
-From: Bartosz Golaszewski <brgl@kernel.org>
-In-Reply-To: <20260714-arm-psci-system_reset2-vendor-reboots-v23-0-e7453c548c21@oss.qualcomm.com>
+	s=k20260515; t=1784118481;
+	bh=xk1Vzn9Nu9U658eiuzTLonKB5ePvajqexK0HaMj8gIM=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=J13QdJl6se3vdhjMUYogCZ/9ANnEUkDdiEsMNj0OVbnKl4E977V01iaIInDdiOdoI
+	 LwcJc/LR6PnRGeRfFzhtPtVCD/JnA5LeJLn1EjPMxAHXifq6n+Dj8wv4l6qLC3LY14
+	 QMY/PNaEXwWnMAcFugiAS0fbWDm1Vxbvov2/W5FIF7q9cpC3Ov7Fm6oZYuFrNJxF0R
+	 ODWradkvg9N+Yaoz9BMqpOqEP+b+/YbmyxPsV7vm1bsfgXj1nrb0lpKj7d+LELB+8Q
+	 zPNLLWuE7E5e5XqO6y9N7LHTlf1c53dPgjd5gKDOGUGwYg/MmgGlaatmTn0SzmaTod
+	 HnVFiCex8J5gg==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v5 11/11] drm/mediatek: Add Write DMA (WDMA) Engine for
+ Writeback support
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "AngeloGioacchino Del Regno" <angelogioacchino.delregno@collabora.com>
+Cc: robh@kernel.org, conor+dt@kernel.org, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org
+In-Reply-To: <20260715114916.19690-12-angelogioacchino.delregno@collabora.com>
+References: <20260715114916.19690-1-angelogioacchino.delregno@collabora.com>
+ <20260715114916.19690-12-angelogioacchino.delregno@collabora.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Wed, 15 Jul 2026 12:28:01 +0000
+Message-Id: <20260715122801.7EDAA1F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-References: <20260714-arm-psci-system_reset2-vendor-reboots-v23-0-e7453c548c21@oss.qualcomm.com>
-Date: Wed, 15 Jul 2026 05:27:51 -0700
-X-Gmail-Original-Message-ID: <CAMRc=Mc4e1Rso5Vr1ZoRTkAp4WYUz8H-dQWUjkyBg5sgXiDLOw@mail.gmail.com>
-X-Gm-Features: AUfX_mxYq9w3t7suoGM2tbsXEv1g058iRFyDqupc6ScLWcGXZxK2WeoKHlbXNCk
-Message-ID: <CAMRc=Mc4e1Rso5Vr1ZoRTkAp4WYUz8H-dQWUjkyBg5sgXiDLOw@mail.gmail.com>
-Subject: Re: [PATCH v23 00/13] Implement PSCI reboot mode driver for PSCI resets
-To: Shivendra Pratap <shivendra.pratap@oss.qualcomm.com>
-Cc: linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-msm@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	devicetree@vger.kernel.org, Florian Fainelli <florian.fainelli@broadcom.com>, 
-	Krzysztof Kozlowski <krzk@kernel.org>, Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
-	Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>, Andre Draszik <andre.draszik@linaro.org>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>, mfd@lists.linux.dev, 
-	Srinivas Kandagatla <srini@kernel.org>, Sebastian Reichel <sebastian.reichel@collabora.com>, 
-	Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>, Song Xue <quic_songxue@quicinc.com>, 
-	Sebastian Reichel <sre@kernel.org>, Mark Rutland <mark.rutland@arm.com>, 
-	Lorenzo Pieralisi <lpieralisi@kernel.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
-	Daniel Lezcano <daniel.lezcano@kernel.org>, Christian Loehle <christian.loehle@arm.com>, 
-	Ulf Hansson <ulfh@kernel.org>, Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Arnd Bergmann <arnd@arndb.de>, Souvik Chakravarty <Souvik.Chakravarty@arm.com>, 
-	Andy Yan <andy.yan@rock-chips.com>, Matthias Brugger <matthias.bgg@gmail.com>, 
-	John Stultz <john.stultz@linaro.org>, Moritz Fischer <moritz.fischer@ettus.com>, 
-	Bartosz Golaszewski <brgl@kernel.org>, Sudeep Holla <sudeep.holla@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spamd-Result: default: False [-3.66 / 15.00];
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-326970-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:shivendra.pratap@oss.qualcomm.com,m:linux-pm@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-msm@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:devicetree@vger.kernel.org,m:florian.fainelli@broadcom.com,m:krzk@kernel.org,m:dmitry.baryshkov@oss.qualcomm.com,m:mukesh.ojha@oss.qualcomm.com,m:andre.draszik@linaro.org,m:gregkh@linuxfoundation.org,m:kathiravan.thirumoorthy@oss.qualcomm.com,m:mfd@lists.linux.dev,m:srini@kernel.org,m:sebastian.reichel@collabora.com,m:bartosz.golaszewski@oss.qualcomm.com,m:quic_songxue@quicinc.com,m:sre@kernel.org,m:mark.rutland@arm.com,m:lpieralisi@kernel.org,m:rafael@kernel.org,m:daniel.lezcano@kernel.org,m:christian.loehle@arm.com,m:ulfh@kernel.org,m:lee@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:andersson@kernel.org,m:konradybcio@kernel.org,m:arnd@arndb.de,m:Souvik.Chakravarty@arm.com,m:andy.yan@rock-chips.com,m:matthias.bgg@gmail.com,m:john.stultz@linaro.org,m:moritz.fischer@e
- ttus.com,m:brgl@kernel.org,m:sudeep.holla@kernel.org,m:conor@kernel.org,m:matthiasbgg@gmail.com,s:lists@lfdr.de];
-	RBL_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[172.105.105.114:from];
-	FORGED_SENDER(0.00)[brgl@kernel.org,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[39];
-	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,broadcom.com,kernel.org,oss.qualcomm.com,linaro.org,linuxfoundation.org,lists.linux.dev,collabora.com,quicinc.com,arm.com,arndb.de,rock-chips.com,gmail.com,ettus.com];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-326971-lists,devicetree=lfdr.de];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:angelogioacchino.delregno@collabora.com,m:robh@kernel.org,m:conor+dt@kernel.org,m:dri-devel@lists.freedesktop.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,vger.kernel.org:from_smtp,qualcomm.com:email];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[brgl@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	DWL_DNSWL_BLOCKED(0.00)[kernel.org:dkim];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RECEIVED_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[100.90.174.1:received];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	FROM_NO_DN(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[5];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 48E6B75E223
+X-Rspamd-Queue-Id: F1B7375E2D5
 X-Rspamd-Action: no action
 
-On Tue, 14 Jul 2026 19:16:28 +0200, Shivendra Pratap
-<shivendra.pratap@oss.qualcomm.com> said:
-> Userspace should be able to initiate device reboots using the various
-> PSCI SYSTEM_RESET and SYSTEM_RESET2 types defined by PSCI spec. This
-> patch series introduces psci-reboot-mode driver that will induce
-> command-based resets to psci driver for executing the device reset.
->
-> The PSCI system reset calls takes two arguments: reset_type and cookie.
-> It defines predefined reset types, such as warm and cold reset, and
-> vendor-specific reset types which are SoC vendor specific. To support
-> these requirements, the reboot-mode framework is enhanced in two key
-> ways:
-> 1. 64-bit magic support: Extend reboot-mode to handle two 32-bit
-> arguments (reset_type and cookie) by encoding them into a single 64-bit
-> magic value.
-> 2. Predefined modes: Add support for predefined reboot modes in the
-> framework.
->
-> With these enhancements, the patch series enables:
->  - Arch Warm reset and system reset cold as predefined reboot modes.
->  - Vendor-specific resets, configurable via the SoC-specific device tree.
->
-> Together, these changes allow userspace to trigger all above PSCI resets
-> from userspace.
->
-> Note on introducing PSCI-MFD:
-> In v19/20, psci-reboot-mode was implemented as a faux-device. Review
-> discussion suggested this may not be the best model for firmware-backed
-> consumers, and that representing PSCI users as regular platform devices
-> would be better. One suggestion was to add a PSCI-MFD driver, allowing
-> multiple consumers tied to a single PSCI node "arm,psci-1.0" be probed
-> as MFD cells.
->
-> Following this, the series adds a PSCI-MFD driver and introduces
-> cpuidle-psci-domain and psci-reboot-mode as child cells. To meet the
-> psci-reboot-mode requirement, the MFD core is extended to support
-> fwnode.
-> Reference discussions on this:
-> https://lore.kernel.org/all/20260306-faux-dev-with-fwnode-v1-1-792a86a62530@oss.qualcomm.com/
->
-> ---
-> The patch is tested on rb3Gen2, lemans-ride, lemans-evk, monaco-ride,
-> qcs615-ride.
->
-> Signed-off-by: Shivendra Pratap <shivendra.pratap@oss.qualcomm.com>
->
-> Changes in v23:
-> mfd: core: Add firmware-node support to MFD cells
->  - Add named_fwnode-based firmware node support in MFD cells.(by Bart)
->  - Update the release path. (by Bart)
->  - Add checks for duplicate fwnodes.
->  - Update documentation for usage and limitations.
-> mfd: psci-mfd: Add psci-reboot-mode child cell
->  - Update for a named_fwnode-based reboot-mode child cell. (By Bart)
->  - Split psci-reboot-mode and psci-cpuidle-domain into separate child
->    cells.
-> power: reset: Add psci-reboot-mode driver
->  - Add COMPILE_TEST in Kconfig. (by Bart)
->  - Update to support up to three u32 arguments to accommodate a
->    32-bit reset_type and a 64-bit cookie. (By Sashiko, Lorenzo)
-> dt-bindings: arm: Document reboot mode magic
->  - Update to support up to three u32 arguments to accommodate a
->    32-bit reset_type and a 64-bit cookie.
->  - Dropped reviewed by from Bart and Rob due to considerable changes.
-> firmware: psci: Introduce command-based resets
->  - Update to support a 64-bit cookie. (By Sashiko, Lorenzo)
->  - Update the flow so unsupported reset commands and any failures during
->    reset command execution fall back to the
->    Linux reboot_mode path. (By Sashiko)
-> power: reset: reboot-mode: Add support for predefined reboot modes
->  - Handle errors and free lists in devm_reboot_mode_register(). (by Sashiko)
->  - Update to support up to three u32 arguments.
-> power: reset: reboot-mode: Support up to 3 magic values per mode
->  - Patch for 64 bit magic renamed.
->  - Update to support up to three u32 arguments to accommodate a 32-bit
->    reset_type and a 64-bit cookie.
->  - Dropped reviewed by from Bart and Sebastian due to considerable changes.
-> - Link to v22: https://lore.kernel.org/r/20260514-arm-psci-system_reset2-vendor-reboots-v22-0-28a5bde07483@oss.qualcomm.com
->
+Thank you for your contribution! Sashiko AI review found 11 potential issue=
+(s) to consider:
+- [High] Incorrect handling of pm_runtime_get_sync() return value leads to =
+leaked usage counters and false positive warnings.
+- [High] TOCTOU race condition in atomic commit leads to permanent writebac=
+k job hangs.
+- [High] Direct CPU writes to WDMA destination address bypass CMDQ and shad=
+ow registers, causing memory corruption.
+- [High] Use-After-Free of drm_writeback_connector upon component unbind.
+- [High] Writeback job completions hang if CRTC vblanks are disabled.
+- [High] Architectural flaw: WDMA hardware operates on uninitialized regist=
+ers because its configuration logic is placed in an unreachable callback.
+- [High] Unconditional drm_writeback_queue_job() in dead layer_config callb=
+ack causes NULL pointer dereference.
+- [High] Using input plane buffer as writeback destination in layer_config.
+- [High] Incorrect V-component offset calculation for NV12/NV21 formats cor=
+rupts Y-plane memory.
+- [Medium] Userspace restricted to only DRM_FORMAT_RGB888 despite extensive=
+ hardware support.
+- [Low] Undeclared identifier `mtk_disp_wdma_remove` causes a build failure.
+--
 
-Just wanted to say: thanks for being persistent, we'll get there eventually. :)
+--- Patch [11]: [PATCH v5 11/11] drm/mediatek: Add Write DMA (WDMA) Engine =
+for Writeback support ---
+commit 44482b38c93bd94760e17536a8322d71d1649d0f
+Author: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-Bart
+drm/mediatek: Add Write DMA (WDMA) Engine for Writeback support
+
+This commit adds a basic driver for the Write DMA Engine and initial
+compatible strings for the MediaTek MT8173 and Dimensity 1200 MT6893.
+It hooks the engine up to the display controller to enable writeback for
+faster display image capturing in userspace.
+
+> diff --git a/drivers/gpu/drm/mediatek/mtk_disp_wdma.c b/drivers/gpu/drm/m=
+ediatek/mtk_disp_wdma.c
+> new file mode 100644
+> index 0000000000000..650ab902f7956
+> --- /dev/null
+> +++ b/drivers/gpu/drm/mediatek/mtk_disp_wdma.c
+[ ... ]
+> +static const u32 mtk_wdma_wb_output_formats[] =3D {
+> +	DRM_FORMAT_RGB888
+> +};
+> +
+> +static const u32 mt6893_formats[] =3D {
+> +	DRM_FORMAT_XRGB8888,
+> +	DRM_FORMAT_ARGB8888,
+> +	DRM_FORMAT_BGRX8888,
+> +	DRM_FORMAT_BGRA8888,
+> +	DRM_FORMAT_ABGR8888,
+> +	DRM_FORMAT_XBGR8888,
+> +	DRM_FORMAT_RGB888,
+> +	DRM_FORMAT_BGR888,
+> +	DRM_FORMAT_RGB565,
+> +	DRM_FORMAT_YUV420,
+> +	DRM_FORMAT_YVU420,
+> +	DRM_FORMAT_UYVY,
+> +	DRM_FORMAT_YUYV,
+> +};
+
+[Severity: Medium]
+Are we intentionally limiting userspace to only DRM_FORMAT_RGB888?
+
+The mt6893_formats array lists 13 supported formats, but the driver passes
+the single-entry mtk_wdma_wb_output_formats array down to
+drm_writeback_connector_init(). This means the DRM core will reject commits
+for any of the other hardware-supported formats.
+
+[ ... ]
+> +void mtk_wdma_disable_vblank(struct device *dev)
+> +{
+> +	wdma_update_bits(dev, DISP_REG_WDMA_INT_ENABLE, WDMA_FRAME_COMPLETE_INT=
+, 0);
+> +}
+
+[Severity: High]
+Does this cause writeback jobs to time out if the CRTC vblank is disabled?
+
+The WDMA frame completion interrupt is toggled exclusively via this callbac=
+k.
+If userspace queues a writeback job without requesting a vblank event, the =
+DRM
+core might disable vblanks on the CRTC.=20
+
+If the interrupt is disabled while the hardware captures the frame, is there
+any other way the driver can receive the completion and call
+drm_writeback_signal_completion()?
+
+[ ... ]
+> +void mtk_wdma_config(struct device *dev, unsigned int width,
+> +		     unsigned int height, unsigned int vrefresh,
+> +		     unsigned int bpc, struct cmdq_pkt *cmdq_pkt)
+> +{
+> +	struct mtk_disp_wdma *wdma =3D dev_get_drvdata(dev);
+> +
+> +	writel(WDMA_FORCE_COMMIT | WDMA_BYPASS_SHADOW,
+> +	       wdma->regs + DISP_REG_WDMA_SHADOW_CTRL);
+> +}
+
+[Severity: High]
+Does enabling WDMA_BYPASS_SHADOW here risk memory corruption when combined
+with immediate destination address updates?
+
+Later in mtk_wdma_wb_connector_atomic_commit(), the destination address is
+updated by passing NULL for the cmdq_pkt, which bypasses the command queue
+and performs an immediate CPU writel(). Without shadow registers to synchro=
+nize
+the update to the VBLANK boundary, altering the destination address while t=
+he
+hardware is actively transferring a frame could scatter image data across m=
+emory.
+
+[ ... ]
+> +static void mtk_wdma_format_config(struct mtk_disp_wdma *wdma,
+> +				   struct mtk_plane_pending_state *pending,
+> +				   const struct drm_format_info *fmt_info,
+> +				   struct cmdq_pkt *cmdq_pkt)
+> +{
+> +	unsigned int u_off, u_stride, u_size, v_off;
+> +	u32 val;
+> +
+> +	/*
+> +	 * For RGB formats, this sets the image destination address;
+> +	 * For YUV formats, this sets the Y component destination address.
+> +	 */
+> +	mtk_wdma_ddp_write_dst_addr(cmdq_pkt, pending->addr, 0, wdma);
+
+[Severity: High]
+Does this overwrite the source image buffer?
+
+By extracting pending->addr from the input plane state and using it as the
+DMA destination address, the writeback engine appears to be configured to
+dump the captured frame directly over the memory buffer of the image being
+displayed, rather than into the userspace-provided writeback job framebuffe=
+r.
+
+[ ... ]
+> +	if (drm_format_info_is_yuv_planar(fmt_info)) {
+> +		/* YUV420 or YVU420 */
+> +		u_stride =3D ALIGN(u_stride, 16);
+> +		u_size =3D u_stride * pending->height / 2;
+> +		v_off =3D u_off + u_size;
+> +	} else {
+> +		/* NV12 or NV21 */
+> +		u_size =3D u_stride * pending->height / 2;
+> +		v_off =3D 0;
+> +	}
+> +
+> +	/* Set U and V components destination addresses */
+> +	mtk_wdma_ddp_write_dst_addr(cmdq_pkt, pending->addr + u_off, 1, wdma);
+> +	mtk_wdma_ddp_write_dst_addr(cmdq_pkt, pending->addr + v_off, 2, wdma);
+
+[Severity: High]
+Will this corrupt the Y-plane memory for semi-planar formats?
+
+By hardcoding v_off to 0 for NV12 and NV21, the third hardware address
+register is mapped exactly over the start of the buffer. This would cause t=
+he
+hardware to overwrite the Luma (Y) data with Chroma data.
+
+[ ... ]
+> +void mtk_wdma_layer_config(struct device *dev, unsigned int idx,
+> +			   struct mtk_plane_state *state,
+> +			   struct cmdq_pkt *cmdq_pkt)
+> +{
+[ ... ]
+> +	mtk_wdma_format_config(wdma, pending, fmt_info, cmdq_pkt);
+> +
+> +	drm_writeback_queue_job(&wdma->wb_connector, wdma->wb_connector.base.st=
+ate);
+> +}
+
+[Severity: High]
+Is this function ever actually executed?
+
+The MediaTek CRTC driver only invokes the .layer_config callback on objects
+registered as input planes. Since WDMA is a writeback output connector, this
+looks like unreachable dead code. If it is never called, the WDMA hardware
+is never fully configured (format, size, pitch) during a commit.
+
+[Severity: High]
+Additionally, if this callback is somehow reached, could
+drm_writeback_queue_job() cause a NULL pointer dereference?
+
+If no writeback job was requested for the commit, or if it was already queu=
+ed
+in atomic_commit, wdma->wb_connector.base.state->writeback_job might be NUL=
+L.
+The drm_writeback_queue_job() function dereferences this pointer internally
+when attempting to add the job to the list.
+
+[ ... ]
+> +static void mtk_wdma_wb_connector_atomic_commit(struct drm_connector *co=
+nnector,
+> +						struct drm_atomic_commit *state)
+> +{
+[ ... ]
+> +	/* Store writeback pending state before queuing the job */
+> +	wdma->wb_pending =3D true;
+> +
+> +	mtk_wdma_ddp_write_dst_addr(NULL, addr, 0, wdma);
+> +	drm_writeback_queue_job(&wdma->wb_connector, conn_state);
+> +}
+
+[Severity: High]
+Could setting wdma->wb_pending to true before queuing the job create a TOCT=
+OU
+race condition?
+
+If the frame completion interrupt fires in this narrow window, the IRQ hand=
+ler
+would see the flag, try to signal an empty queue, and then clear the flag.
+When the job is queued immediately after, subsequent interrupts will ignore
+the pending job because the flag is now false, permanently hanging the
+writeback commit.
+
+[ ... ]
+> +static int mtk_disp_wdma_bind(struct device *dev, struct device *master,
+> +			      void *data)
+> +{
+[ ... ]
+> +	ret =3D drm_writeback_connector_init(drm_dev, &wdma->wb_connector,
+> +					   &mtk_wdma_wb_connector_funcs,
+> +					   &mtk_wdma_wb_encoder_helper_funcs,
+> +					   mtk_wdma_wb_output_formats,
+> +					   ARRAY_SIZE(mtk_wdma_wb_output_formats),
+> +					   crtcs);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret =3D pm_runtime_get_sync(dev);
+> +	if (ret)
+> +		dev_warn(dev, "Could not get PM Runtime!\n");
+> +
+> +	/*
+> +	 * Disable and clear pending interrupts - write unconditionally as no
+> +	 * crash (SError, etc) will happen as if unpowered/unclocked this is
+> +	 * simply going to be ignored (and the registers will be 0 at reset).
+> +	 */
+> +	writel(0x0, wdma->regs + DISP_REG_WDMA_INT_ENABLE);
+> +	writel(0x0, wdma->regs + DISP_REG_WDMA_INT_STATUS);
+> +
+> +	/* Put RPM only if refcount was incremented before to avoid unbalancing=
+ */
+> +	if (ret >=3D 0)
+> +		pm_runtime_put(dev);
+
+[Severity: High]
+Does this error handling logic for pm_runtime_get_sync() leak the usage
+counter and cause false positive warnings?
+
+If the device is already active, pm_runtime_get_sync() returns 1, which
+incorrectly triggers the dev_warn() since "if (ret)" evaluates to true.
+
+Conversely, if it returns a negative error code, the "if (ret >=3D 0)" check
+evaluates to false. This skips pm_runtime_put(dev) and permanently leaks the
+usage counter that was unconditionally incremented inside pm_runtime_get_sy=
+nc().
+
+[Severity: High]
+Can this implementation lead to a Use-After-Free of the
+drm_writeback_connector upon component unbind?
+
+The wb_connector is embedded in struct mtk_disp_wdma, which is managed by
+devres via devm_kzalloc. However, drm_writeback_connector_init() registers
+it with the DRM core, whose lifecycle can outlive the physical device (e.g.=
+ if
+userspace holds a file descriptor open). When the component unbinds, devres
+frees the memory, but the DRM core will still attempt to access the connect=
+or
+during its own eventual teardown.
+
+[ ... ]
+> +static void mtk_disp_rdma_remove(struct platform_device *pdev)
+> +{
+> +	component_del(&pdev->dev, &mtk_disp_wdma_component_ops);
+> +}
+[ ... ]
+> +struct platform_driver mtk_disp_wdma_driver =3D {
+> +	.probe		=3D mtk_disp_wdma_probe,
+> +	.remove		=3D mtk_disp_wdma_remove,
+> +	.driver		=3D {
+> +		.name	=3D "mediatek-disp-wdma",
+> +		.of_match_table =3D mtk_disp_wdma_driver_dt_match,
+> +	},
+> +};
+
+[Severity: Low]
+Does this cause a build failure?
+
+The platform driver references mtk_disp_wdma_remove, but the actual function
+definition just above is named mtk_disp_rdma_remove.
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260715114916.1969=
+0-1-angelogioacchino.delregno@collabora.com?part=3D11
 
