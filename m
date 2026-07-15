@@ -1,217 +1,161 @@
-Return-Path: <devicetree+bounces-326962-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-326960-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id gHRbCbV8V2pyCgAAu9opvQ
-	(envelope-from <devicetree+bounces-326962-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 14:27:33 +0200
+	id 9G0bJ8J9V2rbSQAAu9opvQ
+	(envelope-from <devicetree+bounces-326960-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 14:32:02 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6C5375E179
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 14:27:31 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id F04EC75E293
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 14:32:01 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20201202 header.b=hREBKbQV;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326962-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-326962-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=QKykeVV+;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326960-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-326960-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 56DB5300CEA1
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 12:27:31 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 44AB530B4447
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 12:26:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2EF4945BD5F;
-	Wed, 15 Jul 2026 12:27:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B360B46AEEA;
+	Wed, 15 Jul 2026 12:26:48 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B4F644C65F;
-	Wed, 15 Jul 2026 12:27:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69DB9448CEE
+	for <devicetree@vger.kernel.org>; Wed, 15 Jul 2026 12:26:46 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1784118449; cv=none; b=rhQW/grQI1Lq/cEWrqWC3uM4ffyz8qk/SO3TTkiwVjMyGWUzdWWy5xuYF9xATtNnMySv4x0rlcEty6HQGtzz02DIWlJ2Ir4/JazMRxnJzINJypQAk5NK3/y9St/i7XXLYiJciWvt6BO716Tta1ryxGEWm/GIkqbD5nFLEc5+BCA=
+	t=1784118408; cv=none; b=R2EZ/mwToSNnOV5TZMQfEccOm+acZPue3eaOCHdljIdHZTIuuAzmxfm+RlvYPiQ4IhOxVDSQVHSQRxOmYeSz8PSzg/mWEtcx40fEg58AiR9Tdt2J4OpWIoIbqlbTsn7YTR12/GsGSlGMB/0j7tG70atKTxp2coW4Yg8Ign0SatY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1784118449; c=relaxed/simple;
-	bh=Ixh7QjHO8Sw6SkBbzsHgSMI9ywDCBo9qAZr4szmg7DI=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=aTad5UZdYxXJT8DuFYAZZH8GdAjZTHqEEdHNvTT0iWBR8tmRIKGAfCnvg2xYOWJFGHCunC0/oqyL4dEs6Azz98BuTpcLZ0z0JwOr/TsQg3GFf1vR3HsSUYIUdUIypdUCQy+FAxt9/CtDrM/AX5irAqMHJN9ugkFe8f7qFg4Ouhk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hREBKbQV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id BFC0BC2BCF4;
-	Wed, 15 Jul 2026 12:27:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1784118448;
-	bh=Ixh7QjHO8Sw6SkBbzsHgSMI9ywDCBo9qAZr4szmg7DI=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=hREBKbQVHNYnpvpLjDiEOykL6cAFnIvFiE/HunwP11FOkUXdxtePz2K3ib4wrYzA4
-	 orbMl3R9hbpe26G6LY5QJU2Nn5mrQ7l+0jTqqBQ50W4J64sb31oTuj9qyQLPO8zFRc
-	 Q+ELrKz9aQyVf7b0H3JCTptagx25vgSrdXHRtQkX1sWYmIOzJWt2cAkiZnbnMU9tcu
-	 MdbZTxHRpdMVAzB1HgAhTovk9jhe6p8SudYsSq+SfP9emLb70rWIeOTQVDrnLzyhiM
-	 E1hC8U4ebAl05RvfdJPYqgSIV8SsABvL1QCzkNy9W/YxS2yjHsHjDRFJW1CT+8jUgL
-	 sMxS3ze9H7yng==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A3936C44507;
-	Wed, 15 Jul 2026 12:27:28 +0000 (UTC)
-From: Roman Vivchar via B4 Relay <devnull+rva333.protonmail.com@kernel.org>
-Date: Wed, 15 Jul 2026 15:26:40 +0300
-Subject: [PATCH v2 3/3] soc: mediatek: pwrap: add mt6572 support
+	s=arc-20240116; t=1784118408; c=relaxed/simple;
+	bh=TF12o4kxmUhjvdA6ouORMbeT1BJf7UjZuwxQoUAEn0g=;
+	h=From:In-Reply-To:MIME-Version:References:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=qnd3bhSZ9Y8TwEDUZcRb097Dqght2nOKRfvUmzw2tkElptSyr+8e1p6B1Yn+VrYFF0dvxIehD8uTBstfqdNViwqEQv2NdUvwCPRxMj+eC54CjKm2T+9R3PvkDqQKPTzALIXi3sa8I4/LLoJWGIFRVj/aXD1h/EJpQ0yizfbSrqs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QKykeVV+; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3FD431F01575
+	for <devicetree@vger.kernel.org>; Wed, 15 Jul 2026 12:26:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1784118406;
+	bh=ufSU06HSFFf/HF9xxtT6zNddSL0W/3RadTy6uo0f3pw=;
+	h=From:In-Reply-To:References:Date:Subject:To:Cc;
+	b=QKykeVV+vjB0vBKkxzt1G8Vl5kKWhAKrI3T18ni2Hmw7Ye9vGMPmHsQOOafa6Rkz8
+	 Ms0JYatvX30UIvmhmwHhmdX9yRaau4XM7UMuftPm2YrvDgVpRTT9y0EvcfS+iJMopa
+	 wn5EvKEKra8RnO1k8aY6zl3W8kTP7P1IlnB4/LKGhKGxEg2xEMFyvVePT3Jcft61ug
+	 gLoOZQLE17mfUgB/wOuZnmcyg2/bXhPTd+ObHBKZgp4ncS4UOBn+dwfyO9BIdDE/Ik
+	 iVS87KexyX8aSDr2Cs39sUkAux0k+DNAdUQG8yS15R4tPMKJ4Ufu/ntoSvaqilpRBT
+	 Qrj1mAGszI78g==
+Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-39ca0a30148so42691521fa.3
+        for <devicetree@vger.kernel.org>; Wed, 15 Jul 2026 05:26:46 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AHgh+RovVR2c4ipGZKGXfeGpmYjgUXSYTpwZIRD13sR7zzVDd9oMDgb7pM60XayqpheDbilfAMzjdECDlg5l@vger.kernel.org
+X-Gm-Message-State: AOJu0YyHgN3IzHDfLGwhdH7q+VNqaRZv/5+BTRNQKGCrpbFwAwl/xgj9
+	BrPwMQQOT3TdCs1O6tTHOtvAiCptz9N5NkPq0Jc6XVKJy70iArsz4C1hiv8LXSaHSOn/UVfjazK
+	M2I/XWhTuVNU/G/hfa/MKYoHIO5ikrv0KzCQFH5AGnA==
+X-Received: by 2002:a05:651c:23db:20b0:39c:6e2c:23c3 with SMTP id
+ 38308e7fff4ca-39db6ba5ea7mr4965071fa.5.1784118404814; Wed, 15 Jul 2026
+ 05:26:44 -0700 (PDT)
+Received: from 969154062570 named unknown by gmailapi.google.com with
+ HTTPREST; Wed, 15 Jul 2026 05:26:43 -0700
+Received: from 969154062570 named unknown by gmailapi.google.com with
+ HTTPREST; Wed, 15 Jul 2026 05:26:42 -0700
+From: Bartosz Golaszewski <brgl@kernel.org>
+In-Reply-To: <20260714-arm-psci-system_reset2-vendor-reboots-v23-2-e7453c548c21@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260715-6572-pwrap-v2-3-bea1d801c81b@protonmail.com>
-References: <20260715-6572-pwrap-v2-0-bea1d801c81b@protonmail.com>
-In-Reply-To: <20260715-6572-pwrap-v2-0-bea1d801c81b@protonmail.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Flora Fu <flora.fu@mediatek.com>, Alexandre Mergnat <amergnat@baylibre.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
- Roman Vivchar <rva333@protonmail.com>
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1784118429; l=3053;
- i=rva333@protonmail.com; s=20260510; h=from:subject:message-id;
- bh=734OeVA8OVJF9zkD8y++4eBar+yDgtHe1s1/kC7/Zxk=;
- b=DHzyEVHfr1jchQ2eMIJvIUXEpktNqNFiQGh7LMUnb35+vD/3R+cuXsTBdugL4SGiL0gbHPFa2
- rM7wXhvcZ/VD/JGoEUvtlFqLb5G2V1rzlLb2Sj/aVOaQXvh2Tax15Yw
-X-Developer-Key: i=rva333@protonmail.com; a=ed25519;
- pk=zww/nWjBGoQ4POXCG0BV6fx2iuXK6jx77rsKPA5YK5Y=
-X-Endpoint-Received: by B4 Relay for rva333@protonmail.com/20260510 with
- auth_id=777
-X-Original-From: Roman Vivchar <rva333@protonmail.com>
-Reply-To: rva333@protonmail.com
-X-Spamd-Result: default: False [-1.66 / 15.00];
+References: <20260714-arm-psci-system_reset2-vendor-reboots-v23-0-e7453c548c21@oss.qualcomm.com>
+ <20260714-arm-psci-system_reset2-vendor-reboots-v23-2-e7453c548c21@oss.qualcomm.com>
+Date: Wed, 15 Jul 2026 05:26:42 -0700
+X-Gmail-Original-Message-ID: <CAMRc=McKp4WsOY-EQ21n2wbqCp5V0Lr1Cbub5geEhz-LZvVkZw@mail.gmail.com>
+X-Gm-Features: AUfX_mylt-DYfwtCtULeZMicFYpxh50vEHg7XonNMSy71MZwRMycF3EtBgUVrSQ
+Message-ID: <CAMRc=McKp4WsOY-EQ21n2wbqCp5V0Lr1Cbub5geEhz-LZvVkZw@mail.gmail.com>
+Subject: Re: [PATCH v23 02/13] power: reset: reboot-mode: Support up to 3
+ magic values per mode
+To: Shivendra Pratap <shivendra.pratap@oss.qualcomm.com>
+Cc: linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	devicetree@vger.kernel.org, Florian Fainelli <florian.fainelli@broadcom.com>, 
+	Krzysztof Kozlowski <krzk@kernel.org>, Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
+	Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>, Andre Draszik <andre.draszik@linaro.org>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>, mfd@lists.linux.dev, 
+	Srinivas Kandagatla <srini@kernel.org>, Sebastian Reichel <sre@kernel.org>, Mark Rutland <mark.rutland@arm.com>, 
+	Lorenzo Pieralisi <lpieralisi@kernel.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
+	Daniel Lezcano <daniel.lezcano@kernel.org>, Christian Loehle <christian.loehle@arm.com>, 
+	Ulf Hansson <ulfh@kernel.org>, Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Arnd Bergmann <arnd@arndb.de>, Souvik Chakravarty <Souvik.Chakravarty@arm.com>, 
+	Andy Yan <andy.yan@rock-chips.com>, Matthias Brugger <matthias.bgg@gmail.com>, 
+	John Stultz <john.stultz@linaro.org>, Moritz Fischer <moritz.fischer@ettus.com>, 
+	Bartosz Golaszewski <brgl@kernel.org>, Sudeep Holla <sudeep.holla@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spamd-Result: default: False [-3.66 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	FREEMAIL_REPLYTO_NEQ_FROM(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-326962-lists,devicetree=lfdr.de,rva333.protonmail.com];
-	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:matthias.bgg@gmail.com,m:angelogioacchino.delregno@collabora.com,m:flora.fu@mediatek.com,m:amergnat@baylibre.com,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-mediatek@lists.infradead.org,m:rva333@protonmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:matthiasbgg@gmail.com,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-326960-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:shivendra.pratap@oss.qualcomm.com,m:linux-pm@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-msm@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:devicetree@vger.kernel.org,m:florian.fainelli@broadcom.com,m:krzk@kernel.org,m:dmitry.baryshkov@oss.qualcomm.com,m:mukesh.ojha@oss.qualcomm.com,m:andre.draszik@linaro.org,m:gregkh@linuxfoundation.org,m:kathiravan.thirumoorthy@oss.qualcomm.com,m:mfd@lists.linux.dev,m:srini@kernel.org,m:sre@kernel.org,m:mark.rutland@arm.com,m:lpieralisi@kernel.org,m:rafael@kernel.org,m:daniel.lezcano@kernel.org,m:christian.loehle@arm.com,m:ulfh@kernel.org,m:lee@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:andersson@kernel.org,m:konradybcio@kernel.org,m:arnd@arndb.de,m:Souvik.Chakravarty@arm.com,m:andy.yan@rock-chips.com,m:matthias.bgg@gmail.com,m:john.stultz@linaro.org,m:moritz.fischer@ettus.com,m:brgl@kernel.org,m:sudeep.holla@kernel.org,m:conor@kernel.org,m:matthiasbgg@gmail.com,s:li
+ sts@lfdr.de];
+	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	FREEMAIL_REPLYTO(0.00)[protonmail.com];
-	FREEMAIL_TO(0.00)[kernel.org,gmail.com,collabora.com,mediatek.com,baylibre.com];
+	RCPT_COUNT_TWELVE(0.00)[36];
+	FORGED_SENDER(0.00)[brgl@kernel.org,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
 	FORWARDED(0.00)[lists@lfdr.de];
-	TO_DN_SOME(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	DNSWL_BLOCKED(0.00)[100.90.174.1:received,172.232.135.74:from,10.30.226.201:received];
-	ALIAS_RESOLVED(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
-	PRECEDENCE_BULK(0.00)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,protonmail.com];
-	DWL_DNSWL_BLOCKED(0.00)[kernel.org:dkim];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	HAS_REPLYTO(0.00)[rva333@protonmail.com];
-	RECEIVED_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[10.30.226.201:received];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,broadcom.com,kernel.org,oss.qualcomm.com,linaro.org,linuxfoundation.org,lists.linux.dev,arm.com,arndb.de,rock-chips.com,gmail.com,ettus.com];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[brgl@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,vger.kernel.org:from_smtp,protonmail.com:replyto,protonmail.com:email,protonmail.com:mid]
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: C6C5375E179
+X-Rspamd-Queue-Id: F04EC75E293
 X-Rspamd-Action: no action
 
-From: Roman Vivchar <rva333@protonmail.com>
+On Tue, 14 Jul 2026 19:16:30 +0200, Shivendra Pratap
+<shivendra.pratap@oss.qualcomm.com> said:
+> ARM PSCI vendor-specific resets, require a 32-bit reset_type and a 64-bit
+> cookie as arguments. This cannot be implemented via the reboot-mode
+> framework, which supports a single 32-bit argument as magic value.
+>
+> Extend the reboot-mode framework to support up to three 32-bit arguments
+> as magic, per reboot-mode.
+>
+> Signed-off-by: Shivendra Pratap <shivendra.pratap@oss.qualcomm.com>
+> ---
+>  drivers/power/reset/nvmem-reboot-mode.c  | 10 ++++----
+>  drivers/power/reset/qcom-pon.c           |  8 ++++---
+>  drivers/power/reset/reboot-mode.c        | 41 +++++++++++++++++++++-----------
+>  drivers/power/reset/syscon-reboot-mode.c |  8 ++++---
+>  include/linux/reboot-mode.h              |  4 +++-
 
-Add mt6572 registers and platform data for the pmic wrapper.
+Could we avoid having to modify multiple files here by just providing a new
+function:
 
-While vendor kernel source code suggests that mt6572 can be paired with
-the mt6320 PMIC, no such devices have been found yet. Hence, registers
-that not included in the mt2701 array are omitted.
+    nvmem_reboot_mode_write_full()
 
-The mt2701 SoC-specific initialization function is used because they
-share the same GPS_INTF settings.
+with the prototype you proposed and making the existing
+nvmem_reboot_mode_write() a thin wrapper around it?
 
-Signed-off-by: Roman Vivchar <rva333@protonmail.com>
----
- drivers/soc/mediatek/mtk-pmic-wrap.c | 26 ++++++++++++++++++++++++++
- 1 file changed, 26 insertions(+)
-
-diff --git a/drivers/soc/mediatek/mtk-pmic-wrap.c b/drivers/soc/mediatek/mtk-pmic-wrap.c
-index a4b10b0a97cb..3f05fc724e15 100644
---- a/drivers/soc/mediatek/mtk-pmic-wrap.c
-+++ b/drivers/soc/mediatek/mtk-pmic-wrap.c
-@@ -1314,6 +1314,7 @@ enum pmic_type {
- 
- enum pwrap_type {
- 	PWRAP_MT2701,
-+	PWRAP_MT6572,
- 	PWRAP_MT6765,
- 	PWRAP_MT6779,
- 	PWRAP_MT6795,
-@@ -1733,6 +1734,11 @@ static void pwrap_init_chip_select_ext(struct pmic_wrapper *wrp, u8 hext_write,
- static int pwrap_common_init_reg_clock(struct pmic_wrapper *wrp)
- {
- 	switch (wrp->master->type) {
-+	case PWRAP_MT6572:
-+		pwrap_writel(wrp, 0x8, PWRAP_RDDMY);
-+		pwrap_write(wrp, wrp->slave->dew_regs[PWRAP_DEW_RDDMY_NO], 0x8);
-+		pwrap_init_chip_select_ext(wrp, 5, 0, 0, 0);
-+		break;
- 	case PWRAP_MT6795:
- 		if (wrp->slave->type == PMIC_MT6331) {
- 			const u32 *dew_regs = wrp->slave->dew_regs;
-@@ -1839,6 +1845,7 @@ static int pwrap_init_cipher(struct pmic_wrapper *wrp)
- 		pwrap_writel(wrp, 1, PWRAP_CIPHER_START);
- 		break;
- 	case PWRAP_MT2701:
-+	case PWRAP_MT6572:
- 	case PWRAP_MT6765:
- 	case PWRAP_MT6779:
- 	case PWRAP_MT6795:
-@@ -2277,6 +2284,24 @@ static const struct pmic_wrapper_type pwrap_mt2701 = {
- 	.init_soc_specific = pwrap_mt2701_init_soc_specific,
- };
- 
-+/*
-+ * MT6572 register map is a superset of the MT2701. It has additional registers
-+ * OP_TYPE (0x10), MSB_FIRST (0x14), GPS_STA (0x40) and SW_RST (0x180),
-+ * which were omitted because the driver doesn't use them.
-+ */
-+static const struct pmic_wrapper_type pwrap_mt6572 = {
-+	.regs = mt2701_regs,
-+	.type = PWRAP_MT6572,
-+	.arb_en_all = 0x1ff,
-+	.int_en_all = 0x7ffffffd,
-+	.int1_en_all = 0,
-+	.spi_w = PWRAP_MAN_CMD_SPI_WRITE,
-+	.wdt_src = PWRAP_WDT_SRC_MASK_ALL,
-+	.caps = PWRAP_CAP_RESET | PWRAP_CAP_DCM,
-+	.init_reg_clock = pwrap_common_init_reg_clock,
-+	.init_soc_specific = pwrap_mt2701_init_soc_specific,
-+};
-+
- static const struct pmic_wrapper_type pwrap_mt6765 = {
- 	.regs = mt6765_regs,
- 	.type = PWRAP_MT6765,
-@@ -2446,6 +2471,7 @@ static const struct pmic_wrapper_type pwrap_mt8186 = {
- 
- static const struct of_device_id of_pwrap_match_tbl[] = {
- 	{ .compatible = "mediatek,mt2701-pwrap", .data = &pwrap_mt2701 },
-+	{ .compatible = "mediatek,mt6572-pwrap", .data = &pwrap_mt6572 },
- 	{ .compatible = "mediatek,mt6765-pwrap", .data = &pwrap_mt6765 },
- 	{ .compatible = "mediatek,mt6779-pwrap", .data = &pwrap_mt6779 },
- 	{ .compatible = "mediatek,mt6795-pwrap", .data = &pwrap_mt6795 },
-
--- 
-2.54.0
-
-
+Bart
 
