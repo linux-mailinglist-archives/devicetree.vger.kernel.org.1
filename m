@@ -1,70 +1,116 @@
-Return-Path: <devicetree+bounces-326708-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-326710-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id Z25CAGU4V2pZHgEAu9opvQ
-	(envelope-from <devicetree+bounces-326708-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 09:36:05 +0200
+	id 1C8fDbk4V2p7HgEAu9opvQ
+	(envelope-from <devicetree+bounces-326710-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 09:37:29 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49D2F75B7D9
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 09:36:04 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 501C775B816
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 09:37:28 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=novatek.com.tw header.s=dk header.b=S9wgFoeF;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326708-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-326708-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=novatek.com.tw;
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
+	dkim=pass header.d=ti.com header.s=proofpoint-05-2026 header.b=Y73b+bGQ;
+	dkim=pass header.d=ti.com header.s=selector1 header.b=BggjHKuJ;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326710-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-326710-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=ti.com;
+	arc=reject ("cv is fail on i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 6A4FB302AD2E
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 07:35:30 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 44DF43070C07
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 07:36:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BAEB63A9D99;
-	Wed, 15 Jul 2026 07:35:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29A61197A7D;
+	Wed, 15 Jul 2026 07:36:29 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from ms1.novatek.com.tw (ms2.novatek.com.tw [210.202.87.108])
+Received: from mx0b-0002e601.pphosted.com (mx0b-0002e601.pphosted.com [148.163.154.28])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C243D377A86;
-	Wed, 15 Jul 2026 07:35:27 +0000 (UTC)
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1784100929; cv=none; b=ZZlXam5dfe3ubFlhAEaH3my0X5Cj0N8apUHnfWIDjm+9YeZMu5/a668ugUa4jnRh9QH+7nT7s/aZcJolEjQxYP3tIOF0jCMBPum5ywLk9V/Fipd3wpED0A8RJVPHwVOVVL5FP5++VEmplrog2bscvHD7fZo6EDL7sWNBsP3Gk1o=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1784100929; c=relaxed/simple;
-	bh=wuIOnk8cyus8Q25UtJcTT8OBANsJzOnLRyVQQefpOwc=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=qvqk5lXzKWVLsz2L33afcsrN75TeSA3/SgGg2vFrJrtiVXpQsLZHf/B7igLrLa4fdNUpuStmAehVKYOfxntN2RedNu4rAXb14HNJIohwrllGXVC/WXNklXPOX7SL8VFlv8wEmiaz63WODqVYFrr1Nf3B29YgnyXy6MqG3f+ynA8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=novatek.com.tw; spf=pass smtp.mailfrom=novatek.com.tw; dkim=pass (1024-bit key) header.d=novatek.com.tw header.i=@novatek.com.tw header.b=S9wgFoeF; arc=none smtp.client-ip=210.202.87.108
-X-UUID: bd01c8f4801f11f181a149c3f3c08161-20260715
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=novatek.com.tw; s=dk;
-	h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From; bh=jo0ybDepkKLaMFGqRBKnWx0O6kvEpTuj2jQJkrZuuXU=;
-	b=S9wgFoeFoUwb9OKlJ7zr+iufNih0rotW4XZSgzpV/4LZMD+ynmPf6bkHX4z+lVAwO4dgKJBbTf0+vbcFD2SXIXoWQ5SEhvbOlF5BOxFG6wwnCyRzJbZW4p2f61O1MFr17ns/Hp2RRUbgTDany3cpigr1hBMCbfoWF9xlEKCa7xM=;
-X-UUID: bd01c8f4801f11f181a149c3f3c08161-20260715
-Received: from spmgt1 [(172.20.13.10)] by ms1.novatek.com.tw
-	(envelope-from <sp_isw1_at@novatek.com.tw>)
-	(Generic MTA)
-	with ESMTP id 877515562; Wed, 15 Jul 2026 15:35:22 +0800
-Received: from oabuild50.novatek.com.tw (oabuild50.novatek.com.tw [172.20.13.160])
-	by spmgt1 (Postfix) with ESMTP id CFF5A1A1E1C;
-	Wed, 15 Jul 2026 15:35:22 +0800 (CST)
-Received: by oabuild50.novatek.com.tw (Postfix, from userid 1005)
-	id D2A58C600CC; Wed, 15 Jul 2026 15:35:21 +0800 (CST)
-From: Nina_Kuo@novatek.com.tw
-To: andi.shyti@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	linux-i2c@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: ben_huang@novatek.com.tw,
-	toby_chui@novatek.com.tw,
-	shihpei_hsu@novatek.com.tw
-Subject: [PATCH v3 2/3] dt-bindings: i2c: Add Novatek NT726xx SoC I2C controller
-Date: Wed, 15 Jul 2026 15:35:21 +0800
-Message-Id: <20260715073521.147610-1-Nina_Kuo@novatek.com.tw>
-X-Mailer: git-send-email 2.26.1
-In-Reply-To: <20260715073503.147552-1-Nina_Kuo@novatek.com.tw>
-References: <20260715073503.147552-1-Nina_Kuo@novatek.com.tw>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC1A73C4169;
+	Wed, 15 Jul 2026 07:36:26 +0000 (UTC)
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1784100989; cv=fail; b=tGtIlHYyL3GcwL3Ih0JdEnx1qUKizI3F1QP0ZqLcS6DOPkh5il4n4cPU6jWlb7b9rol3wFcipt6muBNfEKAb7IWOYKkGeO78GevkLXxwcPAlnl5qIC/++VH1zMEeN4TozLMsZKyXMZ11BU5zlS1ziPNJEeaIvx+XGsvbhzGfG9U=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1784100989; c=relaxed/simple;
+	bh=YOnFVL3vubu9csEwhut+mvTDzogNFqsBaUIr5eBPBMU=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=UNPs32SxYlhn0P5NNzc5+FRol4j8cFI7pEWqXkyKJrLji8EHxYJUo0UG+UzdcH+YYGqkq52YBfLgo7dMDFs43NMHd90Q9gPcZ5ZqJ3inniQBxYa6gU+z+L/PZWey/uC2TzORQvI6wp/mOC9CLFSC+xpg94Xfv/Yyrnx9FHq9cCw=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (2048-bit key) header.d=ti.com header.i=@ti.com header.b=Y73b+bGQ; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=BggjHKuJ; arc=fail smtp.client-ip=148.163.154.28
+Received: from pps.filterd (m0374956.ppops.net [127.0.0.1])
+	by mx0b-0002e601.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 66F4MFQS4102163;
+	Wed, 15 Jul 2026 02:36:16 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; h=cc
+	:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=proofpoint-05-2026; bh=wLgxA5/2tJuXB
+	PbexFme3147r6JPX31T1YsRIZ3TZXA=; b=Y73b+bGQHubcG9L4WTlsREeLNHzqf
+	UfYnw4NWzCivWhnmsauQhcjD2wB3HoUoPLW8Z1z7H97qvofYo6d+xZDjEQRe9Rye
+	aOyutiynU4FCpnCPK75amPXtB4PUF1Fxvw08Z2GAXTCh+99BQcb5+5LA/aTXjbcz
+	F9fKhKkdJeEfmgX2uuGS3DjsNbKzBxtpNqiUAy4Y3Rd/HqfIrtbZeMi8TgK8/lDm
+	IR4d70j8GqPY0XamoLFsAOJ+EFqTKKLCJCOm5m/y1hyafx59Cmn2JKOZpaPsQCYv
+	Bc2R4uHG9F0BdoExyySzHU0CPZYSsJ18sEMRVghyXzlXNzcVo1Z0VVkmg==
+Received: from co1pr03cu002.outbound.protection.outlook.com (mail-westus2azon11010003.outbound.protection.outlook.com [52.101.46.3])
+	by mx0b-0002e601.pphosted.com (PPS) with ESMTPS id 4fe34d0t14-1
+	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
+	Wed, 15 Jul 2026 02:36:16 -0500 (CDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Mn6gETecmvP/Wqm5Tq5JPf1lVdtUVOlxkRUKNdb69C1IwmATU5rSVKsj0stm7gPina4WTR/mhz5Z7LrlB4AEb5E3ep0EeM5cKVtzlXHtxurWschhdotZrR6634tTb4V14GwH51EMAk70xh0AtO1hwH4taygzrGP1luHb1+hDqgHpoMnBo4vdHFtOC0ArmFKXiHvFdONImoadq4QbNQ1VU1hdVNJYTQJPwBBwWQ5P28qhiI3COpAfIFf1+bFyA8IJ4ru2ucrW2H3Do0m26z61X6SyWYkG1D0n0gY6niQib0hck+eBjfEJMVXG/6gvjg1sV+7CvHfXuwMWSr+v7e2PjA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=wLgxA5/2tJuXBPbexFme3147r6JPX31T1YsRIZ3TZXA=;
+ b=OlBd6KQfNteLPw4GwUt6M7S0pH3k3sAC8Xlkh2+QP3U8whzdtIyBka9ogpf9oQSwi2p4uBM4thjrMMsHd6Klv9t3Hqi5gwvDQEF0zMJX47cIPOA0H4JAj5h0QLjzs0xeSfYRFzImiEWCcKHu9usVZoH4nXVCb5XgvjhGw/OLM8wcjHGpxianOmZv80Y8q9nnomH5CnSCKZUwHuT3kk3Z9gYsMRrhPijztZxDIkcMJFNKW6sf9U04nBvnoM10nlhcV0jyPBECxBRi6dd1JI2/gxfgIM+jGafZBQAV+nRMw54YHKlicyuQTJeFcRyotJRIRayaj4fzbymdpc49DP0P6g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 198.47.21.194) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=ti.com;
+ dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=wLgxA5/2tJuXBPbexFme3147r6JPX31T1YsRIZ3TZXA=;
+ b=BggjHKuJVPq6U76adfPQoBKPxHWmUqXeLiXYEsK46uxoYoEy8SXKS8EzC2QS4s66NskXel/zDZevttuxcDjxnKIsnFnaWql3nnoANsTg0rv17Vjhh+WJeC5zm9gi8szVtkFX58Z3aJfk61sw5VQTs/QDbkHSQl5T9OJnVv4XYtw=
+Received: from SJ0PR05CA0077.namprd05.prod.outlook.com (2603:10b6:a03:332::22)
+ by PH3PPF57C8E5D36.namprd10.prod.outlook.com (2603:10b6:518:1::7a4) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.14; Wed, 15 Jul
+ 2026 07:36:11 +0000
+Received: from SJ1PEPF000026C5.namprd04.prod.outlook.com
+ (2603:10b6:a03:332:cafe::2d) by SJ0PR05CA0077.outlook.office365.com
+ (2603:10b6:a03:332::22) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.223.10 via Frontend Transport; Wed,
+ 15 Jul 2026 07:36:08 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.194)
+ smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
+ action=none header.from=ti.com;
+Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
+ 198.47.21.194 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.21.194; helo=flwvzet200.ext.ti.com; pr=C
+Received: from flwvzet200.ext.ti.com (198.47.21.194) by
+ SJ1PEPF000026C5.mail.protection.outlook.com (10.167.244.102) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.223.9 via Frontend Transport; Wed, 15 Jul 2026 07:36:07 +0000
+Received: from DFLE205.ent.ti.com (10.64.6.63) by flwvzet200.ext.ti.com
+ (10.248.192.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.37; Wed, 15 Jul
+ 2026 02:35:36 -0500
+Received: from DFLE200.ent.ti.com (10.64.6.58) by DFLE205.ent.ti.com
+ (10.64.6.63) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.37; Wed, 15 Jul
+ 2026 02:35:36 -0500
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE200.ent.ti.com
+ (10.64.6.58) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.37 via Frontend
+ Transport; Wed, 15 Jul 2026 02:35:36 -0500
+Received: from a0512632.dhcp.ti.com (a0512632.dhcp.ti.com [10.24.52.205])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 66F7ZW1E2524418;
+	Wed, 15 Jul 2026 02:35:32 -0500
+From: Swamil Jain <s-jain1@ti.com>
+To: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <tomi.valkeinen@ideasonboard.com>
+CC: <devarsht@ti.com>, <praneeth@ti.com>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <s-jain1@ti.com>
+Subject: [PATCH v4] arm64: dts: ti: Add LincolnTech OLDI LCD-185 Overlay for AM625-BeaglePlay
+Date: Wed, 15 Jul 2026 13:05:31 +0530
+Message-ID: <20260715073531.2346803-1-s-jain1@ti.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,133 +118,332 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ1PEPF000026C5:EE_|PH3PPF57C8E5D36:EE_
+X-MS-Office365-Filtering-Correlation-Id: bed30147-328f-4026-097f-08dee243bbf0
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|36860700016|82310400026|23010399003|1800799024|376014|3023799007|56012099006|6133799003|13003099007|18002099003;
+X-Microsoft-Antispam-Message-Info:
+	flmemnVjrqAD8ZCw2qIw4o2PiLByl8c4BjM571BZJH0wleBmEzAHalyoh+iv91G+YN65m7d7J3L4/78ttThVfjWIJsUhc/bjl8D3VOgWK3mNSF8moyHdn2RtiwkOvR52hHF1QwXXy0bATRiSKnBFAy9T6kW2r+2ywXxPhYS0y6Yhng8NItoXCm/pkHsUpmilco4vKs2BWjb2IxZ+nh9bSGGaT/QmpluHqoOYQLUi4xHc8dlZGMyXnRJZkuxb3PyBDR/Ps8Yc39jeWr/hwoXah4lYPh4xpK7MPHM9ZK68UyGdtfl6fvoqJJwQBwGSS9rEOm2DfnpC9PRWS1/60WTIrY+irXyCK8XhwZVHNXT1knlu0dsO2W0eWUQiyUm6+ZBav9eIR2w9XnPTUy0fkm1LjWVJe+Tk1s87bb4yu609g6HTSlOLmsCU3QnFPH7ZpGUMsrGtbMLMn/QY+eY8hjBlvhhr2wUaUzbstY1tj6klgBjM3uJtX8aCA2cSxp421GaJLsmBAK7OchrsH+c16p7WvDaCworkGjvNZeuqhx+jzSwzOGYT1RxMC6PHwaeg1TIR73ua2VHgGp/eOkxKslyxiTVkw3Txs9Hh/PaYSmyEG8SUDoFecq1+5OKsj22zhv8VxIwqF2fmlRrRJAeR1JXxNg==
+X-Forefront-Antispam-Report:
+	CIP:198.47.21.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet200.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(36860700016)(82310400026)(23010399003)(1800799024)(376014)(3023799007)(56012099006)(6133799003)(13003099007)(18002099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	9BtW0f68cupLDdRWxUmkFPeeshNvvmmsAnkqJ6LVKoX2UNcaivV+sjKlntRKGtakfikY1YFmhtyL4HlM0Ua+wfS+Sc2D75u9WzscQDc1aCdTTfrHwxmTfTkfryHVFLI1ROJfV3Z6V8PzxYqVEoP1DLUZw0WXImE/zkMxNIeTzrzw/CS8GzOQOk0JkHJEpsLPkRZ6LpVFfjBYLhX5QizFZO0LWZV7BvOTiJXSeJOJuh8tLnRv88P2hcQTyZoKhB0APq/WOMOkIzkJD0lzBwoKtpvdVDlmvwu8MW+ZqIo4mS21+EE5Pq3LuDxtgTffxPvbg0vhjqtBhkliU5g+YE867ZFF1K3ZAdNIQeOX4oaMQyVJaezj0yVsTV9I6Baqr77gmFehmThfDuO7f4kTW2nuU6eyx4RKOoQgw4fY1hoN/QjWHYiS/fGhMaMDpz8nh8hA
+X-Exchange-RoutingPolicyChecked:
+	T99x/Lm1f2qw/LnVG1fShhOk0KdbXY3o4U7RcoY4h+6dtskYIZdwWFxUTSmKMujYALmq2/qS1cZJjyJSKqxdD7LJEXLsPTuaiI7+qdBPdTCyNrzgXl93Pg7sok2FQONMu5KLSGHnVE8rEPddGi49pQ0P0M3LYtXZgUj+ZZZV7myxA4wr1ubHcb3nrUJOH+fxdnN3vnVowt3sWSMh6jEaRo/RB7cQejVs3fd7dkl2p0ipgd54b8mxq62Rg5Mf9wAomml5I8KyX08SXzkQqgv1VfX8RLeMyiMTNdpQV7qzajgMtsWkzbEJ8oTMT9T0xMITiedFIxueFvrjH6r8dguoZQ==
+X-OriginatorOrg: ti.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Jul 2026 07:36:07.5592
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: bed30147-328f-4026-097f-08dee243bbf0
+X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.194];Helo=[flwvzet200.ext.ti.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	SJ1PEPF000026C5.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH3PPF57C8E5D36
+X-Proofpoint-Spam-Info: AW1haW4tMjYwNzE1MDA3MiBTYWx0ZWRfXzx7jTMm0ItP9
+ s8shJ/gyJPD5S978T2DhMXxRok5TxGDhSDAvqLZ/nNb3BHF32hCuq+/sMRD60X1jgaGzRsh0EY7
+ /uVmFwan3yUqIinwzFkEXnmmkCbISd4=
+X-Proofpoint-GUID: Ugi8nE7enpy3-Ma_LOYiQBa8Nfl7JAtg
+X-Authority-Analysis: v=2.4 cv=NbXWEWD4 c=1 sm=1 tr=0 ts=6a573870 cx=c_pps
+ a=AKd2An130fSphkJyqL6rzg==:117 a=iwqwCZQqcuTv3JOpYdM7/Q==:17
+ a=6eWqkTHjU83fiwn7nKZWdM+Sl24=:19 a=RAioF0-LDSMA:10 a=V5UXEbMT0ywA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=Z8NIEmU8O1QQgoT56wFK:22 a=jwouBfj2j3NM8CExmVVE:22
+ a=KOmJlRZdAAAA:8 a=VwQbUJbxAAAA:8 a=sozttTNsAAAA:8 a=ClvzzUG-uOCFfQbTchsA:9
+ a=lqcHg5cX4UMA:10 a=z2U-W3hJrleVIN9YIjzO:22 a=Y9KJ9d7ijktqh0zzt3yb:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNzE1MDA3MiBTYWx0ZWRfX8OSKVazT2ljH
+ 0in6avDXsda9BUSmyhhp8PxBSAgibh+dzFJgbUfgzTtO2NjnqYUO1R9nKuwuXXIs9kDoJsDYiUs
+ 9I7Wejm/JXBJ8ORkLvDI906iBZjJWx1sVdPOdKxsZBrS4pXUtmV8uf9eQs/HwDcSO/49N8DzG1X
+ z5LTn75NyWqa1IfHRk7eI4b6pMbNXaJYTHiF/aos45PUfRoMvdovgkZU06wjjFGRhpMWfUewvMv
+ VLvIiHn9SUBPHM4ENvch8ALHRlavOuSNcDSKc3EBN4cfUTdpHE5b1Ron0fMt2I+Un+zvmPzTMOp
+ xbXQbyp/LNvODR6Wy6x2to0hYD1TVXW+W/BleRYm/iKVBW4s3j6KF+zl57G6NQgx5i5BwoS9eDj
+ JprNXAqS4L54LJu1dv/VoL6KiV+GcGiEU95w/dRMC1y5mKXSESoRGItgLqyNTqPrUxQerWZPO8V
+ 1xgAaYptVwBjrBpnUDg==
+X-Proofpoint-ORIG-GUID: Ugi8nE7enpy3-Ma_LOYiQBa8Nfl7JAtg
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.134,FMLib:17.12.100.49
+ definitions=2026-07-15_02,2026-07-14_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 impostorscore=0 spamscore=0 phishscore=0 priorityscore=1501
+ lowpriorityscore=0 bulkscore=0 adultscore=0 malwarescore=0 suspectscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2606150000 definitions=main-2607150072
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+X-Spamd-Result: default: False [2.84 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_REJECT(1.00)[cv is fail on i=2];
 	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[novatek.com.tw,quarantine];
+	DMARC_POLICY_ALLOW(-0.50)[ti.com,quarantine];
 	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[novatek.com.tw:s=dk];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[ti.com:s=proofpoint-05-2026,ti.com:s=selector1];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-326708-lists,devicetree=lfdr.de];
-	FROM_NEQ_ENVFROM(0.00)[Nina_Kuo@novatek.com.tw,devicetree@vger.kernel.org];
-	RCVD_COUNT_FIVE(0.00)[6];
-	FORGED_RECIPIENTS(0.00)[m:andi.shyti@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-i2c@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:ben_huang@novatek.com.tw,m:toby_chui@novatek.com.tw,m:shihpei_hsu@novatek.com.tw,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[Nina_Kuo@novatek.com.tw,devicetree@vger.kernel.org];
-	PRECEDENCE_BULK(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[novatek.com.tw:+];
-	FROM_NO_DN(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	ALIAS_RESOLVED(0.00)[];
-	TO_DN_NONE(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-326710-lists,devicetree=lfdr.de];
+	FORGED_SENDER(0.00)[s-jain1@ti.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS(0.00)[m:nm@ti.com,m:vigneshr@ti.com,m:kristo@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:tomi.valkeinen@ideasonboard.com,m:devarsht@ti.com,m:praneeth@ti.com,m:linux-arm-kernel@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:s-jain1@ti.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	DKIM_TRACE(0.00)[ti.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[s-jain1@ti.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_NONE(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[novatek.com.tw:from_mime,novatek.com.tw:mid,novatek.com.tw:email,novatek.com.tw:dkim,vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+	RCVD_COUNT_TWELVE(0.00)[12];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	HAS_WP_URI(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,lincolntechsolutions.com:url,ti.com:email,ti.com:dkim,ti.com:url,ti.com:from_mime,ti.com:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 49D2F75B7D9
+X-Rspamd-Queue-Id: 501C775B816
 
-From: Ben Huang <Ben_Huang@novatek.com.tw>
+From: Aradhya Bhatia <a-bhatia1@ti.com>
 
-Add device tree documentation for Novatek NT726xx SoC I2C controller.
+The panel is Lincoln Technology Solutions LCD185-101CT[0]. It is a
+Dual-Link LVDS panel and supports WUXGA resolution (1920x1200).
+Furthermore, it has an i2c based touch controller: Goodix-GT928.
 
-Signed-off-by: Ben Huang <Ben_Huang@novatek.com.tw>
-Signed-off-by: Nina Kuo <Nina_Kuo@novatek.com.tw>
+Add DT overlay for the OLDI panel to connect with BeaglePlay platform.
+
+[0]: https://lincolntechsolutions.com/wp-content/uploads/2024/09/LCD185-101CTL1ARNTT_DS_R1.3.pdf
+
+Signed-off-by: Aradhya Bhatia <a-bhatia1@ti.com>
+Signed-off-by: Swamil Jain <s-jain1@ti.com>
 ---
- .../bindings/i2c/novatek,nt726xx-i2c.yaml     | 74 +++++++++++++++++++
- 1 file changed, 74 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/i2c/novatek,nt726xx-i2c.yaml
+Changelog:
+v3->v4:
+- Use https:// instead of http:// for URL
+- Dropped redundant details from the header as suggested by the
+  maintainers
 
-diff --git a/Documentation/devicetree/bindings/i2c/novatek,nt726xx-i2c.yaml b/Documentation/devicetree/bindings/i2c/novatek,nt726xx-i2c.yaml
+link to v3: https://lore.kernel.org/all/20260528111319.3262698-1-s-jain1@ti.com/
+
+v2->v3:
+Use tab inplace of spaces for indentation.
+
+link to v2: https://lore.kernel.org/all/20260521020630.816220-1-s-jain1@ti.com/
+
+v1->v2:
+Move overlay-specific pinmux configurations from base device tree to
+k3-am625-beagleplay-lincolntech-lcd185-panel.dtso file.
+
+link to v1: https://lore.kernel.org/all/20260514225502.2327771-1-s-jain1@ti.com/
+---
+ arch/arm64/boot/dts/ti/Makefile               |   4 +
+ ...5-beagleplay-lincolntech-lcd185-panel.dtso | 162 ++++++++++++++++++
+ 2 files changed, 166 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am625-beagleplay-lincolntech-lcd185-panel.dtso
+
+diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
+index 371f9a043fe5..f46e64a7164f 100644
+--- a/arch/arm64/boot/dts/ti/Makefile
++++ b/arch/arm64/boot/dts/ti/Makefile
+@@ -26,6 +26,7 @@ k3-am625-verdin-wifi-dev-dsi-to-hdmi-dtbs := k3-am625-verdin-wifi-dev.dtb \
+ dtb-$(CONFIG_ARCH_K3) += k3-am625-beagleplay.dtb
+ dtb-$(CONFIG_ARCH_K3) += k3-am625-beagleplay-csi2-ov5640.dtbo
+ dtb-$(CONFIG_ARCH_K3) += k3-am625-beagleplay-csi2-tevi-ov5640.dtbo
++dtb-$(CONFIG_ARCH_K3) += k3-am625-beagleplay-lincolntech-lcd185-panel.dtbo
+ dtb-$(CONFIG_ARCH_K3) += k3-am625-phyboard-lyra-rdk.dtb
+ dtb-$(CONFIG_ARCH_K3) += k3-am625-sk.dtb
+ dtb-$(CONFIG_ARCH_K3) += k3-am625-tqma62xx-mba62xx.dtb
+@@ -208,6 +209,8 @@ k3-am625-beagleplay-csi2-ov5640-dtbs := k3-am625-beagleplay.dtb \
+ 	k3-am625-beagleplay-csi2-ov5640.dtbo
+ k3-am625-beagleplay-csi2-tevi-ov5640-dtbs := k3-am625-beagleplay.dtb \
+ 	k3-am625-beagleplay-csi2-tevi-ov5640.dtbo
++k3-am625-beagleplay-lincolntech-lcd185-panel-dtbs := k3-am625-beagleplay.dtb \
++	k3-am625-beagleplay-lincolntech-lcd185-panel.dtbo
+ k3-am625-phyboard-lyra-disable-eth-phy-dtbs := k3-am625-phyboard-lyra-rdk.dtb \
+ 	k3-am6xx-phycore-disable-eth-phy.dtbo
+ k3-am625-phyboard-lyra-disable-rtc-dtbs := k3-am625-phyboard-lyra-rdk.dtb \
+@@ -340,6 +343,7 @@ k3-j784s4-evm-usxgmii-exp1-exp2-dtbs := k3-j784s4-evm.dtb \
+ 	k3-j784s4-evm-usxgmii-exp1-exp2.dtbo
+ dtb- += k3-am625-beagleplay-csi2-ov5640.dtb \
+ 	k3-am625-beagleplay-csi2-tevi-ov5640.dtb \
++	k3-am625-beagleplay-lincolntech-lcd185-panel.dtb \
+ 	k3-am625-phyboard-lyra-disable-eth-phy.dtb \
+ 	k3-am625-phyboard-lyra-disable-rtc.dtb \
+ 	k3-am625-phyboard-lyra-disable-spi-nor.dtb \
+diff --git a/arch/arm64/boot/dts/ti/k3-am625-beagleplay-lincolntech-lcd185-panel.dtso b/arch/arm64/boot/dts/ti/k3-am625-beagleplay-lincolntech-lcd185-panel.dtso
 new file mode 100644
-index 000000000000..866589c5ae51
+index 000000000000..ac621c32de9b
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/i2c/novatek,nt726xx-i2c.yaml
-@@ -0,0 +1,74 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/i2c/novatek,nt726xx-i2c.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
++++ b/arch/arm64/boot/dts/ti/k3-am625-beagleplay-lincolntech-lcd185-panel.dtso
+@@ -0,0 +1,162 @@
++// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
++/**
++ * Lincoln tech Solutions OLDI panel (LCD185-101CT) and touch DT overlay for AM625-BeaglePlay
++ *
++ * Copyright (C) 2026 Texas Instruments Incorporated - https://www.ti.com/
++ */
 +
-+maintainers:
-+  - Ben Huang <ben_huang@novatek.com.tw>
-+  - Jason JJ Wu <jason_jj_wu@novatek.com.tw>
++/dts-v1/;
++/plugin/;
 +
-+title: Novatek NT726xx Series SoC I2C master controller
++#include <dt-bindings/gpio/gpio.h>
++#include <dt-bindings/interrupt-controller/irq.h>
++#include "k3-pinctrl.h"
 +
-+allOf:
-+  - $ref: /schemas/i2c/i2c-controller.yaml#
++&{/} {
++	backlight: backlight {
++		compatible = "pwm-backlight";
++		pinctrl-names = "default";
++		pinctrl-0 = <&backlight_pins_default>;
++		brightness-levels = <0 4 8 16 32 64 128 255>;
++		default-brightness-level = <6>;
++		enable-gpios = <&main_gpio0 0 GPIO_ACTIVE_HIGH>;
++		pwms = <&epwm0 1 20000 0>;
++	};
 +
-+properties:
-+  compatible:
-+    const: novatek,nt72600-i2c
++	lcd {
++		compatible = "lincolntech,lcd185-101ct";
++		backlight = <&backlight>;
++		/*
++		* Note that the OLDI TX 0 transmits the odd set of pixels
++		* while the OLDI TX 1 transmits the even set. This is a
++		* fixed configuration in the IP integration and is not
++		* changeable. The properties, "dual-lvds-odd-pixels" and
++		* "dual-lvds-even-pixels" have been used to merely
++		* identify if a Dual Link configuration is required.
++		* Swapping them will cause an error in the dss oldi driver.
++		*/
++		power-supply = <&vsys_5v0>;
++		ports {
++			#address-cells = <1>;
++			#size-cells = <0>;
 +
-+  reg:
-+    maxItems: 1
++			port@0 {
++				reg = <0>;
++				dual-lvds-odd-pixels;
++				lcd_in0: endpoint {
++					remote-endpoint = <&oldi_0_out>;
++				};
++			};
++			port@1 {
++				reg = <1>;
++				dual-lvds-even-pixels;
++				lcd_in1: endpoint {
++					remote-endpoint = <&oldi_1_out>;
++				};
++			};
++		};
++	};
++};
 +
-+  interrupts:
-+    maxItems: 1
++&main_pmx0 {
++	touchscreen_pins_default: touchscreen-default-pins {
++		pinctrl-single,pins = <
++			AM62X_IOPAD(0x01b4, PIN_OUTPUT, 7) /* (A13) SPI0_CS0.GPIO1_15 */
++			AM62X_IOPAD(0x00a0, PIN_INPUT, 7) /* (K25) GPMC0_WPn.GPIO0_39 */
++		>;
++	};
 +
-+  clock-frequency:
-+    default: 100000
-+    enum: [ 100000, 400000 ]
++	backlight_pins_default: bl-default-pins {
++		pinctrl-single,pins = <
++			AM62X_IOPAD(0x0000, PIN_OUTPUT, 7) /* (H24) OSPI0_CLK.GPIO0_0 */
++			AM62X_IOPAD(0x01b8, PIN_OUTPUT, 2) /* (C13) SPI0_CS1.EHRPWM0_B */
++		>;
++	};
++};
 +
-+  novatek,hwmods:
-+    $ref: /schemas/types.yaml#/definitions/string
-+    description: Name of each i2c pin, must be named with "i2cX". (X is
-+                 an integer starting from 0, must be unique)
++&dss {
++	status = "okay";
++};
 +
-+  novatek,stbc-controllable:
-+    type: boolean
-+    description: Set if this i2c master, named as `stbc-i2c`, is
-+      controllable by stbc (Standby controller, actually is an 8051
-+      micro-processor) on Novatek NT726xx SoCs.
-+      For these `stbc-i2c`s, the driven clock is only 12 MHz and the
-+      authentication to stbc must be executed before controlling the
-+      registers.
++&oldi0 {
++	status = "okay";
++	ti,companion-oldi = <&oldi1>;
++};
 +
-+    default: 0
++&oldi1 {
++	status = "okay";
++	ti,secondary-oldi;
++	ti,companion-oldi = <&oldi0>;
++};
 +
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - novatek,hwmods
++&oldi0_port0 {
++	oldi_0_in: endpoint {
++		remote-endpoint = <&dpi0_out0>;
++	};
++};
 +
-+unevaluatedProperties: false
++&oldi0_port1 {
++	oldi_0_out: endpoint {
++		remote-endpoint = <&lcd_in0>;
++	};
++};
 +
-+examples:
-+  - |
-+    i2c0: i2c@10000000 {
-+      compatible = "novatek,nt72600-i2c";
-+      reg = <0x0 0x10000000 0x0 0x100>;
-+      interrupts = <0 67 4>;
-+      clock-frequency = <400000>;
-+      novatek,hwmods = "i2c0";
-+      #address-cells = <2>;
-+      #size-cells = <2>;
-+    };
++&oldi1_port0 {
++	oldi_1_in: endpoint {
++		remote-endpoint = <&dpi0_out1>;
++	};
++};
 +
-+    stbc-i2c1: i2c@20000000 {
-+      compatible = "novatek,nt72600-i2c";
-+      reg = <0x0 0x20000000 0x0 0x100>;
-+      interrupts = <0 77 4>;
-+      novatek,hwmods = "i2c1";
-+      novatek,stbc-controllable;
-+      #address-cells = <2>;
-+      #size-cells = <2>;
-+    };
--- 
-2.40.1
-
++&oldi1_port1 {
++	oldi_1_out: endpoint {
++		remote-endpoint = <&lcd_in1>;
++	};
++};
++
++&dss_ports {
++	#address-cells = <1>;
++	#size-cells = <0>;
++
++	/* VP1: Output to OLDI */
++	port@0 {
++		reg = <0>;
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		dpi0_out0: endpoint@0 {
++			reg = <0>;
++			remote-endpoint = <&oldi_0_in>;
++		};
++		dpi0_out1: endpoint@1 {
++			reg = <1>;
++			remote-endpoint = <&oldi_1_in>;
++		};
++	};
++};
++
++&main_i2c2 {
++	#address-cells = <1>;
++	#size-cells = <0>;
++
++	eeprom@57 {
++		compatible = "atmel,24c256";
++		reg = <0x57>;
++	};
++
++	touchscreen@5d {
++		compatible = "goodix,gt928";
++		reg = <0x5d>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&touchscreen_pins_default>;
++		interrupt-parent = <&main_gpio0>;
++		interrupts = <39 IRQ_TYPE_EDGE_FALLING>;
++		irq-gpios = <&main_gpio0 39 GPIO_ACTIVE_HIGH>;
++		reset-gpios = <&main_gpio1 15 GPIO_ACTIVE_HIGH>;
++		touchscreen-size-x = <1920>;
++		touchscreen-size-y = <1200>;
++	};
++};
++
++&epwm0 {
++	status = "okay";
++};
 
