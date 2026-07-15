@@ -1,54 +1,54 @@
-Return-Path: <devicetree+bounces-326746-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-326747-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id ry3KGTBEV2pkIQEAu9opvQ
-	(envelope-from <devicetree+bounces-326746-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 10:26:24 +0200
+	id JQvlBshDV2pOIQEAu9opvQ
+	(envelope-from <devicetree+bounces-326747-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 10:24:40 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9487875BDA9
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 10:26:23 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD1CE75BD6D
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 10:24:39 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=geanix.com header.s=protonmail3 header.b=WxoMRVMe;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326746-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-326746-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=geanix.com header.s=protonmail3 header.b=WZmI6P0v;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-326747-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-326747-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=geanix.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 7E7F53021DB2
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 08:24:08 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 317E930379A3
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jul 2026 08:24:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBA763CD8D7;
-	Wed, 15 Jul 2026 08:24:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0CAA3CEBB7;
+	Wed, 15 Jul 2026 08:24:06 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-43171.protonmail.ch (mail-43171.protonmail.ch [185.70.43.171])
+Received: from mail-106113.protonmail.ch (mail-106113.protonmail.ch [79.135.106.113])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 569293CCA12
-	for <devicetree@vger.kernel.org>; Wed, 15 Jul 2026 08:24:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CF863CDBD7
+	for <devicetree@vger.kernel.org>; Wed, 15 Jul 2026 08:24:04 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1784103843; cv=none; b=TL85hrP42kAI7DVV8TpXh84SAPvFGdCsIVaCv4kCty5+dNIl5fIF4QsKehhGeqBpNjlHx1T1wGXH+zwZ5WKksksMiWbeV5e7vJjTiQFxYp24sTxSa767VJiIjetg7sliyTDjTNk4OgkAhmCJahp37aWbWI+o8NJM7X8279a7rok=
+	t=1784103846; cv=none; b=XT0wWlaKn9WvplxStww6HbZApWej3ONT7Tt68zEN0jseT+WDEPfT3jWvVy6z3lS2CQENIKecRW8z75d923rwK939iMjf+rFHEPxqkASwwLc4+7QtABHHbkqZ+YP4NGvm5gFrL2Cq8Ej1wwQVUYiv3esWBpz1PLa0K0K8rKE0mOI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1784103843; c=relaxed/simple;
-	bh=feUXKoU1OigzdRs8cwri1uskaBwwc5Ly4ocsOXChL5o=;
+	s=arc-20240116; t=1784103846; c=relaxed/simple;
+	bh=VZ/rT6r/lbKkXhS2ooZqBH0gKlX7C3aAwmM1S4fC78s=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=nu6kzhqx/ZsxMBZRwYBAXKJMt/9wX+P9iWbQC0MIXa4XhgS6/Vh3vVLkIwi0WpQ7fULe/H1WRgdmh4sBAUh71RqUOTCwFU1AFeDTjzp88lqw+PgBMaTGD4xMRzA9DslBs2pXcPRlW/gMcYxtTB24gjvs0+uiiI3ruDM3q2Zh5EY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=geanix.com; spf=pass smtp.mailfrom=geanix.com; dkim=pass (2048-bit key) header.d=geanix.com header.i=@geanix.com header.b=WxoMRVMe; arc=none smtp.client-ip=185.70.43.171
+	 In-Reply-To:To:Cc; b=pgJT5r9ts3Wp9Mn9xqE013NZHp8WLjx17vQEUnecAuqpZp2QF7gAS8JRWdSEvyi1N4BFE4mLE9uxomsTpZRPMGJWmMZh9upTD7BcIpcSaz3LBmA9b3TEH9h4zUEUmnfekEJ8e9sfp4QfXtZ9z8DU0LD1dDthPraUzMeY6iJxaBU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=geanix.com; spf=pass smtp.mailfrom=geanix.com; dkim=pass (2048-bit key) header.d=geanix.com header.i=@geanix.com header.b=WZmI6P0v; arc=none smtp.client-ip=79.135.106.113
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=geanix.com;
-	s=protonmail3; t=1784103833; x=1784363033;
-	bh=5B+E/oOoq7h8vHYA+0lGPxncQ4PnLMN7/YIu4Ypf8mc=;
+	s=protonmail3; t=1784103836; x=1784363036;
+	bh=Tfqh/xGkyiil1OQKiZ8iknxMpLG97l2M1+3idrkjWAo=;
 	h=From:Date:Subject:Message-Id:References:In-Reply-To:To:Cc:From:To:
 	 Cc:Date:Subject:Reply-To:Feedback-ID:Message-ID:BIMI-Selector;
-	b=WxoMRVMefz6EEe5jU5AcVZy1XIwrc6CxfGLIUfeiRRBxm0EOTHZ1bRIPtXOaJbAc2
-	 47INkihSsASRI1mV/3Gowiipr+f/Yke2tYWTBSYpFHccn1JRdBC0PEtYx8T3gJd3l/
-	 Uxk2G/kti7gUjd7RkWQH6YbRQ7bhOnIyc9vQsb+/vpsNmkOkvK4VIAzD8/JzvEKfpk
-	 eC3aHgaSzP3hrnLkyYBLHKxPFqr2G8YFfAtE9wx8XWTx60WgP7VwZfu6i8QYd0K6Pg
-	 mA8+Cod3adu3NV+ClA+PVWEPllIpZwMpk6wcCubw4dOq5svlv4/6aSSXC3JEyTmuQf
-	 9++tzyKwLjqGw==
-X-Pm-Submission-Id: 4h0Tj45ZJCz2ScPw
+	b=WZmI6P0vTbFD+85YSBygIQUCeuE8VxP4nKao5AXvUNWRvUuVgxLvm25YETT4PldvL
+	 WZ33SGJMuJTONmNv4KNP/idkJCpJVp8pWPG/6fECEc6RqWXkf6vUbK/qhcrrt0Gp74
+	 l4b5KJpJ1lwm2nzMMTqseCp9mBrn1j5mcWMBB9EXhLhhk2CkImd2dhCxN2VGlCadp8
+	 SGfb4Wo5rBuiYs2Hie6/mxapnwc00a5pIsqLj/4Gd3X3SleyIZHMxGX6ypD0BhB2mz
+	 yJvJMxeB0x0cqcTqoeXo/u09Q5MCU+UkaiVBb7Rw1Hrt1qlBNaZOBoea4Gt0lVJChl
+	 wyL2aXOWILI0w==
+X-Pm-Submission-Id: 4h0Tj62y2Hz2Sd33
 From: Esben Haabendal <esben@geanix.com>
-Date: Wed, 15 Jul 2026 10:23:49 +0200
-Subject: [PATCH 2/3] dt-bindings: iio: light: ltr501: Add ltr329 compatible
+Date: Wed, 15 Jul 2026 10:23:50 +0200
+Subject: [PATCH 3/3] iio: light: ltr501: Add ltr329 driver support
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,7 +57,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260715-liteon-ltr329-v1-2-31f027051594@geanix.com>
+Message-Id: <20260715-liteon-ltr329-v1-3-31f027051594@geanix.com>
 References: <20260715-liteon-ltr329-v1-0-31f027051594@geanix.com>
 In-Reply-To: <20260715-liteon-ltr329-v1-0-31f027051594@geanix.com>
 To: Jonathan Cameron <jic23@kernel.org>, 
@@ -71,11 +71,11 @@ Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org, Esben Haabendal <esben@geanix.com>, 
  Jonathan Cameron <jic23@kernel.org>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1784103828; l=759;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1784103828; l=3185;
  i=esben@geanix.com; s=20240523; h=from:subject:message-id;
- bh=feUXKoU1OigzdRs8cwri1uskaBwwc5Ly4ocsOXChL5o=;
- b=JJLR2vWI6lCKKiFAprlkqVa+T6yWuUsJgkVWJltq6apORLXnU4dYAHxt+vjCWLfkD3ACqd6oH
- LlB88Ka7trNDS2AY6d801jhIXs4A3UUXrgWp2oBlHtkyaduYOlUrlNN
+ bh=VZ/rT6r/lbKkXhS2ooZqBH0gKlX7C3aAwmM1S4fC78s=;
+ b=rHXq3SFZW0uf49XCE2q9x19rpExrMzDpKiNJQPzk1g8q2GRBD+EPU2Vq0eIkC/OyBOF5E4pMv
+ ggQjTpbWAAPCSyvlsgxf9PrbAejrcf4NoCefJQkzZvthJ2lXG8/6eaN
 X-Developer-Key: i=esben@geanix.com; a=ed25519;
  pk=PbXoezm+CERhtgVeF/QAgXtEzSkDIahcWfC7RIXNdEk=
 X-Rspamd-Action: no action
@@ -84,12 +84,12 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[geanix.com,quarantine];
 	R_DKIM_ALLOW(-0.20)[geanix.com:s=protonmail3];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-326746-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-326747-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS(0.00)[m:jic23@kernel.org,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:andy@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:nikita@trvn.ru,m:maslovdmitry@seeed.cc,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:esben@geanix.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER(0.00)[esben@geanix.com,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
@@ -107,32 +107,112 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,geanix.com:from_mime,geanix.com:mid,geanix.com:email,geanix.com:dkim,vger.kernel.org:from_smtp]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,geanix.com:from_mime,geanix.com:mid,geanix.com:email,geanix.com:dkim,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 9487875BDA9
+X-Rspamd-Queue-Id: AD1CE75BD6D
 
-LTR-329ALS-01 is an ambient light sensor similar to LTR-303ALS-01, but
-without interrupt support.
+This adds support for the LTR-329ALS-01 chip, which is similar to
+LTR-303ALS-01, except for interrupt, which LTR-329ALS-01 chip does not
+have.
 
 Signed-off-by: Esben Haabendal <esben@geanix.com>
 ---
- Documentation/devicetree/bindings/iio/light/liteon,ltr501.yaml | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/iio/light/ltr501.c | 31 +++++++++++++++++++++++++++++++
+ 1 file changed, 31 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/iio/light/liteon,ltr501.yaml b/Documentation/devicetree/bindings/iio/light/liteon,ltr501.yaml
-index ab9bb68dd736..76e81eba7ea4 100644
---- a/Documentation/devicetree/bindings/iio/light/liteon,ltr501.yaml
-+++ b/Documentation/devicetree/bindings/iio/light/liteon,ltr501.yaml
-@@ -19,6 +19,7 @@ properties:
-       - liteon,ltr559
-       - liteon,ltr301
-       - liteon,ltr303
-+      - liteon,ltr329
+diff --git a/drivers/iio/light/ltr501.c b/drivers/iio/light/ltr501.c
+index 7d045be78c6d..815b67a10837 100644
+--- a/drivers/iio/light/ltr501.c
++++ b/drivers/iio/light/ltr501.c
+@@ -94,6 +94,7 @@ enum {
+ 	ltr559,
+ 	ltr301,
+ 	ltr303,
++	ltr329,
+ };
  
-   reg:
-     maxItems: 1
+ struct ltr501_gain {
+@@ -178,6 +179,11 @@ static const struct ltr501_samp_table ltr501_ps_samp_table[] = {
+ 			{500000, 2000000}
+ };
+ 
++static bool ltr501_has_irq_support(const struct ltr501_chip_info *chip_info)
++{
++	return chip_info->info != chip_info->info_no_irq;
++}
++
+ static int ltr501_match_samp_freq(const struct ltr501_samp_table *tab,
+ 					   int len, int val, int val2)
+ {
+@@ -428,6 +434,9 @@ static int ltr501_read_intr_prst(const struct ltr501_data *data,
+ {
+ 	int ret, samp_period, prst;
+ 
++	if (!ltr501_has_irq_support(data->chip_info))
++		return 0;
++
+ 	switch (type) {
+ 	case IIO_INTENSITY:
+ 		ret = regmap_field_read(data->reg_als_prst, &prst);
+@@ -466,6 +475,9 @@ static int ltr501_write_intr_prst(struct ltr501_data *data,
+ 	int ret, samp_period, new_val;
+ 	unsigned long period;
+ 
++	if (!ltr501_has_irq_support(data->chip_info))
++		return 0;
++
+ 	if (val < 0 || val2 < 0)
+ 		return -EINVAL;
+ 
+@@ -1257,6 +1269,18 @@ static const struct ltr501_chip_info ltr501_chip_info_tbl[] = {
+ 		.channels = ltr301_channels,
+ 		.no_channels = ARRAY_SIZE(ltr301_channels),
+ 	},
++	[ltr329] = {
++		.partid = 0x0A,
++		.als_gain = ltr559_als_gain_tbl,
++		.als_gain_tbl_size = ARRAY_SIZE(ltr559_als_gain_tbl),
++		.als_mode_active = BIT(0),
++		.als_gain_mask = BIT(2) | BIT(3) | BIT(4),
++		.als_gain_shift = 2,
++		.info = &ltr301_info_no_irq,
++		.info_no_irq = &ltr301_info_no_irq,
++		.channels = ltr301_channels,
++		.no_channels = ARRAY_SIZE(ltr301_channels),
++	},
+ };
+ 
+ static int ltr501_write_contr(struct ltr501_data *data, u8 als_val, u8 ps_val)
+@@ -1531,6 +1555,11 @@ static int ltr501_probe(struct i2c_client *client)
+ 		return ret;
+ 
+ 	if (client->irq > 0) {
++		if (!ltr501_has_irq_support(data->chip_info)) {
++			dev_err(&client->dev, "chip does not support irq\n");
++			return -EINVAL;
++		}
++
+ 		ret = devm_request_threaded_irq(&client->dev, client->irq,
+ 						NULL, ltr501_interrupt_handler,
+ 						IRQF_TRIGGER_FALLING |
+@@ -1604,6 +1633,7 @@ static const struct i2c_device_id ltr501_id[] = {
+ 	{ .name = "ltr559", .driver_data = ltr559 },
+ 	{ .name = "ltr301", .driver_data = ltr301 },
+ 	{ .name = "ltr303", .driver_data = ltr303 },
++	{ .name = "ltr329", .driver_data = ltr329 },
+ 	{ }
+ };
+ MODULE_DEVICE_TABLE(i2c, ltr501_id);
+@@ -1613,6 +1643,7 @@ static const struct of_device_id ltr501_of_match[] = {
+ 	{ .compatible = "liteon,ltr559", },
+ 	{ .compatible = "liteon,ltr301", },
+ 	{ .compatible = "liteon,ltr303", },
++	{ .compatible = "liteon,ltr329", },
+ 	{ }
+ };
+ MODULE_DEVICE_TABLE(of, ltr501_of_match);
 
 -- 
 2.55.0
